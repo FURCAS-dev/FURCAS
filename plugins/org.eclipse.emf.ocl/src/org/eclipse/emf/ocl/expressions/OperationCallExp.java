@@ -1,0 +1,50 @@
+/******************************************************************************
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.emf.ocl.expressions;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EOperation;
+
+/**
+ * author edith
+ */
+/**
+ * @model
+ */
+public interface OperationCallExp extends ModelPropertyCallExp{
+	
+	/**
+	 * @model type="OclExpression" opposite="parentOperation" lowerBound=0
+	 */
+	public EList getArguments();
+	
+	/**
+	 * @model
+	 * 
+	 */
+	public EOperation getReferredOperation();
+
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.OperationCallExp#getReferredOperation <em>Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Operation</em>' reference.
+	 * @see #getReferredOperation()
+	 * @generated
+	 */
+	void setReferredOperation(EOperation value);
+
+	public int getOperationCode();
+	
+	public void setOperationCode(int opCode);
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+/******************************************************************************
+ * Copyright (c) 2004,2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+-->
+</head>
+<body>
+
+Definition of the extensible environment API for OCL parsing and evaluation.
+
+<h2>Package Specification</h2>
+<p>
+This package defines the API for the environments in which OCL expressions are
+parsed and evaluated.
+</p>
+<p>
+The {@link org.eclipse.emf.ocl.parser.Environment} interface describes the
+environment in which an OCL expression is parsed.  The environment provides
+two major functions to the parser:
+</p>
+<ul>
+  <li>Name resolution:  the parser looks up in its current environment names
+      that it finds in an expression.  These include package, classifier,
+      attribute, reference, operation, and variable names.  Nested environments
+      define nested scopes, to support shadowing of names (e.g., operation
+      parameters or <tt>let</tt> variables that hide attributes of the context
+      classifier)</li>
+  <li>Tracking the context:  the environment defines an optional package
+      context, a mandatory classifier context, and (for operation constraints)
+      an operation context.  An operation context is implemented as a child
+      environment of a classifier context; this allows for definition of
+      constraints on operations in a different classifier context than the
+      classifier that defines the operation</li>
+</ul>
+<p>
+Environments are created by environment factories.  An
+{@link org.eclipse.emf.ocl.parser.EnvironmentFactory} is provided to an
+{@link org.eclipse.emf.ocl.helper.IOclHelper} to create environments when
+it needs to, or by clients to create environments for working with the
+{@link org.eclipse.emf.ocl.expressions.util.ExpressionsUtil} utilities.
+Environment factories are useful for adapting metamodels to Ecore (possibly
+using the extensions in the {@link org.eclipse.emf.ocl.uml} package) to use
+OCL on them.  The environments that they create would do the language mapping to
+look up classifiers etc. as appropriate to the metamodel.  A default factory
+implementation for Ecore is provided and may be extended by clients to support
+other metamodels.
+</p>
+<p>
+While the {@link org.eclipse.emf.ocl.parser.Environment} class provides a
+parse-time environment, the {@link org.eclipse.emf.ocl.parser.EvaluationEnvironment}
+keeps track of the current values of variables in the evaluation of an OCL
+expression.  The {@link org.eclipse.emf.ocl.parser.AbstractEnvironmentFactory}
+provides a default implementation suitable for most applications.  Factories
+that customize the parser environments may, however, need to customize the
+evaluation environment as well to perform transformations on the values
+that it maintains.
+</p>
+
+@see org.eclipse.emf.ocl.helper
+@see org.eclipse.emf.ocl.expressions.util.ExpressionsUtil
+@see org.eclipse.emf.ocl.parser.EnvironmentFactory
+@see org.eclipse.emf.ocl.parser.Environment
+
+</body>
+</html>

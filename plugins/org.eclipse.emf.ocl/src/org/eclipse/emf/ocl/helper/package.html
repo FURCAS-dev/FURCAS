@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+/******************************************************************************
+ * Copyright (c) 2004,2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+-->
+</head>
+<body>
+
+Definition of the OCL Helper API for syntax completion support and a simplified
+parsing model.
+
+<h2>Package Specification</h2>
+<p>
+The primary interface in this package is the
+{@link org.eclipse.emf.ocl.helper.IOclHelper}, which provides OCL syntax
+completion assistance and parsing support.  Instances are obtained from the
+{@link org.eclipse.emf.ocl.helper.HelperUtil} class.
+</p>
+<p>
+OCL code completion suggestions are represented as
+{@link org.eclipse.emf.ocl.helper.Choice}s, which indicate the text of a
+language construct, a description, and the
+{@linkplain org.eclipse.emf.ocl.helper.ChoiceType type} of construct.
+</p>
+<p>
+The <code>IOclHelper</code> also provides simple, but flexible, support for
+parsing OCL expressions:  invariants in a classifier context, and pre/post
+conditions and body conditions in an operation context.  Evaluation is also
+supported for invariant constraints.  The helper is constructed with an
+{@link org.eclipse.emf.ocl.parser.EnvironmentFactory} that creates the
+necessary environments for parsing the client's metamodel.  This allows clients
+of other metamodels than Ecore (e.g., SQL, UML2) that describe software
+systems in terms of classifiers to use OCL to expression constraints.
+An environment maps the metamodel in question to the OCL parser's extended
+Ecore metamodel.
+</p>
+
+</body>
+</html>

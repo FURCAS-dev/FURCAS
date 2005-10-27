@@ -1,0 +1,58 @@
+/******************************************************************************
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.emf.ocl.types;
+
+import org.eclipse.emf.ocl.uml.Signal;
+
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
+
+
+/**
+ * author edith
+ *
+ */
+/**
+ * @model
+ */
+public interface MessageType extends EClassifier{
+	/**
+	 * @model lowerBound=0  upperBound=1
+	 */
+	public Signal getReferredSignal();
+	
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.ocl.types.MessageType#getReferredSignal <em>Referred Signal</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Signal</em>' reference.
+	 * @see #getReferredSignal()
+	 * @generated
+	 */
+	void setReferredSignal(Signal value);
+
+	/**
+	 * @model lowerBound=0  upperBound=1
+	 */
+	public EOperation getReferredOperation();
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.ocl.types.MessageType#getReferredOperation <em>Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Operation</em>' reference.
+	 * @see #getReferredOperation()
+	 * @generated
+	 */
+	void setReferredOperation(EOperation value);
+
+}

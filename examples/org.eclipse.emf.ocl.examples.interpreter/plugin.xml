@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!-- Copyright (c) 2005  IBM Corporation and others.                       -->
+<!-- All rights reserved. This program and the accompanying materials      -->
+<!-- are made available under the terms of the Eclipse Public License v1.0 -->
+<!-- which accompanies this distribution, and is available at              -->
+<!-- http://www.eclipse.org/legal/epl-v10.html                             -->
+<!--                                                                       -->
+<!-- Contributors:                                                         -->
+<!--    IBM Corporation - initial API and implementation                   -->
+<plugin>
+
+     <extension point="org.eclipse.ui.editorActions"> 
+      <editorContribution 
+         id="org.eclipse.emf.query.examples.ocl.editorContribution" 
+         targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"> 
+        <menu
+               label="%_UI_OclMenu_label"
+               path="org.eclipse.emf.examples.extlibraryMenuID/additions"
+               id="org.eclipse.emf.oclEngineMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_ShowConsole_label"
+               class="org.eclipse.emf.ocl.examples.interpreter.actions.ShowConsoleDelegate"
+               menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.oclEngineMenuID/additions"
+               icon="icons/ocl.gif"
+               id="org.eclipse.emf.ocl.examples.interpreter.ShowConsoleAction"/>
+      </editorContribution> 
+   </extension> 
+   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"
+            id="org.eclipse.emf.query.examples.ocl.viewerContribution">
+        <menu
+               label="%_UI_OclMenu_label"
+               path="additions"
+               id="org.eclipse.emf.oclEngineMenuID">
+            <separator name="additions"/>
+         </menu>
+         <action
+               label="%_UI_ShowConsole_label"
+               class="org.eclipse.emf.ocl.examples.interpreter.actions.ShowConsoleDelegate"
+               menubarPath="org.eclipse.emf.oclEngineMenuID/additions"
+               icon="icons/ocl.gif"
+               id="org.eclipse.emf.ocl.examples.interpreter.ShowConsoleAction"/>
+      </viewerContribution>
+   </extension>
+
+</plugin>

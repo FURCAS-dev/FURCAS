@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.name
+Bundle-SymbolicName: org.eclipse.emf.ocl.examples.interpreter; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.emf.ocl.examples.interpreter.OclExamplePlugin
+Bundle-Vendor: %Plugin.providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.ocl.examples.interpreter,
+ org.eclipse.emf.ocl.examples.interpreter.actions,
+ org.eclipse.emf.ocl.examples.interpreter.console,
+ org.eclipse.emf.ocl.examples.interpreter.internal.l10n
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.ui.console,
+ org.eclipse.jface.text,
+ org.eclipse.emf.query.ocl,
+ org.eclipse.emf.examples.library.editor
+Eclipse-LazyStart: true

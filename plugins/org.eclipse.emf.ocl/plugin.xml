@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!-- Copyright (c) 2005  IBM Corporation and others.                       -->
+<!-- All rights reserved. This program and the accompanying materials      -->
+<!-- are made available under the terms of the Eclipse Public License v1.0 -->
+<!-- which accompanies this distribution, and is available at              -->
+<!-- http://www.eclipse.org/legal/epl-v10.html                             -->
+<!--                                                                       -->
+<!-- Contributors:                                                         -->
+<!--    IBM Corporation - initial API and implementation                   -->
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package 
+         uri="http://www.ibm.com/OCL2/7.0.0/ocl/expressions" 
+         class="org.eclipse.emf.ocl.expressions.ExpressionsPackage"/>
+      <package 
+         uri="http://www.ibm.com/OCL2/7.0.0/ocl/types" 
+         class="org.eclipse.emf.ocl.types.TypesPackage"/>
+      <package 
+         uri="http://www.ibm.com/OCL2/7.0.0/ocl/uml" 
+         class="org.eclipse.emf.ocl.uml.UmlPackage"/>
+      <package 
+         uri="http://www.ibm.com/OCL2/7.0.0/ocl/utilities" 
+         class="org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage"/>
+      <package 
+         uri="http://www.ibm.com/OCL2/7.0.0/ocl/query" 
+         class="org.eclipse.emf.ocl.query.QueryPackage"/>
+   </extension>
+</plugin>

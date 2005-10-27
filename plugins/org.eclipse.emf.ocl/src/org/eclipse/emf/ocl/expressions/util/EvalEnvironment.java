@@ -1,0 +1,102 @@
+/******************************************************************************
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipse.emf.ocl.expressions.util;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.osgi.util.NLS;
+
+/**
+ * 
+ * A mapping of names to objects used in the evaluation of expressions.
+ * 
+ * @author tklinger
+ */
+public class EvalEnvironment implements EvaluationEnvironment {
+
+    private static final String BINDING_MESSAGE = OclMessages.BindingExist_ERROR_;
+
+    private final Map map;
+
+    public EvalEnvironment() {
+        this.map = new HashMap();
+    }
+
+    /**
+     * Returns the value associated with the supplied name
+     * 
+     * @param name
+     *            the name whose value is to be returned
+     * @return the value associated with the name
+     */
+    public Object getValueOf(String name) {
+        return map.get(name);
+    }
+
+    /**
+     * Replaces the current value of the supplied name with the supplied value.
+     * 
+     * @param name
+     *            the name
+     * @param value
+     *            the new value
+     */
+    public void replace(String name, Object value) {
+        map.put(name, value);
+    }
+
+    /**
+     * Adds the supplied name and value binding to the environment
+     * 
+     * @param name
+     *            the name to add
+     * @param value
+     *            the associated binding
+     */
+    public void add(String name, Object value) {
+        if (map.containsKey(name)) {
+            String message = NLS.bind(BINDING_MESSAGE,
+                    new Object[] { name, map.get(name) });
+            throw new IllegalArgumentException(message);
+        }
+        map.put(name, value);
+    }
+
+    /**
+     * Removes the supplied name and binding from the environment (if it exists)
+     * and returns it.
+     * 
+     * @param name
+     *            the name to remove
+     * @return the value associated with the removed name
+     */
+    public Object remove(String name) {
+        return map.remove(name);
+    }
+
+    /**
+     * Clears the environment of variables.
+     */
+    public void clear() {
+        map.clear();
+    }
+
+    /**
+     * Returns a string representation of the bindings
+     */
+    public String toString() {
+        return map.toString();
+    }
+}
