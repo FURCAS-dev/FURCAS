@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Query Plug-in
+Bundle-SymbolicName: org.eclipse.emf.query.examples.statements; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: org.eclipse.emf.query.examples.statements.jar
+Bundle-Vendor: IBM
+Bundle-Vendor: %Plugin.providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.query.examples.statements,
+ org.eclipse.emf.query.examples.statements.internal.l10n,
+ org.eclipse.emf.query.examples.statements.actions
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.query,
+ org.eclipse.emf.examples.library,
+ org.eclipse.emf.examples.library.edit,
+ org.eclipse.emf.examples.library.editor,
+ org.eclipse.emf
+Eclipse-LazyStart: true
+
+

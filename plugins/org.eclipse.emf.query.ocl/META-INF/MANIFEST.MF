@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.name
+Bundle-SymbolicName: org.eclipse.emf.query.ocl
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.emf.query.ocl.internal.OclPlugin$Implementation
+Bundle-Vendor: %Plugin.providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.query.ocl,
+ org.eclipse.emf.query.ocl.conditions,
+ org.eclipse.emf.query.ocl.internal
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.query;visibility:=reexport,
+ org.eclipse.emf.ocl;visibility:=reexport,
+ org.eclipse.core.runtime
+Eclipse-LazyStart: true

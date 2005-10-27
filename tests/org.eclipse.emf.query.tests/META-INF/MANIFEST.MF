@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.name
+Bundle-SymbolicName: org.eclipse.emf.query.tests
+Bundle-Version: 1.0.0
+Bundle-Vendor: %Plugin.providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.query.tests
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit,
+ org.eclipse.uml2,
+ org.eclipse.emf.query,
+ org.eclipse.emf.examples.library,
+ org.eclipse.emf.examples.library.edit,
+ org.eclipse.emf.examples.library.editor
+
+

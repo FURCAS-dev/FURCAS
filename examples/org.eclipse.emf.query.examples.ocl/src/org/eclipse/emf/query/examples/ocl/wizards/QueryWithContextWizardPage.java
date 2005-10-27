@@ -1,0 +1,200 @@
+/******************************************************************************
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    IBM Corporation - initial API and implementation 
+ ****************************************************************************/
+
+
+package org.eclipse.emf.query.examples.ocl.wizards;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
+import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
+import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOclMessages;
+import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+
+/**
+ * A wizard the prompts the user for an OCL constraint condition expression
+ * and context type.  Performs validation of the OCL expression.
+ */
+class QueryWithContextWizardPage
+	extends WizardPage
+	implements IOclQueryWizardPage {
+
+	private static String TITLE = QueryOclMessages.oclQuery_title;
+	private static String METACLASS_PROMPT = QueryOclMessages.oclQuery_prompt_metaclass;
+	private static String METACLASS_DEFAULT = QueryOclMessages.oclQuery_default_metaclass;
+	private static String CONDITION_PROMPT = QueryOclMessages.oclQuery_prompt_condition;
+	private static String CONDITION_DEFAULT = QueryOclMessages.oclQuery_default_condition;
+	
+	private ComboViewer contextCombo;
+	private Text conditionText;
+	private OclConstraintCondition condition;
+	
+	/**
+	 * Initializes me.
+	 */
+	public QueryWithContextWizardPage() {
+		super("main", TITLE, null); //$NON-NLS-1$
+	}
+
+	public void createControl(Composite parent) {
+		setMessage(QueryOclMessages.oclQuery_message_wizard);
+		
+		Composite page = new Composite(parent, SWT.NONE);
+		page.setLayout(new GridLayout(2, false));
+		
+		Label prompt = new Label(page, SWT.NONE);
+		prompt.setText(METACLASS_PROMPT);
+		
+		// combobox from which user selects the OCL conditions' context type
+		contextCombo = new ComboViewer(page, SWT.NONE);
+		contextCombo.getControl().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		fillContextCombo();
+		contextCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+			public void selectionChanged(SelectionChangedEvent event) {
+				setPageComplete(validatePage());
+			}});
+		
+		// spacer for nice UI layout
+		Label spacer = new Label(page, SWT.NONE);
+		GridData data = new GridData(GridData.FILL_HORIZONTAL);
+		data.horizontalSpan = 2;
+		data.heightHint = 15;
+		spacer.setLayoutData(data);
+		
+		prompt = new Label(page, SWT.NONE);
+		prompt.setText(CONDITION_PROMPT);
+		data = new GridData(GridData.FILL_HORIZONTAL);
+		data.horizontalSpan = 2;
+		prompt.setLayoutData(data);
+		
+		// text area for user to enter OCL condition
+		conditionText = new Text(page, SWT.BORDER | SWT.MULTI);
+		data = new GridData(GridData.FILL_BOTH);
+		data.horizontalSpan = 2;
+		conditionText.setLayoutData(data);
+		conditionText.setText(CONDITION_DEFAULT);
+		
+		conditionText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				setPageComplete(validatePage());
+			}});
+		
+		setControl(page);
+		
+		// validate and compute the default settings
+		setPageComplete(validatePage());
+	}
+	
+	/**
+	 * Fills the combo box with the available context metaclasses.
+	 */
+	private void fillContextCombo() {
+		contextCombo.setContentProvider(new ArrayContentProvider());
+		contextCombo.setLabelProvider(new LabelProvider() {
+			public String getText(Object element) {
+				return ((EClassifier) element).getName();
+			}});
+		contextCombo.setSorter(new ViewerSorter() {
+			public int compare(Viewer viewer, Object e1, Object e2) {
+				return ((EClassifier) e1).getName().compareTo(
+					((EClassifier) e2).getName());
+			}});
+		
+		// show only EClasses (cannot query for EDataType values)
+		List classes = new LinkedList(
+			EXTLibraryPackage.eINSTANCE.getEClassifiers());
+		for (Iterator iter = classes.iterator(); iter.hasNext();) {
+			if (!(iter.next() instanceof EClass)) {
+				iter.remove();
+			}
+		}
+		contextCombo.setInput(classes);
+		
+		// apply the default selection, if possible
+		EClassifier defaultSelection = EXTLibraryPackage.eINSTANCE.getEClassifier(
+			METACLASS_DEFAULT);
+		if (defaultSelection != null) {
+			contextCombo.setSelection(
+				new StructuredSelection(defaultSelection),
+				true);
+		}
+	}
+	
+	/**
+	 * Validates the page input.
+	 * 
+	 * @return <code>true</code> if I can finish; <code>false</code>, otherwise
+	 */
+	private boolean validatePage() {
+		boolean result = true;
+		
+		try {
+			String text = conditionText.getText();
+			
+			IStructuredSelection selection =
+				(IStructuredSelection) contextCombo.getSelection();
+			EClass contextClass = (EClass) selection.getFirstElement();
+			
+			condition = new OclConstraintCondition(
+				text,
+				contextClass,
+				EStructuralFeatureValueGetter.getInstance());
+			
+			if (condition.getResultType(null).getInstanceClass() == Boolean.class) {
+				setErrorMessage(null);
+			} else {
+				condition = null;
+				result = false;
+				setErrorMessage(QueryOclMessages.oclQuery_message_boolean);
+			}
+		} catch (Exception e) {
+			result = false;
+			setErrorMessage(e.getLocalizedMessage());
+		}
+		
+		return result;
+	}
+	
+	public OclConstraintCondition getCondition() {
+		return condition;
+	}
+	
+	/* (non-Javadoc)
+	 * Redefines/Implements/Extends the inherited method.
+	 */
+	public void dispose() {
+		super.dispose();
+	}
+
+}
