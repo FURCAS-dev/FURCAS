@@ -1,2 +1,2 @@
 plugin.properties
-src\com\ibm\xtools\emf\ocl\internal\l10n\messages.properties
+src\org\eclipse\emf\ocl\internal\l10n\OclMessages.properties
