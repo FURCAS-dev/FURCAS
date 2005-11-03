@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.emf.query.ocl"
+      label="%featureName"
+      version="1.0.0"
+      provider-name="%providerName"
+      image="eclipse_update_120.jpg">
+
+   <description url="http://www.eclipse.org/emft">
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2002-2005 IBM Corporation and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://update.eclipse.org/updates"/>
+      <discovery label="%updateSiteName" url="http://update.eclipse.org/updates"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import feature="org.eclipse.emf"/>
+      <import plugin="org.eclipse.emf.query"/>
+      <import plugin="org.eclipse.emf.ocl"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.emf.query.ocl"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+</feature>
