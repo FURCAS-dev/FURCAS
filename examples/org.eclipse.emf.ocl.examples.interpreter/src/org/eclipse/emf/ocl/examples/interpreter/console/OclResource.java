@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
 import org.eclipse.emf.ocl.expressions.AttributeCallExp;
@@ -56,7 +55,10 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
-import org.eclipse.emf.ocl.query.QueryFactory;
+import org.eclipse.emf.ocl.helper.HelperUtil;
+import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.OclParsingException;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
@@ -105,18 +107,26 @@ public class OclResource
 	 * Saves the specified OCL expression to an XMI file.
 	 * 
 	 * @param path the fully-qualified path of the XMI file to save
-	 * @param context the OCL context classifier
+	 * @param context the OCL context object
 	 * @param expr the OCL expression to save
 	 * 
 	 * @throws RuntimeException if anything goes wrong in parsing
 	 * @throws IOException if anything goes wrong in saving
+	 * @throws OclParsingException if anything goes wrong in parsing
 	 */
-	public static void save(String path, EClass context, String expr)
-			throws IOException {
-		// use the query factory to parse the OCL expression and extract
+	public static void save(String path, EObject context, String expr)
+			throws IOException, OclParsingException {
+		// create an OCL helper to do our parsing.  Use the current resource
+		//    set's package registry to resolve OCL namespaces
+		IOclHelper helper = HelperUtil.createOclHelper(
+			new EcoreEnvironmentFactory(
+				context.eResource().getResourceSet().getPackageRegistry()));
+		
+		// use an OCL helper to parse the OCL expression and extract
 		//    the AST from it
-		OclExpression parsed =
-			QueryFactory.eINSTANCE.createQuery(expr, context).getExpression();
+		helper.setContext(context);
+		
+		OclExpression parsed = helper.createInvariant(expr);
 		
 		// create a resource, add the AST to it, and save it
 		OclResource res = new OclResource(URI.createFileURI(path));

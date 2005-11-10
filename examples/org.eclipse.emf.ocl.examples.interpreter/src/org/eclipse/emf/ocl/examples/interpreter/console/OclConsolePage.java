@@ -16,22 +16,19 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.ocl.examples.interpreter.OclExamplePlugin;
 import org.eclipse.emf.ocl.examples.interpreter.internal.l10n.OclInterpreterMessages;
-import org.eclipse.emf.ocl.query.Query;
-import org.eclipse.emf.ocl.query.QueryFactory;
+import org.eclipse.emf.ocl.helper.HelperUtil;
+import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -81,7 +78,7 @@ public class OclConsolePage
 	private Color blue;
 	
 	private String lastOclExpression;
-	private EClass lastContextEClass;
+	private EObject lastContext;
 	
 	private final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
@@ -180,75 +177,35 @@ public class OclConsolePage
 			result = false;
 			error(OclInterpreterMessages.console_noContext);
 		} else {
-			Query query = null;
+			// create an OCL helper to do our parsing and evaluating.  Use
+			//    the current resource set's package registry to resolve
+			//    OCL namespaces
+			IOclHelper helper = HelperUtil.createOclHelper(
+				new EcoreEnvironmentFactory(
+					context.eResource().getResourceSet().getPackageRegistry()));
+			
+			// set our helper's context object to parse against it
+			helper.setContext(context);
 			
 			try {
-				// the query factory will throw an illegal argument exception
-				//   if the expression does not parse on the specified context
-				//   classifier
-				query = QueryFactory.eINSTANCE.createQuery(
-					expression,
-					context.eClass());
+				IDocument doc = getDocument();
+				if (doc.getLength() > 0) {
+					// separate previous output by a blank line
+					append("", black, false); //$NON-NLS-1$
+				}
+				
+				print(OclInterpreterMessages.console_evaluating, black, true);
+				print(expression, black, false);
+				print(OclInterpreterMessages.console_results, black, true);
+				print(helper.evaluate(context, expression), blue, false);
 				
 				// store the successfully parsed expression
 				lastOclExpression = expression;
-				lastContextEClass = context.eClass();
-				
-				// compute and assign the extent-map for allInstances(), but
-				// only if the expression includes the allInstances() operation
-				// because it is costly
-				if (expression.indexOf("allInstances") >= 0) { //$NON-NLS-1$
-					query.setExtentMap(computeExtentMap(context.eResource()));
-				}
-			} catch (IllegalArgumentException e) {
+				lastContext = context;
+			} catch (Exception e) {
 				result = false;
 				error(e.getLocalizedMessage());
 			}
-			
-			if (query != null) {
-				try {
-					IDocument doc = getDocument();
-					if (doc.getLength() > 0) {
-						// separate previous output by a blank line
-						append("", black, false); //$NON-NLS-1$
-					}
-					
-					print(OclInterpreterMessages.console_evaluating, black, true);
-					print(expression, black, false);
-					print(OclInterpreterMessages.console_results, black, true);
-					print(query.evaluate(context), blue, false);
-				} catch (Exception e) {
-					result = false;
-					error(e.getLocalizedMessage());
-				}
-			}
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Computes the <i>extent map</i> for a query.  This is a mapping of
-	 * OCL types to their sets of instances.
-	 * 
-	 * @param resource the resource to extract instances from
-	 * 
-	 * @return a map of {@link EClass} to {@link Set} of instances
-	 */
-	private Map computeExtentMap(Resource resource) {
-		Map result = new java.util.HashMap();
-		
-		for (Iterator tree = EcoreUtil.getAllContents(resource.getContents()); tree.hasNext();) {
-			EObject next = (EObject) tree.next();
-			EClass type = next.eClass();
-			
-			Set instances = (Set) result.get(type);
-			if (instances == null) {
-				instances = new java.util.HashSet();
-				result.put(type, instances);
-			}
-			
-			instances.add(next);
 		}
 		
 		return result;
@@ -504,7 +461,7 @@ public class OclConsolePage
 				String file = dlg.open();
 				if (file != null) {
 					try {
-						OclResource.save(file, lastContextEClass, lastOclExpression);
+						OclResource.save(file, lastContext, lastOclExpression);
 					} catch (Exception e) {
 						MessageDialog.openError(
 							shell,
