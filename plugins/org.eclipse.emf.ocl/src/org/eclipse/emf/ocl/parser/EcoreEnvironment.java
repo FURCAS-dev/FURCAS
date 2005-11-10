@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -28,7 +27,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
@@ -265,21 +263,41 @@ public class EcoreEnvironment
 	private EPackage defaultPackage;
 
 	/**
-	 * Create an environment, and set the default package from a package
-	 * statement
+	 * The registry for package lookups.
+	 */
+	private EPackage.Registry registry;
+
+	/**
+	 * Create an environment, set the default package from a package
+	 * statement, and set the package registry to the global package
+     * registry.
 	 * 
 	 * @param pkg
 	 */
 	public EcoreEnvironment(EPackage pkg) {
 		defaultPackage = pkg;
+		registry = EPackage.Registry.INSTANCE;
+	}
 
+	/**
+	 * Create an environment, set the default package from a package
+	 * statement, and set the package registry
+	 * 
+	 * @param pkg
+	 * @param reg
+	 */
+	public EcoreEnvironment(EPackage pkg, EPackage.Registry reg) {
+		defaultPackage = pkg;
+		registry = reg;
 	}
 
 	public EcoreEnvironment(Environment parent) {
 		if (parent instanceof EcoreEnvironment) {
 			defaultPackage = ((EcoreEnvironment) parent).defaultPackage;
+			registry = ((EcoreEnvironment) parent).registry;
+		} else {
+			registry = EPackage.Registry.INSTANCE;
 		}
-		
 		this.parent = parent;
 	}
 
@@ -396,7 +414,7 @@ public class EcoreEnvironment
 		}
 		
 		// Check whether this package exists in the global package registry
-		return findPackage(path);
+		return findPackage(path, registry);
 	}
 
 	/**
@@ -439,7 +457,7 @@ public class EcoreEnvironment
 			}
 			// Check whether this package exists
 			List newNames = names.subList(0, names.size() - 1);
-			pkg = findPackage(newNames);
+			pkg = findPackage(newNames, registry);
 			if (pkg == null)
 				return null;
 			return pkg.getEClassifier((String) names
@@ -859,13 +877,26 @@ public class EcoreEnvironment
 
 	/**
 	 * Looks in the EMF registry for a package with the specified qualified
-	 * package name.
+	 * package name. Uses the global package registry.
 	 * 
 	 * @param packageNames
 	 *            the qualified package name
 	 * @return the matching EPackage, or <code>null</code> if not found
 	 */
 	static public EPackage findPackage(List packageNames) {
+		return findPackage(packageNames, EPackage.Registry.INSTANCE);
+	}
+
+	/**
+	 * Looks in the given registry for a package with the specified qualified
+	 * package name.
+	 * 
+	 * @param packageNames
+	 *            the qualified package name
+	 * @param registry the EPackage.Registry to look in
+	 * @return the matching EPackage, or <code>null</code> if not found
+	 */
+	static public EPackage findPackage(List packageNames, EPackage.Registry registry) {
 
 		StringBuffer stringBuffer = new StringBuffer();
 		Iterator it = packageNames.iterator();
@@ -878,7 +909,6 @@ public class EcoreEnvironment
 
 		String nsPresfix = stringBuffer.toString();
 
-		Map registry = EPackage.Registry.INSTANCE;
 		for (Iterator iter = registry.values().iterator(); iter.hasNext();) {
 			Object next = iter.next();
 
@@ -920,8 +950,8 @@ public class EcoreEnvironment
 	
 	/**
 	 * Default implementation just gets the name of the named element's
-	 * {@link EObject#eClass() eClass} or, if it is an {@link ETypedElement},
-	 * the name of its type.
+	 * {@link org.eclipse.emf.ecore.EObject#eClass() eClass} or, if it is an
+	 * {@link ETypedElement}, the name of its type.
 	 */
 	public String getDescription(ENamedElement namedElement) {
 		if (namedElement instanceof ETypedElement) {

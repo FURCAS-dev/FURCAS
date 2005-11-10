@@ -1,0 +1,86 @@
+package org.eclipse.emf.ocl.tests;
+
+import java.util.List;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.emf.ocl.helper.ChoiceType;
+import org.eclipse.emf.ocl.helper.HelperUtil;
+import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+
+/**
+ * Tests the {@link ExpressionsUtil} class.
+ *
+ * @author Christian Vogt (cvogt)
+ */
+public class EcoreEnvironmentTest
+	extends AbstractTestSuite {
+
+	public EcoreEnvironmentTest(String name) {
+		super(name);
+	}
+	
+	public static Test suite() {
+		return new TestSuite(EcoreEnvironmentTest.class, "Ecore Environment Tests"); //$NON-NLS-1$
+	}
+
+	/**
+	 * Tests the default EcoreEnvironment which uses the global package registry.
+	 */
+	public void test_globalEPackageRegistry_lookup() {
+		IOclHelper helper = HelperUtil.createOclHelper(EcoreEnvironmentFactory.ECORE_INSTANCE);
+		
+		// add a context which we won't use
+		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+
+		final String EXPRESSION = "ocltest::Color::"; //$NON-NLS-1$
+
+		// choices should be returned
+		List choices = helper.getSyntaxHelp(EXPRESSION);
+		assertNotNull(choices);
+		assertFalse(choices.isEmpty());
+		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "green"); //$NON-NLS-1$
+		
+		// remove the package from the global registry
+		EPackage.Registry.INSTANCE.remove(fruitPackage.getNsURI());
+
+		// registry no longer contains the fruit package
+		// no choices should be returned
+		choices = helper.getSyntaxHelp(EXPRESSION); 
+		assertNotNull(choices);
+		assertTrue(choices.isEmpty());
+	}
+
+	/**
+	 * Tests the use of a custom package registry with the EcoreEnvironment.
+	 */
+	public void test_customEPackageRegistry_lookup() {
+		EPackage.Registry registry = new EPackageRegistryImpl();
+
+		IOclHelper helper = HelperUtil.createOclHelper(new EcoreEnvironmentFactory(registry));
+		
+		// add a context which we won't use
+		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+
+		final String EXPRESSION = "ocltest::Color::"; //$NON-NLS-1$
+
+		// registry is empty, no choices should be returned
+		List choices = helper.getSyntaxHelp(EXPRESSION); 
+		assertNotNull(choices);
+		assertTrue(choices.isEmpty());
+		
+		// add the fruit package to the registry
+		registry.put(fruitPackage.getNsURI(), fruitPackage);
+
+		// choices should now be returned
+		choices = helper.getSyntaxHelp(EXPRESSION);
+		assertNotNull(choices);
+		assertFalse(choices.isEmpty());
+		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "green"); //$NON-NLS-1$
+	}
+}

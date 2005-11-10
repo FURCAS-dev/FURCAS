@@ -122,6 +122,7 @@ public abstract class AbstractTestSuite
 		result.addTest(org.eclipse.emf.ocl.helper.tests.AbstractTestSuite.suite());
 		result.addTest(RegressionTest.suite());
 		result.addTest(QueryFactoryTest.suite());
+		result.addTest(EcoreEnvironmentTest.suite());
 		
 		return result;
 	}

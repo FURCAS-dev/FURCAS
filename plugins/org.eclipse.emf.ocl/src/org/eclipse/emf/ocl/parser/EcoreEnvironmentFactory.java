@@ -33,13 +33,23 @@ public class EcoreEnvironmentFactory
 	private static EClassifier JAVA_OBJECT_DATATYPE =
 		EcorePackage.eINSTANCE.getEJavaObject();
 	
+	private EPackage.Registry registry;
+
 	/**
 	 * Initializes me.
 	 */
 	protected EcoreEnvironmentFactory() {
-		super();
+		this(EPackage.Registry.INSTANCE);
 	}
 	
+	/**
+	 * Initializes me with an <code>EPackage.Registry</code>
+	 */
+	public EcoreEnvironmentFactory(EPackage.Registry reg) {
+		super();
+		this.registry = reg;
+	}
+
 	protected EClassifier asEClassifier(Object context) {
 		EClassifier result = null;
 		
@@ -85,7 +95,7 @@ public class EcoreEnvironmentFactory
 	 * @return the OCL environment
 	 */
 	protected Environment createEnvironment(EPackage packageContext) {
-		return new EcoreEnvironment(packageContext);
+		return new EcoreEnvironment(packageContext, registry);
 	}
 
 	public Environment createEnvironment(Environment parent) {

@@ -1230,13 +1230,13 @@ final class OclSyntaxHelper {
 	 * it.
 	 * 
 	 * @param txt the line that potentially has a path
-	 * @param context the context classifier
+	 * @param env the current OCL environment
 	 * 
 	 * @throws Exception if anything at all goes awry
 	 * 
 	 * @return a list of {@link Choice}s, possibly empty
 	 */
-	private List getPathOclChoices(String txt, EClassifier context) throws Exception {
+	private List getPathOclChoices(String txt, Environment env) throws Exception {
 		OclLexer lexer = new OclLexer(new StringReader(txt));
 		Token token = null;
 		
@@ -1251,7 +1251,6 @@ final class OclSyntaxHelper {
 		}
 		
 		if (token != null) {
-			Environment env = ExpressionsUtil.createClassifierContext(context);
 			OclParser parser = new OclParser(new SingletonTokenStream(token));
 			Vector path = parser.pathNameCS();
 			
@@ -1454,7 +1453,7 @@ final class OclSyntaxHelper {
 				
 				return getPathOclChoices(
 					txt.substring(0, txt.lastIndexOf(HelperUtil.DOUBLE_COLON)),
-					env.getContextClassifier());
+					env);
 			} else {
 				// see whether we can complete a partial name
 				List tokens = tokenize(txt);
