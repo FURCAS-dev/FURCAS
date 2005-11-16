@@ -5,5 +5,5 @@ Bundle-ClassPath: org.eclipse.emf.query.examples.jar
 Bundle-SymbolicName: org.eclipse.emf.query.examples
 Bundle-Version: 1.0.0
 Bundle-Vendor: %Plugin.providerName
-Eclipse-LazyStart: true
+Bundle-Localization: plugin
 Eclipse-LazyStart: true
