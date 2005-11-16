@@ -71,7 +71,7 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.Messages;
+import org.eclipse.emf.ocl.internal.l10n.OclMessages;
 import org.eclipse.emf.ocl.uml.AssociationClass;
 import org.eclipse.emf.ocl.uml.AssociationClassEnd;
 import org.eclipse.emf.ocl.uml.Constraint;
@@ -148,100 +148,100 @@ class OclParser extends Parser;
 {
 
     private static final String StringParse_ERROR_ =
-            Messages.StringParse_ERROR_;
+            OclMessages.StringParse_ERROR_;
 
     private static final String ErrorMessage_ERROR_ =
-            Messages.ErrorMessage_ERROR_;
+            OclMessages.ErrorMessage_ERROR_;
 
     private static final String VariableUsed_ERROR_ =
-            Messages.VariableUsed_ERROR_;
+            OclMessages.VariableUsed_ERROR_;
 
     private static final String VariableDeclaration_ERROR_ =
-            Messages.VariableDeclaration_ERROR_;
+            OclMessages.VariableDeclaration_ERROR_;
 
     private static final String OperationNotFound_ERROR_ =
-            Messages.OperationNotFound_ERROR_;
+            OclMessages.OperationNotFound_ERROR_;
 
     private static final String BadArg_ERROR_ =
-            Messages.BadArg_ERROR_;
+            OclMessages.BadArg_ERROR_;
 
     private static final String PackageNotFound_ERROR_ =
-            Messages.PackageNotFound_ERROR_;
+            OclMessages.PackageNotFound_ERROR_;
 
     private static final String UnrecognizedContext_ERROR_ =
-            Messages.UnrecognizedContext_ERROR_;
+            OclMessages.UnrecognizedContext_ERROR_;
 
     private static final String BooleanForIf_ERROR_ =
-            Messages.BooleanForIf_ERROR_;
+            OclMessages.BooleanForIf_ERROR_;
 
     private static final String MissingTypeForVar_ERROR_ =
-            Messages.MissingTypeForVar_ERROR_;
+            OclMessages.MissingTypeForVar_ERROR_;
 
     private static final String MissingInitForVar_ERROR_ =
-            Messages.MissingInitForVar_ERROR_;
+            OclMessages.MissingInitForVar_ERROR_;
 
     private static final String VarInNavExp_ERROR_ =
-            Messages.VarInNavExp_ERROR_;
+            OclMessages.VarInNavExp_ERROR_;
 
     private static final String UnrecognizedVar_ERROR_ =
-            Messages.UnrecognizedVar_ERROR_;
+            OclMessages.UnrecognizedVar_ERROR_;
 
     private static final String DeclarationType_ERROR_ =
-            Messages.DeclarationType_ERROR_;
+            OclMessages.DeclarationType_ERROR_;
 
     private static final String DeclarationNoInitExp_ERROR_ =
-            Messages.DeclarationNoInitExp_ERROR_;
+            OclMessages.DeclarationNoInitExp_ERROR_;
 
     private static final String DeclarationInitExp_ERROR_ =
-            Messages.DeclarationInitExp_ERROR_;
+            OclMessages.DeclarationInitExp_ERROR_;
 
     private static final String UnrecognizedVarType_ERROR_ =
-            Messages.UnrecognizedVarType_ERROR_;
+            OclMessages.UnrecognizedVarType_ERROR_;
 
     private static final String NoType_ERROR_ =
-            Messages.NoType_ERROR_;
+            OclMessages.NoType_ERROR_;
 
     private static final String NoInitExp_ERROR_ =
-            Messages.NoInitExp_ERROR_;
+            OclMessages.NoInitExp_ERROR_;
 
     private static final String InitExpNotAllowed_ERROR_ =
-            Messages.InitExpNotAllowed_ERROR_;
+            OclMessages.InitExpNotAllowed_ERROR_;
 
     private static final String MissingTypeDecl_ERROR_ =
-            Messages.MissingTypeDecl_ERROR_;
+            OclMessages.MissingTypeDecl_ERROR_;
 
     private static final String DuplicateNameInTuple_ERROR_ =
-            Messages.DuplicateNameInTuple_ERROR_;
+            OclMessages.DuplicateNameInTuple_ERROR_;
 
     private static final String MissingInit_ERROR_ =
-            Messages.MissingInit_ERROR_;
+            OclMessages.MissingInit_ERROR_;
 
     private static final String UnrecognizedEnum_ERROR_ =
-            Messages.UnrecognizedEnum_ERROR_;
+            OclMessages.UnrecognizedEnum_ERROR_;
 
     private static final String FirstLastTypeMismatch_ERROR_ =
-            Messages.FirstLastTypeMismatch_ERROR_;
+            OclMessages.FirstLastTypeMismatch_ERROR_;
 
     private static final String UnrecognizedType_ERROR_ =
-            Messages.UnrecognizedType_ERROR_;
+            OclMessages.UnrecognizedType_ERROR_;
 
     private static final String ILLEGAL_AT_PRE_ERROR_ =
-            Messages.IllegalAtPre_ERROR_;
+            OclMessages.IllegalAtPre_ERROR_;
 
     private static final String ILLEGAL_QUALIFIERS_ERROR_ =
-            Messages.IllegalQualifiers_ERROR_;
+            OclMessages.IllegalQualifiers_ERROR_;
 
     private static final String MISMATCHED_QUALIFIERS_ERROR_ =
-            Messages.MismatchedQualifiers_ERROR_;
+            OclMessages.MismatchedQualifiers_ERROR_;
 
     private static final String ASSOCIATION_CLASS_QUALIFIER_COUNT_ERROR_ =
-            Messages.AssociationClassQualifierCount_ERROR_;
+            OclMessages.AssociationClassQualifierCount_ERROR_;
 
     private static final String ASSOCIATION_CLASS_QUALIFIER_TYPE_ERROR_ =
-            Messages.AssociationClassQualifierType_ERROR_;
+            OclMessages.AssociationClassQualifierType_ERROR_;
 
     private static final String ASSOCIATION_CLASS_AMBIGUOUS_ERROR_ =
-            Messages.AssociationClassAmbiguous_ERROR_;
+            OclMessages.AssociationClassAmbiguous_ERROR_;
 
 	/*
 	 * Factories for creating OCL AST nodes
