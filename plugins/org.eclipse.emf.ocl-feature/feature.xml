@@ -33,7 +33,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="antlr"/>
    </requires>
 
    <plugin
@@ -42,5 +41,11 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="antlr"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>
