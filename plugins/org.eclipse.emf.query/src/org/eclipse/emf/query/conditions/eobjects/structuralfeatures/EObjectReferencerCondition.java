@@ -21,8 +21,14 @@ import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.handlers.PruneHandler;
 
 /**
+ * <p>
  * An <code>EObjectCondition</code> subclass that tests if a given
- * <code>EObject</code> references another <code>EObject</code>
+ * <code>EObject</code> references another <code>EObject.</code> 
+ * </p>
+ * <p>
+ * For the purposes of this condition, a container or containment 
+ * EReference is not considered a &quot;reference.&quot;
+ * </p>
  */
 public class EObjectReferencerCondition
 	extends EObjectCondition {
@@ -97,7 +103,12 @@ public class EObjectReferencerCondition
 		Iterator it = eObject.eClass().getEAllReferences().iterator();
 		while (it.hasNext() && (result == false)) {
 			eReference = (EReference) it.next();
-			if ((eReference.isContainment() == false)
+			
+			// We don't consider containment or container EReferences
+			//  as "referencers." Plus, the EReference must be set
+			//  or else we don't inspect. This is a performance optimization.
+			if ((!eReference.isContainment())
+				&& (!eReference.isContainer())
 				&& (eObject.eIsSet(eReference))) {
 				Object value = eStructuralFeatureValueGetter.eGet(eObject,
 					eReference, true);

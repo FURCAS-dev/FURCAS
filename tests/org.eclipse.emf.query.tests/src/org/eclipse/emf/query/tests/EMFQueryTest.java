@@ -42,6 +42,8 @@ import org.eclipse.uml2.UML2Package;
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
+import org.eclipse.emf.examples.extlibrary.Library;
+import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.Not;
 import org.eclipse.emf.query.conditions.ObjectInstanceCondition;
@@ -52,6 +54,7 @@ import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
 import org.eclipse.emf.query.conditions.eobjects.TypeRelation;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectAttributeValueCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectReferenceValueCondition;
+import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectReferencerCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.IEStructuralFeatureValueGetter;
 import org.eclipse.emf.query.conditions.strings.StringValue;
@@ -475,6 +478,22 @@ public class EMFQueryTest
 		
 		assertNull(result.getException());
 		assertEquals(1,result.getEObjects().size());
+	}
+	
+	// Bugzilla 115322
+	public void test_EReferencerCondition_containment_container() {
+		Library l = EXTLibraryFactory.eINSTANCE.createLibrary();
+		Library branch = EXTLibraryFactory.eINSTANCE.createLibrary();
+		l.getBranches().add(branch);
+		
+		SELECT s = new SELECT(
+				new FROM(new EObjectSource(l)),
+				new WHERE(new EObjectReferencerCondition(l)));
+		
+		IQueryResult result = s.execute();
+		
+		assertNull(result.getException());
+		assertEquals(0,result.getEObjects().size());
 	}
 	
 	private QueryStatement getClassesWithFunctionNamedQuery(String functionName) {
