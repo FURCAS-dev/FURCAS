@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2002-2004 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id:
+ */
+-->
+
+<feature
+    id="org.eclipse.emf.query.sdk"
+    label="%featureName"
+    version="1.0.0"
+    image= "eclipse_update_120.jpg"
+    provider-name="%providerName">
+
+    <description>
+        %description
+    </description>
+   
+    <license url="%licenseURL">
+        %license
+    </license>
+
+    <url>
+       <update label="%updateSiteName" url="http://update.eclipse.org/updates"/>
+       <discovery label="%updateSiteName" url="http://update.eclipse.org/updates"/>
+    </url>
+
+    <includes
+        id="org.eclipse.emf.query"
+        version="1.0.0"
+        match="compatible"/>
+
+    <includes
+        id="org.eclipse.emf.query.ocl"
+        version="1.0.0"
+        match="compatible"/>
+
+    <includes
+        id="org.eclipse.emf.query.doc"
+        version="1.0.0"
+        match="compatible"/>
+
+    <includes
+        id="org.eclipse.emf.query.examples"
+        version="1.0.0"
+        match="compatible"/>
+</feature>

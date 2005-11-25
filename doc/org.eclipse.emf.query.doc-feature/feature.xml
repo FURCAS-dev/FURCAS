@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 /**
  * <copyright>
@@ -17,8 +18,9 @@
  * $Id:
  */
 -->
+
 <feature
-      id="org.eclipse.emf.query.ocl"
+      id="org.eclipse.emf.query.doc"
       label="%featureName"
       version="1.0.0"
       provider-name="%providerName"
@@ -45,19 +47,9 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%updateSiteName" url="http://update.eclipse.org/updates"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import feature="org.eclipse.emf"/>
-      <import plugin="org.eclipse.emf.query"/>
-      <import plugin="org.eclipse.emf.ocl"/>
-   </requires>
-
-   <plugin
-         id="org.eclipse.emf.query.ocl"
-         download-size="0"
-         install-size="0"
-         version="1.0.0"
-         unpack="false"/>
-
+    <plugin
+        id="org.eclipse.emf.query.doc"
+        download-size="0"
+        install-size="0"        
+        version="1.0.0"/>
 </feature>
