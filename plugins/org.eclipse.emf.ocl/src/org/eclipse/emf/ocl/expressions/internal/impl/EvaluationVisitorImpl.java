@@ -229,6 +229,43 @@ public class EvaluationVisitorImpl
 		EList args = oc.getArguments();
 		int numArgs = args.size();
 
+		if (getEvalEnvironment().canEvaluate(oper, opCode)) {
+			// delegate evaluation to the evaluation environment
+			
+			// evaluate source
+			Object sourceVal = source.accept(this);
+			
+			// evaluate args
+			Object[] evalArgs = new Object[numArgs];
+			int i = 0;
+			for (Iterator it = args.iterator(); it.hasNext(); i++) {
+				OclExpression arg = (OclExpression) it.next();
+				evalArgs[i] = arg.accept(this);
+			}
+	
+			// ask the environment to evaluate
+			try {
+				Object result = getEvalEnvironment().evaluate(
+					oper, opCode, sourceVal, evalArgs);
+				return result;
+			} catch (UnsupportedOperationException ignore) {
+				// let the EvaluationVisitor do its thing
+			} catch (Exception e) {
+				OclEnginePlugin
+					.catching(getClass(), "visitOperationCallExp", e);//$NON-NLS-1$
+				OclEnginePlugin.log(
+					IStatus.ERROR,
+					OclEngineStatusCodes.IGNORED_EXCEPTION_WARNING,
+					NLS.bind(
+						OclMessages.ErrorMessage_ERROR_,
+						new Object[] {
+							"visitOperationCallExp", //$NON-NLS-1$
+							e.getLocalizedMessage()}),
+					e);
+				return null;
+			}
+		}
+		
 		// inline primitive and collection operation evaluation for increased
 		// efficiency
 

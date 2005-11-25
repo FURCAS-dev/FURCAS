@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.ocl.parser;
 
+import org.eclipse.emf.ecore.EOperation;
 
 /**
  * The evaluation environment keeps track of the current values of variables
@@ -66,4 +67,48 @@ public interface EvaluationEnvironment {
      * Clears the environment of variables.
      */
     void clear();
+    
+    /**
+     * Queries whether this evaluation environment provides a custom
+     * implementation of the specified OCL <code>operation</code>.  In the case
+     * that the receiver does, then it must implement the
+     * {@link #evaluate(EOperation, int, Object, Object[])} method to apply
+     * the operation.
+     * 
+     * @param operation an OCL operation
+     * @param opcode the operation code, if one of the operations pre-defined
+     *    by OCL.  Otherwise, <code>-1</code>
+     *    
+     * @return <code>true</code> if this evaluation environment provides an
+     *    implementation of this <code>operation</code>; <code>false</code>,
+     *    otherwise
+     *    
+     * @see #evaluate(EOperation, int, Object, Object[])
+     */
+    boolean canEvaluate(EOperation operation, int opcode);
+    
+    /**
+     * Evaluates the specified <code>operation</code> on a given
+     * <code>target</code> object with arguments.
+     * 
+     * @param operation the operation to evaluate
+     * @param opcode the operation code, if one of the operations pre-defined
+     *    by OCL.  Otherwise, <code>-1</code>
+     * @param target the object on which to apply the <code>operation</code>.
+     *    the target may be an {@link org.eclipse.emf.ecore.EObject} or it
+     *    may not, depending on the {@link org.eclipse.emf.ecore.EClassifier}
+     *    type
+     * @param args the arguments passed to the <code>operation</code>.  Will
+     *    be an empty array if there are none (not <code>null</code>)
+     * 
+     * @return the value of the operation, or <code>null</code> if the operation
+     *    has no return result
+     *    
+     * @throws UnsupportedOperationException if the specified
+     *    <code>operation</code> is not implemented by this environment
+     * 
+     * @see #canEvaluate(EOperation, int)
+     */
+    Object evaluate(EOperation operation, int opcode, Object target, Object[] args)
+    	throws UnsupportedOperationException;
 }

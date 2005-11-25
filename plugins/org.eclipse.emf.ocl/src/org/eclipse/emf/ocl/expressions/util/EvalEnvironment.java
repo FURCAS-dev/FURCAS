@@ -14,6 +14,7 @@ package org.eclipse.emf.ocl.expressions.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ocl.internal.l10n.OclMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.osgi.util.NLS;
@@ -98,5 +99,25 @@ public class EvalEnvironment implements EvaluationEnvironment {
      */
     public String toString() {
         return map.toString();
+    }
+
+    /**
+     * Always returns <code>false</code>, because by default only the operations
+     * defined by the OCL itself and the particular EMF metamodel are supported.
+     * Subclasses can override to override existing operation implementations or
+     * to add operations not defined by either OCL or the metamodel.
+     */
+    public boolean canEvaluate(EOperation operation, int opcode) {
+    	return false;
+    }
+    
+    /**
+     * Implements the interface method by just throwing,
+     * as I do not by default provide any implementation of any additional
+     * operations.
+     */
+    public Object evaluate(EOperation operation, int opcode, Object target, Object[] args)
+    		throws UnsupportedOperationException {
+    	throw new UnsupportedOperationException();
     }
 }
