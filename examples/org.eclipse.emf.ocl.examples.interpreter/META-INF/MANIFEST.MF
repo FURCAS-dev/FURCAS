@@ -15,5 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.console,
  org.eclipse.jface.text,
  org.eclipse.emf.ocl,
- org.eclipse.emf.examples.library.editor
+ org.eclipse.emf.ecore.edit,
+ org.eclipse.emf.ecore.xmi
 Eclipse-LazyStart: true
