@@ -1,13 +1,19 @@
-/******************************************************************************
- * Copyright (c) 2003, 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.ocl.query;
 
@@ -25,9 +31,9 @@ import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
  * when it is created.  The query can subsequently be evaluated on a single
  * object or on multiple objects in one operation.
  * 
- * @author edith
+ * @author Edith Schonberg (edith)
  * 
- * @model
+ *
  */
 public interface Query extends EObject{
 	
@@ -36,7 +42,7 @@ public interface Query extends EObject{
 	 * 
 	 * @param env my environment
 	 * 
-	 * @model
+	 *
 	 */
 	void setEvaluationEnvironment(EvaluationEnvironment env);
 	
@@ -45,7 +51,7 @@ public interface Query extends EObject{
 	 * 
 	 * @return my environment
 	 * 
-	 * @model
+	 *
 	 */
 	EvaluationEnvironment getEvaluationEnvironment();
 	
@@ -63,7 +69,7 @@ public interface Query extends EObject{
 	 * @see #evaluate(List)
 	 * @see #resultType()
 	 * 
-	 * @model
+	 *
 	 */
 	public Object evaluate(Object obj);
 	
@@ -80,7 +86,7 @@ public interface Query extends EObject{
 	 * 
 	 * @see #resultType()
 	 * 
-	 * @model
+	 *
 	 */
 	public Object evaluate();  
 	
@@ -95,7 +101,7 @@ public interface Query extends EObject{
 	 * 
 	 * @see #check(List)
 	 * 
-	 * @model
+	 *
 	 */
 	public boolean check(Object obj);
 	
@@ -128,7 +134,7 @@ public interface Query extends EObject{
 	 * 
 	 * @see #check(EObject)
 	 * 
-	 * @model
+	 *
 	 */
 	public boolean check(List objects); 
 	
@@ -164,7 +170,7 @@ public interface Query extends EObject{
 	 * 
 	 * @return the query's result type
 	 * 
-	 * @model
+	 *
 	 */
 	public EClassifier resultType(); 
 	
@@ -173,7 +179,7 @@ public interface Query extends EObject{
 	 * 
 	 * @return the text of the OCL query expression
 	 * 
-	 * @model
+	 *
 	 */
 	public String queryText();
 	
@@ -186,7 +192,7 @@ public interface Query extends EObject{
 	 * 
 	 * @see #setExtentMap(Map)
 	 * 
-	 * @model
+	 *
 	 */
 	public Map getExtentMap();
 	

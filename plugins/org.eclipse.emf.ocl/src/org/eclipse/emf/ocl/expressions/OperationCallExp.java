@@ -1,13 +1,19 @@
-/******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.ocl.expressions;
 
@@ -15,10 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 
 /**
- * author edith
- */
-/**
- * @model
+ * @author Edith Schonberg (edith)
  */
 public interface OperationCallExp extends ModelPropertyCallExp{
 	
@@ -28,8 +31,7 @@ public interface OperationCallExp extends ModelPropertyCallExp{
 	public EList getArguments();
 	
 	/**
-	 * @model
-	 * 
+	 *
 	 */
 	public EOperation getReferredOperation();
 

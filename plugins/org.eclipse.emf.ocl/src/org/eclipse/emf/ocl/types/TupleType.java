@@ -15,10 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 
 
 /**
- * author edith
- */
-/**
- * @model
+ * @author Edith Schonberg (edith)
  */
 public interface TupleType  extends EClass {
 	// nothing to add

@@ -1,13 +1,19 @@
-/******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.ocl.parser;
 
@@ -61,7 +67,7 @@ import antlr.SemanticException;
  * statement is used. Methods are provided for querying whether variable,
  * attribute, reference, and operation names belong to the environment.
  * 
- * @author edith
+ * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
  */
 public class EcoreEnvironment

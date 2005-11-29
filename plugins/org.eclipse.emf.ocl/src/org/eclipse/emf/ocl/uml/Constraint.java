@@ -1,13 +1,19 @@
-/******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.ocl.uml;
 
@@ -18,11 +24,8 @@ import org.eclipse.emf.ocl.expressions.OclExpression;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 
 /**
- * @author edith
+ * @author Edith Schonberg (edith)
  *
- */
-/**
- * @model
  */
 public interface Constraint extends ENamedElement, Visitable{
 	/**
@@ -54,7 +57,7 @@ public interface Constraint extends ENamedElement, Visitable{
 	public static final String BODY = "body"; //$NON-NLS-1$
 	
 	/**
-	 * @model
+	 *
 	 */
 	String getInstanceVarName();
 	
@@ -76,7 +79,7 @@ public interface Constraint extends ENamedElement, Visitable{
 	 * @return the value of the '<em>Stereotype</em>' attribute.
 	 * @see #setStereotype(String)
 	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getConstraint_Stereotype()
-	 * @model
+	 *
 	 * @generated
 	 */
 	String getStereotype();

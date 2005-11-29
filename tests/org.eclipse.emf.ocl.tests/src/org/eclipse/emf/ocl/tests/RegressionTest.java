@@ -1,13 +1,19 @@
-/******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.ocl.tests;
 
@@ -20,24 +26,18 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ocl.expressions.OclExpression;
-import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOclHelper;
-import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
-import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
-import org.eclipse.emf.ocl.types.internal.impl.AnyTypeImpl;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -926,100 +926,6 @@ public class RegressionTest
 		} catch (Exception e) {
 			// success
 			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-	}
-	
-	/**
-	 * Tests the delegation of operation evaluation to the Evaluation Environment
-	 * for the <code>oclIsTypeOf</code> operation.
-	 */
-	public void test_canEvaluateOverrideOperation_bugzilla117542() {
-		// add a RoundFruit EClass to the fruit package
-		EClassifier roundFruit = EcoreFactory.eINSTANCE.createEClass();
-		roundFruit.setName("RoundFruit");
-		fruitPackage.getEClassifiers().add(roundFruit);
-
-		EObject aFruit = fruitFactory.create(apple);
-
-		IOclHelper helper = HelperUtil.createOclHelper(new TestEnvironmentFactory());
-		helper.setContext(apple);
-
-		Object value = null;
-		try {
-			value = helper.evaluate(aFruit, "self.oclIsTypeOf(RoundFruit)");
-		} catch (Exception e) {
-			fail("Unexpected error: " + e.getLocalizedMessage());
-		}
-
-		assertNotNull(value);
-		assertTrue(value instanceof Boolean && ((Boolean)value).booleanValue());
-
-		// clean up
-		fruitPackage.getEClassifiers().remove(roundFruit);
-	}
-
-	/**
-	 * Tests the delegation of operation evaluation to the Evaluation Environment
-	 * for the <code>oclIsTypeOf</code> operation. But then because the type to be
-	 * compared to is not a special case (Apple), an UnsupportedOperationException
-	 * is thrown which delegates the evaluation back to the evaluation visitor.
-	 */
-	public void test_canEvaluateUnsupportedOperation_bugzilla117542() {
-		EObject aFruit = fruitFactory.create(apple);
-
-		IOclHelper helper = HelperUtil.createOclHelper(new TestEnvironmentFactory());
-		helper.setContext(apple);
-
-		Object value = null;
-		try {
-			value = helper.evaluate(aFruit, "self.oclIsTypeOf(Apple)");
-		} catch (Exception e) {
-			fail("Unexpected error: " + e.getLocalizedMessage());
-		}
-
-		assertNotNull(value);
-		assertTrue(value instanceof Boolean && ((Boolean)value).booleanValue());
-	}
-	
-	/**
-	 * Environment Factory which specifies the use of the TestEvaluationEnvironment.
-	 */
-	private class TestEnvironmentFactory extends EcoreEnvironmentFactory {
-		public EvaluationEnvironment createEvaluationEnvironment() {
-			return new TestEvaluationEnvironment();
-		}
-	}
-	
-	/**
-	 * Evaluation Environment which provides support for evaluating operations.
-	 */
-	private class TestEvaluationEnvironment extends EvalEnvironment {
-		
-		/**
-		 * Can evaluate the <code>oclIsTypeOf</code> operation.
-		 */
-		public boolean canEvaluate(EOperation operation, int opcode) {
-			if (opcode == AnyTypeImpl.OCL_IS_TYPE_OF) {
-				return true;
-			}
-			return false;
-		}
-
-		/**
-		 * Evaluates the <code>oclIsTypeOf</code> operation.
-		 */
-		public Object evaluate(EOperation operation, int opcode, Object target, Object[] args)
-				throws UnsupportedOperationException {
-			// apples are round fruits!
-			if (opcode == AnyTypeImpl.OCL_IS_TYPE_OF
-					&& args.length == 1
-					&& args[0] instanceof EClassifier
-					&& target instanceof EObject
-					&& ((EObject)target).eClass().equals(apple)
-					&& "RoundFruit".equals(((EClassifier)args[0]).getName())) {
-				return Boolean.TRUE;
-			}
-			throw new UnsupportedOperationException();
 		}
 	}
 }

@@ -1,13 +1,19 @@
-/******************************************************************************
+/**
+ * <copyright>
+ *
  * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.ocl.expressions;
 
@@ -26,7 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  *
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp()
- * @model
+ *
  * @generated
  */
 public interface AssociationClassCallExp extends NavigationCallExp{
@@ -41,7 +47,7 @@ public interface AssociationClassCallExp extends NavigationCallExp{
 	 * @return the value of the '<em>Referred Association Class</em>' reference.
 	 * @see #setReferredAssociationClass(EClass)
 	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp_ReferredAssociationClass()
-	 * @model
+	 *
 	 * @generated
 	 */
 	EClass getReferredAssociationClass();
