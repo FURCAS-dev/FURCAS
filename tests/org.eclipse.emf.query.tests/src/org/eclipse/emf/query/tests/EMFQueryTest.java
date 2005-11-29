@@ -1,13 +1,19 @@
-/******************************************************************************
- * Copyright (c) 2002, 2003 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2002-2005 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    IBM Corporation - initial API and implementation 
- ****************************************************************************/
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ */
 
 package org.eclipse.emf.query.tests;
 
@@ -42,8 +48,6 @@ import org.eclipse.uml2.UML2Package;
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
-import org.eclipse.emf.examples.extlibrary.Library;
-import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.Not;
 import org.eclipse.emf.query.conditions.ObjectInstanceCondition;
@@ -54,7 +58,6 @@ import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
 import org.eclipse.emf.query.conditions.eobjects.TypeRelation;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectAttributeValueCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectReferenceValueCondition;
-import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectReferencerCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.IEStructuralFeatureValueGetter;
 import org.eclipse.emf.query.conditions.strings.StringValue;
@@ -478,22 +481,6 @@ public class EMFQueryTest
 		
 		assertNull(result.getException());
 		assertEquals(1,result.getEObjects().size());
-	}
-	
-	// Bugzilla 115322
-	public void test_EReferencerCondition_containment_container() {
-		Library l = EXTLibraryFactory.eINSTANCE.createLibrary();
-		Library branch = EXTLibraryFactory.eINSTANCE.createLibrary();
-		l.getBranches().add(branch);
-		
-		SELECT s = new SELECT(
-				new FROM(new EObjectSource(l)),
-				new WHERE(new EObjectReferencerCondition(l)));
-		
-		IQueryResult result = s.execute();
-		
-		assertNull(result.getException());
-		assertEquals(0,result.getEObjects().size());
 	}
 	
 	private QueryStatement getClassesWithFunctionNamedQuery(String functionName) {
