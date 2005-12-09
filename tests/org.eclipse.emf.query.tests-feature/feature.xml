@@ -47,6 +47,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <requires>
       <import plugin="org.eclipse.emf.query"/>
+      <import plugin="org.eclipse.emf.query.ocl"/>
       <import feature="org.eclipse.uml2"/>
       <import feature="org.eclipse.emf"/>
       <import feature="org.eclipse.emf.examples"/>
