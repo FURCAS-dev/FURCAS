@@ -717,7 +717,7 @@ public class RegressionTest
 			parse(
 				"package ocltest context " + //$NON-NLS-1$
 				"FruitUtil::processOrderedSet(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: x" + //$NON-NLS-1$
+				"body: result = x" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
@@ -730,7 +730,7 @@ public class RegressionTest
 		parse(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processOrderedSet(x : OrderedSet(Fruit)) : OrderedSet(Fruit) " + //$NON-NLS-1$
-			"body: x" + //$NON-NLS-1$
+			"body: result = x" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 	}
 	
@@ -746,7 +746,7 @@ public class RegressionTest
 			parse(
 				"package ocltest context " + //$NON-NLS-1$
 				"FruitUtil::processSet(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: x" + //$NON-NLS-1$
+				"body: result = x" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
@@ -759,7 +759,7 @@ public class RegressionTest
 		parse(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processSet(x : Set(Fruit)) : Set(Fruit) " + //$NON-NLS-1$
-			"body: x" + //$NON-NLS-1$
+			"body: result = x" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 	}
 	
@@ -775,7 +775,7 @@ public class RegressionTest
 			parse(
 				"package ocltest context " + //$NON-NLS-1$
 				"FruitUtil::processSequence(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: x" + //$NON-NLS-1$
+				"body: result = x" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
@@ -788,7 +788,7 @@ public class RegressionTest
 		parse(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processSequence(x : Sequence(Fruit)) : Sequence(Fruit) " + //$NON-NLS-1$
-			"body: x" + //$NON-NLS-1$
+			"body: result = x" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 	}
 	
@@ -804,7 +804,7 @@ public class RegressionTest
 			parse(
 				"package ocltest context " + //$NON-NLS-1$
 				"FruitUtil::processBag(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: x" + //$NON-NLS-1$
+				"body: result = x" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
@@ -817,7 +817,7 @@ public class RegressionTest
 		parse(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: x" + //$NON-NLS-1$
+			"body: result = x" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 	}
 	
@@ -927,5 +927,62 @@ public class RegressionTest
 			// success
 			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
+	}
+	
+	public void test_operationBodyBoolean_116251() {
+		AssertionFailedError err = null;
+		
+		// this should not work
+		try {
+			parse(
+				"package ocltest context " + //$NON-NLS-1$
+				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
+				"body: x->asSet()->asBag()" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+		} catch (AssertionFailedError e) {
+			// this is expected (success case)
+			err = e;
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		
+		// this should work
+		parse(
+			"package ocltest context " + //$NON-NLS-1$
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
+			"body: result = x->asSet()->asBag()" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+		
+		// as should this
+		parse(
+			"package ocltest context " + //$NON-NLS-1$
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
+			"body: x->asSet()->asBag() = result" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+		
+		// and this (allow any number of lets to wrap the expression)
+		parse(
+			"package ocltest context " + //$NON-NLS-1$
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
+			"body: let set : Set(Fruit) = x->asSet() in" + //$NON-NLS-1$
+			" let bag : Bag(Fruit) = set->asBag() in" + //$NON-NLS-1$
+			" result = bag" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+		
+		// this should not work, however, because it has the result in the
+		//    body expression part of the constraint
+		err = null;
+		try {
+			parse(
+				"package ocltest context " + //$NON-NLS-1$
+				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
+				"body: result = result->asSet()->union(x)->asBag()" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+		} catch (AssertionFailedError e) {
+			// this is expected (success case)
+			err = e;
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
 	}
 }

@@ -90,8 +90,8 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			"  ok " + //$NON-NLS-1$
 			"pre different: let ok : Boolean = c <> color in " + //$NON-NLS-1$
 			"  ok " + //$NON-NLS-1$
-			"body: let result : Boolean = c <> color in " + //$NON-NLS-1$
-			"  result implies color <> Color::black " + //$NON-NLS-1$
+			"body: let b : Boolean = c <> color in " + //$NON-NLS-1$
+			"  result = b implies color <> Color::black " + //$NON-NLS-1$
 			"post worked: result implies color <> color@pre " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
 	}
@@ -202,7 +202,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			// try a scenario with no common supertype
 			parse(
 				"package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
-				"body: if true then 'red' else 'brown' endif " + //$NON-NLS-1$
+				"body: result = (if true then 'red' else 'brown' endif) " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			err = e;
@@ -216,7 +216,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			// try a scenario with a common supertype
 			parse(
 				"package ocltest context Apple::newApple() : Apple " + //$NON-NLS-1$
-				"body: self.newFruit() " + //$NON-NLS-1$
+				"body: result = self.newFruit() " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			err = e;
@@ -230,7 +230,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			// this scenario is OK
 			parse(
 				"package ocltest context Apple::newFruit() : Fruit " + //$NON-NLS-1$
-				"body: self.newApple() " + //$NON-NLS-1$
+				"body: result = self.newApple() " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			err = e;
@@ -249,7 +249,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		try {
 			parse(
 				"package ocltest context Apple::label(newLabel : String) : " + //$NON-NLS-1$
-				"body: if true then 'Spy' else 'Spartan' endif " + //$NON-NLS-1$
+				"body: result = (if true then 'Spy' else 'Spartan' endif) " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
 		} catch (AssertionFailedError e) {
 			err = e;

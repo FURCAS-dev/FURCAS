@@ -150,6 +150,8 @@ public class OclMessages extends NLS {
 	public static String AssociationClassQualifierCount_ERROR_;
 	public static String AssociationClassQualifierType_ERROR_;
 	public static String AssociationClassAmbiguous_ERROR_;
+	public static String BodyConditionForm_ERROR_;
+	public static String OperationConstraintBoolean_ERROR_;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, OclMessages.class);

@@ -94,7 +94,7 @@ public class ParsingTest
 		
 		try {
 			OclExpression expr = helper.createBodyCondition(
-				"if true then Color::red else Color::brown endif"); //$NON-NLS-1$
+				"result = (if true then Color::red else Color::brown endif)"); //$NON-NLS-1$
 			
 			assertNotNull(expr);
 		} catch (Exception e) {

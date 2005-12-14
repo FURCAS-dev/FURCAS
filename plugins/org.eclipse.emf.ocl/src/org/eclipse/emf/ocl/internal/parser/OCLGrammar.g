@@ -965,8 +965,17 @@ protected prePostOrBodyDeclCS0[Environment env, EOperation operation] returns [C
  						"result", operationType, null, true, true, false);//$NON-NLS-1$
 				 }
 			 }
-			| ("body") { stereotype = Constraint.BODY; }
-		)
+			| ("body") {
+				stereotype = Constraint.BODY;
+				 
+				 // likewise, body conditions have an implicit variable "result"
+				 if ((operationType != null) && (env.lookupLocal("result") == null)) {//$NON-NLS-1$
+					genVariableDeclaration(
+						"prePostOrBodyDeclCS", env,//$NON-NLS-1$
+ 						"result", operationType, null, true, true, false);//$NON-NLS-1$
+				 }
+			}
+s		)
 		( n:NAME )? COLON oclexpr = oclExpressionCS[env] 		
 		{  
 			/* create a constraint astNode  -- must reference the type of self...

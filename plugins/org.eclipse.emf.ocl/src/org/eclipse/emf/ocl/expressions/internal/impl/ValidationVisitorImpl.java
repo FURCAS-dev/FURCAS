@@ -55,6 +55,7 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
+import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.internal.OclEnginePlugin;
 import org.eclipse.emf.ocl.internal.l10n.OclMessages;
@@ -62,6 +63,7 @@ import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
+import org.eclipse.emf.ocl.types.PrimitiveBoolean;
 import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
@@ -251,6 +253,12 @@ public class ValidationVisitorImpl
 
 	private static final String MissingAssociationClass_ERROR_ =
 		OclMessages.MissingAssociationClass_ERROR_;
+	
+	private static final String BodyConditionForm_ERROR_ =
+		OclMessages.BodyConditionForm_ERROR_;
+	
+	private static final String OperationConstraintBoolean_ERROR_ =
+		OclMessages.OperationConstraintBoolean_ERROR_;
 
 	// singleton
 	public static Visitor getInstance() {
@@ -1320,45 +1328,116 @@ public class ValidationVisitorImpl
 	 * @param constraint the constraint to validate
 	 */
 	public Object visitConstraint(Constraint constraint) {
-		if (Constraint.BODY.equals(constraint.getStereotype())) {
-			// the expression type must match the operation type
-			EClassifier bodyType = constraint.getBody().getType();
-			EClassifier operationType = null;
-			String operationName = null;
+		String stereo = constraint.getStereotype();
+
+
+		EClassifier bodyType = constraint.getBody().getType();
+		EClassifier operationType = null;
+		String operationName = null;
+		
+		if (!constraint.getConstrainedElement().isEmpty()) {
+			Object constrained = constraint.getConstrainedElement().get(0);
 			
-			if (!constraint.getConstrainedElement().isEmpty()) {
-				Object constrained = constraint.getConstrainedElement().get(0);
+			if (constrained instanceof EOperation) {
+				EOperation operation = (EOperation) constrained;
+				operationName = operation.getName();
 				
-				if (constrained instanceof EOperation) {
-					EOperation operation = (EOperation) constrained;
-					operationName = operation.getName();
-					
-					if (operation.getEType() != null) {
-						operationType = EcoreEnvironment.getOclType(operation);
-					}
+				if (operation.getEType() != null) {
+					operationType = EcoreEnvironment.getOclType(operation);
 				}
 			}
-			
-			if (operationType == null) {
-				operationType = Types.OCL_VOID;
-			}
-			
-			if (operationType instanceof VoidType) {
+		}
+		
+		if (operationType == null) {
+			operationType = Types.OCL_VOID;
+		}
+		
+		if (Constraint.BODY.equals(stereo)
+				|| Constraint.POSTCONDITION.equals(stereo)
+				|| Constraint.PRECONDITION.equals(stereo)) {
+			// operation constraints must be boolean-valued
+			if (!(bodyType instanceof PrimitiveBoolean)) {
 				String message = NLS.bind(
-					BodyConditionNotAllowed_ERROR_,
-					new Object[] {operationName});
+					OperationConstraintBoolean_ERROR_,
+					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OclEnginePlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
 			}
+		}
+		
+		if (Constraint.BODY.equals(constraint.getStereotype())) {
+			if (operationType instanceof VoidType) {
+				String message = NLS.bind(
+					BodyConditionNotAllowed_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OclEnginePlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			// the expression must be of the form result = <expr> or
+			//    <expr> = result, where <expr> is some expression whose type
+			//    conforms to the operation type.  However, this expression is
+			//    allowed to be nested inside any number of lets for the user's
+			//    convenience
+			OclExpression exp = constraint.getBody();
+			while (exp instanceof LetExp) {
+				exp = ((LetExp) exp).getIn();
+			}
+			OperationCallExp body = null;
+			if (exp instanceof OperationCallExp) {
+				body = (OperationCallExp) exp;
+			}
+			
+			// two definitions of the "equals" operation
+			if ((body == null)
+					|| ((body.getOperationCode() != AnyTypeImpl.EQUAL)
+							&& (body.getOperationCode() != CollectionTypeImpl.EQUALS))
+					|| (body.getArguments().size() != 1)) {
+				String message = NLS.bind(
+					BodyConditionForm_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OclEnginePlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			OclExpression bodyExpr;
+			
+			if (isResultVariable(body.getSource(), operationType)) {
+				bodyExpr = (OclExpression) body.getArguments().get(0);
+			} else if (isResultVariable(
+					(OclExpression) body.getArguments().get(0),
+					operationType)) {
+				bodyExpr = body.getSource();
+			} else {
+				String message = NLS.bind(
+					BodyConditionForm_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OclEnginePlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			bodyType = bodyExpr.getType();
 			
 			try {
 				if (AnyTypeImpl.typeCompare(bodyType, operationType) > 0) {
 					String message = NLS.bind(
 						BodyConditionConformance_ERROR_,
 						new Object[] {
-							operationName, bodyType.getName(), operationType.getName()});
+							operationName,
+							bodyType.getName(),
+							operationType.getName()});
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
 					OclEnginePlugin.throwing(getClass(),
@@ -1369,7 +1448,20 @@ public class ValidationVisitorImpl
 				// types are not even comparable
 				String message = NLS.bind(
 					BodyConditionConformance2_ERROR_,
-					new Object[] {operationName, e.getLocalizedMessage()});
+					operationName, e.getLocalizedMessage());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OclEnginePlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			// one last check:  does the "body" part of the condition include
+			//    the result variable?  It must not
+			if (findResultVariable(bodyExpr, operationType)) {
+				String message = NLS.bind(
+					BodyConditionForm_ERROR_,
+					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OclEnginePlugin.throwing(getClass(),
@@ -1380,6 +1472,70 @@ public class ValidationVisitorImpl
 		
 		// check the body condition, itself, for well-formedness
 		return constraint.getBody().accept(this);
+	}
+	
+	/**
+	 * Determines whether the specified expression is a reference to the
+	 * special <code>result</code> variable of an operation body constraint.
+	 * 
+	 * @param expr an OCL expression
+	 * @param expectedType the expected type of the result variable (i.e.,
+	 *     the operation type
+	 * 
+	 * @return <code>true</code> if it is the result variable;
+	 *     <code>false</code>, otherwise
+	 */
+	private static boolean isResultVariable(OclExpression expr, EClassifier expectedType) {
+		// the implicitly defined "result" variable always has the same type
+		//    as the operation
+		boolean result = (expr instanceof VariableExp);
+		
+		if (result) {
+			try {
+				result = AnyTypeImpl.typeCompare(expr.getType(), expectedType) == 0;
+			} catch (Exception e) {
+				// get an exception on incompatible types.  This is expected
+				result = false;
+			}
+		}
+		
+		if (result) {
+			VariableDeclaration var = ((VariableExp) expr).getReferredVariable();
+			
+			result = (var != null) && "result".equals(var.getVarName()); //$NON-NLS-1$
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Queries whether the special <code>result</code> variable can be found
+	 * anywhere in the specified OCL expression.
+	 * 
+	 * @param expr the expression to search
+	 * @param expectedType the expected type of the result variable
+	 * 
+	 * @return <code>true</code> if it includes some reference to the result
+	 *    variable; <code>false</code>, otherwise
+	 */
+	private static boolean findResultVariable(OclExpression expr, final EClassifier expectedType) {
+		class ResultFinder extends AbstractVisitor {
+			boolean found = false;
+			
+			public Object visitVariableExp(VariableExp v) {
+				if (isResultVariable(v, expectedType)) {
+					found = true;
+				}
+				
+				// no need to call super because this is a leaf expression
+				return null;
+			}
+		}
+		
+		ResultFinder finder = new ResultFinder();
+		expr.accept(finder);
+		
+		return finder.found;
 	}
 	
 	/**

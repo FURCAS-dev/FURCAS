@@ -104,7 +104,7 @@ public class ExpressionsUtilTest
 		try {
 			OclExpression constraint = ExpressionsUtil.createBodyCondition(
 				fruit_preferredColor,
-				"if self.color = Color::green then Color::red else Color::brown endif", //$NON-NLS-1$
+				"result = (if self.color = Color::green then Color::red else Color::brown endif)", //$NON-NLS-1$
 				true);
 			
 			assertNotNull(constraint);

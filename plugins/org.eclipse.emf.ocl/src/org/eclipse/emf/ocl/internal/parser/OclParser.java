@@ -407,7 +407,7 @@ public class OclParser extends antlr.LLkParser       implements OclParserTokenTy
     	if ((result != null) && (result.length() > 1)) {
     		int max = result.length() - 1;
 	
-    		if ((result.charAt(0) == '"') && (quoted.charAt(max) == '"')) {//$NON-NLS-1$
+    		if ((result.charAt(0) == '"') && (quoted.charAt(max) == '"')) {
     			result = result.substring(1, max);
     			}
     			// this is a regexp, so the backslash needs to be
@@ -1202,6 +1202,13 @@ public OclParser(ParserSharedInputState state) {
 			match(LITERAL_body);
 			}
 			stereotype = Constraint.BODY;
+			
+			 // likewise, body conditions have an implicit variable "result"
+			 if ((operationType != null) && (env.lookupLocal("result") == null)) {//$NON-NLS-1$
+				genVariableDeclaration(
+					"prePostOrBodyDeclCS", env,//$NON-NLS-1$
+					"result", operationType, null, true, true, false);//$NON-NLS-1$
+			 }
 			break;
 		}
 		default:
