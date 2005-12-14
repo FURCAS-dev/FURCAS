@@ -18,16 +18,22 @@
 package org.eclipse.emf.ocl.tests;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -984,5 +990,87 @@ public class RegressionTest
 			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+	}
+	
+	/**
+	 * When resolving unqualified property calls in an inner scope (such as in a loop
+	 * expression), the OCL language specification requires that the lookup of the
+	 * implicit target of the property call start with the innermost iterator variable
+	 * (whether explicitly or implicitly defined) and work outwards until it finds a
+	 * match).
+	 */
+	public void test_innerScopeFeatureResolution_bugzilla113355() {
+		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
+		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		
+		// Library1
+		//  - Library2
+		//    - Writer1
+		//    - Writer2
+		EClass libraryClass = EcoreFactory.eINSTANCE.createEClass();
+		libraryClass.setName("Library"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(libraryClass);
+
+		EClass writerClass = EcoreFactory.eINSTANCE.createEClass();
+		writerClass.setName("Writer"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(writerClass);
+
+		EReference branchesRef = EcoreFactory.eINSTANCE.createEReference();
+		branchesRef.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		branchesRef.setName("branches"); //$NON-NLS-1$
+		branchesRef.setEType(libraryClass);
+		
+		EReference writersRef = EcoreFactory.eINSTANCE.createEReference();
+		writersRef.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		writersRef.setName("writers"); //$NON-NLS-1$
+		writersRef.setEType(writerClass);
+		
+		EAttribute writerName = EcoreFactory.eINSTANCE.createEAttribute();
+		writerName.setName("name"); //$NON-NLS-1$
+		writerName.setEType(EcorePackage.eINSTANCE.getEString());
+
+		libraryClass.getEStructuralFeatures().add(branchesRef);
+		libraryClass.getEStructuralFeatures().add(writersRef);
+		writerClass.getEStructuralFeatures().add(writerName);
+
+		EFactory efactory = epackage.getEFactoryInstance();
+		
+		// create our test instance
+		EObject library1 = efactory.create(libraryClass);
+		EObject library2 = efactory.create(libraryClass);
+		EObject writer1 = efactory.create(writerClass);
+		EObject writer2 = efactory.create(writerClass);
+		
+		writer1.eSet(writerName, "Joe"); //$NON-NLS-1$
+		writer2.eSet(writerName, "Jane"); //$NON-NLS-1$
+		
+		EList branches = new BasicEList();
+		branches.add(library2);
+		EList writers = new BasicEList();
+		writers.add(writer1);
+		writers.add(writer2);
+		
+		library1.eSet(branchesRef, branches);
+		library2.eSet(writersRef, writers);
+		
+		// parse expression
+		try {
+			OclExpression expr = parse(
+					"package mypkg context Library " + //$NON-NLS-1$
+					"inv: branches->collect(writers->collect(w : Writer | w))->flatten()" + //$NON-NLS-1$
+					"endpackage"); //$NON-NLS-1$
+					
+			List result = (List)evaluate(expr, library1);
+			assertTrue(result.size() == 2);
+			assertTrue(((EObject)result.get(0)).eGet(writerName).equals("Joe")); //$NON-NLS-1$
+			assertTrue(((EObject)result.get(1)).eGet(writerName).equals("Jane")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		} finally {
+			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
+		}
 	}
 }

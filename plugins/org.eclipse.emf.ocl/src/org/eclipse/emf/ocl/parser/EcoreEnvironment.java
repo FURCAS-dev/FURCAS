@@ -809,16 +809,7 @@ public class EcoreEnvironment
 	}
 
 	public VariableDeclaration lookupImplicitSourceForAttribute(String name) {
-		// try the "self" variable, first
-		VariableDeclaration vdcl = getSelfVariable();
-		if (vdcl != null) {
-			if (vdcl.getType() instanceof EClass) {
-				EAttribute eattr = lookupAttribute(vdcl.getType(), name);
-				if (eattr != null)
-					return vdcl;
-			}
-		}
-
+		VariableDeclaration vdcl;
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
@@ -828,22 +819,23 @@ public class EcoreEnvironment
 					return vdcl;
 			}
 
+		}
+		
+		// try the "self" variable, last
+		vdcl = getSelfVariable();
+		if (vdcl != null) {
+			if (vdcl.getType() instanceof EClass) {
+				EAttribute eattr = lookupAttribute(vdcl.getType(), name);
+				if (eattr != null)
+					return vdcl;
+			}
 		}
 		return null;
 
 	}
 
 	public VariableDeclaration lookupImplicitSourceForAssociationEnd(String name) {
-		// try the "self" variable, first
-		VariableDeclaration vdcl = getSelfVariable();
-		if (vdcl != null) {
-			if (vdcl.getType() instanceof EClass) {
-				EReference eref = lookupReference(vdcl.getType(), name);
-				if (eref != null)
-					return vdcl;
-			}
-		}
-		
+		VariableDeclaration vdcl;
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
@@ -853,21 +845,22 @@ public class EcoreEnvironment
 					return vdcl;
 			}
 
+		}
+
+		// try the "self" variable, last
+		vdcl = getSelfVariable();
+		if (vdcl != null) {
+			if (vdcl.getType() instanceof EClass) {
+				EReference eref = lookupReference(vdcl.getType(), name);
+				if (eref != null)
+					return vdcl;
+			}
 		}
 		return null;
 	}
 
 	public VariableDeclaration lookupImplicitSourceForAssociationClass(String name) {
-		// try the "self" variable, first
-		VariableDeclaration vdcl = getSelfVariable();
-		if (vdcl != null) {
-			if (vdcl.getType() instanceof EClass) {
-				EClass ac = lookupAssociationClassReference(vdcl.getType(), name);
-				if (ac != null)
-					return vdcl;
-			}
-		}
-		
+		VariableDeclaration vdcl;
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
@@ -877,6 +870,16 @@ public class EcoreEnvironment
 					return vdcl;
 			}
 
+		}
+
+		// try the "self" variable, last
+		vdcl = getSelfVariable();
+		if (vdcl != null) {
+			if (vdcl.getType() instanceof EClass) {
+				EClass ac = lookupAssociationClassReference(vdcl.getType(), name);
+				if (ac != null)
+					return vdcl;
+			}
 		}
 		return null;
 	}
@@ -931,10 +934,11 @@ public class EcoreEnvironment
 
 	public VariableDeclaration lookupImplicitSourceForOperation(String name,
 			EList params) throws SemanticException {
-		
-		// try the "self" variable, first
-		VariableDeclaration vdcl = getSelfVariable();
-		if (vdcl != null) {
+
+		VariableDeclaration vdcl;
+		for (int i = namedElements.size() - 1; i >= 0; i--) {
+			VariableEntry element = (VariableEntry) namedElements.get(i);
+			vdcl = element.variable;
 			if (vdcl.getType() instanceof EClass) {
 				EOperation eop = lookupOperation(vdcl.getType(), name, params);
 				if (eop != null)
@@ -942,9 +946,9 @@ public class EcoreEnvironment
 			}
 		}
 		
-		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
-			vdcl = element.variable;
+		// try the "self" variable, last
+		vdcl = getSelfVariable();
+		if (vdcl != null) {
 			if (vdcl.getType() instanceof EClass) {
 				EOperation eop = lookupOperation(vdcl.getType(), name, params);
 				if (eop != null)
