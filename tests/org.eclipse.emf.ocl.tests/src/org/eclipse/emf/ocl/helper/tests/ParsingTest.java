@@ -127,7 +127,7 @@ public class ParsingTest
 	 * Tests the support for data types as context classifiers by inference from
 	 * the context object.
 	 */
-	public void test_dataTypeAsContext_() {
+	public void test_dataTypeAsContext_inferred() {
 		IOclHelper helper = HelperUtil.createOclHelper();
 		helper.setContext("anything"); // inferred type is EString //$NON-NLS-1$
 		
@@ -143,4 +143,5 @@ public class ParsingTest
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+	
 }

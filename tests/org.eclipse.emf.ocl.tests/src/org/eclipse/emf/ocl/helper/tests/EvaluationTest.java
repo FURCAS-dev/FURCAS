@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
+import org.eclipse.emf.ocl.expressions.OclExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOclHelper;
 
@@ -89,6 +90,38 @@ public class EvaluationTest
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+	
+	/**
+	 * Tests the evaluation/checking of pre-compiled expressions/constraints by
+	 * the OCL Helper.
+	 */
+	public void test_evaluatePrecompiledInvariant_114921() {
+		IOclHelper helper = HelperUtil.createOclHelper();
+
+		helper.setContext(fruit);
+		
+		try {
+			OclExpression constraint = helper.createInvariant(
+					"color <> Color::black"); //$NON-NLS-1$
+			
+			assertNotNull(constraint);
+			
+			EObject instance = fruitFactory.create(apple);
+			instance.eSet(fruit_color, color_black);
+			
+			assertFalse(helper.check(instance, constraint));
+			
+			instance.eSet(fruit_color, color_red);
+			
+			assertTrue(helper.check(instance, constraint));
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+
+	//
+	// Fixture methods
+	//
 	
 	/**
 	 * Asserts that the specified <code>object</code> is a {@link Boolean}

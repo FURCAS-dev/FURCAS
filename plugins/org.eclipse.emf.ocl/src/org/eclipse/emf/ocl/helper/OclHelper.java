@@ -33,6 +33,7 @@ import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
+import org.eclipse.emf.ocl.types.PrimitiveBoolean;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
 
@@ -161,9 +162,19 @@ class OclHelper
 		return createNullCondition(Types.OCL_VOID);
 	}
 	
-	public Object evaluate(Object context, String expr) throws OclParsingException {
+	public Object evaluate(Object context, OclExpression expr) {
 		Object result = null;
 		
+		Query q = QueryFactory.eINSTANCE.createQuery(expr);
+		q.setExtentMap(environmentFactory.createExtentMap(context));
+		q.setEvaluationEnvironment(environmentFactory.createEvaluationEnvironment());
+		
+		result = q.evaluate(context);
+		
+		return result;
+	}
+	
+	public Object evaluate(Object context, String expr) throws OclParsingException {
 		OclExpression ocl = null;
 		
 		try {
@@ -175,26 +186,35 @@ class OclHelper
 			propagate(e, "evaluate"); //$NON-NLS-1$
 		}
 		
+		return evaluate(context, ocl);
+	}
+	
+	public boolean check(Object context, OclExpression constraint) {
 		
-		Query q = QueryFactory.eINSTANCE.createQuery(ocl);
-		q.setExtentMap(environmentFactory.createExtentMap(context));
-		q.setEvaluationEnvironment(environmentFactory.createEvaluationEnvironment());
+		if (!(constraint.getType() instanceof PrimitiveBoolean)) {
+			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
+		}
 		
-		result = q.evaluate(context);
+		Object result = evaluate(context, constraint);
 		
-		return result;
+		return ((Boolean) result).booleanValue();
 	}
 	
 	public boolean check(Object context, String constraint)
 		throws OclParsingException {
 		
-		Object result = evaluate(context, constraint);
+		OclExpression ocl = null;
 		
-		if (!(result instanceof Boolean)) {
-			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
+		try {
+			ocl = ExpressionsUtil.createInvariant(
+				environment,
+				constraint,
+				true);
+		} catch (Exception e) {
+			propagate(e, "evaluate"); //$NON-NLS-1$
 		}
 		
-		return ((Boolean) result).booleanValue();
+		return check(context, ocl);
 	}
 	
 	/**

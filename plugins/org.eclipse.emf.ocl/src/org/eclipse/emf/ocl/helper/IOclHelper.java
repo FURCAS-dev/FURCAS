@@ -163,8 +163,28 @@ public interface IOclHelper {
 	OclExpression createBodyCondition(String expression) throws OclParsingException;
 
 	/**
+	 * Evaluates the specified parsed OCL expression on an instance of my
+	 * context classifier.  This expression needs not be a boolean-valued
+	 * constraint.
+	 * 
+	 * @param context the context object on which to evaluate the expression.
+	 *     This is the <tt>self</tt> object, if the expression requires one.
+	 *     Note the it is required even for expressions that use the
+	 *     <tt>allInstances()</tt> operation to get the instances of an OCL
+	 *     classifier, in order to find resources to search for instances
+	 *     (unless the context is a data type, in which case the instances are
+	 *     not enumerated by models)
+	 * @param expr an expression to evaluate
+	 * 
+	 * @return the result of the expression evaluation.  This can be a single
+	 *     object, a collection of objects, or even <code>null</code>
+	 */
+	Object evaluate(Object context, OclExpression expression);
+
+	/**
 	 * Evaluates the specified expression on an instance of my context
 	 * classifier.  This expression needs not be a boolean-valued constraint.
+	 * This method parses and evaluates the OCL expression in one step.
 	 * 
 	 * @param context the context object on which to evaluate the expression.
 	 *     This is the <tt>self</tt> object, if the expression requires one.
@@ -179,6 +199,8 @@ public interface IOclHelper {
 	 *     object, a collection of objects, or even <code>null</code>
 	 * 
 	 * @throws OclParsingException if the <code>expression</code> fails to parse
+	 * 
+	 * @see #evaluate(Object, OclExpression)
 	 */
 	Object evaluate(Object context, String expression) throws OclParsingException;
 
@@ -194,7 +216,30 @@ public interface IOclHelper {
 	 *     classifier, in order to find resources to search for instances
 	 *     (unless the context is a data type, in which case the instances are
 	 *     not enumerated by models)
-	 * @param expr an expression to evaluate
+	 * @param constraint a constraint expression to evaluate
+	 * 
+	 * @return <code>true</code> if the <code>context</code> object satisfies
+	 *     the <code>constraint</code>; <code>false</code>, otherwise
+	 * 
+	 * @throws IllegalArgumentException if the <code>constraint</code> is not
+	 *     boolean-valued
+	 */
+	boolean check(Object context, OclExpression constraint);
+
+	/**
+	 * Evaluates the specified constraint on an instance of my context
+	 * classifier and returns whether the constraint is satisfied.  This
+	 * expression must be boolean-valued.  This method parses and evaluates the
+	 * OCL constraint in one step.
+	 * 
+	 * @param context the context object on which to evaluate the expression.
+	 *     This is the <tt>self</tt> object, if the expression requires one.
+	 *     Note the it is required even for expressions that use the
+	 *     <tt>allInstances()</tt> operation to get the instances of an OCL
+	 *     classifier, in order to find resources to search for instances
+	 *     (unless the context is a data type, in which case the instances are
+	 *     not enumerated by models)
+	 * @param constraint a constraint expression to evaluate
 	 * 
 	 * @return <code>true</code> if the <code>context</code> object satisfies
 	 *     the <code>constraint</code>; <code>false</code>, otherwise
@@ -202,6 +247,8 @@ public interface IOclHelper {
 	 * @throws OclParsingException if the <code>expression</code> fails to parse
 	 * @throws IllegalArgumentException if the <code>constraint</code> is not
 	 *     boolean-valued
+	 *     
+	 * @see #check(Object, OclExpression)
 	 */
 	boolean check(Object context, String constraint) throws OclParsingException;
 	
