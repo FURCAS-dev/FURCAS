@@ -120,7 +120,7 @@ public class LocationInformationTest
 		int falsePos = exprString.indexOf("false"); //$NON-NLS-1$
 		
 		BooleanLiteralExp bl = asBooleanLiteral(ifExp.getCondition());
-		assertLocation(bl, falsePos, falsePos + "false".length()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertLocation(bl, falsePos, falsePos + "false".length()); //$NON-NLS-1$
 		
 		int spyPos = exprString.indexOf("'Spy'"); //$NON-NLS-1$
 		
@@ -573,7 +573,7 @@ public class LocationInformationTest
 		}
 
 		private void assertPositions(OclExpression expr) {
-			if (!isExempt(expr)) { //$NON-NLS-1$
+			if (!isExempt(expr)) {
 				assertFalse("Start not set: " + expr, expr.getStartPosition() < 0); //$NON-NLS-1$
 				assertFalse("End not set: " + expr, expr.getEndPosition() < 0); //$NON-NLS-1$
 				assertTrue("End not after start: " + expr, expr.getEndPosition() > expr.getStartPosition()); //$NON-NLS-1$

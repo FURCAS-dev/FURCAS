@@ -25,6 +25,9 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -456,6 +459,49 @@ public class AssociationTest
 			exprString.indexOf("]->")); //$NON-NLS-1$
 	}
 	
+	/**
+	 * Tests that navigation through association ends does not throws NPE
+	 * in case that at least one end in the navigation path
+	 * (except for the last) is undefined.
+	 */
+	public void test_associationNullContext_bugzilla121614() {
+		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
+		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		
+		// Employee class
+		EClass employee = EcoreFactory.eINSTANCE.createEClass();
+		employee.setName("Employee"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(employee);
+
+		// manager reference
+		EReference manager = EcoreFactory.eINSTANCE.createEReference();
+		manager.setName("manager"); //$NON-NLS-1$
+		manager.setEType(employee);
+
+		employee.getEStructuralFeatures().add(manager);
+
+		EFactory efactory = epackage.getEFactoryInstance();
+		
+		// create our test instance
+		EObject emp1 = efactory.create(employee);
+
+		// parse & evaluate expression
+		try {
+			OclExpression expr = parse(
+					"package mypkg context Employee " + //$NON-NLS-1$
+					"inv: self.manager.manager" + //$NON-NLS-1$
+					" endpackage"); //$NON-NLS-1$
+
+			Object result = evaluate(expr, emp1);
+			assertNull(result);
+		} finally {
+			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
+		}
+	}
+
 	//
 	// Fixture methods
 	//

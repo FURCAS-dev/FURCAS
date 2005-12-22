@@ -1840,7 +1840,9 @@ public class EvaluationVisitorImpl
 	public Object visitAssociationEndCallExp(AssociationEndCallExp ae) {
 		EReference ref = ae.getReferredAssociationEnd();
 		EObject context = (EObject) ae.getSource().accept(this);
-
+		if (context == null) {
+			return null;
+		}
 		return context.eGet(ref);
 	}
 
@@ -1853,6 +1855,9 @@ public class EvaluationVisitorImpl
 	 */
 	public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
 		EObject context = (EObject) ae.getSource().accept(this);
+		if (context == null) {
+			return null;
+		}
 		EReference ref = getAssociationClassReference(
 			context, ae.getReferredAssociationClass());
 
