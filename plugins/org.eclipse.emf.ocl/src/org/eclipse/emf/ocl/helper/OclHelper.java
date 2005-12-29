@@ -102,8 +102,15 @@ class OclHelper
 		return environment.getContextOperation();
 	}
 
+	/** @deprecated */
 	public List getSyntaxHelp(String txt) {
-		return getOclSyntaxHelper().getSyntaxHelp(environment, txt);
+		return (getContextOperation() != null)?
+			getSyntaxHelp(ConstraintType.POSTCONDITION, txt) :
+			getSyntaxHelp(ConstraintType.INVARIANT, txt);
+	}
+
+	public List getSyntaxHelp(ConstraintType constraintType, String txt) {
+		return getOclSyntaxHelper().getSyntaxHelp(environment, constraintType, txt);
 	}
 
 	public OclExpression createInvariant(String expression) throws OclParsingException {

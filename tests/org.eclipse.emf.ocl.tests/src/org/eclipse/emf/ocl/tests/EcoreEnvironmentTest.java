@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.2 2005/11/29 16:52:15 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.3 2005/12/29 17:26:05 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ocl.helper.ChoiceType;
+import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOclHelper;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
@@ -58,7 +59,7 @@ public class EcoreEnvironmentTest
 		final String EXPRESSION = "ocltest::Color::"; //$NON-NLS-1$
 
 		// choices should be returned
-		List choices = helper.getSyntaxHelp(EXPRESSION);
+		List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, EXPRESSION);
 		assertNotNull(choices);
 		assertFalse(choices.isEmpty());
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "green"); //$NON-NLS-1$
@@ -68,7 +69,7 @@ public class EcoreEnvironmentTest
 
 		// registry no longer contains the fruit package
 		// no choices should be returned
-		choices = helper.getSyntaxHelp(EXPRESSION); 
+		choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, EXPRESSION); 
 		assertNotNull(choices);
 		assertTrue(choices.isEmpty());
 	}
@@ -87,7 +88,7 @@ public class EcoreEnvironmentTest
 		final String EXPRESSION = "ocltest::Color::"; //$NON-NLS-1$
 
 		// registry is empty, no choices should be returned
-		List choices = helper.getSyntaxHelp(EXPRESSION); 
+		List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, EXPRESSION); 
 		assertNotNull(choices);
 		assertTrue(choices.isEmpty());
 		
@@ -95,7 +96,7 @@ public class EcoreEnvironmentTest
 		registry.put(fruitPackage.getNsURI(), fruitPackage);
 
 		// choices should now be returned
-		choices = helper.getSyntaxHelp(EXPRESSION);
+		choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, EXPRESSION);
 		assertNotNull(choices);
 		assertFalse(choices.isEmpty());
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "green"); //$NON-NLS-1$

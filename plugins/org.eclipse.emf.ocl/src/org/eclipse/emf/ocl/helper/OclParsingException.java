@@ -34,6 +34,8 @@ import org.eclipse.emf.ocl.internal.l10n.OclMessages;
 public class OclParsingException
 	extends CoreException {
 
+	private static final long serialVersionUID = -7755874848656523790L;
+
 	/**
 	 * Initializes me with my error message and cause.
 	 * 

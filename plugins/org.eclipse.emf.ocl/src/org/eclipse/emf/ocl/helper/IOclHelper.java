@@ -97,16 +97,38 @@ public interface IOclHelper {
 
 	/**
 	 * Obtains syntax completion choices for the specified fragment of an OCL
-	 * expression.  The choices returned (if any) will be appropriate for
-	 * appending to the end of the specified text.
+	 * expression that is to be used for an invariant constraint (in case of a
+	 * classifier context) or a postcondition constraint (in case of an operation
+	 * context).  For completion of other operation constraint types, use the
+	 * {@link #getSyntaxHelp(ConstraintType, String)} method as it will provide
+	 * completions for syntax only available in these constraints.
 	 *
 	 * @param txt a partial OCL expression for which to seek choices that
 	 *      could be appended to it
 	 * @return a list of {@link Choice}s, possibly empty.  The ordering of the
 	 *      list may or may not indicate relative relevance or frequency of
 	 *      a choice
+	 *      
+	 * @deprecated Use the {@link #getSyntaxHelp(ConstraintType, String)}
+	 *    method, instead, to get the correct completions for the context
 	 */
 	public List getSyntaxHelp(String txt);
+
+	/**
+	 * Obtains syntax completion choices for the specified fragment of an OCL
+	 * expression given that it is intended for a constraint of the specified
+	 * kind.  The choices returned (if any) will be appropriate for
+	 * appending to the end of the specified text in the context of this kind
+	 * of constraint.
+	 *
+	 * @param constraintType the kind of constraint that is being composed
+	 * @param txt a partial OCL expression for which to seek choices that
+	 *      could be appended to it
+	 * @return a list of {@link Choice}s, possibly empty.  The ordering of the
+	 *      list may or may not indicate relative relevance or frequency of
+	 *      a choice
+	 */
+	public List getSyntaxHelp(ConstraintType constraintType, String txt);
 
 	/**
 	 * Creates an invariant constraint in the current classifier context.

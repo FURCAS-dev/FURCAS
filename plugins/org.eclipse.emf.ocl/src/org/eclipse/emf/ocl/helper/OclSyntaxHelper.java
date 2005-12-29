@@ -726,6 +726,7 @@ final class OclSyntaxHelper {
 
 		private final int completionPosition;
 		private final String text;
+		private final ConstraintType constraintType;
 		
 		/**
 		 * Initializes me with the position at which we are trying to find
@@ -733,14 +734,16 @@ final class OclSyntaxHelper {
 		 * 
 		 * @param text the text to complete
 		 * @param position the completion position
+		 * @param constraintType the type of constraint that we are completing
 		 */
-		OclASTVisitor(String text, int position) {
+		OclASTVisitor(String text, int position, ConstraintType constraintType) {
 			this.text = text;
 			completionPosition = position;
+			this.constraintType = constraintType;
 		}
 		
 		public Object visitAttributeCallExp(AttributeCallExp exp) {
-			return getOclChoices(exp);
+			return getOclChoices(exp, constraintType);
 		}
 
 		public Object visitOperationCallExp(OperationCallExp exp) {
@@ -759,21 +762,21 @@ final class OclSyntaxHelper {
 				}
 			}
 			
-			return getOclChoices(exp);
+			return getOclChoices(exp, constraintType);
 		}
 
 		public Object visitVariableExp(VariableExp variableexp) {
-			return getOclChoices(variableexp);
+			return getOclChoices(variableexp, constraintType);
 		}
 
 		public Object visitAssociationEndCallExp(
 			AssociationEndCallExp associationendcallexp) {
-			return getOclChoices(associationendcallexp);
+			return getOclChoices(associationendcallexp, constraintType);
 		}
 
 		public Object visitAssociationClassCallExp(
 			AssociationClassCallExp exp) {
-			return getOclChoices(exp);
+			return getOclChoices(exp, constraintType);
 		}
 
 		public Object visitVariableDeclaration(
@@ -783,7 +786,7 @@ final class OclSyntaxHelper {
 
 		public Object visitIfExp(IfExp exp) {
 			if (text.charAt(exp.getEndPosition() - 1) == ')') {
-				return getOclChoices(exp);
+				return getOclChoices(exp, constraintType);
 			}
 			
 			return Collections.EMPTY_LIST;
@@ -791,7 +794,7 @@ final class OclSyntaxHelper {
 
 		public Object visitUnspecifiedValueExp(
 			UnspecifiedValueExp unspecifiedvalueexp) {
-			return getOclChoices(unspecifiedvalueexp);
+			return getOclChoices(unspecifiedvalueexp, constraintType);
 		}
 
 		public Object visitIntegerLiteralExp(IntegerLiteralExp integerliteralexp) {
@@ -807,19 +810,19 @@ final class OclSyntaxHelper {
 		}
 
 		public Object visitBooleanLiteralExp(BooleanLiteralExp booleanliteralexp) {
-			return getOclChoices(booleanliteralexp);
+			return getOclChoices(booleanliteralexp, constraintType);
 		}
 
 		public Object visitTupleLiteralExp(TupleLiteralExp tupleliteralexp) {
-			return getOclChoices(tupleliteralexp);
+			return getOclChoices(tupleliteralexp, constraintType);
 		}
 
 		public Object visitLetExp(LetExp letexp) {
-			return getOclChoices(letexp.getType());
+			return getOclChoices(letexp.getType(), constraintType);
 		}
 
 		public Object visitEnumLiteralExp(EnumLiteralExp enumliteralexp) {
-			return getOclChoices(enumliteralexp);
+			return getOclChoices(enumliteralexp, constraintType);
 		}
 
 		public Object visitCollectionLiteralExp(
@@ -853,7 +856,7 @@ final class OclSyntaxHelper {
 		public Object visitIteratorExp(IteratorExp exp) {
 			if (exp.getEndPosition() == completionPosition) {
 				// return completion on the entire expression
-				return getOclChoices(exp.getType());
+				return getOclChoices(exp.getType(), constraintType);
 			}
 			
 			// otherwise, we are completing something within the expression body
@@ -864,7 +867,7 @@ final class OclSyntaxHelper {
 			if (exp.getEndPosition() == completionPosition) {
 				// the result type of an iterate expression is the type of the
 				//    accumulator variable
-				return getOclChoices(exp.getType());
+				return getOclChoices(exp.getType(), constraintType);
 			}
 			
 			// otherwise, we are completing something within the expression body
@@ -1219,16 +1222,47 @@ final class OclSyntaxHelper {
 
 	/**
 	 * returns the syntax help choices applicable for the passed OclExpression
+	 * 
 	 * @param oclExpression the AST node to check and return relevant syntax 
 	 * help choices for.
+	 * @param constraintType the type of constraint that we are completing
+	 * 
 	 * @return OclChoices syntax help choices for user, could be empty
 	 */
-	private List getOclChoices(OclExpression oclExpression) {
-		return getOclChoices(oclExpression.getType());
+	private List getOclChoices(OclExpression oclExpression, ConstraintType constraintType) {
+		return getOclChoices(oclExpression.getType(), constraintType);
 	}
 	
-	private List getOclChoices(EClassifier oclType) {
-		return (List) getOclTypesSwitch().doSwitch(oclType);
+	private List getOclChoices(EClassifier oclType, ConstraintType constraintType) {
+		return filter(
+				(List) getOclTypesSwitch().doSwitch(oclType),
+				constraintType);
+	}
+	
+	/**
+	 * Filters the specified choices to remove choices not valid in the
+	 * specified type of constraint.
+	 * 
+	 * @param choices the choices to filter
+	 * @param constraintType the type of constraint that we are completing
+	 * 
+	 * @return the filtered choices
+	 */
+	private List filter(List choices, ConstraintType constraintType) {
+		List result = choices;
+		
+		switch (constraintType.getValue()) {
+		case ConstraintType.POSTCONDITION_VALUE:
+			break;
+		default:
+			// only postconditions may include oclIsNew()
+			result = new ArrayList(result);
+			result.remove(IS_NEW);
+			
+			break;
+		}
+		
+		return result;
 	}
 
 	/**
@@ -1316,7 +1350,7 @@ final class OclSyntaxHelper {
 		return new ArrayList(choices);
 	}
 
-	private List getVariableOclChoices(Environment env, String txt) {
+	private List getVariableOclChoices(Environment env, String txt, ConstraintType constraintType) {
 		Set choices = new java.util.LinkedHashSet();  // retain order
 		
 		// add features of the context classifier.  If the context is an
@@ -1345,7 +1379,7 @@ final class OclSyntaxHelper {
 				ChoiceType.VARIABLE));
 		}
 	
-		return new ArrayList(choices);
+		return filter(new ArrayList(choices), constraintType);
 	}
 
 	/**
@@ -1354,14 +1388,17 @@ final class OclSyntaxHelper {
 	 * 
 	 * @param text the text to complete
 	 * @param env the OCL environment
+	 * @param constraintType the kind of constraint for which to get partial
+	 *     name suggestions
 	 * @param position the position at which the partial name starts
 	 * 
 	 * @return the appropriate choices
 	 */
-	private List getPartialNameChoices(String text, Environment env, int position) {
+	private List getPartialNameChoices(String text, Environment env,
+			ConstraintType constraintType, int position) {
 		
 		// get raw choices
-		List result = getSyntaxHelp(env, text.substring(0, position));
+		List result = getSyntaxHelp(env, constraintType, text.substring(0, position));
 		
 		// filter out choices that don't start with the partial text
 		String partial = text.substring(position).trim();
@@ -1430,13 +1467,15 @@ final class OclSyntaxHelper {
 	 * classifier or operation.
 	 * 
 	 * @param env the current OCL environment
+	 * @param constraintType the kind of constraint for which to get completion
+	 *     suggestions
 	 * @param txt the string we got from client that contains the ocl expression
 	 * @param context the context classifier or operation to use for the ocl
 	 *     expression parsing 
 	 * @return a list of {@link Choice}s representing the syntax help choices
 	 *     for the user; could be empty
 	 */
-	List getSyntaxHelp(Environment env, String txt) {
+	List getSyntaxHelp(Environment env, ConstraintType constraintType, String txt) {
 		
 		try {
 			txt = txt.trim();//just to be sure
@@ -1445,13 +1484,15 @@ final class OclSyntaxHelper {
 				int position = txt.lastIndexOf(HelperUtil.DOT);
 				
 				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.DOT),
-					txt, env).accept(new OclASTVisitor(txt, position));
+					txt, env, constraintType).accept(
+							new OclASTVisitor(txt, position, constraintType));
 			} else if (txt.endsWith(HelperUtil.ARROW)) {
 				syntaxHelpStringSuffix = ARROW;
 				int position = txt.lastIndexOf(HelperUtil.ARROW);
 				
 				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.ARROW),
-					txt, env).accept(new OclASTVisitor(txt, position));
+					txt, env, constraintType).accept(
+							new OclASTVisitor(txt, position, constraintType));
 			} else if (txt.endsWith(HelperUtil.DOUBLE_COLON)) {
 				syntaxHelpStringSuffix = DOUBLE_COLON;
 				// path choices are not affected by the variables in the operation
@@ -1473,7 +1514,8 @@ final class OclSyntaxHelper {
 							case OclParserTokenTypes.DOT:
 							case OclParserTokenTypes.DOUBLECOLON:
 								return getPartialNameChoices(
-									txt, env, prev.getEndPosition());
+									txt, env, constraintType,
+									prev.getEndPosition());
 						}
 					}
 				}
@@ -1483,7 +1525,7 @@ final class OclSyntaxHelper {
 					OclToken last = (OclToken) tokens.get(tokens.size() - 1);
 					
 					if (last.getType() == OclParserTokenTypes.PATHNAME) {
-						return getPartialNameChoices(txt, env,
+						return getPartialNameChoices(txt, env, constraintType,
 							txt.lastIndexOf(HelperUtil.DOUBLE_COLON) + HelperUtil.DOUBLE_COLON.length());
 					}
 				}
@@ -1494,19 +1536,19 @@ final class OclSyntaxHelper {
 				// create a copy of the environment, to embellish it without
 				//     disrupting the caller's environment
 				env = copyEnvironment(env);
-				return getVariableOclChoices(env, txt);
+				return getVariableOclChoices(env, txt, constraintType);
 			}
 		} catch (Exception e) {
 			// didn't work?  Just try some simple variable choices, then
 			env = copyEnvironment(env);
-			return getVariableOclChoices(env, txt);
+			return getVariableOclChoices(env, txt, constraintType);
 		}
 	}
 
 	private OclExpression getOclExpression(int index, String txt,
-		Environment env) throws Exception {
+		Environment env, ConstraintType constraintType) throws Exception {
 		try {
-			return getOclExpression(env, txt.substring(0, index));
+			return getOclExpression(env, txt.substring(0, index), constraintType);
 		} catch (Exception ex) {
 			//give it one more try to handle partial ocl expression i.e., 
 			//if this is a compound statement and we are at the second statement,
@@ -1537,7 +1579,8 @@ final class OclSyntaxHelper {
 							if (beginIndex != NONE) {
 								return getOclExpression(
 									env,
-									txt.substring(beginIndex, index));
+									txt.substring(beginIndex, index),
+									constraintType);
 							}
 						}
 						break;//failure, then exit to rethrow the exception
@@ -1670,22 +1713,35 @@ final class OclSyntaxHelper {
 	 * 
 	 * @param env the parser environment
 	 * @param text the OCL text
+	 * @param constraintType the kind of constraint to parse
 	 * @return the OCL expression, if it successfully parsed
 	 * 
 	 * @throws Exception any exception thrown in parsing
 	 */
-	private OclExpression getOclExpression(Environment env, String text)
+	private OclExpression getOclExpression(Environment env, String text, ConstraintType constraintType)
 			throws Exception {
 		
-		if (env.getContextOperation() != null) {
-			// parse as an operation postcondition because it supports a
-			//   superset of the syntax offered by the other constraints
-			return ExpressionsUtil.createPostcondition(
+		OclExpression result = null;
+		switch (constraintType.getValue()) {
+		case ConstraintType.PRECONDITION_VALUE:
+			result = ExpressionsUtil.createPrecondition(
 				env, text, false);   // don't validate
-		} else {
-			return ExpressionsUtil.createInvariant(
-				env, text, false);  // don't validate
+			break;
+		case ConstraintType.BODYCONDITION_VALUE:
+			result = ExpressionsUtil.createBodyCondition(
+				env, text, false);   // don't validate
+			break;
+		case ConstraintType.POSTCONDITION_VALUE:
+			result = ExpressionsUtil.createPostcondition(
+				env, text, false);   // don't validate
+			break;
+		default:
+			result = ExpressionsUtil.createInvariant(
+				env, text, false);   // don't validate
+			break;
 		}
+		
+		return result;
 	}
 
 	/**

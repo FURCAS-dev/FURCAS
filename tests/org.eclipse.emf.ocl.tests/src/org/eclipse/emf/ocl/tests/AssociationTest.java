@@ -40,6 +40,7 @@ import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
 import org.eclipse.emf.ocl.expressions.OclExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.helper.ChoiceType;
+import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOclHelper;
 import org.eclipse.emf.ocl.uml.AssociationClass;
@@ -314,7 +315,7 @@ public class AssociationTest
 		helper.setContext(tree);
 		
 		try {
-			List choices = helper.getSyntaxHelp("this."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "this."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			// regular reference feature

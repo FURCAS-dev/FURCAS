@@ -25,6 +25,7 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ocl.helper.ChoiceType;
+import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOclHelper;
 
@@ -54,11 +55,11 @@ public class SyntaxHelpTest
 		IOclHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
-		List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+		List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "eAttributes"); //$NON-NLS-1$
 		
-		choices = helper.getSyntaxHelp("self.name."); //$NON-NLS-1$
+		choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self.name."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "toLower"); //$NON-NLS-1$
 	}
@@ -73,7 +74,9 @@ public class SyntaxHelpTest
 		helper.setContext(fruit);
 		
 		try {
-			List choices = helper.getSyntaxHelp("color <> Color::"); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.INVARIANT,
+					"color <> Color::"); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "red"); //$NON-NLS-1$
@@ -93,7 +96,7 @@ public class SyntaxHelpTest
 		helper.setContext(fruit);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.ENUMERATION_LITERAL, "color"); //$NON-NLS-1$
@@ -112,7 +115,7 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "stem"); //$NON-NLS-1$
@@ -131,7 +134,7 @@ public class SyntaxHelpTest
 		helper.setContext(fruit);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "preferredColor"); //$NON-NLS-1$
@@ -150,7 +153,9 @@ public class SyntaxHelpTest
 		helper.setContextOperation(fruit, fruit_ripen);
 		
 		try {
-			List choices = helper.getSyntaxHelp("color <> Color::"); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.PRECONDITION,
+					"color <> Color::"); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "red"); //$NON-NLS-1$
@@ -169,7 +174,9 @@ public class SyntaxHelpTest
 		helper.setContextOperation(fruit, fruit_preferredColor);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.BODYCONDITION,
+					"self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.ENUMERATION_LITERAL, "color"); //$NON-NLS-1$
@@ -188,7 +195,9 @@ public class SyntaxHelpTest
 		helper.setContextOperation(apple, apple_labelOper);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.PRECONDITION,
+					"self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "stem"); //$NON-NLS-1$
@@ -207,7 +216,9 @@ public class SyntaxHelpTest
 		helper.setContextOperation(fruit, fruit_ripen);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.POSTCONDITION,
+					"self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "preferredColor"); //$NON-NLS-1$
@@ -226,7 +237,9 @@ public class SyntaxHelpTest
 		helper.setContextOperation(fruit, apple_labelOper);
 		
 		try {
-			List choices = helper.getSyntaxHelp("text."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.PRECONDITION,
+					"text."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "toLower"); //$NON-NLS-1$
@@ -245,7 +258,9 @@ public class SyntaxHelpTest
 		helper.setContextOperation(fruit, fruit_preferredColor);
 		
 		try {
-			List choices = helper.getSyntaxHelp("result."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(
+					ConstraintType.POSTCONDITION,
+					"result."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsUndefined"); //$NON-NLS-1$

@@ -25,6 +25,7 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ocl.helper.ChoiceType;
+import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOclHelper;
 
@@ -54,7 +55,7 @@ public class RegressionTest
 		helper.setContext(fruit);
 		
 		try {
-			List choices = helper.getSyntaxHelp("self."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsInState"); //$NON-NLS-1$
@@ -74,7 +75,9 @@ public class RegressionTest
 		IOclHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEReference());
-		List choices = helper.getSyntaxHelp("self.eOpposite = self."); //$NON-NLS-1$
+		List choices = helper.getSyntaxHelp(
+				ConstraintType.INVARIANT,
+				"self.eOpposite = self."); //$NON-NLS-1$
 		
 		// formerly, the choices offered would be the choices appropriate to
 		//    the OCL Boolean type, because that is the type of
@@ -92,7 +95,9 @@ public class RegressionTest
 		IOclHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEReference());
-		List choices = helper.getSyntaxHelp("(self.eOpposite = self)."); //$NON-NLS-1$
+		List choices = helper.getSyntaxHelp(
+				ConstraintType.INVARIANT,
+				"(self.eOpposite = self)."); //$NON-NLS-1$
 		
 		// in this case, the right-most subexpression really is the entire
 		//    "self.eOpposite = self" because of the parenthesization, so we
@@ -110,7 +115,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"let p : EPackage = self.ePackage in 'foo_'.concat(p."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"let p : EPackage = self.ePackage in 'foo_'.concat(p."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "eClassifiers"); //$NON-NLS-1$
 	}
@@ -124,7 +130,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"(let p : EPackage = self.ePackage in p.name)."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"(let p : EPackage = self.ePackage in p.name)."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "toLower"); //$NON-NLS-1$
 	}
@@ -137,7 +144,9 @@ public class RegressionTest
 		IOclHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
-		List choices = helper.getSyntaxHelp("self.eSuperTypes->collect(i : EClass | i."); //$NON-NLS-1$
+		List choices = helper.getSyntaxHelp(
+				ConstraintType.INVARIANT,
+				"self.eSuperTypes->collect(i : EClass | i."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "ePackage"); //$NON-NLS-1$
 	}
@@ -151,13 +160,15 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"self.eSuperTypes->iterate(i : EClass; a : String = '' | a."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"self.eSuperTypes->iterate(i : EClass; a : String = '' | a."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "concat"); //$NON-NLS-1$
 		
 		// try completion on the iterator variable, also
 		choices = helper.getSyntaxHelp(
-			"self.eSuperTypes->iterate(i : EClass; a : String = '' | a.concat(i."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"self.eSuperTypes->iterate(i : EClass; a : String = '' | a.concat(i."); //$NON-NLS-1$
 	
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "name"); //$NON-NLS-1$
 	}
@@ -171,7 +182,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"self.eSuperTypes->iterate(i : EClass; a : String = '' | a.concat(i.name))."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"self.eSuperTypes->iterate(i : EClass; a : String = '' | a.concat(i.name))."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "concat"); //$NON-NLS-1$
 	}
@@ -186,7 +198,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"Sequence{'abc', 'a', 'ab'}->"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"Sequence{'abc', 'a', 'ab'}->"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "subSequence"); //$NON-NLS-1$
 	}
@@ -201,7 +214,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"self.eSuperTypes->select(i : EClass | i.eSuperTypes->isEmpty())->"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"self.eSuperTypes->select(i : EClass | i.eSuperTypes->isEmpty())->"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "subOrderedSet"); //$NON-NLS-1$
 	}
@@ -216,7 +230,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"Set{'abc', 'a', 'ab'}->collect(i : String | i.size())->"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"Set{'abc', 'a', 'ab'}->collect(i : String | i.size())->"); //$NON-NLS-1$
 		
 		// bags do not support symmetricDifference as sets do
 		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "symmetricDifference"); //$NON-NLS-1$
@@ -231,12 +246,14 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"(if true then 'a' else 'b' endif)."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"(if true then 'a' else 'b' endif)."); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "concat"); //$NON-NLS-1$
 		
 		choices = helper.getSyntaxHelp(
-			"if true then 'a' else 'b' endif."); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"if true then 'a' else 'b' endif."); //$NON-NLS-1$
 	
 		// we don't support completion of the "endif" token, though
 		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "concat"); //$NON-NLS-1$
@@ -252,7 +269,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"let pkgName : String = ePackage.name in"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"let pkgName : String = ePackage.name in"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.VARIABLE, "pkgName"); //$NON-NLS-1$
 		
@@ -266,7 +284,8 @@ public class RegressionTest
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclAsType"); //$NON-NLS-1$
 		
 		choices = helper.getSyntaxHelp(
-			"eSuperTypes->collect(st : EClass | "); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"eSuperTypes->collect(st : EClass | "); //$NON-NLS-1$
 	
 		// loop variables
 		assertChoice(choices, ChoiceType.VARIABLE, "st"); //$NON-NLS-1$
@@ -282,7 +301,8 @@ public class RegressionTest
 		
 		helper.setContextOperation(apple, apple_labelOper);
 		List choices = helper.getSyntaxHelp(
-			"'' <> "); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"'' <> "); //$NON-NLS-1$
 		
 		// operation parameter
 		assertChoice(choices, ChoiceType.VARIABLE, "text"); //$NON-NLS-1$
@@ -298,7 +318,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"self.eSuper"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"self.eSuper"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "eSuperTypes"); //$NON-NLS-1$
 		assertNotChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "ePackage"); //$NON-NLS-1$
@@ -314,7 +335,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
-			"self.oclIs"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"self.oclIs"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsUndefined"); //$NON-NLS-1$
 		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclAsType"); //$NON-NLS-1$
@@ -330,7 +352,8 @@ public class RegressionTest
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
 		List choices = helper.getSyntaxHelp(
-			"if self.oclIsKindOf(ecore::ECl"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"if self.oclIsKindOf(ecore::ECl"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "EClass"); //$NON-NLS-1$
 		assertNotChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "EEnum"); //$NON-NLS-1$
@@ -346,7 +369,8 @@ public class RegressionTest
 		
 		helper.setContext(apple);
 		List choices = helper.getSyntaxHelp(
-			"if color <> Color::bl"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"if color <> Color::bl"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "black"); //$NON-NLS-1$
 		assertNotChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "red"); //$NON-NLS-1$
@@ -362,7 +386,8 @@ public class RegressionTest
 		
 		helper.setContext(apple);
 		List choices = helper.getSyntaxHelp(
-			"Apple.allInstances()->symm"); //$NON-NLS-1$
+				ConstraintType.INVARIANT,
+				"Apple.allInstances()->symm"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "symmetricDifference"); //$NON-NLS-1$
 		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "collect"); //$NON-NLS-1$
@@ -376,7 +401,9 @@ public class RegressionTest
 		IOclHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
-		List choices = helper.getSyntaxHelp(""); //$NON-NLS-1$
+		List choices = helper.getSyntaxHelp(
+				ConstraintType.INVARIANT,
+				""); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.VARIABLE, "self"); //$NON-NLS-1$
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "stem"); //$NON-NLS-1$
@@ -391,10 +418,37 @@ public class RegressionTest
 		IOclHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
-		List choices = helper.getSyntaxHelp("{@grr!"); //$NON-NLS-1$
+		List choices = helper.getSyntaxHelp(
+				ConstraintType.INVARIANT,
+				"{@grr!"); //$NON-NLS-1$
 		
 		assertChoice(choices, ChoiceType.VARIABLE, "self"); //$NON-NLS-1$
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "stem"); //$NON-NLS-1$
 		assertChoice(choices, ChoiceType.ENUMERATION_LITERAL, "color"); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that the oclIsNew() operation is only suggested in postcondition
+	 * context.
+	 */
+	public void test_oclIsNewOnlyInPostconditions_116664() {
+		IOclHelper helper = HelperUtil.createOclHelper();
+		
+		helper.setContext(apple);
+		
+		List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self.ocl"); //$NON-NLS-1$
+		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsNew"); //$NON-NLS-1$
+		
+		helper.setContext(apple_newApple);
+		
+		choices = helper.getSyntaxHelp(ConstraintType.PRECONDITION, "self.ocl"); //$NON-NLS-1$
+		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsNew"); //$NON-NLS-1$
+		
+		choices = helper.getSyntaxHelp(ConstraintType.BODYCONDITION, "self.ocl"); //$NON-NLS-1$
+		assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsNew"); //$NON-NLS-1$
+		
+		// this time we should find this choice
+		choices = helper.getSyntaxHelp(ConstraintType.POSTCONDITION, "self.ocl"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsNew"); //$NON-NLS-1$
 	}
 }
