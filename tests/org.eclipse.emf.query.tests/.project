@@ -3,7 +3,6 @@
 	<name>org.eclipse.emf.query.tests</name>
 	<comment></comment>
 	<projects>
-		<project>org.eclipse.emf.query</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

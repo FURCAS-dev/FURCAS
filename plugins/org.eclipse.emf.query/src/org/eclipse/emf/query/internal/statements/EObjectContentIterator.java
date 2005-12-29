@@ -37,7 +37,9 @@ import org.eclipse.emf.query.statements.IteratorKind;
  */
 public class EObjectContentIterator extends AbstractTreeIterator {
 
-    private static class EObjectAdapter extends EObjectImpl {
+	private static final long serialVersionUID = 4310034547053143619L;
+
+	private static class EObjectAdapter extends EObjectImpl {
         private EList list;
         EObjectAdapter(Collection collection) {
             list = new BasicEList(collection);

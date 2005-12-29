@@ -3,7 +3,6 @@
 	<name>org.eclipse.emf.query</name>
 	<comment></comment>
 	<projects>
-		<project>org.eclipse.gmf.runtime.common.core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

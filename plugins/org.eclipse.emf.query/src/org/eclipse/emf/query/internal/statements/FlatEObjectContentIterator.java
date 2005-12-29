@@ -30,6 +30,9 @@ import org.eclipse.emf.query.statements.IteratorKind;
  */
 public final class FlatEObjectContentIterator
 	extends EObjectContentIterator {
+	
+	private static final long serialVersionUID = 964764750547412881L;
+	
 	private Iterator it;
 
 	/**
