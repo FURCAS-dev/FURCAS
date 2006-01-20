@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.query.examples.ocl; singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: org.eclipse.emf.query.examples.ocl.jar
 Bundle-Activator: org.eclipse.emf.query.examples.ocl.OclPlugin
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
@@ -14,9 +13,5 @@ Export-Package: org.eclipse.emf.query.examples.ocl,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.emf.query.ocl,
- org.eclipse.emf.examples.library,
- org.eclipse.emf.examples.library.edit,
  org.eclipse.emf.examples.library.editor
 Eclipse-LazyStart: true
-
-

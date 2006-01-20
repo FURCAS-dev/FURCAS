@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.query.examples.statements; singleton:=true
 Bundle-Version: 1.0.0
-Bundle-ClassPath: org.eclipse.emf.query.examples.statements.jar
 Bundle-Activator: org.eclipse.emf.query.examples.statements.QueryPlugin
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
@@ -18,5 +17,3 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.examples.library.editor,
  org.eclipse.emf
 Eclipse-LazyStart: true
-
-
