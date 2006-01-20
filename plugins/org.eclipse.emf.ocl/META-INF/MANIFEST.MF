@@ -30,5 +30,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.edit,
  org.eclipse.emf.ecore.edit,
+ com.ibm.icu,
  antlr;visibility:=reexport
 Eclipse-LazyStart: true
