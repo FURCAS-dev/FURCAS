@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2005 IBM Corporation and others.
+ * Copyright (c) 2002-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,8 @@
  */
 
 package org.eclipse.emf.query.conditions.strings;
+
+import com.ibm.icu.text.Normalizer;
 
 /**
  * A <code>String<code> related condition class that compares a <code>String<code> value to another. 
@@ -70,7 +72,7 @@ public class StringValue
 	public StringValue(String string, boolean caseSensitive,
 		StringAdapter adpater) {
 		super(adpater);
-		this.string = (caseSensitive) ? string : string.toLowerCase();
+		this.string = string;
 		this.caseSensitive = caseSensitive;
 	}
 
@@ -80,8 +82,9 @@ public class StringValue
 	 * @see org.eclipse.emf.query.conditions.strings.StringCondition#isSatisfied(java.lang.String)
 	 */
 	public boolean isSatisfied(String str) {
-		return getString().equals(
-			(isCaseSensitive()) ? str : str.toLowerCase());
+		return Normalizer.compare(
+				getString(), str,
+				isCaseSensitive() ? 0 : Normalizer.COMPARE_IGNORE_CASE) == 0;
 	}
 
 	/**

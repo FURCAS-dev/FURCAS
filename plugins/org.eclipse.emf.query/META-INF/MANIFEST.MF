@@ -20,5 +20,6 @@ Export-Package: org.eclipse.emf.query,
  org.eclipse.emf.query.internal.util,
  org.eclipse.emf.query.statements
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ com.ibm.icu
 Eclipse-LazyStart: true

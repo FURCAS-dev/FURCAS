@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2005 IBM Corporation and others.
+ * Copyright (c) 2002-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,11 @@
 
 package org.eclipse.emf.query.conditions.strings;
 
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.SearchIterator;
+import com.ibm.icu.text.StringSearch;
+
 /**
  * A <code>StringValue</code> condition subclass that checks to see if the
  * initialization <code>String<code> 
@@ -29,8 +34,12 @@ package org.eclipse.emf.query.conditions.strings;
 public class SubStringValue
 	extends StringValue {
 
-	private static final int NONE = -1;
+	private static RuleBasedCollator CASE_INSENSITIVE_COLLATOR;
 
+	static {
+		CASE_INSENSITIVE_COLLATOR = (RuleBasedCollator) Collator.getInstance();
+		CASE_INSENSITIVE_COLLATOR.setStrength(Collator.PRIMARY);
+	}
 	/**
 	 * A simple constructor that takes an initialization <code>String<code> to 
 	 * see if it is a sub-string of those being evaluated
@@ -93,8 +102,13 @@ public class SubStringValue
 	 * @see org.eclipse.emf.query.conditions.strings.StringCondition#isSatisfied(java.lang.String)
 	 */
 	public boolean isSatisfied(String str) {
-		return (((isCaseSensitive()) ? str : str.toLowerCase())
-			.indexOf(getString()) != NONE);
+		StringSearch search = new StringSearch(getString(), str);
+		
+		if (!isCaseSensitive()) {
+			search.setCollator(CASE_INSENSITIVE_COLLATOR);
+		}
+		
+		return search.next() != SearchIterator.DONE;
 	}
 
 }
