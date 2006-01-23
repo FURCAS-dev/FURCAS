@@ -3,7 +3,7 @@ header {
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,6 @@ package org.eclipse.emf.ocl.internal.parser;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.Vector;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -100,6 +99,8 @@ import org.eclipse.emf.ocl.types.internal.impl.PrimitiveTypeImpl;
 import org.eclipse.emf.ocl.types.util.Types;
 
 import org.eclipse.osgi.util.NLS;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * ANTLR-generated parser class.
