@@ -225,10 +225,9 @@ public class ToStringVisitorImpl
 		EClassifier type = vd.getType();
 		OclExpression init = vd.getInitExpression();
 		String result = varName;
-		String typeName = type.getName();
 
 		if (type != null)
-			result += ":" + typeName;//$NON-NLS-1$
+			result += " : " + type.getName();//$NON-NLS-1$
 		if (init != null)
 			result += " = " + init.accept(this);//$NON-NLS-1$
 		return result;
