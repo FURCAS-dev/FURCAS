@@ -131,6 +131,7 @@ public class HelperUtil {
 		while (line != null) {
 			line = line.trim();
 			if (line.startsWith(HelperUtil.OCL_COMMENT) == false) {
+				// safe to search for index of "--" which consists of BMP code points
 				embeddedCommnetIndex = line.indexOf(HelperUtil.OCL_COMMENT);
 				if (embeddedCommnetIndex != HelperUtil.NONE) {
 					line = line.substring(0, embeddedCommnetIndex);

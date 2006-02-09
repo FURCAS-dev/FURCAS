@@ -59,6 +59,9 @@ import org.eclipse.emf.ocl.uml.Operation;
 import org.eclipse.emf.ocl.uml.Qualifier;
 import org.eclipse.osgi.util.NLS;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UTF16;
+
 import antlr.SemanticException;
 
 /**
@@ -654,7 +657,10 @@ public class EcoreEnvironment
 		StringBuffer result = new StringBuffer(elem.getName());
 		
 		if (result.length() > 0) {
-			result.setCharAt(0, Character.toLowerCase(result.charAt(0)));
+			UTF16.setCharAt(
+					result,
+					0,
+					UCharacter.toLowerCase(UTF16.charAt(result, 0)));
 		}
 		
 		return result.toString();

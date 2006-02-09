@@ -87,6 +87,9 @@ import org.eclipse.emf.ocl.types.internal.impl.PrimitiveTypeImpl;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.osgi.util.NLS;
 
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UTF16;
+
 /**
  * An evaluation visitor implementation for OCL expressions.
  * 
@@ -566,11 +569,11 @@ public class EvaluationVisitorImpl
 
 					case PrimitiveTypeImpl.TO_LOWER:
 						// String::toLower()
-						return ((String) sourceVal).toLowerCase();
+						return UCharacter.toLowerCase((String) sourceVal);
 
 					case PrimitiveTypeImpl.TO_UPPER:
 						// String::toUpper()
-						return ((String) sourceVal).toUpperCase();
+						return UCharacter.toUpperCase((String) sourceVal);
 
 					case CollectionTypeImpl.SIZE:
 						// Collection::size()
@@ -1877,7 +1880,10 @@ public class EvaluationVisitorImpl
 		EReference result = null;
 		
 		StringBuffer nameBuf = new StringBuffer(associationClass.getName());
-		nameBuf.setCharAt(0, Character.toLowerCase(nameBuf.charAt(0)));
+		UTF16.setCharAt(
+				nameBuf,
+				0,
+				UCharacter.toLowerCase(UTF16.charAt(nameBuf, 0)));
 		String name = nameBuf.toString();
 		
 		for (Iterator iter = context.eClass().getEAllReferences().iterator();

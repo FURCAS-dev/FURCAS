@@ -411,14 +411,14 @@ class OclParser extends Parser;
 	    String result = quoted;
 	
     	if ((result != null) && (result.length() > 1)) {
-    		int max = result.length() - 1;
+    		int max = result.length() - 1; // known BMP code point
 	
-    		if ((result.charAt(0) == '"') && (quoted.charAt(max) == '"')) {
+    		if ((result.charAt(0) == '"') && (quoted.charAt(max) == '"')) { // known BMP code point
     			result = result.substring(1, max);
     			}
     			// this is a regexp, so the backslash needs to be
-    								//   re-escaped, thus "\\" is rendered in a Java
-    													//   string literal as "\\\\"
+    			//   re-escaped, thus "\\" is rendered in a Java
+    			//   string literal as "\\\\"
     			result = result.replaceAll("\\\\\"", "\"");  //$NON-NLS-1$//$NON-NLS-2$
     	}
     
@@ -2774,7 +2774,7 @@ operationCallExpCS[Environment env,  OclExpression source, boolean dotOperator] 
 			intSource.setIntegerSymbol(new Integer(tokenizer.nextToken()));
 			operationName = unquote(tokenizer.nextToken());
 			nameToken = createFakeToken(
-				((OclToken) p).getStartPosition() + text.indexOf('.' + 1),
+				((OclToken) p).getStartPosition() + text.indexOf('.' + 1), // known BMP code point
 				operationName.length());
 		}
 		(

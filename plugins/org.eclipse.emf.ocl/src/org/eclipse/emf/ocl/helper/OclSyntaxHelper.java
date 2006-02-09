@@ -99,6 +99,8 @@ import org.eclipse.emf.ocl.types.util.TypesSwitch;
 import org.eclipse.emf.ocl.uml.AssociationClassEnd;
 import org.eclipse.emf.ocl.uml.Constraint;
 
+import com.ibm.icu.text.UTF16;
+
 /**
  * Engine for computation of possible syntax completions at a point in the
  * an OCL expression.
@@ -785,7 +787,9 @@ final class OclSyntaxHelper {
 		}
 
 		public Object visitIfExp(IfExp exp) {
-			if (text.charAt(exp.getEndPosition() - 1) == ')') {
+			int lastCharPos = UTF16.moveCodePointOffset(text, exp.getEndPosition(), -1);
+			
+			if (text.charAt(lastCharPos) == ')') { // known BMP code point
 				return getOclChoices(exp, constraintType);
 			}
 			
@@ -1481,16 +1485,16 @@ final class OclSyntaxHelper {
 			txt = txt.trim();//just to be sure
 			if (txt.endsWith(HelperUtil.DOT)) {
 				syntaxHelpStringSuffix = DOT;
-				int position = txt.lastIndexOf(HelperUtil.DOT);
+				int position = txt.lastIndexOf(HelperUtil.DOT); // known BMP code point
 				
-				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.DOT),
+				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.DOT), // known BMP code point
 					txt, env, constraintType).accept(
 							new OclASTVisitor(txt, position, constraintType));
 			} else if (txt.endsWith(HelperUtil.ARROW)) {
 				syntaxHelpStringSuffix = ARROW;
-				int position = txt.lastIndexOf(HelperUtil.ARROW);
+				int position = txt.lastIndexOf(HelperUtil.ARROW); // known BMP code points
 				
-				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.ARROW),
+				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.ARROW), // known BMP code points
 					txt, env, constraintType).accept(
 							new OclASTVisitor(txt, position, constraintType));
 			} else if (txt.endsWith(HelperUtil.DOUBLE_COLON)) {
@@ -1499,7 +1503,7 @@ final class OclSyntaxHelper {
 				//   namespace (e.g., parameters)
 				
 				return getPathOclChoices(
-					txt.substring(0, txt.lastIndexOf(HelperUtil.DOUBLE_COLON)),
+					txt.substring(0, txt.lastIndexOf(HelperUtil.DOUBLE_COLON)), // known BMP code points
 					env);
 			} else {
 				// see whether we can complete a partial name
@@ -1526,7 +1530,8 @@ final class OclSyntaxHelper {
 					
 					if (last.getType() == OclParserTokenTypes.PATHNAME) {
 						return getPartialNameChoices(txt, env, constraintType,
-							txt.lastIndexOf(HelperUtil.DOUBLE_COLON) + HelperUtil.DOUBLE_COLON.length());
+							txt.lastIndexOf(HelperUtil.DOUBLE_COLON) // known BMP code points
+							+ HelperUtil.DOUBLE_COLON.length());
 					}
 				}
 				
