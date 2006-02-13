@@ -24,7 +24,6 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
 import org.eclipse.emf.ocl.expressions.AttributeCallExp;
@@ -41,7 +40,7 @@ import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
 import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
@@ -51,8 +50,8 @@ import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.uml.Constraint;
 
@@ -79,7 +78,7 @@ public class LocationInformationTest
 	 */
 	public void test_invariant() {
 		final String exprString = "true implies self.color <> Color::black"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 		
 		OperationCallExp impliesExp = asOperationCall(constraint);
 		assertLocation(impliesExp, 0, exprString.length());
@@ -112,7 +111,7 @@ public class LocationInformationTest
 			"if false then 'Spy' else " + //$NON-NLS-1$
 			"Set{'Spartan', 'GrannySmith', 'Macintosh'}->any(i : String | i <> '')" + //$NON-NLS-1$
 			" endif"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 		
 		IfExp ifExp = asIf(constraint);
 		assertLocation(ifExp, 0, exprString.length());
@@ -137,7 +136,7 @@ public class LocationInformationTest
 			exprString.indexOf("i :"), //$NON-NLS-1$
 			exprString.indexOf("|") - 1); //$NON-NLS-1$
 		
-		OclExpression anyBody = anyIterator.getBody();
+		OCLExpression anyBody = anyIterator.getBody();
 		assertLocation(anyBody,
 			exprString.indexOf("i <>"), //$NON-NLS-1$
 			exprString.indexOf(")")); //$NON-NLS-1$
@@ -164,7 +163,7 @@ public class LocationInformationTest
 	public void test_postcondition() {
 		final String exprString =
 			"let oldColor : Color = self.color@pre in oldColor <> self.color"; //$NON-NLS-1$
-		OclExpression constraint = createPostcondition(fruit_ripen, exprString);
+		OCLExpression constraint = createPostcondition(fruit_ripen, exprString);
 		
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
@@ -191,7 +190,7 @@ public class LocationInformationTest
 	public void test_parentheses() {
 		final String exprString =
 			"( (true) implies ( (false) or ((true)) ) )"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(fruit, exprString);
+		OCLExpression constraint = createInvariant(fruit, exprString);
 		
 		OperationCallExp operCall = asOperationCall(constraint);
 		assertLocation(operCall, 0, exprString.length());
@@ -224,7 +223,7 @@ public class LocationInformationTest
 		final String exprString =
 			"let isApple : Boolean = self.oclIsKindOf(Apple) in " + //$NON-NLS-1$
 			"isApple implies Apple.allInstances()->includes(self)"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(fruit, exprString);
+		OCLExpression constraint = createInvariant(fruit, exprString);
 		
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
@@ -257,7 +256,7 @@ public class LocationInformationTest
 		final String exprString =
 			"let allApples : Set(Apple) = Apple.allInstances() in " + //$NON-NLS-1$
 			"allApples->includes(self)"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 		
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
@@ -280,7 +279,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_operationCall() {
 		final String exprString =
 			"Apple.allInstances()->includes(self)"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 
 		// collection operation (arrow)
 		OperationCallExp includesExp = asOperationCall(constraint);
@@ -306,7 +305,7 @@ public class LocationInformationTest
 		// throw in spaces for fun
 		final String exprString =
 			"not ripen(self. color )"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 
 		OperationCallExp notExp = asOperationCall(constraint);
 		OperationCallExp ripenExp = asOperationCall(notExp.getSource());
@@ -325,7 +324,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_associationEndCall() {
 		final String exprString =
 			"self.stem->notEmpty()"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 		
 		OperationCallExp notEmptyExp = asOperationCall(constraint);
 		
@@ -346,7 +345,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_implicitCollect() {
 		final String exprString =
 			"orderedSet.color->asSet()->size() = 1"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(
+		OCLExpression constraint = createInvariant(
 			(EClass) fruitPackage.getEClassifier("FruitUtil"), //$NON-NLS-1$
 			exprString);
 		
@@ -371,7 +370,7 @@ public class LocationInformationTest
 	public void test_referencePositions_implicitCollect() {
 		final String exprString =
 			"Apple.allInstances().stem->asSet()->size() > 1"; //$NON-NLS-1$
-		OclExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createInvariant(apple, exprString);
 
 		OperationCallExp eqExp = asOperationCall(constraint);
 		OperationCallExp sizeExp = asOperationCall(eqExp.getSource());
@@ -390,8 +389,8 @@ public class LocationInformationTest
 	// Framework methods
 	//
 	
-	static OclExpression createInvariant(EClass context, String text) {
-		OclExpression result = null;
+	static OCLExpression createInvariant(EClass context, String text) {
+		OCLExpression result = null;
 		
 		try {
 			result = ExpressionsUtil.createInvariant(context, text, true);
@@ -405,8 +404,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	static OclExpression createPrecondition(EOperation context, String text) {
-		OclExpression result = null;
+	static OCLExpression createPrecondition(EOperation context, String text) {
+		OCLExpression result = null;
 		
 		try {
 			result = ExpressionsUtil.createPrecondition(
@@ -421,8 +420,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	static OclExpression createPostcondition(EOperation context, String text) {
-		OclExpression result = null;
+	static OCLExpression createPostcondition(EOperation context, String text) {
+		OCLExpression result = null;
 		
 		try {
 			result = ExpressionsUtil.createPostcondition(
@@ -437,8 +436,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	static OclExpression createBodyCondition(EOperation context, String text) {
-		OclExpression result = null;
+	static OCLExpression createBodyCondition(EOperation context, String text) {
+		OCLExpression result = null;
 		
 		try {
 			result = ExpressionsUtil.createBodyCondition(
@@ -524,17 +523,17 @@ public class LocationInformationTest
 		return obj;
 	}
 	
-	static void assertAllPositionsSet(OclExpression expr) {
+	static void assertAllPositionsSet(OCLExpression expr) {
 		assertNotNull(expr);
 		expr.accept(LocationVerifier.INSTANCE);
 	}
 	
-	static void assertLocation(AstNode node, int start, int end) {
+	static void assertLocation(ASTNode node, int start, int end) {
 		assertEquals("Wrong start position", start, node.getStartPosition()); //$NON-NLS-1$
 		assertEquals("Wrong end position", end, node.getEndPosition()); //$NON-NLS-1$
 	}
 	
-	static void assertTypeLocation(TypedAstNode node, int start, int end) {
+	static void assertTypeLocation(TypedASTNode node, int start, int end) {
 		assertEquals("Wrong type start position", start, node.getTypeStartPosition()); //$NON-NLS-1$
 		assertEquals("Wrong type end position", end, node.getTypeEndPosition()); //$NON-NLS-1$
 	}
@@ -553,7 +552,7 @@ public class LocationInformationTest
 	private static class LocationVerifier implements Visitor {
 		static LocationVerifier INSTANCE = new LocationVerifier();
 
-		private boolean isExempt(OclExpression expr) {
+		private boolean isExempt(OCLExpression expr) {
 			if (expr instanceof VariableExp) {
 				return isImplicit(((VariableExp) expr).getReferredVariable());
 			}
@@ -572,7 +571,7 @@ public class LocationInformationTest
 				|| name.startsWith("temp"); //$NON-NLS-1$
 		}
 
-		private void assertPositions(OclExpression expr) {
+		private void assertPositions(OCLExpression expr) {
 			if (!isExempt(expr)) {
 				assertFalse("Start not set: " + expr, expr.getStartPosition() < 0); //$NON-NLS-1$
 				assertFalse("End not set: " + expr, expr.getEndPosition() < 0); //$NON-NLS-1$
@@ -603,7 +602,7 @@ public class LocationInformationTest
 			oc.getSource().accept(this);
 			
 			for (Iterator iter = oc.getArguments().iterator(); iter.hasNext();) {
-				((OclExpression) iter.next()).accept(this);
+				((OCLExpression) iter.next()).accept(this);
 			}
 			
 			return null;
@@ -626,7 +625,7 @@ public class LocationInformationTest
 			}
 			
 			for (Iterator iter = ae.getQualifiers().iterator(); iter.hasNext();) {
-				((OclExpression) iter.next()).accept(this);
+				((OCLExpression) iter.next()).accept(this);
 			}
 			
 			return null;
@@ -638,7 +637,7 @@ public class LocationInformationTest
 			ac.getSource().accept(this);
 			
 			for (Iterator iter = ac.getQualifiers().iterator(); iter.hasNext();) {
-				((OclExpression) iter.next()).accept(this);
+				((OCLExpression) iter.next()).accept(this);
 			}
 			
 			return null;

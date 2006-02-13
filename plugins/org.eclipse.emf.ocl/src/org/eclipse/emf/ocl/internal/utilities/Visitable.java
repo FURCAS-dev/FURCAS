@@ -18,7 +18,6 @@
 package org.eclipse.emf.ocl.internal.utilities;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ocl.expressions.Visitor;
 
 /**
@@ -28,6 +27,13 @@ import org.eclipse.emf.ocl.expressions.Visitor;
  *
  */
 public interface Visitable extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
 
 /**
  * Tests the constraint evaluation support.
@@ -48,7 +48,7 @@ public class EvaluationTest
 	}
 	
 	public void test_allInstances() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContext(fruit);
 		
@@ -96,12 +96,12 @@ public class EvaluationTest
 	 * the OCL Helper.
 	 */
 	public void test_evaluatePrecompiledInvariant_114921() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContext(fruit);
 		
 		try {
-			OclExpression constraint = helper.createInvariant(
+			OCLExpression constraint = helper.createInvariant(
 					"color <> Color::black"); //$NON-NLS-1$
 			
 			assertNotNull(constraint);

@@ -36,7 +36,14 @@ import org.eclipse.emf.ecore.EPackage;
  * @model kind="package"
  * @generated
  */
-public interface UtilitiesPackage extends EPackage{
+public interface UtilitiesPackage extends EPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -51,7 +58,7 @@ public interface UtilitiesPackage extends EPackage{
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.ibm.com/OCL2/7.0.0/ocl/utilities";//$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/OCL2/7.0.0/ocl/utilities";//$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -80,7 +87,7 @@ public interface UtilitiesPackage extends EPackage{
 	int VISITABLE = 0;
 
 	/**
-	 * The number of structural features of the the '<em>Visitable</em>' class.
+	 * The number of structural features of the '<em>Visitable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -90,11 +97,11 @@ public interface UtilitiesPackage extends EPackage{
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.utilities.AstNode <em>Ast Node</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode <em>AST Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.utilities.AstNode
-	 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getASTNode()
 	 * @generated
 	 */
 	int AST_NODE = 1;
@@ -118,7 +125,7 @@ public interface UtilitiesPackage extends EPackage{
 	int AST_NODE__END_POSITION = 1;
 
 	/**
-	 * The number of structural features of the the '<em>Ast Node</em>' class.
+	 * The number of structural features of the '<em>AST Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -127,11 +134,11 @@ public interface UtilitiesPackage extends EPackage{
 	int AST_NODE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.utilities.TypedAstNode <em>Typed Ast Node</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedAstNode
-	 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getTypedAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getTypedASTNode()
 	 * @generated
 	 */
 	int TYPED_AST_NODE = 2;
@@ -173,7 +180,7 @@ public interface UtilitiesPackage extends EPackage{
 	int TYPED_AST_NODE__TYPE_END_POSITION = AST_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Typed Ast Node</em>' class.
+	 * The number of structural features of the '<em>Typed AST Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -183,11 +190,11 @@ public interface UtilitiesPackage extends EPackage{
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.utilities.CallingAstNode <em>Calling Ast Node</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode <em>Calling AST Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.utilities.CallingAstNode
-	 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getCallingAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getCallingASTNode()
 	 * @generated
 	 */
 	int CALLING_AST_NODE = 3;
@@ -229,7 +236,7 @@ public interface UtilitiesPackage extends EPackage{
 	int CALLING_AST_NODE__PROPERTY_END_POSITION = AST_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Calling Ast Node</em>' class.
+	 * The number of structural features of the '<em>Calling AST Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -249,100 +256,100 @@ public interface UtilitiesPackage extends EPackage{
 	EClass getVisitable();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.internal.utilities.AstNode <em>Ast Node</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode <em>AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ast Node</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.AstNode
+	 * @return the meta object for class '<em>AST Node</em>'.
+	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode
 	 * @generated
 	 */
-	EClass getAstNode();
+	EClass getASTNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.AstNode#getStartPosition <em>Start Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode#getStartPosition <em>Start Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Start Position</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.AstNode#getStartPosition()
-	 * @see #getAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode#getStartPosition()
+	 * @see #getASTNode()
 	 * @generated
 	 */
-	EAttribute getAstNode_StartPosition();
+	EAttribute getASTNode_StartPosition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.AstNode#getEndPosition <em>End Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode#getEndPosition <em>End Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>End Position</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.AstNode#getEndPosition()
-	 * @see #getAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode#getEndPosition()
+	 * @see #getASTNode()
 	 * @generated
 	 */
-	EAttribute getAstNode_EndPosition();
+	EAttribute getASTNode_EndPosition();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.internal.utilities.TypedAstNode <em>Typed Ast Node</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode <em>Typed AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Typed Ast Node</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedAstNode
+	 * @return the meta object for class '<em>Typed AST Node</em>'.
+	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode
 	 * @generated
 	 */
-	EClass getTypedAstNode();
+	EClass getTypedASTNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.TypedAstNode#getTypeStartPosition <em>Type Start Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode#getTypeStartPosition <em>Type Start Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type Start Position</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedAstNode#getTypeStartPosition()
-	 * @see #getTypedAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode#getTypeStartPosition()
+	 * @see #getTypedASTNode()
 	 * @generated
 	 */
-	EAttribute getTypedAstNode_TypeStartPosition();
+	EAttribute getTypedASTNode_TypeStartPosition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.TypedAstNode#getTypeEndPosition <em>Type End Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode#getTypeEndPosition <em>Type End Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type End Position</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedAstNode#getTypeEndPosition()
-	 * @see #getTypedAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode#getTypeEndPosition()
+	 * @see #getTypedASTNode()
 	 * @generated
 	 */
-	EAttribute getTypedAstNode_TypeEndPosition();
+	EAttribute getTypedASTNode_TypeEndPosition();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.internal.utilities.CallingAstNode <em>Calling Ast Node</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode <em>Calling AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Calling Ast Node</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.CallingAstNode
+	 * @return the meta object for class '<em>Calling AST Node</em>'.
+	 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode
 	 * @generated
 	 */
-	EClass getCallingAstNode();
+	EClass getCallingASTNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.CallingAstNode#getPropertyStartPosition <em>Property Start Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode#getPropertyStartPosition <em>Property Start Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Property Start Position</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.CallingAstNode#getPropertyStartPosition()
-	 * @see #getCallingAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode#getPropertyStartPosition()
+	 * @see #getCallingASTNode()
 	 * @generated
 	 */
-	EAttribute getCallingAstNode_PropertyStartPosition();
+	EAttribute getCallingASTNode_PropertyStartPosition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.CallingAstNode#getPropertyEndPosition <em>Property End Position</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode#getPropertyEndPosition <em>Property End Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Property End Position</em>'.
-	 * @see org.eclipse.emf.ocl.internal.utilities.CallingAstNode#getPropertyEndPosition()
-	 * @see #getCallingAstNode()
+	 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode#getPropertyEndPosition()
+	 * @see #getCallingASTNode()
 	 * @generated
 	 */
-	EAttribute getCallingAstNode_PropertyEndPosition();
+	EAttribute getCallingASTNode_PropertyEndPosition();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -352,5 +359,108 @@ public interface UtilitiesPackage extends EPackage{
 	 * @generated
 	 */
 	UtilitiesFactory getUtilitiesFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.internal.utilities.impl.VisitableImpl <em>Visitable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.internal.utilities.impl.VisitableImpl
+		 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getVisitable()
+		 * @generated
+		 */
+		EClass VISITABLE = eINSTANCE.getVisitable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode <em>AST Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode
+		 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getASTNode()
+		 * @generated
+		 */
+		EClass AST_NODE = eINSTANCE.getASTNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AST_NODE__START_POSITION = eINSTANCE.getASTNode_StartPosition();
+
+		/**
+		 * The meta object literal for the '<em><b>End Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AST_NODE__END_POSITION = eINSTANCE.getASTNode_EndPosition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode
+		 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getTypedASTNode()
+		 * @generated
+		 */
+		EClass TYPED_AST_NODE = eINSTANCE.getTypedASTNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Start Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_AST_NODE__TYPE_START_POSITION = eINSTANCE.getTypedASTNode_TypeStartPosition();
+
+		/**
+		 * The meta object literal for the '<em><b>Type End Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TYPED_AST_NODE__TYPE_END_POSITION = eINSTANCE.getTypedASTNode_TypeEndPosition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode <em>Calling AST Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode
+		 * @see org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesPackageImpl#getCallingASTNode()
+		 * @generated
+		 */
+		EClass CALLING_AST_NODE = eINSTANCE.getCallingASTNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Start Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALLING_AST_NODE__PROPERTY_START_POSITION = eINSTANCE.getCallingASTNode_PropertyStartPosition();
+
+		/**
+		 * The meta object literal for the '<em><b>Property End Position</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALLING_AST_NODE__PROPERTY_END_POSITION = eINSTANCE.getCallingASTNode_PropertyEndPosition();
+
+	}
 
 } //UtilitiesPackage

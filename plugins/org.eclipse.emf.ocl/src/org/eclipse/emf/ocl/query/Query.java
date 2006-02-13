@@ -22,8 +22,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 
 /**
@@ -35,8 +34,15 @@ import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
  * 
  *
  */
-public interface Query extends EObject{
+public interface Query extends EObject {
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Sets the evaluation environment that I use to evaluate OCL expressions.
 	 * 
@@ -209,7 +215,7 @@ public interface Query extends EObject{
 	 * @model changeable="false"
 	 * @generated
 	 */
-	OclExpression getExpression();
+	OCLExpression getExpression();
 
 	/**
 	 * Sets the mapping of {@link EClassifier}s representing OCL types to

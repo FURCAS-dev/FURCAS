@@ -19,7 +19,6 @@ package org.eclipse.emf.ocl.internal.utilities.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
@@ -39,6 +38,13 @@ public class VisitableImpl extends EObjectImpl implements Visitable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	protected VisitableImpl() {
 		super();
 	}
@@ -49,7 +55,7 @@ public class VisitableImpl extends EObjectImpl implements Visitable {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return UtilitiesPackage.eINSTANCE.getVisitable();
+		return UtilitiesPackage.Literals.VISITABLE;
 	}
 
 	/**

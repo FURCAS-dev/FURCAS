@@ -19,8 +19,9 @@ package org.eclipse.emf.ocl.internal.utilities.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesFactory;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
@@ -34,6 +35,32 @@ import org.eclipse.emf.ocl.internal.utilities.Visitable;
 public class UtilitiesFactoryImpl
 	extends EFactoryImpl
 	implements UtilitiesFactory {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static UtilitiesFactory init() {
+		try {
+			UtilitiesFactory theUtilitiesFactory = (UtilitiesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/OCL2/7.0.0/ocl/utilities"); //$NON-NLS-1$ 
+			if (theUtilitiesFactory != null) {
+				return theUtilitiesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new UtilitiesFactoryImpl();
+	}
 
 	/**
 	 * Creates an instance of the factory.

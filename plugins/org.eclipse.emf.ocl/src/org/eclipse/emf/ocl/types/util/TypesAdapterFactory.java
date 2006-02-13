@@ -26,11 +26,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
-import org.eclipse.emf.ocl.types.*;
-
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -57,6 +54,13 @@ import org.eclipse.emf.ocl.types.VoidType;
  * @generated
  */
 public class TypesAdapterFactory extends AdapterFactoryImpl {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -148,9 +152,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 			public Object caseModelElementType(ModelElementType object) {
 				return createModelElementTypeAdapter();
 			}
-			public Object caseOclState(OclState object) {
-				return createOclStateAdapter();
-			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -163,20 +164,14 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 			public Object caseEDataType(EDataType object) {
 				return createEDataTypeAdapter();
 			}
-			public Object caseAstNode(AstNode object) {
-				return createAstNodeAdapter();
+			public Object caseASTNode(ASTNode object) {
+				return createASTNodeAdapter();
 			}
-			public Object caseTypedAstNode(TypedAstNode object) {
-				return createTypedAstNodeAdapter();
+			public Object caseTypedASTNode(TypedASTNode object) {
+				return createTypedASTNodeAdapter();
 			}
 			public Object caseEClass(EClass object) {
 				return createEClassAdapter();
-			}
-			public Object caseEcore_EModelElement(EModelElement object) {
-				return createEcore_EModelElementAdapter();
-			}
-			public Object caseEcore_ENamedElement(ENamedElement object) {
-				return createEcore_ENamedElementAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -323,20 +318,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.types.OclState <em>Ocl State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.types.OclState
-	 * @generated
-	 */
-	public Adapter createOclStateAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.types.PrimitiveType <em>Primitive Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -477,30 +458,30 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.AstNode <em>Ast Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode <em>AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.AstNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode
 	 * @generated
 	 */
-	public Adapter createAstNodeAdapter() {
+	public Adapter createASTNodeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.TypedAstNode <em>Typed Ast Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode <em>Typed AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedAstNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode
 	 * @generated
 	 */
-	public Adapter createTypedAstNodeAdapter() {
+	public Adapter createTypedASTNodeAdapter() {
 		return null;
 	}
 
@@ -515,34 +496,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEClassAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EModelElement
-	 * @generated
-	 */
-	public Adapter createEcore_EModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ENamedElement <em>ENamed Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.ENamedElement
-	 * @generated
-	 */
-	public Adapter createEcore_ENamedElementAdapter() {
 		return null;
 	}
 

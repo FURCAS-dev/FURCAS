@@ -20,11 +20,11 @@ package org.eclipse.emf.ocl.query.internal.impl;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl;
-import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
+import org.eclipse.emf.ocl.uml.internal.impl.UMLPackageImpl;
 
 /**
  * Utility for creating OCL queries from OCL expression strings.  Removes the
@@ -38,7 +38,7 @@ final class QueryUtil {
 		//initialize the EMF packages for OCL
 		ExpressionsPackageImpl.init();
 		TypesPackageImpl.init();
-		UmlPackageImpl.init();
+		UMLPackageImpl.init();
 	}
 
 	/**
@@ -68,10 +68,10 @@ final class QueryUtil {
 					oclExpressionString,
 					true));
 		} catch (Exception ex) {
-			OclEnginePlugin.catching(QueryUtil.class, "makeOclQuery", ex); //$NON-NLS-1$
+			OCLPlugin.catching(QueryUtil.class, "makeOclQuery", ex); //$NON-NLS-1$
 			IllegalArgumentException rtex = new IllegalArgumentException(ex
 				.toString());
-			OclEnginePlugin.throwing(QueryUtil.class, "makeOclQuery", //$NON-NLS-1$
+			OCLPlugin.throwing(QueryUtil.class, "makeOclQuery", //$NON-NLS-1$
 				rtex);
 			throw rtex;
 		}

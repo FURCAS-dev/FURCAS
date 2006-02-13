@@ -24,8 +24,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 
 /**
  * A Bag is an unordered collection which may have duplicate elements.
@@ -34,7 +34,7 @@ public final class Bag
 	extends AbstractCollection {
 
 	private static final String RemoveUnsupported_ERROR_ =
-		OclMessages.RemoveUnsupported_ERROR_;
+		OCLMessages.RemoveUnsupported_ERROR_;
 
 	public static Bag EMPTY_BAG = new Bag();
 
@@ -142,7 +142,7 @@ public final class Bag
 			public void remove() {
 				UnsupportedOperationException error = new UnsupportedOperationException(
 					RemoveUnsupported_ERROR_);
-				OclEnginePlugin.throwing(getClass(), "remove", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "remove", error);//$NON-NLS-1$
 				throw error;
 			}
 

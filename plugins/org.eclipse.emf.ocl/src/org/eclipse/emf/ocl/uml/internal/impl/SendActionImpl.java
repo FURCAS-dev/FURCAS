@@ -19,14 +19,12 @@ package org.eclipse.emf.ocl.uml.internal.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ocl.uml.SendAction;
 import org.eclipse.emf.ocl.uml.Signal;
-import org.eclipse.emf.ocl.uml.UmlPackage;
+import org.eclipse.emf.ocl.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +40,13 @@ import org.eclipse.emf.ocl.uml.UmlPackage;
  * @generated
  */
 public class SendActionImpl extends EObjectImpl implements SendAction {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached value of the '{@link #getSignal() <em>Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -67,7 +72,7 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return UmlPackage.eINSTANCE.getSendAction();
+		return UMLPackage.Literals.SEND_ACTION;
 	}
 
 	/**
@@ -77,11 +82,11 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 	 */
 	public Signal getSignal() {
 		if (signal != null && signal.eIsProxy()) {
-			Signal oldSignal = signal;
-			signal = (Signal)eResolveProxy((InternalEObject)signal);
+			InternalEObject oldSignal = (InternalEObject)signal;
+			signal = (Signal)eResolveProxy(oldSignal);
 			if (signal != oldSignal) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlPackage.SEND_ACTION__SIGNAL, oldSignal, signal));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.SEND_ACTION__SIGNAL, oldSignal, signal));
 			}
 		}
 		return signal;
@@ -105,7 +110,7 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 		Signal oldSignal = signal;
 		signal = newSignal;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UmlPackage.SEND_ACTION__SIGNAL, oldSignal, signal));
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.SEND_ACTION__SIGNAL, oldSignal, signal));
 	}
 
 	/**
@@ -113,13 +118,13 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.SEND_ACTION__SIGNAL:
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case UMLPackage.SEND_ACTION__SIGNAL:
 				if (resolve) return getSignal();
 				return basicGetSignal();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -127,13 +132,13 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.SEND_ACTION__SIGNAL:
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case UMLPackage.SEND_ACTION__SIGNAL:
 				setSignal((Signal)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -141,13 +146,13 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.SEND_ACTION__SIGNAL:
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case UMLPackage.SEND_ACTION__SIGNAL:
 				setSignal((Signal)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -155,12 +160,12 @@ public class SendActionImpl extends EObjectImpl implements SendAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.SEND_ACTION__SIGNAL:
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case UMLPackage.SEND_ACTION__SIGNAL:
 				return signal != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SendActionImpl

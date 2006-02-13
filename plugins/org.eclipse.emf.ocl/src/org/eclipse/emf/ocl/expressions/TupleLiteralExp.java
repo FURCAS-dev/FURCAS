@@ -22,7 +22,14 @@ import org.eclipse.emf.common.util.EList;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface TupleLiteralExp extends LiteralExp{
+public interface TupleLiteralExp extends LiteralExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model type="VariableDeclaration" lowerBound=0
 	 */

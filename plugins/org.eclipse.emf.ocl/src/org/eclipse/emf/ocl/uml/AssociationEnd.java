@@ -18,7 +18,6 @@
 package org.eclipse.emf.ocl.uml;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -34,11 +33,18 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.ocl.uml.UmlPackage#getAssociationEnd()
- *
+ * @see org.eclipse.emf.ocl.uml.UMLPackage#getAssociationEnd()
+ * @model
  * @generated
  */
 public interface AssociationEnd extends EObject, EReference {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Returns the value of the '<em><b>Qualifiers</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ocl.uml.Qualifier}.
@@ -50,7 +56,7 @@ public interface AssociationEnd extends EObject, EReference {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Qualifiers</em>' containment reference list.
-	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getAssociationEnd_Qualifiers()
+	 * @see org.eclipse.emf.ocl.uml.UMLPackage#getAssociationEnd_Qualifiers()
 	 * @see org.eclipse.emf.ocl.uml.Qualifier#getAssociationEnd
 	 * @model type="org.eclipse.emf.ocl.uml.Qualifier" opposite="associationEnd" containment="true"
 	 * @generated

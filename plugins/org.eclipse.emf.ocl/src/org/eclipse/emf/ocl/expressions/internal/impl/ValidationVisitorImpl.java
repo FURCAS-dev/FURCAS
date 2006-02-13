@@ -46,7 +46,7 @@ import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
 import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
@@ -57,8 +57,8 @@ import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -85,180 +85,180 @@ public class ValidationVisitorImpl
 	implements Visitor {
 
 	private static final String NullAttribute_ERROR_ =
-		OclMessages.NullAttribute_ERROR_;
+		OCLMessages.NullAttribute_ERROR_;
 
 	private static final String NullSourceAttribute_ERROR_ =
-		OclMessages.NullSourceAttribute_ERROR_;
+		OCLMessages.NullSourceAttribute_ERROR_;
 
 	private static final String NullTypeAttribute_ERROR_ =
-		OclMessages.NullTypeAttribute_ERROR_;
+		OCLMessages.NullTypeAttribute_ERROR_;
 
 	private static final String NullOperation_ERROR_ =
-		OclMessages.NullOperation_ERROR_;
+		OCLMessages.NullOperation_ERROR_;
 
 	private static final String NullSourceOperation_ERROR_ =
-		OclMessages.NullSourceOperation_ERROR_;
+		OCLMessages.NullSourceOperation_ERROR_;
 
 	private static final String IllegalOperation_ERROR_ =
-		OclMessages.IllegalOperation_ERROR_;
+		OCLMessages.IllegalOperation_ERROR_;
 
 	private static final String IllegalOpcode_ERROR_ =
-		OclMessages.IllegalOpcode_ERROR_;
+		OCLMessages.IllegalOpcode_ERROR_;
 
 	private static final String TypeConformanceOperation_ERROR_ =
-		OclMessages.TypeConformanceOperation_ERROR_;
+		OCLMessages.TypeConformanceOperation_ERROR_;
 
 	private static final String IllegalEnumLiteral_ERROR_ =
-		OclMessages.IllegalEnumLiteral_ERROR_;
+		OCLMessages.IllegalEnumLiteral_ERROR_;
 
 	private static final String IncompleteVariableDeclaration_ERROR_ =
-		OclMessages.IncompleteVariableDeclaration_ERROR_;
+		OCLMessages.IncompleteVariableDeclaration_ERROR_;
 
 	private static final String VariableTypeMismatch_ERROR_ =
-		OclMessages.VariableTypeMismatch_ERROR_;
+		OCLMessages.VariableTypeMismatch_ERROR_;
 
 	private static final String NullAssociation_ERROR_ =
-		OclMessages.NullAssociation_ERROR_;
+		OCLMessages.NullAssociation_ERROR_;
 
 	private static final String NullSourceAssociation_ERROR_ =
-		OclMessages.NullSourceAssociation_ERROR_;
+		OCLMessages.NullSourceAssociation_ERROR_;
 
 	private static final String NullTypeAssociation_ERROR_ =
-		OclMessages.NullTypeAssociation_ERROR_;
+		OCLMessages.NullTypeAssociation_ERROR_;
 
 	private static final String MissingNameInVariableDeclaration_ERROR_ =
-		OclMessages.MissingNameInVariableDeclaration_ERROR_;
+		OCLMessages.MissingNameInVariableDeclaration_ERROR_;
 
 	private static final String TypeConformanceInit_ERROR_ =
-		OclMessages.TypeConformanceInit_ERROR_;
+		OCLMessages.TypeConformanceInit_ERROR_;
 
 	private static final String IncompleteIfExp_ERROR_ =
-		OclMessages.IncompleteIfExp_ERROR_;
+		OCLMessages.IncompleteIfExp_ERROR_;
 
 	private static final String NonBooleanIfExp_ERROR_ =
-		OclMessages.NonBooleanIfExp_ERROR_;
+		OCLMessages.NonBooleanIfExp_ERROR_;
 
 	private static final String TypeConformanceIfExp_ERROR_ =
-		OclMessages.TypeConformanceIfExp_ERROR_;
+		OCLMessages.TypeConformanceIfExp_ERROR_;
 
 	private static final String TypeConformanceIntegerLiteral_ERROR_ =
-		OclMessages.TypeConformanceIntegerLiteral_ERROR_;
+		OCLMessages.TypeConformanceIntegerLiteral_ERROR_;
 
 	private static final String TypeConformanceRealLiteral_ERROR_ =
-		OclMessages.TypeConformanceRealLiteral_ERROR_;
+		OCLMessages.TypeConformanceRealLiteral_ERROR_;
 
 	private static final String TypeConformanceStringLiteral_ERROR_ =
-		OclMessages.TypeConformanceStringLiteral_ERROR_;
+		OCLMessages.TypeConformanceStringLiteral_ERROR_;
 
 	private static final String TypeConformanceBooleanLiteral_ERROR_ =
-		OclMessages.TypeConformanceBooleanLiteral_ERROR_;
+		OCLMessages.TypeConformanceBooleanLiteral_ERROR_;
 
 	private static final String TypeConformanceLetExp_ERROR_ =
-		OclMessages.TypeConformanceLetExp_ERROR_;
+		OCLMessages.TypeConformanceLetExp_ERROR_;
 
 	private static final String IncompleteLetExp_ERROR_ =
-		OclMessages.IncompleteLetExp_ERROR_;
+		OCLMessages.IncompleteLetExp_ERROR_;
 
 	private static final String IncompleteIterateExp_ERROR_ =
-		OclMessages.IncompleteIterateExp_ERROR_;
+		OCLMessages.IncompleteIterateExp_ERROR_;
 
 	private static final String MissingInitIterateExp_ERROR_ =
-		OclMessages.MissingInitIterateExp_ERROR_;
+		OCLMessages.MissingInitIterateExp_ERROR_;
 
 	private static final String TypeConformanceIterateExp_ERROR_ =
-		OclMessages.TypeConformanceIterateExp_ERROR_;
+		OCLMessages.TypeConformanceIterateExp_ERROR_;
 
 	private static final String TypeConformanceIterateExpBody_ERROR_ =
-		OclMessages.TypeConformanceIterateExpBody_ERROR_;
+		OCLMessages.TypeConformanceIterateExpBody_ERROR_;
 
 	private static final String IteratorSource_ERROR_ =
-		OclMessages.IteratorSource_ERROR_;
+		OCLMessages.IteratorSource_ERROR_;
 
 	private static final String MissingInitIterateExpLoopVar_ERROR_ =
-		OclMessages.MissingInitIterateExpLoopVar_ERROR_;
+		OCLMessages.MissingInitIterateExpLoopVar_ERROR_;
 
 	private static final String TypeConformanceIterateExpLoopVar_ERROR_ =
-		OclMessages.TypeConformanceIterateExpLoopVar_ERROR_;
+		OCLMessages.TypeConformanceIterateExpLoopVar_ERROR_;
 
 	private static final String IncompleteIteratorExp_ERROR_ =
-		OclMessages.IncompleteIteratorExp_ERROR_;
+		OCLMessages.IncompleteIteratorExp_ERROR_;
 
 	private static final String TypeConformanceIteratorResult_ERROR_ =
-		OclMessages.TypeConformanceIteratorResult_ERROR_;
+		OCLMessages.TypeConformanceIteratorResult_ERROR_;
 
 	private static final String TypeConformanceCollectSequence_ERROR_ =
-		OclMessages.TypeConformanceCollectSequence_ERROR_;
+		OCLMessages.TypeConformanceCollectSequence_ERROR_;
 
 	private static final String TypeConformanceCollectBag_ERROR_ =
-		OclMessages.TypeConformanceCollectBag_ERROR_;
+		OCLMessages.TypeConformanceCollectBag_ERROR_;
 
 	private static final String TypeConformanceSelectReject_ERROR_ =
-		OclMessages.TypeConformanceSelectReject_ERROR_;
+		OCLMessages.TypeConformanceSelectReject_ERROR_;
 
 	private static final String TypeConformanceIterateExpBodyBoolean_ERROR_ =
-		OclMessages.TypeConformanceIterateExpBodyBoolean_ERROR_;
+		OCLMessages.TypeConformanceIterateExpBodyBoolean_ERROR_;
 
 	private static final String TypeConformanceCollectionLiteralExp_ERROR_ =
-		OclMessages.TypeConformanceCollectionLiteralExp_ERROR_;
+		OCLMessages.TypeConformanceCollectionLiteralExp_ERROR_;
 
 	private static final String TypeConformanceSetLiteral_ERROR_ =
-		OclMessages.TypeConformanceSetLiteral_ERROR_;
+		OCLMessages.TypeConformanceSetLiteral_ERROR_;
 
 	private static final String TypeConformanceOrderedSetLiteral_ERROR_ =
-		OclMessages.TypeConformanceOrderedSetLiteral_ERROR_;
+		OCLMessages.TypeConformanceOrderedSetLiteral_ERROR_;
 
 	private static final String TypeConformanceBagLiteral_ERROR_ =
-		OclMessages.TypeConformanceBagLiteral_ERROR_;
+		OCLMessages.TypeConformanceBagLiteral_ERROR_;
 
 	private static final String TypeConformanceSequenceLiteral_ERROR_ =
-		OclMessages.TypeConformanceSequenceLiteral_ERROR_;
+		OCLMessages.TypeConformanceSequenceLiteral_ERROR_;
 
 	private static final String TypeConformanceEmptyCollection_ERROR_ =
-		OclMessages.TypeConformanceEmptyCollection_ERROR_;
+		OCLMessages.TypeConformanceEmptyCollection_ERROR_;
 
 	private static final String TypeConformanceCollectionElementType_ERROR_ =
-		OclMessages.TypeConformanceCollectionElementType_ERROR_;
+		OCLMessages.TypeConformanceCollectionElementType_ERROR_;
 
 	private static final String TypeConformanceTupleLiteralExp_ERROR_ =
-		OclMessages.TypeConformanceTupleLiteralExp_ERROR_;
+		OCLMessages.TypeConformanceTupleLiteralExp_ERROR_;
 
 	private static final String TypeConformanceTupleLiteralExpParts_ERROR_ =
-		OclMessages.TypeConformanceTupleLiteralExpParts_ERROR_;
+		OCLMessages.TypeConformanceTupleLiteralExpParts_ERROR_;
 
 	private static final String TupleLiteralExpressionAttribName_ERROR_ =
-		OclMessages.TupleLiteralExpressionAttribName_ERROR_;
+		OCLMessages.TupleLiteralExpressionAttribName_ERROR_;
 
 	private static final String TupleLiteralExpressionRefName_ERROR_ =
-		OclMessages.TupleLiteralExpressionRefName_ERROR_;
+		OCLMessages.TupleLiteralExpressionRefName_ERROR_;
 
 	private static final String TupleDuplicateName_ERROR_ =
-		OclMessages.TupleDuplicateName_ERROR_;
+		OCLMessages.TupleDuplicateName_ERROR_;
 
 	private static Visitor instance = null;
 
 	private static final String AtPreInPostcondition_ERROR_ =
-		OclMessages.AtPreInPostcondition_ERROR_;
+		OCLMessages.AtPreInPostcondition_ERROR_;
 
 	private static final String BodyConditionNotAllowed_ERROR_ =
-		OclMessages.BodyConditionNotAllowed_ERROR_;
+		OCLMessages.BodyConditionNotAllowed_ERROR_;
 
 	private static final String BodyConditionConformance_ERROR_ =
-		OclMessages.BodyConditionConformance_ERROR_;
+		OCLMessages.BodyConditionConformance_ERROR_;
 
 	private static final String BodyConditionConformance2_ERROR_ =
-		OclMessages.BodyConditionConformance2_ERROR_;
+		OCLMessages.BodyConditionConformance2_ERROR_;
 
 	private static final String OclIsNewInPostcondition_ERROR_ =
-		OclMessages.OclIsNewInPostcondition_ERROR_;
+		OCLMessages.OclIsNewInPostcondition_ERROR_;
 
 	private static final String MissingAssociationClass_ERROR_ =
-		OclMessages.MissingAssociationClass_ERROR_;
+		OCLMessages.MissingAssociationClass_ERROR_;
 	
 	private static final String BodyConditionForm_ERROR_ =
-		OclMessages.BodyConditionForm_ERROR_;
+		OCLMessages.BodyConditionForm_ERROR_;
 	
 	private static final String OperationConstraintBoolean_ERROR_ =
-		OclMessages.OperationConstraintBoolean_ERROR_;
+		OCLMessages.OperationConstraintBoolean_ERROR_;
 
 	// singleton
 	public static Visitor getInstance() {
@@ -285,7 +285,7 @@ public class ValidationVisitorImpl
 	 */
 	public Object visitAttributeCallExp(AttributeCallExp ac) {
 		EAttribute attr = ac.getReferredAttribute();
-		OclExpression source = ac.getSource();
+		OCLExpression source = ac.getSource();
 		EClassifier type = ac.getType();
 
 		if (attr == null) {
@@ -293,7 +293,7 @@ public class ValidationVisitorImpl
 				new Object[] {ac.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitAttributeCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -303,7 +303,7 @@ public class ValidationVisitorImpl
 				new Object[] {ac.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitAttributeCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -313,7 +313,7 @@ public class ValidationVisitorImpl
 				new Object[] {ac.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitAttributeCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -349,7 +349,7 @@ public class ValidationVisitorImpl
 	 */
 	public Object visitOperationCallExp(OperationCallExp oc) {
 
-		OclExpression source = oc.getSource();
+		OCLExpression source = oc.getSource();
 		EOperation oper = oc.getReferredOperation();
 		int opcode = oc.getOperationCode();
 		EList args = oc.getArguments();
@@ -359,7 +359,7 @@ public class ValidationVisitorImpl
 				new Object[] {oc.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitOperationCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -369,7 +369,7 @@ public class ValidationVisitorImpl
 				new Object[] {oc.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitOperationCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -379,7 +379,7 @@ public class ValidationVisitorImpl
 		String operName = oper.getName();
 
 		for (int i = 0; i < numArgs; i++) {
-			((OclExpression) args.get(i)).accept(this);
+			((OCLExpression) args.get(i)).accept(this);
 		}
 		
 		visitModelPropertyCallExp(oc);
@@ -390,7 +390,7 @@ public class ValidationVisitorImpl
 				
 				IllegalArgumentException error = new IllegalArgumentException(
 					OclIsNewInPostcondition_ERROR_);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitOperationCallExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -407,7 +407,7 @@ public class ValidationVisitorImpl
 					new Object[] {oc.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitOperationCallExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -420,7 +420,7 @@ public class ValidationVisitorImpl
 						new Object[] {operName });
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
-					OclEnginePlugin.throwing(getClass(),
+					OCLPlugin.throwing(getClass(),
 						"visitOperationCallExp", error);//$NON-NLS-1$
 					throw error;
 				}
@@ -433,7 +433,7 @@ public class ValidationVisitorImpl
 						new Object[] {operName });
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
-					OclEnginePlugin.throwing(getClass(),
+					OCLPlugin.throwing(getClass(),
 						"visitOperationCallExp", error);//$NON-NLS-1$
 					throw error;
 				}
@@ -447,7 +447,7 @@ public class ValidationVisitorImpl
 						new Object[] {operName });
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
-					OclEnginePlugin.throwing(getClass(),
+					OCLPlugin.throwing(getClass(),
 						"visitOperationCallExp", error);//$NON-NLS-1$
 					throw error;
 				}
@@ -463,14 +463,14 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitOperationCallExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		} catch (Exception e) {
 			IllegalArgumentException error = new IllegalArgumentException(e
 				.getMessage());
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitOperationCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -493,7 +493,7 @@ public class ValidationVisitorImpl
 				new Object[] {el.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitEnumLiteralExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitEnumLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		return Boolean.TRUE;
@@ -518,14 +518,14 @@ public class ValidationVisitorImpl
 					.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		vd.accept(this);
 		if (AnyTypeImpl.typeCompare(vd.getType(), v.getType()) != 0) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				VariableTypeMismatch_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		return Boolean.TRUE;
@@ -541,7 +541,7 @@ public class ValidationVisitorImpl
 	 */
 	public Object visitAssociationEndCallExp(AssociationEndCallExp ae) {
 		EReference ref = ae.getReferredAssociationEnd();
-		OclExpression source = ae.getSource();
+		OCLExpression source = ae.getSource();
 		EClassifier type = ae.getType();
 
 		if (ref == null) {
@@ -549,7 +549,7 @@ public class ValidationVisitorImpl
 				new Object[] {ae.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitAssociationEndCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -558,7 +558,7 @@ public class ValidationVisitorImpl
 				new Object[] {ae.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitAssociationEndCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -567,7 +567,7 @@ public class ValidationVisitorImpl
 				new Object[] {ae.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitAssociationEndCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -604,7 +604,7 @@ public class ValidationVisitorImpl
 	 */
 	public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
 		EClass ref = ae.getReferredAssociationClass();
-		OclExpression source = ae.getSource();
+		OCLExpression source = ae.getSource();
 		EClassifier type = ae.getType();
 
 		if (ref == null) {
@@ -612,7 +612,7 @@ public class ValidationVisitorImpl
 				new Object[] {ae.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitAssociationClassCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -621,7 +621,7 @@ public class ValidationVisitorImpl
 				new Object[] {ae.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitAssociationClassCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -630,7 +630,7 @@ public class ValidationVisitorImpl
 				new Object[] {ae.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitAssociationClassCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -659,19 +659,19 @@ public class ValidationVisitorImpl
 		if (varName == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				MissingNameInVariableDeclaration_ERROR_);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitVariableDeclaration", error);//$NON-NLS-1$
 			throw error;
 		}
 		EClassifier type = vd.getType();
-		OclExpression init = vd.getInitExpression();
+		OCLExpression init = vd.getInitExpression();
 
 		if (init != null) {
 			init.accept(this);
 			if (AnyTypeImpl.typeCompare(init.getType(), type) > 0) {
 				IllegalArgumentException error = new IllegalArgumentException(
 					TypeConformanceInit_ERROR_);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitVariableDeclaration", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -689,16 +689,16 @@ public class ValidationVisitorImpl
 	 * @return Boolean -- true if validated
 	 */
 	public Object visitIfExp(IfExp i) {
-		OclExpression cond = i.getCondition();
-		OclExpression thenexp = i.getThenExpression();
-		OclExpression elseexp = i.getElseExpression();
+		OCLExpression cond = i.getCondition();
+		OCLExpression thenexp = i.getThenExpression();
+		OCLExpression elseexp = i.getElseExpression();
 
 		if (cond == null || thenexp == null | elseexp == null) {
 			String message = NLS.bind(IncompleteIfExp_ERROR_,
 				new Object[] {i.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		cond.accept(this);
@@ -709,7 +709,7 @@ public class ValidationVisitorImpl
 				new Object[] {i.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		EClassifier thenelsetype = null;
@@ -724,7 +724,7 @@ public class ValidationVisitorImpl
 				new Object[] {i.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		return Boolean.TRUE;
@@ -753,7 +753,7 @@ public class ValidationVisitorImpl
 		if (il.getType() != PrimitiveTypeImpl.OCL_INTEGER) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				TypeConformanceIntegerLiteral_ERROR_);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitIntegerLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -772,7 +772,7 @@ public class ValidationVisitorImpl
 		if (rl.getType() != PrimitiveTypeImpl.OCL_REAL) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				TypeConformanceRealLiteral_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "visitRealLiteralExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitRealLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		return Boolean.TRUE;
@@ -790,7 +790,7 @@ public class ValidationVisitorImpl
 		if (sl.getType() != PrimitiveTypeImpl.OCL_STRING) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				TypeConformanceStringLiteral_ERROR_);
-			OclEnginePlugin
+			OCLPlugin
 				.throwing(getClass(), "visitStringLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -809,7 +809,7 @@ public class ValidationVisitorImpl
 		if (bl.getType() != PrimitiveTypeImpl.OCL_BOOLEAN) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				TypeConformanceBooleanLiteral_ERROR_);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitBooleanLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -826,7 +826,7 @@ public class ValidationVisitorImpl
 	 */
 	public Object visitLetExp(LetExp l) {
 		VariableDeclaration vd = l.getVariable();
-		OclExpression in = l.getIn();
+		OCLExpression in = l.getIn();
 		EClassifier type = l.getType();
 
 		if (vd == null || in == null || type == null) {
@@ -834,7 +834,7 @@ public class ValidationVisitorImpl
 				new Object[] {l.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -846,7 +846,7 @@ public class ValidationVisitorImpl
 				new Object[] {type, in.getType() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		return Boolean.TRUE;
@@ -870,8 +870,8 @@ public class ValidationVisitorImpl
 		// get the variable declaration for the result
 		VariableDeclaration vd = ie.getResult();
 		EClassifier type = ie.getType();
-		OclExpression body = ie.getBody();
-		OclExpression source = ie.getSource();
+		OCLExpression body = ie.getBody();
+		OCLExpression source = ie.getSource();
 		EList iterators = ie.getIterators();
 
 		if (vd == null || type == null || source == null || body == null
@@ -880,7 +880,7 @@ public class ValidationVisitorImpl
 				new Object[] {ie.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -896,7 +896,7 @@ public class ValidationVisitorImpl
 				new Object[] {ie.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -905,7 +905,7 @@ public class ValidationVisitorImpl
 				new Object[] { ie.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		if (AnyTypeImpl.typeCompare(body.getType(), vd.getType()) > 0) {
@@ -914,7 +914,7 @@ public class ValidationVisitorImpl
 					.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -924,7 +924,7 @@ public class ValidationVisitorImpl
 				new Object[] {ie.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -939,7 +939,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 				throw error;
 			}
 			if (AnyTypeImpl.typeCompare(loopiter.getType(),
@@ -949,7 +949,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
@@ -973,8 +973,8 @@ public class ValidationVisitorImpl
 	 */
 	public Object visitIteratorExp(IteratorExp ie) {
 		EClassifier type = ie.getType();
-		OclExpression body = ie.getBody();
-		OclExpression source = ie.getSource();
+		OCLExpression body = ie.getBody();
+		OCLExpression source = ie.getSource();
 		EList iterators = ie.getIterators();
 		String name = ie.getName();
 
@@ -984,7 +984,7 @@ public class ValidationVisitorImpl
 				new Object[] {ie.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -1001,7 +1001,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
@@ -1014,7 +1014,7 @@ public class ValidationVisitorImpl
 							.toString() });
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
-					OclEnginePlugin.throwing(getClass(),
+					OCLPlugin.throwing(getClass(),
 						"visitIteratorExp", error);//$NON-NLS-1$
 					throw error;
 				}
@@ -1024,7 +1024,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
@@ -1035,7 +1035,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
@@ -1048,7 +1048,7 @@ public class ValidationVisitorImpl
 					new Object[] {ie.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
@@ -1059,7 +1059,7 @@ public class ValidationVisitorImpl
 				new Object[] {ie.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -1074,7 +1074,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 			if (AnyTypeImpl.typeCompare(loopiter.getType(),
@@ -1084,7 +1084,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
@@ -1113,7 +1113,7 @@ public class ValidationVisitorImpl
 					.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitCollectionLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -1125,7 +1125,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitCollectionLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1136,7 +1136,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitCollectionLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1147,7 +1147,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitCollectionLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1158,7 +1158,7 @@ public class ValidationVisitorImpl
 					.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitCollectionLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -1171,7 +1171,7 @@ public class ValidationVisitorImpl
 						.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitCollectionLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			} else
@@ -1205,7 +1205,7 @@ public class ValidationVisitorImpl
 					.toString() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(),
+			OCLPlugin.throwing(getClass(),
 				"visitCollectionLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -1230,7 +1230,7 @@ public class ValidationVisitorImpl
 		if (!(type instanceof TupleType)) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				TypeConformanceTupleLiteralExp_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -1245,7 +1245,7 @@ public class ValidationVisitorImpl
 		if (tp.size() != attribs.size() + refs.size()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				TypeConformanceTupleLiteralExpParts_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
@@ -1269,7 +1269,7 @@ public class ValidationVisitorImpl
 						attr.getName(), tl.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitTupleLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1294,7 +1294,7 @@ public class ValidationVisitorImpl
 						ref.getName(), tl.toString() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitTupleLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1312,7 +1312,7 @@ public class ValidationVisitorImpl
 					TupleDuplicateName_ERROR_, new Object[] {name });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitTupleLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1362,7 +1362,7 @@ public class ValidationVisitorImpl
 					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1375,7 +1375,7 @@ public class ValidationVisitorImpl
 					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1385,7 +1385,7 @@ public class ValidationVisitorImpl
 			//    conforms to the operation type.  However, this expression is
 			//    allowed to be nested inside any number of lets for the user's
 			//    convenience
-			OclExpression exp = constraint.getBody();
+			OCLExpression exp = constraint.getBody();
 			while (exp instanceof LetExp) {
 				exp = ((LetExp) exp).getIn();
 			}
@@ -1404,17 +1404,17 @@ public class ValidationVisitorImpl
 					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
 			
-			OclExpression bodyExpr;
+			OCLExpression bodyExpr;
 			
 			if (isResultVariable(body.getSource(), operationType)) {
-				bodyExpr = (OclExpression) body.getArguments().get(0);
+				bodyExpr = (OCLExpression) body.getArguments().get(0);
 			} else if (isResultVariable(
-					(OclExpression) body.getArguments().get(0),
+					(OCLExpression) body.getArguments().get(0),
 					operationType)) {
 				bodyExpr = body.getSource();
 			} else {
@@ -1423,7 +1423,7 @@ public class ValidationVisitorImpl
 					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1440,7 +1440,7 @@ public class ValidationVisitorImpl
 							operationType.getName()});
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
-					OclEnginePlugin.throwing(getClass(),
+					OCLPlugin.throwing(getClass(),
 						"visitConstraint", error);//$NON-NLS-1$
 					throw error;
 				}
@@ -1451,7 +1451,7 @@ public class ValidationVisitorImpl
 					operationName, e.getLocalizedMessage());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1464,7 +1464,7 @@ public class ValidationVisitorImpl
 					operationName);
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -1485,7 +1485,7 @@ public class ValidationVisitorImpl
 	 * @return <code>true</code> if it is the result variable;
 	 *     <code>false</code>, otherwise
 	 */
-	private static boolean isResultVariable(OclExpression expr, EClassifier expectedType) {
+	private static boolean isResultVariable(OCLExpression expr, EClassifier expectedType) {
 		// the implicitly defined "result" variable always has the same type
 		//    as the operation
 		boolean result = (expr instanceof VariableExp);
@@ -1518,7 +1518,7 @@ public class ValidationVisitorImpl
 	 * @return <code>true</code> if it includes some reference to the result
 	 *    variable; <code>false</code>, otherwise
 	 */
-	private static boolean findResultVariable(OclExpression expr, final EClassifier expectedType) {
+	private static boolean findResultVariable(OCLExpression expr, final EClassifier expectedType) {
 		class ResultFinder extends AbstractVisitor {
 			boolean found = false;
 			
@@ -1552,7 +1552,7 @@ public class ValidationVisitorImpl
 				
 				IllegalArgumentException error = new IllegalArgumentException(
 					AtPreInPostcondition_ERROR_);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitModelPropertyCallExp", error);//$NON-NLS-1$
 				throw error;
 			}

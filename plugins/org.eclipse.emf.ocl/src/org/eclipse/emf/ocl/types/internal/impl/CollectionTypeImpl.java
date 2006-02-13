@@ -25,27 +25,22 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EDataTypeImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
-import org.eclipse.emf.ocl.internal.parser.OclParser;
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.impl.Bag;
 import org.eclipse.emf.ocl.internal.utilities.impl.CollectionFactory;
@@ -64,6 +59,13 @@ import antlr.SemanticException;
  * @generated
  */
 public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
@@ -146,16 +148,16 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
 
     private static final String SumOperator_ERROR_ =
-    	OclMessages.SumOperator_ERROR_;
+    	OCLMessages.SumOperator_ERROR_;
 
     private static final String CollectionSuperType_ERROR_ =
-    	OclMessages.CollectionSuperType_ERROR_;
+    	OCLMessages.CollectionSuperType_ERROR_;
 
     private static final String CollectionType_ERROR_ =
-    	OclMessages.CollectionType_ERROR_;
+    	OCLMessages.CollectionType_ERROR_;
     
     private static final String UnrecognizedCollectionOperation_ERROR_ =
-        OclMessages.UnrecognizedCollectionOperation_ERROR_;
+        OCLMessages.UnrecognizedCollectionOperation_ERROR_;
     
 
     // A <code>CollectionFactory</code> makes java collections given an ocl
@@ -295,7 +297,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         if (oper.equals("oclEquals"))return NOT_EQUAL;//$NON-NLS-1$
         String message = NLS.bind(
                 UnrecognizedCollectionOperation_ERROR_, new Object[] { oper });
-        OclParser.ERR(message);
+        OCLParser.ERR(message);
         return 0;
     }
 
@@ -453,7 +455,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                     && type != PrimitiveTypeImpl.OCL_INTEGER) {
                 String message = NLS.bind(SumOperator_ERROR_,
                         new Object[] { type.getName() });
-                OclParser.ERR(message);
+                OCLParser.ERR(message);
             }
             return type;
         } else if (opcode == PRODUCT) {
@@ -462,7 +464,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
              * elementType of this, and T2 is the elementType of the argument.
              */
             EClassifier t = getElementType();
-            OclExpression arg = (OclExpression) args.get(0);
+            OCLExpression arg = (OCLExpression) args.get(0);
             CollectionType argType = (CollectionType) arg.getType();
             EClassifier t2 = argType.getElementType();
             SetType resultType = TypesFactory.eINSTANCE.createSetType();
@@ -482,7 +484,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         }
         String message = NLS.bind(CollectionType_ERROR_,
                 new Object[] { this.getName(), getOperationNameFor(opcode) });
-        OclParser.ERR(message);
+        OCLParser.ERR(message);
         return null;
     }
 
@@ -500,7 +502,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         if (!(type instanceof CollectionType)) {
             String message = NLS.bind(CollectionSuperType_ERROR_,
                     new Object[] { this.getName(), type.getName() });
-            OclParser.ERR(message);
+            OCLParser.ERR(message);
         }
 
         if (this instanceof BagType) {
@@ -508,28 +510,28 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                 String message = NLS.bind(
                         CollectionSuperType_ERROR_, new Object[] {
                                 this.getName(), type.getName() });
-                OclParser.ERR(message);
+                OCLParser.ERR(message);
             }
         } else if (this instanceof SetType) {
             if (!(type instanceof SetType)) {
                 String message = NLS.bind(
                         CollectionSuperType_ERROR_, new Object[] {
                                 this.getName(), type.getName() });
-                OclParser.ERR(message);
+                OCLParser.ERR(message);
             }
         } else if (this instanceof SequenceType) {
             if (!(type instanceof SequenceType)) {
                 String message = NLS.bind(
                         CollectionSuperType_ERROR_, new Object[] {
                                 this.getName(), type.getName() });
-                OclParser.ERR(message);
+                OCLParser.ERR(message);
             }
         } else if (this instanceof OrderedSetType) {
             if (!(type instanceof OrderedSetType)) {
                 String message = NLS.bind(
                         CollectionSuperType_ERROR_, new Object[] {
                                 this.getName(), type.getName() });
-                OclParser.ERR(message);
+                OCLParser.ERR(message);
             }
         }
 
@@ -564,7 +566,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                     new Object[] { this.getName(), type.getName() });
             IllegalArgumentException error = new IllegalArgumentException(
                     message);
-            OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+            OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
             throw error;
         }
         if (this instanceof BagType) {
@@ -574,7 +576,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                                 this.getName(), type.getName() });
                 IllegalArgumentException error = new IllegalArgumentException(
                         message);
-                OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+                OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
                 throw error;
             }
         } else if (this instanceof SetType) {
@@ -584,7 +586,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                                 this.getName(), type.getName() });
                 IllegalArgumentException error = new IllegalArgumentException(
                         message);
-                OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+                OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
                 throw error;
             }
         } else if (this instanceof SequenceType) {
@@ -594,7 +596,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                                 this.getName(), type.getName() });
                 IllegalArgumentException error = new IllegalArgumentException(
                         message);
-                OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+                OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
                 throw error;
             }
         } else if (this instanceof OrderedSetType) {
@@ -604,7 +606,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                                 this.getName(), type.getName() });
                 IllegalArgumentException error = new IllegalArgumentException(
                         message);
-                OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+                OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
                 throw error;
             }
         }
@@ -617,64 +619,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case TypesPackage.COLLECTION_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case TypesPackage.COLLECTION_TYPE__EPACKAGE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, TypesPackage.COLLECTION_TYPE__EPACKAGE, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case TypesPackage.COLLECTION_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case TypesPackage.COLLECTION_TYPE__EPACKAGE:
-					return eBasicSetContainer(null, TypesPackage.COLLECTION_TYPE__EPACKAGE, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case TypesPackage.COLLECTION_TYPE__EPACKAGE:
-					return eContainer.eInverseRemove(this, EcorePackage.EPACKAGE__ECLASSIFIERS, EPackage.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
     protected EClass eStaticClass() {
-		return TypesPackage.eINSTANCE.getCollectionType();
+		return TypesPackage.Literals.COLLECTION_TYPE;
 	}
 
 	/**
@@ -767,8 +713,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 */
     public EClassifier getElementType() {
 		if (elementType != null && elementType.eIsProxy()) {
-			EClassifier oldElementType = elementType;
-			elementType = (EClassifier)eResolveProxy((InternalEObject)elementType);
+			InternalEObject oldElementType = (InternalEObject)elementType;
+			elementType = (EClassifier)eResolveProxy(oldElementType);
 			if (elementType != oldElementType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
@@ -797,25 +743,12 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.COLLECTION_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case TypesPackage.COLLECTION_TYPE__NAME:
-				return getName();
-			case TypesPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case TypesPackage.COLLECTION_TYPE__INSTANCE_CLASS:
-				return getInstanceClass();
-			case TypesPackage.COLLECTION_TYPE__DEFAULT_VALUE:
-				return getDefaultValue();
-			case TypesPackage.COLLECTION_TYPE__EPACKAGE:
-				return getEPackage();
-			case TypesPackage.COLLECTION_TYPE__SERIALIZABLE:
-				return isSerializable() ? Boolean.TRUE : Boolean.FALSE;
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case TypesPackage.COLLECTION_TYPE__START_POSITION:
 				return new Integer(getStartPosition());
 			case TypesPackage.COLLECTION_TYPE__END_POSITION:
@@ -828,28 +761,16 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 				if (resolve) return getElementType();
 				return basicGetElementType();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.COLLECTION_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case TypesPackage.COLLECTION_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case TypesPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case TypesPackage.COLLECTION_TYPE__SERIALIZABLE:
-				setSerializable(((Boolean)newValue).booleanValue());
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case TypesPackage.COLLECTION_TYPE__START_POSITION:
 				setStartPosition(((Integer)newValue).intValue());
 				return;
@@ -866,27 +787,16 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 				setElementType((EClassifier)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.COLLECTION_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case TypesPackage.COLLECTION_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TypesPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
-			case TypesPackage.COLLECTION_TYPE__SERIALIZABLE:
-				setSerializable(SERIALIZABLE_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case TypesPackage.COLLECTION_TYPE__START_POSITION:
 				setStartPosition(START_POSITION_EDEFAULT);
 				return;
@@ -903,29 +813,16 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 				setElementType((EClassifier)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.COLLECTION_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case TypesPackage.COLLECTION_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TypesPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case TypesPackage.COLLECTION_TYPE__INSTANCE_CLASS:
-				return INSTANCE_CLASS_EDEFAULT == null ? getInstanceClass() != null : !INSTANCE_CLASS_EDEFAULT.equals(getInstanceClass());
-			case TypesPackage.COLLECTION_TYPE__DEFAULT_VALUE:
-				return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
-			case TypesPackage.COLLECTION_TYPE__EPACKAGE:
-				return getEPackage() != null;
-			case TypesPackage.COLLECTION_TYPE__SERIALIZABLE:
-				return ((eFlags & SERIALIZABLE_EFLAG) != 0) != SERIALIZABLE_EDEFAULT;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case TypesPackage.COLLECTION_TYPE__START_POSITION:
 				return startPosition != START_POSITION_EDEFAULT;
 			case TypesPackage.COLLECTION_TYPE__END_POSITION:
@@ -937,7 +834,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 			case TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				return elementType != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -946,14 +843,14 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * @generated
 	 */
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
-		if (baseClass == AstNode.class) {
+		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
 				case TypesPackage.COLLECTION_TYPE__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
 				case TypesPackage.COLLECTION_TYPE__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
 				default: return -1;
 			}
 		}
-		if (baseClass == TypedAstNode.class) {
+		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
 				case TypesPackage.COLLECTION_TYPE__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
 				case TypesPackage.COLLECTION_TYPE__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
@@ -969,14 +866,14 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * @generated
 	 */
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
-		if (baseClass == AstNode.class) {
+		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.AST_NODE__START_POSITION: return TypesPackage.COLLECTION_TYPE__START_POSITION;
 				case UtilitiesPackage.AST_NODE__END_POSITION: return TypesPackage.COLLECTION_TYPE__END_POSITION;
 				default: return -1;
 			}
 		}
-		if (baseClass == TypedAstNode.class) {
+		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return TypesPackage.COLLECTION_TYPE__TYPE_START_POSITION;
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return TypesPackage.COLLECTION_TYPE__TYPE_END_POSITION;
@@ -1069,7 +966,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             return new Double(currVal);
         } else {
             RuntimeException error = new RuntimeException(SumOperator_ERROR_);
-            OclEnginePlugin.throwing(CollectionTypeImpl.class, "sum", error);//$NON-NLS-1$
+            OCLPlugin.throwing(CollectionTypeImpl.class, "sum", error);//$NON-NLS-1$
             throw error;
         }
     }

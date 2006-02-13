@@ -21,7 +21,14 @@ package org.eclipse.emf.ocl.expressions;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface VariableExp extends OclExpression{
+public interface VariableExp extends OCLExpression {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

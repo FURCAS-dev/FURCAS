@@ -21,12 +21,19 @@ package org.eclipse.emf.ocl.expressions;
  * @author Edith Schonberg (edith)
  *
  */
-public interface LetExp extends OclExpression{
+public interface LetExp extends OCLExpression {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * tk removed  containment="true"
 	 *
 	 */
-	public OclExpression getIn();
+	public OCLExpression getIn();
 	
 
 	/**
@@ -37,7 +44,7 @@ public interface LetExp extends OclExpression{
 	 * @see #getIn()
 	 * @generated
 	 */
-	void setIn(OclExpression value);
+	void setIn(OCLExpression value);
 
 	/**
 	 * @model containment="true"

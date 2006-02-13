@@ -27,7 +27,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
 import org.eclipse.emf.ocl.expressions.AttributeCallExp;
@@ -46,8 +48,9 @@ import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
-import org.eclipse.emf.ocl.expressions.OclMessageArg;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.OCLMessageArg;
+import org.eclipse.emf.ocl.expressions.OCLMessageExp;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
@@ -56,11 +59,11 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
-import org.eclipse.emf.ocl.internal.parser.OclLexer;
-import org.eclipse.emf.ocl.internal.parser.OclParser;
-import org.eclipse.emf.ocl.internal.parser.OclParserTokenTypes;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.emf.ocl.internal.parser.OCLLexer;
+import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.OCLParserTokenTypes;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.osgi.util.NLS;
 
@@ -74,11 +77,38 @@ import antlr.TokenStreamException;
  */
 public class ExpressionsFactoryImpl extends EFactoryImpl implements
         ExpressionsFactory {
-    private static final String InvalidClass_ERROR_ =
-            OclMessages.InvalidClass_ERROR_;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ExpressionsFactory init() {
+		try {
+			ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/OCL2/7.0.0/ocl/expressions"); //$NON-NLS-1$ 
+			if (theExpressionsFactory != null) {
+				return theExpressionsFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new ExpressionsFactoryImpl();
+	}
+
+	    private static final String InvalidClass_ERROR_ =
+            OCLMessages.InvalidClass_ERROR_;
 
     private static final String InvalidDatatype_ERROR_ =
-            OclMessages.InvalidDatatype_ERROR_;
+            OCLMessages.InvalidDatatype_ERROR_;
     
     /** @generated NOT */
 	private static final String PRE = "pre";//$NON-NLS-1$
@@ -99,7 +129,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 		super();
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -134,7 +164,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
         case ExpressionsPackage.LOOP_EXP:
             return createLoopExp();
         case ExpressionsPackage.OCL_MESSAGE_ARG:
-            return createOclMessageArg();
+            return createOCLMessageArg();
         case ExpressionsPackage.OPERATION_CALL_EXP:
             return createOperationCallExp();
         case ExpressionsPackage.REAL_LITERAL_EXP:
@@ -154,7 +184,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
                     new Object[] { eClass.getName() });
             IllegalArgumentException error = new IllegalArgumentException(
                     message);
-            OclEnginePlugin.throwing(getClass(), "create", error);//$NON-NLS-1$
+            OCLPlugin.throwing(getClass(), "create", error);//$NON-NLS-1$
             throw error;
 		}
 	}
@@ -172,7 +202,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
                     new Object[] { eDataType.getName() });
             IllegalArgumentException error = new IllegalArgumentException(
                     message);
-            OclEnginePlugin.throwing(getClass(), "createFromString", error);//$NON-NLS-1$
+            OCLPlugin.throwing(getClass(), "createFromString", error);//$NON-NLS-1$
             throw error;
 			}
 
@@ -186,7 +216,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
     public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case ExpressionsPackage.COLLECTION_KIND:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertCollectionKindToString(eDataType, instanceValue);
 			case ExpressionsPackage.VISITOR:
 				return convertVisitorToString(eDataType, instanceValue);
 			default:
@@ -194,18 +224,18 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 		}
 	}
 
-	/**
+		/**
 	 * @generated NOT
 	 */
-	public OclExpression createOclExpression(String text)
+	public OCLExpression createOclExpression(String text)
 			throws antlr.SemanticException,
 				antlr.TokenStreamException,
 				antlr.RecognitionException {
 		//-- remove pre/post stuff
 		text = removePrePostKeyword(text);
 		//
-		OclLexer lexer = new OclLexer(new StringReader(text));
-		OclParser parser = new OclParser(lexer);
+		OCLLexer lexer = new OCLLexer(new StringReader(text));
+		OCLParser parser = new OCLParser(lexer);
 		parser.setTraceFlag(false);
 
 		EList constraints = new BasicEList();
@@ -219,16 +249,16 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	private String removePrePostKeyword(String txt) throws TokenStreamException {
 		boolean modified = false;
 		Token token = null;
-		OclLexer lexer = new OclLexer(new StringReader(txt));
+		OCLLexer lexer = new OCLLexer(new StringReader(txt));
 		List tokens = new ArrayList();
 		do {
 			token = lexer.nextToken();
-			if ((token.getType() == OclParserTokenTypes.PRE)
-				|| ((token.getType() == OclParserTokenTypes.NAME) && (token
+			if ((token.getType() == OCLParserTokenTypes.PRE)
+				|| ((token.getType() == OCLParserTokenTypes.NAME) && (token
 					.getText().equals(PRE) || token.getText().equals(POST)))) {
 				//check next token if it is a colon
 				Token nextToken = lexer.nextToken();
-				if (nextToken.getType() != OclParserTokenTypes.COLON) {
+				if (nextToken.getType() != OCLParserTokenTypes.COLON) {
 					//return them back
 					tokens.add(token);
 					tokens.add(nextToken);
@@ -386,12 +416,13 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public OclMessageArg createOclMessageArg() {
-		OclMessageArgImpl oclMessageArg = new OclMessageArgImpl();
-		return oclMessageArg;
+	public OCLMessageExp createOCLMessageExp() {
+		OCLMessageExpImpl oclMessageExp = new OCLMessageExpImpl();
+		return oclMessageExp;
 	}
 
 	/**
@@ -421,7 +452,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 		return stringLiteralExp;
 	}
 
-    public StringLiteralExp createStringLiteralExp(String s) {
+	    public StringLiteralExp createStringLiteralExp(String s) {
         StringLiteralExp stringLiteralExp = new StringLiteralExpImpl(s);
         return stringLiteralExp;
     }
@@ -470,6 +501,36 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	public AssociationClassCallExp createAssociationClassCallExp() {
 		AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
 		return associationClassCallExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLMessageArg createOCLMessageArg() {
+		OCLMessageArgImpl oclMessageArg = new OCLMessageArgImpl();
+		return oclMessageArg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CollectionKind createCollectionKindFromString(EDataType eDataType, String initialValue) {
+		CollectionKind result = CollectionKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCollectionKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

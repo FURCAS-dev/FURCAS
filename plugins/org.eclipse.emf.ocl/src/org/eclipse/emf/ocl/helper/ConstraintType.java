@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * An enumeration of OCL constraint types, primarily for determining the
  * appropriate choices for syntax completion.
  *
- * @see IOclHelper#getSyntaxHelp(ConstraintType, String)
+ * @see IOCLHelper#getSyntaxHelp(ConstraintType, String)
  * 
  * @author Christian W. Damus (cdamus)
  */
@@ -66,10 +66,10 @@ public class ConstraintType
 				POSTCONDITION}));
 
 	/**
-	 * Constructs a new OclHelper type with the specified name.
+	 * Constructs a new OCLHelper type with the specified name.
 	 * 
 	 * @param ordinal the ordinal number
-	 * @param name The name of the new OclHelper type
+	 * @param name The name of the new OCLHelper type
 	 */
 	private ConstraintType(int ordinal, String name) {
 		super(ordinal, name);

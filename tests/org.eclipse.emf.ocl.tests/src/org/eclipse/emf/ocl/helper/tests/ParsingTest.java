@@ -20,9 +20,9 @@ package org.eclipse.emf.ocl.helper.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
 
 /**
  * Tests the constraint parsing support.
@@ -44,12 +44,12 @@ public class ParsingTest
 	}
 	
 	public void test_createInvariant() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContext(fruit);
 		
 		try {
-			OclExpression expr = helper.createInvariant("color <> Color::black"); //$NON-NLS-1$
+			OCLExpression expr = helper.createInvariant("color <> Color::black"); //$NON-NLS-1$
 			
 			assertNotNull(expr);
 		} catch (Exception e) {
@@ -58,12 +58,12 @@ public class ParsingTest
 	}
 	
 	public void test_createPrecondition() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
 		try {
-			OclExpression expr = helper.createPrecondition(
+			OCLExpression expr = helper.createPrecondition(
 				"color <> Color::black"); //$NON-NLS-1$
 			
 			assertNotNull(expr);
@@ -73,12 +73,12 @@ public class ParsingTest
 	}
 	
 	public void test_createPostcondition() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
 		try {
-			OclExpression expr = helper.createPostcondition(
+			OCLExpression expr = helper.createPostcondition(
 				"color <> self.color@pre implies self.color = color "); //$NON-NLS-1$
 			
 			assertNotNull(expr);
@@ -88,12 +88,12 @@ public class ParsingTest
 	}
 	
 	public void test_createBodyCondition() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContextOperation(fruit, fruit_preferredColor);
 		
 		try {
-			OclExpression expr = helper.createBodyCondition(
+			OCLExpression expr = helper.createBodyCondition(
 				"result = (if true then Color::red else Color::brown endif)"); //$NON-NLS-1$
 			
 			assertNotNull(expr);
@@ -107,7 +107,7 @@ public class ParsingTest
 	 * EClasses.  The parser now supports arbitrary EClassifiers.
 	 */
 	public void test_dataTypeAsContext() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		helper.setContext(ecore.getEString());
 		
 		try {
@@ -128,7 +128,7 @@ public class ParsingTest
 	 * the context object.
 	 */
 	public void test_dataTypeAsContext_inferred() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		helper.setContext("anything"); // inferred type is EString //$NON-NLS-1$
 		
 		try {

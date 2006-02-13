@@ -19,15 +19,21 @@ package org.eclipse.emf.ocl.uml;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
-
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 
 /**
  * @author Edith Schonberg (edith)
  *
  */
-public interface Constraint extends ENamedElement, Visitable{
+public interface Constraint extends ENamedElement, Visitable {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Stereotype applied to classifier invariant constraints.
 	 * 
@@ -78,8 +84,8 @@ public interface Constraint extends ENamedElement, Visitable{
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stereotype</em>' attribute.
 	 * @see #setStereotype(String)
-	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getConstraint_Stereotype()
-	 *
+	 * @see org.eclipse.emf.ocl.uml.UMLPackage#getConstraint_Stereotype()
+	 * @model
 	 * @generated
 	 */
 	String getStereotype();
@@ -97,7 +103,7 @@ public interface Constraint extends ENamedElement, Visitable{
 	/**
 	 * @model 
 	 */
-	OclExpression getBody();
+	OCLExpression getBody();
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.uml.Constraint#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -106,6 +112,6 @@ public interface Constraint extends ENamedElement, Visitable{
 	 * @see #getBody()
 	 * @generated
 	 */
-	void setBody(OclExpression value);
+	void setBody(OCLExpression value);
 
 }

@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 
@@ -57,7 +57,7 @@ class IterationTemplate {
 	
 	public Object evaluate(Collection coll, 
 							List iterators,
-							OclExpression body, 
+							OCLExpression body, 
 							String resultName) {
 
 		// if the collection is empty, then nothing to do

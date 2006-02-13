@@ -27,8 +27,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.impl.EcorePackageImpl;
-
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
@@ -38,8 +36,8 @@ import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl;
-import org.eclipse.emf.ocl.uml.UmlPackage;
-import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.uml.internal.impl.UMLPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +46,13 @@ import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
  * @generated
  */
 public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,27 +124,27 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
-		UmlPackageImpl theUmlPackage = (UmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI) instanceof UmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI) : UmlPackage.eINSTANCE);
+		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQueryPackage.createPackageContents();
 		theTypesPackage.createPackageContents();
 		theUtilitiesPackage.createPackageContents();
 		theExpressionsPackage.createPackageContents();
-		theUmlPackage.createPackageContents();
+		theUMLPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theQueryPackage.initializePackageContents();
 		theTypesPackage.initializePackageContents();
 		theUtilitiesPackage.initializePackageContents();
 		theExpressionsPackage.initializePackageContents();
-		theUmlPackage.initializePackageContents();
+		theUMLPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theQueryPackage.freeze();
@@ -243,39 +248,39 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
-		EcorePackageImpl theEcorePackage = (EcorePackageImpl)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getQuery_ExtentMap(), ecorePackage.getEMap(), "extentMap", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getQuery_Expression(), theExpressionsPackage.getOclExpression(), null, "expression", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getQuery_Expression(), theExpressionsPackage.getOCLExpression(), null, "expression", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(queryEClass, ecorePackage.getEJavaObject(), "evaluate"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEJavaObject(), "obj"); //$NON-NLS-1$
+		EOperation op = addEOperation(queryEClass, ecorePackage.getEJavaObject(), "evaluate", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEJavaObject(), "obj", 0, 1); //$NON-NLS-1$
 
-		addEOperation(queryEClass, ecorePackage.getEJavaObject(), "evaluate"); //$NON-NLS-1$
+		addEOperation(queryEClass, ecorePackage.getEJavaObject(), "evaluate", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, ecorePackage.getEBoolean(), "check"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEJavaObject(), "obj"); //$NON-NLS-1$
+		op = addEOperation(queryEClass, ecorePackage.getEBoolean(), "check", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEJavaObject(), "obj", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, this.getList(), "evaluate"); //$NON-NLS-1$
-		addEParameter(op, this.getList(), "objects"); //$NON-NLS-1$
+		op = addEOperation(queryEClass, this.getList(), "evaluate", 0, 1); //$NON-NLS-1$
+		addEParameter(op, this.getList(), "objects", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, ecorePackage.getEBoolean(), "check"); //$NON-NLS-1$
-		addEParameter(op, this.getList(), "objects"); //$NON-NLS-1$
+		op = addEOperation(queryEClass, ecorePackage.getEBoolean(), "check", 0, 1); //$NON-NLS-1$
+		addEParameter(op, this.getList(), "objects", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, this.getList(), "select"); //$NON-NLS-1$
-		addEParameter(op, this.getList(), "objects"); //$NON-NLS-1$
+		op = addEOperation(queryEClass, this.getList(), "select", 0, 1); //$NON-NLS-1$
+		addEParameter(op, this.getList(), "objects", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, this.getList(), "reject"); //$NON-NLS-1$
-		addEParameter(op, this.getList(), "objects"); //$NON-NLS-1$
+		op = addEOperation(queryEClass, this.getList(), "reject", 0, 1); //$NON-NLS-1$
+		addEParameter(op, this.getList(), "objects", 0, 1); //$NON-NLS-1$
 
-		addEOperation(queryEClass, theEcorePackage.getEClassifier(), "resultType"); //$NON-NLS-1$
+		addEOperation(queryEClass, theEcorePackage.getEClassifier(), "resultType", 0, 1); //$NON-NLS-1$
 
-		addEOperation(queryEClass, ecorePackage.getEString(), "queryText"); //$NON-NLS-1$
+		addEOperation(queryEClass, ecorePackage.getEString(), "queryText", 0, 1); //$NON-NLS-1$
 
 		// Initialize data types
 		initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.ocl;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: org.eclipse.emf.ocl.internal.OclEnginePlugin$Implementation
+Bundle-Activator: org.eclipse.emf.ocl.internal.OCLPlugin$Implementation
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.ocl.expressions,

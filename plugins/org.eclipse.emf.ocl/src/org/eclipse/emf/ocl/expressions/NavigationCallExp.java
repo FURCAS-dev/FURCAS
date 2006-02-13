@@ -26,8 +26,15 @@ import org.eclipse.emf.ecore.EReference;
  *
  * @model abstract="true"
  */
-public interface NavigationCallExp extends ModelPropertyCallExp{
+public interface NavigationCallExp extends ModelPropertyCallExp {
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model type="OclExpression" containment="true" lowerBound=0 
 	 */

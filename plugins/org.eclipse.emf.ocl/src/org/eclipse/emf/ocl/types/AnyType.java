@@ -25,6 +25,13 @@ import org.eclipse.emf.ecore.EDataType;
  */
 public interface AnyType extends EDataType {
 		
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	//public int getOperationCode(EOperation oper);
 	public int getOperationCode(String operName);
 	

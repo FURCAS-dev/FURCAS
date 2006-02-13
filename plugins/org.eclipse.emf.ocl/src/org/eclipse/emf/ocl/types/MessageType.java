@@ -17,17 +17,23 @@
 
 package org.eclipse.emf.ocl.types;
 
-import org.eclipse.emf.ocl.uml.Signal;
-
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ocl.uml.Signal;
 
 
 /**
  * @author Edith Schonberg (edith)
  *
  */
-public interface MessageType extends EClassifier{
+public interface MessageType extends EClassifier {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model lowerBound=0  upperBound=1
 	 */

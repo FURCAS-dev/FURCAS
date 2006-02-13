@@ -21,11 +21,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ocl.internal.utilities.*;
-
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.CallingASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 /**
@@ -38,6 +36,13 @@ import org.eclipse.emf.ocl.internal.utilities.Visitable;
  */
 public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -87,14 +92,14 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 			public Object caseVisitable(Visitable object) {
 				return createVisitableAdapter();
 			}
-			public Object caseAstNode(AstNode object) {
-				return createAstNodeAdapter();
+			public Object caseASTNode(ASTNode object) {
+				return createASTNodeAdapter();
 			}
-			public Object caseTypedAstNode(TypedAstNode object) {
-				return createTypedAstNodeAdapter();
+			public Object caseTypedASTNode(TypedASTNode object) {
+				return createTypedASTNodeAdapter();
 			}
-			public Object caseCallingAstNode(CallingAstNode object) {
-				return createCallingAstNodeAdapter();
+			public Object caseCallingASTNode(CallingASTNode object) {
+				return createCallingASTNodeAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -129,44 +134,44 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.AstNode <em>Ast Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode <em>AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.AstNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode
 	 * @generated
 	 */
-	public Adapter createAstNodeAdapter() {
+	public Adapter createASTNodeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.TypedAstNode <em>Typed Ast Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode <em>Typed AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedAstNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode
 	 * @generated
 	 */
-	public Adapter createTypedAstNodeAdapter() {
+	public Adapter createTypedASTNodeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.CallingAstNode <em>Calling Ast Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode <em>Calling AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.CallingAstNode
+	 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode
 	 * @generated
 	 */
-	public Adapter createCallingAstNodeAdapter() {
+	public Adapter createCallingASTNodeAdapter() {
 		return null;
 	}
 

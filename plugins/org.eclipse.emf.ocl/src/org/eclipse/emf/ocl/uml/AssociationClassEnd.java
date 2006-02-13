@@ -33,11 +33,18 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.ocl.uml.UmlPackage#getAssociationClassEnd()
- *
+ * @see org.eclipse.emf.ocl.uml.UMLPackage#getAssociationClassEnd()
+ * @model
  * @generated
  */
 public interface AssociationClassEnd extends EObject, EReference {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Returns the value of the '<em><b>Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -48,7 +55,7 @@ public interface AssociationClassEnd extends EObject, EReference {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Association Class</em>' reference.
 	 * @see #setAssociationClass(EClass)
-	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getAssociationClassEnd_AssociationClass()
+	 * @see org.eclipse.emf.ocl.uml.UMLPackage#getAssociationClassEnd_AssociationClass()
 	 * @model required="true"
 	 * @generated
 	 */

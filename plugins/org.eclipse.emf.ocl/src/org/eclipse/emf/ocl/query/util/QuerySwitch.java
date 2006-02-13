@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryPackage;
 
@@ -39,6 +38,13 @@ import org.eclipse.emf.ocl.query.QueryPackage;
  * @generated
  */
 public class QuerySwitch {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

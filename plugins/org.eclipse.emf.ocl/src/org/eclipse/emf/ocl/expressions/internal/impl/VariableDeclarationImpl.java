@@ -17,27 +17,22 @@
 
 package org.eclipse.emf.ocl.expressions.internal.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENamedElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.Visitor;
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 
@@ -64,6 +59,13 @@ import org.eclipse.emf.ocl.internal.utilities.Visitable;
 public class VariableDeclarationImpl
 	extends ENamedElementImpl
 	implements VariableDeclaration {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
@@ -171,7 +173,7 @@ public class VariableDeclarationImpl
 	 * @see #getInitExpression()
 	 * @generated @ordered
 	 */
-	protected OclExpression initExpression = null;
+	protected OCLExpression initExpression = null;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -195,7 +197,7 @@ public class VariableDeclarationImpl
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.eINSTANCE.getVariableDeclaration();
+		return ExpressionsPackage.Literals.VARIABLE_DECLARATION;
 	}
 
 	/**
@@ -265,7 +267,7 @@ public class VariableDeclarationImpl
 	 */
 	public LoopExp getLoopExpr() {
 		if (eContainerFeatureID != ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR) return null;
-		return (LoopExp)eContainer;
+		return (LoopExp)eContainer();
 	}
 
 	/**
@@ -273,11 +275,11 @@ public class VariableDeclarationImpl
 	 * @generated
 	 */
 	public void setLoopExpr(LoopExp newLoopExpr) {
-		if (newLoopExpr != eContainer || (eContainerFeatureID != ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR && newLoopExpr != null)) {
+		if (newLoopExpr != eInternalContainer() || (eContainerFeatureID != ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR && newLoopExpr != null)) {
 			if (EcoreUtil.isAncestor(this, newLoopExpr))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLoopExpr != null)
 				msgs = ((InternalEObject)newLoopExpr).eInverseAdd(this, ExpressionsPackage.LOOP_EXP__ITERATORS, LoopExp.class, msgs);
@@ -292,16 +294,17 @@ public class VariableDeclarationImpl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression getInitExpression() {
+	public OCLExpression getInitExpression() {
 		return initExpression;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(OclExpression newInitExpression, NotificationChain msgs) {
-		OclExpression oldInitExpression = initExpression;
+	public NotificationChain basicSetInitExpression(OCLExpression newInitExpression, NotificationChain msgs) {
+		OCLExpression oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION, oldInitExpression, newInitExpression);
@@ -311,16 +314,17 @@ public class VariableDeclarationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitExpression(OclExpression newInitExpression) {
+	public void setInitExpression(OCLExpression newInitExpression) {
 		if (newInitExpression != initExpression) {
 			NotificationChain msgs = null;
 			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, ExpressionsPackage.OCL_EXPRESSION__INITIALIZED_VARIABLE, OclExpression.class, msgs);
+				msgs = ((InternalEObject)initExpression).eInverseRemove(this, ExpressionsPackage.OCL_EXPRESSION__INITIALIZED_VARIABLE, OCLExpression.class, msgs);
 			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, ExpressionsPackage.OCL_EXPRESSION__INITIALIZED_VARIABLE, OclExpression.class, msgs);
+				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, ExpressionsPackage.OCL_EXPRESSION__INITIALIZED_VARIABLE, OCLExpression.class, msgs);
 			msgs = basicSetInitExpression(newInitExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -334,7 +338,7 @@ public class VariableDeclarationImpl
 	 */
 	public IterateExp getBaseExp() {
 		if (eContainerFeatureID != ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP) return null;
-		return (IterateExp)eContainer;
+		return (IterateExp)eContainer();
 	}
 
 	/**
@@ -342,11 +346,11 @@ public class VariableDeclarationImpl
 	 * @generated
 	 */
 	public void setBaseExp(IterateExp newBaseExp) {
-		if (newBaseExp != eContainer || (eContainerFeatureID != ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP && newBaseExp != null)) {
+		if (newBaseExp != eInternalContainer() || (eContainerFeatureID != ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP && newBaseExp != null)) {
 			if (EcoreUtil.isAncestor(this, newBaseExp))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBaseExp != null)
 				msgs = ((InternalEObject)newBaseExp).eInverseAdd(this, ExpressionsPackage.ITERATE_EXP__RESULT, IterateExp.class, msgs);
@@ -363,8 +367,8 @@ public class VariableDeclarationImpl
 	 */
 	public EClassifier getType() {
 		if (type != null && type.eIsProxy()) {
-			EClassifier oldType = type;
-			type = (EClassifier)eResolveProxy((InternalEObject)type);
+			InternalEObject oldType = (InternalEObject)type;
+			type = (EClassifier)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.VARIABLE_DECLARATION__TYPE, oldType, type));
@@ -435,228 +439,6 @@ public class VariableDeclarationImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.VARIABLE_DECLARATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
-					if (initExpression != null)
-						msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION, null, msgs);
-					return basicSetInitExpression((OclExpression)otherEnd, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.VARIABLE_DECLARATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-					return eBasicSetContainer(null, ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
-					return basicSetInitExpression(null, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-					return eBasicSetContainer(null, ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-					return eContainer.eInverseRemove(this, ExpressionsPackage.LOOP_EXP__ITERATORS, LoopExp.class, msgs);
-				case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-					return eContainer.eInverseRemove(this, ExpressionsPackage.ITERATE_EXP__RESULT, IterateExp.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.VARIABLE_DECLARATION__EANNOTATIONS:
-				return getEAnnotations();
-			case ExpressionsPackage.VARIABLE_DECLARATION__NAME:
-				return getName();
-			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
-				return new Integer(getStartPosition());
-			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
-				return new Integer(getEndPosition());
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
-				return new Integer(getTypeStartPosition());
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
-				return new Integer(getTypeEndPosition());
-			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
-				return getVarName();
-			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-				return getLoopExpr();
-			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
-				return getInitExpression();
-			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-				return getBaseExp();
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.VARIABLE_DECLARATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__NAME:
-				setName((String)newValue);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
-				setTypeStartPosition(((Integer)newValue).intValue());
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
-				setTypeEndPosition(((Integer)newValue).intValue());
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
-				setVarName((String)newValue);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-				setLoopExpr((LoopExp)newValue);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
-				setInitExpression((OclExpression)newValue);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-				setBaseExp((IterateExp)newValue);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
-				setType((EClassifier)newValue);
-				return;
-		}
-		eDynamicSet(eFeature, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.VARIABLE_DECLARATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
-				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
-				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
-				setVarName(VAR_NAME_EDEFAULT);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-				setLoopExpr((LoopExp)null);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
-				setInitExpression((OclExpression)null);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-				setBaseExp((IterateExp)null);
-				return;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
-				setType((EClassifier)null);
-				return;
-		}
-		eDynamicUnset(eFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.VARIABLE_DECLARATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case ExpressionsPackage.VARIABLE_DECLARATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
-				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
-				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
-				return VAR_NAME_EDEFAULT == null ? varName != null : !VAR_NAME_EDEFAULT.equals(varName);
-			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
-				return getLoopExpr() != null;
-			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
-				return initExpression != null;
-			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
-				return getBaseExp() != null;
-			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
-				return type != null;
-		}
-		return eDynamicIsSet(eFeature);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -667,14 +449,14 @@ public class VariableDeclarationImpl
 				default: return -1;
 			}
 		}
-		if (baseClass == AstNode.class) {
+		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
 				case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
 				case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
 				default: return -1;
 			}
 		}
-		if (baseClass == TypedAstNode.class) {
+		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
 				case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
 				case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
@@ -695,14 +477,14 @@ public class VariableDeclarationImpl
 				default: return -1;
 			}
 		}
-		if (baseClass == AstNode.class) {
+		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.AST_NODE__START_POSITION: return ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION;
 				case UtilitiesPackage.AST_NODE__END_POSITION: return ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION;
 				default: return -1;
 			}
 		}
-		if (baseClass == TypedAstNode.class) {
+		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION;
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION;
@@ -721,6 +503,196 @@ public class VariableDeclarationImpl
 
 	public Object accept(Visitor v) {
 		return v.visitVariableDeclaration(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR, msgs);
+			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
+				if (initExpression != null)
+					msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION, null, msgs);
+				return basicSetInitExpression((OCLExpression)otherEnd, msgs);
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				return eBasicSetContainer(null, ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR, msgs);
+			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
+				return basicSetInitExpression(null, msgs);
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				return eBasicSetContainer(null, ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.LOOP_EXP__ITERATORS, LoopExp.class, msgs);
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.ITERATE_EXP__RESULT, IterateExp.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
+				return new Integer(getStartPosition());
+			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
+				return new Integer(getEndPosition());
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
+				return new Integer(getTypeStartPosition());
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
+				return new Integer(getTypeEndPosition());
+			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
+				return getVarName();
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				return getLoopExpr();
+			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
+				return getInitExpression();
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				return getBaseExp();
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
+				setStartPosition(((Integer)newValue).intValue());
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
+				setEndPosition(((Integer)newValue).intValue());
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
+				setTypeStartPosition(((Integer)newValue).intValue());
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
+				setTypeEndPosition(((Integer)newValue).intValue());
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
+				setVarName((String)newValue);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				setLoopExpr((LoopExp)newValue);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
+				setInitExpression((OCLExpression)newValue);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				setBaseExp((IterateExp)newValue);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
+				setType((EClassifier)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
+				setStartPosition(START_POSITION_EDEFAULT);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
+				setEndPosition(END_POSITION_EDEFAULT);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
+				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
+				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
+				setVarName(VAR_NAME_EDEFAULT);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				setLoopExpr((LoopExp)null);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
+				setInitExpression((OCLExpression)null);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				setBaseExp((IterateExp)null);
+				return;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
+				setType((EClassifier)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.VARIABLE_DECLARATION__START_POSITION:
+				return startPosition != START_POSITION_EDEFAULT;
+			case ExpressionsPackage.VARIABLE_DECLARATION__END_POSITION:
+				return endPosition != END_POSITION_EDEFAULT;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_START_POSITION:
+				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE_END_POSITION:
+				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
+			case ExpressionsPackage.VARIABLE_DECLARATION__VAR_NAME:
+				return VAR_NAME_EDEFAULT == null ? varName != null : !VAR_NAME_EDEFAULT.equals(varName);
+			case ExpressionsPackage.VARIABLE_DECLARATION__LOOP_EXPR:
+				return getLoopExpr() != null;
+			case ExpressionsPackage.VARIABLE_DECLARATION__INIT_EXPRESSION:
+				return initExpression != null;
+			case ExpressionsPackage.VARIABLE_DECLARATION__BASE_EXP:
+				return getBaseExp() != null;
+			case ExpressionsPackage.VARIABLE_DECLARATION__TYPE:
+				return type != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //VariableDeclarationImpl

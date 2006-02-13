@@ -25,7 +25,7 @@ import org.eclipse.ui.actions.ActionDelegate;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsoleManager;
 
-import org.eclipse.emf.ocl.examples.interpreter.console.OclConsole;
+import org.eclipse.emf.ocl.examples.interpreter.console.OCLConsole;
 
 
 /**
@@ -43,7 +43,7 @@ public class ShowConsoleDelegate
 	}
 
 	public void run(IAction action) {
-		OclConsole console = OclConsole.getInstance();
+		OCLConsole console = OCLConsole.getInstance();
 		
 		IConsoleManager mgr = ConsolePlugin.getDefault().getConsoleManager();
 		

@@ -4,7 +4,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,19 +22,24 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package 
-         uri="http://www.ibm.com/OCL2/7.0.0/ocl/expressions" 
-         class="org.eclipse.emf.ocl.expressions.ExpressionsPackage"/>
+         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/expressions" 
+         class="org.eclipse.emf.ocl.expressions.ExpressionsPackage"
+         genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.ibm.com/OCL2/7.0.0/ocl/types" 
-         class="org.eclipse.emf.ocl.types.TypesPackage"/>
+         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/types" 
+         class="org.eclipse.emf.ocl.types.TypesPackage"
+         genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.ibm.com/OCL2/7.0.0/ocl/uml" 
-         class="org.eclipse.emf.ocl.uml.UmlPackage"/>
+         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/uml" 
+         class="org.eclipse.emf.ocl.uml.UMLPackage"
+         genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.ibm.com/OCL2/7.0.0/ocl/utilities" 
-         class="org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage"/>
+         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/utilities" 
+         class="org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage"
+         genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.ibm.com/OCL2/7.0.0/ocl/query" 
-         class="org.eclipse.emf.ocl.query.QueryPackage"/>
+         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/query" 
+         class="org.eclipse.emf.ocl.query.QueryPackage"
+         genModel="model/OCL.genmodel"/>
    </extension>
 </plugin>

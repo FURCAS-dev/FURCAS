@@ -25,7 +25,14 @@ import org.eclipse.emf.ecore.EEnumLiteral;
  * @author Edith Schonberg (edith)
  *
  */
-public interface EnumLiteralExp extends LiteralExp{
+public interface EnumLiteralExp extends LiteralExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

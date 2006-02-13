@@ -22,7 +22,14 @@ import org.eclipse.emf.ecore.EAttribute;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface AttributeCallExp extends ModelPropertyCallExp{
+public interface AttributeCallExp extends ModelPropertyCallExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

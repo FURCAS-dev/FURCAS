@@ -25,11 +25,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
-import org.eclipse.emf.ocl.types.*;
-
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -61,6 +58,13 @@ import org.eclipse.emf.ocl.types.VoidType;
  * @generated
  */
 public class TypesSwitch {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -136,9 +140,9 @@ public class TypesSwitch {
 				Object result = caseBagType(bagType);
 				if (result == null) result = caseCollectionType(bagType);
 				if (result == null) result = caseEDataType(bagType);
-				if (result == null) result = caseTypedAstNode(bagType);
+				if (result == null) result = caseTypedASTNode(bagType);
 				if (result == null) result = caseEClassifier(bagType);
-				if (result == null) result = caseAstNode(bagType);
+				if (result == null) result = caseASTNode(bagType);
 				if (result == null) result = caseENamedElement(bagType);
 				if (result == null) result = caseEModelElement(bagType);
 				if (result == null) result = defaultCase(theEObject);
@@ -148,9 +152,9 @@ public class TypesSwitch {
 				CollectionType collectionType = (CollectionType)theEObject;
 				Object result = caseCollectionType(collectionType);
 				if (result == null) result = caseEDataType(collectionType);
-				if (result == null) result = caseTypedAstNode(collectionType);
+				if (result == null) result = caseTypedASTNode(collectionType);
 				if (result == null) result = caseEClassifier(collectionType);
-				if (result == null) result = caseAstNode(collectionType);
+				if (result == null) result = caseASTNode(collectionType);
 				if (result == null) result = caseENamedElement(collectionType);
 				if (result == null) result = caseEModelElement(collectionType);
 				if (result == null) result = defaultCase(theEObject);
@@ -161,9 +165,9 @@ public class TypesSwitch {
 				Object result = caseOrderedSetType(orderedSetType);
 				if (result == null) result = caseCollectionType(orderedSetType);
 				if (result == null) result = caseEDataType(orderedSetType);
-				if (result == null) result = caseTypedAstNode(orderedSetType);
+				if (result == null) result = caseTypedASTNode(orderedSetType);
 				if (result == null) result = caseEClassifier(orderedSetType);
-				if (result == null) result = caseAstNode(orderedSetType);
+				if (result == null) result = caseASTNode(orderedSetType);
 				if (result == null) result = caseENamedElement(orderedSetType);
 				if (result == null) result = caseEModelElement(orderedSetType);
 				if (result == null) result = defaultCase(theEObject);
@@ -234,9 +238,9 @@ public class TypesSwitch {
 				Object result = caseSequenceType(sequenceType);
 				if (result == null) result = caseCollectionType(sequenceType);
 				if (result == null) result = caseEDataType(sequenceType);
-				if (result == null) result = caseTypedAstNode(sequenceType);
+				if (result == null) result = caseTypedASTNode(sequenceType);
 				if (result == null) result = caseEClassifier(sequenceType);
-				if (result == null) result = caseAstNode(sequenceType);
+				if (result == null) result = caseASTNode(sequenceType);
 				if (result == null) result = caseENamedElement(sequenceType);
 				if (result == null) result = caseEModelElement(sequenceType);
 				if (result == null) result = defaultCase(theEObject);
@@ -247,9 +251,9 @@ public class TypesSwitch {
 				Object result = caseSetType(setType);
 				if (result == null) result = caseCollectionType(setType);
 				if (result == null) result = caseEDataType(setType);
-				if (result == null) result = caseTypedAstNode(setType);
+				if (result == null) result = caseTypedASTNode(setType);
 				if (result == null) result = caseEClassifier(setType);
-				if (result == null) result = caseAstNode(setType);
+				if (result == null) result = caseASTNode(setType);
 				if (result == null) result = caseENamedElement(setType);
 				if (result == null) result = caseEModelElement(setType);
 				if (result == null) result = defaultCase(theEObject);
@@ -289,14 +293,6 @@ public class TypesSwitch {
 				if (result == null) result = caseEClassifier(modelElementType);
 				if (result == null) result = caseENamedElement(modelElementType);
 				if (result == null) result = caseEModelElement(modelElementType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TypesPackage.OCL_STATE: {
-				OclState oclState = (OclState)theEObject;
-				Object result = caseOclState(oclState);
-				if (result == null) result = caseEcore_ENamedElement(oclState);
-				if (result == null) result = caseEcore_EModelElement(oclState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -436,21 +432,6 @@ public class TypesSwitch {
 	 * @generated
 	 */
 	public Object caseModelElementType(ModelElementType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Ocl State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Ocl State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseOclState(OclState object) {
 		return null;
 	}
 
@@ -605,32 +586,32 @@ public class TypesSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Ast Node</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>AST Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Ast Node</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>AST Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAstNode(AstNode object) {
+	public Object caseASTNode(ASTNode object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Typed Ast Node</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>Typed AST Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Typed Ast Node</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>Typed AST Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTypedAstNode(TypedAstNode object) {
+	public Object caseTypedASTNode(TypedASTNode object) {
 		return null;
 	}
 
@@ -646,36 +627,6 @@ public class TypesSwitch {
 	 * @generated
 	 */
 	public Object caseEClass(EClass object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseEcore_EModelElement(EModelElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseEcore_ENamedElement(ENamedElement object) {
 		return null;
 	}
 

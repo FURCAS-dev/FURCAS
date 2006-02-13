@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.3 2005/12/29 17:26:05 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.4 2006/02/13 16:12:12 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 
 /**
@@ -51,7 +51,7 @@ public class EcoreEnvironmentTest
 	 * Tests the default EcoreEnvironment which uses the global package registry.
 	 */
 	public void test_globalEPackageRegistry_lookup() {
-		IOclHelper helper = HelperUtil.createOclHelper(EcoreEnvironmentFactory.ECORE_INSTANCE);
+		IOCLHelper helper = HelperUtil.createOclHelper(EcoreEnvironmentFactory.ECORE_INSTANCE);
 		
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
@@ -80,7 +80,7 @@ public class EcoreEnvironmentTest
 	public void test_customEPackageRegistry_lookup() {
 		EPackage.Registry registry = new EPackageRegistryImpl();
 
-		IOclHelper helper = HelperUtil.createOclHelper(new EcoreEnvironmentFactory(registry));
+		IOCLHelper helper = HelperUtil.createOclHelper(new EcoreEnvironmentFactory(registry));
 		
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());

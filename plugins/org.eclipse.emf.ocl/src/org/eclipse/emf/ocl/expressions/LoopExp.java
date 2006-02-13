@@ -22,11 +22,18 @@ import org.eclipse.emf.common.util.EList;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface LoopExp  extends PropertyCallExp{
+public interface LoopExp  extends PropertyCallExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model containment="true"
 	 */
-    public OclExpression getBody();
+    public OCLExpression getBody();
 
 
 	/**
@@ -37,7 +44,7 @@ public interface LoopExp  extends PropertyCallExp{
 	 * @see #getBody()
 	 * @generated
 	 */
-	void setBody(OclExpression value);
+	void setBody(OCLExpression value);
 
     /**
      * @model type="VariableDeclaration" opposite="loopExpr" containment="true"

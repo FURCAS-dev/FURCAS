@@ -17,18 +17,12 @@
 
 package org.eclipse.emf.ocl.expressions.internal.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENamedElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 
@@ -46,6 +40,13 @@ import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
  * @generated
  */
 public class CollectionLiteralPartImpl extends ENamedElementImpl implements CollectionLiteralPart {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -71,7 +72,7 @@ public class CollectionLiteralPartImpl extends ENamedElementImpl implements Coll
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.eINSTANCE.getCollectionLiteralPart();
+		return ExpressionsPackage.Literals.COLLECTION_LITERAL_PART;
 	}
 
 	/**
@@ -81,8 +82,8 @@ public class CollectionLiteralPartImpl extends ENamedElementImpl implements Coll
 	 */
 	public EClassifier getType() {
 		if (type != null && type.eIsProxy()) {
-			EClassifier oldType = type;
-			type = (EClassifier)eResolveProxy((InternalEObject)type);
+			InternalEObject oldType = (InternalEObject)type;
+			type = (EClassifier)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.COLLECTION_LITERAL_PART__TYPE, oldType, type));
@@ -117,53 +118,13 @@ public class CollectionLiteralPartImpl extends ENamedElementImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.COLLECTION_LITERAL_PART__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.COLLECTION_LITERAL_PART__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__EANNOTATIONS:
-				return getEAnnotations();
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__NAME:
-				return getName();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_LITERAL_PART__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -171,20 +132,13 @@ public class CollectionLiteralPartImpl extends ENamedElementImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__NAME:
-				setName((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_LITERAL_PART__TYPE:
 				setType((EClassifier)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -192,19 +146,13 @@ public class CollectionLiteralPartImpl extends ENamedElementImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__NAME:
-				setName(NAME_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_LITERAL_PART__TYPE:
 				setType((EClassifier)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -212,16 +160,12 @@ public class CollectionLiteralPartImpl extends ENamedElementImpl implements Coll
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case ExpressionsPackage.COLLECTION_LITERAL_PART__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_LITERAL_PART__TYPE:
 				return type != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //CollectionLiteralPartImpl

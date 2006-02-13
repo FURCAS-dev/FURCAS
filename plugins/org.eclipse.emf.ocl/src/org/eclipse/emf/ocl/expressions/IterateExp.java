@@ -21,7 +21,14 @@ package org.eclipse.emf.ocl.expressions;
  * @author Edith Schonberg (edith)
  *
  */
-public interface IterateExp extends LoopExp{
+public interface IterateExp extends LoopExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model opposite="baseExp" containment="true"
 	 */

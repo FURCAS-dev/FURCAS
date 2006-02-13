@@ -22,7 +22,14 @@ import org.eclipse.emf.ecore.EReference;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface AssociationEndCallExp extends NavigationCallExp{
+public interface AssociationEndCallExp extends NavigationCallExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

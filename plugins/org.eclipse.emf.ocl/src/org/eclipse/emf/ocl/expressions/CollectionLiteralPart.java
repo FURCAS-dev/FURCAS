@@ -24,7 +24,14 @@ import org.eclipse.emf.ecore.ENamedElement;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface CollectionLiteralPart extends ENamedElement{
+public interface CollectionLiteralPart extends ENamedElement {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

@@ -21,6 +21,6 @@ package org.eclipse.emf.ocl.expressions;
  * @author Edith Schonberg (edith)
  */
 public interface UnspecifiedValueExp
-	extends OclExpression {
+	extends OCLExpression {
 	//	empty impl.
 }

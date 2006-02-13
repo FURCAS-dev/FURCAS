@@ -37,17 +37,17 @@ import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
 import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.uml.AssociationClass;
 import org.eclipse.emf.ocl.uml.AssociationClassEnd;
 import org.eclipse.emf.ocl.uml.AssociationEnd;
 import org.eclipse.emf.ocl.uml.Qualifier;
-import org.eclipse.emf.ocl.uml.UmlFactory;
+import org.eclipse.emf.ocl.uml.UMLFactory;
 
 
 /**
@@ -212,7 +212,7 @@ public class AssociationTest
 	 */
 	public void test_associationClass_reflexive_RATLC00538077() {
 		// set up a reflexive association class for this test case
-		AssociationClass ac = UmlFactory.eINSTANCE.createAssociationClass();
+		AssociationClass ac = UMLFactory.eINSTANCE.createAssociationClass();
 		ac.setName("AC"); //$NON-NLS-1$
 		fruitPackage.getEClassifiers().add(ac);
 		
@@ -221,13 +221,13 @@ public class AssociationTest
 		x.setEType(EcorePackage.eINSTANCE.getEInt());
 		ac.getEStructuralFeatures().add(x);
 		
-		AssociationClassEnd parent = UmlFactory.eINSTANCE.createAssociationClassEnd();
+		AssociationClassEnd parent = UMLFactory.eINSTANCE.createAssociationClassEnd();
 		parent.setName("parent"); //$NON-NLS-1$
 		parent.setEType(tree);
 		parent.setAssociationClass(ac);
 		tree.getEStructuralFeatures().add(parent);
 		
-		AssociationClassEnd children = UmlFactory.eINSTANCE.createAssociationClassEnd();
+		AssociationClassEnd children = UMLFactory.eINSTANCE.createAssociationClassEnd();
 		children.setName("children"); //$NON-NLS-1$
 		children.setEType(tree);
 		children.setUpperBound(-1);
@@ -310,7 +310,7 @@ public class AssociationTest
 	 * Tests that content-assist suggests association class navigation.
 	 */
 	public void test_associationClass_contextAssist_RATLC00538077() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContext(tree);
 		
@@ -335,7 +335,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassEndCall() {
 		final String exprString =
 			"self.apples->notEmpty()"; //$NON-NLS-1$
-		OclExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createInvariant(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -355,7 +355,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassCall() {
 		final String exprString =
 			"self.stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OclExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createInvariant(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -381,7 +381,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassCall_implicitCollect() {
 		final String exprString =
 			"Tree.allInstances().stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OclExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createInvariant(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -406,7 +406,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassQualified() {
 		final String exprString =
 			"self.stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OclExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createInvariant(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -422,7 +422,7 @@ public class AssociationTest
 		List qualifiers = accExp.getQualifiers();
 		assertEquals(1, qualifiers.size());
 		
-		OclExpression qualifier = (OclExpression) qualifiers.get(0);
+		OCLExpression qualifier = (OCLExpression) qualifiers.get(0);
 		
 		LocationInformationTest.assertLocation(qualifier,
 			exprString.indexOf("apples"), //$NON-NLS-1$
@@ -437,7 +437,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassQualified_implicitCollect() {
 		final String exprString =
 			"Tree.allInstances().stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OclExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createInvariant(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -453,7 +453,7 @@ public class AssociationTest
 		List qualifiers = accExp.getQualifiers();
 		assertEquals(1, qualifiers.size());
 		
-		OclExpression qualifier = (OclExpression) qualifiers.get(0);
+		OCLExpression qualifier = (OCLExpression) qualifiers.get(0);
 		
 		LocationInformationTest.assertLocation(qualifier,
 			exprString.indexOf("apples"), //$NON-NLS-1$
@@ -491,7 +491,7 @@ public class AssociationTest
 
 		// parse & evaluate expression
 		try {
-			OclExpression expr = parse(
+			OCLExpression expr = parse(
 					"package mypkg context Employee " + //$NON-NLS-1$
 					"inv: self.manager.manager" + //$NON-NLS-1$
 					" endpackage"); //$NON-NLS-1$
@@ -516,7 +516,7 @@ public class AssociationTest
 		fruitPackage.getEClassifiers().remove(stem);
 		
 		// "stem" is more appropriately modeled as an association class
-		stem = UmlFactory.eINSTANCE.createAssociationClass();
+		stem = UMLFactory.eINSTANCE.createAssociationClass();
 		stem.setName("Stem"); //$NON-NLS-1$
 		
 		tree = EcoreFactory.eINSTANCE.createEClass();
@@ -528,13 +528,13 @@ public class AssociationTest
 		apple.getEStructuralFeatures().remove(apple_stem);
 		apple_stem = null;
 		
-		apple_tree = UmlFactory.eINSTANCE.createAssociationClassEnd();
+		apple_tree = UMLFactory.eINSTANCE.createAssociationClassEnd();
 		apple_tree.setName("tree"); //$NON-NLS-1$
 		apple_tree.setEType(tree);
 		apple_tree.setAssociationClass(stem);
 		apple.getEStructuralFeatures().add(apple_tree);
 		
-		tree_apples = UmlFactory.eINSTANCE.createAssociationClassEnd();
+		tree_apples = UMLFactory.eINSTANCE.createAssociationClassEnd();
 		tree_apples.setName("apples"); //$NON-NLS-1$
 		tree_apples.setEType(apple);
 		tree_apples.setUpperBound(-1);
@@ -563,17 +563,17 @@ public class AssociationTest
 		forest.setName("Forest"); //$NON-NLS-1$
 		fruitPackage.getEClassifiers().add(forest);
 		
-		forest_trees = UmlFactory.eINSTANCE.createAssociationEnd();
+		forest_trees = UMLFactory.eINSTANCE.createAssociationEnd();
 		forest_trees.setName("trees"); //$NON-NLS-1$
 		forest_trees.setEType(tree);
 		forest_trees.setUpperBound(-1);
 		forest.getEStructuralFeatures().add(forest_trees);
 		
-		Qualifier q = UmlFactory.eINSTANCE.createQualifier();
+		Qualifier q = UMLFactory.eINSTANCE.createQualifier();
 		q.setName("q1"); //$NON-NLS-1$
 		q.setEType(EcorePackage.eINSTANCE.getEString());
 		forest_trees.getQualifiers().add(q);
-		q = UmlFactory.eINSTANCE.createQualifier();
+		q = UMLFactory.eINSTANCE.createQualifier();
 		q.setName("q2"); //$NON-NLS-1$
 		q.setEType(EcorePackage.eINSTANCE.getEInt());
 		forest_trees.getQualifiers().add(q);

@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.impl.EcorePackageImpl;
-
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
@@ -35,7 +33,6 @@ import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.MessageType;
 import org.eclipse.emf.ocl.types.ModelElementType;
-import org.eclipse.emf.ocl.types.OclState;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.PrimitiveBoolean;
 import org.eclipse.emf.ocl.types.PrimitiveInteger;
@@ -48,8 +45,8 @@ import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.VoidType;
-import org.eclipse.emf.ocl.uml.UmlPackage;
-import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.uml.internal.impl.UMLPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package </b>. <!--
@@ -57,6 +54,13 @@ import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
  * @generated
  */
 public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -147,13 +151,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 */
     private EClass modelElementTypeEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass oclStateEClass = null;
-
     /**
      * Creates an instance of the model <b>Package </b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry}by the
@@ -209,27 +206,27 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
-		UmlPackageImpl theUmlPackage = (UmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI) instanceof UmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI) : UmlPackage.eINSTANCE);
+		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTypesPackage.createPackageContents();
 		theQueryPackage.createPackageContents();
 		theUtilitiesPackage.createPackageContents();
 		theExpressionsPackage.createPackageContents();
-		theUmlPackage.createPackageContents();
+		theUMLPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTypesPackage.initializePackageContents();
 		theQueryPackage.initializePackageContents();
 		theUtilitiesPackage.initializePackageContents();
 		theExpressionsPackage.initializePackageContents();
-		theUmlPackage.initializePackageContents();
+		theUMLPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTypesPackage.freeze();
@@ -382,15 +379,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOclState() {
-		return oclStateEClass;
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -448,8 +436,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
 
 		modelElementTypeEClass = createEClass(MODEL_ELEMENT_TYPE);
-
-		oclStateEClass = createEClass(OCL_STATE);
 	}
 
 	/**
@@ -475,15 +461,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackageImpl theEcorePackage = (EcorePackageImpl)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
-		UmlPackageImpl theUmlPackage = (UmlPackageImpl)EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Add supertypes to classes
 		anyTypeEClass.getESuperTypes().add(theEcorePackage.getEDataType());
 		bagTypeEClass.getESuperTypes().add(this.getCollectionType());
 		collectionTypeEClass.getESuperTypes().add(theEcorePackage.getEDataType());
-		collectionTypeEClass.getESuperTypes().add(theUtilitiesPackage.getTypedAstNode());
+		collectionTypeEClass.getESuperTypes().add(theUtilitiesPackage.getTypedASTNode());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
 		primitiveBooleanEClass.getESuperTypes().add(this.getPrimitiveType());
 		primitiveIntegerEClass.getESuperTypes().add(this.getPrimitiveReal());
@@ -496,7 +482,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		voidTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
 		messageTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
 		modelElementTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
-		oclStateEClass.getESuperTypes().add(ecorePackage.getENamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -528,11 +513,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
 		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredOperation(), theEcorePackage.getEOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getMessageType_ReferredSignal(), theUmlPackage.getSignal(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMessageType_ReferredSignal(), theUMLPackage.getSignal(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(modelElementTypeEClass, ModelElementType.class, "ModelElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(oclStateEClass, OclState.class, "OclState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

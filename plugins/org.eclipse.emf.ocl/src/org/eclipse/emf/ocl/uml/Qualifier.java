@@ -32,11 +32,18 @@ import org.eclipse.emf.ecore.ETypedElement;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.ocl.uml.UmlPackage#getQualifier()
- *
+ * @see org.eclipse.emf.ocl.uml.UMLPackage#getQualifier()
+ * @model
  * @generated
  */
 public interface Qualifier extends EObject, ETypedElement {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Returns the value of the '<em><b>Association End</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.ocl.uml.AssociationEnd#getQualifiers <em>Qualifiers</em>}'.
@@ -48,7 +55,7 @@ public interface Qualifier extends EObject, ETypedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Association End</em>' container reference.
 	 * @see #setAssociationEnd(AssociationEnd)
-	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getQualifier_AssociationEnd()
+	 * @see org.eclipse.emf.ocl.uml.UMLPackage#getQualifier_AssociationEnd()
 	 * @see org.eclipse.emf.ocl.uml.AssociationEnd#getQualifiers
 	 * @model opposite="qualifiers" required="true"
 	 * @generated

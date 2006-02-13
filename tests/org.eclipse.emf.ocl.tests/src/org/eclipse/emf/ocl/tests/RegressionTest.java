@@ -37,9 +37,9 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
@@ -242,7 +242,7 @@ public class RegressionTest
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
-			OclExpression constraint = parseConstraint(
+			OCLExpression constraint = parseConstraint(
 				"package mypkg context A " + //$NON-NLS-1$
 				"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
@@ -291,7 +291,7 @@ public class RegressionTest
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
-			OclExpression constraint = parseConstraint(
+			OCLExpression constraint = parseConstraint(
 				"package mypkg context A " + //$NON-NLS-1$
 				"inv: self.oclIsKindOf(B) and self.oclAsType(B).b " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
@@ -347,7 +347,7 @@ public class RegressionTest
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
-			OclExpression constraint = parseConstraint(
+			OCLExpression constraint = parseConstraint(
 				"package mypkg context A " + //$NON-NLS-1$
 				"inv: (not self.oclIsKindOf(B)) or self.oclAsType(B).b " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
@@ -403,7 +403,7 @@ public class RegressionTest
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
-			OclExpression constraint = parseConstraint(
+			OCLExpression constraint = parseConstraint(
 				"package mypkg context A " + //$NON-NLS-1$
 				"inv: self.oclIsKindOf(B) implies self.oclAsType(B).b " + //$NON-NLS-1$
 				"endpackage "); //$NON-NLS-1$
@@ -434,7 +434,7 @@ public class RegressionTest
 	 * invariant constraints, but that validation reports a suitable error.
 	 */
 	public void test_oclIsNew_invariant_RATLC00529981() {
-		OclExpression constraint = parseConstraintUnvalidated(
+		OCLExpression constraint = parseConstraintUnvalidated(
 			"package ocltest context Fruit " + //$NON-NLS-1$
 			"inv: color.oclIsNew() " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
@@ -457,7 +457,7 @@ public class RegressionTest
 	 * precondition constraints, but that validation reports a suitable error.
 	 */
 	public void test_oclIsNew_precondition_RATLC00529981() {
-		OclExpression constraint = parseConstraintUnvalidated(
+		OCLExpression constraint = parseConstraintUnvalidated(
 			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
 			"pre: c.oclIsNew() implies c <> Color::black " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
@@ -491,7 +491,7 @@ public class RegressionTest
 	 * on OCL string values.
 	 */
 	public void test_toLower_RATLC00529981() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context Fruit " + //$NON-NLS-1$
 			"inv: 'AlPHaBet'.toLower() " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
@@ -506,7 +506,7 @@ public class RegressionTest
 	 * on OCL string values.
 	 */
 	public void test_toUpper_RATLC00529981() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context Fruit " + //$NON-NLS-1$
 			"inv: 'AlPHaBet'.toUpper() " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
@@ -521,7 +521,7 @@ public class RegressionTest
 	 * are ordered are rendered as OCL sets.
 	 */
 	public void test_referenceMultiplicity_orderedSet_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.orderedSet" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -537,7 +537,7 @@ public class RegressionTest
 	 * are unordered are rendered as OCL sets.
 	 */
 	public void test_referenceMultiplicity_set_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.set" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -554,7 +554,7 @@ public class RegressionTest
 	 * are ordered are rendered as OCL sequences.
 	 */
 	public void test_referenceMultiplicity_sequence_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.sequence" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -570,7 +570,7 @@ public class RegressionTest
 	 * are unordered are rendered as OCL bags.
 	 */
 	public void test_referenceMultiplicity_bag_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.bag" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -586,7 +586,7 @@ public class RegressionTest
 	 * are ordered are rendered as OCL sets.
 	 */
 	public void test_parameterMultiplicity_orderedSet_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processOrderedSet(self.orderedSet)" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -602,7 +602,7 @@ public class RegressionTest
 	 * are unordered are rendered as OCL sets.
 	 */
 	public void test_parameterMultiplicity_set_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processSet(self.set)" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -619,7 +619,7 @@ public class RegressionTest
 	 * are ordered are rendered as OCL sequences.
 	 */
 	public void test_parameterMultiplicity_sequence_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processSequence(self.sequence)" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -635,7 +635,7 @@ public class RegressionTest
 	 * are unordered are rendered as OCL bags.
 	 */
 	public void test_parameterMultiplicity_bag_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processBag(self.bag)" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -651,7 +651,7 @@ public class RegressionTest
 	 * are ordered are rendered as OCL sets.
 	 */
 	public void test_operationMultiplicity_orderedSet_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processOrderedSet(self.processOrderedSet(self.orderedSet))" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -667,7 +667,7 @@ public class RegressionTest
 	 * are unordered are rendered as OCL sets.
 	 */
 	public void test_operationMultiplicity_set_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processSet(self.processSet(self.set))" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -684,7 +684,7 @@ public class RegressionTest
 	 * are ordered are rendered as OCL sequences.
 	 */
 	public void test_operationMultiplicity_sequence_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processSequence(self.processSequence(self.sequence))" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -700,7 +700,7 @@ public class RegressionTest
 	 * are unordered are rendered as OCL bags.
 	 */
 	public void test_operationMultiplicity_bag_RATLC00538035() {
-		OclExpression expr = parse(
+		OCLExpression expr = parse(
 			"package ocltest context FruitUtil " + //$NON-NLS-1$
 			"inv: self.processBag(self.processBag(self.bag))" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
@@ -899,7 +899,7 @@ public class RegressionTest
 	 * the OCL helper.
 	 */
 	public void test_closingParentheses_helper() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContext(fruit);
 		
@@ -920,7 +920,7 @@ public class RegressionTest
 	 * the OCL helper with a precondition instead of an invariant.
 	 */
 	public void test_closingParentheses_helper_precondition() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
@@ -1058,7 +1058,7 @@ public class RegressionTest
 		
 		// parse expression
 		try {
-			OclExpression expr = parse(
+			OCLExpression expr = parse(
 					"package mypkg context Library " + //$NON-NLS-1$
 					"inv: branches->collect(writers->collect(w : Writer | w))->flatten()" + //$NON-NLS-1$
 					"endpackage"); //$NON-NLS-1$

@@ -17,20 +17,14 @@
 
 package org.eclipse.emf.ocl.expressions.internal.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.ocl.expressions.CollectionRange;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +42,13 @@ import org.eclipse.emf.ocl.expressions.OclExpression;
  */
 public class CollectionRangeImpl extends CollectionLiteralPartImpl implements CollectionRange {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
 	 * The cached value of the '{@link #getLast() <em>Last</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,7 +56,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpression last = null;
+	protected OCLExpression last = null;
 
 	/**
 	 * The cached value of the '{@link #getFirst() <em>First</em>}' containment reference.
@@ -65,7 +66,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpression first = null;
+	protected OCLExpression first = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +83,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.eINSTANCE.getCollectionRange();
+		return ExpressionsPackage.Literals.COLLECTION_RANGE;
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression getLast() {
+	public OCLExpression getLast() {
 		return last;
 	}
 
@@ -99,8 +100,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLast(OclExpression newLast, NotificationChain msgs) {
-		OclExpression oldLast = last;
+	public NotificationChain basicSetLast(OCLExpression newLast, NotificationChain msgs) {
+		OCLExpression oldLast = last;
 		last = newLast;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__LAST, oldLast, newLast);
@@ -114,7 +115,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLast(OclExpression newLast) {
+	public void setLast(OCLExpression newLast) {
 		if (newLast != last) {
 			NotificationChain msgs = null;
 			if (last != null)
@@ -133,18 +134,14 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.COLLECTION_RANGE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+				return basicSetFirst(null, msgs);
+			case ExpressionsPackage.COLLECTION_RANGE__LAST:
+				return basicSetLast(null, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -152,20 +149,14 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.COLLECTION_RANGE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-					return basicSetFirst(null, msgs);
-				case ExpressionsPackage.COLLECTION_RANGE__LAST:
-					return basicSetLast(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+				return getFirst();
+			case ExpressionsPackage.COLLECTION_RANGE__LAST:
+				return getLast();
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -173,7 +164,56 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression getFirst() {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+				setFirst((OCLExpression)newValue);
+				return;
+			case ExpressionsPackage.COLLECTION_RANGE__LAST:
+				setLast((OCLExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+				setFirst((OCLExpression)null);
+				return;
+			case ExpressionsPackage.COLLECTION_RANGE__LAST:
+				setLast((OCLExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+				return first != null;
+			case ExpressionsPackage.COLLECTION_RANGE__LAST:
+				return last != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLExpression getFirst() {
 		return first;
 	}
 
@@ -182,8 +222,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFirst(OclExpression newFirst, NotificationChain msgs) {
-		OclExpression oldFirst = first;
+	public NotificationChain basicSetFirst(OCLExpression newFirst, NotificationChain msgs) {
+		OCLExpression oldFirst = first;
 		first = newFirst;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__FIRST, oldFirst, newFirst);
@@ -197,7 +237,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFirst(OclExpression newFirst) {
+	public void setFirst(OCLExpression newFirst) {
 		if (newFirst != first) {
 			NotificationChain msgs = null;
 			if (first != null)
@@ -209,102 +249,6 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_RANGE__EANNOTATIONS:
-				return getEAnnotations();
-			case ExpressionsPackage.COLLECTION_RANGE__NAME:
-				return getName();
-			case ExpressionsPackage.COLLECTION_RANGE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				return getFirst();
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				return getLast();
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_RANGE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__NAME:
-				setName((String)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__TYPE:
-				setType((EClassifier)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				setFirst((OclExpression)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				setLast((OclExpression)newValue);
-				return;
-		}
-		eDynamicSet(eFeature, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_RANGE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__TYPE:
-				setType((EClassifier)null);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				setFirst((OclExpression)null);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				setLast((OclExpression)null);
-				return;
-		}
-		eDynamicUnset(eFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_RANGE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case ExpressionsPackage.COLLECTION_RANGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpressionsPackage.COLLECTION_RANGE__TYPE:
-				return type != null;
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				return first != null;
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				return last != null;
-		}
-		return eDynamicIsSet(eFeature);
 	}
 
 } //CollectionRangeImpl

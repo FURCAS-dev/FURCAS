@@ -22,7 +22,14 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface SendAction extends EObject{
+public interface SendAction extends EObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

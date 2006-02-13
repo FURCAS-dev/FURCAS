@@ -25,6 +25,13 @@ package org.eclipse.emf.ocl.expressions;
 public interface ModelPropertyCallExp
 	extends PropertyCallExp{
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
+	/**
 	 * Returns the value of the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -35,7 +42,7 @@ public interface ModelPropertyCallExp
 	 * @return the value of the '<em>Marked Pre</em>' attribute.
 	 * @see #setMarkedPre(boolean)
 	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getModelPropertyCallExp_MarkedPre()
-	 *
+	 * @model
 	 * @generated
 	 */
 	boolean isMarkedPre();

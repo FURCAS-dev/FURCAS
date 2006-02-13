@@ -18,7 +18,6 @@
 package org.eclipse.emf.ocl.uml;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,11 +33,18 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.ocl.uml.UmlPackage#getAssociationClass()
- *
+ * @see org.eclipse.emf.ocl.uml.UMLPackage#getAssociationClass()
+ * @model
  * @generated
  */
-public interface AssociationClass extends EObject, EClass{
+public interface AssociationClass extends EObject, EClass {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Returns the value of the '<em><b>Member Ends</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EReference}.
@@ -49,7 +55,7 @@ public interface AssociationClass extends EObject, EClass{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Member Ends</em>' reference list.
-	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getAssociationClass_MemberEnds()
+	 * @see org.eclipse.emf.ocl.uml.UMLPackage#getAssociationClass_MemberEnds()
 	 * @model type="org.eclipse.emf.ecore.EReference" lower="2"
 	 * @generated
 	 */

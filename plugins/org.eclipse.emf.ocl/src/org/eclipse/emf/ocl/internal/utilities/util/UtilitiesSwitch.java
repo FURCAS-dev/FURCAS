@@ -21,11 +21,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ocl.internal.utilities.*;
-
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.CallingASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 
@@ -43,6 +41,13 @@ import org.eclipse.emf.ocl.internal.utilities.Visitable;
  * @generated
  */
 public class UtilitiesSwitch {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -110,22 +115,22 @@ public class UtilitiesSwitch {
 				return result;
 			}
 			case UtilitiesPackage.AST_NODE: {
-				AstNode astNode = (AstNode)theEObject;
-				Object result = caseAstNode(astNode);
+				ASTNode astNode = (ASTNode)theEObject;
+				Object result = caseASTNode(astNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case UtilitiesPackage.TYPED_AST_NODE: {
-				TypedAstNode typedAstNode = (TypedAstNode)theEObject;
-				Object result = caseTypedAstNode(typedAstNode);
-				if (result == null) result = caseAstNode(typedAstNode);
+				TypedASTNode typedASTNode = (TypedASTNode)theEObject;
+				Object result = caseTypedASTNode(typedASTNode);
+				if (result == null) result = caseASTNode(typedASTNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case UtilitiesPackage.CALLING_AST_NODE: {
-				CallingAstNode callingAstNode = (CallingAstNode)theEObject;
-				Object result = caseCallingAstNode(callingAstNode);
-				if (result == null) result = caseAstNode(callingAstNode);
+				CallingASTNode callingASTNode = (CallingASTNode)theEObject;
+				Object result = caseCallingASTNode(callingASTNode);
+				if (result == null) result = caseASTNode(callingASTNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -149,47 +154,47 @@ public class UtilitiesSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Ast Node</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>AST Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Ast Node</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>AST Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAstNode(AstNode object) {
+	public Object caseASTNode(ASTNode object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Typed Ast Node</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>Typed AST Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Typed Ast Node</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>Typed AST Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTypedAstNode(TypedAstNode object) {
+	public Object caseTypedASTNode(TypedASTNode object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Calling Ast Node</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>Calling AST Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Calling Ast Node</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>Calling AST Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCallingAstNode(CallingAstNode object) {
+	public Object caseCallingASTNode(CallingASTNode object) {
 		return null;
 	}
 

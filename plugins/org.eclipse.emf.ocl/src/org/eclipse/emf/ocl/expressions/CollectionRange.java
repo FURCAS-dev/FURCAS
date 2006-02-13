@@ -20,11 +20,18 @@ package org.eclipse.emf.ocl.expressions;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface CollectionRange extends CollectionLiteralPart{
+public interface CollectionRange extends CollectionLiteralPart {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */
-	public OclExpression getFirst();
+	public OCLExpression getFirst();
 	
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.CollectionRange#getFirst <em>First</em>}' containment reference.
@@ -34,12 +41,12 @@ public interface CollectionRange extends CollectionLiteralPart{
 	 * @see #getFirst()
 	 * @generated
 	 */
-	void setFirst(OclExpression value);
+	void setFirst(OCLExpression value);
 
 	/**
 	 *
 	 */
-	public OclExpression getLast();
+	public OCLExpression getLast();
 
 
 	/**
@@ -50,6 +57,6 @@ public interface CollectionRange extends CollectionLiteralPart{
 	 * @see #getLast()
 	 * @generated
 	 */
-	void setLast(OclExpression value);
+	void setLast(OCLExpression value);
 
 }

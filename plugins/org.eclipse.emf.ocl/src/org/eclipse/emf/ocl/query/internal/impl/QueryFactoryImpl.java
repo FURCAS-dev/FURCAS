@@ -23,9 +23,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ocl.expressions.OclExpression;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.query.QueryPackage;
@@ -37,6 +39,32 @@ import org.eclipse.emf.ocl.query.QueryPackage;
  * @generated
  */
 public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static QueryFactory init() {
+		try {
+			QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/OCL2/7.0.0/ocl/query"); //$NON-NLS-1$ 
+			if (theQueryFactory != null) {
+				return theQueryFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new QueryFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -108,14 +136,14 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
 	/**
 	 * @generated NOT
 	 */
-	public Query createQuery(OclExpression expr) {
+	public Query createQuery(OCLExpression expr) {
 		try {
 			return new QueryImpl(expr);
 		} catch (Exception ex) {
-			OclEnginePlugin.catching(getClass(), "createQuery", ex); //$NON-NLS-1$
+			OCLPlugin.catching(getClass(), "createQuery", ex); //$NON-NLS-1$
 			IllegalArgumentException rtex = new IllegalArgumentException(ex
 				.toString());
-			OclEnginePlugin.throwing(getClass(), "createQuery", //$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "createQuery", //$NON-NLS-1$
 				rtex);
 			throw rtex;
 		}

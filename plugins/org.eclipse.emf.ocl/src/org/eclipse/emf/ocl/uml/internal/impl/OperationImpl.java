@@ -17,24 +17,12 @@
 
 package org.eclipse.emf.ocl.uml.internal.impl;
 
-import org.eclipse.emf.ocl.uml.Operation;
-import org.eclipse.emf.ocl.uml.UmlPackage;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EOperationImpl;
-
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ocl.uml.Operation;
+import org.eclipse.emf.ocl.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,6 +38,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class OperationImpl extends EOperationImpl implements Operation {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The default value of the '{@link #isQuery() <em>Query</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,7 +81,7 @@ public class OperationImpl extends EOperationImpl implements Operation {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return UmlPackage.eINSTANCE.getOperation();
+		return UMLPackage.Literals.OPERATION;
 	}
 
 	/**
@@ -107,7 +102,7 @@ public class OperationImpl extends EOperationImpl implements Operation {
 		boolean oldQuery = (eFlags & QUERY_EFLAG) != 0;
 		if (newQuery) eFlags |= QUERY_EFLAG; else eFlags &= ~QUERY_EFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UmlPackage.OPERATION__QUERY, oldQuery, newQuery));
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.OPERATION__QUERY, oldQuery, newQuery));
 	}
 
 	/**
@@ -115,100 +110,12 @@ public class OperationImpl extends EOperationImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case UmlPackage.OPERATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case UmlPackage.OPERATION__ECONTAINING_CLASS:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, UmlPackage.OPERATION__ECONTAINING_CLASS, msgs);
-				case UmlPackage.OPERATION__EPARAMETERS:
-					return ((InternalEList)getEParameters()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case UmlPackage.OPERATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case UmlPackage.OPERATION__ECONTAINING_CLASS:
-					return eBasicSetContainer(null, UmlPackage.OPERATION__ECONTAINING_CLASS, msgs);
-				case UmlPackage.OPERATION__EPARAMETERS:
-					return ((InternalEList)getEParameters()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case UmlPackage.OPERATION__ECONTAINING_CLASS:
-					return eContainer.eInverseRemove(this, EcorePackage.ECLASS__EOPERATIONS, EClass.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.OPERATION__EANNOTATIONS:
-				return getEAnnotations();
-			case UmlPackage.OPERATION__NAME:
-				return getName();
-			case UmlPackage.OPERATION__ORDERED:
-				return isOrdered() ? Boolean.TRUE : Boolean.FALSE;
-			case UmlPackage.OPERATION__UNIQUE:
-				return isUnique() ? Boolean.TRUE : Boolean.FALSE;
-			case UmlPackage.OPERATION__LOWER_BOUND:
-				return new Integer(getLowerBound());
-			case UmlPackage.OPERATION__UPPER_BOUND:
-				return new Integer(getUpperBound());
-			case UmlPackage.OPERATION__MANY:
-				return isMany() ? Boolean.TRUE : Boolean.FALSE;
-			case UmlPackage.OPERATION__REQUIRED:
-				return isRequired() ? Boolean.TRUE : Boolean.FALSE;
-			case UmlPackage.OPERATION__ETYPE:
-				if (resolve) return getEType();
-				return basicGetEType();
-			case UmlPackage.OPERATION__ECONTAINING_CLASS:
-				return getEContainingClass();
-			case UmlPackage.OPERATION__EPARAMETERS:
-				return getEParameters();
-			case UmlPackage.OPERATION__EEXCEPTIONS:
-				return getEExceptions();
-			case UmlPackage.OPERATION__QUERY:
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case UMLPackage.OPERATION__QUERY:
 				return isQuery() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -216,43 +123,13 @@ public class OperationImpl extends EOperationImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.OPERATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case UmlPackage.OPERATION__NAME:
-				setName((String)newValue);
-				return;
-			case UmlPackage.OPERATION__ORDERED:
-				setOrdered(((Boolean)newValue).booleanValue());
-				return;
-			case UmlPackage.OPERATION__UNIQUE:
-				setUnique(((Boolean)newValue).booleanValue());
-				return;
-			case UmlPackage.OPERATION__LOWER_BOUND:
-				setLowerBound(((Integer)newValue).intValue());
-				return;
-			case UmlPackage.OPERATION__UPPER_BOUND:
-				setUpperBound(((Integer)newValue).intValue());
-				return;
-			case UmlPackage.OPERATION__ETYPE:
-				setEType((EClassifier)newValue);
-				return;
-			case UmlPackage.OPERATION__EPARAMETERS:
-				getEParameters().clear();
-				getEParameters().addAll((Collection)newValue);
-				return;
-			case UmlPackage.OPERATION__EEXCEPTIONS:
-				getEExceptions().clear();
-				getEExceptions().addAll((Collection)newValue);
-				return;
-			case UmlPackage.OPERATION__QUERY:
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case UMLPackage.OPERATION__QUERY:
 				setQuery(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -260,40 +137,13 @@ public class OperationImpl extends EOperationImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.OPERATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case UmlPackage.OPERATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case UmlPackage.OPERATION__ORDERED:
-				setOrdered(ORDERED_EDEFAULT);
-				return;
-			case UmlPackage.OPERATION__UNIQUE:
-				setUnique(UNIQUE_EDEFAULT);
-				return;
-			case UmlPackage.OPERATION__LOWER_BOUND:
-				setLowerBound(LOWER_BOUND_EDEFAULT);
-				return;
-			case UmlPackage.OPERATION__UPPER_BOUND:
-				setUpperBound(UPPER_BOUND_EDEFAULT);
-				return;
-			case UmlPackage.OPERATION__ETYPE:
-				setEType((EClassifier)null);
-				return;
-			case UmlPackage.OPERATION__EPARAMETERS:
-				getEParameters().clear();
-				return;
-			case UmlPackage.OPERATION__EEXCEPTIONS:
-				getEExceptions().clear();
-				return;
-			case UmlPackage.OPERATION__QUERY:
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case UMLPackage.OPERATION__QUERY:
 				setQuery(QUERY_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -301,36 +151,12 @@ public class OperationImpl extends EOperationImpl implements Operation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.OPERATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case UmlPackage.OPERATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case UmlPackage.OPERATION__ORDERED:
-				return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
-			case UmlPackage.OPERATION__UNIQUE:
-				return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
-			case UmlPackage.OPERATION__LOWER_BOUND:
-				return lowerBound != LOWER_BOUND_EDEFAULT;
-			case UmlPackage.OPERATION__UPPER_BOUND:
-				return upperBound != UPPER_BOUND_EDEFAULT;
-			case UmlPackage.OPERATION__MANY:
-				return isMany() != MANY_EDEFAULT;
-			case UmlPackage.OPERATION__REQUIRED:
-				return isRequired() != REQUIRED_EDEFAULT;
-			case UmlPackage.OPERATION__ETYPE:
-				return eType != null;
-			case UmlPackage.OPERATION__ECONTAINING_CLASS:
-				return getEContainingClass() != null;
-			case UmlPackage.OPERATION__EPARAMETERS:
-				return eParameters != null && !eParameters.isEmpty();
-			case UmlPackage.OPERATION__EEXCEPTIONS:
-				return eExceptions != null && !eExceptions.isEmpty();
-			case UmlPackage.OPERATION__QUERY:
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case UMLPackage.OPERATION__QUERY:
 				return ((eFlags & QUERY_EFLAG) != 0) != QUERY_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -38,7 +38,14 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface QueryPackage extends EPackage{
+public interface QueryPackage extends EPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -53,7 +60,7 @@ public interface QueryPackage extends EPackage{
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.ibm.com/OCL2/7.0.0/ocl/query"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/OCL2/7.0.0/ocl/query"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -100,7 +107,7 @@ public interface QueryPackage extends EPackage{
 	int QUERY__EXPRESSION = 1;
 
 	/**
-	 * The number of structural features of the the '<em>Query</em>' class.
+	 * The number of structural features of the '<em>Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -170,5 +177,56 @@ public interface QueryPackage extends EPackage{
 	 * @generated
 	 */
 	QueryFactory getQueryFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.query.internal.impl.QueryImpl <em>Query</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.query.internal.impl.QueryImpl
+		 * @see org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl#getQuery()
+		 * @generated
+		 */
+		EClass QUERY = eINSTANCE.getQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Extent Map</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY__EXTENT_MAP = eINSTANCE.getQuery_ExtentMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY__EXPRESSION = eINSTANCE.getQuery_Expression();
+
+		/**
+		 * The meta object literal for the '<em>List</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.List
+		 * @see org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl#getList()
+		 * @generated
+		 */
+		EDataType LIST = eINSTANCE.getList();
+
+	}
 
 } //QueryPackage

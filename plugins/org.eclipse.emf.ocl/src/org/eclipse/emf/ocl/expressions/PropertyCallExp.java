@@ -17,7 +17,7 @@
 
 package org.eclipse.emf.ocl.expressions;
 
-import org.eclipse.emf.ocl.internal.utilities.CallingAstNode;
+import org.eclipse.emf.ocl.internal.utilities.CallingASTNode;
 
 /**
  * @author Edith Schonberg (edith)
@@ -25,11 +25,18 @@ import org.eclipse.emf.ocl.internal.utilities.CallingAstNode;
 /**
  * @model abstract="true"
  */
-public interface PropertyCallExp extends OclExpression, CallingAstNode{
+public interface PropertyCallExp extends OCLExpression, CallingASTNode {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model opposite="appliedProperty" lowerBound=0 upperBound=1 
 	 */
-	public OclExpression getSource();
+	public OCLExpression getSource();
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.PropertyCallExp#getSource <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -38,6 +45,6 @@ public interface PropertyCallExp extends OclExpression, CallingAstNode{
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(OclExpression value);
+	void setSource(OCLExpression value);
 
 }

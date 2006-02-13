@@ -23,8 +23,8 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 import org.eclipse.emf.ocl.expressions.CollectionKind;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -35,7 +35,7 @@ import org.eclipse.osgi.util.NLS;
 public class CollectionFactory {
 
 	private static final String OCLCollectionKindNotImpl_ERROR_ =
-		OclMessages.OCLCollectionKindNotImpl_ERROR_;
+		OCLMessages.OCLCollectionKindNotImpl_ERROR_;
 
 	private static CollectionFactory instance = null;
 
@@ -72,7 +72,7 @@ public class CollectionFactory {
 						kind) });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
 				throw error;
 
 			}
@@ -102,7 +102,7 @@ public class CollectionFactory {
 						kind) });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
 				throw error;
 			}
 		}

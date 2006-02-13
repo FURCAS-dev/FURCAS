@@ -29,6 +29,13 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
 
 public final class CollectionKind extends AbstractEnumerator {
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
     /**
      * @model name="collection"
      */
@@ -135,14 +142,14 @@ public final class CollectionKind extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Collection Kind</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Collection Kind</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static CollectionKind get(String name) {
+    public static CollectionKind get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CollectionKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -150,7 +157,23 @@ public final class CollectionKind extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Collection Kind</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Collection Kind</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static CollectionKind getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			CollectionKind result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Collection Kind</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */

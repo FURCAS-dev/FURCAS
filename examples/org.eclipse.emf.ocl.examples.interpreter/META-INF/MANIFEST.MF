@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.ocl.examples.interpreter; singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: org.eclipse.emf.ocl.examples.interpreter.OclExamplePlugin
+Bundle-Activator: org.eclipse.emf.ocl.examples.interpreter.OCLExamplePlugin
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.ocl.examples.interpreter,

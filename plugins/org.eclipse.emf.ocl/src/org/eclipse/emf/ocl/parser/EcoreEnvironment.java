@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,11 +38,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
-import org.eclipse.emf.ocl.internal.parser.OclParser;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.PrimitiveType;
@@ -59,10 +59,10 @@ import org.eclipse.emf.ocl.uml.Operation;
 import org.eclipse.emf.ocl.uml.Qualifier;
 import org.eclipse.osgi.util.NLS;
 
+import antlr.SemanticException;
+
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
-
-import antlr.SemanticException;
 
 /**
  * An Environment stores the variables created while evaluating an OCL
@@ -77,10 +77,10 @@ public class EcoreEnvironment
 	implements Environment {
 
 	private static final String UnknownOperationOwnerType_ERROR_ =
-		OclMessages.UnknownOperationOwnerType_ERROR_;
+		OCLMessages.UnknownOperationOwnerType_ERROR_;
 
 	private static final String IllegalSignature_ERROR_ =
-		OclMessages.IllegalSignature_ERROR_;
+		OCLMessages.IllegalSignature_ERROR_;
 
 	/* Used to generate implicit iterator variables */
 	private static int generatorInt = 0;
@@ -723,7 +723,7 @@ public class EcoreEnvironment
 				UnknownOperationOwnerType_ERROR_, new Object[] {owner, name });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(EcoreEnvironment.class,
+			OCLPlugin.throwing(EcoreEnvironment.class,
 				"lookupOperation", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -739,12 +739,12 @@ public class EcoreEnvironment
 		for (int i = 0; i < args.size(); i++) {
 			if (i > 0)
 				errMessage += ", ";//$NON-NLS-1$
-			errMessage += ((OclExpression) args.get(i)).getType().getName();
+			errMessage += ((OCLExpression) args.get(i)).getType().getName();
 		}
 		errMessage += ")";//$NON-NLS-1$
 		String message = NLS.bind(IllegalSignature_ERROR_,
 			new Object[] {errMessage });
-		OclParser.ERR(message);
+		OCLParser.ERR(message);
 		return null;
 	}
 
@@ -752,7 +752,7 @@ public class EcoreEnvironment
 	 * Compares an actual argument list against the signature of a operation.
 	 * 
 	 * @param oper
-	 * @param args a list of {@link OclExpression}s or {@link VariableDeclaration}s
+	 * @param args a list of {@link OCLExpression}s or {@link VariableDeclaration}s
 	 * @return true or false
 	 */
 	private static boolean matchArgs(EOperation oper, EList args) {
@@ -773,8 +773,8 @@ public class EcoreEnvironment
 			Object arg = args.get(i);
 			EClassifier argType = null;
 			
-			if (arg instanceof OclExpression) {
-				argType = ((OclExpression) arg).getType();
+			if (arg instanceof OCLExpression) {
+				argType = ((OCLExpression) arg).getType();
 			} else if (arg instanceof VariableDeclaration) {
 				argType = ((VariableDeclaration) arg).getType();
 			}

@@ -23,19 +23,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-
-import antlr.ANTLRException;
-
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.internal.impl.ValidationVisitorImpl;
-import org.eclipse.emf.ocl.internal.OclEngineDebugOptions;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.parser.OclLexer;
-import org.eclipse.emf.ocl.internal.parser.OclParser;
+import org.eclipse.emf.ocl.internal.OCLDebugOptions;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.parser.OCLLexer;
+import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.uml.Constraint;
-import org.eclipse.emf.ocl.uml.UmlPackage;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+
+import antlr.ANTLRException;
 
 /**
  * Static utilities for working with expressions.
@@ -111,7 +110,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createInvariant(EClassifier context,
+	public static OCLExpression createInvariant(EClassifier context,
 			String expression, boolean validate) throws ANTLRException {
 		
 		Environment env = createClassifierContext(context);
@@ -131,16 +130,16 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createInvariant(
+	public static OCLExpression createInvariant(
 			Environment env,
 			String expression, boolean validate) throws ANTLRException {
 		
-		OclParser parser = createParser("inv:", expression); //$NON-NLS-1$
+		OCLParser parser = createParser("inv:", expression); //$NON-NLS-1$
 		
 		Constraint constraint = parser.invOrDefCS(env);
 		constraint.setInstanceVarName(SELF_NAME);
 		
-		OclExpression result = constraint.getBody();
+		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
 			constraint.accept(ValidationVisitorImpl.getInstance());
@@ -160,7 +159,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createPrecondition(EOperation context,
+	public static OCLExpression createPrecondition(EOperation context,
 			String expression, boolean validate) throws ANTLRException {
 		return createPrecondition(
 			context.getEContainingClass(),
@@ -181,7 +180,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createPrecondition(
+	public static OCLExpression createPrecondition(
 			EClassifier classifier, EOperation context,
 			String expression, boolean validate) throws ANTLRException {
 		Environment env = ExpressionsUtil.createOperationContext(
@@ -203,17 +202,17 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createPrecondition(Environment env,
+	public static OCLExpression createPrecondition(Environment env,
 			String expression, boolean validate)
 			throws ANTLRException {
 		
-		OclParser parser = createParser("pre:", expression); //$NON-NLS-1$
+		OCLParser parser = createParser("pre:", expression); //$NON-NLS-1$
 		Constraint constraint = parser.prePostOrBodyDeclCS(
 			env,
 			env.getContextOperation());
 		constraint.setInstanceVarName(SELF_NAME);
 		
-		OclExpression result = constraint.getBody();
+		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
 			constraint.accept(ValidationVisitorImpl.getInstance());
@@ -233,7 +232,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createPostcondition(EOperation context,
+	public static OCLExpression createPostcondition(EOperation context,
 			String expression, boolean validate) throws ANTLRException {
 		return createPostcondition(
 			context.getEContainingClass(),
@@ -254,7 +253,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createPostcondition(
+	public static OCLExpression createPostcondition(
 			EClassifier classifier, EOperation context,
 			String expression, boolean validate) throws ANTLRException {
 		
@@ -277,17 +276,17 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createPostcondition(Environment env,
+	public static OCLExpression createPostcondition(Environment env,
 			String expression, boolean validate)
 			throws ANTLRException {
 		
-		OclParser parser = createParser("post:", expression); //$NON-NLS-1$
+		OCLParser parser = createParser("post:", expression); //$NON-NLS-1$
 		Constraint constraint = parser.prePostOrBodyDeclCS(
 			env,
 			env.getContextOperation());
 		constraint.setInstanceVarName(SELF_NAME);
 		
-		OclExpression result = constraint.getBody();
+		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
 			constraint.accept(ValidationVisitorImpl.getInstance());
@@ -307,7 +306,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createBodyCondition(EOperation context,
+	public static OCLExpression createBodyCondition(EOperation context,
 			String expression, boolean validate) throws ANTLRException {
 		return createBodyCondition(
 			context.getEContainingClass(),
@@ -328,7 +327,7 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createBodyCondition(
+	public static OCLExpression createBodyCondition(
 			EClassifier classifier, EOperation context,
 			String expression, boolean validate) throws ANTLRException {
 		Environment env = ExpressionsUtil.createOperationContext(
@@ -351,17 +350,17 @@ public class ExpressionsUtil {
 	 * @throws ANTLRException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static OclExpression createBodyCondition(Environment env,
+	public static OCLExpression createBodyCondition(Environment env,
 			String expression, boolean validate)
 			throws ANTLRException {
 		
-		OclParser parser = createParser("body:", expression); //$NON-NLS-1$
+		OCLParser parser = createParser("body:", expression); //$NON-NLS-1$
 		Constraint constraint = parser.prePostOrBodyDeclCS(
 			env,
 			env.getContextOperation());
 		constraint.setInstanceVarName(SELF_NAME);
 		
-		OclExpression result = constraint.getBody();
+		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
 			constraint.accept(ValidationVisitorImpl.getInstance());
@@ -379,8 +378,8 @@ public class ExpressionsUtil {
 	 * 
 	 * @return the parser
 	 */
-	private static OclParser createParser(String prefix, String text) {
-		OclLexer lexer = new OclLexer(new StringReader(prefix + '\n' + text));
+	private static OCLParser createParser(String prefix, String text) {
+		OCLLexer lexer = new OCLLexer(new StringReader(prefix + '\n' + text));
 		
 		// we prefix the constraint with "inv:", "pre:", etc. which the
 		//    user cannot see, so we want error resporting to be relative
@@ -390,9 +389,9 @@ public class ExpressionsUtil {
 		// also offset the character position by the length of the extra text
 		lexer.setCharacterCount(-(prefix.length() + 1)); // one for the newline
 		
-		OclParser result = new OclParser(lexer);
-		result.setTraceFlag(OclEnginePlugin.shouldTrace(
-			OclEngineDebugOptions.DEBUG));
+		OCLParser result = new OCLParser(lexer);
+		result.setTraceFlag(OCLPlugin.shouldTrace(
+			OCLDebugOptions.DEBUG));
 		
 		return result;
 	}
@@ -429,9 +428,9 @@ public class ExpressionsUtil {
 	 * @return <code>true</code> if it is in a postcondition constraint;
 	 *    <code>false</code>, otherwise (including case of no constraint at all)
 	 */
-	public static boolean isInPostcondition(OclExpression exp) {
+	public static boolean isInPostcondition(OCLExpression exp) {
 		Constraint constraint = (Constraint) containerOfType(
-			UmlPackage.eINSTANCE.getConstraint(), exp);
+			UMLPackage.Literals.CONSTRAINT, exp);
 		
 		return (constraint != null)
 				&& Constraint.POSTCONDITION.equals(constraint.getStereotype());

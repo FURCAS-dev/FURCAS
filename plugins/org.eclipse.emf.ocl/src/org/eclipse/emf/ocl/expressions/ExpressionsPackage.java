@@ -39,7 +39,14 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @model kind="package"
  * @generated
  */
-public interface ExpressionsPackage extends EPackage{
+public interface ExpressionsPackage extends EPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -52,7 +59,7 @@ public interface ExpressionsPackage extends EPackage{
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-    String eNS_URI = "http://www.ibm.com/OCL2/7.0.0/ocl/expressions";//$NON-NLS-1$
+    String eNS_URI = "http://www.eclipse.org/OCL2/7.0.0/ocl/expressions";//$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -71,11 +78,11 @@ public interface ExpressionsPackage extends EPackage{
 
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OclExpressionImpl <em>Ocl Expression</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OclExpressionImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOclExpression()
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OCLExpressionImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOCLExpression()
 	 * @generated
 	 */
 	int OCL_EXPRESSION = 18;
@@ -153,7 +160,7 @@ public interface ExpressionsPackage extends EPackage{
 	int OCL_EXPRESSION__TYPE = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the the '<em>Ocl Expression</em>' class.
+	 * The number of structural features of the '<em>OCL Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -169,7 +176,7 @@ public interface ExpressionsPackage extends EPackage{
 	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 22;
+	int PROPERTY_CALL_EXP = 23;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -271,7 +278,7 @@ public interface ExpressionsPackage extends EPackage{
 	int PROPERTY_CALL_EXP__SOURCE = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Property Call Exp</em>' class.
+	 * The number of structural features of the '<em>Property Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -398,7 +405,7 @@ public interface ExpressionsPackage extends EPackage{
 	int MODEL_PROPERTY_CALL_EXP__MARKED_PRE = PROPERTY_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Model Property Call Exp</em>' class.
+	 * The number of structural features of the '<em>Model Property Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -543,7 +550,7 @@ public interface ExpressionsPackage extends EPackage{
 	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = MODEL_PROPERTY_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Navigation Call Exp</em>' class.
+	 * The number of structural features of the '<em>Navigation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -697,7 +704,7 @@ public interface ExpressionsPackage extends EPackage{
 	int ASSOCIATION_END_CALL_EXP__REFERRED_ASSOCIATION_END = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Association End Call Exp</em>' class.
+	 * The number of structural features of the '<em>Association End Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -833,7 +840,7 @@ public interface ExpressionsPackage extends EPackage{
 	int ATTRIBUTE_CALL_EXP__REFERRED_ATTRIBUTE = MODEL_PROPERTY_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Attribute Call Exp</em>' class.
+	 * The number of structural features of the '<em>Attribute Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -924,7 +931,7 @@ public interface ExpressionsPackage extends EPackage{
 	int LITERAL_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -940,7 +947,7 @@ public interface ExpressionsPackage extends EPackage{
 	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 21;
+	int PRIMITIVE_LITERAL_EXP = 22;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -1015,7 +1022,7 @@ public interface ExpressionsPackage extends EPackage{
 	int PRIMITIVE_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Primitive Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Primitive Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1115,7 +1122,7 @@ public interface ExpressionsPackage extends EPackage{
 	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Boolean Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Boolean Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1161,7 +1168,7 @@ public interface ExpressionsPackage extends EPackage{
 	int COLLECTION_LITERAL_PART__TYPE = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Collection Literal Part</em>' class.
+	 * The number of structural features of the '<em>Collection Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1216,7 +1223,7 @@ public interface ExpressionsPackage extends EPackage{
 	int COLLECTION_ITEM__ITEM = COLLECTION_LITERAL_PART_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Collection Item</em>' class.
+	 * The number of structural features of the '<em>Collection Item</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1325,7 +1332,7 @@ public interface ExpressionsPackage extends EPackage{
 	int COLLECTION_LITERAL_EXP__PARTS = LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Collection Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Collection Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1389,7 +1396,7 @@ public interface ExpressionsPackage extends EPackage{
 	int COLLECTION_RANGE__LAST = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Collection Range</em>' class.
+	 * The number of structural features of the '<em>Collection Range</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1489,7 +1496,7 @@ public interface ExpressionsPackage extends EPackage{
 	int ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL = LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Enum Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Enum Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1607,7 +1614,7 @@ public interface ExpressionsPackage extends EPackage{
 	int IF_EXP__ELSE_EXPRESSION = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>If Exp</em>' class.
+	 * The number of structural features of the '<em>If Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1698,7 +1705,7 @@ public interface ExpressionsPackage extends EPackage{
 	int NUMERIC_LITERAL_EXP__TYPE = PRIMITIVE_LITERAL_EXP__TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Numeric Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Numeric Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1798,7 +1805,7 @@ public interface ExpressionsPackage extends EPackage{
 	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Integer Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1934,7 +1941,7 @@ public interface ExpressionsPackage extends EPackage{
 	int LOOP_EXP__ITERATORS = PROPERTY_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Loop Exp</em>' class.
+	 * The number of structural features of the '<em>Loop Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2079,7 +2086,7 @@ public interface ExpressionsPackage extends EPackage{
 	int ITERATE_EXP__RESULT = LOOP_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Iterate Exp</em>' class.
+	 * The number of structural features of the '<em>Iterate Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2215,7 +2222,7 @@ public interface ExpressionsPackage extends EPackage{
 	int ITERATOR_EXP__ITERATORS = LOOP_EXP__ITERATORS;
 
 	/**
-	 * The number of structural features of the the '<em>Iterator Exp</em>' class.
+	 * The number of structural features of the '<em>Iterator Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2324,7 +2331,7 @@ public interface ExpressionsPackage extends EPackage{
 	int LET_EXP__VARIABLE = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Let Exp</em>' class.
+	 * The number of structural features of the '<em>Let Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2333,14 +2340,221 @@ public interface ExpressionsPackage extends EPackage{
 	int LET_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OclMessageArgImpl <em>Ocl Message Arg</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageExpImpl <em>OCL Message Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OclMessageArgImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOclMessageArg()
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOCLMessageExp()
 	 * @generated
 	 */
-	int OCL_MESSAGE_ARG = 19;
+	int OCL_MESSAGE_EXP = 19;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__NAME = OCL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Applied Property</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__APPLIED_PROPERTY = OCL_EXPRESSION__APPLIED_PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Initialized Variable</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__INITIALIZED_VARIABLE = OCL_EXPRESSION__INITIALIZED_VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Parent Operation</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__PARENT_OPERATION = OCL_EXPRESSION__PARENT_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__TARGET = OCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__ARGUMENTS = OCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Called Operation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__CALLED_OPERATION = OCL_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Sent Signal</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP__SENT_SIGNAL = OCL_EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>OCL Message Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageArgImpl <em>OCL Message Arg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageArgImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOCLMessageArg()
+	 * @generated
+	 */
+	int OCL_MESSAGE_ARG = 20;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OperationCallExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOperationCallExp()
+	 * @generated
+	 */
+	int OPERATION_CALL_EXP = 21;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.RealLiteralExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getRealLiteralExp()
+	 * @generated
+	 */
+	int REAL_LITERAL_EXP = 24;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.StringLiteralExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getStringLiteralExp()
+	 * @generated
+	 */
+	int STRING_LITERAL_EXP = 25;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.TupleLiteralExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getTupleLiteralExp()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_EXP = 26;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.UnspecifiedValueExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
+	 * @generated
+	 */
+	int UNSPECIFIED_VALUE_EXP = 27;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.VariableDeclarationImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVariableDeclaration()
+	 * @generated
+	 */
+	int VARIABLE_DECLARATION = 28;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.VariableExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVariableExp()
+	 * @generated
+	 */
+	int VARIABLE_EXP = 29;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.AssociationClassCallExpImpl
+	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getAssociationClassCallExp()
+	 * @generated
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP = 30;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2361,7 +2575,7 @@ public interface ExpressionsPackage extends EPackage{
 	int OCL_MESSAGE_ARG__NAME = EcorePackage.ENAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2370,7 +2584,7 @@ public interface ExpressionsPackage extends EPackage{
 	int OCL_MESSAGE_ARG__EXPRESSION = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Unspecified</b></em>' reference.
+	 * The feature id for the '<em><b>Unspecified</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2379,23 +2593,13 @@ public interface ExpressionsPackage extends EPackage{
 	int OCL_MESSAGE_ARG__UNSPECIFIED = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Ocl Message Arg</em>' class.
+	 * The number of structural features of the '<em>OCL Message Arg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int OCL_MESSAGE_ARG_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.OperationCallExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOperationCallExp()
-	 * @generated
-	 */
-	int OPERATION_CALL_EXP = 20;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2524,23 +2728,13 @@ public interface ExpressionsPackage extends EPackage{
 	int OPERATION_CALL_EXP__REFERRED_OPERATION = MODEL_PROPERTY_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Operation Call Exp</em>' class.
+	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP_FEATURE_COUNT = MODEL_PROPERTY_CALL_EXP_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.RealLiteralExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getRealLiteralExp()
-	 * @generated
-	 */
-	int REAL_LITERAL_EXP = 23;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2624,23 +2818,13 @@ public interface ExpressionsPackage extends EPackage{
 	int REAL_LITERAL_EXP__REAL_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Real Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Real Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.StringLiteralExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getStringLiteralExp()
-	 * @generated
-	 */
-	int STRING_LITERAL_EXP = 24;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2724,23 +2908,13 @@ public interface ExpressionsPackage extends EPackage{
 	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>String Literal Exp</em>' class.
+	 * The number of structural features of the '<em>String Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.TupleLiteralExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getTupleLiteralExp()
-	 * @generated
-	 */
-	int TUPLE_LITERAL_EXP = 25;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2824,23 +2998,13 @@ public interface ExpressionsPackage extends EPackage{
 	int TUPLE_LITERAL_EXP__TUPLE_PART = LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Tuple Literal Exp</em>' class.
+	 * The number of structural features of the '<em>Tuple Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.UnspecifiedValueExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
-	 * @generated
-	 */
-	int UNSPECIFIED_VALUE_EXP = 26;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2915,23 +3079,13 @@ public interface ExpressionsPackage extends EPackage{
 	int UNSPECIFIED_VALUE_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Unspecified Value Exp</em>' class.
+	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.VariableDeclarationImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVariableDeclaration()
-	 * @generated
-	 */
-	int VARIABLE_DECLARATION = 27;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3033,23 +3187,13 @@ public interface ExpressionsPackage extends EPackage{
 	int VARIABLE_DECLARATION__TYPE = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of structural features of the the '<em>Variable Declaration</em>' class.
+	 * The number of structural features of the '<em>Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int VARIABLE_DECLARATION_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 9;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.VariableExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVariableExp()
-	 * @generated
-	 */
-	int VARIABLE_EXP = 28;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3133,23 +3277,13 @@ public interface ExpressionsPackage extends EPackage{
 	int VARIABLE_EXP__REFERRED_VARIABLE = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Variable Exp</em>' class.
+	 * The number of structural features of the '<em>Variable Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.AssociationClassCallExpImpl
-	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getAssociationClassCallExp()
-	 * @generated
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP = 29;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3287,7 +3421,7 @@ public interface ExpressionsPackage extends EPackage{
 	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Association Class Call Exp</em>' class.
+	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3303,7 +3437,7 @@ public interface ExpressionsPackage extends EPackage{
 	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 30;
+	int COLLECTION_KIND = 31;
 
 	/**
 	 * The meta object id for the '<em>Visitor</em>' data type.
@@ -3313,7 +3447,7 @@ public interface ExpressionsPackage extends EPackage{
 	 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVisitor()
 	 * @generated
 	 */
-	int VISITOR = 31;
+	int VISITOR = 32;
 
 
 	/**
@@ -3716,85 +3850,6 @@ public interface ExpressionsPackage extends EPackage{
     EClass getNumericLiteralExp();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.expressions.OclExpression <em>Ocl Expression</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl Expression</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclExpression
-	 * @generated
-	 */
-    EClass getOclExpression();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ocl.expressions.OclExpression#getAppliedProperty <em>Applied Property</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Applied Property</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclExpression#getAppliedProperty()
-	 * @see #getOclExpression()
-	 * @generated
-	 */
-    EReference getOclExpression_AppliedProperty();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ocl.expressions.OclExpression#getInitializedVariable <em>Initialized Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Initialized Variable</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclExpression#getInitializedVariable()
-	 * @see #getOclExpression()
-	 * @generated
-	 */
-	EReference getOclExpression_InitializedVariable();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ocl.expressions.OclExpression#getParentOperation <em>Parent Operation</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent Operation</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclExpression#getParentOperation()
-	 * @see #getOclExpression()
-	 * @generated
-	 */
-    EReference getOclExpression_ParentOperation();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.ocl.expressions.OclExpression#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclExpression#getType()
-	 * @see #getOclExpression()
-	 * @generated
-	 */
-    EReference getOclExpression_Type();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.expressions.OclMessageArg <em>Ocl Message Arg</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl Message Arg</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclMessageArg
-	 * @generated
-	 */
-    EClass getOclMessageArg();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.ocl.expressions.OclMessageArg#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclMessageArg#getExpression()
-	 * @see #getOclMessageArg()
-	 * @generated
-	 */
-    EReference getOclMessageArg_Expression();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.ocl.expressions.OclMessageArg#getUnspecified <em>Unspecified</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Unspecified</em>'.
-	 * @see org.eclipse.emf.ocl.expressions.OclMessageArg#getUnspecified()
-	 * @see #getOclMessageArg()
-	 * @generated
-	 */
-    EReference getOclMessageArg_Unspecified();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.expressions.OperationCallExp <em>Operation Call Exp</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Operation Call Exp</em>'.
@@ -4019,6 +4074,146 @@ public interface ExpressionsPackage extends EPackage{
 	EReference getAssociationClassCallExp_ReferredAssociationClass();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.expressions.OCLExpression <em>OCL Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OCL Expression</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLExpression
+	 * @generated
+	 */
+	EClass getOCLExpression();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ocl.expressions.OCLExpression#getAppliedProperty <em>Applied Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Applied Property</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLExpression#getAppliedProperty()
+	 * @see #getOCLExpression()
+	 * @generated
+	 */
+	EReference getOCLExpression_AppliedProperty();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ocl.expressions.OCLExpression#getInitializedVariable <em>Initialized Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Initialized Variable</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLExpression#getInitializedVariable()
+	 * @see #getOCLExpression()
+	 * @generated
+	 */
+	EReference getOCLExpression_InitializedVariable();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.emf.ocl.expressions.OCLExpression#getParentOperation <em>Parent Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Parent Operation</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLExpression#getParentOperation()
+	 * @see #getOCLExpression()
+	 * @generated
+	 */
+	EReference getOCLExpression_ParentOperation();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.ocl.expressions.OCLExpression#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLExpression#getType()
+	 * @see #getOCLExpression()
+	 * @generated
+	 */
+	EReference getOCLExpression_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.expressions.OCLMessageExp <em>OCL Message Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OCL Message Exp</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageExp
+	 * @generated
+	 */
+	EClass getOCLMessageExp();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.ocl.expressions.OCLMessageExp#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Target</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageExp#getTarget()
+	 * @see #getOCLMessageExp()
+	 * @generated
+	 */
+	EReference getOCLMessageExp_Target();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.ocl.expressions.OCLMessageExp#getArguments <em>Arguments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageExp#getArguments()
+	 * @see #getOCLMessageExp()
+	 * @generated
+	 */
+	EReference getOCLMessageExp_Arguments();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.ocl.expressions.OCLMessageExp#getCalledOperation <em>Called Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Called Operation</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageExp#getCalledOperation()
+	 * @see #getOCLMessageExp()
+	 * @generated
+	 */
+	EReference getOCLMessageExp_CalledOperation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.ocl.expressions.OCLMessageExp#getSentSignal <em>Sent Signal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Sent Signal</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageExp#getSentSignal()
+	 * @see #getOCLMessageExp()
+	 * @generated
+	 */
+	EReference getOCLMessageExp_SentSignal();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.expressions.OCLMessageArg <em>OCL Message Arg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OCL Message Arg</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageArg
+	 * @generated
+	 */
+	EClass getOCLMessageArg();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.ocl.expressions.OCLMessageArg#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageArg#getExpression()
+	 * @see #getOCLMessageArg()
+	 * @generated
+	 */
+	EReference getOCLMessageArg_Expression();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.ocl.expressions.OCLMessageArg#getUnspecified <em>Unspecified</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Unspecified</em>'.
+	 * @see org.eclipse.emf.ocl.expressions.OCLMessageArg#getUnspecified()
+	 * @see #getOCLMessageArg()
+	 * @generated
+	 */
+	EReference getOCLMessageArg_Unspecified();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.emf.ocl.expressions.CollectionKind <em>Collection Kind</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Collection Kind</em>'.
@@ -4046,5 +4241,710 @@ public interface ExpressionsPackage extends EPackage{
      * @generated
      */
     ExpressionsFactory getExpressionsFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.AssociationEndCallExpImpl <em>Association End Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.AssociationEndCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getAssociationEndCallExp()
+		 * @generated
+		 */
+		EClass ASSOCIATION_END_CALL_EXP = eINSTANCE.getAssociationEndCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Association End</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION_END_CALL_EXP__REFERRED_ASSOCIATION_END = eINSTANCE.getAssociationEndCallExp_ReferredAssociationEnd();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.AttributeCallExpImpl <em>Attribute Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.AttributeCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getAttributeCallExp()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_CALL_EXP = eINSTANCE.getAttributeCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_CALL_EXP__REFERRED_ATTRIBUTE = eINSTANCE.getAttributeCallExp_ReferredAttribute();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.BooleanLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getBooleanLiteralExp()
+		 * @generated
+		 */
+		EClass BOOLEAN_LITERAL_EXP = eINSTANCE.getBooleanLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Boolean Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = eINSTANCE.getBooleanLiteralExp_BooleanSymbol();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.CollectionItemImpl <em>Collection Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.CollectionItemImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getCollectionItem()
+		 * @generated
+		 */
+		EClass COLLECTION_ITEM = eINSTANCE.getCollectionItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Item</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_ITEM__ITEM = eINSTANCE.getCollectionItem_Item();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.CollectionLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getCollectionLiteralExp()
+		 * @generated
+		 */
+		EClass COLLECTION_LITERAL_EXP = eINSTANCE.getCollectionLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLLECTION_LITERAL_EXP__KIND = eINSTANCE.getCollectionLiteralExp_Kind();
+
+		/**
+		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_LITERAL_EXP__PARTS = eINSTANCE.getCollectionLiteralExp_Parts();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.CollectionLiteralPartImpl <em>Collection Literal Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.CollectionLiteralPartImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getCollectionLiteralPart()
+		 * @generated
+		 */
+		EClass COLLECTION_LITERAL_PART = eINSTANCE.getCollectionLiteralPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_LITERAL_PART__TYPE = eINSTANCE.getCollectionLiteralPart_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.CollectionRangeImpl <em>Collection Range</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.CollectionRangeImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getCollectionRange()
+		 * @generated
+		 */
+		EClass COLLECTION_RANGE = eINSTANCE.getCollectionRange();
+
+		/**
+		 * The meta object literal for the '<em><b>First</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_RANGE__FIRST = eINSTANCE.getCollectionRange_First();
+
+		/**
+		 * The meta object literal for the '<em><b>Last</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_RANGE__LAST = eINSTANCE.getCollectionRange_Last();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.EnumLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getEnumLiteralExp()
+		 * @generated
+		 */
+		EClass ENUM_LITERAL_EXP = eINSTANCE.getEnumLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Enum Literal</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL = eINSTANCE.getEnumLiteralExp_ReferredEnumLiteral();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.IfExpImpl <em>If Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.IfExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getIfExp()
+		 * @generated
+		 */
+		EClass IF_EXP = eINSTANCE.getIfExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_EXP__CONDITION = eINSTANCE.getIfExp_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Then Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_EXP__THEN_EXPRESSION = eINSTANCE.getIfExp_ThenExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Else Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_EXP__ELSE_EXPRESSION = eINSTANCE.getIfExp_ElseExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.IntegerLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getIntegerLiteralExp()
+		 * @generated
+		 */
+		EClass INTEGER_LITERAL_EXP = eINSTANCE.getIntegerLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Integer Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTEGER_LITERAL_EXP__INTEGER_SYMBOL = eINSTANCE.getIntegerLiteralExp_IntegerSymbol();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.IterateExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getIterateExp()
+		 * @generated
+		 */
+		EClass ITERATE_EXP = eINSTANCE.getIterateExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Result</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATE_EXP__RESULT = eINSTANCE.getIterateExp_Result();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.IteratorExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getIteratorExp()
+		 * @generated
+		 */
+		EClass ITERATOR_EXP = eINSTANCE.getIteratorExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.LetExpImpl <em>Let Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.LetExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getLetExp()
+		 * @generated
+		 */
+		EClass LET_EXP = eINSTANCE.getLetExp();
+
+		/**
+		 * The meta object literal for the '<em><b>In</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LET_EXP__IN = eINSTANCE.getLetExp_In();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LET_EXP__VARIABLE = eINSTANCE.getLetExp_Variable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.LiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getLiteralExp()
+		 * @generated
+		 */
+		EClass LITERAL_EXP = eINSTANCE.getLiteralExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.LoopExpImpl <em>Loop Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.LoopExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getLoopExp()
+		 * @generated
+		 */
+		EClass LOOP_EXP = eINSTANCE.getLoopExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_EXP__BODY = eINSTANCE.getLoopExp_Body();
+
+		/**
+		 * The meta object literal for the '<em><b>Iterators</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_EXP__ITERATORS = eINSTANCE.getLoopExp_Iterators();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.ModelPropertyCallExpImpl <em>Model Property Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ModelPropertyCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getModelPropertyCallExp()
+		 * @generated
+		 */
+		EClass MODEL_PROPERTY_CALL_EXP = eINSTANCE.getModelPropertyCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Marked Pre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_PROPERTY_CALL_EXP__MARKED_PRE = eINSTANCE.getModelPropertyCallExp_MarkedPre();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.NavigationCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getNavigationCallExp()
+		 * @generated
+		 */
+		EClass NAVIGATION_CALL_EXP = eINSTANCE.getNavigationCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualifiers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAVIGATION_CALL_EXP__QUALIFIERS = eINSTANCE.getNavigationCallExp_Qualifiers();
+
+		/**
+		 * The meta object literal for the '<em><b>Navigation Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = eINSTANCE.getNavigationCallExp_NavigationSource();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.NumericLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getNumericLiteralExp()
+		 * @generated
+		 */
+		EClass NUMERIC_LITERAL_EXP = eINSTANCE.getNumericLiteralExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.OperationCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOperationCallExp()
+		 * @generated
+		 */
+		EClass OPERATION_CALL_EXP = eINSTANCE.getOperationCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CALL_EXP__ARGUMENTS = eINSTANCE.getOperationCallExp_Arguments();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Operation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CALL_EXP__REFERRED_OPERATION = eINSTANCE.getOperationCallExp_ReferredOperation();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.PrimitiveLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getPrimitiveLiteralExp()
+		 * @generated
+		 */
+		EClass PRIMITIVE_LITERAL_EXP = eINSTANCE.getPrimitiveLiteralExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.PropertyCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getPropertyCallExp()
+		 * @generated
+		 */
+		EClass PROPERTY_CALL_EXP = eINSTANCE.getPropertyCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROPERTY_CALL_EXP__SOURCE = eINSTANCE.getPropertyCallExp_Source();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.RealLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getRealLiteralExp()
+		 * @generated
+		 */
+		EClass REAL_LITERAL_EXP = eINSTANCE.getRealLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Real Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REAL_LITERAL_EXP__REAL_SYMBOL = eINSTANCE.getRealLiteralExp_RealSymbol();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.StringLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getStringLiteralExp()
+		 * @generated
+		 */
+		EClass STRING_LITERAL_EXP = eINSTANCE.getStringLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>String Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_LITERAL_EXP__STRING_SYMBOL = eINSTANCE.getStringLiteralExp_StringSymbol();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.TupleLiteralExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getTupleLiteralExp()
+		 * @generated
+		 */
+		EClass TUPLE_LITERAL_EXP = eINSTANCE.getTupleLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Tuple Part</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_LITERAL_EXP__TUPLE_PART = eINSTANCE.getTupleLiteralExp_TuplePart();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.UnspecifiedValueExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
+		 * @generated
+		 */
+		EClass UNSPECIFIED_VALUE_EXP = eINSTANCE.getUnspecifiedValueExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.VariableDeclarationImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVariableDeclaration()
+		 * @generated
+		 */
+		EClass VARIABLE_DECLARATION = eINSTANCE.getVariableDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Var Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VARIABLE_DECLARATION__VAR_NAME = eINSTANCE.getVariableDeclaration_VarName();
+
+		/**
+		 * The meta object literal for the '<em><b>Loop Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DECLARATION__LOOP_EXPR = eINSTANCE.getVariableDeclaration_LoopExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Init Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DECLARATION__INIT_EXPRESSION = eINSTANCE.getVariableDeclaration_InitExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Exp</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DECLARATION__BASE_EXP = eINSTANCE.getVariableDeclaration_BaseExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DECLARATION__TYPE = eINSTANCE.getVariableDeclaration_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.VariableExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVariableExp()
+		 * @generated
+		 */
+		EClass VARIABLE_EXP = eINSTANCE.getVariableExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_EXP__REFERRED_VARIABLE = eINSTANCE.getVariableExp_ReferredVariable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.AssociationClassCallExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getAssociationClassCallExp()
+		 * @generated
+		 */
+		EClass ASSOCIATION_CLASS_CALL_EXP = eINSTANCE.getAssociationClassCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Association Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = eINSTANCE.getAssociationClassCallExp_ReferredAssociationClass();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.OCLExpressionImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOCLExpression()
+		 * @generated
+		 */
+		EClass OCL_EXPRESSION = eINSTANCE.getOCLExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Applied Property</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_EXPRESSION__APPLIED_PROPERTY = eINSTANCE.getOCLExpression_AppliedProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Initialized Variable</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_EXPRESSION__INITIALIZED_VARIABLE = eINSTANCE.getOCLExpression_InitializedVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Operation</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_EXPRESSION__PARENT_OPERATION = eINSTANCE.getOCLExpression_ParentOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_EXPRESSION__TYPE = eINSTANCE.getOCLExpression_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageExpImpl <em>OCL Message Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageExpImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOCLMessageExp()
+		 * @generated
+		 */
+		EClass OCL_MESSAGE_EXP = eINSTANCE.getOCLMessageExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_MESSAGE_EXP__TARGET = eINSTANCE.getOCLMessageExp_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_MESSAGE_EXP__ARGUMENTS = eINSTANCE.getOCLMessageExp_Arguments();
+
+		/**
+		 * The meta object literal for the '<em><b>Called Operation</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_MESSAGE_EXP__CALLED_OPERATION = eINSTANCE.getOCLMessageExp_CalledOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Sent Signal</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_MESSAGE_EXP__SENT_SIGNAL = eINSTANCE.getOCLMessageExp_SentSignal();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageArgImpl <em>OCL Message Arg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.OCLMessageArgImpl
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getOCLMessageArg()
+		 * @generated
+		 */
+		EClass OCL_MESSAGE_ARG = eINSTANCE.getOCLMessageArg();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_MESSAGE_ARG__EXPRESSION = eINSTANCE.getOCLMessageArg_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Unspecified</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_MESSAGE_ARG__UNSPECIFIED = eINSTANCE.getOCLMessageArg_Unspecified();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.CollectionKind
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getCollectionKind()
+		 * @generated
+		 */
+		EEnum COLLECTION_KIND = eINSTANCE.getCollectionKind();
+
+		/**
+		 * The meta object literal for the '<em>Visitor</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.expressions.Visitor
+		 * @see org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl#getVisitor()
+		 * @generated
+		 */
+		EDataType VISITOR = eINSTANCE.getVisitor();
+
+	}
 
 } //ExpressionsPackage

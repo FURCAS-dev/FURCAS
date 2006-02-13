@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2005 IBM Corporation and others.
+ * Copyright (c) 2002-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,11 +20,11 @@ package org.eclipse.emf.ocl.helper;
 import java.io.LineNumberReader;
 import java.io.StringReader;
 
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 
 /**
- * Factory class for the creation of {@link IOclHelper}s.  Clients should use
+ * Factory class for the creation of {@link IOCLHelper}s.  Clients should use
  * the {@link #createOclHelper(ModelingLevel)} method to obtain OCL helpers.
  * 
  * @author Yasser Lulu 
@@ -37,16 +37,16 @@ public class HelperUtil {
 	}
 
 	/**
-	 * Creates an {@link IOclHelper} for the Ecore metamodel.
+	 * Creates an {@link IOCLHelper} for the Ecore metamodel.
 	 *  
 	 * @return a new Ecore OCL helper
 	 */
-	public static IOclHelper createOclHelper() {
+	public static IOCLHelper createOclHelper() {
 		return createOclHelper(EnvironmentFactory.ECORE_INSTANCE);
 	}
 	
 	/**
-	 * Creates an {@link IOclHelper} for the specified EMF metamodel.  The
+	 * Creates an {@link IOCLHelper} for the specified EMF metamodel.  The
 	 * factory creates OCL environments (with the packages, classifiers, states,
 	 * etc.) from the instances of the metaclasses that mimic OCL/UML
 	 * classifiers.
@@ -55,8 +55,8 @@ public class HelperUtil {
 	 * 
 	 * @param factory the metamodel-specific OCL environment factory	
 	 */
-	public static IOclHelper createOclHelper(EnvironmentFactory factory) {
-		return new OclHelper(factory);
+	public static IOCLHelper createOclHelper(EnvironmentFactory factory) {
+		return new OCLHelper(factory);
 	}
 
 	static final int NONE = -1;
@@ -99,7 +99,7 @@ public class HelperUtil {
 	 */
 	static void throwException(RuntimeException exception, Class clazz,
 		String methodName) {
-		OclEnginePlugin.throwing(clazz, methodName, exception);
+		OCLPlugin.throwing(clazz, methodName, exception);
 		throw exception;
 	}
 
@@ -111,7 +111,7 @@ public class HelperUtil {
 	 */
 	static void catchException(Exception exception, Class clazz,
 		String methodName) {
-		OclEnginePlugin.catching(clazz, methodName, exception);
+		OCLPlugin.catching(clazz, methodName, exception);
 	}
 
 	/**

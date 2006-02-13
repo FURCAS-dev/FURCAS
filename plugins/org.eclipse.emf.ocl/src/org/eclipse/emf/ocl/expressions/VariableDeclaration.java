@@ -19,8 +19,7 @@ package org.eclipse.emf.ocl.expressions;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
-
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 
 
@@ -30,8 +29,15 @@ import org.eclipse.emf.ocl.internal.utilities.Visitable;
 /**
  *
  */
-public interface VariableDeclaration extends ENamedElement, Visitable, TypedAstNode{
+public interface VariableDeclaration extends ENamedElement, Visitable, TypedASTNode {
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */
@@ -65,7 +71,7 @@ public interface VariableDeclaration extends ENamedElement, Visitable, TypedAstN
 	/**
 	 * @model opposite="initializeVariable" lowerBound=0 upperBound=1 containment="true"
 	 */
-	public OclExpression getInitExpression();
+	public OCLExpression getInitExpression();
 
 
 	/**
@@ -76,7 +82,7 @@ public interface VariableDeclaration extends ENamedElement, Visitable, TypedAstN
 	 * @see #getInitExpression()
 	 * @generated
 	 */
-	void setInitExpression(OclExpression value);
+	void setInitExpression(OCLExpression value);
 
 	/**
 	 *

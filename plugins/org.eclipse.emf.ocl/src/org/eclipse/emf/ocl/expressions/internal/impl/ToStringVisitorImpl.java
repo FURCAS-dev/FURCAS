@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
 import org.eclipse.emf.ocl.expressions.AttributeCallExp;
@@ -47,7 +46,7 @@ import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
 import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
@@ -98,7 +97,7 @@ public class ToStringVisitorImpl
 	 */
 	public Object visitAttributeCallExp(AttributeCallExp ac) {
 		EAttribute attr = ac.getReferredAttribute();
-		OclExpression source = ac.getSource();
+		OCLExpression source = ac.getSource();
 
 		return maybeAtPre(ac, (String) source.accept(this) + "." + attr.getName()); //$NON-NLS-1$
 	}
@@ -112,7 +111,7 @@ public class ToStringVisitorImpl
 	 */
 	public Object visitOperationCallExp(OperationCallExp oc) {
 
-		OclExpression source = oc.getSource();
+		OCLExpression source = oc.getSource();
 		EClassifier sourceType = source.getType();
 		EOperation oper = oc.getReferredOperation();
 		//		int opCode = oc.getOperationCode();
@@ -123,7 +122,7 @@ public class ToStringVisitorImpl
 			+ (sourceType instanceof CollectionType ? "->" : ".") + oper.getName() + "(";//$NON-NLS-3$//$NON-NLS-2$//$NON-NLS-1$
 		Iterator iter = args.iterator();
 		for (int i = 0; i < numArgs; i++) {
-			OclExpression arg = (OclExpression) iter.next();
+			OCLExpression arg = (OCLExpression) iter.next();
 			result += (String) arg.accept(this);
 			if (i < numArgs - 1)
 				result += ", ";//$NON-NLS-1$
@@ -178,7 +177,7 @@ public class ToStringVisitorImpl
 			result.append('[');
 			
 			for (Iterator iter = ae.getQualifiers().iterator(); iter.hasNext();) {
-				OclExpression next = (OclExpression) iter.next();
+				OCLExpression next = (OCLExpression) iter.next();
 				
 				result.append(next.accept(this));
 				
@@ -223,7 +222,7 @@ public class ToStringVisitorImpl
 	public Object visitVariableDeclaration(VariableDeclaration vd) {
 		String varName = vd.getVarName();
 		EClassifier type = vd.getType();
-		OclExpression init = vd.getInitExpression();
+		OCLExpression init = vd.getInitExpression();
 		String result = varName;
 
 		if (type != null)
@@ -239,9 +238,9 @@ public class ToStringVisitorImpl
 	 * @return String
 	 */
 	public Object visitIfExp(IfExp i) {
-		OclExpression cond = i.getCondition();
-		OclExpression thenexp = i.getThenExpression();
-		OclExpression elseexp = i.getElseExpression();
+		OCLExpression cond = i.getCondition();
+		OCLExpression thenexp = i.getThenExpression();
+		OCLExpression elseexp = i.getElseExpression();
 		return "if " + (String) cond.accept(this) + " then " + //$NON-NLS-2$//$NON-NLS-1$
 			(String) thenexp.accept(this) + " else " + //$NON-NLS-1$
 			(String) elseexp.accept(this);
@@ -330,7 +329,7 @@ public class ToStringVisitorImpl
 		}
 		result += "; " + (String) vd.accept(this) + "| ";//$NON-NLS-2$//$NON-NLS-1$
 
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 		result += (String) body.accept(this) + ")";//$NON-NLS-1$
 
 		return result;
@@ -358,7 +357,7 @@ public class ToStringVisitorImpl
 		}
 		result += " | ";//$NON-NLS-1$
 
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 		result += (String) body.accept(this) + ")";//$NON-NLS-1$
 
 		return result;
@@ -390,7 +389,7 @@ public class ToStringVisitorImpl
 			if (part instanceof CollectionItem) {
 				// CollectionItem part
 				CollectionItem item = (CollectionItem) part;
-				OclExpression itemExp = item.getItem();
+				OCLExpression itemExp = item.getItem();
 				result += (String) itemExp.accept(this);
 			} else { // must be a CollectionRange
 				CollectionRange item = (CollectionRange) part;

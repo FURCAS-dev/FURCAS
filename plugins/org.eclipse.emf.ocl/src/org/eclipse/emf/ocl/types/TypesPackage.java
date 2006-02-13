@@ -37,7 +37,14 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @model kind="package"
  * @generated
  */
-public interface TypesPackage extends EPackage{
+public interface TypesPackage extends EPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -52,7 +59,7 @@ public interface TypesPackage extends EPackage{
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.ibm.com/OCL2/7.0.0/ocl/types";//$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/OCL2/7.0.0/ocl/types";//$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -144,7 +151,7 @@ public interface TypesPackage extends EPackage{
 	int ANY_TYPE__SERIALIZABLE = EcorePackage.EDATA_TYPE__SERIALIZABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Any Type</em>' class.
+	 * The number of structural features of the '<em>Any Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -271,7 +278,7 @@ public interface TypesPackage extends EPackage{
 	int COLLECTION_TYPE__ELEMENT_TYPE = EcorePackage.EDATA_TYPE_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Collection Type</em>' class.
+	 * The number of structural features of the '<em>Collection Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -398,7 +405,7 @@ public interface TypesPackage extends EPackage{
 	int BAG_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Bag Type</em>' class.
+	 * The number of structural features of the '<em>Bag Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -525,7 +532,7 @@ public interface TypesPackage extends EPackage{
 	int ORDERED_SET_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Ordered Set Type</em>' class.
+	 * The number of structural features of the '<em>Ordered Set Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -607,7 +614,7 @@ public interface TypesPackage extends EPackage{
 	int PRIMITIVE_TYPE__SERIALIZABLE = ANY_TYPE__SERIALIZABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Primitive Type</em>' class.
+	 * The number of structural features of the '<em>Primitive Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -689,7 +696,7 @@ public interface TypesPackage extends EPackage{
 	int PRIMITIVE_BOOLEAN__SERIALIZABLE = PRIMITIVE_TYPE__SERIALIZABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Primitive Boolean</em>' class.
+	 * The number of structural features of the '<em>Primitive Boolean</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -771,7 +778,7 @@ public interface TypesPackage extends EPackage{
 	int PRIMITIVE_REAL__SERIALIZABLE = PRIMITIVE_TYPE__SERIALIZABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Primitive Real</em>' class.
+	 * The number of structural features of the '<em>Primitive Real</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -853,7 +860,7 @@ public interface TypesPackage extends EPackage{
 	int PRIMITIVE_INTEGER__SERIALIZABLE = PRIMITIVE_REAL__SERIALIZABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Primitive Integer</em>' class.
+	 * The number of structural features of the '<em>Primitive Integer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -935,7 +942,7 @@ public interface TypesPackage extends EPackage{
 	int PRIMITIVE_STRING__SERIALIZABLE = PRIMITIVE_TYPE__SERIALIZABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Primitive String</em>' class.
+	 * The number of structural features of the '<em>Primitive String</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1062,7 +1069,7 @@ public interface TypesPackage extends EPackage{
 	int SEQUENCE_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Sequence Type</em>' class.
+	 * The number of structural features of the '<em>Sequence Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1189,7 +1196,7 @@ public interface TypesPackage extends EPackage{
 	int SET_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Set Type</em>' class.
+	 * The number of structural features of the '<em>Set Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1388,7 +1395,7 @@ public interface TypesPackage extends EPackage{
 	int TUPLE_TYPE__ESTRUCTURAL_FEATURES = EcorePackage.ECLASS__ESTRUCTURAL_FEATURES;
 
 	/**
-	 * The number of structural features of the the '<em>Tuple Type</em>' class.
+	 * The number of structural features of the '<em>Tuple Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1461,7 +1468,7 @@ public interface TypesPackage extends EPackage{
 	int VOID_TYPE__EPACKAGE = EcorePackage.ECLASSIFIER__EPACKAGE;
 
 	/**
-	 * The number of structural features of the the '<em>Void Type</em>' class.
+	 * The number of structural features of the '<em>Void Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1552,7 +1559,7 @@ public interface TypesPackage extends EPackage{
 	int MESSAGE_TYPE__REFERRED_SIGNAL = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Message Type</em>' class.
+	 * The number of structural features of the '<em>Message Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1625,51 +1632,13 @@ public interface TypesPackage extends EPackage{
 	int MODEL_ELEMENT_TYPE__EPACKAGE = EcorePackage.ECLASSIFIER__EPACKAGE;
 
 	/**
-	 * The number of structural features of the the '<em>Model Element Type</em>' class.
+	 * The number of structural features of the '<em>Model Element Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_TYPE_FEATURE_COUNT = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.types.internal.impl.OclStateImpl <em>Ocl State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.types.internal.impl.OclStateImpl
-	 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getOclState()
-	 * @generated
-	 */
-	int OCL_STATE = 15;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_STATE__EANNOTATIONS = EcorePackage.ENAMED_ELEMENT__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_STATE__NAME = EcorePackage.ENAMED_ELEMENT__NAME;
-
-	/**
-	 * The number of structural features of the the '<em>Ocl State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_STATE_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 0;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.types.AnyType <em>Any Type</em>}'.
@@ -1855,16 +1824,6 @@ public interface TypesPackage extends EPackage{
 	EClass getModelElementType();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.ocl.types.OclState <em>Ocl State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ocl State</em>'.
-	 * @see org.eclipse.emf.ocl.types.OclState
-	 * @generated
-	 */
-	EClass getOclState();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1872,5 +1831,194 @@ public interface TypesPackage extends EPackage{
 	 * @generated
 	 */
 	TypesFactory getTypesFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.AnyTypeImpl <em>Any Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.AnyTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getAnyType()
+		 * @generated
+		 */
+		EClass ANY_TYPE = eINSTANCE.getAnyType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.BagTypeImpl <em>Bag Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.BagTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getBagType()
+		 * @generated
+		 */
+		EClass BAG_TYPE = eINSTANCE.getBagType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.CollectionTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getCollectionType()
+		 * @generated
+		 */
+		EClass COLLECTION_TYPE = eINSTANCE.getCollectionType();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_TYPE__ELEMENT_TYPE = eINSTANCE.getCollectionType_ElementType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.OrderedSetTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getOrderedSetType()
+		 * @generated
+		 */
+		EClass ORDERED_SET_TYPE = eINSTANCE.getOrderedSetType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.PrimitiveBooleanImpl <em>Primitive Boolean</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.PrimitiveBooleanImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getPrimitiveBoolean()
+		 * @generated
+		 */
+		EClass PRIMITIVE_BOOLEAN = eINSTANCE.getPrimitiveBoolean();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.PrimitiveIntegerImpl <em>Primitive Integer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.PrimitiveIntegerImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getPrimitiveInteger()
+		 * @generated
+		 */
+		EClass PRIMITIVE_INTEGER = eINSTANCE.getPrimitiveInteger();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.PrimitiveRealImpl <em>Primitive Real</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.PrimitiveRealImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getPrimitiveReal()
+		 * @generated
+		 */
+		EClass PRIMITIVE_REAL = eINSTANCE.getPrimitiveReal();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.PrimitiveStringImpl <em>Primitive String</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.PrimitiveStringImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getPrimitiveString()
+		 * @generated
+		 */
+		EClass PRIMITIVE_STRING = eINSTANCE.getPrimitiveString();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.PrimitiveTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getPrimitiveType()
+		 * @generated
+		 */
+		EClass PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.SequenceTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getSequenceType()
+		 * @generated
+		 */
+		EClass SEQUENCE_TYPE = eINSTANCE.getSequenceType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.SetTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getSetType()
+		 * @generated
+		 */
+		EClass SET_TYPE = eINSTANCE.getSetType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TupleTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getTupleType()
+		 * @generated
+		 */
+		EClass TUPLE_TYPE = eINSTANCE.getTupleType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.VoidTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getVoidType()
+		 * @generated
+		 */
+		EClass VOID_TYPE = eINSTANCE.getVoidType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.MessageTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getMessageType()
+		 * @generated
+		 */
+		EClass MESSAGE_TYPE = eINSTANCE.getMessageType();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Operation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MESSAGE_TYPE__REFERRED_OPERATION = eINSTANCE.getMessageType_ReferredOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Signal</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MESSAGE_TYPE__REFERRED_SIGNAL = eINSTANCE.getMessageType_ReferredSignal();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.types.internal.impl.ModelElementTypeImpl <em>Model Element Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.ocl.types.internal.impl.ModelElementTypeImpl
+		 * @see org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl#getModelElementType()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_TYPE = eINSTANCE.getModelElementType();
+
+	}
 
 } //TypesPackage

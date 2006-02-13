@@ -26,20 +26,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.expressions.internal.impl.EvaluationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.internal.impl.ToStringVisitorImpl;
 import org.eclipse.emf.ocl.expressions.internal.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryPackage;
@@ -61,17 +60,24 @@ import org.eclipse.emf.ocl.types.internal.impl.PrimitiveTypeImpl;
  */
 public class QueryImpl extends EObjectImpl implements Query {
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	private static final String NullArgExpectlist_ERROR_ =
-		OclMessages.NullArgExpectlist_ERROR_;
+		OCLMessages.NullArgExpectlist_ERROR_;
 
 	private static final String CheckBool_ERROR_ =
-		OclMessages.CheckBool_ERROR_;
+		OCLMessages.CheckBool_ERROR_;
 
 	private static final String NullArgExpectEObj_ERROR_ =
-		OclMessages.NullArgExpectEObj_ERROR_;
+		OCLMessages.NullArgExpectEObj_ERROR_;
 
 	private static final String BooleanQuery_ERROR_ =
-		OclMessages.BooleanQuery_ERROR_;
+		OCLMessages.BooleanQuery_ERROR_;
 
 	/**
 	 * The default value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
@@ -101,7 +107,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpression expression = null;
+	protected OCLExpression expression = null;
 
 	/**
 	 * @generated NOT
@@ -139,7 +145,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 	}
 
 	/**
-	 * Creates a query from an {@link OclExpression} (constraint or query).
+	 * Creates a query from an {@link OCLExpression} (constraint or query).
 	 * The query is validated according to OCL well-formedness rules.
 	 * 
 	 * @param expr the ocl expression
@@ -148,7 +154,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * 
 	 * @generated NOT
 	 */
-	protected QueryImpl(OclExpression expr) throws antlr.SemanticException {
+	protected QueryImpl(OCLExpression expr) throws antlr.SemanticException {
 		expression = expr;
 		env = new EvalEnvironment();
 		validate();
@@ -160,7 +166,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return QueryPackage.eINSTANCE.getQuery();
+		return QueryPackage.Literals.QUERY;
 	}
 
 	/**
@@ -193,10 +199,10 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression getExpression() {
+	public OCLExpression getExpression() {
 		if (expression != null && expression.eIsProxy()) {
-			OclExpression oldExpression = expression;
-			expression = (OclExpression)eResolveProxy((InternalEObject)expression);
+			InternalEObject oldExpression = (InternalEObject)expression;
+			expression = (OCLExpression)eResolveProxy(oldExpression);
 			if (expression != oldExpression) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.QUERY__EXPRESSION, oldExpression, expression));
@@ -210,7 +216,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression basicGetExpression() {
+	public OCLExpression basicGetExpression() {
 		return expression;
 	}
 
@@ -221,7 +227,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		if (obj == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				NullArgExpectEObj_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
 		EvaluationVisitor ev = EvaluationVisitorImpl
@@ -251,7 +257,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		if (resultType() != PrimitiveTypeImpl.OCL_BOOLEAN) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				BooleanQuery_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		
@@ -273,7 +279,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				NullArgExpectlist_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
 		List result = new BasicEList();
@@ -291,13 +297,13 @@ public class QueryImpl extends EObjectImpl implements Query {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				NullArgExpectlist_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		if (resultType() != PrimitiveTypeImpl.OCL_BOOLEAN) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				CheckBool_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
 		Iterator iter = objList.iterator();
@@ -315,7 +321,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				NullArgExpectlist_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "select", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "select", error);//$NON-NLS-1$
 			throw error;
 		}
 		List result = new BasicEList();
@@ -336,7 +342,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				NullArgExpectlist_ERROR_);
-			OclEnginePlugin.throwing(getClass(), "reject", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "reject", error);//$NON-NLS-1$
 			throw error;
 		}
 		List result = new BasicEList();
@@ -363,6 +369,65 @@ public class QueryImpl extends EObjectImpl implements Query {
 	public String queryText() {
 		Visitor tsv = ToStringVisitorImpl.getInstance();
 		return (String) expression.accept(tsv);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case QueryPackage.QUERY__EXTENT_MAP:
+				return getExtentMap();
+			case QueryPackage.QUERY__EXPRESSION:
+				if (resolve) return getExpression();
+				return basicGetExpression();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case QueryPackage.QUERY__EXTENT_MAP:
+				setExtentMap((Map)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case QueryPackage.QUERY__EXTENT_MAP:
+				setExtentMap(EXTENT_MAP_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case QueryPackage.QUERY__EXTENT_MAP:
+				return EXTENT_MAP_EDEFAULT == null ? extentMap != null : !EXTENT_MAP_EDEFAULT.equals(extentMap);
+			case QueryPackage.QUERY__EXPRESSION:
+				return expression != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -395,65 +460,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 		}
 		
 		return env;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				return getExtentMap();
-			case QueryPackage.QUERY__EXPRESSION:
-				if (resolve) return getExpression();
-				return basicGetExpression();
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				setExtentMap((Map)newValue);
-				return;
-		}
-		eDynamicSet(eFeature, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				setExtentMap(EXTENT_MAP_EDEFAULT);
-				return;
-		}
-		eDynamicUnset(eFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				return EXTENT_MAP_EDEFAULT == null ? extentMap != null : !EXTENT_MAP_EDEFAULT.equals(extentMap);
-			case QueryPackage.QUERY__EXPRESSION:
-				return expression != null;
-		}
-		return eDynamicIsSet(eFeature);
 	}
 
 	/**

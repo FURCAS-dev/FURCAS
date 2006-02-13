@@ -23,7 +23,14 @@ import org.eclipse.emf.common.util.EList;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface CollectionLiteralExp extends LiteralExp{
+public interface CollectionLiteralExp extends LiteralExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

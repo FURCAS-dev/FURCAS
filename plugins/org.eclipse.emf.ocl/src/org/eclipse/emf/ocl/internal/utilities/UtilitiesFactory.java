@@ -29,12 +29,19 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface UtilitiesFactory extends EFactory {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
+	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	UtilitiesFactory eINSTANCE = new org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesFactoryImpl();
+	UtilitiesFactory eINSTANCE = org.eclipse.emf.ocl.internal.utilities.impl.UtilitiesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Visitable</em>'.

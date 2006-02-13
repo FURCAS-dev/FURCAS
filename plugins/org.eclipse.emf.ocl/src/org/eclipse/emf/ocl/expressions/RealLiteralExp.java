@@ -20,7 +20,14 @@ package org.eclipse.emf.ocl.expressions;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface RealLiteralExp extends NumericLiteralExp{
+public interface RealLiteralExp extends NumericLiteralExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

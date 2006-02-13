@@ -62,7 +62,7 @@ import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
@@ -71,9 +71,9 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.OclEngineStatusCodes;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.OCLStatusCodes;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -99,13 +99,13 @@ public class EvaluationVisitorImpl
 	extends AbstractVisitor
 	implements EvaluationVisitor {
 
-	private static final String UnknownOperation_ERROR_ = OclMessages.UnknownOperation_ERROR_;
+	private static final String UnknownOperation_ERROR_ = OCLMessages.UnknownOperation_ERROR_;
 
-	private static final String IteratorNotImpl_ERROR_ = OclMessages.IteratorNotImpl_ERROR_;
+	private static final String IteratorNotImpl_ERROR_ = OCLMessages.IteratorNotImpl_ERROR_;
 
-	private static final String IndexOutOfRange_ERROR_ = OclMessages.IndexOutOfRange_ERROR_;
+	private static final String IndexOutOfRange_ERROR_ = OCLMessages.IndexOutOfRange_ERROR_;
 
-	private static final String TupleFieldDoesntExist_ERROR_ = OclMessages.TupleFieldDoesntExist_ERROR_;
+	private static final String TupleFieldDoesntExist_ERROR_ = OCLMessages.TupleFieldDoesntExist_ERROR_;
 
 	private EvaluationEnvironment env;
 
@@ -191,7 +191,7 @@ public class EvaluationVisitorImpl
 	 */
 	public Object visitAttributeCallExp(AttributeCallExp ac) {
 		EAttribute attr = ac.getReferredAttribute();
-		OclExpression source = ac.getSource();
+		OCLExpression source = ac.getSource();
 		//		EClassifier sourceType = source.getType();
 
 		// evaluate source
@@ -231,7 +231,7 @@ public class EvaluationVisitorImpl
 		// by the condition regardless of the other value.
 		// all irrespective of the order of the arguments.
 
-		OclExpression source = oc.getSource();
+		OCLExpression source = oc.getSource();
 		EClassifier sourceType = source.getType();
 		EOperation oper = oc.getReferredOperation();
 		int opCode = oc.getOperationCode();
@@ -248,7 +248,7 @@ public class EvaluationVisitorImpl
 			Object[] evalArgs = new Object[numArgs];
 			int i = 0;
 			for (Iterator it = args.iterator(); it.hasNext(); i++) {
-				OclExpression arg = (OclExpression) it.next();
+				OCLExpression arg = (OCLExpression) it.next();
 				evalArgs[i] = arg.accept(this);
 			}
 	
@@ -260,13 +260,13 @@ public class EvaluationVisitorImpl
 			} catch (UnsupportedOperationException ignore) {
 				// let the EvaluationVisitor do its thing
 			} catch (Exception e) {
-				OclEnginePlugin
+				OCLPlugin
 					.catching(getClass(), "visitOperationCallExp", e);//$NON-NLS-1$
-				OclEnginePlugin.log(
+				OCLPlugin.log(
 					IStatus.ERROR,
-					OclEngineStatusCodes.IGNORED_EXCEPTION_WARNING,
+					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
 					NLS.bind(
-						OclMessages.ErrorMessage_ERROR_,
+						OCLMessages.ErrorMessage_ERROR_,
 						new Object[] {
 							"visitOperationCallExp", //$NON-NLS-1$
 							e.getLocalizedMessage()}),
@@ -317,7 +317,7 @@ public class EvaluationVisitorImpl
 			Object sourceVal = source.accept(this);
 
 			// evaluate argument
-			OclExpression arg = (OclExpression) args.get(0);
+			OCLExpression arg = (OCLExpression) args.get(0);
 			Object argVal = arg.accept(this);
 
 			// if either value is undefined, the result is true just if both are
@@ -376,7 +376,7 @@ public class EvaluationVisitorImpl
 			Object sourceVal = source.accept(this);
 
 			// evaluate argument
-			OclExpression arg = (OclExpression) args.get(0);
+			OCLExpression arg = (OCLExpression) args.get(0);
 			Object argVal = arg.accept(this);
 
 			// if either value is undefined, the result is true just when one or
@@ -432,7 +432,7 @@ public class EvaluationVisitorImpl
 			Object sourceVal = source.accept(this);
 
 			// evaluate argument
-			OclExpression arg = (OclExpression) args.get(0);
+			OCLExpression arg = (OCLExpression) args.get(0);
 			Object argVal = arg.accept(this);
 
 			// if either value is undefined, the result is undefined
@@ -452,7 +452,7 @@ public class EvaluationVisitorImpl
 			Object sourceVal = source.accept(this);
 
 			// evaluate argument
-			OclExpression arg = (OclExpression) args.get(0);
+			OCLExpression arg = (OCLExpression) args.get(0);
 			Object argVal = arg.accept(this);
 
 			// if either value is undefined, the result is undefined
@@ -632,7 +632,7 @@ public class EvaluationVisitorImpl
 				//
 
 				// evaluate argument
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 
 				// get argument type
 				EClassifier argType = arg.getType();
@@ -758,7 +758,7 @@ public class EvaluationVisitorImpl
 								UnknownOperation_ERROR_, new Object[] {oper
 									.getName() });
 							RuntimeException error = new RuntimeException(message);
-							OclEnginePlugin.throwing(getClass(),
+							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
 							throw error;
 						}
@@ -826,7 +826,7 @@ public class EvaluationVisitorImpl
 								UnknownOperation_ERROR_, new Object[] {oper
 									.getName() });
 							RuntimeException error = new RuntimeException(message);
-							OclEnginePlugin.throwing(getClass(),
+							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
 							throw error;
 						}
@@ -900,7 +900,7 @@ public class EvaluationVisitorImpl
 								UnknownOperation_ERROR_, new Object[] {oper
 									.getName() });
 							RuntimeException error = new RuntimeException(message);
-							OclEnginePlugin.throwing(getClass(),
+							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
 							throw error;
 						}
@@ -974,7 +974,7 @@ public class EvaluationVisitorImpl
 								UnknownOperation_ERROR_, new Object[] {oper
 									.getName() });
 							RuntimeException error = new RuntimeException(message);
-							OclEnginePlugin.throwing(getClass(),
+							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
 							throw error;
 						}
@@ -1030,7 +1030,7 @@ public class EvaluationVisitorImpl
 								UnknownOperation_ERROR_, new Object[] {oper
 									.getName() });
 							RuntimeException error = new RuntimeException(message);
-							OclEnginePlugin.throwing(getClass(),
+							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
 							throw error;
 						}
@@ -1054,7 +1054,7 @@ public class EvaluationVisitorImpl
 								UnknownOperation_ERROR_, new Object[] {oper
 									.getName() });
 							RuntimeException error = new RuntimeException(message);
-							OclEnginePlugin.throwing(getClass(),
+							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
 							throw error;
 						}
@@ -1162,14 +1162,14 @@ public class EvaluationVisitorImpl
 					return null;
 
 				// evaluate arg1
-				Object arg1 = ((OclExpression) args.get(0)).accept(this);
+				Object arg1 = ((OCLExpression) args.get(0)).accept(this);
 
 				// check if undefined
 				if (arg1 == null)
 					return null;
 
 				// evaluate arg2
-				Object arg2 = ((OclExpression) args.get(1)).accept(this);
+				Object arg2 = ((OCLExpression) args.get(1)).accept(this);
 
 				// check if undefined
 				if (arg2 == null)
@@ -1227,14 +1227,14 @@ public class EvaluationVisitorImpl
 
 			// AnyType::oclIsTypeOf(OclType)
 			if (opCode == AnyTypeImpl.OCL_IS_TYPE_OF) {
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				EClassifier argType = arg.getType();
 				return oclIsTypeOf(context, argType);
 			}
 
 			// AnyType::oclIsKindOf(OclType)
 			else if (opCode == AnyTypeImpl.OCL_IS_KIND_OF) {
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				EClassifier argType = arg.getType();
 				return oclIsKindOf(context, argType);
 			}
@@ -1257,7 +1257,7 @@ public class EvaluationVisitorImpl
 				// type B then it is; if x is an object of type D
 				// then it isn't; and this cannot be determined
 				// until runtime.				
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				EClassifier argType = arg.getType();
 				if (oclIsKindOf(context, argType) == Boolean.TRUE) {
 					return context;
@@ -1275,7 +1275,7 @@ public class EvaluationVisitorImpl
 			// Handle < (lessThan)
 			else if (opCode == AnyTypeImpl.ANYTYPE_LESS_THAN) {
 				Comparable compContext = (Comparable) context;
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
 				return Boolean.valueOf(compContext.compareTo(evalArg) == -1);
 			}
@@ -1283,7 +1283,7 @@ public class EvaluationVisitorImpl
 			//	Handle <= (lessThanEqual)
 			else if (opCode == AnyTypeImpl.ANYTYPE_LESS_THAN_EQUAL) {
 				Comparable compContext = (Comparable) context;
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
 				return Boolean.valueOf(compContext.compareTo(evalArg) <= 0);
 			}
@@ -1291,7 +1291,7 @@ public class EvaluationVisitorImpl
 			// Handle > (greaterThan)
 			else if (opCode == AnyTypeImpl.ANYTYPE_GREATER_THAN) {
 				Comparable compContext = (Comparable) context;
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
 				return Boolean.valueOf(compContext.compareTo(evalArg) == 1);
 			}
@@ -1299,7 +1299,7 @@ public class EvaluationVisitorImpl
 			// Handle > (greaterThanEqual)
 			else if (opCode == AnyTypeImpl.ANYTYPE_GREATER_THAN_EQUAL) {
 				Comparable compContext = (Comparable) context;
-				OclExpression arg = (OclExpression) args.get(0);
+				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
 				return Boolean.valueOf(compContext.compareTo(evalArg) >= 0);
 			}
@@ -1311,7 +1311,7 @@ public class EvaluationVisitorImpl
 			// evaluate args
 			List evalArgs = new LinkedList();
 			for (Iterator it = args.iterator(); it.hasNext();) {
-				OclExpression arg = (OclExpression) it.next();
+				OCLExpression arg = (OCLExpression) it.next();
 				Object evalArg = arg.accept(this);
 
 				// result is undefined if any arg is
@@ -1324,7 +1324,7 @@ public class EvaluationVisitorImpl
 			// get types of the arguments
 			Class[] argTypes = new Class[args.size()];
 			for (int i = 0, n = args.size(); i < n; i++) {
-				OclExpression e = (OclExpression) args.get(i);
+				OCLExpression e = (OCLExpression) args.get(i);
 				argTypes[i] = e.getType().getInstanceClass();
 			}
 
@@ -1336,13 +1336,13 @@ public class EvaluationVisitorImpl
 				Object result = method.invoke(context, evalArgs.toArray());
 				return result;
 			} catch (Exception e) {
-				OclEnginePlugin
+				OCLPlugin
 					.catching(getClass(), "visitOperationCallExp", e);//$NON-NLS-1$
-				OclEnginePlugin.log(
+				OCLPlugin.log(
 					IStatus.ERROR,
-					OclEngineStatusCodes.IGNORED_EXCEPTION_WARNING,
+					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
 					NLS.bind(
-						OclMessages.ErrorMessage_ERROR_,
+						OCLMessages.ErrorMessage_ERROR_,
 						new Object[] {
 							"visitOperationCallExp", //$NON-NLS-1$
 							e.getLocalizedMessage()}),
@@ -1410,7 +1410,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// construct an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplate.getInstance(this);
@@ -1452,7 +1452,7 @@ public class EvaluationVisitorImpl
 			new Object[] {ie.getName() });
 		UnsupportedOperationException ex = new UnsupportedOperationException(
 			message);
-		OclEnginePlugin.throwing(getClass(), "visitIteratorExp", ex);//$NON-NLS-1$
+		OCLPlugin.throwing(getClass(), "visitIteratorExp", ex);//$NON-NLS-1$
 		throw ex;
 	}
 
@@ -1466,7 +1466,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTempateExists.getInstance(this);
@@ -1494,7 +1494,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateForAll.getInstance(this);
@@ -1522,7 +1522,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateCollectNested.getInstance(this);
@@ -1550,7 +1550,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get initial result value based on the source type
 		CollectionType collType = (CollectionType) ie.getSource().getType();
@@ -1588,7 +1588,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get initial result value based on the source type
 		CollectionType collType = (CollectionType) ie.getSource().getType();
@@ -1632,7 +1632,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get initial result value based on the source type
 		CollectionType collType = (CollectionType) ie.getSource().getType();
@@ -1676,7 +1676,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateOne.getInstance(this);
@@ -1701,7 +1701,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateAny.getInstance(this);
@@ -1729,7 +1729,7 @@ public class EvaluationVisitorImpl
 		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateSortedBy.getInstance(this);
@@ -1906,7 +1906,7 @@ public class EvaluationVisitorImpl
 		// its initial expression (if it has one). return the name
 		// of the variable.
 		String varName = vd.getVarName();
-		OclExpression initExp = vd.getInitExpression();
+		OCLExpression initExp = vd.getInitExpression();
 		Object initVal = null;
 		if (initExp != null)
 			initVal = initExp.accept(this);
@@ -1919,7 +1919,7 @@ public class EvaluationVisitorImpl
 	 */
 	public Object visitIfExp(IfExp ie) {
 		// get condition
-		OclExpression condition = ie.getCondition();
+		OCLExpression condition = ie.getCondition();
 
 		// evaluate condition
 		Boolean condVal = (Boolean) condition.accept(this);
@@ -1983,7 +1983,7 @@ public class EvaluationVisitorImpl
 		String name = (String) vd.accept(this);
 
 		// evaluate the "in" part of the let
-		OclExpression inExp = l.getIn();
+		OCLExpression inExp = l.getIn();
 		Object val = inExp.accept(this);
 
 		// remove the variable-init expression binding from the environment
@@ -2019,8 +2019,8 @@ public class EvaluationVisitorImpl
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
 			CollectionRange collRange = (CollectionRange) parts.get(0);
-			OclExpression first = collRange.getFirst();
-			OclExpression last = collRange.getLast();
+			OCLExpression first = collRange.getFirst();
+			OCLExpression last = collRange.getLast();
 
 			// evaluate first value
 			Integer firstVal = (Integer) first.accept(this);
@@ -2049,7 +2049,7 @@ public class EvaluationVisitorImpl
 				if (part instanceof CollectionItem) {
 					// CollectionItem part
 					CollectionItem item = (CollectionItem) part;
-					OclExpression itemExp = item.getItem();
+					OCLExpression itemExp = item.getItem();
 					Object itemVal = itemExp.accept(this);
 					if (itemVal != null) {
 						// add it to the result set
@@ -2058,8 +2058,8 @@ public class EvaluationVisitorImpl
 				} else {
 					// Collection range
 					CollectionRange range = (CollectionRange) part;
-					OclExpression first = range.getFirst();
-					OclExpression last = range.getLast();
+					OCLExpression first = range.getFirst();
+					OCLExpression last = range.getLast();
 
 					// evaluate first value
 					Integer firstVal = (Integer) first.accept(this);
@@ -2130,7 +2130,7 @@ public class EvaluationVisitorImpl
 						Integer.toString(first), Integer.toString(last) });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(), "get", error);//$NON-NLS-1$
+				OCLPlugin.throwing(getClass(), "get", error);//$NON-NLS-1$
 				throw error;
 			}
 			return new Integer(first + index);
@@ -2227,7 +2227,7 @@ public class EvaluationVisitorImpl
 					new Object[] {vd.getVarName() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(getClass(),
+				OCLPlugin.throwing(getClass(),
 					"visitTupleLiteralExp", error);//$NON-NLS-1$
 				throw error;
 			}

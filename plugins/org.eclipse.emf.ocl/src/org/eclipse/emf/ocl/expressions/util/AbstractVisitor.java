@@ -32,7 +32,7 @@ import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
@@ -69,7 +69,7 @@ public abstract class AbstractVisitor implements Visitor {
 		oc.getSource().accept(this);
 		
 		for (Iterator iter = oc.getArguments().iterator(); iter.hasNext();) {
-			((OclExpression) iter.next()).accept(this);
+			((OCLExpression) iter.next()).accept(this);
 		}
 		
 		return null;
@@ -83,7 +83,7 @@ public abstract class AbstractVisitor implements Visitor {
 		ae.getSource().accept(this);
 		
 		for (Iterator iter = ae.getQualifiers().iterator(); iter.hasNext();) {
-			((OclExpression) iter.next()).accept(this);
+			((OCLExpression) iter.next()).accept(this);
 		}
 		
 		return null;
@@ -93,7 +93,7 @@ public abstract class AbstractVisitor implements Visitor {
 		ac.getSource().accept(this);
 		
 		for (Iterator iter = ac.getQualifiers().iterator(); iter.hasNext();) {
-			((OclExpression) iter.next()).accept(this);
+			((OCLExpression) iter.next()).accept(this);
 		}
 		
 		return null;

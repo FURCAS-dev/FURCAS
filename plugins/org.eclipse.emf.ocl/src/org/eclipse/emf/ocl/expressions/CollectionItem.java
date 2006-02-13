@@ -24,9 +24,16 @@ package org.eclipse.emf.ocl.expressions;
 public interface CollectionItem extends CollectionLiteralPart {
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
+	/**
 	 *
 	 */
-	public OclExpression getItem();
+	public OCLExpression getItem();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.CollectionItem#getItem <em>Item</em>}' containment reference.
@@ -36,6 +43,6 @@ public interface CollectionItem extends CollectionLiteralPart {
 	 * @see #getItem()
 	 * @generated
 	 */
-	void setItem(OclExpression value);
+	void setItem(OCLExpression value);
 
 }

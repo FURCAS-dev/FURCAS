@@ -17,23 +17,14 @@
 
 package org.eclipse.emf.ocl.types.internal.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.ocl.types.MessageType;
 import org.eclipse.emf.ocl.types.TypesPackage;
-
 import org.eclipse.emf.ocl.uml.Signal;
 
 /**
@@ -51,6 +42,13 @@ import org.eclipse.emf.ocl.uml.Signal;
  * @generated
  */
 public class MessageTypeImpl extends EClassifierImpl implements MessageType {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -86,7 +84,7 @@ public class MessageTypeImpl extends EClassifierImpl implements MessageType {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return TypesPackage.eINSTANCE.getMessageType();
+		return TypesPackage.Literals.MESSAGE_TYPE;
 	}
 
 	/**
@@ -96,8 +94,8 @@ public class MessageTypeImpl extends EClassifierImpl implements MessageType {
 	 */
 	public Signal getReferredSignal() {
 		if (referredSignal != null && referredSignal.eIsProxy()) {
-			Signal oldReferredSignal = referredSignal;
-			referredSignal = (Signal)eResolveProxy((InternalEObject)referredSignal);
+			InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
+			referredSignal = (Signal)eResolveProxy(oldReferredSignal);
 			if (referredSignal != oldReferredSignal) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
@@ -132,10 +130,76 @@ public class MessageTypeImpl extends EClassifierImpl implements MessageType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				if (resolve) return getReferredOperation();
+				return basicGetReferredOperation();
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				if (resolve) return getReferredSignal();
+				return basicGetReferredSignal();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				setReferredOperation((EOperation)newValue);
+				return;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				setReferredSignal((Signal)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				setReferredOperation((EOperation)null);
+				return;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				setReferredSignal((Signal)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				return referredOperation != null;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				return referredSignal != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getReferredOperation() {
 		if (referredOperation != null && referredOperation.eIsProxy()) {
-			EOperation oldReferredOperation = referredOperation;
-			referredOperation = (EOperation)eResolveProxy((InternalEObject)referredOperation);
+			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
+			referredOperation = (EOperation)eResolveProxy(oldReferredOperation);
 			if (referredOperation != oldReferredOperation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
@@ -163,174 +227,6 @@ public class MessageTypeImpl extends EClassifierImpl implements MessageType {
 		referredOperation = newReferredOperation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case TypesPackage.MESSAGE_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case TypesPackage.MESSAGE_TYPE__EPACKAGE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, TypesPackage.MESSAGE_TYPE__EPACKAGE, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case TypesPackage.MESSAGE_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case TypesPackage.MESSAGE_TYPE__EPACKAGE:
-					return eBasicSetContainer(null, TypesPackage.MESSAGE_TYPE__EPACKAGE, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case TypesPackage.MESSAGE_TYPE__EPACKAGE:
-					return eContainer.eInverseRemove(this, EcorePackage.EPACKAGE__ECLASSIFIERS, EPackage.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.MESSAGE_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case TypesPackage.MESSAGE_TYPE__NAME:
-				return getName();
-			case TypesPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case TypesPackage.MESSAGE_TYPE__INSTANCE_CLASS:
-				return getInstanceClass();
-			case TypesPackage.MESSAGE_TYPE__DEFAULT_VALUE:
-				return getDefaultValue();
-			case TypesPackage.MESSAGE_TYPE__EPACKAGE:
-				return getEPackage();
-			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				if (resolve) return getReferredOperation();
-				return basicGetReferredOperation();
-			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				if (resolve) return getReferredSignal();
-				return basicGetReferredSignal();
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.MESSAGE_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case TypesPackage.MESSAGE_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case TypesPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				setReferredOperation((EOperation)newValue);
-				return;
-			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				setReferredSignal((Signal)newValue);
-				return;
-		}
-		eDynamicSet(eFeature, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.MESSAGE_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case TypesPackage.MESSAGE_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TypesPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
-			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				setReferredOperation((EOperation)null);
-				return;
-			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				setReferredSignal((Signal)null);
-				return;
-		}
-		eDynamicUnset(eFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.MESSAGE_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case TypesPackage.MESSAGE_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TypesPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case TypesPackage.MESSAGE_TYPE__INSTANCE_CLASS:
-				return INSTANCE_CLASS_EDEFAULT == null ? getInstanceClass() != null : !INSTANCE_CLASS_EDEFAULT.equals(getInstanceClass());
-			case TypesPackage.MESSAGE_TYPE__DEFAULT_VALUE:
-				return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
-			case TypesPackage.MESSAGE_TYPE__EPACKAGE:
-				return getEPackage() != null;
-			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				return referredOperation != null;
-			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				return referredSignal != null;
-		}
-		return eDynamicIsSet(eFeature);
 	}
 
 } //MessageTypeImpl

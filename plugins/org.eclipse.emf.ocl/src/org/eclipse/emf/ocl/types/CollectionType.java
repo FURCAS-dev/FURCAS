@@ -20,14 +20,20 @@ package org.eclipse.emf.ocl.types;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
-
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 
 /**
  * @author Edith Schonberg (edith)
  */
-public interface CollectionType extends EDataType, TypedAstNode{
+public interface CollectionType extends EDataType, TypedASTNode {
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

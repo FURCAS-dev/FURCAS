@@ -32,11 +32,18 @@ import org.eclipse.emf.ecore.EOperation;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.ocl.uml.UmlPackage#getOperation()
- *
+ * @see org.eclipse.emf.ocl.uml.UMLPackage#getOperation()
+ * @model
  * @generated
  */
 public interface Operation extends EObject, EOperation {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Returns the value of the '<em><b>Query</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
@@ -48,7 +55,7 @@ public interface Operation extends EObject, EOperation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query</em>' attribute.
 	 * @see #setQuery(boolean)
-	 * @see org.eclipse.emf.ocl.uml.UmlPackage#getOperation_Query()
+	 * @see org.eclipse.emf.ocl.uml.UMLPackage#getOperation_Query()
 	 * @model default="true"
 	 * @generated
 	 */

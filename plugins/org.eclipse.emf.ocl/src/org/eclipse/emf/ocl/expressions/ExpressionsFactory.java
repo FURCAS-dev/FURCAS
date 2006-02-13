@@ -27,14 +27,22 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage
  * @generated
  */
-public interface ExpressionsFactory extends EFactory{
+public interface ExpressionsFactory extends EFactory {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ExpressionsFactory eINSTANCE = new org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsFactoryImpl();
+	ExpressionsFactory eINSTANCE = org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsFactoryImpl.init();
 
 	/**
 	 * Parses the specified OCL expression <code>text</code> to create a new
@@ -56,7 +64,7 @@ public interface ExpressionsFactory extends EFactory{
 	 * 
 	 * @generated NOT
 	 */
-	OclExpression createOclExpression(String text)
+	OCLExpression createOclExpression(String text)
 		throws antlr.SemanticException,
 			antlr.TokenStreamException,
 			antlr.RecognitionException;
@@ -188,13 +196,22 @@ public interface ExpressionsFactory extends EFactory{
 	LoopExp createLoopExp();
 
 	/**
-	 * Returns a new object of class '<em>Ocl Message Arg</em>'.
+	 * Returns a new object of class '<em>OCL Message Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Message Arg</em>'.
+	 * @return a new object of class '<em>OCL Message Exp</em>'.
 	 * @generated
 	 */
-	OclMessageArg createOclMessageArg();
+	OCLMessageExp createOCLMessageExp();
+
+	/**
+	 * Returns a new object of class '<em>OCL Message Arg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Message Arg</em>'.
+	 * @generated
+	 */
+	OCLMessageArg createOCLMessageArg();
 
 	/**
 	 * Returns a new object of class '<em>Operation Call Exp</em>'.
@@ -223,7 +240,7 @@ public interface ExpressionsFactory extends EFactory{
 	 */
 	StringLiteralExp createStringLiteralExp();
 
-	StringLiteralExp createStringLiteralExp(String s);
+		StringLiteralExp createStringLiteralExp(String s);
 	
 	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp</em>'.

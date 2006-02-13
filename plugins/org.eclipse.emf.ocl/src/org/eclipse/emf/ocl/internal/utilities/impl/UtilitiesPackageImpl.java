@@ -23,13 +23,11 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.impl.EcorePackageImpl;
-
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.utilities.AstNode;
-import org.eclipse.emf.ocl.internal.utilities.CallingAstNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedAstNode;
+import org.eclipse.emf.ocl.internal.utilities.ASTNode;
+import org.eclipse.emf.ocl.internal.utilities.CallingASTNode;
+import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesFactory;
 import org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
@@ -37,8 +35,8 @@ import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.internal.impl.TypesPackageImpl;
-import org.eclipse.emf.ocl.uml.UmlPackage;
-import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.uml.internal.impl.UMLPackageImpl;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package </b>. <!--
  * end-user-doc -->
@@ -46,6 +44,13 @@ import org.eclipse.emf.ocl.uml.internal.impl.UmlPackageImpl;
  */
 public class UtilitiesPackageImpl extends EPackageImpl implements
         UtilitiesPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -64,14 +69,14 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass typedAstNodeEClass = null;
+	private EClass typedASTNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass callingAstNodeEClass = null;
+	private EClass callingASTNodeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package </b>, registered with
@@ -128,27 +133,27 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
 		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
-		UmlPackageImpl theUmlPackage = (UmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI) instanceof UmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UmlPackage.eNS_URI) : UmlPackage.eINSTANCE);
+		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUtilitiesPackage.createPackageContents();
 		theQueryPackage.createPackageContents();
 		theTypesPackage.createPackageContents();
 		theExpressionsPackage.createPackageContents();
-		theUmlPackage.createPackageContents();
+		theUMLPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theUtilitiesPackage.initializePackageContents();
 		theQueryPackage.initializePackageContents();
 		theTypesPackage.initializePackageContents();
 		theExpressionsPackage.initializePackageContents();
-		theUmlPackage.initializePackageContents();
+		theUMLPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theUtilitiesPackage.freeze();
@@ -169,7 +174,7 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAstNode() {
+	public EClass getASTNode() {
 		return astNodeEClass;
 	}
 
@@ -178,7 +183,7 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAstNode_StartPosition() {
+	public EAttribute getASTNode_StartPosition() {
 		return (EAttribute)astNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -187,7 +192,7 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAstNode_EndPosition() {
+	public EAttribute getASTNode_EndPosition() {
 		return (EAttribute)astNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -196,8 +201,8 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTypedAstNode() {
-		return typedAstNodeEClass;
+	public EClass getTypedASTNode() {
+		return typedASTNodeEClass;
 	}
 
 	/**
@@ -205,8 +210,8 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedAstNode_TypeStartPosition() {
-		return (EAttribute)typedAstNodeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getTypedASTNode_TypeStartPosition() {
+		return (EAttribute)typedASTNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -214,8 +219,8 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedAstNode_TypeEndPosition() {
-		return (EAttribute)typedAstNodeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTypedASTNode_TypeEndPosition() {
+		return (EAttribute)typedASTNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -223,8 +228,8 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCallingAstNode() {
-		return callingAstNodeEClass;
+	public EClass getCallingASTNode() {
+		return callingASTNodeEClass;
 	}
 
 	/**
@@ -232,8 +237,8 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCallingAstNode_PropertyStartPosition() {
-		return (EAttribute)callingAstNodeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getCallingASTNode_PropertyStartPosition() {
+		return (EAttribute)callingASTNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -241,8 +246,8 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCallingAstNode_PropertyEndPosition() {
-		return (EAttribute)callingAstNodeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getCallingASTNode_PropertyEndPosition() {
+		return (EAttribute)callingASTNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -277,13 +282,13 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		createEAttribute(astNodeEClass, AST_NODE__START_POSITION);
 		createEAttribute(astNodeEClass, AST_NODE__END_POSITION);
 
-		typedAstNodeEClass = createEClass(TYPED_AST_NODE);
-		createEAttribute(typedAstNodeEClass, TYPED_AST_NODE__TYPE_START_POSITION);
-		createEAttribute(typedAstNodeEClass, TYPED_AST_NODE__TYPE_END_POSITION);
+		typedASTNodeEClass = createEClass(TYPED_AST_NODE);
+		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_START_POSITION);
+		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_END_POSITION);
 
-		callingAstNodeEClass = createEClass(CALLING_AST_NODE);
-		createEAttribute(callingAstNodeEClass, CALLING_AST_NODE__PROPERTY_START_POSITION);
-		createEAttribute(callingAstNodeEClass, CALLING_AST_NODE__PROPERTY_END_POSITION);
+		callingASTNodeEClass = createEClass(CALLING_AST_NODE);
+		createEAttribute(callingASTNodeEClass, CALLING_AST_NODE__PROPERTY_START_POSITION);
+		createEAttribute(callingASTNodeEClass, CALLING_AST_NODE__PROPERTY_END_POSITION);
 	}
 
 	/**
@@ -309,30 +314,30 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
-		EcorePackageImpl theEcorePackage = (EcorePackageImpl)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add supertypes to classes
-		typedAstNodeEClass.getESuperTypes().add(this.getAstNode());
-		callingAstNodeEClass.getESuperTypes().add(this.getAstNode());
+		typedASTNodeEClass.getESuperTypes().add(this.getASTNode());
+		callingASTNodeEClass.getESuperTypes().add(this.getASTNode());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(visitableEClass, Visitable.class, "Visitable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		EOperation op = addEOperation(visitableEClass, ecorePackage.getEJavaObject(), "accept"); //$NON-NLS-1$
-		addEParameter(op, theExpressionsPackage.getVisitor(), "v"); //$NON-NLS-1$
+		EOperation op = addEOperation(visitableEClass, ecorePackage.getEJavaObject(), "accept", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theExpressionsPackage.getVisitor(), "v", 0, 1); //$NON-NLS-1$
 
-		initEClass(astNodeEClass, AstNode.class, "AstNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getAstNode_StartPosition(), theEcorePackage.getEInt(), "startPosition", "-1", 0, 1, AstNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getAstNode_EndPosition(), theEcorePackage.getEInt(), "endPosition", "-1", 0, 1, AstNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(astNodeEClass, ASTNode.class, "ASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getASTNode_StartPosition(), theEcorePackage.getEInt(), "startPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getASTNode_EndPosition(), theEcorePackage.getEInt(), "endPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-		initEClass(typedAstNodeEClass, TypedAstNode.class, "TypedAstNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypedAstNode_TypeStartPosition(), theEcorePackage.getEInt(), "typeStartPosition", "-1", 0, 1, TypedAstNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getTypedAstNode_TypeEndPosition(), theEcorePackage.getEInt(), "typeEndPosition", "-1", 0, 1, TypedAstNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(typedASTNodeEClass, TypedASTNode.class, "TypedASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTypedASTNode_TypeStartPosition(), theEcorePackage.getEInt(), "typeStartPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getTypedASTNode_TypeEndPosition(), theEcorePackage.getEInt(), "typeEndPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-		initEClass(callingAstNodeEClass, CallingAstNode.class, "CallingAstNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getCallingAstNode_PropertyStartPosition(), theEcorePackage.getEInt(), "propertyStartPosition", "-1", 0, 1, CallingAstNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getCallingAstNode_PropertyEndPosition(), theEcorePackage.getEInt(), "propertyEndPosition", "-1", 0, 1, CallingAstNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(callingASTNodeEClass, CallingASTNode.class, "CallingASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getCallingASTNode_PropertyStartPosition(), theEcorePackage.getEInt(), "propertyStartPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getCallingASTNode_PropertyEndPosition(), theEcorePackage.getEInt(), "propertyEndPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		// Create resource
 		createResource(eNS_URI);

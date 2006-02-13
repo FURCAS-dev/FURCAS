@@ -20,13 +20,11 @@ package org.eclipse.emf.ocl.uml.internal.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ocl.uml.CallAction;
-import org.eclipse.emf.ocl.uml.UmlPackage;
+import org.eclipse.emf.ocl.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +40,13 @@ import org.eclipse.emf.ocl.uml.UmlPackage;
  * @generated
  */
 public class CallActionImpl extends EObjectImpl implements CallAction {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -67,7 +72,7 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return UmlPackage.eINSTANCE.getCallAction();
+		return UMLPackage.Literals.CALL_ACTION;
 	}
 
 	/**
@@ -77,11 +82,11 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 	 */
 	public EOperation getOperation() {
 		if (operation != null && operation.eIsProxy()) {
-			EOperation oldOperation = operation;
-			operation = (EOperation)eResolveProxy((InternalEObject)operation);
+			InternalEObject oldOperation = (InternalEObject)operation;
+			operation = (EOperation)eResolveProxy(oldOperation);
 			if (operation != oldOperation) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlPackage.CALL_ACTION__OPERATION, oldOperation, operation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.CALL_ACTION__OPERATION, oldOperation, operation));
 			}
 		}
 		return operation;
@@ -105,7 +110,7 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 		EOperation oldOperation = operation;
 		operation = newOperation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UmlPackage.CALL_ACTION__OPERATION, oldOperation, operation));
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CALL_ACTION__OPERATION, oldOperation, operation));
 	}
 
 	/**
@@ -113,13 +118,13 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.CALL_ACTION__OPERATION:
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case UMLPackage.CALL_ACTION__OPERATION:
 				if (resolve) return getOperation();
 				return basicGetOperation();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -127,13 +132,13 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.CALL_ACTION__OPERATION:
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case UMLPackage.CALL_ACTION__OPERATION:
 				setOperation((EOperation)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -141,13 +146,13 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.CALL_ACTION__OPERATION:
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case UMLPackage.CALL_ACTION__OPERATION:
 				setOperation((EOperation)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -155,12 +160,12 @@ public class CallActionImpl extends EObjectImpl implements CallAction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case UmlPackage.CALL_ACTION__OPERATION:
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case UMLPackage.CALL_ACTION__OPERATION:
 				return operation != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //CallActionImpl

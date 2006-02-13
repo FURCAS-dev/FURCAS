@@ -23,8 +23,15 @@ import org.eclipse.emf.ecore.EOperation;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface OperationCallExp extends ModelPropertyCallExp{
+public interface OperationCallExp extends ModelPropertyCallExp {
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model type="OclExpression" opposite="parentOperation" lowerBound=0
 	 */

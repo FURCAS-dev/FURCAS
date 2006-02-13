@@ -24,6 +24,13 @@ package org.eclipse.emf.ocl.expressions;
  */
 public interface StringLiteralExp extends PrimitiveLiteralExp {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
+	/**
 	 *
 	 */
 	public String getStringSymbol();

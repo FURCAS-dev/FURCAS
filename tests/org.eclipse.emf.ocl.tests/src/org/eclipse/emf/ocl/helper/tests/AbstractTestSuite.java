@@ -40,7 +40,7 @@ public abstract class AbstractTestSuite
 	public static Test suite() {
 		TestSuite result = new TestSuite("OCL Helper Tests"); //$NON-NLS-1$
 		
-		result.addTest(OclHelperTest.suite());
+		result.addTest(OCLHelperTest.suite());
 		result.addTest(ParsingTest.suite());
 		result.addTest(SyntaxHelpTest.suite());
 		result.addTest(EvaluationTest.suite());

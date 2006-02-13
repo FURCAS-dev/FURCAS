@@ -17,14 +17,13 @@
 
 package org.eclipse.emf.ocl.types.internal.impl;
 
-import org.eclipse.emf.ocl.types.*;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -52,6 +51,32 @@ import org.eclipse.emf.ocl.types.VoidType;
 public class TypesFactoryImpl
 	extends EFactoryImpl
 	implements TypesFactory {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static TypesFactory init() {
+		try {
+			TypesFactory theTypesFactory = (TypesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/OCL2/7.0.0/ocl/types"); //$NON-NLS-1$ 
+			if (theTypesFactory != null) {
+				return theTypesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new TypesFactoryImpl();
+	}
 
 	/**
 	 * Creates an instance of the factory.
@@ -85,7 +110,6 @@ public class TypesFactoryImpl
 			case TypesPackage.VOID_TYPE: return createVoidType();
 			case TypesPackage.MESSAGE_TYPE: return createMessageType();
 			case TypesPackage.MODEL_ELEMENT_TYPE: return createModelElementType();
-			case TypesPackage.OCL_STATE: return createOclState();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -178,16 +202,6 @@ public class TypesFactoryImpl
 	public ModelElementType createModelElementType() {
 		ModelElementTypeImpl modelElementType = new ModelElementTypeImpl();
 		return modelElementType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclState createOclState() {
-		OclStateImpl oclState = new OclStateImpl();
-		return oclState;
 	}
 
 	/**

@@ -17,20 +17,14 @@
 
 package org.eclipse.emf.ocl.expressions.internal.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +41,13 @@ import org.eclipse.emf.ocl.expressions.OclExpression;
  */
 public class CollectionItemImpl extends CollectionLiteralPartImpl implements CollectionItem {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
 	 * The cached value of the '{@link #getItem() <em>Item</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +55,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * @generated
 	 * @ordered
 	 */
-	protected OclExpression item = null;
+	protected OCLExpression item = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,7 +72,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.eINSTANCE.getCollectionItem();
+		return ExpressionsPackage.Literals.COLLECTION_ITEM;
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression getItem() {
+	public OCLExpression getItem() {
 		return item;
 	}
 
@@ -88,8 +89,8 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetItem(OclExpression newItem, NotificationChain msgs) {
-		OclExpression oldItem = item;
+	public NotificationChain basicSetItem(OCLExpression newItem, NotificationChain msgs) {
+		OCLExpression oldItem = item;
 		item = newItem;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_ITEM__ITEM, oldItem, newItem);
@@ -103,7 +104,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setItem(OclExpression newItem) {
+	public void setItem(OCLExpression newItem) {
 		if (newItem != item) {
 			NotificationChain msgs = null;
 			if (item != null)
@@ -122,18 +123,12 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.COLLECTION_ITEM__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
+				return basicSetItem(null, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -141,38 +136,12 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case ExpressionsPackage.COLLECTION_ITEM__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-					return basicSetItem(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_ITEM__EANNOTATIONS:
-				return getEAnnotations();
-			case ExpressionsPackage.COLLECTION_ITEM__NAME:
-				return getName();
-			case ExpressionsPackage.COLLECTION_ITEM__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
 				return getItem();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -180,23 +149,13 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_ITEM__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_ITEM__NAME:
-				setName((String)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_ITEM__TYPE:
-				setType((EClassifier)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				setItem((OclExpression)newValue);
+				setItem((OCLExpression)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -204,22 +163,13 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_ITEM__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case ExpressionsPackage.COLLECTION_ITEM__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ExpressionsPackage.COLLECTION_ITEM__TYPE:
-				setType((EClassifier)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				setItem((OclExpression)null);
+				setItem((OCLExpression)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -227,18 +177,12 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case ExpressionsPackage.COLLECTION_ITEM__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case ExpressionsPackage.COLLECTION_ITEM__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpressionsPackage.COLLECTION_ITEM__TYPE:
-				return type != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
 				return item != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //CollectionItemImpl

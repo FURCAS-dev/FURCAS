@@ -23,8 +23,15 @@ import org.eclipse.emf.ecore.EOperation;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface CallAction extends EObject{
+public interface CallAction extends EObject {
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 *
 	 */

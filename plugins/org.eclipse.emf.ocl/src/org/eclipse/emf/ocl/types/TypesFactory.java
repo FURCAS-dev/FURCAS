@@ -29,14 +29,21 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.emf.ocl.types.TypesPackage
  * @generated
  */
-public interface TypesFactory extends EFactory{
+public interface TypesFactory extends EFactory {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TypesFactory eINSTANCE = new org.eclipse.emf.ocl.types.internal.impl.TypesFactoryImpl();
+	TypesFactory eINSTANCE = org.eclipse.emf.ocl.types.internal.impl.TypesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Bag Type</em>'.
@@ -130,15 +137,6 @@ public interface TypesFactory extends EFactory{
 	 * @generated
 	 */
 	ModelElementType createModelElementType();
-
-	/**
-	 * Returns a new object of class '<em>Ocl State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl State</em>'.
-	 * @generated
-	 */
-	OclState createOclState();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.

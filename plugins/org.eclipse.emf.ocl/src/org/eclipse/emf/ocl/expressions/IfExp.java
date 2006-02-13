@@ -21,11 +21,18 @@ package org.eclipse.emf.ocl.expressions;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface IfExp extends OclExpression{
+public interface IfExp extends OCLExpression {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * @model containment="true"
 	 */
-	public OclExpression getCondition();
+	public OCLExpression getCondition();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.IfExp#getCondition <em>Condition</em>}' containment reference.
@@ -35,12 +42,12 @@ public interface IfExp extends OclExpression{
 	 * @see #getCondition()
 	 * @generated
 	 */
-	void setCondition(OclExpression value);
+	void setCondition(OCLExpression value);
 
 	/**
 	 * @model containment="true"
 	 */
-	public OclExpression getThenExpression();
+	public OCLExpression getThenExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.IfExp#getThenExpression <em>Then Expression</em>}' containment reference.
@@ -50,12 +57,12 @@ public interface IfExp extends OclExpression{
 	 * @see #getThenExpression()
 	 * @generated
 	 */
-	void setThenExpression(OclExpression value);
+	void setThenExpression(OCLExpression value);
 
 	/**
 	 * @model containment="true"
 	 */
-	public OclExpression getElseExpression();
+	public OCLExpression getElseExpression();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.IfExp#getElseExpression <em>Else Expression</em>}' containment reference.
@@ -65,6 +72,6 @@ public interface IfExp extends OclExpression{
 	 * @see #getElseExpression()
 	 * @generated
 	 */
-	void setElseExpression(OclExpression value);
+	void setElseExpression(OCLExpression value);
 
 }

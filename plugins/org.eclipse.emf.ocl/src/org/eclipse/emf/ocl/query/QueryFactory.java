@@ -19,7 +19,7 @@ package org.eclipse.emf.ocl.query;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,14 +29,21 @@ import org.eclipse.emf.ocl.expressions.OclExpression;
  * @see org.eclipse.emf.ocl.query.QueryPackage
  * @generated
  */
-public interface QueryFactory extends EFactory{
+public interface QueryFactory extends EFactory {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QueryFactory eINSTANCE = new org.eclipse.emf.ocl.query.internal.impl.QueryFactoryImpl();
+	QueryFactory eINSTANCE = org.eclipse.emf.ocl.query.internal.impl.QueryFactoryImpl.init();
 
 	/**
 	 * Creates an OCL query from the specified OCL expression string, for the
@@ -79,7 +86,7 @@ public interface QueryFactory extends EFactory{
 	Query createQuery();
 
 	/**
-	 * Creates a query from an {@link OclExpression} (constraint or query).
+	 * Creates a query from an {@link OCLExpression} (constraint or query).
 	 * The query is validated according to OCL well-formedness rules.
 	 * 
 	 * @param expr the ocl expression
@@ -89,7 +96,7 @@ public interface QueryFactory extends EFactory{
 	 * 
 	 * @generated NOT
 	 */
-	Query createQuery(OclExpression expr);
+	Query createQuery(OCLExpression expr);
 
 	/**
 	 * Returns the package supported by this factory.

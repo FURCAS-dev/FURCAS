@@ -46,12 +46,12 @@ import org.osgi.framework.Bundle;
 
 import antlr.ANTLRException;
 
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.internal.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.helper.Choice;
 import org.eclipse.emf.ocl.helper.ChoiceType;
-import org.eclipse.emf.ocl.internal.parser.OclLexer;
-import org.eclipse.emf.ocl.internal.parser.OclParser;
+import org.eclipse.emf.ocl.internal.parser.OCLLexer;
+import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.internal.utilities.Visitable;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -119,7 +119,7 @@ public abstract class AbstractTestSuite
 	public static Test suite() {
 		TestSuite result = new TestSuite("OCL Parsing Tests"); //$NON-NLS-1$
 		
-		result.addTest(BasicOclTest.suite());
+		result.addTest(BasicOCLTest.suite());
 		result.addTest(InvariantConstraintsTest.suite());
 		result.addTest(OperationConstraintsTest.suite());
 		result.addTest(ExpressionsUtilTest.suite());
@@ -159,8 +159,8 @@ public abstract class AbstractTestSuite
 	 * @param text the OCL text
 	 * @return the OCL expression
 	 */
-	protected OclExpression parse(String text) {
-		OclExpression result = parseUnvalidated(text);
+	protected OCLExpression parse(String text) {
+		OCLExpression result = parseUnvalidated(text);
 		validate(result);
 		return result;
 	}
@@ -171,9 +171,9 @@ public abstract class AbstractTestSuite
 	 * @param text the OCL text
 	 * @return the OCL expression, invalidated
 	 */
-	protected OclExpression parseUnvalidated(String text) {
-		OclLexer lexer = new OclLexer(new StringReader(text));
-		OclParser parser = new OclParser(lexer);
+	protected OCLExpression parseUnvalidated(String text) {
+		OCLLexer lexer = new OCLLexer(new StringReader(text));
+		OCLParser parser = new OCLParser(lexer);
 		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
@@ -188,7 +188,7 @@ public abstract class AbstractTestSuite
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 		
-		OclExpression result = null;
+		OCLExpression result = null;
 		result = constraint.getBody();
 		
 		assertNotNull(result);
@@ -201,7 +201,7 @@ public abstract class AbstractTestSuite
 	 * 
 	 * @param expr the OCL expression to validate
 	 */
-	protected void validate(OclExpression expr) {
+	protected void validate(OCLExpression expr) {
 		try {
 			Visitable v;
 			
@@ -224,8 +224,8 @@ public abstract class AbstractTestSuite
 	 * @param text the OCL text
 	 * @return the OCL constraint expression
 	 */
-	protected OclExpression parseConstraint(String text) {
-		OclExpression result = parse(text);
+	protected OCLExpression parseConstraint(String text) {
+		OCLExpression result = parse(text);
 		
 		assertTrue("Not a boolean-valued constraint", oclBoolean.isInstance(result.getType())); //$NON-NLS-1$
 		
@@ -239,15 +239,15 @@ public abstract class AbstractTestSuite
 	 * @param text the OCL text
 	 * @return the OCL constraint expression, unvalidated
 	 */
-	protected OclExpression parseConstraintUnvalidated(String text) {
-		OclExpression result = parseUnvalidated(text);
+	protected OCLExpression parseConstraintUnvalidated(String text) {
+		OCLExpression result = parseUnvalidated(text);
 		
 		assertTrue("Not a boolean-valued constraint", oclBoolean.isInstance(result.getType())); //$NON-NLS-1$
 		
 		return result;
 	}
 	
-	protected Object evaluate(OclExpression expr) {
+	protected Object evaluate(OCLExpression expr) {
 		Object result = null;
 		
 		try {
@@ -259,7 +259,7 @@ public abstract class AbstractTestSuite
 		return result;
 	}
 	
-	protected Object evaluate(OclExpression expr, Object self) {
+	protected Object evaluate(OCLExpression expr, Object self) {
 		Object result = null;
 		
 		try {
@@ -271,7 +271,7 @@ public abstract class AbstractTestSuite
 		return result;
 	}
 	
-	protected boolean check(OclExpression expr, Object self) {
+	protected boolean check(OCLExpression expr, Object self) {
 		boolean result = false;
 		
 		try {

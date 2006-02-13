@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.emf.ocl.uml.UmlPackage#getSignal()
- *
+ * @see org.eclipse.emf.ocl.uml.UMLPackage#getSignal()
+ * @model
  * @generated
  */
 public interface Signal extends EObject, EClass {

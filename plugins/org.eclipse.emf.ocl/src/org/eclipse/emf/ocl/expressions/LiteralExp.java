@@ -25,6 +25,6 @@ package org.eclipse.emf.ocl.expressions;
  * 
  */
 public interface LiteralExp
-	extends OclExpression {
+	extends OCLExpression {
 	//	empty impl.
 }

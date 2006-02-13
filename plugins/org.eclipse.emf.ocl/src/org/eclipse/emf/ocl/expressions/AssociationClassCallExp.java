@@ -32,10 +32,17 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  *
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp()
- *
+ * @model
  * @generated
  */
-public interface AssociationClassCallExp extends NavigationCallExp{
+public interface AssociationClassCallExp extends NavigationCallExp {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 	/**
 	 * Returns the value of the '<em><b>Referred Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -47,7 +54,7 @@ public interface AssociationClassCallExp extends NavigationCallExp{
 	 * @return the value of the '<em>Referred Association Class</em>' reference.
 	 * @see #setReferredAssociationClass(EClass)
 	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp_ReferredAssociationClass()
-	 *
+	 * @model
 	 * @generated
 	 */
 	EClass getReferredAssociationClass();

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOclHelper;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -50,7 +50,7 @@ public class RegressionTest
 	 * we do not support it (yet).
 	 */
 	public void test_oclIsInState_unsupported_RATLC00529981() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 
 		helper.setContext(fruit);
 		
@@ -72,7 +72,7 @@ public class RegressionTest
 	 * sub-expression to the left of the '.'.
 	 */
 	public void test_completionOfRightmostSubexpression_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEReference());
 		List choices = helper.getSyntaxHelp(
@@ -92,7 +92,7 @@ public class RegressionTest
 	 * parentheses.
 	 */
 	public void test_completionOfRightmost_parentheses_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEReference());
 		List choices = helper.getSyntaxHelp(
@@ -111,7 +111,7 @@ public class RegressionTest
 	 * the let variables in a let expression.
 	 */
 	public void test_completionOnLetVariable_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -126,7 +126,7 @@ public class RegressionTest
 	 * let expressions as a whole.
 	 */
 	public void test_completionOnLetExpression_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -141,7 +141,7 @@ public class RegressionTest
 	 * the iterator variables in a loop expression.
 	 */
 	public void test_completionOnIteratorVariable_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -156,7 +156,7 @@ public class RegressionTest
 	 * the accumulator (second iterator variable) in "iterate" expressions.
 	 */
 	public void test_completionOnAccumulator_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -178,7 +178,7 @@ public class RegressionTest
 	 * the an "iterate" expression (which formerly would be empty).
 	 */
 	public void test_completionOnIterate_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -194,7 +194,7 @@ public class RegressionTest
 	 * a sequence.
 	 */
 	public void test_completionOnIterator_sequence_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -210,7 +210,7 @@ public class RegressionTest
 	 * an ordered set.
 	 */
 	public void test_completionOnIterator_orderedSet_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -226,7 +226,7 @@ public class RegressionTest
 	 * a bag.
 	 */
 	public void test_completionOnIterator_bag_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -242,7 +242,7 @@ public class RegressionTest
 	 * an if expression if it is eclosed in parentheses.
 	 */
 	public void test_completionOnIfExpression_RATLC00537918() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -265,7 +265,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_variables_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -297,7 +297,7 @@ public class RegressionTest
 	 * in operation constraints.
 	 */
 	public void test_parameters_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContextOperation(apple, apple_labelOper);
 		List choices = helper.getSyntaxHelp(
@@ -314,7 +314,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_property_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -331,7 +331,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_operation_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(
@@ -348,7 +348,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_type_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
 		List choices = helper.getSyntaxHelp(
@@ -365,7 +365,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_enumLiteral_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
 		List choices = helper.getSyntaxHelp(
@@ -382,7 +382,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_collectionOperation_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
 		List choices = helper.getSyntaxHelp(
@@ -398,7 +398,7 @@ public class RegressionTest
 	 * from an empty string.
 	 */
 	public void test_emptyExpression_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
 		List choices = helper.getSyntaxHelp(
@@ -415,7 +415,7 @@ public class RegressionTest
 	 * from an utterly unparseable expression.
 	 */
 	public void test_garbageExpression_RATLC00535552() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
 		List choices = helper.getSyntaxHelp(
@@ -432,7 +432,7 @@ public class RegressionTest
 	 * context.
 	 */
 	public void test_oclIsNewOnlyInPostconditions_116664() {
-		IOclHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOclHelper();
 		
 		helper.setContext(apple);
 		

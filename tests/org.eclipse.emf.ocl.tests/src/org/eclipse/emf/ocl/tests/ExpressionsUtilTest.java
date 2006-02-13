@@ -22,7 +22,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.ocl.expressions.OclExpression;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
@@ -48,7 +48,7 @@ public class ExpressionsUtilTest
 	 */
 	public void test_createInvariant() {
 		try {
-			OclExpression constraint = ExpressionsUtil.createInvariant(
+			OCLExpression constraint = ExpressionsUtil.createInvariant(
 				apple, "self.color <> Color::black", true); //$NON-NLS-1$
 			
 			assertNotNull(constraint);
@@ -72,7 +72,7 @@ public class ExpressionsUtilTest
 	 */
 	public void test_createPrecondition() {
 		try {
-			OclExpression constraint = ExpressionsUtil.createPrecondition(
+			OCLExpression constraint = ExpressionsUtil.createPrecondition(
 				fruit_ripen, "color <> self.color", true); //$NON-NLS-1$
 			
 			assertNotNull(constraint);
@@ -87,7 +87,7 @@ public class ExpressionsUtilTest
 	 */
 	public void test_createPostcondition() {
 		try {
-			OclExpression constraint = ExpressionsUtil.createPostcondition(
+			OCLExpression constraint = ExpressionsUtil.createPostcondition(
 				fruit_ripen, "self.color <> self.color@pre", true); //$NON-NLS-1$
 			
 			assertNotNull(constraint);
@@ -102,7 +102,7 @@ public class ExpressionsUtilTest
 	 */
 	public void test_createBodyCondition() {
 		try {
-			OclExpression constraint = ExpressionsUtil.createBodyCondition(
+			OCLExpression constraint = ExpressionsUtil.createBodyCondition(
 				fruit_preferredColor,
 				"result = (if self.color = Color::green then Color::red else Color::brown endif)", //$NON-NLS-1$
 				true);

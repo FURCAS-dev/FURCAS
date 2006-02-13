@@ -17,10 +17,8 @@
 
 package org.eclipse.emf.ocl.types.internal.impl;
 
-import java.util.Collection;
 import java.util.Iterator;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -28,16 +26,13 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ocl.expressions.VariableDeclaration;
-import org.eclipse.emf.ocl.internal.OclEnginePlugin;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
-import org.eclipse.emf.ocl.internal.parser.OclParser;
+import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -56,6 +51,13 @@ public class TupleTypeImpl
 	extends EClassImpl
 	implements TupleType {
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = ""; //$NON-NLS-1$
+
 	static EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
 
 	static EcorePackage ecorePackage = EcorePackage.eINSTANCE;
@@ -67,13 +69,13 @@ public class TupleTypeImpl
 	static EPackage tuplePackage = EcoreFactory.eINSTANCE.createEPackage();
 
 	private static final String TupleTypeMismatch_ERROR_ =
-		OclMessages.TupleTypeMismatch_ERROR_;
+		OCLMessages.TupleTypeMismatch_ERROR_;
 
 	private static final String TupleFieldNumMismatch_ERROR_ =
-		OclMessages.TupleFieldNumMismatch_ERROR_;
+		OCLMessages.TupleFieldNumMismatch_ERROR_;
 
 	private static final String TupleFieldNotFound_ERROR_ =
-		OclMessages.TupleFieldNotFound_ERROR_;
+		OCLMessages.TupleFieldNotFound_ERROR_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,7 +176,7 @@ public class TupleTypeImpl
 		if (!(type instanceof TupleType)) {
 			String message = NLS.bind(TupleTypeMismatch_ERROR_,
 				new Object[] {this.getName(), type.getName() });
-			OclParser.ERR(message);
+			OCLParser.ERR(message);
 		}
 		TupleType result = TypesFactory.eINSTANCE.createTupleType();
 		TupleTypeImpl resultTuple = (TupleTypeImpl) result;
@@ -185,7 +187,7 @@ public class TupleTypeImpl
 		if (attrs1.size() != attrs2.size()) {
 			String message = NLS.bind(TupleFieldNumMismatch_ERROR_,
 				new Object[] {this.getName(), type.getName() });
-			OclParser.ERR(message);
+			OCLParser.ERR(message);
 		}
 
 		Iterator iter1 = attrs1.iterator();
@@ -210,7 +212,7 @@ public class TupleTypeImpl
 				String message = NLS.bind(
 					TupleFieldNotFound_ERROR_, new Object[] {this.getName(),
 						attr1.getName(), type.getName() });
-				OclParser.ERR(message);
+				OCLParser.ERR(message);
 			}
 		}
 
@@ -219,7 +221,7 @@ public class TupleTypeImpl
 		if (refs1.size() != refs2.size()) {
 			String message = NLS.bind(TupleFieldNumMismatch_ERROR_,
 				new Object[] {this.getName(), type.getName() });
-			OclParser.ERR(message);
+			OCLParser.ERR(message);
 		}
 
 		iter1 = refs1.iterator();
@@ -244,7 +246,7 @@ public class TupleTypeImpl
 				String message = NLS.bind(
 					TupleFieldNotFound_ERROR_, new Object[] {this.getName(),
 						ref1.getName(), type.getName() });
-				OclParser.ERR(message);
+				OCLParser.ERR(message);
 			}
 		}
 		return addToTuplePackage(result);
@@ -266,7 +268,7 @@ public class TupleTypeImpl
 				new Object[] {this.getName(), type.getName() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
+			OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
 			throw error;
 		}
 		return tupleCompare(this, (EClass) type);
@@ -290,7 +292,7 @@ public class TupleTypeImpl
 				new Object[] {eclazz1.getName(), eclazz2.getName() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(TupleTypeImpl.class,
+			OCLPlugin.throwing(TupleTypeImpl.class,
 				"eclassCompare", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -319,7 +321,7 @@ public class TupleTypeImpl
 								eclazz2.getName() });
 						IllegalArgumentException error = new IllegalArgumentException(
 							message);
-						OclEnginePlugin.throwing(TupleTypeImpl.class,
+						OCLPlugin.throwing(TupleTypeImpl.class,
 							"eclassCompare", error);//$NON-NLS-1$
 						throw error;
 					}
@@ -332,7 +334,7 @@ public class TupleTypeImpl
 					new Object[] {eclazz1.getName(), eclazz2.getName() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(TupleTypeImpl.class,
+				OCLPlugin.throwing(TupleTypeImpl.class,
 					"eclassCompare", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -345,7 +347,7 @@ public class TupleTypeImpl
 				new Object[] {eclazz1.getName(), eclazz2.getName() });
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
-			OclEnginePlugin.throwing(TupleTypeImpl.class,
+			OCLPlugin.throwing(TupleTypeImpl.class,
 				"eclassCompare", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -370,7 +372,7 @@ public class TupleTypeImpl
 								eclazz2.getName() });
 						IllegalArgumentException error = new IllegalArgumentException(
 							message);
-						OclEnginePlugin.throwing(TupleTypeImpl.class,
+						OCLPlugin.throwing(TupleTypeImpl.class,
 							"eclassCompare", error);//$NON-NLS-1$
 						throw error;
 					}
@@ -384,7 +386,7 @@ public class TupleTypeImpl
 					new Object[] {eclazz1.getName(), eclazz2.getName() });
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
-				OclEnginePlugin.throwing(TupleTypeImpl.class,
+				OCLPlugin.throwing(TupleTypeImpl.class,
 					"eclassCompare", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -398,250 +400,7 @@ public class TupleTypeImpl
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return TypesPackage.eINSTANCE.getTupleType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case TypesPackage.TUPLE_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case TypesPackage.TUPLE_TYPE__EPACKAGE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, TypesPackage.TUPLE_TYPE__EPACKAGE, msgs);
-				case TypesPackage.TUPLE_TYPE__EOPERATIONS:
-					return ((InternalEList)getEOperations()).basicAdd(otherEnd, msgs);
-				case TypesPackage.TUPLE_TYPE__ESTRUCTURAL_FEATURES:
-					return ((InternalEList)getEStructuralFeatures()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case TypesPackage.TUPLE_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case TypesPackage.TUPLE_TYPE__EPACKAGE:
-					return eBasicSetContainer(null, TypesPackage.TUPLE_TYPE__EPACKAGE, msgs);
-				case TypesPackage.TUPLE_TYPE__EOPERATIONS:
-					return ((InternalEList)getEOperations()).basicRemove(otherEnd, msgs);
-				case TypesPackage.TUPLE_TYPE__ESTRUCTURAL_FEATURES:
-					return ((InternalEList)getEStructuralFeatures()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case TypesPackage.TUPLE_TYPE__EPACKAGE:
-					return eContainer.eInverseRemove(this, EcorePackage.EPACKAGE__ECLASSIFIERS, EPackage.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.TUPLE_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case TypesPackage.TUPLE_TYPE__NAME:
-				return getName();
-			case TypesPackage.TUPLE_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case TypesPackage.TUPLE_TYPE__INSTANCE_CLASS:
-				return getInstanceClass();
-			case TypesPackage.TUPLE_TYPE__DEFAULT_VALUE:
-				return getDefaultValue();
-			case TypesPackage.TUPLE_TYPE__EPACKAGE:
-				return getEPackage();
-			case TypesPackage.TUPLE_TYPE__ABSTRACT:
-				return isAbstract() ? Boolean.TRUE : Boolean.FALSE;
-			case TypesPackage.TUPLE_TYPE__INTERFACE:
-				return isInterface() ? Boolean.TRUE : Boolean.FALSE;
-			case TypesPackage.TUPLE_TYPE__ESUPER_TYPES:
-				return getESuperTypes();
-			case TypesPackage.TUPLE_TYPE__EOPERATIONS:
-				return getEOperations();
-			case TypesPackage.TUPLE_TYPE__EALL_ATTRIBUTES:
-				return getEAllAttributes();
-			case TypesPackage.TUPLE_TYPE__EALL_REFERENCES:
-				return getEAllReferences();
-			case TypesPackage.TUPLE_TYPE__EREFERENCES:
-				return getEReferences();
-			case TypesPackage.TUPLE_TYPE__EATTRIBUTES:
-				return getEAttributes();
-			case TypesPackage.TUPLE_TYPE__EALL_CONTAINMENTS:
-				return getEAllContainments();
-			case TypesPackage.TUPLE_TYPE__EALL_OPERATIONS:
-				return getEAllOperations();
-			case TypesPackage.TUPLE_TYPE__EALL_STRUCTURAL_FEATURES:
-				return getEAllStructuralFeatures();
-			case TypesPackage.TUPLE_TYPE__EALL_SUPER_TYPES:
-				return getEAllSuperTypes();
-			case TypesPackage.TUPLE_TYPE__EID_ATTRIBUTE:
-				return getEIDAttribute();
-			case TypesPackage.TUPLE_TYPE__ESTRUCTURAL_FEATURES:
-				return getEStructuralFeatures();
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.TUPLE_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case TypesPackage.TUPLE_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case TypesPackage.TUPLE_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case TypesPackage.TUPLE_TYPE__ABSTRACT:
-				setAbstract(((Boolean)newValue).booleanValue());
-				return;
-			case TypesPackage.TUPLE_TYPE__INTERFACE:
-				setInterface(((Boolean)newValue).booleanValue());
-				return;
-			case TypesPackage.TUPLE_TYPE__ESUPER_TYPES:
-				getESuperTypes().clear();
-				getESuperTypes().addAll((Collection)newValue);
-				return;
-			case TypesPackage.TUPLE_TYPE__EOPERATIONS:
-				getEOperations().clear();
-				getEOperations().addAll((Collection)newValue);
-				return;
-			case TypesPackage.TUPLE_TYPE__ESTRUCTURAL_FEATURES:
-				getEStructuralFeatures().clear();
-				getEStructuralFeatures().addAll((Collection)newValue);
-				return;
-		}
-		eDynamicSet(eFeature, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.TUPLE_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case TypesPackage.TUPLE_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TypesPackage.TUPLE_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
-			case TypesPackage.TUPLE_TYPE__ABSTRACT:
-				setAbstract(ABSTRACT_EDEFAULT);
-				return;
-			case TypesPackage.TUPLE_TYPE__INTERFACE:
-				setInterface(INTERFACE_EDEFAULT);
-				return;
-			case TypesPackage.TUPLE_TYPE__ESUPER_TYPES:
-				getESuperTypes().clear();
-				return;
-			case TypesPackage.TUPLE_TYPE__EOPERATIONS:
-				getEOperations().clear();
-				return;
-			case TypesPackage.TUPLE_TYPE__ESTRUCTURAL_FEATURES:
-				getEStructuralFeatures().clear();
-				return;
-		}
-		eDynamicUnset(eFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case TypesPackage.TUPLE_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case TypesPackage.TUPLE_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TypesPackage.TUPLE_TYPE__INSTANCE_CLASS_NAME:
-				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
-			case TypesPackage.TUPLE_TYPE__INSTANCE_CLASS:
-				return INSTANCE_CLASS_EDEFAULT == null ? getInstanceClass() != null : !INSTANCE_CLASS_EDEFAULT.equals(getInstanceClass());
-			case TypesPackage.TUPLE_TYPE__DEFAULT_VALUE:
-				return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
-			case TypesPackage.TUPLE_TYPE__EPACKAGE:
-				return getEPackage() != null;
-			case TypesPackage.TUPLE_TYPE__ABSTRACT:
-				return ((eFlags & ABSTRACT_EFLAG) != 0) != ABSTRACT_EDEFAULT;
-			case TypesPackage.TUPLE_TYPE__INTERFACE:
-				return ((eFlags & INTERFACE_EFLAG) != 0) != INTERFACE_EDEFAULT;
-			case TypesPackage.TUPLE_TYPE__ESUPER_TYPES:
-				return eSuperTypes != null && !eSuperTypes.isEmpty();
-			case TypesPackage.TUPLE_TYPE__EOPERATIONS:
-				return eOperations != null && !eOperations.isEmpty();
-			case TypesPackage.TUPLE_TYPE__EALL_ATTRIBUTES:
-				return !getEAllAttributes().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EALL_REFERENCES:
-				return !getEAllReferences().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EREFERENCES:
-				return !getEReferences().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EATTRIBUTES:
-				return !getEAttributes().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EALL_CONTAINMENTS:
-				return !getEAllContainments().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EALL_OPERATIONS:
-				return !getEAllOperations().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EALL_STRUCTURAL_FEATURES:
-				return !getEAllStructuralFeatures().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EALL_SUPER_TYPES:
-				return !getEAllSuperTypes().isEmpty();
-			case TypesPackage.TUPLE_TYPE__EID_ATTRIBUTE:
-				return getEIDAttribute() != null;
-			case TypesPackage.TUPLE_TYPE__ESTRUCTURAL_FEATURES:
-				return eStructuralFeatures != null && !eStructuralFeatures.isEmpty();
-		}
-		return eDynamicIsSet(eFeature);
+		return TypesPackage.Literals.TUPLE_TYPE;
 	}
 
 } //TupleTypeImpl

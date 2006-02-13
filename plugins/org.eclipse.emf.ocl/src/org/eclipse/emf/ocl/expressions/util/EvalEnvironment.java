@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ocl.internal.l10n.OclMessages;
+import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.osgi.util.NLS;
 
@@ -33,7 +33,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EvalEnvironment implements EvaluationEnvironment {
 
-    private static final String BINDING_MESSAGE = OclMessages.BindingExist_ERROR_;
+    private static final String BINDING_MESSAGE = OCLMessages.BindingExist_ERROR_;
 
     private final Map map;
 
