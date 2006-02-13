@@ -78,7 +78,7 @@ public class LocationInformationTest
 	 */
 	public void test_invariant() {
 		final String exprString = "true implies self.color <> Color::black"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 		
 		OperationCallExp impliesExp = asOperationCall(constraint);
 		assertLocation(impliesExp, 0, exprString.length());
@@ -111,7 +111,7 @@ public class LocationInformationTest
 			"if false then 'Spy' else " + //$NON-NLS-1$
 			"Set{'Spartan', 'GrannySmith', 'Macintosh'}->any(i : String | i <> '')" + //$NON-NLS-1$
 			" endif"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 		
 		IfExp ifExp = asIf(constraint);
 		assertLocation(ifExp, 0, exprString.length());
@@ -190,7 +190,7 @@ public class LocationInformationTest
 	public void test_parentheses() {
 		final String exprString =
 			"( (true) implies ( (false) or ((true)) ) )"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(fruit, exprString);
+		OCLExpression constraint = createQuery(fruit, exprString);
 		
 		OperationCallExp operCall = asOperationCall(constraint);
 		assertLocation(operCall, 0, exprString.length());
@@ -223,7 +223,7 @@ public class LocationInformationTest
 		final String exprString =
 			"let isApple : Boolean = self.oclIsKindOf(Apple) in " + //$NON-NLS-1$
 			"isApple implies Apple.allInstances()->includes(self)"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(fruit, exprString);
+		OCLExpression constraint = createQuery(fruit, exprString);
 		
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
@@ -256,7 +256,7 @@ public class LocationInformationTest
 		final String exprString =
 			"let allApples : Set(Apple) = Apple.allInstances() in " + //$NON-NLS-1$
 			"allApples->includes(self)"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 		
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
@@ -279,7 +279,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_operationCall() {
 		final String exprString =
 			"Apple.allInstances()->includes(self)"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 
 		// collection operation (arrow)
 		OperationCallExp includesExp = asOperationCall(constraint);
@@ -305,7 +305,7 @@ public class LocationInformationTest
 		// throw in spaces for fun
 		final String exprString =
 			"not ripen(self. color )"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 
 		OperationCallExp notExp = asOperationCall(constraint);
 		OperationCallExp ripenExp = asOperationCall(notExp.getSource());
@@ -324,7 +324,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_associationEndCall() {
 		final String exprString =
 			"self.stem->notEmpty()"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 		
 		OperationCallExp notEmptyExp = asOperationCall(constraint);
 		
@@ -345,7 +345,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_implicitCollect() {
 		final String exprString =
 			"orderedSet.color->asSet()->size() = 1"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(
+		OCLExpression constraint = createQuery(
 			(EClass) fruitPackage.getEClassifier("FruitUtil"), //$NON-NLS-1$
 			exprString);
 		
@@ -370,7 +370,7 @@ public class LocationInformationTest
 	public void test_referencePositions_implicitCollect() {
 		final String exprString =
 			"Apple.allInstances().stem->asSet()->size() > 1"; //$NON-NLS-1$
-		OCLExpression constraint = createInvariant(apple, exprString);
+		OCLExpression constraint = createQuery(apple, exprString);
 
 		OperationCallExp eqExp = asOperationCall(constraint);
 		OperationCallExp sizeExp = asOperationCall(eqExp.getSource());
@@ -388,6 +388,21 @@ public class LocationInformationTest
 	//
 	// Framework methods
 	//
+	
+	static OCLExpression createQuery(EClass context, String text) {
+		OCLExpression result = null;
+		
+		try {
+			result = ExpressionsUtil.createQuery(context, text, true);
+			
+			assertAllPositionsSet(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		return result;
+	}
 	
 	static OCLExpression createInvariant(EClass context, String text) {
 		OCLExpression result = null;

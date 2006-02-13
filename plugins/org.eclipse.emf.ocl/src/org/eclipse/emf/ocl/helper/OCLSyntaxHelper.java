@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.1 2006/02/13 16:11:59 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -1739,8 +1739,12 @@ final class OCLSyntaxHelper {
 			result = ExpressionsUtil.createPostcondition(
 				env, text, false);   // don't validate
 			break;
-		default:
+		case ConstraintType.INVARIANT_VALUE:
 			result = ExpressionsUtil.createInvariant(
+				env, text, false);   // don't validate
+			break;
+		default:
+			result = ExpressionsUtil.createQuery(
 				env, text, false);   // don't validate
 			break;
 		}

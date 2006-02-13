@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.1 2006/02/13 16:11:59 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -112,6 +112,21 @@ class OCLHelper
 		return getOclSyntaxHelper().getSyntaxHelp(environment, constraintType, txt);
 	}
 
+	public OCLExpression createQuery(String expression) throws OCLParsingException {
+		if (removeOclComments(expression).length() > 0) {
+			// be sure to pass the original expression along to get the right
+			//    position information when parse fails
+			try {
+				return ExpressionsUtil.createQuery(environment, expression, true);
+			} catch (Exception e) {
+				propagate(e, "createQuery"); //$NON-NLS-1$
+			}
+		}
+		
+		// may as well create a boolean-valued expression if none was supplied
+		return createNullCondition(EcorePackage.eINSTANCE.getEBoolean());
+	}
+
 	public OCLExpression createInvariant(String expression) throws OCLParsingException {
 		if (removeOclComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
@@ -133,7 +148,7 @@ class OCLHelper
 			try {
 				return ExpressionsUtil.createPrecondition(environment, expression, true);
 			} catch (Exception e) {
-				propagate(e, "createInvariant"); //$NON-NLS-1$
+				propagate(e, "createPrecondition"); //$NON-NLS-1$
 			}
 		}
 		
@@ -147,7 +162,7 @@ class OCLHelper
 			try {
 				return ExpressionsUtil.createPostcondition(environment, expression, true);
 			} catch (Exception e) {
-				propagate(e, "createInvariant"); //$NON-NLS-1$
+				propagate(e, "createPostcondition"); //$NON-NLS-1$
 			}
 		}
 		
@@ -161,7 +176,7 @@ class OCLHelper
 			try {
 				return ExpressionsUtil.createBodyCondition(environment, expression, true);
 			} catch (Exception e) {
-				propagate(e, "createInvariant"); //$NON-NLS-1$
+				propagate(e, "createBodyCondition"); //$NON-NLS-1$
 			}
 		}
 		
@@ -184,7 +199,7 @@ class OCLHelper
 		OCLExpression ocl = null;
 		
 		try {
-			ocl = ExpressionsUtil.createInvariant(
+			ocl = ExpressionsUtil.createQuery(
 				environment,
 				expr,
 				true);

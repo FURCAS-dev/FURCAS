@@ -200,7 +200,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			// try a scenario with no common supertype
-			parse(
+			parseConstraint(
 				"package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
 				"body: result = (if true then 'red' else 'brown' endif) " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
@@ -214,7 +214,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			// try a scenario with a common supertype
-			parse(
+			parseConstraint(
 				"package ocltest context Apple::newApple() : Apple " + //$NON-NLS-1$
 				"body: result = self.newFruit() " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
@@ -228,7 +228,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			// this scenario is OK
-			parse(
+			parseConstraint(
 				"package ocltest context Apple::newFruit() : Fruit " + //$NON-NLS-1$
 				"body: result = self.newApple() " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
@@ -247,7 +247,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		AssertionFailedError err = null;
 		
 		try {
-			parse(
+			parseConstraint(
 				"package ocltest context Apple::label(newLabel : String) : " + //$NON-NLS-1$
 				"body: result = (if true then 'Spy' else 'Spartan' endif) " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$

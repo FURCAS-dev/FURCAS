@@ -100,6 +100,63 @@ public class ExpressionsUtil {
 	}
 
 	/**
+	 * Creates a query expression with an arbitrary result type.
+	 * 
+	 * @param context the invariant's classifier context
+	 * @param expression the expression (without any <code>"inv:"</code> or
+	 *     similar preamble)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * 
+	 * @throws ANTLRException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createQuery(EClassifier context,
+			String expression, boolean validate) throws ANTLRException {
+		
+		Environment env = createClassifierContext(context);
+		
+		return createQuery(env, expression, validate);
+	}
+	
+	/**
+	 * Creates a query expression with an arbitrary result type in the
+	 * specified environment.
+	 * 
+	 * @param environment the OCL environment
+	 * @param expression the expression (without any <code>"inv:"</code> or
+	 *     similar preamble)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * 
+	 * @throws ANTLRException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createQuery(
+			Environment env,
+			String expression, boolean validate) throws ANTLRException {
+		
+		OCLParser parser = createParser("inv:", expression); //$NON-NLS-1$
+		
+		Constraint constraint = parser.invOrDefCS(env);
+		constraint.setInstanceVarName(SELF_NAME);
+		
+		OCLExpression result = constraint.getBody();
+		
+		// this is not a constraint
+		constraint.setBody(null);
+		
+		if (validate) {
+			// validate only the result, not the constraint
+			result.accept(ValidationVisitorImpl.getInstance());
+		}
+		
+		return result;
+	}
+
+	/**
 	 * Creates an invariant constraint expression.
 	 * 
 	 * @param context the invariant's classifier context

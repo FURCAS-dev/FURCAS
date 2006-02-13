@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.1 2006/02/13 16:11:58 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -152,6 +152,7 @@ public class OCLMessages extends NLS {
 	public static String AssociationClassAmbiguous_ERROR_;
 	public static String BodyConditionForm_ERROR_;
 	public static String OperationConstraintBoolean_ERROR_;
+	public static String InvariantConstraintBoolean_ERROR_;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, OCLMessages.class);

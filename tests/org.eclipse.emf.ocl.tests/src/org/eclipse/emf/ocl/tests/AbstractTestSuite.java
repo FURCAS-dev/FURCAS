@@ -191,6 +191,9 @@ public abstract class AbstractTestSuite
 		OCLExpression result = null;
 		result = constraint.getBody();
 		
+		// forget the constraint because it interferes with validation
+		constraint.setBody(null);
+		
 		assertNotNull(result);
 		
 		return result;
@@ -225,10 +228,8 @@ public abstract class AbstractTestSuite
 	 * @return the OCL constraint expression
 	 */
 	protected OCLExpression parseConstraint(String text) {
-		OCLExpression result = parse(text);
-		
-		assertTrue("Not a boolean-valued constraint", oclBoolean.isInstance(result.getType())); //$NON-NLS-1$
-		
+		OCLExpression result = parseConstraintUnvalidated(text);
+		validate(result);
 		return result;
 	}
 	
@@ -240,9 +241,26 @@ public abstract class AbstractTestSuite
 	 * @return the OCL constraint expression, unvalidated
 	 */
 	protected OCLExpression parseConstraintUnvalidated(String text) {
-		OCLExpression result = parseUnvalidated(text);
+		OCLLexer lexer = new OCLLexer(new StringReader(text));
+		OCLParser parser = new OCLParser(lexer);
+		parser.setTraceFlag(true);
 		
-		assertTrue("Not a boolean-valued constraint", oclBoolean.isInstance(result.getType())); //$NON-NLS-1$
+		EList constraints = new BasicEList();
+		Constraint constraint = null;
+		
+		try {
+			parser.packageDeclarationCS(constraints);
+			constraint = (Constraint) constraints.get(0);
+		} catch (ANTLRException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		} catch (IllegalArgumentException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		OCLExpression result = null;
+		result = constraint.getBody();
+		
+		assertNotNull(result);
 		
 		return result;
 	}

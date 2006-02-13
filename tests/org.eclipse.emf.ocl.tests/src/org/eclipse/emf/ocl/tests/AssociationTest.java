@@ -335,7 +335,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassEndCall() {
 		final String exprString =
 			"self.apples->notEmpty()"; //$NON-NLS-1$
-		OCLExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createQuery(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -355,7 +355,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassCall() {
 		final String exprString =
 			"self.stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OCLExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createQuery(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -381,7 +381,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassCall_implicitCollect() {
 		final String exprString =
 			"Tree.allInstances().stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OCLExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createQuery(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -406,7 +406,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassQualified() {
 		final String exprString =
 			"self.stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OCLExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createQuery(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
@@ -437,7 +437,7 @@ public class AssociationTest
 	public void test_propertyPositions_associationClassQualified_implicitCollect() {
 		final String exprString =
 			"Tree.allInstances().stem[apples]->notEmpty()"; //$NON-NLS-1$
-		OCLExpression constraint = LocationInformationTest.createInvariant(
+		OCLExpression constraint = LocationInformationTest.createQuery(
 			tree, exprString);
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(

@@ -63,7 +63,7 @@ final class QueryUtil {
 			EClassifier contextEObjectType) {
 		try {
 			return QueryFactory.eINSTANCE.createQuery(
-				ExpressionsUtil.createInvariant(
+				ExpressionsUtil.createQuery(
 					contextEObjectType,
 					oclExpressionString,
 					true));

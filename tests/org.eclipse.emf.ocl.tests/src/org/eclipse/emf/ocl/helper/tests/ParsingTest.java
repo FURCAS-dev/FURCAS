@@ -43,6 +43,30 @@ public class ParsingTest
 		return new TestSuite(ParsingTest.class, "Constraint Parsing Tests"); //$NON-NLS-1$
 	}
 	
+	public void test_createQuery_125684() {
+		IOCLHelper helper = HelperUtil.createOclHelper();
+
+		helper.setContext(fruit);
+		
+		try {
+			// constraint-type expressions (boolean-valued) are OK
+			OCLExpression expr = helper.createQuery("color <> Color::black"); //$NON-NLS-1$
+			
+			assertNotNull(expr);
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		try {
+			// as are non-booleans
+			OCLExpression expr = helper.createQuery("color"); //$NON-NLS-1$
+			
+			assertNotNull(expr);
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
 	public void test_createInvariant() {
 		IOCLHelper helper = HelperUtil.createOclHelper();
 
@@ -54,6 +78,21 @@ public class ParsingTest
 			assertNotNull(expr);
 		} catch (Exception e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_createInvariant_nonBoolean_125684() {
+		IOCLHelper helper = HelperUtil.createOclHelper();
+
+		helper.setContext(fruit);
+		
+		try {
+			helper.createInvariant("color"); //$NON-NLS-1$
+			
+			fail("Parse should not have succeeded"); //$NON-NLS-1$
+		} catch (Exception e) {
+			// success case
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 	

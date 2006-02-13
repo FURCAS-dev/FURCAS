@@ -1330,10 +1330,10 @@ public class ValidationVisitorImpl
 	public Object visitConstraint(Constraint constraint) {
 		String stereo = constraint.getStereotype();
 
-
 		EClassifier bodyType = constraint.getBody().getType();
 		EClassifier operationType = null;
 		String operationName = null;
+		String classifierName = null;
 		
 		if (!constraint.getConstrainedElement().isEmpty()) {
 			Object constrained = constraint.getConstrainedElement().get(0);
@@ -1342,9 +1342,15 @@ public class ValidationVisitorImpl
 				EOperation operation = (EOperation) constrained;
 				operationName = operation.getName();
 				
+				if (operation.getEContainingClass() != null) {
+					classifierName = operation.getEContainingClass().getName();
+				}
+				
 				if (operation.getEType() != null) {
 					operationType = EcoreEnvironment.getOclType(operation);
 				}
+			} else if (constrained instanceof EClassifier) {
+				classifierName = ((EClassifier) constrained).getName();
 			}
 		}
 		
@@ -1366,6 +1372,16 @@ public class ValidationVisitorImpl
 					"visitConstraint", error);//$NON-NLS-1$
 				throw error;
 			}
+		} else if (!(bodyType instanceof PrimitiveBoolean)) {
+			// so must invariants, but they have a differen kind of context
+			String message = NLS.bind(
+					OCLMessages.InvariantConstraintBoolean_ERROR_,
+					classifierName);
+			IllegalArgumentException error = new IllegalArgumentException(
+					message);
+			OCLPlugin.throwing(getClass(),
+				"visitConstraint", error);//$NON-NLS-1$
+			throw error;
 		}
 		
 		if (Constraint.BODY.equals(constraint.getStereotype())) {

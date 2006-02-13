@@ -44,6 +44,40 @@ public class ExpressionsUtilTest
 	}
 	
 	/**
+	 * Tests the <code>createQuery</code> method success path.
+	 */
+	public void test_createQuery_125684() {
+		try {
+			//  try a constraint-type expression (boolean-valued)
+			OCLExpression query = ExpressionsUtil.createQuery(
+				apple, "self.color <> Color::black", true); //$NON-NLS-1$
+			
+			assertNotNull(query);
+			
+			EObject anApple = fruitFactory.create(apple);
+			anApple.eSet(fruit_color, color_black);
+			
+			Query q = QueryFactory.eINSTANCE.createQuery(query);
+			assertFalse(q.check(anApple));
+			
+			anApple.eSet(fruit_color, color_green);
+			assertTrue(q.check(anApple));
+			
+			// next, try a non-boolean expression
+			query = ExpressionsUtil.createQuery(
+				apple, "self.color", true); //$NON-NLS-1$
+			
+			assertNotNull(query);
+			
+			q = QueryFactory.eINSTANCE.createQuery(query);
+			assertSame(color_green, q.evaluate(anApple));
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
 	 * Tests the <code>createInvariant</code> method success path.
 	 */
 	public void test_createInvariant() {
@@ -64,6 +98,21 @@ public class ExpressionsUtilTest
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that the <code>createInvariant</code> method asserts boolean type.
+	 */
+	public void test_createInvariant_nonBoolean_125684() {
+		try {
+			ExpressionsUtil.createInvariant(
+					apple, "self.color", true); //$NON-NLS-1$
+			
+			fail("Validation should have failed"); //$NON-NLS-1$
+		} catch (Exception e) {
+			// success case
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 	

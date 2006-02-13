@@ -940,7 +940,7 @@ public class RegressionTest
 		
 		// this should not work
 		try {
-			parse(
+			parseConstraint(
 				"package ocltest context " + //$NON-NLS-1$
 				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
 				"body: x->asSet()->asBag()" + //$NON-NLS-1$
@@ -953,21 +953,21 @@ public class RegressionTest
 		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
 		
 		// this should work
-		parse(
+		parseConstraint(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
 			"body: result = x->asSet()->asBag()" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 		
 		// as should this
-		parse(
+		parseConstraint(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
 			"body: x->asSet()->asBag() = result" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 		
 		// and this (allow any number of lets to wrap the expression)
-		parse(
+		parseConstraint(
 			"package ocltest context " + //$NON-NLS-1$
 			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
 			"body: let set : Set(Fruit) = x->asSet() in" + //$NON-NLS-1$
@@ -979,7 +979,7 @@ public class RegressionTest
 		//    body expression part of the constraint
 		err = null;
 		try {
-			parse(
+			parseConstraint(
 				"package ocltest context " + //$NON-NLS-1$
 				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
 				"body: result = result->asSet()->union(x)->asBag()" + //$NON-NLS-1$

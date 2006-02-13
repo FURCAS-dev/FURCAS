@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.1 2006/02/13 16:11:59 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -130,9 +130,23 @@ public interface IOCLHelper {
 	public List getSyntaxHelp(ConstraintType constraintType, String txt);
 
 	/**
+	 * Creates a query expression in the current classifier context.
+	 * 
+	 * @param expression the constraint expression (without any context
+	 *    declaration).  This expression can have any result type; it needs not
+	 *    be a boolean
+	 * 
+	 * @return the query expression
+	 * 
+	 * @throws OCLParsingException if the <code>expression</code> fails to parse
+	 */
+	OCLExpression createQuery(String expression) throws OCLParsingException;
+
+	/**
 	 * Creates an invariant constraint in the current classifier context.
 	 * 
-	 * @param expression the constraint expression (without any context declaration)
+	 * @param expression the constraint expression (without any context
+	 *    declaration).  This must be a boolean-valued expression
 	 * 
 	 * @return the invariant condition
 	 * 
@@ -144,7 +158,8 @@ public interface IOCLHelper {
 	 * Creates an operation precondition constraint.  This is appropriate only
 	 * if my context is an operation.
 	 * 
-	 * @param expression the constraint expression (without any context declaration)
+	 * @param expression the constraint expression (without any context
+	 *    declaration).  This must be a boolean-valued expression
 	 * 
 	 * @return the precondition
 	 * 
@@ -158,7 +173,8 @@ public interface IOCLHelper {
 	 * Creates an operation postcondition constraint.  This is appropriate only
 	 * if my context is an operation.
 	 * 
-	 * @param expression the constraint expression (without any context declaration)
+	 * @param expression the constraint expression (without any context
+	 *    declaration).  This must be a boolean-valued expression
 	 * 
 	 * @return the postcondition
 	 * 
@@ -172,10 +188,10 @@ public interface IOCLHelper {
 	 * Creates an operation body.  This is appropriate only
 	 * if my context is an operation.
 	 * 
-	 * @param expression the constraint expression (without any context declaration)
+	 * @param expression the constraint expression (without any context
+	 *    declaration).  This must be a boolean-valued expression
 	 * 
-	 * @return the body.  Note that it is not a constraint condition because
-	 *     it may have a non-boolean value
+	 * @return the body condition
 	 * 
 	 * @throws OCLParsingException if the <code>expression</code> fails to parse
 	 * 
