@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLPlugin.java,v 1.1 2006/02/13 16:12:04 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl;
@@ -23,15 +23,15 @@ import org.osgi.framework.BundleContext;
 /**
  * The main plugin class to be used in the desktop.
  */
-public class OclPlugin extends AbstractUIPlugin {
+public class OCLPlugin extends AbstractUIPlugin {
 
 	// The shared instance.
-	private static OclPlugin plugin;
+	private static OCLPlugin plugin;
 
 	/**
 	 * The constructor.
 	 */
-	public OclPlugin() {
+	public OCLPlugin() {
 		super();
 		plugin = this;
 	}
@@ -53,7 +53,7 @@ public class OclPlugin extends AbstractUIPlugin {
 	/**
 	 * Returns the shared instance.
 	 */
-	public static OclPlugin getDefault() {
+	public static OCLPlugin getDefault() {
 		return plugin;
 	}
 }

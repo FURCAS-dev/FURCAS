@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLQueryHelperTest.java,v 1.1 2006/02/13 16:12:02 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;
@@ -38,7 +38,7 @@ import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
@@ -49,7 +49,7 @@ import org.eclipse.emf.query.statements.WHERE;
  * 
  * @author Christian W. Damus
  */
-public class OclQueryHelperTest
+public class OCLQueryHelperTest
 	extends TestCase {
 
 	private static final String MYSTERY_BOOK1 = "mysteryBook1"; //$NON-NLS-1$
@@ -61,7 +61,7 @@ public class OclQueryHelperTest
 	private Library library;
 	private Writer writer1;
 
-	public OclQueryHelperTest(String name) {
+	public OCLQueryHelperTest(String name) {
 		super(name);
 	}
 
@@ -96,9 +96,9 @@ public class OclQueryHelperTest
 		}
 
 		// build the OCL condition
-		OclConstraintCondition oclCondition = null;
+		OCLConstraintCondition oclCondition = null;
 
-		oclCondition = new OclConstraintCondition(oclFilter, selfType,
+		oclCondition = new OCLConstraintCondition(oclFilter, selfType,
 				EStructuralFeatureValueGetter.getInstance());
 
 		// build the select query statement

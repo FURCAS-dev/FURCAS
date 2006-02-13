@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLQueryDelegate.java,v 1.1 2006/02/13 16:12:04 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl.actions;
@@ -21,9 +21,9 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOclMessages;
+import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages;
 import org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizard;
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.SELECT;
@@ -37,18 +37,18 @@ import org.eclipse.jface.wizard.WizardDialog;
  * Action that pops up a dialog to accept a context metaclass and an OCL
  * condition expression, to query the model.
  */
-public class OclQueryDelegate
+public class OCLQueryDelegate
 	extends AbstractQueryDelegate {
 
-	private static String TITLE = QueryOclMessages.oclQuery_title;
-	private static String NOT_FOUND = QueryOclMessages.oclQuery_message_notFound;
+	private static String TITLE = QueryOCLMessages.oclQuery_title;
+	private static String NOT_FOUND = QueryOCLMessages.oclQuery_message_notFound;
 	
-	private OclConstraintCondition condition;
+	private OCLConstraintCondition condition;
 	
 	/**
 	 * Initializes me.
 	 */
-	public OclQueryDelegate() {
+	public OCLQueryDelegate() {
 		super();
 	}
 
@@ -79,7 +79,7 @@ public class OclQueryDelegate
 			} catch (Exception e) {
 				// Exceptions are not expected
 				MessageDialog.openInformation(getShell(), TITLE,
-					QueryOclMessages.message_exception);
+					QueryOCLMessages.message_exception);
 				throw new RuntimeException(e);
 			}
 		}

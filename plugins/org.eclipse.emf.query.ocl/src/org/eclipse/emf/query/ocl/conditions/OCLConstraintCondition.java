@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2005 IBM Corporation and others.
+ * Copyright (c) 2002-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLConstraintCondition.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -29,18 +29,18 @@ import org.eclipse.emf.query.handlers.PruneHandler;
  * A specialized OCL condition class that is used to apply boolean-valued OCL
  * expressions to <code>EObject</code>s.  These are commonly used to express
  * invariant constraints; they are not typically
- * {@linkplain OclCondition#evaluate(EObject) evaluated} but are usually checked
+ * {@linkplain OCLCondition#evaluate(EObject) evaluated} but are usually checked
  * for {@link #isSatisfied(EObject)}.
  */
-public class OclConstraintCondition
-	extends OclCondition {
+public class OCLConstraintCondition
+	extends OCLCondition {
 
 	/**
 	 * A simple condition constant that represents an
-	 * <code>OclConstraintCondition</code> that is always
+	 * <code>OCLConstraintCondition</code> that is always
 	 * satisfied.  Functions as a literal "true".
 	 */
-	public static final OclConstraintCondition NULL_CONDITION = new OclConstraintCondition(
+	public static final OCLConstraintCondition NULL_CONDITION = new OCLConstraintCondition(
 		null, null, (EStructuralFeatureValueGetter)null) {
 
 		public Object evaluate(EObject eObject) {
@@ -67,11 +67,11 @@ public class OclConstraintCondition
 	 * 
 	 * @param oclExpressionString
 	 *            The OCL expression to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Use <code>null</code> to create a context-free
-	 *            <code>OclCondition</code>.
+	 *            <code>OCLCondition</code>.
 	 * @param eStructuralFeatureValueGetter
 	 *            The strategy for accessing structural feature values. It
 	 *            serves as a layer of indirection to allow clients to intervene
@@ -80,7 +80,7 @@ public class OclConstraintCondition
 	 *            as to allow for manipulation of such values before subjecting
 	 *            them to evaluation by the OCL interpreter.
 	 */
-	public OclConstraintCondition(String oclExpressionString,
+	public OCLConstraintCondition(String oclExpressionString,
 		EClass contextEObjectType,
 		IEStructuralFeatureValueGetter eStructuralFeatureValueGetter) {
 		this(oclExpressionString, contextEObjectType,
@@ -106,13 +106,13 @@ public class OclConstraintCondition
 	 * 
 	 * @param oclExpressionString
 	 *            The OCL expression to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Use <code>null</code> to create a context-free
-	 *            <code>OclCondition</code>.
+	 *            <code>OCLCondition</code>.
 	 */
-	public OclConstraintCondition(String oclExpressionString,
+	public OCLConstraintCondition(String oclExpressionString,
 		EClass contextEObjectType) {
 		this(oclExpressionString, contextEObjectType,
 			EStructuralFeatureValueGetter.getInstance(), PruneHandler.NEVER);
@@ -132,11 +132,11 @@ public class OclConstraintCondition
 	 * 
 	 * @param oclExpressionString
 	 *            The OCL expression to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Use <code>null</code> to create a context-free
-	 *            <code>OclCondition</code>.
+	 *            <code>OCLCondition</code>.
 	 * @param eStructuralFeatureValueGetter
 	 *            The strategy for accessing structural feature values. It
 	 *            serves as a layer of indirection to allow clients to intervene
@@ -147,7 +147,7 @@ public class OclConstraintCondition
 	 * @param pruneHandler
 	 *            The <code>PruneHandler</code> to consult when pruning
 	 */
-	public OclConstraintCondition(String oclExpressionString,
+	public OCLConstraintCondition(String oclExpressionString,
 		EClass contextEObjectType,
 		IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
 		PruneHandler pruneHandler) {
@@ -165,7 +165,7 @@ public class OclConstraintCondition
 	 * 
 	 * @param oclQuery
 	 *            The OCL query to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Must not be <code>null</code>.
@@ -179,7 +179,7 @@ public class OclConstraintCondition
 	 * @param pruneHandler
 	 *            The <code>PruneHandler</code> to consult when pruning
 	 */
-	public OclConstraintCondition(Query oclQuery,
+	public OCLConstraintCondition(Query oclQuery,
 		EClass contextEObjectType,
 		IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
 		PruneHandler pruneHandler) {
@@ -204,14 +204,14 @@ public class OclConstraintCondition
 	 * 
 	 * @param oclQuery
 	 *            The OCL query to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Must not be <code>null</code>.
 	 * @param pruneHandler
 	 *            The <code>PruneHandler</code> to consult when pruning
 	 */
-	public OclConstraintCondition(Query oclQuery,
+	public OCLConstraintCondition(Query oclQuery,
 		EClass contextEObjectType,
 		PruneHandler pruneHandler) {
 		

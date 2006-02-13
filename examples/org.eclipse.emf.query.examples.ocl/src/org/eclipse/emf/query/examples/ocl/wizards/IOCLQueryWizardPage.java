@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: IOCLQueryWizardPage.java,v 1.1 2006/02/13 16:12:04 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl.wizards;
 
 import org.eclipse.jface.wizard.IWizardPage;
 
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 
 
 /**
  * Interface for OCL query wizard pages to provide the query condition.
  */
-public interface IOclQueryWizardPage
+public interface IOCLQueryWizardPage
 	extends IWizardPage {
 	
 	/**
@@ -34,5 +34,5 @@ public interface IOclQueryWizardPage
 	 * @return the condition, or <code>null</code> if the page is not complete
 	 *     or the user canceled the wizard
 	 */
-	OclConstraintCondition getCondition();
+	OCLConstraintCondition getCondition();
 }

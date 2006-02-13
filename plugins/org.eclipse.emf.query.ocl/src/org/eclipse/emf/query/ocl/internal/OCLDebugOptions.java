@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLDebugOptions.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.internal;
@@ -21,12 +21,12 @@ package org.eclipse.emf.query.ocl.internal;
 /**
  * @author Yasser Lulu  
  */
-public final class OclDebugOptions {
-	private OclDebugOptions() {
+public final class OCLDebugOptions {
+	private OCLDebugOptions() {
 		super();
 	}
 	
-	public static final String DEBUG = OclPlugin.getPlugin().getSymbolicName() + "/debug"; //$NON-NLS-1$
+	public static final String DEBUG = OCLPlugin.getPlugin().getSymbolicName() + "/debug"; //$NON-NLS-1$
 
 	public static final String EXCEPTIONS_CATCHING = DEBUG + "/exceptions/catching"; //$NON-NLS-1$
 	public static final String EXCEPTIONS_THROWING = DEBUG + "/exceptions/throwing"; //$NON-NLS-1$

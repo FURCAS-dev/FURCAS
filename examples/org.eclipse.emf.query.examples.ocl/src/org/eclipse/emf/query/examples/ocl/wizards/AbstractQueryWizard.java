@@ -19,7 +19,7 @@ package org.eclipse.emf.query.examples.ocl.wizards;
 
 import org.eclipse.jface.wizard.Wizard;
 
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 
 
 /**
@@ -28,8 +28,8 @@ import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
 abstract class AbstractQueryWizard
 	extends Wizard {
 
-	private IOclQueryWizardPage page;
-	private OclConstraintCondition condition;
+	private IOCLQueryWizardPage page;
+	private OCLConstraintCondition condition;
 	
 	/**
 	 * Initializes me.
@@ -56,7 +56,7 @@ abstract class AbstractQueryWizard
 	 *
 	 *@return the wizard page
 	 */
-	protected abstract IOclQueryWizardPage createOclQueryPage();
+	protected abstract IOCLQueryWizardPage createOclQueryPage();
 
 	/**
 	 * Obtains the OCL constraint condition specified by the user.
@@ -64,7 +64,7 @@ abstract class AbstractQueryWizard
 	 * @return the condition, or <code>null</code> if the user canceled or
 	 *     has not yet finished the wizard
 	 */
-	public OclConstraintCondition getCondition() {
+	public OCLConstraintCondition getCondition() {
 		return condition;
 	}
 }

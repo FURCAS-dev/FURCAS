@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLPlugin.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.internal;
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 /**
  * The main plugin class to be used in the desktop.
  */
-public class OclPlugin
+public class OCLPlugin
 	extends EMFPlugin {
 
 	//TODO This plugin class contains many of the tracing options in common with other plugins. Perhaps these should be conglomerated so that they share alot of this code?
@@ -118,14 +118,14 @@ public class OclPlugin
     /**
      * The shared plug-in instance.
      */
-    public static final OclPlugin INSTANCE = new OclPlugin();
+    public static final OCLPlugin INSTANCE = new OCLPlugin();
 
     private static Implementation plugin;
 
     /**
      * Initializes me.
      */
-    public OclPlugin() {
+    public OCLPlugin() {
         super(new ResourceLocator[] {});
     }
 
@@ -529,11 +529,11 @@ public class OclPlugin
     }
 
 	public static void catching(Class class1, String functionName, Throwable exception) {
-		Tracing.catching(OclDebugOptions.EXCEPTIONS_CATCHING, class1, functionName, exception);
+		Tracing.catching(OCLDebugOptions.EXCEPTIONS_CATCHING, class1, functionName, exception);
 	}
 	
 	public static void throwing(Class class1, String functionName, Throwable exception) {
-		Tracing.throwing(OclDebugOptions.EXCEPTIONS_THROWING, class1, functionName, exception);
+		Tracing.throwing(OCLDebugOptions.EXCEPTIONS_THROWING, class1, functionName, exception);
 	}
 
 	public static void log(int code, String message, Throwable exception) {

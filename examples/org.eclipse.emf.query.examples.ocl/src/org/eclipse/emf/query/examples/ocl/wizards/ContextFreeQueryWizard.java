@@ -31,7 +31,7 @@ public class ContextFreeQueryWizard
 		super();
 	}
 
-	protected IOclQueryWizardPage createOclQueryPage() {
+	protected IOCLQueryWizardPage createOclQueryPage() {
 		return new ContextFreeQueryWizardPage();
 	}
 }

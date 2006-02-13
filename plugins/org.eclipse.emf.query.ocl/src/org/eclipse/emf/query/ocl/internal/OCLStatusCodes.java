@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLStatusCodes.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.internal;
@@ -21,12 +21,12 @@ package org.eclipse.emf.query.ocl.internal;
 /**
  * @author Yasser Lulu  
  */
-public final class OclStatusCodes {
+public final class OCLStatusCodes {
 
 	/**
 	 * 
 	 */
-	private OclStatusCodes() {
+	private OCLStatusCodes() {
 		super();
 	}
 	

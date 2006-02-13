@@ -39,8 +39,8 @@ public class AllTests extends TestCase implements IPlatformRunnable {
 	public static Test suite() {
 		TestSuite suite = new TestSuite();
 
-		suite.addTestSuite(OclQueryHelperTest.class);
-		suite.addTest(QueryOclTest.suite());
+		suite.addTestSuite(OCLQueryHelperTest.class);
+		suite.addTest(QueryOCLTest.suite());
 		
 		return suite;
 	}

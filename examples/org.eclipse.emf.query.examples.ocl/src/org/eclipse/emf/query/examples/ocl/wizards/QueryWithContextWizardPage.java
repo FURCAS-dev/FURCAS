@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
-import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOclMessages;
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -53,17 +53,17 @@ import org.eclipse.swt.widgets.Text;
  */
 class QueryWithContextWizardPage
 	extends WizardPage
-	implements IOclQueryWizardPage {
+	implements IOCLQueryWizardPage {
 
-	private static String TITLE = QueryOclMessages.oclQuery_title;
-	private static String METACLASS_PROMPT = QueryOclMessages.oclQuery_prompt_metaclass;
-	private static String METACLASS_DEFAULT = QueryOclMessages.oclQuery_default_metaclass;
-	private static String CONDITION_PROMPT = QueryOclMessages.oclQuery_prompt_condition;
-	private static String CONDITION_DEFAULT = QueryOclMessages.oclQuery_default_condition;
+	private static String TITLE = QueryOCLMessages.oclQuery_title;
+	private static String METACLASS_PROMPT = QueryOCLMessages.oclQuery_prompt_metaclass;
+	private static String METACLASS_DEFAULT = QueryOCLMessages.oclQuery_default_metaclass;
+	private static String CONDITION_PROMPT = QueryOCLMessages.oclQuery_prompt_condition;
+	private static String CONDITION_DEFAULT = QueryOCLMessages.oclQuery_default_condition;
 	
 	private ComboViewer contextCombo;
 	private Text conditionText;
-	private OclConstraintCondition condition;
+	private OCLConstraintCondition condition;
 	
 	/**
 	 * Initializes me.
@@ -73,7 +73,7 @@ class QueryWithContextWizardPage
 	}
 
 	public void createControl(Composite parent) {
-		setMessage(QueryOclMessages.oclQuery_message_wizard);
+		setMessage(QueryOCLMessages.oclQuery_message_wizard);
 		
 		Composite page = new Composite(parent, SWT.NONE);
 		page.setLayout(new GridLayout(2, false));
@@ -171,7 +171,7 @@ class QueryWithContextWizardPage
 				(IStructuredSelection) contextCombo.getSelection();
 			EClass contextClass = (EClass) selection.getFirstElement();
 			
-			condition = new OclConstraintCondition(
+			condition = new OCLConstraintCondition(
 				text,
 				contextClass,
 				EStructuralFeatureValueGetter.getInstance());
@@ -181,7 +181,7 @@ class QueryWithContextWizardPage
 			} else {
 				condition = null;
 				result = false;
-				setErrorMessage(QueryOclMessages.oclQuery_message_boolean);
+				setErrorMessage(QueryOCLMessages.oclQuery_message_boolean);
 			}
 		} catch (Exception e) {
 			result = false;
@@ -191,7 +191,7 @@ class QueryWithContextWizardPage
 		return result;
 	}
 	
-	public OclConstraintCondition getCondition() {
+	public OCLConstraintCondition getCondition() {
 		return condition;
 	}
 	

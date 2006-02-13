@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: QueryOCLTest.java,v 1.1 2006/02/13 16:12:02 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;
@@ -24,7 +24,7 @@ import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.query.conditions.eobjects.EObjectSource;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.SELECT;
@@ -34,13 +34,13 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 
-public class QueryOclTest
+public class QueryOCLTest
 	extends TestCase {
 
 	private Library library = null;
 	
 	public static Test suite() {
-		return new TestSuite(QueryOclTest.class);
+		return new TestSuite(QueryOCLTest.class);
 	}
 
 	protected void setUp()
@@ -68,7 +68,7 @@ public class QueryOclTest
 	public void testTrivialOclCondition() {
 		SELECT s = new SELECT(
 			new FROM(new EObjectSource(library)),
-			new WHERE(new OclConstraintCondition(
+			new WHERE(new OCLConstraintCondition(
 				"true", //$NON-NLS-1$
 				null,
 				EStructuralFeatureValueGetter.getInstance())));
@@ -81,7 +81,7 @@ public class QueryOclTest
 	public void testSimpleOclCondition() {
 		SELECT s = new SELECT(
 			new FROM(new EObjectSource(library)),
-			new WHERE(new OclConstraintCondition(
+			new WHERE(new OCLConstraintCondition(
 				"title = 'bar'", //$NON-NLS-1$
 				null,
 				EStructuralFeatureValueGetter.getInstance())));
@@ -94,7 +94,7 @@ public class QueryOclTest
 	public void testOclCondition() {
 		SELECT s = new SELECT(
 			new FROM(new EObjectSource(library)),
-			new WHERE(new OclConstraintCondition(
+			new WHERE(new OCLConstraintCondition(
 				"author.name = 'aWriter'", //$NON-NLS-1$
 				EXTLibraryPackage.eINSTANCE.getBook(),
 				EStructuralFeatureValueGetter.getInstance())));

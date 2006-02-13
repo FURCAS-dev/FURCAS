@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: QueryOCLMessages.java,v 1.1 2006/02/13 16:12:04 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl.internal.l10n;
@@ -24,9 +24,9 @@ import org.eclipse.osgi.util.NLS;
  * 
  * @author Christian Vogt (cvogt)
  */
-public class QueryOclMessages extends NLS {
+public class QueryOCLMessages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOclMessages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages"; //$NON-NLS-1$
 
 	public static String title;
 	public static String message_interrupted;
@@ -44,6 +44,6 @@ public class QueryOclMessages extends NLS {
 	public static String cfQuery_default_condition;
 
 	static {
-		NLS.initializeMessages(BUNDLE_NAME, QueryOclMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, QueryOCLMessages.class);
 	}
 }

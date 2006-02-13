@@ -18,8 +18,8 @@
 package org.eclipse.emf.query.examples.ocl.wizards;
 
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
-import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOclMessages;
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -37,14 +37,14 @@ import org.eclipse.swt.widgets.Text;
  */
 class ContextFreeQueryWizardPage
 	extends WizardPage
-	implements IOclQueryWizardPage {
+	implements IOCLQueryWizardPage {
 
-	private static String TITLE = QueryOclMessages.cfQuery_title;
-	private static String CONDITION_PROMPT = QueryOclMessages.cfQuery_prompt_condition;
-	private static String CONDITION_DEFAULT = QueryOclMessages.cfQuery_default_condition;
+	private static String TITLE = QueryOCLMessages.cfQuery_title;
+	private static String CONDITION_PROMPT = QueryOCLMessages.cfQuery_prompt_condition;
+	private static String CONDITION_DEFAULT = QueryOCLMessages.cfQuery_default_condition;
 	
 	private Text conditionText;
-	private OclConstraintCondition condition;
+	private OCLConstraintCondition condition;
 	
 	/**
 	 * Initializes me.
@@ -54,7 +54,7 @@ class ContextFreeQueryWizardPage
 	}
 
 	public void createControl(Composite parent) {
-		setMessage(QueryOclMessages.oclQuery_message_wizard);
+		setMessage(QueryOCLMessages.oclQuery_message_wizard);
 		
 		Composite page = new Composite(parent, SWT.NONE);
 		page.setLayout(new GridLayout(1, false));
@@ -89,7 +89,7 @@ class ContextFreeQueryWizardPage
 		try {
 			String text = conditionText.getText();
 			
-			condition = new OclConstraintCondition(
+			condition = new OCLConstraintCondition(
 				text,
 				null,
 				EStructuralFeatureValueGetter.getInstance());
@@ -103,7 +103,7 @@ class ContextFreeQueryWizardPage
 		return result;
 	}
 	
-	public OclConstraintCondition getCondition() {
+	public OCLConstraintCondition getCondition() {
 		return condition;
 	}
 	

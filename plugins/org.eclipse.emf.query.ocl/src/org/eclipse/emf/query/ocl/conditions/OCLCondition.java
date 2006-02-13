@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2005 IBM Corporation and others.
+ * Copyright (c) 2002-2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: OCLCondition.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -46,12 +46,12 @@ import org.eclipse.emf.query.internal.EMFQueryPlugin;
  * </p>
  * <p>
  * <b>Note</b> that this class is not intended to be extended "directly"
- * by clients.  Clients may extend the <code>OclConstraintCondition</code> class.
+ * by clients.  Clients may extend the <code>OCLConstraintCondition</code> class.
  * </p>
  * 
- * @see OclConstraintCondition
+ * @see OCLConstraintCondition
  */
-public abstract class OclCondition
+public abstract class OCLCondition
 	extends EObjectCondition {
 
 	private final EClass contextEObjectType;
@@ -130,11 +130,11 @@ public abstract class OclCondition
 	 * 
 	 * @param oclExpressionString
 	 *            The OCL expression to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Use <code>null</code> to create a context-free
-	 *            <code>OclCondition</code>.
+	 *            <code>OCLCondition</code>.
 	 * @param eStructuralFeatureValueGetter
 	 *            The strategy for accessing structural feature values. It
 	 *            serves as a layer of indirection to allow clients to intervene
@@ -143,7 +143,7 @@ public abstract class OclCondition
 	 *            as to allow for manipulation of such values before subjecting
 	 *            them to evaluation by the OCL interpreter.
 	 */
-	protected OclCondition(String oclExpressionString,
+	protected OCLCondition(String oclExpressionString,
 			EClass contextEObjectType,
 			IEStructuralFeatureValueGetter eStructuralFeatureValueGetter) {
 		this(oclExpressionString, contextEObjectType,
@@ -164,11 +164,11 @@ public abstract class OclCondition
 	 * 
 	 * @param oclExpressionString
 	 *            The OCL expression to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Use <code>null</code> to create a context-free
-	 *            <code>OclCondition</code>.
+	 *            <code>OCLCondition</code>.
 	 * @param eStructuralFeatureValueGetter
 	 *            The strategy for accessing structural feature values. It
 	 *            serves as a layer of indirection to allow clients to intervene
@@ -179,7 +179,7 @@ public abstract class OclCondition
 	 * @param pruneHandler
 	 *            The <code>PruneHandler</code> to consult when pruning
 	 */
-	protected OclCondition(String oclExpressionString,
+	protected OCLCondition(String oclExpressionString,
 		EClass contextEObjectType,
 		IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
 		PruneHandler pruneHandler) {
@@ -203,7 +203,7 @@ public abstract class OclCondition
 	 * 
 	 * @param oclQuery
 	 *            The OCL query to apply when evaluating this
-	 *            <code>OclCondition</code>
+	 *            <code>OCLCondition</code>
 	 * @param contextEObjectType
 	 *            The <code>EClass</code> representing the OCL context classifier.
 	 *            Must not be <code>null</code>.
@@ -217,7 +217,7 @@ public abstract class OclCondition
 	 * @param pruneHandler
 	 *            The <code>PruneHandler</code> to consult when pruning
 	 */
-	protected OclCondition(Query oclQuery,
+	protected OCLCondition(Query oclQuery,
 		EClass contextEObjectType,
 		IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
 		PruneHandler pruneHandler) {
@@ -251,7 +251,7 @@ public abstract class OclCondition
 
 	/**
 	 * Checks to see if an <code>eObject</code> is of a type conformant to the
-	 * context of this <code>OclCondition</code>.
+	 * context of this <code>OCLCondition</code>.
 	 * 
 	 * @see #getContextEObjectType()
 	 * @see #isContextFree()
@@ -350,7 +350,7 @@ public abstract class OclCondition
 	}
 
 	/**
-	 * Queries whether this <code>OclCondition</code> is context-free.
+	 * Queries whether this <code>OCLCondition</code> is context-free.
 	 * 
 	 * @return <code>true</code> if this is a context-free OCL condition;
 	 *     <code>false</code>, otherwise
@@ -363,7 +363,7 @@ public abstract class OclCondition
 	}
 
 	/**
-	 * Retrieves the strategy used by this <code>OclCondition</code> to access
+	 * Retrieves the strategy used by this <code>OCLCondition</code> to access
 	 * the values of <code>EStructuralFeature</code>s of model
 	 * elements.
 	 *  
@@ -374,7 +374,7 @@ public abstract class OclCondition
 	}
 
 	/**
-	 * Assigns the strategy to be used by this <code>OclCondition</code> to
+	 * Assigns the strategy to be used by this <code>OCLCondition</code> to
 	 * access the values of <code>EStructuralFeature</code>s
 	 * of model elements.
 	 * 

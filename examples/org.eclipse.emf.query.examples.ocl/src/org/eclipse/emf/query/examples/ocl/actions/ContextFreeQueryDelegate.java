@@ -21,9 +21,9 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOclMessages;
+import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages;
 import org.eclipse.emf.query.examples.ocl.wizards.ContextFreeQueryWizard;
-import org.eclipse.emf.query.ocl.conditions.OclConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.SELECT;
@@ -40,10 +40,10 @@ import org.eclipse.jface.wizard.WizardDialog;
 public class ContextFreeQueryDelegate
 	extends AbstractQueryDelegate {
 
-	private static String TITLE = QueryOclMessages.cfQuery_title;
-	private static String NOT_FOUND = QueryOclMessages.oclQuery_message_notFound;
+	private static String TITLE = QueryOCLMessages.cfQuery_title;
+	private static String NOT_FOUND = QueryOCLMessages.oclQuery_message_notFound;
 	
-	private OclConstraintCondition condition;
+	private OCLConstraintCondition condition;
 	
 	/**
 	 * Initializes me.
@@ -79,7 +79,7 @@ public class ContextFreeQueryDelegate
 			} catch (Exception e) {
 				// Exceptions are not expected
 				MessageDialog.openInformation(getShell(), TITLE,
-					QueryOclMessages.message_exception);
+					QueryOCLMessages.message_exception);
 				throw new RuntimeException(e);
 			}
 		}
