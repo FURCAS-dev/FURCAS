@@ -123,12 +123,12 @@ public class TupleTypeImpl
 					type = EcorePackage.eINSTANCE.getEDoubleObject();
 				}
 				attr.setEType(type);
-				getEAttributes().add(attr);
+				getEStructuralFeatures().add(attr);
 			} else if (type instanceof EClass) {
 				ref = ecoreFactory.createEReference();
 				ref.setName(vdcl.getVarName());
 				ref.setEType(type);
-				getEReferences().add(ref);
+				getEStructuralFeatures().add(ref);
 			}
 		}
 	}
@@ -204,7 +204,7 @@ public class TupleTypeImpl
 					EAttribute attr = ecoreFactory.createEAttribute();
 					attr.setName(attr1.getName());
 					attr.setEType(resultElementType);
-					resultTuple.getEAttributes().add(attr);
+					resultTuple.getEStructuralFeatures().add(attr);
 					break;
 				}
 			}
@@ -238,7 +238,7 @@ public class TupleTypeImpl
 					EReference ref = ecoreFactory.createEReference();
 					ref.setName(ref1.getName());
 					ref.setEType(resultElementType);
-					resultTuple.getEReferences().add(ref);
+					resultTuple.getEStructuralFeatures().add(ref);
 					break;
 				}
 			}

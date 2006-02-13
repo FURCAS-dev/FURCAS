@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.1 2006/02/13 16:12:12 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.2 2006/02/13 23:19:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -156,10 +156,10 @@ public class BasicOCLTest
 		
 		EAttribute eAttr = EcoreFactory.eINSTANCE.createEAttribute();
 		eAttr.setName("att1"); //$NON-NLS-1$
-		eCls.getEAttributes().add(eAttr);
+		eCls.getEStructuralFeatures().add(eAttr);
 		eAttr = EcoreFactory.eINSTANCE.createEAttribute();
 		eAttr.setName("att2"); //$NON-NLS-1$
-		eCls.getEAttributes().add(eAttr);
+		eCls.getEStructuralFeatures().add(eAttr);
 		
 		assertEquals(eCls.getEAttributes().size(),2);
 		
