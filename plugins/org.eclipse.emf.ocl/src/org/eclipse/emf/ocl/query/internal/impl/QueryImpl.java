@@ -328,7 +328,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		Iterator iter = objList.iterator();
 		while (iter.hasNext()) {
 			Object obj = iter.next();
-			if (!check(obj)) {
+			if (check(obj)) {
 				result.add(obj);
 			}
 		}

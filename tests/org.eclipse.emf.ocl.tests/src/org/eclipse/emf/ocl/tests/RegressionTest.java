@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.query.Query;
+import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
@@ -1072,5 +1074,36 @@ public class RegressionTest
 		} finally {
 			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
+	}
+	
+	public void test_querySelectReject_126694() {
+		OCLExpression expr = parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: color <> Color::black " + //$NON-NLS-1$
+				"endpackage"); //$NON-NLS-1$
+		
+		Query query = QueryFactory.eINSTANCE.createQuery(expr);
+		
+		List allFruits = new java.util.ArrayList();
+		
+		EObject other = fruitFactory.create(apple);
+		other.eSet(fruit_color, color_red);
+		allFruits.add(other);
+		
+		EObject blackFruit = fruitFactory.create(apple);
+		blackFruit.eSet(fruit_color, color_black);
+		allFruits.add(blackFruit);
+		
+		other = fruitFactory.create(apple);
+		other.eSet(fruit_color, color_green);
+		allFruits.add(other);
+		
+		List expectedSelection = new java.util.ArrayList(allFruits);
+		expectedSelection.remove(blackFruit);
+		
+		List expectedRejection = Collections.singletonList(blackFruit);
+		
+		assertEquals(expectedRejection, query.reject(allFruits));
+		assertEquals(expectedSelection, query.select(allFruits));
 	}
 }
