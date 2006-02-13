@@ -922,14 +922,14 @@ public class EcoreEnvironment
 			}
 		}
 
-		String nsPresfix = stringBuffer.toString();
+		String nsPrefix = stringBuffer.toString();
 
 		for (Iterator iter = registry.values().iterator(); iter.hasNext();) {
 			Object next = iter.next();
 
 			if (next instanceof EPackage) {
 				EPackage ePackage = (EPackage) next;
-				if (ePackage.getNsPrefix().equals(nsPresfix)) {
+				if (nsPrefix.equals(ePackage.getNsPrefix())) {
 					return ePackage;
 				}
 			}
