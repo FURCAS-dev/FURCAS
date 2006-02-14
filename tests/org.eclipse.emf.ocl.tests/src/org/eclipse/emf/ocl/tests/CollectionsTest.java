@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.1 2006/02/14 21:26:08 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.2 2006/02/14 22:28:15 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -309,6 +309,29 @@ public class CollectionsTest
 					Arrays.asList(new Object[] {"a", "b", "d", "e"})); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			
 			assertEquals(expected, result);
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests the isUnique() iterator.
+	 */
+	public void test_isUnique_126861() {
+		IOCLHelper helper = HelperUtil.createOclHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+				"Sequence{'a', 'b', 'c', 'd', 'e'}->isUnique(e | e)")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+				"Sequence{'a', 'b', 'c', 'c', 'e'}->isUnique(e | e)")); //$NON-NLS-1$
+
+			// when there are no values, they implicitly all evaluate to a
+			//    different result
+			assertTrue(helper.check("", //$NON-NLS-1$
+				"Sequence{}->isUnique(e | e)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}

@@ -1778,14 +1778,13 @@ public class EvaluationVisitorImpl
 
 	public Object evaluateIsUnique(IteratorExp ie) {
 		// get the list of ocl iterators
-		//		EList iterators = ie.getIterators();
-		//		int numIters = iterators.size();
-
+		EList iterators = ie.getIterators();
+		
 		// evaluate the source collection
-		//		Collection coll = (Collection) ie.getSource().accept(this);
+		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
-		//		OclExpression body = ie.getBody();
+		OCLExpression body = ie.getBody();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate is = IterationTemplateIsUnique.getInstance(this);
@@ -1795,7 +1794,7 @@ public class EvaluationVisitorImpl
 		env.add(resultName, new HashSet());
 
 		// evaluate
-		//		Set result = (Set) is.evaluate(coll, iterators, body, resultName);
+		is.evaluate(coll, iterators, body, resultName);
 
 		// remove result name from environment
 		env.remove(resultName);
