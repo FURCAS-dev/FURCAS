@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.3 2006/02/14 01:08:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -206,7 +206,7 @@ public interface IOCLHelper {
 	 * 
 	 * @param context the context object on which to evaluate the expression.
 	 *     This is the <tt>self</tt> object, if the expression requires one.
-	 *     Note the it is required even for expressions that use the
+	 *     Note that a context is required even for expressions that use the
 	 *     <tt>allInstances()</tt> operation to get the instances of an OCL
 	 *     classifier, in order to find resources to search for instances
 	 *     (unless the context is a data type, in which case the instances are

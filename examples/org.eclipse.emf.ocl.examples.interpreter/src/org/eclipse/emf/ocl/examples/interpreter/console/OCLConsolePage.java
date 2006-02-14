@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.1 2006/02/13 16:12:09 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.2 2006/02/14 01:08:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -25,7 +25,9 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -34,6 +36,7 @@ import org.eclipse.emf.ocl.examples.interpreter.internal.l10n.OCLInterpreterMess
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -85,8 +88,40 @@ public class OCLConsolePage
 	private String lastOclExpression;
 	private EObject lastContext;
 	
-	private final AdapterFactory reflectiveAdapterFactory =
+	private static final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
+
+	public static IItemLabelProvider TUPLE_TYPE_LABEL_PROVIDER = new IItemLabelProvider() {
+	
+		public Object getImage(Object object) {
+			return null;
+		}
+	
+		public String getText(Object object) {
+			EObject tuple = (EObject) object;
+			EClass tupleType = tuple.eClass();
+			
+			StringBuffer result = new StringBuffer();
+			result.append("Tuple{");//$NON-NLS-1$
+			
+			for (Iterator iter = tupleType.getEStructuralFeatures().iterator();
+					iter.hasNext();) {
+				
+				EStructuralFeature next = (EStructuralFeature) iter.next();
+				
+				result.append(next.getName());
+				result.append(" = "); //$NON-NLS-1$
+				result.append(OCLConsolePage.toString(tuple.eGet(next)));
+				
+				if (iter.hasNext()) {
+					result.append(", "); //$NON-NLS-1$
+				}
+			}
+			
+			result.append('}');
+			
+			return result.toString();
+		}};
 	
 	/**
 	 * Initializes me.
@@ -287,7 +322,7 @@ public class OCLConsolePage
 	 * 
 	 * @see #print(Object, Color, boolean)
 	 */
-	private String toString(Object object) {
+	static String toString(Object object) {
 		if (object instanceof EObject) {
 			EObject eObject = (EObject) object;
 			
@@ -295,10 +330,15 @@ public class OCLConsolePage
 				(IItemLabelProvider) EcoreUtil.getRegisteredAdapter(
 					eObject,
 					IItemLabelProvider.class);
+			
 			if (labeler == null) {
-				labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(
-					eObject,
-					IItemLabelProvider.class);
+				if (eObject.eClass() instanceof TupleType) {
+					labeler = TUPLE_TYPE_LABEL_PROVIDER;
+				} else {
+					labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(
+						eObject,
+						IItemLabelProvider.class);
+				}
 			}
 			
 			if (labeler != null) {

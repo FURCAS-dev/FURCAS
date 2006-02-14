@@ -29,6 +29,9 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EDataTypeImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -250,6 +253,12 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 
     public final static int NOT_EQUAL = 171;
 
+    /** Name of the "first" property of a product tuple. */
+    private static final String PRODUCT_FIRST = "first"; //$NON-NLS-1$
+    
+    /** Name of the "second" property of a product tuple. */
+    private static final String PRODUCT_SECOND = "second"; //$NON-NLS-1$
+    
     /*
      * Operations for Collections
      */
@@ -471,16 +480,16 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             BasicEList vdcls = new BasicEList();
             VariableDeclaration vdcl = ExpressionsFactory.eINSTANCE
                     .createVariableDeclaration();
-            vdcl.setVarName("first");//$NON-NLS-1$
+            vdcl.setVarName(PRODUCT_FIRST);
             vdcl.setType(t);
             vdcls.add(vdcl);
             vdcl = ExpressionsFactory.eINSTANCE.createVariableDeclaration();
-            vdcl.setVarName("second");//$NON-NLS-1$
+            vdcl.setVarName(PRODUCT_SECOND);
             vdcl.setType(t2);
             vdcls.add(vdcl);
             resultType.setElementType(TypesFactory.eINSTANCE
                     .createTupleType(vdcls));
-
+            return resultType;
         }
         String message = NLS.bind(CollectionType_ERROR_,
                 new Object[] { this.getName(), getOperationNameFor(opcode) });
@@ -1255,9 +1264,37 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         return createNewOrderedSet(c);
     }
 
-    // TODO: Finish when tuples are implemented.
-    public static Set product(Collection c1, Collection c2) {
-        throw new UnsupportedOperationException();
+    /**
+     * Computes the product of two collections, returning a set of tuples of
+     * the resulting type.
+     * 
+     * @param c1 a collection
+     * @param c2 another collection
+     * @param resultType the resulting tuple type
+     * 
+     * @return the set of tuples
+     */
+    public static Set product(Collection c1, Collection c2, EClass resultType) {
+    	EStructuralFeature first = resultType.getEStructuralFeature(PRODUCT_FIRST);
+    	EStructuralFeature second = resultType.getEStructuralFeature(PRODUCT_SECOND);
+    	EFactory factory = resultType.getEPackage().getEFactoryInstance();
+    	
+        Set result = (Set) createNewSet();
+        
+        for (Iterator i1 = c1.iterator(); i1.hasNext();) {
+        	Object next1 = i1.next();
+        	
+        	for (Iterator i2 = c2.iterator(); i2.hasNext();) {
+        		Object next2 = i2.next();
+        		
+        		EObject tuple = factory.create(resultType);
+        		tuple.eSet(first, next1);
+        		tuple.eSet(second, next2);
+        		result.add(tuple);
+        	}
+        }
+        
+        return result;
     }
 
     /**

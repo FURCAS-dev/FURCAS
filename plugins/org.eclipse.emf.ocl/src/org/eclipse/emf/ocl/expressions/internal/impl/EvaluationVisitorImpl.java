@@ -1093,6 +1093,13 @@ public class EvaluationVisitorImpl
 								(Collection) argVal) ? Boolean.TRUE
 								: Boolean.FALSE;
 
+						case CollectionTypeImpl.PRODUCT:
+							// Collection::product(Collection(T2))
+							return CollectionTypeImpl.product(
+									sourceColl,
+									(Collection) argVal,
+									(EClass) ((CollectionType) oc.getType()).getElementType());
+
 						case CollectionTypeImpl.UNION: {
 							// Set, Bag::union(Set, Bag)
 							Collection argColl = (Collection) argVal;

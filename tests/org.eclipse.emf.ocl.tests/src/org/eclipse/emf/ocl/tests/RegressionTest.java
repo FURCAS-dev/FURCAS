@@ -18,7 +18,9 @@
 package org.eclipse.emf.ocl.tests;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
@@ -29,6 +31,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -36,16 +39,17 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.BagType;
+import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
+import org.eclipse.emf.ocl.types.TupleType;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -1076,6 +1080,9 @@ public class RegressionTest
 		}
 	}
 	
+	/**
+	 * Tests the Query API's select() and reject() methods.
+	 */
 	public void test_querySelectReject_126694() {
 		OCLExpression expr = parse(
 				"package ocltest context Fruit " + //$NON-NLS-1$
@@ -1105,5 +1112,64 @@ public class RegressionTest
 		
 		assertEquals(expectedRejection, query.reject(allFruits));
 		assertEquals(expectedSelection, query.select(allFruits));
+	}
+	
+	/**
+	 * Tests the collection product() operation.
+	 */
+	public void test_product_126336() {
+		IOCLHelper helper = HelperUtil.createOclHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		Set product = null;
+		EAttribute first = null;
+		EAttribute second = null;
+		
+		try {
+			OCLExpression expr = helper.createQuery(
+					"Set{'foo', 'bar'}->product(Sequence{1, 2, 3})"); //$NON-NLS-1$
+
+			EClassifier resultType = expr.getType();
+			assertTrue(resultType instanceof CollectionType);
+			
+			EClassifier elementType = ((CollectionType) resultType).getElementType();
+			
+			assertTrue(elementType instanceof TupleType);
+			TupleType tupleType = (TupleType) elementType;
+			
+			assertEquals(2, tupleType.getEAttributes().size());
+			first = (EAttribute) tupleType.getEAttributes().get(0);
+			second = (EAttribute) tupleType.getEAttributes().get(1);
+					
+			product = (Set) helper.evaluate("", expr); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		assertNotNull(product);
+		
+		// got as many product tuples as required (2 x 3)
+		assertEquals(6, product.size());
+		
+		Map expectedTuples = new java.util.HashMap();
+		Set values = new java.util.HashSet();
+		values.add(new Integer(1));
+		values.add(new Integer(2));
+		values.add(new Integer(3));
+		
+		expectedTuples.put("foo", new java.util.HashSet(values)); //$NON-NLS-1$
+		expectedTuples.put("bar", new java.util.HashSet(values)); //$NON-NLS-1$
+		
+		for (Iterator iter = product.iterator(); iter.hasNext();) {
+			EObject tuple = (EObject) iter.next();
+			
+			values = (Set) expectedTuples.get(tuple.eGet(first));
+			
+			// every "first" value must hit
+			assertNotNull(values);
+			
+			// every "second" must remove a different mapping
+			assertTrue(values.remove(tuple.eGet(second)));
+		}
 	}
 }
