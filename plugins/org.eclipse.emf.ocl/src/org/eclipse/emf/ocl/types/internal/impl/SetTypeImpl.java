@@ -17,6 +17,7 @@
 
 package org.eclipse.emf.ocl.types.internal.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -148,22 +149,35 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
 		for (int i=0; i < parentOperations.size(); i++) {
 			operations.add(parentOperations.get(i));
 		}	
-		operations.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_BOOLEAN, "oclEquals", OCL_SET));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_BOOLEAN, "oclNotEquals", OCL_SET)); //$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_BAG, "union", OCL_BAG)); //$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "union", OCL_SET));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "minus", OCL_SET));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "intersection", OCL_BAG));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "intersection", OCL_SET));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "including", AnyTypeImpl.OCL_ECLASSIFIER));	//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "excluding", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "symmetricDifference", OCL_SET));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createUnaryOperation(OCL_SET, "flatten"));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createUnaryOperation(OCL_BAG, "asBag"));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createUnaryOperation(OCL_SET, "asSet"));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createUnaryOperation(OCL_SEQUENCE, "asSequence"));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createUnaryOperation(OCL_ORDERED_SET, "asOrderedSet"));//$NON-NLS-1$
+		operations.addAll(createSetOperations());
 		return operations;
+	}
+	
+	/**
+	 * Creates the operations applicable to sets.
+	 * 
+	 * @return a list of new set operations
+	 */
+	static List createSetOperations() {
+		List result = new java.util.ArrayList();
+		
+		result.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_BOOLEAN, "oclEquals", OCL_SET));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_BOOLEAN, "oclNotEquals", OCL_SET)); //$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_BAG, "union", OCL_BAG)); //$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "union", OCL_SET));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "minus", OCL_SET));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "intersection", OCL_BAG));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "intersection", OCL_SET));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "including", AnyTypeImpl.OCL_ECLASSIFIER));	//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "excluding", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createBinaryOperation(OCL_SET, "symmetricDifference", OCL_SET));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createUnaryOperation(OCL_SET, "flatten"));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createUnaryOperation(OCL_BAG, "asBag"));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createUnaryOperation(OCL_SET, "asSet"));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createUnaryOperation(OCL_SEQUENCE, "asSequence"));//$NON-NLS-1$
+		result.add(AnyTypeImpl.createUnaryOperation(OCL_ORDERED_SET, "asOrderedSet"));//$NON-NLS-1$
+		
+		return result;
 	}
 	
 	public EList getOperations() {

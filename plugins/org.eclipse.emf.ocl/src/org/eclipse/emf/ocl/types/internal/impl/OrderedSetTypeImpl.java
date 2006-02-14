@@ -48,10 +48,14 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 
 	private static EList operations = new BasicEList();
 	
+	private SetTypeImpl supertype;
+	
 	protected OrderedSetTypeImpl() {
 		super();
 		setInstanceClass(LinkedHashSet.class);
 		this.setClassifierID(TypesPackage.ORDERED_SET_TYPE);
+		
+		supertype = new SetTypeImpl();
 	}
 
 	protected OrderedSetTypeImpl(EClassifier elementType) {
@@ -59,6 +63,20 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 		this.elementType = elementType;
 		setInstanceClass(LinkedHashSet.class);
 		this.setClassifierID(TypesPackage.ORDERED_SET_TYPE);
+		
+		supertype = new SetTypeImpl(elementType);
+	}
+	
+	/**
+	 * Extends the superclass implementation to propagate the element type to
+	 * my Set supertype.
+	 * 
+	 * @generated NOT
+	 */
+	public void setElementType(EClassifier newElementType) {
+		super.setElementType(newElementType);
+		
+		supertype.setElementType(newElementType);
 	}
 	
 	/**
@@ -86,10 +104,16 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 		
 		case CollectionTypeImpl.APPEND:
 		case CollectionTypeImpl.PREPEND:
-		case CollectionTypeImpl.INSERT_AT:
 			OCLExpression arg = (OCLExpression) args.get(0);
 			EClassifier eArgType = arg.getType();
 			OrderedSetType resultType = TypesFactory.eINSTANCE.createOrderedSetType();
+			resultType.setElementType(AnyTypeImpl.commonSuperType(elemType, eArgType));
+			return resultType;
+			
+		case CollectionTypeImpl.INSERT_AT:
+			arg = (OCLExpression) args.get(1); // arg 0 is the index
+			eArgType = arg.getType();
+			resultType = TypesFactory.eINSTANCE.createOrderedSetType();
 			resultType.setElementType(AnyTypeImpl.commonSuperType(elemType, eArgType));
 			return resultType;
 			
@@ -107,8 +131,9 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 			return TypesFactory.eINSTANCE.createBagType(elemType);
 		case CollectionTypeImpl.AS_SEQUENCE:
 			return TypesFactory.eINSTANCE.createSequenceType(elemType);				
-		}				
-		return (super.getResultType(opcode, args));
+		}
+		
+		return (supertype.getResultType(opcode, args));
 	}
 	
 	protected EList initOperations() {
@@ -117,12 +142,16 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 		for (int i=0; i < parentOperations.size(); i++) {
 			operations.add(parentOperations.get(i));
 		}	
+		
+		// OrderedSets are Sets
+		operations.addAll(SetTypeImpl.createSetOperations());
+		
 		operations.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_BOOLEAN, "oclEquals", OCL_ORDERED_SET));//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_BOOLEAN, "oclNotEquals", OCL_ORDERED_SET)); 		//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createBinaryOperation(OCL_ORDERED_SET, "append", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createBinaryOperation(AnyTypeImpl.OCL_ECLASSIFIER, "at", PrimitiveTypeImpl.OCL_INTEGER));//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createBinaryOperation(PrimitiveTypeImpl.OCL_INTEGER, "indexOf", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_ORDERED_SET, "insertAt", PrimitiveTypeImpl.OCL_INTEGER));	//$NON-NLS-1$
+		operations.add(AnyTypeImpl.createTernaryOperation(OCL_ORDERED_SET, "insertAt", PrimitiveTypeImpl.OCL_INTEGER, AnyTypeImpl.OCL_ECLASSIFIER));	//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createBinaryOperation(OCL_ORDERED_SET, "prepend", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createTernaryOperation(OCL_ORDERED_SET, "subOrderedSet", PrimitiveTypeImpl.OCL_INTEGER, PrimitiveTypeImpl.OCL_INTEGER));//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createUnaryOperation(AnyTypeImpl.OCL_ECLASSIFIER, "first"));//$NON-NLS-1$

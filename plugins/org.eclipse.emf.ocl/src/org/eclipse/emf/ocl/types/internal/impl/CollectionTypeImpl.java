@@ -1309,10 +1309,13 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
     public static Collection append(Collection c, Object o) {
         Collection result = null;
         // TODO: make an interface for OrderedSet
-        if (c instanceof LinkedHashSet)
+        if (c instanceof LinkedHashSet) {
             result = createNewOrderedSet(c);
-        else
+            result.remove(o);  // appended object must be last
+        } else {
             result = createNewSequence(c);
+        }
+        
         result.add(o);
         return result;
     }

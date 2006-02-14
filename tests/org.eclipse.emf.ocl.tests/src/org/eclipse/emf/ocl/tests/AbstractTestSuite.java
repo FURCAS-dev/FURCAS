@@ -120,6 +120,7 @@ public abstract class AbstractTestSuite
 		TestSuite result = new TestSuite("OCL Parsing Tests"); //$NON-NLS-1$
 		
 		result.addTest(BasicOCLTest.suite());
+		result.addTest(CollectionsTest.suite());
 		result.addTest(InvariantConstraintsTest.suite());
 		result.addTest(OperationConstraintsTest.suite());
 		result.addTest(ExpressionsUtilTest.suite());

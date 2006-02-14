@@ -107,9 +107,15 @@ public class SequenceTypeImpl
 			case CollectionTypeImpl.INCLUDING:
 			case CollectionTypeImpl.APPEND:
 			case CollectionTypeImpl.PREPEND:
-			case CollectionTypeImpl.INSERT_AT:
 				arg = (OCLExpression) args.get(0);
 				EClassifier eArgType = arg.getType();
+				resultType = TypesFactory.eINSTANCE.createSequenceType();
+				resultType.setElementType(AnyTypeImpl.commonSuperType(
+					elemType, eArgType));
+				return resultType;
+			case CollectionTypeImpl.INSERT_AT:
+				arg = (OCLExpression) args.get(1); // arg 0 is the index
+				eArgType = arg.getType();
 				resultType = TypesFactory.eINSTANCE.createSequenceType();
 				resultType.setElementType(AnyTypeImpl.commonSuperType(
 					elemType, eArgType));
@@ -160,8 +166,8 @@ public class SequenceTypeImpl
 			"append", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
 		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SEQUENCE,
 			"prepend", AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
-		operations.add(AnyTypeImpl.createBinaryOperation(OCL_SEQUENCE,
-			"insertAt", PrimitiveTypeImpl.OCL_INTEGER));//$NON-NLS-1$
+		operations.add(AnyTypeImpl.createTernaryOperation(OCL_SEQUENCE,
+			"insertAt", PrimitiveTypeImpl.OCL_INTEGER, AnyTypeImpl.OCL_ECLASSIFIER));//$NON-NLS-1$
 		operations
 			.add(AnyTypeImpl
 				.createTernaryOperation(
