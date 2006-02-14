@@ -10,8 +10,8 @@
 	<property name="javacFailOnError" value="false"/>
 	<property name="javacDebugInfo" value="on"/>
 	<property name="javacVerbose" value="true"/>
-	<property name="javacSource" value="1.3"/>
-	<property name="javacTarget" value="1.2"/>
+	<property name="javacSource" value="1.4"/>
+	<property name="javacTarget" value="1.4"/>
 	<property name="compilerArg" value=""/>
 	<path id="path_bootclasspath">
 		<fileset dir="${java.home}/lib">
@@ -50,6 +50,30 @@
 	</target>
 
 	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.emf.ocl.doc.">
+		<exec executable="sh">
+			<arg value="build/antJavadoc.sh"/>
+			<arg value="${eclipse.home}"/>
+		</exec>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<jar
+			destfile="${basedir}/org.eclipse.emf.ocl.doc_1.0.0.jar"
+			basedir="${temp.folder}/org.eclipse.emf.ocl.doc_1.0.0">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Bundle-ManifestVersion" value="2"/>
+				<attribute name="Bundle-Name" value="%Plugin.name"/>
+				<attribute name="Bundle-SymbolicName" value="org.eclipse.emf.ocl.doc; singleton:=true"/>
+				<attribute name="Bundle-Version" value="1.0.0"/>
+				<attribute name="Bundle-Vendor" value="%Provider.name"/>
+				<attribute name="Bundle-Localization" value="plugin"/>
+				<attribute name="Require-Bundle" value="org.eclipse.help"/>
+				<attribute name="Eclipse-LazyStart" value="true"/>
+			</manifest>	
+		</jar>
+		<delete dir="${temp.folder}"/>
 	</target>
 
 	<target name="build.sources" depends="init">
@@ -58,7 +82,7 @@
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/org.eclipse.emf.ocl.doc_1.0.0"/>
 		<copy todir="${destination.temp.folder}/org.eclipse.emf.ocl.doc_1.0.0" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties"			/>
+			<fileset dir="${basedir}" includes="about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties,references/,toc.xml"/>
 		</copy>
 	</target>
 
@@ -66,6 +90,9 @@
 	</target>
 
 	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<copy todir="${destination.temp.folder}/org.eclipse.emf.ocl.doc_1.0.0" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}" includes="toc.xml,plugin.xml,plugin.properties,eclipse_lg.gif,eclipse48.png,eclipse48.gif,eclipse32.png,eclipse32.gif,eclipse24.gif,eclipse.png,eclipse.gif,build.properties,build/,about.properties,about.mappings,about.ini,about.html,META-INF/"/>
+		</copy>
 	</target>
 
 	<target name="gather.logs" depends="init" if="destination.temp.folder">
@@ -78,7 +105,7 @@
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="E:/workspaces/w2/org.eclipse.emf.ocl.doc" property="resourcePath"/>
+		<eclipse.convertPath fileSystemPath="/localhome/cdamus/workspaces/emft-gmf/org.eclipse.emf.ocl.doc" property="resourcePath"/>
 		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
 	</target>
 
@@ -94,7 +121,7 @@
 			<param name="destination.temp.folder" value="${temp.folder}/"/>
 		</antcall>
 		<delete>
-			<fileset dir="${temp.folder}" includes="**/*.bin.log"			/>
+			<fileset dir="${temp.folder}" includes="**/*.bin.log"/>
 		</delete>
 		<zip destfile="${plugin.destination}/org.eclipse.emf.ocl.doc_1.0.0.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
 		<delete dir="${temp.folder}"/>
