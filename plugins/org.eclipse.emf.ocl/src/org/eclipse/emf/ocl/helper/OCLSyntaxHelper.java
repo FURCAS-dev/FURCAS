@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.3 2006/02/20 16:33:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -441,27 +441,27 @@ final class OCLSyntaxHelper {
 		"implies(b : Boolean) : Boolean", ChoiceType.BEHAVIORAL_FEATURE);//$NON-NLS-1$
 
 	//	collections
-	private static List collectionOclChoices;
+	private static List collectionChoices;
 
-	private static List sequenceOclChoices;
+	private static List sequenceChoices;
 
-	private static List setOclChoices;
+	private static List setChoices;
 
-	private static List bagOclChoices;
+	private static List bagChoices;
 
-	private static List orderedSetOclChoices;
+	private static List orderedSetChoices;
 
 	//primitives
-	private static List booleanOclChoices;
+	private static List booleanChoices;
 
-	private static List stringOclChoices;
+	private static List stringChoices;
 
-	private static List integerOclChoices;
+	private static List integerChoices;
 
-	private static List realOclChoices;
+	private static List realChoices;
 
 	//OclAny
-	private static List oclAnyOclChoices;
+	private static List anyChoices;
 
 	private int syntaxHelpStringSuffix;
 
@@ -479,28 +479,28 @@ final class OCLSyntaxHelper {
 	 * return collection applicable operations (syntax help)
 	 * @return List
 	 */
-	private static List getCollectionOclChoices() {
-		if (collectionOclChoices == null) {
-			collectionOclChoices = new ArrayList();
-			collectionOclChoices.add(COLLECTION_SIZE);
-			collectionOclChoices.add(INCLUDES);
-			collectionOclChoices.add(EXCLUDES);
-			collectionOclChoices.add(COUNT);
-			collectionOclChoices.add(INCLUDES_ALL);
-			collectionOclChoices.add(EXCLUDES_ALL);
-			collectionOclChoices.add(IS_EMPTY);
-			collectionOclChoices.add(NOT_EMPTY);
-			collectionOclChoices.add(SUM);
-			collectionOclChoices.add(PRODUCT);
-			collectionOclChoices.add(EXISTS);
-			collectionOclChoices.add(FOR_ALL);
-			collectionOclChoices.add(IS_UNIQUE);
-			collectionOclChoices.add(ITERATE);
-			collectionOclChoices.add(ANY);
-			collectionOclChoices.add(ONE);
-			collectionOclChoices.add(COLLECT);
+	private static List getCollectionChoices() {
+		if (collectionChoices == null) {
+			collectionChoices = new ArrayList();
+			collectionChoices.add(COLLECTION_SIZE);
+			collectionChoices.add(INCLUDES);
+			collectionChoices.add(EXCLUDES);
+			collectionChoices.add(COUNT);
+			collectionChoices.add(INCLUDES_ALL);
+			collectionChoices.add(EXCLUDES_ALL);
+			collectionChoices.add(IS_EMPTY);
+			collectionChoices.add(NOT_EMPTY);
+			collectionChoices.add(SUM);
+			collectionChoices.add(PRODUCT);
+			collectionChoices.add(EXISTS);
+			collectionChoices.add(FOR_ALL);
+			collectionChoices.add(IS_UNIQUE);
+			collectionChoices.add(ITERATE);
+			collectionChoices.add(ANY);
+			collectionChoices.add(ONE);
+			collectionChoices.add(COLLECT);
 		}
-		return collectionOclChoices;
+		return collectionChoices;
 	}
 
 	/**
@@ -508,32 +508,32 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getSequenceOclChoices() {
-		if (sequenceOclChoices == null) {
-			sequenceOclChoices = new ArrayList();
-			sequenceOclChoices.addAll(getCollectionOclChoices());
-			sequenceOclChoices.add(AT);
-			sequenceOclChoices.add(FIRST);
-			sequenceOclChoices.add(LAST);
-			sequenceOclChoices.add(INDEX_OF);
-			sequenceOclChoices.add(UNION_SEQ_SEQ);
-			sequenceOclChoices.add(APPEND_SEQ);
-			sequenceOclChoices.add(PREPEND_SEQ);
-			sequenceOclChoices.add(SUB_SEQ);
-			sequenceOclChoices.add(INCLUDING_SEQ);
-			sequenceOclChoices.add(EXCLUDING_SEQ);
-			sequenceOclChoices.add(FLATTEN_SEQ);
-			sequenceOclChoices.add(INSERT_AT_SEQ);
-			sequenceOclChoices.add(SELECT_SEQ);
-			sequenceOclChoices.add(REJECT_SEQ);
-			sequenceOclChoices.add(COLLECT_NESTED_SEQ);
-			sequenceOclChoices.add(SORTED_BY_SEQ);
-			sequenceOclChoices.add(AS_SEQUENCE);
-			sequenceOclChoices.add(AS_BAG);
-			sequenceOclChoices.add(AS_SET);
-			sequenceOclChoices.add(AS_ORDERED_SET);
+	private static List getSequenceChoices() {
+		if (sequenceChoices == null) {
+			sequenceChoices = new ArrayList();
+			sequenceChoices.addAll(getCollectionChoices());
+			sequenceChoices.add(AT);
+			sequenceChoices.add(FIRST);
+			sequenceChoices.add(LAST);
+			sequenceChoices.add(INDEX_OF);
+			sequenceChoices.add(UNION_SEQ_SEQ);
+			sequenceChoices.add(APPEND_SEQ);
+			sequenceChoices.add(PREPEND_SEQ);
+			sequenceChoices.add(SUB_SEQ);
+			sequenceChoices.add(INCLUDING_SEQ);
+			sequenceChoices.add(EXCLUDING_SEQ);
+			sequenceChoices.add(FLATTEN_SEQ);
+			sequenceChoices.add(INSERT_AT_SEQ);
+			sequenceChoices.add(SELECT_SEQ);
+			sequenceChoices.add(REJECT_SEQ);
+			sequenceChoices.add(COLLECT_NESTED_SEQ);
+			sequenceChoices.add(SORTED_BY_SEQ);
+			sequenceChoices.add(AS_SEQUENCE);
+			sequenceChoices.add(AS_BAG);
+			sequenceChoices.add(AS_SET);
+			sequenceChoices.add(AS_ORDERED_SET);
 		}
-		return sequenceOclChoices;
+		return sequenceChoices;
 	}
 
 	/**
@@ -541,28 +541,28 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getSetOclChoices() {
-		if (setOclChoices == null) {
-			setOclChoices = new ArrayList();
-			setOclChoices.addAll(getCollectionOclChoices());
-			setOclChoices.add(FLATTEN_SET);
-			setOclChoices.add(UNION_SET_SET);
-			setOclChoices.add(INTERSECTION_BAG_SET);
-			setOclChoices.add(SYMMETRIC_DIFF_SET_SET);
-			setOclChoices.add(INCLUDING_SET);
-			setOclChoices.add(EXCLUDING_SET);
-			setOclChoices.add(UNION_BAG_BAG);
-			setOclChoices.add(INTERSECTION_SET_SET);
-			setOclChoices.add(SELECT_SET);
-			setOclChoices.add(REJECT_SET);
-			setOclChoices.add(SORTED_BY_ORDESET);
-			setOclChoices.add(COLLECT_NESTED_BAG);
-			setOclChoices.add(AS_SEQUENCE);
-			setOclChoices.add(AS_BAG);
-			setOclChoices.add(AS_SET);
-			setOclChoices.add(AS_ORDERED_SET);
+	private static List getSetChoices() {
+		if (setChoices == null) {
+			setChoices = new ArrayList();
+			setChoices.addAll(getCollectionChoices());
+			setChoices.add(FLATTEN_SET);
+			setChoices.add(UNION_SET_SET);
+			setChoices.add(INTERSECTION_BAG_SET);
+			setChoices.add(SYMMETRIC_DIFF_SET_SET);
+			setChoices.add(INCLUDING_SET);
+			setChoices.add(EXCLUDING_SET);
+			setChoices.add(UNION_BAG_BAG);
+			setChoices.add(INTERSECTION_SET_SET);
+			setChoices.add(SELECT_SET);
+			setChoices.add(REJECT_SET);
+			setChoices.add(SORTED_BY_ORDESET);
+			setChoices.add(COLLECT_NESTED_BAG);
+			setChoices.add(AS_SEQUENCE);
+			setChoices.add(AS_BAG);
+			setChoices.add(AS_SET);
+			setChoices.add(AS_ORDERED_SET);
 		}
-		return setOclChoices;
+		return setChoices;
 	}
 
 	/**
@@ -570,27 +570,27 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getBagOclChoices() {
-		if (bagOclChoices == null) {
-			bagOclChoices = new ArrayList();
-			bagOclChoices.addAll(getCollectionOclChoices());
-			bagOclChoices.add(UNION_SET_BAG);
-			bagOclChoices.add(INTERSECTION_BAG_BAG);
-			bagOclChoices.add(INCLUDING_BAG);
-			bagOclChoices.add(EXCLUDING_BAG);
-			bagOclChoices.add(FLATTEN_BAG);
-			bagOclChoices.add(SELECT_BAG);
-			bagOclChoices.add(REJECT_BAG);
-			bagOclChoices.add(UNION_BAG_BAG);
-			bagOclChoices.add(INTERSECTION_SET_SET);
-			bagOclChoices.add(SORTED_BY_SEQ);
-			bagOclChoices.add(COLLECT_NESTED_BAG);
-			bagOclChoices.add(AS_SEQUENCE);
-			bagOclChoices.add(AS_BAG);
-			bagOclChoices.add(AS_SET);
-			bagOclChoices.add(AS_ORDERED_SET);
+	private static List getBagChoices() {
+		if (bagChoices == null) {
+			bagChoices = new ArrayList();
+			bagChoices.addAll(getCollectionChoices());
+			bagChoices.add(UNION_SET_BAG);
+			bagChoices.add(INTERSECTION_BAG_BAG);
+			bagChoices.add(INCLUDING_BAG);
+			bagChoices.add(EXCLUDING_BAG);
+			bagChoices.add(FLATTEN_BAG);
+			bagChoices.add(SELECT_BAG);
+			bagChoices.add(REJECT_BAG);
+			bagChoices.add(UNION_BAG_BAG);
+			bagChoices.add(INTERSECTION_SET_SET);
+			bagChoices.add(SORTED_BY_SEQ);
+			bagChoices.add(COLLECT_NESTED_BAG);
+			bagChoices.add(AS_SEQUENCE);
+			bagChoices.add(AS_BAG);
+			bagChoices.add(AS_SET);
+			bagChoices.add(AS_ORDERED_SET);
 		}
-		return bagOclChoices;
+		return bagChoices;
 	}
 
 	/**
@@ -598,20 +598,20 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getOrderedSetOclChoices() {
-		if (orderedSetOclChoices == null) {
-			orderedSetOclChoices = new ArrayList();
-			orderedSetOclChoices.addAll(getCollectionOclChoices());
-			orderedSetOclChoices.add(AT);
-			orderedSetOclChoices.add(FIRST);
-			orderedSetOclChoices.add(LAST);
-			orderedSetOclChoices.add(INDEX_OF);
-			orderedSetOclChoices.add(APPEND_ORDSET);
-			orderedSetOclChoices.add(PREPEND_ORDSET);
-			orderedSetOclChoices.add(SUB_ORDSET);
-			orderedSetOclChoices.add(INSERT_AT_ORDSET);
+	private static List getOrderedSetChoices() {
+		if (orderedSetChoices == null) {
+			orderedSetChoices = new ArrayList();
+			orderedSetChoices.addAll(getCollectionChoices());
+			orderedSetChoices.add(AT);
+			orderedSetChoices.add(FIRST);
+			orderedSetChoices.add(LAST);
+			orderedSetChoices.add(INDEX_OF);
+			orderedSetChoices.add(APPEND_ORDSET);
+			orderedSetChoices.add(PREPEND_ORDSET);
+			orderedSetChoices.add(SUB_ORDSET);
+			orderedSetChoices.add(INSERT_AT_ORDSET);
 		}
-		return orderedSetOclChoices;
+		return orderedSetChoices;
 	}
 
 	/** 
@@ -619,17 +619,17 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getBooleanOclChoices() {
-		if (booleanOclChoices == null) {
-			booleanOclChoices = new ArrayList();
-			//            choices.addAll(getOclAnyOclChoices());
-			booleanOclChoices.add(OR);
-			booleanOclChoices.add(XOR);
-			booleanOclChoices.add(AND);
-			booleanOclChoices.add(NOT);
-			booleanOclChoices.add(IMPLIES);
+	private static List getBooleanChoices() {
+		if (booleanChoices == null) {
+			booleanChoices = new ArrayList();
+			// choices.addAll(getAnyChoices());
+			booleanChoices.add(OR);
+			booleanChoices.add(XOR);
+			booleanChoices.add(AND);
+			booleanChoices.add(NOT);
+			booleanChoices.add(IMPLIES);
 		}
-		return booleanOclChoices;
+		return booleanChoices;
 	}
 
 	/**
@@ -637,17 +637,17 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getIntegerOclChoices() {
-		if (integerOclChoices == null) {
-			integerOclChoices = new ArrayList();
-			integerOclChoices.addAll(getOclAnyOclChoices());
-			integerOclChoices.add(ABS_INT);
-			integerOclChoices.add(DIV);
-			integerOclChoices.add(MOD);
-			integerOclChoices.add(MAX_INT);
-			integerOclChoices.add(MIN_INT);
+	private static List getIntegerChoices() {
+		if (integerChoices == null) {
+			integerChoices = new ArrayList();
+			integerChoices.addAll(getAnyChoices());
+			integerChoices.add(ABS_INT);
+			integerChoices.add(DIV);
+			integerChoices.add(MOD);
+			integerChoices.add(MAX_INT);
+			integerChoices.add(MIN_INT);
 		}
-		return integerOclChoices;
+		return integerChoices;
 	}
 
 	/**
@@ -655,17 +655,17 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getRealOclChoices() {
-		if (realOclChoices == null) {
-			realOclChoices = new ArrayList();
-			realOclChoices.addAll(getOclAnyOclChoices());
-			realOclChoices.add(ABS_REAL);
-			realOclChoices.add(FLOOR);
-			realOclChoices.add(ROUND);
-			realOclChoices.add(MAX_REAL);
-			realOclChoices.add(MIN_REAL);
+	private static List getRealChoices() {
+		if (realChoices == null) {
+			realChoices = new ArrayList();
+			realChoices.addAll(getAnyChoices());
+			realChoices.add(ABS_REAL);
+			realChoices.add(FLOOR);
+			realChoices.add(ROUND);
+			realChoices.add(MAX_REAL);
+			realChoices.add(MIN_REAL);
 		}
-		return realOclChoices;
+		return realChoices;
 	}
 
 	/**
@@ -673,19 +673,19 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getStringOclChoices() {
-		if (stringOclChoices == null) {
-			stringOclChoices = new ArrayList();
-			stringOclChoices.addAll(getOclAnyOclChoices());
-			stringOclChoices.add(STRING_SIZE);
-			stringOclChoices.add(CONCAT);
-			stringOclChoices.add(TO_UPPER);
-			stringOclChoices.add(TO_LOWER);
-			stringOclChoices.add(SUBSTRING);
-			stringOclChoices.add(TO_INT);
-			stringOclChoices.add(TO_REAL);
+	private static List getStringChoices() {
+		if (stringChoices == null) {
+			stringChoices = new ArrayList();
+			stringChoices.addAll(getAnyChoices());
+			stringChoices.add(STRING_SIZE);
+			stringChoices.add(CONCAT);
+			stringChoices.add(TO_UPPER);
+			stringChoices.add(TO_LOWER);
+			stringChoices.add(SUBSTRING);
+			stringChoices.add(TO_INT);
+			stringChoices.add(TO_REAL);
 		}
-		return stringOclChoices;
+		return stringChoices;
 	}
 
 	/**
@@ -693,18 +693,18 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private static List getOclAnyOclChoices() {
-		if (oclAnyOclChoices == null) {
-			oclAnyOclChoices = new ArrayList();
-			oclAnyOclChoices.add(IS_KIND_OF);
-			oclAnyOclChoices.add(IS_TYPE_OF);
-			oclAnyOclChoices.add(AS_TYPE);
-//			oclAnyOclChoices.add(IN_STATE);
-			oclAnyOclChoices.add(IS_NEW);
-			oclAnyOclChoices.add(IS_UNDEFINED);
-			oclAnyOclChoices.add(ALL_INSTANCES);
+	private static List getAnyChoices() {
+		if (anyChoices == null) {
+			anyChoices = new ArrayList();
+			anyChoices.add(IS_KIND_OF);
+			anyChoices.add(IS_TYPE_OF);
+			anyChoices.add(AS_TYPE);
+//			anyChoices.add(IN_STATE);
+			anyChoices.add(IS_NEW);
+			anyChoices.add(IS_UNDEFINED);
+			anyChoices.add(ALL_INSTANCES);
 		}
-		return oclAnyOclChoices;
+		return anyChoices;
 	}
 
 	/**
@@ -712,17 +712,17 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s
 	 */
-	private List getBasicOclChoices() {
+	private List getBasicChoices() {
 		if (syntaxHelpStringSuffix == ARROW) {
-			return getSetOclChoices();
+			return getSetChoices();
 		} else if (syntaxHelpStringSuffix == DOT) {
-			return getOclAnyOclChoices();
+			return getAnyChoices();
 		} else {
 			return Collections.EMPTY_LIST;
 		}
 	}
 
-	private class OclASTVisitor
+	private class ASTVisitor
 		implements Visitor {
 
 		private final int completionPosition;
@@ -737,14 +737,14 @@ final class OCLSyntaxHelper {
 		 * @param position the completion position
 		 * @param constraintType the type of constraint that we are completing
 		 */
-		OclASTVisitor(String text, int position, ConstraintType constraintType) {
+		ASTVisitor(String text, int position, ConstraintType constraintType) {
 			this.text = text;
 			completionPosition = position;
 			this.constraintType = constraintType;
 		}
 		
 		public Object visitAttributeCallExp(AttributeCallExp exp) {
-			return getOclChoices(exp, constraintType);
+			return getChoices(exp, constraintType);
 		}
 
 		public Object visitOperationCallExp(OperationCallExp exp) {
@@ -763,21 +763,21 @@ final class OCLSyntaxHelper {
 				}
 			}
 			
-			return getOclChoices(exp, constraintType);
+			return getChoices(exp, constraintType);
 		}
 
 		public Object visitVariableExp(VariableExp variableexp) {
-			return getOclChoices(variableexp, constraintType);
+			return getChoices(variableexp, constraintType);
 		}
 
 		public Object visitAssociationEndCallExp(
 			AssociationEndCallExp associationendcallexp) {
-			return getOclChoices(associationendcallexp, constraintType);
+			return getChoices(associationendcallexp, constraintType);
 		}
 
 		public Object visitAssociationClassCallExp(
 			AssociationClassCallExp exp) {
-			return getOclChoices(exp, constraintType);
+			return getChoices(exp, constraintType);
 		}
 
 		public Object visitVariableDeclaration(
@@ -789,7 +789,7 @@ final class OCLSyntaxHelper {
 			int lastCharPos = UTF16.moveCodePointOffset(text, exp.getEndPosition(), -1);
 			
 			if (text.charAt(lastCharPos) == ')') { // known BMP code point
-				return getOclChoices(exp, constraintType);
+				return getChoices(exp, constraintType);
 			}
 			
 			return Collections.EMPTY_LIST;
@@ -797,35 +797,35 @@ final class OCLSyntaxHelper {
 
 		public Object visitUnspecifiedValueExp(
 			UnspecifiedValueExp unspecifiedvalueexp) {
-			return getOclChoices(unspecifiedvalueexp, constraintType);
+			return getChoices(unspecifiedvalueexp, constraintType);
 		}
 
 		public Object visitIntegerLiteralExp(IntegerLiteralExp integerliteralexp) {
-			return getIntegerOclChoices();
+			return getIntegerChoices();
 		}
 
 		public Object visitRealLiteralExp(RealLiteralExp realliteralexp) {
-			return getRealOclChoices();
+			return getRealChoices();
 		}
 
 		public Object visitStringLiteralExp(StringLiteralExp stringliteralexp) {
-			return getStringOclChoices();
+			return getStringChoices();
 		}
 
 		public Object visitBooleanLiteralExp(BooleanLiteralExp booleanliteralexp) {
-			return getOclChoices(booleanliteralexp, constraintType);
+			return getChoices(booleanliteralexp, constraintType);
 		}
 
 		public Object visitTupleLiteralExp(TupleLiteralExp tupleliteralexp) {
-			return getOclChoices(tupleliteralexp, constraintType);
+			return getChoices(tupleliteralexp, constraintType);
 		}
 
 		public Object visitLetExp(LetExp letexp) {
-			return getOclChoices(letexp.getType(), constraintType);
+			return getChoices(letexp.getType(), constraintType);
 		}
 
 		public Object visitEnumLiteralExp(EnumLiteralExp enumliteralexp) {
-			return getOclChoices(enumliteralexp, constraintType);
+			return getChoices(enumliteralexp, constraintType);
 		}
 
 		public Object visitCollectionLiteralExp(
@@ -834,19 +834,19 @@ final class OCLSyntaxHelper {
 				.getKind();
 			switch (kind.getValue()) {
 				case CollectionKind.BAG: {
-					return getOclTypesSwitch().caseBagType(null);
+					return getOCLTypesSwitch().caseBagType(null);
 				}
 				case CollectionKind.COLLECTION: {
-					return getOclTypesSwitch().caseCollectionType(null);
+					return getOCLTypesSwitch().caseCollectionType(null);
 				}
 				case CollectionKind.SET: {
-					return getOclTypesSwitch().caseSetType(null);
+					return getOCLTypesSwitch().caseSetType(null);
 				}
 				case CollectionKind.SEQUENCE: {
-					return getOclTypesSwitch().caseSequenceType(null);
+					return getOCLTypesSwitch().caseSequenceType(null);
 				}
 				case CollectionKind.ORDERED_SET: {
-					return getOclTypesSwitch().caseOrderedSetType(null);
+					return getOCLTypesSwitch().caseOrderedSetType(null);
 				}
 				default:
 					HelperUtil.throwException(new IllegalArgumentException(
@@ -859,7 +859,7 @@ final class OCLSyntaxHelper {
 		public Object visitIteratorExp(IteratorExp exp) {
 			if (exp.getEndPosition() == completionPosition) {
 				// return completion on the entire expression
-				return getOclChoices(exp.getType(), constraintType);
+				return getChoices(exp.getType(), constraintType);
 			}
 			
 			// otherwise, we are completing something within the expression body
@@ -870,7 +870,7 @@ final class OCLSyntaxHelper {
 			if (exp.getEndPosition() == completionPosition) {
 				// the result type of an iterate expression is the type of the
 				//    accumulator variable
-				return getOclChoices(exp.getType(), constraintType);
+				return getChoices(exp.getType(), constraintType);
 			}
 			
 			// otherwise, we are completing something within the expression body
@@ -880,32 +880,32 @@ final class OCLSyntaxHelper {
 		public Object visitConstraint(Constraint constraint) {
 			return Collections.EMPTY_LIST;
 		}
-	} //OclASTVisitor class
+	} //ASTVisitor class
 
-	private class OclTypesSwitch
+	private class OCLTypesSwitch
 		extends TypesSwitch {
 		
 		public Object caseAnyType(AnyType object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		public Object caseBagType(BagType object) {
-			return (syntaxHelpStringSuffix == ARROW) ? getBagOclChoices()
+			return (syntaxHelpStringSuffix == ARROW) ? getBagChoices()
 				: Collections.EMPTY_LIST;
 		}
 
 		public Object caseCollectionType(CollectionType object) {
-			return (syntaxHelpStringSuffix == ARROW) ? getCollectionOclChoices()
+			return (syntaxHelpStringSuffix == ARROW) ? getCollectionChoices()
 				: Collections.EMPTY_LIST;
 		}
 
 		public Object caseEClass(EClass object) {
 			if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else if (syntaxHelpStringSuffix == DOT) {
-				List list = getOclChoicesForEClassEStructuralFeatures(object);
-				list.addAll(getOclChoicesForEClassEOperations(object));
-				list.addAll(getOclAnyOclChoices());
+				List list = getChoicesForEClassEStructuralFeatures(object);
+				list.addAll(getChoicesForEClassEOperations(object));
+				list.addAll(getAnyChoices());
 				return list;
 			} else {
 				return Collections.EMPTY_LIST;
@@ -917,7 +917,7 @@ final class OCLSyntaxHelper {
 		 * @param eClass the eclass to get features from 
 		 * @return List oclchoices list for structural features
 		 */
-		private List getOclChoicesForEClassEStructuralFeatures(EClass eClass) {
+		private List getChoicesForEClassEStructuralFeatures(EClass eClass) {
 			List list = new ArrayList();
 			Set features = new HashSet(eClass.getEAllStructuralFeatures());
 			features.removeAll(EcorePackage.eINSTANCE.getEModelElement()
@@ -958,7 +958,7 @@ final class OCLSyntaxHelper {
 		 * @param eClass the eclass to get eoperations from 
 		 * @return Collection oclchoices collection for eoperations
 		 */
-		private Collection getOclChoicesForEClassEOperations(EClass eClass) {
+		private Collection getChoicesForEClassEOperations(EClass eClass) {
 			Map operationsMap = new HashMap();
 			Set operations = new HashSet(eClass.getEAllOperations());
 			operations.removeAll(EcorePackage.eINSTANCE.getEModelElement()
@@ -1020,7 +1020,7 @@ final class OCLSyntaxHelper {
 		 * @see org.eclipse.emf.ocl.types.util.TypesSwitch#caseEClassifier(org.eclipse.emf.ecore.EClassifier)
 		 */
 		public Object caseEClassifier(EClassifier object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		/**
@@ -1028,7 +1028,7 @@ final class OCLSyntaxHelper {
 		 */
 		public Object caseEDataType(EDataType object) {
 			if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else if (object instanceof EEnum) {
 				return caseEClassifier(null);
 			} else if (syntaxHelpStringSuffix == DOT) {
@@ -1057,7 +1057,7 @@ final class OCLSyntaxHelper {
 				} else if (Collection.class.isAssignableFrom(instanceClass)) {
 					return caseCollectionType(null);
 				} else {
-					return getOclAnyOclChoices();
+					return getAnyChoices();
 				}
 			} else {
 				return Collections.EMPTY_LIST;
@@ -1069,14 +1069,14 @@ final class OCLSyntaxHelper {
 		 * @see org.eclipse.emf.ocl.types.util.TypesSwitch#caseEModelElement(org.eclipse.emf.ecore.EModelElement)
 		 */
 		public Object caseEModelElement(EModelElement object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		/**
 		 * @see org.eclipse.emf.ocl.types.util.TypesSwitch#caseENamedElement(org.eclipse.emf.ecore.ENamedElement)
 		 */
 		public Object caseENamedElement(ENamedElement object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		/**
@@ -1090,7 +1090,7 @@ final class OCLSyntaxHelper {
 		 * @see org.eclipse.emf.ocl.types.util.TypesSwitch#caseModelElementType(org.eclipse.emf.ocl.types.ModelElementType)
 		 */
 		public Object caseModelElementType(ModelElementType object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		/**
@@ -1098,7 +1098,7 @@ final class OCLSyntaxHelper {
 		 */
 		public Object caseOrderedSetType(OrderedSetType object) {
 			if (syntaxHelpStringSuffix == ARROW) {
-				return getOrderedSetOclChoices();
+				return getOrderedSetChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1109,11 +1109,11 @@ final class OCLSyntaxHelper {
 		 */
 		public Object casePrimitiveBoolean(PrimitiveBoolean object) {
 			if (syntaxHelpStringSuffix == NONE) {
-				return getBooleanOclChoices();
+				return getBooleanChoices();
 			} else if (syntaxHelpStringSuffix == DOT) {
-				return getOclAnyOclChoices();
+				return getAnyChoices();
 			} else if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1124,9 +1124,9 @@ final class OCLSyntaxHelper {
 		 */
 		public Object casePrimitiveInteger(PrimitiveInteger object) {
 			if (syntaxHelpStringSuffix == DOT) {
-				return getIntegerOclChoices();
+				return getIntegerChoices();
 			} else if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1137,9 +1137,9 @@ final class OCLSyntaxHelper {
 		 */
 		public Object casePrimitiveReal(PrimitiveReal object) {
 			if (syntaxHelpStringSuffix == DOT) {
-				return getRealOclChoices();
+				return getRealChoices();
 			} else if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1150,9 +1150,9 @@ final class OCLSyntaxHelper {
 		 */
 		public Object casePrimitiveString(PrimitiveString object) {
 			if (syntaxHelpStringSuffix == DOT) {
-				return getStringOclChoices();
+				return getStringChoices();
 			} else if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1162,7 +1162,7 @@ final class OCLSyntaxHelper {
 		 * @see org.eclipse.emf.ocl.types.util.TypesSwitch#casePrimitiveType(org.eclipse.emf.ocl.types.PrimitiveType)
 		 */
 		public Object casePrimitiveType(PrimitiveType object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		/**
@@ -1170,7 +1170,7 @@ final class OCLSyntaxHelper {
 		 */
 		public Object caseSequenceType(SequenceType object) {
 			if (syntaxHelpStringSuffix == ARROW) {
-				return getSequenceOclChoices();
+				return getSequenceChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1181,7 +1181,7 @@ final class OCLSyntaxHelper {
 		 */
 		public Object caseSetType(SetType object) {
 			if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else {
 				return Collections.EMPTY_LIST;
 			}
@@ -1192,10 +1192,10 @@ final class OCLSyntaxHelper {
 		 */
 		public Object caseTupleType(TupleType object) {
 			if (syntaxHelpStringSuffix == ARROW) {
-				return getSetOclChoices();
+				return getSetChoices();
 			} else if (syntaxHelpStringSuffix == DOT) {
-				List list = getOclChoicesForEClassEStructuralFeatures(object);
-				list.addAll(getOclAnyOclChoices());
+				List list = getChoicesForEClassEStructuralFeatures(object);
+				list.addAll(getAnyChoices());
 				return list;
 			} else {
 				return Collections.EMPTY_LIST;
@@ -1206,7 +1206,7 @@ final class OCLSyntaxHelper {
 		 * @see org.eclipse.emf.ocl.types.util.TypesSwitch#caseVoidType(org.eclipse.emf.ocl.types.VoidType)
 		 */
 		public Object caseVoidType(VoidType object) {
-			return getBasicOclChoices();
+			return getBasicChoices();
 		}
 
 		/**
@@ -1218,27 +1218,28 @@ final class OCLSyntaxHelper {
 			} else if (object instanceof EDataType) {
 				return caseEDataType((EDataType) object);
 			} else {
-				return getBasicOclChoices();
+				return getBasicChoices();
 			}
 		}
-	} //OclTypesSwitch class
+	} //OCLTypesSwitch class
 
 	/**
-	 * returns the syntax help choices applicable for the passed OclExpression
+	 * returns the syntax help choices applicable for the passed OCLExpression
 	 * 
-	 * @param oclExpression the AST node to check and return relevant syntax 
+	 * @param expression the AST node to check and return relevant syntax 
 	 * help choices for.
 	 * @param constraintType the type of constraint that we are completing
 	 * 
-	 * @return OclChoices syntax help choices for user, could be empty
+	 * @return syntax help choices for user (list of {@link Choice}s;
+	 *     could be empty
 	 */
-	private List getOclChoices(OCLExpression oclExpression, ConstraintType constraintType) {
-		return getOclChoices(oclExpression.getType(), constraintType);
+	private List getChoices(OCLExpression expression, ConstraintType constraintType) {
+		return getChoices(expression.getType(), constraintType);
 	}
 	
-	private List getOclChoices(EClassifier oclType, ConstraintType constraintType) {
+	private List getChoices(EClassifier oclType, ConstraintType constraintType) {
 		return filter(
-				(List) getOclTypesSwitch().doSwitch(oclType),
+				(List) getOCLTypesSwitch().doSwitch(oclType),
 				constraintType);
 	}
 	
@@ -1279,7 +1280,7 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @return a list of {@link Choice}s, possibly empty
 	 */
-	private List getPathOclChoices(String txt, Environment env) throws Exception {
+	private List getPathChoices(String txt, Environment env) throws Exception {
 		OCLLexer lexer = new OCLLexer(new StringReader(txt));
 		Token token = null;
 		
@@ -1300,13 +1301,13 @@ final class OCLSyntaxHelper {
 			EPackage ePackage = env.lookupPackage(path);
 			
 			if (ePackage != null) {
-				return getPathOclChoices(ePackage);
+				return getPathChoices(ePackage);
 			} else {
 				//could it be an enum?
 				EClassifier eClassifier = env.lookupPathName(path);
 				
 				if (eClassifier instanceof EEnum) {
-					return getPathOclChoices(((EEnum) eClassifier));
+					return getPathChoices(((EEnum) eClassifier));
 				}
 			}
 		}
@@ -1314,7 +1315,7 @@ final class OCLSyntaxHelper {
 		return Collections.EMPTY_LIST;
 	}
 
-	private List getPathOclChoices(EEnum eEnum) {
+	private List getPathChoices(EEnum eEnum) {
 		List contents = new ArrayList();
 		Iterator it = eEnum.getELiterals().iterator();
 		while (it.hasNext()) {
@@ -1333,7 +1334,7 @@ final class OCLSyntaxHelper {
 	 *            teh package to explore and return appropriate classifiers
 	 * @return List the list of Choice object to return to the caller.
 	 */
-	private List getPathOclChoices(EPackage ePackage) {
+	private List getPathChoices(EPackage ePackage) {
 		Set choices = new java.util.LinkedHashSet();  // retain order
 		
 		for (Iterator iter = ePackage.getESubpackages().iterator(); iter.hasNext();) {
@@ -1353,7 +1354,7 @@ final class OCLSyntaxHelper {
 		return new ArrayList(choices);
 	}
 
-	private List getVariableOclChoices(Environment env, String txt, ConstraintType constraintType) {
+	private List getVariableChoices(Environment env, String txt, ConstraintType constraintType) {
 		Set choices = new java.util.LinkedHashSet();  // retain order
 		
 		// add features of the context classifier.  If the context is an
@@ -1361,7 +1362,7 @@ final class OCLSyntaxHelper {
 		//    environment
 		int oldSuffix = syntaxHelpStringSuffix;
 		syntaxHelpStringSuffix = DOT;
-		choices.addAll((Collection) getOclTypesSwitch().doSwitch(
+		choices.addAll((Collection) getOCLTypesSwitch().doSwitch(
 			env.getSelfVariable().getType()));
 		syntaxHelpStringSuffix = oldSuffix;
 		
@@ -1486,22 +1487,22 @@ final class OCLSyntaxHelper {
 				syntaxHelpStringSuffix = DOT;
 				int position = txt.lastIndexOf(HelperUtil.DOT); // known BMP code point
 				
-				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.DOT), // known BMP code point
+				return (List) getOCLExpression(txt.lastIndexOf(HelperUtil.DOT), // known BMP code point
 					txt, env, constraintType).accept(
-							new OclASTVisitor(txt, position, constraintType));
+							new ASTVisitor(txt, position, constraintType));
 			} else if (txt.endsWith(HelperUtil.ARROW)) {
 				syntaxHelpStringSuffix = ARROW;
 				int position = txt.lastIndexOf(HelperUtil.ARROW); // known BMP code points
 				
-				return (List) getOclExpression(txt.lastIndexOf(HelperUtil.ARROW), // known BMP code points
+				return (List) getOCLExpression(txt.lastIndexOf(HelperUtil.ARROW), // known BMP code points
 					txt, env, constraintType).accept(
-							new OclASTVisitor(txt, position, constraintType));
+							new ASTVisitor(txt, position, constraintType));
 			} else if (txt.endsWith(HelperUtil.DOUBLE_COLON)) {
 				syntaxHelpStringSuffix = DOUBLE_COLON;
 				// path choices are not affected by the variables in the operation
 				//   namespace (e.g., parameters)
 				
-				return getPathOclChoices(
+				return getPathChoices(
 					txt.substring(0, txt.lastIndexOf(HelperUtil.DOUBLE_COLON)), // known BMP code points
 					env);
 			} else {
@@ -1540,19 +1541,19 @@ final class OCLSyntaxHelper {
 				// create a copy of the environment, to embellish it without
 				//     disrupting the caller's environment
 				env = copyEnvironment(env);
-				return getVariableOclChoices(env, txt, constraintType);
+				return getVariableChoices(env, txt, constraintType);
 			}
 		} catch (Exception e) {
 			// didn't work?  Just try some simple variable choices, then
 			env = copyEnvironment(env);
-			return getVariableOclChoices(env, txt, constraintType);
+			return getVariableChoices(env, txt, constraintType);
 		}
 	}
 
-	private OCLExpression getOclExpression(int index, String txt,
+	private OCLExpression getOCLExpression(int index, String txt,
 		Environment env, ConstraintType constraintType) throws Exception {
 		try {
-			return getOclExpression(env, txt.substring(0, index), constraintType);
+			return getOCLExpression(env, txt.substring(0, index), constraintType);
 		} catch (Exception ex) {
 			//give it one more try to handle partial ocl expression i.e., 
 			//if this is a compound statement and we are at the second statement,
@@ -1581,7 +1582,7 @@ final class OCLSyntaxHelper {
 							getVariables(env, txt.substring(0, index), it);
 							
 							if (beginIndex != NONE) {
-								return getOclExpression(
+								return getOCLExpression(
 									env,
 									txt.substring(beginIndex, index),
 									constraintType);
@@ -1722,7 +1723,7 @@ final class OCLSyntaxHelper {
 	 * 
 	 * @throws Exception any exception thrown in parsing
 	 */
-	private OCLExpression getOclExpression(Environment env, String text, ConstraintType constraintType)
+	private OCLExpression getOCLExpression(Environment env, String text, ConstraintType constraintType)
 			throws Exception {
 		
 		OCLExpression result = null;
@@ -1756,9 +1757,9 @@ final class OCLSyntaxHelper {
 	 * type switcher to use to get to the type of the last AST node
 	 * @return TypesSwitch
 	 */
-	private TypesSwitch getOclTypesSwitch() {
+	private TypesSwitch getOCLTypesSwitch() {
 		if (oclTypesSwitch == null) {
-			oclTypesSwitch = new OclTypesSwitch();
+			oclTypesSwitch = new OCLTypesSwitch();
 		}
 		return oclTypesSwitch;
 	}
