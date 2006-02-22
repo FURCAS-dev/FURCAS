@@ -5,4 +5,3 @@ Bundle-SymbolicName: org.eclipse.emf.ocl.examples
 Bundle-Version: 1.0.0
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
-Eclipse-LazyStart: true

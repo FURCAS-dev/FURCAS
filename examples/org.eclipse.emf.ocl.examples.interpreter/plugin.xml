@@ -34,7 +34,7 @@
                label="%_UI_ShowConsole_label"
                class="org.eclipse.emf.ocl.examples.interpreter.actions.ShowConsoleDelegate"
                menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.oclEngineMenuID/additions"
-               icon="icons/ocl.gif"
+               icon="$nl$/icons/ocl.gif"
                id="org.eclipse.emf.ocl.examples.interpreter.ShowConsoleAction"/>
       </editorContribution> 
    </extension> 
@@ -54,7 +54,7 @@
                label="%_UI_ShowConsole_label"
                class="org.eclipse.emf.ocl.examples.interpreter.actions.ShowConsoleDelegate"
                menubarPath="org.eclipse.emf.oclEngineMenuID/additions"
-               icon="icons/ocl.gif"
+               icon="$nl$/icons/ocl.gif"
                id="org.eclipse.emf.ocl.examples.interpreter.ShowConsoleAction"/>
       </viewerContribution>
    </extension>

@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.eclipse.emf.ocl.tests
 Bundle-Version: 1.0.0
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.emf.ocl.tests
+Export-Package: org.eclipse.emf.ocl.helper.tests,
+ org.eclipse.emf.ocl.tests
 Require-Bundle: org.eclipse.core.runtime,
  org.junit,
  org.eclipse.emf.ocl
