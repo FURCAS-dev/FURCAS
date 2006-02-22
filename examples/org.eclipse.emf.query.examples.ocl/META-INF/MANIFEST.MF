@@ -8,7 +8,7 @@ Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.query.examples.ocl,
  org.eclipse.emf.query.examples.ocl.actions,
- org.eclipse.emf.query.examples.ocl.internal.l10n,
+ org.eclipse.emf.query.examples.ocl.internal.l10n;x-internal:=true,
  org.eclipse.emf.query.examples.ocl.wizards
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,

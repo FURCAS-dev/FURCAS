@@ -32,7 +32,7 @@
          </menu>
          <action
                label="%_UI_SelectBooksAction_label"
-               icon="icons/query.gif"
+               icon="$nl$/icons/query.gif"
                class="org.eclipse.emf.query.examples.statements.actions.SelectBooksDelegate"
                menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.queryMenuID/additions"
                id="org.eclipse.emf.query.examples.statements.SelectBooksAction">
@@ -42,7 +42,7 @@
          </action>
          <action
                label="%_UI_SelectWritersAction_label"
-               icon="icons/query.gif"
+               icon="$nl$/icons/query.gif"
                class="org.eclipse.emf.query.examples.statements.actions.SelectWritersDelegate"
                menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.queryMenuID/additions"
                id="org.eclipse.emf.query.examples.statements.SelectWritersAction">
@@ -52,7 +52,7 @@
          </action>
          <action
                label="%_UI_SelectLargeBooksAction_label"
-               icon="icons/query.gif"
+               icon="$nl$/icons/query.gif"
                class="org.eclipse.emf.query.examples.statements.actions.SelectLargeBooksDelegate"
                menubarPath="org.eclipse.emf.examples.extlibraryMenuID/org.eclipse.emf.queryMenuID/additions"
                id="org.eclipse.emf.query.examples.statements.SelectLargeBooksAction">
@@ -75,7 +75,7 @@
          </menu>
          <action
                label="%_UI_SelectBooksAction_label"
-               icon="icons/query.gif"
+               icon="$nl$/icons/query.gif"
                class="org.eclipse.emf.query.examples.statements.actions.SelectBooksDelegate"
                menubarPath="org.eclipse.emf.queryMenuID/additions"
                id="org.eclipse.emf.query.examples.statements.SelectBooksAction">
@@ -85,7 +85,7 @@
          </action>
          <action
                label="%_UI_SelectWritersAction_label"
-               icon="icons/query.gif"
+               icon="$nl$/icons/query.gif"
                class="org.eclipse.emf.query.examples.statements.actions.SelectWritersDelegate"
                menubarPath="org.eclipse.emf.queryMenuID/additions"
                id="org.eclipse.emf.query.examples.statements.SelectWritersAction">
@@ -95,7 +95,7 @@
          </action>
          <action
                label="%_UI_SelectLargeBooksAction_label"
-               icon="icons/query.gif"
+               icon="$nl$/icons/query.gif"
                class="org.eclipse.emf.query.examples.statements.actions.SelectLargeBooksDelegate"
                menubarPath="org.eclipse.emf.queryMenuID/additions"
                id="org.eclipse.emf.query.examples.statements.SelectLargeBooksAction">
