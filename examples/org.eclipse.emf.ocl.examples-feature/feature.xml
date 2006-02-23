@@ -49,7 +49,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.emf.query.ocl"/>
       <import plugin="org.eclipse.emf.examples.library.editor"/>
       <import feature="org.eclipse.emf"/>
       <import plugin="org.eclipse.core.runtime"/>
