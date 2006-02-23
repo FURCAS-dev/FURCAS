@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: feature.xml,v 1.2 2005/11/29 16:52:21 cdamus Exp $
+ * $Id: feature.xml,v 1.3 2006/02/23 12:47:09 cdamus Exp $
  */
 -->
 
@@ -53,4 +53,9 @@
         id="org.eclipse.emf.ocl.examples"
         version="1.0.0"
         match="compatible"/>
+        
+    <includes
+         id="org.eclipse.emf.ocl.source"
+         version="1.0.0"
+         match="compatible"/>
 </feature>
