@@ -15,14 +15,14 @@
  *
  * </copyright>
  *
- * $Id: feature.xml,v 1.4 2006/02/23 14:03:56 cdamus Exp $
+ * $Id: feature.xml,v 1.5 2006/02/23 21:01:22 cdamus Exp $
  */
 -->
 
 <feature
     id="org.eclipse.emf.ocl.sdk"
     label="%featureName"
-    version="1.0.0"
+    version="1.0.0.qualifier"
     image= "eclipse_update_120.jpg"
     provider-name="%providerName">
 
@@ -41,26 +41,26 @@
 
     <includes
         id="org.eclipse.emf.ocl"
-        version="1.0.0"
+        version="0.0.0"
         match="compatible"/>
 
     <includes
         id="org.eclipse.emf.ocl.doc"
-        version="1.0.0"
+        version="0.0.0"
         match="compatible"/>
 
     <includes
         id="org.eclipse.emf.ocl.examples"
-        version="1.0.0"
+        version="0.0.0"
         match="compatible"/>
         
     <includes
          id="org.eclipse.emf.ocl.source"
-         version="1.0.0"
+         version="0.0.0"
          match="compatible"/>
         
     <includes
          id="org.eclipse.emf.ocl.examples.source"
-         version="1.0.0"
+         version="0.0.0"
          match="compatible"/>
 </feature>
