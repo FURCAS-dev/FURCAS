@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="org.eclipse.emf.ocl.doc" default="build.jars" basedir=".">
 
+	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
+	<property name="pluginVersion" value="1.0.0"/>
+	
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>
 	<property name="basearch" value="${arch}"/>
