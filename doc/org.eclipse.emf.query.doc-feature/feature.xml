@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
 /**
  * <copyright>
@@ -14,11 +13,8 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id:
  */
 -->
-
 <feature
       id="org.eclipse.emf.query.doc"
       label="%featureName"
