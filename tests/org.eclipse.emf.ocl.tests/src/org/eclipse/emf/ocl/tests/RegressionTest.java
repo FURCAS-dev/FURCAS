@@ -852,7 +852,7 @@ public class RegressionTest
 	 * Regression test to check that <code>allInstances()</code> works as
 	 * expected on the <code>OclVoid</code> type.
 	 */
-	public void test_allInstances_OclVoid_RATLC00538079() {
+	public void test_allInstances_voidType_RATLC00538079() {
 		Object result = evaluate(parse(
 			"package ocltest context Fruit " + //$NON-NLS-1$
 			"inv: OclVoid.allInstances() " + //$NON-NLS-1$
@@ -905,7 +905,7 @@ public class RegressionTest
 	 * the OCL helper.
 	 */
 	public void test_closingParentheses_helper() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -926,7 +926,7 @@ public class RegressionTest
 	 * the OCL helper with a precondition instead of an invariant.
 	 */
 	public void test_closingParentheses_helper_precondition() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
@@ -1118,7 +1118,7 @@ public class RegressionTest
 	 * Tests the collection product() operation.
 	 */
 	public void test_product_126336() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		Set product = null;

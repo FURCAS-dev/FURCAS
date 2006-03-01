@@ -46,7 +46,7 @@ public interface ExpressionsFactory extends EFactory {
 
 	/**
 	 * Parses the specified OCL expression <code>text</code> to create a new
-	 * {@linkplain OclExpression expression} instance.
+	 * {@linkplain OCLExpression expression} instance.
 	 * <p>
 	 * The text must be of the form "context a::b::c inv: oclexpression"
 	 * or, optionally, "package a::b context c inv: oclexpression endpackage".
@@ -64,7 +64,7 @@ public interface ExpressionsFactory extends EFactory {
 	 * 
 	 * @generated NOT
 	 */
-	OCLExpression createOclExpression(String text)
+	OCLExpression createOCLExpression(String text)
 		throws antlr.SemanticException,
 			antlr.TokenStreamException,
 			antlr.RecognitionException;

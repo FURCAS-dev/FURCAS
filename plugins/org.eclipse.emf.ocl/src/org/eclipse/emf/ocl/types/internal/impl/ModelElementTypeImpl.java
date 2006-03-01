@@ -24,7 +24,7 @@ import org.eclipse.emf.ocl.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ocl Model Element Type</b></em>'.
+ * An implementation of the model object '<em><b>Model Element Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>

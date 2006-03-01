@@ -33,7 +33,7 @@ public interface OperationCallExp extends ModelPropertyCallExp {
 	String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * @model type="OclExpression" opposite="parentOperation" lowerBound=0
+	 * @model type="OCLExpression" opposite="parentOperation" lowerBound=0
 	 */
 	public EList getArguments();
 	

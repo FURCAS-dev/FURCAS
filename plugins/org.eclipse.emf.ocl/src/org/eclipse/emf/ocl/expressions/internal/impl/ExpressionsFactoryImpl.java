@@ -227,7 +227,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 		/**
 	 * @generated NOT
 	 */
-	public OCLExpression createOclExpression(String text)
+	public OCLExpression createOCLExpression(String text)
 			throws antlr.SemanticException,
 				antlr.TokenStreamException,
 				antlr.RecognitionException {

@@ -321,7 +321,7 @@ public abstract class AbstractTestSuite
 	 * Asserts that the specified choice is to be found in the collection of
 	 * <code>choices</code>.
 	 * 
-	 * @param choices a collection of {@link OclChoice}s
+	 * @param choices a collection of {@link Choice}s
 	 * @param kind the kind of choice to find
 	 * @param name the name of the choice to find
 	 */
@@ -334,7 +334,7 @@ public abstract class AbstractTestSuite
 	 * Asserts that the specified choice is <em>not</em> to be found in the
 	 * collection of <code>choices</code>.
 	 * 
-	 * @param choices a collection of {@link OclChoice}s
+	 * @param choices a collection of {@link Choice}s
 	 * @param kind the kind of choice not to find
 	 * @param name the name of the choice not to find
 	 */
@@ -345,7 +345,7 @@ public abstract class AbstractTestSuite
 	
 	private static void initFruitPackage() {
 		Bundle bundle = Platform.getBundle("org.eclipse.emf.ocl.tests"); //$NON-NLS-1$
-		URL url = bundle.getEntry("/model/OclTest.ecore"); //$NON-NLS-1$
+		URL url = bundle.getEntry("/model/OCLTest.ecore"); //$NON-NLS-1$
 		
 		ResourceSet rset = new ResourceSetImpl();
 		Resource res = rset.getResource(URI.createURI(url.toString()), true);

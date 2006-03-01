@@ -48,7 +48,7 @@ public class EvaluationTest
 	}
 	
 	public void test_allInstances() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -96,7 +96,7 @@ public class EvaluationTest
 	 * the OCL Helper.
 	 */
 	public void test_evaluatePrecompiledInvariant_114921() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		

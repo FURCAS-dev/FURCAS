@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.3 2006/02/14 01:08:28 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.4 2006/03/01 17:15:48 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -33,7 +33,7 @@ import org.eclipse.emf.ocl.parser.EnvironmentFactory;
  * available.
  * <p>
  * Helpers of these two flavours can be created via the
- * {@link HelperUtil#createOclHelper(ModelingLevel)} method, which accepts
+ * {@link HelperUtil#createOCLHelper(ModelingLevel)} method, which accepts
  * an enumerated modeling level parameter to indicate metamodel or user-model
  * level.
  * </p>
@@ -42,7 +42,7 @@ import org.eclipse.emf.ocl.parser.EnvironmentFactory;
  * by clients.
  * </p>
  * 
- * @see HelperUtil#createOclHelper(EnvironmentFactory)
+ * @see HelperUtil#createOCLHelper(EnvironmentFactory)
  * 
  * @author Yasser Lulu
  * @author Christian W. Damus (cdamus)

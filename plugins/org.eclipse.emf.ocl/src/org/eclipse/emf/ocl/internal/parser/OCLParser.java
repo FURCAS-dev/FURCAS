@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.1 2006/02/13 16:11:59 cdamus Exp $
+ * $Id: OCLParser.java,v 1.2 2006/03/01 17:15:48 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -211,9 +211,9 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
     UMLPackage umlPackage = UMLPackage.eINSTANCE;
     UMLFactory umlFactory = umlPackage.getUMLFactory();
     
-    private OCLToken lastOclToken = null;
-    private List oclTokenStack = new java.util.ArrayList();
-    private int oclTokenStackPointer = -1;
+    private OCLToken lastOCLToken = null;
+    private List tokenStack = new java.util.ArrayList();
+    private int tokenStackPointer = -1;
  
     private boolean traceflag = true;	
     	
@@ -252,8 +252,8 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	
 	/** Pushes a specified token onto the token stack. */
 	private void push(OCLToken token) {
-		oclTokenStack.add(token);
-		oclTokenStackPointer++;
+		tokenStack.add(token);
+		tokenStackPointer++;
 	}
 	
 	/**
@@ -261,9 +261,9 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	 * expression that we have just matched.
 	 */
 	private OCLToken pop() {
-		OCLToken result = (OCLToken) oclTokenStack.get(oclTokenStackPointer);
-		oclTokenStack.remove(oclTokenStackPointer);
-		oclTokenStackPointer--;
+		OCLToken result = (OCLToken) tokenStack.get(tokenStackPointer);
+		tokenStack.remove(tokenStackPointer);
+		tokenStackPointer--;
 		return result;
 	}
 	
@@ -274,7 +274,7 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	 * @param expr an OCL expression
 	 */
 	private void initStartEndPositions(OCLExpression expr) {
-		OCLToken last = lastOclToken;
+		OCLToken last = lastOCLToken;
 		OCLToken first = pop();
 		
 		expr.setStartPosition(first.getStartPosition());
@@ -289,7 +289,7 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	 * @param vdecl a variable declaration
 	 */
 	private void initStartEndPositions(VariableDeclaration vdecl) {
-		OCLToken last = lastOclToken;
+		OCLToken last = lastOCLToken;
 		OCLToken first = pop();
 		
 		vdecl.setStartPosition(first.getStartPosition());
@@ -326,7 +326,7 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	 * parsed.  If it is the first token, also, then that is recorded.
 	 */
 	public void match(int t) throws MismatchedTokenException, TokenStreamException {
-		lastOclToken = (OCLToken) LT(1);
+		lastOCLToken = (OCLToken) LT(1);
 		
 		super.match(t);
 	}
@@ -336,7 +336,7 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	 * parsed.  If it is the first token, also, then that is recorded.
 	 */
 	public void match(BitSet b) throws MismatchedTokenException, TokenStreamException {
-		lastOclToken = (OCLToken) LT(1);
+		lastOCLToken = (OCLToken) LT(1);
 		
 		super.match(b);
 	}
@@ -627,7 +627,7 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 		   		resultType = AnyTypeImpl.getResultType(sourceType, opcode, args);
 		   	}
 		   	if (resultType == null)
-		   		resultType = EcoreEnvironment.getOclType(oper);	   		
+		   		resultType = EcoreEnvironment.getOCLType(oper);	   		
 		   	result.setType(resultType);
 		}
 			
@@ -912,7 +912,7 @@ public OCLParser(ParserSharedInputState state) {
 		new Object[] { makeString(pathName) });
 		ERROR("classifierContextDeclCS", message);//$NON-NLS-1$
 		}
-		type = EcoreEnvironment.getOclType(type);
+		type = EcoreEnvironment.getOCLType(type);
 					if (selfName == null || selfName.length() == 0) {
 						selfName = "self";//$NON-NLS-1$
 					}
@@ -1117,7 +1117,7 @@ public OCLParser(ParserSharedInputState state) {
 		
 		Token  n = null;
 			OCLExpression oclexpr = null;
-			EClassifier operationType = EcoreEnvironment.getOclType(operation);
+			EClassifier operationType = EcoreEnvironment.getOCLType(operation);
 			astNode = null;
 			String stereotype = null;
 		
@@ -1307,7 +1307,7 @@ public OCLParser(ParserSharedInputState state) {
 			}
 			}
 			}
-			OCLTokenAdapter.attach(astNode, lastOclToken);
+			OCLTokenAdapter.attach(astNode, lastOCLToken);
 			break;
 		}
 		case LITERAL_Set:
@@ -1343,7 +1343,7 @@ public OCLParser(ParserSharedInputState state) {
 			
 						// create a fake token for the collection or tuple type
 						int fakeTokenStart = pop().getStartPosition();
-						int fakeTokenLength = lastOclToken.getEndPosition() - fakeTokenStart;
+						int fakeTokenLength = lastOCLToken.getEndPosition() - fakeTokenStart;
 						OCLToken fakeToken = createFakeToken(fakeTokenStart, fakeTokenLength);
 						OCLTokenAdapter.attach(astNode, fakeToken);
 					
@@ -3023,7 +3023,7 @@ public OCLParser(ParserSharedInputState state) {
 					TRACE("variableExpCS", "Attribute: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 					attr = expressionsFactory.createAttributeCallExp();
 					attr.setReferredAttribute(eattr);
-					attr.setType(EcoreEnvironment.getOclType(eattr));
+					attr.setType(EcoreEnvironment.getOCLType(eattr));
 					if (source != null) {
 						attr.setSource(source);
 					} else {
@@ -3041,7 +3041,7 @@ public OCLParser(ParserSharedInputState state) {
 					TRACE("variableExpCS", "Reference: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 					ref = expressionsFactory.createAssociationEndCallExp();
 					ref.setReferredAssociationEnd(eref);
-					ref.setType(EcoreEnvironment.getOclType(eref));
+					ref.setType(EcoreEnvironment.getOCLType(eref));
 					
 					if (source != null) {
 						ref.setSource(source);

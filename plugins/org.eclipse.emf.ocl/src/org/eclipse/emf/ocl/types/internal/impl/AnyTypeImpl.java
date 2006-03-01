@@ -290,7 +290,7 @@ public class AnyTypeImpl
 						new Object[] {getOperationNameFor(opcode) });
 					OCLParser.ERR(message);
 				}
-				if (EcoreEnvironment.getOclType(oper) != PrimitiveTypeImpl.OCL_INTEGER) {
+				if (EcoreEnvironment.getOCLType(oper) != PrimitiveTypeImpl.OCL_INTEGER) {
 					OCLParser.ERR(ResultCompareToInt_ERROR_);
 				}
 			// NEED TO CHECK CONFORMANCE OF ARGS if ECLASS...

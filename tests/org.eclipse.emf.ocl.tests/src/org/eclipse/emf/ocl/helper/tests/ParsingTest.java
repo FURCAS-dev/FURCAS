@@ -44,7 +44,7 @@ public class ParsingTest
 	}
 	
 	public void test_createQuery_125684() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -68,7 +68,7 @@ public class ParsingTest
 	}
 	
 	public void test_createInvariant() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -82,7 +82,7 @@ public class ParsingTest
 	}
 	
 	public void test_createInvariant_nonBoolean_125684() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -97,7 +97,7 @@ public class ParsingTest
 	}
 	
 	public void test_createPrecondition() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
@@ -112,7 +112,7 @@ public class ParsingTest
 	}
 	
 	public void test_createPostcondition() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
@@ -127,7 +127,7 @@ public class ParsingTest
 	}
 	
 	public void test_createBodyCondition() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_preferredColor);
 		
@@ -146,7 +146,7 @@ public class ParsingTest
 	 * EClasses.  The parser now supports arbitrary EClassifiers.
 	 */
 	public void test_dataTypeAsContext() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(ecore.getEString());
 		
 		try {
@@ -167,7 +167,7 @@ public class ParsingTest
 	 * the context object.
 	 */
 	public void test_dataTypeAsContext_inferred() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext("anything"); // inferred type is EString //$NON-NLS-1$
 		
 		try {

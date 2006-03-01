@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.2 2006/02/13 19:48:07 cdamus Exp $
+ * $Id: OCLResource.java,v 1.3 2006/03/01 17:15:49 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -101,7 +101,7 @@ public class OCLResource
 		OCLResource res = new OCLResource(URI.createFileURI(path));
 		res.load(Collections.EMPTY_MAP);
 		
-		OCLExpression expr = res.getOclExpression();
+		OCLExpression expr = res.getOCLExpression();
 		if (expr != null) {
 			result = (String) expr.accept(new ToStringVisitor());
 		}
@@ -124,7 +124,7 @@ public class OCLResource
 			throws IOException, OCLParsingException {
 		// create an OCL helper to do our parsing.  Use the current resource
 		//    set's package registry to resolve OCL namespaces
-		IOCLHelper helper = HelperUtil.createOclHelper(
+		IOCLHelper helper = HelperUtil.createOCLHelper(
 			new EcoreEnvironmentFactory(
 				context.eResource().getResourceSet().getPackageRegistry()));
 		
@@ -136,7 +136,7 @@ public class OCLResource
 		
 		// create a resource, add the AST to it, and save it
 		OCLResource res = new OCLResource(URI.createFileURI(path));
-		res.setOclExpression(parsed);
+		res.setOCLExpression(parsed);
 		
 		res.save(Collections.EMPTY_MAP);
 	}
@@ -146,7 +146,7 @@ public class OCLResource
 	 * 
 	 * @param expr an OCL expression
 	 */
-	public void setOclExpression(OCLExpression expr) {
+	public void setOCLExpression(OCLExpression expr) {
 		getContents().clear();  // clear any previous contents
 		getContents().add(expr);
 		
@@ -158,7 +158,7 @@ public class OCLResource
 	 * 
 	 * @return my OCL expression
 	 */
-	public OCLExpression getOclExpression() {
+	public OCLExpression getOCLExpression() {
 		OCLExpression result = null;
 		
 		if (!getContents().isEmpty()) {
@@ -174,7 +174,7 @@ public class OCLResource
 	 * may be saved.
 	 */
 	private void addAllDetachedObjects() {
-		List toProcess = Collections.singletonList(getOclExpression());
+		List toProcess = Collections.singletonList(getOCLExpression());
 		
 		while (!toProcess.isEmpty()) {
 			List detachedFound = new ArrayList();

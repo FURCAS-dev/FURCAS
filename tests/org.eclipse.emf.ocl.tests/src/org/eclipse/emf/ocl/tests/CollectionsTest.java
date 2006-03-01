@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.2 2006/02/14 22:28:15 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.3 2006/03/01 17:15:45 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -49,7 +49,7 @@ public class CollectionsTest
 	 * Tests the insertAt() operation for sequences.
 	 */
 	public void test_insertAt_sequence_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -70,7 +70,7 @@ public class CollectionsTest
 	 * Tests the insertAt() operation for ordered sets.
 	 */
 	public void test_insertAt_orderedSet_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -102,7 +102,7 @@ public class CollectionsTest
 	 * Tests the prepend() operation for sequences.
 	 */
 	public void test_prepend_sequence_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -123,7 +123,7 @@ public class CollectionsTest
 	 * Tests the prepend() operation for ordered sets.
 	 */
 	public void test_prepend_orderedSet_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -155,7 +155,7 @@ public class CollectionsTest
 	 * Tests the append() operation for sequences.
 	 */
 	public void test_append_sequence_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -176,7 +176,7 @@ public class CollectionsTest
 	 * Tests the append() operation for ordered sets.
 	 */
 	public void test_append_orderedSet_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -208,7 +208,7 @@ public class CollectionsTest
 	 * Tests the including() operation for sequences.
 	 */
 	public void test_including_sequence_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -229,7 +229,7 @@ public class CollectionsTest
 	 * Tests the including() operation for ordered sets.
 	 */
 	public void test_including_orderedSet_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -263,7 +263,7 @@ public class CollectionsTest
 	 * Tests the excluding() operation for sequences.
 	 */
 	public void test_excluding_sequence_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -284,7 +284,7 @@ public class CollectionsTest
 	 * Tests the excluding() operation for ordered sets.
 	 */
 	public void test_excluding_orderedSet_126722() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
@@ -318,7 +318,7 @@ public class CollectionsTest
 	 * Tests the isUnique() iterator.
 	 */
 	public void test_isUnique_126861() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {

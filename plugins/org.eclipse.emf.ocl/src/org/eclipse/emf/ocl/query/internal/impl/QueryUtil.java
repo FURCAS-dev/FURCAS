@@ -59,7 +59,7 @@ final class QueryUtil {
 	 * @throws RuntimeException if the OCL expression string is malformed
 	 *     or the <code>contextEObjectType</code> is <code>null</code>
 	 */
-	static Query makeOclQuery(String oclExpressionString,
+	static Query makeOCLQuery(String oclExpressionString,
 			EClassifier contextEObjectType) {
 		try {
 			return QueryFactory.eINSTANCE.createQuery(
@@ -68,10 +68,10 @@ final class QueryUtil {
 					oclExpressionString,
 					true));
 		} catch (Exception ex) {
-			OCLPlugin.catching(QueryUtil.class, "makeOclQuery", ex); //$NON-NLS-1$
+			OCLPlugin.catching(QueryUtil.class, "makeOCLQuery", ex); //$NON-NLS-1$
 			IllegalArgumentException rtex = new IllegalArgumentException(ex
 				.toString());
-			OCLPlugin.throwing(QueryUtil.class, "makeOclQuery", //$NON-NLS-1$
+			OCLPlugin.throwing(QueryUtil.class, "makeOCLQuery", //$NON-NLS-1$
 				rtex);
 			throw rtex;
 		}

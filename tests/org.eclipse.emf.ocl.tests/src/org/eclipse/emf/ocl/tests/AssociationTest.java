@@ -310,7 +310,7 @@ public class AssociationTest
 	 * Tests that content-assist suggests association class navigation.
 	 */
 	public void test_associationClass_contextAssist_RATLC00538077() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(tree);
 		

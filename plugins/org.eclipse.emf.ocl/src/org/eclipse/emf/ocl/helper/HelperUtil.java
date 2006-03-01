@@ -25,7 +25,8 @@ import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 
 /**
  * Factory class for the creation of {@link IOCLHelper}s.  Clients should use
- * the {@link #createOclHelper(ModelingLevel)} method to obtain OCL helpers.
+ * the {@link #createOCLHelper()} or {@link #createOCLHelper(EnvironmentFactory)}
+ * method to obtain OCL helpers.
  * 
  * @author Yasser Lulu 
  * @author Christian W. Damus (cdamus)
@@ -41,8 +42,8 @@ public class HelperUtil {
 	 *  
 	 * @return a new Ecore OCL helper
 	 */
-	public static IOCLHelper createOclHelper() {
-		return createOclHelper(EnvironmentFactory.ECORE_INSTANCE);
+	public static IOCLHelper createOCLHelper() {
+		return createOCLHelper(EnvironmentFactory.ECORE_INSTANCE);
 	}
 	
 	/**
@@ -55,7 +56,7 @@ public class HelperUtil {
 	 * 
 	 * @param factory the metamodel-specific OCL environment factory	
 	 */
-	public static IOCLHelper createOclHelper(EnvironmentFactory factory) {
+	public static IOCLHelper createOCLHelper(EnvironmentFactory factory) {
 		return new OCLHelper(factory);
 	}
 

@@ -137,7 +137,7 @@ public abstract class AbstractEnvironmentFactory
 		Environment result = createEnvironment(classifier.getEPackage());
 		
 		// in case it corresponds to an OCL primitive type
-		classifier = EcoreEnvironment.getOclType(classifier);
+		classifier = EcoreEnvironment.getOCLType(classifier);
 
 		VariableDeclaration self = createVariable(SELF_NAME, classifier);
 		result.addElement(self.getVarName(), self, true);
@@ -170,7 +170,7 @@ public abstract class AbstractEnvironmentFactory
 			// ensure that we use the OCL primitive types wherever possible
 			VariableDeclaration var = createVariable(
 				next.getName(),
-				EcoreEnvironment.getOclType(next));
+				EcoreEnvironment.getOCLType(next));
 			
 			result.addElement(var.getVarName(), var, true);
 		}

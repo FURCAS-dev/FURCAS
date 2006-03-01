@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessageExp.java,v 1.1 2006/02/13 16:11:58 cdamus Exp $
+ * $Id: OCLMessageExp.java,v 1.2 2006/03/01 17:15:48 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions;
@@ -44,7 +44,7 @@ public interface OCLMessageExp  extends OCLExpression {
 
 	/*****ordered***/
 	/**
-	 * @model type="OclMessageArg" lowerBound=0
+	 * @model type="OCLMessageArg" lowerBound=0
 	 */
 	public EList getArguments();
 	

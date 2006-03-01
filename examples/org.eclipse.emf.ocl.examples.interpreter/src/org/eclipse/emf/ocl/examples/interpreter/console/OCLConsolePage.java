@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.2 2006/02/14 01:08:22 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.3 2006/03/01 17:15:49 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -85,7 +85,7 @@ public class OCLConsolePage
 	private Color black;
 	private Color blue;
 	
-	private String lastOclExpression;
+	private String lastOCLExpression;
 	private EObject lastContext;
 	
 	private static final AdapterFactory reflectiveAdapterFactory =
@@ -220,7 +220,7 @@ public class OCLConsolePage
 			// create an OCL helper to do our parsing and evaluating.  Use
 			//    the current resource set's package registry to resolve
 			//    OCL namespaces
-			IOCLHelper helper = HelperUtil.createOclHelper(
+			IOCLHelper helper = HelperUtil.createOCLHelper(
 				new EcoreEnvironmentFactory(
 					context.eResource().getResourceSet().getPackageRegistry()));
 			
@@ -240,7 +240,7 @@ public class OCLConsolePage
 				print(helper.evaluate(context, expression), blue, false);
 				
 				// store the successfully parsed expression
-				lastOclExpression = expression;
+				lastOCLExpression = expression;
 				lastContext = context;
 			} catch (Exception e) {
 				result = false;
@@ -498,7 +498,7 @@ public class OCLConsolePage
 		public void run() {
 			Shell shell = getControl().getShell();
 			
-			if (lastOclExpression != null) {
+			if (lastOCLExpression != null) {
 				FileDialog dlg = new FileDialog(shell, SWT.SAVE);
 				dlg.setFilterExtensions(new String[] {"*.xmi"}); //$NON-NLS-1$
 				dlg.setText(OCLInterpreterMessages.console_saveDlg_title);
@@ -506,7 +506,7 @@ public class OCLConsolePage
 				String file = dlg.open();
 				if (file != null) {
 					try {
-						OCLResource.save(file, lastContext, lastOclExpression);
+						OCLResource.save(file, lastContext, lastOCLExpression);
 					} catch (Exception e) {
 						MessageDialog.openError(
 							shell,

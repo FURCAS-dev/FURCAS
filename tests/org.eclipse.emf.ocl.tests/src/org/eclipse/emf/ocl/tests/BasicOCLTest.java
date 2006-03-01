@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.2 2006/02/13 23:19:39 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.3 2006/03/01 17:15:45 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -43,7 +43,7 @@ public class BasicOCLTest
 		return new TestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
 	}
 	
-	public void testTrivialOclExpressions() {
+	public void testTrivialExpressions() {
 		OCLExpression constraint = parseConstraint(
 			"package ecore context EClass " + //$NON-NLS-1$
 			"inv: true " + //$NON-NLS-1$
@@ -150,7 +150,7 @@ public class BasicOCLTest
 		assertFalse(check(constraint, eCls));
 	}
 	
-	public void testCollectionOclExpressions() {
+	public void testCollectionExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
 		eCls.setName("bar"); //$NON-NLS-1$
 		
@@ -178,7 +178,7 @@ public class BasicOCLTest
 		assertTrue(check(constraint, eCls));
 	}
 	
-	public void testNonBooleanOclExpressions() {
+	public void testNonBooleanExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
 		eCls.setName("bar"); //$NON-NLS-1$
 		

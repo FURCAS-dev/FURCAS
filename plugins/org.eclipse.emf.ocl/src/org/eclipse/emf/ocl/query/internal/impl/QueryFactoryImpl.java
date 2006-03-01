@@ -130,7 +130,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
 	 * @generated NOT
 	 */
 	public Query createQuery(String expr, EClassifier context) {
-		return QueryUtil.makeOclQuery(expr, context);
+		return QueryUtil.makeOCLQuery(expr, context);
 	}
 	
 	/**

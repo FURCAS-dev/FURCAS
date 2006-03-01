@@ -139,7 +139,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 */
 	protected QueryImpl(String qs) throws antlr.SemanticException,
 		antlr.TokenStreamException, antlr.RecognitionException {
-		expression = ExpressionsFactory.eINSTANCE.createOclExpression(qs);
+		expression = ExpressionsFactory.eINSTANCE.createOCLExpression(qs);
 		env = new EvalEnvironment();
 		//validate(); -- parser validates
 	}

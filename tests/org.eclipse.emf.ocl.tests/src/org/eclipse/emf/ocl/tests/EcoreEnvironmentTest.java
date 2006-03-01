@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.4 2006/02/13 16:12:12 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.5 2006/03/01 17:15:45 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -51,7 +51,7 @@ public class EcoreEnvironmentTest
 	 * Tests the default EcoreEnvironment which uses the global package registry.
 	 */
 	public void test_globalEPackageRegistry_lookup() {
-		IOCLHelper helper = HelperUtil.createOclHelper(EcoreEnvironmentFactory.ECORE_INSTANCE);
+		IOCLHelper helper = HelperUtil.createOCLHelper(EcoreEnvironmentFactory.ECORE_INSTANCE);
 		
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
@@ -80,7 +80,7 @@ public class EcoreEnvironmentTest
 	public void test_customEPackageRegistry_lookup() {
 		EPackage.Registry registry = new EPackageRegistryImpl();
 
-		IOCLHelper helper = HelperUtil.createOclHelper(new EcoreEnvironmentFactory(registry));
+		IOCLHelper helper = HelperUtil.createOCLHelper(new EcoreEnvironmentFactory(registry));
 		
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());

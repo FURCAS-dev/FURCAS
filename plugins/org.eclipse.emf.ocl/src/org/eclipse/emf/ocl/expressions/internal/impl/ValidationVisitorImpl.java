@@ -248,9 +248,6 @@ public class ValidationVisitorImpl
 	private static final String BodyConditionConformance2_ERROR_ =
 		OCLMessages.BodyConditionConformance2_ERROR_;
 
-	private static final String OclIsNewInPostcondition_ERROR_ =
-		OCLMessages.OclIsNewInPostcondition_ERROR_;
-
 	private static final String MissingAssociationClass_ERROR_ =
 		OCLMessages.MissingAssociationClass_ERROR_;
 	
@@ -322,7 +319,7 @@ public class ValidationVisitorImpl
 		
 		source.accept(this);
 
-		EClassifier attrType = EcoreEnvironment.getOclType(attr);
+		EClassifier attrType = EcoreEnvironment.getOCLType(attr);
 		//        EClassifier sourceType = source.getType();
 		/*
 		 * typeCompare - returns 0 if types are equal. -1 if attrType subType of
@@ -389,7 +386,7 @@ public class ValidationVisitorImpl
 			if (!ExpressionsUtil.isInPostcondition(oc)) {
 				
 				IllegalArgumentException error = new IllegalArgumentException(
-					OclIsNewInPostcondition_ERROR_);
+					OCLMessages.OCLIsNewInPostcondition_ERROR_);
 				OCLPlugin.throwing(getClass(),
 					"visitOperationCallExp", error);//$NON-NLS-1$
 				throw error;
@@ -454,7 +451,7 @@ public class ValidationVisitorImpl
 				resultType = AnyTypeImpl
 					.getResultType(sourceType, opcode, args);
 				if (resultType == null) {
-					resultType = EcoreEnvironment.getOclType(oper);
+					resultType = EcoreEnvironment.getOCLType(oper);
 				}
 			}
 			if (AnyTypeImpl.typeCompare(resultType, oc.getType()) != 0) {
@@ -576,7 +573,7 @@ public class ValidationVisitorImpl
 		
 		source.accept(this);
 
-		EClassifier refType = EcoreEnvironment.getOclType(ref);
+		EClassifier refType = EcoreEnvironment.getOCLType(ref);
 		//        EClassifier sourceType = source.getType();
 		/*
 		 * typeCompare - returns 0 if types are equal. -1 if attrType subType of
@@ -639,7 +636,7 @@ public class ValidationVisitorImpl
 		
 		source.accept(this);
 
-		EClassifier refType = EcoreEnvironment.getOclType(ref);
+		EClassifier refType = EcoreEnvironment.getOCLType(ref);
 
 		if (AnyTypeImpl.typeCompare(refType, type) == 0)
 			return Boolean.TRUE;
@@ -1347,7 +1344,7 @@ public class ValidationVisitorImpl
 				}
 				
 				if (operation.getEType() != null) {
-					operationType = EcoreEnvironment.getOclType(operation);
+					operationType = EcoreEnvironment.getOCLType(operation);
 				}
 			} else if (constrained instanceof EClassifier) {
 				classifierName = ((EClassifier) constrained).getName();

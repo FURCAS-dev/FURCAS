@@ -25,7 +25,7 @@
          id="org.eclipse.emf.query.examples.ocl.editorContribution" 
          targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"> 
         <menu
-               label="%_UI_OclMenu_label"
+               label="%_UI_OCLMenu_label"
                path="org.eclipse.emf.examples.extlibraryMenuID/additions"
                id="org.eclipse.emf.oclEngineMenuID">
             <separator name="additions"/>
@@ -45,7 +45,7 @@
             targetID="org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditorID"
             id="org.eclipse.emf.query.examples.ocl.viewerContribution">
         <menu
-               label="%_UI_OclMenu_label"
+               label="%_UI_OCLMenu_label"
                path="additions"
                id="org.eclipse.emf.oclEngineMenuID">
             <separator name="additions"/>

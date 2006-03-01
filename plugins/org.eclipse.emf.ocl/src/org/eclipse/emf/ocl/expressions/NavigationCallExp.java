@@ -36,7 +36,7 @@ public interface NavigationCallExp extends ModelPropertyCallExp {
 	String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * @model type="OclExpression" containment="true" lowerBound=0 
+	 * @model type="OCLExpression" containment="true" lowerBound=0 
 	 */
 	public EList getQualifiers();
 	

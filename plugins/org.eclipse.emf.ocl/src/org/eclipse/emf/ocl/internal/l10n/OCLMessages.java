@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.3 2006/03/01 17:15:48 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -143,7 +143,7 @@ public class OCLMessages extends NLS {
 	public static String BodyConditionNotAllowed_ERROR_;
 	public static String BodyConditionConformance_ERROR_;
 	public static String BodyConditionConformance2_ERROR_;
-	public static String OclIsNewInPostcondition_ERROR_;
+	public static String OCLIsNewInPostcondition_ERROR_;
 	public static String IllegalQualifiers_ERROR_;
 	public static String MismatchedQualifiers_ERROR_;
 	public static String MissingAssociationClass_ERROR_;

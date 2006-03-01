@@ -21,12 +21,11 @@ import org.eclipse.emf.ocl.uml.Constraint;
 
 
 /**
- * @author Tim Klinger (tklinger)
- *
- * Something which can visit an <code>OclExpression</code>.  Each subclass
+ * Something that can visit an <code>OCLExpression</code>.  Each subclass
  * will call a corresponding method on the <code>Visitor</code>.  See
  * Design Patterns -- Visitor.
  * 
+ * @author Tim Klinger (tklinger)
  */
 public interface Visitor  {
 	public Object visitAttributeCallExp(AttributeCallExp ac);

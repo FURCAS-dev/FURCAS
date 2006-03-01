@@ -52,7 +52,7 @@ public class SyntaxHelpTest
 	 * Basic completion test for metamodel level.
 	 */
 	public void testMetaModelCompletions() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 		
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
 		List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
@@ -69,7 +69,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completeInvariant_enumLiteral() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -91,7 +91,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completeInvariant_attribute() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -110,7 +110,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completeInvariant_reference() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(apple);
 		
@@ -129,7 +129,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completeInvariant_operation() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContext(fruit);
 		
@@ -148,7 +148,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completePrecondition_enumLiteral() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
@@ -169,7 +169,7 @@ public class SyntaxHelpTest
 	 * Tests completion of attributes in operation body conditions.
 	 */
 	public void test_completeBodyCondition_attribute() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_preferredColor);
 		
@@ -190,7 +190,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completePrecondition_reference() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(apple, apple_labelOper);
 		
@@ -211,7 +211,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completePostcondition_operation() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_ripen);
 		
@@ -232,7 +232,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completePrecondition_parameter() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, apple_labelOper);
 		
@@ -253,7 +253,7 @@ public class SyntaxHelpTest
 	 * constraints.
 	 */
 	public void test_completePostcondition_result() {
-		IOCLHelper helper = HelperUtil.createOclHelper();
+		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_preferredColor);
 		

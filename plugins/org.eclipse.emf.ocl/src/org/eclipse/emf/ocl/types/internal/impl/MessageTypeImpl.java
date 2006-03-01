@@ -29,7 +29,7 @@ import org.eclipse.emf.ocl.uml.Signal;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ocl Message Type</b></em>'.
+ * An implementation of the model object '<em><b>Message Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

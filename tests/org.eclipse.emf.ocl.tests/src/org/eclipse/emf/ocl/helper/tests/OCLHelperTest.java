@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperTest.java,v 1.1 2006/02/13 16:12:12 cdamus Exp $
+ * $Id: OCLHelperTest.java,v 1.2 2006/03/01 17:15:45 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper.tests;
@@ -44,10 +44,10 @@ public class OCLHelperTest
 	}
 	
 	public void testHelperCreation() {
-		IOCLHelper helper1 = HelperUtil.createOclHelper();
+		IOCLHelper helper1 = HelperUtil.createOCLHelper();
 		assertNotNull(helper1);
 		
-		IOCLHelper helper2 = HelperUtil.createOclHelper(EnvironmentFactory.ECORE_INSTANCE);
+		IOCLHelper helper2 = HelperUtil.createOCLHelper(EnvironmentFactory.ECORE_INSTANCE);
 		assertNotNull(helper2);
 		
 		assertNotSame(helper1, helper2);

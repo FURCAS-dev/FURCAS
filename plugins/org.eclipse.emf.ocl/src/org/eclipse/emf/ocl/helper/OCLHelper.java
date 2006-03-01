@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.2 2006/02/13 19:48:04 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.3 2006/03/01 17:15:48 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -76,11 +76,11 @@ class OCLHelper
 	 * @return the same, but without any comments.  Note that the result
 	 *     may be an empty String if <code>txt</code> has only comments
 	 */
-	public String removeOclComments(String txt) {
+	public String removeOCLComments(String txt) {
 		try {
 			return HelperUtil.getLogicalLine(txt);
 		} catch (Exception ex) {
-			HelperUtil.catchException(ex, getClass(), "removeOclComments");//$NON-NLS-1$
+			HelperUtil.catchException(ex, getClass(), "removeOCLComments");//$NON-NLS-1$
 		}
 		return HelperUtil.EMPTY;
 	}
@@ -109,11 +109,11 @@ class OCLHelper
 	}
 
 	public List getSyntaxHelp(ConstraintType constraintType, String txt) {
-		return getOclSyntaxHelper().getSyntaxHelp(environment, constraintType, txt);
+		return getOCLSyntaxHelper().getSyntaxHelp(environment, constraintType, txt);
 	}
 
 	public OCLExpression createQuery(String expression) throws OCLParsingException {
-		if (removeOclComments(expression).length() > 0) {
+		if (removeOCLComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
@@ -128,7 +128,7 @@ class OCLHelper
 	}
 
 	public OCLExpression createInvariant(String expression) throws OCLParsingException {
-		if (removeOclComments(expression).length() > 0) {
+		if (removeOCLComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
@@ -142,7 +142,7 @@ class OCLHelper
 	}
 
 	public OCLExpression createPrecondition(String expression) throws OCLParsingException {
-		if (removeOclComments(expression).length() > 0) {
+		if (removeOCLComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
@@ -156,7 +156,7 @@ class OCLHelper
 	}
 	
 	public OCLExpression createPostcondition(String expression) throws OCLParsingException {
-		if (removeOclComments(expression).length() > 0) {
+		if (removeOCLComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
@@ -170,7 +170,7 @@ class OCLHelper
 	}
 	
 	public OCLExpression createBodyCondition(String expression) throws OCLParsingException {
-		if (removeOclComments(expression).length() > 0) {
+		if (removeOCLComments(expression).length() > 0) {
 			// be sure to pass the original expression along to get the right
 			//    position information when parse fails
 			try {
@@ -309,7 +309,7 @@ class OCLHelper
 	 * 
 	 * @return OCLSyntaxHelper
 	 */
-	protected OCLSyntaxHelper getOclSyntaxHelper() {
+	protected OCLSyntaxHelper getOCLSyntaxHelper() {
 		if (oclSyntaxHelper == null) {
 			oclSyntaxHelper = new OCLSyntaxHelper(getEnvironmentFactory());
 		}
