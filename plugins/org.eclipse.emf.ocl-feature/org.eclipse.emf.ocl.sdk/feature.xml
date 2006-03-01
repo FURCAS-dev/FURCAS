@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
 /**
  * <copyright>
@@ -14,11 +13,8 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: feature.xml,v 1.5 2006/02/23 21:01:22 cdamus Exp $
  */
 -->
-
 <feature
     id="org.eclipse.emf.ocl.sdk"
     label="%featureName"
