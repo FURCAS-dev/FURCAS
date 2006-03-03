@@ -62,6 +62,7 @@
 		<exec executable="ls">
 			<arg value="-R"/>
 		</exec>
+		
 		<zip basedir="doc" destfile="doc.zip"/>
 		
 		<!-- <antcall target="gather.bin.parts">

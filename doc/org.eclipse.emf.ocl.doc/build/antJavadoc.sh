@@ -6,7 +6,9 @@ currentPath=`echo "$PWD/$0" | sed -e 's/\(.*\)\/.*/\1\//' | sed -e 's/^[^\/]*$//
 eclipseDir=$1
 
 # The destination directory
-destDir=$currentPath/../references/javadoc
+destDir=$currentPath/../doc/references/javadoc
+
+mkdir -p $destDir
 
 # The plugin name
 pluginName="org.eclipse.emf.ocl"
