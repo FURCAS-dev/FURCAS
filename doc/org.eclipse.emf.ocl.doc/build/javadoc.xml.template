@@ -12,11 +12,8 @@
 	<available property="platformJavadocExists" file="${javadoc.link.location}/platform/"/>
 
 	<target name="extractPlatformJavadoc" unless="platformJavadocExists">
-		<exec executable="ls">
-		   <arg value="${javadoc.link.location}"/>
-		</exec>
-		<exec executable="ls">
-		   <arg value="${javadoc.link.location}/platform/"/>
+		<exec executable="find">
+		   <arg value="${eclipseDir}/.. -type d -name javadoc"/>
 		</exec>
 		<unzip src="${eclipseDir}/@docjar@" dest="${javadoc.link.location}/platform/"/>
 	</target>
