@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.2 2006/03/01 17:15:48 cdamus Exp $
+ * $Id: OCLParser.java,v 1.3 2006/03/03 15:32:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -114,12 +114,6 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 
 	private static final String VariableDeclaration_ERROR_ =
 	        OCLMessages.VariableDeclaration_ERROR_;
-
-	private static final String OperationNotFound_ERROR_ =
-	        OCLMessages.OperationNotFound_ERROR_;
-
-	private static final String BadArg_ERROR_ =
-	        OCLMessages.BadArg_ERROR_;
 
 	private static final String PackageNotFound_ERROR_ =
 	        OCLMessages.PackageNotFound_ERROR_;
@@ -570,35 +564,49 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 	 * Generate an OperationCallExp node. 
 	 * operName is the input name of the operation, which
 	 * must be matched against the datatype of the operation source.
+	 * 
+	 * @param env the current environemtn
+	 * @param rule the name of the concrete syntax rule that we are processing
+	 * @param operName the operation name
+	 * @param source the operation's source expression
+	 * @param ownerType the type that defines the operation, in which we will
+	 *     look it up.  This can differ from the type of the source expression
+	 *     in the case of an implicit collect iterator
+	 * @param args the operation arguments
 	 */ 
-	private OperationCallExp genOperationCallExp(Environment env, String rule, String operName, OCLExpression source, EList args)
-	throws RecognitionException {
-	    	
-	    OperationCallExp result;
-	    
-	    result = expressionsFactory.createOperationCallExp();
-	    result.setSource(source);	   
-	    EClassifier sourceType = source.getType();
-	    
-	    // Performs method signature checking		
-	    EOperation oper = EcoreEnvironment.lookupOperation(sourceType, operName, args);
-	    if (oper == null) { 
-            String message = NLS.bind(OperationNotFound_ERROR_,
-                    new Object[] { operName });
-            ERROR(rule, message);
-            result.setType(Types.OCL_VOID);
+	private OperationCallExp genOperationCallExp(
+			Environment env,
+			String rule,
+			String operName,
+			OCLExpression source,
+			EClassifier ownerType,
+			EList args)
+		throws SemanticException {
+
+		OperationCallExp result;
+		
+		result = expressionsFactory.createOperationCallExp();
+		result.setSource(source);	   
+		
+		// Performs method signature checking		
+		EOperation oper = EcoreEnvironment.lookupOperation(ownerType, operName, args);
+		if (oper == null) { 
+			String message = NLS.bind(OCLMessages.OperationNotFound_ERROR_,
+					new Object[] { operName });
+			ERROR(rule, message);
+			result.setType(Types.OCL_VOID);
 		} else {
 		  	TRACE(rule, oper.getName());
-	    	result.setReferredOperation(oper);
-	    }
-						    
+			result.setReferredOperation(oper);
+		}
+							
 		// Set up arguments
 		EList callargs = result.getArguments();
 		if (args != null) {
 		   	for (int i = 0; i < args.size(); i++) {
 		   		OCLExpression arg = (OCLExpression) args.get(i);
 		   		if (arg == null) {
-                    ERROR(rule, BadArg_ERROR_);
+					ERROR(rule, OCLMessages.BadArg_ERROR_);
 		   			continue;
 		   		}
 		   		
@@ -610,21 +618,21 @@ public class OCLParser extends antlr.LLkParser       implements OCLParserTokenTy
 		if (oper != null) {
 			EClassifier resultType = null;
 			
-		   	if (sourceType instanceof CollectionType) { 
-		   		int opcode = ((CollectionTypeImpl) sourceType).getOperationCode(operName);
+		   	if (ownerType instanceof CollectionType) { 
+		   		CollectionTypeImpl ct = (CollectionTypeImpl) ownerType;
+		   		int opcode = ct.getOperationCode(operName);
 		   		result.setOperationCode(opcode);
-		   		CollectionTypeImpl ct = (CollectionTypeImpl) sourceType;
 				resultType = ct.getResultType(opcode, args);
-		   	} else if (sourceType instanceof PrimitiveType) {
-		   		int opcode = ((PrimitiveTypeImpl) sourceType).getOperationCode(operName);
+		   	} else if (ownerType instanceof PrimitiveType) {
+		   		PrimitiveTypeImpl pt = (PrimitiveTypeImpl) ownerType;
+		   		int opcode = pt.getOperationCode(operName);
 		   		result.setOperationCode(opcode);
-		   		PrimitiveTypeImpl pt = (PrimitiveTypeImpl) sourceType;
 		   		resultType = pt.getResultType(opcode, args);
 		   	} else {
 		   		// source is a tuple, an EClass, or an enumeration
 		   		int opcode = AnyTypeImpl.OCL_ANY_TYPE.getOperationCode(operName);
 		   		result.setOperationCode(opcode);
-		   		resultType = AnyTypeImpl.getResultType(sourceType, opcode, args);
+		   		resultType = AnyTypeImpl.getResultType(ownerType, opcode, args);
 		   	}
 		   	if (resultType == null)
 		   		resultType = EcoreEnvironment.getOCLType(oper);	   		
@@ -1499,7 +1507,7 @@ public OCLParser(ParserSharedInputState state) {
 				
 						 		args = new BasicEList();
 						 		args.add(expr);
-						 		astNode = genOperationCallExp(env, "oclExpressionCS", "implies", astNode, args);	      //$NON-NLS-2$//$NON-NLS-1$
+						 		astNode = genOperationCallExp(env, "oclExpressionCS", "implies", astNode, astNode.getType(), args);	      //$NON-NLS-2$//$NON-NLS-1$
 						 		matchedOne = true;
 						 		initStartEndPositions(astNode);
 						 	
@@ -1596,7 +1604,7 @@ public OCLParser(ParserSharedInputState state) {
 				
 						   		args = new BasicEList();
 						   		args.add(expr);
-						       	astNode = genOperationCallExp(env, "oclExpr1CS", operName, astNode, args);//$NON-NLS-1$
+						       	astNode = genOperationCallExp(env, "oclExpr1CS", operName, astNode, astNode.getType(), args);//$NON-NLS-1$
 						 		matchedOne = true;
 						 		initStartEndPositions(astNode);
 						   	
@@ -1704,7 +1712,7 @@ public OCLParser(ParserSharedInputState state) {
 				
 								args = new BasicEList();
 								args.add(expr);
-								astNode = genOperationCallExp(env, "oclExpr2CS", operName, astNode, args);//$NON-NLS-1$
+								astNode = genOperationCallExp(env, "oclExpr2CS", operName, astNode, astNode.getType(), args);//$NON-NLS-1$
 						 		matchedOne = true;
 						 		initStartEndPositions(astNode);
 							
@@ -1884,7 +1892,7 @@ public OCLParser(ParserSharedInputState state) {
 				
 						   		args = new BasicEList();
 						   		args.add(expr);
-						   		astNode = genOperationCallExp(env, "oclExpr4CS", operName, astNode, args);	    	//$NON-NLS-1$
+						   		astNode = genOperationCallExp(env, "oclExpr4CS", operName, astNode, astNode.getType(), args);	    	//$NON-NLS-1$
 						 		matchedOne = true;
 						 		initStartEndPositions(astNode);
 					    	
@@ -1960,7 +1968,7 @@ public OCLParser(ParserSharedInputState state) {
 				
 								args = new BasicEList();
 								args.add(expr);
-								astNode = genOperationCallExp(env, "oclExpr5CS", operName, astNode, args);//$NON-NLS-1$
+								astNode = genOperationCallExp(env, "oclExpr5CS", operName, astNode, astNode.getType(), args);//$NON-NLS-1$
 						 		matchedOne = true;
 						 		initStartEndPositions(astNode);
 							
@@ -2058,7 +2066,7 @@ public OCLParser(ParserSharedInputState state) {
 			}
 			expr=oclExpr6CS(env);
 			
-							astNode = genOperationCallExp(env, "oclExpr6CS", operName, expr, new BasicEList());//$NON-NLS-1$
+							astNode = genOperationCallExp(env, "oclExpr6CS", operName, expr, expr.getType(), new BasicEList());//$NON-NLS-1$
 							initStartEndPositions(astNode);
 						
 			}
@@ -2822,8 +2830,20 @@ public OCLParser(ParserSharedInputState state) {
 					vexp.setName(implicitSource.getVarName());
 					src = vexp;
 				}
-		
-				astNode = genOperationCallExp(env, "operationCallExpCS", operationName, src, args);//$NON-NLS-1$
+
+				/*
+				 * If the source type is a collection and operator is ".",
+				 * then there is an implicit COLLECT operator.
+				 */
+				EClassifier operationSourceType = src.getType();
+				boolean isImplicitCollect = dotOperator && (operationSourceType instanceof CollectionType);
+				
+				if (isImplicitCollect) {
+					operationSourceType = ((CollectionType) operationSourceType).getElementType();
+				}
+				
+				astNode = genOperationCallExp(env, "operationCallExpCS", operationName,//$NON-NLS-1$
+						src, operationSourceType, args);
 				
 				((OperationCallExp) astNode).setMarkedPre(isMarkedPre);
 				initPropertyPositions((OperationCallExp) astNode, nameToken);
@@ -2832,38 +2852,74 @@ public OCLParser(ParserSharedInputState state) {
 				 * If the source type is a collection and operator is ".",
 				 * then there is an implicit COLLECT operator.
 				 */
-				if (dotOperator && source.getType() instanceof CollectionType) {
-					IteratorExp iterexp = expressionsFactory.createIteratorExp();
-					
-					VariableDeclaration itervar = genVariableDeclaration("operationCallExpCS", env,//$NON-NLS-1$
-						null, ((CollectionType) source.getType()).getElementType(), null, false, true, false);
-		
-					EList iters = iterexp.getIterators();
-					iters.add(itervar);
-					iterexp.setBody(astNode);
-					iterexp.setName("collect");//$NON-NLS-1$
-					VariableExp vexp = expressionsFactory.createVariableExp();
-					vexp.setType(itervar.getType());
-					vexp.setReferredVariable(itervar);
-					vexp.setName(itervar.getVarName());
-					/* adjust the source variable for the body expression  to be the
-					   newly generated implicit iterator variable */
-					
-					OperationCallExp opcallexp = (OperationCallExp) astNode;
-					opcallexp.setSource(vexp);
-		
-					iterexp.setSource(source);
-					if (source.getType() instanceof SequenceType ||
-											source.getType() instanceof OrderedSetType) {
-						iterexp.setType(typesFactory.createSequenceType(astNode.getType()));
-					} else {
-						iterexp.setType(typesFactory.createBagType(astNode.getType()));
-					}
-					astNode = iterexp;
-					env.deleteElement(itervar.getVarName());			
+				if (isImplicitCollect) {
+					astNode = createImplicitCollect(src, (OperationCallExp) astNode, env); 			
 			   	}
 			
 		return astNode;
+	}
+
+	/**
+	 * Creates an implicit <code>collect</code> iterator expression for a
+	 * property call on a collection-type source expression.
+	 * 
+	 * @param source the property call source expression
+	 * @param propertyCall the property call expression
+	 * @param env the current environment
+	 * 
+	 * @return the collect expression
+	 * 
+	 * @throws RecognitionException on failure to create the collect iterator variable
+	 */
+	private IteratorExp createImplicitCollect(OCLExpression source,
+			ModelPropertyCallExp propertyCall, Environment env) throws RecognitionException {
+		
+		EClassifier sourceElementType = ((CollectionType) source.getType()).getElementType();
+		
+		IteratorExp result = expressionsFactory.createIteratorExp();
+		
+		VariableDeclaration itervar = genVariableDeclaration("modelPropertyCallCS", env,//$NON-NLS-1$
+						null, sourceElementType, null, false, true, false);
+
+		EList iters = result.getIterators();
+		iters.add(itervar);
+		result.setBody(propertyCall);
+		result.setName("collect");//$NON-NLS-1$
+		VariableExp vexp = expressionsFactory.createVariableExp();
+		vexp.setType(itervar.getType());
+		vexp.setReferredVariable(itervar);
+		vexp.setName(itervar.getVarName());
+		
+		/* adjust the source variable for the body expression to be the
+		   newly generated implicit iterator variable */
+		propertyCall.setSource(vexp);
+		
+		if (!(propertyCall instanceof OperationCallExp)) {
+			// the overall start and end positions are the property positions
+			propertyCall.setStartPosition(propertyCall.getPropertyStartPosition());
+			propertyCall.setEndPosition(propertyCall.getPropertyEndPosition());
+		}
+		
+		result.setSource(source);
+		
+		// the result of a collect() is flattened, so if the property
+		//   that we are collecting is a Collection type, the resulting
+		//   type must be flattened by taking its element type
+		EClassifier bodyType = propertyCall.getType();
+		if (bodyType instanceof CollectionType) {
+			bodyType = ((CollectionType) bodyType).getElementType();
+		}
+		
+		if (source.getType() instanceof SequenceType ||
+				source.getType() instanceof OrderedSetType) {
+			result.setType(typesFactory.createSequenceType(bodyType));
+		} else {
+			result.setType(typesFactory.createBagType(bodyType));
+		}
+		
+		env.deleteElement(itervar.getVarName());
+		
+		return result;
 	}
 	
 	public final OCLExpression  literalExpCS(
@@ -3092,46 +3148,7 @@ public OCLParser(ParserSharedInputState state) {
 				 * Not that this rule is not called after "->".
 				 */
 				if (source != null && source.getType() instanceof CollectionType) {
-					IteratorExp iterexp = expressionsFactory.createIteratorExp();
-					
-					VariableDeclaration itervar = genVariableDeclaration("VariableExpCS", env,//$NON-NLS-1$
-									null, sourceElementType, null, false, true, false);
-		
-					EList iters = iterexp.getIterators();
-					iters.add(itervar);
-					iterexp.setBody(astNode);
-					iterexp.setName("collect");//$NON-NLS-1$
-					VariableExp vexp = expressionsFactory.createVariableExp();
-					vexp.setType(itervar.getType());
-					vexp.setReferredVariable(itervar);
-					vexp.setName(itervar.getVarName());
-					/* adjust the source variable for the body expression  to be the
-					   newly generated implicit iterator variable */
-					if (astNode instanceof AttributeCallExp) {
-						attr.setSource(vexp);
-						// the overall start and end positions are the property positions
-						attr.setStartPosition(attr.getPropertyStartPosition());
-						attr.setEndPosition(attr.getPropertyEndPosition());
-					} else if (astNode instanceof AssociationEndCallExp) {
-						ref.setSource(vexp);
-						// the overall start and end positions are the property positions
-						ref.setStartPosition(ref.getPropertyStartPosition());
-						ref.setEndPosition(ref.getPropertyEndPosition());
-					} else if (astNode instanceof AssociationClassCallExp) {
-						acref.setSource(vexp);
-						// the overall start and end positions are the property positions
-						acref.setStartPosition(acref.getPropertyStartPosition());
-						acref.setEndPosition(acref.getPropertyEndPosition());
-					}
-					iterexp.setSource(source);
-					if (source.getType() instanceof SequenceType ||
-							source.getType() instanceof OrderedSetType) {
-						iterexp.setType(typesFactory.createSequenceType(astNode.getType()));
-					} else {
-						iterexp.setType(typesFactory.createBagType(astNode.getType()));
-					}
-					astNode = iterexp;			
-					env.deleteElement(itervar.getVarName());			
+					astNode = createImplicitCollect(source, (ModelPropertyCallExp) astNode, env);
 			   	}
 			
 		return astNode;

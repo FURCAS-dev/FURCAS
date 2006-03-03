@@ -61,6 +61,18 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
 		this.setClassifierID(TypesPackage.BAG_TYPE);
 	}
 	
+	public String getName() {
+		if (name == null) {
+			if (elementType != null) {
+				name = "Bag(" + elementType.getName() + ')'; //$NON-NLS-1$
+			} else {
+				name = "Bag(?)"; //$NON-NLS-1$
+			}
+		}
+		
+		return super.getName();
+	}
+	
 	/**
 	 * Return result type of Bag operation based on the sourceType and args.
 	 * Conformance rules are applied.  It is assumed that operation signature

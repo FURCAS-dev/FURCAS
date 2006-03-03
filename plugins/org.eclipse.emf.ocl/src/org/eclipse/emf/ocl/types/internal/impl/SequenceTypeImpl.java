@@ -63,6 +63,18 @@ public class SequenceTypeImpl
 		setInstanceClass(List.class);
 		this.setClassifierID(TypesPackage.SEQUENCE_TYPE);
 	}
+	
+	public String getName() {
+		if (name == null) {
+			if (elementType != null) {
+				name = "Sequence(" + elementType.getName() + ')'; //$NON-NLS-1$
+			} else {
+				name = "Sequence(?)"; //$NON-NLS-1$
+			}
+		}
+		
+		return super.getName();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

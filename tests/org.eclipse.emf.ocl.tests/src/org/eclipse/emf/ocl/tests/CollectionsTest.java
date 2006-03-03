@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.3 2006/03/01 17:15:45 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.4 2006/03/03 15:33:30 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -24,7 +24,13 @@ import java.util.Set;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
@@ -334,6 +340,53 @@ public class CollectionsTest
 				"Sequence{}->isUnique(e | e)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that dot notation can be used successively to navigate multiple
+	 * collection-type references.
+	 */
+	public void test_dotNavigationOfReferenceCollections_130239() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(ExpressionsPackage.eINSTANCE);
+		
+		try {
+			OCLExpression expr = helper.createQuery(
+					"self.eClassifiers->union(self.eSubpackages.eClassifiers->asSet())->asSet()"); //$NON-NLS-1$
+			
+			assertEquals(
+					new java.util.HashSet(ExpressionsPackage.eINSTANCE.getEClassifiers()),
+					helper.evaluate(ExpressionsPackage.eINSTANCE, expr));
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that dot notation can be used successively to navigate multiple
+	 * collection-type operations.
+	 */
+	public void test_dotNavigationOfOperationCollections_130239() {
+		EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
+		fakePkg.setName("fake"); //$NON-NLS-1$
+		EClass fake = EcoreFactory.eINSTANCE.createEClass();
+		fake.setName("Fake"); //$NON-NLS-1$
+		fakePkg.getEClassifiers().add(fake);
+		EOperation getFakes = EcoreFactory.eINSTANCE.createEOperation();
+		getFakes.setName("getFakes"); //$NON-NLS-1$
+		getFakes.setEType(fake);
+		getFakes.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		fake.getEOperations().add(getFakes);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(fake);
+		
+		try {
+			helper.createQuery(
+					"self.getFakes()->union(self.getFakes().getFakes()->asSet())"); //$NON-NLS-1$
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 }

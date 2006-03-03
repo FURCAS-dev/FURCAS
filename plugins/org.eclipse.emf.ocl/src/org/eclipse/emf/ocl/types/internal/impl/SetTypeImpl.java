@@ -65,6 +65,18 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
 		this.setClassifierID(TypesPackage.SET_TYPE);
 	}
 	
+	public String getName() {
+		if (name == null) {
+			if (elementType != null) {
+				name = "Set(" + elementType.getName() + ')'; //$NON-NLS-1$
+			} else {
+				name = "Set(?)"; //$NON-NLS-1$
+			}
+		}
+		
+		return super.getName();
+	}
+	
 	/**
 	 * Returns the result type of Set operation based on the sourceType and args.
 	 * Conformance rules are applied.  It is assumed that operation signature

@@ -67,6 +67,18 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 		supertype = new SetTypeImpl(elementType);
 	}
 	
+	public String getName() {
+		if (name == null) {
+			if (elementType != null) {
+				name = "OrderedSet(" + elementType.getName() + ')'; //$NON-NLS-1$
+			} else {
+				name = "OrderedSet(?)"; //$NON-NLS-1$
+			}
+		}
+		
+		return super.getName();
+	}
+	
 	/**
 	 * Extends the superclass implementation to propagate the element type to
 	 * my Set supertype.
