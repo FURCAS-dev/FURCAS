@@ -58,7 +58,7 @@
 		<echo message="Eclipse HOME: ${eclipse.home}"/>
 		<exec executable="sh">
 			<arg value="build/antJavadoc.sh"/>
-			<arg value="${eclipse.home}"/>
+			<arg value="${eclipse.home}../eclipse"/>
 		</exec>
 		<antcall target="gather.bin.parts">
 			<param name="destination.temp.folder" value="${temp.folder}/"/>
