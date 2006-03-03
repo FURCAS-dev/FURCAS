@@ -59,6 +59,9 @@
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
+		<exec executable="ls">
+			<arg value="-r"/>
+		</exec>
 		<zip basedir="doc" destfile="doc.zip"/>
 		
 		<!-- <antcall target="gather.bin.parts">
