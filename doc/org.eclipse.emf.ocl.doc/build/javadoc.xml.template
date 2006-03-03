@@ -13,7 +13,11 @@
 
 	<target name="extractPlatformJavadoc" unless="platformJavadocExists">
 		<exec executable="find">
-		   <arg value="${eclipseDir}/.. -type d -name javadoc"/>
+		   <arg value="${eclipseDir}/.."/>
+		   <arg value="-type"/>
+		   <arg value="d"/>
+		   <arg value="-name"/>
+		   <arg value="javadoc"/>
 		</exec>
 		<unzip src="${eclipseDir}/@docjar@" dest="${javadoc.link.location}/platform/"/>
 	</target>
