@@ -58,6 +58,8 @@ for pluginDir in $pluginDirs; do
 	fi
 done
 
+echo "eclipseDir is: $eclipseDir"
+
 # Finds the proper org.eclipse.platform.doc.isv jar
 docjar=`find $eclipseDir/plugins/ -name "org.eclipse.platform.doc.isv*.jar" -printf "%f"`
 
