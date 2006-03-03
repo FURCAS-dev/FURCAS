@@ -2,6 +2,8 @@
 <project name="org.eclipse.emf.ocl.doc" default="build.jars" basedir=".">
 
 	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
+	<property name="plugin" value="org.eclipse.emf.ocl"/>
+	<property name="docPlugin" value="org.eclipse.emf.ocl.doc"/>
 	<property name="pluginVersion" value="1.0.0"/>
 	
 	<property name="basews" value="${ws}"/>
@@ -28,7 +30,7 @@
 			<isset property="buildTempFolder"/>
 		</condition>
 		<property name="pluginTemp" value="${basedir}"/>
-		<condition property="build.result.folder" value="${pluginTemp}/org.eclipse.emf.ocl.doc">
+		<condition property="build.result.folder" value="${pluginTemp}/${docPlugin}">
 			<isset property="buildTempFolder"/>
 		</condition>
 		<property name="build.result.folder" value="${basedir}"/>
@@ -41,30 +43,54 @@
 
 	</target>
 
-	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.emf.ocl.doc for an update site.">
+	<target name="build.update.jar" depends="init" description="Build the plug-in: ${plugin} for an update site.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
 		<antcall target="gather.bin.parts">
 			<param name="destination.temp.folder" value="${temp.folder}/"/>
 		</antcall>
-		<zip destfile="${plugin.destination}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}.jar" basedir="${temp.folder}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}" filesonly="false" whenempty="skip" update="false"/>
+		<zip destfile="${plugin.destination}/${docPlugin}_${pluginVersion}.${forceContextQualifier}.jar" basedir="${temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${temp.folder}"/>
 	</target>
 
-	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.emf.ocl.doc.">
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${docPlugin}.">
+		<exec executable="sh">
+			<arg value="build/antJavadoc.sh"/>
+			<arg value="${eclipse.home}"/>
+		</exec>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<jar
+			destfile="${basedir}/${docPlugin}_${pluginVersion}.jar"
+			basedir="${temp.folder}/${docPlugin}_{$pluginVersion}">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Bundle-ManifestVersion" value="2"/>
+				<attribute name="Bundle-Name" value="%Plugin.name"/>
+				<attribute name="Bundle-SymbolicName" value="${plugin}; singleton:=true"/>
+				<attribute name="Bundle-Version" value="${pluginVersion}"/>
+				<attribute name="Bundle-Vendor" value="%Provider.name"/>
+				<attribute name="Bundle-Localization" value="plugin"/>
+				<attribute name="Require-Bundle" value="org.eclipse.help"/>
+				<attribute name="Eclipse-LazyStart" value="true"/>
+			</manifest>	
+		</jar>
+		<delete dir="${temp.folder}"/>
 	</target>
 
 	<target name="build.sources" depends="init">
 	</target>
 
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
-		<mkdir dir="${destination.temp.folder}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}"/>
-		<copy todir="${destination.temp.folder}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}" failonerror="true" overwrite="false">
+		<mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}"/>
+		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" failonerror="true" overwrite="false">
 			<fileset dir="${basedir}" includes="META-INF/,about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties"			/>
 		</copy>
 		<eclipse.versionReplacer 
-			path="${destination.temp.folder}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}" 
+			path="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" 
 			version="${pluginVersion}.${forceContextQualifier}"/>
 	</target>
 
@@ -78,17 +104,17 @@
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.emf.ocl.doc of all the zips, jars and logs created.">
-		<delete file="${plugin.destination}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}.jar"/>
-		<delete file="${plugin.destination}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}.zip"/>
+		<delete file="${plugin.destination}/${docPlugin}_${pluginVersion}.${forceContextQualifier}.jar"/>
+		<delete file="${plugin.destination}/${docPlugin}_${pluginVersion}.${forceContextQualifier}.zip"/>
 		<delete dir="${temp.folder}"/>
 	</target>
 
-	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+	<!-- <target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
 		<eclipse.convertPath fileSystemPath="/localhome/cdamus/workspaces/emft-gmf/org.eclipse.emf.ocl.doc" property="resourcePath"/>
 		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
-	</target>
+	</target> -->
 
-	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.emf.ocl.doc.">
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: ${docPlugin}.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
@@ -102,7 +128,7 @@
 		<delete>
 			<fileset dir="${temp.folder}" includes="**/*.bin.log"			/>
 		</delete>
-		<zip destfile="${plugin.destination}/org.eclipse.emf.ocl.doc_${pluginVersion}.${forceContextQualifier}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<zip destfile="${plugin.destination}/${docPlugin}_${pluginVersion}.${forceContextQualifier}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
 		<delete dir="${temp.folder}"/>
 	</target>
 
