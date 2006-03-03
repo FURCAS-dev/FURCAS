@@ -23,7 +23,7 @@ function groupPackage
 	if [ "x$hasToken" != "x"  ]; then
 		srcDir=$currentPath/../../$plugin/src
 		if [ -d "$srcDir" ]; then
-			packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ \n\t\r]*//g' | sort | uniq | xargs | sed -e 's/ /:/g'`
+			packages=`find $srcDir -type f -name '*.java' -exec grep -e '^package .*;' {} \; | sed -e 's/^package *\(.*\);/\1/' | sed -e 's/[ \t]*//g' | sort | uniq | xargs | sed -e 's/ /:/g'`
 			packages=`echo $packages | sed -e 's/\//\\\\\\//g' | sed -e 's/\./\\\\\./g'`
 	
 			sed -e "s/\@plugin\@/${packages}/g" $currentPath/javadoc.xml.template > $currentPath/javadoc.xml.template.tmp
