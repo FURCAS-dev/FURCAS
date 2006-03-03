@@ -59,32 +59,13 @@
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
+		
+		<zip basedir="doc" destfile="doc.zip"/>
+		<delete dir="doc"/>
+		
 		<exec executable="ls">
 			<arg value="-R"/>
 		</exec>
-		
-		<zip basedir="doc" destfile="doc.zip"/>
-		
-		<!-- <antcall target="gather.bin.parts">
-			<param name="destination.temp.folder" value="${temp.folder}/"/>
-		</antcall>
-		<jar
-			destfile="${basedir}/${docPlugin}_${pluginVersion}.jar"
-			basedir="${temp.folder}/${docPlugin}_${pluginVersion}">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}"/>
-				<attribute name="Manifest-Version" value="1.0"/>
-				<attribute name="Bundle-ManifestVersion" value="2"/>
-				<attribute name="Bundle-Name" value="%Plugin.name"/>
-				<attribute name="Bundle-SymbolicName" value="${plugin}; singleton:=true"/>
-				<attribute name="Bundle-Version" value="${pluginVersion}"/>
-				<attribute name="Bundle-Vendor" value="%Provider.name"/>
-				<attribute name="Bundle-Localization" value="plugin"/>
-				<attribute name="Require-Bundle" value="org.eclipse.help"/>
-				<attribute name="Eclipse-LazyStart" value="true"/>
-			</manifest>	
-		</jar> -->
-		<!-- <delete dir="${temp.folder}"/> -->
 	</target>
 
 	<target name="build.sources" depends="init">
