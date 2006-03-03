@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.emf.ocl.doc" default="zip.plugin" basedir=".">
+<project name="org.eclipse.emf.ocl.doc" default="build.jars" basedir=".">
 
 	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
 	<property name="plugin" value="org.eclipse.emf.ocl"/>
@@ -55,12 +55,13 @@
 	</target>
 
 	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${docPlugin}.">
-		<echo message="Eclipse HOME: ${eclipse.home}"/>
 		<exec executable="sh">
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
-		<antcall target="gather.bin.parts">
+		<zip basedir="doc" destfile="doc.zip"/>
+		
+		<!-- <antcall target="gather.bin.parts">
 			<param name="destination.temp.folder" value="${temp.folder}/"/>
 		</antcall>
 		<jar
@@ -78,7 +79,7 @@
 				<attribute name="Require-Bundle" value="org.eclipse.help"/>
 				<attribute name="Eclipse-LazyStart" value="true"/>
 			</manifest>	
-		</jar>
+		</jar> -->
 		<!-- <delete dir="${temp.folder}"/> -->
 	</target>
 
