@@ -61,6 +61,8 @@ done
 # Finds the proper org.eclipse.platform.doc.isv jar
 docjar=`find $eclipseDir/plugins/ -name "org.eclipse.platform.doc.isv*.jar" -printf "%f"`
 
+echo "docjar is: $docjar"
+
 if [ -f $currentPath/javadoc.xml.template ]; then
 	true;
 else
