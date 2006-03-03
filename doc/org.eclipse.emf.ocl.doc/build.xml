@@ -60,7 +60,7 @@
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
 		<exec executable="ls">
-			<arg value="-r"/>
+			<arg value="-R"/>
 		</exec>
 		<zip basedir="doc" destfile="doc.zip"/>
 		
