@@ -64,7 +64,7 @@
 		</antcall>
 		<jar
 			destfile="${basedir}/${docPlugin}_${pluginVersion}.jar"
-			basedir="${temp.folder}/${docPlugin}_{$pluginVersion}">
+			basedir="${temp.folder}/${docPlugin}_${pluginVersion}">
 			<manifest>
 				<attribute name="Built-By" value="${user.name}"/>
 				<attribute name="Manifest-Version" value="1.0"/>
