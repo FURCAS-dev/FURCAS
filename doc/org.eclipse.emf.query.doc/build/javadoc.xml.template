@@ -32,7 +32,7 @@
 			classpath="${classpath}"
 			overview="${overview}"
 
-			windowtitle="EMF OCL Javadoc"
+			windowtitle="EMF Query Javadoc"
 			footer="Copyright 2002, 2006 IBM Corporation and others.&lt;br&gt; All Rights Reserved."
 
 			access="protected" 
@@ -66,7 +66,7 @@
 
 				<!-- If you add a @ plugin @ below, don't forget to update the antjavadoc.sh file -->
 
-				<group title="OCL" packages="@plugin@"/>
+				<group title="EMF Query" packages="@plugin@"/>
 				
 				<!-- If you add a @ plugin @ above, don't forget to update the antjavadoc.sh file -->
 
