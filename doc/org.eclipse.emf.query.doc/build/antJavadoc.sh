@@ -11,7 +11,7 @@ destDir=$currentPath/../references/javadoc
 mkdir -p $destDir
 
 # The plugin name
-pluginName="org.eclipse.emf.ocl"
+pluginName="org.eclipse.emf.query"
 
 # Don't execute if the destination directory has files
 #if [ -d "$destDir" ]; then
@@ -35,7 +35,7 @@ function groupPackage
 
 groupPackage $pluginName
 
-# The directory of the emf.ocl plugins in the order they were built 
+# The directory of the plugins in the order they were built 
 # Original: pluginDirs=`find $eclipseDir/plugins -name @dot -printf '%T@ %p\n' | sort -n | grep org.eclipse.emf.transaction | cut -f2 -d' ' | sed -e 's/\(\/.*\)\/.*/\1/'`
 # New (eclipseDir): pluginDirs=`find $eclipseDir/plugins -name 'org.eclipse.emf.transaction*' -maxdepth 1 -type d -printf '%T@ %p\n' | sort -n | cut -f2 -d' '`
 # Finds plugins in the Workspace:

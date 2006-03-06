@@ -99,15 +99,10 @@
 	<target name="gather.logs" depends="init" if="destination.temp.folder">
 	</target>
 
-	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.emf.ocl.doc of all the zips, jars and logs created.">
+	<target name="clean" depends="init" description="Clean the plug-in: ${docPlugin} of all the zips, jars and logs created.">
 		<delete file="${plugin.destination}/${docPlugin}_${pluginVersion}.${forceContextQualifier}.jar"/>
 		<delete file="${plugin.destination}/${docPlugin}_${pluginVersion}.${forceContextQualifier}.zip"/>
 		<delete dir="${temp.folder}"/>
-	</target>
-
-	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="/localhome/cdamus/workspaces/emft-gmf/org.eclipse.emf.ocl.doc" property="resourcePath"/>
-		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
 	</target>
 
 	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: ${docPlugin}.">
