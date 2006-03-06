@@ -62,6 +62,8 @@
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
 		
+		<antcall target="build.index"/>
+		
 		<!-- Zip up all of the documentation artifacts - references(including javadoc), images, tutorials, etc. -->
 		<zip destfile="doc.zip" compress="true">
 			<!-- Add new folders for documentation zip here. -->
@@ -71,6 +73,10 @@
 		</zip>
 	</target>
 
+	<target name="build.index" depends="init" description="Builds search index for the plug-in" if="eclipse.running">
+		<help.buildHelpIndex manifest="plugin.xml" destination="."/>
+	</target>
+	
 	<target name="build.sources" depends="init">
 	</target>
 

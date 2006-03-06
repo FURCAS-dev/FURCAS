@@ -2,8 +2,5 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Sample Table of Contents">
-	<topic label="Main Topic"  href="html/maintopic.html"> 
-		<topic label="Sub Topic" href="html/subtopic.html"/> 
-	</topic>
-	<topic label="Main Topic 2"/>
+	<topic label="Javadoc" href="references/javadoc/index.html"/>
 </toc>
