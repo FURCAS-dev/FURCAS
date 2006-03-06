@@ -63,13 +63,10 @@
 		</exec>
 		
 		<!-- The javadoc generation will produce a doc directory in this plugin that we can zip up -->
-		<zip basedir="doc" destfile="doc.zip"/>
-		
-		<!-- Add other folders' contents to the zip -->
-		<zip destfile="doc.zip" update="true">
-			<fileset dir="images"/>
+		<zip basedir="doc" destfile="doc.zip">
 			<fileset dir="references"/>
 			<fileset dir="tutorials"/>
+			<fileset dir="images"/>
 		</zip>
 		
 		<!-- We no longer require the doc directory and will delete it -->

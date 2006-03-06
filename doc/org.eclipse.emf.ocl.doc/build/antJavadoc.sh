@@ -6,7 +6,7 @@ currentPath=`echo "$PWD/$0" | sed -e 's/\(.*\)\/.*/\1\//' | sed -e 's/^[^\/]*$//
 eclipseDir=$1
 
 # The destination directory
-destDir=$currentPath/../doc/references/javadoc
+destDir=$currentPath/../references/javadoc
 
 mkdir -p $destDir
 
