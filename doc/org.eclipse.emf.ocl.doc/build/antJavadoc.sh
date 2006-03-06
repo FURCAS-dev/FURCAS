@@ -46,7 +46,6 @@ pluginDirs=`find $currentPath/../.. -name "${pluginName}*" -maxdepth 1 -type d -
 
 # All the jars in the plugins directory
 classpath=`find $eclipseDir/plugins -name "*.jar" -printf "%p:"`
-echo "Got classpath: "; echo $classpath;
 
 # Calculates the packagesets and the calls to copyDocFiles
 packagesets=""
@@ -60,12 +59,8 @@ for pluginDir in $pluginDirs; do
 	fi
 done
 
-echo "eclipseDir is: $eclipseDir"
-
 # Finds the proper org.eclipse.platform.doc.isv jar
 docjar=`find $eclipseDir/plugins/ -name "org.eclipse.platform.doc.isv*.jar" -printf "%f"`
-
-echo "docjar is: $docjar"
 
 if [ -f $currentPath/javadoc.xml.template ]; then
 	true;
@@ -84,16 +79,6 @@ sed -e "s/\@docjar\@/${docjar}/g" $currentPath/javadoc.xml.template.tmp > $curre
 # Replaces the token @eclipseDir@ in the template by the actual value
 eclipseDirEsc=`echo $eclipseDir | sed -e 's/\//\\\\\//g' | sed -e 's/\./\\\\\./g'`
 sed -e "s/\@eclipseDir\@/${eclipseDirEsc}/g" $currentPath/javadoc.xml.template.tmp2 > $currentPath/javadoc.xml
-
-echo "This is the current javadoc.xml:"
-cat $currentPath/javadoc.xml
-
-echo "Here are the current variables:"
-echo $currentPath/javadoc.xml
-echo $destDir
-echo $classpath
-echo $eclipseDir
-echo $currentPath/overview.html
 
 # Executes the ant script
 ant -f $currentPath/javadoc.xml \
