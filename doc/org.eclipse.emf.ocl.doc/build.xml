@@ -62,7 +62,9 @@
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
 		
+		<!-- Zip up all of the documentation artifacts - references(including javadoc), images, tutorials, etc. -->
 		<zip destfile="doc.zip" compress="true">
+			<!-- Add new folders for documentation zip here. -->
 			<zipfileset dir="references" prefix="references"/>
 			<zipfileset dir="images" prefix="images"/>
 			<zipfileset dir="tutorials" prefix="tutorials"/>
