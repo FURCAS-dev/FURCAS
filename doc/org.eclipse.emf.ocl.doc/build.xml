@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="org.eclipse.emf.ocl.doc" default="build.jars" basedir=".">
 
-	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
+	<!-- Plug-in information.  This is a HACK.  Do not forget to update version numbers, etc.. -->
 	<property name="plugin" value="org.eclipse.emf.ocl"/>
 	<property name="docPlugin" value="org.eclipse.emf.ocl.doc"/>
 	<property name="pluginVersion" value="1.0.0"/>
+	
+	<property name="filesToInclude" value="META-INF/,about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties,doc.zip,toc.xml"/>
 	
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>
@@ -55,17 +57,24 @@
 	</target>
 
 	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${docPlugin}.">
+		<!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
 		<exec executable="sh">
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
 		
+		<!-- The javadoc generation will produce a doc directory in this plugin that we can zip up -->
 		<zip basedir="doc" destfile="doc.zip"/>
-		<delete dir="doc"/>
 		
-		<exec executable="ls">
-			<arg value="-R"/>
-		</exec>
+		<!-- Add other folders' contents to the zip -->
+		<zip destfile="doc.zip" update="true">
+			<fileset dir="images"/>
+			<fileset dir="references"/>
+			<fileset dir="tutorials"/>
+		</zip>
+		
+		<!-- We no longer require the doc directory and will delete it -->
+		<delete dir="doc"/>
 	</target>
 
 	<target name="build.sources" depends="init">
@@ -74,7 +83,7 @@
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}"/>
 		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties,doc.zip"/>
+			<fileset dir="${basedir}" includes="${filesToInclude}}"/>
 		</copy>
 		<eclipse.versionReplacer 
 			path="${destination.temp.folder}/${docPlugin}_${pluginVersion}.${forceContextQualifier}" 
@@ -96,10 +105,10 @@
 		<delete dir="${temp.folder}"/>
 	</target>
 
-	<!-- <target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
 		<eclipse.convertPath fileSystemPath="/localhome/cdamus/workspaces/emft-gmf/org.eclipse.emf.ocl.doc" property="resourcePath"/>
 		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
-	</target> -->
+	</target>
 
 	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: ${docPlugin}.">
 		<delete dir="${temp.folder}"/>
