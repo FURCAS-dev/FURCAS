@@ -49,19 +49,9 @@
         id="org.eclipse.emf.query.doc"
         version="0.0.0"
         match="compatible"/>
-
-    <includes
-        id="org.eclipse.emf.query.examples"
-        version="0.0.0"
-        match="compatible"/>
         
     <includes
          id="org.eclipse.emf.query.source"
-         version="0.0.0"
-         match="compatible"/>
-        
-    <includes
-         id="org.eclipse.emf.query.examples.source"
          version="0.0.0"
          match="compatible"/>
         
