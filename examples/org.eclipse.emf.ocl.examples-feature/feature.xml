@@ -53,6 +53,10 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.emf"/>
       <import plugin="org.eclipse.core.runtime"/>
    </requires>
+        
+    <includes
+         id="org.eclipse.emf.ocl.examples.source"
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.ocl.examples"
