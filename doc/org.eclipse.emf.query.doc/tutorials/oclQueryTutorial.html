@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="Stylesheet" type="text/css" href="../doc.css" />
+		<link rel="Stylesheet" type="text/css" href="doc.css" />
 		<title>Tutorial: Querying EMF Models with OCL</title>
 	</head>
 	<body>
@@ -59,7 +59,7 @@
 			The simplest kind of query is one that searches for a single kind of model
 			element using a single OCL condition.  This OCL condition may be arbitrarily
 			complex, but is still a single expression.  This case is best handled using the
-			<code><a href="../reference/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
+			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
 			API for its convenience.
 		</p>
 		<p>
@@ -149,12 +149,12 @@ Set results = helper.executeQueryUsingOclFilter(
 		<p>
 			The solution is to break the query into two distinct OCL condition expressions.
 			Because the
-			<code><a href="../reference/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
+			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
 			API does not accept more than one condition, we use the more flexible (and
 			complex) EMF Query Framework.  We will construct a
-			<code><a href="../reference/javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a></code>
+			<code><a href="../references/javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a></code>
 			query with two
-			<code><a href="../reference/javadoc/org/eclipse/emf/query/ocl/conditions/OclConstraintCondition.html">OclConstraintCondition</a></code>s
+			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/conditions/OclConstraintCondition.html">OclConstraintCondition</a></code>s
 			in a disjunction:
 <pre class="codeblock">
 Resource myResource = ... // get the resource
