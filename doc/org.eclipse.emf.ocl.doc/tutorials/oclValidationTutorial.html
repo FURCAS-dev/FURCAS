@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="Stylesheet" type="text/css" href="../doc.css" />
+		<title>Tutorial: OCL Validation Constraints</title>
+	</head>
+	<body>
+		<h1><a name="top">Tutorial: OCL Validation Constraints</a></h1>
+
+		<h2>Contents</h2>
+		<ul>
+			<li><a href="#overview">Overview</a></li>
+			<li><a href="#refs">References</a></li>
+			<li><a href="#batch">Specifying a Batch Mode OCL Constraint</a></li>
+			<li><a href="#live">Specifying a Live Mode OCL Constraint</a></li>
+			<li><a href="#eval">Evaluating the OCL Constraints</a></li>
+			<li><a href="#summary">Summary</a></li>
+		</ul>
+
+		<h2><a name="overview">Overview</a></h2>
+		<p>
+			The EMF Validation Framework provides an extension point for plug-ins to
+			add support for different constraint languages.  One of the languages supported
+			is the Object Constraint Language (OCL) version 2.0.
+		</p>
+		<p>
+			This tutorial will illustrate how to contribute constraints using OCL.
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="refs">References</a></h2>
+		<p>
+			This tutorial assumes that the reader is familiar with the Eclipse extension point
+			architecture.  There is an abundance of on-line help in Eclipse for those
+			unfamiliar with extension points.
+		</p>
+		<p>
+			To see the complete source code for the examples shown in this tutorial, install
+			the <a href="../references/examples/oclValidationExample.html">OCL Validation Example</a>
+			plug-in into your workspace.
+		</p>
+		<p>
+			Other references:
+			<ul>
+				<li>
+					For an environment in which to test the constraint that you will create
+					in this tutorial, install the
+					<a href="../references/examples/exampleOverview.html">Library Metamodel</a>
+					example which provides a generated editor and the
+					<a href="/help/topic/org.eclipse.emf.validation.doc/references/examples/validationExample.html">Validation</a>
+					example which provides menu actions for batch and live validation.
+				</li>
+				<li><a href="../reference/extension-points/org_eclipse_emf_validation_constraintProviders.html"><code>org.eclipse.emf.validation.constraintProviders</code></a> extension point.</li>
+				<li><a href="../reference/extension-points/org_eclipse_emf_validation_constraintParsers.html"><code>org.eclipse.emf.validation.constraintParsers</code></a> extension point.</li>
+				<li><a target="_blank" href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14">OCL 2.0</a> specification.</li>
+			</ul>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="batch">Specifying a Batch Mode OCL Constraint</a></h2>
+		<p>
+			Our batch constraint will assert that a <code>Writer</code> in the Library
+			example metamodel must not write books in more than two genres
+			(<code>BookCategory</code>).
+		</p>
+		<p>
+			We start with the extension declaration and definition of a category for our
+			constraints:
+<pre class="codeblock">
+&lt;extension
+      point="org.eclipse.emf.validation.constraintProviders"&gt;
+   &lt;category
+         name="%category.name"
+         id="emf-validation-example/ocl"&gt;
+      %category.description
+   &lt;/category&gt;
+</pre>
+		</p>
+		<p>
+			The category name and description are localized in the
+			plugin.properties file:
+<pre class="snippet">
+category.name = Example OCL Constraints
+category.description = Category for example OCL constraints illustrating the use \
+     of Object Constraint Language in validation.
+</pre>
+		</p>
+		<p>
+			Next, we indicate the
+			<code><a href="/help/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/ecore/EPackage.html">EPackage</a></code>(s)
+			for which we are providing
+			constraints, by referencing one or more namespace URIs.  We opt to cache
+			constraints for performance, which is usually recommended for constraints
+			declared statically in XML.  The <code>&lt;constraints&gt;</code> element
+			groups related constraints that belong to the same categories.  In this case,
+			we have only one category for both of our constraints:
+<pre class="codeblock">
+   &lt;constraintProvider cache="true"&gt;
+      &lt;package namespaceUri="http:///org/eclipse/emf/metamodel/example/pde/library.ecore/1.0.0"/&gt;
+      
+      &lt;constraints categories="emf-validation-example/ocl"&gt;
+</pre>
+		</p>
+		<p>
+			Inside of the <code>&lt;constraints&gt;</code> element, we declare a constraint
+			with the following meta-data:
+			<ul>
+				<li>
+					a unique ID.  If it does not already begin with the plug-in ID,
+					the framework prepends the plug-in ID to it to make it unique.
+				</li>
+				<li>
+					an evaluation mode, either "Batch" or "Live".
+				</li>
+				<li>
+					a severity, either "ERROR", "WARNING", or "INFO".
+				</li>
+				<li>
+					a language, in this case "OCL".
+				</li>
+				<li>
+					a status code (which is used for the message in the workspace .log file).
+					It needs not be unique.
+				</li>
+				<li>
+					a localized name and description, for display in the enablement UI
+					in the preference pages.
+				</li>
+				<li>
+					a localized message to display when the constraint is violated.
+				</li>
+				<li>
+					the name(s) of the <code>EClass</code>(es) to which the constraint
+					applies.
+				</li>
+			</ul>
+		</p>
+		<p>
+			The body of the <code>&lt;constraints&gt;</code> element contains the
+			OCL constraint expression.
+		</p>
+		<p class="note">
+			<b>Note:</b> The OCL constraint text does not include the package declaration,
+			context declaration, or "inv:" invariant indicator.
+		</p>
+		<p>
+			CDATA sections are convenient for escaping the arrow (<code>-&gt;</code>) and
+			comparison operators:
+<pre class="codeblock">
+   &lt;constraint
+         lang="OCL"
+         severity="WARNING"
+         mode="Batch"
+         name="%example1.name"
+         id="example1"
+         statusCode="101"&gt;
+      &lt;description&gt;%example1.desc&lt;/description&gt;
+      &lt;message&gt;%example1.msg&lt;/message&gt;
+      &lt;target class="Writer"/&gt;
+      
+      &lt;![CDATA[
+         self.books-&gt;collect(b : Book | b.category)-&gt;asSet()-&gt;size() &lt;= 2
+      ]]&gt;
+   &lt;/constraint&gt;
+</pre>
+		</p>
+		<p>
+			The localized strings in the plugin.properties file follow the usual pattern.
+			The one exception is the message string, which for OCL constraints can specify
+			the <code>{0}</code> placeholder one or more times to be replaced by the label
+			for the element that was validated (see the
+			<code><a href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/MessageFormat.html">MessageFormat</a></code>
+			API for details).  Usually, the label will look something like
+			"Writer Isaac Asimov"; this can be customized via the
+			<code><a href="/help/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/edit/provider/IItemLabelProvider.html">IItemLabelProvider</a></code>
+			adapter mechanism in the EMF.Edit framework:
+<pre class="codeblock">
+example1.name = Example OCL Constraint (Batch Mode)
+example1.desc = Example of a batch mode (user-requested) validation constraint in OCL.
+example1.msg = "{0}" has written books in too many genres.
+</pre>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="live">Specifying a Live Mode OCL Constraint</a></h2>
+		<p>
+			Creating a live-mode constraint is very similar; the main differences are that
+			<ul>
+				<li>the value of the <code>mode</code> attribute is "Live"</li>
+				<li>
+					the target definition optionally includes specific features and events
+					on which the constraint is triggered.  In this case, the constraint fires
+					when a <code>Book</code>'s <code>author</code> reference is
+					<code><a href="/help/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/common/notify/Notification.html#SET">Set</a></code>.
+				</li>
+			</ul>
+		</p>
+		<p>
+			The following constraint asserts that a <code>Book</code>'s reference to its
+			<code>author</code> must not be <code>null</code>.  Because it is a live mode
+			constraint, it is triggered by an editor in response to
+			<code><a href="/help/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/common/notify/Notification.html">Notification</a></code>s
+			of changes to books' author references.  Add this into the same
+			<code>&lt;constraints&gt;</code> element as the previous constraint:
+<pre class="codeblock">
+   &lt;constraint
+         lang="OCL"
+         severity="ERROR"
+         mode="Live"
+         name="%example2.name"
+         id="example2"
+         statusCode="102"&gt;
+      &lt;description&gt;%example2.desc&lt;/description&gt;
+      &lt;message&gt;%example2.msg&lt;/message&gt;
+      &lt;target class="Book"&gt;
+         &lt;event name="Set"&gt;
+            &lt;feature name="author"/&gt;
+         &lt;/event&gt;
+      &lt;/target&gt;
+      
+      not author.oclIsUndefined()
+   &lt;/constraint&gt;
+</pre>
+		</p>
+		<p>
+			And, of course, the localized strings:
+<pre class="codeblock">
+example2.name = Example OCL Constraint (Live Mode)
+example2.desc = Example of a live mode (automatic) validation constraint in OCL.
+example2.msg = "{0}" must have an author.
+</pre>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="eval">Evaluating the OCL Constraints</a></h2>
+		<p>
+			To see these two new constraints in action, we must create an environment in
+			which they can be triggered by the validation framework.  One such environment
+			is the <a href="/help/topic/org.eclipse.emf.validation.doc/references/examples/validationExample.html">core validation example</a>.
+			This example installs the Library Editor with menu actions for batch and
+			live validation.  It provides other constraints, but will also include the
+			constraints that we added in this tutorial.  Try creating writers with diverse
+			interests and unattributed books to see!
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="summary">Summary</a></h2>
+		<p>
+			To illustrate how to implement constraints in the EMF Validation Framework
+			using OCL, we
+			<ol>
+				<li>Created a batch mode OCL constraint.</li>
+				<li>Created a live mode OCL constraint.</li>
+				<li>Evaluated these constraints on model elements using the core validation example in the Library Editor.</li>
+			</ol>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<hr/>
+
+		<p>
+			<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000,2005 IBM Corporation and others. All Rights Reserved.</a>
+		</p>
+	</body>
+</html>

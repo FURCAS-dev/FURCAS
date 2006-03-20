@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="OCL Table of Contents">
+<toc label="EMFT OCL Documentation">
+	<anchor id="overviews-before" />
+	<topic label="Overviews">
+		<topic label="OCL Overview" href="references/overview/OCLOverview.html" />
+	</topic>
+	<anchor id="overviews-after" />
+
+	<anchor id="tutorial-before" />
+	<topic label="Tutorials">	
+		<topic label="OCL Interpreter Tutorial" href="tutorials/oclInterpreterTutorial.html" />
+	</topic>
+	<anchor id="tutorial-after" />
+
+	<anchor id="example-guide-before" />
+	<topic label="Examples Guide">	
+		<topic label="OCL Interpreter Example" href="references/examples/oclInterpreterExample.html" />	
+	</topic>
+	<anchor id="example-guide-after" />
+
 	<topic label="Javadoc" href="references/javadoc/index.html"/>
 </toc>
