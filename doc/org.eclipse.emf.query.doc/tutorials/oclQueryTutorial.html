@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="Stylesheet" type="text/css" href="../doc.css" />
+		<title>Tutorial: Querying EMF Models with OCL</title>
+	</head>
+	<body>
+		<h1><a name="top">Tutorial: Querying EMF Models with OCL</a></h1>
+
+		<h2>Contents</h2>
+		<ul>
+			<li><a href="#overview">Overview</a></li>
+			<li><a href="#refs">References</a></li>
+			<li><a href="#basic">Querying a Model with an OCL Condition</a></li>
+			<li><a href="#contextfree">Using Context-Free OCL Conditions</a></li>
+			<li><a href="#advanced">Advanced Querying with the EMF Query Framework</a></li>
+			<li><a href="#summary">Summary</a></li>
+		</ul>
+
+		<h2><a name="overview">Overview</a></h2>
+		<p>
+			The EMF Query Framework provides support for specifying matching conditions
+			using Object Constraint Language (OCL) version 2.0.
+		</p>
+		<p>
+			This tutorial will illustrate a variety of ways to query models using OCL.
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="refs">References</a></h2>
+		<p>
+			This tutorial assumes that the reader is familiar with the Eclipse extension point
+			architecture.  There is an abundance of on-line help in Eclipse for those
+			unfamiliar with extension points.
+		</p>
+		<p>
+			To see the complete source code for the examples shown in this tutorial, install
+			the <a href="../references/examples/oclQueryExample.html">OCL Query Example</a>
+			plug-in into your workspace.
+		</p>
+		<p>
+			Other references:
+			<ul>
+				<li>
+					For an environment in which to test the queries that you will create
+					in this tutorial, install the
+					<a href="../references/examples/exampleOverview.html">Library Metamodel</a>
+					example.
+				</li>
+				<li><a href="queryTutorial.html">EMF Query Framework</a> tutorial.</li>
+				<li><a target="_blank" href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14">OCL 2.0</a> specification</li>
+			</ul>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="basic">Querying a Model with an OCL Condition</a></h2>
+		<p>
+			The simplest kind of query is one that searches for a single kind of model
+			element using a single OCL condition.  This OCL condition may be arbitrarily
+			complex, but is still a single expression.  This case is best handled using the
+			<code><a href="../reference/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
+			API for its convenience.
+		</p>
+		<p>
+			For example, to find writers that have written books in more than 2 categories:
+<pre class="codeblock">
+Resource myResource = ... // get the resource
+EObject root = (EObject) myResource.getContents().get(0);
+
+IOclQueryHelper helper = new OclQueryHelper();
+
+Set results = helper.executeQueryUsingOclFilter(
+	root,
+	LibraryPackage.eINSTANCE.getWriter(),
+	"self.books-&gt;collect(b : Book | b.category)-&gt;asSet()-&gt;size() &gt; 2",
+	new NullProgressMonitor());
+	
+// do something with the results
+selectInEditor(results);
+</pre>
+		</p>
+		<p>
+			In the snippet above, the <code>Writer</code> metaclass is declared as the
+			context type for the OCL condition; the context type is the type of the special
+			<code>self</code> variable.
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="contextfree">Using Context-Free OCL Conditions</a></h2>
+		<p>
+			The previous section illustrated an query that specifies an OCL condition with
+			a context type.  This is somewhat restrictive, in that only elements of one 
+			type (and its sub-types) can be retrieved by such a query.  But what if we want
+			to find instances of various metaclasses that are not related to a single common
+			ancestor metaclass but have similar features to query?  An example is the
+			<code>name</code> feature in the Library metamodel:  both the
+			<code>Library</code> and <code>Writer</code> metaclasses define a name, but
+			they have no common ancestor with the same feature.
+		</p>
+		<p>
+			The solution is these cases is a <i>context-free</i> OCL condition.  It allows
+			us to specify a condition which may be applicable to one or more context types,
+			and the query engine will take care of determining to which metaclasses is does
+			apply.  In effect, any metaclass on which the OCL expression will parse can be
+			selected by the query.
+		</p>
+		<p>
+			The following query will retrieve any library or writer whose name is 'Bob'.
+			This is probably unlikely to match a library, but we can try it anyway:
+<pre class="codeblock">
+Resource myResource = ... // get the resource
+EObject root = (EObject) myResource.getContents().get(0);
+
+IOclQueryHelper helper = new OclQueryHelper();
+
+Set results = helper.executeQueryUsingOclFilter(
+	root,
+	<b>null</b>,  // this indicates a context-free condition
+	"self.name = 'Bob'",
+	new NullProgressMonitor());
+	
+// do something with the results
+selectInEditor(results);
+</pre>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="advanced">Advanced Querying with the EMF Query Framework</a></h2>
+		<p>
+			Most real applications can expect to have more complex queries than we have
+			seen so far.  For example, how can we with one OCL condition expression find
+			all of the writers and books that have a specific name/title?
+			We could try a disjunction ("or") with type testing and casting:
+<pre class="codeblock">
+Set results = helper.executeQueryUsingOclFilter(
+	root,
+	<b>null</b>,  // this indicates a context-free condition
+	"(self.oclIsKindOf(Writer) and self.oclAsType(Writer).name = 'Bob')" +
+	    "or (self.oclIsKindOf(Book) and self.oclAsType(Book).title = 'Bob')",
+	new NullProgressMonitor());
+</pre>
+			but we find that this does not actually work.  We get a
+			<tt>"java.lang.IllegalArgumentException: Conformance Type Mismatch. No common
+			supertype: (Writer), (Book)"</tt> error in trying to parse this expression
+			against either the <code>Writer</code> or <code>Book</code> type, because OCL
+			knows that neither of these types can be cast to the other.
+		</p>
+		<p>
+			The solution is to break the query into two distinct OCL condition expressions.
+			Because the
+			<code><a href="../reference/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
+			API does not accept more than one condition, we use the more flexible (and
+			complex) EMF Query Framework.  We will construct a
+			<code><a href="../reference/javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a></code>
+			query with two
+			<code><a href="../reference/javadoc/org/eclipse/emf/query/ocl/conditions/OclConstraintCondition.html">OclConstraintCondition</a></code>s
+			in a disjunction:
+<pre class="codeblock">
+Resource myResource = ... // get the resource
+EObject root = (EObject) myResource.getContents().get(0);
+
+IEStructuralFeatureValueGetter getter = new EStructuralFeatureValueGetter();
+
+// create the two OCL conditions
+Condition cond1 = new OclConstraintCondition(
+    "self.name = 'Bob'",
+    LibraryPackage.eINSTANCE.getWriter(),
+    getter);
+Condition cond2 = new OclConstraintCondition(
+    "self.title = 'Bob'",
+    LibraryPackage.eINSTANCE.getBook(),
+    getter);
+
+// combine them into a SELECT query statement
+SELECT statement = new SELECT(
+    SELECT.UNBOUNDED, false,
+    new FROM(Collections.singleton(root)),
+    new WHERE(cond1.OR(cond2)),
+    new NullProgressMonitor());
+
+// execute the query
+IQueryResult results = statement.execute();
+	
+// do something with the results
+selectInEditor(results);
+</pre>
+		</p>
+		<p>
+			This gives us the result that we were looking for.  Using this query framework,
+			we can even mix OCL conditions with other kinds of conditions (implemented in
+			Java code).
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="summary">Summary</a></h2>
+		<p>
+			To illustrate how to query EMF models using OCL, we
+			<ol>
+				<li>Performed OCL queries on specific context metaclasses.</li>
+				<li>Performed context-free OCL queries.</li>
+				<li>Executed complex queries with multiple distinct OCL condition expressions using the EMF Query Framework.</li>
+			</ol>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<hr/>
+
+		<p>
+			<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000,2005 IBM Corporation and others. All Rights Reserved.</a>
+		</p>
+	</body>
+</html>

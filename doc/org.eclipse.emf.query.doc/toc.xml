@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="EMF Query Table of Contents">
+<toc label="EMFT Query Documentation">
+
+	<anchor id="overviews-before" />
+	<topic label="Overviews">
+		<topic label="Query Overview" href="references/overview/QueryOverview.html" />
+	</topic>
+	<anchor id="overviews-after" />
+
+	<anchor id="tutorial-before" />
+	<topic label="Tutorials">	
+		<topic label="Query Tutorial" href="tutorials/queryTutorial.html" />
+		<topic label="OCL Query Tutorial" href="tutorials/oclQueryTutorial.html" />
+	</topic>
+	<anchor id="tutorial-after" />
+
+	<anchor id="example-guide-before" />
+	<topic label="Examples Guide">			
+		<topic label="Query Example" href="references/examples/queryExample.html" />
+		<topic label="OCL Query Example" href="references/examples/oclQueryExample.html" />		
+	</topic>
+	<anchor id="example-guide-after" />
+
 	<topic label="Javadoc" href="references/javadoc/index.html"/>
 </toc>
