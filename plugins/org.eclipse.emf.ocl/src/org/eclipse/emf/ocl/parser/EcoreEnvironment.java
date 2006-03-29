@@ -912,6 +912,80 @@ public class EcoreEnvironment
 	 * @return the matching EPackage, or <code>null</code> if not found
 	 */
 	static public EPackage findPackage(List packageNames, EPackage.Registry registry) {
+		if (packageNames.isEmpty()) {
+			return null;
+		}
+		
+		String name = (String) packageNames.get(0);
+		for (Iterator iter = registry.values().iterator(); iter.hasNext();) {
+			Object next = iter.next();
+
+			if (next instanceof EPackage) {
+				EPackage ePackage = (EPackage) next;
+				
+				// only consider root-level packages when searching by name
+				if ((ePackage.getESuperPackage() == null)
+						&& name.equals(ePackage.getName())) {
+					
+					EPackage tentativeResult = findNestedPackage(
+							packageNames.subList(1, packageNames.size()),
+							ePackage);
+					
+					if (tentativeResult != null) {
+						return tentativeResult;
+					}
+				}
+			}
+		}
+
+		return findPackageByNSPrefix(packageNames, registry);
+	}
+
+	/**
+	 * Looks in the given package for a nested package with the specified relative
+	 * package name.
+	 * 
+	 * @param packageNames
+	 *            the relativ package name
+	 * @param package the starting package to look in
+	 * @return the matching EPackage, or <code>null</code> if not found
+	 */
+	private static EPackage findNestedPackage(List packageNames, EPackage superpackage) {
+		if (packageNames.isEmpty()) {
+			// stopping condition
+			return superpackage;
+		}
+		
+		String name = (String) packageNames.get(0);
+		
+		for (Iterator iter = superpackage.getESubpackages().iterator(); iter.hasNext();) {
+			EPackage next = (EPackage) iter.next();
+
+			if (name.equals(next.getName())) {
+				EPackage tentativeResult = findNestedPackage(
+						packageNames.subList(1, packageNames.size()),
+						next);
+				
+				if (tentativeResult != null) {
+					return tentativeResult;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Looks in the given registry for a package with the specified qualified
+	 * package name, matching the name against the namespace prefixes of the
+	 * packages in the registry.
+	 * 
+	 * @param packageNames
+	 *            the qualified package name
+	 * @param registry the EPackage.Registry to look in
+	 * @return the NSPrefix-matching EPackage, or <code>null</code> if not found
+	 */
+	private static EPackage findPackageByNSPrefix(List packageNames, EPackage.Registry registry) {
 
 		StringBuffer stringBuffer = new StringBuffer();
 		Iterator it = packageNames.iterator();

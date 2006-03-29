@@ -39,9 +39,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.BagType;
@@ -1170,6 +1173,62 @@ public class RegressionTest
 			
 			// every "second" must remove a different mapping
 			assertTrue(values.remove(tuple.eGet(second)));
+		}
+	}
+	
+	/**
+	 * Tests resolution of nested packages where the root package has a
+	 * namespace prefix that differs from the name (in particular, by being
+	 * some dot-separated root name).
+	 */
+	public void test_nestedPackages_129769() {
+		EPackage rootPackage = EcoreFactory.eINSTANCE.createEPackage();
+		rootPackage.setName("foo"); //$NON-NLS-1$
+		rootPackage.setNsPrefix("a.b.c.foo"); //$NON-NLS-1$
+		rootPackage.setNsURI("http:///foo.ecore"); //$NON-NLS-1$
+		
+		EClass a = EcoreFactory.eINSTANCE.createEClass();
+		a.setName("A"); //$NON-NLS-1$
+		rootPackage.getEClassifiers().add(a);
+		
+		EPackage nestedPackage = EcoreFactory.eINSTANCE.createEPackage();
+		nestedPackage.setName("bar"); //$NON-NLS-1$
+		nestedPackage.setNsPrefix("a.b.c.foo.bar"); //$NON-NLS-1$
+		nestedPackage.setNsURI("http:///foo/bar.ecore"); //$NON-NLS-1$
+		
+		rootPackage.getESubpackages().add(nestedPackage);
+		
+		EClass b = EcoreFactory.eINSTANCE.createEClass();
+		b.setName("B"); //$NON-NLS-1$
+		nestedPackage.getEClassifiers().add(b);
+		
+		EPackage.Registry reg = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+		reg.put(rootPackage.getNsURI(), rootPackage);
+		reg.put(nestedPackage.getNsURI(), nestedPackage);
+		EnvironmentFactory ef = new EcoreEnvironmentFactory(reg);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper(ef);
+		helper.setContext(b);
+		
+		try {
+			// look up by name
+			helper.createInvariant("not self.oclIsKindOf(foo::A)"); //$NON-NLS-1$
+			
+			// for compatibility, NS prefix also works
+			helper.createInvariant("not self.oclIsKindOf(a::b::c::foo::A)"); //$NON-NLS-1$
+		
+			helper.setContext(a);
+		
+			// look-up relative to context package
+			helper.createInvariant("not self.oclIsKindOf(bar::B)"); //$NON-NLS-1$
+			
+			// absolute look-up by name
+			helper.createInvariant("not self.oclIsKindOf(foo::bar::B)"); //$NON-NLS-1$
+			
+			// and by NS prefix
+			helper.createInvariant("not self.oclIsKindOf(a::b::c::foo::bar::B)"); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 }
