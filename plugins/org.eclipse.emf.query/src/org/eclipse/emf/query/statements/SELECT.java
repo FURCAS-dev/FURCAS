@@ -18,6 +18,7 @@
 package org.eclipse.emf.query.statements;
 
 import java.util.ConcurrentModificationException;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -162,4 +163,15 @@ public class SELECT
 		return where;
 	}
 
+	public final IQueryResult execute() {		
+		return super.execute();
+	}
+
+	public final Set getEObjects() {
+		return super.getEObjects();
+	}
+
+	public final IQueryResult resume(IProgressMonitor progressMon) {
+		return super.resume(progressMon);
+	}
 }
