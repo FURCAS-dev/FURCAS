@@ -17,24 +17,23 @@
 
 package org.eclipse.emf.ocl.expressions.util;
 
-import java.io.StringReader;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
-import org.eclipse.emf.ocl.expressions.internal.impl.ValidationVisitorImpl;
+import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.internal.OCLDebugOptions;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.parser.OCLLexer;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
+import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.uml.UMLPackage;
-
-import antlr.ANTLRException;
 
 /**
  * Static utilities for working with expressions.
@@ -88,7 +87,7 @@ public class ExpressionsUtil {
 	 * specified <code>operation</code>.  The implied classifier context is
 	 * the classifier that defines the operation.
 	 * 
-	 * @param operation the operation classifier
+	 * @param operation the operation context
 	 * @return the OCL environment
 	 * 
 	 * @see #createOperationContext(EClassifier, EOperation)
@@ -97,6 +96,42 @@ public class ExpressionsUtil {
 		return EnvironmentFactory.ECORE_INSTANCE.createOperationContext(
 			operation.getEContainingClass(),
 			operation);
+	}
+
+	/**
+	 * Creates an environment for OCL constraints in the context of the
+	 * specified <code>classifier</code> and <code>property</code>.
+	 * This is useful when defining constraints on the redefinition of a
+	 * property in the context of a classifier that inherits it (i.e.,
+	 * different from the classifier that defines the property).
+	 * 
+	 * @param classifier the context classifier
+	 * @param property the property context
+	 * @return the OCL environment
+	 * 
+	 * @see #createProper
+	 */
+	public static Environment createPropertyContext(EClassifier classifier,
+			EStructuralFeature property) {
+		return EnvironmentFactory.ECORE_INSTANCE.createPropertyContext(
+			classifier,
+			property);
+	}
+
+	/**
+	 * Creates an environment for OCL constraints in the context of the
+	 * specified <code>property</code>.  The implied classifier context is
+	 * the classifier that defines the property.
+	 * 
+	 * @param property the property context
+	 * @return the OCL environment
+	 * 
+	 * @see #createOperationContext(EClassifier, EOperation)
+	 */
+	public static Environment createPropertyContext(EStructuralFeature property) {
+		return EnvironmentFactory.ECORE_INSTANCE.createPropertyContext(
+			property.getEContainingClass(),
+			property);
 	}
 
 	/**
@@ -109,11 +144,11 @@ public class ExpressionsUtil {
 	 * 
 	 * @return the corresponding OCL expression
 	 * 
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createQuery(EClassifier context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		
 		Environment env = createClassifierContext(context);
 		
@@ -124,23 +159,23 @@ public class ExpressionsUtil {
 	 * Creates a query expression with an arbitrary result type in the
 	 * specified environment.
 	 * 
-	 * @param environment the OCL environment
+	 * @param env the OCL environment
 	 * @param expression the expression (without any <code>"inv:"</code> or
 	 *     similar preamble)
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
 	 * 
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createQuery(
 			Environment env,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		
 		OCLParser parser = createParser("inv:", expression); //$NON-NLS-1$
 		
-		Constraint constraint = parser.invOrDefCS(env);
+		Constraint constraint = parser.parseInvOrDefCS(env);
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -164,11 +199,11 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createInvariant(EClassifier context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		
 		Environment env = createClassifierContext(context);
 		
@@ -178,22 +213,22 @@ public class ExpressionsUtil {
 	/**
 	 * Creates an invariant constraint expression in the specified environment.
 	 * 
-	 * @param environment the OCL environment
+	 * @param env the OCL environment
 	 * @param expression the expression (without the <code>"inv:"</code>)
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
 	 * 
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createInvariant(
 			Environment env,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		
 		OCLParser parser = createParser("inv:", expression); //$NON-NLS-1$
 		
-		Constraint constraint = parser.invOrDefCS(env);
+		Constraint constraint = parser.parseInvOrDefCS(env);
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -213,11 +248,11 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createPrecondition(EOperation context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		return createPrecondition(
 			context.getEContainingClass(),
 			context,
@@ -234,12 +269,12 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createPrecondition(
 			EClassifier classifier, EOperation context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		Environment env = ExpressionsUtil.createOperationContext(
 			classifier, context);
 		
@@ -250,21 +285,21 @@ public class ExpressionsUtil {
 	 * Creates an operation precondition constraint expression in the
 	 * specified environment.
 	 * 
-	 * @param environment the OCL environment
+	 * @param env the OCL environment
 	 * @param expression the expression (without the <code>"pre:"</code>)
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
 	 * 
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createPrecondition(Environment env,
 			String expression, boolean validate)
-			throws ANTLRException {
+			throws ParserException {
 		
 		OCLParser parser = createParser("pre:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.prePostOrBodyDeclCS(
+		Constraint constraint = parser.parsePrePostOrBodyDeclCS(
 			env,
 			env.getContextOperation());
 		constraint.setInstanceVarName(SELF_NAME);
@@ -286,11 +321,11 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createPostcondition(EOperation context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		return createPostcondition(
 			context.getEContainingClass(),
 			context,
@@ -307,12 +342,12 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createPostcondition(
 			EClassifier classifier, EOperation context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		
 		Environment env = ExpressionsUtil.createOperationContext(
 			classifier, context);
@@ -324,21 +359,21 @@ public class ExpressionsUtil {
 	 * Creates an operation postcondition constraint expression in the
 	 * specified environment.
 	 * 
-	 * @param environment the OCL environment
+	 * @param env the OCL environment
 	 * @param expression the expression (without the <code>"post:"</code>)
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
 	 * 
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createPostcondition(Environment env,
 			String expression, boolean validate)
-			throws ANTLRException {
+			throws ParserException {
 		
 		OCLParser parser = createParser("post:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.prePostOrBodyDeclCS(
+		Constraint constraint = parser.parsePrePostOrBodyDeclCS(
 			env,
 			env.getContextOperation());
 		constraint.setInstanceVarName(SELF_NAME);
@@ -360,11 +395,11 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createBodyCondition(EOperation context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		return createBodyCondition(
 			context.getEContainingClass(),
 			context,
@@ -381,12 +416,12 @@ public class ExpressionsUtil {
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createBodyCondition(
 			EClassifier classifier, EOperation context,
-			String expression, boolean validate) throws ANTLRException {
+			String expression, boolean validate) throws ParserException {
 		Environment env = ExpressionsUtil.createOperationContext(
 			classifier, context);
 		
@@ -397,22 +432,21 @@ public class ExpressionsUtil {
 	 * Creates an operation body condition expression in the
 	 * specified environment.
 	 * 
-	 * @param environment the OCL environment
-	 * @param context the body condition's operation context
+	 * @param env the OCL environment
 	 * @param expression the expression (without the <code>"body:"</code>)
 	 * @param validate whether to validate the result or not
 	 * 
 	 * @return the corresponding OCL expression
 	 * 
-	 * @throws ANTLRException if the expression fails to parse
+	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
 	public static OCLExpression createBodyCondition(Environment env,
 			String expression, boolean validate)
-			throws ANTLRException {
+			throws ParserException {
 		
 		OCLParser parser = createParser("body:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.prePostOrBodyDeclCS(
+		Constraint constraint = parser.parsePrePostOrBodyDeclCS(
 			env,
 			env.getContextOperation());
 		constraint.setInstanceVarName(SELF_NAME);
@@ -425,6 +459,191 @@ public class ExpressionsUtil {
 		
 		return result;
 	}
+	
+	/**
+	 * Creates a property initial value expression.
+	 * 
+	 * @param context the property context
+	 * @param expression the expression (without the <code>"init:"</code>)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createInitialValueExpression(EStructuralFeature context,
+			String expression, boolean validate) throws ParserException {
+		return createInitialValueExpression(
+			context.getEContainingClass(),
+			context,
+			expression,
+			validate);
+	}
+	
+	/**
+	 * Creates an property initial value expression.
+	 * 
+	 * @param classifier the context classifier
+	 * @param context the property context
+	 * @param expression the expression (without the <code>"init:"</code>)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createInitialValueExpression(
+			EClassifier classifier, EStructuralFeature context,
+			String expression, boolean validate) throws ParserException {
+		Environment env = ExpressionsUtil.createPropertyContext(
+			classifier, context);
+		
+		return createInitialValueExpression(env, expression, validate);
+	}
+	
+	/**
+	 * Creates a property initial value expression in the
+	 * specified environment.
+	 * 
+	 * @param env the OCL property environment
+	 * @param expression the expression (without the <code>"init:"</code>)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * 
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createInitialValueExpression(Environment env,
+			String expression, boolean validate)
+			throws ParserException {
+		
+		OCLParser parser = createParser("init:", expression); //$NON-NLS-1$
+		Constraint constraint = parser.parseInitOrDerValueCS(
+			env,
+			env.getContextProperty());
+		constraint.setInstanceVarName(SELF_NAME);
+		
+		OCLExpression result = constraint.getBody();
+		
+		if (validate) {
+			constraint.accept(ValidationVisitorImpl.getInstance());
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Creates a property derived value expression.
+	 * 
+	 * @param context the property context
+	 * @param expression the expression (without the <code>"derive:"</code>)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createDerivedValueExpression(EStructuralFeature context,
+			String expression, boolean validate) throws ParserException {
+		return createDerivedValueExpression(
+			context.getEContainingClass(),
+			context,
+			expression,
+			validate);
+	}
+	
+	/**
+	 * Creates an property derived value expression.
+	 * 
+	 * @param classifier the context classifier
+	 * @param context the property context
+	 * @param expression the expression (without the <code>"derive:"</code>)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createDerivedValueExpression(
+			EClassifier classifier, EStructuralFeature context,
+			String expression, boolean validate) throws ParserException {
+		Environment env = ExpressionsUtil.createPropertyContext(
+			classifier, context);
+		
+		return createDerivedValueExpression(env, expression, validate);
+	}
+	
+	/**
+	 * Creates a property derived value expression in the
+	 * specified environment.
+	 * 
+	 * @param env the OCL property environment
+	 * @param expression the expression (without the <code>"derive:"</code>)
+	 * @param validate whether to validate the result or not
+	 * 
+	 * @return the corresponding OCL expression
+	 * 
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static OCLExpression createDerivedValueExpression(Environment env,
+			String expression, boolean validate)
+			throws ParserException {
+		
+		OCLParser parser = createParser("derive:", expression); //$NON-NLS-1$
+		Constraint constraint = parser.parseInitOrDerValueCS(
+			env,
+			env.getContextProperty());
+		constraint.setInstanceVarName(SELF_NAME);
+		
+		OCLExpression result = constraint.getBody();
+		
+		if (validate) {
+			constraint.accept(ValidationVisitorImpl.getInstance());
+		}
+		
+		return result;
+	}
+
+	/**
+	 * Defines a property or an operation of the specified signature.
+	 * 
+	 * @param context the classifier context to own the new property or operation
+	 * @param expression the expression (without the <code>"def:"</code>
+	 *     preamble but including the <code>"name(...) : type ="</code> part)
+	 * 
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static void define(EClassifier context, String expression) throws ParserException {
+		
+		Environment env = createClassifierContext(context);
+		
+		define(env, expression);
+	}
+	
+	/**
+	 * Defines a property or operation of the specified signature.
+	 * 
+	 * @param environment the OCL classifier environment
+	 * @param defExpression the definition expression (without the <code>"def:"</code>
+	 *     preamble but including the <code>"name(...) : type ="</code> part)
+	 * 
+	 * @throws ParserException if the expression fails to parse
+	 * @throws IllegalArgumentException if the expression fails to validate
+	 */
+	public static void define(
+			Environment env,
+			String defExpression) throws ParserException {
+		
+		OCLParser parser = createParser("def:", env.getFactory(), defExpression); //$NON-NLS-1$
+		
+		Constraint constraint = parser.parseInvOrDefCS(env);
+		constraint.setInstanceVarName(SELF_NAME);
+		
+		constraint.accept(ValidationVisitorImpl.getInstance());
+	}
 
 	/**
 	 * Initializes a parser on the specified <code>text</code>.
@@ -436,19 +655,35 @@ public class ExpressionsUtil {
 	 * @return the parser
 	 */
 	private static OCLParser createParser(String prefix, String text) {
-		OCLLexer lexer = new OCLLexer(new StringReader(prefix + '\n' + text));
+		return createParser(prefix, EcoreEnvironmentFactory.ECORE_INSTANCE, text);
+	}
+
+	/**
+	 * Initializes a parser on the specified <code>text</code> and environment
+	 * factory.
+	 * 
+	 * @param prefix the constraint prefix (e.g., <code>"inv:"</code> or
+	 *     <code>"pre:"</code>).  The prefix must not contain newlines
+	 * @param environmentFactory the parser's environment factory
+	 * @param text the OCL constraint text
+	 * 
+	 * @return the parser
+	 */
+	private static OCLParser createParser(String prefix,
+			EnvironmentFactory environmentFactory, String text) {
 		
-		// we prefix the constraint with "inv:", "pre:", etc. which the
+		OCLLexer lexer = new OCLLexer((prefix + '\n' + text).toCharArray());
+		OCLParser result = new OCLParser(lexer, environmentFactory);
+		
+		// we prefix the constraint with "inv:", "pre:", "def:", etc. which the
 		//    user cannot see, so we want error resporting to be relative
 		//    to line 0, not line 1
-		lexer.setLine(0);
+		result.setErrorReportLineOffset(-1);
 		
-		// also offset the character position by the length of the extra text
-		lexer.setCharacterCount(-(prefix.length() + 1)); // one for the newline
+		// offset the character position by the length of the extra text
+		result.setCharacterOffset(-(prefix.length() + 1)); // one for the newline
 		
-		OCLParser result = new OCLParser(lexer);
-		result.setTraceFlag(OCLPlugin.shouldTrace(
-			OCLDebugOptions.DEBUG));
+		result.setTraceFlag(OCLPlugin.shouldTrace(OCLDebugOptions.DEBUG));
 		
 		return result;
 	}

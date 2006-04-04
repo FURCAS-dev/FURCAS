@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDebugOptions.java,v 1.1 2006/02/13 16:11:58 cdamus Exp $
+ * $Id: OCLDebugOptions.java,v 1.2 2006/04/04 18:07:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal;

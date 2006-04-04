@@ -49,7 +49,7 @@ public interface LetExp extends OCLExpression {
 	/**
 	 * @model containment="true"
 	 */
-	public VariableDeclaration getVariable();
+	public Variable getVariable();
 	
 
 	/**
@@ -60,6 +60,6 @@ public interface LetExp extends OCLExpression {
 	 * @see #getVariable()
 	 * @generated
 	 */
-	void setVariable(VariableDeclaration value);
+	void setVariable(Variable value);
 
 }

@@ -33,12 +33,15 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EvalEnvironment implements EvaluationEnvironment {
 
-    private static final String BINDING_MESSAGE = OCLMessages.BindingExist_ERROR_;
-
-    private final Map map;
+    private final Map map = new HashMap();
+    private final EvaluationEnvironment parent;
 
     public EvalEnvironment() {
-        this.map = new HashMap();
+        this(null);
+    }
+    
+    public EvalEnvironment(EvaluationEnvironment parent) {
+    	this.parent = parent;
     }
 
     /**
@@ -74,7 +77,7 @@ public class EvalEnvironment implements EvaluationEnvironment {
      */
     public void add(String name, Object value) {
         if (map.containsKey(name)) {
-            String message = NLS.bind(BINDING_MESSAGE,
+            String message = NLS.bind(OCLMessages.BindingExist_ERROR_,
                     new Object[] { name, map.get(name) });
             throw new IllegalArgumentException(message);
         }
@@ -114,7 +117,7 @@ public class EvalEnvironment implements EvaluationEnvironment {
      * to add operations not defined by either OCL or the metamodel.
      */
     public boolean canEvaluate(EOperation operation, int opcode) {
-    	return false;
+    	return (parent != null)? parent.canEvaluate(operation, opcode) : false;
     }
     
     /**
@@ -124,6 +127,10 @@ public class EvalEnvironment implements EvaluationEnvironment {
      */
     public Object evaluate(EOperation operation, int opcode, Object target, Object[] args)
     		throws UnsupportedOperationException {
+    	if (parent != null) {
+    		return parent.evaluate(operation, opcode, target, args);
+    	}
+    	
     	throw new UnsupportedOperationException();
     }
 }

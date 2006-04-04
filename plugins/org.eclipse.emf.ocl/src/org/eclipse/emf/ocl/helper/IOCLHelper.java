@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.4 2006/03/01 17:15:48 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.5 2006/04/04 18:07:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 
@@ -90,9 +91,31 @@ public interface IOCLHelper {
 	 * an operation context.
 	 * 
 	 * @return my context operation, or <code>null</code> if there is only a
-	 *     classifier context
+	 *     classifier or property context
 	 */
 	public EOperation getContextOperation();
+	
+	/**
+	 * Sets the context of the OCL expression for which syntax or parsing help is
+	 * to be provided.  The property is the model element against which
+	 * the OCL will be parsed as an property available in an OCL classifier;
+	 * this model element must be able to be represented as an OCL property.
+	 *
+	 * @param context the OCL context object
+	 * @param property the OCL context property
+	 * 
+	 * @see #setContext(Object)
+	 */
+	public void setContextProperty(Object context, Object property);
+
+	/**
+	 * Obtains my context operation as an EMF property, if my environment is
+	 * a property context.
+	 * 
+	 * @return my context property, or <code>null</code> if there is only a
+	 *     classifier or operation context
+	 */
+	public EStructuralFeature getContextProperty();
 
 	/**
 	 * Obtains syntax completion choices for the specified fragment of an OCL
@@ -198,6 +221,57 @@ public interface IOCLHelper {
 	 * @see #setContextOperation(Object, Object)
 	 */
 	OCLExpression createBodyCondition(String expression) throws OCLParsingException;
+
+	/**
+	 * Creates a property initial value expression.  This is appropriate only
+	 * if my context is a property.
+	 * 
+	 * @param expression the initial value expression (without any context
+	 *    declaration).  This must conform to my context property type
+	 * 
+	 * @return the initial value expression
+	 * 
+	 * @throws OCLParsingException if the <code>expression</code> fails to parse
+	 *    or is not valid for my context property
+	 * 
+	 * @see #setContextProperty(Object, Object)
+	 */
+	OCLExpression createInitialValueExpression(String expression) throws OCLParsingException;
+
+	/**
+	 * Creates a property derived value expression.  This is appropriate only
+	 * if my context is a property.
+	 * 
+	 * @param expression the derived value expression (without any context
+	 *    declaration).  This must conform to my context property type
+	 * 
+	 * @return the derived value expression
+	 * 
+	 * @throws OCLParsingException if the <code>expression</code> fails to parse
+	 *    or is not valid for my context property
+	 * 
+	 * @see #setContextProperty(Object, Object)
+	 */
+	OCLExpression createDerivedValueExpression(String expression) throws OCLParsingException;
+
+	/**
+	 * Defines an additional property or operation in the context classifier,
+	 * for use in formulating OCL queries and constraints.  This is a
+	 * "def expression", taking the form of either:
+	 * <blockquote><pre>
+	 *     <i>operation-name</i>(<i>parameters?</i>) : <i>type</i> = <i>expr</i>
+	 * </pre></blockquote>
+	 * or
+	 * <blockquote><pre>
+	 *     <i>property-name</i> : <i>type</i> = <i>expr</i>
+	 * </pre></blockquote>
+	 * 
+	 * @param defExpression the definition expression (without any other context
+	 *    declaration).
+	 * 
+	 * @throws OCLParsingException if the <code>expression</code> fails to parse
+	 */
+	void define(String defExpression) throws OCLParsingException;
 
 	/**
 	 * Evaluates the specified parsed OCL expression on an instance of my

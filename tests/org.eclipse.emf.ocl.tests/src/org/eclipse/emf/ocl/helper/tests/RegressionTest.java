@@ -46,28 +46,6 @@ public class RegressionTest
 	}
 	
 	/**
-	 * Tests that <tt>oclIsInState()</tt> is not offered as a completion because
-	 * we do not support it (yet).
-	 */
-	public void test_oclIsInState_unsupported_RATLC00529981() {
-		IOCLHelper helper = HelperUtil.createOCLHelper();
-
-		helper.setContext(fruit);
-		
-		try {
-			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
-			assertNotNull(choices);
-			
-			assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsInState"); //$NON-NLS-1$
-			
-			// we were actually supporting it under the wrong name
-			assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclInState"); //$NON-NLS-1$
-		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-	}
-	
-	/**
 	 * Regression test to check that we complete on the right-most
 	 * sub-expression to the left of the '.'.
 	 */

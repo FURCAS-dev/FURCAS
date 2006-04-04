@@ -31,8 +31,19 @@ public interface TupleLiteralExp extends LiteralExp {
 	String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * @model type="VariableDeclaration" lowerBound=0
+	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ocl.expressions.TupleLiteralPart}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Part</em>' containment reference list.
+	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getTupleLiteralExp_Part()
+	 * @model type="org.eclipse.emf.ocl.expressions.TupleLiteralPart" containment="true"
+	 * @generated
 	 */
-	public EList getTuplePart();
-	
+	EList getPart();
+
 }

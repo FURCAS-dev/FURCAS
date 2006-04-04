@@ -91,8 +91,7 @@ public class Choice {
 		if (result) {
 			Choice other = (Choice) obj;
 			
-			result = safeEquals(getName(), other.getName())
-				&& getKind() == other.getKind()
+			result = getKind() == other.getKind()
 				&& safeEquals(getName(), other.getName());
 		}
 		

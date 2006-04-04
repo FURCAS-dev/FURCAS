@@ -75,18 +75,10 @@ public class HelperUtil {
 	static final String DOT = "."; //$NON-NLS-1$    
 
 	static final String ARROW = "->"; //$NON-NLS-1$
-
-	static final String VOID = " : void"; //$NON-NLS-1$
-
-	static final String OPEN_PARENTHESE = "("; //$NON-NLS-1$
-
-	static final String CLOSE_PARENTHESE = ")"; //$NON-NLS-1$    
-
-	static final String SEPARATOR = " : "; //$NON-NLS-1$
-
-	static final String COMMA = ", "; //$NON-NLS-1$
-
-	static final String SPACE = " "; //$NON-NLS-1$
+	
+	static final String CARET = "^"; //$NON-NLS-1$
+	
+	static final String DOUBLE_CARET = "^^"; //$NON-NLS-1$
 
 	static final String EMPTY = ""; //$NON-NLS-1$
 

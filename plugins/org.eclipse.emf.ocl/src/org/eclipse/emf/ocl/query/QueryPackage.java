@@ -60,7 +60,7 @@ public interface QueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/OCL2/7.0.0/ocl/query"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/OCL2/1.0.0/ocl/query"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -76,14 +76,14 @@ public interface QueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QueryPackage eINSTANCE = org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl.init();
+	QueryPackage eINSTANCE = org.eclipse.emf.ocl.query.impl.QueryPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.query.internal.impl.QueryImpl <em>Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.query.impl.QueryImpl <em>Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.query.internal.impl.QueryImpl
-	 * @see org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl#getQuery()
+	 * @see org.eclipse.emf.ocl.query.impl.QueryImpl
+	 * @see org.eclipse.emf.ocl.query.impl.QueryPackageImpl#getQuery()
 	 * @generated
 	 */
 	int QUERY = 0;
@@ -120,7 +120,7 @@ public interface QueryPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.util.List
-	 * @see org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl#getList()
+	 * @see org.eclipse.emf.ocl.query.impl.QueryPackageImpl#getList()
 	 * @generated
 	 */
 	int LIST = 1;
@@ -192,11 +192,11 @@ public interface QueryPackage extends EPackage {
 	 */
 	interface Literals  {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.ocl.query.internal.impl.QueryImpl <em>Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.ocl.query.impl.QueryImpl <em>Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.ocl.query.internal.impl.QueryImpl
-		 * @see org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl#getQuery()
+		 * @see org.eclipse.emf.ocl.query.impl.QueryImpl
+		 * @see org.eclipse.emf.ocl.query.impl.QueryPackageImpl#getQuery()
 		 * @generated
 		 */
 		EClass QUERY = eINSTANCE.getQuery();
@@ -222,7 +222,7 @@ public interface QueryPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.util.List
-		 * @see org.eclipse.emf.ocl.query.internal.impl.QueryPackageImpl#getList()
+		 * @see org.eclipse.emf.ocl.query.impl.QueryPackageImpl#getList()
 		 * @generated
 		 */
 		EDataType LIST = eINSTANCE.getList();

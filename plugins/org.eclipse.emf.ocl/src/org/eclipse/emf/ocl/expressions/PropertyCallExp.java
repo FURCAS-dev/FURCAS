@@ -17,15 +17,12 @@
 
 package org.eclipse.emf.ocl.expressions;
 
-import org.eclipse.emf.ocl.internal.utilities.CallingASTNode;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * @author Edith Schonberg (edith)
  */
-/**
- * @model abstract="true"
- */
-public interface PropertyCallExp extends OCLExpression, CallingASTNode {
+public interface PropertyCallExp extends NavigationCallExp {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,17 +31,29 @@ public interface PropertyCallExp extends OCLExpression, CallingASTNode {
 	String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * @model opposite="appliedProperty" lowerBound=0 upperBound=1 
-	 */
-	public OCLExpression getSource();
-	/**
-	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.PropertyCallExp#getSource <em>Source</em>}' containment reference.
+	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Property</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
-	 * @see #getSource()
+	 * @return the value of the '<em>Referred Property</em>' reference.
+	 * @see #setReferredProperty(EStructuralFeature)
+	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getPropertyCallExp_ReferredProperty()
+	 * @model
 	 * @generated
 	 */
-	void setSource(OCLExpression value);
+	EStructuralFeature getReferredProperty();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.PropertyCallExp#getReferredProperty <em>Referred Property</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Property</em>' reference.
+	 * @see #getReferredProperty()
+	 * @generated
+	 */
+	void setReferredProperty(EStructuralFeature value);
 
 }

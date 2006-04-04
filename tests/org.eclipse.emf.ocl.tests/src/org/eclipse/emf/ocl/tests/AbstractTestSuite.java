@@ -17,7 +17,6 @@
 
 package org.eclipse.emf.ocl.tests;
 
-import java.io.StringReader;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
@@ -42,20 +41,19 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.osgi.framework.Bundle;
-
-import antlr.ANTLRException;
-
 import org.eclipse.emf.ocl.expressions.OCLExpression;
-import org.eclipse.emf.ocl.expressions.internal.impl.ValidationVisitorImpl;
+import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
+import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.helper.Choice;
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.internal.parser.OCLLexer;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
-import org.eclipse.emf.ocl.internal.utilities.Visitable;
+import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.uml.Constraint;
+import org.eclipse.emf.ocl.utilities.Visitable;
+import org.osgi.framework.Bundle;
 
 
 /**
@@ -120,12 +118,19 @@ public abstract class AbstractTestSuite
 		TestSuite result = new TestSuite("OCL Parsing Tests"); //$NON-NLS-1$
 		
 		result.addTest(BasicOCLTest.suite());
+		result.addTest(ComparisonTest.suite());
 		result.addTest(CollectionsTest.suite());
+		result.addTest(IteratorsTest.suite());
+		result.addTest(TuplesTest.suite());
+		result.addTest(StatesTest.suite());
+		result.addTest(MessagesTest.suite());
 		result.addTest(InvariantConstraintsTest.suite());
 		result.addTest(OperationConstraintsTest.suite());
 		result.addTest(ExpressionsUtilTest.suite());
 		result.addTest(LocationInformationTest.suite());
 		result.addTest(AssociationTest.suite());
+		result.addTest(DefExpressionTest.suite());
+		result.addTest(InitOrDerExpressionTest.suite());
 		result.addTest(org.eclipse.emf.ocl.helper.tests.AbstractTestSuite.suite());
 		result.addTest(RegressionTest.suite());
 		result.addTest(QueryFactoryTest.suite());
@@ -170,10 +175,10 @@ public abstract class AbstractTestSuite
 	 * Parses the specified <code>text</code> without validating it.
 	 * 
 	 * @param text the OCL text
-	 * @return the OCL expression, invalidated
+	 * @return the OCL expression, unvalidated
 	 */
 	protected OCLExpression parseUnvalidated(String text) {
-		OCLLexer lexer = new OCLLexer(new StringReader(text));
+		OCLLexer lexer = new OCLLexer(text.toCharArray());
 		OCLParser parser = new OCLParser(lexer);
 		parser.setTraceFlag(true);
 		
@@ -181,9 +186,9 @@ public abstract class AbstractTestSuite
 		Constraint constraint = null;
 		
 		try {
-			parser.packageDeclarationCS(constraints);
+			parser.parsePackageDeclarationCS(constraints);
 			constraint = (Constraint) constraints.get(0);
-		} catch (ANTLRException e) {
+		} catch (ParserException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		} catch (IllegalArgumentException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -242,7 +247,7 @@ public abstract class AbstractTestSuite
 	 * @return the OCL constraint expression, unvalidated
 	 */
 	protected OCLExpression parseConstraintUnvalidated(String text) {
-		OCLLexer lexer = new OCLLexer(new StringReader(text));
+		OCLLexer lexer = new OCLLexer(text.toCharArray());
 		OCLParser parser = new OCLParser(lexer);
 		parser.setTraceFlag(true);
 		
@@ -250,9 +255,9 @@ public abstract class AbstractTestSuite
 		Constraint constraint = null;
 		
 		try {
-			parser.packageDeclarationCS(constraints);
+			parser.parsePackageDeclarationCS(constraints);
 			constraint = (Constraint) constraints.get(0);
-		} catch (ANTLRException e) {
+		} catch (ParserException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		} catch (IllegalArgumentException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -290,6 +295,36 @@ public abstract class AbstractTestSuite
 		return result;
 	}
 	
+	protected boolean check(String contextFreeExpression) {
+		boolean result = false;
+		
+		try {
+			OCLExpression expr = ExpressionsUtil.createInvariant(
+					EcorePackage.Literals.ESTRING, contextFreeExpression, true);
+			
+			result = QueryFactory.eINSTANCE.createQuery(expr).check(""); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Validation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		return result;
+	}
+	
+	protected Object evaluate(String contextFreeExpression) {
+		Object result = null;
+		
+		try {
+			OCLExpression expr = ExpressionsUtil.createInvariant(
+					EcorePackage.Literals.ESTRING, contextFreeExpression, true);
+			
+			result = QueryFactory.eINSTANCE.createQuery(expr).evaluate(""); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Validation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		return result;
+	}
+	
 	protected boolean check(OCLExpression expr, Object self) {
 		boolean result = false;
 		
@@ -298,6 +333,42 @@ public abstract class AbstractTestSuite
 		} catch (RuntimeException e) {
 			fail("Validation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
+		
+		return result;
+	}
+	
+	/**
+	 * Parses the specified <code>text</code> as a def expression.  This differs
+	 * from the {@link #parse} method in not separating the expression from its
+	 * constraint, which is critically important to the structure of the defined
+	 * feature.
+	 * 
+	 * @param text the OCL text
+	 * @return the OCL def expression
+	 */
+	protected OCLExpression parseDef(String text) {
+		OCLLexer lexer = new OCLLexer(text.toCharArray());
+		OCLParser parser = new OCLParser(lexer);
+		parser.setTraceFlag(true);
+		
+		EList constraints = new BasicEList();
+		Constraint constraint = null;
+		
+		try {
+			parser.parsePackageDeclarationCS(constraints);
+			constraint = (Constraint) constraints.get(0);
+		} catch (ParserException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		} catch (IllegalArgumentException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		OCLExpression result = null;
+		result = constraint.getBody();
+		
+		validate(result);
+		
+		assertNotNull(result);
 		
 		return result;
 	}

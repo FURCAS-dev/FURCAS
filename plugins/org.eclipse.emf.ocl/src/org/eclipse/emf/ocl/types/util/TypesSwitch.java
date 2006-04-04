@@ -25,13 +25,12 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ocl.internal.utilities.ASTNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
+import org.eclipse.emf.ocl.types.ElementType;
+import org.eclipse.emf.ocl.types.InvalidType;
 import org.eclipse.emf.ocl.types.MessageType;
-import org.eclipse.emf.ocl.types.ModelElementType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.PrimitiveBoolean;
 import org.eclipse.emf.ocl.types.PrimitiveInteger;
@@ -41,8 +40,12 @@ import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.TupleType;
+import org.eclipse.emf.ocl.types.TypeType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.VoidType;
+import org.eclipse.emf.ocl.utilities.ASTNode;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
+import org.eclipse.emf.ocl.utilities.TypedASTNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,8 +131,8 @@ public class TypesSwitch {
 			case TypesPackage.ANY_TYPE: {
 				AnyType anyType = (AnyType)theEObject;
 				Object result = caseAnyType(anyType);
-				if (result == null) result = caseEDataType(anyType);
 				if (result == null) result = caseEClassifier(anyType);
+				if (result == null) result = casePredefinedType(anyType);
 				if (result == null) result = caseENamedElement(anyType);
 				if (result == null) result = caseEModelElement(anyType);
 				if (result == null) result = defaultCase(theEObject);
@@ -141,10 +144,11 @@ public class TypesSwitch {
 				if (result == null) result = caseCollectionType(bagType);
 				if (result == null) result = caseEDataType(bagType);
 				if (result == null) result = caseTypedASTNode(bagType);
-				if (result == null) result = caseEClassifier(bagType);
+				if (result == null) result = casePredefinedType(bagType);
+				if (result == null) result = caseEcore_EClassifier(bagType);
 				if (result == null) result = caseASTNode(bagType);
-				if (result == null) result = caseENamedElement(bagType);
-				if (result == null) result = caseEModelElement(bagType);
+				if (result == null) result = caseEcore_ENamedElement(bagType);
+				if (result == null) result = caseEcore_EModelElement(bagType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,10 +157,11 @@ public class TypesSwitch {
 				Object result = caseCollectionType(collectionType);
 				if (result == null) result = caseEDataType(collectionType);
 				if (result == null) result = caseTypedASTNode(collectionType);
-				if (result == null) result = caseEClassifier(collectionType);
+				if (result == null) result = casePredefinedType(collectionType);
+				if (result == null) result = caseEcore_EClassifier(collectionType);
 				if (result == null) result = caseASTNode(collectionType);
-				if (result == null) result = caseENamedElement(collectionType);
-				if (result == null) result = caseEModelElement(collectionType);
+				if (result == null) result = caseEcore_ENamedElement(collectionType);
+				if (result == null) result = caseEcore_EModelElement(collectionType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -166,10 +171,11 @@ public class TypesSwitch {
 				if (result == null) result = caseCollectionType(orderedSetType);
 				if (result == null) result = caseEDataType(orderedSetType);
 				if (result == null) result = caseTypedASTNode(orderedSetType);
-				if (result == null) result = caseEClassifier(orderedSetType);
+				if (result == null) result = casePredefinedType(orderedSetType);
+				if (result == null) result = caseEcore_EClassifier(orderedSetType);
 				if (result == null) result = caseASTNode(orderedSetType);
-				if (result == null) result = caseENamedElement(orderedSetType);
-				if (result == null) result = caseEModelElement(orderedSetType);
+				if (result == null) result = caseEcore_ENamedElement(orderedSetType);
+				if (result == null) result = caseEcore_EModelElement(orderedSetType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -177,8 +183,8 @@ public class TypesSwitch {
 				PrimitiveBoolean primitiveBoolean = (PrimitiveBoolean)theEObject;
 				Object result = casePrimitiveBoolean(primitiveBoolean);
 				if (result == null) result = casePrimitiveType(primitiveBoolean);
-				if (result == null) result = caseAnyType(primitiveBoolean);
-				if (result == null) result = caseEDataType(primitiveBoolean);
+				if (result == null) result = caseEcore_EDataType(primitiveBoolean);
+				if (result == null) result = casePredefinedType(primitiveBoolean);
 				if (result == null) result = caseEClassifier(primitiveBoolean);
 				if (result == null) result = caseENamedElement(primitiveBoolean);
 				if (result == null) result = caseEModelElement(primitiveBoolean);
@@ -190,8 +196,8 @@ public class TypesSwitch {
 				Object result = casePrimitiveInteger(primitiveInteger);
 				if (result == null) result = casePrimitiveReal(primitiveInteger);
 				if (result == null) result = casePrimitiveType(primitiveInteger);
-				if (result == null) result = caseAnyType(primitiveInteger);
-				if (result == null) result = caseEDataType(primitiveInteger);
+				if (result == null) result = caseEcore_EDataType(primitiveInteger);
+				if (result == null) result = casePredefinedType(primitiveInteger);
 				if (result == null) result = caseEClassifier(primitiveInteger);
 				if (result == null) result = caseENamedElement(primitiveInteger);
 				if (result == null) result = caseEModelElement(primitiveInteger);
@@ -202,8 +208,8 @@ public class TypesSwitch {
 				PrimitiveReal primitiveReal = (PrimitiveReal)theEObject;
 				Object result = casePrimitiveReal(primitiveReal);
 				if (result == null) result = casePrimitiveType(primitiveReal);
-				if (result == null) result = caseAnyType(primitiveReal);
-				if (result == null) result = caseEDataType(primitiveReal);
+				if (result == null) result = caseEcore_EDataType(primitiveReal);
+				if (result == null) result = casePredefinedType(primitiveReal);
 				if (result == null) result = caseEClassifier(primitiveReal);
 				if (result == null) result = caseENamedElement(primitiveReal);
 				if (result == null) result = caseEModelElement(primitiveReal);
@@ -214,8 +220,8 @@ public class TypesSwitch {
 				PrimitiveString primitiveString = (PrimitiveString)theEObject;
 				Object result = casePrimitiveString(primitiveString);
 				if (result == null) result = casePrimitiveType(primitiveString);
-				if (result == null) result = caseAnyType(primitiveString);
-				if (result == null) result = caseEDataType(primitiveString);
+				if (result == null) result = caseEcore_EDataType(primitiveString);
+				if (result == null) result = casePredefinedType(primitiveString);
 				if (result == null) result = caseEClassifier(primitiveString);
 				if (result == null) result = caseENamedElement(primitiveString);
 				if (result == null) result = caseEModelElement(primitiveString);
@@ -225,8 +231,8 @@ public class TypesSwitch {
 			case TypesPackage.PRIMITIVE_TYPE: {
 				PrimitiveType primitiveType = (PrimitiveType)theEObject;
 				Object result = casePrimitiveType(primitiveType);
-				if (result == null) result = caseAnyType(primitiveType);
-				if (result == null) result = caseEDataType(primitiveType);
+				if (result == null) result = caseEcore_EDataType(primitiveType);
+				if (result == null) result = casePredefinedType(primitiveType);
 				if (result == null) result = caseEClassifier(primitiveType);
 				if (result == null) result = caseENamedElement(primitiveType);
 				if (result == null) result = caseEModelElement(primitiveType);
@@ -239,10 +245,11 @@ public class TypesSwitch {
 				if (result == null) result = caseCollectionType(sequenceType);
 				if (result == null) result = caseEDataType(sequenceType);
 				if (result == null) result = caseTypedASTNode(sequenceType);
-				if (result == null) result = caseEClassifier(sequenceType);
+				if (result == null) result = casePredefinedType(sequenceType);
+				if (result == null) result = caseEcore_EClassifier(sequenceType);
 				if (result == null) result = caseASTNode(sequenceType);
-				if (result == null) result = caseENamedElement(sequenceType);
-				if (result == null) result = caseEModelElement(sequenceType);
+				if (result == null) result = caseEcore_ENamedElement(sequenceType);
+				if (result == null) result = caseEcore_EModelElement(sequenceType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -252,10 +259,11 @@ public class TypesSwitch {
 				if (result == null) result = caseCollectionType(setType);
 				if (result == null) result = caseEDataType(setType);
 				if (result == null) result = caseTypedASTNode(setType);
-				if (result == null) result = caseEClassifier(setType);
+				if (result == null) result = casePredefinedType(setType);
+				if (result == null) result = caseEcore_EClassifier(setType);
 				if (result == null) result = caseASTNode(setType);
-				if (result == null) result = caseENamedElement(setType);
-				if (result == null) result = caseEModelElement(setType);
+				if (result == null) result = caseEcore_ENamedElement(setType);
+				if (result == null) result = caseEcore_EModelElement(setType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -263,36 +271,60 @@ public class TypesSwitch {
 				TupleType tupleType = (TupleType)theEObject;
 				Object result = caseTupleType(tupleType);
 				if (result == null) result = caseEClass(tupleType);
-				if (result == null) result = caseEClassifier(tupleType);
-				if (result == null) result = caseENamedElement(tupleType);
-				if (result == null) result = caseEModelElement(tupleType);
+				if (result == null) result = caseEcore_EClassifier(tupleType);
+				if (result == null) result = caseEcore_ENamedElement(tupleType);
+				if (result == null) result = caseEcore_EModelElement(tupleType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TypesPackage.VOID_TYPE: {
 				VoidType voidType = (VoidType)theEObject;
 				Object result = caseVoidType(voidType);
-				if (result == null) result = caseEClassifier(voidType);
-				if (result == null) result = caseENamedElement(voidType);
-				if (result == null) result = caseEModelElement(voidType);
+				if (result == null) result = caseEcore_EClassifier(voidType);
+				if (result == null) result = casePredefinedType(voidType);
+				if (result == null) result = caseEcore_ENamedElement(voidType);
+				if (result == null) result = caseEcore_EModelElement(voidType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TypesPackage.MESSAGE_TYPE: {
 				MessageType messageType = (MessageType)theEObject;
 				Object result = caseMessageType(messageType);
+				if (result == null) result = caseEcore_EClass(messageType);
+				if (result == null) result = casePredefinedType(messageType);
 				if (result == null) result = caseEClassifier(messageType);
 				if (result == null) result = caseENamedElement(messageType);
 				if (result == null) result = caseEModelElement(messageType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TypesPackage.MODEL_ELEMENT_TYPE: {
-				ModelElementType modelElementType = (ModelElementType)theEObject;
-				Object result = caseModelElementType(modelElementType);
-				if (result == null) result = caseEClassifier(modelElementType);
-				if (result == null) result = caseENamedElement(modelElementType);
-				if (result == null) result = caseEModelElement(modelElementType);
+			case TypesPackage.ELEMENT_TYPE: {
+				ElementType elementType = (ElementType)theEObject;
+				Object result = caseElementType(elementType);
+				if (result == null) result = caseEClass(elementType);
+				if (result == null) result = caseEcore_EClassifier(elementType);
+				if (result == null) result = caseEcore_ENamedElement(elementType);
+				if (result == null) result = caseEcore_EModelElement(elementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TypesPackage.INVALID_TYPE: {
+				InvalidType invalidType = (InvalidType)theEObject;
+				Object result = caseInvalidType(invalidType);
+				if (result == null) result = caseEClassifier(invalidType);
+				if (result == null) result = casePredefinedType(invalidType);
+				if (result == null) result = caseENamedElement(invalidType);
+				if (result == null) result = caseEModelElement(invalidType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TypesPackage.TYPE_TYPE: {
+				TypeType typeType = (TypeType)theEObject;
+				Object result = caseTypeType(typeType);
+				if (result == null) result = caseEClassifier(typeType);
+				if (result == null) result = casePredefinedType(typeType);
+				if (result == null) result = caseENamedElement(typeType);
+				if (result == null) result = caseEModelElement(typeType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -421,17 +453,47 @@ public class TypesSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Model Element Type</em>'.
+	 * Returns the result of interpretting the object as an instance of '<em>Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Model Element Type</em>'.
+	 * @return the result of interpretting the object as an instance of '<em>Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseModelElementType(ModelElementType object) {
+	public Object caseElementType(ElementType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Invalid Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Invalid Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseInvalidType(InvalidType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Type Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Type Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseTypeType(TypeType object) {
 		return null;
 	}
 
@@ -571,6 +633,66 @@ public class TypesSwitch {
 	}
 
 	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Predefined Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Predefined Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object casePredefinedType(PredefinedType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEcore_EModelElement(EModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEcore_ENamedElement(ENamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>EClassifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>EClassifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEcore_EClassifier(EClassifier object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpretting the object as an instance of '<em>EData Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -616,6 +738,21 @@ public class TypesSwitch {
 	}
 
 	/**
+	 * Returns the result of interpretting the object as an instance of '<em>EData Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>EData Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEcore_EDataType(EDataType object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpretting the object as an instance of '<em>EClass</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -627,6 +764,21 @@ public class TypesSwitch {
 	 * @generated
 	 */
 	public Object caseEClass(EClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>EClass</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>EClass</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEcore_EClass(EClass object) {
 		return null;
 	}
 

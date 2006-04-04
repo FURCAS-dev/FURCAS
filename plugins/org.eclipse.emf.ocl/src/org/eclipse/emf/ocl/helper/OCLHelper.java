@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.3 2006/03/01 17:15:48 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.4 2006/04/04 18:07:24 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
@@ -93,12 +94,20 @@ class OCLHelper
 		environment = environmentFactory.createOperationContext(context, operation);
 	}
 	
+	public void setContextProperty(Object context, Object property) {
+		environment = environmentFactory.createPropertyContext(context, property);
+	}
+	
 	public EClassifier getContextClassifier() {
 		return environment.getContextClassifier();
 	}
 	
 	public EOperation getContextOperation() {
 		return environment.getContextOperation();
+	}
+	
+	public EStructuralFeature getContextProperty() {
+		return environment.getContextProperty();
 	}
 
 	/** @deprecated */
@@ -181,6 +190,46 @@ class OCLHelper
 		}
 		
 		return createNullCondition(Types.OCL_VOID);
+	}
+	
+	public OCLExpression createInitialValueExpression(String expression) throws OCLParsingException {
+		if (removeOCLComments(expression).length() > 0) {
+			// be sure to pass the original expression along to get the right
+			//    position information when parse fails
+			try {
+				return ExpressionsUtil.createInitialValueExpression(
+						environment, expression, true);
+			} catch (Exception e) {
+				propagate(e, "createInitialValueExpression"); //$NON-NLS-1$
+			}
+		}
+		
+		return createNullCondition(Types.OCL_VOID);
+	}
+	
+	public OCLExpression createDerivedValueExpression(String expression) throws OCLParsingException {
+		if (removeOCLComments(expression).length() > 0) {
+			// be sure to pass the original expression along to get the right
+			//    position information when parse fails
+			try {
+				return ExpressionsUtil.createDerivedValueExpression(
+						environment, expression, true);
+			} catch (Exception e) {
+				propagate(e, "createDerivedValueExpression"); //$NON-NLS-1$
+			}
+		}
+		
+		return createNullCondition(Types.OCL_VOID);
+	}
+	
+	public void define(String defExpression) throws OCLParsingException {
+		if (removeOCLComments(defExpression).length() > 0) {
+			try {
+				ExpressionsUtil.define(environment, defExpression);
+			} catch (Exception e) {
+				propagate(e, "define"); //$NON-NLS-1$
+			}
+		}
 	}
 	
 	public Object evaluate(Object context, OCLExpression expr) {

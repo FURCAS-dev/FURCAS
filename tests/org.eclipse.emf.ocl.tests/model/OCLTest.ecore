@@ -9,13 +9,25 @@
     </eOperations>
     <eOperations name="preferredColor" eType="#//Color"/>
     <eOperations name="newFruit" eType="#//Fruit"/>
+    <eOperations name="setColor">
+      <eParameters name="fruit" eType="#//Fruit"/>
+      <eParameters name="color" eType="#//Color"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Color"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relatedFruits" ordered="false"
+        upperBound="-1" eType="#//Fruit" changeable="false" volatile="true" transient="true"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Apple" eSuperTypes="#//Fruit">
     <eOperations name="label">
       <eParameters name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="newApple" eType="#//Apple"/>
+    <eOperations name="preferredLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stem" eType="#//Stem" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

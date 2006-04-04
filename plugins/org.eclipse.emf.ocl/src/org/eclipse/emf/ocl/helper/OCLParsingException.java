@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParsingException.java,v 1.1 2006/02/13 16:11:59 cdamus Exp $
+ * $Id: OCLParsingException.java,v 1.2 2006/04/04 18:07:24 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;

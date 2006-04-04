@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.4 2006/03/03 15:33:30 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.5 2006/04/04 18:03:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -320,24 +320,339 @@ public class CollectionsTest
 		}
 	}
 	
-	/**
-	 * Tests the isUnique() iterator.
-	 */
-	public void test_isUnique_126861() {
+	public void test_first() {
 		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.ESTRING);
 		
 		try {
 			assertTrue(helper.check("", //$NON-NLS-1$
-				"Sequence{'a', 'b', 'c', 'd', 'e'}->isUnique(e | e)")); //$NON-NLS-1$
+					"Sequence{'a', 'b', 'c', 'd', 'e'}->first() = 'a'")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{'a', 'b', 'c', 'd', 'e'}->first() = 'a'")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_last() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{'a', 'b', 'c', 'd', 'e'}->last() = 'e'")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{'a', 'b', 'c', 'd', 'e'}->last() = 'e'")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_at() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{'a', 'b', 'c', 'd', 'e'}->at(3) = 'c'")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{'a', 'b', 'c', 'd', 'e'}->at(3)= 'c'")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_indexOf() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{'a', 'b', 'c', 'd', 'e'}->indexOf('c') = 3")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{'a', 'b', 'c', 'd', 'e'}->indexOf('c')= 3")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_subsequence_suborderedset() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{'a', 'b', 'c', 'd', 'e'}->subSequence(2, 4)" + //$NON-NLS-1$
+					" = Sequence{'b', 'c', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{'a', 'b', 'c', 'd', 'e'}->subOrderedSet(2, 4)" + //$NON-NLS-1$
+					" = OrderedSet{'b', 'c', 'd'}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Test the flatten() operation.  In particular, that it is not
+	 * recursive (only flattens one level).
+	 */
+	public void test_flatten() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{Sequence{'a', 'b'}, Sequence{'b', 'c', 'd'}}->flatten()" + //$NON-NLS-1$
+					" = Set{'b', 'c', 'a', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{Sequence{'a', 'b'}, Sequence{'b', 'c', 'd'}}->flatten()" + //$NON-NLS-1$
+					" = Set{'b', 'c', 'a', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{OrderedSet{'a', 'b', 'd'}, OrderedSet{'b', 'c', 'd'}}->flatten()" + //$NON-NLS-1$
+					" = Sequence{'a', 'b', 'd', 'b', 'c', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{Bag{'b', 'a', 'b'}, Bag{'b', 'a', 'c', 'd'}}->flatten()" + //$NON-NLS-1$
+					" = Bag{'a', 'a', 'b', 'b', 'b', 'c', 'd'}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Test the flatten() operation on collections not containing collections.
+	 */
+	public void test_flatten_notNested() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{'a', 'b', 'c', 'd'}->flatten()" + //$NON-NLS-1$
+					" = Set{'b', 'c', 'a', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" + //$NON-NLS-1$
+					" = Set{'b', 'c', 'a', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{'a', 'b', 'd', 'b', 'c', 'd'}->flatten()" + //$NON-NLS-1$
+					" = Sequence{'a', 'b', 'd', 'b', 'c', 'd'}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{'b', 'a', 'b', 'b', 'a', 'c', 'd'}->flatten()" + //$NON-NLS-1$
+					" = Bag{'a', 'a', 'b', 'b', 'b', 'c', 'd'}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_count() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->count(3) = 2")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->count(6) = 0")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->count(3) = 1")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->count(6) = 0")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->count(3) = 1")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->count(6) = 0")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->count(3) = 2")); //$NON-NLS-1$
+			
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->count(6) = 0")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_sum() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->sum() = 18")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->sum() = 15")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->sum() = 15")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->sum() = 18")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_includes() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->includes(3)")); //$NON-NLS-1$
 
 			assertFalse(helper.check("", //$NON-NLS-1$
-				"Sequence{'a', 'b', 'c', 'c', 'e'}->isUnique(e | e)")); //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->includes(6)")); //$NON-NLS-1$
 
-			// when there are no values, they implicitly all evaluate to a
-			//    different result
 			assertTrue(helper.check("", //$NON-NLS-1$
-				"Sequence{}->isUnique(e | e)")); //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->includes(3)")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->includes(6)")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->includes(3)")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->includes(6)")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->includes(3)")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->includes(6)")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_includesAll() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->includesAll(Sequence{1, 3})")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"Sequence{1, 2, 3, 3, 4, 5}->includesAll(Sequence{1, 6})")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->includesAll(Set{1, 3})")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3, 3, 4, 5}->includesAll(Set{1, 6})")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->includesAll(OrderedSet{1, 3})")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3, 3, 4, 5}->includesAll(OrderedSet{1, 6})")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->includesAll(Bag{1, 3})")); //$NON-NLS-1$
+
+			assertFalse(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3, 3, 4, 5}->includesAll(Bag{1, 6})")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_union() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3}->union(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{1, 2, 3, 4, 5}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3}->union(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{1, 2, 3, 4, 5}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 2, 3}->union(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Bag{1, 2, 2, 3, 3, 4, 5}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 3}->union(Bag{3, 3, 4, 5})" + //$NON-NLS-1$
+					" = Bag{1, 2, 3, 3, 3, 4, 5}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_intersection() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3}->intersection(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{3}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3}->intersection(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{3}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 2, 3, 3, 3}->intersection(Bag{3, 3, 4, 5})" + //$NON-NLS-1$
+					" = Bag{3, 3}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Bag{1, 2, 2, 3, 3, 3}->intersection(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{3}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_difference() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3} - Set{3, 4, 5}" + //$NON-NLS-1$
+					" = Set{1, 2}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3} - Set{3, 4, 5}" + //$NON-NLS-1$
+					" = Set{1, 2}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_symmetricDifference() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"Set{1, 2, 3}->symmetricDifference(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{1, 2, 4, 5}")); //$NON-NLS-1$
+
+			assertTrue(helper.check("", //$NON-NLS-1$
+					"OrderedSet{1, 2, 3}->symmetricDifference(Set{3, 4, 5})" + //$NON-NLS-1$
+					" = Set{1, 2, 4, 5}")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}

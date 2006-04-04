@@ -17,6 +17,7 @@
 
 package org.eclipse.emf.ocl.parser;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
@@ -46,6 +47,20 @@ public interface EnvironmentFactory {
 	static EnvironmentFactory ECORE_INSTANCE = new EcoreEnvironmentFactory();
 	
 	/**
+	 * Creates an environment suitable for parsing OCL expressions in the
+	 * specified package context.  This context will become a classifier context
+	 * when the {@linkplain Environment#setSelfVariable(org.eclipse.emf.ocl.expressions.Variable) "self" variable}
+	 * is defined.
+	 * 
+	 * @param pathname the qualified package name (the ::-separated parts)
+	 * @return the environment
+	 * 
+	 * @see #createClassifierContext(Object)
+	 * @see #createOperationContext(Object, Object)
+	 */
+	Environment createPackageContext(List pathname);
+	
+	/**
 	 * Creates an environment suitable for parsing OCL expressions on the
 	 * specified <code>object</code>, which is some classifier
 	 * in the client's metamodel or an instance thereof.
@@ -69,7 +84,7 @@ public interface EnvironmentFactory {
 	/**
 	 * Creates an environment suitable for parsing OCL expressions on the
 	 * specified <code>operation</code>, which is some operation
-	 * in the client's metamodel.  Note that operations contexts can be defined
+	 * in the client's metamodel.  Note that operation contexts can be defined
 	 * in the context of any classifier to which that operation is applicable.
 	 * 
 	 * @pararm context the context element or classifier.  Either way, this
@@ -81,6 +96,22 @@ public interface EnvironmentFactory {
 	 * @see #createClassifierContext(Object)
 	 */
 	Environment createOperationContext(Object context, Object operation);
+	
+	/**
+	 * Creates an environment suitable for parsing OCL expressions on the
+	 * specified <code>property</code>, which is some property
+	 * in the client's metamodel.  Note that property contexts can be defined
+	 * in the context of any classifier in which that property is available.
+	 * 
+	 * @pararm context the context element or classifier.  Either way, this
+	 *     indicates the classifier context in which to define the property
+	 *     context (as in the {@link #createClassifierContext(Object)} method)
+	 * @param property a property (structural feature) in the client's metamodel
+	 * @return the environment
+	 * 
+	 * @see #createClassifierContext(Object)
+	 */
+	Environment createPropertyContext(Object context, Object property);
 	
 	/**
 	 * Creates a child environment of a specified <code>parent</code>, for

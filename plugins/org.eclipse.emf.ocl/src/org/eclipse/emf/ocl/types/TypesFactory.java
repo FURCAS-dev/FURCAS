@@ -20,6 +20,9 @@ package org.eclipse.emf.ocl.types;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ocl.expressions.CollectionKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +46,7 @@ public interface TypesFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TypesFactory eINSTANCE = org.eclipse.emf.ocl.types.internal.impl.TypesFactoryImpl.init();
+	TypesFactory eINSTANCE = org.eclipse.emf.ocl.types.impl.TypesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Bag Type</em>'.
@@ -66,6 +69,8 @@ public interface TypesFactory extends EFactory {
 	CollectionType createCollectionType();
 
 	CollectionType createCollectionType(EClassifier elementType);
+
+	CollectionType createCollectionType(CollectionKind kind, EClassifier elementType);
 	
 	/**
 	 * Returns a new object of class '<em>Ordered Set Type</em>'.
@@ -109,7 +114,8 @@ public interface TypesFactory extends EFactory {
 	 */
 	TupleType createTupleType();
 
-	TupleType createTupleType(EList variableDeclarations);
+	TupleType createTupleType(EList tupleLiteralParts);
+	TupleType createTupleType(String[] partNames, EClassifier[] partTypes);
 
 	/**
 	 * Returns a new object of class '<em>Void Type</em>'.
@@ -130,22 +136,42 @@ public interface TypesFactory extends EFactory {
 	MessageType createMessageType();
 
 	/**
-	 * Returns a new object of class '<em>Model Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Element Type</em>'.
-	 * @generated
+	 * Creates the type for the messages representing invocation of the
+	 * specified behavioralFeature.
+	 * 
+	 * @param behavioralFeature either an {@link EOperation} or an 
+	 *    {@link EClass} representing the received signal
+	 * 
+	 * @return the message type
 	 */
-	ModelElementType createModelElementType();
+	MessageType createMessageType(ENamedElement behavioralFeature);
 
 	/**
-	 * Returns a new object of class '<em>Primitive Type</em>'.
+	 * Returns a new object of class '<em>Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Primitive Type</em>'.
+	 * @return a new object of class '<em>Element Type</em>'.
 	 * @generated
 	 */
-	PrimitiveType createPrimitiveType();
+	ElementType createElementType();
+
+	/**
+	 * Returns a new object of class '<em>Invalid Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invalid Type</em>'.
+	 * @generated
+	 */
+	InvalidType createInvalidType();
+
+	/**
+	 * Returns a new object of class '<em>Type Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Type</em>'.
+	 * @generated
+	 */
+	TypeType createTypeType();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Boolean</em>'.

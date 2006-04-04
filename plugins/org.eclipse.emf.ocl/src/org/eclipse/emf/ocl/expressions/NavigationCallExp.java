@@ -18,7 +18,7 @@
 package org.eclipse.emf.ocl.expressions;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 
 /**
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EReference;
  *
  * @model abstract="true"
  */
-public interface NavigationCallExp extends ModelPropertyCallExp {
+public interface NavigationCallExp extends FeatureCallExp {
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -36,14 +36,25 @@ public interface NavigationCallExp extends ModelPropertyCallExp {
 	String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * @model type="OCLExpression" containment="true" lowerBound=0 
+	 * Returns the value of the '<em><b>Qualifier</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ocl.expressions.OCLExpression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualifier</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualifier</em>' containment reference list.
+	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getNavigationCallExp_Qualifier()
+	 * @model type="org.eclipse.emf.ocl.expressions.OCLExpression" containment="true"
+	 * @generated
 	 */
-	public EList getQualifiers();
-	
+	EList getQualifier();
+
 	/**
-	 *
+	 * @generated
 	 */
-	public EReference getNavigationSource();
+	EStructuralFeature getNavigationSource();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.NavigationCallExp#getNavigationSource <em>Navigation Source</em>}' reference.
@@ -53,6 +64,6 @@ public interface NavigationCallExp extends ModelPropertyCallExp {
 	 * @see #getNavigationSource()
 	 * @generated
 	 */
-	void setNavigationSource(EReference value);
+	void setNavigationSource(EStructuralFeature value);
 
 }

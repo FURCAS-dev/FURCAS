@@ -25,35 +25,40 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
-import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
-import org.eclipse.emf.ocl.expressions.AttributeCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.emf.ocl.expressions.CollectionRange;
 import org.eclipse.emf.ocl.expressions.EnumLiteralExp;
+import org.eclipse.emf.ocl.expressions.FeatureCallExp;
 import org.eclipse.emf.ocl.expressions.IfExp;
 import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.emf.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
-import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
+import org.eclipse.emf.ocl.expressions.MessageExp;
+import org.eclipse.emf.ocl.expressions.NullLiteralExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
+import org.eclipse.emf.ocl.expressions.PropertyCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
+import org.eclipse.emf.ocl.expressions.StateExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
 import org.eclipse.emf.ocl.expressions.TupleLiteralExp;
+import org.eclipse.emf.ocl.expressions.TupleLiteralPart;
+import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
-import org.eclipse.emf.ocl.expressions.VariableDeclaration;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
-import org.eclipse.emf.ocl.internal.utilities.ASTNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.uml.Constraint;
+import org.eclipse.emf.ocl.utilities.ASTNode;
+import org.eclipse.emf.ocl.utilities.TypedASTNode;
 
 /**
  * Tests for recording of token location information in parsed OCL expressions.
@@ -89,16 +94,16 @@ public class LocationInformationTest
 		int selfPos = exprString.indexOf("self"); //$NON-NLS-1$
 		
 		OperationCallExp notEqualsExp = asOperationCall(
-			impliesExp.getArguments().get(0));
+			impliesExp.getArgument().get(0));
 		assertLocation(notEqualsExp, selfPos, exprString.length());
 		
-		AttributeCallExp attrCall = asAttributeCall(notEqualsExp.getSource());
+		PropertyCallExp attrCall = asPropertyCall(notEqualsExp.getSource());
 		assertLocation(attrCall, selfPos, selfPos + "self.color".length()); //$NON-NLS-1$
 		
 		VariableExp selfVar = asVariable(attrCall.getSource());
 		assertLocation(selfVar, selfPos, selfPos + "self".length()); //$NON-NLS-1$
 		
-		EnumLiteralExp enumLiteral = asEnumLiteral(notEqualsExp.getArguments().get(0));
+		EnumLiteralExp enumLiteral = asEnumLiteral(notEqualsExp.getArgument().get(0));
 		assertLocation(enumLiteral, exprString.indexOf("Color"), exprString.length()); //$NON-NLS-1$
 	}
 	
@@ -131,7 +136,7 @@ public class LocationInformationTest
 			exprString.indexOf("Set"), //$NON-NLS-1$
 			exprString.indexOf("endif") - 1); //$NON-NLS-1$
 		
-		VariableDeclaration vdecl = asVariableDeclaration(anyIterator.getIterators().get(0));
+		Variable vdecl = asVariableDeclaration(anyIterator.getIterator().get(0));
 		assertLocation(vdecl,
 			exprString.indexOf("i :"), //$NON-NLS-1$
 			exprString.indexOf("|") - 1); //$NON-NLS-1$
@@ -149,7 +154,7 @@ public class LocationInformationTest
 		int grannyPos = exprString.indexOf("'GrannySmith'"); //$NON-NLS-1$
 		
 		// get the second item
-		CollectionItem item = asCollectionItem(collLiteral.getParts().get(1));
+		CollectionItem item = asCollectionItem(collLiteral.getPart().get(1));
 		stringLiteral = asStringLiteral(item.getItem());
 		assertLocation(stringLiteral,
 			grannyPos,
@@ -168,12 +173,12 @@ public class LocationInformationTest
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
 		
-		VariableDeclaration vdecl = letExp.getVariable();
+		Variable vdecl = letExp.getVariable();
 		assertLocation(vdecl,
 			exprString.indexOf("oldColor :"), //$NON-NLS-1$
 			exprString.indexOf(" in ")); //$NON-NLS-1$
 		
-		AttributeCallExp attrExp = asAttributeCall(vdecl.getInitExpression());
+		PropertyCallExp attrExp = asPropertyCall(vdecl.getInitExpression());
 		assertLocation(attrExp,
 			exprString.indexOf("self"), //$NON-NLS-1$
 			exprString.indexOf(" in ")); //$NON-NLS-1$
@@ -200,7 +205,7 @@ public class LocationInformationTest
 			exprString.indexOf("(true) imp"), //$NON-NLS-1$
 			exprString.indexOf(" imp")); //$NON-NLS-1$
 		
-		operCall = asOperationCall(operCall.getArguments().get(0));
+		operCall = asOperationCall(operCall.getArgument().get(0));
 		assertLocation(operCall,
 			exprString.indexOf("( (false"), //$NON-NLS-1$
 			exprString.length() - 2);
@@ -210,7 +215,7 @@ public class LocationInformationTest
 			exprString.indexOf("(false) or"), //$NON-NLS-1$
 			exprString.indexOf(" or")); //$NON-NLS-1$
 		
-		literal = asBooleanLiteral(operCall.getArguments().get(0));
+		literal = asBooleanLiteral(operCall.getArgument().get(0));
 		assertLocation(literal,
 			exprString.indexOf("((true)) )"), //$NON-NLS-1$
 			exprString.length() - 4);
@@ -222,29 +227,29 @@ public class LocationInformationTest
 	public void test_typePositions() {
 		final String exprString =
 			"let isApple : Boolean = self.oclIsKindOf(Apple) in " + //$NON-NLS-1$
-			"isApple implies Apple.allInstances()->includes(self)"; //$NON-NLS-1$
+			"isApple implies Apple.allInstances()->includes(self.oclAsType(Apple))"; //$NON-NLS-1$
 		OCLExpression constraint = createQuery(fruit, exprString);
 		
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
 		
-		VariableDeclaration vdecl = letExp.getVariable();
+		Variable vdecl = letExp.getVariable();
 		assertTypeLocation(vdecl,
 			exprString.indexOf("Boolean"), //$NON-NLS-1$
 			exprString.indexOf(" = ")); //$NON-NLS-1$
 		
-		UnspecifiedValueExp unspecExp = asUnspecifiedValue(
-			asOperationCall(vdecl.getInitExpression()).getArguments().get(0));
-		assertLocation(unspecExp,
+		TypeExp typeExp = asType(
+			asOperationCall(vdecl.getInitExpression()).getArgument().get(0));
+		assertLocation(typeExp,
 			exprString.indexOf("Apple) in "), //$NON-NLS-1$
 			exprString.indexOf(") in ")); //$NON-NLS-1$
 		
 		OperationCallExp operCall = asOperationCall(
-			asOperationCall(letExp.getIn()).getArguments().get(0));
+			asOperationCall(letExp.getIn()).getArgument().get(0));
 		
 		operCall = asOperationCall(operCall.getSource());
-		unspecExp = asUnspecifiedValue(operCall.getSource());
-		assertLocation(unspecExp,
+		typeExp = asType(operCall.getSource());
+		assertLocation(typeExp,
 			exprString.indexOf("Apple.all"), //$NON-NLS-1$
 			exprString.indexOf(".all")); //$NON-NLS-1$
 	}
@@ -261,7 +266,7 @@ public class LocationInformationTest
 		LetExp letExp = asLet(constraint);
 		assertLocation(letExp, 0, exprString.length());
 		
-		VariableDeclaration vdecl = letExp.getVariable();
+		Variable vdecl = letExp.getVariable();
 		assertTypeLocation(vdecl,
 			exprString.indexOf("Set("), //$NON-NLS-1$
 			exprString.indexOf(" = ")); //$NON-NLS-1$
@@ -288,7 +293,7 @@ public class LocationInformationTest
 			exprString.indexOf("(self)")); //$NON-NLS-1$
 
 		// element operation (dot)
-		ModelPropertyCallExp mpcExp = asModelPropertyCall(
+		FeatureCallExp mpcExp = asFeatureCall(
 			includesExp.getSource());
 		assertPropertyLocation(mpcExp,
 			exprString.indexOf("allInst"), //$NON-NLS-1$
@@ -310,8 +315,8 @@ public class LocationInformationTest
 		OperationCallExp notExp = asOperationCall(constraint);
 		OperationCallExp ripenExp = asOperationCall(notExp.getSource());
 
-		ModelPropertyCallExp mpcExp = asModelPropertyCall(
-			ripenExp.getArguments().get(0));
+		FeatureCallExp mpcExp = asFeatureCall(
+			ripenExp.getArgument().get(0));
 		assertPropertyLocation(mpcExp,
 			exprString.indexOf("color "), //$NON-NLS-1$
 			exprString.indexOf(" )")); //$NON-NLS-1$
@@ -331,8 +336,8 @@ public class LocationInformationTest
 		// the OCL is implicitly Set{self.stem}->notEmpty()
 		CollectionLiteralExp setExp = asCollectionLiteral(notEmptyExp.getSource());
 		
-		ModelPropertyCallExp mpcExp = asModelPropertyCall(
-			((CollectionItem) setExp.getParts().get(0)).getItem());
+		FeatureCallExp mpcExp = asFeatureCall(
+			((CollectionItem) setExp.getPart().get(0)).getItem());
 		assertPropertyLocation(mpcExp,
 			exprString.indexOf("stem"), //$NON-NLS-1$
 			exprString.indexOf("->")); //$NON-NLS-1$
@@ -356,7 +361,7 @@ public class LocationInformationTest
 		// implied collect expression
 		IteratorExp iterExp = asIterator(asSetExp.getSource());
 
-		ModelPropertyCallExp mpcExp = asModelPropertyCall(iterExp.getBody());
+		FeatureCallExp mpcExp = asFeatureCall(iterExp.getBody());
 		assertPropertyLocation(mpcExp,
 			exprString.indexOf("color"), //$NON-NLS-1$
 			exprString.indexOf("->asSet")); //$NON-NLS-1$
@@ -379,7 +384,7 @@ public class LocationInformationTest
 		// implied collect expression
 		IteratorExp iterExp = asIterator(asSetExp.getSource());
 
-		ModelPropertyCallExp mpcExp = asModelPropertyCall(iterExp.getBody());
+		FeatureCallExp mpcExp = asFeatureCall(iterExp.getBody());
 		assertPropertyLocation(mpcExp,
 			exprString.indexOf("stem"), //$NON-NLS-1$
 			exprString.indexOf("->asSet")); //$NON-NLS-1$
@@ -491,12 +496,12 @@ public class LocationInformationTest
 		return (IteratorExp) cast(obj, IteratorExp.class);
 	}
 	
-	static AttributeCallExp asAttributeCall(Object obj) {
-		return (AttributeCallExp) cast(obj, AttributeCallExp.class);
+	static PropertyCallExp asPropertyCall(Object obj) {
+		return (PropertyCallExp) cast(obj, PropertyCallExp.class);
 	}
 
-	static ModelPropertyCallExp asModelPropertyCall(Object obj) {
-		return (ModelPropertyCallExp) cast(obj, ModelPropertyCallExp.class);
+	static FeatureCallExp asFeatureCall(Object obj) {
+		return (FeatureCallExp) cast(obj, FeatureCallExp.class);
 	}
 
 	static AssociationClassCallExp asAssociationClassCall(Object obj) {
@@ -523,8 +528,12 @@ public class LocationInformationTest
 		return (CollectionItem) cast(obj, CollectionItem.class);
 	}
 	
-	static VariableDeclaration asVariableDeclaration(Object obj) {
-		return (VariableDeclaration) cast(obj, VariableDeclaration.class);
+	static Variable asVariableDeclaration(Object obj) {
+		return (Variable) cast(obj, Variable.class);
+	}
+	
+	static TypeExp asType(Object obj) {
+		return (TypeExp) cast(obj, TypeExp.class);
 	}
 	
 	static UnspecifiedValueExp asUnspecifiedValue(Object obj) {
@@ -553,7 +562,7 @@ public class LocationInformationTest
 		assertEquals("Wrong type end position", end, node.getTypeEndPosition()); //$NON-NLS-1$
 	}
 
-	static void assertPropertyLocation(ModelPropertyCallExp mpc, int start, int end) {
+	static void assertPropertyLocation(FeatureCallExp mpc, int start, int end) {
 		assertEquals("Wrong property start position", start, mpc.getPropertyStartPosition()); //$NON-NLS-1$
 		assertEquals("Wrong property end position", end, mpc.getPropertyEndPosition()); //$NON-NLS-1$
 	}
@@ -576,7 +585,7 @@ public class LocationInformationTest
 				|| (expr instanceof CollectionLiteralPart);
 		}
 
-		private boolean isImplicit(VariableDeclaration vdecl) {
+		private boolean isImplicit(Variable vdecl) {
 			// ignore "self" because it may be implicit.
 			// Anything starting with "temp" is an implicit variable declaration
 			String name = vdecl.getName();
@@ -594,7 +603,7 @@ public class LocationInformationTest
 			}
 		}
 
-		private void assertPositions(VariableDeclaration vdecl) {
+		private void assertPositions(Variable vdecl) {
 			if (!isImplicit(vdecl)) {
 				assertFalse("Start not set: " + vdecl, vdecl.getStartPosition() < 0); //$NON-NLS-1$
 				assertFalse("End not set: " + vdecl, vdecl.getEndPosition() < 0); //$NON-NLS-1$
@@ -602,21 +611,13 @@ public class LocationInformationTest
 					vdecl.getEndPosition() > vdecl.getStartPosition());
 			}
 		}
-		
-		public Object visitAttributeCallExp(AttributeCallExp ac) {
-			assertPositions(ac);
-			
-			ac.getSource().accept(this);
-			
-			return null;
-		}
 
 		public Object visitOperationCallExp(OperationCallExp oc) {
 			assertPositions(oc);
 			
 			oc.getSource().accept(this);
 			
-			for (Iterator iter = oc.getArguments().iterator(); iter.hasNext();) {
+			for (Iterator iter = oc.getArgument().iterator(); iter.hasNext();) {
 				((OCLExpression) iter.next()).accept(this);
 			}
 			
@@ -631,15 +632,15 @@ public class LocationInformationTest
 			return null;
 		}
 
-		public Object visitAssociationEndCallExp(AssociationEndCallExp ae) {
-			assertPositions(ae);
+		public Object visitPropertyCallExp(PropertyCallExp pc) {
+			assertPositions(pc);
 			
-			if (ae.getSource() != null) {
-				// can be null if 'ae' is qualifier of an association class call
-				ae.getSource().accept(this);
+			if (pc.getSource() != null) {
+				// can be null if 'pc' is qualifier of an association class call
+				pc.getSource().accept(this);
 			}
 			
-			for (Iterator iter = ae.getQualifiers().iterator(); iter.hasNext();) {
+			for (Iterator iter = pc.getQualifier().iterator(); iter.hasNext();) {
 				((OCLExpression) iter.next()).accept(this);
 			}
 			
@@ -651,17 +652,17 @@ public class LocationInformationTest
 			
 			ac.getSource().accept(this);
 			
-			for (Iterator iter = ac.getQualifiers().iterator(); iter.hasNext();) {
+			for (Iterator iter = ac.getQualifier().iterator(); iter.hasNext();) {
 				((OCLExpression) iter.next()).accept(this);
 			}
 			
 			return null;
 		}
 
-		public Object visitVariableDeclaration(VariableDeclaration vd) {
+		public Object visitVariable(Variable vd) {
 			// the 'self' variable is often implicit, in which case it is not
 			//    in the input at all, so don't verify it
-			if (!"self".equals(vd.getVarName())) { //$NON-NLS-1$
+			if (!"self".equals(vd.getName())) { //$NON-NLS-1$
 				assertPositions(vd);
 			}
 			
@@ -682,8 +683,23 @@ public class LocationInformationTest
 			return null;
 		}
 
+		public Object visitTypeExp(TypeExp t) {
+			assertPositions(t);
+			return null;
+		}
+
 		public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
 			assertPositions(uv);
+			return null;
+		}
+		
+		public Object visitStateExp(StateExp s) {
+			assertPositions(s);
+			return null;
+		}
+		
+		public Object visitMessageExp(MessageExp m) {
+			assertPositions(m);
 			return null;
 		}
 
@@ -710,8 +726,16 @@ public class LocationInformationTest
 		public Object visitTupleLiteralExp(TupleLiteralExp tl) {
 			assertPositions(tl);
 			
-			for (Iterator iter = tl.getTuplePart().iterator(); iter.hasNext();) {
-				((VariableDeclaration) iter.next()).accept(this);
+			for (Iterator iter = tl.getPart().iterator(); iter.hasNext();) {
+				((Variable) iter.next()).accept(this);
+			}
+			
+			return null;
+		}
+		
+		public Object visitTupleLiteralPart(TupleLiteralPart tp) {
+			if (tp.getValue() != null) {
+				tp.getValue().accept(this);
 			}
 			
 			return null;
@@ -734,7 +758,7 @@ public class LocationInformationTest
 		public Object visitCollectionLiteralExp(CollectionLiteralExp cl) {
 			assertPositions(cl);
 			
-			for (Iterator iter = cl.getParts().iterator(); iter.hasNext();) {
+			for (Iterator iter = cl.getPart().iterator(); iter.hasNext();) {
 				Object next = iter.next();
 				
 				if (next instanceof CollectionItem) {
@@ -753,8 +777,8 @@ public class LocationInformationTest
 			
 			ie.getSource().accept(this);
 			
-			for (Iterator iter = ie.getIterators().iterator(); iter.hasNext();) {
-				((VariableDeclaration) iter.next()).accept(this);
+			for (Iterator iter = ie.getIterator().iterator(); iter.hasNext();) {
+				((Variable) iter.next()).accept(this);
 			}
 			
 			ie.getBody().accept(this);
@@ -767,8 +791,8 @@ public class LocationInformationTest
 			
 			ie.getSource().accept(this);
 			
-			for (Iterator iter = ie.getIterators().iterator(); iter.hasNext();) {
-				((VariableDeclaration) iter.next()).accept(this);
+			for (Iterator iter = ie.getIterator().iterator(); iter.hasNext();) {
+				((Variable) iter.next()).accept(this);
 			}
 			
 			ie.getBody().accept(this);
@@ -778,6 +802,16 @@ public class LocationInformationTest
 		}
 
 		public Object visitConstraint(Constraint constraint) {
+			return null;
+		}
+
+		public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
+			assertPositions(il);
+			return null;
+		}
+
+		public Object visitNullLiteralExp(NullLiteralExp il) {
+			assertPositions(il);
 			return null;
 		}
 	}

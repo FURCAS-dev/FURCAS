@@ -23,42 +23,48 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ocl.expressions.*;
+
+import org.eclipse.emf.ocl.uml.TypedElement;
+
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
-import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
-import org.eclipse.emf.ocl.expressions.AttributeCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
+import org.eclipse.emf.ocl.expressions.CallExp;
 import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.emf.ocl.expressions.CollectionRange;
 import org.eclipse.emf.ocl.expressions.EnumLiteralExp;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
+import org.eclipse.emf.ocl.expressions.FeatureCallExp;
 import org.eclipse.emf.ocl.expressions.IfExp;
 import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.emf.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
 import org.eclipse.emf.ocl.expressions.LiteralExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
-import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
+import org.eclipse.emf.ocl.expressions.MessageExp;
 import org.eclipse.emf.ocl.expressions.NavigationCallExp;
+import org.eclipse.emf.ocl.expressions.NullLiteralExp;
 import org.eclipse.emf.ocl.expressions.NumericLiteralExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
-import org.eclipse.emf.ocl.expressions.OCLMessageArg;
-import org.eclipse.emf.ocl.expressions.OCLMessageExp;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.PrimitiveLiteralExp;
 import org.eclipse.emf.ocl.expressions.PropertyCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
+import org.eclipse.emf.ocl.expressions.StateExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
 import org.eclipse.emf.ocl.expressions.TupleLiteralExp;
+import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
-import org.eclipse.emf.ocl.expressions.VariableDeclaration;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
-import org.eclipse.emf.ocl.internal.utilities.ASTNode;
-import org.eclipse.emf.ocl.internal.utilities.CallingASTNode;
-import org.eclipse.emf.ocl.internal.utilities.TypedASTNode;
-import org.eclipse.emf.ocl.internal.utilities.Visitable;
+import org.eclipse.emf.ocl.utilities.ASTNode;
+import org.eclipse.emf.ocl.utilities.CallingASTNode;
+import org.eclipse.emf.ocl.utilities.TypedASTNode;
+import org.eclipse.emf.ocl.utilities.Visitable;
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
@@ -123,11 +129,8 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected ExpressionsSwitch modelSwitch=
 		new ExpressionsSwitch() {
-			public Object caseAssociationEndCallExp(AssociationEndCallExp object) {
-				return createAssociationEndCallExpAdapter();
-			}
-			public Object caseAttributeCallExp(AttributeCallExp object) {
-				return createAttributeCallExpAdapter();
+			public Object casePropertyCallExp(PropertyCallExp object) {
+				return createPropertyCallExpAdapter();
 			}
 			public Object caseBooleanLiteralExp(BooleanLiteralExp object) {
 				return createBooleanLiteralExpAdapter();
@@ -168,8 +171,8 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseLoopExp(LoopExp object) {
 				return createLoopExpAdapter();
 			}
-			public Object caseModelPropertyCallExp(ModelPropertyCallExp object) {
-				return createModelPropertyCallExpAdapter();
+			public Object caseFeatureCallExp(FeatureCallExp object) {
+				return createFeatureCallExpAdapter();
 			}
 			public Object caseNavigationCallExp(NavigationCallExp object) {
 				return createNavigationCallExpAdapter();
@@ -180,11 +183,8 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseOCLExpression(OCLExpression object) {
 				return createOCLExpressionAdapter();
 			}
-			public Object caseOCLMessageExp(OCLMessageExp object) {
-				return createOCLMessageExpAdapter();
-			}
-			public Object caseOCLMessageArg(OCLMessageArg object) {
-				return createOCLMessageArgAdapter();
+			public Object caseMessageExp(MessageExp object) {
+				return createMessageExpAdapter();
 			}
 			public Object caseOperationCallExp(OperationCallExp object) {
 				return createOperationCallExpAdapter();
@@ -192,8 +192,8 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
 				return createPrimitiveLiteralExpAdapter();
 			}
-			public Object casePropertyCallExp(PropertyCallExp object) {
-				return createPropertyCallExpAdapter();
+			public Object caseCallExp(CallExp object) {
+				return createCallExpAdapter();
 			}
 			public Object caseRealLiteralExp(RealLiteralExp object) {
 				return createRealLiteralExpAdapter();
@@ -204,11 +204,14 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseTupleLiteralExp(TupleLiteralExp object) {
 				return createTupleLiteralExpAdapter();
 			}
+			public Object caseTupleLiteralPart(TupleLiteralPart object) {
+				return createTupleLiteralPartAdapter();
+			}
 			public Object caseUnspecifiedValueExp(UnspecifiedValueExp object) {
 				return createUnspecifiedValueExpAdapter();
 			}
-			public Object caseVariableDeclaration(VariableDeclaration object) {
-				return createVariableDeclarationAdapter();
+			public Object caseVariable(Variable object) {
+				return createVariableAdapter();
 			}
 			public Object caseVariableExp(VariableExp object) {
 				return createVariableExpAdapter();
@@ -216,11 +219,26 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseAssociationClassCallExp(AssociationClassCallExp object) {
 				return createAssociationClassCallExpAdapter();
 			}
+			public Object caseNullLiteralExp(NullLiteralExp object) {
+				return createNullLiteralExpAdapter();
+			}
+			public Object caseInvalidLiteralExp(InvalidLiteralExp object) {
+				return createInvalidLiteralExpAdapter();
+			}
+			public Object caseTypeExp(TypeExp object) {
+				return createTypeExpAdapter();
+			}
+			public Object caseStateExp(StateExp object) {
+				return createStateExpAdapter();
+			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
 			public Object caseENamedElement(ENamedElement object) {
 				return createENamedElementAdapter();
+			}
+			public Object caseTypedElement(TypedElement object) {
+				return createTypedElementAdapter();
 			}
 			public Object caseVisitable(Visitable object) {
 				return createVisitableAdapter();
@@ -251,34 +269,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.AssociationEndCallExp <em>Association End Call Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.AssociationEndCallExp
-	 * @generated
-	 */
-	public Adapter createAssociationEndCallExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.AttributeCallExp <em>Attribute Call Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.AttributeCallExp
-	 * @generated
-	 */
-	public Adapter createAttributeCallExpAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.BooleanLiteralExp <em>Boolean Literal Exp</em>}'.
@@ -449,20 +439,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.ModelPropertyCallExp <em>Model Property Call Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.ModelPropertyCallExp
-	 * @generated
-	 */
-	public Adapter createModelPropertyCallExpAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.NavigationCallExp <em>Navigation Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -515,20 +491,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createPrimitiveLiteralExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.PropertyCallExp <em>Property Call Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.PropertyCallExp
-	 * @generated
-	 */
-	public Adapter createPropertyCallExpAdapter() {
 		return null;
 	}
 
@@ -589,20 +551,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.VariableDeclaration <em>Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.VariableDeclaration
-	 * @generated
-	 */
-	public Adapter createVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.VariableExp <em>Variable Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -631,6 +579,146 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.FeatureCallExp <em>Feature Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.FeatureCallExp
+	 * @generated
+	 */
+	public Adapter createFeatureCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.MessageExp <em>Message Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.MessageExp
+	 * @generated
+	 */
+	public Adapter createMessageExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.CallExp <em>Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.CallExp
+	 * @generated
+	 */
+	public Adapter createCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.Variable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.Variable
+	 * @generated
+	 */
+	public Adapter createVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.NullLiteralExp <em>Null Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.NullLiteralExp
+	 * @generated
+	 */
+	public Adapter createNullLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.InvalidLiteralExp <em>Invalid Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.InvalidLiteralExp
+	 * @generated
+	 */
+	public Adapter createInvalidLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.TypeExp <em>Type Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.TypeExp
+	 * @generated
+	 */
+	public Adapter createTypeExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.StateExp <em>State Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.StateExp
+	 * @generated
+	 */
+	public Adapter createStateExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.PropertyCallExp <em>Property Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.PropertyCallExp
+	 * @generated
+	 */
+	public Adapter createPropertyCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.TupleLiteralPart <em>Tuple Literal Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.expressions.TupleLiteralPart
+	 * @generated
+	 */
+	public Adapter createTupleLiteralPartAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.OCLExpression <em>OCL Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -641,34 +729,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createOCLExpressionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.OCLMessageExp <em>OCL Message Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.OCLMessageExp
-	 * @generated
-	 */
-	public Adapter createOCLMessageExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.expressions.OCLMessageArg <em>OCL Message Arg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.expressions.OCLMessageArg
-	 * @generated
-	 */
-	public Adapter createOCLMessageArgAdapter() {
 		return null;
 	}
 
@@ -715,13 +775,13 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.Visitable <em>Visitable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.utilities.Visitable <em>Visitable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.Visitable
+	 * @see org.eclipse.emf.ocl.utilities.Visitable
 	 * @generated
 	 */
 	public Adapter createVisitableAdapter() {
@@ -729,13 +789,13 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.ASTNode <em>AST Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.utilities.ASTNode <em>AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.ASTNode
+	 * @see org.eclipse.emf.ocl.utilities.ASTNode
 	 * @generated
 	 */
 	public Adapter createASTNodeAdapter() {
@@ -743,13 +803,27 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.CallingASTNode <em>Calling AST Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.CallingASTNode
+	 * @see org.eclipse.emf.ocl.uml.TypedElement
+	 * @generated
+	 */
+	public Adapter createTypedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.utilities.CallingASTNode <em>Calling AST Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ocl.utilities.CallingASTNode
 	 * @generated
 	 */
 	public Adapter createCallingASTNodeAdapter() {
@@ -757,13 +831,13 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.TypedASTNode <em>Typed AST Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.TypedASTNode
+	 * @see org.eclipse.emf.ocl.utilities.TypedASTNode
 	 * @generated
 	 */
 	public Adapter createTypedASTNodeAdapter() {

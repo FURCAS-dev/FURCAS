@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,25 +34,35 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.internal.cst.CSTPackage;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
+import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.TupleType;
+import org.eclipse.emf.ocl.types.TypesPackage;
+import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -1177,6 +1187,262 @@ public class RegressionTest
 	}
 	
 	/**
+	 * Test that the conversion of an expression to string and re-parsing works
+	 * as expected.  Use the particular iteration expression described in the
+	 * referenced bugzilla.
+	 */
+	public void test_iterationToString_126454() {
+		EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
+		fakePkg.setName("fake"); //$NON-NLS-1$
+		EClass fake = EcoreFactory.eINSTANCE.createEClass();
+		fake.setName("Fake"); //$NON-NLS-1$
+		fakePkg.getEClassifiers().add(fake);
+		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
+		eattr.setName("e"); //$NON-NLS-1$
+		eattr.setEType(EcorePackage.Literals.EINT);
+		eattr.setUpperBound(1);  // not a collection
+		fake.getEStructuralFeatures().add(eattr);
+		
+		EObject aFake = fakePkg.getEFactoryInstance().create(fake);
+		aFake.eSet(eattr, new Integer(7));
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(fake);
+		
+		try {
+			OCLExpression expr = helper.createQuery("self.e->sum()"); //$NON-NLS-1$
+			
+			// convert to string and re-parse
+			String toStringResult = expr.toString();
+			expr = helper.createQuery(toStringResult);
+			
+			assertEquals(aFake.eGet(eattr), helper.evaluate(aFake, expr));
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Test the OclVoid literal 'null'.
+	 */
+	public void test_null() {
+		Object result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclIsTypeOf(OclVoid) " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertEquals(Boolean.TRUE, result);
+			
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclIsUndefined() " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertEquals(Boolean.TRUE, result);
+			
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclIsInvalid() " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertEquals(Boolean.FALSE, result);
+		
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclAsType(Integer) " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertNull(result);
+	}
+	
+	/**
+	 * Test the Invalid type and its literal 'OclInvalid'.
+	 */
+	public void test_oclInvalid() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " + //$NON-NLS-1$
+			"inv: OclInvalid.oclIsTypeOf(Invalid) " + //$NON-NLS-1$
+			" endpackage")); //$NON-NLS-1$
+		
+		assertEquals(Boolean.TRUE, result);
+		
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: OclInvalid.oclIsUndefined() " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertEquals(Boolean.TRUE, result);
+			
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: OclInvalid.oclIsInvalid() " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertEquals(Boolean.TRUE, result);
+		
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: OclInvalid.oclAsType(Integer) " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+			
+		assertSame(InvalidTypeImpl.OCL_INVALID, result);
+		
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclAsType(Apple).color " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+		
+		// feature calls on null result in OclInvalid
+		assertSame(InvalidTypeImpl.OCL_INVALID, result);
+		
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclAsType(Apple).stem " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+		
+		// feature calls on null result in OclInvalid
+		assertSame(InvalidTypeImpl.OCL_INVALID, result);
+		
+		result = evaluate(parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: null.oclAsType(Apple).preferredLabel('foo') " + //$NON-NLS-1$
+				" endpackage")); //$NON-NLS-1$
+		
+		// feature calls on null result in OclInvalid
+		assertSame(InvalidTypeImpl.OCL_INVALID, result);
+	}
+	
+	/**
+	 * Tests that we report an error on failing to find an operation matching
+	 * a call.  Moreover, the error is in parsing, not in validating.
+	 */
+	public void test_operationNotFound() {
+		AssertionFailedError err = null;
+		
+		// this should not work (failure in parse, not validation)
+		try {
+			parseUnvalidated(
+				"package ocltest context FruitUtil " + //$NON-NLS-1$
+				"inv: self.processOrderedSet(1) = 0 " + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+		} catch (AssertionFailedError e) {
+			// this is expected (success case)
+			err = e;
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that matching operations finds the first match, but that
+	 * casting via oclAsType() can direct the parser to the best match.
+	 */
+	public void test_operationSignatureMatching() {
+		EPackage pkg = EcoreFactory.eINSTANCE.createEPackage();
+		EClass a = EcoreFactory.eINSTANCE.createEClass();
+		a.setName("A"); //$NON-NLS-1$
+		pkg.getEClassifiers().add(a);
+		EClass b = EcoreFactory.eINSTANCE.createEClass();
+		b.setName("B"); //$NON-NLS-1$
+		pkg.getEClassifiers().add(b);
+		EClass c = EcoreFactory.eINSTANCE.createEClass();
+		c.setName("C"); //$NON-NLS-1$
+		c.getESuperTypes().add(b);
+		pkg.getEClassifiers().add(c);
+		
+		EReference ref = EcoreFactory.eINSTANCE.createEReference();
+		ref.setEType(b);
+		ref.setName("b"); //$NON-NLS-1$
+		a.getEStructuralFeatures().add(ref);
+		ref = EcoreFactory.eINSTANCE.createEReference();
+		ref.setEType(c);
+		ref.setName("c"); //$NON-NLS-1$
+		a.getEStructuralFeatures().add(ref);
+		
+		EOperation foo1 = EcoreFactory.eINSTANCE.createEOperation();
+		foo1.setName("foo"); //$NON-NLS-1$
+		foo1.setEType(EcorePackage.Literals.EBOOLEAN);
+		EParameter param = EcoreFactory.eINSTANCE.createEParameter();
+		param.setEType(c);
+		foo1.getEParameters().add(param);
+		a.getEOperations().add(foo1);
+		
+		EOperation foo2 = EcoreFactory.eINSTANCE.createEOperation();
+		foo2.setName("foo"); //$NON-NLS-1$
+		foo2.setEType(EcorePackage.Literals.EBOOLEAN);
+		param = EcoreFactory.eINSTANCE.createEParameter();
+		param.setEType(b);
+		foo2.getEParameters().add(param);
+		a.getEOperations().add(foo2);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(a);
+		
+		try {
+			OCLExpression expr = helper.createQuery("self.foo(c)"); //$NON-NLS-1$
+			
+			assertTrue(expr instanceof OperationCallExp);
+			OperationCallExp oc = (OperationCallExp) expr;
+			
+			// foo1's parameter type is c
+			assertSame(foo1, oc.getReferredOperation());
+			
+			expr = helper.createQuery("self.foo(b)"); //$NON-NLS-1$
+			
+			assertTrue(expr instanceof OperationCallExp);
+			oc = (OperationCallExp) expr;
+			
+			// we matched foo1 because it was the first operation matching b
+			//    (we skipped the foo having parameter type c)
+			assertSame(foo2, oc.getReferredOperation());
+			
+			expr = helper.createQuery("self.foo(b.oclAsType(C))"); //$NON-NLS-1$
+			
+			assertTrue(expr instanceof OperationCallExp);
+			oc = (OperationCallExp) expr;
+			
+			// coerced the arg to type C to find the correct foo
+			assertSame(foo1, oc.getReferredOperation());
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that looking up an operation call on an implicit source works
+	 * and fails gracefully when it doesn't.  Test the case where the implicit
+	 * source is not self.
+	 */
+	public void test_operationImplicitSource() {
+		AssertionFailedError err = null;
+		
+		// this should not work
+		try {
+			parse(
+				"package ocltest context Fruit " + //$NON-NLS-1$
+				"inv: Apple.allInstances()->collect(preferredLabel())" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+		} catch (AssertionFailedError e) {
+			// this is expected (success case)
+			err = e;
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		
+		// this should work
+		parse(
+			"package ocltest context Fruit " + //$NON-NLS-1$
+			"inv: Apple.allInstances()->collect(preferredLabel('foo'))" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+		
+		// and this
+		parse(
+			"package ocltest context Apple " + //$NON-NLS-1$
+			"inv: preferredLabel('foo')" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+	}
+	
+	/**
 	 * Tests resolution of nested packages where the root package has a
 	 * namespace prefix that differs from the name (in particular, by being
 	 * some dot-separated root name).
@@ -1230,5 +1496,29 @@ public class RegressionTest
 		} catch (Exception e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
+	}
+	
+	/**
+	 * Tests that all of the packages nested under the root OCL package know
+	 * their superpackage.
+	 */
+	public void test_superPackages() {
+		assertNotNull(TypesPackage.eINSTANCE.getESuperPackage());
+		assertEquals("ocl", TypesPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+		
+		assertNotNull(ExpressionsPackage.eINSTANCE.getESuperPackage());
+		assertEquals("ocl", ExpressionsPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+		
+		assertNotNull(UMLPackage.eINSTANCE.getESuperPackage());
+		assertEquals("ocl", UMLPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+		
+		assertNotNull(QueryPackage.eINSTANCE.getESuperPackage());
+		assertEquals("ocl", QueryPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+		
+		assertNotNull(UtilitiesPackage.eINSTANCE.getESuperPackage());
+		assertEquals("ocl", UtilitiesPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+		
+		assertNotNull(CSTPackage.eINSTANCE.getESuperPackage());
+		assertEquals("ocl", CSTPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
 	}
 }

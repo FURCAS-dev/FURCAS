@@ -47,12 +47,22 @@ public interface CollectionLiteralExp extends LiteralExp {
 	 */
 	void setKind(CollectionKind value);
 
-	/*** ordered **/
 	/**
-	 * @model type="CollectionLiteralPart" lowerBound=0
+	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ocl.expressions.CollectionLiteralPart}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Part</em>' containment reference list.
+	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_Part()
+	 * @model type="org.eclipse.emf.ocl.expressions.CollectionLiteralPart" containment="true"
+	 * @generated
 	 */
-	public EList getParts();
-	
+	EList getPart();
+
 	/**
 	 * Returns true if there is only one part, which is a range expression.
 	 * @return true or false

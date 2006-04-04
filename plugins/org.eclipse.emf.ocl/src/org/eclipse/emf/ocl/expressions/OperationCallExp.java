@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EOperation;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface OperationCallExp extends ModelPropertyCallExp {
+public interface OperationCallExp extends FeatureCallExp {
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -33,15 +33,25 @@ public interface OperationCallExp extends ModelPropertyCallExp {
 	String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * @model type="OCLExpression" opposite="parentOperation" lowerBound=0
+	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ocl.expressions.OCLExpression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Argument</em>' containment reference list.
+	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getOperationCallExp_Argument()
+	 * @model type="org.eclipse.emf.ocl.expressions.OCLExpression" containment="true"
+	 * @generated
 	 */
-	public EList getArguments();
-	
-	/**
-	 *
-	 */
-	public EOperation getReferredOperation();
+	EList getArgument();
 
+	/**
+	 * @generated
+	 */
+	EOperation getReferredOperation();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.OperationCallExp#getReferredOperation <em>Referred Operation</em>}' reference.

@@ -20,7 +20,7 @@ package org.eclipse.emf.ocl.uml;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
-import org.eclipse.emf.ocl.internal.utilities.Visitable;
+import org.eclipse.emf.ocl.utilities.Visitable;
 
 /**
  * @author Edith Schonberg (edith)
@@ -61,6 +61,27 @@ public interface Constraint extends ENamedElement, Visitable {
 	 * @see #getStereotype()
 	 */
 	public static final String BODY = "body"; //$NON-NLS-1$
+	
+	/**
+	 * Stereotype applied definition expressions.
+	 * 
+	 * @see #getStereotype()
+	 */
+	public static final String DEFINITION = "definition"; //$NON-NLS-1$
+	
+	/**
+	 * Stereotype applied initial value expressions.
+	 * 
+	 * @see #getStereotype()
+	 */
+	public static final String INITIAL = "initial"; //$NON-NLS-1$
+	
+	/**
+	 * Stereotype applied derived value expressions.
+	 * 
+	 * @see #getStereotype()
+	 */
+	public static final String DERIVATION = "derivation"; //$NON-NLS-1$
 	
 	/**
 	 *

@@ -17,16 +17,15 @@
 
 package org.eclipse.emf.ocl.types;
 
-import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ocl.uml.Signal;
-
+import org.eclipse.emf.ocl.utilities.PredefinedType;
 
 /**
  * @author Edith Schonberg (edith)
  *
  */
-public interface MessageType extends EClassifier {
+public interface MessageType extends EClass, PredefinedType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -37,7 +36,7 @@ public interface MessageType extends EClassifier {
 	/**
 	 * @model lowerBound=0  upperBound=1
 	 */
-	public Signal getReferredSignal();
+	public EClass getReferredSignal();
 	
 
 	/**
@@ -48,7 +47,7 @@ public interface MessageType extends EClassifier {
 	 * @see #getReferredSignal()
 	 * @generated
 	 */
-	void setReferredSignal(Signal value);
+	void setReferredSignal(EClass value);
 
 	/**
 	 * @model lowerBound=0  upperBound=1

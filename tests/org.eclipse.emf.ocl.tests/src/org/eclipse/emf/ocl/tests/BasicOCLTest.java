@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.3 2006/03/01 17:15:45 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.4 2006/04/04 18:03:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -178,7 +178,7 @@ public class BasicOCLTest
 		assertTrue(check(constraint, eCls));
 	}
 	
-	public void testNonBooleanExpressions() {
+	public void testNonBooleansExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
 		eCls.setName("bar"); //$NON-NLS-1$
 		
@@ -263,5 +263,21 @@ public class BasicOCLTest
 			"endpackage "); //$NON-NLS-1$
 		
 		assertEquals("ANYTHING", evaluate(expr, "anything")); //$NON-NLS-1$ //$NON-NLS-2$
+	}
+	
+	/**
+	 * Tests the overrides for equality of primitive values.  In OCL, reals
+	 * can equal integers, but not in Java.
+	 */
+	public void test_equals_primitives() {
+		assertTrue(check("1 = 1")); //$NON-NLS-1$
+		assertTrue(check("1 = 1.0")); //$NON-NLS-1$
+		assertTrue(check("1.0 = 1")); //$NON-NLS-1$
+		assertTrue(check("1.0 = 1.0")); //$NON-NLS-1$
+		
+		assertTrue(check("'foo' = 'foo'")); //$NON-NLS-1$
+		
+		assertTrue(check("ocltest::Color::red = ocltest::Color::red")); //$NON-NLS-1$
+		assertFalse(check("ocltest::Color::red = ocltest::Color::black")); //$NON-NLS-1$
 	}
 }

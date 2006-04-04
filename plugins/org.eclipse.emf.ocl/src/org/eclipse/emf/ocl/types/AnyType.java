@@ -18,12 +18,13 @@
 package org.eclipse.emf.ocl.types;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
 
 /**
  *
  */
-public interface AnyType extends EDataType {
+public interface AnyType extends EClassifier, PredefinedType {
 		
 	/**
 	 * <!-- begin-user-doc -->
@@ -31,9 +32,6 @@ public interface AnyType extends EDataType {
 	 * @generated
 	 */
 	String copyright = ""; //$NON-NLS-1$
-
-	//public int getOperationCode(EOperation oper);
-	public int getOperationCode(String operName);
 	
 	public EList getOperations();
 }

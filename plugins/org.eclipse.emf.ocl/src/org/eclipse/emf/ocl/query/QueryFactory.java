@@ -43,7 +43,7 @@ public interface QueryFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QueryFactory eINSTANCE = org.eclipse.emf.ocl.query.internal.impl.QueryFactoryImpl.init();
+	QueryFactory eINSTANCE = org.eclipse.emf.ocl.query.impl.QueryFactoryImpl.init();
 
 	/**
 	 * Creates an OCL query from the specified OCL expression string, for the

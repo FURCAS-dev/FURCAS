@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLFactory.java,v 1.1 2006/02/13 16:11:59 cdamus Exp $
+ * $Id: UMLFactory.java,v 1.2 2006/04/04 18:07:23 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml;
 
@@ -41,16 +41,16 @@ public interface UMLFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	UMLFactory eINSTANCE = org.eclipse.emf.ocl.uml.internal.impl.UMLFactoryImpl.init();
+	UMLFactory eINSTANCE = org.eclipse.emf.ocl.uml.impl.UMLFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Call Action</em>'.
+	 * Returns a new object of class '<em>Call Operation Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Call Action</em>'.
+	 * @return a new object of class '<em>Call Operation Action</em>'.
 	 * @generated
 	 */
-	CallAction createCallAction();
+	CallOperationAction createCallOperationAction();
 
 	/**
 	 * Returns a new object of class '<em>Constraint</em>'.
@@ -62,76 +62,13 @@ public interface UMLFactory extends EFactory {
 	Constraint createConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Send Action</em>'.
+	 * Returns a new object of class '<em>Send Signal Action</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Send Action</em>'.
+	 * @return a new object of class '<em>Send Signal Action</em>'.
 	 * @generated
 	 */
-	SendAction createSendAction();
-
-	/**
-	 * Returns a new object of class '<em>Association Class End</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Association Class End</em>'.
-	 * @generated
-	 */
-	AssociationClassEnd createAssociationClassEnd();
-
-	/**
-	 * Returns a new object of class '<em>Association Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Association Class</em>'.
-	 * @generated
-	 */
-	AssociationClass createAssociationClass();
-
-	/**
-	 * Returns a new object of class '<em>Signal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Signal</em>'.
-	 * @generated
-	 */
-	Signal createSignal();
-
-	/**
-	 * Returns a new object of class '<em>Association End</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Association End</em>'.
-	 * @generated
-	 */
-	AssociationEnd createAssociationEnd();
-
-	/**
-	 * Returns a new object of class '<em>Qualifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualifier</em>'.
-	 * @generated
-	 */
-	Qualifier createQualifier();
-
-	/**
-	 * Returns a new object of class '<em>Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation</em>'.
-	 * @generated
-	 */
-	Operation createOperation();
-
-	/**
-	 * Returns a new object of class '<em>OCL State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL State</em>'.
-	 * @generated
-	 */
-	OCLState createOCLState();
+	SendSignalAction createSendSignalAction();
 
 	/**
 	 * Returns the package supported by this factory.

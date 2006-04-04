@@ -32,7 +32,7 @@ public interface IterateExp extends LoopExp {
 	/**
 	 * @model opposite="baseExp" containment="true"
 	 */
-	public VariableDeclaration getResult();
+	public Variable getResult();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.IterateExp#getResult <em>Result</em>}' containment reference.
@@ -42,6 +42,6 @@ public interface IterateExp extends LoopExp {
 	 * @see #getResult()
 	 * @generated
 	 */
-	void setResult(VariableDeclaration value);
+	void setResult(Variable value);
 
 }

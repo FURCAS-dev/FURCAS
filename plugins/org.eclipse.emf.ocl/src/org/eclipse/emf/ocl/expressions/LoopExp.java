@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface LoopExp  extends PropertyCallExp {
+public interface LoopExp  extends CallExp {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,12 +46,20 @@ public interface LoopExp  extends PropertyCallExp {
 	 */
 	void setBody(OCLExpression value);
 
-    /**
-     * @model type="VariableDeclaration" opposite="loopExpr" containment="true"
-     */
-    public EList getIterators();
+	/**
+	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ocl.expressions.Variable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterator</em>' containment reference list.
+	 * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage#getLoopExp_Iterator()
+	 * @model type="org.eclipse.emf.ocl.expressions.Variable" containment="true"
+	 * @generated
+	 */
+	EList getIterator();
 
-    
-    // Fred Blooggs
-	
 }

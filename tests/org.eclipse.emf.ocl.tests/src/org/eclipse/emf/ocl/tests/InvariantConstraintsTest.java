@@ -60,17 +60,6 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	}
 	
 	/**
-	 * Tests a very simple invariant, with a package and classifier context
-	 * using a named "self" variable.
-	 */
-	public void test_simpleInvariantNamedSelf() {
-		parseConstraint(
-			"package ocltest context me : Fruit " + //$NON-NLS-1$
-			"inv: me.color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
-	}
-	
-	/**
 	 * Test a let expression.
 	 */
 	public void test_simpleInvariantWithLet() {

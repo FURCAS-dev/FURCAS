@@ -18,6 +18,7 @@
 package org.eclipse.emf.ocl.expressions;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ocl.parser.ParserException;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +43,7 @@ public interface ExpressionsFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ExpressionsFactory eINSTANCE = org.eclipse.emf.ocl.expressions.internal.impl.ExpressionsFactoryImpl.init();
+	ExpressionsFactory eINSTANCE = org.eclipse.emf.ocl.expressions.impl.ExpressionsFactoryImpl.init();
 
 	/**
 	 * Parses the specified OCL expression <code>text</code> to create a new
@@ -55,37 +56,31 @@ public interface ExpressionsFactory extends EFactory {
 	 * @param text the OCL expression text to parse
 	 * @return the parsed expression, if the OCL expression is valid
 	 * 
-	 * @throws antlr.SemanticException in case of well-formedness problems
-	 *      in the expression
-	 * @throws antlr.TokenStreamException in case of an error in tokenizing
+	 * @throws ParserException in case of an error in parsing
 	 *      the expression
-	 * @throws antlr.RecognitionException on any problem in recognizing
-	 *      structures in the expression
 	 * 
 	 * @generated NOT
 	 */
 	OCLExpression createOCLExpression(String text)
-		throws antlr.SemanticException,
-			antlr.TokenStreamException,
-			antlr.RecognitionException;
+		throws ParserException;
 
 	/**
-	 * Returns a new object of class '<em>Association End Call Exp</em>'.
+	 * Returns a new object of class '<em>Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Association End Call Exp</em>'.
+	 * @return a new object of class '<em>Property Call Exp</em>'.
 	 * @generated
 	 */
-	AssociationEndCallExp createAssociationEndCallExp();
+	PropertyCallExp createPropertyCallExp();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Call Exp</em>'.
+	 * Returns a new object of class '<em>Tuple Literal Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Call Exp</em>'.
+	 * @return a new object of class '<em>Tuple Literal Part</em>'.
 	 * @generated
 	 */
-	AttributeCallExp createAttributeCallExp();
+	TupleLiteralPart createTupleLiteralPart();
 
 	/**
 	 * Returns a new object of class '<em>Boolean Literal Exp</em>'.
@@ -196,22 +191,13 @@ public interface ExpressionsFactory extends EFactory {
 	LoopExp createLoopExp();
 
 	/**
-	 * Returns a new object of class '<em>OCL Message Exp</em>'.
+	 * Returns a new object of class '<em>Message Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Message Exp</em>'.
+	 * @return a new object of class '<em>Message Exp</em>'.
 	 * @generated
 	 */
-	OCLMessageExp createOCLMessageExp();
-
-	/**
-	 * Returns a new object of class '<em>OCL Message Arg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Message Arg</em>'.
-	 * @generated
-	 */
-	OCLMessageArg createOCLMessageArg();
+	MessageExp createMessageExp();
 
 	/**
 	 * Returns a new object of class '<em>Operation Call Exp</em>'.
@@ -240,7 +226,7 @@ public interface ExpressionsFactory extends EFactory {
 	 */
 	StringLiteralExp createStringLiteralExp();
 
-		StringLiteralExp createStringLiteralExp(String s);
+				StringLiteralExp createStringLiteralExp(String s);
 	
 	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp</em>'.
@@ -261,13 +247,13 @@ public interface ExpressionsFactory extends EFactory {
 	UnspecifiedValueExp createUnspecifiedValueExp();
 
 	/**
-	 * Returns a new object of class '<em>Variable Declaration</em>'.
+	 * Returns a new object of class '<em>Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Declaration</em>'.
+	 * @return a new object of class '<em>Variable</em>'.
 	 * @generated
 	 */
-	VariableDeclaration createVariableDeclaration();
+	Variable createVariable();
 
 	/**
 	 * Returns a new object of class '<em>Variable Exp</em>'.
@@ -286,6 +272,42 @@ public interface ExpressionsFactory extends EFactory {
 	 * @generated
 	 */
 	AssociationClassCallExp createAssociationClassCallExp();
+
+	/**
+	 * Returns a new object of class '<em>Null Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Null Literal Exp</em>'.
+	 * @generated
+	 */
+	NullLiteralExp createNullLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Invalid Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invalid Literal Exp</em>'.
+	 * @generated
+	 */
+	InvalidLiteralExp createInvalidLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Type Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Exp</em>'.
+	 * @generated
+	 */
+	TypeExp createTypeExp();
+
+	/**
+	 * Returns a new object of class '<em>State Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Exp</em>'.
+	 * @generated
+	 */
+	StateExp createStateExp();
 
 	/**
 	 * Returns the package supported by this factory.

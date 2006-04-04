@@ -1,0 +1,44 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: IterationTemplateCollectNested.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ */
+
+package org.eclipse.emf.ocl.expressions.impl;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
+import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+
+/**
+ *
+ */
+public final class IterationTemplateCollectNested extends IterationTemplate {
+	private IterationTemplateCollectNested(EvaluationVisitor v) {
+		super(v);
+	}
+	
+	public static IterationTemplate getInstance(EvaluationVisitor v) {
+		return new IterationTemplateCollectNested(v);
+	}
+	
+	protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
+		EvaluationEnvironment env = getEvalEnvironment();
+		Collection currVal = (Collection) env.getValueOf(resultName);
+		currVal.add(bodyVal);
+		return currVal;
+	}
+}

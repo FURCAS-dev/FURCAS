@@ -18,10 +18,11 @@
 package org.eclipse.emf.ocl.types;
 
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
 
 /**
  * @author Edith Schonberg (edith)
  */
-public interface VoidType extends EClassifier {
+public interface VoidType extends EClassifier, PredefinedType {
 	// nothing to add
 }

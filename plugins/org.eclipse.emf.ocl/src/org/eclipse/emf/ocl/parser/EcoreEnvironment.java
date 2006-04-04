@@ -20,46 +20,27 @@ package org.eclipse.emf.ocl.parser;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
-import org.eclipse.emf.ocl.expressions.VariableDeclaration;
-import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
-import org.eclipse.emf.ocl.types.AnyType;
-import org.eclipse.emf.ocl.types.CollectionType;
-import org.eclipse.emf.ocl.types.PrimitiveType;
-import org.eclipse.emf.ocl.types.TupleType;
-import org.eclipse.emf.ocl.types.TypesFactory;
-import org.eclipse.emf.ocl.types.internal.impl.AnyTypeImpl;
-import org.eclipse.emf.ocl.types.internal.impl.CollectionTypeImpl;
-import org.eclipse.emf.ocl.types.internal.impl.PrimitiveTypeImpl;
-import org.eclipse.emf.ocl.types.util.Types;
-import org.eclipse.emf.ocl.uml.AssociationClass;
-import org.eclipse.emf.ocl.uml.AssociationClassEnd;
-import org.eclipse.emf.ocl.uml.AssociationEnd;
-import org.eclipse.emf.ocl.uml.Operation;
-import org.eclipse.emf.ocl.uml.Qualifier;
+import org.eclipse.emf.ocl.types.impl.TypeUtil;
+import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
 import org.eclipse.osgi.util.NLS;
-
-import antlr.SemanticException;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
@@ -68,7 +49,8 @@ import com.ibm.icu.text.UTF16;
  * An Environment stores the variables created while evaluating an OCL
  * expression, including self. It also stores the package, if the OCL package
  * statement is used. Methods are provided for querying whether variable,
- * attribute, reference, and operation names belong to the environment.
+ * property, operation, and association class reference names belong to the
+ * environment.
  * 
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
@@ -76,71 +58,8 @@ import com.ibm.icu.text.UTF16;
 public class EcoreEnvironment
 	implements Environment {
 
-	private static final String UnknownOperationOwnerType_ERROR_ =
-		OCLMessages.UnknownOperationOwnerType_ERROR_;
-
-	private static final String IllegalSignature_ERROR_ =
-		OCLMessages.IllegalSignature_ERROR_;
-
 	/* Used to generate implicit iterator variables */
 	private static int generatorInt = 0;
-
-	/**
-	 * Translator from primitive EMF types to OCL types
-	 * 
-	 * @param dataType a data type in the EMF metamodel
-	 * @return  the corresponding OCL classifier
-	 */
-	private static EClassifier getOCLTypeFor(EDataType dataType) {
-
-		// First check if it is already an OCL data type (EEnums represent
-		//    themselves)
-		if (dataType instanceof EEnum)
-			return dataType;
-		if (dataType instanceof CollectionType)
-			return dataType;
-		if (dataType instanceof PrimitiveType)
-			return dataType;
-
-		Class instanceClass = dataType.getInstanceClass();
-
-		// Boolean/boolean -> OCL_BOOLEAN
-		if (instanceClass == Boolean.class
-			|| instanceClass == boolean.class)
-			return PrimitiveTypeImpl.OCL_BOOLEAN;
-
-		// Double/double/Float/float -> OCL_REAL
-		else if (instanceClass == Double.class
-			|| instanceClass == double.class
-			|| instanceClass == Float.class || instanceClass == float.class)
-			return PrimitiveTypeImpl.OCL_REAL;
-
-		// String -> OCL_STRING
-		else if (instanceClass == String.class)
-			return PrimitiveTypeImpl.OCL_STRING;
-
-		// Integer/int/Long/long/Short/short -> OCL_INTEGER
-		else if (instanceClass == Integer.class
-			|| instanceClass == int.class || instanceClass == Long.class
-			|| instanceClass == long.class || instanceClass == Short.class
-			|| instanceClass == short.class)
-			return PrimitiveTypeImpl.OCL_INTEGER;
-
-		// List -> OCL_SEQUENCE
-		else if (List.class.isAssignableFrom(instanceClass))
-			return CollectionTypeImpl.OCL_SEQUENCE;
-
-		// Set -> OCL_SET
-		else if (Set.class.isAssignableFrom(instanceClass))
-			return CollectionTypeImpl.OCL_SET;
-
-		// Collection -> OCL_COLLECTION
-		else if (Collection.class.isAssignableFrom(instanceClass))
-			return CollectionTypeImpl.OCL_COLLECTION;
-
-		// All other data types -> OCL_ANY_TYPE
-		return AnyTypeImpl.OCL_ANY_TYPE;
-	}
 	
 	/**
 	 * Obtains the appropriate OCL type for an Ecore typed element, according
@@ -167,18 +86,7 @@ public class EcoreEnvironment
 	 * @see #getOCLCollectionType(EClassifier, boolean, boolean)
 	 */	
 	public static EClassifier getOCLType(ETypedElement typedElement) {
-		EClassifier resultType = typedElement.getEType();
-		
-		if (typedElement.isMany()) {
-			resultType = getOCLCollectionType(
-				resultType,
-				typedElement.isOrdered(),
-				typedElement.isUnique());
-		} else {
-			resultType = getOCLType(resultType);
-		}
-		
-		return resultType;
+		return TypeUtil.getOCLType(typedElement);
 	}
 	
 	/**
@@ -189,13 +97,7 @@ public class EcoreEnvironment
 	 * @return the corresponding OCL type
 	 */	
 	public static EClassifier getOCLType(EClassifier type) {
-		EClassifier resultType = type;
-
-		if (resultType instanceof EDataType) {
-			resultType = getOCLTypeFor((EDataType) resultType);
-		}
-		
-		return resultType;
+		return TypeUtil.getOCLType(type);
 	}
 	
 	/**
@@ -223,28 +125,7 @@ public class EcoreEnvironment
 	 */	
 	public static EClassifier getOCLCollectionType(EClassifier type,
 			boolean isOrdered, boolean isUnique) {
-		EClassifier resultType = type;
-
-		if (resultType instanceof EDataType) {
-			resultType = getOCLTypeFor((EDataType) resultType);
-		}
-		
-		// TODO: Cache the collection types generated by this method
-		if (isOrdered) {
-			if (isUnique) {
-				resultType = TypesFactory.eINSTANCE.createOrderedSetType(resultType);
-			} else {
-				resultType = TypesFactory.eINSTANCE.createSequenceType(resultType);
-			}
-		} else {
-			if (isUnique) {
-				resultType = TypesFactory.eINSTANCE.createSetType(resultType);
-			} else {
-				resultType = TypesFactory.eINSTANCE.createBagType(resultType);
-			}
-		}
-		
-		return resultType;
+		return TypeUtil.getOCLCollectionType(type, isOrdered, isUnique);
 	}
 
 	/*
@@ -254,11 +135,13 @@ public class EcoreEnvironment
 	 */
 	private List namedElements = new java.util.ArrayList();
 
-	private VariableDeclaration selfVariable;
+	private Variable selfVariable;
 	
 	private Environment parent;
 
 	private EOperation contextOperation;
+	
+	private EStructuralFeature contextProperty;
 	
 	private synchronized String generateName() {
 		generatorInt++;
@@ -275,6 +158,8 @@ public class EcoreEnvironment
 	 * The registry for package lookups.
 	 */
 	private EPackage.Registry registry;
+	
+	private EnvironmentFactory factory;
 
 	/**
 	 * Create an environment, set the default package from a package
@@ -284,8 +169,7 @@ public class EcoreEnvironment
 	 * @param pkg
 	 */
 	public EcoreEnvironment(EPackage pkg) {
-		defaultPackage = pkg;
-		registry = EPackage.Registry.INSTANCE;
+		this(pkg, EPackage.Registry.INSTANCE);
 	}
 
 	/**
@@ -305,11 +189,44 @@ public class EcoreEnvironment
 			defaultPackage = ((EcoreEnvironment) parent).defaultPackage;
 			registry = ((EcoreEnvironment) parent).registry;
 		} else {
+			defaultPackage = parent.getContextClassifier().getEPackage();
 			registry = EPackage.Registry.INSTANCE;
 		}
 		this.parent = parent;
 	}
 
+	public EnvironmentFactory getFactory() {
+		if (factory != null) {
+			return factory;
+		}
+		
+		if (getParent() != null) {
+			factory = getParent().getFactory();
+			if (factory != null) {
+				return factory;
+			}
+		}
+		
+		// obtain a reasonable default factory
+		if (registry == EPackage.Registry.INSTANCE) {
+			factory = EcoreEnvironmentFactory.ECORE_INSTANCE;
+		} else {
+			factory = new EcoreEnvironmentFactory(registry);
+		}
+		
+		return factory;
+	}
+	
+	/**
+	 * Sets the factory that created me.  This method should only be invoked
+	 * by that factory.
+	 * 
+	 * @param factory my originating factory
+	 */
+	protected void setFactory(EnvironmentFactory factory) {
+		this.factory = factory;
+	}
+	
 	/**
 	 * Set the parent environment
 	 * 
@@ -333,11 +250,31 @@ public class EcoreEnvironment
 	}
 	
 	public EOperation getContextOperation() {
-		return contextOperation;
+		if (contextOperation != null) {
+			return contextOperation;
+		} else if (getParent() != null) {
+			return getParent().getContextOperation();
+		}
+		
+		return null;
 	}
 	
 	public void setContextOperation(EOperation operation) {
 		this.contextOperation = operation;
+	}
+	
+	public EStructuralFeature getContextProperty() {
+		if (contextProperty != null) {
+			return contextProperty;
+		} else if (getParent() != null) {
+			return getParent().getContextProperty();
+		}
+		
+		return null;
+	}
+	
+	public void setContextProperty(EStructuralFeature property) {
+		this.contextProperty = property;
 	}
 
 	/**
@@ -360,7 +297,7 @@ public class EcoreEnvironment
 	 * @param name
 	 * @return VariableDeclaration
 	 */
-	public VariableDeclaration lookupLocal(String name) {
+	public Variable lookupLocal(String name) {
 
 		for (int i = 0; i < namedElements.size(); i++) {
 			VariableEntry elem = (VariableEntry) namedElements.get(i);
@@ -378,8 +315,8 @@ public class EcoreEnvironment
 	 * @param name
 	 * @return VariableDeclaration
 	 */
-	public VariableDeclaration lookup(String name) {
-		VariableDeclaration elem = lookupLocal(name);
+	public Variable lookup(String name) {
+		Variable elem = lookupLocal(name);
 
 		if (elem != null) {
 			return elem;
@@ -479,12 +416,12 @@ public class EcoreEnvironment
 
 	}
 
-	public void setSelfVariable(VariableDeclaration var) {
+	public void setSelfVariable(Variable var) {
 		selfVariable = var;
 	}
 	
-	public VariableDeclaration getSelfVariable() {
-		VariableDeclaration result = selfVariable;
+	public Variable getSelfVariable() {
+		Variable result = selfVariable;
 		
 		if ((result == null) && (getParent() != null)) {
 			result = getParent().getSelfVariable();
@@ -504,7 +441,7 @@ public class EcoreEnvironment
 	 *            is the variable implicit?
 	 * @return - boolean
 	 */
-	public boolean addElement(String name, VariableDeclaration elem, boolean exp) {
+	public boolean addElement(String name, Variable elem, boolean exp) {
 
 		if (name == null) {
 			name = generateName();
@@ -514,7 +451,7 @@ public class EcoreEnvironment
 		} else if (lookup(name) != null)
 			return false;
 
-		elem.setVarName(name);
+		elem.setName(name);
 		VariableEntry newelem = new VariableEntry(
 			name,
 			elem,
@@ -557,56 +494,49 @@ public class EcoreEnvironment
 		return result;
 	}
 
-	public EAttribute lookupAttribute(EClassifier parentClassifier, String name) {
+	public EOperation lookupOperation(EClassifier owner, String name, EList args) {
 
-		EClass owner = null;
-
-		if (parentClassifier != null && parentClassifier instanceof EClass) {
-			owner = (EClass) parentClassifier;
-		} else if (parentClassifier != null) {
-			owner = parentClassifier.eClass();
-		}
-
-		if (owner == null) {
-			VariableDeclaration vdcl = lookupImplicitSourceForAttribute(name);
-			if (vdcl == null)
-				return null;
-			owner = (EClass) vdcl.getType();
-		}
-
-		EList properties = owner.getEAllAttributes();
-		Iterator iter = properties.iterator();
-		while (iter.hasNext()) {
-			EAttribute attr = (EAttribute) iter.next();
-			if (attr.getName().equals(name))
-				return attr;
-		}
-		return null;
+		return TypeUtil.findOperationMatching(owner, name, args);
 	}
 
-	public EReference lookupReference(EClassifier parentClassifier, String name) {
+	public EClass lookupSignal(EClassifier owner, String name, EList args) {
+		return TypeUtil.findSignalMatching(owner, getSignals(owner), name, args);
+	}
 
-		EClass owner = null;
-		if (parentClassifier != null && parentClassifier instanceof EClass) {
-			owner = (EClass) parentClassifier;
-		} else if (parentClassifier != null) {
-			owner = parentClassifier.eClass();
+	/**
+	 * By default, return an empty list because Ecore does not support the
+	 * modeling of signals.
+	 */
+	public EList getSignals(EClassifier owner) {
+		return ECollections.EMPTY_ELIST;
+	}
+	
+	public EStructuralFeature lookupProperty(EClassifier owner, String name) {
+		EClass ownerClass = null;
+		
+		if (owner != null && owner instanceof EClass) {
+			ownerClass = (EClass) owner;
 		}
 
-		if (owner == null) {
-			VariableDeclaration vdcl = lookupImplicitSourceForAssociationEnd(name);
-			if (vdcl == null)
+		if (ownerClass == null) {
+			Variable vdcl = lookupImplicitSourceForProperty(name);
+			if (vdcl == null) {
 				return null;
-			owner = (EClass) vdcl.getType();
+			}
+			
+			ownerClass = (EClass) vdcl.getType();
 		}
 
-		EList properties = owner.getEAllReferences();
-		Iterator iter = properties.iterator();
-		while (iter.hasNext()) {
-			EReference ref = (EReference) iter.next();
-			if (ref.getName().equals(name))
-				return ref;
+		EList properties = TypeUtil.getProperties(ownerClass);
+		
+		for (Iterator iter = properties.iterator(); iter.hasNext();) {
+			EStructuralFeature next = (EStructuralFeature) iter.next();
+			
+			if (name.equals(next.getName())) {
+				return next;
+			}
 		}
+		
 		return null;
 	}
 
@@ -621,7 +551,7 @@ public class EcoreEnvironment
 		}
 
 		if (owner == null) {
-			VariableDeclaration vdcl = lookupImplicitSourceForAssociationClass(name);
+			Variable vdcl = lookupImplicitSourceForAssociationClass(name);
 			if (vdcl == null)
 				return null;
 			owner = (EClass) vdcl.getType();
@@ -632,14 +562,11 @@ public class EcoreEnvironment
 		EList properties = owner.getEAllReferences();
 		Iterator iter = properties.iterator();
 		while ((result == null) && iter.hasNext()) {
-			Object next = iter.next();
+			EReference next = (EReference) iter.next();
 			
-			if (next instanceof AssociationClassEnd) {
-				AssociationClassEnd ref = (AssociationClassEnd) next;
-			
-				if (name.equals(initialLower(ref.getAssociationClass()))) {
-					result = ref.getAssociationClass();
-				}
+			EClass assocClass = getAssociationClass(next);
+			if ((assocClass != null) && name.equals(initialLower(assocClass))) {
+				result = assocClass;
 			}
 		}
 		
@@ -665,163 +592,95 @@ public class EcoreEnvironment
 		
 		return result.toString();
 	}
-
+	
 	/**
-	 * Find the operation in the specified classifier
-	 * 
-	 * @param owner EClassifier owning operations
-	 * @param name name of operation
-	 * @param args list of arguments to match against the operation signature
+	 * Obtains the states matching the specified path prefix in the owner type
+	 * by trying the {@link #collectStates} method on it and, recursively, its
+	 * supertypes to find all matches.  For implicit (<code>null</code>) owners,
+	 * looks up the innermost-scoped variable as the implicit source and tries
+	 * again on this variable's type.
+	 * <p>
+	 * To extend this implementation, override the
+	 * {@link #collectStates} method.
+	 * </p>
 	 */
-	public static EOperation lookupOperation(EClassifier owner, String name,
-		EList args) throws SemanticException {
-
-		if (args == null) {
-			args = ECollections.EMPTY_ELIST;
-		}
-		
-		if (owner instanceof EClass) {
-
-			// Must check both the AnyType operations (allInstances, etc)
-			// and the operations of the class itself.
-			EList properties = AnyTypeImpl.OCL_ANY_TYPE.getOperations();
-			for (Iterator iter = properties.iterator(); iter.hasNext();) {
-				EOperation oper = (EOperation) iter.next();
-				if (oper.getName().equals(name) && matchArgs(oper, args))
-					return oper;
-
+	public EList getStates(EClassifier owner, List pathPrefix) {
+		if (owner == null) {
+			Variable vdcl;
+			
+			for (int i = namedElements.size() - 1; i >= 0; i--) {
+				VariableEntry element = (VariableEntry) namedElements.get(i);
+				vdcl = element.variable;
+				
+				// only classes can have states
+				if (vdcl.getType() instanceof EClass) {
+					return getStates(vdcl.getType(), pathPrefix);
+				}
+	
 			}
-
-			properties = ((EClass) owner).getEAllOperations();
-			for (Iterator iter = properties.iterator(); iter.hasNext();) {
-				EOperation oper = (EOperation) iter.next();
-				if (oper.getName().equals(name) && matchArgs(oper, args))
-					return oper;
-			}
-		}
-
-		EList operations = null;
-		if (owner instanceof AnyType) {
-			AnyType source = (AnyType) owner;
-			operations = source.getOperations();
-
-		} else if (owner instanceof CollectionType) {
-			CollectionType source = (CollectionType) owner;
-			operations = source.getOperations();
-		} else if (owner instanceof EEnum || owner instanceof TupleType
-				|| owner == Types.OCL_VOID || owner == AnyTypeImpl.OCL_ANY_TYPE) {
-			operations = AnyTypeImpl.OCL_ANY_TYPE.getOperations();
-		} else if (owner instanceof EDataType) {
-			EClassifier prim = getOCLTypeFor((EDataType) owner);
-			if (prim instanceof PrimitiveType) {
-				operations = ((PrimitiveType) prim).getOperations();
-			} else {
-				operations = AnyTypeImpl.OCL_ANY_TYPE.getOperations();
+			
+			// try the "self" variable, last
+			vdcl = getSelfVariable();
+			if (vdcl != null) {
+				// only classes can have states
+				if (vdcl.getType() instanceof EClass) {
+					return getStates(vdcl.getType(), pathPrefix);
+				}
 			}
 		} else {
-			String message = NLS.bind(
-				UnknownOperationOwnerType_ERROR_, new Object[] {owner, name });
-			IllegalArgumentException error = new IllegalArgumentException(
-				message);
-			OCLPlugin.throwing(EcoreEnvironment.class,
-				"lookupOperation", error);//$NON-NLS-1$
-			throw error;
+			EList result = new BasicEList();
+			
+			collectStates(owner, pathPrefix, result);
+			
+			if (owner instanceof EClass) {
+				// search supertypes
+				for (Iterator iter = ((EClass) owner).getEAllSuperTypes().iterator(); iter.hasNext();) {
+					collectStates((EClass) iter.next(), pathPrefix, result);
+				}
+			}
+			
+			return result;
 		}
-
-		for (Iterator iter = operations.iterator(); iter.hasNext();) {
-			EOperation oper = (EOperation) iter.next();
-			if (oper.getName().equals(name) && matchArgs(oper, args))
-				return oper;
-
-		}
-
-		String errMessage = owner.getName() + "." + name + "(";//$NON-NLS-2$//$NON-NLS-1$
-		for (int i = 0; i < args.size(); i++) {
-			if (i > 0)
-				errMessage += ", ";//$NON-NLS-1$
-			errMessage += ((OCLExpression) args.get(i)).getType().getName();
-		}
-		errMessage += ")";//$NON-NLS-1$
-		String message = NLS.bind(IllegalSignature_ERROR_,
-			new Object[] {errMessage });
-		OCLParser.ERR(message);
+		
+		return ECollections.EMPTY_ELIST;
+	}
+	
+	/**
+	 * Implemented by subclasses to find all states in the specified owner type
+	 * that match the given path name prefix and add them to the accumulator
+	 * list.  The default implementation does nothing, as Ecore does not model
+	 * states.
+	 * <p>
+	 * Implementors must only provide the states defined directly in the
+	 * namespace indicated by the path prefix (i.e., only one level).
+	 * </p>
+	 * 
+	 * @param owner the owner type
+	 * @param pathPrefix partial
+	 * @param states a list of states directly owned by the namespace indicated
+	 *     by path prefix, within the owner type
+	 */
+	protected void collectStates(EClassifier owner, List pathPrefix, List states) {
+		// do nothing
+	}
+	
+	/**
+	 * Ecore does not model states, so this method returns null.  Environments
+	 * that support UML states must override this implementation.
+	 */
+	public String getStateName(EObject state) {
 		return null;
 	}
 
-	/**
-	 * Compares an actual argument list against the signature of a operation.
-	 * 
-	 * @param oper
-	 * @param args a list of {@link OCLExpression}s or {@link VariableDeclaration}s
-	 * @return true or false
-	 */
-	private static boolean matchArgs(EOperation oper, EList args) {
-		EList operArgs = oper.getEParameters();
-		Iterator iter = operArgs.iterator();
-		int argsize;
-
-		if (args == null)
-			argsize = 0;
-		else
-			argsize = args.size();
-
-		if (operArgs.size() != argsize)
-			return false;
-
-		for (int i = 0; iter.hasNext(); i++) {
-			EParameter param = (EParameter) iter.next();
-			Object arg = args.get(i);
-			EClassifier argType = null;
-			
-			if (arg instanceof OCLExpression) {
-				argType = ((OCLExpression) arg).getType();
-			} else if (arg instanceof VariableDeclaration) {
-				argType = ((VariableDeclaration) arg).getType();
-			}
-			
-			EClassifier paramType = getOCLType(param);
-
-			if (paramType instanceof EClass && argType instanceof EClass)
-				continue;
-			// OCL_VOID matched anything
-			if (paramType == AnyTypeImpl.OCL_ECLASSIFIER)
-				continue;
-
-			if (argType instanceof EDataType)
-				argType = argType.eClass();
-			if (paramType instanceof EDataType)
-				paramType = paramType.eClass();
-
-			String argTypeName = argType.getName();
-			String paramTypeName = paramType.getName();
-
-			// shallow type checking -- signature checking.
-			if (argTypeName.equals("SetType") || //$NON-NLS-1$
-				argTypeName.equals("BagType") || //$NON-NLS-1$
-				argTypeName.equals("SequenceType") || //$NON-NLS-1$
-				argTypeName.equals("OrderedSetType")) { //$NON-NLS-1$
-				if (paramTypeName.equals("CollectionType"))continue;//$NON-NLS-1$
-				if (paramTypeName.equals("AnyType"))return false;//$NON-NLS-1$
-			}
-			if (paramTypeName.equals("PrimitiveReal")) {//$NON-NLS-1$
-				if (argTypeName.equals("PrimitiveInteger"))continue; //$NON-NLS-1$
-			}
-			//if (paramTypeName.equals("EClassifier")) continue;
-			if (paramTypeName.equals("AnyType"))continue; //$NON-NLS-1$
-			if (!paramTypeName.equals(argTypeName))
-				return false;
-		}
-		return true;
-	}
-
-	public VariableDeclaration lookupImplicitSourceForAttribute(String name) {
-		VariableDeclaration vdcl;
+	public Variable lookupImplicitSourceForProperty(String name) {
+		Variable vdcl;
+		
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
 			if (vdcl.getType() instanceof EClass) {
-				EAttribute eattr = lookupAttribute(vdcl.getType(), name);
-				if (eattr != null)
+				EStructuralFeature property = lookupProperty(vdcl.getType(), name);
+				if (property != null)
 					return vdcl;
 			}
 
@@ -831,42 +690,18 @@ public class EcoreEnvironment
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
 			if (vdcl.getType() instanceof EClass) {
-				EAttribute eattr = lookupAttribute(vdcl.getType(), name);
-				if (eattr != null)
+				EStructuralFeature property = lookupProperty(vdcl.getType(), name);
+				if (property != null)
 					return vdcl;
 			}
 		}
+		
 		return null;
 
 	}
 
-	public VariableDeclaration lookupImplicitSourceForAssociationEnd(String name) {
-		VariableDeclaration vdcl;
-		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
-			vdcl = element.variable;
-			if (vdcl.getType() instanceof EClass) {
-				EReference eref = lookupReference(vdcl.getType(), name);
-				if (eref != null)
-					return vdcl;
-			}
-
-		}
-
-		// try the "self" variable, last
-		vdcl = getSelfVariable();
-		if (vdcl != null) {
-			if (vdcl.getType() instanceof EClass) {
-				EReference eref = lookupReference(vdcl.getType(), name);
-				if (eref != null)
-					return vdcl;
-			}
-		}
-		return null;
-	}
-
-	public VariableDeclaration lookupImplicitSourceForAssociationClass(String name) {
-		VariableDeclaration vdcl;
+	public Variable lookupImplicitSourceForAssociationClass(String name) {
+		Variable vdcl;
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
@@ -1012,15 +847,15 @@ public class EcoreEnvironment
 		return null;
 	}
 
-	public VariableDeclaration lookupImplicitSourceForOperation(String name,
+	public Variable lookupImplicitSourceForOperation(String name,
 			EList params) throws SemanticException {
 
-		VariableDeclaration vdcl;
+		Variable vdcl;
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
 			if (vdcl.getType() instanceof EClass) {
-				EOperation eop = lookupOperation(vdcl.getType(), name, params);
+				EOperation eop = TypeUtil.findOperationMatching(vdcl.getType(), name, params);
 				if (eop != null)
 					return vdcl;
 			}
@@ -1030,11 +865,22 @@ public class EcoreEnvironment
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
 			if (vdcl.getType() instanceof EClass) {
-				EOperation eop = lookupOperation(vdcl.getType(), name, params);
+				EOperation eop = TypeUtil.findOperationMatching(vdcl.getType(), name, params);
 				if (eop != null)
 					return vdcl;
 			}
 		}
+
+		String errMessage = name + "(";//$NON-NLS-1$
+		for (int i = 0; i < params.size(); i++) {
+			if (i > 0)
+				errMessage += ", ";//$NON-NLS-1$
+			errMessage += ((OCLExpression) params.get(i)).getType().getName();
+		}
+		errMessage += ")";//$NON-NLS-1$
+		String message = NLS.bind(OCLMessages.IllegalSignature_ERROR_,
+			new Object[] {errMessage });
+		OCLParser.ERR(message);
 		return null;
 	}
 	
@@ -1048,6 +894,8 @@ public class EcoreEnvironment
 			return ((ETypedElement) namedElement).getEType().getName();
 		} else if (namedElement instanceof EEnumLiteral) {
 			return ((EEnumLiteral) namedElement).getEEnum().getName();
+		} else if (namedElement == null) {
+			return null;
 		}
 		return namedElement.eClass().getName();
 	}
@@ -1055,67 +903,77 @@ public class EcoreEnvironment
 	/**
 	 * Determines whether the specified <code>operation</code> is a query
 	 * operation.  Note that an environment that correctly supports query
-	 * operations would need to supply {@link Operation}s instead of
-	 * {@link EOperation}s.
+	 * operations would need to supply appropriately annotated
+	 * {@link EOperation}s or otherwise override this method.
 	 * 
 	 * @param operation an operation
 	 * @return whether it is a query operation.  An {@link EOperation} that
-	 *     is not an {@link Operation} is considered to be a query by default
+	 *     is not annotated is considered to be a query by default
 	 */
-	public static boolean isQuery(EOperation operation) {
-		boolean result = true;
-		
-		if (operation instanceof Operation) {
-			result = ((Operation) operation).isQuery();
-		}
-		
-		return result;
+	public boolean isQuery(EOperation operation) {
+		return UMLTypeUtil.isQuery(operation);
 	}
 
 	/**
 	 * Determines whether the specified <code>eclass</code> is an association
 	 * class.  Note that an environment that correctly supports association
-	 * classes would need to supply {@link AssociationClass}es instead of
-	 * {@link EClass}es.
+	 * classes would need to supply appropriately annotated {@link EClass}es.
 	 * 
-	 * @param eclass an EMF class
+	 * @param eclass an Ecore class
 	 * @return whether it is an association class
 	 */
-	public static boolean isAssociationClass(EClass eclass) {
-		return eclass instanceof AssociationClass;
+	public boolean isAssociationClass(EClass eclass) {
+		return UMLTypeUtil.isAssociationClass(eclass);
 	}
 	
 	/**
-	 * Gets the types of the qualifiers of an association end.
-	 * Note that an environment that correctly supports association end
-	 * qualifiers would need to supply {@link AssociationEnd}s instead of
-	 * {@link EReference}s.
+	 * Obtains the association class that the specified reference represents,
+	 * as an {@link EClass}, if any.  This gets the "class" aspect of the
+	 * association class, for which the reference represents the "association"
+	 * aspect.  Note that an environment that correctly supports association
+	 * classes would need to supply appropriately annotated {@link EReference}s.
 	 * 
-	 * @param associationEnd an association end
-	 * @return the qualifier types (as a list of {@link EClassifier}s, or an
-	 *     empty list if the association end is not an {@link AssociationEnd}
+	 * @param reference a reference
+	 * @return the association class, or <code>null</code> if the reference
+	 *     does not represent an association class
 	 */
-	public static List getQualifierTypes(EReference associationEnd) {
-		List result = ECollections.EMPTY_ELIST;
-		
-		if (associationEnd instanceof AssociationEnd) {
-			result = new BasicEList(
-				((AssociationEnd) associationEnd).getQualifiers());
-			
-			for (ListIterator iter = result.listIterator(); iter.hasNext();) {
-				iter.set(getOCLType((Qualifier) iter.next()));
-			}
-		}
-		
-		return result;
+	public EClass getAssociationClass(EReference reference) {
+		return UMLTypeUtil.getAssociationClass(reference);
+	}
+	
+	/**
+	 * Obtains the ends of the specified association class as a list of
+	 * {@link EReference}s.  Note that an environment that correctly supports
+	 * association classes would need to supply appropriately annotated
+	 * {@link EClass}es.
+	 * 
+	 * @param associationClass an EClass representing an association class
+	 * @return the {@link EReference}s representing its member ends (the
+	 *     association roles)
+	 */
+	public EList getMemberEnds(EClass associationClass) {
+		return UMLTypeUtil.getMemberEnds(associationClass);
+	}
+	
+	/**
+	 * Gets the qualifiers of an association end.
+	 * Note that an environment that correctly supports association end
+	 * qualifiers would need to supply appropriately annotated {@link EReference}s.
+	 * 
+	 * @param property a property of the model class
+	 * @return the qualifiers (as a list of {@link EStructuralFeature}s, or an
+	 *     empty list if the property has no qualifiers
+	 */
+	public EList getQualifiers(EStructuralFeature property) {
+		return UMLTypeUtil.getQualifiers(property);
 	}
 	
 	private static final class VariableEntry {
 		final String name;
-		final VariableDeclaration variable;
+		final Variable variable;
 		final boolean isExplicit;
 		
-		VariableEntry(String name, VariableDeclaration variable, boolean isExplicit) {
+		VariableEntry(String name, Variable variable, boolean isExplicit) {
 			this.name = name;
 			this.variable = variable;
 			this.isExplicit = isExplicit;

@@ -3,33 +3,36 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.ocl;singleton:=true
 Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: lib/lpgjavaruntime.jar
 Bundle-Activator: org.eclipse.emf.ocl.internal.OCLPlugin$Implementation
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.ocl.expressions,
- org.eclipse.emf.ocl.expressions.internal.impl;x-friends:="org.eclipse.emf.ocl.tests",
+ org.eclipse.emf.ocl.expressions.impl,
  org.eclipse.emf.ocl.expressions.util,
  org.eclipse.emf.ocl.helper,
  org.eclipse.emf.ocl.internal;x-friends:="org.eclipse.emf.ocl.tests",
+ org.eclipse.emf.ocl.internal.cst;x-friends:="org.eclipse.emf.ocl.tests",
+ org.eclipse.emf.ocl.internal.cst.impl;x-friends:="org.eclipse.emf.ocl.tests",
+ org.eclipse.emf.ocl.internal.cst.util;x-friends:="org.eclipse.emf.ocl.tests",
  org.eclipse.emf.ocl.internal.l10n;x-friends:="org.eclipse.emf.ocl.tests",
  org.eclipse.emf.ocl.internal.parser;x-friends:="org.eclipse.emf.ocl.tests",
- org.eclipse.emf.ocl.internal.utilities;x-friends:="org.eclipse.emf.ocl.tests",
- org.eclipse.emf.ocl.internal.utilities.impl;x-friends:="org.eclipse.emf.ocl.tests",
- org.eclipse.emf.ocl.internal.utilities.util;x-friends:="org.eclipse.emf.ocl.tests",
  org.eclipse.emf.ocl.parser,
  org.eclipse.emf.ocl.query,
- org.eclipse.emf.ocl.query.internal.impl;x-friends:="org.eclipse.emf.ocl.tests",
+ org.eclipse.emf.ocl.query.impl,
  org.eclipse.emf.ocl.query.util,
  org.eclipse.emf.ocl.types,
- org.eclipse.emf.ocl.types.internal.impl;x-friends:="org.eclipse.emf.ocl.tests",
+ org.eclipse.emf.ocl.types.impl,
  org.eclipse.emf.ocl.types.util,
  org.eclipse.emf.ocl.uml,
- org.eclipse.emf.ocl.uml.internal.impl;x-friends:="org.eclipse.emf.ocl.tests",
- org.eclipse.emf.ocl.uml.util
+ org.eclipse.emf.ocl.uml.impl,
+ org.eclipse.emf.ocl.uml.util,
+ org.eclipse.emf.ocl.utilities,
+ org.eclipse.emf.ocl.utilities.impl,
+ org.eclipse.emf.ocl.utilities.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.edit,
  org.eclipse.emf.ecore.edit,
- com.ibm.icu,
- antlr;visibility:=reexport
+ com.ibm.icu
 Eclipse-LazyStart: true

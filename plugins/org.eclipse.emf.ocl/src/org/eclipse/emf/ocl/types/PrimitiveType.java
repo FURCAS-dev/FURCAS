@@ -17,11 +17,23 @@
 
 package org.eclipse.emf.ocl.types;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
+
 /**
  * @author Tim Klinger (tklinger)
  *
  *
  */
-public interface PrimitiveType extends AnyType {
-	// nothing to add
+public interface PrimitiveType extends EDataType, PredefinedType {
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
+	public EList getOperations();
 }

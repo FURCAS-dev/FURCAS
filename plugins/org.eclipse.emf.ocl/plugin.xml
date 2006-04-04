@@ -35,7 +35,7 @@
          genModel="model/OCL.genmodel"/>
       <package 
          uri="http://www.eclipse.org/OCL2/7.0.0/ocl/utilities" 
-         class="org.eclipse.emf.ocl.internal.utilities.UtilitiesPackage"
+         class="org.eclipse.emf.ocl.utilities.UtilitiesPackage"
          genModel="model/OCL.genmodel"/>
       <package 
          uri="http://www.eclipse.org/OCL2/7.0.0/ocl/query" 

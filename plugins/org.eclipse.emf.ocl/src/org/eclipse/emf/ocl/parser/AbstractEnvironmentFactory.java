@@ -19,6 +19,7 @@ package org.eclipse.emf.ocl.parser;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
@@ -26,10 +27,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
-import org.eclipse.emf.ocl.expressions.VariableDeclaration;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.parser.LazyExtentMap;
+import org.eclipse.emf.ocl.types.impl.TypeUtil;
 
 
 /**
@@ -50,6 +53,8 @@ import org.eclipse.emf.ocl.internal.parser.LazyExtentMap;
  *       client metamodel to the {@link EClassifier} API</li>
  *   <li>{@linkplain #asEOperation(Object) adapt} an OCL operation in the
  *       client metamodel to the {@link EOperation} API</li>
+ *   <li>{@linkplain #asEStructuralFeature(Object) adapt} an OCL property in the
+ *       client metamodel to the {@link EStructuralFeature} API</li>
  *   <li>{@linkplain #createEnvironment(EPackage)} create an environment in
  *       an {@link EPackage} context (determined from the classifier context)</li>
  *   <li>{@linkplain EnvironmentFactory#createEnvironment(Environment) create}
@@ -108,14 +113,38 @@ public abstract class AbstractEnvironmentFactory
 	 */
 	protected abstract EOperation asEOperation(Object operation);
 	
+	/**
+	 * Adapts the specified client metamodel <code>property</code> to the
+	 * {@link EStructuralFeature} API.
+	 * 
+	 * @param property a property in the client metamodel's definition of
+	 *     what an OCL property is
+	 * @return the Ecore representation of the client's property
+	 */
+	protected abstract EStructuralFeature asEStructuralFeature(Object property);
+	
 	public Environment createClassifierContext(Object context) {
 		return createClassifierContext(asEClassifier(context));
+	}
+
+	public Environment createPackageContext(List pathname) {
+		EPackage defaultPackage = EcoreEnvironment.findPackage(pathname);
+		if (defaultPackage != null) {
+			return new EcoreEnvironment(defaultPackage);
+		}
+		return null;
 	}
 	
 	public Environment createOperationContext(Object context, Object operation) {
 		return createOperationContext(
 			asEClassifier(context),
 			asEOperation(operation));
+	}
+	
+	public Environment createPropertyContext(Object context, Object property) {
+		return createPropertyContext(
+			asEClassifier(context),
+			asEStructuralFeature(property));
 	}
 
 	/**
@@ -137,10 +166,10 @@ public abstract class AbstractEnvironmentFactory
 		Environment result = createEnvironment(classifier.getEPackage());
 		
 		// in case it corresponds to an OCL primitive type
-		classifier = EcoreEnvironment.getOCLType(classifier);
+		classifier = TypeUtil.getOCLType(classifier);
 
-		VariableDeclaration self = createVariable(SELF_NAME, classifier);
-		result.addElement(self.getVarName(), self, true);
+		Variable self = createVariable(SELF_NAME, classifier);
+		result.addElement(self.getName(), self, true);
 		result.setSelfVariable(self);
 		
 		return result;
@@ -168,14 +197,42 @@ public abstract class AbstractEnvironmentFactory
 			EParameter next = (EParameter) iter.next();
 			
 			// ensure that we use the OCL primitive types wherever possible
-			VariableDeclaration var = createVariable(
+			Variable var = createVariable(
 				next.getName(),
-				EcoreEnvironment.getOCLType(next));
+				TypeUtil.getOCLType(next));
+			var.setRepresentedParameter(next);
 			
-			result.addElement(var.getVarName(), var, true);
+			result.addElement(var.getName(), var, true);
 		}
 		
-		((EcoreEnvironment) result).setContextOperation(operation);
+		if (result instanceof EcoreEnvironment) {
+			((EcoreEnvironment) result).setContextOperation(operation);
+		}
+		
+		return result;
+	}
+
+	/**
+	 * Creates an environment for OCL constraints in the context of the
+	 * specified <code>classifier</code> and <code>property</code>.
+	 * This is useful when defining constraints on the redefinition of a
+	 * property in the context of a classifier that inherits it (i.e.,
+	 * different from the classifier that defines the property).
+	 * 
+	 * @param classifier the context classifier
+	 * @param property the property context
+	 * @return the OCL environment
+	 * 
+	 * @see #createPropertyContext(Object, Object)
+	 */
+	private Environment createPropertyContext(EClassifier classifier,
+			EStructuralFeature property) {
+		Environment classifierEnv = createClassifierContext(classifier);
+		Environment result = createEnvironment(classifierEnv);
+		
+		if (result instanceof EcoreEnvironment) {
+			((EcoreEnvironment) result).setContextProperty(property);
+		}
 		
 		return result;
 	}
@@ -201,12 +258,12 @@ public abstract class AbstractEnvironmentFactory
 	 * @param type the variable's type
 	 * @return the variable declaration
 	 */
-	private static VariableDeclaration createVariable(
+	private static Variable createVariable(
 			String name, EClassifier type) {
 		
-		VariableDeclaration result =
-			ExpressionsFactory.eINSTANCE.createVariableDeclaration();		
-		result.setVarName(name);
+		Variable result =
+			ExpressionsFactory.eINSTANCE.createVariable();		
+		result.setName(name);
 		result.setType(type);
 		
 		return result;

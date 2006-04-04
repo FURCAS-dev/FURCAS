@@ -1,35 +1,33 @@
 /**
  * <copyright>
+ *
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
  * </copyright>
  *
- * $Id: UMLAdapterFactory.java,v 1.1 2006/02/13 16:12:00 cdamus Exp $
+ * $Id: UMLAdapterFactory.java,v 1.2 2006/04/04 18:07:25 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ocl.internal.utilities.Visitable;
-import org.eclipse.emf.ocl.uml.AssociationClass;
-import org.eclipse.emf.ocl.uml.AssociationClassEnd;
-import org.eclipse.emf.ocl.uml.AssociationEnd;
-import org.eclipse.emf.ocl.uml.CallAction;
+import org.eclipse.emf.ocl.uml.CallOperationAction;
 import org.eclipse.emf.ocl.uml.Constraint;
-import org.eclipse.emf.ocl.uml.OCLState;
-import org.eclipse.emf.ocl.uml.Operation;
-import org.eclipse.emf.ocl.uml.Qualifier;
-import org.eclipse.emf.ocl.uml.SendAction;
-import org.eclipse.emf.ocl.uml.Signal;
+import org.eclipse.emf.ocl.uml.SendSignalAction;
+import org.eclipse.emf.ocl.uml.TypedElement;
 import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,35 +92,17 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected UMLSwitch modelSwitch =
 		new UMLSwitch() {
-			public Object caseCallAction(CallAction object) {
-				return createCallActionAdapter();
+			public Object caseCallOperationAction(CallOperationAction object) {
+				return createCallOperationActionAdapter();
 			}
 			public Object caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
-			public Object caseSendAction(SendAction object) {
-				return createSendActionAdapter();
+			public Object caseSendSignalAction(SendSignalAction object) {
+				return createSendSignalActionAdapter();
 			}
-			public Object caseAssociationClassEnd(AssociationClassEnd object) {
-				return createAssociationClassEndAdapter();
-			}
-			public Object caseAssociationClass(AssociationClass object) {
-				return createAssociationClassAdapter();
-			}
-			public Object caseSignal(Signal object) {
-				return createSignalAdapter();
-			}
-			public Object caseAssociationEnd(AssociationEnd object) {
-				return createAssociationEndAdapter();
-			}
-			public Object caseQualifier(Qualifier object) {
-				return createQualifierAdapter();
-			}
-			public Object caseOperation(Operation object) {
-				return createOperationAdapter();
-			}
-			public Object caseOCLState(OCLState object) {
-				return createOCLStateAdapter();
+			public Object caseTypedElement(TypedElement object) {
+				return createTypedElementAdapter();
 			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
@@ -138,24 +118,6 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseEcore_ENamedElement(ENamedElement object) {
 				return createEcore_ENamedElementAdapter();
-			}
-			public Object caseETypedElement(ETypedElement object) {
-				return createETypedElementAdapter();
-			}
-			public Object caseEStructuralFeature(EStructuralFeature object) {
-				return createEStructuralFeatureAdapter();
-			}
-			public Object caseEReference(EReference object) {
-				return createEReferenceAdapter();
-			}
-			public Object caseEClassifier(EClassifier object) {
-				return createEClassifierAdapter();
-			}
-			public Object caseEClass(EClass object) {
-				return createEClassAdapter();
-			}
-			public Object caseEOperation(EOperation object) {
-				return createEOperationAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -176,20 +138,6 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.CallAction <em>Call Action</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.CallAction
-	 * @generated
-	 */
-	public Adapter createCallActionAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -204,114 +152,44 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.SendAction <em>Send Action</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.CallOperationAction <em>Call Operation Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.SendAction
+	 * @see org.eclipse.emf.ocl.uml.CallOperationAction
 	 * @generated
 	 */
-	public Adapter createSendActionAdapter() {
+	public Adapter createCallOperationActionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.AssociationClassEnd <em>Association Class End</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.SendSignalAction <em>Send Signal Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.AssociationClassEnd
+	 * @see org.eclipse.emf.ocl.uml.SendSignalAction
 	 * @generated
 	 */
-	public Adapter createAssociationClassEndAdapter() {
+	public Adapter createSendSignalActionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.AssociationClass <em>Association Class</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.AssociationClass
+	 * @see org.eclipse.emf.ocl.uml.TypedElement
 	 * @generated
 	 */
-	public Adapter createAssociationClassAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.Signal <em>Signal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.Signal
-	 * @generated
-	 */
-	public Adapter createSignalAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.AssociationEnd <em>Association End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.AssociationEnd
-	 * @generated
-	 */
-	public Adapter createAssociationEndAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.Qualifier <em>Qualifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.Qualifier
-	 * @generated
-	 */
-	public Adapter createQualifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.Operation <em>Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.Operation
-	 * @generated
-	 */
-	public Adapter createOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.uml.OCLState <em>OCL State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.uml.OCLState
-	 * @generated
-	 */
-	public Adapter createOCLStateAdapter() {
+	public Adapter createTypedElementAdapter() {
 		return null;
 	}
 
@@ -344,13 +222,13 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.internal.utilities.Visitable <em>Visitable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ocl.utilities.Visitable <em>Visitable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ocl.internal.utilities.Visitable
+	 * @see org.eclipse.emf.ocl.utilities.Visitable
 	 * @generated
 	 */
 	public Adapter createVisitableAdapter() {
@@ -382,90 +260,6 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEcore_ENamedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ETypedElement <em>ETyped Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.ETypedElement
-	 * @generated
-	 */
-	public Adapter createETypedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EStructuralFeature <em>EStructural Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EStructuralFeature
-	 * @generated
-	 */
-	public Adapter createEStructuralFeatureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EReference <em>EReference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EReference
-	 * @generated
-	 */
-	public Adapter createEReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClassifier <em>EClassifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EClassifier
-	 * @generated
-	 */
-	public Adapter createEClassifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EClass
-	 * @generated
-	 */
-	public Adapter createEClassAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EOperation <em>EOperation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EOperation
-	 * @generated
-	 */
-	public Adapter createEOperationAdapter() {
 		return null;
 	}
 

@@ -47,6 +47,11 @@ public final class CollectionKind extends AbstractEnumerator {
     public static final int SET = 2;
 
     /**
+     * @model name="orderedSet"
+     */
+    public static final int ORDERED_SET = 5;
+
+    /**
      * @model name="bag"
      */
     public static final int BAG = 3;
@@ -55,11 +60,6 @@ public final class CollectionKind extends AbstractEnumerator {
      * @model name="sequence"
      */
     public static final int SEQUENCE = 4;
-
-    /**
-     * @model name="orderedSet"
-     */
-    public static final int ORDERED_SET = 5;
 
     /**
      * The '<em><b>Collection</b></em>' literal object. <!-- begin-user-doc
@@ -91,6 +91,16 @@ public final class CollectionKind extends AbstractEnumerator {
             "set");//$NON-NLS-1$
 
     /**
+     * The '<em><b>Ordered Set</b></em>' literal object. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @see #ORDERED_SET
+     * @generated @ordered
+     */
+    public static final CollectionKind ORDERED_SET_LITERAL = new CollectionKind(
+            ORDERED_SET, "orderedSet");//$NON-NLS-1$
+
+    /**
      * The '<em><b>Bag</b></em>' literal object. <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Bag</b></em>' literal object isn't clear,
@@ -118,17 +128,6 @@ public final class CollectionKind extends AbstractEnumerator {
      */
     public static final CollectionKind SEQUENCE_LITERAL = new CollectionKind(
             SEQUENCE, "sequence");//$NON-NLS-1$
-
-    /**
-     * The '<em><b>Ordered Set</b></em>' literal object. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see #ORDERED_SET
-     * @generated @ordered
-     */
-
-    public static final CollectionKind ORDERED_SET_LITERAL = new CollectionKind(
-            ORDERED_SET, "orderedSet");//$NON-NLS-1$
 
     private static final CollectionKind[] VALUES_ARRAY = new CollectionKind[] {
             COLLECTION_LITERAL, SET_LITERAL, BAG_LITERAL, SEQUENCE_LITERAL,
@@ -181,15 +180,25 @@ public final class CollectionKind extends AbstractEnumerator {
 		switch (value) {
 			case COLLECTION: return COLLECTION_LITERAL;
 			case SET: return SET_LITERAL;
+			case ORDERED_SET: return ORDERED_SET_LITERAL;
 			case BAG: return BAG_LITERAL;
 			case SEQUENCE: return SEQUENCE_LITERAL;
-			case ORDERED_SET: return ORDERED_SET_LITERAL;
 		}
 		return null;	
 	}
 
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private CollectionKind(int value, String name, String literal) {
+		super(value, name, literal);
+	}
+
     private CollectionKind(int value, String name) {
-        super(value, name);
+        this(value, name, name);
     }
 }
 

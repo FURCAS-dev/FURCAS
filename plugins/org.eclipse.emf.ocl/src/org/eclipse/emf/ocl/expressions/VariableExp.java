@@ -32,7 +32,7 @@ public interface VariableExp extends OCLExpression {
 	/**
 	 *
 	 */
-    public VariableDeclaration getReferredVariable();
+    public Variable getReferredVariable();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.VariableExp#getReferredVariable <em>Referred Variable</em>}' reference.
@@ -42,6 +42,6 @@ public interface VariableExp extends OCLExpression {
 	 * @see #getReferredVariable()
 	 * @generated
 	 */
-	void setReferredVariable(VariableDeclaration value);
+	void setReferredVariable(Variable value);
 
 }

@@ -20,8 +20,6 @@ package org.eclipse.emf.ocl.expressions.util;
 import java.util.Iterator;
 
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
-import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
-import org.eclipse.emf.ocl.expressions.AttributeCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
@@ -29,16 +27,23 @@ import org.eclipse.emf.ocl.expressions.CollectionRange;
 import org.eclipse.emf.ocl.expressions.EnumLiteralExp;
 import org.eclipse.emf.ocl.expressions.IfExp;
 import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.emf.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
+import org.eclipse.emf.ocl.expressions.MessageExp;
+import org.eclipse.emf.ocl.expressions.NullLiteralExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
+import org.eclipse.emf.ocl.expressions.PropertyCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
+import org.eclipse.emf.ocl.expressions.StateExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
 import org.eclipse.emf.ocl.expressions.TupleLiteralExp;
+import org.eclipse.emf.ocl.expressions.TupleLiteralPart;
+import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
-import org.eclipse.emf.ocl.expressions.VariableDeclaration;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.uml.Constraint;
@@ -58,17 +63,11 @@ public abstract class AbstractVisitor implements Visitor {
 	public AbstractVisitor() {
 		super();
 	}
-	
-	public Object visitAttributeCallExp(AttributeCallExp ac) {
-		ac.getSource().accept(this);
-		
-		return null;
-	}
 
 	public Object visitOperationCallExp(OperationCallExp oc) {
 		oc.getSource().accept(this);
 		
-		for (Iterator iter = oc.getArguments().iterator(); iter.hasNext();) {
+		for (Iterator iter = oc.getArgument().iterator(); iter.hasNext();) {
 			((OCLExpression) iter.next()).accept(this);
 		}
 		
@@ -79,10 +78,10 @@ public abstract class AbstractVisitor implements Visitor {
 		return null;
 	}
 
-	public Object visitAssociationEndCallExp(AssociationEndCallExp ae) {
-		ae.getSource().accept(this);
+	public Object visitPropertyCallExp(PropertyCallExp pc) {
+		pc.getSource().accept(this);
 		
-		for (Iterator iter = ae.getQualifiers().iterator(); iter.hasNext();) {
+		for (Iterator iter = pc.getQualifier().iterator(); iter.hasNext();) {
 			((OCLExpression) iter.next()).accept(this);
 		}
 		
@@ -92,14 +91,14 @@ public abstract class AbstractVisitor implements Visitor {
 	public Object visitAssociationClassCallExp(AssociationClassCallExp ac) {
 		ac.getSource().accept(this);
 		
-		for (Iterator iter = ac.getQualifiers().iterator(); iter.hasNext();) {
+		for (Iterator iter = ac.getQualifier().iterator(); iter.hasNext();) {
 			((OCLExpression) iter.next()).accept(this);
 		}
 		
 		return null;
 	}
 
-	public Object visitVariableDeclaration(VariableDeclaration vd) {
+	public Object visitVariable(Variable vd) {
 		if (vd.getInitExpression() != null) {
 			vd.getInitExpression().accept(this);
 		}
@@ -115,10 +114,28 @@ public abstract class AbstractVisitor implements Visitor {
 		return null;
 	}
 
+	public Object visitTypeExp(TypeExp t) {
+		return null;
+	}
+	
+	public Object visitMessageExp(MessageExp m) {
+		m.getTarget().accept(this);
+		
+		for (Iterator iter = m.getArgument().iterator(); iter.hasNext();) {
+			((OCLExpression) iter.next()).accept(this);
+		}
+		
+		return null;
+	}
+	
 	public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
 		return null;
 	}
 
+	public Object visitStateExp(StateExp s) {
+		return null;
+	}
+	
 	public Object visitIntegerLiteralExp(IntegerLiteralExp il) {
 		return null;
 	}
@@ -134,10 +151,26 @@ public abstract class AbstractVisitor implements Visitor {
 	public Object visitBooleanLiteralExp(BooleanLiteralExp bl) {
 		return null;
 	}
+	
+	public Object visitNullLiteralExp(NullLiteralExp il) {
+		return null;
+	}
+	
+	public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
+		return null;
+	}
 
 	public Object visitTupleLiteralExp(TupleLiteralExp tl) {
-		for (Iterator iter = tl.getTuplePart().iterator(); iter.hasNext();) {
-			((VariableDeclaration) iter.next()).accept(this);
+		for (Iterator iter = tl.getPart().iterator(); iter.hasNext();) {
+			((Variable) iter.next()).accept(this);
+		}
+		
+		return null;
+	}
+	
+	public Object visitTupleLiteralPart(TupleLiteralPart tp) {
+		if (tp.getValue() != null) {
+			tp.getValue().accept(this);
 		}
 		
 		return null;
@@ -155,7 +188,7 @@ public abstract class AbstractVisitor implements Visitor {
 	}
 
 	public Object visitCollectionLiteralExp(CollectionLiteralExp cl) {
-		for (Iterator iter = cl.getParts().iterator(); iter.hasNext();) {
+		for (Iterator iter = cl.getPart().iterator(); iter.hasNext();) {
 			Object next = iter.next();
 			
 			if (next instanceof CollectionItem) {
@@ -172,8 +205,8 @@ public abstract class AbstractVisitor implements Visitor {
 	public Object visitIteratorExp(IteratorExp ie) {
 		ie.getSource().accept(this);
 		
-		for (Iterator iter = ie.getIterators().iterator(); iter.hasNext();) {
-			((VariableDeclaration) iter.next()).accept(this);
+		for (Iterator iter = ie.getIterator().iterator(); iter.hasNext();) {
+			((Variable) iter.next()).accept(this);
 		}
 		
 		ie.getBody().accept(this);
@@ -184,8 +217,8 @@ public abstract class AbstractVisitor implements Visitor {
 	public Object visitIterateExp(IterateExp ie) {
 		ie.getSource().accept(this);
 		
-		for (Iterator iter = ie.getIterators().iterator(); iter.hasNext();) {
-			((VariableDeclaration) iter.next()).accept(this);
+		for (Iterator iter = ie.getIterator().iterator(); iter.hasNext();) {
+			((Variable) iter.next()).accept(this);
 		}
 		
 		ie.getBody().accept(this);

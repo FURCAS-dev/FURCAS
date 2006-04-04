@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.3 2006/03/01 17:15:48 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.4 2006/04/04 18:07:25 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -36,12 +36,9 @@ public class OCLMessages extends NLS {
 	public static String TupleFieldDoesntExist_ERROR_;
 	public static String InvalidClass_ERROR_;
 	public static String InvalidDatatype_ERROR_;
-	public static String NullAttribute_ERROR_;
-	public static String NullSourceAttribute_ERROR_;
-	public static String NullTypeAttribute_ERROR_;
-	public static String NullAssociation_ERROR_;
-	public static String NullSourceAssociation_ERROR_;
-	public static String NullTypeAssociation_ERROR_;
+	public static String NullProperty_ERROR_;
+	public static String NullNavigationSource_ERROR_;
+	public static String NullNavigationType_ERROR_;
 	public static String NullOperation_ERROR_;
 	public static String NullSourceOperation_ERROR_;
 	public static String IllegalOperation_ERROR_;
@@ -52,11 +49,15 @@ public class OCLMessages extends NLS {
 	public static String MissingNameInVariableDeclaration_ERROR_;
 	public static String TypeConformanceInit_ERROR_;
 	public static String NonBooleanIfExp_ERROR_;
+	public static String TypeConformanceTypeExp_ERROR_;
+	public static String TypeExpMissingType_ERROR_;
 	public static String TypeConformanceIfExp_ERROR_;
 	public static String TypeConformanceIntegerLiteral_ERROR_;
 	public static String TypeConformanceRealLiteral_ERROR_;
 	public static String TypeConformanceStringLiteral_ERROR_;
 	public static String TypeConformanceBooleanLiteral_ERROR_;
+	public static String TypeConformanceNullLiteral_ERROR_;
+	public static String TypeConformanceInvalidLiteral_ERROR_;
 	public static String TypeConformanceLetExp_ERROR_;
 	public static String TypeConformanceIterateExp_ERROR_;
 	public static String TypeConformanceIterateExpBody_ERROR_;
@@ -64,6 +65,8 @@ public class OCLMessages extends NLS {
 	public static String TypeConformanceIteratorResult_ERROR_;
 	public static String TypeConformanceCollectSequence_ERROR_;
 	public static String TypeConformanceCollectBag_ERROR_;
+	public static String TypeConformanceClosure_ERROR_;
+	public static String ElementTypeConformanceClosure_ERROR_;
 	public static String TypeConformanceSelectReject_ERROR_;
 	public static String TypeConformanceIterateExpBodyBoolean_ERROR_;
 	public static String TypeConformanceCollectionLiteralExp_ERROR_;
@@ -78,6 +81,11 @@ public class OCLMessages extends NLS {
 	public static String TupleLiteralExpressionAttribName_ERROR_;
 	public static String TupleLiteralExpressionRefName_ERROR_;
 	public static String TupleDuplicateName_ERROR_;
+	public static String MissingPropertyInTupleLiteralPart_ERROR_;
+	public static String MissingTypeInTupleLiteralPart_ERROR_;
+	public static String MissingValueInTupleLiteralPart_ERROR_;
+	public static String TuplePartType_ERROR_;
+	public static String TypeConformanceTuplePartValue_ERROR_;
 	public static String RecursiveContainment_ERROR_;
 	public static String EMFOCLConversion_ERROR_;
 	public static String UnknownOperationOwnerType_ERROR_;
@@ -98,6 +106,7 @@ public class OCLMessages extends NLS {
 	public static String BadArg_ERROR_;
 	public static String PackageNotFound_ERROR_;
 	public static String UnrecognizedContext_ERROR_;
+	public static String PropertyConstraints_ERROR_;
 	public static String BooleanForIf_ERROR_;
 	public static String MissingTypeForVar_ERROR_;
 	public static String MissingInitForVar_ERROR_;
@@ -123,7 +132,6 @@ public class OCLMessages extends NLS {
 	public static String InputListExpectEObjs_ERROR_;
 	public static String CheckBool_ERROR_;
 	public static String Noncomforming_ERROR_;
-	public static String EqualityTupleUnsupported_ERROR_;
 	public static String SourceEClass_ERROR_;
 	public static String SourceOperationCompareTo_ERROR_;
 	public static String ResultCompareToInt_ERROR_;
@@ -138,6 +146,24 @@ public class OCLMessages extends NLS {
 	public static String TupleFieldNumMismatch_ERROR_;
 	public static String RemoveUnsupported_ERROR_;
 	public static String OCLCollectionKindNotImpl_ERROR_;
+	public static String IsInStateSignature_ERROR_;
+	public static String NoSuchState_ERROR_;
+	public static String MissingStateInStateExp_ERROR_;
+	public static String MissingStateNameInStateExp_ERROR_;
+	public static String UnrecognizedMessageType_ERROR_;
+	public static String AmbiguousMessageType_ERROR_;
+	public static String IllegalUnspecifiedValueExp_ERROR_;
+	public static String MissingMessageTarget_ERROR_;
+	public static String MissingOperationInCallAction_ERROR_;
+	public static String MissingSignalInCallAction_ERROR_;
+	public static String MessageArgumentCount_ERROR_;
+	public static String MessageArgConformance_ERROR_;
+	public static String DefinitionConstraintFeature_ERROR_;
+	public static String DefinitionConstraintConformance_ERROR_;
+	public static String DuplicateProperty_ERROR_;
+	public static String DuplicateOperation_ERROR_;
+	public static String InitOrDerConstraintConformance_ERROR_;
+	
 	public static String IllegalAtPre_ERROR_;
 	public static String AtPreInPostcondition_ERROR_;
 	public static String BodyConditionNotAllowed_ERROR_;
@@ -153,6 +179,23 @@ public class OCLMessages extends NLS {
 	public static String BodyConditionForm_ERROR_;
 	public static String OperationConstraintBoolean_ERROR_;
 	public static String InvariantConstraintBoolean_ERROR_;
+	public static String InvalidOCL_ERROR_;
+	public static String ParseCSTNodeType_ERROR_;
+
+	public static String OCLParseErrorCodes_LEX_ERROR;
+	public static String OCLParseErrorCodes_ERROR;
+	public static String OCLParseErrorCodes_BEFORE;
+	public static String OCLParseErrorCodes_INSERTION;
+	public static String OCLParseErrorCodes_INVALID;
+	public static String OCLParseErrorCodes_SUBSTITUTION_SECONDARY;
+	public static String OCLParseErrorCodes_DELETION;
+	public static String OCLParseErrorCodes_MERGE;
+	public static String OCLParseErrorCodes_MISPLACED;
+	public static String OCLParseErrorCodes_SCOPE;
+	public static String OCLParseErrorCodes_EOF;
+	public static String OCLParseErrorCodes_INVALID_TOKEN;
+	
+	public static String ErrorReport_RowColumn;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, OCLMessages.class);

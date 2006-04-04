@@ -18,11 +18,13 @@
 package org.eclipse.emf.ocl.parser;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 
@@ -34,9 +36,6 @@ import org.eclipse.emf.ecore.EcorePackage;
  */
 public class EcoreEnvironmentFactory
 	extends AbstractEnvironmentFactory {
-	
-	private static EClassifier JAVA_OBJECT_DATATYPE =
-		EcorePackage.eINSTANCE.getEJavaObject();
 	
 	private EPackage.Registry registry;
 
@@ -55,6 +54,16 @@ public class EcoreEnvironmentFactory
 		this.registry = reg;
 	}
 
+	public Environment createPackageContext(List pathname) {
+		EPackage defaultPackage = EcoreEnvironment.findPackage(pathname, registry);
+		if (defaultPackage != null) {
+			EcoreEnvironment result = new EcoreEnvironment(defaultPackage, registry);
+			result.setFactory(this);
+			return result;
+		}
+		return null;
+	}
+	
 	protected EClassifier asEClassifier(Object context) {
 		EClassifier result = null;
 		
@@ -69,14 +78,14 @@ public class EcoreEnvironmentFactory
 					(result == null) && iter.hasNext();) {
 				EClassifier next = (EClassifier) iter.next();
 				
-				if ((next != JAVA_OBJECT_DATATYPE) && (next.isInstance(context))) {
+				if ((next != EcorePackage.Literals.EJAVA_OBJECT) && (next.isInstance(context))) {
 					result = next;
 				}
 			}
 			
 			if (result == null) {
 				// it's just some weirdo Java object that we don't understand
-				result = JAVA_OBJECT_DATATYPE;
+				result = EcorePackage.Literals.EJAVA_OBJECT;
 			}
 		}
 		
@@ -92,6 +101,15 @@ public class EcoreEnvironmentFactory
 		return (EOperation) operation;
 	}
 
+	protected EStructuralFeature asEStructuralFeature(Object property) {
+		if (!(property instanceof EStructuralFeature)) {
+			throw new IllegalArgumentException(
+				"Not a valid Ecore property: " + property); //$NON-NLS-1$
+		}
+		
+		return (EStructuralFeature) property;
+	}
+	
 	/**
 	 * Creates an environment for OCL constraints in the context of the
 	 * specified <code>classifier</code>.
@@ -100,7 +118,9 @@ public class EcoreEnvironmentFactory
 	 * @return the OCL environment
 	 */
 	protected Environment createEnvironment(EPackage packageContext) {
-		return new EcoreEnvironment(packageContext, registry);
+		EcoreEnvironment result = new EcoreEnvironment(packageContext, registry);
+		result.setFactory(this);
+		return result;
 	}
 
 	public Environment createEnvironment(Environment parent) {
@@ -109,6 +129,8 @@ public class EcoreEnvironmentFactory
 				"Parent environment must be an Ecore environment: " + parent); //$NON-NLS-1$
 		}
 		
-		return new EcoreEnvironment(parent);
+		EcoreEnvironment result = new EcoreEnvironment(parent);
+		result.setFactory(this);
+		return result;
 	}
 }

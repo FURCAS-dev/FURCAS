@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.5 2006/03/01 17:15:45 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.6 2006/04/04 18:03:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;

@@ -29,25 +29,22 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
+import org.eclipse.emf.ocl.expressions.FeatureCallExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
-import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
-import org.eclipse.emf.ocl.uml.AssociationClass;
-import org.eclipse.emf.ocl.uml.AssociationClassEnd;
-import org.eclipse.emf.ocl.uml.AssociationEnd;
-import org.eclipse.emf.ocl.uml.Qualifier;
-import org.eclipse.emf.ocl.uml.UMLFactory;
+import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
+import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
 
 
 /**
@@ -63,13 +60,13 @@ public class AssociationTest
 	private EReference stem_tree;
 	private EAttribute stem_thickness;
 	
-	private AssociationClassEnd apple_tree;
+	private EReference apple_tree;
 	
 	private EClass tree;
-	private AssociationClassEnd tree_apples;
+	private EReference tree_apples;
 	
 	private EClass forest;
-	private AssociationEnd forest_trees;
+	private EReference forest_trees;
 	
 	public AssociationTest(String name) {
 		super(name);
@@ -212,8 +209,9 @@ public class AssociationTest
 	 */
 	public void test_associationClass_reflexive_RATLC00538077() {
 		// set up a reflexive association class for this test case
-		AssociationClass ac = UMLFactory.eINSTANCE.createAssociationClass();
+		EClass ac = EcoreFactory.eINSTANCE.createEClass();
 		ac.setName("AC"); //$NON-NLS-1$
+		UMLTypeUtil.setAssociationClass(ac, true);
 		fruitPackage.getEClassifiers().add(ac);
 		
 		EAttribute x = EcoreFactory.eINSTANCE.createEAttribute();
@@ -221,17 +219,17 @@ public class AssociationTest
 		x.setEType(EcorePackage.eINSTANCE.getEInt());
 		ac.getEStructuralFeatures().add(x);
 		
-		AssociationClassEnd parent = UMLFactory.eINSTANCE.createAssociationClassEnd();
+		EReference parent = EcoreFactory.eINSTANCE.createEReference();
 		parent.setName("parent"); //$NON-NLS-1$
 		parent.setEType(tree);
-		parent.setAssociationClass(ac);
+		UMLTypeUtil.setAssociationClass(parent, ac);
 		tree.getEStructuralFeatures().add(parent);
 		
-		AssociationClassEnd children = UMLFactory.eINSTANCE.createAssociationClassEnd();
+		EReference children = EcoreFactory.eINSTANCE.createEReference();
 		children.setName("children"); //$NON-NLS-1$
 		children.setEType(tree);
 		children.setUpperBound(-1);
-		children.setAssociationClass(ac);
+		UMLTypeUtil.setAssociationClass(children, ac);
 		tree.getEStructuralFeatures().add(children);
 		
 		EReference parentTree = EcoreFactory.eINSTANCE.createEReference();
@@ -239,14 +237,14 @@ public class AssociationTest
 		parentTree.setEType(tree);
 		parentTree.setEOpposite(parent);
 		ac.getEStructuralFeatures().add(parentTree);
-		ac.getMemberEnds().add(parentTree);
+		UMLTypeUtil.addMemberEnd(ac, parentTree);
 		
 		EReference childTree = EcoreFactory.eINSTANCE.createEReference();
 		childTree.setName("childTree"); //$NON-NLS-1$
 		childTree.setEType(tree);
 		childTree.setEOpposite(children);
 		ac.getEStructuralFeatures().add(childTree);
-		ac.getMemberEnds().add(childTree);
+		UMLTypeUtil.addMemberEnd(ac, childTree);
 		
 		// navigate the association end as usual
 		parse(
@@ -340,7 +338,7 @@ public class AssociationTest
 		
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
 			constraint);
-		ModelPropertyCallExp mpcExp = LocationInformationTest.asModelPropertyCall(
+		FeatureCallExp mpcExp = LocationInformationTest.asFeatureCall(
 			notEmptyExp.getSource());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
@@ -365,8 +363,8 @@ public class AssociationTest
 		CollectionLiteralExp setExp = LocationInformationTest.asCollectionLiteral(
 			notEmptyExp.getSource());
 		
-		ModelPropertyCallExp mpcExp = LocationInformationTest.asModelPropertyCall(
-			((CollectionItem) setExp.getParts().get(0)).getItem());
+		FeatureCallExp mpcExp = LocationInformationTest.asFeatureCall(
+			((CollectionItem) setExp.getPart().get(0)).getItem());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
 			exprString.indexOf("stem"), //$NON-NLS-1$
@@ -391,7 +389,7 @@ public class AssociationTest
 		LoopExp loopExp = LocationInformationTest.asLoop(
 			notEmptyExp.getSource());
 		
-		ModelPropertyCallExp mpcExp = LocationInformationTest.asModelPropertyCall(
+		FeatureCallExp mpcExp = LocationInformationTest.asFeatureCall(
 			loopExp.getBody());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
@@ -417,9 +415,9 @@ public class AssociationTest
 			notEmptyExp.getSource());
 		
 		AssociationClassCallExp accExp = LocationInformationTest.asAssociationClassCall(
-			((CollectionItem) setExp.getParts().get(0)).getItem());
+			((CollectionItem) setExp.getPart().get(0)).getItem());
 		
-		List qualifiers = accExp.getQualifiers();
+		List qualifiers = accExp.getQualifier();
 		assertEquals(1, qualifiers.size());
 		
 		OCLExpression qualifier = (OCLExpression) qualifiers.get(0);
@@ -450,7 +448,7 @@ public class AssociationTest
 		AssociationClassCallExp accExp = LocationInformationTest.asAssociationClassCall(
 			loopExp.getBody());
 		
-		List qualifiers = accExp.getQualifiers();
+		List qualifiers = accExp.getQualifier();
 		assertEquals(1, qualifiers.size());
 		
 		OCLExpression qualifier = (OCLExpression) qualifiers.get(0);
@@ -497,7 +495,7 @@ public class AssociationTest
 					" endpackage"); //$NON-NLS-1$
 
 			Object result = evaluate(expr, emp1);
-			assertNull(result);
+			assertSame(InvalidTypeImpl.OCL_INVALID, result);
 		} finally {
 			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
@@ -516,8 +514,9 @@ public class AssociationTest
 		fruitPackage.getEClassifiers().remove(stem);
 		
 		// "stem" is more appropriately modeled as an association class
-		stem = UMLFactory.eINSTANCE.createAssociationClass();
+		stem = EcoreFactory.eINSTANCE.createEClass();
 		stem.setName("Stem"); //$NON-NLS-1$
+		UMLTypeUtil.setAssociationClass(stem, true);
 		
 		tree = EcoreFactory.eINSTANCE.createEClass();
 		tree.setName("Tree"); //$NON-NLS-1$
@@ -528,17 +527,17 @@ public class AssociationTest
 		apple.getEStructuralFeatures().remove(apple_stem);
 		apple_stem = null;
 		
-		apple_tree = UMLFactory.eINSTANCE.createAssociationClassEnd();
+		apple_tree = EcoreFactory.eINSTANCE.createEReference();
 		apple_tree.setName("tree"); //$NON-NLS-1$
 		apple_tree.setEType(tree);
-		apple_tree.setAssociationClass(stem);
+		UMLTypeUtil.setAssociationClass(apple_tree, stem);
 		apple.getEStructuralFeatures().add(apple_tree);
 		
-		tree_apples = UMLFactory.eINSTANCE.createAssociationClassEnd();
+		tree_apples = EcoreFactory.eINSTANCE.createEReference();
 		tree_apples.setName("apples"); //$NON-NLS-1$
 		tree_apples.setEType(apple);
 		tree_apples.setUpperBound(-1);
-		tree_apples.setAssociationClass(stem);
+		UMLTypeUtil.setAssociationClass(tree_apples, stem);
 		tree.getEStructuralFeatures().add(tree_apples);
 		
 		stem_thickness = EcoreFactory.eINSTANCE.createEAttribute();
@@ -550,33 +549,33 @@ public class AssociationTest
 		stem_apple.setName("apple"); //$NON-NLS-1$
 		stem_apple.setEType(apple);
 		stem.getEStructuralFeatures().add(stem_apple);
-		((AssociationClass) stem).getMemberEnds().add(stem_apple);
+		UMLTypeUtil.addMemberEnd(stem, stem_apple);
 		
 		stem_tree = EcoreFactory.eINSTANCE.createEReference();
 		stem_tree.setName("tree"); //$NON-NLS-1$
 		stem_tree.setEType(tree);
 		stem.getEStructuralFeatures().add(stem_tree);
-		((AssociationClass) stem).getMemberEnds().add(stem_tree);
+		UMLTypeUtil.addMemberEnd(stem, stem_tree);
 		
 		// add a Forest::trees association with qualifiers
 		forest = EcoreFactory.eINSTANCE.createEClass();
 		forest.setName("Forest"); //$NON-NLS-1$
 		fruitPackage.getEClassifiers().add(forest);
 		
-		forest_trees = UMLFactory.eINSTANCE.createAssociationEnd();
+		forest_trees = EcoreFactory.eINSTANCE.createEReference();
 		forest_trees.setName("trees"); //$NON-NLS-1$
 		forest_trees.setEType(tree);
 		forest_trees.setUpperBound(-1);
 		forest.getEStructuralFeatures().add(forest_trees);
 		
-		Qualifier q = UMLFactory.eINSTANCE.createQualifier();
+		EStructuralFeature q = EcoreFactory.eINSTANCE.createEAttribute();
 		q.setName("q1"); //$NON-NLS-1$
 		q.setEType(EcorePackage.eINSTANCE.getEString());
-		forest_trees.getQualifiers().add(q);
-		q = UMLFactory.eINSTANCE.createQualifier();
+		UMLTypeUtil.addQualifier(forest_trees, q);
+		q = EcoreFactory.eINSTANCE.createEAttribute();
 		q.setName("q2"); //$NON-NLS-1$
 		q.setEType(EcorePackage.eINSTANCE.getEInt());
-		forest_trees.getQualifiers().add(q);
+		UMLTypeUtil.addQualifier(forest_trees, q);
 	}
 	
 	protected void tearDown()

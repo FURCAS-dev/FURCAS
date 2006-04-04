@@ -17,35 +17,18 @@
 
 package org.eclipse.emf.ocl.expressions;
 
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ocl.uml.TypedElement;
 
 
 /**
  * @author Edith Schonberg (edith)
  */
-public interface CollectionLiteralPart extends ENamedElement {
+public interface CollectionLiteralPart extends TypedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	String copyright = ""; //$NON-NLS-1$
-
-	/**
-	 *
-	 */
-	public EClassifier getType();
-
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.emf.ocl.expressions.CollectionLiteralPart#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(EClassifier value);
 
 }
