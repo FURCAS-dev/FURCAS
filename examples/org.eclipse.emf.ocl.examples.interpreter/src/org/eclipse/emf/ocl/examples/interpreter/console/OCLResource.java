@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.3 2006/03/01 17:15:49 cdamus Exp $
+ * $Id: OCLResource.java,v 1.4 2006/04/04 17:52:14 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -33,12 +32,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
-import org.eclipse.emf.ocl.expressions.AssociationEndCallExp;
-import org.eclipse.emf.ocl.expressions.AttributeCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionItem;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
@@ -46,19 +43,26 @@ import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.emf.ocl.expressions.CollectionRange;
 import org.eclipse.emf.ocl.expressions.EnumLiteralExp;
+import org.eclipse.emf.ocl.expressions.FeatureCallExp;
 import org.eclipse.emf.ocl.expressions.IfExp;
 import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.emf.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.emf.ocl.expressions.IterateExp;
 import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.LetExp;
-import org.eclipse.emf.ocl.expressions.ModelPropertyCallExp;
+import org.eclipse.emf.ocl.expressions.MessageExp;
+import org.eclipse.emf.ocl.expressions.NullLiteralExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
+import org.eclipse.emf.ocl.expressions.PropertyCallExp;
 import org.eclipse.emf.ocl.expressions.RealLiteralExp;
+import org.eclipse.emf.ocl.expressions.StateExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
 import org.eclipse.emf.ocl.expressions.TupleLiteralExp;
+import org.eclipse.emf.ocl.expressions.TupleLiteralPart;
+import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
-import org.eclipse.emf.ocl.expressions.VariableDeclaration;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.helper.HelperUtil;
@@ -207,19 +211,12 @@ public class OCLResource
 	 */
 	static class ToStringVisitor implements Visitor {
 
-		public Object visitAttributeCallExp(AttributeCallExp ac) {
-			EAttribute attr = ac.getReferredAttribute();
-			OCLExpression source = ac.getSource();
-
-			return maybeAtPre(ac, (String) source.accept(this) + "." + attr.getName()); //$NON-NLS-1$
-		}
-
 		public Object visitOperationCallExp(OperationCallExp oc) {
 
 			OCLExpression source = oc.getSource();
 			EClassifier sourceType = source.getType();
 			EOperation oper = oc.getReferredOperation();
-			EList args = oc.getArguments();
+			EList args = oc.getArgument();
 			int numArgs = args.size();
 
 			String result = source.accept(this)
@@ -244,26 +241,28 @@ public class OCLResource
 		public Object visitVariableExp(VariableExp v) {
 
 			// get the referred variable name
-			VariableDeclaration vd = v.getReferredVariable();
-			String varName = vd.getVarName();
+			Variable vd = v.getReferredVariable();
+			String varName = vd.getName();
 			return varName;
 		}
 
 		/**
-		 * Callback for an AssociationEndCallExp visit. 
-		 * @param ae the association end expression
-		 * @return string source.ref
+		 * Callback for a PropertyCallExp visit. 
+		 * 
+		 * @param pc the property call expression
+		 * 
+		 * @return string source.property
 		 */
-		public Object visitAssociationEndCallExp(AssociationEndCallExp ae) {
+		public Object visitPropertyCallExp(PropertyCallExp pc) {
 
-			EReference ref = ae.getReferredAssociationEnd();
+			EStructuralFeature property = pc.getReferredProperty();
 			StringBuffer result = new StringBuffer(
-				maybeAtPre(ae, (String) ae.getSource().accept(this) + "." + ref.getName()));//$NON-NLS-1$
+				maybeAtPre(pc, (String) pc.getSource().accept(this) + "." + property.getName()));//$NON-NLS-1$
 			
-			if (!ae.getQualifiers().isEmpty()) {
+			if (!pc.getQualifier().isEmpty()) {
 				result.append('[');
 				
-				for (Iterator iter = ae.getQualifiers().iterator(); iter.hasNext();) {
+				for (Iterator iter = pc.getQualifier().iterator(); iter.hasNext();) {
 					OCLExpression next = (OCLExpression) iter.next();
 					
 					result.append(next.accept(this));
@@ -299,8 +298,8 @@ public class OCLResource
 			return result.toString();
 		}
 
-		public Object visitVariableDeclaration(VariableDeclaration vd) {
-			String varName = vd.getVarName();
+		public Object visitVariable(Variable vd) {
+			String varName = vd.getName();
 			EClassifier type = vd.getType();
 			OCLExpression init = vd.getInitExpression();
 			String result = varName;
@@ -321,8 +320,51 @@ public class OCLResource
 				(String) elseexp.accept(this);
 		}
 
+		public Object visitTypeExp(TypeExp t) {
+			return getQualifiedName(t.getReferredType());
+		}
+		
+		public Object visitStateExp(StateExp s) {
+			return s == null? "" : s.getName(); //$NON-NLS-1$
+		}
+		
+		public Object visitMessageExp(MessageExp m) {
+			StringBuffer result = new StringBuffer();
+			
+			result.append(m.getTarget().accept(this));
+			
+			result.append((m.getType() == Types.OCL_BOOLEAN)? "^" : "^^");  //$NON-NLS-1$//$NON-NLS-2$
+		
+			if (m.getCalledOperation() != null) {
+				result.append(m.getCalledOperation().getOperation().getName());
+			} else if (m.getSentSignal() != null) {
+				result.append(m.getSentSignal().getSignal().getName());
+			}
+			
+			result.append('(');
+			
+			for (Iterator iter = m.getArgument().iterator(); iter.hasNext();) {
+				result.append(((OCLExpression) iter.next()).accept(this));
+				
+				if (iter.hasNext()) {
+					result.append(", ");  //$NON-NLS-1$
+				}
+			}
+			
+			result.append(')');
+			
+			return result.toString();
+		}
+
 		public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
-			return getQualifiedName(uv.getType());
+			StringBuffer result = new StringBuffer();
+			result.append("?"); //$NON-NLS-1$
+			if (uv.getType() != null && uv.getType() != Types.OCL_VOID) {
+				result.append(" : "); //$NON-NLS-1$
+				result.append(uv.getType().getName());
+			}
+			
+			return result.toString();
 		}
 		
 		private String getQualifiedName(EClassifier type) {
@@ -376,11 +418,11 @@ public class OCLResource
 
 		public Object visitIterateExp(IterateExp ie) {
 			// get the variable declaration for the result
-			VariableDeclaration vd = ie.getResult();
-			//		String resultName = vd.getVarName();
+			Variable vd = ie.getResult();
+			//		String resultName = vd.getName();
 
 			// get the list of ocl iterators
-			EList iterators = ie.getIterators();
+			EList iterators = ie.getIterator();
 			int numIters = iterators.size();
 
 			// evaluate the source collection
@@ -388,7 +430,7 @@ public class OCLResource
 				+ "->" + "iterate(";//$NON-NLS-2$//$NON-NLS-1$
 
 			for (int i = 0; i < numIters; i++) {
-				VariableDeclaration iter = (VariableDeclaration) iterators.get(i);
+				Variable iter = (Variable) iterators.get(i);
 				result += (String) iter.accept(this);
 				if (i < iterators.size() - 1)
 					result += ", ";//$NON-NLS-1$
@@ -404,14 +446,14 @@ public class OCLResource
 		public Object visitIteratorExp(IteratorExp ie) {
 
 			// get the list of ocl iterators
-			EList iterators = ie.getIterators();
+			EList iterators = ie.getIterator();
 			int numIters = iterators.size();
 
 			// evaluate the source collection
 			String result = (String) ie.getSource().accept(this) + "->"//$NON-NLS-1$
 				+ ie.getName() + "(";//$NON-NLS-1$
 			for (int i = 0; i < numIters; i++) {
-				VariableDeclaration iter = (VariableDeclaration) iterators.get(i);
+				Variable iter = (Variable) iterators.get(i);
 				result += (String) iter.accept(this);
 				if (i < iterators.size() - 1)
 					result += ", ";//$NON-NLS-1$
@@ -429,7 +471,7 @@ public class OCLResource
 			// based on the collection kind.
 			CollectionKind kind = cl.getKind();
 
-			List parts = cl.getParts();
+			List parts = cl.getPart();
 			String result;
 			if (kind == CollectionKind.SET_LITERAL)
 				result = "Set {";//$NON-NLS-1$
@@ -462,15 +504,32 @@ public class OCLResource
 			// construct the appropriate collection from the parts
 			// based on the collection kind.
 			String result = "Tuple{";//$NON-NLS-1$
-			EList tuplePart = tl.getTuplePart();
+			EList tuplePart = tl.getPart();
 			Iterator iter = tuplePart.iterator();
 			while (iter.hasNext()) {
-				VariableDeclaration tp = (VariableDeclaration) iter.next();
+				TupleLiteralPart tp = (TupleLiteralPart) iter.next();
 				result += (String) tp.accept(this);
 				if (iter.hasNext())
 					result += ", ";//$NON-NLS-1$
 			}
 			return result + "}";//$NON-NLS-1$
+		}
+		
+		public Object visitTupleLiteralPart(TupleLiteralPart tp) {
+			String varName = tp.getName();
+			EClassifier type = tp.getType();
+			OCLExpression init = tp.getValue();
+			String result = varName;
+
+			if (type != null) {
+				result += " : " + type.getName();//$NON-NLS-1$
+			}
+			
+			if (init != null) {
+				result += " = " + init.accept(this);//$NON-NLS-1$
+			}
+			
+			return result;
 		}
 
 		/**
@@ -538,9 +597,16 @@ public class OCLResource
 			}
 		}
 
-		private String maybeAtPre(ModelPropertyCallExp mpc, String base) {
+		private String maybeAtPre(FeatureCallExp mpc, String base) {
 			return mpc.isMarkedPre() ? base + "@pre" : base; //$NON-NLS-1$
 		}
-		
+
+		public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
+			return "OclInvalid"; //$NON-NLS-1$
+		}
+
+		public Object visitNullLiteralExp(NullLiteralExp il) {
+			return "null"; //$NON-NLS-1$
+		}
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.3 2006/03/01 17:15:49 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.4 2006/04/04 17:52:14 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;

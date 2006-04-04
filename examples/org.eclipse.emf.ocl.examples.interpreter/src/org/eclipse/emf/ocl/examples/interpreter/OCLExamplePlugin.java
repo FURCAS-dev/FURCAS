@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExamplePlugin.java,v 1.1 2006/02/13 16:12:09 cdamus Exp $
+ * $Id: OCLExamplePlugin.java,v 1.2 2006/04/04 17:52:14 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter;
