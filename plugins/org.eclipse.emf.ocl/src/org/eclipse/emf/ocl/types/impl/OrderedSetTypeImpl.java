@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.2 2006/04/04 19:07:00 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -111,7 +111,7 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 * @param opcode
 	 * @param args
 	 * @return the result type
-	 * @throws antlr.SemanticException
+	 * @throws SemanticException
 	 */
 	public EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args)
 											 throws SemanticException {
