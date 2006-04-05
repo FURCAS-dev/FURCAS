@@ -33,11 +33,15 @@
 				<li>Collection types</li>
 				<li>Navigation of attributes and association ends</li>
 				<li>Operation invocation</li>
-				<li>Iteration expressions</li>
+				<li>Iteration expressions (all standard iterators)</li>
 				<li>Let expressions</li>
 				<li>If expressions</li>
 				<li>Tuples</li>
 				<li>Operations predefined by OCL:  allInstances(), oclIsKindOf(), oclIsTypeOf()</li>
+				<li>Attribute and operation definitions, including init:, derive:, and def: expressions</li>
+				<li>Navigation to association classes</li>
+				<li>Operations predefined by OCL: oclIsInState(), oclIsNew()</li>
+				<li>Message expressions</li>
 				<li>
 					Escape syntax for illegal names:  type, operation, attribute, etc. names
 					that correspond to OCL reserved words or that contain spaces or tabs can
@@ -47,12 +51,12 @@
 			</ul>
 		</p>
 		<p>
-			The following features are not currently supported:
+			The following features are provided in addition to the OCL specification:
 			<ul>
-				<li>Attribute and operation definitions, including init:, derive:, and def: expressions</li>
-				<li>Navigation to association classes</li>
-				<li>Operations predefined by OCL: oclInState(), oclIsNew()</li>
-				<li>Messages</li>
+				<li>String case conversion operations:  toUpper(), toLower()</li>
+				<li>Support for comparison (&lt;, &lt;=, etc.) and sorting of any
+				    java <code>Comparable</code>s of conformant types</li>
+				<li>Transitive closure of associations:  closure(expr : OCLExpression) iterator</li>
 			</ul>
 		</p>
 		<p>
@@ -257,8 +261,8 @@ class AttributeCounter implements Visitor {
         return count;
     }
     
-    public Object visitAttributeCallExp(AttributeCallExp ac) {
-        if (ac.getReferredAttribute() == attribute) {
+    public Object visitPropertyCallExp(PropertyCallExp pc) {
+        if (pc.getReferredProperty() == attribute) {
             // count one
             count++;
         }
