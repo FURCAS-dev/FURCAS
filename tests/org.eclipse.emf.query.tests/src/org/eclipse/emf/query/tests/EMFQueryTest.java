@@ -37,13 +37,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.uml2.Model;
-import org.eclipse.uml2.NamedElement;
-import org.eclipse.uml2.Operation;
-import org.eclipse.uml2.Parameter;
-import org.eclipse.uml2.Property;
-import org.eclipse.uml2.UML2Factory;
-import org.eclipse.uml2.UML2Package;
 
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
@@ -67,6 +60,13 @@ import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.IteratorKind;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @author Yasser Lulu 
@@ -86,7 +86,7 @@ public class EMFQueryTest
 
 	private Model model;
 
-	private org.eclipse.uml2.Class instance_Class1;
+	private org.eclipse.uml2.uml.Class instance_Class1;
 
 	private Resource resource;
 
@@ -117,9 +117,9 @@ public class EMFQueryTest
 		String fullyQualifiedName) {
 
 		QueryStatement query = new SELECT(1, new FROM(inputModel), new WHERE(
-			new EObjectTypeRelationCondition(UML2Package.eINSTANCE
+			new EObjectTypeRelationCondition(UMLPackage.eINSTANCE
 				.getNamedElement(), TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)
-				.AND(new EObjectAttributeValueCondition(UML2Package.eINSTANCE
+				.AND(new EObjectAttributeValueCondition(UMLPackage.eINSTANCE
 					.getNamedElement_QualifiedName(), new StringValue(
 					fullyQualifiedName), EStructuralFeatureValueGetter.getInstance()))));
 
@@ -138,16 +138,16 @@ public class EMFQueryTest
 	public EObject findElementWithFullyQualifiedName(EObject inputModel,
 		String containingFullyQualifiedName, String simpleName) {
 		QueryStatement query = new SELECT(1, new FROM(new SELECT(1, new FROM(
-			inputModel, new EObjectTypeRelationCondition(UML2Package.eINSTANCE
+			inputModel, new EObjectTypeRelationCondition(UMLPackage.eINSTANCE
 				.getNamespace(), TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)),
-			new WHERE(new EObjectAttributeValueCondition(UML2Package.eINSTANCE
+			new WHERE(new EObjectAttributeValueCondition(UMLPackage.eINSTANCE
 				.getNamedElement_QualifiedName(), new StringValue(
 				containingFullyQualifiedName),
 				EStructuralFeatureValueGetter.getInstance()))),
 			IteratorKind.FLAT_LITERAL), new WHERE(
-			new EObjectTypeRelationCondition(UML2Package.eINSTANCE
+			new EObjectTypeRelationCondition(UMLPackage.eINSTANCE
 				.getNamedElement(), TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)
-				.AND(new EObjectAttributeValueCondition(UML2Package.eINSTANCE
+				.AND(new EObjectAttributeValueCondition(UMLPackage.eINSTANCE
 					.getNamedElement_Name(), new StringValue(simpleName),
 					EStructuralFeatureValueGetter.getInstance()))));
 
@@ -174,13 +174,13 @@ public class EMFQueryTest
 		modelElements.add(getModel());
 
 		//        namedElement_EClass = UML2Package.eINSTANCE.getNamedElement();
-		class_EClass = UML2Package.eINSTANCE.getClass_();
+		class_EClass = UMLPackage.eINSTANCE.getClass_();
 		//        classifier_EClass = UML2Package.eINSTANCE.getClassifier();
 		//        generalization_EClass = UML2Package.eINSTANCE.getGeneralization();
 		//        association_EClass = UML2Package.eINSTANCE.getAssociation();
-		parameter_EClass = UML2Package.eINSTANCE.getParameter();
-		name_EAttribute = UML2Package.eINSTANCE.getNamedElement_Name();
-		operation_EReference = UML2Package.eINSTANCE.getClass_OwnedOperation();
+		parameter_EClass = UMLPackage.eINSTANCE.getParameter();
+		name_EAttribute = UMLPackage.eINSTANCE.getNamedElement_Name();
+		operation_EReference = UMLPackage.eINSTANCE.getClass_OwnedOperation();
 
 		////        relationship_EReference = 
 		////        //CorePackage.eINSTANCE.getNamedModelElement_Relationship();
@@ -240,8 +240,8 @@ public class EMFQueryTest
 		IQueryResult resultSet = getClassInstances_NamedQuery(1, "Class1")//$NON-NLS-1$
 			.execute();
 		assertTrue(resultSet.size() == 1);
-		instance_Class1 = (org.eclipse.uml2.Class) resultSet.toArray()[0];
-		org.eclipse.uml2.Class ccc = getClassNamed_InstanceBruteForce("Class1"); //$NON-NLS-1$
+		instance_Class1 = (org.eclipse.uml2.uml.Class) resultSet.toArray()[0];
+		org.eclipse.uml2.uml.Class ccc = getClassNamed_InstanceBruteForce("Class1"); //$NON-NLS-1$
 		assertTrue(ccc.equals(instance_Class1));
 
 		resultSet = getAllParamsQuery().execute();
@@ -528,7 +528,7 @@ public class EMFQueryTest
 				getEStructuralFeatureValueGetter())));
 	}
 
-	private org.eclipse.uml2.Class getClassNamed_InstanceBruteForce(
+	private org.eclipse.uml2.uml.Class getClassNamed_InstanceBruteForce(
 		final String name) {
 		QueryStatement statement = new SELECT(new FROM(getQueryObjects()),
 			new WHERE(new EObjectCondition() {
@@ -550,7 +550,7 @@ public class EMFQueryTest
 				}
 			}));
 		Collection resultSet = statement.execute();
-		instance_Class1 = (org.eclipse.uml2.Class) ((resultSet.isEmpty()) ? null
+		instance_Class1 = (org.eclipse.uml2.uml.Class) ((resultSet.isEmpty()) ? null
 			: (EObject) resultSet.toArray()[0]);
 		return instance_Class1;
 	}
@@ -581,39 +581,34 @@ public class EMFQueryTest
 			
 			List contents = resource.getContents();
 			
-			Model m = UML2Factory.eINSTANCE.createModel();
+			Model m = UMLFactory.eINSTANCE.createModel();
 			m.setName("Blank Model"); //$NON-NLS-1$
 			contents.add(m);
 			
-			org.eclipse.uml2.Package pkg = UML2Factory.eINSTANCE.createPackage();
+			org.eclipse.uml2.uml.Package pkg = UMLFactory.eINSTANCE.createPackage();
 			pkg.setName("contextFree"); //$NON-NLS-1$
-			m.getOwnedMembers().add(pkg);
+			m.getPackagedElements().add(pkg);
 			
 			for (int i=0; i<5; i++) {
-				org.eclipse.uml2.Class cls = UML2Factory.eINSTANCE.createClass();
+				org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
 				cls.setName("Class"+(i+1)); //$NON-NLS-1$
-				m.getOwnedMembers().add(cls);
+				m.getPackagedElements().add(cls);
 			}
 			
-			org.eclipse.uml2.Class cls = UML2Factory.eINSTANCE.createClass();
+			org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
 			cls.setName("ClassFoo"); //$NON-NLS-1$
-			Operation op = cls.createOwnedOperation();
-			op.setName("Operation1"); //$NON-NLS-1$
+			Operation op = cls.createOwnedOperation("Operation1",null,null); //$NON-NLS-1$
 			op.setIsUnique(true);
-			Parameter p = op.createOwnedParameter();
-			p.setName("Parameter1"); //$NON-NLS-1$
-			p = op.createOwnedParameter();
-			p.setName("Parameter2"); //$NON-NLS-1$
-			op = cls.createOwnedOperation();
-			op.setName("Operation22"); //$NON-NLS-1$
-			m.getOwnedMembers().add(cls);
+			Parameter p = op.createOwnedParameter("Parameter1",null); //$NON-NLS-1$
+			p = op.createOwnedParameter("Parameter2",null); //$NON-NLS-1$
+			op = cls.createOwnedOperation("Operation22",null,null); //$NON-NLS-1$
+			m.getPackagedElements().add(cls);
 			
-			org.eclipse.uml2.Interface i = UML2Factory.eINSTANCE.createInterface();
+			org.eclipse.uml2.uml.Interface i = UMLFactory.eINSTANCE.createInterface();
 			i.setName("contextFree"); //$NON-NLS-1$
-			Property prop = i.createOwnedAttribute(UML2Package.eINSTANCE.getProperty());
-			prop.setName("contextFree"); //$NON-NLS-1$
+			Property prop = i.createOwnedAttribute("contextFree",null); //$NON-NLS-1$
 			prop.setIsUnique(true);
-			m.getOwnedMembers().add(i);
+			m.getPackagedElements().add(i);
 
 		}
 		return resource;
