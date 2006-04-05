@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLCondition.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
+ * $Id: OCLCondition.java,v 1.2 2006/04/05 21:54:49 cmcgee Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -30,7 +30,7 @@ import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.IEStructuralFeatureValueGetter;
 import org.eclipse.emf.query.handlers.PruneHandler;
-import org.eclipse.emf.query.internal.EMFQueryPlugin;
+import org.eclipse.emf.query.ocl.internal.OCLPlugin;
 
 /**
  * An abstract OCL condition class, used to apply OCL expressions to
@@ -337,7 +337,7 @@ public abstract class OCLCondition
 				query = QueryFactory.eINSTANCE.createQuery(oclExpressionString,
 					contextEClass);
 			} catch (Exception ex) {
-				EMFQueryPlugin.catching(getClass(), "getOclQueryRecord", ex); //$NON-NLS-1$
+				OCLPlugin.catching(getClass(), "getOclQueryRecord", ex); //$NON-NLS-1$
 				query = null;
 			}
 			oclQueryRecord = new OclQueryCacheEntry(contextEClass, query);
