@@ -30,9 +30,9 @@ Export-Package: org.eclipse.emf.ocl.expressions,
  org.eclipse.emf.ocl.utilities,
  org.eclipse.emf.ocl.utilities.impl,
  org.eclipse.emf.ocl.utilities.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.edit,
- org.eclipse.emf.ecore.edit,
- com.ibm.icu
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.2.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.edit;bundle-version="[2.2.0,3.0.0)",
+ org.eclipse.emf.ecore.edit;bundle-version="[2.2.0,3.0.0)",
+ com.ibm.icu;bundle-version="[3.4.3,4.0.0)"
 Eclipse-LazyStart: true
