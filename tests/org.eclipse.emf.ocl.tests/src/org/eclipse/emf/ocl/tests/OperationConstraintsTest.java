@@ -70,6 +70,16 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	}
 	
 	/**
+	 * Tests a postcondition containing the "@pre" construct on an operation call.
+	 */
+	public void test_postcondition_atPre_operation() {
+		parseConstraint(
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
+			"post: preferredColor() <> preferredColor@pre() implies color = c " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
+	}
+	
+	/**
 	 * Tests availability of the special "result" variable in postconditions.
 	 */
 	public void test_postcondition_result() {
