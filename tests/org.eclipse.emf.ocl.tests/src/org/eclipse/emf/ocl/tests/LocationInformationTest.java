@@ -55,6 +55,8 @@ import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
+import org.eclipse.emf.ocl.parser.Environment;
+import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.ASTNode;
@@ -419,6 +421,25 @@ public class LocationInformationTest
 			exprString.indexOf(")")); //$NON-NLS-1$
 	}
 	
+	/**
+	 * Tests the retention of location information for state expressions.
+	 */
+	public void test_stateExp_positions() {
+		final String exprString =
+			"self.oclIsInState(Bad::Rotten)"; //$NON-NLS-1$
+		OCLExpression constraint = createQuery(
+				new StatesTest.StatefulFruitEnvironmentFactory(), apple, exprString);
+		
+		OperationCallExp callExp = asOperationCall(constraint);
+		assertLocation(callExp, 0, exprString.length());
+		
+		
+		StateExp state = asState((OCLExpression) callExp.getArgument().get(0));
+		assertLocation(state,
+				exprString.indexOf("Bad"), //$NON-NLS-1$
+				exprString.indexOf(")")); //$NON-NLS-1$
+	}
+	
 	//
 	// Framework methods
 	//
@@ -428,6 +449,24 @@ public class LocationInformationTest
 		
 		try {
 			result = ExpressionsUtil.createQuery(context, text, true);
+			
+			assertAllPositionsSet(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		return result;
+	}
+	
+	static OCLExpression createQuery(EnvironmentFactory envFactory,
+			EClass context, String text) {
+		
+		OCLExpression result = null;
+		
+		try {
+			Environment env = envFactory.createClassifierContext(context);
+			result = ExpressionsUtil.createQuery(env, text, true);
 			
 			assertAllPositionsSet(result);
 		} catch (Exception e) {
@@ -559,6 +598,10 @@ public class LocationInformationTest
 	
 	static Variable asVariableDeclaration(Object obj) {
 		return (Variable) cast(obj, Variable.class);
+	}
+	
+	static StateExp asState(Object obj) {
+		return (StateExp) cast(obj, StateExp.class);
 	}
 	
 	static TypeExp asType(Object obj) {

@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParser.java,v 1.2 2006/04/07 14:11:41 cdamus Exp $
+* $Id: OCLLPGParser.java,v 1.3 2006/04/07 20:00:23 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -2204,11 +2204,15 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 							getTokenText(dtParser.getToken(1))
 						);
 				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
+
+				PathNameCS pathNameCS = (PathNameCS) dtParser.getSym(4);
+				StateExpCS stateExpCS = createStateExpCS(pathNameCS);
+				setOffsets(stateExpCS, pathNameCS);
 				
 				CSTNode result = createOperationCallExpCS(
 						simpleNameCS,
 						(IsMarkedPreCS)dtParser.getSym(2),
-						createStateExpCS((PathNameCS)dtParser.getSym(4))
+						stateExpCS
 					);
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));
 				dtParser.setSym1(result);

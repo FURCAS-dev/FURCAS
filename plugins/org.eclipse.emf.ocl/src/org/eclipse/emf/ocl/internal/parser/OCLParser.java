@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.5 2006/04/07 14:11:41 cdamus Exp $
+ * $Id: OCLParser.java,v 1.6 2006/04/07 20:00:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -380,6 +380,22 @@ public class OCLParser extends OCLLPGParser {
 			msg += " " + (String) namelist.get(i);//$NON-NLS-1$
 		}
 		return msg;
+	}
+
+	/**
+	 * Creates a string by joining the given string list elements
+	 * with ::.
+	 * 
+	 * @param namelist list of names to make string out of
+	 * @return the qualified name comprising the list of name elements
+	 */
+	private String makeName(EList namelist) {
+		StringBuffer msg = new StringBuffer();
+		for (int i = 0; i < namelist.size(); i++) {
+			if (i > 0) msg.append("::");//$NON-NLS-1$
+			msg.append((String) namelist.get(i));
+		}
+		return msg.toString();
 	}
 	
 	/**
@@ -1663,6 +1679,8 @@ public class OCLParser extends OCLLPGParser {
 		StateExp astNode = expressionsFactory.createStateExp();
 		astNode.setReferredState(state);
 		astNode.setType(Types.STATE);
+		astNode.setName(makeName(statePath));
+		initStartEndPositions(astNode, stateExpCS);
 		
 		return astNode;
 	}

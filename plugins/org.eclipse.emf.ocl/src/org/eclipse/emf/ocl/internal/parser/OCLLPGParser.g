@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.2 2006/04/07 14:11:41 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.3 2006/04/07 20:00:23 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.2 2006/04/07 14:11:41 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.3 2006/04/07 20:00:23 cdamus Exp $
  */
 	./
 $End
@@ -2123,11 +2123,15 @@ $Rules
 								getTokenText($getToken(1))
 							);
 					setOffsets(simpleNameCS, getIToken($getToken(1)));
-					
+
+					PathNameCS pathNameCS = (PathNameCS) dtParser.getSym(4);
+					StateExpCS stateExpCS = createStateExpCS(pathNameCS);
+					setOffsets(stateExpCS, pathNameCS);
+				
 					CSTNode result = createOperationCallExpCS(
 							simpleNameCS,
-							(IsMarkedPreCS)$getSym(2),
-							createStateExpCS((PathNameCS)$getSym(4))
+							(IsMarkedPreCS)dtParser.getSym(2),
+							stateExpCS
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
