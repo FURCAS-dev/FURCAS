@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.2 2006/04/07 14:11:41 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.2 2006/04/07 14:11:41 cdamus Exp $
  */
 	./
 $End
@@ -2257,6 +2257,7 @@ $Rules
 							(SimpleNameCS)$getSym(2),
 							(EList)$getSym(4)
 						);
+					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
 					$setResult(result);
 		  $EndJava
 		./

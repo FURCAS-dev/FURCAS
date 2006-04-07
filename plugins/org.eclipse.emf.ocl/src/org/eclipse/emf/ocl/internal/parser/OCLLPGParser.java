@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParser.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+* $Id: OCLLPGParser.java,v 1.2 2006/04/07 14:11:41 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -2381,6 +2381,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 						(SimpleNameCS)dtParser.getSym(2),
 						(EList)dtParser.getSym(4)
 					);
+				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));
 				dtParser.setSym1(result);
 	  		  break;
 			}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.2 2006/04/07 14:11:41 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -64,8 +64,6 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
-import org.eclipse.emf.ocl.internal.cst.CSTPackage;
-import org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -395,7 +393,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		CSTPackageImpl theCSTPackage = (CSTPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) instanceof CSTPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) : CSTPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theExpressionsPackage.createPackageContents();
@@ -403,7 +400,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 		theUMLPackage.createPackageContents();
 		theUtilitiesPackage.createPackageContents();
 		theQueryPackage.createPackageContents();
-		theCSTPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theExpressionsPackage.initializePackageContents();
@@ -411,7 +407,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 		theUMLPackage.initializePackageContents();
 		theUtilitiesPackage.initializePackageContents();
 		theQueryPackage.initializePackageContents();
-		theCSTPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theExpressionsPackage.freeze();
@@ -1243,6 +1238,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 		tupleLiteralPartEClass.getESuperTypes().add(theUtilitiesPackage.getVisitable());
 		tupleLiteralPartEClass.getESuperTypes().add(theUtilitiesPackage.getTypedASTNode());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOCLExpression());
+		unspecifiedValueExpEClass.getESuperTypes().add(theUtilitiesPackage.getTypedASTNode());
 		variableEClass.getESuperTypes().add(theUMLPackage.getTypedElement());
 		variableEClass.getESuperTypes().add(theUtilitiesPackage.getVisitable());
 		variableEClass.getESuperTypes().add(theUtilitiesPackage.getTypedASTNode());

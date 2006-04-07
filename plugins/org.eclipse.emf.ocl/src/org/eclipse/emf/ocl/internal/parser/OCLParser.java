@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.4 2006/04/04 18:07:25 cdamus Exp $
+ * $Id: OCLParser.java,v 1.5 2006/04/07 14:11:41 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -3313,12 +3313,13 @@ public class OCLParser extends OCLLPGParser {
 				if (argCS.getExpression() == null) {
 					// unspecified value
 					arg = expressionsFactory.createUnspecifiedValueExp();
-					
+					initStartEndPositions(arg, argCS);
 					if (argCS.getTypeCS() == null) {
 						// OclVoid matches any parameter type in an operation signature
 						arg.setType(Types.OCL_VOID);
 					} else {
 						arg.setType(typeCS(argCS.getTypeCS(), env));
+						initTypePositions((UnspecifiedValueExp) arg, argCS.getTypeCS());
 					}
 				} else {
 					arg = oclExpressionCS(argCS.getExpression(), env);
@@ -3338,6 +3339,7 @@ public class OCLParser extends OCLLPGParser {
 		}
 		
 		result = expressionsFactory.createMessageExp();
+		initStartEndPositions(result, messageExpCS);
 		initPropertyPositions(result, messageExpCS.getSimpleNameCS());
 		result.setTarget(target);
 		result.getArgument().addAll(arguments);

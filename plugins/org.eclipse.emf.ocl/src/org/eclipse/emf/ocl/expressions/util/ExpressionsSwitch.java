@@ -494,6 +494,7 @@ public class ExpressionsSwitch {
 				UnspecifiedValueExp unspecifiedValueExp = (UnspecifiedValueExp)theEObject;
 				Object result = caseUnspecifiedValueExp(unspecifiedValueExp);
 				if (result == null) result = caseOCLExpression(unspecifiedValueExp);
+				if (result == null) result = caseTypedASTNode(unspecifiedValueExp);
 				if (result == null) result = caseTypedElement(unspecifiedValueExp);
 				if (result == null) result = caseVisitable(unspecifiedValueExp);
 				if (result == null) result = caseASTNode(unspecifiedValueExp);

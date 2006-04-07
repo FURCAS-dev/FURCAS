@@ -17,10 +17,18 @@
 
 package org.eclipse.emf.ocl.expressions;
 
+import org.eclipse.emf.ocl.utilities.TypedASTNode;
+
 /**
  * @author Edith Schonberg (edith)
  */
 public interface UnspecifiedValueExp
-	extends OCLExpression {
-	//	empty impl.
+	extends OCLExpression, TypedASTNode{
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

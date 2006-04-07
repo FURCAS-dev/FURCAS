@@ -58,6 +58,7 @@ import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.ASTNode;
+import org.eclipse.emf.ocl.utilities.CallingASTNode;
 import org.eclipse.emf.ocl.utilities.TypedASTNode;
 
 /**
@@ -390,6 +391,34 @@ public class LocationInformationTest
 			exprString.indexOf("->asSet")); //$NON-NLS-1$
 	}
 	
+	/**
+	 * Tests the retention of location information for the components of a
+	 * message expression.
+	 */
+	public void test_messageExp_positions() {
+		final String exprString =
+			"self^ripen(? : Color)"; //$NON-NLS-1$
+		OCLExpression constraint = createQuery(fruit, exprString);
+		
+		MessageExp msgExp = asMessage(constraint);
+		assertLocation(msgExp, 0, exprString.length());
+		assertPropertyLocation(msgExp,
+				exprString.indexOf("ripen"), //$NON-NLS-1$
+				exprString.indexOf("(")); //$NON-NLS-1$
+		
+		VariableExp var = asVariable(msgExp.getTarget());
+		assertLocation(var,	0, exprString.indexOf("^")); //$NON-NLS-1$
+		
+		UnspecifiedValueExp unspecExp = asUnspecifiedValue(
+			msgExp.getArgument().get(0));
+		assertLocation(unspecExp,
+			exprString.indexOf("?"), //$NON-NLS-1$
+			exprString.indexOf(")")); //$NON-NLS-1$
+		assertTypeLocation(unspecExp,
+			exprString.indexOf("Color"), //$NON-NLS-1$
+			exprString.indexOf(")")); //$NON-NLS-1$
+	}
+	
 	//
 	// Framework methods
 	//
@@ -536,6 +565,10 @@ public class LocationInformationTest
 		return (TypeExp) cast(obj, TypeExp.class);
 	}
 	
+	static MessageExp asMessage(Object obj) {
+		return (MessageExp) cast(obj, MessageExp.class);
+	}
+	
 	static UnspecifiedValueExp asUnspecifiedValue(Object obj) {
 		return (UnspecifiedValueExp) cast(obj, UnspecifiedValueExp.class);
 	}
@@ -562,9 +595,9 @@ public class LocationInformationTest
 		assertEquals("Wrong type end position", end, node.getTypeEndPosition()); //$NON-NLS-1$
 	}
 
-	static void assertPropertyLocation(FeatureCallExp mpc, int start, int end) {
-		assertEquals("Wrong property start position", start, mpc.getPropertyStartPosition()); //$NON-NLS-1$
-		assertEquals("Wrong property end position", end, mpc.getPropertyEndPosition()); //$NON-NLS-1$
+	static void assertPropertyLocation(CallingASTNode node, int start, int end) {
+		assertEquals("Wrong property start position", start, node.getPropertyStartPosition()); //$NON-NLS-1$
+		assertEquals("Wrong property end position", end, node.getPropertyEndPosition()); //$NON-NLS-1$
 	}
 	
 	/**
@@ -700,6 +733,13 @@ public class LocationInformationTest
 		
 		public Object visitMessageExp(MessageExp m) {
 			assertPositions(m);
+			
+			m.getTarget().accept(this);
+			
+			for (Iterator iter = m.getArgument().iterator(); iter.hasNext();) {
+				((OCLExpression) iter.next()).accept(this);
+			}
+			
 			return null;
 		}
 

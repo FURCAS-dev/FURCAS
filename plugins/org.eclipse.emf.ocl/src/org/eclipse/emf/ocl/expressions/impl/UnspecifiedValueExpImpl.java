@@ -12,14 +12,21 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.2 2006/04/07 14:11:41 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
+import org.eclipse.emf.ocl.utilities.TypedASTNode;
+import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
+
 import org.eclipse.emf.ocl.expressions.Visitor;
 
 /**
@@ -27,6 +34,11 @@ import org.eclipse.emf.ocl.expressions.Visitor;
  * An implementation of the model object '<em><b>Unspecified Value Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.emf.ocl.expressions.impl.UnspecifiedValueExpImpl#getTypeStartPosition <em>Type Start Position</em>}</li>
+ *   <li>{@link org.eclipse.emf.ocl.expressions.impl.UnspecifiedValueExpImpl#getTypeEndPosition <em>Type End Position</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
@@ -38,6 +50,46 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * @generated
 	 */
 	public static final String copyright = ""; //$NON-NLS-1$
+
+	/**
+	 * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeStartPosition()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int TYPE_START_POSITION_EDEFAULT = -1;
+
+	/**
+	 * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeStartPosition()
+	 * @generated
+	 * @ordered
+	 */
+	protected int typeStartPosition = TYPE_START_POSITION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeEndPosition()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int TYPE_END_POSITION_EDEFAULT = -1;
+
+	/**
+	 * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeEndPosition()
+	 * @generated
+	 * @ordered
+	 */
+	protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,6 +107,153 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 */
 	protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.UNSPECIFIED_VALUE_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getTypeStartPosition() {
+		return typeStartPosition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeStartPosition(int newTypeStartPosition) {
+		int oldTypeStartPosition = typeStartPosition;
+		typeStartPosition = newTypeStartPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getTypeEndPosition() {
+		return typeEndPosition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeEndPosition(int newTypeEndPosition) {
+		int oldTypeEndPosition = typeEndPosition;
+		typeEndPosition = newTypeEndPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+				return new Integer(getTypeStartPosition());
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+				return new Integer(getTypeEndPosition());
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+				setTypeStartPosition(((Integer)newValue).intValue());
+				return;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+				setTypeEndPosition(((Integer)newValue).intValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
+				return;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == TypedASTNode.class) {
+			switch (derivedFeatureID) {
+				case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == TypedASTNode.class) {
+			switch (baseFeatureID) {
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String toString() {
+		return ToStringVisitorImpl.toString(this);
 	}
 
 	public Object accept(Visitor v) {
