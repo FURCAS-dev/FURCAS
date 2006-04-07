@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.4 2006/04/04 18:07:24 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.5 2006/04/07 21:58:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -181,7 +181,7 @@ final class OCLSyntaxHelper {
 		for (Iterator iter = operations.iterator(); iter.hasNext();) {
 			EOperation operation = (EOperation) iter.next();
 			
-			if (isQuery(operation)) {
+			if ((syntaxHelpStringSuffix == CARET) || isQuery(operation)) {
 				operation = TypeUtil.resolveGenericSignature(owner, operation);
 				
 				Choice choice = new Choice(
@@ -588,6 +588,7 @@ final class OCLSyntaxHelper {
 				// only postconditions may include oclIsNew()
 				if (PredefinedType.OCL_IS_NEW_NAME.equals(next.getName())) {
 					iter.remove();
+					break;
 				}
 				
 				// intentional fall-through
