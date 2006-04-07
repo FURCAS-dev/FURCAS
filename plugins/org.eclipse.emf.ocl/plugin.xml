@@ -22,23 +22,23 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package 
-         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/expressions" 
+         uri="http://www.eclipse.org/OCL2/1.0.0/ocl/expressions" 
          class="org.eclipse.emf.ocl.expressions.ExpressionsPackage"
          genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/types" 
+         uri="http://www.eclipse.org/OCL2/1.0.0/ocl/types" 
          class="org.eclipse.emf.ocl.types.TypesPackage"
          genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/uml" 
+         uri="http://www.eclipse.org/OCL2/1.0.0/ocl/uml" 
          class="org.eclipse.emf.ocl.uml.UMLPackage"
          genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/utilities" 
+         uri="http://www.eclipse.org/OCL2/1.0.0/ocl/utilities" 
          class="org.eclipse.emf.ocl.utilities.UtilitiesPackage"
          genModel="model/OCL.genmodel"/>
       <package 
-         uri="http://www.eclipse.org/OCL2/7.0.0/ocl/query" 
+         uri="http://www.eclipse.org/OCL2/1.0.0/ocl/query" 
          class="org.eclipse.emf.ocl.query.QueryPackage"
          genModel="model/OCL.genmodel"/>
    </extension>
