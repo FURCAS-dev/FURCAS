@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveRealImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: PrimitiveRealImpl.java,v 1.2 2006/04/11 17:18:31 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -61,50 +61,48 @@ public class PrimitiveRealImpl extends PrimitiveTypeImpl implements PrimitiveRea
 	 * Operations defined on Real
 	 */
 	protected static EList createOperations() {
-		if (operations == null) {
-			operations = new BasicEList();
-			
-			EList parentOperations = AnyTypeImpl.createAnyOperations();
-			for (int i = 0; i < parentOperations.size(); i++) {
-				operations.add(parentOperations.get(i));
-			}	
-			
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
-				LESS_THAN_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
-				GREATER_THAN_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
-				LESS_THAN_EQUAL_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
-				GREATER_THAN_EQUAL_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
-				PLUS_NAME, Types.OCL_REAL, "r")); //$NON-NLS-1$
-		    operations.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
-		    	MINUS_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createUnaryOperation(Types.OCL_REAL,
-				MINUS_NAME));
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
-				TIMES_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
-				DIVIDE_NAME, Types.OCL_REAL, "r"));	//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
-				MIN_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
-			operations.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
-				MAX_NAME, Types.OCL_REAL, "r")); //$NON-NLS-1$
-			operations.add(TypeUtil.createUnaryOperation(Types.OCL_REAL,
-				ABS_NAME));
-			operations.add(TypeUtil.createUnaryOperation(Types.OCL_INTEGER,
-				FLOOR_NAME));
-			operations.add(TypeUtil.createUnaryOperation(Types.OCL_INTEGER,
-				ROUND_NAME));
-		}
+		EList result = new BasicEList();
 		
-		return operations;
+		EList parentOperations = AnyTypeImpl.createAnyOperations();
+		result.addAll(parentOperations);
+		
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
+			LESS_THAN_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
+			GREATER_THAN_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
+			LESS_THAN_EQUAL_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
+			GREATER_THAN_EQUAL_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
+			PLUS_NAME, Types.OCL_REAL, "r")); //$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
+	    	MINUS_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createUnaryOperation(Types.OCL_REAL,
+			MINUS_NAME));
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
+			TIMES_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
+			DIVIDE_NAME, Types.OCL_REAL, "r"));	//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
+			MIN_NAME, Types.OCL_REAL, "r"));//$NON-NLS-1$
+		result.add(TypeUtil.createBinaryOperation(Types.OCL_REAL,
+			MAX_NAME, Types.OCL_REAL, "r")); //$NON-NLS-1$
+		result.add(TypeUtil.createUnaryOperation(Types.OCL_REAL,
+			ABS_NAME));
+		result.add(TypeUtil.createUnaryOperation(Types.OCL_INTEGER,
+			FLOOR_NAME));
+		result.add(TypeUtil.createUnaryOperation(Types.OCL_INTEGER,
+			ROUND_NAME));
+		
+		return result;
 	}
 		
 	public EList getOperations() {
-		if (operations == null) 
-			return createOperations();
+		if (operations == null) { 
+			operations = createOperations();
+		}
+		
 		return operations;
 	}
 	

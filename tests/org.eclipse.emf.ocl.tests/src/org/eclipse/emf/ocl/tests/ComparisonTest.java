@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.2 2006/04/11 16:22:00 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.3 2006/04/11 17:18:33 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -68,6 +68,12 @@ public class ComparisonTest
 			// primitives
 			assertTrue(helper.check(thing, "1 < 2")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "21 < 2")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1 < 2.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "21 < 2.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1.0 < 2")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "21.0 < 2")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1.0 < 2.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "21.0 < 2.0")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "'a' < 'b'")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "'ba' < 'b'")); //$NON-NLS-1$
 
@@ -97,6 +103,15 @@ public class ComparisonTest
 			assertTrue(helper.check(thing, "1 <= 2")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "1 <= 1")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "21 <= 2")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1 <= 2.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1 <= 1.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "21 <= 2.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1.0 <= 2")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1.0 <= 1")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "21.0 <= 2")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1.0 <= 2.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "1.0 <= 1.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "21.0 <= 2.0")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "'a' <= 'b'")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "'a' <= 'a'")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "'ba' <= 'b'")); //$NON-NLS-1$
@@ -129,6 +144,12 @@ public class ComparisonTest
 			// primitives
 			assertTrue(helper.check(thing, "2 > 1")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "2 > 21")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2 > 1.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "2 > 21.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2.0 > 1")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "2.0 > 21")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2.0 > 1.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "2.0 > 21.0")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "'b' > 'a'")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "'a' > 'b'")); //$NON-NLS-1$
 
@@ -158,6 +179,15 @@ public class ComparisonTest
 			assertTrue(helper.check(thing, "2 >= 1")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "2 >= 2")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "2 >= 21")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2 >= 1.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2 >= 2.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "2 >= 21.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2.0 >= 1")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2.0 >= 2")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "2.0 >= 21")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2.0 >= 1.0")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "2.0 >= 2.0")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "2.0 >= 21.0")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "'b' >= 'a'")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "'b' >= 'b'")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "'a' >= 'b'")); //$NON-NLS-1$
@@ -213,7 +243,6 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			// primitives
 			assertFalse(helper.check(thing, "OclInvalid = 'a'")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "OclInvalid <> 'a'")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "OclInvalid = OclInvalid")); //$NON-NLS-1$
@@ -232,11 +261,74 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			// primitives
 			assertFalse(helper.check(thing, "null = 'a'")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "null <> 'a'")); //$NON-NLS-1$
 			assertTrue(helper.check(thing, "null = null")); //$NON-NLS-1$
 			assertFalse(helper.check(thing, "null <> null")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests evaluation of the arithmetic operations on integers.
+	 */
+	public void test_integerArithmetic() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(thingType);
+		
+		try {
+			assertEquals(new Integer(1), helper.evaluate(thing, "3 - 2")); //$NON-NLS-1$
+			assertEquals(new Integer(3), helper.evaluate(thing, "1 + 2")); //$NON-NLS-1$
+			assertEquals(new Double(2.0), helper.evaluate(thing, "6 / 3")); //$NON-NLS-1$
+			assertEquals(new Integer(6), helper.evaluate(thing, "2 * 3")); //$NON-NLS-1$
+			assertEquals(new Integer(-1), helper.evaluate(thing, "- 1")); //$NON-NLS-1$
+			assertEquals(new Integer(3), helper.evaluate(thing, "(2 - 5).abs()")); //$NON-NLS-1$
+			assertEquals(new Integer(3), helper.evaluate(thing, "3.max(2)")); //$NON-NLS-1$
+			assertEquals(new Integer(2), helper.evaluate(thing, "3.min(2)")); //$NON-NLS-1$
+			assertEquals(new Integer(3), helper.evaluate(thing, "7.div(2)")); //$NON-NLS-1$
+			assertEquals(new Integer(1), helper.evaluate(thing, "7.mod(2)")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests evaluation of the arithmetic operations on reals.
+	 */
+	public void test_realArithmetic() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(thingType);
+		
+		try {
+			assertEquals(new Double(1.0), helper.evaluate(thing, "3.0 - 2.0")); //$NON-NLS-1$
+			assertEquals(new Double(3.0), helper.evaluate(thing, "1.0 + 2.0")); //$NON-NLS-1$
+			assertEquals(new Double(2.0), helper.evaluate(thing, "6.0 / 3.0")); //$NON-NLS-1$
+			assertEquals(new Double(6.0), helper.evaluate(thing, "2.0 * 3.0")); //$NON-NLS-1$
+			assertEquals(new Double(-1.0), helper.evaluate(thing, "- 1.0")); //$NON-NLS-1$
+			assertEquals(new Double(3.0), helper.evaluate(thing, "(2.0 - 5.0).abs()")); //$NON-NLS-1$
+			assertEquals(new Double(3.0), helper.evaluate(thing, "3.0.max(2.0)")); //$NON-NLS-1$
+			assertEquals(new Double(2.0), helper.evaluate(thing, "3.0.min(2.0)")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests evaluation of the arithmetic operations on integers, with real
+	 * arguments.
+	 */
+	public void test_mixedArithmetic() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(thingType);
+		
+		try {
+			assertEquals(new Double(1.0), helper.evaluate(thing, "3 - 2.0")); //$NON-NLS-1$
+			assertEquals(new Double(3.0), helper.evaluate(thing, "1 + 2.0")); //$NON-NLS-1$
+			assertEquals(new Double(2.0), helper.evaluate(thing, "6 / 3.0")); //$NON-NLS-1$
+			assertEquals(new Double(6.0), helper.evaluate(thing, "2 * 3.0")); //$NON-NLS-1$
+			assertEquals(new Double(3.0), helper.evaluate(thing, "3.max(2.0)")); //$NON-NLS-1$
+			assertEquals(new Double(2.0), helper.evaluate(thing, "3.min(2.0)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
