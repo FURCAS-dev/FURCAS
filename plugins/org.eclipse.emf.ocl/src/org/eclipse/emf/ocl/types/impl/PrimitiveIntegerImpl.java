@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveIntegerImpl.java,v 1.2 2006/04/11 17:18:31 cdamus Exp $
+ * $Id: PrimitiveIntegerImpl.java,v 1.3 2006/04/11 17:19:59 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -47,15 +47,13 @@ public class PrimitiveIntegerImpl extends PrimitiveRealImpl implements Primitive
 	private static EList operations;
 	
 	/**
-	 * Initialiaze Operations defined on Integer
+	 * Initialize Operations defined on Integer
 	 */
 	protected static EList createOperations() {
 		if (operations == null) {
 			operations = new BasicEList();
 			
-			EList parentOperations = AnyTypeImpl.createAnyOperations();
-			operations.addAll(parentOperations);
-			parentOperations = PrimitiveRealImpl.createOperations();
+			EList parentOperations = PrimitiveRealImpl.createOperations();
 			operations.addAll(parentOperations);
 			
 			operations.add(TypeUtil.createBinaryOperation(Types.OCL_BOOLEAN,
