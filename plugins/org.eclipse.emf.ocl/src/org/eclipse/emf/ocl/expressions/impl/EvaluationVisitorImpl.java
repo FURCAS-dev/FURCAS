@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.2 2006/04/11 16:21:57 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -313,10 +313,6 @@ public class EvaluationVisitorImpl
 			OCLExpression arg = (OCLExpression) args.get(0);
 			Object argVal = arg.accept(this);
 
-			// if either value is undefined, the result is invalid
-			if (isUndefined(sourceVal) || isUndefined(argVal))
-				return InvalidTypeImpl.OCL_INVALID;
-
 			return Boolean.valueOf(AnyTypeImpl.equal(sourceVal, argVal));
 		}
 
@@ -329,10 +325,6 @@ public class EvaluationVisitorImpl
 			// evaluate argument
 			OCLExpression arg = (OCLExpression) args.get(0);
 			Object argVal = arg.accept(this);
-
-			// if either value is undefined, the result is invalid
-			if (isUndefined(sourceVal) || isUndefined(argVal))
-				return InvalidTypeImpl.OCL_INVALID;
 
 			return Boolean.valueOf(!AnyTypeImpl.equal(sourceVal, argVal));
 		}

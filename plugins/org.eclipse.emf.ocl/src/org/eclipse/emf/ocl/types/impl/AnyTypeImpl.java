@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.2 2006/04/11 16:21:57 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -272,8 +272,13 @@ public class AnyTypeImpl
 				} else if (type instanceof PrimitiveType) {
 					arg = (OCLExpression) args.get(0);
 					argType = arg.getType();
+					
+					// Invalid and OclVoid types are defined as subtypes of
+					//    all other types
 					if (!(argType instanceof PrimitiveType)
-						&& !(argType == Types.OCL_ANY_TYPE)) {
+						&& !((argType == Types.OCL_ANY_TYPE)
+								|| (argType == Types.INVALID)
+								|| (argType == Types.OCL_VOID))) {
 						String message = NLS.bind(
 								OCLMessages.Noncomforming_ERROR_,
 								new Object[] {type.getName(),
@@ -357,6 +362,10 @@ public class AnyTypeImpl
 		// undefined and
 		// false otherwise.
 		if (anObject == null || anotherObject == null)
+			return anObject == anotherObject;
+
+		// likewise if either value is invalid.
+		if (anObject == InvalidTypeImpl.OCL_INVALID || anotherObject == InvalidTypeImpl.OCL_INVALID)
 			return anObject == anotherObject;
 
 		// primitive types

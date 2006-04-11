@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.1 2006/04/04 18:08:40 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.2 2006/04/11 16:22:00 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -199,6 +199,44 @@ public class ComparisonTest
 			
 			assertEquals(expected, helper.evaluate(thing,
 				"values->sortedBy(e | e)")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests the <code>=</code> and <code>&lt;&gt;</code> operators for the
+	 * Invalid type.
+	 */
+	public void test_invalid_equality() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(thingType);
+		
+		try {
+			// primitives
+			assertFalse(helper.check(thing, "OclInvalid = 'a'")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "OclInvalid <> 'a'")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "OclInvalid = OclInvalid")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "OclInvalid <> OclInvalid")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests the <code>=</code> and <code>&lt;&gt;</code> operators for the
+	 * OclVoid type.
+	 */
+	public void test_void_equality() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(thingType);
+		
+		try {
+			// primitives
+			assertFalse(helper.check(thing, "null = 'a'")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "null <> 'a'")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "null = null")); //$NON-NLS-1$
+			assertFalse(helper.check(thing, "null <> null")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
