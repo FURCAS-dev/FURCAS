@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexersym.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+* $Id: OCLKWLexersym.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -75,61 +75,61 @@ public interface OCLKWLexersym {
       Char_EOF = 39;
 
       public final static String orderedTerminalSymbols[] = {
-                 "", //$NON-NLS-1$
-                 "e", //$NON-NLS-1$
-                 "l", //$NON-NLS-1$
-                 "t", //$NON-NLS-1$
-                 "n", //$NON-NLS-1$
-                 "a", //$NON-NLS-1$
-                 "s", //$NON-NLS-1$
-                 "d", //$NON-NLS-1$
-                 "i", //$NON-NLS-1$
-                 "o", //$NON-NLS-1$
-                 "r", //$NON-NLS-1$
-                 "c", //$NON-NLS-1$
-                 "f", //$NON-NLS-1$
-                 "g", //$NON-NLS-1$
-                 "p", //$NON-NLS-1$
-                 "u", //$NON-NLS-1$
-                 "y", //$NON-NLS-1$
-                 "v", //$NON-NLS-1$
-                 "I", //$NON-NLS-1$
-                 "x", //$NON-NLS-1$
-                 "A", //$NON-NLS-1$
-                 "O", //$NON-NLS-1$
-                 "S", //$NON-NLS-1$
-                 "T", //$NON-NLS-1$
-                 "k", //$NON-NLS-1$
-                 "q", //$NON-NLS-1$
-                 "B", //$NON-NLS-1$
-                 "N", //$NON-NLS-1$
-                 "U", //$NON-NLS-1$
-                 "b", //$NON-NLS-1$
-                 "h", //$NON-NLS-1$
-                 "j", //$NON-NLS-1$
-                 "m", //$NON-NLS-1$
-                 "w", //$NON-NLS-1$
-                 "C", //$NON-NLS-1$
-                 "K", //$NON-NLS-1$
-                 "M", //$NON-NLS-1$
-                 "R", //$NON-NLS-1$
-                 "V", //$NON-NLS-1$
-                 "EOF", //$NON-NLS-1$
-                 "DollarSign", //$NON-NLS-1$
-                 "z", //$NON-NLS-1$
-                 "D", //$NON-NLS-1$
-                 "E", //$NON-NLS-1$
-                 "F", //$NON-NLS-1$
-                 "G", //$NON-NLS-1$
-                 "H", //$NON-NLS-1$
-                 "J", //$NON-NLS-1$
-                 "L", //$NON-NLS-1$
-                 "P", //$NON-NLS-1$
-                 "Q", //$NON-NLS-1$
-                 "W", //$NON-NLS-1$
-                 "X", //$NON-NLS-1$
-                 "Y", //$NON-NLS-1$
-                 "Z" //$NON-NLS-1$
+                 "",//$NON-NLS-1$
+                 "e",//$NON-NLS-1$
+                 "l",//$NON-NLS-1$
+                 "t",//$NON-NLS-1$
+                 "n",//$NON-NLS-1$
+                 "a",//$NON-NLS-1$
+                 "s",//$NON-NLS-1$
+                 "d",//$NON-NLS-1$
+                 "i",//$NON-NLS-1$
+                 "o",//$NON-NLS-1$
+                 "r",//$NON-NLS-1$
+                 "c",//$NON-NLS-1$
+                 "f",//$NON-NLS-1$
+                 "g",//$NON-NLS-1$
+                 "p",//$NON-NLS-1$
+                 "u",//$NON-NLS-1$
+                 "y",//$NON-NLS-1$
+                 "v",//$NON-NLS-1$
+                 "I",//$NON-NLS-1$
+                 "x",//$NON-NLS-1$
+                 "A",//$NON-NLS-1$
+                 "O",//$NON-NLS-1$
+                 "S",//$NON-NLS-1$
+                 "T",//$NON-NLS-1$
+                 "k",//$NON-NLS-1$
+                 "q",//$NON-NLS-1$
+                 "B",//$NON-NLS-1$
+                 "N",//$NON-NLS-1$
+                 "U",//$NON-NLS-1$
+                 "b",//$NON-NLS-1$
+                 "h",//$NON-NLS-1$
+                 "j",//$NON-NLS-1$
+                 "m",//$NON-NLS-1$
+                 "w",//$NON-NLS-1$
+                 "C",//$NON-NLS-1$
+                 "K",//$NON-NLS-1$
+                 "M",//$NON-NLS-1$
+                 "R",//$NON-NLS-1$
+                 "V",//$NON-NLS-1$
+                 "EOF",//$NON-NLS-1$
+                 "DollarSign",//$NON-NLS-1$
+                 "z",//$NON-NLS-1$
+                 "D",//$NON-NLS-1$
+                 "E",//$NON-NLS-1$
+                 "F",//$NON-NLS-1$
+                 "G",//$NON-NLS-1$
+                 "H",//$NON-NLS-1$
+                 "J",//$NON-NLS-1$
+                 "L",//$NON-NLS-1$
+                 "P",//$NON-NLS-1$
+                 "Q",//$NON-NLS-1$
+                 "W",//$NON-NLS-1$
+                 "X",//$NON-NLS-1$
+                 "Y",//$NON-NLS-1$
+                 "Z"//$NON-NLS-1$
              };
 
     public final static boolean isValidForParser = true;

@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.2 2006/04/12 20:47:23 cdamus Exp $
 -- */
 --
 -- The OCL Lexer
@@ -59,7 +59,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.2 2006/04/12 20:47:23 cdamus Exp $
  */
 	./
 $End
@@ -585,5 +585,13 @@ $Rules
 	QuotedName -> '"' SLNotDQ '"'
 
 	NumericOperation -> Integer '.' Identifier
+	NumericOperation -> Integer '.' '+'
+	NumericOperation -> Integer '.' '-'
+	NumericOperation -> Integer '.' '*'
+	NumericOperation -> Integer '.' '/'
+	NumericOperation -> Integer '.' '<'
+	NumericOperation -> Integer '.' '<' '='
+	NumericOperation -> Integer '.' '>' '='
+	NumericOperation -> Integer '.' '>'
 
 $End

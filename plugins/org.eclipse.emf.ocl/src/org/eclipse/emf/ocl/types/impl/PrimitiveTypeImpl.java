@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -163,30 +163,33 @@ public abstract class PrimitiveTypeImpl extends EDataTypeImpl implements Primiti
 	 * @generated NOT
 	 */
 	public int getOperationCodeFor(String operName) {
-		
-		if (operName.equals("plus")) return PLUS;//$NON-NLS-1$
-		if (operName.equals("minus")) return MINUS;//$NON-NLS-1$
-		if (operName.equals("times")) return TIMES;//$NON-NLS-1$
-		if (operName.equals("divide")) return DIVIDE;//$NON-NLS-1$
-		if (operName.equals("and")) return AND;//$NON-NLS-1$
-		if (operName.equals("not")) return NOT;//$NON-NLS-1$
-		if (operName.equals("or")) return OR;//$NON-NLS-1$
-		if (operName.equals("implies")) return IMPLIES;//$NON-NLS-1$
-		if (operName.equals("div")) return DIV;//$NON-NLS-1$
-		if (operName.equals("abs")) return ABS;//$NON-NLS-1$
-		if (operName.equals("floor")) return FLOOR;//$NON-NLS-1$
-		if (operName.equals("round")) return ROUND;//$NON-NLS-1$
-		if (operName.equals("max")) return MAX;//$NON-NLS-1$
-		if (operName.equals("min")) return MIN;//$NON-NLS-1$
-		if (operName.equals("mod")) return MOD;//$NON-NLS-1$
-		if (operName.equals("substring")) return SUBSTRING;//$NON-NLS-1$
-		if (operName.equals("size")) return SIZE;//$NON-NLS-1$
-		if (operName.equals("concat")) return CONCAT;//$NON-NLS-1$
-		if (operName.equals("xor")) return XOR;//$NON-NLS-1$
-		if (operName.equals("toInteger")) return TO_INTEGER;//$NON-NLS-1$
-		if (operName.equals("toReal")) return TO_REAL;//$NON-NLS-1$
-		if (operName.equals("toLower")) return TO_LOWER;//$NON-NLS-1$
-		if (operName.equals("toUpper")) return TO_UPPER;//$NON-NLS-1$
+		return getOperationCode(operName);
+	}
+
+	public static int getOperationCode(String operName) {
+		if (operName.equals(PLUS_NAME)) return PLUS;
+		if (operName.equals(MINUS_NAME)) return MINUS;
+		if (operName.equals(TIMES_NAME)) return TIMES;
+		if (operName.equals(DIVIDE_NAME)) return DIVIDE;
+		if (operName.equals(NOT_NAME)) return NOT;
+		if (operName.equals(AND_NAME)) return AND;
+		if (operName.equals(OR_NAME)) return OR;
+		if (operName.equals(XOR_NAME)) return XOR;
+		if (operName.equals(IMPLIES_NAME)) return IMPLIES;
+		if (operName.equals(ABS_NAME)) return ABS;
+		if (operName.equals(FLOOR_NAME)) return FLOOR;
+		if (operName.equals(ROUND_NAME)) return ROUND;
+		if (operName.equals(MAX_NAME)) return MAX;
+		if (operName.equals(MIN_NAME)) return MIN;
+		if (operName.equals(DIV_NAME)) return DIV;
+		if (operName.equals(MOD_NAME)) return MOD;
+		if (operName.equals(SUBSTRING_NAME)) return SUBSTRING;
+		if (operName.equals(SIZE_NAME)) return SIZE;
+		if (operName.equals(CONCAT_NAME)) return CONCAT;
+		if (operName.equals(TO_INTEGER_NAME)) return TO_INTEGER;
+		if (operName.equals(TO_REAL_NAME)) return TO_REAL;
+		if (operName.equals(TO_LOWER_NAME)) return TO_LOWER;
+		if (operName.equals(TO_UPPER_NAME)) return TO_UPPER;
 		
 		return AnyTypeImpl.getOperationCode(operName);
 	}
@@ -206,28 +209,29 @@ public abstract class PrimitiveTypeImpl extends EDataTypeImpl implements Primiti
 	public static String getOperationName(int opcode) {
 		switch (opcode) {
 		
-			case PLUS: return "plus";//$NON-NLS-1$
-			case MINUS: return "minus";//$NON-NLS-1$
-			case TIMES: return "times";//$NON-NLS-1$
-			case DIVIDE: return "divide";//$NON-NLS-1$
-			case AND: return "and";//$NON-NLS-1$
-			case OR: return "or";//$NON-NLS-1$
-			case IMPLIES: return "implies";//$NON-NLS-1$
-			case DIV: return "div";//$NON-NLS-1$
-			case ABS: return "abs";//$NON-NLS-1$
-			case FLOOR: return "floor";//$NON-NLS-1$
-			case ROUND: return "round";//$NON-NLS-1$
-			case MAX: return "max";//$NON-NLS-1$
-			case MIN: return "min";//$NON-NLS-1$
-			case MOD: return "mod";//$NON-NLS-1$
-			case SUBSTRING: return "substring";//$NON-NLS-1$
-			case SIZE: return "size";//$NON-NLS-1$
-			case CONCAT: return "concat";//$NON-NLS-1$
-			case XOR: return "xor";//$NON-NLS-1$
-			case TO_INTEGER: return "toInteger";//$NON-NLS-1$
-			case TO_REAL: return "toReal";//$NON-NLS-1$
-			case TO_LOWER: return "toLower";//$NON-NLS-1$
-			case TO_UPPER: return "toUpper";//$NON-NLS-1$
+			case PLUS: return PLUS_NAME;
+			case MINUS: return MINUS_NAME;
+			case TIMES: return TIMES_NAME;
+			case DIVIDE: return DIVIDE_NAME;
+			case NOT: return NOT_NAME;
+			case AND: return AND_NAME;
+			case OR: return OR_NAME;
+			case XOR: return XOR_NAME;
+			case IMPLIES: return IMPLIES_NAME;
+			case ABS: return ABS_NAME;
+			case FLOOR: return FLOOR_NAME;
+			case ROUND: return ROUND_NAME;
+			case MAX: return MAX_NAME;
+			case MIN: return MIN_NAME;
+			case DIV: return DIV_NAME;
+			case MOD: return MOD_NAME;
+			case SUBSTRING: return SUBSTRING_NAME;
+			case SIZE: return SIZE_NAME;
+			case CONCAT: return CONCAT_NAME;
+			case TO_INTEGER: return TO_INTEGER_NAME;
+			case TO_REAL: return TO_REAL_NAME;
+			case TO_LOWER: return TO_LOWER_NAME;
+			case TO_UPPER: return TO_UPPER_NAME;
 		}
 		
 		return AnyTypeImpl.getOperationName(opcode);

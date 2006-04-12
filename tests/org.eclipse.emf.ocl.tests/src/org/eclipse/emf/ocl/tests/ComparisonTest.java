@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.3 2006/04/11 17:18:33 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.4 2006/04/12 20:47:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -23,14 +23,20 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 
@@ -46,6 +52,8 @@ public class ComparisonTest
 	private EClass thingType;
 	private EAttribute values;
 	private EDataType valueType;
+	private EClass numeroType;
+	private EReference numeros;
 	
 	private EObject thing;
 	
@@ -334,6 +342,81 @@ public class ComparisonTest
 		}
 	}
 	
+	public void test_dotNotationForSymbolicOperationNames() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		Integer minusOne = new Integer(-1);
+		Integer one = new Integer(1);
+		Integer two = new Integer(2);
+		Double doubleTwo = new Double(2.0);
+		Integer three = new Integer(3);
+		Integer six = new Integer(6);
+		
+		try {
+			// new NUMERIC_OPERATION token
+			assertEquals(one, helper.evaluate(one, "3.-(2)")); //$NON-NLS-1$
+			assertEquals(three, helper.evaluate(one, "1.+(2)")); //$NON-NLS-1$
+			assertEquals(doubleTwo, helper.evaluate(one, "6./(3)")); //$NON-NLS-1$
+			assertEquals(six, helper.evaluate(one, "2.*(3)")); //$NON-NLS-1$
+			assertTrue(helper.check(one, "1.<(2)")); //$NON-NLS-1$
+			assertTrue(helper.check(one, "1.<=(2)")); //$NON-NLS-1$
+			assertTrue(helper.check(one, "2.>=(1)")); //$NON-NLS-1$
+			assertTrue(helper.check(one, "2.>(1)")); //$NON-NLS-1$
+			
+			// new operationCallExpCS rule
+			assertEquals(one, helper.evaluate(three, "self.-(2)")); //$NON-NLS-1$
+			assertEquals(three, helper.evaluate(one, "self.+(2)")); //$NON-NLS-1$
+			assertEquals(doubleTwo, helper.evaluate(six, "self./(3)")); //$NON-NLS-1$
+			assertEquals(six, helper.evaluate(two, "self.*(3)")); //$NON-NLS-1$
+			assertTrue(helper.check(one, "self.<(2)")); //$NON-NLS-1$
+			assertTrue(helper.check(one, "self.<=(2)")); //$NON-NLS-1$
+			assertTrue(helper.check(two, "self.>=(1)")); //$NON-NLS-1$
+			assertTrue(helper.check(two, "self.>(1)")); //$NON-NLS-1$
+			
+			// unary minus
+			assertEquals(minusOne, helper.evaluate(one, "-1")); //$NON-NLS-1$
+			assertEquals(minusOne, helper.evaluate(one, "-self")); //$NON-NLS-1$
+			assertEquals(minusOne, helper.evaluate(one, "self.-()")); //$NON-NLS-1$
+			assertEquals(one, helper.evaluate(one, "- self.-()")); //$NON-NLS-1$
+			assertEquals(one, helper.evaluate(one, "- -1")); //$NON-NLS-1$
+			assertEquals(one, helper.evaluate(one, "- -self")); //$NON-NLS-1$
+			
+			// unary not
+			helper.setContext(EcorePackage.Literals.EBOOLEAN);
+			assertEquals(Boolean.FALSE, helper.evaluate(Boolean.TRUE, "not self")); //$NON-NLS-1$
+			assertEquals(Boolean.FALSE, helper.evaluate(Boolean.TRUE, "self.not()")); //$NON-NLS-1$
+			assertEquals(Boolean.TRUE, helper.evaluate(Boolean.TRUE, "not not self")); //$NON-NLS-1$
+			assertEquals(Boolean.TRUE, helper.evaluate(Boolean.TRUE, "not self.not()")); //$NON-NLS-1$
+			
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	public void test_javaImplementationsOfInfixOperators() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(thing);
+		
+		Numero three = new Numero(3);
+		Numero four = new Numero(4);
+		Numero eight = new Numero(8);
+		Numero twelve = new Numero(12);
+		
+		try {
+			assertEquals(four, helper.evaluate(thing, "numeros->at(1) - numeros->at(2)")); //$NON-NLS-1$
+			assertEquals(eight, helper.evaluate(thing, "numeros->at(1) + numeros->at(2)")); //$NON-NLS-1$
+			assertEquals(three, helper.evaluate(thing, "numeros->at(1) / numeros->at(2)")); //$NON-NLS-1$
+			assertEquals(twelve, helper.evaluate(thing, "numeros->at(1) * numeros->at(2)")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "numeros->at(2) < numeros->at(1)")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "numeros->at(2) <= numeros->at(1)")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "numeros->at(1) > numeros->at(2)")); //$NON-NLS-1$
+			assertTrue(helper.check(thing, "numeros->at(1) >= numeros->at(2)")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
 	//
 	// Framework methods
 	//
@@ -362,7 +445,97 @@ public class ComparisonTest
 		values.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
 		thingType.getEStructuralFeatures().add(values);
 		
+		numeroType = EcoreFactory.eINSTANCE.createEClass();
+		numeroType.setName("Numero"); //$NON-NLS-1$
+		numeroType.setInstanceClass(Numero.class);
+		
+		EOperation oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("+"); //$NON-NLS-1$
+		EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("-"); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("*"); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("/"); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(numeroType);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("-"); //$NON-NLS-1$
+		oper.setEType(numeroType);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("<"); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName("<="); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName(">"); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		numeroType.getEOperations().add(oper);
+		
+		oper = EcoreFactory.eINSTANCE.createEOperation();
+		oper.setName(">="); //$NON-NLS-1$
+		parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("n"); //$NON-NLS-1$
+		parm.setEType(numeroType);
+		oper.getEParameters().add(parm);
+		oper.setEType(EcorePackage.Literals.EBOOLEAN);
+		numeroType.getEOperations().add(oper);
+		
+		numeros = EcoreFactory.eINSTANCE.createEReference();
+		numeros.setName("numeros"); //$NON-NLS-1$
+		numeros.setEType(numeroType);
+		numeros.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		numeros.setOrdered(true);
+		thingType.getEStructuralFeatures().add(numeros);
+		
 		thing = factory.create(thingType);
+		((EList) thing.eGet(numeros)).add(new Numero(6));
+		((EList) thing.eGet(numeros)).add(new Numero(2));
 	}
 	
 	private static class Value implements Comparable {
@@ -397,6 +570,78 @@ public class ComparisonTest
 			} else if (!value.equals(other.value))
 				return false;
 			return true;
+		}
+	}
+	
+	public static class Numero extends EObjectImpl {
+		private int value;
+		
+		Numero() {
+			super();
+		}
+		
+		Numero(int value) {
+			this.value = value;
+		}
+		
+		public Numero plus(Numero n) {
+			return new Numero(value + n.value);
+		}
+		
+		public Numero minus(Numero n) {
+			return new Numero(value - n.value);
+		}
+		
+		public Numero times(Numero n) {
+			return new Numero(value * n.value);
+		}
+		
+		public Numero divide(Numero n) {
+			return new Numero(value / n.value);
+		}
+		
+		public Numero minus() {
+			return new Numero(-value);
+		}
+		
+		public boolean lessThan(Numero n) {
+			return value < n.value;
+		}
+		
+		public boolean lessThanEqual(Numero n) {
+			return value <= n.value;
+		}
+		
+		public boolean greaterThan(Numero n) {
+			return value > n.value;
+		}
+		
+		public boolean greaterThanEqual(Numero n) {
+			return value >= n.value;
+		}
+
+		public int hashCode() {
+			final int PRIME = 31;
+			int result = 1;
+			result = PRIME * result + value;
+			return result;
+		}
+
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			final Numero other = (Numero) obj;
+			if (value != other.value)
+				return false;
+			return true;
+		}
+		
+		public String toString() {
+			return "Numero(" + value + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 }

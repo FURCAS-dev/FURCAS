@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexer.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+* $Id: OCLKWLexer.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;

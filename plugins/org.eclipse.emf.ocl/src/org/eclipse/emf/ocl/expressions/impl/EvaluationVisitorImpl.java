@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.2 2006/04/11 16:21:57 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3 2006/04/12 20:47:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -90,7 +90,7 @@ import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.impl.AnyTypeImpl;
 import org.eclipse.emf.ocl.types.impl.CollectionTypeImpl;
-import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
+import org.eclipse.emf.ocl.types.impl.PrimitiveTypeImpl;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
@@ -190,7 +190,7 @@ public class EvaluationVisitorImpl
 	 * @return whether it is undefined
 	 */
 	static boolean isUndefined(Object value) {
-		return (value == null) || (value == InvalidTypeImpl.OCL_INVALID);
+		return (value == null) || (value == Types.OCL_INVALID);
 	}
 
 	/**
@@ -264,7 +264,7 @@ public class EvaluationVisitorImpl
 							"visitOperationCallExp", //$NON-NLS-1$
 							e.getLocalizedMessage()}),
 					e);
-				return InvalidTypeImpl.OCL_INVALID;
+				return Types.OCL_INVALID;
 			}
 		}
 		
@@ -350,7 +350,7 @@ public class EvaluationVisitorImpl
 				if (isUndefined(sourceVal)
 						&& opCode != PredefinedType.OCL_IS_UNDEFINED
 						&& opCode != PredefinedType.OCL_IS_INVALID)
-					return InvalidTypeImpl.OCL_INVALID;
+					return Types.OCL_INVALID;
 				
 				// evaluate this operation
 				switch (opCode) {
@@ -407,7 +407,7 @@ public class EvaluationVisitorImpl
 
 					case PredefinedType.OCL_IS_INVALID:
 						// OclAny::oclIsInvalid()
-						return (sourceVal == InvalidTypeImpl.OCL_INVALID)?
+						return (sourceVal == Types.OCL_INVALID)?
 								Boolean.TRUE : Boolean.FALSE;
 
 					case PredefinedType.SIZE:
@@ -516,8 +516,8 @@ public class EvaluationVisitorImpl
 					// OclVoid so is the result
 					if (sourceVal == null || argType == Types.OCL_VOID)
 						return null;
-					if (sourceVal == InvalidTypeImpl.OCL_INVALID || argType == Types.INVALID)
-						return InvalidTypeImpl.OCL_INVALID;
+					if (sourceVal == Types.OCL_INVALID || argType == Types.INVALID)
+						return Types.OCL_INVALID;
 
 					if (sourceVal instanceof Double
 						&& argType == Types.OCL_INTEGER)
@@ -529,7 +529,7 @@ public class EvaluationVisitorImpl
 				}
 
 				if (isUndefined(sourceVal)) {
-					return InvalidTypeImpl.OCL_INVALID;
+					return Types.OCL_INVALID;
 				}
 				
 				// evaluate arg, unless we have a boolean operation
@@ -1061,21 +1061,21 @@ public class EvaluationVisitorImpl
 
 				// check if undefined
 				if (isUndefined(sourceVal))
-					return InvalidTypeImpl.OCL_INVALID;
+					return Types.OCL_INVALID;
 
 				// evaluate arg1
 				Object arg1 = ((OCLExpression) args.get(0)).accept(this);
 
 				// check if undefined
 				if (isUndefined(arg1))
-					return InvalidTypeImpl.OCL_INVALID;
+					return Types.OCL_INVALID;
 
 				// evaluate arg2
 				Object arg2 = ((OCLExpression) args.get(1)).accept(this);
 
 				// check if undefined
 				if (isUndefined(arg2))
-					return InvalidTypeImpl.OCL_INVALID;
+					return Types.OCL_INVALID;
 
 				if (sourceVal instanceof String) {
 					// just one ternary string operation
@@ -1136,13 +1136,13 @@ public class EvaluationVisitorImpl
 			}
 
 			if (opCode == PredefinedType.OCL_IS_INVALID) {
-				return (context == InvalidTypeImpl.OCL_INVALID)?
+				return (context == Types.OCL_INVALID)?
 						Boolean.TRUE : Boolean.FALSE;
 			}
 
 			// result is invalid if source is undefined
 			if (isUndefined(context)) {
-				return InvalidTypeImpl.OCL_INVALID;
+				return Types.OCL_INVALID;
 			}
 
 			// Handle type check and conversion:
@@ -1182,12 +1182,12 @@ public class EvaluationVisitorImpl
 				if (oclIsKindOf(context, type) == Boolean.TRUE) {
 					return context;
 				} else {
-					return InvalidTypeImpl.OCL_INVALID;
+					return Types.OCL_INVALID;
 				}
 			}
 
 			// Handle < (lessThan)
-			else if (opCode == PredefinedType.LESS_THAN) {
+			else if ((opCode == PredefinedType.LESS_THAN) && (context instanceof Comparable)) {
 				Comparable compContext = (Comparable) context;
 				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
@@ -1195,7 +1195,7 @@ public class EvaluationVisitorImpl
 			}
 
 			//	Handle <= (lessThanEqual)
-			else if (opCode == PredefinedType.LESS_THAN_EQUAL) {
+			else if ((opCode == PredefinedType.LESS_THAN_EQUAL) && (context instanceof Comparable)) {
 				Comparable compContext = (Comparable) context;
 				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
@@ -1203,7 +1203,7 @@ public class EvaluationVisitorImpl
 			}
 
 			// Handle > (greaterThan)
-			else if (opCode == PredefinedType.GREATER_THAN) {
+			else if ((opCode == PredefinedType.GREATER_THAN) && (context instanceof Comparable)) {
 				Comparable compContext = (Comparable) context;
 				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
@@ -1211,7 +1211,7 @@ public class EvaluationVisitorImpl
 			}
 
 			// Handle > (greaterThanEqual)
-			else if (opCode == PredefinedType.GREATER_THAN_EQUAL) {
+			else if ((opCode == PredefinedType.GREATER_THAN_EQUAL) && (context instanceof Comparable)) {
 				Comparable compContext = (Comparable) context;
 				OCLExpression arg = (OCLExpression) args.get(0);
 				Comparable evalArg = (Comparable) arg.accept(this);
@@ -1261,7 +1261,7 @@ public class EvaluationVisitorImpl
 							"visitOperationCallExp", //$NON-NLS-1$
 							e.getLocalizedMessage()}),
 					e);
-				return InvalidTypeImpl.OCL_INVALID;
+				return Types.OCL_INVALID;
 			}
 		}
 
@@ -1332,6 +1332,38 @@ public class EvaluationVisitorImpl
 	public static Method getJavaMethodFor(EOperation oper) {
 		Method result = null;
 
+		// in the case of infix operators, we need to replace the name with
+		//    a valid Java name.  We will choose the legacy OCL parser names
+		//    which some clients already depend on
+		String operName = oper.getName();
+		int opcode = PrimitiveTypeImpl.getOperationCode(operName);
+		switch (opcode) {
+		case PredefinedType.PLUS:
+			operName = "plus"; //$NON-NLS-1$
+			break;
+		case PredefinedType.MINUS:
+			operName = "minus"; //$NON-NLS-1$
+			break;
+		case PredefinedType.TIMES:
+			operName = "times"; //$NON-NLS-1$
+			break;
+		case PredefinedType.DIVIDE:
+			operName = "divide"; //$NON-NLS-1$
+			break;
+		case PredefinedType.LESS_THAN:
+			operName = "lessThan"; //$NON-NLS-1$
+			break;
+		case PredefinedType.LESS_THAN_EQUAL:
+			operName = "lessThanEqual"; //$NON-NLS-1$
+			break;
+		case PredefinedType.GREATER_THAN:
+			operName = "greaterThan"; //$NON-NLS-1$
+			break;
+		case PredefinedType.GREATER_THAN_EQUAL:
+			operName = "greaterThanEqual"; //$NON-NLS-1$
+			break;
+		}
+		
 		// get containing class for the operation
 		EClass container = oper.getEContainingClass();
 
@@ -1353,7 +1385,7 @@ public class EvaluationVisitorImpl
 
 		// lookup the method on the java class
 		try {
-			result = containerClass.getMethod(oper.getName(), javaParms);
+			result = containerClass.getMethod(operName, javaParms);
 		} catch (NoSuchMethodException e) {
 			//do nothing
 		}
@@ -1865,7 +1897,7 @@ public class EvaluationVisitorImpl
 
 		// if source is undefined, result is OclInvalid
 		if (isUndefined(context))
-			return InvalidTypeImpl.OCL_INVALID;
+			return Types.OCL_INVALID;
 
 		OCLExpression derivation = getBody(property);
 		if (derivation != null) {
@@ -1901,7 +1933,7 @@ public class EvaluationVisitorImpl
 	public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
 		EObject context = (EObject) ae.getSource().accept(this);
 		if (isUndefined(context)) {
-			return InvalidTypeImpl.OCL_INVALID;
+			return Types.OCL_INVALID;
 		}
 		EReference ref = getAssociationClassReference(
 			context, ae.getReferredAssociationClass());
@@ -2034,7 +2066,7 @@ public class EvaluationVisitorImpl
 
 	public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
 		// just make up some object to take the place of the OclInvalid literal
-		return InvalidTypeImpl.OCL_INVALID;
+		return Types.OCL_INVALID;
 	}
 
 	public Object visitNullLiteralExp(NullLiteralExp il) {
@@ -2319,7 +2351,7 @@ public class EvaluationVisitorImpl
 		}
 		
 		// the type of OclInvalid is Invalid
-		if (value == InvalidTypeImpl.OCL_INVALID) {
+		if (value == Types.OCL_INVALID) {
 			return Boolean.valueOf(type == Types.INVALID);
 		}
 		

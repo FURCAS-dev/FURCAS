@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.2 2006/04/11 16:21:57 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.3 2006/04/12 20:47:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -259,7 +259,9 @@ public class AnyTypeImpl
 				 */
 				OCLExpression arg = (OCLExpression) args.get(0);
 				EClassifier argType = arg.getType();
-				if (type instanceof EEnum) {
+				if (type == Types.INVALID) {
+					return Types.OCL_BOOLEAN;
+				} else if (type instanceof EEnum) {
 					if (type != argType && argType != Types.OCL_ANY_TYPE) {
 						String message = NLS.bind(
 								OCLMessages.Noncomforming_ERROR_,
@@ -296,6 +298,7 @@ public class AnyTypeImpl
 			case GREATER_THAN_EQUAL:
 				// source must either be an EDataType that is Comparable, or
 				//    else be an EClass, with a method: int compareTo(object)
+				//    or <(), <=(), etc.
 				if (!(type instanceof EClass)) {
 					if (TypeUtil.isComparable(type)) {
 						return Types.OCL_BOOLEAN;
@@ -305,18 +308,26 @@ public class AnyTypeImpl
 						new Object[] {getOperationName(opcode) });
 					OCLParser.ERR(message);
 				}
-				// Check that the type has a method named "compareTo"
+				
 				EOperation oper = null;
 				try {
 					oper = TypeUtil.findOperationMatching(type,
-						"compareTo", args);//$NON-NLS-1$
+							PrimitiveTypeImpl.getOperationName(opcode), args);
+					
+					if (oper == null) {
+						// Check that the type has a method named "compareTo"
+						oper = TypeUtil.findOperationMatching(type,
+							"compareTo", args);//$NON-NLS-1$
+					}
 				} catch (Exception e) {
 					String message = NLS.bind(
 							OCLMessages.SourceOperationCompareTo_ERROR_,
 						new Object[] {getOperationName(opcode) });
 					OCLParser.ERR(message);
 				}
-				if (TypeUtil.getOCLType(oper) != Types.OCL_INTEGER) {
+				
+				if ((oper != null) && "compareTo".equals(oper.getName()) //$NON-NLS-1$
+						&& (TypeUtil.getOCLType(oper) != Types.OCL_INTEGER)) {
 					OCLParser.ERR(OCLMessages.ResultCompareToInt_ERROR_);
 				}
 			// NEED TO CHECK CONFORMANCE OF ARGS if ECLASS...
@@ -365,7 +376,7 @@ public class AnyTypeImpl
 			return anObject == anotherObject;
 
 		// likewise if either value is invalid.
-		if (anObject == InvalidTypeImpl.OCL_INVALID || anotherObject == InvalidTypeImpl.OCL_INVALID)
+		if (anObject == Types.OCL_INVALID || anotherObject == Types.OCL_INVALID)
 			return anObject == anotherObject;
 
 		// primitive types

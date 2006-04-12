@@ -12,34 +12,16 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParser.java,v 1.3 2006/04/07 20:00:23 cdamus Exp $
+* $Id: OCLLPGParser.java,v 1.4 2006/04/12 20:47:22 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
 
 
-import lpg.lpgjavaruntime.BadParseException;
-import lpg.lpgjavaruntime.BadParseSymFileException;
-import lpg.lpgjavaruntime.DeterministicParser;
-import lpg.lpgjavaruntime.DiagnoseParser;
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.LexStream;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.NotDeterministicParseTableException;
-import lpg.lpgjavaruntime.NullExportedSymbolsException;
-import lpg.lpgjavaruntime.NullTerminalSymbolsException;
-import lpg.lpgjavaruntime.ParseTable;
-import lpg.lpgjavaruntime.PrsStream;
-import lpg.lpgjavaruntime.RuleAction;
-import lpg.lpgjavaruntime.UndefinedEofSymbolException;
-import lpg.lpgjavaruntime.UnimplementedTerminalsException;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ocl.internal.cst.BooleanLiteralExpCS;
-import org.eclipse.emf.ocl.internal.cst.CSTFactory;
-import org.eclipse.emf.ocl.internal.cst.CSTNode;
 import org.eclipse.emf.ocl.internal.cst.CallExpCS;
 import org.eclipse.emf.ocl.internal.cst.ClassifierContextDeclCS;
 import org.eclipse.emf.ocl.internal.cst.CollectionLiteralExpCS;
@@ -47,28 +29,30 @@ import org.eclipse.emf.ocl.internal.cst.CollectionLiteralPartCS;
 import org.eclipse.emf.ocl.internal.cst.CollectionRangeCS;
 import org.eclipse.emf.ocl.internal.cst.CollectionTypeCS;
 import org.eclipse.emf.ocl.internal.cst.CollectionTypeIdentifierEnum;
+import org.eclipse.emf.ocl.internal.cst.CSTNode;
 import org.eclipse.emf.ocl.internal.cst.DefCS;
 import org.eclipse.emf.ocl.internal.cst.DefExpressionCS;
 import org.eclipse.emf.ocl.internal.cst.DerValueCS;
 import org.eclipse.emf.ocl.internal.cst.DotOrArrowEnum;
 import org.eclipse.emf.ocl.internal.cst.EnumLiteralExpCS;
-import org.eclipse.emf.ocl.internal.cst.FeatureCallExpCS;
 import org.eclipse.emf.ocl.internal.cst.IfExpCS;
 import org.eclipse.emf.ocl.internal.cst.InitOrDerValueCS;
 import org.eclipse.emf.ocl.internal.cst.InitValueCS;
 import org.eclipse.emf.ocl.internal.cst.IntegerLiteralExpCS;
+import org.eclipse.emf.ocl.internal.cst.InvalidLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.InvCS;
 import org.eclipse.emf.ocl.internal.cst.InvOrDefCS;
-import org.eclipse.emf.ocl.internal.cst.InvalidLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.IsMarkedPreCS;
 import org.eclipse.emf.ocl.internal.cst.IterateExpCS;
 import org.eclipse.emf.ocl.internal.cst.IteratorExpCS;
 import org.eclipse.emf.ocl.internal.cst.LetExpCS;
-import org.eclipse.emf.ocl.internal.cst.MessageExpCS;
-import org.eclipse.emf.ocl.internal.cst.MessageExpKind;
+import org.eclipse.emf.ocl.internal.cst.FeatureCallExpCS;
+import org.eclipse.emf.ocl.internal.cst.CSTFactory;
 import org.eclipse.emf.ocl.internal.cst.NullLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.OCLExpressionCS;
 import org.eclipse.emf.ocl.internal.cst.OCLMessageArgCS;
+import org.eclipse.emf.ocl.internal.cst.MessageExpCS;
+import org.eclipse.emf.ocl.internal.cst.MessageExpKind;
 import org.eclipse.emf.ocl.internal.cst.OperationCS;
 import org.eclipse.emf.ocl.internal.cst.OperationCallExpCS;
 import org.eclipse.emf.ocl.internal.cst.OperationContextDeclCS;
@@ -93,6 +77,22 @@ import org.eclipse.emf.ocl.types.impl.AnyTypeImpl;
 import org.eclipse.emf.ocl.types.impl.PrimitiveTypeImpl;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 
+import lpg.lpgjavaruntime.BadParseException;
+import lpg.lpgjavaruntime.BadParseSymFileException;
+import lpg.lpgjavaruntime.DeterministicParser;
+import lpg.lpgjavaruntime.DiagnoseParser;
+import lpg.lpgjavaruntime.IToken;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.Monitor;
+import lpg.lpgjavaruntime.NotDeterministicParseTableException;
+import lpg.lpgjavaruntime.NullExportedSymbolsException;
+import lpg.lpgjavaruntime.NullTerminalSymbolsException;
+import lpg.lpgjavaruntime.ParseTable;
+import lpg.lpgjavaruntime.PrsStream;
+import lpg.lpgjavaruntime.RuleAction;
+import lpg.lpgjavaruntime.UndefinedEofSymbolException;
+import lpg.lpgjavaruntime.UnimplementedTerminalsException;
+
 public class OCLLPGParser extends PrsStream implements RuleAction {
 	protected static ParseTable prs = new OCLLPGParserprs();
 	private DeterministicParser dtParser;
@@ -111,15 +111,15 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 		}
 		catch(UnimplementedTerminalsException e) {
 			java.util.ArrayList unimplemented_symbols = e.getSymbols();
-			String error = "The Lexer will not scan the following token(s):"; //$NON-NLS-1$
+			String error = "The Lexer will not scan the following token(s):";//$NON-NLS-1$
 			for (int i = 0; i < unimplemented_symbols.size(); i++) {
 				Integer id = (Integer) unimplemented_symbols.get(i);
-				error += "\t" + OCLLPGParsersym.orderedTerminalSymbols[id.intValue()];	 //$NON-NLS-1$		   
+				error += "\t" + OCLLPGParsersym.orderedTerminalSymbols[id.intValue()];//$NON-NLS-1$			   
 			}
-			throw new RuntimeException(error + "\n");	 //$NON-NLS-1$					
+			throw new RuntimeException(error + "\n");	//$NON-NLS-1$					
 		}
 		catch(UndefinedEofSymbolException e) {
-			throw new RuntimeException("The Lexer does not implement the Eof symbol " + //$NON-NLS-1$
+			throw new RuntimeException("The Lexer does not implement the Eof symbol " +//$NON-NLS-1$
 				 OCLLPGParsersym.orderedTerminalSymbols[OCLLPGParserprs.EOFT_SYMBOL]);
 		} 
 	}
@@ -148,10 +148,10 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			dtParser = new DeterministicParser(monitor, this, prsTable, this);
 		}
 		catch (NotDeterministicParseTableException e) {
-			throw new RuntimeException("****Error: Regenerate OCLLPGParserprs.java with -NOBACKTRACK option"); //$NON-NLS-1$
+			throw new RuntimeException("****Error: Regenerate OCLLPGParserprs.java with -NOBACKTRACK option");//$NON-NLS-1$
 		}
 		catch (BadParseSymFileException e) {
-			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLLPGParsersym.java. Regenerate OCLLPGParserprs.java"); //$NON-NLS-1$
+			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLLPGParsersym.java. Regenerate OCLLPGParserprs.java");//$NON-NLS-1$
 		}
 
 		try {
@@ -1249,7 +1249,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 64:  oclExp6CS ::= - oclExp7CS
+			// Rule 64:  oclExp6CS ::= - oclExp6CS
 			//
 			case 64: {
 				
@@ -1269,7 +1269,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 65:  oclExp6CS ::= not oclExp7CS
+			// Rule 65:  oclExp6CS ::= not oclExp6CS
 			//
 			case 65: {
 				
@@ -2177,7 +2177,67 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			//
 			// Rule 173:  operationCallExpCS ::= oclIsTypeOf isMarkedPreCS ( argumentsCSopt )
 			//
-			case 173: {
+			case 173:
+ 
+			//
+			// Rule 174:  operationCallExpCS ::= PLUS isMarkedPreCS ( argumentsCSopt )
+			//
+			case 174:
+ 
+			//
+			// Rule 175:  operationCallExpCS ::= MINUS isMarkedPreCS ( argumentsCSopt )
+			//
+			case 175:
+ 
+			//
+			// Rule 176:  operationCallExpCS ::= MULTIPLY isMarkedPreCS ( argumentsCSopt )
+			//
+			case 176:
+ 
+			//
+			// Rule 177:  operationCallExpCS ::= DIVIDE isMarkedPreCS ( argumentsCSopt )
+			//
+			case 177:
+ 
+			//
+			// Rule 178:  operationCallExpCS ::= GREATER isMarkedPreCS ( argumentsCSopt )
+			//
+			case 178:
+ 
+			//
+			// Rule 179:  operationCallExpCS ::= LESS isMarkedPreCS ( argumentsCSopt )
+			//
+			case 179:
+ 
+			//
+			// Rule 180:  operationCallExpCS ::= GREATER_EQUAL isMarkedPreCS ( argumentsCSopt )
+			//
+			case 180:
+ 
+			//
+			// Rule 181:  operationCallExpCS ::= LESS_EQUAL isMarkedPreCS ( argumentsCSopt )
+			//
+			case 181:
+ 
+			//
+			// Rule 182:  operationCallExpCS ::= not isMarkedPreCS ( argumentsCSopt )
+			//
+			case 182:
+ 
+			//
+			// Rule 183:  operationCallExpCS ::= and isMarkedPreCS ( argumentsCSopt )
+			//
+			case 183:
+ 
+			//
+			// Rule 184:  operationCallExpCS ::= or isMarkedPreCS ( argumentsCSopt )
+			//
+			case 184:
+ 
+			//
+			// Rule 185:  operationCallExpCS ::= xor isMarkedPreCS ( argumentsCSopt )
+			//
+			case 185: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.KEYWORD_LITERAL,
@@ -2195,9 +2255,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 174:  operationCallExpCS ::= oclIsInState isMarkedPreCS ( pathNameCSOpt )
+			// Rule 186:  operationCallExpCS ::= oclIsInState isMarkedPreCS ( pathNameCSOpt )
 			//
-			case 174: {
+			case 186: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.KEYWORD_LITERAL,
@@ -2208,7 +2268,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 				PathNameCS pathNameCS = (PathNameCS) dtParser.getSym(4);
 				StateExpCS stateExpCS = createStateExpCS(pathNameCS);
 				setOffsets(stateExpCS, pathNameCS);
-				
+			
 				CSTNode result = createOperationCallExpCS(
 						simpleNameCS,
 						(IsMarkedPreCS)dtParser.getSym(2),
@@ -2220,9 +2280,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 175:  attrOrNavCallExpCS ::= simpleNameCS isMarkedPreCS
+			// Rule 187:  attrOrNavCallExpCS ::= simpleNameCS isMarkedPreCS
 			//
-			case 175: {
+			case 187: {
 				
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(2);
 				CSTNode result = createFeatureCallExpCS(
@@ -2240,9 +2300,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 176:  attrOrNavCallExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCS
+			// Rule 188:  attrOrNavCallExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCS
 			//
-			case 176: {
+			case 188: {
 				
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(5);
 				CSTNode result = createFeatureCallExpCS(
@@ -2260,9 +2320,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 177:  isMarkedPreCS ::= $Empty
+			// Rule 189:  isMarkedPreCS ::= $Empty
 			//
-			case 177: {
+			case 189: {
 				
 				CSTNode result = createIsMarkedPreCS(false);
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -2271,9 +2331,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 178:  isMarkedPreCS ::= @pre
+			// Rule 190:  isMarkedPreCS ::= @pre
 			//
-			case 178: {
+			case 190: {
 				
 				CSTNode result = createIsMarkedPreCS(true);
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -2282,16 +2342,16 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 179:  argumentsCSopt ::= $Empty
+			// Rule 191:  argumentsCSopt ::= $Empty
 			//
-			case 179:
+			case 191:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 181:  argumentsCS ::= oclExpressionCS
+			// Rule 193:  argumentsCS ::= oclExpressionCS
 			//
-			case 181: {
+			case 193: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -2300,9 +2360,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 182:  argumentsCS ::= argumentsCS , oclExpressionCS
+			// Rule 194:  argumentsCS ::= argumentsCS , oclExpressionCS
 			//
-			case 182: {
+			case 194: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -2311,9 +2371,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 183:  letExpCS ::= let variableCS letExpSubCSopt in oclExpressionCS
+			// Rule 195:  letExpCS ::= let variableCS letExpSubCSopt in oclExpressionCS
 			//
-			case 183: {
+			case 195: {
 				
 				EList variables = (EList)dtParser.getSym(3);
 				variables.add(dtParser.getSym(2));
@@ -2327,16 +2387,16 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 184:  letExpSubCSopt ::= $Empty
+			// Rule 196:  letExpSubCSopt ::= $Empty
 			//
-			case 184:
+			case 196:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 186:  letExpSubCS ::= , variableCS
+			// Rule 198:  letExpSubCS ::= , variableCS
 			//
-			case 186: {
+			case 198: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -2345,9 +2405,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 187:  letExpSubCS ::= letExpSubCS , variableCS
+			// Rule 199:  letExpSubCS ::= letExpSubCS , variableCS
 			//
-			case 187: {
+			case 199: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -2356,9 +2416,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 188:  ifExpCS ::= if oclExpressionCS then oclExpressionCS else oclExpressionCS endif
+			// Rule 200:  ifExpCS ::= if oclExpressionCS then oclExpressionCS else oclExpressionCS endif
 			//
-			case 188: {
+			case 200: {
 				
 				CSTNode result = createIfExpCS(
 						(OCLExpressionCS)dtParser.getSym(2),
@@ -2371,14 +2431,14 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 189:  messageExpCS ::= ^ simpleNameCS ( oclMessageArgumentsCSopt )
+			// Rule 201:  messageExpCS ::= ^ simpleNameCS ( oclMessageArgumentsCSopt )
 			//
-			case 189:
+			case 201:
  
 			//
-			// Rule 190:  messageExpCS ::= ^^ simpleNameCS ( oclMessageArgumentsCSopt )
+			// Rule 202:  messageExpCS ::= ^^ simpleNameCS ( oclMessageArgumentsCSopt )
 			//
-			case 190: {
+			case 202: {
 				
 				CSTNode result = createMessageExpCS(
 						getIToken(dtParser.getToken(1)).getKind(),
@@ -2391,16 +2451,16 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 191:  oclMessageArgumentsCSopt ::= $Empty
+			// Rule 203:  oclMessageArgumentsCSopt ::= $Empty
 			//
-			case 191:
+			case 203:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 193:  oclMessageArgumentsCS ::= oclMessageArgCS
+			// Rule 205:  oclMessageArgumentsCS ::= oclMessageArgCS
 			//
-			case 193: {
+			case 205: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -2409,9 +2469,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 194:  oclMessageArgumentsCS ::= oclMessageArgumentsCS , oclMessageArgCS
+			// Rule 206:  oclMessageArgumentsCS ::= oclMessageArgumentsCS , oclMessageArgCS
 			//
-			case 194: {
+			case 206: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -2420,9 +2480,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 195:  oclMessageArgCS ::= oclExpressionCS
+			// Rule 207:  oclMessageArgCS ::= oclExpressionCS
 			//
-			case 195: {
+			case 207: {
 				
 				CSTNode result = createOCLMessageArgCS(
 						null,
@@ -2434,9 +2494,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 196:  oclMessageArgCS ::= ?
+			// Rule 208:  oclMessageArgCS ::= ?
 			//
-			case 196: {
+			case 208: {
 				
 				CSTNode result = createOCLMessageArgCS(
 						null,
@@ -2448,9 +2508,9 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			}
 	 
 			//
-			// Rule 197:  oclMessageArgCS ::= ? : typeCS
+			// Rule 209:  oclMessageArgCS ::= ? : typeCS
 			//
-			case 197: {
+			case 209: {
 				
 				CSTNode result = createOCLMessageArgCS(
 						(TypeCS)dtParser.getSym(3),

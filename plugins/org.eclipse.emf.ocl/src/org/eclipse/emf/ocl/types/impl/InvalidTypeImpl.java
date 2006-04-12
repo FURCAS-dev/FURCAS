@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
@@ -47,7 +47,16 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/** The single instance (OclInvalid) of the Invalid type. */
-	public static final Object OCL_INVALID = EcoreFactory.eINSTANCE.createEObject();
+	public static final Object OCL_INVALID = new EObjectImpl() {
+	
+		public EClass eClass() {
+			return (EClass) Types.INVALID;
+		}
+	
+		public String toString() {
+			return "OclInvalid"; //$NON-NLS-1$
+		}
+	};
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,7 +104,7 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 	 * @generated NOT
 	 */
 	public int getRelationshipTo(EClassifier type) {
-		if (this == type) {
+		if (type == Types.INVALID) {
 			return SAME_TYPE;
 		}
 		
@@ -112,8 +121,8 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 	 * @generated NOT
 	 */
 	public EClassifier getCommonSupertype(EClassifier type) throws SemanticException {
-		if (this == type) {
-			return this;
+		if (type == Types.INVALID) {
+			return Types.INVALID;
 		}
 		
 		if (type != Types.OCL_VOID) {

@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.4 2006/04/12 16:51:09 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.5 2006/04/12 20:47:23 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.4 2006/04/12 16:51:09 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.5 2006/04/12 20:47:23 cdamus Exp $
  */
 	./
 $End
@@ -1400,7 +1400,7 @@ $Rules
 		./
 	
 	oclExp6CS -> oclExp7CS
-	oclExp6CS ::= '-' oclExp7CS
+	oclExp6CS ::= '-' oclExp6CS
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1416,7 +1416,7 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	oclExp6CS ::= not oclExp7CS
+	oclExp6CS ::= not oclExp6CS
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -2100,6 +2100,30 @@ $Rules
 	operationCallExpCS ::= oclIsKindOf isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= oclIsTypeOf isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= PLUS isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= MINUS isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= MULTIPLY isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= DIVIDE isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= GREATER isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= LESS isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= GREATER_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= LESS_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= not isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= and isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= or isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= xor isMarkedPreCS '(' argumentsCSopt ')'
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.KEYWORD_LITERAL,

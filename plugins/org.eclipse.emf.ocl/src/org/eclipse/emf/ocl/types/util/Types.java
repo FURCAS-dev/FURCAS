@@ -17,7 +17,15 @@
 
 package org.eclipse.emf.ocl.types.util;
 
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.impl.EClassImpl;
+import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.ElementType;
 import org.eclipse.emf.ocl.types.InvalidType;
@@ -50,11 +58,23 @@ public class Types {
 	public static VoidType OCL_VOID = new VoidTypeImpl("OclVoid"); //$NON-NLS-1$
 
 	/**
+	 * The single value of the {@link #OCL_VOID OclVoid} type,
+	 * <code>null</code>.
+	 */
+	public static Object NULL = null;
+
+	/**
 	 * The shared type object representing Invalid (the single instance of
 	 * the OclInvalidType metatype).
 	 */
-	public static InvalidType INVALID = new InvalidTypeImpl("Invalid"); //$NON-NLS-1$
+	public static InvalidType INVALID = new Invalid("Invalid"); //$NON-NLS-1$
 
+	/**
+	 * The single value of the {@link #INVALID Invalid} type,
+	 * <code>OclInvalid</code>.
+	 */
+	public static Object OCL_INVALID = InvalidTypeImpl.OCL_INVALID;
+	
 	/**
 	 * Representation of the OclAny type.
 	 */
@@ -102,5 +122,64 @@ public class Types {
 
 	private Types() {
 		super();
+	}
+	
+	private static class Invalid extends EClassImpl implements EDataType, EEnum, InvalidType {
+		private final InvalidType delegate;
+		
+		Invalid(String name) {
+			super();
+			setName(name);
+			delegate = new InvalidTypeImpl(name);
+		}
+		
+		public boolean isSerializable() {
+			return false;
+		}
+
+		public void setSerializable(boolean value) {
+			// do nothing
+		}
+
+		public EList getELiterals() {
+			return ECollections.EMPTY_ELIST;
+		}
+
+		public EEnumLiteral getEEnumLiteral(String name) {
+			return null;
+		}
+
+		public EEnumLiteral getEEnumLiteral(int value) {
+			return null;
+		}
+
+		public EEnumLiteral getEEnumLiteralByLiteral(String literal) {
+			return null;
+		}
+
+		public EList getOperations() {
+			return delegate.getOperations();
+		}
+
+		public String getOperationNameFor(int code) {
+			return delegate.getOperationNameFor(code);
+		}
+
+		public int getOperationCodeFor(String operName) {
+			return delegate.getOperationCodeFor(operName);
+		}
+
+		public EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args) throws SemanticException {
+			return delegate.getResultTypeFor(ownerType, opcode, args);
+		}
+
+		public int getRelationshipTo(EClassifier type) {
+			return delegate.getRelationshipTo(type);
+		}
+
+		public EClassifier getCommonSupertype(EClassifier type) throws SemanticException {
+			return delegate.getCommonSupertype(type);
+		}
+		
 	}
 }

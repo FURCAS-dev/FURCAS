@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: PredefinedType.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -53,13 +53,13 @@ public interface PredefinedType extends EObject {
 	 * Primitive type operation codes
 	 */
 	int PLUS = 1;
-	String PLUS_NAME = "plus"; //$NON-NLS-1$
+	String PLUS_NAME = "+"; //$NON-NLS-1$
 	int MINUS = 2;
-	String MINUS_NAME = "minus"; //$NON-NLS-1$
+	String MINUS_NAME = "-"; //$NON-NLS-1$
 	int TIMES = 3;
-	String TIMES_NAME = "times"; //$NON-NLS-1$
+	String TIMES_NAME = "*"; //$NON-NLS-1$
 	int DIVIDE = 4;
-	String DIVIDE_NAME = "divide"; //$NON-NLS-1$
+	String DIVIDE_NAME = "/"; //$NON-NLS-1$
 	int AND = 10;
 	String AND_NAME = "and"; //$NON-NLS-1$
 	int NOT = 11;
@@ -123,13 +123,13 @@ public interface PredefinedType extends EObject {
 	int OCL_IS_INVALID = 66;
 	String OCL_IS_INVALID_NAME = "oclIsInvalid"; //$NON-NLS-1$
 	int LESS_THAN = 67;
-	String LESS_THAN_NAME = "lessThan"; //$NON-NLS-1$
+	String LESS_THAN_NAME = "<"; //$NON-NLS-1$
 	int GREATER_THAN = 68;
-	String GREATER_THAN_NAME = "greaterThan"; //$NON-NLS-1$
+	String GREATER_THAN_NAME = ">"; //$NON-NLS-1$
 	int LESS_THAN_EQUAL = 69;
-	String LESS_THAN_EQUAL_NAME = "lessThanEqual"; //$NON-NLS-1$
+	String LESS_THAN_EQUAL_NAME = "<="; //$NON-NLS-1$
 	int GREATER_THAN_EQUAL = 70;
-	String GREATER_THAN_EQUAL_NAME = "greaterThanEqual"; //$NON-NLS-1$
+	String GREATER_THAN_EQUAL_NAME = ">="; //$NON-NLS-1$
 	int OCL_IS_NEW = 71;
 	String OCL_IS_NEW_NAME = "oclIsNew"; //$NON-NLS-1$
 	int OCL_IS_IN_STATE = 72;

@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.2 2006/04/04 18:07:25 cdamus Exp $
+* $Id: OCLLexer.java,v 1.3 2006/04/12 20:47:23 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -67,7 +67,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     public void lexer(Monitor monitor, PrsStream prsStream)
     {
         if (getInputChars() == null)
-            throw new NullPointerException("LexStream was not initialized"); //$NON-NLS-1$
+            throw new NullPointerException("LexStream was not initialized");//$NON-NLS-1$
 
         this.prsStream = prsStream;
 
@@ -293,7 +293,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     }
 
 	public OCLLexer(char[] chars) {
-		this(chars, "OCL", ECLIPSE_TAB_VALUE); //$NON-NLS-1$
+		this(chars, "OCL", ECLIPSE_TAB_VALUE);//$NON-NLS-1$
 		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
 	}
 
