@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.2 2006/04/12 14:03:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -141,24 +141,6 @@ public class VariableImpl
 	 * @ordered
 	 */
 	protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getVarName() <em>Var Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getVarName()
-	 * @generated @ordered
-	 */
-	protected static final String VAR_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getVarName() <em>Var Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getVarName()
-	 * @generated @ordered
-	 */
-	protected String varName = VAR_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '
