@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.2 2006/04/12 15:24:46 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -332,6 +332,12 @@ public class ValidationVisitorImpl
 		source.accept(this);
 
 		EClassifier refType = TypeUtil.getOCLType(property);
+		
+		if (!pc.getQualifier().isEmpty() && (refType instanceof CollectionType)) {
+			// qualifying the navigation results in a non-collection
+			//    type
+			refType = ((CollectionType) refType).getElementType();
+		}
 		
 		return Boolean.valueOf(TypeUtil.typeCompare(refType, type) == 0);
 	}

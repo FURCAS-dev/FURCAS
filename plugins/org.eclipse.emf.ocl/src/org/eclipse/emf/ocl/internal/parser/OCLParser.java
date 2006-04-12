@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.6 2006/04/07 20:00:23 cdamus Exp $
+ * $Id: OCLParser.java,v 1.7 2006/04/12 15:24:46 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -474,17 +474,29 @@ public class OCLParser extends OCLLPGParser {
 			if (expectedQualifiers.size() != qualifiers.size()) {
 				ERROR(rule, OCLMessages.MismatchedQualifiers_ERROR_);
 			} else {
-				Iterator eiter = expectedQualifiers.iterator();
-				Iterator qiter = qualifiers.iterator();
-				
-				while (eiter.hasNext()) {
-					EClassifier expectedType = TypeUtil.getOCLType(
-							(ETypedElement) eiter.next());
-					OCLExpression qualifier = (OCLExpression) qiter.next();
+				if (!qualifiers.isEmpty()) {
+					Iterator eiter = expectedQualifiers.iterator();
+					Iterator qiter = qualifiers.iterator();
 					
-					EClassifier qualifierType = qualifier.getType();
-					if (TypeUtil.typeCompare(expectedType, qualifierType) < 0) {
-						ERROR(rule, OCLMessages.MismatchedQualifiers_ERROR_);
+					while (eiter.hasNext()) {
+						EClassifier expectedType = TypeUtil.getOCLType(
+								(ETypedElement) eiter.next());
+						OCLExpression qualifier = (OCLExpression) qiter.next();
+						
+						EClassifier qualifierType = qualifier.getType();
+						if (TypeUtil.typeCompare(expectedType, qualifierType) < 0) {
+							ERROR(rule, OCLMessages.MismatchedQualifiers_ERROR_);
+						}
+					}
+					
+					if (source.isMany()) {
+						EClassifier ncType = nc.getType();
+						
+						if (ncType instanceof CollectionType) {
+							// qualifying the navigation results in a non-collection
+							//    type
+							nc.setType(((CollectionType) ncType).getElementType());
+						}
 					}
 				}
 			}

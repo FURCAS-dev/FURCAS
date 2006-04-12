@@ -43,6 +43,7 @@ import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
 import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
 
@@ -499,6 +500,30 @@ public class AssociationTest
 		} finally {
 			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
+	}
+	
+	/**
+	 * Tests that the result of qualifying an association navigation is a
+	 * scalar value (not a collection).
+	 */
+	public void test_qualifiedAssociation_scalar_133435() {
+		// unqualified navigation
+		OCLExpression expr = parse(
+				"package ocltest context Forest " + //$NON-NLS-1$
+				"inv: self.trees" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+			
+		assertTrue(expr.getType() instanceof CollectionType);
+		CollectionType collType = (CollectionType) expr.getType();
+		assertSame(tree, collType.getElementType());
+		
+		// qualified navigation
+		expr = parse(
+			"package ocltest context Forest " + //$NON-NLS-1$
+			"inv: self.trees['foo', 3]" + //$NON-NLS-1$
+			" endpackage"); //$NON-NLS-1$
+		
+		assertSame(tree, expr.getType());
 	}
 
 	//
