@@ -17,6 +17,7 @@
 
 package org.eclipse.emf.ocl.tests;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
@@ -416,7 +418,20 @@ public abstract class AbstractTestSuite
 	
 	private static void initFruitPackage() {
 		Bundle bundle = Platform.getBundle("org.eclipse.emf.ocl.tests"); //$NON-NLS-1$
-		URL url = bundle.getEntry("/model/OCLTest.ecore"); //$NON-NLS-1$
+		
+		URL url = null;
+		
+		if (bundle != null) {
+			url = bundle.getEntry("/model/OCLTest.ecore"); //$NON-NLS-1$
+		} else {
+			try {
+				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+						"ecore", new XMIResourceFactoryImpl()); //$NON-NLS-1$
+				url = new URL(System.getProperty("org.eclipse.emf.ocl.tests.testmodel")); //$NON-NLS-1$
+			} catch (MalformedURLException e) {
+				fail(e.getLocalizedMessage());
+			}
+		}
 		
 		ResourceSet rset = new ResourceSetImpl();
 		Resource res = rset.getResource(URI.createURI(url.toString()), true);

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.4 2006/04/04 18:07:25 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.5 2006/04/12 21:16:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -24,7 +29,7 @@ import org.eclipse.osgi.util.NLS;
  * 
  * @author Christian Vogt (cvogt)
  */
-public class OCLMessages extends NLS {
+public class OCLMessages {
 
 	private static final String BUNDLE_NAME = "org.eclipse.emf.ocl.internal.l10n.OCLMessages"; //$NON-NLS-1$
 
@@ -198,6 +203,43 @@ public class OCLMessages extends NLS {
 	public static String ErrorReport_RowColumn;
 
 	static {
-		NLS.initializeMessages(BUNDLE_NAME, OCLMessages.class);
+		try {
+			NLS.initializeMessages(BUNDLE_NAME, OCLMessages.class);
+		} catch (NoClassDefFoundError e) {
+			// could not find the NLS class.  Try initializing the messages,
+			//    ourselves
+			initializeMessages();
+		}
+	}
+	
+	private static void initializeMessages() {
+		ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
+		int publicStatic = Modifier.PUBLIC | Modifier.STATIC;
+		
+		Class clazz = OCLMessages.class;
+		
+		if (bundle != null) {
+			Field[] fields = clazz.getDeclaredFields();
+			
+			for (int i = 0; i < fields.length; i++) {
+				Field next = fields[i];
+				
+				if (((next.getModifiers() & publicStatic) == publicStatic)
+						&& (next.getType() == String.class)) {
+					String name = next.getName();
+					
+					try {
+						try {
+							next.set(null, bundle.getString(name));
+						} catch (MissingResourceException e) {
+							// just use its own name, then
+							next.set(null, "Missing message for key: " + name); //$NON-NLS-1$
+						}
+					} catch (Exception e) {
+						// oh, well.  Can't set a value for this one
+					}
+				}
+			}
+		}
 	}
 }

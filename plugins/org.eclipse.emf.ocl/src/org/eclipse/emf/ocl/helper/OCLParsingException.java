@@ -12,17 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLParsingException.java,v 1.2 2006/04/04 18:07:24 cdamus Exp $
+ * $Id: OCLParsingException.java,v 1.3 2006/04/12 21:16:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ocl.internal.OCLPlugin;
-import org.eclipse.emf.ocl.internal.OCLStatusCodes;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 
 
 /**
@@ -32,7 +26,7 @@ import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
  * @author Christian W. Damus (cdamus)
  */
 public class OCLParsingException
-	extends CoreException {
+	extends Exception {
 
 	private static final long serialVersionUID = -7755874848656523790L;
 
@@ -43,7 +37,7 @@ public class OCLParsingException
 	 * @param cause my causing exception
 	 */
 	public OCLParsingException(String message, Throwable cause) {
-		super(createStatus(message, cause));
+		super(message, cause);
 	}
 
 	/**
@@ -53,18 +47,5 @@ public class OCLParsingException
 	 */
 	public OCLParsingException(String message) {
 		this(message, null);
-	}
-
-	private static IStatus createStatus(String message, Throwable t) {
-		if ((message == null) || (message.length() == 0)) {
-			message = OCLMessages.no_message;
-		}
-		
-		return new Status(
-			IStatus.ERROR,
-			OCLPlugin.getPluginId(),
-			OCLStatusCodes.ERROR,
-			message,
-			t);
 	}
 }

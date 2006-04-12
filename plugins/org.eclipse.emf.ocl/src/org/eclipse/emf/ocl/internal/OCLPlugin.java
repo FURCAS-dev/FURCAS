@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.2 2006/04/04 18:07:21 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.3 2006/04/12 21:16:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal;
@@ -56,7 +56,8 @@ public class OCLPlugin
 	}
 
 	public static String getPluginId() {
-		return getPlugin().getBundle().getSymbolicName();
+		return (getPlugin() != null)? getPlugin().getBundle().getSymbolicName()
+				: "org.eclipse.emf.ocl"; // last known bundle ID //$NON-NLS-1$
 	}
 
 	// implements the inherited method
@@ -132,11 +133,16 @@ public class OCLPlugin
 	}
 
 	public static boolean shouldTrace(String option) {
-		if (getPlugin().isDebugging()) {
-			return Boolean.TRUE.toString().equalsIgnoreCase(
-				Platform.getDebugOption(option));
+		if (getPlugin() != null) {
+			if (getPlugin().isDebugging()) {
+				return Boolean.TRUE.toString().equalsIgnoreCase(
+						Platform.getDebugOption(option));
+			}
+			
+			return false;
 		}
-		return false;
+		
+		return Boolean.getBoolean("org.eclipse.emf.ocl.debug"); //$NON-NLS-1$
 	}
 
 	/**
@@ -249,10 +255,37 @@ public class OCLPlugin
 			: message;
 
 		try {
-			getInstance().log(
-				new Status(severity, getPluginId(), code, msg, throwable));
+			if (getPlugin() != null) {
+				// Eclipse environment
+				getPlugin().log(
+					new Status(severity, getPluginId(), code, msg, throwable));
+			} else {
+				// not in the Eclipse environment
+				if (shouldTrace(OCLDebugOptions.DEBUG)) {
+					switch (code) {
+					case IStatus.WARNING:
+						System.err.print("WARNING "); //$NON-NLS-1$
+						break;
+					case IStatus.ERROR:
+					case IStatus.CANCEL:
+						System.err.print("ERROR "); //$NON-NLS-1$
+						break;
+					default:
+						// don't output INFO or OK messages
+						return;
+					}
+					
+					System.err.print(code);
+					System.err.print(": "); //$NON-NLS-1$
+					System.err.println(message);
+					
+					if (throwable != null) {
+						throwable.printStackTrace(System.err);
+					}
+				}
+			}
 		} catch (IllegalArgumentException iae) {
-			catching(getPlugin().getClass(), "log", iae);//$NON-NLS-1$
+			catching(OCLPlugin.class, "log", iae);//$NON-NLS-1$
 		}
 	}
 
