@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
@@ -61,7 +62,9 @@ import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
+import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
 
 /**
@@ -1520,5 +1523,90 @@ public class RegressionTest
 		
 		assertNotNull(CSTPackage.eINSTANCE.getESuperPackage());
 		assertEquals("ocl", CSTPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that EClassifier sameness is tested using equality rather than
+	 * identity, on the understanding that usually EClasses implement equality
+	 * as identity, except for clients such as Bugzilla 126145.
+	 */
+	public void test_typeEquality_126145() {
+		class EqualsEClass extends EClassImpl {
+			private int key;
+			
+			EqualsEClass(int key) {
+				this.key = key;
+			}
+			
+			public boolean equals(Object o) {
+				return (o instanceof EqualsEClass)
+					&& (key == ((EqualsEClass) o).key);
+			}
+		}
+		
+		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+		epackage.setName("foo"); //$NON-NLS-1$
+		
+		EClass a = new EqualsEClass(1);
+		a.setName("A"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(a);
+		
+		EClass b = new EqualsEClass(1); // same key as a, so b.equals(a)
+		b.setName("B"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(b);
+		
+		EClass c = new EqualsEClass(2);
+		c.setName("C"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(b);
+		
+		EReference ref = EcoreFactory.eINSTANCE.createEReference();
+		ref.setName("a"); //$NON-NLS-1$
+		ref.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		ref.setOrdered(false);
+		ref.setUnique(true);
+		ref.setEType(a);
+		c.getEStructuralFeatures().add(ref);
+		ref = EcoreFactory.eINSTANCE.createEReference();
+		ref.setName("b"); //$NON-NLS-1$
+		ref.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		ref.setOrdered(false);
+		ref.setUnique(true);
+		ref.setEType(b);
+		c.getEStructuralFeatures().add(ref);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(c);
+		OCLExpression expr = null;
+		
+		try {
+			expr = helper.createQuery("a->union(b)"); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		assertNotNull(expr);
+		
+		EClassifier type = expr.getType();
+		
+		assertTrue(type instanceof CollectionType);
+		
+		type = ((CollectionType) type).getElementType();
+		
+		// verify that the common supertype is a/b, which are considered by
+		//    OCL to be the same type
+		assertEquals(a, type);
+		assertEquals(b, type);
+		
+		assertEquals(PredefinedType.SAME_TYPE, TypeUtil.getRelationship(a, b));
+		assertEquals(PredefinedType.SAME_TYPE, TypeUtil.getRelationship(b, a));
+		
+		try {
+			assertEquals(a, TypeUtil.commonSuperType(a, b));
+			assertEquals(b, TypeUtil.commonSuperType(a, b));
+			assertEquals(a, TypeUtil.commonSuperType(b, a));
+			assertEquals(b, TypeUtil.commonSuperType(b, a));
+		} catch (Exception e) {
+			fail("No common super type: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
 	}
 }

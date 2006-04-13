@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.2 2006/04/13 12:06:35 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -403,7 +403,7 @@ public class TypeUtil {
 	public static EClassifier commonSuperType(EClassifier type1,
 		EClassifier type2) throws SemanticException {
 	
-		if (type1 == type2) {
+		if (eq(type1, type2)) {
 			return type2;
 		}
 		
@@ -468,6 +468,18 @@ public class TypeUtil {
 		OCLParser.ERR(message);
 		return null;
 	}
+	
+	/**
+	 * Null-safe equality.
+	 * 
+	 * @param a an object (may be <code>null</code>)
+	 * @param b another object (may be <code>null</code>)
+	 * 
+	 * @return whether <code>a</code> and <code>b</code> are equal
+	 */
+	private static boolean eq(Object a, Object b) {
+		return (a == null)? b == null : a.equals(b);
+	}
 
 	/**
 	 * Computes the relationship between two types.
@@ -480,7 +492,7 @@ public class TypeUtil {
 	 *    relationship between the types
 	 */
 	public static int getRelationship(EClassifier type1, EClassifier type2) {
-		if (type1 == type2) {
+		if (eq(type1, type2)) {
 			return PredefinedType.SAME_TYPE;
 		}
 		
@@ -503,7 +515,7 @@ public class TypeUtil {
 		}
 		
 		if (type1 instanceof EClass && type2 instanceof EClass) {
-			if (type1 == type2)
+			if (eq(type1, type2))
 				return PredefinedType.SAME_TYPE;
 			if (((EClass) type1).isSuperTypeOf((EClass) type2))
 				return PredefinedType.STRICT_SUPERTYPE;

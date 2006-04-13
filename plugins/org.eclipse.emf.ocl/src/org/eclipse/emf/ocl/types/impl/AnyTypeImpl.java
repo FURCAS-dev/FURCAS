@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.3 2006/04/12 20:47:23 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.4 2006/04/13 12:06:35 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -215,9 +215,18 @@ public class AnyTypeImpl
 	 * @generated NOT
 	 */
 	public int getRelationshipTo(EClassifier type) {
-		if (this == type)
+		if (this == type) {
 			return SAME_TYPE;
-
+		}
+		
+		if (type == AnyTypeImpl.UML_CLASSIFIER) {
+			return STRICT_SUBTYPE;
+		}
+		
+		if (!(type instanceof CollectionType)) {
+			return STRICT_SUPERTYPE;
+		}
+		
 		return UNRELATED_TYPE;
 	}
 
@@ -228,7 +237,11 @@ public class AnyTypeImpl
 	 */
 	public EClassifier getCommonSupertype(EClassifier type) throws SemanticException {
 
-		if (this == type) {
+		if (type == AnyTypeImpl.UML_CLASSIFIER) {
+			return AnyTypeImpl.UML_CLASSIFIER;
+		}
+		
+		if (!(type instanceof CollectionType)) {
 			return this;
 		}
 
