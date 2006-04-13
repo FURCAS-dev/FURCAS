@@ -23,16 +23,13 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
-import org.eclipse.core.runtime.IPlatformRunnable;
-
 /**
  * Tests for the OCL engine plug-in.
  * 
  * @author Christian W. Damus (cdamus)
  */
 public class AllTests
-	extends TestCase
-	implements IPlatformRunnable {
+	extends TestCase {
 
 	public AllTests() {
 		super(""); //$NON-NLS-1$

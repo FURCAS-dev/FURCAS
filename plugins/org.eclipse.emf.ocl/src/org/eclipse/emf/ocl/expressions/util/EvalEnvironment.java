@@ -23,7 +23,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * 
@@ -77,7 +76,7 @@ public class EvalEnvironment implements EvaluationEnvironment {
      */
     public void add(String name, Object value) {
         if (map.containsKey(name)) {
-            String message = NLS.bind(OCLMessages.BindingExist_ERROR_,
+            String message = OCLMessages.bind(OCLMessages.BindingExist_ERROR_,
                     new Object[] { name, map.get(name) });
             throw new IllegalArgumentException(message);
         }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionFactory.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: CollectionFactory.java,v 1.2 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -25,7 +25,6 @@ import java.util.LinkedHashSet;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * A factory for creating java collection types from their OCL equivalents.
@@ -64,7 +63,7 @@ public class CollectionFactory {
 			case CollectionKind.BAG:
 				return new Bag();
 			default: {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 						OCLMessages.OCLCollectionKindNotImpl_ERROR_,
 						new Object[] {new Integer(kind) });
 				IllegalArgumentException error = new IllegalArgumentException(
@@ -94,7 +93,7 @@ public class CollectionFactory {
 			case CollectionKind.ORDERED_SET:
 				return new LinkedHashSet(c);
 			default: {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 						OCLMessages.OCLCollectionKindNotImpl_ERROR_,
 						new Object[] {new Integer(kind) });
 				IllegalArgumentException error = new IllegalArgumentException(

@@ -17,6 +17,7 @@
 
 package org.eclipse.emf.ocl.tests;
 
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
@@ -26,7 +27,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -55,7 +55,6 @@ import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.Visitable;
-import org.osgi.framework.Bundle;
 
 
 /**
@@ -417,13 +416,22 @@ public abstract class AbstractTestSuite
 	}
 	
 	private static void initFruitPackage() {
-		Bundle bundle = Platform.getBundle("org.eclipse.emf.ocl.tests"); //$NON-NLS-1$
-		
 		URL url = null;
+
+		try {
+			Class platformClass = Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
+			Method getBundle = platformClass.getDeclaredMethod("getBundle", new Class[] {String.class}); //$NON-NLS-1$
+			Object bundle = getBundle.invoke(null, new Object[] {"org.eclipse.emf.ocl.tests"}); //$NON-NLS-1$
+			
+			if (bundle != null) {
+				Method getEntry = bundle.getClass().getMethod("getEntry", new Class[] {String.class}); //$NON-NLS-1$
+				url = (URL) getEntry.invoke(bundle, new Object[] {"/model/OCLTest.ecore"}); //$NON-NLS-1$
+			}
+		} catch (Exception e) {
+			// not running in Eclipse
+		}
 		
-		if (bundle != null) {
-			url = bundle.getEntry("/model/OCLTest.ecore"); //$NON-NLS-1$
-		} else {
+		if (url == null) {
 			try {
 				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 						"ecore", new XMIResourceFactoryImpl()); //$NON-NLS-1$

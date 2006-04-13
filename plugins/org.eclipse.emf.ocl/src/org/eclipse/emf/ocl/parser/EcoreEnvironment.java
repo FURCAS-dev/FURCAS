@@ -40,7 +40,6 @@ import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
-import org.eclipse.osgi.util.NLS;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
@@ -878,7 +877,7 @@ public class EcoreEnvironment
 			errMessage += ((OCLExpression) params.get(i)).getType().getName();
 		}
 		errMessage += ")";//$NON-NLS-1$
-		String message = NLS.bind(OCLMessages.IllegalSignature_ERROR_,
+		String message = OCLMessages.bind(OCLMessages.IllegalSignature_ERROR_,
 			new Object[] {errMessage });
 		OCLParser.ERR(message);
 		return null;

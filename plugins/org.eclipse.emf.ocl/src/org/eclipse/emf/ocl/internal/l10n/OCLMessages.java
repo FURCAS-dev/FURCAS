@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.5 2006/04/12 21:16:50 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.6 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -22,8 +22,6 @@ import java.lang.reflect.Modifier;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.eclipse.osgi.util.NLS;
-
 /**
  * An accessor class for externalized strings.
  * 
@@ -31,7 +29,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLMessages {
 
-	private static final String BUNDLE_NAME = "org.eclipse.emf.ocl.internal.l10n.OCLMessages"; //$NON-NLS-1$
+	static final String BUNDLE_NAME = "org.eclipse.emf.ocl.internal.l10n.OCLMessages"; //$NON-NLS-1$
 
 	public static String no_message;
 	public static String BindingExist_ERROR_;
@@ -39,8 +37,6 @@ public class OCLMessages {
 	public static String IteratorNotImpl_ERROR_;
 	public static String IndexOutOfRange_ERROR_;
 	public static String TupleFieldDoesntExist_ERROR_;
-	public static String InvalidClass_ERROR_;
-	public static String InvalidDatatype_ERROR_;
 	public static String NullProperty_ERROR_;
 	public static String NullNavigationSource_ERROR_;
 	public static String NullNavigationType_ERROR_;
@@ -201,14 +197,36 @@ public class OCLMessages {
 	public static String OCLParseErrorCodes_INVALID_TOKEN;
 	
 	public static String ErrorReport_RowColumn;
+	
+	private static IMessages messagesImpl;
+	
+	public static String bind(String message, Object arg) {
+		return messagesImpl.bind(message, arg);
+	}
+	
+	public static String bind(String message, Object arg1, Object arg2) {
+		return messagesImpl.bind(message, arg1, arg2);
+	}
+	
+	public static String bind(String message, Object[] args) {
+		return messagesImpl.bind(message, args);
+	}
 
 	static {
 		try {
-			NLS.initializeMessages(BUNDLE_NAME, OCLMessages.class);
+			Class nlsClass = Class.forName("org.eclipse.emf.ocl.internal.l10n.IMessages$NLS"); //$NON-NLS-1$
+			messagesImpl = (IMessages) nlsClass.newInstance();
 		} catch (NoClassDefFoundError e) {
+			// expected in non-Eclipse environment
+		} catch (Exception e) {
+			// expected in non-Eclipse environment
+		}
+		
+		if (messagesImpl == null) {
 			// could not find the NLS class.  Try initializing the messages,
 			//    ourselves
 			initializeMessages();
+			messagesImpl = new IMessages.Default();
 		}
 	}
 	

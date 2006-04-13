@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3 2006/04/12 20:47:23 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.4 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -94,7 +94,6 @@ import org.eclipse.emf.ocl.types.impl.PrimitiveTypeImpl;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
-import org.eclipse.osgi.util.NLS;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
@@ -258,7 +257,7 @@ public class EvaluationVisitorImpl
 				OCLPlugin.log(
 					IStatus.ERROR,
 					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
-					NLS.bind(
+					OCLMessages.bind(
 						OCLMessages.ErrorMessage_ERROR_,
 						new Object[] {
 							"visitOperationCallExp", //$NON-NLS-1$
@@ -614,7 +613,7 @@ public class EvaluationVisitorImpl
 								.intValue() ? Boolean.TRUE : Boolean.FALSE;
 
 						default: {
-							String message = NLS.bind(
+							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
 									new Object[] {oper.getName() });
 							RuntimeException error = new RuntimeException(message);
@@ -682,7 +681,7 @@ public class EvaluationVisitorImpl
 								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
 
 						default: {
-							String message = NLS.bind(
+							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
 									new Object[] {oper.getName() });
 							RuntimeException error = new RuntimeException(message);
@@ -756,7 +755,7 @@ public class EvaluationVisitorImpl
 								.intValue() ? Boolean.TRUE : Boolean.FALSE;
 
 						default: {
-							String message = NLS.bind(
+							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
 								new Object[] {oper.getName() });
 							RuntimeException error = new RuntimeException(message);
@@ -830,7 +829,7 @@ public class EvaluationVisitorImpl
 								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
 
 						default: {
-							String message = NLS.bind(
+							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
 								new Object[] {oper.getName() });
 							RuntimeException error = new RuntimeException(message);
@@ -886,7 +885,7 @@ public class EvaluationVisitorImpl
 							return argVal;
 
 						default: {
-							String message = NLS.bind(
+							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
 								new Object[] {oper.getName() });
 							RuntimeException error = new RuntimeException(message);
@@ -923,7 +922,7 @@ public class EvaluationVisitorImpl
 							return Boolean.valueOf(((String) sourceVal).compareTo((String) argVal) >= 0);
 
 						default: {
-							String message = NLS.bind(
+							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
 								new Object[] {oper.getName() });
 							RuntimeException error = new RuntimeException(message);
@@ -1255,7 +1254,7 @@ public class EvaluationVisitorImpl
 				OCLPlugin.log(
 					IStatus.ERROR,
 					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
-					NLS.bind(
+					OCLMessages.bind(
 						OCLMessages.ErrorMessage_ERROR_,
 						new Object[] {
 							"visitOperationCallExp", //$NON-NLS-1$
@@ -1456,7 +1455,7 @@ public class EvaluationVisitorImpl
 			}
 		}
 		
-		String message = NLS.bind(
+		String message = OCLMessages.bind(
 				OCLMessages.IteratorNotImpl_ERROR_,
 			new Object[] {ie.getName() });
 		UnsupportedOperationException ex = new UnsupportedOperationException(
@@ -2225,7 +2224,7 @@ public class EvaluationVisitorImpl
 
 		public Object get(int index) {
 			if (index < 0 || index >= size()) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 						OCLMessages.IndexOutOfRange_ERROR_,
 					new Object[] {Integer.toString(index),
 						Integer.toString(first), Integer.toString(last) });
@@ -2303,7 +2302,7 @@ public class EvaluationVisitorImpl
 			sf = eclazz.getEStructuralFeature(part.getName());
 
 			if (sf == null) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 						OCLMessages.TupleFieldDoesntExist_ERROR_,
 					new Object[] {part.getName() });
 				IllegalArgumentException error = new IllegalArgumentException(

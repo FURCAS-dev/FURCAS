@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.2 2006/04/13 19:02:23 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -29,7 +29,6 @@ import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -187,7 +186,7 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
 			return Types.OCL_TYPE;
 		}
 
-		String message = NLS.bind(OCLMessages.TypeMismatch_ERROR_,
+		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 				new Object[] {this.getName(), type.getName() });
 		OCLParser.ERR(message);
 		

@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.2 2006/04/13 12:06:35 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.3 2006/04/13 19:02:23 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -54,7 +54,6 @@ import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.TypedElement;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * Static utilities for introspecting OCL types.
@@ -357,7 +356,7 @@ public class TypeUtil {
 		if (typeCompare(type1, type2) != -1) {
 			return true;
 		}
-		String message = NLS.bind(OCLMessages.CompareTypeMismatch_ERROR_,
+		String message = OCLMessages.bind(OCLMessages.CompareTypeMismatch_ERROR_,
 			new Object[] {type1.getName(), type2.getName() });
 		OCLParser.ERR(message);
 		return false;
@@ -385,7 +384,7 @@ public class TypeUtil {
 		case PredefinedType.STRICT_SUPERTYPE:
 			return 1;
 		default:
-			String message = NLS.bind(OCLMessages.TypeMismatch_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 					new Object[] {type1.getName(), type2.getName() });
 			IllegalArgumentException error = new IllegalArgumentException(message);
 			OCLPlugin.throwing(AnyTypeImpl.class, "typeCompare", error);//$NON-NLS-1$
@@ -462,7 +461,7 @@ public class TypeUtil {
 			}
 		}
 	
-		String message = NLS.bind(OCLMessages.TypeMismatch_ERROR_,
+		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 			(type1 == null)? null : type1.getName(),
 			(type2 == null)? null : type2.getName());
 		OCLParser.ERR(message);

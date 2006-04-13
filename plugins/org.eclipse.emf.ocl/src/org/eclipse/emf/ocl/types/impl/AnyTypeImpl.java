@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.4 2006/04/13 12:06:35 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.5 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -39,7 +39,6 @@ import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Edith Schonberg (edith)
@@ -245,7 +244,7 @@ public class AnyTypeImpl
 			return this;
 		}
 
-		String message = NLS.bind(OCLMessages.TypeMismatch_ERROR_,
+		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 			new Object[] {this.getName(), type.getName() });
 		OCLParser.ERR(message);
 		return null;
@@ -276,7 +275,7 @@ public class AnyTypeImpl
 					return Types.OCL_BOOLEAN;
 				} else if (type instanceof EEnum) {
 					if (type != argType && argType != Types.OCL_ANY_TYPE) {
-						String message = NLS.bind(
+						String message = OCLMessages.bind(
 								OCLMessages.Noncomforming_ERROR_,
 								new Object[] {type.getName(),
 								getOperationName(opcode) });
@@ -294,7 +293,7 @@ public class AnyTypeImpl
 						&& !((argType == Types.OCL_ANY_TYPE)
 								|| (argType == Types.INVALID)
 								|| (argType == Types.OCL_VOID))) {
-						String message = NLS.bind(
+						String message = OCLMessages.bind(
 								OCLMessages.Noncomforming_ERROR_,
 								new Object[] {type.getName(),
 								getOperationName(opcode) });
@@ -317,7 +316,7 @@ public class AnyTypeImpl
 						return Types.OCL_BOOLEAN;
 					}
 					
-					String message = NLS.bind(OCLMessages.SourceEClass_ERROR_,
+					String message = OCLMessages.bind(OCLMessages.SourceEClass_ERROR_,
 						new Object[] {getOperationName(opcode) });
 					OCLParser.ERR(message);
 				}
@@ -333,7 +332,7 @@ public class AnyTypeImpl
 							"compareTo", args);//$NON-NLS-1$
 					}
 				} catch (Exception e) {
-					String message = NLS.bind(
+					String message = OCLMessages.bind(
 							OCLMessages.SourceOperationCompareTo_ERROR_,
 						new Object[] {getOperationName(opcode) });
 					OCLParser.ERR(message);
@@ -354,7 +353,7 @@ public class AnyTypeImpl
 				TypeExp typeExp = (TypeExp) args.get(0);
 				EClassifier argEType = typeExp.getReferredType();
 				if (type instanceof CollectionType) {
-					String message = NLS.bind(OCLMessages.Noncomforming_ERROR_,
+					String message = OCLMessages.bind(OCLMessages.Noncomforming_ERROR_,
 						new Object[] {type.getName(),
 							getOperationName(opcode) });
 					OCLParser.ERR(message);

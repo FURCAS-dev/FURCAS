@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.7 2006/04/12 15:24:46 cdamus Exp $
+ * $Id: OCLParser.java,v 1.8 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -151,7 +151,6 @@ import org.eclipse.emf.ocl.utilities.ASTNode;
 import org.eclipse.emf.ocl.utilities.CallingASTNode;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.TypedASTNode;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * The <code>OCLLpgParser</code> parses an OCL expression into a CST.
@@ -579,7 +578,7 @@ public class OCLParser extends OCLLPGParser {
 	}
 		
 	private void ERROR(String rule, String errorMessage) throws SemanticException {
-		String error = NLS.bind(OCLMessages.ErrorMessage_ERROR_, new Object[] {
+		String error = OCLMessages.bind(OCLMessages.ErrorMessage_ERROR_, new Object[] {
 				rule, errorMessage });
 		errorString += error;
 		ERR(error);
@@ -618,7 +617,7 @@ public class OCLParser extends OCLLPGParser {
  			boolean result = env.addElement(name, vdcl, explicitFlag);
  			if (!result) {
 				if (name != null) {
-					String message = NLS.bind(OCLMessages.VariableUsed_ERROR_,
+					String message = OCLMessages.bind(OCLMessages.VariableUsed_ERROR_,
 							new Object[] { name });
 					ERROR(rule, message);
 				} else {
@@ -668,7 +667,7 @@ public class OCLParser extends OCLLPGParser {
 		// Performs method signature checking		
 		EOperation oper = env.lookupOperation(ownerType, operName, args);
 		if (oper == null) { 
-			String message = NLS.bind(OCLMessages.OperationNotFound_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.OperationNotFound_ERROR_,
 					operationString(operName, args),
 					(ownerType == null)? null : ownerType.getName());
 			ERROR(rule, message);
@@ -748,7 +747,7 @@ public class OCLParser extends OCLLPGParser {
 			}
 
 			ERROR("parsePackageDeclarationCS",//$NON-NLS-1$
-					NLS.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+					OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 							"PackageDeclarationCS",//$NON-NLS-1$
 							cstNode.eClass().getName()));
 		}
@@ -771,7 +770,7 @@ public class OCLParser extends OCLLPGParser {
 			}
 
 			ERROR("parseInvOrDefCS",//$NON-NLS-1$
-					NLS.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+					OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 							"InvOrDefCS",//$NON-NLS-1$
 							cstNode.eClass().getName()));
 		}
@@ -795,7 +794,7 @@ public class OCLParser extends OCLLPGParser {
 		}
 
 		ERROR("parsePrePostOrBodyDeclCS",//$NON-NLS-1$
-				NLS.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+				OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 						"PrePostOrBodyDeclCS",//$NON-NLS-1$
 						cstNode.eClass().getName()));
 		return null;
@@ -818,7 +817,7 @@ public class OCLParser extends OCLLPGParser {
 		}
 
 		ERROR("parseInitOrDerValueCS",//$NON-NLS-1$
-				NLS.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+				OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 						"InitOrDerValueCS",//$NON-NLS-1$
 						cstNode.eClass().getName()));
 		return null;
@@ -843,7 +842,7 @@ public class OCLParser extends OCLLPGParser {
 			}
 
 			ERROR("parseVariableDeclarationCS",//$NON-NLS-1$
-					NLS.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+					OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 							"VariableDeclarationCS",//$NON-NLS-1$
 							cstNode.eClass().getName()));
 		}
@@ -875,7 +874,7 @@ public class OCLParser extends OCLLPGParser {
         if (getLine(leftTokenLoc) + errorReportLineOffset <= 0) {
         	errorString = OCLMessages.InvalidOCL_ERROR_;
 		} else {
-			String locInfo = NLS.bind(OCLMessages.ErrorReport_RowColumn,
+			String locInfo = OCLMessages.bind(OCLMessages.ErrorReport_RowColumn,
 					new Object[]{
 						new Integer((getLine(leftTokenLoc) + errorReportLineOffset)),
 						new Integer(getColumn(leftTokenLoc)),
@@ -888,7 +887,7 @@ public class OCLParser extends OCLLPGParser {
 				case MISPLACED_CODE:
 				case DELETION_CODE:
 				case INVALID_TOKEN_CODE:
-					errorString = NLS.bind(
+					errorString = OCLMessages.bind(
 						errorMessages[errorCode],
 						locInfo,
 						computeInputString(
@@ -900,7 +899,7 @@ public class OCLParser extends OCLLPGParser {
 				case BEFORE_CODE:
 				case INSERTION_CODE:
 				case SUBSTITUTION_CODE: // includes SECONDARY_CODE
-					errorString = NLS.bind(
+					errorString = OCLMessages.bind(
 						errorMessages[errorCode],
 						new Object[]{
 							locInfo,
@@ -912,7 +911,7 @@ public class OCLParser extends OCLLPGParser {
 					break;
 	
 				default:
-					errorString = NLS.bind(errorMessages[errorCode], locInfo, tokenText);
+					errorString = OCLMessages.bind(errorMessages[errorCode], locInfo, tokenText);
 					break;
 			}
 		}
@@ -1078,7 +1077,7 @@ public class OCLParser extends OCLLPGParser {
 		}
 
 		if (operation == null) {
-			String message = NLS.bind(
+			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
 				new Object[] { makeString(operationName) });
 			ERROR("operationContextDeclCS", message);//$NON-NLS-1$
@@ -1197,7 +1196,7 @@ public class OCLParser extends OCLLPGParser {
 		EClassifier owner = env.lookupPathName(pathName);
 		
 		if (owner == null) {
-			String message = NLS.bind(
+			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
 				new Object[] { makeString(pathName) });
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
@@ -1213,7 +1212,7 @@ public class OCLParser extends OCLLPGParser {
 		propertyName.add(simpleName);
 		
 		if (property == null) {
-			String message = NLS.bind(
+			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
 				new Object[] { makeString(propertyName) });
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
@@ -1222,7 +1221,7 @@ public class OCLParser extends OCLLPGParser {
 		EClassifier type = typeCS(propertyContextCS.getTypeCS(), env);
 		EClassifier propertyType = TypeUtil.getOCLType(property);
 		if ((type == null) || TypeUtil.typeCompare(propertyType, type) != 0) {
-			String message = NLS.bind(
+			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
 				new Object[] { makeString(propertyName) });
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
@@ -1242,7 +1241,7 @@ public class OCLParser extends OCLLPGParser {
 		if (other != null) {
 			if ((initOrDerValueCS.eClass() == other.eClass())
 					|| (other.getInitOrDerValueCS() != null)) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 						OCLMessages.PropertyConstraints_ERROR_,
 						new Object[] { makeString(propertyName) });
 				ERROR("propertyContextCS", message);//$NON-NLS-1$
@@ -1328,7 +1327,7 @@ public class OCLParser extends OCLLPGParser {
 		EClassifier type = env.lookupPathName(pathName);
 		
 		if (type == null) {
-			String message = NLS.bind(
+			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
 				new Object[] { makeString(pathName) });
 			ERROR("classifierContextDeclCS", message);//$NON-NLS-1$
@@ -1434,7 +1433,7 @@ public class OCLParser extends OCLLPGParser {
 					variable.getName());
 			if (feature != null) {
 				ERROR("defCS", //$NON-NLS-1$
-					NLS.bind(OCLMessages.DuplicateProperty_ERROR_,
+					OCLMessages.bind(OCLMessages.DuplicateProperty_ERROR_,
 						variable.getName(),
 						contextEnv.getContextClassifier().getName()));
 			}
@@ -1467,7 +1466,7 @@ public class OCLParser extends OCLLPGParser {
 					args);
 			if (feature != null) {
 				ERROR("defCS", //$NON-NLS-1$
-					NLS.bind(OCLMessages.DuplicateOperation_ERROR_,
+					OCLMessages.bind(OCLMessages.DuplicateOperation_ERROR_,
 						operationString(operName, args),
 						contextEnv.getContextClassifier().getName()));
 			}
@@ -1682,7 +1681,7 @@ public class OCLParser extends OCLLPGParser {
 	
 			if (state == null) {
 				ERROR("stateExpCS", //$NON-NLS-1$
-						NLS.bind(OCLMessages.NoSuchState_ERROR_,
+						OCLMessages.bind(OCLMessages.NoSuchState_ERROR_,
 								statePath,
 								sourceType == null? null : sourceType.getName()));
 			}
@@ -1810,7 +1809,7 @@ public class OCLParser extends OCLLPGParser {
 			TRACE("tupleTypeCS", " name = " + name);//$NON-NLS-2$//$NON-NLS-1$
 
 			if (names.contains(name)) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 				OCLMessages.DuplicateNameInTuple_ERROR_,
 				new Object[] { name });
 				ERROR("tupleTypeCS", message);//$NON-NLS-1$
@@ -1820,14 +1819,14 @@ public class OCLParser extends OCLLPGParser {
 			}
 			
 			if (vdcl.getInitExpression() != null) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 				OCLMessages.InitExpNotAllowed_ERROR_,
 				new Object[] { name });
 				ERROR("tupleTypeCS", message);//$NON-NLS-1$
 			}
 
 			if (vdcl.getType() == null) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 					OCLMessages.MissingTypeDecl_ERROR_,
 					new Object[] { name });
 					ERROR("tupleTypeCS", message);//$NON-NLS-1$
@@ -1954,7 +1953,7 @@ public class OCLParser extends OCLLPGParser {
 
 			if (!(arg instanceof VariableExpCS)) {
 				ERROR("qualifiersCS",//$NON-NLS-1$
-					NLS.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+					OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 							"VariableExpCS",//$NON-NLS-1$
 							arg.eClass().getName()));
 			}
@@ -1965,7 +1964,7 @@ public class OCLParser extends OCLLPGParser {
 			EStructuralFeature property = env.lookupProperty(source.getType(), simpleName);
 			
 			if (!(property instanceof EReference)) {
-				String message = NLS.bind(OCLMessages.UnrecognizedVar_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.UnrecognizedVar_ERROR_,
 					new Object[] { simpleName });
 					ERROR("qualifiersCS", message);//$NON-NLS-1$
 			}
@@ -2071,12 +2070,12 @@ public class OCLParser extends OCLLPGParser {
 			String varName = variableDeclaration.getName();
 	
 			if (variableDeclaration.getType() == null) {
-				String message = NLS.bind(OCLMessages.NoType_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.NoType_ERROR_,
 				new Object[] { varName });
 				ERROR("letExpCS", message);//$NON-NLS-1$
 			}
 			if (variableDeclaration.getInitExpression() == null) {
-				String message = NLS.bind(OCLMessages.NoInitExp_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.NoInitExp_ERROR_,
 				new Object[] { varName });
 				ERROR("letExpCS", message);//$NON-NLS-1$
 			}
@@ -2237,11 +2236,11 @@ public class OCLParser extends OCLLPGParser {
 			
 		} else {
 			if (source != null && (vdcl = env.lookup(simpleName)) != null) {
-				String message = NLS.bind(OCLMessages.VarInNavExp_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.VarInNavExp_ERROR_,
 					new Object[] { simpleName });
 					ERROR("variableExpCS", message);//$NON-NLS-1$
 			} else {
-				String message = NLS.bind(OCLMessages.UnrecognizedVar_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.UnrecognizedVar_ERROR_,
 					new Object[] { simpleName });
 					ERROR("variableExpCS", message);//$NON-NLS-1$
 			}
@@ -2597,7 +2596,7 @@ public class OCLParser extends OCLLPGParser {
 			TRACE("tupleLiteralExpCS", " name = " + name);//$NON-NLS-2$//$NON-NLS-1$
 
 			if (names.contains(name)) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 				OCLMessages.DuplicateNameInTuple_ERROR_,
 					new Object[] { name });
 				ERROR("tupleLiteralPartCS", message);//$NON-NLS-1$
@@ -2607,7 +2606,7 @@ public class OCLParser extends OCLLPGParser {
 			}
 			
 			if (part.getValue() == null) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 					OCLMessages.MissingTypeInTupleLiteralPart_ERROR_, new Object[] { name });
 				ERROR("tupleLiteralExpCS", message);//$NON-NLS-1$
 			}
@@ -2723,7 +2722,7 @@ public class OCLParser extends OCLLPGParser {
 			sequenceOfNames.add(lastToken);
 			EClassifier type = env.lookupPathName(sequenceOfNames);
 			if (type == null) {		
-				String message = NLS.bind(OCLMessages.UnrecognizedType_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.UnrecognizedType_ERROR_,
 					new Object[] { sequenceOfNames });
 				ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
 			} else {
@@ -2736,7 +2735,7 @@ public class OCLParser extends OCLLPGParser {
 			astNode = expressionsFactory.createEnumLiteralExp();
 			literal = ((EEnum) enumType).getEEnumLiteral(lastToken);
 			if (literal == null) {
-				String message = NLS.bind(OCLMessages.UnrecognizedEnum_ERROR_,
+				String message = OCLMessages.bind(OCLMessages.UnrecognizedEnum_ERROR_,
 					new Object[] { lastToken });
 				ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
 			}
@@ -3148,7 +3147,7 @@ public class OCLParser extends OCLLPGParser {
 		
 		
 		if (vdcl1.getType() == null) {
-			String message = NLS.bind(OCLMessages.DeclarationType_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.DeclarationType_ERROR_,
 				new Object[] { vdcl1.getName() });
 			ERROR("iterateExpCS", message);//$NON-NLS-1$
 		}
@@ -3156,12 +3155,12 @@ public class OCLParser extends OCLLPGParser {
 		astNode.setType(vdcl1.getType());
 		
 		if (vdcl1.getInitExpression() == null) {
-			String message = NLS.bind(OCLMessages.DeclarationNoInitExp_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.DeclarationNoInitExp_ERROR_,
 				new Object[] { vdcl1.getName() });
 			ERROR("iterateExpCS", message);//$NON-NLS-1$
 		}
 		if (vdcl.getInitExpression() != null) {
-			String message = NLS.bind(OCLMessages.DeclarationInitExp_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.DeclarationInitExp_ERROR_,
 				new Object[] { vdcl1.getName() });
 			ERROR("iterateExpCS", message);//$NON-NLS-1$
 		} 
@@ -3363,9 +3362,9 @@ public class OCLParser extends OCLLPGParser {
 		EClass receivedSignal = env.lookupSignal(target.getType(), name, arguments);
 		
 		if ((calledOperation == null) && (receivedSignal == null)) {
-			ERROR("messageExpCS", NLS.bind(OCLMessages.UnrecognizedMessageType_ERROR_, name)); //$NON-NLS-1$
+			ERROR("messageExpCS", OCLMessages.bind(OCLMessages.UnrecognizedMessageType_ERROR_, name)); //$NON-NLS-1$
 		} else if ((calledOperation != null) && (receivedSignal != null)) {
-			ERROR("messageExpCS", NLS.bind(OCLMessages.AmbiguousMessageType_ERROR_, name)); //$NON-NLS-1$
+			ERROR("messageExpCS", OCLMessages.bind(OCLMessages.AmbiguousMessageType_ERROR_, name)); //$NON-NLS-1$
 		}
 		
 		result = expressionsFactory.createMessageExp();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.3 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -28,7 +28,6 @@ import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -148,7 +147,7 @@ public abstract class PrimitiveTypeImpl extends EDataTypeImpl implements Primiti
 				&& this == Types.OCL_REAL)
 				return Types.OCL_REAL;
 
-		String message = NLS.bind(OCLMessages.TypeMismatch_ERROR_,
+		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 			new Object[] {this.getName(), type.getName() });
 		OCLParser.ERR(message);
 		return null;

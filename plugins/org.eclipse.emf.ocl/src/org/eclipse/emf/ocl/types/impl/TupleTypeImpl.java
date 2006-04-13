@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.2 2006/04/13 19:02:23 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -40,7 +40,6 @@ import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.TypedElement;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.impl.TupleFactory;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -204,7 +203,7 @@ public class TupleTypeImpl
 	public EClassifier getCommonSupertype(EClassifier type)
 		throws SemanticException {
 		if (!(type instanceof TupleType)) {
-			String message = NLS.bind(OCLMessages.TupleTypeMismatch_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.TupleTypeMismatch_ERROR_,
 				new Object[] {this.getName(), type.getName() });
 			OCLParser.ERR(message);
 		}
@@ -212,7 +211,7 @@ public class TupleTypeImpl
 		EList props1 = this.getEStructuralFeatures();
 		EList props2 = ((TupleType) type).getEStructuralFeatures();
 		if (props1.size() != props2.size()) {
-			String message = NLS.bind(OCLMessages.TupleFieldNumMismatch_ERROR_,
+			String message = OCLMessages.bind(OCLMessages.TupleFieldNumMismatch_ERROR_,
 				new Object[] {this.getName(), type.getName() });
 			OCLParser.ERR(message);
 		}
@@ -240,7 +239,7 @@ public class TupleTypeImpl
 				}
 			}
 			if (!found) {
-				String message = NLS.bind(
+				String message = OCLMessages.bind(
 						OCLMessages.TupleFieldNotFound_ERROR_, new Object[] {this.getName(),
 						prop1.getName(), type.getName() });
 				OCLParser.ERR(message);
