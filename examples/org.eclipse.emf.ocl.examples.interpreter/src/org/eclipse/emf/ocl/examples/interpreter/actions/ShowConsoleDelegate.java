@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,15 +17,13 @@
 
 package org.eclipse.emf.ocl.examples.interpreter.actions;
 
+import org.eclipse.emf.ocl.examples.interpreter.console.OCLConsoleFactory;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.actions.ActionDelegate;
-import org.eclipse.ui.console.ConsolePlugin;
-import org.eclipse.ui.console.IConsoleManager;
-
-import org.eclipse.emf.ocl.examples.interpreter.console.OCLConsole;
+import org.eclipse.ui.console.IConsoleFactory;
 
 
 /**
@@ -35,6 +33,8 @@ import org.eclipse.emf.ocl.examples.interpreter.console.OCLConsole;
 public class ShowConsoleDelegate
 	extends ActionDelegate implements IEditorActionDelegate {
 
+	private IConsoleFactory factory = new OCLConsoleFactory();
+	
 	/**
 	 * Initializes me.
 	 */
@@ -43,13 +43,7 @@ public class ShowConsoleDelegate
 	}
 
 	public void run(IAction action) {
-		OCLConsole console = OCLConsole.getInstance();
-		
-		IConsoleManager mgr = ConsolePlugin.getDefault().getConsoleManager();
-		
-		// must do this twice due to a bug in the Console API
-		mgr.showConsoleView(console);
-		mgr.showConsoleView(console);
+		factory.openConsole();
 	}
 
 	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
