@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.8 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: OCLParser.java,v 1.9 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -578,8 +578,10 @@ public class OCLParser extends OCLLPGParser {
 	}
 		
 	private void ERROR(String rule, String errorMessage) throws SemanticException {
-		String error = OCLMessages.bind(OCLMessages.ErrorMessage_ERROR_, new Object[] {
-				rule, errorMessage });
+		String error = OCLMessages.bind(
+				OCLMessages.ErrorMessage_ERROR_,
+				rule,
+				errorMessage);
 		errorString += error;
 		ERR(error);
 		
@@ -617,8 +619,9 @@ public class OCLParser extends OCLLPGParser {
  			boolean result = env.addElement(name, vdcl, explicitFlag);
  			if (!result) {
 				if (name != null) {
-					String message = OCLMessages.bind(OCLMessages.VariableUsed_ERROR_,
-							new Object[] { name });
+					String message = OCLMessages.bind(
+							OCLMessages.VariableUsed_ERROR_,
+							name);
 					ERROR(rule, message);
 				} else {
 					ERROR(rule, OCLMessages.VariableDeclaration_ERROR_);
@@ -890,9 +893,9 @@ public class OCLParser extends OCLLPGParser {
 					errorString = OCLMessages.bind(
 						errorMessages[errorCode],
 						locInfo,
-						computeInputString(
+						'"' + computeInputString(
 							getIToken(leftToken).getStartOffset(),
-							getIToken(rightToken).getEndOffset()));
+							getIToken(rightToken).getEndOffset())) + '"';
 					break;
 	
 				case MERGE_CODE:
@@ -904,9 +907,9 @@ public class OCLParser extends OCLLPGParser {
 						new Object[]{
 							locInfo,
 							tokenText,
-							computeInputString(
+							'"' + computeInputString(
 								getIToken(leftToken).getStartOffset(),
-								getIToken(rightToken).getEndOffset())
+								getIToken(rightToken).getEndOffset()) + '"'
 						});
 					break;
 	
@@ -926,24 +929,24 @@ public class OCLParser extends OCLLPGParser {
 	 * @return a single line string representation of the input chars
 	 */
 	private String computeInputString(int left, int right) {
-		String result = ""; //$NON-NLS-1$
+		StringBuffer result = new StringBuffer(right - left + 1);
 		char[] chars = getInputChars();
 
 		for (int i = left; i <= right; i++) {
 			if (chars[i] == '\t') {
-				result += ' ';
+				result.append(' ');
 			} else if (chars[i] == '\n' || chars[i] == '\r' || chars[i] == '\f') {
 				if (i > 0) {
 					if (!Character.isWhitespace(chars[i-1])) {
-						result += ' ';
+						result.append(' ');
 					}
 				}
 			} else {
-				result += chars[i];
+				result.append(chars[i]);
 			}
 				
 		}
-		return '"' + result + '"';
+		return result.toString();
 	}
 
 	/**
@@ -1079,7 +1082,7 @@ public class OCLParser extends OCLLPGParser {
 		if (operation == null) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
-				new Object[] { makeString(operationName) });
+				makeString(operationName));
 			ERROR("operationContextDeclCS", message);//$NON-NLS-1$
 		}
 			
@@ -1198,7 +1201,7 @@ public class OCLParser extends OCLLPGParser {
 		if (owner == null) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
-				new Object[] { makeString(pathName) });
+				makeString(pathName));
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
 		}
 
@@ -1214,7 +1217,7 @@ public class OCLParser extends OCLLPGParser {
 		if (property == null) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
-				new Object[] { makeString(propertyName) });
+				makeString(propertyName));
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
 		}
 		
@@ -1223,7 +1226,7 @@ public class OCLParser extends OCLLPGParser {
 		if ((type == null) || TypeUtil.typeCompare(propertyType, type) != 0) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
-				new Object[] { makeString(propertyName) });
+				makeString(propertyName));
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
 		}
 
@@ -1243,7 +1246,7 @@ public class OCLParser extends OCLLPGParser {
 					|| (other.getInitOrDerValueCS() != null)) {
 				String message = OCLMessages.bind(
 						OCLMessages.PropertyConstraints_ERROR_,
-						new Object[] { makeString(propertyName) });
+						makeString(propertyName));
 				ERROR("propertyContextCS", message);//$NON-NLS-1$
 			}
 			
@@ -1329,7 +1332,7 @@ public class OCLParser extends OCLLPGParser {
 		if (type == null) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
-				new Object[] { makeString(pathName) });
+				makeString(pathName));
 			ERROR("classifierContextDeclCS", message);//$NON-NLS-1$
 		}
 
@@ -1810,8 +1813,8 @@ public class OCLParser extends OCLLPGParser {
 
 			if (names.contains(name)) {
 				String message = OCLMessages.bind(
-				OCLMessages.DuplicateNameInTuple_ERROR_,
-				new Object[] { name });
+						OCLMessages.DuplicateNameInTuple_ERROR_,
+						name);
 				ERROR("tupleTypeCS", message);//$NON-NLS-1$
 				vdcl.setName(null);
 			} else {
@@ -1820,16 +1823,16 @@ public class OCLParser extends OCLLPGParser {
 			
 			if (vdcl.getInitExpression() != null) {
 				String message = OCLMessages.bind(
-				OCLMessages.InitExpNotAllowed_ERROR_,
-				new Object[] { name });
+						OCLMessages.InitExpNotAllowed_ERROR_,
+						name);
 				ERROR("tupleTypeCS", message);//$NON-NLS-1$
 			}
 
 			if (vdcl.getType() == null) {
 				String message = OCLMessages.bind(
-					OCLMessages.MissingTypeDecl_ERROR_,
-					new Object[] { name });
-					ERROR("tupleTypeCS", message);//$NON-NLS-1$
+						OCLMessages.MissingTypeDecl_ERROR_,
+						name);
+				ERROR("tupleTypeCS", message);//$NON-NLS-1$
 			}
 
 			if (nodeName == null) {
@@ -1964,8 +1967,9 @@ public class OCLParser extends OCLLPGParser {
 			EStructuralFeature property = env.lookupProperty(source.getType(), simpleName);
 			
 			if (!(property instanceof EReference)) {
-				String message = OCLMessages.bind(OCLMessages.UnrecognizedVar_ERROR_,
-					new Object[] { simpleName });
+				String message = OCLMessages.bind(
+						OCLMessages.UnrecognizedVar_ERROR_,
+						simpleName);
 					ERROR("qualifiersCS", message);//$NON-NLS-1$
 			}
 
@@ -2070,13 +2074,15 @@ public class OCLParser extends OCLLPGParser {
 			String varName = variableDeclaration.getName();
 	
 			if (variableDeclaration.getType() == null) {
-				String message = OCLMessages.bind(OCLMessages.NoType_ERROR_,
-				new Object[] { varName });
+				String message = OCLMessages.bind(
+						OCLMessages.NoType_ERROR_,
+						varName);
 				ERROR("letExpCS", message);//$NON-NLS-1$
 			}
 			if (variableDeclaration.getInitExpression() == null) {
-				String message = OCLMessages.bind(OCLMessages.NoInitExp_ERROR_,
-				new Object[] { varName });
+				String message = OCLMessages.bind(
+						OCLMessages.NoInitExp_ERROR_,
+						varName);
 				ERROR("letExpCS", message);//$NON-NLS-1$
 			}
 					
@@ -2236,12 +2242,14 @@ public class OCLParser extends OCLLPGParser {
 			
 		} else {
 			if (source != null && (vdcl = env.lookup(simpleName)) != null) {
-				String message = OCLMessages.bind(OCLMessages.VarInNavExp_ERROR_,
-					new Object[] { simpleName });
+				String message = OCLMessages.bind(
+						OCLMessages.VarInNavExp_ERROR_,
+						simpleName);
 					ERROR("variableExpCS", message);//$NON-NLS-1$
 			} else {
-				String message = OCLMessages.bind(OCLMessages.UnrecognizedVar_ERROR_,
-					new Object[] { simpleName });
+				String message = OCLMessages.bind(
+						OCLMessages.UnrecognizedVar_ERROR_,
+						simpleName);
 					ERROR("variableExpCS", message);//$NON-NLS-1$
 			}
 		}
@@ -2597,8 +2605,8 @@ public class OCLParser extends OCLLPGParser {
 
 			if (names.contains(name)) {
 				String message = OCLMessages.bind(
-				OCLMessages.DuplicateNameInTuple_ERROR_,
-					new Object[] { name });
+						OCLMessages.DuplicateNameInTuple_ERROR_,
+						name);
 				ERROR("tupleLiteralPartCS", message);//$NON-NLS-1$
 				part.setName(null);
 			} else {
@@ -2607,7 +2615,9 @@ public class OCLParser extends OCLLPGParser {
 			
 			if (part.getValue() == null) {
 				String message = OCLMessages.bind(
-					OCLMessages.MissingTypeInTupleLiteralPart_ERROR_, new Object[] { name });
+					OCLMessages.MissingTypeInTupleLiteralPart_ERROR_,
+					name, computeInputString(
+							tupleLiteralExpCS.getStartOffset(), tupleLiteralExpCS.getEndOffset()));
 				ERROR("tupleLiteralExpCS", message);//$NON-NLS-1$
 			}
 
@@ -2722,8 +2732,9 @@ public class OCLParser extends OCLLPGParser {
 			sequenceOfNames.add(lastToken);
 			EClassifier type = env.lookupPathName(sequenceOfNames);
 			if (type == null) {		
-				String message = OCLMessages.bind(OCLMessages.UnrecognizedType_ERROR_,
-					new Object[] { sequenceOfNames });
+				String message = OCLMessages.bind(
+						OCLMessages.UnrecognizedType_ERROR_,
+						sequenceOfNames);
 				ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
 			} else {
 				typeExp.setReferredType(type);
@@ -2735,8 +2746,9 @@ public class OCLParser extends OCLLPGParser {
 			astNode = expressionsFactory.createEnumLiteralExp();
 			literal = ((EEnum) enumType).getEEnumLiteral(lastToken);
 			if (literal == null) {
-				String message = OCLMessages.bind(OCLMessages.UnrecognizedEnum_ERROR_,
-					new Object[] { lastToken });
+				String message = OCLMessages.bind(
+						OCLMessages.UnrecognizedEnum_ERROR_,
+						lastToken);
 				ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
 			}
 			EnumLiteralExp litExp = (EnumLiteralExp) astNode;
@@ -3147,21 +3159,24 @@ public class OCLParser extends OCLLPGParser {
 		
 		
 		if (vdcl1.getType() == null) {
-			String message = OCLMessages.bind(OCLMessages.DeclarationType_ERROR_,
-				new Object[] { vdcl1.getName() });
+			String message = OCLMessages.bind(
+					OCLMessages.DeclarationType_ERROR_,
+					vdcl1.getName());
 			ERROR("iterateExpCS", message);//$NON-NLS-1$
 		}
 		
 		astNode.setType(vdcl1.getType());
 		
 		if (vdcl1.getInitExpression() == null) {
-			String message = OCLMessages.bind(OCLMessages.DeclarationNoInitExp_ERROR_,
-				new Object[] { vdcl1.getName() });
+			String message = OCLMessages.bind(
+					OCLMessages.DeclarationNoInitExp_ERROR_,
+					vdcl1.getName());
 			ERROR("iterateExpCS", message);//$NON-NLS-1$
 		}
 		if (vdcl.getInitExpression() != null) {
-			String message = OCLMessages.bind(OCLMessages.DeclarationInitExp_ERROR_,
-				new Object[] { vdcl1.getName() });
+			String message = OCLMessages.bind(
+					OCLMessages.DeclarationInitExp_ERROR_,
+					vdcl1.getName());
 			ERROR("iterateExpCS", message);//$NON-NLS-1$
 		} 
 		

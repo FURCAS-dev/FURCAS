@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.5 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.6 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -244,8 +244,10 @@ public class AnyTypeImpl
 			return this;
 		}
 
-		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
-			new Object[] {this.getName(), type.getName() });
+		String message = OCLMessages.bind(
+				OCLMessages.TypeMismatch_ERROR_,
+				this.getName(),
+				type.getName());
 		OCLParser.ERR(message);
 		return null;
 	}
@@ -277,8 +279,8 @@ public class AnyTypeImpl
 					if (type != argType && argType != Types.OCL_ANY_TYPE) {
 						String message = OCLMessages.bind(
 								OCLMessages.Noncomforming_ERROR_,
-								new Object[] {type.getName(),
-								getOperationName(opcode) });
+								type.getName(),
+								getOperationName(opcode));
 						OCLParser.ERR(message);
 					}
 				} else if (type instanceof TupleType) {
@@ -295,8 +297,8 @@ public class AnyTypeImpl
 								|| (argType == Types.OCL_VOID))) {
 						String message = OCLMessages.bind(
 								OCLMessages.Noncomforming_ERROR_,
-								new Object[] {type.getName(),
-								getOperationName(opcode) });
+								type.getName(),
+								getOperationName(opcode));
 						OCLParser.ERR(message);
 					} /*
 					 * else if (argType instanceof PrimitiveType) { // Do
@@ -316,8 +318,9 @@ public class AnyTypeImpl
 						return Types.OCL_BOOLEAN;
 					}
 					
-					String message = OCLMessages.bind(OCLMessages.SourceEClass_ERROR_,
-						new Object[] {getOperationName(opcode) });
+					String message = OCLMessages.bind(
+							OCLMessages.SourceEClass_ERROR_,
+							getOperationName(opcode));
 					OCLParser.ERR(message);
 				}
 				
@@ -334,7 +337,7 @@ public class AnyTypeImpl
 				} catch (Exception e) {
 					String message = OCLMessages.bind(
 							OCLMessages.SourceOperationCompareTo_ERROR_,
-						new Object[] {getOperationName(opcode) });
+							getOperationName(opcode));
 					OCLParser.ERR(message);
 				}
 				
@@ -353,9 +356,10 @@ public class AnyTypeImpl
 				TypeExp typeExp = (TypeExp) args.get(0);
 				EClassifier argEType = typeExp.getReferredType();
 				if (type instanceof CollectionType) {
-					String message = OCLMessages.bind(OCLMessages.Noncomforming_ERROR_,
-						new Object[] {type.getName(),
-							getOperationName(opcode) });
+					String message = OCLMessages.bind(
+							OCLMessages.Noncomforming_ERROR_,
+							type.getName(),
+							getOperationName(opcode));
 					OCLParser.ERR(message);
 				}
 				// we can require neither a common supertype nor that type2

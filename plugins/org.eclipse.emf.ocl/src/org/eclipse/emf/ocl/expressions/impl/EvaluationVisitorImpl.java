@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.4 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.5 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -259,9 +259,8 @@ public class EvaluationVisitorImpl
 					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
 					OCLMessages.bind(
 						OCLMessages.ErrorMessage_ERROR_,
-						new Object[] {
-							"visitOperationCallExp", //$NON-NLS-1$
-							e.getLocalizedMessage()}),
+						"visitOperationCallExp", //$NON-NLS-1$
+						e.getLocalizedMessage()),
 					e);
 				return Types.OCL_INVALID;
 			}
@@ -615,7 +614,7 @@ public class EvaluationVisitorImpl
 						default: {
 							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
-									new Object[] {oper.getName() });
+									oper.getName());
 							RuntimeException error = new RuntimeException(message);
 							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
@@ -683,7 +682,7 @@ public class EvaluationVisitorImpl
 						default: {
 							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
-									new Object[] {oper.getName() });
+									oper.getName());
 							RuntimeException error = new RuntimeException(message);
 							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
@@ -757,7 +756,7 @@ public class EvaluationVisitorImpl
 						default: {
 							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
-								new Object[] {oper.getName() });
+								oper.getName());
 							RuntimeException error = new RuntimeException(message);
 							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
@@ -831,7 +830,7 @@ public class EvaluationVisitorImpl
 						default: {
 							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
-								new Object[] {oper.getName() });
+								oper.getName());
 							RuntimeException error = new RuntimeException(message);
 							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
@@ -887,7 +886,7 @@ public class EvaluationVisitorImpl
 						default: {
 							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
-								new Object[] {oper.getName() });
+									oper.getName());
 							RuntimeException error = new RuntimeException(message);
 							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
@@ -924,7 +923,7 @@ public class EvaluationVisitorImpl
 						default: {
 							String message = OCLMessages.bind(
 									OCLMessages.UnknownOperation_ERROR_,
-								new Object[] {oper.getName() });
+									oper.getName());
 							RuntimeException error = new RuntimeException(message);
 							OCLPlugin.throwing(getClass(),
 								"visitOperationCallExp", error);//$NON-NLS-1$
@@ -1256,9 +1255,8 @@ public class EvaluationVisitorImpl
 					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
 					OCLMessages.bind(
 						OCLMessages.ErrorMessage_ERROR_,
-						new Object[] {
-							"visitOperationCallExp", //$NON-NLS-1$
-							e.getLocalizedMessage()}),
+						"visitOperationCallExp", //$NON-NLS-1$
+						e.getLocalizedMessage()),
 					e);
 				return Types.OCL_INVALID;
 			}
@@ -1456,8 +1454,7 @@ public class EvaluationVisitorImpl
 		}
 		
 		String message = OCLMessages.bind(
-				OCLMessages.IteratorNotImpl_ERROR_,
-			new Object[] {ie.getName() });
+				OCLMessages.IteratorNotImpl_ERROR_, ie.getName());
 		UnsupportedOperationException ex = new UnsupportedOperationException(
 			message);
 		OCLPlugin.throwing(getClass(), "visitIteratorExp", ex);//$NON-NLS-1$
@@ -2226,8 +2223,10 @@ public class EvaluationVisitorImpl
 			if (index < 0 || index >= size()) {
 				String message = OCLMessages.bind(
 						OCLMessages.IndexOutOfRange_ERROR_,
-					new Object[] {Integer.toString(index),
-						Integer.toString(first), Integer.toString(last) });
+						new Object[] {
+								Integer.toString(index),
+								Integer.toString(first),
+								Integer.toString(last)});
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "get", error);//$NON-NLS-1$
@@ -2304,7 +2303,7 @@ public class EvaluationVisitorImpl
 			if (sf == null) {
 				String message = OCLMessages.bind(
 						OCLMessages.TupleFieldDoesntExist_ERROR_,
-					new Object[] {part.getName() });
+						part.getName());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),

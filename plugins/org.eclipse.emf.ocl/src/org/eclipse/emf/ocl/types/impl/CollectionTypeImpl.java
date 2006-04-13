@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.2 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.3 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -505,8 +505,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             EClassifier type = getElementType();
             if (type != Types.OCL_REAL
                     && type != Types.OCL_INTEGER) {
-                String message = OCLMessages.bind(OCLMessages.SumOperator_ERROR_,
-                        new Object[] { type.getName() });
+                String message = OCLMessages.bind(
+                		OCLMessages.SumOperator_ERROR_,
+                        type.getName());
                 OCLParser.ERR(message);
             }
             return type;
@@ -536,8 +537,10 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         case CLOSURE:
         	return TypesFactory.eINSTANCE.createSetType(AnyTypeImpl.OCL_T2);
         }
-        String message = OCLMessages.bind(OCLMessages.CollectionType_ERROR_,
-                new Object[] { this.getName(), getOperationNameFor(opcode) });
+        String message = OCLMessages.bind(
+        		OCLMessages.CollectionType_ERROR_,
+                this.getName(),
+                getOperationNameFor(opcode));
         OCLParser.ERR(message);
         return null;
     }
@@ -596,8 +599,10 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	public EClassifier getCommonSupertype(EClassifier type) throws SemanticException {
         /* Collection Types */
         if (!(type instanceof CollectionType)) {
-            String message = OCLMessages.bind(OCLMessages.CollectionSuperType_ERROR_,
-                    new Object[] { this.getName(), type.getName() });
+            String message = OCLMessages.bind(
+            		OCLMessages.CollectionSuperType_ERROR_,
+                    this.getName(),
+                    type.getName());
             OCLParser.ERR(message);
         }
 

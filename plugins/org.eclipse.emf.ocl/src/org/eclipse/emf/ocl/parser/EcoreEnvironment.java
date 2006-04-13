@@ -877,8 +877,9 @@ public class EcoreEnvironment
 			errMessage += ((OCLExpression) params.get(i)).getType().getName();
 		}
 		errMessage += ")";//$NON-NLS-1$
-		String message = OCLMessages.bind(OCLMessages.IllegalSignature_ERROR_,
-			new Object[] {errMessage });
+		String message = OCLMessages.bind(
+				OCLMessages.IllegalSignature_ERROR_,
+				errMessage);
 		OCLParser.ERR(message);
 		return null;
 	}

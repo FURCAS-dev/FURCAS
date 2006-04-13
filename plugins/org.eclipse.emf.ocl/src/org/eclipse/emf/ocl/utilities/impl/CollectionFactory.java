@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionFactory.java,v 1.2 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: CollectionFactory.java,v 1.3 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -65,7 +65,7 @@ public class CollectionFactory {
 			default: {
 				String message = OCLMessages.bind(
 						OCLMessages.OCLCollectionKindNotImpl_ERROR_,
-						new Object[] {new Integer(kind) });
+						new Integer(kind));
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$
@@ -95,7 +95,7 @@ public class CollectionFactory {
 			default: {
 				String message = OCLMessages.bind(
 						OCLMessages.OCLCollectionKindNotImpl_ERROR_,
-						new Object[] {new Integer(kind) });
+						new Integer(kind));
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "typeCompare", error);//$NON-NLS-1$

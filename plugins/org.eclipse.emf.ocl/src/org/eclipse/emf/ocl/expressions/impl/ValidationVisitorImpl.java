@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.3 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.4 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -122,8 +122,9 @@ public class ValidationVisitorImpl
 		EList args = oc.getArgument();
 
 		if (oper == null) {
-			String message = OCLMessages.bind(OCLMessages.NullOperation_ERROR_,
-				new Object[] {oc.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullOperation_ERROR_,
+					oc.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin
@@ -132,8 +133,9 @@ public class ValidationVisitorImpl
 		}
 
 		if (source == null) {
-			String message = OCLMessages.bind(OCLMessages.NullSourceOperation_ERROR_,
-				new Object[] {oc.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullSourceOperation_ERROR_,
+					oc.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin
@@ -170,8 +172,9 @@ public class ValidationVisitorImpl
 			EOperation oper1 = TypeUtil.findOperationMatching(sourceType,
 				operName, args);
 			if (oper1 != oper) {
-				String message = OCLMessages.bind(OCLMessages.IllegalOperation_ERROR_,
-					new Object[] {oc.toString() });
+				String message = OCLMessages.bind(
+						OCLMessages.IllegalOperation_ERROR_,
+						oc.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -184,8 +187,9 @@ public class ValidationVisitorImpl
 				PredefinedType pt = (PredefinedType) sourceType;
 				
 				if (opcode != pt.getOperationCodeFor(operName)) {
-					String message = OCLMessages.bind(OCLMessages.IllegalOpcode_ERROR_,
-						new Object[] {operName });
+					String message = OCLMessages.bind(
+							OCLMessages.IllegalOpcode_ERROR_,
+							operName);
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
 					OCLPlugin.throwing(getClass(),
@@ -196,8 +200,9 @@ public class ValidationVisitorImpl
 			} else {
 				// source is an EClass, an enumeration, or a user data type
 				if (opcode != AnyTypeImpl.getOperationCode(operName)) {
-					String message = OCLMessages.bind(OCLMessages.IllegalOpcode_ERROR_,
-						new Object[] {operName });
+					String message = OCLMessages.bind(
+							OCLMessages.IllegalOpcode_ERROR_,
+							operName);
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
 					OCLPlugin.throwing(getClass(),
@@ -213,7 +218,7 @@ public class ValidationVisitorImpl
 			if (TypeUtil.typeCompare(resultType, oc.getType()) != 0) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceOperation_ERROR_,
-						new Object[] {oc.getType().toString() });
+						oc.getType().toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -242,8 +247,9 @@ public class ValidationVisitorImpl
 		EEnumLiteral l = el.getReferredEnumLiteral();
 		EClassifier type = el.getType();
 		if (!(type instanceof EEnum) || l.getEEnum() != type) {
-			String message = OCLMessages.bind(OCLMessages.IllegalEnumLiteral_ERROR_,
-				new Object[] {el.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IllegalEnumLiteral_ERROR_,
+					el.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitEnumLiteralExp", error);//$NON-NLS-1$
@@ -267,8 +273,8 @@ public class ValidationVisitorImpl
 		if (vd == null || v.getType() == null || vd.getName() == null
 			|| vd.getType() == null) {
 			String message = OCLMessages.bind(
-					OCLMessages.IncompleteVariableDeclaration_ERROR_, new Object[] {v
-					.toString() });
+					OCLMessages.IncompleteVariableDeclaration_ERROR_,
+					v.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
@@ -298,8 +304,9 @@ public class ValidationVisitorImpl
 		EClassifier type = pc.getType();
 
 		if (property == null) {
-			String message = OCLMessages.bind(OCLMessages.NullProperty_ERROR_,
-				new Object[] {pc.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullProperty_ERROR_,
+					pc.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -308,8 +315,9 @@ public class ValidationVisitorImpl
 		}
 		
 		if (source == null) {
-			String message = OCLMessages.bind(OCLMessages.NullNavigationSource_ERROR_,
-				new Object[] {pc.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationSource_ERROR_,
+					pc.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -317,8 +325,9 @@ public class ValidationVisitorImpl
 			throw error;
 		}
 		if (type == null) {
-			String message = OCLMessages.bind(OCLMessages.NullNavigationType_ERROR_,
-				new Object[] {pc.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationType_ERROR_,
+					pc.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -360,8 +369,9 @@ public class ValidationVisitorImpl
 		EClassifier type = ae.getType();
 
 		if (ref == null) {
-			String message = OCLMessages.bind(OCLMessages.MissingAssociationClass_ERROR_,
-				new Object[] {ae.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.MissingAssociationClass_ERROR_,
+					ae.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -370,8 +380,9 @@ public class ValidationVisitorImpl
 		}
 		
 		if (source == null) {
-			String message = OCLMessages.bind(OCLMessages.NullNavigationSource_ERROR_,
-				new Object[] {ae.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationSource_ERROR_,
+					ae.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -380,8 +391,9 @@ public class ValidationVisitorImpl
 		}
 		
 		if (type == null) {
-			String message = OCLMessages.bind(OCLMessages.NullNavigationType_ERROR_,
-				new Object[] {ae.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationType_ERROR_,
+					ae.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -424,7 +436,9 @@ public class ValidationVisitorImpl
 			init.accept(this);
 			if (TypeUtil.typeCompare(init.getType(), type) > 0) {
 				IllegalArgumentException error = new IllegalArgumentException(
-						OCLMessages.TypeConformanceInit_ERROR_);
+						OCLMessages.bind(
+								OCLMessages.TypeConformanceInit_ERROR_,
+								varName));
 				OCLPlugin.throwing(getClass(),
 					"visitVariableDeclaration", error);//$NON-NLS-1$
 				throw error;
@@ -448,8 +462,9 @@ public class ValidationVisitorImpl
 		OCLExpression elseexp = i.getElseExpression();
 
 		if (cond == null || thenexp == null | elseexp == null) {
-			String message = OCLMessages.bind(OCLMessages.IncompleteIfExp_ERROR_,
-				new Object[] {i.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteIfExp_ERROR_,
+					i.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
@@ -459,8 +474,9 @@ public class ValidationVisitorImpl
 		thenexp.accept(this);
 		elseexp.accept(this);
 		if (cond.getType() != Types.OCL_BOOLEAN) {
-			String message = OCLMessages.bind(OCLMessages.NonBooleanIfExp_ERROR_,
-				new Object[] {i.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.NonBooleanIfExp_ERROR_,
+					cond.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
@@ -474,8 +490,9 @@ public class ValidationVisitorImpl
 			throw new IllegalArgumentException(e.getMessage());
 		}
 		if (TypeUtil.typeCompare(i.getType(), thenelsetype) != 0) {
-			String message = OCLMessages.bind(OCLMessages.TypeConformanceIfExp_ERROR_,
-				new Object[] {i.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceIfExp_ERROR_,
+					i.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
@@ -698,8 +715,9 @@ public class ValidationVisitorImpl
 		EClassifier type = l.getType();
 
 		if (vd == null || in == null || type == null) {
-			String message = OCLMessages.bind(OCLMessages.IncompleteLetExp_ERROR_,
-				new Object[] {l.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteLetExp_ERROR_,
+					l.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
@@ -710,8 +728,9 @@ public class ValidationVisitorImpl
 		in.accept(this);
 
 		if (TypeUtil.typeCompare(type, in.getType()) != 0) {
-			String message = OCLMessages.bind(OCLMessages.TypeConformanceLetExp_ERROR_,
-				new Object[] {type, in.getType() });
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceLetExp_ERROR_,
+					type, in.getType());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
@@ -744,8 +763,9 @@ public class ValidationVisitorImpl
 
 		if (vd == null || type == null || source == null || body == null
 			|| iterators.isEmpty()) {
-			String message = OCLMessages.bind(OCLMessages.IncompleteIterateExp_ERROR_,
-				new Object[] {ie.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteIterateExp_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -760,8 +780,9 @@ public class ValidationVisitorImpl
 		body.accept(this);
 
 		if (vd.getInitExpression() == null) {
-			String message = OCLMessages.bind(OCLMessages.MissingInitIterateExp_ERROR_,
-				new Object[] {ie.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.MissingInitIterateExp_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -769,8 +790,9 @@ public class ValidationVisitorImpl
 		}
 
 		if (TypeUtil.typeCompare(type, vd.getType()) != 0) {
-			String message = OCLMessages.bind(OCLMessages.TypeConformanceIterateExp_ERROR_,
-				new Object[] { ie.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceIterateExp_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -778,8 +800,8 @@ public class ValidationVisitorImpl
 		}
 		if (TypeUtil.typeCompare(body.getType(), vd.getType()) > 0) {
 			String message = OCLMessages.bind(
-					OCLMessages.TypeConformanceIterateExpBody_ERROR_, new Object[] {ie
-					.toString() });
+					OCLMessages.TypeConformanceIterateExpBody_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -788,8 +810,9 @@ public class ValidationVisitorImpl
 
 		EClassifier sourceType = source.getType();
 		if (!(sourceType instanceof CollectionType)) {
-			String message = OCLMessages.bind(OCLMessages.IteratorSource_ERROR_,
-				new Object[] {ie.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IteratorSource_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -803,8 +826,8 @@ public class ValidationVisitorImpl
 			loopiter.accept(this);
 			if (loopiter.getInitExpression() != null) {
 				String message = OCLMessages.bind(
-						OCLMessages.MissingInitIterateExpLoopVar_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.MissingInitIterateExpLoopVar_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -813,8 +836,8 @@ public class ValidationVisitorImpl
 			if (TypeUtil.typeCompare(loopiter.getType(),
 				((CollectionType) sourceType).getElementType()) != 0) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceIterateExpLoopVar_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.TypeConformanceIterateExpLoopVar_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
@@ -848,38 +871,48 @@ public class ValidationVisitorImpl
 
 		if (type == null || name == null || source == null || body == null
 			|| iterators.isEmpty()) {
-			String message = OCLMessages.bind(OCLMessages.IncompleteIteratorExp_ERROR_,
-				new Object[] {ie.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteIteratorExp_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 			throw error;
 		}
 
+		int opcode = 0;
+		if (source.getType() instanceof PredefinedType) {
+			opcode = ((PredefinedType) source.getType()).getOperationCodeFor(name);
+		}
+		
 		int numIters = iterators.size();
 
 		// Validate all of the iterate parts
 		source.accept(this);
 		body.accept(this);
 
-		if (name.equals("forAll") || name.equals("exists") || name.equals("isUnique")) {//$NON-NLS-3$//$NON-NLS-2$//$NON-NLS-1$
+		switch (opcode) {
+		case PredefinedType.FOR_ALL:
+		case PredefinedType.EXISTS:
+		case PredefinedType.IS_UNIQUE:
 			if (type != Types.OCL_BOOLEAN) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceIteratorResult_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.TypeConformanceIteratorResult_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
-		if (name.equals("collect")) { //$NON-NLS-1$
+		
+		if (opcode == PredefinedType.COLLECT) {
 			if (source.getType() instanceof SequenceType
 				|| source.getType() instanceof OrderedSetType) {
 				if (!(type instanceof SequenceType)) {
 					String message = OCLMessages.bind(
-							OCLMessages.TypeConformanceCollectSequence_ERROR_, new Object[] {ie
-							.toString() });
+							OCLMessages.TypeConformanceCollectSequence_ERROR_,
+							ie.toString());
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
 					OCLPlugin.throwing(getClass(),
@@ -888,19 +921,22 @@ public class ValidationVisitorImpl
 				}
 			} else if (!(type instanceof BagType)) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceCollectBag_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.TypeConformanceCollectBag_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
-		if (name.equals("select") || name.equals("reject")) {//$NON-NLS-2$//$NON-NLS-1$
+		
+		switch (opcode) {
+		case PredefinedType.SELECT:
+		case PredefinedType.REJECT:
 			if (TypeUtil.typeCompare(type, source.getType()) != 0) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceSelectReject_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.TypeConformanceSelectReject_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
@@ -908,12 +944,17 @@ public class ValidationVisitorImpl
 			}
 		}
 
-		if (name.equals("select") || name.equals("reject") || name.equals("forAll") //$NON-NLS-3$//$NON-NLS-2$//$NON-NLS-1$
-			|| name.equals("any") || name.equals("exists") || name.equals("one")) {//$NON-NLS-3$//$NON-NLS-2$//$NON-NLS-1$
+		switch (opcode) {
+		case PredefinedType.SELECT:
+		case PredefinedType.REJECT:
+		case PredefinedType.FOR_ALL:
+		case PredefinedType.ANY:
+		case PredefinedType.EXISTS:
+		case PredefinedType.ONE:
 			if (body.getType() != Types.OCL_BOOLEAN) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceIterateExpBodyBoolean_ERROR_,
-					new Object[] {ie.toString() });
+						OCLMessages.TypeConformanceIteratorBodyBoolean_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
@@ -923,19 +964,20 @@ public class ValidationVisitorImpl
 
 		EClassifier sourceType = source.getType();
 		if (!(sourceType instanceof CollectionType)) {
-			String message = OCLMessages.bind(OCLMessages.IteratorSource_ERROR_,
-				new Object[] {ie.toString() });
+			String message = OCLMessages.bind(
+					OCLMessages.IteratorSource_ERROR_,
+					ie.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
 			throw error;
 		}
 		
-		if (name.equals("closure")) { //$NON-NLS-1$
+		if (opcode == PredefinedType.CLOSURE) {
 			if (!(type instanceof SetType)) {
 				String message = OCLMessages.bind(
 					OCLMessages.TypeConformanceClosure_ERROR_,
-					new Object[] {ie.toString()});
+					ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -972,8 +1014,8 @@ public class ValidationVisitorImpl
 			loopiter.accept(this);
 			if (loopiter.getInitExpression() != null) {
 				String message = OCLMessages.bind(
-						OCLMessages.MissingInitIterateExpLoopVar_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.MissingInitIterateExpLoopVar_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
@@ -982,8 +1024,8 @@ public class ValidationVisitorImpl
 			if (TypeUtil.typeCompare(loopiter.getType(),
 				((CollectionType) sourceType).getElementType()) != 0) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceIterateExpLoopVar_ERROR_, new Object[] {ie
-						.toString() });
+						OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
+						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
@@ -1011,8 +1053,8 @@ public class ValidationVisitorImpl
 		if (collectionType == null
 			|| !(collectionType instanceof CollectionType)) {
 			String message = OCLMessages.bind(
-					OCLMessages.TypeConformanceCollectionLiteralExp_ERROR_, new Object[] {cl
-					.toString() });
+					OCLMessages.TypeConformanceCollectionLiteralExp_ERROR_,
+					cl.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -1023,8 +1065,8 @@ public class ValidationVisitorImpl
 		if (kind == CollectionKind.SET_LITERAL) {
 			if (!(collectionType instanceof SetType)) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceSetLiteral_ERROR_, new Object[] {cl
-						.toString() });
+						OCLMessages.TypeConformanceSetLiteral_ERROR_,
+						cl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1034,8 +1076,8 @@ public class ValidationVisitorImpl
 		} else if (kind == CollectionKind.ORDERED_SET_LITERAL) {
 			if (!(collectionType instanceof OrderedSetType)) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceOrderedSetLiteral_ERROR_, new Object[] {cl
-						.toString() });
+						OCLMessages.TypeConformanceOrderedSetLiteral_ERROR_,
+						cl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1045,8 +1087,8 @@ public class ValidationVisitorImpl
 		} else if (kind == CollectionKind.BAG_LITERAL) {
 			if (!(collectionType instanceof BagType)) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceBagLiteral_ERROR_, new Object[] {cl
-						.toString() });
+						OCLMessages.TypeConformanceBagLiteral_ERROR_,
+						cl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1056,8 +1098,8 @@ public class ValidationVisitorImpl
 		} else if (kind != CollectionKind.SEQUENCE_LITERAL
 			|| !(collectionType instanceof SequenceType)) {
 			String message = OCLMessages.bind(
-					OCLMessages.TypeConformanceSequenceLiteral_ERROR_, new Object[] {cl
-					.toString() });
+					OCLMessages.TypeConformanceSequenceLiteral_ERROR_,
+					cl.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -1069,8 +1111,8 @@ public class ValidationVisitorImpl
 		if (parts.isEmpty()) {
 			if (((CollectionType) collectionType).getElementType() != AnyTypeImpl.UML_CLASSIFIER) {
 				String message = OCLMessages.bind(
-						OCLMessages.TypeConformanceEmptyCollection_ERROR_, new Object[] {cl
-						.toString() });
+						OCLMessages.TypeConformanceEmptyCollection_ERROR_,
+						cl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1103,8 +1145,8 @@ public class ValidationVisitorImpl
 		if (TypeUtil.typeCompare(partsType,
 			((CollectionType) collectionType).getElementType()) != 0) {
 			String message = OCLMessages.bind(
-					OCLMessages.TypeConformanceCollectionElementType_ERROR_, new Object[] {cl
-					.toString() });
+					OCLMessages.TypeConformanceCollectionElementType_ERROR_,
+					cl.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
 			OCLPlugin.throwing(getClass(),
@@ -1131,7 +1173,9 @@ public class ValidationVisitorImpl
 		EClassifier type = tl.getType();
 		if (!(type instanceof TupleType)) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.TypeConformanceTupleLiteralExp_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.TypeConformanceTupleLiteralExp_ERROR_,
+							tl.toString()));
 			OCLPlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -1143,7 +1187,9 @@ public class ValidationVisitorImpl
 		EList tp = tl.getPart();
 		if (tp.size() != eclazz.getEStructuralFeatures().size()) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.TypeConformanceTupleLiteralExpParts_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.TypeConformanceTupleLiteralExpParts_ERROR_,
+							tl.toString()));
 			OCLPlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -1159,8 +1205,9 @@ public class ValidationVisitorImpl
 			
 			if (property == null) {
 				String message = OCLMessages.bind(
-						OCLMessages.TupleLiteralExpressionAttribName_ERROR_, new Object[] {
-						property.getName(), tl.toString() });
+						OCLMessages.TupleLiteralExpressionPart_ERROR_,
+						property.getName(),
+						tl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1172,7 +1219,8 @@ public class ValidationVisitorImpl
 			// At the same time, check for unique names
 			if (!names.add(name)) {
 				String message = OCLMessages.bind(
-						OCLMessages.TupleDuplicateName_ERROR_, new Object[] {name });
+						OCLMessages.TupleDuplicateName_ERROR_,
+						name, tl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1191,7 +1239,10 @@ public class ValidationVisitorImpl
 		
 		if (property == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.MissingPropertyInTupleLiteralPart_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.MissingPropertyInTupleLiteralPart_ERROR_,
+							tp.getName(),
+							tp.eContainer().toString()));
 			OCLPlugin.throwing(getClass(),
 				"visitTupleLiteralPart", error);//$NON-NLS-1$
 			throw error;
@@ -1201,7 +1252,10 @@ public class ValidationVisitorImpl
 		
 		if (type == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.MissingTypeInTupleLiteralPart_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.MissingTypeInTupleLiteralPart_ERROR_,
+							tp.getName(),
+							tp.eContainer().toString()));
 			OCLPlugin.throwing(getClass(),
 				"visitTupleLiteralPart", error);//$NON-NLS-1$
 			throw error;
@@ -1211,7 +1265,10 @@ public class ValidationVisitorImpl
 		//    such as EIntegerObject
 		if (TypeUtil.typeCompare(TypeUtil.getOCLType(property.getEType()), type) != 0) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.TuplePartType_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.TuplePartType_ERROR_,
+							tp.getName(),
+							tp.eContainer().toString()));
 			OCLPlugin.throwing(getClass(),
 				"visitTupleLiteralPart", error);//$NON-NLS-1$
 			throw error;

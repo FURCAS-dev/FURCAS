@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.6 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.7 2006/04/13 22:04:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -50,8 +50,6 @@ public class OCLMessages {
 	public static String MissingNameInVariableDeclaration_ERROR_;
 	public static String TypeConformanceInit_ERROR_;
 	public static String NonBooleanIfExp_ERROR_;
-	public static String TypeConformanceTypeExp_ERROR_;
-	public static String TypeExpMissingType_ERROR_;
 	public static String TypeConformanceIfExp_ERROR_;
 	public static String TypeConformanceIntegerLiteral_ERROR_;
 	public static String TypeConformanceRealLiteral_ERROR_;
@@ -64,12 +62,13 @@ public class OCLMessages {
 	public static String TypeConformanceIterateExpBody_ERROR_;
 	public static String TypeConformanceIterateExpLoopVar_ERROR_;
 	public static String TypeConformanceIteratorResult_ERROR_;
+	public static String TypeConformanceIteratorExpLoopVar_ERROR_;
 	public static String TypeConformanceCollectSequence_ERROR_;
 	public static String TypeConformanceCollectBag_ERROR_;
 	public static String TypeConformanceClosure_ERROR_;
 	public static String ElementTypeConformanceClosure_ERROR_;
 	public static String TypeConformanceSelectReject_ERROR_;
-	public static String TypeConformanceIterateExpBodyBoolean_ERROR_;
+	public static String TypeConformanceIteratorBodyBoolean_ERROR_;
 	public static String TypeConformanceCollectionLiteralExp_ERROR_;
 	public static String TypeConformanceSetLiteral_ERROR_;
 	public static String TypeConformanceOrderedSetLiteral_ERROR_;
@@ -79,14 +78,14 @@ public class OCLMessages {
 	public static String TypeConformanceCollectionElementType_ERROR_;
 	public static String TypeConformanceTupleLiteralExp_ERROR_;
 	public static String TypeConformanceTupleLiteralExpParts_ERROR_;
-	public static String TupleLiteralExpressionAttribName_ERROR_;
-	public static String TupleLiteralExpressionRefName_ERROR_;
+	public static String TupleLiteralExpressionPart_ERROR_;
 	public static String TupleDuplicateName_ERROR_;
 	public static String MissingPropertyInTupleLiteralPart_ERROR_;
 	public static String MissingTypeInTupleLiteralPart_ERROR_;
-	public static String MissingValueInTupleLiteralPart_ERROR_;
 	public static String TuplePartType_ERROR_;
 	public static String TypeConformanceTuplePartValue_ERROR_;
+	public static String TypeConformanceTypeExp_ERROR_;
+	public static String TypeExpMissingType_ERROR_;
 	public static String RecursiveContainment_ERROR_;
 	public static String EMFOCLConversion_ERROR_;
 	public static String UnknownOperationOwnerType_ERROR_;

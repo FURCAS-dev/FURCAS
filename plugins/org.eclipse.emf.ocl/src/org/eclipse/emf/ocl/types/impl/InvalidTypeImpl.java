@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.3 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.4 2006/04/13 22:04:10 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -128,8 +128,10 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 			return (EClassifier) type;
 		}
 
-		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
-				new Object[] {this.getName(), type.getName() });
+		String message = OCLMessages.bind(
+				OCLMessages.TypeMismatch_ERROR_,
+				this.getName(),
+				type.getName());
 		OCLParser.ERR(message);
 		
 		// don't get this far

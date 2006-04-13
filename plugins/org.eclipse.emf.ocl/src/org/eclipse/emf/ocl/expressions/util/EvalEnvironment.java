@@ -76,8 +76,10 @@ public class EvalEnvironment implements EvaluationEnvironment {
      */
     public void add(String name, Object value) {
         if (map.containsKey(name)) {
-            String message = OCLMessages.bind(OCLMessages.BindingExist_ERROR_,
-                    new Object[] { name, map.get(name) });
+            String message = OCLMessages.bind(
+            		OCLMessages.BindingExist_ERROR_,
+                    name,
+                    map.get(name));
             throw new IllegalArgumentException(message);
         }
         map.put(name, value);

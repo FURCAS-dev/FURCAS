@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.3 2006/04/13 19:02:23 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.4 2006/04/13 22:04:10 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -356,8 +356,10 @@ public class TypeUtil {
 		if (typeCompare(type1, type2) != -1) {
 			return true;
 		}
-		String message = OCLMessages.bind(OCLMessages.CompareTypeMismatch_ERROR_,
-			new Object[] {type1.getName(), type2.getName() });
+		String message = OCLMessages.bind(
+				OCLMessages.CompareTypeMismatch_ERROR_,
+				type1.getName(),
+				type2.getName());
 		OCLParser.ERR(message);
 		return false;
 	}
@@ -384,8 +386,10 @@ public class TypeUtil {
 		case PredefinedType.STRICT_SUPERTYPE:
 			return 1;
 		default:
-			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
-					new Object[] {type1.getName(), type2.getName() });
+			String message = OCLMessages.bind(
+					OCLMessages.TypeMismatch_ERROR_,
+					type1.getName(),
+					type2.getName());
 			IllegalArgumentException error = new IllegalArgumentException(message);
 			OCLPlugin.throwing(AnyTypeImpl.class, "typeCompare", error);//$NON-NLS-1$
 			throw error;
