@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.7 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.8 2006/04/17 22:30:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -84,21 +84,21 @@ public class OCLMessages {
 	public static String MissingTypeInTupleLiteralPart_ERROR_;
 	public static String TuplePartType_ERROR_;
 	public static String TypeConformanceTuplePartValue_ERROR_;
+	
 	public static String TypeConformanceTypeExp_ERROR_;
 	public static String TypeExpMissingType_ERROR_;
-	public static String RecursiveContainment_ERROR_;
-	public static String EMFOCLConversion_ERROR_;
-	public static String UnknownOperationOwnerType_ERROR_;
+	
 	public static String IllegalSignature_ERROR_;
 	public static String IteratorSource_ERROR_;
-	public static String MissingInitIterateExpLoopVar_ERROR_;
-	public static String IncompleteVariableDeclaration_ERROR_;
+	public static String IterateExpLoopVarInit_ERROR_;
+	
+	public static String IncompleteVariableExp_ERROR_;
 	public static String IncompleteLetExp_ERROR_;
 	public static String IncompleteIterateExp_ERROR_;
 	public static String IncompleteIfExp_ERROR_;
 	public static String IncompleteIteratorExp_ERROR_;
 	public static String MissingInitIterateExp_ERROR_;
-	public static String StringParse_ERROR_;
+	
 	public static String ErrorMessage_ERROR_;
 	public static String VariableUsed_ERROR_;
 	public static String VariableDeclaration_ERROR_;
@@ -107,49 +107,41 @@ public class OCLMessages {
 	public static String PackageNotFound_ERROR_;
 	public static String UnrecognizedContext_ERROR_;
 	public static String PropertyConstraints_ERROR_;
+	
 	public static String BooleanForIf_ERROR_;
-	public static String MissingTypeForVar_ERROR_;
-	public static String MissingInitForVar_ERROR_;
 	public static String VarInNavExp_ERROR_;
 	public static String UnrecognizedVar_ERROR_;
 	public static String DeclarationType_ERROR_;
 	public static String DeclarationNoInitExp_ERROR_;
 	public static String DeclarationInitExp_ERROR_;
 	public static String UnrecognizedType_ERROR_;
-	public static String UnrecognizedVarType_ERROR_;
-	public static String NoType_ERROR_;
-	public static String NoInitExp_ERROR_;
-	public static String MissingTypeDecl_ERROR_;
+	
 	public static String DuplicateNameInTuple_ERROR_;
 	public static String InitExpNotAllowed_ERROR_;
-	public static String MissingInit_ERROR_;
-	public static String UnrecognizedPackageOrEnum_ERROR_;
 	public static String UnrecognizedEnum_ERROR_;
 	public static String FirstLastTypeMismatch_ERROR_;
+	
 	public static String NullArgExpectEObj_ERROR_;
 	public static String NullArgExpectlist_ERROR_;
 	public static String BooleanQuery_ERROR_;
-	public static String InputListExpectEObjs_ERROR_;
-	public static String CheckBool_ERROR_;
+	
 	public static String Noncomforming_ERROR_;
 	public static String SourceEClass_ERROR_;
 	public static String SourceOperationCompareTo_ERROR_;
 	public static String ResultCompareToInt_ERROR_;
 	public static String TypeMismatch_ERROR_;
-	public static String CompareTypeMismatch_ERROR_;
-	public static String UnrecognizedCollectionOperation_ERROR_;
+	public static String CastTypeMismatch_ERROR_;
 	public static String CollectionType_ERROR_;
-	public static String CollectionSuperType_ERROR_;
 	public static String SumOperator_ERROR_;
 	public static String TupleTypeMismatch_ERROR_;
 	public static String TupleFieldNotFound_ERROR_;
 	public static String TupleFieldNumMismatch_ERROR_;
 	public static String RemoveUnsupported_ERROR_;
 	public static String OCLCollectionKindNotImpl_ERROR_;
+	
 	public static String IsInStateSignature_ERROR_;
 	public static String NoSuchState_ERROR_;
 	public static String MissingStateInStateExp_ERROR_;
-	public static String MissingStateNameInStateExp_ERROR_;
 	public static String UnrecognizedMessageType_ERROR_;
 	public static String AmbiguousMessageType_ERROR_;
 	public static String IllegalUnspecifiedValueExp_ERROR_;
@@ -158,6 +150,7 @@ public class OCLMessages {
 	public static String MissingSignalInCallAction_ERROR_;
 	public static String MessageArgumentCount_ERROR_;
 	public static String MessageArgConformance_ERROR_;
+	
 	public static String DefinitionConstraintFeature_ERROR_;
 	public static String DefinitionConstraintConformance_ERROR_;
 	public static String DuplicateProperty_ERROR_;
@@ -168,7 +161,6 @@ public class OCLMessages {
 	public static String AtPreInPostcondition_ERROR_;
 	public static String BodyConditionNotAllowed_ERROR_;
 	public static String BodyConditionConformance_ERROR_;
-	public static String BodyConditionConformance2_ERROR_;
 	public static String OCLIsNewInPostcondition_ERROR_;
 	public static String IllegalQualifiers_ERROR_;
 	public static String MismatchedQualifiers_ERROR_;
@@ -176,9 +168,11 @@ public class OCLMessages {
 	public static String AssociationClassQualifierCount_ERROR_;
 	public static String AssociationClassQualifierType_ERROR_;
 	public static String AssociationClassAmbiguous_ERROR_;
+	
 	public static String BodyConditionForm_ERROR_;
 	public static String OperationConstraintBoolean_ERROR_;
 	public static String InvariantConstraintBoolean_ERROR_;
+	
 	public static String InvalidOCL_ERROR_;
 	public static String ParseCSTNodeType_ERROR_;
 

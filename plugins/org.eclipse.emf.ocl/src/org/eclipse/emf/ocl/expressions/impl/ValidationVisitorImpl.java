@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.4 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.5 2006/04/17 22:30:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -273,7 +273,7 @@ public class ValidationVisitorImpl
 		if (vd == null || v.getType() == null || vd.getName() == null
 			|| vd.getType() == null) {
 			String message = OCLMessages.bind(
-					OCLMessages.IncompleteVariableDeclaration_ERROR_,
+					OCLMessages.IncompleteVariableExp_ERROR_,
 					v.toString());
 			IllegalArgumentException error = new IllegalArgumentException(
 				message);
@@ -504,7 +504,9 @@ public class ValidationVisitorImpl
 	public Object visitMessageExp(MessageExp m) {
 		if (m.getTarget() == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.MissingMessageTarget_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.MissingMessageTarget_ERROR_,
+							m.toString()));
 			OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -531,7 +533,9 @@ public class ValidationVisitorImpl
 			
 			if (operation == null) {
 				IllegalArgumentException error = new IllegalArgumentException(
-						OCLMessages.MissingOperationInCallAction_ERROR_);
+						OCLMessages.bind(
+								OCLMessages.MissingOperationInCallAction_ERROR_,
+								m.toString()));
 				OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -542,7 +546,9 @@ public class ValidationVisitorImpl
 			
 			if (signal == null) {
 				IllegalArgumentException error = new IllegalArgumentException(
-						OCLMessages.MissingSignalInCallAction_ERROR_);
+						OCLMessages.bind(
+								OCLMessages.MissingSignalInCallAction_ERROR_,
+								m.toString()));
 				OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -570,7 +576,7 @@ public class ValidationVisitorImpl
 			if (TypeUtil.typeCompare(arg.getType(), TypeUtil.getOCLType(param)) > 0) {
 				IllegalArgumentException error = new IllegalArgumentException(
 						OCLMessages.bind(OCLMessages.MessageArgConformance_ERROR_,
-							param.getName(), String.valueOf(arg)));
+							param.getName(), arg.toString()));
 				OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
 				throw error;
 			}
@@ -594,7 +600,9 @@ public class ValidationVisitorImpl
 		//   The only restriction is that they can only be used in message expressions
 		if (!(uv.eContainer() instanceof MessageExp)) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.IllegalUnspecifiedValueExp_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.IllegalUnspecifiedValueExp_ERROR_,
+							uv.toString()));
 			OCLPlugin.throwing(getClass(), "visitUnspecifiedValueExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -617,7 +625,9 @@ public class ValidationVisitorImpl
 		
 		if (t.getReferredType() == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.TypeExpMissingType_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.TypeExpMissingType_ERROR_,
+							t.toString()));
 			OCLPlugin.throwing(getClass(),
 				"visitTypeExp", error);//$NON-NLS-1$
 			throw error;
@@ -826,7 +836,7 @@ public class ValidationVisitorImpl
 			loopiter.accept(this);
 			if (loopiter.getInitExpression() != null) {
 				String message = OCLMessages.bind(
-						OCLMessages.MissingInitIterateExpLoopVar_ERROR_,
+						OCLMessages.IterateExpLoopVarInit_ERROR_,
 						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
@@ -1014,7 +1024,7 @@ public class ValidationVisitorImpl
 			loopiter.accept(this);
 			if (loopiter.getInitExpression() != null) {
 				String message = OCLMessages.bind(
-						OCLMessages.MissingInitIterateExpLoopVar_ERROR_,
+						OCLMessages.IterateExpLoopVarInit_ERROR_,
 						ie.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
@@ -1296,7 +1306,9 @@ public class ValidationVisitorImpl
 		
 		if (state == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.MissingStateInStateExp_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.MissingStateInStateExp_ERROR_,
+							s.toString()));
 			OCLPlugin.throwing(getClass(),
 				"visitStateExp", error);//$NON-NLS-1$
 			throw error;
@@ -1498,25 +1510,13 @@ public class ValidationVisitorImpl
 			
 			bodyType = bodyExpr.getType();
 			
-			try {
-				if (TypeUtil.typeCompare(bodyType, operationType) > 0) {
-					String message = OCLMessages.bind(
-							OCLMessages.BodyConditionConformance_ERROR_,
-						new Object[] {
-							operationName,
-							bodyType.getName(),
-							operationType.getName()});
-					IllegalArgumentException error = new IllegalArgumentException(
-						message);
-					OCLPlugin.throwing(getClass(),
-						"visitConstraint", error);//$NON-NLS-1$
-					throw error;
-				}
-			} catch (IllegalArgumentException e) {
-				// types are not even comparable
+			if ((TypeUtil.getRelationship(bodyType, operationType) & PredefinedType.SUBTYPE) == 0) {
 				String message = OCLMessages.bind(
-						OCLMessages.BodyConditionConformance2_ERROR_,
-					operationName, e.getLocalizedMessage());
+						OCLMessages.BodyConditionConformance_ERROR_,
+					new Object[] {
+						operationName,
+						bodyType.getName(),
+						operationType.getName()});
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),

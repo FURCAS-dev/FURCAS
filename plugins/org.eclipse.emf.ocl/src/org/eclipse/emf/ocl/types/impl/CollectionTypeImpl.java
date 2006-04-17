@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.3 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.4 2006/04/17 22:30:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -505,9 +505,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             EClassifier type = getElementType();
             if (type != Types.OCL_REAL
                     && type != Types.OCL_INTEGER) {
-                String message = OCLMessages.bind(
-                		OCLMessages.SumOperator_ERROR_,
-                        type.getName());
+                String message = OCLMessages.SumOperator_ERROR_;
                 OCLParser.ERR(message);
             }
             return type;
@@ -600,7 +598,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         /* Collection Types */
         if (!(type instanceof CollectionType)) {
             String message = OCLMessages.bind(
-            		OCLMessages.CollectionSuperType_ERROR_,
+            		OCLMessages.TypeMismatch_ERROR_,
                     this.getName(),
                     type.getName());
             OCLParser.ERR(message);

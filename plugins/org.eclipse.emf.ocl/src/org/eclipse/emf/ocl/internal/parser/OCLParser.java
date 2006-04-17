@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.9 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: OCLParser.java,v 1.10 2006/04/17 22:30:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -192,7 +192,7 @@ public class OCLParser extends OCLLPGParser {
 	
 	private EnvironmentFactory environmentFactory;
  
-	private boolean traceflag = true;	
+	private boolean traceflag = false;	
 		
 	private String errorString = ""; //$NON-NLS-1$
 
@@ -471,7 +471,9 @@ public class OCLParser extends OCLLPGParser {
 			List expectedQualifiers = env.getQualifiers(source);
 			
 			if (expectedQualifiers.size() != qualifiers.size()) {
-				ERROR(rule, OCLMessages.MismatchedQualifiers_ERROR_);
+				ERROR(rule, OCLMessages.bind(
+						OCLMessages.MismatchedQualifiers_ERROR_,
+						nc.toString()));
 			} else {
 				if (!qualifiers.isEmpty()) {
 					Iterator eiter = expectedQualifiers.iterator();
@@ -484,7 +486,9 @@ public class OCLParser extends OCLLPGParser {
 						
 						EClassifier qualifierType = qualifier.getType();
 						if (TypeUtil.typeCompare(expectedType, qualifierType) < 0) {
-							ERROR(rule, OCLMessages.MismatchedQualifiers_ERROR_);
+							ERROR(rule, OCLMessages.bind(
+									OCLMessages.MismatchedQualifiers_ERROR_,
+									nc.toString()));
 						}
 					}
 					
@@ -501,12 +505,16 @@ public class OCLParser extends OCLLPGParser {
 			}
 		} else if (nc instanceof AssociationClassCallExp) {
 			if (qualifiers.size() != 1) {
-				ERROR(rule, OCLMessages.AssociationClassQualifierCount_ERROR_);
+				ERROR(rule, OCLMessages.bind(
+						OCLMessages.AssociationClassQualifierCount_ERROR_,
+						nc.toString()));
 			}
 			
 			Object qualifier = qualifiers.get(0);
 			if (!(qualifier instanceof PropertyCallExp)) {
-				ERROR(rule, OCLMessages.AssociationClassQualifierType_ERROR_);
+				ERROR(rule, OCLMessages.bind(
+						OCLMessages.AssociationClassQualifierType_ERROR_,
+						nc.toString()));
 			}
 			
 			AssociationClassCallExp acc = (AssociationClassCallExp) nc;
@@ -518,7 +526,9 @@ public class OCLParser extends OCLLPGParser {
 			EStructuralFeature property = ((PropertyCallExp) qualifier).getReferredProperty();
 			
 			if (!(property instanceof EReference)) {
-				ERROR(rule, OCLMessages.AssociationClassQualifierType_ERROR_);
+				ERROR(rule, OCLMessages.bind(
+						OCLMessages.AssociationClassQualifierType_ERROR_,
+						nc.toString()));
 			}
 			
 			EReference ref = (EReference) property;
@@ -528,7 +538,9 @@ public class OCLParser extends OCLLPGParser {
 					&& (refAssocClass == assocClass)) {
 				acc.setNavigationSource(ref);
 			} else {
-				ERROR(rule, OCLMessages.AssociationClassQualifierType_ERROR_);
+				ERROR(rule, OCLMessages.bind(
+						OCLMessages.AssociationClassQualifierType_ERROR_,
+						nc.toString()));
 			}
 		}
 			
@@ -563,7 +575,9 @@ public class OCLParser extends OCLLPGParser {
 			EReference end2 = (EReference) ends.get(1);
 			
 			if (end1.getEReferenceType() == end2.getEReferenceType()) {
-				ERROR(rule, OCLMessages.AssociationClassAmbiguous_ERROR_);
+				ERROR(rule, OCLMessages.bind(
+						OCLMessages.AssociationClassAmbiguous_ERROR_,
+						acc.toString()));
 			}
 		}
 	}
@@ -947,6 +961,17 @@ public class OCLParser extends OCLLPGParser {
 				
 		}
 		return result.toString();
+	}
+	
+	/**
+	 * Obtains the text from which the specified CST <code>node</code> was parsed.
+	 * 
+	 * @param node a concrete syntax node
+	 * 
+	 * @return its text
+	 */
+	private String computeInputString(CSTNode node) {
+		return computeInputString(node.getStartOffset(), node.getEndOffset());
 	}
 
 	/**
@@ -1830,7 +1855,7 @@ public class OCLParser extends OCLLPGParser {
 
 			if (vdcl.getType() == null) {
 				String message = OCLMessages.bind(
-						OCLMessages.MissingTypeDecl_ERROR_,
+						OCLMessages.DeclarationType_ERROR_,
 						name);
 				ERROR("tupleTypeCS", message);//$NON-NLS-1$
 			}
@@ -1915,7 +1940,10 @@ public class OCLParser extends OCLLPGParser {
 				setQualifiers(env, "variableExpCS",//$NON-NLS-1$
 					(NavigationCallExp) ((LoopExp) astNode).getBody(), qualifiers);
 			} else {
-				ERROR("variableExpCS", OCLMessages.IllegalQualifiers_ERROR_);//$NON-NLS-1$
+				ERROR("variableExpCS", //$NON-NLS-1$
+						OCLMessages.bind(
+								OCLMessages.IllegalQualifiers_ERROR_,
+								computeInputString(variableExpCS)));
 			}
 		} else if (astNode instanceof AssociationClassCallExp) {
 			checkNotReflexive(env, "variableExpCS", (AssociationClassCallExp) astNode); //$NON-NLS-1$
@@ -2020,7 +2048,9 @@ public class OCLParser extends OCLLPGParser {
 	
 		if (condition.getType() != Types.OCL_BOOLEAN && 
 				condition != Types.OCL_VOID) {
-			ERROR("ifExpCS", OCLMessages.BooleanForIf_ERROR_);//$NON-NLS-1$
+			ERROR("ifExpCS", OCLMessages.bind( //$NON-NLS-1$
+					OCLMessages.BooleanForIf_ERROR_,
+					computeInputString(ifExpCS.getCondition())));
 		}
 				
 		IfExp astNode = expressionsFactory.createIfExp();
@@ -2075,13 +2105,13 @@ public class OCLParser extends OCLLPGParser {
 	
 			if (variableDeclaration.getType() == null) {
 				String message = OCLMessages.bind(
-						OCLMessages.NoType_ERROR_,
+						OCLMessages.DeclarationType_ERROR_,
 						varName);
 				ERROR("letExpCS", message);//$NON-NLS-1$
 			}
 			if (variableDeclaration.getInitExpression() == null) {
 				String message = OCLMessages.bind(
-						OCLMessages.NoInitExp_ERROR_,
+						OCLMessages.DeclarationNoInitExp_ERROR_,
 						varName);
 				ERROR("letExpCS", message);//$NON-NLS-1$
 			}
@@ -2616,8 +2646,7 @@ public class OCLParser extends OCLLPGParser {
 			if (part.getValue() == null) {
 				String message = OCLMessages.bind(
 					OCLMessages.MissingTypeInTupleLiteralPart_ERROR_,
-					name, computeInputString(
-							tupleLiteralExpCS.getStartOffset(), tupleLiteralExpCS.getEndOffset()));
+					name, computeInputString(tupleLiteralExpCS));
 				ERROR("tupleLiteralExpCS", message);//$NON-NLS-1$
 			}
 
@@ -2882,7 +2911,9 @@ public class OCLParser extends OCLLPGParser {
 			// TODO:  What types are allowed in ranges.  Only Integers?
 			if (expr1.getType() != expr2.getType()) {
 				ERROR("collectionLiteralPartCS", //$NON-NLS-1$
-					OCLMessages.FirstLastTypeMismatch_ERROR_);
+					OCLMessages.bind(
+							OCLMessages.FirstLastTypeMismatch_ERROR_,
+							computeInputString(collectionLiteralPartCS)));
 			}
 			astNode = collRange;
 			TRACE("collectionLiteralPartCS", "collection range");//$NON-NLS-2$//$NON-NLS-1$
@@ -3227,7 +3258,10 @@ public class OCLParser extends OCLLPGParser {
 					setQualifiers(env, "modelPropertyCallExpCS",//$NON-NLS-1$
 						(NavigationCallExp) ((LoopExp) astNode).getBody(), qualifiers);
 				} else {
-					ERROR("modelPropertyCallExpCS", OCLMessages.IllegalQualifiers_ERROR_);//$NON-NLS-1$
+					ERROR("modelPropertyCallExpCS", //$NON-NLS-1$
+							OCLMessages.bind(
+									OCLMessages.IllegalQualifiers_ERROR_,
+									computeInputString(modelPropertyCallExpCS)));
 				}
 			} else if (astNode instanceof AssociationClassCallExp) {
 				checkNotReflexive(env, "modelPropertyCallExpCS",//$NON-NLS-1$
@@ -3275,12 +3309,18 @@ public class OCLParser extends OCLLPGParser {
 
 		if (PredefinedType.OCL_IS_IN_STATE_NAME.equals(operationName)) {
 			if (operationCallExpCS.getArguments().size() != 1) {
-				ERROR("operationCallExpCS", OCLMessages.IsInStateSignature_ERROR_); //$NON-NLS-1$
+				ERROR("operationCallExpCS", //$NON-NLS-1$
+						OCLMessages.bind(
+								OCLMessages.IsInStateSignature_ERROR_,
+								computeInputString(operationCallExpCS)));
 			}
 			
 			OCLExpressionCS arg = (OCLExpressionCS) operationCallExpCS.getArguments().get(0);
 			if (!(arg instanceof StateExpCS)) {
-				ERROR("operationCallExpCS", OCLMessages.IsInStateSignature_ERROR_); //$NON-NLS-1$
+				ERROR("operationCallExpCS", //$NON-NLS-1$
+						OCLMessages.bind(
+								OCLMessages.IsInStateSignature_ERROR_,
+								computeInputString(operationCallExpCS)));
 			}
 			
 			args.add(stateExpCS(source, (StateExpCS) arg, env));

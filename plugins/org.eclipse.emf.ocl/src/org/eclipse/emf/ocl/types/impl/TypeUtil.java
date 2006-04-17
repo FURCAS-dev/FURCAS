@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.4 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.5 2006/04/17 22:30:39 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -357,7 +357,7 @@ public class TypeUtil {
 			return true;
 		}
 		String message = OCLMessages.bind(
-				OCLMessages.CompareTypeMismatch_ERROR_,
+				OCLMessages.CastTypeMismatch_ERROR_,
 				type1.getName(),
 				type2.getName());
 		OCLParser.ERR(message);

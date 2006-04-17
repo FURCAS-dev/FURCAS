@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.2 2006/04/17 22:30:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -288,7 +288,7 @@ public class QueryImpl extends EObjectImpl implements Query {
 		}
 		if (resultType() != Types.OCL_BOOLEAN) {
 			IllegalArgumentException error = new IllegalArgumentException(
-					OCLMessages.CheckBool_ERROR_);
+					OCLMessages.BooleanQuery_ERROR_);
 			OCLPlugin.throwing(getClass(), "check", error);//$NON-NLS-1$
 			throw error;
 		}
