@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 import junit.framework.Test;
@@ -32,16 +33,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
@@ -50,6 +54,8 @@ import org.eclipse.emf.ocl.helper.Choice;
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.internal.parser.OCLLexer;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.parser.EcoreEnvironment;
+import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -136,6 +142,7 @@ public abstract class AbstractTestSuite
 		result.addTest(RegressionTest.suite());
 		result.addTest(QueryFactoryTest.suite());
 		result.addTest(EcoreEnvironmentTest.suite());
+		result.addTest(ValidationTest.suite());
 		
 		return result;
 	}
@@ -152,6 +159,13 @@ public abstract class AbstractTestSuite
 		if (fruitPackage == null) {
 			initFruitPackage();
 		}
+		
+		assertSame(
+				fruitPackage,
+				EPackage.Registry.INSTANCE.getEPackage(fruitPackage.getNsURI()));
+		assertSame(
+				fruitPackage,
+				EcoreEnvironment.findPackage(Collections.singletonList(fruitPackage.getName())));
 	}
 	
 	protected void tearDown()
@@ -167,8 +181,9 @@ public abstract class AbstractTestSuite
 	 * @return the OCL expression
 	 */
 	protected OCLExpression parse(String text) {
-		OCLExpression result = parseUnvalidated(text);
-		validate(result);
+		Environment[] env = new Environment[1];
+		OCLExpression result = parseUnvalidated(text, env);
+		validate(result, env[0]);
 		return result;
 	}
 	
@@ -179,29 +194,40 @@ public abstract class AbstractTestSuite
 	 * @return the OCL expression, unvalidated
 	 */
 	protected OCLExpression parseUnvalidated(String text) {
-		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		OCLParser parser = new OCLParser(lexer);
-		parser.setTraceFlag(true);
-		
-		EList constraints = new BasicEList();
-		Constraint constraint = null;
-		
-		try {
-			parser.parsePackageDeclarationCS(constraints);
-			constraint = (Constraint) constraints.get(0);
-		} catch (ParserException e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} catch (IllegalArgumentException e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		OCLExpression result = null;
-		result = constraint.getBody();
+		return parseUnvalidated(text, null);
+	}
+	
+	/**
+	 * Parses the specified <code>text</code> without validating it.
+	 * 
+	 * @param text the OCL text
+	 * @param env an OUT parameter providing the expression's environment
+	 *    (which is interesting for validation, for example).  Must be
+	 *    a single-element array, or <code>null</code> if the environment
+	 *    is not required
+	 *    
+	 * @return the OCL expression, unvalidated
+	 */
+	protected OCLExpression parseUnvalidated(String text, Environment[] env) {
+		OCLExpression result = parseConstraintUnvalidated(text, env);
 		
 		// forget the constraint because it interferes with validation
-		constraint.setBody(null);
+		EcoreUtil.remove(result);
 		
-		assertNotNull(result);
+		return result;
+	}
+
+	private Environment createEnvironment(Constraint constraint) {
+		Environment result = null;
+		
+		Object context = constraint.getConstrainedElement().get(0);
+		if (context instanceof EClassifier) {
+			result = ExpressionsUtil.createClassifierContext((EClassifier) context);
+		} else if (context instanceof EOperation) {
+			result = ExpressionsUtil.createOperationContext((EOperation) context);
+		} else if (context instanceof EStructuralFeature) {
+			result = ExpressionsUtil.createPropertyContext((EStructuralFeature) context);
+		}
 		
 		return result;
 	}
@@ -212,6 +238,16 @@ public abstract class AbstractTestSuite
 	 * @param expr the OCL expression to validate
 	 */
 	protected void validate(OCLExpression expr) {
+		validate(expr, null);
+	}
+	
+	/**
+	 * Validates an OCL expression, asserting that it is valid.
+	 * 
+	 * @param expr the OCL expression to validate
+	 * @param env an environment to use for validation
+	 */
+	protected void validate(OCLExpression expr, Environment env) {
 		try {
 			Visitable v;
 			
@@ -222,7 +258,7 @@ public abstract class AbstractTestSuite
 				v = expr;
 			}
 			
-			v.accept(ValidationVisitorImpl.getInstance());
+			v.accept(ValidationVisitorImpl.getInstance(env));
 		} catch (IllegalArgumentException e) {
 			fail("Validation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -235,8 +271,9 @@ public abstract class AbstractTestSuite
 	 * @return the OCL constraint expression
 	 */
 	protected OCLExpression parseConstraint(String text) {
-		OCLExpression result = parseConstraintUnvalidated(text);
-		validate(result);
+		Environment[] env = new Environment[1];
+		OCLExpression result = parseConstraintUnvalidated(text, env);
+		validate(result, env[0]);
 		return result;
 	}
 	
@@ -268,6 +305,47 @@ public abstract class AbstractTestSuite
 		result = constraint.getBody();
 		
 		assertNotNull(result);
+		
+		return result;
+	}
+	
+	/**
+	 * Parses the specified <code>text</code> as an OCL constraint, without
+	 * validating it.
+	 * 
+	 * @param text the OCL text
+	 * @param env an OUT parameter providing the expression's environment
+	 *    (which is interesting for validation, for example).  Must be
+	 *    a single-element array, or <code>null</code> if the environment
+	 *    is not required
+	 *    
+	 * @return the OCL constraint expression, unvalidated
+	 */
+	protected OCLExpression parseConstraintUnvalidated(String text, Environment[] env) {
+		OCLLexer lexer = new OCLLexer(text.toCharArray());
+		OCLParser parser = new OCLParser(lexer);
+		parser.setTraceFlag(true);
+		
+		EList constraints = new BasicEList();
+		Constraint constraint = null;
+		
+		try {
+			parser.parsePackageDeclarationCS(constraints);
+			constraint = (Constraint) constraints.get(0);
+		} catch (ParserException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		} catch (IllegalArgumentException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		OCLExpression result = null;
+		result = constraint.getBody();
+		
+		assertNotNull(result);
+		
+		if (env != null) {
+			env[0] = createEnvironment(constraint);
+		}
 		
 		return result;
 	}
@@ -367,7 +445,7 @@ public abstract class AbstractTestSuite
 		OCLExpression result = null;
 		result = constraint.getBody();
 		
-		validate(result);
+		validate(result, createEnvironment(constraint));
 		
 		assertNotNull(result);
 		

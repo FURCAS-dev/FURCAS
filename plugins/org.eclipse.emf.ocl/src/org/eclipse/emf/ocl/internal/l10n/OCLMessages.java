@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.8 2006/04/17 22:30:39 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.9 2006/04/18 17:55:07 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.l10n;
@@ -43,6 +43,7 @@ public class OCLMessages {
 	public static String NullOperation_ERROR_;
 	public static String NullSourceOperation_ERROR_;
 	public static String IllegalOperation_ERROR_;
+	public static String NonQueryOperation_ERROR_;
 	public static String IllegalOpcode_ERROR_;
 	public static String TypeConformanceOperation_ERROR_;
 	public static String IllegalEnumLiteral_ERROR_;

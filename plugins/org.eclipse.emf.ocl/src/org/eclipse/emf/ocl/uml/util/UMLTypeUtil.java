@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: UMLTypeUtil.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: UMLTypeUtil.java,v 1.2 2006/04/18 17:55:07 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -219,7 +219,7 @@ public class UMLTypeUtil {
 			EAnnotation ann = operation.getEAnnotation(ANNOTATION_URI_OPERATION);
 			
 			if (ann != null) {
-				result = "false".equals(ann.getDetails().get("isQuery"));  //$NON-NLS-1$//$NON-NLS-2$
+				result = !"false".equals(ann.getDetails().get("isQuery"));  //$NON-NLS-1$//$NON-NLS-2$
 			}
 		}
 		

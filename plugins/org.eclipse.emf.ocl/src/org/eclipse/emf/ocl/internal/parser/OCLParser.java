@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.10 2006/04/17 22:30:39 cdamus Exp $
+ * $Id: OCLParser.java,v 1.11 2006/04/18 17:55:07 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -604,15 +604,6 @@ public class OCLParser extends OCLLPGParser {
 		}*/
 		
 	}
-		
-	private void ERROR(String rule, String errorMessage, EList namelist) throws SemanticException {		  			
-		String msg = errorMessage;
-		for (int i = 0; i < namelist.size(); i++) {
-			msg += " " + (String) namelist.get(i);//$NON-NLS-1$
-		}
-		ERROR(rule, msg); 
-	}
-	
 	
 	/**
 	 * Generate a VariableDeclaration AST node, and add it to the environment.
@@ -1014,8 +1005,10 @@ public class OCLParser extends OCLLPGParser {
 		
 		Environment env = environmentFactory.createPackageContext(pathname);
 		if (env == null) {
-			ERROR("packageDeclarationCS", OCLMessages.PackageNotFound_ERROR_, //$NON-NLS-1$
-			pathname);
+			ERROR("packageDeclarationCS", //$NON-NLS-1$
+					OCLMessages.bind(
+							OCLMessages.PackageNotFound_ERROR_,
+							makeString(pathname)));
 		}
 		TRACE("packageDeclarationCS", "Package ", pathname); //$NON-NLS-2$//$NON-NLS-1$
 

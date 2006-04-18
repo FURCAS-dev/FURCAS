@@ -185,7 +185,7 @@ public class ExpressionsUtil {
 		
 		if (validate) {
 			// validate only the result, not the constraint
-			result.accept(ValidationVisitorImpl.getInstance());
+			result.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -234,7 +234,7 @@ public class ExpressionsUtil {
 		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
-			constraint.accept(ValidationVisitorImpl.getInstance());
+			constraint.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -307,7 +307,7 @@ public class ExpressionsUtil {
 		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
-			constraint.accept(ValidationVisitorImpl.getInstance());
+			constraint.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -381,7 +381,7 @@ public class ExpressionsUtil {
 		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
-			constraint.accept(ValidationVisitorImpl.getInstance());
+			constraint.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -454,7 +454,7 @@ public class ExpressionsUtil {
 		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
-			constraint.accept(ValidationVisitorImpl.getInstance());
+			constraint.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -527,7 +527,7 @@ public class ExpressionsUtil {
 		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
-			constraint.accept(ValidationVisitorImpl.getInstance());
+			constraint.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -600,7 +600,7 @@ public class ExpressionsUtil {
 		OCLExpression result = constraint.getBody();
 		
 		if (validate) {
-			constraint.accept(ValidationVisitorImpl.getInstance());
+			constraint.accept(ValidationVisitorImpl.getInstance(env));
 		}
 		
 		return result;
@@ -642,7 +642,7 @@ public class ExpressionsUtil {
 		Constraint constraint = parser.parseInvOrDefCS(env);
 		constraint.setInstanceVarName(SELF_NAME);
 		
-		constraint.accept(ValidationVisitorImpl.getInstance());
+		constraint.accept(ValidationVisitorImpl.getInstance(env));
 	}
 
 	/**

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.5 2006/04/17 22:30:39 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.6 2006/04/18 17:55:07 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -28,8 +28,10 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionItem;
@@ -38,6 +40,7 @@ import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.emf.ocl.expressions.CollectionRange;
 import org.eclipse.emf.ocl.expressions.EnumLiteralExp;
+import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.FeatureCallExp;
 import org.eclipse.emf.ocl.expressions.IfExp;
 import org.eclipse.emf.ocl.expressions.IntegerLiteralExp;
@@ -64,6 +67,8 @@ import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.emf.ocl.parser.EcoreEnvironment;
+import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
@@ -77,6 +82,8 @@ import org.eclipse.emf.ocl.types.impl.AnyTypeImpl;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.utilities.ASTNode;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 
 /**
@@ -87,20 +94,104 @@ import org.eclipse.emf.ocl.utilities.PredefinedType;
 public class ValidationVisitorImpl
 	implements Visitor {
 
-	private static Visitor instance = null;
-
-	// singleton
+	private static Environment NULL_ENVIRONMENT = new NullEnvironment();
+	
+	private Environment environment = null;
+	
+	/**
+	 * Obtains an instance of the validation visitor that assumes an Ecore
+	 * environment, inferred from the context of the constraint being validated.
+	 * 
+	 * @return a validation visitor instance
+	 */
 	public static Visitor getInstance() {
-		if (instance == null)
-			instance = new ValidationVisitorImpl();
-		return instance;
+		return new ValidationVisitorImpl(null);
+	}
+	
+	/**
+	 * Obtains an instance of the validation visitor that validates against the
+	 * specified environment, which presumably was used in parsing the OCL in
+	 * the first place.
+	 * 
+	 * @param environment an OCL environment
+	 * 
+	 * @return a validation visitor instance for the specified environment
+	 */
+	public static Visitor getInstance(Environment environment) {
+		return new ValidationVisitorImpl(environment);
 	}
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param environment the environment
 	 */
-	private ValidationVisitorImpl() {
+	private ValidationVisitorImpl(Environment environment) {
 		super();
+		
+		this.environment = environment;
+	}
+	
+	/**
+	 * Obtains the current environment, which may be inferred from the context
+	 * of the constraint that we are validating.
+	 * 
+	 * @param node an AST node from which possibly to infer the environment.
+	 *     If <code>null</code>, it will be assumed that we were initialized
+	 *     with an environment
+	 *     
+	 * @return a suitable environment, or a default if no node was
+	 *     provide for inference and we were not initialized with an explicit
+	 *     environment
+	 */
+	protected Environment getEnvironment(ASTNode node) {
+		Environment result = environment;
+		
+		if (result == null) {
+			if (node != null) {
+				result = createEcoreEnvironment(node);
+			}
+			
+			if (result == null) {
+				result = NULL_ENVIRONMENT;
+			}
+			
+			environment = result;  // cache the result
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Creates an Ecore environment from the context of an AST node.
+	 * 
+	 * @param node an AST node in the OCL constraint being validated
+	 * 
+	 * @return the appropriate environment
+	 */
+	private Environment createEcoreEnvironment(ASTNode node) {
+		Environment result = null;
+		
+		Object context = null;
+		Constraint constraint = (Constraint) ExpressionsUtil.containerOfType(
+				UMLPackage.Literals.CONSTRAINT, node);
+		
+		if ((constraint != null) && !constraint.getConstrainedElement().isEmpty()) {
+			context = constraint.getConstrainedElement().get(0);
+			
+			if (context instanceof EClassifier) {
+				result = ExpressionsUtil.createClassifierContext(
+						(EClassifier) context);
+			} else if (context instanceof EOperation) {
+				result = ExpressionsUtil.createOperationContext(
+						(EOperation) context);
+			} else if (context instanceof EStructuralFeature) {
+				result = ExpressionsUtil.createPropertyContext(
+						(EStructuralFeature) context);
+			}
+		}
+		
+		return result;
 	}
 
 	/**
@@ -153,7 +244,7 @@ public class ValidationVisitorImpl
 		
 		visitFeatureCallExp(oc);
 		
-		if (opcode == AnyTypeImpl.OCL_IS_NEW) {
+		if (opcode == PredefinedType.OCL_IS_NEW) {
 			// oclIsNew() may only be used in postcondition constraints
 			if (!ExpressionsUtil.isInPostcondition(oc)) {
 				
@@ -169,7 +260,7 @@ public class ValidationVisitorImpl
 
 		// Check argument conformance.
 		try {
-			EOperation oper1 = TypeUtil.findOperationMatching(sourceType,
+			EOperation oper1 = getEnvironment(oc).lookupOperation(sourceType,
 				operName, args);
 			if (oper1 != oper) {
 				String message = OCLMessages.bind(
@@ -181,6 +272,18 @@ public class ValidationVisitorImpl
 					"visitOperationCallExp", error);//$NON-NLS-1$
 				throw error;
 			}
+			
+			if (!getEnvironment(oc).isQuery(oper)) {
+				String message = OCLMessages.bind(
+						OCLMessages.NonQueryOperation_ERROR_,
+						oper.getName());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitOperationCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
 			EClassifier resultType = null;
 
 			if (sourceType instanceof PredefinedType) {
@@ -335,6 +438,46 @@ public class ValidationVisitorImpl
 			throw error;
 		}
 		
+		EList qualifiers = pc.getQualifier();
+		if (!qualifiers.isEmpty()) {
+			// navigation qualifiers must conform to expected qualifier types
+			EList expectedQualifierTypes = getEnvironment(pc).getQualifiers(property);
+			
+			if (expectedQualifierTypes.size() != qualifiers.size()) {
+				String message = OCLMessages.bind(
+						OCLMessages.MismatchedQualifiers_ERROR_,
+						pc.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitPropertyCallExp", error);//$NON-NLS-1$
+				throw error;
+			} else {
+				Iterator eiter = expectedQualifierTypes.iterator();
+				Iterator qiter = qualifiers.iterator();
+				
+				while (eiter.hasNext()) {
+					EClassifier expectedType = TypeUtil.getOCLType(
+							(ETypedElement) eiter.next());
+					OCLExpression qualifier = (OCLExpression) qiter.next();
+					
+					EClassifier qualifierType = qualifier.getType();
+					if ((TypeUtil.getRelationship(qualifierType, expectedType)
+							& PredefinedType.SUBTYPE) == 0) {
+						
+						String message = OCLMessages.bind(
+								OCLMessages.MismatchedQualifiers_ERROR_,
+								pc.toString());
+						IllegalArgumentException error = new IllegalArgumentException(
+							message);
+						OCLPlugin.throwing(getClass(),
+							"visitPropertyCallExp", error);//$NON-NLS-1$
+						throw error;
+					}
+				}
+			}
+		}
+		
 		visitFeatureCallExp(pc);
 		
 		source.accept(this);
@@ -389,6 +532,7 @@ public class ValidationVisitorImpl
 				"visitAssociationClassCallExp", error);//$NON-NLS-1$
 			throw error;
 		}
+		EClassifier sourceType = source.getType();
 		
 		if (type == null) {
 			String message = OCLMessages.bind(
@@ -399,6 +543,24 @@ public class ValidationVisitorImpl
 			OCLPlugin.throwing(getClass(),
 				"visitAssociationClassCallExp", error);//$NON-NLS-1$
 			throw error;
+		}
+		
+		if (ae.getNavigationSource() != null) {
+			// navigation source must be an end of the association class
+			EStructuralFeature end = ae.getNavigationSource();
+			
+			if (!(end instanceof EReference)
+					|| (ref != getEnvironment(ae).getAssociationClass((EReference) end))
+					|| (end != getEnvironment(ae).lookupProperty(sourceType, end.getName()))) {
+				String message = OCLMessages.bind(
+						OCLMessages.AssociationClassQualifierType_ERROR_,
+						ae.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitAssociationClassCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
 		}
 		
 		visitFeatureCallExp(ae);
@@ -553,7 +715,7 @@ public class ValidationVisitorImpl
 				throw error;
 			}
 			
-			parameters = signal.getEAllStructuralFeatures();
+			parameters = TypeUtil.getProperties(signal);
 		}
 		
 		EList arguments = m.getArgument();
@@ -1273,7 +1435,7 @@ public class ValidationVisitorImpl
 		
 		// convert property type to OCL type because it may be an Ecore primitive
 		//    such as EIntegerObject
-		if (TypeUtil.typeCompare(TypeUtil.getOCLType(property.getEType()), type) != 0) {
+		if (TypeUtil.typeCompare(TypeUtil.getOCLType(property), type) != 0) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					OCLMessages.bind(
 							OCLMessages.TuplePartType_ERROR_,
@@ -1647,6 +1809,29 @@ public class ValidationVisitorImpl
 			throw error;
 		}
 		return Boolean.TRUE;
+	}
+	
+	/**
+	 * A default environment in the context of the OclAny type, which simply
+	 * provides the default EcoreEnvironment algorithms for looking up features
+	 * of classifiers, which usually just delegates to <code>TypeUtil</code>
+	 * or <code>UMLTypeUtil</code>.  This environment is only used when no
+	 * other environment is specified by the client or inferable from the
+	 * expression's constraint.
+	 *
+	 * @author Christian W. Damus (cdamus)
+	 */
+	private static class NullEnvironment extends EcoreEnvironment {
+
+		public NullEnvironment() {
+			super(EcorePackage.eINSTANCE);
+			
+			Variable selfVar = ExpressionsFactory.eINSTANCE.createVariable();
+			selfVar.setName("self"); //$NON-NLS-1$
+			selfVar.setType(Types.OCL_ANY_TYPE);
+			
+			setSelfVariable(selfVar);
+		}
 	}
 } // ValidationVisitorImpl
 

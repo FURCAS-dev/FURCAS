@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.6 2006/04/04 18:03:10 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.7 2006/04/18 17:55:09 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -100,5 +100,19 @@ public class EcoreEnvironmentTest
 		assertNotNull(choices);
 		assertFalse(choices.isEmpty());
 		assertChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "green"); //$NON-NLS-1$
+	}
+	
+	//
+	// Framework methods
+	//
+	
+	protected void tearDown() throws Exception {
+		// deregister the fruit package so that it won't confuse the global registry
+		EPackage.Registry.INSTANCE.remove(fruitPackage.getNsURI());
+		
+		// let the next test's setup recreate the package
+		fruitPackage = null;
+		
+		super.tearDown();
 	}
 }
