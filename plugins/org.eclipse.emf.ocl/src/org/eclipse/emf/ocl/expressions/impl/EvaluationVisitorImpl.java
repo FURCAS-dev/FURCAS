@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.5 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.6 2006/04/19 14:02:34 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -846,7 +846,7 @@ public class EvaluationVisitorImpl
 					switch (opCode) {
 						// Boolean::or(Boolean)
 						case PredefinedType.OR:
-							if (sourceVal == Boolean.TRUE)
+							if (Boolean.TRUE.equals(sourceVal))
 								return Boolean.TRUE;
 							
 							// must evaluate the argument now
@@ -867,7 +867,7 @@ public class EvaluationVisitorImpl
 
 						// Boolean::and(Boolean)
 						case PredefinedType.AND:
-							if (sourceVal != Boolean.TRUE)
+							if (!Boolean.TRUE.equals(sourceVal))
 								return Boolean.FALSE;
 							
 							// must evaluate the argument now
@@ -876,7 +876,7 @@ public class EvaluationVisitorImpl
 
 						// Boolean::implies
 						case PredefinedType.IMPLIES:
-							if (sourceVal == Boolean.FALSE)
+							if (Boolean.FALSE.equals(sourceVal))
 								return Boolean.TRUE;
 							
 							// must evaluate the argument now

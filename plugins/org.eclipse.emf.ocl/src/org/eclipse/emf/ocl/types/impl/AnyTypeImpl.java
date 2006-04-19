@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.6 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.7 2006/04/19 14:02:34 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -410,9 +410,9 @@ public class AnyTypeImpl
 				return ((Double) anObject).doubleValue()
 					== ((Double) anotherObject).doubleValue();
 			else if (anObject instanceof String && anotherObject instanceof String)
-				return ((String) anObject).equals(anotherObject);
+				return anObject.equals(anotherObject);
 			else if (anObject instanceof Boolean && anotherObject instanceof Boolean)
-				return anObject == anotherObject;
+				return anObject.equals(anotherObject);
 
 			// if the types are incompatible the result is false
 			return false;

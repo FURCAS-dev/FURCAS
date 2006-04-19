@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.4 2006/04/12 20:47:28 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.5 2006/04/19 14:02:36 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -417,6 +417,26 @@ public class ComparisonTest
 		}
 	}
 	
+	public void test_comparisonOfBooleanOperations_137487() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		EClass ctx = EcorePackage.eINSTANCE.getEClass();                
+		helper.setContext(ctx.eClass()); 
+
+		try {
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self)")); //$NON-NLS-1$
+			
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self) and true"));  //$NON-NLS-1$
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self) or false")); //$NON-NLS-1$
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self) xor false")); //$NON-NLS-1$
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self) implies true")); //$NON-NLS-1$
+			assertFalse(helper.check(ctx, "self.isSuperTypeOf(self) implies false")); //$NON-NLS-1$
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self) = true")); //$NON-NLS-1$
+			assertTrue(helper.check(ctx, "self.isSuperTypeOf(self) <> false")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+
 	//
 	// Framework methods
 	//
