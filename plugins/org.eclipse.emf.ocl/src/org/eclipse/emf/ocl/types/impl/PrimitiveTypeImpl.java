@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.4 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.5 2006/04/20 20:04:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -150,7 +150,7 @@ public abstract class PrimitiveTypeImpl extends EDataTypeImpl implements Primiti
 		String message = OCLMessages.bind(
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
-				type.getName());
+				TypeUtil.getName(type));
 		OCLParser.ERR(message);
 		return null;
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.6 2006/04/18 17:55:07 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.7 2006/04/20 20:04:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
@@ -723,7 +724,7 @@ public class ValidationVisitorImpl
 		if (arguments.size() != parameters.size()) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					OCLMessages.bind(OCLMessages.MessageArgumentCount_ERROR_,
-							m.getType().getName()));
+							getName(m.getType())));
 			OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
 			throw error;
 		}
@@ -779,7 +780,7 @@ public class ValidationVisitorImpl
 		if (!(t.getType() instanceof TypeType)) {
 			IllegalArgumentException error = new IllegalArgumentException(
 					OCLMessages.bind(OCLMessages.TypeConformanceTypeExp_ERROR_,
-					(t.getType() == null)? null : t.getType().getName()));
+							getName(t.getType())));
 			OCLPlugin.throwing(getClass(),
 				"visitTypeExp", error);//$NON-NLS-1$
 			throw error;
@@ -1169,8 +1170,8 @@ public class ValidationVisitorImpl
 			if (TypeUtil.typeCompare(sourceElementType, iteratorElementType) < 0) {
 				String message = OCLMessages.bind(
 						OCLMessages.ElementTypeConformanceClosure_ERROR_,
-						iteratorElementType.getName(),
-						sourceElementType.getName());
+						getName(iteratorElementType),
+						getName(sourceElementType));
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
 					OCLPlugin.throwing(getClass(),
@@ -1378,7 +1379,7 @@ public class ValidationVisitorImpl
 			if (property == null) {
 				String message = OCLMessages.bind(
 						OCLMessages.TupleLiteralExpressionPart_ERROR_,
-						property.getName(),
+						name,
 						tl.toString());
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
@@ -1586,8 +1587,8 @@ public class ValidationVisitorImpl
 				
 				String message = OCLMessages.bind(
 						OCLMessages.DefinitionConstraintConformance_ERROR_,
-						bodyType.getName(),
-						featureType == null ? null : featureType.getName());
+						getName(bodyType),
+						getName(featureType));
 				IllegalArgumentException error = new IllegalArgumentException(
 						message);
 				OCLPlugin.throwing(getClass(),
@@ -1601,9 +1602,9 @@ public class ValidationVisitorImpl
 				String message = OCLMessages.bind(
 						OCLMessages.InitOrDerConstraintConformance_ERROR_,
 						new Object[] {
-								bodyType.getName(),
+								getName(bodyType),
 								propertyName,
-								propertyType.getName()});
+								getName(propertyType)});
 				IllegalArgumentException error = new IllegalArgumentException(
 						message);
 				OCLPlugin.throwing(getClass(),
@@ -1677,8 +1678,8 @@ public class ValidationVisitorImpl
 						OCLMessages.BodyConditionConformance_ERROR_,
 					new Object[] {
 						operationName,
-						bodyType.getName(),
-						operationType.getName()});
+						getName(bodyType),
+						getName(operationType)});
 				IllegalArgumentException error = new IllegalArgumentException(
 					message);
 				OCLPlugin.throwing(getClass(),
@@ -1702,6 +1703,16 @@ public class ValidationVisitorImpl
 		
 		// check the body condition, itself, for well-formedness
 		return constraint.getBody().accept(this);
+	}
+	
+	/**
+	 * Null-safe alternative to {@link ENamedElement#getName()}.
+	 * 
+	 * @param element a named element that may be <code>null</code>
+	 * @return the element's name, or <code>null</code> if the element is <code>null</code>
+	 */
+	static String getName(ENamedElement element) {
+		return (element == null)? null : element.getName();
 	}
 	
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.8 2006/04/20 12:49:53 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.9 2006/04/20 20:04:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -248,7 +248,7 @@ public class AnyTypeImpl
 		String message = OCLMessages.bind(
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
-				type.getName());
+				TypeUtil.getName(type));
 		OCLParser.ERR(message);
 		return null;
 	}

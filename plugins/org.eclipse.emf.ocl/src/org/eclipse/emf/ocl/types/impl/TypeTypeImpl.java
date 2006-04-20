@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.3 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.4 2006/04/20 20:04:44 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -189,7 +189,7 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
 		String message = OCLMessages.bind(
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
-				type.getName());
+				TypeUtil.getName(type));
 		OCLParser.ERR(message);
 		
 		// don't get this far

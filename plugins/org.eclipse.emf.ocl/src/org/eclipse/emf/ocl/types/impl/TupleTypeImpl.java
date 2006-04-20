@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.3 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.4 2006/04/20 20:04:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -151,7 +151,7 @@ public class TupleTypeImpl
 				EStructuralFeature part = (EStructuralFeature) iter.next();
 				buf.append(part.getName());
 				buf.append(": "); //$NON-NLS-1$
-				buf.append(part.getEType().getName());
+				buf.append(TypeUtil.getName(part.getEType()));
 				
 				if (iter.hasNext()) {
 					buf.append(", "); //$NON-NLS-1$
@@ -206,7 +206,7 @@ public class TupleTypeImpl
 			String message = OCLMessages.bind(
 					OCLMessages.TupleTypeMismatch_ERROR_,
 					this.getName(),
-					type.getName());
+					TypeUtil.getName(type));
 			OCLParser.ERR(message);
 		}
 		
@@ -216,7 +216,7 @@ public class TupleTypeImpl
 			String message = OCLMessages.bind(
 					OCLMessages.TupleFieldNumMismatch_ERROR_,
 					this.getName(),
-					type.getName());
+					TypeUtil.getName(type));
 			OCLParser.ERR(message);
 		}
 

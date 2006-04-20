@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.5 2006/04/17 22:30:39 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.6 2006/04/20 20:04:44 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -358,8 +359,8 @@ public class TypeUtil {
 		}
 		String message = OCLMessages.bind(
 				OCLMessages.CastTypeMismatch_ERROR_,
-				type1.getName(),
-				type2.getName());
+				getName(type1),
+				getName(type2));
 		OCLParser.ERR(message);
 		return false;
 	}
@@ -388,12 +389,22 @@ public class TypeUtil {
 		default:
 			String message = OCLMessages.bind(
 					OCLMessages.TypeMismatch_ERROR_,
-					type1.getName(),
-					type2.getName());
+					getName(type1),
+					getName(type2));
 			IllegalArgumentException error = new IllegalArgumentException(message);
 			OCLPlugin.throwing(AnyTypeImpl.class, "typeCompare", error);//$NON-NLS-1$
 			throw error;
 		}
+	}
+	
+	/**
+	 * Null-safe alternative to {@link ENamedElement#getName()}.
+	 * 
+	 * @param element a named element that may be <code>null</code>
+	 * @return the element's name, or <code>null</code> if the element is <code>null</code>
+	 */
+	static String getName(ENamedElement element) {
+		return (element == null)? null : element.getName();
 	}
 
 	/**
@@ -466,8 +477,8 @@ public class TypeUtil {
 		}
 	
 		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
-			(type1 == null)? null : type1.getName(),
-			(type2 == null)? null : type2.getName());
+				getName(type1),
+				getName(type2));
 		OCLParser.ERR(message);
 		return null;
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.4 2006/04/17 22:30:39 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.5 2006/04/20 20:04:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -600,7 +600,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             String message = OCLMessages.bind(
             		OCLMessages.TypeMismatch_ERROR_,
                     this.getName(),
-                    type.getName());
+                    TypeUtil.getName(type));
             OCLParser.ERR(message);
         }
 

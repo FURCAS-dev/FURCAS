@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.4 2006/04/04 17:52:14 cdamus Exp $
+ * $Id: OCLResource.java,v 1.5 2006/04/20 20:04:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -546,8 +546,10 @@ public class OCLResource
 				result.append("context "); //$NON-NLS-1$
 				if (elem instanceof EClassifier) {
 					result.append(((EClassifier) elem).getName());
-				} else {
+				} else if (elem instanceof EOperation) {
 					appendOperationSignature(result, (EOperation) elem);
+				} else if (elem instanceof EStructuralFeature) {
+					appendPropertySignature(result, (EStructuralFeature) elem);
 				}
 				
 				result.append(' ');
@@ -594,6 +596,13 @@ public class OCLResource
 			buf.append(") :"); //$NON-NLS-1$
 			if (operation.getEType() != null) {
 				buf.append(' ').append(operation.getEType().getName());
+			}
+		}
+		
+		private void appendPropertySignature(StringBuffer buf, EStructuralFeature property) {
+			buf.append(property.getName());
+			if (property.getEType() != null) {
+				buf.append(" : ").append(property.getEType().getName()); //$NON-NLS-1$
 			}
 		}
 
