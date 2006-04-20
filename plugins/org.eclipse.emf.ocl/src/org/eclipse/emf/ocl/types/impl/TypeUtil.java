@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.6 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.7 2006/04/20 21:41:46 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -684,12 +684,12 @@ public class TypeUtil {
 		else if (Collection.class.isAssignableFrom(instanceClass))
 			return CollectionTypeImpl.OCL_COLLECTION;
 	
-		// special handling for comparables, for <, <=, >=, > operators
-		else if (Comparable.class.isAssignableFrom(instanceClass))
-			return dataType;
+		// Object -> OCL_ANY_TYPE
+		else if (instanceClass == Object.class)
+			return Types.OCL_ANY_TYPE;
 		
-		// All other data types -> OCL_ANY_TYPE
-		return Types.OCL_ANY_TYPE;
+		// All other data types map to themselves
+		return dataType;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.7 2006/04/20 13:05:43 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.8 2006/04/20 21:41:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -26,6 +26,7 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -40,8 +41,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.types.CollectionType;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  * Tests for comparison (&lt;, &lt;=, &gt;=, &gt;) expressions.
@@ -451,6 +455,55 @@ public class ComparisonTest
 					"ocl::expressions::CollectionKind::bag = self.kind")); //$NON-NLS-1$	
 			assertTrue(helper.check(ctx,
 					"self.kind = ocl::expressions::CollectionKind::bag")); //$NON-NLS-1$	
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * Tests that unrecognized data types are represented by themselves, not
+	 * by OclAny.
+	 */
+	public void test_dataTypes_137158() {
+		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+		epackage.setName("mypkg"); //$NON-NLS-1$
+		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+		eclass.setName("B"); //$NON-NLS-1$
+		epackage.getEClassifiers().add(eclass);
+		EOperation eoperation = EcoreFactory.eINSTANCE.createEOperation();
+		eoperation.setName("f"); //$NON-NLS-1$
+		EDataType edatatype = EcoreFactory.eINSTANCE.createEDataType();
+		edatatype.setName("Thread"); //$NON-NLS-1$
+		edatatype.setInstanceClass(Thread.class);
+		epackage.getEClassifiers().add(edatatype);
+		eoperation.setEType(edatatype);
+		eclass.getEOperations().add(eoperation);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(eclass);
+		
+		try {
+			OCLExpression expr = helper.createQuery("self.f()"); //$NON-NLS-1$
+			
+			EClassifier type = expr.getType();
+			assertSame(edatatype, type);
+			
+			eoperation.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+			
+			expr = helper.createQuery("self.f()"); //$NON-NLS-1$
+			
+			type = expr.getType();
+			assertTrue(type instanceof CollectionType);
+			type = ((CollectionType) type).getElementType();
+			assertSame(edatatype, type);
+			
+			eoperation.setUpperBound(1);
+			eoperation.setEType(EcorePackage.Literals.EJAVA_OBJECT);
+			
+			expr = helper.createQuery("self.f()"); //$NON-NLS-1$
+			
+			type = expr.getType();
+			assertSame(Types.OCL_ANY_TYPE, type);
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
