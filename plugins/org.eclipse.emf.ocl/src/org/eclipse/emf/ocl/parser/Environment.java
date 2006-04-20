@@ -183,9 +183,6 @@ public interface Environment {
 	
 	/**
 	 * Find reference in the specified class to the named association class.
-	 * This is an implicit reference, derived from the existence of one or more
-	 * {@link org.eclipse.emf.ocl.uml.AssociationClassEnd}s that are
-	 * implemented by the named association class.
 	 * 
 	 * @param parent the referencing class to search
 	 * @param name the association class name (with an initial lower case as
