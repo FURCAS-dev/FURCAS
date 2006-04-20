@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.2 2006/04/07 14:11:41 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.3 2006/04/20 12:49:53 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -327,6 +327,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 		OCL_ROOT_PACKAGE.setName("ocl"); //$NON-NLS-1$
 		OCL_ROOT_PACKAGE.setNsPrefix("ocl"); //$NON-NLS-1$
 		OCL_ROOT_PACKAGE.setNsURI("http://www.eclipse.org/OCL2/1.0.0/ocl"); //$NON-NLS-1$
+		EPackage.Registry.INSTANCE.put(OCL_ROOT_PACKAGE.getNsURI(), OCL_ROOT_PACKAGE);
 	}
 	
     /**

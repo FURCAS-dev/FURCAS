@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.5 2006/04/19 14:02:36 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.6 2006/04/20 12:49:55 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -37,6 +37,9 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ocl.expressions.CollectionKind;
+import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
+import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 
@@ -437,6 +440,20 @@ public class ComparisonTest
 		}
 	}
 
+	public void test_enumerationLiteralEquality_137546() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		CollectionLiteralExp ctx = ExpressionsFactory.eINSTANCE.createCollectionLiteralExp();
+		helper.setContext(ctx.eClass());
+		ctx.setKind(CollectionKind.BAG_LITERAL);
+
+		try {
+			assertTrue(helper.check(ctx,
+					"ocl::expressions::CollectionKind::bag = self.kind")); //$NON-NLS-1$	
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
 	//
 	// Framework methods
 	//

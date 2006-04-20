@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.7 2006/04/19 14:02:34 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.8 2006/04/20 12:49:53 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -21,6 +21,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -420,6 +421,10 @@ public class AnyTypeImpl
 
 		if ((anObject instanceof EEnumLiteral) && (anotherObject instanceof EEnumLiteral)) {
 			return anObject == anotherObject;
+		} else if ((anObject instanceof EEnumLiteral) && (anotherObject instanceof Enumerator)) {
+			return ((EEnumLiteral) anObject).getInstance() == anotherObject;
+		} else if ((anotherObject instanceof EEnumLiteral) && (anObject instanceof Enumerator)) {
+			return ((EEnumLiteral) anotherObject).getInstance() == anObject;
 		}
 		
 		if ((anObject instanceof Collection) && (anotherObject instanceof Collection)) {
