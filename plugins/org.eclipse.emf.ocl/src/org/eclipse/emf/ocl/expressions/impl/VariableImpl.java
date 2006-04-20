@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.2 2006/04/12 14:03:22 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.3 2006/04/20 20:39:03 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -20,7 +20,6 @@ package org.eclipse.emf.ocl.expressions.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -148,18 +147,10 @@ public class VariableImpl
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getInitExpression()
-	 * @generated @ordered
+	 * @generated
+	 * @ordered
 	 */
 	protected OCLExpression initExpression = null;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getType()
-	 * @generated @ordered
-	 */
-	protected EClassifier type = null;
 
 	/**
 	 * The cached value of the '{@link #getRepresentedParameter() <em>Represented Parameter</em>}' reference.

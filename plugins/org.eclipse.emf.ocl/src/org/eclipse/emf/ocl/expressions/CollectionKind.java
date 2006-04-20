@@ -71,7 +71,8 @@ public final class CollectionKind extends AbstractEnumerator {
      * <!-- end-user-doc -->
      * 
      * @see #COLLECTION
-     * @generated @ordered
+     * @generated
+     * @ordered
      */
     public static final CollectionKind COLLECTION_LITERAL = new CollectionKind(
             COLLECTION, "collection");//$NON-NLS-1$
@@ -85,7 +86,8 @@ public final class CollectionKind extends AbstractEnumerator {
      * <!-- end-user-doc -->
      * 
      * @see #SET
-     * @generated @ordered
+     * @generated
+     * @ordered
      */
     public static final CollectionKind SET_LITERAL = new CollectionKind(SET,
             "set");//$NON-NLS-1$
@@ -95,7 +97,8 @@ public final class CollectionKind extends AbstractEnumerator {
      * begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see #ORDERED_SET
-     * @generated @ordered
+     * @generated
+     * @ordered
      */
     public static final CollectionKind ORDERED_SET_LITERAL = new CollectionKind(
             ORDERED_SET, "orderedSet");//$NON-NLS-1$
@@ -109,7 +112,8 @@ public final class CollectionKind extends AbstractEnumerator {
      * <!-- end-user-doc -->
      * 
      * @see #BAG
-     * @generated @ordered
+     * @generated
+     * @ordered
      */
     public static final CollectionKind BAG_LITERAL = new CollectionKind(BAG,
             "bag");//$NON-NLS-1$
@@ -124,7 +128,8 @@ public final class CollectionKind extends AbstractEnumerator {
      * <!-- end-user-doc -->
      * 
      * @see #SEQUENCE
-     * @generated @ordered
+     * @generated
+     * @ordered
      */
     public static final CollectionKind SEQUENCE_LITERAL = new CollectionKind(
             SEQUENCE, "sequence");//$NON-NLS-1$

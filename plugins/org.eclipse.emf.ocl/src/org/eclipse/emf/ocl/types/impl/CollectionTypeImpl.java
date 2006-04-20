@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.5 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.6 2006/04/20 20:39:03 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -441,7 +441,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see #getElementType()
-     * @generated @ordered
+     * @generated
+     * @ordered
      */
     protected EClassifier elementType = null;
 
