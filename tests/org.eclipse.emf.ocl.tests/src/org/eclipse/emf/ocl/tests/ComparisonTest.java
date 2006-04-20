@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.6 2006/04/20 12:49:55 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.7 2006/04/20 13:05:43 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -449,6 +449,8 @@ public class ComparisonTest
 		try {
 			assertTrue(helper.check(ctx,
 					"ocl::expressions::CollectionKind::bag = self.kind")); //$NON-NLS-1$	
+			assertTrue(helper.check(ctx,
+					"self.kind = ocl::expressions::CollectionKind::bag")); //$NON-NLS-1$	
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
