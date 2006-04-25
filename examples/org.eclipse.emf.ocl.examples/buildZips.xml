@@ -4,14 +4,11 @@
 	</target>
 
 	<target name="zip.examples" depends="init">
-		<echo message="CMCGEE: Zipping examples!"/>
-		<exec command="ls .."/>
 		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter"/>
 		<antcall target="refresh"/>
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.emf.ocl.examples.">
-		<echo message="CMCGEE: Cleaning examples!"/>
 		<delete>
 			<fileset dir="zips" includes="*.zip"/>
 		</delete>
@@ -19,7 +16,6 @@
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<echo message="CMCGEE: Refreshing local!"/>
 		<eclipse.refreshLocal resource="/org.eclipse.emf.ocl.examples" depth="infinite"/>
 	</target>
 </project>
