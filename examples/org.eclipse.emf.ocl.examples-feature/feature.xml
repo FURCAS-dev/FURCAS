@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/**
- * <copyright>
- *
- * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   IBM - Initial API and implementation
- *
- * </copyright>
- *
- * $Id$
- */
--->
 <feature
       id="org.eclipse.emf.ocl.examples"
       label="%featureName"
@@ -45,6 +27,10 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%updateSiteName" url="http://update.eclipse.org/updates"/>
    </url>
 
+   <includes
+         id="org.eclipse.emf.ocl.examples.source"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.ui.console"/>
@@ -53,20 +39,9 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.emf"/>
       <import plugin="org.eclipse.core.runtime"/>
    </requires>
-        
-    <includes
-         id="org.eclipse.emf.ocl.examples.source"
-         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.ocl.examples"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.ocl.examples.interpreter"
          download-size="0"
          install-size="0"
          version="0.0.0"

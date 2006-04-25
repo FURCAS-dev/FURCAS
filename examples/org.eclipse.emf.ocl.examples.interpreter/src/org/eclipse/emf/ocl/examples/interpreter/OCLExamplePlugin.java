@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExamplePlugin.java,v 1.2 2006/04/04 17:52:14 cdamus Exp $
+ * $Id: OCLExamplePlugin.java,v 1.3 2006/04/25 17:26:19 cmcgee Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter;
@@ -25,6 +25,7 @@ import org.osgi.framework.BundleContext;
  */
 public class OCLExamplePlugin extends AbstractUIPlugin {
 
+	
 	// The shared instance.
 	private static OCLExamplePlugin plugin;
 
