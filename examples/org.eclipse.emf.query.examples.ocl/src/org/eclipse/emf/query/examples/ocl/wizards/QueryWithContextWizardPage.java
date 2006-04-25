@@ -103,8 +103,9 @@ class QueryWithContextWizardPage
 		data.horizontalSpan = 2;
 		prompt.setLayoutData(data);
 		
-		// text area for user to enter OCL condition
-		conditionText = new Text(page, SWT.BORDER | SWT.MULTI);
+		// text area for user to enter OCL condition.  Force left-to-right
+		//   orientation because the OCL language is based on English
+		conditionText = new Text(page, SWT.BORDER | SWT.MULTI | SWT.LEFT_TO_RIGHT);
 		data = new GridData(GridData.FILL_BOTH);
 		data.horizontalSpan = 2;
 		conditionText.setLayoutData(data);

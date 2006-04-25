@@ -62,8 +62,9 @@ class ContextFreeQueryWizardPage
 		Label prompt = new Label(page, SWT.NONE);
 		prompt.setText(CONDITION_PROMPT);
 		
-		// text area for user to enter OCL condition
-		conditionText = new Text(page, SWT.BORDER | SWT.MULTI);
+		// text area for user to enter OCL condition.  Force left-to-right
+		//   orientation because the OCL language is based on English
+		conditionText = new Text(page, SWT.BORDER | SWT.MULTI | SWT.LEFT_TO_RIGHT);
 		conditionText.setLayoutData(new GridData(GridData.FILL_BOTH));
 		conditionText.setText(CONDITION_DEFAULT);
 		
