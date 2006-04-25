@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.4 2006/04/04 17:52:14 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.5 2006/04/25 20:15:04 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -138,8 +139,10 @@ public class OCLConsolePage
 		output.getTextWidget().setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT));
 		output.setEditable(false);
 		output.setDocument(new Document());
-		
-		input = new Text(page, SWT.BORDER | SWT.MULTI);
+
+		// force left-to-right text direction in the input view, because it
+		//    accepts OCL text and the OCL language is based on English
+		input = new Text(page, SWT.BORDER | SWT.MULTI | SWT.LEFT_TO_RIGHT);
 		input.addKeyListener(new InputKeyListener());
 		
 		((SashForm) page).setWeights(new int[] {2, 1});
@@ -210,6 +213,8 @@ public class OCLConsolePage
 			
 			if (selected instanceof EObject) {
 				context = (EObject) selected;
+			} else if (selected instanceof IAdaptable) {
+				context = (EObject) ((IAdaptable) selected).getAdapter(EObject.class);
 			}
 		}
 		
