@@ -5,7 +5,7 @@
 
 	<target name="zip.examples" depends="init">
 		<echo message="CMCGEE: Zipping examples!"/>
-		<exec command="ls .."/>
+		<exec command="ls"/>
 		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter"/>
 		<antcall target="refresh"/>
 	</target>
