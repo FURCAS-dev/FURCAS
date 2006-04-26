@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-<!--
-/**
- * <copyright>
- *
- * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   IBM - Initial API and implementation
- *
- * </copyright>
- *
- * $Id$
- */
--->
-<plugin />
+<plugin
+>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.query.examples.category"
+            name="EMFT Query"
+            parentCategory="org.eclipse.ui.Examples"/>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
+            class="org.eclipse.emf.ocl.examples.internal.wizard.StatementsExampleWizard"
+            hasPages="false"
+            id="org.eclipse.emf.query.examples.statements"
+            name="Query Statements Example"/>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
+            class="org.eclipse.emf.ocl.examples.internal.wizard.OCLExampleWizard"
+            hasPages="false"
+            id="org.eclipse.emf.query.examples.ocl"
+            name="OCL Example"/>
+   </extension>
+</plugin>

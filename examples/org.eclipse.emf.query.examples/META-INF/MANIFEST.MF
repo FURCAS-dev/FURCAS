@@ -1,8 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
-Bundle-SymbolicName: org.eclipse.emf.query.examples
+Bundle-SymbolicName: org.eclipse.emf.query.examples;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Eclipse-LazyStart: true
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.core.resources
+Bundle-Activator: org.eclipse.emf.ocl.examples.internal.QueryExamplesPlugin
