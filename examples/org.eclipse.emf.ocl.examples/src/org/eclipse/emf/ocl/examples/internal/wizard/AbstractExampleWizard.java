@@ -3,9 +3,7 @@ package org.eclipse.emf.ocl.examples.internal.wizard;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Collection;
@@ -177,7 +175,8 @@ public abstract class AbstractExampleWizard extends Wizard
 						parentFile.mkdirs();
 					}
 
-					Path path = new Path(file.getPath());
+					// TODO Figure out why it was necessary to try to convert the encoding in the zip file
+					/*Path path = new Path(file.getPath());
 					if (path.getFileExtension().equals("java")) { //$NON-NLS-1$
 						InputStreamReader is = null;
 						OutputStreamWriter os = null;
@@ -198,7 +197,7 @@ public abstract class AbstractExampleWizard extends Wizard
 								os.close();
 							}
 						}
-					} else {
+					} else {*/
 						OutputStream os = null;
 
 						try {
@@ -216,7 +215,7 @@ public abstract class AbstractExampleWizard extends Wizard
 								os.close();
 							}
 						}
-					}
+					//}
 				}
 				
 				zipFileStream.closeEntry();
