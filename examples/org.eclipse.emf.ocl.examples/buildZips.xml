@@ -8,8 +8,8 @@
 			<exclude name="src.zip"/>
 			<exclude name="build.xml"/>
 			<exclude name="javaCompiler...args"/>
-			<exclude name="temp.folder/*"/>
-			<exclude name="@dot/*"/>
+			<exclude name="temp.folder/**"/>
+			<exclude name="@dot/**"/>
 		</zip>
 		<antcall target="refresh"/>
 	</target>
