@@ -11,14 +11,14 @@
       <wizard
             canFinishEarly="true"
             category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
-            class="org.eclipse.emf.ocl.examples.internal.wizard.StatementsExampleWizard"
+            class="org.eclipse.emf.query.examples.internal.wizard.StatementsExampleWizard"
             hasPages="false"
             id="org.eclipse.emf.query.examples.statements"
             name="Query Statements Example"/>
       <wizard
             canFinishEarly="true"
             category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
-            class="org.eclipse.emf.ocl.examples.internal.wizard.OCLExampleWizard"
+            class="org.eclipse.emf.query.examples.internal.wizard.OCLExampleWizard"
             hasPages="false"
             id="org.eclipse.emf.query.examples.ocl"
             name="OCL Example"/>

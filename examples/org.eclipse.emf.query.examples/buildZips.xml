@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.emf.ocl.examples" default="zip.examples" basedir=".">
+<project name="org.eclipse.emf.query.examples" default="zip.examples" basedir=".">
 	<target name="init">
 	</target>
 
@@ -20,6 +20,6 @@
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.refreshLocal resource="/org.eclipse.emf.ocl.examples" depth="infinite"/>
+		<eclipse.refreshLocal resource="/org.eclipse.emf.query.examples" depth="infinite"/>
 	</target>
 </project>

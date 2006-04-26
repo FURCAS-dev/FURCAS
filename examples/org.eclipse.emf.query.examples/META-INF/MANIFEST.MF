@@ -9,6 +9,6 @@ Eclipse-LazyStart: true
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.core.resources
-Bundle-Activator: org.eclipse.emf.ocl.examples.internal.QueryExamplesPlugin
-Export-Package: org.eclipse.emf.ocl.examples.internal;x-internal:=true,
- org.eclipse.emf.ocl.examples.internal.wizard;x-internal:=true
+Bundle-Activator: org.eclipse.emf.query.examples.internal.QueryExamplesPlugin
+Export-Package: org.eclipse.emf.query.examples.internal;x-internal:=true,
+ org.eclipse.emf.query.examples.internal.wizard;x-internal:=true

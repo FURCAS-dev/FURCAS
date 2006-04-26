@@ -1,4 +1,4 @@
-package org.eclipse.emf.ocl.examples.internal;
+package org.eclipse.emf.query.examples.internal;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 

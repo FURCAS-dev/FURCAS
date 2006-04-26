@@ -1,4 +1,4 @@
-package org.eclipse.emf.ocl.examples.internal.wizard;
+package org.eclipse.emf.query.examples.internal.wizard;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ocl.examples.internal.QueryExamplesPlugin;
+import org.eclipse.emf.query.examples.internal.QueryExamplesPlugin;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
