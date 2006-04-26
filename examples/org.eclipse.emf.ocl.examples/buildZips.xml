@@ -5,11 +5,11 @@
 
 	<target name="zip.examples" depends="init">
 		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter">
-			<exclude name="@dot"/>
-			<exclude name="build.xml"/>
-			<exclude name="temp.folder"/>
-			<exclude name="javaCompiler...args"/>
 			<exclude name="src.zip"/>
+			<exclude name="build.xml"/>
+			<exclude name="javaCompiler...args"/>
+			<exclude name="temp.folder/*"/>
+			<exclude name="@dot/*"/>
 		</zip>
 		<antcall target="refresh"/>
 	</target>
