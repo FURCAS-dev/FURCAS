@@ -4,13 +4,7 @@
 	</target>
 
 	<target name="zip.examples" depends="init">
-		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter">
-			<exclude name="src.zip"/>
-			<exclude name="build.xml"/>
-			<exclude name="javaCompiler...args"/>
-			<exclude name="temp.folder/**"/>
-			<exclude name="@dot/**"/>
-		</zip>
+		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter"/>
 		<zip destfile="zips/library.zip" basedir="../org.eclipse.emf.examples.library"/>
 		<zip destfile="zips/libraryEdit.zip" basedir="../org.eclipse.emf.examples.library.edit"/>
 		<zip destfile="zips/libraryEditor.zip" basedir="../org.eclipse.emf.examples.library.editor"/>
