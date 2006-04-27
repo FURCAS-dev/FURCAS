@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
@@ -107,12 +108,19 @@ public abstract class AbstractExampleWizard extends Wizard
 				public void run(IProgressMonitor monitor)
 					throws InvocationTargetException, InterruptedException {
 					
-					monitor.beginTask("Unzipping Projects", projectDescriptors.size());
-					
-					for (Iterator i = projectDescriptors.iterator(); i.hasNext();) {
-						unzipProject((ProjectDescriptor)i.next(), monitor);
-						monitor.worked(1);
-					}
+					WorkspaceModifyOperation op = new WorkspaceModifyOperation() {
+						protected void execute(IProgressMonitor m)
+						
+							throws CoreException, InvocationTargetException, InterruptedException {
+							m.beginTask("Unzipping Projects", projectDescriptors.size());
+							
+							for (Iterator i = projectDescriptors.iterator(); i.hasNext();) {
+								unzipProject((ProjectDescriptor)i.next(), m);
+								m.worked(1);
+							}
+						}
+					};
+					op.run(monitor);
 				}
 			});
 		} catch (InvocationTargetException e) {
