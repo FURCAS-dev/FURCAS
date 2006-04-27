@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.query.examples.internal.QueryExamplesPlugin;
+
 
 public class StatementsExampleWizard
 	extends AbstractExampleWizard {
@@ -18,5 +23,13 @@ public class StatementsExampleWizard
 		projects.add(new ProjectDescriptor("org.eclipse.emf.query.examples", "zips/statements.zip", "org.eclipse.emf.query.examples.statements")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		
 		return projects;
+	}
+	
+	protected void log(Exception e) {
+		if (e instanceof CoreException) {
+			QueryExamplesPlugin.getDefault().getLog().log(((CoreException)e).getStatus());
+		} else {
+			QueryExamplesPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, QueryExamplesPlugin.getDefault().getBundle().getSymbolicName(),IStatus.ERROR, e.getMessage(),e));
+		}
 	}
 }

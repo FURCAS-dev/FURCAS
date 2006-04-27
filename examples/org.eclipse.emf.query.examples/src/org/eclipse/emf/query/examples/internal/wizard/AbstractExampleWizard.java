@@ -17,11 +17,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.query.examples.internal.QueryExamplesPlugin;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -124,7 +121,7 @@ public abstract class AbstractExampleWizard extends Wizard
 				}
 			});
 		} catch (InvocationTargetException e) {
-			QueryExamplesPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, QueryExamplesPlugin.getDefault().getBundle().getSymbolicName(),IStatus.ERROR, e.getMessage(),e));
+			log(e);
 		} catch (InterruptedException e) {
 			// We cannot be interrupted, just proceed as normal.
 		}
@@ -132,11 +129,13 @@ public abstract class AbstractExampleWizard extends Wizard
 		return true;
 	}
 	
+	protected abstract void log(Exception e);
+
 	/**
 	 * The subclass provides the specific project descriptors for the
 	 *  projects that should be unzipped into the workspace. Note that
 	 *  any projects that already exist in the workspace will not be
-	 *  overwritten as they may contain changed made by the user.
+	 *  overwritten as they may contain changes made by the user.
 	 *  
 	 * @return The collection of project descriptors that should be
 	 *  unzipped into the workspace.
@@ -232,10 +231,15 @@ public abstract class AbstractExampleWizard extends Wizard
 			
 			project.open(monitor);
 			project.refreshLocal(IFile.DEPTH_INFINITE, monitor);
+			
+			// Close and re-open the project to force eclipse to re-evaluate
+			//  any natures that this project has.
+			project.close(monitor);
+			project.open(monitor);
 		} catch (IOException e) {
-			QueryExamplesPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, QueryExamplesPlugin.getDefault().getBundle().getSymbolicName(),IStatus.ERROR, e.getMessage(),e));
+			log(e);
 		} catch (CoreException e) {
-			QueryExamplesPlugin.getDefault().getLog().log(e.getStatus());
+			log(e);
 		}
 	}
 
