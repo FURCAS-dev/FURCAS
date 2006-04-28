@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.4 2006/04/04 18:07:24 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.5 2006/04/28 14:46:29 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -67,6 +67,10 @@ class OCLHelper
 
 	public EnvironmentFactory getEnvironmentFactory() {
 		return environmentFactory;
+	}
+	
+	public Environment getEnvironment() {
+		return environment;
 	}
 	
 	/**

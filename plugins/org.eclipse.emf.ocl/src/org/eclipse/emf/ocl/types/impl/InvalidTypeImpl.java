@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.5 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.6 2006/04/28 14:46:28 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -125,7 +125,7 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 		}
 		
 		if (type != Types.OCL_VOID) {
-			return (EClassifier) type;
+			return type;
 		}
 
 		String message = OCLMessages.bind(

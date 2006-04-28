@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.4 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.5 2006/04/28 14:46:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -60,7 +60,7 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 */
 	public static final String copyright = ""; //$NON-NLS-1$
 	
-	public static final MessageType INSTANCE = new MessageTypeImpl(""); //$NON-NLS-1$
+	public static final MessageType INSTANCE = new MessageTypeImpl("OclMessage"); //$NON-NLS-1$
 
 	/**
 	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
@@ -122,6 +122,22 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 		this();
 		setName(name);
 	}
+	
+	public String getName() {
+		if (name == null) {
+			ENamedElement elem = (getReferredOperation() != null)?
+					(ENamedElement) getReferredOperation() :
+						(ENamedElement) getReferredSignal();
+			
+			if (elem == null) {
+				name = "OclMessage(?)"; //$NON-NLS-1$
+			} else {
+				name = "OclMessage(" + elem.getName() + ')'; //$NON-NLS-1$
+			}
+		}
+		
+		return super.getName();
+	}
 
 	/**
 	 * Creates the type for the messages representing invocation of the
@@ -133,7 +149,7 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * @return the message type
 	 */
 	protected static MessageType createMessageType(ENamedElement behavioralFeature) {
-		MessageType result = new MessageTypeImpl(behavioralFeature.getName());
+		MessageType result = new MessageTypeImpl();
 		EList properties = result.getEStructuralFeatures();
 		EList typedElements;
 		
@@ -280,11 +296,22 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 		if (this == type)
 			return SAME_TYPE;
 		
+		if (type instanceof MessageType) {
+			MessageType other = (MessageType) type;
+
+			if ((getReferredOperation() != null)
+					&& (getReferredOperation() == other.getReferredOperation())) {
+				return SAME_TYPE;
+			} else if ((getReferredSignal() != null)
+					&& (getReferredSignal() == other.getReferredSignal())) {
+				return SAME_TYPE;
+			} else if (this == Types.OCL_MESSAGE) {
+				return STRICT_SUPERTYPE;
+			}
+		}
+		
 		if (type == Types.OCL_MESSAGE)
 			return STRICT_SUBTYPE;
-		
-		if (this == Types.OCL_MESSAGE && type instanceof MessageType)
-			return STRICT_SUPERTYPE;
 		
 		return UNRELATED_TYPE;
 	}

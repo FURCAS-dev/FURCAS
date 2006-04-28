@@ -1154,8 +1154,8 @@ public class RegressionTest
 			TupleType tupleType = (TupleType) elementType;
 			
 			assertEquals(2, tupleType.getEAttributes().size());
-			first = (EAttribute) tupleType.getEAttributes().get(0);
-			second = (EAttribute) tupleType.getEAttributes().get(1);
+			first = (EAttribute) tupleType.getEStructuralFeature("first"); //$NON-NLS-1$
+			second = (EAttribute) tupleType.getEStructuralFeature("second"); //$NON-NLS-1$
 					
 			product = (Set) helper.evaluate("", expr); //$NON-NLS-1$
 		} catch (Exception e) {

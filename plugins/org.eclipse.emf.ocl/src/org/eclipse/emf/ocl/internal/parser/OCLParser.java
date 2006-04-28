@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.11 2006/04/18 17:55:07 cdamus Exp $
+ * $Id: OCLParser.java,v 1.12 2006/04/28 14:46:29 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -128,6 +128,7 @@ import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.parser.ParserException;
+import org.eclipse.emf.ocl.parser.PersistentEnvironment;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -617,7 +618,7 @@ public class OCLParser extends OCLLPGParser {
 			
 		Variable vdcl = expressionsFactory.createVariable();		
  		vdcl.setName(name);
- 		vdcl.setType(type);
+ 		vdcl.setType(TypeUtil.resolveType(env, type));
  		vdcl.setInitExpression(initExp);
  		
  		if (addToEnvironment) {
@@ -714,14 +715,20 @@ public class OCLParser extends OCLLPGParser {
 		   		result.setOperationCode(opcode);
 		   		resultType = AnyTypeImpl.getResultType(ownerType, opcode, args);
 		   	}
-		   	if (resultType == null)
+		   	
+		   	if (resultType == null) {
 		   		resultType = TypeUtil.getOCLType(oper);	   		
+		   	}
+		   	
+			// resolve collection or tuple type against the cache in the environment
+			resultType = TypeUtil.resolveType(env, resultType);
+			
 		   	result.setType(resultType);
 		}
 			
 		return result;
 	}
-
+	
 	/**
 	 * Runs the parser and throws an <code>LpgException</code>
 	 * if any parse errors are encountered.
@@ -1730,12 +1737,10 @@ public class OCLParser extends OCLLPGParser {
 			Environment env
 		) throws SemanticException {
 
-		CollectionType astNode = collectionTypeIdentifierCS(collectionTypeCS.getCollectionTypeIdentifier());
+		CollectionKind kind = collectionTypeIdentifierCS(collectionTypeCS.getCollectionTypeIdentifier());
 		EClassifier type = typeCS(collectionTypeCS.getTypeCS(), env);
 	
-		astNode.setElementType(type);
-		astNode.setName(astNode.getName() + "(" + type.getName() + ")" );//$NON-NLS-2$//$NON-NLS-1$
-
+		CollectionType astNode = getCollectionType(env, kind, type);
 		initTypePositions(astNode, collectionTypeCS.getTypeCS());
 			
 		return astNode;
@@ -1749,55 +1754,48 @@ public class OCLParser extends OCLLPGParser {
 	 * @return the parsed <code>CollectionType</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CollectionType collectionTypeIdentifierCS(
+	protected final CollectionKind collectionTypeIdentifierCS(
 			CollectionTypeIdentifierEnum collectionTypeIdentifier
 		) throws SemanticException {
 	
-		CollectionType astNode = null;
+		CollectionKind astNode = null;
 
 		switch (collectionTypeIdentifier.getValue()) {
 			case CollectionTypeIdentifierEnum.SET:
 	
-				astNode = typesFactory.createSetType();
-				astNode.setName("Set");//$NON-NLS-1$
+				astNode = CollectionKind.SET_LITERAL;
 				TRACE("collectionTypeIdentifierCS", "SET");//$NON-NLS-2$//$NON-NLS-1$
 	
 				break;
 	
 			case CollectionTypeIdentifierEnum.BAG:
 
-				astNode = typesFactory.createBagType();
-				astNode.setName("Bag");  //$NON-NLS-1$
+				astNode = CollectionKind.BAG_LITERAL;
 				TRACE("collectionTypeIdentifierCS", "BAG"); //$NON-NLS-2$//$NON-NLS-1$
 						
 				break;
 
 			case CollectionTypeIdentifierEnum.SEQUENCE:
 
-				astNode = typesFactory.createSequenceType();
-				astNode.setName("Sequence");//$NON-NLS-1$
+				astNode = CollectionKind.SEQUENCE_LITERAL;
 				TRACE("collectionTypeIdentifierCS", "SEQUENCE"); //$NON-NLS-2$//$NON-NLS-1$
 						
 				break;
 
 			case CollectionTypeIdentifierEnum.COLLECTION:
 
-				astNode = typesFactory.createCollectionType();
-				astNode.setName("Collection"); //$NON-NLS-1$
+				astNode = CollectionKind.COLLECTION_LITERAL;
 				TRACE("collectionTypeIdentifierCS", "COLLECTION"); //$NON-NLS-2$//$NON-NLS-1$
 						
 				break;
 
 			case CollectionTypeIdentifierEnum.ORDERED_SET:
 
-				astNode = typesFactory.createOrderedSetType();
-				astNode.setName("OrderedSet");//$NON-NLS-1$
+				astNode = CollectionKind.ORDERED_SET_LITERAL;
 				TRACE("collectionTypeIdentifierCS", "ORDERED_SET"); //$NON-NLS-2$//$NON-NLS-1$
 						
 				break;
 		}
-
-		astNode.setElementType(Types.OCL_VOID);
 
 		return astNode;
 	}
@@ -1817,7 +1815,7 @@ public class OCLParser extends OCLLPGParser {
 		
 		HashSet names = new HashSet();
 		String nodeName = null;
-		EList vdcls = new BasicEList();
+		List vdcls = new java.util.ArrayList();
 		String name;
 
 		EList variableDeclarations = variableDeclarationListCS(tupleTypeCS.getVariables(), env, false);
@@ -1862,7 +1860,7 @@ public class OCLParser extends OCLLPGParser {
 			nodeName += vdcl.getName() + ":" + vdcl.getType().getName(); //$NON-NLS-1$
 		}
 
-		EClassifier astNode = typesFactory.createTupleType(vdcls);
+		EClassifier astNode = getTupleType(env, vdcls);
 		return astNode;
 	}
 
@@ -1894,9 +1892,12 @@ public class OCLParser extends OCLLPGParser {
 		} else if (oclExpressionCS instanceof MessageExpCS) {
 			astNode = messageExpCS((MessageExpCS)oclExpressionCS, env);
 		}
-
-		if (astNode != null)
+		
+		if (astNode != null) {
+			astNode.setType(TypeUtil.resolveType(env, astNode.getType())); 
 			initStartEndPositions(astNode, oclExpressionCS);
+		}
+		
 		return astNode;
 	}
 
@@ -2221,14 +2222,14 @@ public class OCLParser extends OCLLPGParser {
 			VariableExp vexp = expressionsFactory.createVariableExp();	
 			vexp.setReferredVariable(vdcl);
 			vexp.setName(vdcl.getName());
-			vexp.setType( vdcl.getType());
+			vexp.setType(vdcl.getType());
 			astNode = vexp;
 		} else if ((property = env.lookupProperty( sourceElementType, simpleName)) != null) {
 			
 			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 			propertyCall = expressionsFactory.createPropertyCallExp();
 			propertyCall.setReferredProperty(property);
-			propertyCall.setType(TypeUtil.getOCLType(property));
+			propertyCall.setType(TypeUtil.resolveType(env, TypeUtil.getOCLType(property)));
 			if (source != null) {
 				propertyCall.setSource(source);
 			} else {
@@ -2657,7 +2658,7 @@ public class OCLParser extends OCLLPGParser {
 			nodeName += part.getName() + ":" + part.getType().getName(); //$NON-NLS-1$
 		}
 
-		TupleType tt = typesFactory.createTupleType(tupleParts);
+		TupleType tt = getTupleType(env, tupleParts);
 		astNode.setType(tt);
 		
 		for (Iterator iter = tupleParts.iterator(); iter.hasNext();) {
@@ -2814,26 +2815,8 @@ public class OCLParser extends OCLLPGParser {
 		EClassifier type = null;
 		CollectionType resultType = null;
 		
-		resultType = collectionTypeIdentifierCS(collectionLiteralExpCS.getCollectionType());
-
-		switch(collectionLiteralExpCS.getCollectionType().getValue()) {
-			case CollectionTypeIdentifierEnum.SET:
-				kind = CollectionKind.SET_LITERAL;
-				break;
-
-			case CollectionTypeIdentifierEnum.BAG:
-				kind = CollectionKind.BAG_LITERAL;	
-				break;
-			
-			case CollectionTypeIdentifierEnum.SEQUENCE:
-				kind = CollectionKind.SEQUENCE_LITERAL;
-				break;
-			
-			case CollectionTypeIdentifierEnum.ORDERED_SET:
-				kind = CollectionKind.ORDERED_SET_LITERAL;
-				break;
-		}
-
+		kind = collectionTypeIdentifierCS(collectionLiteralExpCS.getCollectionType());
+		
 		astNode = expressionsFactory.createCollectionLiteralExp();
 		astNode.setKind(kind);
 		collectionParts = astNode.getPart();
@@ -2859,11 +2842,10 @@ public class OCLParser extends OCLLPGParser {
 		
 		if (collectionParts.isEmpty()) {
 			// absolute wildcard element type
-			resultType.setElementType(AnyTypeImpl.UML_CLASSIFIER);
+			resultType = getCollectionType(env, kind, AnyTypeImpl.UML_CLASSIFIER);
 			resultType.setName(resultType.getName() + "()");//$NON-NLS-1$
 		} else {
-			resultType.setElementType(type);
-			resultType.setName(resultType.getName() + "(" + type.getName() + ")" );//$NON-NLS-2$//$NON-NLS-1$
+			resultType = getCollectionType(env, kind, type);
 		}
 		astNode.setType(resultType);
 		 
@@ -3442,5 +3424,18 @@ public class OCLParser extends OCLLPGParser {
 		}
 		
 		return result;
+	}
+	
+	private CollectionType getCollectionType(Environment env, CollectionKind kind, EClassifier elementType) {
+		return (env instanceof PersistentEnvironment)?
+				((PersistentEnvironment) env).getTypeResolver().getCollectionType(
+						kind, elementType) :
+				typesFactory.createCollectionType(kind, elementType);
+	}
+	
+	private TupleType getTupleType(Environment env, List parts) {
+		return (env instanceof PersistentEnvironment)?
+				((PersistentEnvironment) env).getTypeResolver().getTupleType(parts) :
+				typesFactory.createTupleType(parts);
 	}
 }

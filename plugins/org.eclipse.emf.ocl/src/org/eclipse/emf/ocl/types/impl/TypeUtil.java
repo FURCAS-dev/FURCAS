@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.7 2006/04/20 21:41:46 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.8 2006/04/28 14:46:28 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -46,6 +46,8 @@ import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.parser.Environment;
+import org.eclipse.emf.ocl.parser.PersistentEnvironment;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.PrimitiveType;
@@ -152,7 +154,7 @@ public class TypeUtil {
 			result = ECollections.unmodifiableEList(
 					Types.OCL_ANY_TYPE.getOperations());
 		} else if (owner instanceof EDataType) {
-			EClassifier prim = TypeUtil.getOCLType((EDataType) owner);
+			EClassifier prim = TypeUtil.getOCLTypeFor((EDataType) owner);
 			if (prim instanceof PrimitiveType) {
 				result = ECollections.unmodifiableEList(
 						((PrimitiveType) prim).getOperations());
@@ -795,6 +797,22 @@ public class TypeUtil {
 		}
 		
 		return resultType;
+	}
+
+	/**
+	 * Resolves the specified type against the model-based types defined by
+	 * the specified environment's type resolver, for consistency with the
+	 * environment (especially for persistence).
+	 * 
+	 * @param env the parser environment
+	 * @param type the type to resolve
+	 * 
+	 * @return the environment's corresponding type
+	 */
+	public static EClassifier resolveType(Environment env, EClassifier type) {
+		return (env instanceof PersistentEnvironment)?
+				((PersistentEnvironment) env).getTypeResolver().resolve(type) :
+				type;
 	}
 
 	public static EStructuralFeature defineProperty(EClassifier owner, Variable variable) {

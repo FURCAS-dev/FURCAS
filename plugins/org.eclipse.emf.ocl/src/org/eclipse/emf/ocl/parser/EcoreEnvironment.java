@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
@@ -50,12 +51,21 @@ import com.ibm.icu.text.UTF16;
  * statement is used. Methods are provided for querying whether variable,
  * property, operation, and association class reference names belong to the
  * environment.
+ * <p>
+ * This environment provides persistence of dynamically-generated types via
+ * its {@link TypeResolver}'s resource.  The default resolver implementation
+ * uses the most basic resource implementation, which does not support
+ * persistence, so clients requiring persistence should initialize it with their
+ * own resource.  Persistence of {@link Variable}s is virtual:  the variables
+ * are stored in a resource that reconstructs variables on-the-fly from data
+ * encoded in their URI fragments.
+ * </p>
  * 
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
  */
 public class EcoreEnvironment
-	implements Environment {
+	implements PersistentEnvironment {
 
 	/* Used to generate implicit iterator variables */
 	private static int generatorInt = 0;
@@ -160,6 +170,10 @@ public class EcoreEnvironment
 	
 	private EnvironmentFactory factory;
 
+	private Resource resource;
+	
+	private TypeResolver typeResolver;
+	
 	/**
 	 * Create an environment, set the default package from a package
 	 * statement, and set the package registry to the global package
@@ -181,6 +195,8 @@ public class EcoreEnvironment
 	public EcoreEnvironment(EPackage pkg, EPackage.Registry reg) {
 		defaultPackage = pkg;
 		registry = reg;
+		
+		resource = new EnvironmentResource();
 	}
 
 	public EcoreEnvironment(Environment parent) {
@@ -192,6 +208,8 @@ public class EcoreEnvironment
 			registry = EPackage.Registry.INSTANCE;
 		}
 		this.parent = parent;
+		
+		resource = new EnvironmentResource();
 	}
 
 	public EnvironmentFactory getFactory() {
@@ -276,6 +294,23 @@ public class EcoreEnvironment
 		this.contextProperty = property;
 	}
 
+	public TypeResolver getTypeResolver() {
+		if (typeResolver == null) {
+			typeResolver = createTypeResolver();
+		}
+		
+		return typeResolver;
+	}
+	
+	/**
+	 * Creates a new type resolver for use with this environment.
+	 * 
+	 * @return a new type resolver
+	 */
+	protected TypeResolver createTypeResolver() {
+		return new TypeResolverImpl();
+	}
+	
 	/**
 	 * Is the environment empty?
 	 * 
@@ -456,6 +491,9 @@ public class EcoreEnvironment
 			elem,
 			exp);
 		namedElements.add(newelem);
+		
+		resource.getContents().add(elem);
+		
 		return true;
 	}
 
@@ -471,6 +509,8 @@ public class EcoreEnvironment
 			
 			if (elem.name.equals(name)) {
 				iter.remove();
+				
+				resource.getContents().remove(elem.variable);
 			}
 		}
 	}

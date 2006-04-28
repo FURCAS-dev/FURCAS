@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: TypesFactoryImpl.java,v 1.2 2006/04/28 14:46:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -150,22 +151,8 @@ public class TypesFactoryImpl
 		}
 	}
 
-	public TupleType createTupleType(EList parts) {
-		TupleType result = new TupleTypeImpl(parts);
-		// Test whether this tuple type already exists.
-		// Return the existing tuple type, or the new tuple type if doesn't exist.
-		// Add to the tuple EMF package if type is new.
-		result = TupleTypeImpl.addToTuplePackage(result);
-		return result;
-	}
-
-	public TupleType createTupleType(String[] partNames, EClassifier[] partTypes) {
-		TupleType result = new TupleTypeImpl(partNames, partTypes);
-		// Test whether this tuple type already exists.
-		// Return the existing tuple type, or the new tuple type if doesn't exist.
-		// Add to the tuple EMF package if type is new.
-		result = TupleTypeImpl.addToTuplePackage(result);
-		return result;
+	public TupleType createTupleType(List parts) {
+		return new TupleTypeImpl(parts);
 	}
 
 	public OrderedSetType createOrderedSetType() {
@@ -254,6 +241,10 @@ public class TypesFactoryImpl
 	public TypeType createTypeType() {
 		TypeTypeImpl typeType = new TypeTypeImpl();
 		return typeType;
+	}
+	
+	public TypeType createTypeType(EClassifier type) {
+		return TypeTypeImpl.createType(type);
 	}
 
 	/**

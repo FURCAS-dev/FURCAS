@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.6 2006/04/20 20:39:03 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.7 2006/04/28 14:46:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -36,8 +36,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EDataTypeImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
+import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
@@ -372,8 +374,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                 NOT_EMPTY_NAME));
     	result.add(TypeUtil.createBinaryOperation(
         		new SetTypeImpl(TypesFactory.eINSTANCE.createTupleType(
+        			createTupleParts(
         				new String[] {PRODUCT_FIRST, PRODUCT_SECOND},
-        				new EClassifier[] {AnyTypeImpl.OCL_T, AnyTypeImpl.OCL_T2})),
+        				new EClassifier[] {AnyTypeImpl.OCL_T, AnyTypeImpl.OCL_T2}))),
                 PRODUCT_NAME, new CollectionTypeImpl(AnyTypeImpl.OCL_T2), "c2"));//$NON-NLS-1$
     	result.add(TypeUtil.createUnaryOperation(
                 Types.OCL_REAL,
@@ -521,8 +524,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             EClassifier t2 = argType.getElementType();
             SetType resultType = TypesFactory.eINSTANCE.createSetType();
             resultType.setElementType(TypesFactory.eINSTANCE.createTupleType(
+            	createTupleParts(
             		new String[] {PRODUCT_FIRST, PRODUCT_SECOND},
-            		new EClassifier[] {t, t2}));
+            		new EClassifier[] {t, t2})));
             return resultType;
         case EXISTS:
         case FOR_ALL:
@@ -542,6 +546,19 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                 getOperationNameFor(opcode));
         OCLParser.ERR(message);
         return null;
+    }
+    
+    private static List createTupleParts(String[] names, EClassifier[] types) {
+    	List result = new java.util.ArrayList();
+    	
+    	for (int i = 0; i < names.length; i++) {
+    		Variable var = ExpressionsFactory.eINSTANCE.createVariable();
+    		var.setName(names[i]);
+    		var.setType(types[i]);
+    		result.add(var);
+    	}
+    	
+    	return result;
     }
 
 	/**

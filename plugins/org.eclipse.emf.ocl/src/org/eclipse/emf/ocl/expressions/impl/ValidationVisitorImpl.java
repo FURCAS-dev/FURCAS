@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.7 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.8 2006/04/28 14:46:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -300,6 +300,7 @@ public class ValidationVisitorImpl
 						"visitOperationCallExp", error);//$NON-NLS-1$
 					throw error;
 				}
+				
 				resultType = pt.getResultTypeFor(sourceType, opcode, args);
 			} else {
 				// source is an EClass, an enumeration, or a user data type

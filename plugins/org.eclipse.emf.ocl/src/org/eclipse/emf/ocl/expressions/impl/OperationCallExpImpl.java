@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.2 2006/04/28 14:46:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -32,6 +33,8 @@ import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
+import org.eclipse.emf.ocl.types.impl.AnyTypeImpl;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,7 +69,7 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 */
 	protected EList argument = null;
 
-	private int operationCode;
+	private int operationCode = -1;
 	
 	/**
 	 * The opertion code is a constant code for the operation, that can be
@@ -76,6 +79,25 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * @return the opcode
 	 */
 	public int getOperationCode() {
+		if (operationCode < 0) {
+			if (getSource() != null) {
+				EClassifier type = getSource().getType();
+
+				if (getReferredOperation() != null) {
+					String operName = getReferredOperation().getName();
+					
+					if ((type instanceof PredefinedType) && (getReferredOperation() != null)) {
+						operationCode = ((PredefinedType) type).getOperationCodeFor(operName);
+					} else {
+						// not a predefined type?  Model types have the AnyType operations
+						operationCode = AnyTypeImpl.getOperationCode(operName);
+					}
+				}
+			} else {
+				operationCode = 0;
+			}
+		}
+		
 		return operationCode;
 	}
 	

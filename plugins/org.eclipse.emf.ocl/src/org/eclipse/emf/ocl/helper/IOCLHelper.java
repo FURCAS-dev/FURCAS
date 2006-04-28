@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.5 2006/04/04 18:07:23 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.6 2006/04/28 14:46:29 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 
 /**
@@ -117,6 +118,18 @@ public interface IOCLHelper {
 	 */
 	public EStructuralFeature getContextProperty();
 
+	/**
+	 * Obtains the environment defining my current context classifier, operation,
+	 * or property.  I do not have an environment until my context is set.
+	 * 
+	 * @return my current environment, or <code>null</code> if I have none
+	 * 
+	 * @see #setContext(Object)
+	 * @see #setContextOperation(Object, Object)
+	 * @see #setContextProperty(Object, Object)
+	 */
+	public Environment getEnvironment();
+	
 	/**
 	 * Obtains syntax completion choices for the specified fragment of an OCL
 	 * expression that is to be used for an invariant constraint (in case of a

@@ -12,20 +12,18 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.4 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.5 2006/04/28 14:46:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -36,10 +34,7 @@ import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
-import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.TypedElement;
-import org.eclipse.emf.ocl.utilities.PredefinedType;
-import org.eclipse.emf.ocl.utilities.impl.TupleFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,11 +64,6 @@ public class TupleTypeImpl
 
 	static TypesFactory typesFactory = TypesFactory.eINSTANCE;
 
-	static EPackage tuplePackage = EcoreFactory.eINSTANCE.createEPackage();
-
-	static {
-		tuplePackage.setEFactoryInstance(new TupleFactory());
-	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,12 +75,11 @@ public class TupleTypeImpl
 
 	/**
 	 * Create a dynamic EMF class with attributes and types defined by the
-	 * list of tuple parts.  Create a TupleType that references this dynamic
-	 * object.
+	 * set of tuple parts.
 	 * 
 	 * @param parts a list of {@link TypedElement}s
 	 */
-	protected TupleTypeImpl(EList tupleParts) {
+	protected TupleTypeImpl(List tupleParts) {
 
 		this.setClassifierID(TypesPackage.TUPLE_TYPE);
 
@@ -102,40 +91,6 @@ public class TupleTypeImpl
 				continue;
 
 			getEStructuralFeatures().add(TypeUtil.createProperty(next));
-		}
-	}
-
-	protected TupleTypeImpl(String[] partNames, EClassifier[] partTypes) {
-		EAttribute attr = null;
-		EReference ref = null;
-
-		this.setClassifierID(TypesPackage.TUPLE_TYPE);
-
-		for (int i = 0; i < partNames.length; i++) {
-			String partName = partNames[i];
-			EClassifier type = partTypes[i];
-
-			if (type instanceof EDataType || type instanceof PredefinedType) {
-				attr = ecoreFactory.createEAttribute();
-				attr.setName(partName);
-				// Convert the OCL type back to an EMF type, if primitive
-				if (type == Types.OCL_BOOLEAN) {
-					type = EcorePackage.eINSTANCE.getEBoolean();
-				} else if (type == Types.OCL_INTEGER) {
-					type = EcorePackage.eINSTANCE.getEIntegerObject();
-				} else if (type == Types.OCL_STRING) {
-					type = EcorePackage.eINSTANCE.getEString();
-				} else if (type == Types.OCL_REAL) {
-					type = EcorePackage.eINSTANCE.getEDoubleObject();
-				}
-				attr.setEType(type);
-				getEStructuralFeatures().add(attr);
-			} else if (type instanceof EClass) {
-				ref = ecoreFactory.createEReference();
-				ref.setName(partName);
-				ref.setEType(type);
-				getEStructuralFeatures().add(ref);
-			}
 		}
 	}
 
@@ -164,29 +119,6 @@ public class TupleTypeImpl
 		}
 		
 		return super.getName();
-	}
-	
-	/**
-	 * See if the tuple type argument already has been generated in the tuplePackage.
-	 * If so, return the existing tuple type.
-	 * Otherwise, add the new type to the package, and return it.
-	 * @param type
-	 * @return the tuple type
-	 */
-	static protected TupleType addToTuplePackage(TupleType type) {
-		// See if this is a new type, or an existing type
-		EList classifiers = tuplePackage.getEClassifiers();
-		Iterator citer = classifiers.iterator();
-		while (citer.hasNext()) {
-			TupleTypeImpl c = (TupleTypeImpl) citer.next();
-			if (c.getRelationshipTo(type) == SAME_TYPE) {
-				return c;
-			}
-		}
-
-		classifiers.add(type); // cannot find this type in the tuple package 
-		return type;
-
 	}
 
 	/**
@@ -253,7 +185,7 @@ public class TupleTypeImpl
 			}
 		}
 		
-		return addToTuplePackage(result);
+		return result;
 	}
 
 	/**

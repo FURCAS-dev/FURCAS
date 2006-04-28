@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: TupleFactory.java,v 1.2 2006/04/28 14:46:29 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -65,8 +65,7 @@ public class TupleFactory extends EFactoryImpl {
 				
 				Object myValue = eGet(next);
 				
-				EStructuralFeature otherNext =
-					(EStructuralFeature) otherType.getEStructuralFeature(
+				EStructuralFeature otherNext = otherType.getEStructuralFeature(
 							next.getName());
 				if (otherNext == null) {
 					result = false;

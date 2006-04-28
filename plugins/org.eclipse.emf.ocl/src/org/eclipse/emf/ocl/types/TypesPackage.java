@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,6 +79,11 @@ public interface TypesPackage extends EPackage {
 	 */
 	TypesPackage eINSTANCE = org.eclipse.emf.ocl.types.impl.TypesPackageImpl.init();
 
+	/**
+	 * The package defining the types of the OCL Standard Library.
+	 */
+	EPackage OCL_STANDARD_LIBRARY = Types.init();
+	
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.types.impl.AnyTypeImpl <em>Any Type</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -2515,5 +2521,4 @@ public interface TypesPackage extends EPackage {
 		EClass TYPE_TYPE = eINSTANCE.getTypeType();
 
 	}
-
 } //TypesPackage

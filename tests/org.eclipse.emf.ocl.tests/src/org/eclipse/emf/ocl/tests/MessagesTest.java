@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.1 2006/04/04 18:08:40 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.2 2006/04/28 14:46:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -510,6 +510,16 @@ public class MessagesTest
 	// Test framework
 	//
 	
+	protected void tearDown()
+		throws Exception {
+
+		// let the next test re-initialize the fruit package to eliminate the
+		//    Drop signal
+		fruitPackage = null;
+		
+		super.tearDown();
+	}
+	
 	public static class MessagingFruitEnvironmentFactory extends AbstractEnvironmentFactory {
 
 		protected Environment createEnvironment(EPackage packageContext) {
@@ -555,6 +565,8 @@ public class MessagesTest
 			dropSignal.getEStructuralFeatures().add(property);
 			
 			signals.add(dropSignal);
+			
+			fruitPackage.getEClassifiers().add(dropSignal);
 		}
 		
 		public MessagingFruitEnvironment(Environment parent) {

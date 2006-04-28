@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.5 2006/04/20 20:04:39 cdamus Exp $
+ * $Id: OCLResource.java,v 1.6 2006/04/28 14:46:19 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +32,9 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
@@ -68,7 +69,11 @@ import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.helper.OCLParsingException;
+import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.parser.Environment;
+import org.eclipse.emf.ocl.parser.TypeResolver;
+import org.eclipse.emf.ocl.parser.TypeResolverImpl;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
@@ -101,8 +106,12 @@ public class OCLResource
 	public static String load(String path) throws IOException {
 		String result = null;
 		
+		ResourceSet rset = new ResourceSetImpl();
+		
 		// create and load the resource
 		OCLResource res = new OCLResource(URI.createFileURI(path));
+		rset.getResources().add(res);
+		
 		res.load(Collections.EMPTY_MAP);
 		
 		OCLExpression expr = res.getOCLExpression();
@@ -126,11 +135,22 @@ public class OCLResource
 	 */
 	public static void save(String path, EObject context, String expr)
 			throws IOException, OCLParsingException {
+		final OCLResource res = new OCLResource(URI.createFileURI(path));
+		
 		// create an OCL helper to do our parsing.  Use the current resource
-		//    set's package registry to resolve OCL namespaces
+		//    set's package registry to resolve OCL namespaces, and create an
+		//    environment that persists the dynamically-generated types in me
 		IOCLHelper helper = HelperUtil.createOCLHelper(
 			new EcoreEnvironmentFactory(
-				context.eResource().getResourceSet().getPackageRegistry()));
+				context.eResource().getResourceSet().getPackageRegistry()) {
+				
+				protected Environment createEnvironment(EPackage packageContext) {
+					return res.new PersistentEnvironment(packageContext);
+				}
+				
+				public Environment createEnvironment(Environment parent) {
+					return res.new PersistentEnvironment(parent);
+				}});
 		
 		// use an OCL helper to parse the OCL expression and extract
 		//    the AST from it
@@ -138,8 +158,7 @@ public class OCLResource
 		
 		OCLExpression parsed = helper.createQuery(expr);
 		
-		// create a resource, add the AST to it, and save it
-		OCLResource res = new OCLResource(URI.createFileURI(path));
+		// add the AST to the resource and save it
 		res.setOCLExpression(parsed);
 		
 		res.save(Collections.EMPTY_MAP);
@@ -151,10 +170,9 @@ public class OCLResource
 	 * @param expr an OCL expression
 	 */
 	public void setOCLExpression(OCLExpression expr) {
-		getContents().clear();  // clear any previous contents
-		getContents().add(expr);
-		
-		addAllDetachedObjects();
+		// add my expression as the first root, because I already contain
+		//    EPackages defining dynamically-generated types
+		getContents().add(0, expr);
 	}
 	
 	/**
@@ -172,40 +190,6 @@ public class OCLResource
 		return result;
 	}
 
-	/**
-	 * Searches the OCL expression tree for any references to
-	 * objects that are not in any resource and adds them to me so that they
-	 * may be saved.
-	 */
-	private void addAllDetachedObjects() {
-		List toProcess = Collections.singletonList(getOCLExpression());
-		
-		while (!toProcess.isEmpty()) {
-			List detachedFound = new ArrayList();
-			
-			for (Iterator tree = EcoreUtil.getAllContents(toProcess); tree.hasNext();) {
-				EObject next = (EObject) tree.next();
-				
-				for (Iterator xrefs = next.eCrossReferences().iterator(); xrefs.hasNext();) {
-					EObject xref = (EObject) xrefs.next();
-					
-					if (xref.eResource() == null) {
-						// get the root container so that we may attach the entire
-						//    contents of this detached tree
-						xref = EcoreUtil.getRootContainer(xref);
-						
-						detachedFound.add(xref);
-						
-						// attach it to me
-						getContents().add(xref);
-					}
-				}
-			}
-			
-			toProcess = detachedFound;
-		}
-	}
-	
 	/**
 	 * AST visitor for OCL expressions that converts them to a string.
 	 */
@@ -616,6 +600,35 @@ public class OCLResource
 
 		public Object visitNullLiteralExp(NullLiteralExp il) {
 			return "null"; //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * A custom environment that persists dynamically-generated types in the
+	 * OCL resource, itself.
+	 *
+	 * @author Christian W. Damus (cdamus)
+	 */
+	class PersistentEnvironment extends EcoreEnvironment {
+
+		public PersistentEnvironment(Environment parent) {
+			super(parent);
+		}
+
+		public PersistentEnvironment(EPackage pkg, Registry reg) {
+			super(pkg, reg);
+		}
+
+		public PersistentEnvironment(EPackage pkg) {
+			super(pkg);
+		}
+
+		protected TypeResolver createTypeResolver() {
+			if (getParent() instanceof PersistentEnvironment) {
+				return ((PersistentEnvironment) getParent()).getTypeResolver();
+			}
+			
+			return new TypeResolverImpl(OCLResource.this);
 		}
 	}
 }

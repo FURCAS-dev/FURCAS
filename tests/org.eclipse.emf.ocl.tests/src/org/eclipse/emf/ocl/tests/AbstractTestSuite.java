@@ -143,6 +143,7 @@ public abstract class AbstractTestSuite
 		result.addTest(QueryFactoryTest.suite());
 		result.addTest(EcoreEnvironmentTest.suite());
 		result.addTest(ValidationTest.suite());
+		result.addTest(SerializationTest.suite());
 		
 		return result;
 	}
@@ -513,7 +514,11 @@ public abstract class AbstractTestSuite
 			try {
 				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
 						"ecore", new XMIResourceFactoryImpl()); //$NON-NLS-1$
-				url = new URL(System.getProperty("org.eclipse.emf.ocl.tests.testmodel")); //$NON-NLS-1$
+				String urlString = System.getProperty("org.eclipse.emf.ocl.tests.testmodel"); //$NON-NLS-1$
+				if (!urlString.startsWith("file:")) { //$NON-NLS-1$
+					urlString = "file:" + urlString; //$NON-NLS-1$
+				}
+				url = new URL(urlString);
 			} catch (MalformedURLException e) {
 				fail(e.getLocalizedMessage());
 			}

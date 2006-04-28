@@ -17,12 +17,15 @@
 
 package org.eclipse.emf.ocl.types;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
+import org.eclipse.emf.ocl.uml.TypedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,8 +117,14 @@ public interface TypesFactory extends EFactory {
 	 */
 	TupleType createTupleType();
 
-	TupleType createTupleType(EList tupleLiteralParts);
-	TupleType createTupleType(String[] partNames, EClassifier[] partTypes);
+	/**
+	 * Creates a tuple type based on tthe specified part descriptions.
+	 * 
+	 * @param parts a list of {@link TypedElement}s describing the tuple parts
+	 * 
+	 * @return the new tuple type
+	 */
+	TupleType createTupleType(List parts);
 
 	/**
 	 * Returns a new object of class '<em>Void Type</em>'.
@@ -172,6 +181,8 @@ public interface TypesFactory extends EFactory {
 	 * @generated
 	 */
 	TypeType createTypeType();
+	
+	TypeType createTypeType(EClassifier type);
 
 	/**
 	 * Returns a new object of class '<em>Primitive Boolean</em>'.
