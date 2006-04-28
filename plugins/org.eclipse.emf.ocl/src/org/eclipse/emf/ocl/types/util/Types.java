@@ -204,9 +204,9 @@ public class Types {
 						String result = super.eURIFragmentSegment(eStructuralFeature, eObject);
 						return URI.encodeFragment(result, false);
 					}};
+				eclass.setName(stdType.getName() + "_Class"); //$NON-NLS-1$
 			}
 			
-			eclass.setName(stdType.getName() + "_Class"); //$NON-NLS-1$
 			eclass.getEOperations().addAll(((PredefinedType) stdType).getOperations());
 			standardLibrary.getEClassifiers().add(eclass);
 		}
