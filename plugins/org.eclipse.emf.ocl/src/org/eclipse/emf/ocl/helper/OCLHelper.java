@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.5 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.6 2006/04/28 17:51:32 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
@@ -226,14 +227,14 @@ class OCLHelper
 		return createNullCondition(Types.OCL_VOID);
 	}
 	
-	public void define(String defExpression) throws OCLParsingException {
-		if (removeOCLComments(defExpression).length() > 0) {
-			try {
-				ExpressionsUtil.define(environment, defExpression);
-			} catch (Exception e) {
-				propagate(e, "define"); //$NON-NLS-1$
-			}
+	public ETypedElement define(String defExpression) throws OCLParsingException {
+		try {
+			return ExpressionsUtil.define(environment, defExpression);
+		} catch (Exception e) {
+			propagate(e, "define"); //$NON-NLS-1$
 		}
+		
+		return null;  // make the compiler happy
 	}
 	
 	public Object evaluate(Object context, OCLExpression expr) {

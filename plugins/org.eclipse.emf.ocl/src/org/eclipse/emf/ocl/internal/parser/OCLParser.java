@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.12 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: OCLParser.java,v 1.13 2006/04/28 17:51:32 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -135,7 +135,6 @@ import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.MessageType;
 import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
-import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -2342,9 +2341,9 @@ public class OCLParser extends OCLLPGParser {
 		
 		if (source.getType() instanceof SequenceType ||
 				source.getType() instanceof OrderedSetType) {
-			result.setType(typesFactory.createSequenceType(bodyType));
+			result.setType(getCollectionType(env, CollectionKind.SEQUENCE_LITERAL, bodyType));
 		} else {
-			result.setType(typesFactory.createBagType(bodyType));
+			result.setType(getCollectionType(env, CollectionKind.BAG_LITERAL, bodyType));
 		}
 		
 		env.deleteElement(itervar.getName());
@@ -2977,8 +2976,8 @@ public class OCLParser extends OCLLPGParser {
 			collItem.setType(astNode.getType());
 			collItem.setItem(astNode);				
 			collectionParts.add(collItem);
-			SetType type = typesFactory.createSetType(astNode.getType());
-			type.setName("Set(" + type.getName() + ")" );//$NON-NLS-2$//$NON-NLS-1$
+			CollectionType type = getCollectionType(
+					env, CollectionKind.SET_LITERAL, astNode.getType());
 			astNode1.setType(type);
 			astNode = astNode1;
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.1 2006/04/28 14:46:16 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.2 2006/04/28 17:51:28 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -26,7 +26,12 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -37,6 +42,7 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.parser.PersistentEnvironment;
+import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.ASTNode;
 
@@ -200,6 +206,88 @@ public class SerializationTest
 		assertEquals(toStringForm, expr.toString());  // should "look" the same
 	}
 	
+	/**
+	 * Tests the serialization of an expression referencing an additional operation.
+	 */
+	public void test_additionalOperationSerialization() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			EOperation eoper = (EOperation) helper.define(
+					"getUniqueClassifierNames() : Set(String) = " + //$NON-NLS-1$
+					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
+			
+			// EOperations and EStructuralFeatures will not have sensible URIs
+			//    if they are not contained in an EPackage
+			EPackage dummy = EcoreFactory.eINSTANCE.createEPackage();
+			dummy.setName("additional"); //$NON-NLS-1$
+			EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+			eclass.setName("additional"); //$NON-NLS-1$
+			dummy.getEClassifiers().add(eclass);
+			eclass.getEOperations().add(eoper);
+			
+			((PersistentEnvironment) helper.getEnvironment()).getTypeResolver()
+					.getResource().getContents().add(dummy);
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		OCLExpression expr = parseExpression(
+				helper,
+				"self.getUniqueClassifierNames()->size()"); //$NON-NLS-1$
+
+		String toStringForm = expr.toString();
+		String serialForm = serialize(expr);
+		
+		expr = loadExpression(serialForm);
+		TypeUtil.resolveAdditionalFeatures(EcorePackage.Literals.EPACKAGE, rset);
+		
+		validate(expr);  // ensure that it is structurally valid
+		assertEquals(toStringForm, expr.toString());  // should "look" the same
+	}
+	
+	/**
+	 * Tests the serialization of an expression referencing an additional property.
+	 */
+	public void test_additionalPropertySerialization() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			EStructuralFeature esf = (EStructuralFeature) helper.define(
+					"uniqueClassifierNames : Set(String) = " + //$NON-NLS-1$
+					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
+			
+			// EOperations and EStructuralFeatures will not have sensible URIs
+			//    if they are not contained in an EPackage
+			EPackage dummy = EcoreFactory.eINSTANCE.createEPackage();
+			dummy.setName("additional"); //$NON-NLS-1$
+			EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+			eclass.setName("additional"); //$NON-NLS-1$
+			dummy.getEClassifiers().add(eclass);
+			eclass.getEStructuralFeatures().add(esf);
+			
+			((PersistentEnvironment) helper.getEnvironment()).getTypeResolver()
+					.getResource().getContents().add(dummy);
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		OCLExpression expr = parseExpression(
+				helper,
+				"self.uniqueClassifierNames->size()"); //$NON-NLS-1$
+
+		String toStringForm = expr.toString();
+		String serialForm = serialize(expr);
+		
+		expr = loadExpression(serialForm);
+		TypeUtil.resolveAdditionalFeatures(EcorePackage.Literals.EPACKAGE, rset);
+		
+		validate(expr);  // ensure that it is structurally valid
+		assertEquals(toStringForm, expr.toString());  // should "look" the same
+	}
+	
 	//
 	// Framework methods
 	//
@@ -262,7 +350,6 @@ public class SerializationTest
 		
 		try {
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
-			res.unload();
 			res.getContents().add(eobject);
 			res.save(output, Collections.EMPTY_MAP);
 			result = output.toString("UTF-8"); //$NON-NLS-1$

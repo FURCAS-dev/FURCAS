@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.internal.OCLDebugOptions;
@@ -630,10 +631,12 @@ public class ExpressionsUtil {
 	 * @param defExpression the definition expression (without the <code>"def:"</code>
 	 *     preamble but including the <code>"name(...) : type ="</code> part)
 	 * 
+	 * @return the newly defined {@link EOperation} or {@link EStructuralFeature}
+	 * 
 	 * @throws ParserException if the expression fails to parse
 	 * @throws IllegalArgumentException if the expression fails to validate
 	 */
-	public static void define(
+	public static ETypedElement define(
 			Environment env,
 			String defExpression) throws ParserException {
 		
@@ -643,6 +646,8 @@ public class ExpressionsUtil {
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		constraint.accept(ValidationVisitorImpl.getInstance(env));
+		
+		return (ETypedElement) constraint.getConstrainedElement().get(1);
 	}
 
 	/**

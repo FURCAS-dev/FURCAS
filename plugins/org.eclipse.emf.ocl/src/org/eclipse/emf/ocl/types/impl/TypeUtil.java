@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.8 2006/04/28 14:46:28 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.9 2006/04/28 17:51:32 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
@@ -937,6 +939,14 @@ public class TypeUtil {
 		}
 	}
 	
+	public static void resolveAdditionalFeatures(EClassifier owner, ResourceSet rset) {
+		AdditionalFeaturesAdapter adapter = getAdditionalFeatures(owner);
+		
+		if (adapter != null) {
+			adapter.resolve(rset);
+		}
+	}
+	
 	private static class AdditionalFeaturesAdapter extends AdapterImpl {
 		private EList additionalProperties;
 		private EList additionalOperations;
@@ -971,6 +981,28 @@ public class TypeUtil {
 			}
 			
 			additionalProperties.add(property);
+		}
+		
+		public void resolve(ResourceSet rset) {
+			if (additionalProperties != null) {
+				for (ListIterator iter = additionalProperties.listIterator(); iter.hasNext();) {
+					EStructuralFeature next = (EStructuralFeature) iter.next();
+					
+					if (next.eIsProxy()) {
+						iter.set(EcoreUtil.resolve(next, rset));
+					}
+				}
+			}
+			
+			if (additionalOperations != null) {
+				for (ListIterator iter = additionalOperations.listIterator(); iter.hasNext();) {
+					EOperation next = (EOperation) iter.next();
+					
+					if (next.eIsProxy()) {
+						iter.set(EcoreUtil.resolve(next, rset));
+					}
+				}
+			}
 		}
 	}
 }

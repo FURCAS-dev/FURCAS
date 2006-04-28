@@ -201,15 +201,19 @@ public class EcoreEnvironment
 
 	public EcoreEnvironment(Environment parent) {
 		if (parent instanceof EcoreEnvironment) {
-			defaultPackage = ((EcoreEnvironment) parent).defaultPackage;
-			registry = ((EcoreEnvironment) parent).registry;
+			EcoreEnvironment eparent = (EcoreEnvironment) parent;
+			defaultPackage = eparent.defaultPackage;
+			registry = eparent.registry;
+			
+			resource = eparent.resource;
+			typeResolver = eparent.getTypeResolver();
 		} else {
 			defaultPackage = parent.getContextClassifier().getEPackage();
 			registry = EPackage.Registry.INSTANCE;
+			
+			resource = new EnvironmentResource();
 		}
 		this.parent = parent;
-		
-		resource = new EnvironmentResource();
 	}
 
 	public EnvironmentFactory getFactory() {

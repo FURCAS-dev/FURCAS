@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.6 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.7 2006/04/28 17:51:32 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
@@ -281,10 +282,11 @@ public interface IOCLHelper {
 	 * 
 	 * @param defExpression the definition expression (without any other context
 	 *    declaration).
+	 * @return the newly defined {@link EOperation} or {@link EStructuralFeature}
 	 * 
 	 * @throws OCLParsingException if the <code>expression</code> fails to parse
 	 */
-	void define(String defExpression) throws OCLParsingException;
+	ETypedElement define(String defExpression) throws OCLParsingException;
 
 	/**
 	 * Evaluates the specified parsed OCL expression on an instance of my
