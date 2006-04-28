@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.9 2006/04/28 17:51:32 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.10 2006/04/28 18:41:57 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
@@ -51,6 +51,7 @@ import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.PersistentEnvironment;
 import org.eclipse.emf.ocl.parser.SemanticException;
+import org.eclipse.emf.ocl.parser.TypeResolver;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.TupleType;
@@ -939,11 +940,11 @@ public class TypeUtil {
 		}
 	}
 	
-	public static void resolveAdditionalFeatures(EClassifier owner, ResourceSet rset) {
+	public static void resolveAdditionalFeatures(EClassifier owner, Environment env) {
 		AdditionalFeaturesAdapter adapter = getAdditionalFeatures(owner);
 		
 		if (adapter != null) {
-			adapter.resolve(rset);
+			adapter.resolve(owner, env);
 		}
 	}
 	
@@ -983,23 +984,42 @@ public class TypeUtil {
 			additionalProperties.add(property);
 		}
 		
-		public void resolve(ResourceSet rset) {
-			if (additionalProperties != null) {
-				for (ListIterator iter = additionalProperties.listIterator(); iter.hasNext();) {
-					EStructuralFeature next = (EStructuralFeature) iter.next();
-					
-					if (next.eIsProxy()) {
-						iter.set(EcoreUtil.resolve(next, rset));
+		public void resolve(EClassifier owner, Environment env) {
+			if (env instanceof PersistentEnvironment) {
+				TypeResolver resolver = ((PersistentEnvironment) env).getTypeResolver();
+				Resource resource = resolver.getResource();
+				
+				if (additionalProperties != null) {
+					for (ListIterator iter = additionalProperties.listIterator(); iter.hasNext();) {
+						EStructuralFeature next = (EStructuralFeature) iter.next();
+						
+						EStructuralFeature resolved;
+						if (next.eIsProxy()) {
+							resolved = (EStructuralFeature) EcoreUtil.resolve(next, resource);
+						} else {
+							resolved = resolver.resolveAdditionalProperty(owner, next);
+						}
+						
+						if (resolved != next) {
+							iter.set(resolved);
+						}
 					}
 				}
-			}
-			
-			if (additionalOperations != null) {
-				for (ListIterator iter = additionalOperations.listIterator(); iter.hasNext();) {
-					EOperation next = (EOperation) iter.next();
-					
-					if (next.eIsProxy()) {
-						iter.set(EcoreUtil.resolve(next, rset));
+				
+				if (additionalOperations != null) {
+					for (ListIterator iter = additionalOperations.listIterator(); iter.hasNext();) {
+						EOperation next = (EOperation) iter.next();
+						
+						EOperation resolved;
+						if (next.eIsProxy()) {
+							resolved = (EOperation) EcoreUtil.resolve(next, resource);
+						} else {
+							resolved = resolver.resolveAdditionalOperation(owner, next);
+						}
+						
+						if (resolved != next) {
+							iter.set(resolved);
+						}
 					}
 				}
 			}

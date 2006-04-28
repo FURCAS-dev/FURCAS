@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.1 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.2 2006/04/28 18:41:57 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -20,14 +20,19 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -72,6 +77,7 @@ public class TypeResolverImpl
 	private EPackage tuplePackage;
 	private EPackage typePackage;
 	private EPackage messagePackage;
+	private EPackage additionalFeaturesPackage;
 	
 	/**
 	 * Initializes me.  I create my own resource for persistence of model-based
@@ -154,7 +160,7 @@ public class TypeResolverImpl
 	}
 	
 	// Documentation copied from the inherited specification
-	public CollectionType getCollectionType(CollectionKind kind,
+	public CollectionType resolveCollectionType(CollectionKind kind,
 			EClassifier elementType) {
 		CollectionType result = findCollectionType(kind, elementType);
 		
@@ -233,7 +239,7 @@ public class TypeResolverImpl
 	}
 
 	// Documentation copied from the inherited specification
-	public TupleType getTupleType(List parts) {
+	public TupleType resolveTupleType(List parts) {
 		TupleType result = findTupleType(parts);
 		
 		if (result == null) {
@@ -319,7 +325,7 @@ public class TypeResolverImpl
 	}
 	
 	// Documentation copied from the inherited specification
-	public TypeType getTypeType(EClassifier type) {
+	public TypeType resolveTypeType(EClassifier type) {
 		TypeType result = findTypeType(type);
 		
 		if (result == null) {
@@ -393,7 +399,7 @@ public class TypeResolverImpl
 	}
 	
 	// Documentation copied from the inherited specification
-	public MessageType getMessageType(EOperation operation) {
+	public MessageType resolveMessageType(EOperation operation) {
 		MessageType result = findMessageType(operation);
 		
 		if (result == null) {
@@ -404,7 +410,7 @@ public class TypeResolverImpl
 	}
 	
 	// Documentation copied from the inherited specification
-	public MessageType getMessageType(EClass signal) {
+	public MessageType resolveMessageType(EClass signal) {
 		MessageType result = findMessageType(signal);
 		
 		if (result == null) {
@@ -451,32 +457,213 @@ public class TypeResolverImpl
 	}
 	
 	/**
+	 * Obtains the package containing the additional operations and properties
+	 * parsed in my environment.
+	 * 
+	 * @return my additional features package
+	 */
+	public EPackage getAdditionalFeaturesPackage() {
+		if (additionalFeaturesPackage == null) {
+			additionalFeaturesPackage = createAdditionalFeaturesPackage();
+		}
+		
+		return additionalFeaturesPackage;
+	}
+	
+	/**
+	 * Creates the package containing the additional operations and properties
+	 * parsed in my environment.
+	 * 
+	 * @return the new additional features package
+	 */
+	protected EPackage createAdditionalFeaturesPackage() {
+		EPackage result = new EncodingPackage();
+		
+		result.setName("additional"); //$NON-NLS-1$
+		getResource().getContents().add(result);
+		
+		return result;
+	}
+	
+	// Documentation copied from the inherited specification
+	public EOperation resolveAdditionalOperation(EClassifier owner, EOperation operation) {
+		EClass shadow = findShadowClass(owner);
+		
+		if (shadow == null) {
+			shadow = createShadowClass(owner);
+		}
+		
+		EOperation result = findMatchingOperation(shadow, operation);
+		if (result == null) {
+			result = operation;
+			shadow.getEOperations().add(result);
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Finds an operation already existing in the specified <code>shadow</code>
+	 * class that matches the specified <code>operation</code> signature.
+	 * 
+	 * @param shadow the shadow class to search
+	 * @param operation the operation to match
+	 * 
+	 * @return the matching operation, or <code>null</code> if not found
+	 */
+	protected EOperation findMatchingOperation(EClass shadow, EOperation operation) {
+		for (Iterator iter = shadow.getEOperations().iterator(); iter.hasNext();) {
+			EOperation next = (EOperation) iter.next();
+			
+			if ((next == operation)
+					|| (next.getName().equals(operation.getName())
+							&& matchParameters(next, operation))) {
+				return next;
+			}
+		}
+		
+		return null;
+	}
+	
+	private boolean matchParameters(EOperation a, EOperation b) {
+		EList aparms = a.getEParameters();
+		EList bparms = b.getEParameters();
+		
+		if (aparms.size() == bparms.size()) {
+			int count = aparms.size();
+			
+			for (int i = 0; i < count; i++) {
+				EParameter aparm = (EParameter) aparms.get(i);
+				EParameter bparm = (EParameter) bparms.get(i);
+				
+				if (!aparm.getName().equals(bparm.getName())
+						|| TypeUtil.getRelationship(aparm.getEType(), bparm.getEType())
+							!= PredefinedType.SAME_TYPE) {
+					
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Finds a property already existing in the specified <code>shadow</code>
+	 * class that matches the specified <code>property</code> signature.
+	 * 
+	 * @param shadow the shadow class to search
+	 * @param property the property to match
+	 * 
+	 * @return the matching operation, or <code>null</code> if not found
+	 */
+	protected EStructuralFeature findMatchingProperty(EClass shadow, EStructuralFeature property) {
+		for (Iterator iter = shadow.getEStructuralFeatures().iterator(); iter.hasNext();) {
+			EStructuralFeature next = (EStructuralFeature) iter.next();
+			
+			if ((next == property) || next.getName().equals(property.getName())) {
+				return next;
+			}
+		}
+		
+		return null;
+	}
+	
+	// Documentation copied from the inherited specification
+	public EStructuralFeature resolveAdditionalProperty(EClassifier owner, EStructuralFeature property) {
+		EClass shadow = findShadowClass(owner);
+		
+		if (shadow == null) {
+			shadow = createShadowClass(owner);
+		}
+		
+		EStructuralFeature result = findMatchingProperty(shadow, property);
+		if (result == null) {
+			result = property;
+			shadow.getEStructuralFeatures().add(result);
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Creates the shadow class to contain additional features defined for the
+	 * specified OCL <code>type</code>.
+	 * 
+	 * @param type an OCL type
+	 * 
+	 * @return the class containing its additional features
+	 */
+	protected EClass createShadowClass(EClassifier type) {
+		// the additional features may have invalid characters in their names
+		EClass result = new EClassImpl() {
+			public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
+				String result = super.eURIFragmentSegment(eStructuralFeature, eObject);
+				return URI.encodeFragment(result, false);
+			}};
+		result.setName(type.getName() + "_Class"); //$NON-NLS-1$
+		
+		EAnnotation ann = EcoreFactory.eINSTANCE.createEAnnotation();
+		ann.setSource("realOwner"); //$NON-NLS-1$
+		ann.getReferences().add(type);
+		result.getEAnnotations().add(ann);
+		
+		getAdditionalFeaturesPackage().getEClassifiers().add(result);
+		
+		return result;
+	}
+	
+	/**
+	 * Finds the shadow class to contain additional features defined for the
+	 * specified OCL <code>type</code>, if it already exists.
+	 * 
+	 * @param type an OCL type
+	 * 
+	 * @return the class containing its additional features, or <code>null</code>
+	 *      if not found
+	 */
+	protected EClass findShadowClass(EClassifier type) {
+		for (Iterator iter = getAdditionalFeaturesPackage().getEClassifiers().iterator(); iter.hasNext();) {
+			EClass next = (EClass) iter.next();
+			
+			EAnnotation ann = next.getEAnnotation("realOwner"); //$NON-NLS-1$
+			if ((ann != null) && ann.getReferences().contains(type)) {
+				return next;
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
 	 * A type switch that resolves types against my resolver's environment.
 	 * 
 	 * @author Christian W. Damus (cdamus)
 	 */
 	private class ResolveSwitch extends TypesSwitch {
 		public Object caseCollectionType(CollectionType object) {
-			return getCollectionType(
+			return resolveCollectionType(
 				object.getKind(),
 				resolve(object.getElementType()));
 		}
 		
 		public Object caseTupleType(TupleType object) {
-			return getTupleType(createTupleParts(
+			return resolveTupleType(createTupleParts(
 				object.getEStructuralFeatures()));
 		}
 		
 		public Object caseTypeType(TypeType object) {
-			return getTypeType(
+			return resolveTypeType(
 				resolve(((TypeTypeImpl) object).getReferredType()));
 		}
 		
 		public Object caseMessageType(MessageType object) {
 			if (object.getReferredOperation() != null) {
-				return getMessageType(object.getReferredOperation());
+				return resolveMessageType(object.getReferredOperation());
 			} else if (object.getReferredSignal() != null) {
-				return getMessageType(object.getReferredSignal());
+				return resolveMessageType(object.getReferredSignal());
 			}
 			
 			return null;

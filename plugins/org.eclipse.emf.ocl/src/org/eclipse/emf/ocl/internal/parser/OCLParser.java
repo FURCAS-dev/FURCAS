@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.13 2006/04/28 17:51:32 cdamus Exp $
+ * $Id: OCLParser.java,v 1.14 2006/04/28 18:41:57 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -3427,14 +3427,14 @@ public class OCLParser extends OCLLPGParser {
 	
 	private CollectionType getCollectionType(Environment env, CollectionKind kind, EClassifier elementType) {
 		return (env instanceof PersistentEnvironment)?
-				((PersistentEnvironment) env).getTypeResolver().getCollectionType(
+				((PersistentEnvironment) env).getTypeResolver().resolveCollectionType(
 						kind, elementType) :
 				typesFactory.createCollectionType(kind, elementType);
 	}
 	
 	private TupleType getTupleType(Environment env, List parts) {
 		return (env instanceof PersistentEnvironment)?
-				((PersistentEnvironment) env).getTypeResolver().getTupleType(parts) :
+				((PersistentEnvironment) env).getTypeResolver().resolveTupleType(parts) :
 				typesFactory.createTupleType(parts);
 	}
 }

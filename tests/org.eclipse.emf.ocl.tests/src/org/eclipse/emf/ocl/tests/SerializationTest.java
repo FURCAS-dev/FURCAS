@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.2 2006/04/28 17:51:28 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.3 2006/04/28 18:41:53 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -26,12 +26,9 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -212,23 +209,15 @@ public class SerializationTest
 	public void test_additionalOperationSerialization() {
 		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		PersistentEnvironment env = (PersistentEnvironment) helper.getEnvironment();
 		
 		try {
 			EOperation eoper = (EOperation) helper.define(
 					"getUniqueClassifierNames() : Set(String) = " + //$NON-NLS-1$
 					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
 			
-			// EOperations and EStructuralFeatures will not have sensible URIs
-			//    if they are not contained in an EPackage
-			EPackage dummy = EcoreFactory.eINSTANCE.createEPackage();
-			dummy.setName("additional"); //$NON-NLS-1$
-			EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-			eclass.setName("additional"); //$NON-NLS-1$
-			dummy.getEClassifiers().add(eclass);
-			eclass.getEOperations().add(eoper);
-			
-			((PersistentEnvironment) helper.getEnvironment()).getTypeResolver()
-					.getResource().getContents().add(dummy);
+			env.getTypeResolver().resolveAdditionalOperation(
+					EcorePackage.Literals.EPACKAGE, eoper);
 		} catch (Exception e) {
 			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -241,7 +230,7 @@ public class SerializationTest
 		String serialForm = serialize(expr);
 		
 		expr = loadExpression(serialForm);
-		TypeUtil.resolveAdditionalFeatures(EcorePackage.Literals.EPACKAGE, rset);
+		TypeUtil.resolveAdditionalFeatures(EcorePackage.Literals.EPACKAGE, env);
 		
 		validate(expr);  // ensure that it is structurally valid
 		assertEquals(toStringForm, expr.toString());  // should "look" the same
@@ -253,23 +242,15 @@ public class SerializationTest
 	public void test_additionalPropertySerialization() {
 		IOCLHelper helper = HelperUtil.createOCLHelper();
 		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		PersistentEnvironment env = (PersistentEnvironment) helper.getEnvironment();
 		
 		try {
 			EStructuralFeature esf = (EStructuralFeature) helper.define(
 					"uniqueClassifierNames : Set(String) = " + //$NON-NLS-1$
 					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
 			
-			// EOperations and EStructuralFeatures will not have sensible URIs
-			//    if they are not contained in an EPackage
-			EPackage dummy = EcoreFactory.eINSTANCE.createEPackage();
-			dummy.setName("additional"); //$NON-NLS-1$
-			EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-			eclass.setName("additional"); //$NON-NLS-1$
-			dummy.getEClassifiers().add(eclass);
-			eclass.getEStructuralFeatures().add(esf);
-			
-			((PersistentEnvironment) helper.getEnvironment()).getTypeResolver()
-					.getResource().getContents().add(dummy);
+			env.getTypeResolver().resolveAdditionalProperty(
+					EcorePackage.Literals.EPACKAGE, esf);
 		} catch (Exception e) {
 			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -282,7 +263,7 @@ public class SerializationTest
 		String serialForm = serialize(expr);
 		
 		expr = loadExpression(serialForm);
-		TypeUtil.resolveAdditionalFeatures(EcorePackage.Literals.EPACKAGE, rset);
+		TypeUtil.resolveAdditionalFeatures(EcorePackage.Literals.EPACKAGE, env);
 		
 		validate(expr);  // ensure that it is structurally valid
 		assertEquals(toStringForm, expr.toString());  // should "look" the same

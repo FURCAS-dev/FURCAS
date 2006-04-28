@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolver.java,v 1.1 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: TypeResolver.java,v 1.2 2006/04/28 18:41:57 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
@@ -84,7 +85,7 @@ public interface TypeResolver {
 	 * 
 	 * @return the new or existing collection type
 	 */
-	CollectionType getCollectionType(CollectionKind kind, EClassifier elementType);
+	CollectionType resolveCollectionType(CollectionKind kind, EClassifier elementType);
 
 	/**
 	 * Resolves the tuple type consisting of the specified <code>parts</code>,
@@ -99,7 +100,7 @@ public interface TypeResolver {
 	 *     
 	 * @return the new or existing tuple type
 	 */
-	TupleType getTupleType(List parts);
+	TupleType resolveTupleType(List parts);
 
 	/**
 	 * Resolves the type for a type expression referencing the specified
@@ -109,7 +110,7 @@ public interface TypeResolver {
 	 * @param type a model type
 	 * @return the new or existing type type
 	 */
-	TypeType getTypeType(EClassifier type);
+	TypeType resolveTypeType(EClassifier type);
 
 	/**
 	 * Resolves the type for a message expression referencing the specified
@@ -118,7 +119,7 @@ public interface TypeResolver {
 	 * @param operation the operation call that the message represents
 	 * @return the new or existing message type
 	 */
-	MessageType getMessageType(EOperation operation);
+	MessageType resolveMessageType(EOperation operation);
 
 	/**
 	 * Resolves the type for a message expression referencing the specified
@@ -127,5 +128,27 @@ public interface TypeResolver {
 	 * @param signal the signal send that the message represents
 	 * @return the new or existing message type
 	 */
-	MessageType getMessageType(EClass signal);
+	MessageType resolveMessageType(EClass signal);
+	
+	/**
+	 * Resolves the specified "additional operation" defined by the OCL client
+	 * on the specified <code>owner</code> type.
+	 * 
+	 * @param owner the type on which the additional operation is defined
+	 * @param operation the additional operation
+	 * 
+	 * @return the persistent operation
+	 */
+	EOperation resolveAdditionalOperation(EClassifier owner, EOperation operation);
+	
+	/**
+	 * Resolves the specified "additional property" defined by the OCL client
+	 * on the specified <code>owner</code> type.
+	 * 
+	 * @param owner the type on which the additional property is defined
+	 * @param property the additional property
+	 * 
+	 * @return the persistent property
+	 */
+	EStructuralFeature resolveAdditionalProperty(EClassifier owner, EStructuralFeature property);
 }
