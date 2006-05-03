@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.6 2006/04/19 14:02:34 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.7 2006/05/03 19:42:20 cmcgee Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -94,6 +94,7 @@ import org.eclipse.emf.ocl.types.impl.PrimitiveTypeImpl;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
+import org.eclipse.emf.ocl.utilities.impl.CollectionFactory;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
@@ -1903,7 +1904,21 @@ public class EvaluationVisitorImpl
 		}
 		
 		// evaluate attribute on source value
-		return context.eGet(property);
+		Object result = context.eGet(property);
+		
+		if ((pc.getType() instanceof CollectionType) && !(result instanceof Collection)) {
+			// this was an XSD "unspecified multiplicity".  Now that we know what
+			//    the multiplicity is, we can coerce it to a collection value
+			
+			CollectionKind kind = ((CollectionType) pc.getType()).getKind();
+			Collection collection = CollectionFactory.getInstance().createCollection(
+					kind.getValue());
+			
+			collection.add(result);
+			result = collection;
+		}
+		
+		return result;
 	}
     
     /**

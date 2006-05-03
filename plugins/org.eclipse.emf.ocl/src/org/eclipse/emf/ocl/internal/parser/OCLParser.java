@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.14 2006/04/28 18:41:57 cdamus Exp $
+ * $Id: OCLParser.java,v 1.15 2006/05/03 19:42:20 cmcgee Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -492,7 +492,7 @@ public class OCLParser extends OCLLPGParser {
 						}
 					}
 					
-					if (source.isMany()) {
+					if (TypeUtil.isMany(source)) {
 						EClassifier ncType = nc.getType();
 						
 						if (ncType instanceof CollectionType) {
