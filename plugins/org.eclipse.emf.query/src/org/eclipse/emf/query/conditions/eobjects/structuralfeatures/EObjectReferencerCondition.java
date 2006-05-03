@@ -22,6 +22,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.handlers.PruneHandler;
@@ -118,7 +119,8 @@ public class EObjectReferencerCondition
 				&& (eObject.eIsSet(eReference))) {
 				Object value = eStructuralFeatureValueGetter.eGet(eObject,
 					eReference, true);
-				if (eReference.isMany()) {
+				
+				if (FeatureMapUtil.isMany(eObject, eReference)) {
 					result = ((Collection) value).contains(referencedEObject);
 				} else {
 					result = referencedEObject.equals(value);

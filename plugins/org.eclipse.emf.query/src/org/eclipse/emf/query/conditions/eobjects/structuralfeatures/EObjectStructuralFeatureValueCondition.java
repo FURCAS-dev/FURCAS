@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.ConditionPolicy;
@@ -117,11 +119,18 @@ public abstract class EObjectStructuralFeatureValueCondition
 		IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
 		boolean resolve, Condition valueCondition, ConditionPolicy policy) {
 		super(pruneHandler, feature);
-		evaluator = (feature.isMany()) ? new MultipleStructuralFeatureValueEvaluator(
-			valueCondition, policy, feature, eStructuralFeatureValueGetter,
-			resolve)
-			: new StructuralFeatureValueEvaluator(valueCondition, policy,
-				feature, eStructuralFeatureValueGetter, resolve);
+		
+		if (feature.getUpperBound() == ETypedElement.UNSPECIFIED_MULTIPLICITY) {
+			evaluator = new UnspecifiedStructuralFeatureValueEvaluator(valueCondition,
+				policy, feature, eStructuralFeatureValueGetter, resolve);
+		} else {
+			evaluator = (feature.isMany()) ? new MultipleStructuralFeatureValueEvaluator(
+				valueCondition, policy, feature, eStructuralFeatureValueGetter,
+				resolve)
+				: new StructuralFeatureValueEvaluator(valueCondition, policy,
+					feature, eStructuralFeatureValueGetter, resolve);
+		}
+		
 		featureCondition = (contextEObjectCondition == null) ? evaluator
 			: contextEObjectCondition.AND(evaluator);
 	}
@@ -235,6 +244,35 @@ public abstract class EObjectStructuralFeatureValueCondition
 			
 			return (list == null || list.isEmpty()) ? false : policy.isSatisfied(
 					valueCondition, list);
+		}
+	}
+	
+	private static class UnspecifiedStructuralFeatureValueEvaluator
+		extends StructuralFeatureValueEvaluator {
+		
+		private MultipleStructuralFeatureValueEvaluator multipleEvaluator;
+		private StructuralFeatureValueEvaluator singleEvaluator;
+		
+		UnspecifiedStructuralFeatureValueEvaluator(Condition valueCondition,
+			ConditionPolicy policy, EStructuralFeature feature,
+			IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
+			boolean resolve) {
+			super(valueCondition, policy, feature,
+				eStructuralFeatureValueGetter, resolve);
+			
+			multipleEvaluator = new MultipleStructuralFeatureValueEvaluator(valueCondition,
+				policy, feature, eStructuralFeatureValueGetter, resolve);
+			
+			singleEvaluator = new StructuralFeatureValueEvaluator(valueCondition,
+				policy, feature, eStructuralFeatureValueGetter, resolve);
+		}
+		
+		public boolean isSatisfied(EObject eObject) {
+			if (FeatureMapUtil.isMany(eObject, feature)) {
+				return multipleEvaluator.isSatisfied(eObject);
+			} else {
+				return singleEvaluator.isSatisfied(eObject);
+			}
 		}
 	}
 
