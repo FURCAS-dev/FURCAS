@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.15 2006/05/03 19:42:20 cmcgee Exp $
+ * $Id: OCLParser.java,v 1.16 2006/05/05 13:19:14 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -2173,8 +2173,11 @@ public class OCLParser extends OCLLPGParser {
 			case SimpleTypeEnum.OCL_VOID:
 			case SimpleTypeEnum.INVALID:
 			case SimpleTypeEnum.OCL_MESSAGE:
-				classifier = primitiveTypeCS(simpleNameCS.getType());
-				simpleName = classifier.getName();
+				// if we have a source, then this is a feature call
+				if (source == null) {
+					classifier = primitiveTypeCS(simpleNameCS.getType());
+					simpleName = classifier.getName();
+				}
 				break;
 		}
 
@@ -2197,9 +2200,12 @@ public class OCLParser extends OCLLPGParser {
 		
 		Vector names = new Vector();
 		names.addElement(simpleName);
-		if (classifier == null) {
+		
+		// if we have a source, then this is a feature call
+		if ((classifier == null) && (source == null)) {
 				classifier = env.lookupPathName(names);
 		}
+		
 		if (classifier != null) {
 			/* Variable is a classifier. Classifiers are used in
 			 * allInstances, isKindOf, isTypeOf, asTypeOf operators

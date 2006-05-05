@@ -17,8 +17,18 @@
 
 package org.eclipse.emf.ocl.tests;
 
+import java.util.Collections;
+import java.util.Iterator;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.PropertyCallExp;
+import org.eclipse.emf.ocl.expressions.TypeExp;
 
 
 /**
@@ -79,5 +89,43 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 			"inv: let color : Boolean = (not self.color.oclIsUndefined()) in " + //$NON-NLS-1$
 			"  color implies self.color <> Color::black " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that when a property name coincides with a type name, we correctly
+	 * distinguish references to the type from references to the property.
+	 */
+	public void test_propertyNameCoincidesWithTypeName_140347() {
+		EReference myFruit = EcoreFactory.eINSTANCE.createEReference();
+		myFruit.setName("Fruit"); //$NON-NLS-1$
+		myFruit.setEType(fruit);
+		apple.getEStructuralFeatures().add(myFruit);
+		
+		try {
+			OCLExpression expr = parseConstraint(
+				"package ocltest context Apple " + //$NON-NLS-1$
+				"inv: self.Fruit <> self implies self.Fruit.oclIsKindOf(Fruit) " + //$NON-NLS-1$
+				"endpackage"); //$NON-NLS-1$
+			
+			int propertyCalls = 0;
+			int typeCalls = 0;
+			for (Iterator iter = EcoreUtil.getAllContents(Collections.singleton(expr)); iter.hasNext();) {
+				Object next = iter.next();
+				if (next instanceof PropertyCallExp) {
+					if ("Fruit".equals(((PropertyCallExp) next).getReferredProperty().getName())) { //$NON-NLS-1$
+						propertyCalls++;
+					}
+				} else if (next instanceof TypeExp) {
+					if ("Fruit".equals(((TypeExp) next).getReferredType().getName())) { //$NON-NLS-1$
+						typeCalls++;
+					}
+				}
+			}
+			
+			assertEquals("property calls", 2, propertyCalls); //$NON-NLS-1$
+			assertEquals("type calls", 1, typeCalls); //$NON-NLS-1$
+		} finally {
+			apple.getEStructuralFeatures().remove(myFruit);
+		}
 	}
 }
