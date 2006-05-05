@@ -17,9 +17,22 @@
 
 package org.eclipse.emf.ocl.tests;
 
+import java.util.Collections;
+import java.util.Iterator;
+
 import junit.framework.AssertionFailedError;
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.PropertyCallExp;
+import org.eclipse.emf.ocl.expressions.VariableExp;
 
 
 /**
@@ -267,5 +280,53 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		}
 		
 		assertNotNull(err);
+	}
+	
+	/**
+	 * Tests that when a parameter name (or any other local variable, for that
+	 * matter) coincides with an attribute name, we correctly distinguish
+	 * references to the variable from references to the attribute.
+	 */
+	public void test_parameterNameCoincidesWithAttributeName_140008() {
+		EOperation foo = EcoreFactory.eINSTANCE.createEOperation();
+		foo.setName("foo"); //$NON-NLS-1$
+		EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
+		parm.setName("str"); //$NON-NLS-1$
+		parm.setEType(EcorePackage.Literals.ESTRING);
+		foo.getEParameters().add(parm);
+		foo.setEType(EcorePackage.Literals.ESTRING);
+		apple.getEOperations().add(foo);
+		EAttribute myStr = EcoreFactory.eINSTANCE.createEAttribute();
+		myStr.setName("str"); //$NON-NLS-1$
+		myStr.setEType(EcorePackage.Literals.ESTRING);
+		apple.getEStructuralFeatures().add(myStr);
+		
+		try {
+			OCLExpression expr = parseConstraint(
+				"package ocltest context Apple::foo(str : String) : String " + //$NON-NLS-1$
+				"body: result = (if str = self.str then '' else str endif) " + //$NON-NLS-1$
+				"endpackage"); //$NON-NLS-1$
+			
+			int propertyCalls = 0;
+			int variableCalls = 0;
+			for (Iterator iter = EcoreUtil.getAllContents(Collections.singleton(expr)); iter.hasNext();) {
+				Object next = iter.next();
+				if (next instanceof PropertyCallExp) {
+					if ("str".equals(((PropertyCallExp) next).getReferredProperty().getName())) { //$NON-NLS-1$
+						propertyCalls++;
+					}
+				} else if (next instanceof VariableExp) {
+					if ("str".equals(((VariableExp) next).getReferredVariable().getName())) { //$NON-NLS-1$
+						variableCalls++;
+					}
+				}
+			}
+			
+			assertEquals("property calls", 1, propertyCalls); //$NON-NLS-1$
+			assertEquals("variable calls", 2, variableCalls); //$NON-NLS-1$
+		} finally {
+			apple.getEOperations().remove(foo);
+			apple.getEStructuralFeatures().remove(myStr);
+		}
 	}
 }
