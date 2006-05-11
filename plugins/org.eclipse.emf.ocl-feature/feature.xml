@@ -42,10 +42,9 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://update.eclipse.org/updates"/>
-      <discovery label="%updateSiteName" url="http://update.eclipse.org/updates"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
    </url>
-
    <requires>
       <import feature="org.eclipse.emf"/>
       <import plugin="org.eclipse.core.runtime"/>
