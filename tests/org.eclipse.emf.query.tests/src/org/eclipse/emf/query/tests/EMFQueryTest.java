@@ -31,6 +31,7 @@ import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -577,7 +578,7 @@ public class EMFQueryTest
 
 	private Resource getResource() {
 		if (resource == null) {
-			resource = new ResourceImpl();
+			resource = new ResourceImpl(URI.createURI("foo:///foo.xml")); //$NON-NLS-1$
 			
 			List contents = resource.getContents();
 			
