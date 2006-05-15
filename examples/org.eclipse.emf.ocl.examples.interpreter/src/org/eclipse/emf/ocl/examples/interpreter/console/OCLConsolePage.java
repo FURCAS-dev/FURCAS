@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.5 2006/04/25 20:15:04 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.6 2006/05/15 19:56:57 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -132,7 +132,9 @@ public class OCLConsolePage
 	}
 	
 	public void createControl(Composite parent) {
-		page = new SashForm(parent, SWT.VERTICAL);
+		// force left-to-right text direction in the console, because it
+		//    works with OCL text and the OCL language is based on English
+		page = new SashForm(parent, SWT.VERTICAL | SWT.LEFT_TO_RIGHT);
 		
 		output = new TextViewer(page, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
 		output.getTextWidget().setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -140,9 +142,7 @@ public class OCLConsolePage
 		output.setEditable(false);
 		output.setDocument(new Document());
 
-		// force left-to-right text direction in the input view, because it
-		//    accepts OCL text and the OCL language is based on English
-		input = new Text(page, SWT.BORDER | SWT.MULTI | SWT.LEFT_TO_RIGHT);
+		input = new Text(page, SWT.BORDER | SWT.MULTI);
 		input.addKeyListener(new InputKeyListener());
 		
 		((SashForm) page).setWeights(new int[] {2, 1});
