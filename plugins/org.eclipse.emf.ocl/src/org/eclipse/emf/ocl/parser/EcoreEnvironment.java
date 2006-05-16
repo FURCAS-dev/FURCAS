@@ -446,12 +446,18 @@ public class EcoreEnvironment
 				return null;
 			return pkg.getEClassifier((String) names
 				.get(names.size() - 1));
+		} else if (defaultPackage != null) {
+			String name = (String) names.get(0);
+			EClassifier result = null;
+			while (currPkg != null) {
+				result = currPkg.getEClassifier(name);
+				if (result != null) {
+					return result;
+				}
+				currPkg = currPkg.getESuperPackage();
+			}
 		}
-
-		if (defaultPackage == null)
-			return null;
-		return defaultPackage.getEClassifier((String) names.get(0));
-
+		return null;
 	}
 
 	public void setSelfVariable(Variable var) {

@@ -32,6 +32,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -1607,6 +1609,60 @@ public class RegressionTest
 			assertEquals(b, TypeUtil.commonSuperType(b, a));
 		} catch (Exception e) {
 			fail("No common super type: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests referencing an element in an enclosing package using an unqualified name.
+	 * 
+	 * <ul>
+	 * <li>EPackage level1<ul>
+	 *   <li>EEnum Enum1<ul>
+	 *     <li>EEnumLiteral Enum1Literal1</li></ul></li>
+	 *   <li>EPackage level2<ul>
+	 *     <li>EClass Class1<ul>
+	 *       <li>EAttribute attr1 : Enum1</li></ul></li></ul></li></ul></li>
+	 * </ul> 
+	 * <pre>
+	 *     context: Class1
+	 *     expression: attr1 = Enum1::Enum1Literal1
+	 * </pre>
+	 */
+	public void test_enclosingPackage_unqualifiedName() {
+		EPackage level1 = EcoreFactory.eINSTANCE.createEPackage();
+		level1.setName("level1"); //$NON-NLS-1$
+		EPackage level2 = EcoreFactory.eINSTANCE.createEPackage();
+		level2.setName("level2"); //$NON-NLS-1$
+		
+		level1.getESubpackages().add(level2);
+		
+		EEnum enum1 = EcoreFactory.eINSTANCE.createEEnum();
+		enum1.setName("Enum1"); //$NON-NLS-1$
+		
+		EEnumLiteral enum1Literal1 = EcoreFactory.eINSTANCE.createEEnumLiteral();
+		enum1Literal1.setName("Enum1Literal1"); //$NON-NLS-1$
+		
+		enum1.getELiterals().add(enum1Literal1);
+		
+		EClass class1 = EcoreFactory.eINSTANCE.createEClass();
+		class1.setName("Class1"); //$NON-NLS-1$
+
+		EAttribute attr1 = EcoreFactory.eINSTANCE.createEAttribute();
+		attr1.setName("attr1"); //$NON-NLS-1$
+		attr1.setEType(enum1);
+
+		class1.getEStructuralFeatures().add(attr1);
+		
+		level1.getEClassifiers().add(enum1);
+		level2.getEClassifiers().add(class1);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(class1);
+		
+		try {
+			helper.createInvariant("attr1 = Enum1::Enum1Literal1"); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 }
