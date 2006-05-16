@@ -253,8 +253,8 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="MessageExpKind">
-      <eLiterals name="hasSent"/>
-      <eLiterals name="sent"/>
+      <eLiterals name="hasSent" value="1"/>
+      <eLiterals name="sent" value="2"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

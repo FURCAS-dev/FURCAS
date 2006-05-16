@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: CSTPackageImpl.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst.impl;
 
@@ -540,31 +540,11 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
-		// Obtain or create and register interdependencies
-		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI) : TypesPackage.eINSTANCE);
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
-		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
-		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
-		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theCSTPackage.createPackageContents();
-		theTypesPackage.createPackageContents();
-		theExpressionsPackage.createPackageContents();
-		theUMLPackage.createPackageContents();
-		theUtilitiesPackage.createPackageContents();
-		theQueryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theCSTPackage.initializePackageContents();
-		theTypesPackage.initializePackageContents();
-		theExpressionsPackage.initializePackageContents();
-		theUMLPackage.initializePackageContents();
-		theUtilitiesPackage.initializePackageContents();
-		theQueryPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theCSTPackage.freeze();
@@ -1771,6 +1751,12 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 
 		contextDeclCSEClass = createEClass(CONTEXT_DECL_CS);
 
+		propertyContextCSEClass = createEClass(PROPERTY_CONTEXT_CS);
+		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__PATH_NAME_CS);
+		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS);
+		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__TYPE_CS);
+		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS);
+
 		classifierContextDeclCSEClass = createEClass(CLASSIFIER_CONTEXT_DECL_CS);
 		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS);
 		createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS);
@@ -1925,12 +1911,6 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 		isMarkedPreCSEClass = createEClass(IS_MARKED_PRE_CS);
 		createEAttribute(isMarkedPreCSEClass, IS_MARKED_PRE_CS__PRE);
 
-		propertyContextCSEClass = createEClass(PROPERTY_CONTEXT_CS);
-		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__PATH_NAME_CS);
-		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS);
-		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__TYPE_CS);
-		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS);
-
 		stateExpCSEClass = createEClass(STATE_EXP_CS);
 		createEAttribute(stateExpCSEClass, STATE_EXP_CS__SEQUENCE_OF_NAMES);
 
@@ -1968,6 +1948,7 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 		// Add supertypes to classes
 		packageDeclarationCSEClass.getESuperTypes().add(this.getCSTNode());
 		contextDeclCSEClass.getESuperTypes().add(this.getCSTNode());
+		propertyContextCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		classifierContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		prePostOrBodyDeclCSEClass.getESuperTypes().add(this.getCSTNode());
@@ -2013,7 +1994,6 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 		featureCallExpCSEClass.getESuperTypes().add(this.getCallExpCS());
 		operationCallExpCSEClass.getESuperTypes().add(this.getFeatureCallExpCS());
 		isMarkedPreCSEClass.getESuperTypes().add(this.getCSTNode());
-		propertyContextCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		stateExpCSEClass.getESuperTypes().add(this.getTypeCS());
 
 		// Initialize classes and features; add operations and parameters
@@ -2026,6 +2006,12 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 		initEReference(getPackageDeclarationCS_ContextDecls(), this.getContextDeclCS(), null, "contextDecls", null, 0, -1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(contextDeclCSEClass, ContextDeclCS.class, "ContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(propertyContextCSEClass, PropertyContextCS.class, "PropertyContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPropertyContextCS_PathNameCS(), this.getPathNameCS(), null, "pathNameCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPropertyContextCS_SimpleNameCS(), this.getSimpleNameCS(), null, "simpleNameCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPropertyContextCS_TypeCS(), this.getTypeCS(), null, "typeCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPropertyContextCS_InitOrDerValueCS(), this.getInitOrDerValueCS(), null, "initOrDerValueCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(classifierContextDeclCSEClass, ClassifierContextDeclCS.class, "ClassifierContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getClassifierContextDeclCS_PathNameCS(), this.getPathNameCS(), null, "pathNameCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2181,12 +2167,6 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 		initEClass(isMarkedPreCSEClass, IsMarkedPreCS.class, "IsMarkedPreCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIsMarkedPreCS_Pre(), ecorePackage.getEBoolean(), "pre", null, 0, 1, IsMarkedPreCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(propertyContextCSEClass, PropertyContextCS.class, "PropertyContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getPropertyContextCS_PathNameCS(), this.getPathNameCS(), null, "pathNameCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPropertyContextCS_SimpleNameCS(), this.getSimpleNameCS(), null, "simpleNameCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPropertyContextCS_TypeCS(), this.getTypeCS(), null, "typeCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getPropertyContextCS_InitOrDerValueCS(), this.getInitOrDerValueCS(), null, "initOrDerValueCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(stateExpCSEClass, StateExpCS.class, "StateExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStateExpCS_SequenceOfNames(), ecorePackage.getEString(), "sequenceOfNames", null, 0, -1, StateExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -2206,8 +2186,8 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_ANY_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_VOID_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.INVALID_LITERAL);
-		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.KEYWORD_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_MESSAGE_LITERAL);
+		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.KEYWORD_LITERAL);
 
 		initEEnum(collectionTypeIdentifierEnumEEnum, CollectionTypeIdentifierEnum.class, "CollectionTypeIdentifierEnum"); //$NON-NLS-1$
 		addEEnumLiteral(collectionTypeIdentifierEnumEEnum, CollectionTypeIdentifierEnum.SET_LITERAL);

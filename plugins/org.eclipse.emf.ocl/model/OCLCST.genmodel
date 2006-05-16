@@ -7,8 +7,7 @@
     modelName="OCLCST" editPluginClass="ecore.provider.OCLEditPlugin" editorPluginClass="ecore.presentation.OCLEditorPlugin"
     nonNLSMarkers="true" rootImplementsInterface="" featureMapWrapperInterface=""
     featureMapWrapperInternalInterface="" featureMapWrapperClass="" testSuiteClass="org.eclipse.emf.ocl.tests.OCLAllTests"
-    booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore"
-    usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore">
   <foreignModel>OCLCST.ecore</foreignModel>
   <genPackages prefix="OCL" basePackage="org.eclipse.emf" disposableProviderFactory="true"
       ecorePackage="OCLCST.ecore#/">

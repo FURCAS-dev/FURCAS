@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpKind.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: MessageExpKind.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst;
 
@@ -52,7 +52,7 @@ public final class MessageExpKind extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int HAS_SENT = 0;
+	public static final int HAS_SENT = 1;
 
 	/**
 	 * The '<em><b>Sent</b></em>' literal value.
@@ -67,7 +67,7 @@ public final class MessageExpKind extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SENT = 0;
+	public static final int SENT = 2;
 
 	/**
 	 * The '<em><b>Has Sent</b></em>' literal object.
@@ -150,6 +150,7 @@ public final class MessageExpKind extends AbstractEnumerator {
 	public static MessageExpKind get(int value) {
 		switch (value) {
 			case HAS_SENT: return HAS_SENT_LITERAL;
+			case SENT: return SENT_LITERAL;
 		}
 		return null;	
 	}

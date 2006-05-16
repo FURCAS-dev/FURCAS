@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: CSTSwitch.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst.util;
 
@@ -121,6 +121,14 @@ public class CSTSwitch {
 				ContextDeclCS contextDeclCS = (ContextDeclCS)theEObject;
 				Object result = caseContextDeclCS(contextDeclCS);
 				if (result == null) result = caseCSTNode(contextDeclCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CSTPackage.PROPERTY_CONTEXT_CS: {
+				PropertyContextCS propertyContextCS = (PropertyContextCS)theEObject;
+				Object result = casePropertyContextCS(propertyContextCS);
+				if (result == null) result = caseContextDeclCS(propertyContextCS);
+				if (result == null) result = caseCSTNode(propertyContextCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -490,14 +498,6 @@ public class CSTSwitch {
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)theEObject;
 				Object result = caseIsMarkedPreCS(isMarkedPreCS);
 				if (result == null) result = caseCSTNode(isMarkedPreCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CSTPackage.PROPERTY_CONTEXT_CS: {
-				PropertyContextCS propertyContextCS = (PropertyContextCS)theEObject;
-				Object result = casePropertyContextCS(propertyContextCS);
-				if (result == null) result = caseContextDeclCS(propertyContextCS);
-				if (result == null) result = caseCSTNode(propertyContextCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

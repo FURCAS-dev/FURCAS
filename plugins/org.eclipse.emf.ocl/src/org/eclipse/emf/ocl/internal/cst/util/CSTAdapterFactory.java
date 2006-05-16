@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: CSTAdapterFactory.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst.util;
 
@@ -95,6 +95,9 @@ public class CSTAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseContextDeclCS(ContextDeclCS object) {
 				return createContextDeclCSAdapter();
+			}
+			public Object casePropertyContextCS(PropertyContextCS object) {
+				return createPropertyContextCSAdapter();
 			}
 			public Object caseClassifierContextDeclCS(ClassifierContextDeclCS object) {
 				return createClassifierContextDeclCSAdapter();
@@ -227,9 +230,6 @@ public class CSTAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseIsMarkedPreCS(IsMarkedPreCS object) {
 				return createIsMarkedPreCSAdapter();
-			}
-			public Object casePropertyContextCS(PropertyContextCS object) {
-				return createPropertyContextCSAdapter();
 			}
 			public Object caseStateExpCS(StateExpCS object) {
 				return createStateExpCSAdapter();

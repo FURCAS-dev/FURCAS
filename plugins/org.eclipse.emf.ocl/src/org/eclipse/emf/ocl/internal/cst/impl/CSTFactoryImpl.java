@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: CSTFactoryImpl.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst.impl;
 
@@ -78,6 +78,7 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case CSTPackage.PACKAGE_DECLARATION_CS: return createPackageDeclarationCS();
+			case CSTPackage.PROPERTY_CONTEXT_CS: return createPropertyContextCS();
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS: return createClassifierContextDeclCS();
 			case CSTPackage.OPERATION_CONTEXT_DECL_CS: return createOperationContextDeclCS();
 			case CSTPackage.PRE_POST_OR_BODY_DECL_CS: return createPrePostOrBodyDeclCS();
@@ -117,7 +118,6 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 			case CSTPackage.FEATURE_CALL_EXP_CS: return createFeatureCallExpCS();
 			case CSTPackage.OPERATION_CALL_EXP_CS: return createOperationCallExpCS();
 			case CSTPackage.IS_MARKED_PRE_CS: return createIsMarkedPreCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS: return createPropertyContextCS();
 			case CSTPackage.STATE_EXP_CS: return createStateExpCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$

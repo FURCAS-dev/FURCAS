@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst;
 
@@ -214,7 +214,510 @@ public interface CSTPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getClassifierContextDeclCS()
 	 * @generated
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS = 3;
+	int CLASSIFIER_CONTEXT_DECL_CS = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OperationContextDeclCSImpl <em>Operation Context Decl CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.OperationContextDeclCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOperationContextDeclCS()
+	 * @generated
+	 */
+	int OPERATION_CONTEXT_DECL_CS = 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PrePostOrBodyDeclCSImpl <em>Pre Post Or Body Decl CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.PrePostOrBodyDeclCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPrePostOrBodyDeclCS()
+	 * @generated
+	 */
+	int PRE_POST_OR_BODY_DECL_CS = 6;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OperationCSImpl <em>Operation CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.OperationCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOperationCS()
+	 * @generated
+	 */
+	int OPERATION_CS = 7;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InitOrDerValueCSImpl <em>Init Or Der Value CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.InitOrDerValueCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInitOrDerValueCS()
+	 * @generated
+	 */
+	int INIT_OR_DER_VALUE_CS = 8;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.DerValueCSImpl <em>Der Value CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.DerValueCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getDerValueCS()
+	 * @generated
+	 */
+	int DER_VALUE_CS = 9;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InitValueCSImpl <em>Init Value CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.InitValueCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInitValueCS()
+	 * @generated
+	 */
+	int INIT_VALUE_CS = 10;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.InvOrDefCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInvOrDefCS()
+	 * @generated
+	 */
+	int INV_OR_DEF_CS = 11;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InvCSImpl <em>Inv CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.InvCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInvCS()
+	 * @generated
+	 */
+	int INV_CS = 12;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.DefCSImpl <em>Def CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.DefCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getDefCS()
+	 * @generated
+	 */
+	int DEF_CS = 13;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.DefExpressionCSImpl <em>Def Expression CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.DefExpressionCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getDefExpressionCS()
+	 * @generated
+	 */
+	int DEF_EXPRESSION_CS = 14;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OCLExpressionCSImpl <em>OCL Expression CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.OCLExpressionCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOCLExpressionCS()
+	 * @generated
+	 */
+	int OCL_EXPRESSION_CS = 22;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.TypeCSImpl <em>Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.TypeCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getTypeCS()
+	 * @generated
+	 */
+	int TYPE_CS = 18;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.PathNameCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPathNameCS()
+	 * @generated
+	 */
+	int PATH_NAME_CS = 15;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.VariableExpCSImpl <em>Variable Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.VariableExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getVariableExpCS()
+	 * @generated
+	 */
+	int VARIABLE_EXP_CS = 16;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.SimpleNameCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getSimpleNameCS()
+	 * @generated
+	 */
+	int SIMPLE_NAME_CS = 17;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PrimitiveTypeCSImpl <em>Primitive Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.PrimitiveTypeCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPrimitiveTypeCS()
+	 * @generated
+	 */
+	int PRIMITIVE_TYPE_CS = 19;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.TupleTypeCSImpl <em>Tuple Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.TupleTypeCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getTupleTypeCS()
+	 * @generated
+	 */
+	int TUPLE_TYPE_CS = 20;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionTypeCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionTypeCS()
+	 * @generated
+	 */
+	int COLLECTION_TYPE_CS = 21;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.LetExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getLetExpCS()
+	 * @generated
+	 */
+	int LET_EXP_CS = 23;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.IfExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIfExpCS()
+	 * @generated
+	 */
+	int IF_EXP_CS = 24;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OCLMessageArgCSImpl <em>OCL Message Arg CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.OCLMessageArgCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOCLMessageArgCS()
+	 * @generated
+	 */
+	int OCL_MESSAGE_ARG_CS = 26;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.LiteralExpCSImpl <em>Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.LiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getLiteralExpCS()
+	 * @generated
+	 */
+	int LITERAL_EXP_CS = 28;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.EnumLiteralExpCSImpl <em>Enum Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.EnumLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getEnumLiteralExpCS()
+	 * @generated
+	 */
+	int ENUM_LITERAL_EXP_CS = 29;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionLiteralExpCS()
+	 * @generated
+	 */
+	int COLLECTION_LITERAL_EXP_CS = 30;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.TupleLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getTupleLiteralExpCS()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_EXP_CS = 31;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PrimitiveLiteralExpCSImpl <em>Primitive Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.PrimitiveLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPrimitiveLiteralExpCS()
+	 * @generated
+	 */
+	int PRIMITIVE_LITERAL_EXP_CS = 32;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IntegerLiteralExpCSImpl <em>Integer Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.IntegerLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIntegerLiteralExpCS()
+	 * @generated
+	 */
+	int INTEGER_LITERAL_EXP_CS = 33;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.RealLiteralExpCSImpl <em>Real Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.RealLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getRealLiteralExpCS()
+	 * @generated
+	 */
+	int REAL_LITERAL_EXP_CS = 34;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.StringLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getStringLiteralExpCS()
+	 * @generated
+	 */
+	int STRING_LITERAL_EXP_CS = 35;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.BooleanLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getBooleanLiteralExpCS()
+	 * @generated
+	 */
+	int BOOLEAN_LITERAL_EXP_CS = 36;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralPartCSImpl <em>Collection Literal Part CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralPartCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionLiteralPartCS()
+	 * @generated
+	 */
+	int COLLECTION_LITERAL_PART_CS = 39;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionRangeCSImpl <em>Collection Range CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionRangeCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionRangeCS()
+	 * @generated
+	 */
+	int COLLECTION_RANGE_CS = 40;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CallExpCSImpl <em>Call Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CallExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCallExpCS()
+	 * @generated
+	 */
+	int CALL_EXP_CS = 41;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.LoopExpCSImpl <em>Loop Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.LoopExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getLoopExpCS()
+	 * @generated
+	 */
+	int LOOP_EXP_CS = 42;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IteratorExpCSImpl <em>Iterator Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.IteratorExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIteratorExpCS()
+	 * @generated
+	 */
+	int ITERATOR_EXP_CS = 43;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IterateExpCSImpl <em>Iterate Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.IterateExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIterateExpCS()
+	 * @generated
+	 */
+	int ITERATE_EXP_CS = 44;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.FeatureCallExpCSImpl <em>Feature Call Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.FeatureCallExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getFeatureCallExpCS()
+	 * @generated
+	 */
+	int FEATURE_CALL_EXP_CS = 45;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OperationCallExpCSImpl <em>Operation Call Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.OperationCallExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOperationCallExpCS()
+	 * @generated
+	 */
+	int OPERATION_CALL_EXP_CS = 46;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IsMarkedPreCSImpl <em>Is Marked Pre CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.IsMarkedPreCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIsMarkedPreCS()
+	 * @generated
+	 */
+	int IS_MARKED_PRE_CS = 47;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.MessageExpCSImpl <em>Message Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.MessageExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getMessageExpCS()
+	 * @generated
+	 */
+	int MESSAGE_EXP_CS = 25;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.VariableCSImpl <em>Variable CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.VariableCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getVariableCS()
+	 * @generated
+	 */
+	int VARIABLE_CS = 27;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.NullLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getNullLiteralExpCS()
+	 * @generated
+	 */
+	int NULL_LITERAL_EXP_CS = 37;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InvalidLiteralExpCSImpl <em>Invalid Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.InvalidLiteralExpCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInvalidLiteralExpCS()
+	 * @generated
+	 */
+	int INVALID_LITERAL_EXP_CS = 38;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PropertyContextCSImpl <em>Property Context CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.PropertyContextCSImpl
+	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPropertyContextCS()
+	 * @generated
+	 */
+	int PROPERTY_CONTEXT_CS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>Path Name CS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type CS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS__TYPE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Init Or Der Value CS</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Property Context CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -262,16 +765,6 @@ public interface CSTPackage extends EPackage {
 	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OperationContextDeclCSImpl <em>Operation Context Decl CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.OperationContextDeclCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOperationContextDeclCS()
-	 * @generated
-	 */
-	int OPERATION_CONTEXT_DECL_CS = 4;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,16 +808,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PrePostOrBodyDeclCSImpl <em>Pre Post Or Body Decl CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.PrePostOrBodyDeclCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPrePostOrBodyDeclCS()
-	 * @generated
-	 */
-	int PRE_POST_OR_BODY_DECL_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -379,16 +862,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRE_POST_OR_BODY_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OperationCSImpl <em>Operation CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.OperationCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOperationCS()
-	 * @generated
-	 */
-	int OPERATION_CS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -454,16 +927,6 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InitOrDerValueCSImpl <em>Init Or Der Value CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.InitOrDerValueCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInitOrDerValueCS()
-	 * @generated
-	 */
-	int INIT_OR_DER_VALUE_CS = 7;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -507,16 +970,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INIT_OR_DER_VALUE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.DerValueCSImpl <em>Der Value CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.DerValueCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getDerValueCS()
-	 * @generated
-	 */
-	int DER_VALUE_CS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -564,16 +1017,6 @@ public interface CSTPackage extends EPackage {
 	int DER_VALUE_CS_FEATURE_COUNT = INIT_OR_DER_VALUE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InitValueCSImpl <em>Init Value CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.InitValueCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInitValueCS()
-	 * @generated
-	 */
-	int INIT_VALUE_CS = 9;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -619,16 +1062,6 @@ public interface CSTPackage extends EPackage {
 	int INIT_VALUE_CS_FEATURE_COUNT = INIT_OR_DER_VALUE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.InvOrDefCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInvOrDefCS()
-	 * @generated
-	 */
-	int INV_OR_DEF_CS = 10;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -672,16 +1105,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INV_OR_DEF_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InvCSImpl <em>Inv CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.InvCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInvCS()
-	 * @generated
-	 */
-	int INV_CS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -738,16 +1161,6 @@ public interface CSTPackage extends EPackage {
 	int INV_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.DefCSImpl <em>Def CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.DefCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getDefCS()
-	 * @generated
-	 */
-	int DEF_CS = 12;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -800,16 +1213,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEF_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.DefExpressionCSImpl <em>Def Expression CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.DefExpressionCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getDefExpressionCS()
-	 * @generated
-	 */
-	int DEF_EXPRESSION_CS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -866,16 +1269,6 @@ public interface CSTPackage extends EPackage {
 	int DEF_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OCLExpressionCSImpl <em>OCL Expression CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.OCLExpressionCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOCLExpressionCS()
-	 * @generated
-	 */
-	int OCL_EXPRESSION_CS = 21;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -903,16 +1296,6 @@ public interface CSTPackage extends EPackage {
 	int OCL_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.TypeCSImpl <em>Type CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.TypeCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getTypeCS()
-	 * @generated
-	 */
-	int TYPE_CS = 17;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,16 +1321,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.PathNameCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPathNameCS()
-	 * @generated
-	 */
-	int PATH_NAME_CS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -984,16 +1357,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PATH_NAME_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.VariableExpCSImpl <em>Variable Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.VariableExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getVariableExpCS()
-	 * @generated
-	 */
-	int VARIABLE_EXP_CS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -1050,16 +1413,6 @@ public interface CSTPackage extends EPackage {
 	int VARIABLE_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.SimpleNameCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getSimpleNameCS()
-	 * @generated
-	 */
-	int SIMPLE_NAME_CS = 16;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1103,16 +1456,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE_NAME_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PrimitiveTypeCSImpl <em>Primitive Type CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.PrimitiveTypeCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPrimitiveTypeCS()
-	 * @generated
-	 */
-	int PRIMITIVE_TYPE_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -1160,16 +1503,6 @@ public interface CSTPackage extends EPackage {
 	int PRIMITIVE_TYPE_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.TupleTypeCSImpl <em>Tuple Type CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.TupleTypeCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getTupleTypeCS()
-	 * @generated
-	 */
-	int TUPLE_TYPE_CS = 19;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1204,16 +1537,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionTypeCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionTypeCS()
-	 * @generated
-	 */
-	int COLLECTION_TYPE_CS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -1261,16 +1584,6 @@ public interface CSTPackage extends EPackage {
 	int COLLECTION_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.LetExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getLetExpCS()
-	 * @generated
-	 */
-	int LET_EXP_CS = 22;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1314,16 +1627,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LET_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.IfExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIfExpCS()
-	 * @generated
-	 */
-	int IF_EXP_CS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -1378,206 +1681,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int IF_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OCLMessageArgCSImpl <em>OCL Message Arg CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.OCLMessageArgCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOCLMessageArgCS()
-	 * @generated
-	 */
-	int OCL_MESSAGE_ARG_CS = 25;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.LiteralExpCSImpl <em>Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.LiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getLiteralExpCS()
-	 * @generated
-	 */
-	int LITERAL_EXP_CS = 27;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.EnumLiteralExpCSImpl <em>Enum Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.EnumLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getEnumLiteralExpCS()
-	 * @generated
-	 */
-	int ENUM_LITERAL_EXP_CS = 28;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionLiteralExpCS()
-	 * @generated
-	 */
-	int COLLECTION_LITERAL_EXP_CS = 29;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.TupleLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getTupleLiteralExpCS()
-	 * @generated
-	 */
-	int TUPLE_LITERAL_EXP_CS = 30;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PrimitiveLiteralExpCSImpl <em>Primitive Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.PrimitiveLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPrimitiveLiteralExpCS()
-	 * @generated
-	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 31;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IntegerLiteralExpCSImpl <em>Integer Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.IntegerLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIntegerLiteralExpCS()
-	 * @generated
-	 */
-	int INTEGER_LITERAL_EXP_CS = 32;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.RealLiteralExpCSImpl <em>Real Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.RealLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getRealLiteralExpCS()
-	 * @generated
-	 */
-	int REAL_LITERAL_EXP_CS = 33;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.StringLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getStringLiteralExpCS()
-	 * @generated
-	 */
-	int STRING_LITERAL_EXP_CS = 34;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.BooleanLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getBooleanLiteralExpCS()
-	 * @generated
-	 */
-	int BOOLEAN_LITERAL_EXP_CS = 35;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralPartCSImpl <em>Collection Literal Part CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionLiteralPartCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionLiteralPartCS()
-	 * @generated
-	 */
-	int COLLECTION_LITERAL_PART_CS = 38;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CollectionRangeCSImpl <em>Collection Range CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CollectionRangeCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCollectionRangeCS()
-	 * @generated
-	 */
-	int COLLECTION_RANGE_CS = 39;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.CallExpCSImpl <em>Call Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CallExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getCallExpCS()
-	 * @generated
-	 */
-	int CALL_EXP_CS = 40;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.LoopExpCSImpl <em>Loop Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.LoopExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getLoopExpCS()
-	 * @generated
-	 */
-	int LOOP_EXP_CS = 41;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IteratorExpCSImpl <em>Iterator Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.IteratorExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIteratorExpCS()
-	 * @generated
-	 */
-	int ITERATOR_EXP_CS = 42;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IterateExpCSImpl <em>Iterate Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.IterateExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIterateExpCS()
-	 * @generated
-	 */
-	int ITERATE_EXP_CS = 43;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.FeatureCallExpCSImpl <em>Feature Call Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.FeatureCallExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getFeatureCallExpCS()
-	 * @generated
-	 */
-	int FEATURE_CALL_EXP_CS = 44;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.OperationCallExpCSImpl <em>Operation Call Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.OperationCallExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getOperationCallExpCS()
-	 * @generated
-	 */
-	int OPERATION_CALL_EXP_CS = 45;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.IsMarkedPreCSImpl <em>Is Marked Pre CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.IsMarkedPreCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getIsMarkedPreCS()
-	 * @generated
-	 */
-	int IS_MARKED_PRE_CS = 46;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.MessageExpCSImpl <em>Message Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.MessageExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getMessageExpCS()
-	 * @generated
-	 */
-	int MESSAGE_EXP_CS = 24;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -1686,16 +1789,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.VariableCSImpl <em>Variable CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.VariableCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getVariableCS()
-	 * @generated
-	 */
-	int VARIABLE_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -2121,16 +2214,6 @@ public interface CSTPackage extends EPackage {
 	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.NullLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getNullLiteralExpCS()
-	 * @generated
-	 */
-	int NULL_LITERAL_EXP_CS = 36;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2165,16 +2248,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.InvalidLiteralExpCSImpl <em>Invalid Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.InvalidLiteralExpCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getInvalidLiteralExpCS()
-	 * @generated
-	 */
-	int INVALID_LITERAL_EXP_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -2769,79 +2842,6 @@ public interface CSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int IS_MARKED_PRE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.PropertyContextCSImpl <em>Property Context CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.PropertyContextCSImpl
-	 * @see org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl#getPropertyContextCS()
-	 * @generated
-	 */
-	int PROPERTY_CONTEXT_CS = 47;
-
-	/**
-	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>Path Name CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS__TYPE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Init Or Der Value CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Property Context CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CONTEXT_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.internal.cst.impl.StateExpCSImpl <em>State Exp CS</em>}' class.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleTypeEnum.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: SimpleTypeEnum.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst;
 
@@ -175,21 +175,6 @@ public final class SimpleTypeEnum extends AbstractEnumerator {
 	public static final int INVALID = 9;
 
 	/**
-	 * The '<em><b>Keyword</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Keyword</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #KEYWORD_LITERAL
-	 * @model name="keyword"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int KEYWORD = 11;
-
-	/**
 	 * The '<em><b>Ocl Message</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -203,6 +188,21 @@ public final class SimpleTypeEnum extends AbstractEnumerator {
 	 * @ordered
 	 */
 	public static final int OCL_MESSAGE = 10;
+
+	/**
+	 * The '<em><b>Keyword</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Keyword</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #KEYWORD_LITERAL
+	 * @model name="keyword"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int KEYWORD = 11;
 
 	/**
 	 * The '<em><b>Identifier</b></em>' literal object.
@@ -295,16 +295,6 @@ public final class SimpleTypeEnum extends AbstractEnumerator {
 	public static final SimpleTypeEnum INVALID_LITERAL = new SimpleTypeEnum(INVALID, "Invalid", "Invalid"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * The '<em><b>Keyword</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KEYWORD
-	 * @generated
-	 * @ordered
-	 */
-	public static final SimpleTypeEnum KEYWORD_LITERAL = new SimpleTypeEnum(KEYWORD, "keyword", "keyword"); //$NON-NLS-1$ //$NON-NLS-2$
-
-	/**
 	 * The '<em><b>Ocl Message</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -313,6 +303,16 @@ public final class SimpleTypeEnum extends AbstractEnumerator {
 	 * @ordered
 	 */
 	public static final SimpleTypeEnum OCL_MESSAGE_LITERAL = new SimpleTypeEnum(OCL_MESSAGE, "OclMessage", "OclMessage"); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
+	 * The '<em><b>Keyword</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #KEYWORD
+	 * @generated
+	 * @ordered
+	 */
+	public static final SimpleTypeEnum KEYWORD_LITERAL = new SimpleTypeEnum(KEYWORD, "keyword", "keyword"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * An array of all the '<em><b>Simple Type Enum</b></em>' enumerators.
@@ -331,8 +331,8 @@ public final class SimpleTypeEnum extends AbstractEnumerator {
 			OCL_ANY_LITERAL,
 			OCL_VOID_LITERAL,
 			INVALID_LITERAL,
-			KEYWORD_LITERAL,
 			OCL_MESSAGE_LITERAL,
+			KEYWORD_LITERAL,
 		};
 
 	/**
@@ -392,8 +392,8 @@ public final class SimpleTypeEnum extends AbstractEnumerator {
 			case OCL_ANY: return OCL_ANY_LITERAL;
 			case OCL_VOID: return OCL_VOID_LITERAL;
 			case INVALID: return INVALID_LITERAL;
-			case KEYWORD: return KEYWORD_LITERAL;
 			case OCL_MESSAGE: return OCL_MESSAGE_LITERAL;
+			case KEYWORD: return KEYWORD_LITERAL;
 		}
 		return null;	
 	}
