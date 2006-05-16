@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.7 2006/05/03 19:42:20 cmcgee Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.8 2006/05/16 15:12:30 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -1227,9 +1227,9 @@ public class EvaluationVisitorImpl
 				OCLExpression arg = (OCLExpression) it.next();
 				Object evalArg = arg.accept(this);
 
-				// result is undefined if any arg is
-				if (evalArg == null)
-					return null;
+				// result is invalid if any arg is
+				if (evalArg == Types.OCL_INVALID)
+					return Types.OCL_INVALID;
 
 				evalArgs.add(evalArg);
 			}
@@ -1244,6 +1244,10 @@ public class EvaluationVisitorImpl
 			// get java method for operation
 			Method method = getJavaMethodFor(oper);
 
+			if (method == null) {
+				return Types.OCL_INVALID;
+			}
+			
 			// invoke method on evaluated args
 			try {
 				Object result = method.invoke(context, evalArgs.toArray());
