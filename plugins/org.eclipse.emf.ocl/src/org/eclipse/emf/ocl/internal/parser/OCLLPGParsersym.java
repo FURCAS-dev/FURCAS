@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParsersym.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+* $Id: OCLLPGParsersym.java,v 1.3 2006/05/17 13:58:27 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -211,7 +211,7 @@ public interface OCLLPGParsersym {
                  "collectNested",//$NON-NLS-1$
                  "sortedBy",//$NON-NLS-1$
                  "closure",//$NON-NLS-1$
-                 "ERROR_TOKEN"//$NON-NLS-1$
+                 "ERROR_TOKEN" //$NON-NLS-1$
              };
 
     public final static boolean isValidForParser = true;

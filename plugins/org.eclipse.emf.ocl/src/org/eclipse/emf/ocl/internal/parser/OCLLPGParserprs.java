@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParserprs.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+* $Id: OCLLPGParserprs.java,v 1.3 2006/05/17 13:58:27 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -1313,7 +1313,7 @@ public class OCLLPGParserprs implements lpg.lpgjavaruntime.ParseTable, OCLLPGPar
             "variableListCS",//$NON-NLS-1$
             "letExpSubCS",//$NON-NLS-1$
             "oclMessageArgumentsCS",//$NON-NLS-1$
-            "oclMessageArgCS"//$NON-NLS-1$
+            "oclMessageArgCS" //$NON-NLS-1$
         };
     };
     public final static String name[] = Name.name;

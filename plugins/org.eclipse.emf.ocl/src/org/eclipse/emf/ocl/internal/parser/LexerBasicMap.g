@@ -202,19 +202,23 @@ $Headers
             Char_VerticalBar,     // 124    0x7C
             Char_RightBrace,      // 125    0x7D
             Char_Tilde,           // 126    0x7E
+            Char_CtlCharNotWS,    // 127    0x7F
 
-            Char_AfterASCII,      // for all chars in range 128..65534
+            Char_Acute,           // for the acute accent 0xb4
+            Char_AfterASCIINotAcute,  // for all chars in range 0x80..0xfffe excluding the acute accent
             Char_EOF              // for '\uffff' or 65535 
         };
                 
         public final int getKind(int i)  // Classify character at ith location
         {
             char c = (i >= getStreamLength() ? '\uffff' : getCharValue(i));
-            return (c < 128 // ASCII Character
-                      ? tokenKind[c]
-                      : c == '\uffff'
-                           ? Char_EOF
-                           : Char_AfterASCII);
+            return (c < 128)? // ASCII Character
+                      tokenKind[c] :
+                      (c == '\uffff')?
+                           Char_EOF :
+                           (c == '\u00b4')?
+                           Char_Acute :
+                               Char_AfterASCIINotAcute;
         }
     ./
 $End

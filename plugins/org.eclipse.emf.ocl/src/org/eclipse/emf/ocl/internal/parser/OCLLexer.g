@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.3 2006/05/17 13:58:27 cdamus Exp $
 -- */
 --
 -- The OCL Lexer
@@ -59,7 +59,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.3 2006/05/17 13:58:27 cdamus Exp $
  */
 	./
 $End
@@ -157,7 +157,7 @@ $Terminals
 
 	0 1 2 3 4 5 6 7 8 9
 
-	AfterASCII   ::= '\u0080..\ufffe'
+	AfterASCIINotAcute
 	Space        ::= ' '
 	LF           ::= NewLine
 	CR           ::= Return
@@ -170,6 +170,7 @@ $Terminals
 	Exclamation  ::= '!'
 	AtSign       ::= '@'
 	BackQuote    ::= '`'
+	Acute        ::= '´'
 	Tilde        ::= '~'
 	Sharp        ::= '#'
 	DollarSign   ::= '$'
@@ -231,7 +232,19 @@ $Rules
 		  $EndAction
 		./
 
-	Token ::= "'" SLNotSQOpt "'"
+	Token ::= SingleQuote SLNotSQOpt SingleQuote
+		/.$BeginAction
+					makeToken($_STRING_LITERAL);
+		  $EndAction
+		./
+
+	Token ::= Acute SLNotSQOpt Acute
+		/.$BeginAction
+					makeToken($_STRING_LITERAL);
+		  $EndAction
+		./
+
+	Token ::= BackQuote SLNotSQOpt Acute
 		/.$BeginAction
 					makeToken($_STRING_LITERAL);
 		  $EndAction
@@ -482,7 +495,7 @@ $Rules
     Letter -> LowerCaseLetter
             | UpperCaseLetter
             | _
-            | '\u0080..\ufffe'
+            | AfterASCIINotAcute
 
     LowerCaseLetter -> a | b | c | d | e | f | g | h | i | j | k | l | m |
                        n | o | p | q | r | s | t | u | v | w | x | y | z
@@ -571,6 +584,7 @@ $Rules
                      | '\' r
                      | '\' '"'
                      | '\' "'"
+                     | '\' Acute
                      | '\' '\'
 
 	SLNotDQ -> NotDQ

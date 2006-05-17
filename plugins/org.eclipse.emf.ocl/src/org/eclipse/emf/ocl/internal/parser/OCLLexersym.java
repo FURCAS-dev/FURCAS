@@ -12,16 +12,16 @@
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+* $Id: OCLLexersym.java,v 1.3 2006/05/17 13:58:27 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
 
 public interface OCLLexersym {
     public final static int
-      Char_CtlCharNotWS = 101,
-      Char_LF = 99,
-      Char_CR = 100,
+      Char_CtlCharNotWS = 102,
+      Char_LF = 100,
+      Char_CR = 101,
       Char_HT = 96,
       Char_FF = 97,
       Char_a = 20,
@@ -87,29 +87,30 @@ public interface OCLLexersym {
       Char_7 = 8,
       Char_8 = 9,
       Char_9 = 10,
-      Char_AfterASCII = 65,
+      Char_AfterASCIINotAcute = 65,
       Char_Space = 71,
       Char_DoubleQuote = 72,
       Char_SingleQuote = 73,
-      Char_Percent = 90,
+      Char_Percent = 91,
       Char_VerticalBar = 78,
-      Char_Exclamation = 91,
+      Char_Exclamation = 92,
       Char_AtSign = 79,
-      Char_BackQuote = 92,
+      Char_BackQuote = 80,
+      Char_Acute = 98,
       Char_Tilde = 93,
       Char_Sharp = 94,
-      Char_DollarSign = 102,
+      Char_DollarSign = 103,
       Char_Ampersand = 95,
       Char_Caret = 74,
       Char_Colon = 75,
-      Char_SemiColon = 80,
-      Char_BackSlash = 81,
-      Char_LeftBrace = 82,
-      Char_RightBrace = 83,
-      Char_LeftBracket = 84,
-      Char_RightBracket = 85,
-      Char_QuestionMark = 86,
-      Char_Comma = 87,
+      Char_SemiColon = 81,
+      Char_BackSlash = 82,
+      Char_LeftBrace = 83,
+      Char_RightBrace = 84,
+      Char_LeftBracket = 85,
+      Char_RightBracket = 86,
+      Char_QuestionMark = 87,
+      Char_Comma = 88,
       Char_Dot = 68,
       Char_LessThan = 76,
       Char_GreaterThan = 66,
@@ -117,10 +118,10 @@ public interface OCLLexersym {
       Char_Minus = 67,
       Char_Slash = 77,
       Char_Star = 70,
-      Char_LeftParen = 88,
-      Char_RightParen = 89,
+      Char_LeftParen = 89,
+      Char_RightParen = 90,
       Char_Equal = 19,
-      Char_EOF = 98;
+      Char_EOF = 99;
 
       public final static String orderedTerminalSymbols[] = {
                  "",//$NON-NLS-1$
@@ -188,7 +189,7 @@ public interface OCLLexersym {
                  "X",//$NON-NLS-1$
                  "Y",//$NON-NLS-1$
                  "Z",//$NON-NLS-1$
-                 "AfterASCII",//$NON-NLS-1$
+                 "AfterASCIINotAcute",//$NON-NLS-1$
                  "GreaterThan",//$NON-NLS-1$
                  "Minus",//$NON-NLS-1$
                  "Dot",//$NON-NLS-1$
@@ -203,6 +204,7 @@ public interface OCLLexersym {
                  "Slash",//$NON-NLS-1$
                  "VerticalBar",//$NON-NLS-1$
                  "AtSign",//$NON-NLS-1$
+                 "BackQuote",//$NON-NLS-1$
                  "SemiColon",//$NON-NLS-1$
                  "BackSlash",//$NON-NLS-1$
                  "LeftBrace",//$NON-NLS-1$
@@ -215,17 +217,17 @@ public interface OCLLexersym {
                  "RightParen",//$NON-NLS-1$
                  "Percent",//$NON-NLS-1$
                  "Exclamation",//$NON-NLS-1$
-                 "BackQuote",//$NON-NLS-1$
                  "Tilde",//$NON-NLS-1$
                  "Sharp",//$NON-NLS-1$
                  "Ampersand",//$NON-NLS-1$
                  "HT",//$NON-NLS-1$
                  "FF",//$NON-NLS-1$
+                 "Acute",//$NON-NLS-1$
                  "EOF",//$NON-NLS-1$
                  "LF",//$NON-NLS-1$
                  "CR",//$NON-NLS-1$
                  "CtlCharNotWS",//$NON-NLS-1$
-                 "DollarSign"//$NON-NLS-1$
+                 "DollarSign" //$NON-NLS-1$
              };
 
     public final static boolean isValidForParser = true;

@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParser.java,v 1.4 2006/04/12 20:47:22 cdamus Exp $
+* $Id: OCLLPGParser.java,v 1.5 2006/05/17 13:58:27 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -111,15 +111,15 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 		}
 		catch(UnimplementedTerminalsException e) {
 			java.util.ArrayList unimplemented_symbols = e.getSymbols();
-			String error = "The Lexer will not scan the following token(s):";//$NON-NLS-1$
+			String error = "The Lexer will not scan the following token(s):"; //$NON-NLS-1$
 			for (int i = 0; i < unimplemented_symbols.size(); i++) {
 				Integer id = (Integer) unimplemented_symbols.get(i);
-				error += "\t" + OCLLPGParsersym.orderedTerminalSymbols[id.intValue()];//$NON-NLS-1$			   
+				error += "\t" + OCLLPGParsersym.orderedTerminalSymbols[id.intValue()];			    //$NON-NLS-1$
 			}
-			throw new RuntimeException(error + "\n");	//$NON-NLS-1$					
+			throw new RuntimeException(error + "\n");						 //$NON-NLS-1$
 		}
 		catch(UndefinedEofSymbolException e) {
-			throw new RuntimeException("The Lexer does not implement the Eof symbol " +//$NON-NLS-1$
+			throw new RuntimeException("The Lexer does not implement the Eof symbol " + //$NON-NLS-1$
 				 OCLLPGParsersym.orderedTerminalSymbols[OCLLPGParserprs.EOFT_SYMBOL]);
 		} 
 	}
@@ -148,10 +148,10 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			dtParser = new DeterministicParser(monitor, this, prsTable, this);
 		}
 		catch (NotDeterministicParseTableException e) {
-			throw new RuntimeException("****Error: Regenerate OCLLPGParserprs.java with -NOBACKTRACK option");//$NON-NLS-1$
+			throw new RuntimeException("****Error: Regenerate OCLLPGParserprs.java with -NOBACKTRACK option"); //$NON-NLS-1$
 		}
 		catch (BadParseSymFileException e) {
-			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLLPGParsersym.java. Regenerate OCLLPGParserprs.java");//$NON-NLS-1$
+			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLLPGParsersym.java. Regenerate OCLLPGParserprs.java"); //$NON-NLS-1$
 		}
 
 		try {

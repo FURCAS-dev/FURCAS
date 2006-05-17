@@ -1665,4 +1665,29 @@ public class RegressionTest
 			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+	
+	/**
+	 * The Hebrew (Israel) locale on SuSe Linux likes to use character 0xB4
+	 * (acute accent) as a single quotation mark.  Should also, then, support
+	 * the back-quote (grave accent), as well.
+	 */
+	public void test_hebrew_singleQuote_135321() {
+		parse(
+				// English locale style
+				"package ocltest context Apple " + //$NON-NLS-1$
+				"inv: preferredLabel('foo')" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+		
+		parse(
+				// SuSe Linux in Hebrew Local
+				"package ocltest context Apple " + //$NON-NLS-1$
+				"inv: preferredLabel(´foo´)" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+		
+		parse(
+				// I've seen this before (esp. in text export from MS Word)
+				"package ocltest context Apple " + //$NON-NLS-1$
+				"inv: preferredLabel(`foo´)" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
+	}
 }

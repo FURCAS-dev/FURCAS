@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexersym.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+* $Id: OCLKWLexersym.java,v 1.3 2006/05/17 13:58:27 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -129,7 +129,7 @@ public interface OCLKWLexersym {
                  "W",//$NON-NLS-1$
                  "X",//$NON-NLS-1$
                  "Y",//$NON-NLS-1$
-                 "Z"//$NON-NLS-1$
+                 "Z" //$NON-NLS-1$
              };
 
     public final static boolean isValidForParser = true;

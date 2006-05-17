@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.2 2006/05/16 15:07:58 cdamus Exp $
+ * $Id: CSTPackageImpl.java,v 1.3 2006/05/17 13:58:27 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.cst.impl;
 
@@ -21,15 +21,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.cst.PropertyContextCS;
 import org.eclipse.emf.ocl.internal.cst.BooleanLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.CSTFactory;
 import org.eclipse.emf.ocl.internal.cst.CSTNode;
 import org.eclipse.emf.ocl.internal.cst.CSTPackage;
+import org.eclipse.emf.ocl.internal.cst.CallExpCS;
 import org.eclipse.emf.ocl.internal.cst.ClassifierContextDeclCS;
 import org.eclipse.emf.ocl.internal.cst.CollectionLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.CollectionLiteralPartCS;
@@ -42,6 +40,7 @@ import org.eclipse.emf.ocl.internal.cst.DefExpressionCS;
 import org.eclipse.emf.ocl.internal.cst.DerValueCS;
 import org.eclipse.emf.ocl.internal.cst.DotOrArrowEnum;
 import org.eclipse.emf.ocl.internal.cst.EnumLiteralExpCS;
+import org.eclipse.emf.ocl.internal.cst.FeatureCallExpCS;
 import org.eclipse.emf.ocl.internal.cst.IfExpCS;
 import org.eclipse.emf.ocl.internal.cst.InitOrDerValueCS;
 import org.eclipse.emf.ocl.internal.cst.InitValueCS;
@@ -55,12 +54,11 @@ import org.eclipse.emf.ocl.internal.cst.IteratorExpCS;
 import org.eclipse.emf.ocl.internal.cst.LetExpCS;
 import org.eclipse.emf.ocl.internal.cst.LiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.LoopExpCS;
-import org.eclipse.emf.ocl.internal.cst.FeatureCallExpCS;
+import org.eclipse.emf.ocl.internal.cst.MessageExpCS;
+import org.eclipse.emf.ocl.internal.cst.MessageExpKind;
 import org.eclipse.emf.ocl.internal.cst.NullLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.OCLExpressionCS;
 import org.eclipse.emf.ocl.internal.cst.OCLMessageArgCS;
-import org.eclipse.emf.ocl.internal.cst.MessageExpCS;
-import org.eclipse.emf.ocl.internal.cst.MessageExpKind;
 import org.eclipse.emf.ocl.internal.cst.OperationCS;
 import org.eclipse.emf.ocl.internal.cst.OperationCallExpCS;
 import org.eclipse.emf.ocl.internal.cst.OperationContextDeclCS;
@@ -70,7 +68,7 @@ import org.eclipse.emf.ocl.internal.cst.PrePostOrBodyDeclCS;
 import org.eclipse.emf.ocl.internal.cst.PrePostOrBodyEnum;
 import org.eclipse.emf.ocl.internal.cst.PrimitiveLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.PrimitiveTypeCS;
-import org.eclipse.emf.ocl.internal.cst.CallExpCS;
+import org.eclipse.emf.ocl.internal.cst.PropertyContextCS;
 import org.eclipse.emf.ocl.internal.cst.RealLiteralExpCS;
 import org.eclipse.emf.ocl.internal.cst.SimpleNameCS;
 import org.eclipse.emf.ocl.internal.cst.SimpleTypeEnum;
@@ -81,14 +79,6 @@ import org.eclipse.emf.ocl.internal.cst.TupleTypeCS;
 import org.eclipse.emf.ocl.internal.cst.TypeCS;
 import org.eclipse.emf.ocl.internal.cst.VariableCS;
 import org.eclipse.emf.ocl.internal.cst.VariableExpCS;
-import org.eclipse.emf.ocl.query.QueryPackage;
-import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
-import org.eclipse.emf.ocl.types.TypesPackage;
-import org.eclipse.emf.ocl.types.impl.TypesPackageImpl;
-import org.eclipse.emf.ocl.uml.UMLPackage;
-import org.eclipse.emf.ocl.uml.impl.UMLPackageImpl;
-import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
-import org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
