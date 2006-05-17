@@ -6,10 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Eclipse-LazyStart: true
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- org.eclipse.core.resources,
- org.eclipse.ui.ide
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)"
 Bundle-Activator: org.eclipse.emf.query.examples.internal.QueryExamplesPlugin
 Export-Package: org.eclipse.emf.query.examples.internal;x-internal:=true,
  org.eclipse.emf.query.examples.internal.wizard;x-internal:=true
