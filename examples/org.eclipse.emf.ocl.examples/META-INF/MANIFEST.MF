@@ -5,10 +5,10 @@ Bundle-SymbolicName: org.eclipse.emf.ocl.examples;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- org.eclipse.core.resources,
- org.eclipse.ui.ide
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)"
 Export-Package: org.eclipse.emf.ocl.examples.internal.wizard;x-internal:=true
 Eclipse-LazyStart: true
 Bundle-Activator: org.eclipse.emf.ocl.examples.internal.OCLExamplesPlugin
