@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.6 2006/04/28 14:46:19 cdamus Exp $
+ * $Id: OCLResource.java,v 1.7 2006/05/18 20:20:57 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -301,7 +301,7 @@ public class OCLResource
 			OCLExpression elseexp = i.getElseExpression();
 			return "if " + (String) cond.accept(this) + " then " + //$NON-NLS-2$//$NON-NLS-1$
 				(String) thenexp.accept(this) + " else " + //$NON-NLS-1$
-				(String) elseexp.accept(this);
+				(String) elseexp.accept(this) + " endif"; //$NON-NLS-1$
 		}
 
 		public Object visitTypeExp(TypeExp t) {

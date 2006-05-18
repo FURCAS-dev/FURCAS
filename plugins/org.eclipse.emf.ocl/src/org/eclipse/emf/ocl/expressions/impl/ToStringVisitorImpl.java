@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitorImpl.java,v 1.2 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: ToStringVisitorImpl.java,v 1.3 2006/05/18 20:20:55 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -235,7 +235,7 @@ public class ToStringVisitorImpl
 		OCLExpression elseexp = i.getElseExpression();
 		return "if " + (String) cond.accept(this) + " then " + //$NON-NLS-2$//$NON-NLS-1$
 			(String) thenexp.accept(this) + " else " + //$NON-NLS-1$
-			(String) elseexp.accept(this);
+			(String) elseexp.accept(this) + " endif"; //$NON-NLS-1$
 	}
 
 	public Object visitTypeExp(TypeExp t) {
