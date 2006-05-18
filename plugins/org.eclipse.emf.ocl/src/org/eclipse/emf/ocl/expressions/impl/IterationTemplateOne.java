@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: IterationTemplateOne.java,v 1.2 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  *
@@ -44,10 +45,14 @@ public class IterationTemplateOne
 		//		Object currObj = env.getValueOf(iterName);
 		Boolean resultVal = (Boolean) env.getValueOf(resultName);
 
-		// if the body value is undefined the result is undefined and we continue
+		// If the body result is undefined then the entire expression's value
+		// is invalid
+		if ((body == null) || (body == Types.OCL_INVALID)) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
+		
 		Boolean bodyVal = (Boolean) body;
-		if (bodyVal == null)
-			return null;
 
 		boolean bodyCond = bodyVal.booleanValue();
 		if (bodyCond) {

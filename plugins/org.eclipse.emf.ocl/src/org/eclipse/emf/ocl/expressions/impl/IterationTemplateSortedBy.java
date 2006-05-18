@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateSortedBy.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: IterationTemplateSortedBy.java,v 1.2 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -23,6 +23,7 @@ import java.util.Map;
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  *
@@ -42,6 +43,17 @@ public class IterationTemplateSortedBy extends IterationTemplate {
 		// must have exactly one iterator
 		String iterName = ((Variable)iterators.get(0)).getName();
 		Object iterVal = env.getValueOf(iterName);
+		
+		// check for undefined result:
+		// the current result value cannot be true since the short-circuit
+		// "isDone" mechanism below would have caused the evaluation to stop.
+		// If the body result is undefined then the entire expression's value
+		// is invalid
+		if ((bodyVal == null) || (bodyVal == Types.OCL_INVALID)) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
+		
 		resultVal.put(iterVal, bodyVal);
 		return resultVal;
 	}

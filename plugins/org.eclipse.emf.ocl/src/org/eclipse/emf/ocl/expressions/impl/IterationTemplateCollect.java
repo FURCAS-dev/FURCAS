@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollect.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: IterationTemplateCollect.java,v 1.2 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  *
@@ -38,6 +39,14 @@ public class IterationTemplateCollect extends IterationTemplate {
 	protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		Collection currVal = (Collection)env.getValueOf(resultName);
+		
+		// If the body result is invalid then the entire expression's value
+		// is invalid, because OCL does not permit OclInvalid in a collection
+		if (bodyVal == Types.OCL_INVALID) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
+		
 		if (bodyVal instanceof Collection) {
 			Collection bodyColl = (Collection)bodyVal;
 			currVal.addAll(bodyColl);

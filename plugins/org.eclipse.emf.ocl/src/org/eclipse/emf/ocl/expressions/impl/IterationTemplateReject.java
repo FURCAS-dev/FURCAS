@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateReject.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: IterationTemplateReject.java,v 1.2 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -23,6 +23,7 @@ import java.util.List;
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  *
@@ -42,6 +43,17 @@ public class IterationTemplateReject extends IterationTemplate {
 		String iterName = ((Variable)iterators.get(0)).getName();
 		Object currObj = env.getValueOf(iterName);
 		Collection resultVal = (Collection)env.getValueOf(resultName);
+		
+		// check for undefined result:
+		// the current result value cannot be true since the short-circuit
+		// "isDone" mechanism below would have caused the evaluation to stop.
+		// If the body result is undefined then the entire expression's value
+		// is invalid
+		if ((body == null) || (body == Types.OCL_INVALID)) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
+		
 		Boolean bodyVal = (Boolean)body;
 		if (bodyVal == null)
 			return resultVal;

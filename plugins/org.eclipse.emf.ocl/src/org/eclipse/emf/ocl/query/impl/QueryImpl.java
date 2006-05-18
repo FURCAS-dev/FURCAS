@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.2 2006/04/17 22:30:39 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.3 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -247,15 +247,15 @@ public class QueryImpl extends EObjectImpl implements Query {
 			throw error;
 		}
 		
-		Boolean result;
+		Object result;
 		
 		if (obj == null) {
-			result = (Boolean) evaluate();
+			result = evaluate();
 		} else {
-			result = (Boolean) evaluate(obj);
+			result = evaluate(obj);
 		}
 		
-		return result.booleanValue();
+		return Boolean.TRUE.equals(result);
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.8 2006/05/16 15:12:30 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.9 2006/05/18 19:55:43 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -1760,6 +1760,13 @@ public class EvaluationVisitorImpl
 
 		// evaluate
 		// TODO: find an efficient way to do this.
+		Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
+		
+		if (evaluationResult == Types.OCL_INVALID) {
+			// handle the OclInvalid result
+			return evaluationResult;
+		}
+		
 		final Map bodyEvals = (Map) is.evaluate(coll, iterators, body,
 			resultName);
 

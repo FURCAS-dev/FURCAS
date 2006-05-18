@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTempateExists.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: IterationTempateExists.java,v 1.2 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  *
@@ -36,16 +37,19 @@ public final class IterationTempateExists extends IterationTemplate {
 	
 	protected Object evaluateResult(List iterators, String resultName, Object body) {
 		EvaluationEnvironment env = getEvalEnvironment();
+		// check for undefined result:
+		// the current result value cannot be true since the short-circuit
+		// "isDone" mechanism below would have caused the evaluation to stop.
+		// If the body result is undefined then the entire expression's value
+		// is invalid
+		if ((body == null) || (body == Types.OCL_INVALID)) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
+		
 		Boolean currVal = (Boolean)env.getValueOf(resultName);
 		Boolean bodyVal = (Boolean)body;
-		// check for undefined value:
-		// the current result cannot be true since that would've caused the
-		// short-circuit "setDone" mechanism to have stopped the evaluation.
-		// if the value of the body is undefined then regardless of whether
-		// the current result is false or undefined the new current result
-		// is undefined.
-		if (bodyVal == null)
-			return null;
+		
 		boolean resultVal = currVal.booleanValue() || bodyVal.booleanValue();
 		if (resultVal)
 			setDone(true);

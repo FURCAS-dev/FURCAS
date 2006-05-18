@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: IterationTemplateClosure.java,v 1.2 2006/05/18 19:55:43 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.types.impl.CollectionTypeImpl;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  * Instantiation of the iteration template for the <code>closure</code>
@@ -53,6 +54,13 @@ public class IterationTemplateClosure extends IterationTemplate {
 	protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		Set currVal = (Set) env.getValueOf(resultName);
+		
+		// If the body result is invalid then the entire expression's value
+		// is invalid, because OCL does not permit OclInvalid in a collection
+		if (bodyVal == Types.OCL_INVALID) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
 		
 		Collection newResults = CollectionTypeImpl.createNewSet();
 		

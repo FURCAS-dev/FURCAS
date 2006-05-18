@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.1 2006/04/04 18:08:40 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.2 2006/05/18 19:55:41 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +37,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.helper.OCLParsingException;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  * Tests for iterator expressions.
@@ -466,6 +469,295 @@ public class IteratorsTest
 		} catch (OCLParsingException e) {
 			// success
 			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_forAll_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->forAll(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// check that the "check" API interprets OclInvalid as a constraint violation
+			assertFalse(helper.check(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1}->forAll(b and b)")); //$NON-NLS-1$
+			
+			// same deal for a null value (in the forAll case)
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->forAll(null.oclAsType(Boolean))"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_exists_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->exists(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// same deal for a null value (in the exists case)
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->exists(null.oclAsType(Boolean))"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_one_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->one(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// same deal for a null value (in the one case)
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->one(null.oclAsType(Boolean))"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_any_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->any(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// same deal for a null value (in the any case)
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->any(null.oclAsType(Boolean))"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_select_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->select(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// same deal for a null value (in the exists case)
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->select(null.oclAsType(Boolean))"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_reject_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->reject(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// same deal for a null value (in the exists case)
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->reject(null.oclAsType(Boolean))"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the isUnique 
+	 * iterator expression treats it like any other value.
+	 */
+	public void test_isUnique_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			// OclInvalid supports the = operation
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->isUnique(b and b)"); //$NON-NLS-1$
+			
+			assertEquals(Boolean.FALSE, result);
+			
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->isUnique(null)"); //$NON-NLS-1$
+		
+			assertEquals(Boolean.FALSE, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_collect_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->collect(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// in the case of a null value, null is allowed in a collection, so
+			//    it does not result in OclInvalid
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->collect(null)"); //$NON-NLS-1$
+		
+			assertTrue(result instanceof Collection);
+			
+			Collection collResult = (Collection) result;
+			assertEquals(3, collResult.size());
+			for (Iterator iter = collResult.iterator(); iter.hasNext();) {
+				assertNull(iter.next());
+			}
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_collectNested_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->collectNested(b and b)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// in the case of a null value, null is allowed in a collection, so
+			//    it does not result in OclInvalid
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)"); //$NON-NLS-1$
+		
+			assertTrue(result instanceof Collection);
+			
+			Collection collResult = (Collection) result;
+			assertEquals(3, collResult.size());
+			for (Iterator iter = collResult.iterator(); iter.hasNext();) {
+				Object next = iter.next();
+				assertTrue((next == null)
+						 || next.equals(Collections.singleton(new Integer(1)))
+						 || next.equals(Collections.singleton(new Integer(3))));
+			}
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_closure_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let b:Boolean = null in eClassifiers->closure(c | b implies c.name.size() > 0)"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// in the case of a null value, null is allowed in a collection, so
+			//    it does not result in OclInvalid
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let c : Set(EClassifier) = Set{null} in eClassifiers->closure(c)"); //$NON-NLS-1$
+		
+			assertTrue(result instanceof Collection);
+			
+			Collection collResult = (Collection) result;
+			assertTrue(collResult.isEmpty());
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that when the body of an iterator results in OclInvalid, the entire 
+	 * iterator expression's value is OclInvalid.
+	 */
+	public void test_sortedBy_invalidBody_142518() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object result = helper.evaluate(EcorePackage.eINSTANCE,
+				"let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())"); //$NON-NLS-1$
+			
+			assertSame(Types.OCL_INVALID, result);
+			
+			// same deal for null values
+			result = helper.evaluate(EcorePackage.eINSTANCE,
+				"Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))"); //$NON-NLS-1$
+		
+			assertSame(Types.OCL_INVALID, result);
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 	

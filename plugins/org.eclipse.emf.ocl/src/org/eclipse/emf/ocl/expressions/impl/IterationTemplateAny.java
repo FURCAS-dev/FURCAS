@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateAny.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: IterationTemplateAny.java,v 1.2 2006/05/18 19:55:43 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.emf.ocl.expressions.EvaluationVisitor;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.emf.ocl.types.util.Types;
 
 /**
  *
@@ -42,9 +43,13 @@ public class IterationTemplateAny extends IterationTemplate {
 		Object currObj = env.getValueOf(iterName);
 		Object resultVal = null;
 		
-		// if body evaluation is undefined then the result is undefined
-		if (bodyVal == null)
-			return null;
+		// If the body result is undefined then the entire expression's value
+		// is invalid
+		if ((bodyVal == null) || (bodyVal == Types.OCL_INVALID)) {
+			setDone(true);
+			return Types.OCL_INVALID;
+		}
+		
 		boolean bodyCond = ((Boolean)bodyVal).booleanValue();
 		if (bodyCond) {
 			resultVal = currObj;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.6 2006/04/28 17:51:32 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.7 2006/05/18 19:55:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -272,7 +272,7 @@ class OCLHelper
 		
 		Object result = evaluate(context, constraint);
 		
-		return ((Boolean) result).booleanValue();
+		return Boolean.TRUE.equals(result);
 	}
 	
 	public boolean check(Object context, String constraint)
