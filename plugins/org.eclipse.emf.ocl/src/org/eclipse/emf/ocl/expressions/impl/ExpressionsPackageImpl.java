@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.3 2006/04/20 12:49:53 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.4 2006/05/18 20:25:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CallExp;
@@ -323,10 +323,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 	public static final EPackage OCL_ROOT_PACKAGE;
 	
 	static {
-		OCL_ROOT_PACKAGE = EcoreFactory.eINSTANCE.createEPackage();
-		OCL_ROOT_PACKAGE.setName("ocl"); //$NON-NLS-1$
-		OCL_ROOT_PACKAGE.setNsPrefix("ocl"); //$NON-NLS-1$
-		OCL_ROOT_PACKAGE.setNsURI("http://www.eclipse.org/OCL2/1.0.0/ocl"); //$NON-NLS-1$
+        class OCLPackageImpl extends EPackageImpl {
+			protected Resource createResource(String uri) {
+				return super.createResource(uri);
+			}
+		}
+        
+        OCLPackageImpl oclPackage = new OCLPackageImpl();
+        oclPackage.setName("ocl"); //$NON-NLS-1$
+        oclPackage.setNsPrefix("ocl"); //$NON-NLS-1$
+        oclPackage.setNsURI("http://www.eclipse.org/OCL2/1.0.0/ocl"); //$NON-NLS-1$
+		oclPackage.createResource(oclPackage.getNsURI());
+		
+        OCL_ROOT_PACKAGE = oclPackage;
 		EPackage.Registry.INSTANCE.put(OCL_ROOT_PACKAGE.getNsURI(), OCL_ROOT_PACKAGE);
 	}
 	

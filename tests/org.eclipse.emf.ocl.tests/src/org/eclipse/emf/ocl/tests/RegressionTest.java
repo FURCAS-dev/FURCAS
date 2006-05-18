@@ -1525,6 +1525,11 @@ public class RegressionTest
 		
 		assertNotNull(CSTPackage.eINSTANCE.getESuperPackage());
 		assertEquals("ocl", CSTPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+		
+		assertNotNull(TypesPackage.eINSTANCE.getESuperPackage().eResource());
+		assertEquals(
+				TypesPackage.eINSTANCE.getESuperPackage().getNsURI(),
+				TypesPackage.eINSTANCE.getESuperPackage().eResource().getURI().toString());
 	}
 	
 	/**
