@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitorImpl.java,v 1.3 2006/05/18 20:20:55 cdamus Exp $
+ * $Id: ToStringVisitorImpl.java,v 1.4 2006/05/24 17:06:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -143,6 +143,11 @@ public class ToStringVisitorImpl
 		// get the referred variable name
 		Variable vd = v.getReferredVariable();
 		String varName = vd.getName();
+		
+		if (varName == null) {
+			varName = "\"<null>\""; //$NON-NLS-1$
+		}
+		
 		return varName;
 	}
 
@@ -213,6 +218,11 @@ public class ToStringVisitorImpl
 	 */
 	public Object visitVariable(Variable vd) {
 		String varName = vd.getName();
+		
+		if (varName == null) {
+			varName = "\"<null>\""; //$NON-NLS-1$
+		}
+		
 		EClassifier type = vd.getType();
 		OCLExpression init = vd.getInitExpression();
 		String result = varName;

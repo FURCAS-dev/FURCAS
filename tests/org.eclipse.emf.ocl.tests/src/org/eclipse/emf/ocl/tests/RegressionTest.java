@@ -45,9 +45,12 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.OperationCallExp;
+import org.eclipse.emf.ocl.expressions.Variable;
+import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.internal.cst.CSTPackage;
@@ -65,6 +68,7 @@ import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
+import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.UMLPackage;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
@@ -1694,5 +1698,30 @@ public class RegressionTest
 				"package ocltest context Apple " + //$NON-NLS-1$
 				"inv: preferredLabel(`foo´)" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Test that we don't get a <code>null</code> string from an OCL expression
+	 * that contains a reference to a variable that has no name.
+	 */
+	public void test_nullVariableName_143386() {
+		Variable var = ExpressionsFactory.eINSTANCE.createVariable();
+		
+		assertEquals("\"<null>\"", var.toString()); //$NON-NLS-1$
+		
+		VariableExp exp = ExpressionsFactory.eINSTANCE.createVariableExp();
+		exp.setReferredVariable(var);
+		
+		assertEquals("\"<null>\"", exp.toString()); //$NON-NLS-1$
+		
+		var.setName("foo"); //$NON-NLS-1$
+		
+		assertEquals("foo", var.toString()); //$NON-NLS-1$
+		assertEquals("foo", exp.toString()); //$NON-NLS-1$
+		
+		var.setType(Types.OCL_STRING);
+		
+		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
+		assertEquals("foo", exp.toString()); //$NON-NLS-1$
 	}
 }

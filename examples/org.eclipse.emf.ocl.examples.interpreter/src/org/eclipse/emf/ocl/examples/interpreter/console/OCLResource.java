@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.7 2006/05/18 20:20:57 cdamus Exp $
+ * $Id: OCLResource.java,v 1.8 2006/05/24 17:06:19 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -227,6 +227,11 @@ public class OCLResource
 			// get the referred variable name
 			Variable vd = v.getReferredVariable();
 			String varName = vd.getName();
+			
+			if (varName == null) {
+				varName = "\"<null>\""; //$NON-NLS-1$
+			}
+			
 			return varName;
 		}
 
@@ -284,6 +289,11 @@ public class OCLResource
 
 		public Object visitVariable(Variable vd) {
 			String varName = vd.getName();
+			
+			if (varName == null) {
+				varName = "\"<null>\""; //$NON-NLS-1$
+			}
+			
 			EClassifier type = vd.getType();
 			OCLExpression init = vd.getInitExpression();
 			String result = varName;
