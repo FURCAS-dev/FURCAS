@@ -87,7 +87,6 @@
 					@packagesets@
 					
 			</javadoc>
-		</javac>
 		
 		<!-- make sure the doc-files are copied -->
 		<macrodef name="copyDocFiles">
