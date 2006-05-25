@@ -60,7 +60,7 @@
 				version="true"> 
 					<arg value="-J-Xmx180m"/>
 					
-					<doclet name="org.eclipse.emf.build.doclet.Doclet" path="org/eclipse/emf/build/doclet/Doclet">
+					<doclet name="org.eclipse.emf.build.doclet.Doclet" path=".">
 				      <param name="-tocFilename" value="../topics_Reference.xml"/>
 				      <param name="-tocRefPrefix" value="references/javadoc/"/> <!-- defaults to reference/api/ -->
 				      <param name="-tocTitle" value="API Reference"/>
