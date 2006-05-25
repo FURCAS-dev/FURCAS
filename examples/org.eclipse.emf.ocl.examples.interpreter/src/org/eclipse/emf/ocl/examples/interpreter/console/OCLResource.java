@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.8 2006/05/24 17:06:19 cdamus Exp $
+ * $Id: OCLResource.java,v 1.9 2006/05/25 15:36:46 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -138,11 +138,14 @@ public class OCLResource
 		final OCLResource res = new OCLResource(URI.createFileURI(path));
 		
 		// create an OCL helper to do our parsing.  Use the current resource
-		//    set's package registry to resolve OCL namespaces, and create an
-		//    environment that persists the dynamically-generated types in me
+		//    set's package registry to resolve OCL namespaces with the global
+		//    registry as a back-up, and create an environment that persists
+		//    the dynamically-generated types in me
 		IOCLHelper helper = HelperUtil.createOCLHelper(
 			new EcoreEnvironmentFactory(
-				context.eResource().getResourceSet().getPackageRegistry()) {
+				new DelegatingPackageRegistry(
+						context.eResource().getResourceSet().getPackageRegistry(),
+						EPackage.Registry.INSTANCE)) {
 				
 				protected Environment createEnvironment(EPackage packageContext) {
 					return res.new PersistentEnvironment(packageContext);

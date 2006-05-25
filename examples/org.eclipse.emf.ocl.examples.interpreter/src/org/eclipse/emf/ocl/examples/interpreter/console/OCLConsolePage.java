@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.6 2006/05/15 19:56:57 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.7 2006/05/25 15:36:46 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ocl.examples.interpreter.internal.l10n.OCLInterpreterMess
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -224,10 +226,11 @@ public class OCLConsolePage
 		} else {
 			// create an OCL helper to do our parsing and evaluating.  Use
 			//    the current resource set's package registry to resolve
-			//    OCL namespaces
-			IOCLHelper helper = HelperUtil.createOCLHelper(
-				new EcoreEnvironmentFactory(
-					context.eResource().getResourceSet().getPackageRegistry()));
+			//    OCL namespaces, with the global registry as a back-up
+			IOCLHelper helper = HelperUtil.createOCLHelper(new EcoreEnvironmentFactory(
+					new DelegatingPackageRegistry(
+							context.eResource().getResourceSet().getPackageRegistry(),
+							EPackage.Registry.INSTANCE)));
 			
 			// set our helper's context object to parse against it
 			helper.setContext(context);
