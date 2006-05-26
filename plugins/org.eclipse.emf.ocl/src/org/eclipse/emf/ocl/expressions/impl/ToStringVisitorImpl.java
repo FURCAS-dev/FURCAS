@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitorImpl.java,v 1.4 2006/05/24 17:06:21 cdamus Exp $
+ * $Id: ToStringVisitorImpl.java,v 1.5 2006/05/26 18:12:33 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -68,12 +69,23 @@ import org.eclipse.emf.ocl.utilities.Visitable;
 
 /**
  * @author Edith Schonberg (edith)
+ * @author Christian W. Damus (cdamus)
+ * @author Edward Willink (ewillink)
  *
- * Convert an OCL expression to a string.
+ * Converts an OCL expression to a string for debugging.  This is not intended
+ * to be used by client applications as an EMF-to-text transformation.
  */
 public class ToStringVisitorImpl
 	implements Visitor {
 
+	/**
+	 * Indicates where a required element in the AST was <code>null</code>, so
+	 * that it is evident in the debugger that something was missing.  We don't
+	 * want just <code>"null"</code> because that would look like the OclVoid
+	 * literal.
+	 */
+	private static String NULL_PLACEHOLDER = "\"<null>\""; //$NON-NLS-1$
+	
 	private static Visitor instance = null;
 
 	// singleton
@@ -90,8 +102,28 @@ public class ToStringVisitorImpl
 		super();
 	}
 	
+	/**
+	 * The string representation (for debugging purposes) of a visitable AST
+	 * element.  Where required elements are missing, they are replaced by
+	 * <code>"&lt;null&gt;"</code> in the result.
+	 *
+	 * @param v a visitable AST node
+	 * @return the debug string for a visitable
+	 */
 	public static String toString(Visitable v) {
-		return (String) v.accept(getInstance());
+		return (v == null)? NULL_PLACEHOLDER : (String) v.accept(getInstance());
+	}
+	
+	/**
+	 * Null-safe access to the name of a named element.
+	 * 
+	 * @param named a named element or <code>null</code>
+	 * @return a name, or the null placeholder if the named element or its name
+	 *    be <code>null</code>.  i.e., <code>null</code> is never returned
+	 */
+	private static String getName(ENamedElement named) {
+		return (named == null)? NULL_PLACEHOLDER
+				: (named.getName() == null)? NULL_PLACEHOLDER : named.getName();
 	}
 
 	/**
@@ -102,25 +134,26 @@ public class ToStringVisitorImpl
 	 * @return string
 	 */
 	public Object visitOperationCallExp(OperationCallExp oc) {
-
 		OCLExpression source = oc.getSource();
-		EClassifier sourceType = source.getType();
+		EClassifier sourceType = source != null ? source.getType() : null;
 		EOperation oper = oc.getReferredOperation();
-		//		int opCode = oc.getOperationCode();
+		
 		EList args = oc.getArgument();
-		int numArgs = args.size();
-
-		String result = source.accept(this)
-			+ (sourceType instanceof CollectionType ? "->" : ".") + oper.getName() + "(";//$NON-NLS-3$//$NON-NLS-2$//$NON-NLS-1$
+		int numArgs = args != null ? args.size() : 0;
+		StringBuffer result = new StringBuffer();
+		result.append(visit(source));
+		result.append(sourceType instanceof CollectionType ? "->" : "."); //$NON-NLS-1$ //$NON-NLS-2$
+		result.append(getName(oper));
+		result.append("("); //$NON-NLS-1$
 		Iterator iter = args.iterator();
 		for (int i = 0; i < numArgs; i++) {
 			OCLExpression arg = (OCLExpression) iter.next();
-			result += (String) arg.accept(this);
+			result.append(visit(arg));
 			if (i < numArgs - 1)
-				result += ", ";//$NON-NLS-1$
+				result.append(", ");//$NON-NLS-1$
 		}
-		result += ")";//$NON-NLS-1$
-		return maybeAtPre(oc, result);
+		result.append(")");//$NON-NLS-1$
+		return maybeAtPre(oc, result.toString());
 	}
 
 	/**
@@ -130,7 +163,7 @@ public class ToStringVisitorImpl
 	 */
 	public Object visitEnumLiteralExp(EnumLiteralExp el) {
 		EEnumLiteral l = el.getReferredEnumLiteral();
-		return l.toString();
+		return getName(l);
 	}
 
 	/**
@@ -139,20 +172,12 @@ public class ToStringVisitorImpl
 	 * @return the variable name
 	 */
 	public Object visitVariableExp(VariableExp v) {
-
-		// get the referred variable name
 		Variable vd = v.getReferredVariable();
-		String varName = vd.getName();
-		
-		if (varName == null) {
-			varName = "\"<null>\""; //$NON-NLS-1$
-		}
-		
-		return varName;
+		return getName(vd);
 	}
 
 	/**
-	 * Callback for a PropertyCallExp visit. 
+	 * Callback for an AssociationEndCallExp visit. 
 	 * @param pc the property call expression
 	 * @return string source.ref
 	 */
@@ -164,11 +189,11 @@ public class ToStringVisitorImpl
 				&& (pc.eContainer() instanceof AssociationClassCallExp)) {
 			// if we are the qualifier of an association class call, then
 			//   we just return our name, because our source is null (implied)
-			return property.getName();
+			return getName(property);
 		}
 		
 		StringBuffer result = new StringBuffer(
-			maybeAtPre(pc, (String) pc.getSource().accept(this) + "." + property.getName()));//$NON-NLS-1$
+			maybeAtPre(pc, visit(pc.getSource()) + "." + getName(property)));//$NON-NLS-1$
 		
 		if (!pc.getQualifier().isEmpty()) {
 			result.append('[');
@@ -176,7 +201,7 @@ public class ToStringVisitorImpl
 			for (Iterator iter = pc.getQualifier().iterator(); iter.hasNext();) {
 				OCLExpression next = (OCLExpression) iter.next();
 				
-				result.append(next.accept(this));
+				result.append(visit(next));
 				
 				if (iter.hasNext()) {
 					result.append(", "); //$NON-NLS-1$
@@ -197,22 +222,20 @@ public class ToStringVisitorImpl
 	public Object visitAssociationClassCallExp(AssociationClassCallExp ac) {
 
 		EClass ref = ac.getReferredAssociationClass();
-		String name = EcoreEnvironment.initialLower(ref);
+		String name = (ref == null)? NULL_PLACEHOLDER : EcoreEnvironment.initialLower(ref);
 		
 		StringBuffer result = new StringBuffer(
-			maybeAtPre(ac, (String) ac.getSource().accept(this) + "." + name));//$NON-NLS-1$
+			maybeAtPre(ac, visit(ac.getSource()) + "." + name));//$NON-NLS-1$
 		
 		if (ac.getNavigationSource() != null) {
-			result.append('[');
-			result.append(ac.getNavigationSource().getName());
-			result.append(']');
+			result.append('[').append(getName(ac.getNavigationSource())).append(']');
 		}
 		
 		return result.toString();
 	}
 
 	/**
-	 * Callback for the VariableDeclaration visit.
+	 * Callback for the Variable visit.
 	 * @param vd the variable declaration
 	 * @return string
 	 */
@@ -220,7 +243,7 @@ public class ToStringVisitorImpl
 		String varName = vd.getName();
 		
 		if (varName == null) {
-			varName = "\"<null>\""; //$NON-NLS-1$
+			varName = NULL_PLACEHOLDER;
 		}
 		
 		EClassifier type = vd.getType();
@@ -228,9 +251,9 @@ public class ToStringVisitorImpl
 		String result = varName;
 
 		if (type != null)
-			result += " : " + type.getName();//$NON-NLS-1$
+			result += " : " + getName(type);//$NON-NLS-1$
 		if (init != null)
-			result += " = " + init.accept(this);//$NON-NLS-1$
+			result += " = " + visit(init);//$NON-NLS-1$
 		return result;
 	}
 
@@ -243,9 +266,9 @@ public class ToStringVisitorImpl
 		OCLExpression cond = i.getCondition();
 		OCLExpression thenexp = i.getThenExpression();
 		OCLExpression elseexp = i.getElseExpression();
-		return "if " + (String) cond.accept(this) + " then " + //$NON-NLS-2$//$NON-NLS-1$
-			(String) thenexp.accept(this) + " else " + //$NON-NLS-1$
-			(String) elseexp.accept(this) + " endif"; //$NON-NLS-1$
+		return "if " + visit(cond) + " then " + //$NON-NLS-2$//$NON-NLS-1$
+			visit(thenexp) + " else " + //$NON-NLS-1$
+			visit(elseexp) + " endif"; //$NON-NLS-1$
 	}
 
 	public Object visitTypeExp(TypeExp t) {
@@ -261,35 +284,40 @@ public class ToStringVisitorImpl
 	}
 	
 	private void appendQualifiedName(EClassifier type, StringBuffer buf) {
-		if (type.getEPackage() != null) {
+		if ((type != null) && (type.getEPackage() != null)) {
 			appendQualifiedName(type.getEPackage(), buf);
 			buf.append("::"); //$NON-NLS-1$
 		}
 		
-		buf.append(type.getName());
+		buf.append(getName(type));
 	}
 
 	private void appendQualifiedName(EPackage pkg, StringBuffer buf) {
-		if (pkg.getESuperPackage() != null) {
+		if ((pkg != null) && (pkg.getESuperPackage() != null)) {
 			appendQualifiedName(pkg.getESuperPackage(), buf);
 			buf.append("::"); //$NON-NLS-1$
 		}
 		
-		buf.append(pkg.getNsPrefix());
+		buf.append(getName(pkg));
 	}
 
 	public Object visitStateExp(StateExp s) {
-		return s == null? "" : s.getName(); //$NON-NLS-1$
+		return getName(s);
 	}
 
+	/**
+	 * Callback for an UnspecifiedValueExp visit.
+	 * @param uv - UnspecifiedValueExp
+	 * @return the string representation
+	 */
 	public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
 		StringBuffer result = new StringBuffer();
 		result.append("?"); //$NON-NLS-1$
 		if (uv.getType() != null && uv.getType() != Types.OCL_VOID) {
 			result.append(" : "); //$NON-NLS-1$
-			result.append(uv.getType().getName());
+			result.append(getName(uv.getType()));
 		}
-		
+
 		return result.toString();
 	}
 
@@ -299,7 +327,8 @@ public class ToStringVisitorImpl
 	 * @return String
 	 */
 	public Object visitIntegerLiteralExp(IntegerLiteralExp il) {
-		return il.getIntegerSymbol().toString();
+		return (il.getIntegerSymbol() == null)? NULL_PLACEHOLDER
+				: il.getIntegerSymbol().toString();
 	}
 
 	/**
@@ -308,7 +337,8 @@ public class ToStringVisitorImpl
 	 * @return the value of the real literal as a java.lang.Double.
 	 */
 	public Object visitRealLiteralExp(RealLiteralExp rl) {
-		return rl.getRealSymbol().toString();
+		return (rl.getRealSymbol() == null)? NULL_PLACEHOLDER
+				: rl.getRealSymbol().toString();
 	}
 
 	/**
@@ -317,7 +347,8 @@ public class ToStringVisitorImpl
 	 * @return the value of the string literal as a java.lang.String.
 	 */
 	public Object visitStringLiteralExp(StringLiteralExp sl) {
-		return "'" + sl.getStringSymbol() + "'";//$NON-NLS-2$//$NON-NLS-1$
+		return "'" + ((sl.getStringSymbol() == null)? NULL_PLACEHOLDER //$NON-NLS-1$
+				: sl.getStringSymbol()) + "'";//$NON-NLS-1$
 	}
 
 	/**
@@ -326,7 +357,8 @@ public class ToStringVisitorImpl
 	 * @return the value of the boolean literal as a java.lang.Boolean.
 	 */
 	public Object visitBooleanLiteralExp(BooleanLiteralExp bl) {
-		return bl.getBooleanSymbol().toString();
+		return (bl.getBooleanSymbol() == null)? NULL_PLACEHOLDER
+				: bl.getBooleanSymbol().toString();
 	}
 
 	/**
@@ -335,8 +367,8 @@ public class ToStringVisitorImpl
 	 * @return String
 	 */
 	public Object visitLetExp(LetExp l) {
-		String result = "let " + l.getVariable().accept(this) + " in " + //$NON-NLS-2$//$NON-NLS-1$
-			l.getIn().accept(this);
+		String result = "let " + visit(l.getVariable()) + " in " + //$NON-NLS-2$//$NON-NLS-1$
+			visit(l.getIn());
 		return result;
 
 	}
@@ -356,19 +388,18 @@ public class ToStringVisitorImpl
 		int numIters = iterators.size();
 
 		// evaluate the source collection
-		String result = (String) ie.getSource().accept(this)
+		String result = visit(ie.getSource())
 			+ "->" + "iterate(";//$NON-NLS-2$//$NON-NLS-1$
 
 		for (int i = 0; i < numIters; i++) {
 			Variable iter = (Variable) iterators.get(i);
-			result += (String) iter.accept(this);
+			result += visit(iter);
 			if (i < iterators.size() - 1)
 				result += ", ";//$NON-NLS-1$
 		}
-		result += "; " + (String) vd.accept(this) + "| ";//$NON-NLS-2$//$NON-NLS-1$
+		result += "; " + visit(vd) + "| ";//$NON-NLS-2$//$NON-NLS-1$
 
-		OCLExpression body = ie.getBody();
-		result += (String) body.accept(this) + ")";//$NON-NLS-1$
+		result += visit(ie.getBody()) + ")";//$NON-NLS-1$
 
 		return result;
 	}
@@ -385,18 +416,17 @@ public class ToStringVisitorImpl
 		int numIters = iterators.size();
 
 		// evaluate the source collection
-		String result = (String) ie.getSource().accept(this) + "->"//$NON-NLS-1$
+		String result = visit(ie.getSource()) + "->"//$NON-NLS-1$
 			+ ie.getName() + "(";//$NON-NLS-1$
 		for (int i = 0; i < numIters; i++) {
 			Variable iter = (Variable) iterators.get(i);
-			result += (String) iter.accept(this);
+			result += visit(iter);
 			if (i < iterators.size() - 1)
 				result += ", ";//$NON-NLS-1$
 		}
 		result += " | ";//$NON-NLS-1$
 
-		OCLExpression body = ie.getBody();
-		result += (String) body.accept(this) + ")";//$NON-NLS-1$
+		result += visit(ie.getBody()) + ")";//$NON-NLS-1$
 
 		return result;
 	}
@@ -429,10 +459,12 @@ public class ToStringVisitorImpl
 				CollectionItem item = (CollectionItem) part;
 				OCLExpression itemExp = item.getItem();
 				result += (String) itemExp.accept(this);
-			} else { // must be a CollectionRange
+			} else if (part instanceof CollectionRange) {
 				CollectionRange item = (CollectionRange) part;
-				result += (String) item.getFirst().accept(this) + ".." + //$NON-NLS-1$
-					(String) item.getLast().accept(this);
+				result += visit(item.getFirst()) + ".." + //$NON-NLS-1$
+					visit(item.getLast());
+			} else {
+				result += NULL_PLACEHOLDER;
 			}
 			if (it.hasNext())
 				result += ", "; //$NON-NLS-1$
@@ -453,7 +485,7 @@ public class ToStringVisitorImpl
 		Iterator iter = tuplePart.iterator();
 		while (iter.hasNext()) {
 			TupleLiteralPart tp = (TupleLiteralPart) iter.next();
-			result += (String) tp.accept(this);
+			result += visit(tp);
 			if (iter.hasNext())
 				result += ", ";//$NON-NLS-1$
 		}
@@ -461,17 +493,17 @@ public class ToStringVisitorImpl
 	}
 	
 	public Object visitTupleLiteralPart(TupleLiteralPart tp) {
-		String varName = tp.getName();
+		String varName = getName(tp);
 		EClassifier type = tp.getType();
 		OCLExpression init = tp.getValue();
 		String result = varName;
 
 		if (type != null) {
-			result += " : " + type.getName();//$NON-NLS-1$
+			result += " : " + getName(type);//$NON-NLS-1$
 		}
 		
 		if (init != null) {
-			result += " = " + init.accept(this);//$NON-NLS-1$
+			result += " = " + visit(init);//$NON-NLS-1$
 		}
 		
 		return result;
@@ -480,20 +512,20 @@ public class ToStringVisitorImpl
 	public Object visitMessageExp(MessageExp m) {
 		StringBuffer result = new StringBuffer();
 		
-		result.append(m.getTarget().accept(this));
+		result.append(visit(m.getTarget()));
 		
 		result.append((m.getType() == Types.OCL_BOOLEAN)? "^" : "^^");  //$NON-NLS-1$//$NON-NLS-2$
 	
 		if (m.getCalledOperation() != null) {
-			result.append(m.getCalledOperation().getOperation().getName());
+			result.append(getName(m.getCalledOperation().getOperation()));
 		} else if (m.getSentSignal() != null) {
-			result.append(m.getSentSignal().getSignal().getName());
+			result.append(getName(m.getSentSignal().getSignal()));
 		}
 		
 		result.append('(');
 		
 		for (Iterator iter = m.getArgument().iterator(); iter.hasNext();) {
-			result.append(((OCLExpression) iter.next()).accept(this));
+			result.append(visit((OCLExpression) iter.next()));
 			
 			if (iter.hasNext()) {
 				result.append(", ");  //$NON-NLS-1$
@@ -518,7 +550,7 @@ public class ToStringVisitorImpl
 			
 			result.append("context "); //$NON-NLS-1$
 			if (elem instanceof EClassifier) {
-				result.append(((EClassifier) elem).getName());
+				result.append(getName((EClassifier) elem));
 			} else if (elem instanceof EOperation) {
 				appendOperationSignature(result, (EOperation) elem);
 			} else if (elem instanceof EStructuralFeature) {
@@ -539,13 +571,13 @@ public class ToStringVisitorImpl
 			result.append("inv: "); //$NON-NLS-1$
 		}
 		
-		result.append(constraint.getBody().accept(this));
+		result.append(visit(constraint.getBody()));
 		
 		return result.toString();
 	}
 	
 	private void appendOperationSignature(StringBuffer buf, EOperation operation) {
-		buf.append(operation.getName()).append('(');
+		buf.append(getName(operation)).append('(');
 		
 		boolean comma = false;
 		for (Iterator iter = operation.getEParameters().iterator(); iter.hasNext();) {
@@ -557,10 +589,10 @@ public class ToStringVisitorImpl
 				comma = true;
 			}
 			
-			buf.append(parm.getName()).append(" : "); //$NON-NLS-1$
+			buf.append(getName(parm)).append(" : "); //$NON-NLS-1$
 			
 			if (parm.getEType() != null) {
-				buf.append(parm.getEType().getName());
+				buf.append(getName(parm.getEType()));
 			} else {
 				buf.append(Types.OCL_VOID.getName());
 			}
@@ -568,14 +600,14 @@ public class ToStringVisitorImpl
 		
 		buf.append(") :"); //$NON-NLS-1$
 		if (operation.getEType() != null) {
-			buf.append(' ').append(operation.getEType().getName());
+			buf.append(' ').append(getName(operation.getEType()));
 		}
 	}
-	
+
 	private void appendPropertySignature(StringBuffer buf, EStructuralFeature property) {
-		buf.append(property.getName());
+		buf.append(getName(property));
 		if (property.getEType() != null) {
-			buf.append(" : ").append(property.getEType().getName()); //$NON-NLS-1$
+			buf.append(" : ").append(getName(property.getEType())); //$NON-NLS-1$
 		}
 	}
 
@@ -589,5 +621,9 @@ public class ToStringVisitorImpl
 
 	public Object visitNullLiteralExp(NullLiteralExp il) {
 		return "null"; //$NON-NLS-1$
+	}
+	
+	private String visit(Visitable visitable) {
+		return (visitable == null)? NULL_PLACEHOLDER : (String) visitable.accept(this);
 	}
 } // ToStringVisitorImpl
