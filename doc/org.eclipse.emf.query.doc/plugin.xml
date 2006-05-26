@@ -9,4 +9,20 @@
             primary="true"/>
       <index path="index"/>
    </extension>
+   
+ <!-- ============================= -->
+ <!-- Define TOCs                   -->
+ <!-- ============================= -->
+
+ <extension point="org.eclipse.help.toc">
+   <toc file="topics_Reference.xml" />
+ </extension>
+
+ <!-- ============================= -->
+ <!-- Define Javadoc locations      -->
+ <!-- ============================= -->
+  <extension point="org.eclipse.pde.core.javadoc">
+      <javadoc path="references/javadoc"> <!-- defaults to reference/api -->
+      </javadoc>
+  </extension>
 </plugin>

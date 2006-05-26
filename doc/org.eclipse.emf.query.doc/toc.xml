@@ -23,5 +23,7 @@
 	</topic>
 	<anchor id="example-guide-after" />
 
-	<topic label="Javadoc" href="references/javadoc/index.html"/>
+	<topic label="Javadoc">
+		<link toc="topics_Reference.xml"/>
+	</topic>
 </toc>
