@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.2 2006/04/12 20:47:23 cdamus Exp $
+ * $Id: PredefinedType.java,v 1.3 2006/05/26 18:13:04 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -109,9 +109,9 @@ public interface PredefinedType extends EObject {
 	 * OclAny operations.
 	 */
 	int EQUAL = 60;
-	String EQUAL_NAME = "oclEquals"; //$NON-NLS-1$
+	String EQUAL_NAME = "="; //$NON-NLS-1$
 	int NOT_EQUAL = 61;
-	String NOT_EQUAL_NAME = "oclNotEquals"; //$NON-NLS-1$
+	String NOT_EQUAL_NAME = "<>"; //$NON-NLS-1$
 	int OCL_AS_TYPE = 62;
 	String OCL_AS_TYPE_NAME = "oclAsType"; //$NON-NLS-1$
 	int OCL_IS_KIND_OF = 63;

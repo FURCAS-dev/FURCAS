@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.3 2006/05/17 13:58:27 cdamus Exp $
+* $Id: OCLLexersym.java,v 1.4 2006/05/26 18:13:04 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -227,7 +227,7 @@ public interface OCLLexersym {
                  "LF",//$NON-NLS-1$
                  "CR",//$NON-NLS-1$
                  "CtlCharNotWS",//$NON-NLS-1$
-                 "DollarSign" //$NON-NLS-1$
+                 "DollarSign"//$NON-NLS-1$
              };
 
     public final static boolean isValidForParser = true;

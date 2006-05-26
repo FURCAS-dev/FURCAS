@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.2 2006/05/26 18:13:04 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -326,18 +326,10 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (propertyStartPosition: "); //$NON-NLS-1$
-		result.append(propertyStartPosition);
-		result.append(", propertyEndPosition: "); //$NON-NLS-1$
-		result.append(propertyEndPosition);
-		result.append(')');
-		return result.toString();
+		return ToStringVisitorImpl.toString(this);
 	}
 
-} //PropertyCallExpImpl
+} //CallExpImpl

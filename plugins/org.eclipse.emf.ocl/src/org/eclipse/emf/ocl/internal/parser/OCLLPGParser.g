@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.5 2006/04/12 20:47:23 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.6 2006/05/26 18:13:04 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.5 2006/04/12 20:47:23 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.6 2006/05/26 18:13:04 cdamus Exp $
  */
 	./
 $End
@@ -2100,6 +2100,10 @@ $Rules
 	operationCallExpCS ::= oclIsKindOf isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= oclIsTypeOf isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= EQUAL isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	operationCallExpCS ::= NOT_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= PLUS isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./

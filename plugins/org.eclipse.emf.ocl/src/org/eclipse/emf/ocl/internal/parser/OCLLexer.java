@@ -12,18 +12,12 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.4 2006/05/17 13:58:27 cdamus Exp $
+* $Id: OCLLexer.java,v 1.5 2006/05/26 18:13:04 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
 
-import lpg.lpgjavaruntime.LexParser;
-import lpg.lpgjavaruntime.LexStream;
-import lpg.lpgjavaruntime.LpgLexStream;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.ParseTable;
-import lpg.lpgjavaruntime.PrsStream;
-import lpg.lpgjavaruntime.RuleAction;
+import lpg.lpgjavaruntime.*;
 
 public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexersym, RuleAction
 {
@@ -67,7 +61,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     public void lexer(Monitor monitor, PrsStream prsStream)
     {
         if (getInputChars() == null)
-            throw new NullPointerException("LexStream was not initialized"); //$NON-NLS-1$
+            throw new NullPointerException("LexStream was not initialized");//$NON-NLS-1$
 
         this.prsStream = prsStream;
 
@@ -297,7 +291,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     }
 
 	public OCLLexer(char[] chars) {
-		this(chars, "OCL", ECLIPSE_TAB_VALUE); //$NON-NLS-1$
+		this(chars, "OCL", ECLIPSE_TAB_VALUE);//$NON-NLS-1$
 		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
 	}
 
