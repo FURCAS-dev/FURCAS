@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.2 2006/05/18 19:55:41 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.3 2006/05/29 19:07:45 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -62,6 +62,32 @@ public class IteratorsTest
 	
 	public static Test suite() {
 		return new TestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests the generic iterate() iterator.
+	 */
+	public void test_iterate_143996() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			String expected = "pkg2bobpkg3"; //$NON-NLS-1$
+			
+			// complete form
+			assertEquals(expected, helper.evaluate(pkg1,
+				"eSubpackages->iterate(p : EPackage; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+
+			// shorter form
+			assertEquals(expected, helper.evaluate(pkg1,
+				"eSubpackages->iterate(p; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+
+			// shortest form
+			assertEquals(expected, helper.evaluate(pkg1,
+				"eSubpackages->iterate(s : String = ''| s.concat(name))")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
 	}
 	
 	/**
@@ -758,6 +784,52 @@ public class IteratorsTest
 			assertSame(Types.OCL_INVALID, result);
 		} catch (Exception exc) {
 			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that the generic iterate() iterator returns OclInvalid when the
+	 * source collection is null or OclInvalid.
+	 */
+	public void test_iterateWithNullSource_143996() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object expected = Types.OCL_INVALID;
+			
+			assertSame(expected, helper.evaluate(pkg1,
+				"let e : Collection(EPackage) = null in e->iterate(" + //$NON-NLS-1$
+				"p : EPackage; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+
+			assertSame(expected, helper.evaluate(pkg1,
+					"let e : Collection(EPackage) = OclInvalid in e->iterate(" + //$NON-NLS-1$
+					"p : EPackage; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that the exists() iterator return OclInvalid when the source
+	 * collection is null or OclInvalid.
+	 */
+	public void test_existsWithNullSource_143996() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EPACKAGE);
+		
+		try {
+			Object expected = Types.OCL_INVALID;
+			
+			assertSame(expected, helper.evaluate(pkg1,
+				"let e : Collection(EPackage) = null in e->exists(" + //$NON-NLS-1$
+				"p : EPackage | p.name = 'bob')")); //$NON-NLS-1$
+
+			assertSame(expected, helper.evaluate(pkg1,
+				"let e : Collection(EPackage) = OclInvalid in e->exists(" + //$NON-NLS-1$
+				"p : EPackage | p.name = 'bob')")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 	

@@ -22,9 +22,9 @@ import java.util.Map;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 
 /**
+ * A visitor that evaluates an OCLExpression.
+ * 
  * @author Tim Klinger (tklinger)
- *
- * A visitor which can evaluate an OCLExpression
  */
 public interface EvaluationVisitor extends org.eclipse.emf.ocl.expressions.Visitor {
 	EvaluationEnvironment getEvalEnvironment();

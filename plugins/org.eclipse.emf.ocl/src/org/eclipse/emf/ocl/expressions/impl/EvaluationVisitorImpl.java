@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.9 2006/05/18 19:55:43 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.10 2006/05/29 19:07:47 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -101,6 +101,10 @@ import com.ibm.icu.text.UTF16;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
+ * <p>
+ * <b>Note</b> that this class is not intended to be used or extended by
+ * clients.  Use the {@link EvaluationVisitor} interface, instead.
+ * </p>
  * 
  * @author Tim Klinger (tklinger)
  */
@@ -1408,8 +1412,16 @@ public class EvaluationVisitorImpl
 		EList iterators = ie.getIterator();
 
 		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
+		Object sourceValue = ie.getSource().accept(this);
 
+		// value of iteration expression is undefined if the source is
+		//   null or OclInvalid
+		if (isUndefined(sourceValue)) {
+			return Types.OCL_INVALID;
+		}
+		
+		Collection coll = (Collection) sourceValue;
+		
 		// get the body expression
 		OCLExpression body = ie.getBody();
 
@@ -1432,29 +1444,39 @@ public class EvaluationVisitorImpl
 		EClassifier sourceType = ie.getSource().getType();
 		
 		if (sourceType instanceof PredefinedType) {
+			Object sourceValue = ie.getSource().accept(this);
+			
+			// value of iteration expression is undefined if the source is
+			//   null or OclInvalid
+			if (isUndefined(sourceValue)) {
+				return Types.OCL_INVALID;
+			}
+			
+			Collection sourceCollection = (Collection) sourceValue;
+			
 			switch (((PredefinedType) sourceType).getOperationCodeFor(ie.getName())) {
 			case PredefinedType.EXISTS:
-				return evaluateExistsIterator(ie);
+				return evaluateExistsIterator(ie, sourceCollection);
 			case PredefinedType.FOR_ALL:
-				return evaluateForAllIterator(ie);
+				return evaluateForAllIterator(ie, sourceCollection);
 			case PredefinedType.SELECT:
-				return evaluateSelectIterator(ie);
+				return evaluateSelectIterator(ie, sourceCollection);
 			case PredefinedType.REJECT:
-				return evaluateRejectIterator(ie);
+				return evaluateRejectIterator(ie, sourceCollection);
 			case PredefinedType.COLLECT:
-				return evaluateCollectIterator(ie);
+				return evaluateCollectIterator(ie, sourceCollection);
 			case PredefinedType.COLLECT_NESTED:
-				return evaluateCollectNestedIterator(ie);
+				return evaluateCollectNestedIterator(ie, sourceCollection);
 			case PredefinedType.ONE:
-				return evaluateOneIterator(ie);
+				return evaluateOneIterator(ie, sourceCollection);
 			case PredefinedType.ANY:
-				return evaluateAnyIterator(ie);
+				return evaluateAnyIterator(ie, sourceCollection);
 			case PredefinedType.SORTED_BY:
-				return evaluateSortedByIterator(ie);
+				return evaluateSortedByIterator(ie, sourceCollection);
 			case PredefinedType.IS_UNIQUE:
-				return evaluateIsUnique(ie);
+				return evaluateIsUnique(ie, sourceCollection);
 			case PredefinedType.CLOSURE:
-				return evaluateClosure(ie);
+				return evaluateClosure(ie, sourceCollection);
 			}
 		}
 		
@@ -1466,14 +1488,11 @@ public class EvaluationVisitorImpl
 		throw ex;
 	}
 
-	public Object evaluateExistsIterator(IteratorExp ie) {
+	public Object evaluateExistsIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//        int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1494,14 +1513,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateForAllIterator(IteratorExp ie) {
+	public Object evaluateForAllIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1522,14 +1538,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateCollectNestedIterator(IteratorExp ie) {
+	public Object evaluateCollectNestedIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1560,14 +1573,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateCollectIterator(IteratorExp ie) {
+	public Object evaluateCollectIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1598,14 +1608,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateSelectIterator(IteratorExp ie) {
+	public Object evaluateSelectIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1642,14 +1649,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateRejectIterator(IteratorExp ie) {
+	public Object evaluateRejectIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1686,14 +1690,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateOneIterator(IteratorExp ie) {
+	public Object evaluateOneIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1711,14 +1712,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateAnyIterator(IteratorExp ie) {
+	public Object evaluateAnyIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1739,14 +1737,11 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	public Object evaluateSortedByIterator(IteratorExp ie) {
+	public Object evaluateSortedByIterator(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		//		int numIters = iterators.size();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
@@ -1796,13 +1791,10 @@ public class EvaluationVisitorImpl
 			return CollectionTypeImpl.createNewSequence(result);
 	}
 
-	public Object evaluateIsUnique(IteratorExp ie) {
+	public Object evaluateIsUnique(IteratorExp ie, Collection coll) {
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
 		
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
-
 		// get the body expression
 		OCLExpression body = ie.getBody();
 
@@ -1822,13 +1814,10 @@ public class EvaluationVisitorImpl
 		return is.isDone() ? Boolean.FALSE : Boolean.TRUE;
 	}
 
-	public Object evaluateClosure(IteratorExp ie) {
+	public Object evaluateClosure(IteratorExp ie, Collection coll) {
 
 		// get the list of ocl iterators
 		EList iterators = ie.getIterator();
-
-		// evaluate the source collection
-		Collection coll = (Collection) ie.getSource().accept(this);
 
 		// get the body expression
 		OCLExpression body = ie.getBody();
