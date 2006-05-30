@@ -22,4 +22,11 @@ package org.eclipse.emf.ocl.expressions;
  */
 public interface IteratorExp extends LoopExp {
 	//empty impl.
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

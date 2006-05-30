@@ -48,11 +48,11 @@
           eType="#//expressions/OCLExpression" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CollectionKind">
-      <eLiterals name="Collection" value="1"/>
-      <eLiterals name="Set" value="2"/>
-      <eLiterals name="OrderedSet" value="3"/>
-      <eLiterals name="Bag" value="4"/>
-      <eLiterals name="Sequence" value="5"/>
+      <eLiterals name="collection" value="1"/>
+      <eLiterals name="set" value="2"/>
+      <eLiterals name="orderedSet" value="3"/>
+      <eLiterals name="bag" value="4"/>
+      <eLiterals name="sequence" value="5"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp" eSuperTypes="#//expressions/LiteralExp">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//expressions/CollectionKind"/>
@@ -168,7 +168,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//expressions/OCLExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" eType="#//expressions/Variable"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EDataType" name="Visitor" instanceClassName="org.eclipse.emf.ocl.expressions.Visitor"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Visitor" instanceClassName="org.eclipse.emf.ocl.expressions.Visitor"
+        serializable="false"/>
   </eSubpackages>
   <eSubpackages name="uml" nsURI="http://www.eclipse.org/OCL2/1.0.0/ocl/uml" nsPrefix="ocl.uml">
     <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction">
@@ -240,7 +241,8 @@
         <eParameters name="v" eType="#//expressions/Visitor"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EDataType" name="SemanticException" instanceClassName="org.eclipse.emf.ocl.parser.SemanticException"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="SemanticException" instanceClassName="org.eclipse.emf.ocl.parser.SemanticException"
+        serializable="false"/>
   </eSubpackages>
   <eSubpackages name="query" nsURI="http://www.eclipse.org/OCL2/1.0.0/ocl/query" nsPrefix="ocl.query">
     <eClassifiers xsi:type="ecore:EClass" name="Query">
@@ -269,6 +271,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//expressions/OCLExpression"
           changeable="false"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EDataType" name="List" instanceClassName="java.util.List"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="List" instanceClassName="java.util.List"
+        serializable="false"/>
   </eSubpackages>
 </ecore:EPackage>

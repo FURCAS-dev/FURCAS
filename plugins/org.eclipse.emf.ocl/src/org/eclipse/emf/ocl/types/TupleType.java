@@ -26,4 +26,11 @@ import org.eclipse.emf.ocl.utilities.PredefinedType;
  */
 public interface TupleType  extends EClass, PredefinedType {
 	// nothing to add
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: TypesPackageImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.cst.CSTPackage;
-import org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
 import org.eclipse.emf.ocl.types.AnyType;
@@ -235,7 +233,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		CSTPackageImpl theCSTPackage = (CSTPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) instanceof CSTPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) : CSTPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTypesPackage.createPackageContents();
@@ -243,7 +240,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		theUMLPackage.createPackageContents();
 		theUtilitiesPackage.createPackageContents();
 		theQueryPackage.createPackageContents();
-		theCSTPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTypesPackage.initializePackageContents();
@@ -251,7 +247,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		theUMLPackage.initializePackageContents();
 		theUtilitiesPackage.initializePackageContents();
 		theQueryPackage.initializePackageContents();
-		theCSTPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTypesPackage.freeze();
@@ -465,6 +460,14 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		createEReference(collectionTypeEClass, COLLECTION_TYPE__ELEMENT_TYPE);
 		createEAttribute(collectionTypeEClass, COLLECTION_TYPE__KIND);
 
+		elementTypeEClass = createEClass(ELEMENT_TYPE);
+
+		invalidTypeEClass = createEClass(INVALID_TYPE);
+
+		messageTypeEClass = createEClass(MESSAGE_TYPE);
+		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
+		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
+
 		orderedSetTypeEClass = createEClass(ORDERED_SET_TYPE);
 
 		primitiveBooleanEClass = createEClass(PRIMITIVE_BOOLEAN);
@@ -483,17 +486,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
 		tupleTypeEClass = createEClass(TUPLE_TYPE);
 
-		voidTypeEClass = createEClass(VOID_TYPE);
-
-		messageTypeEClass = createEClass(MESSAGE_TYPE);
-		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
-		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
-
-		elementTypeEClass = createEClass(ELEMENT_TYPE);
-
-		invalidTypeEClass = createEClass(INVALID_TYPE);
-
 		typeTypeEClass = createEClass(TYPE_TYPE);
+
+		voidTypeEClass = createEClass(VOID_TYPE);
 	}
 
 	/**
@@ -519,36 +514,36 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
 		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Add supertypes to classes
-		anyTypeEClass.getESuperTypes().add(ecorePackage.getEClassifier());
+		anyTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
 		anyTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
 		bagTypeEClass.getESuperTypes().add(this.getCollectionType());
 		collectionTypeEClass.getESuperTypes().add(theEcorePackage.getEDataType());
 		collectionTypeEClass.getESuperTypes().add(theUtilitiesPackage.getTypedASTNode());
 		collectionTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
+		elementTypeEClass.getESuperTypes().add(theEcorePackage.getEClass());
+		invalidTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
+		invalidTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
+		messageTypeEClass.getESuperTypes().add(theEcorePackage.getEClass());
+		messageTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
 		primitiveBooleanEClass.getESuperTypes().add(this.getPrimitiveType());
 		primitiveIntegerEClass.getESuperTypes().add(this.getPrimitiveReal());
 		primitiveRealEClass.getESuperTypes().add(this.getPrimitiveType());
 		primitiveStringEClass.getESuperTypes().add(this.getPrimitiveType());
-		primitiveTypeEClass.getESuperTypes().add(ecorePackage.getEDataType());
+		primitiveTypeEClass.getESuperTypes().add(theEcorePackage.getEDataType());
 		primitiveTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
 		sequenceTypeEClass.getESuperTypes().add(this.getCollectionType());
 		setTypeEClass.getESuperTypes().add(this.getCollectionType());
 		tupleTypeEClass.getESuperTypes().add(theEcorePackage.getEClass());
+		typeTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
+		typeTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
 		voidTypeEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
 		voidTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
-		messageTypeEClass.getESuperTypes().add(ecorePackage.getEClass());
-		messageTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
-		elementTypeEClass.getESuperTypes().add(theEcorePackage.getEClass());
-		invalidTypeEClass.getESuperTypes().add(ecorePackage.getEClassifier());
-		invalidTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
-		typeTypeEClass.getESuperTypes().add(ecorePackage.getEClassifier());
-		typeTypeEClass.getESuperTypes().add(theUtilitiesPackage.getPredefinedType());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -558,6 +553,14 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionType_ElementType(), theEcorePackage.getEClassifier(), null, "elementType", null, 0, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCollectionType_Kind(), theExpressionsPackage.getCollectionKind(), "kind", null, 1, 1, CollectionType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMessageType_ReferredOperation(), theEcorePackage.getEOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMessageType_ReferredSignal(), theEcorePackage.getEClass(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(orderedSetTypeEClass, OrderedSetType.class, "OrderedSetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -577,17 +580,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
 		initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getMessageType_ReferredOperation(), theEcorePackage.getEOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getMessageType_ReferredSignal(), ecorePackage.getEClass(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(typeTypeEClass, TypeType.class, "TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

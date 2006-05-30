@@ -24,6 +24,13 @@ package org.eclipse.emf.ocl.types;
 /**
  *
  */
-public interface SetType extends CollectionType{
+public interface SetType extends CollectionType {
 	// nothing to add
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

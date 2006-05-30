@@ -129,11 +129,14 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected ExpressionsSwitch modelSwitch=
 		new ExpressionsSwitch() {
-			public Object casePropertyCallExp(PropertyCallExp object) {
-				return createPropertyCallExpAdapter();
+			public Object caseAssociationClassCallExp(AssociationClassCallExp object) {
+				return createAssociationClassCallExpAdapter();
 			}
 			public Object caseBooleanLiteralExp(BooleanLiteralExp object) {
 				return createBooleanLiteralExpAdapter();
+			}
+			public Object caseCallExp(CallExp object) {
+				return createCallExpAdapter();
 			}
 			public Object caseCollectionItem(CollectionItem object) {
 				return createCollectionItemAdapter();
@@ -150,11 +153,17 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseEnumLiteralExp(EnumLiteralExp object) {
 				return createEnumLiteralExpAdapter();
 			}
+			public Object caseFeatureCallExp(FeatureCallExp object) {
+				return createFeatureCallExpAdapter();
+			}
 			public Object caseIfExp(IfExp object) {
 				return createIfExpAdapter();
 			}
 			public Object caseIntegerLiteralExp(IntegerLiteralExp object) {
 				return createIntegerLiteralExpAdapter();
+			}
+			public Object caseInvalidLiteralExp(InvalidLiteralExp object) {
+				return createInvalidLiteralExpAdapter();
 			}
 			public Object caseIterateExp(IterateExp object) {
 				return createIterateExpAdapter();
@@ -171,11 +180,14 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseLoopExp(LoopExp object) {
 				return createLoopExpAdapter();
 			}
-			public Object caseFeatureCallExp(FeatureCallExp object) {
-				return createFeatureCallExpAdapter();
+			public Object caseMessageExp(MessageExp object) {
+				return createMessageExpAdapter();
 			}
 			public Object caseNavigationCallExp(NavigationCallExp object) {
 				return createNavigationCallExpAdapter();
+			}
+			public Object caseNullLiteralExp(NullLiteralExp object) {
+				return createNullLiteralExpAdapter();
 			}
 			public Object caseNumericLiteralExp(NumericLiteralExp object) {
 				return createNumericLiteralExpAdapter();
@@ -183,20 +195,20 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseOCLExpression(OCLExpression object) {
 				return createOCLExpressionAdapter();
 			}
-			public Object caseMessageExp(MessageExp object) {
-				return createMessageExpAdapter();
-			}
 			public Object caseOperationCallExp(OperationCallExp object) {
 				return createOperationCallExpAdapter();
 			}
 			public Object casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
 				return createPrimitiveLiteralExpAdapter();
 			}
-			public Object caseCallExp(CallExp object) {
-				return createCallExpAdapter();
+			public Object casePropertyCallExp(PropertyCallExp object) {
+				return createPropertyCallExpAdapter();
 			}
 			public Object caseRealLiteralExp(RealLiteralExp object) {
 				return createRealLiteralExpAdapter();
+			}
+			public Object caseStateExp(StateExp object) {
+				return createStateExpAdapter();
 			}
 			public Object caseStringLiteralExp(StringLiteralExp object) {
 				return createStringLiteralExpAdapter();
@@ -207,6 +219,9 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			public Object caseTupleLiteralPart(TupleLiteralPart object) {
 				return createTupleLiteralPartAdapter();
 			}
+			public Object caseTypeExp(TypeExp object) {
+				return createTypeExpAdapter();
+			}
 			public Object caseUnspecifiedValueExp(UnspecifiedValueExp object) {
 				return createUnspecifiedValueExpAdapter();
 			}
@@ -215,21 +230,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 			}
 			public Object caseVariableExp(VariableExp object) {
 				return createVariableExpAdapter();
-			}
-			public Object caseAssociationClassCallExp(AssociationClassCallExp object) {
-				return createAssociationClassCallExpAdapter();
-			}
-			public Object caseNullLiteralExp(NullLiteralExp object) {
-				return createNullLiteralExpAdapter();
-			}
-			public Object caseInvalidLiteralExp(InvalidLiteralExp object) {
-				return createInvalidLiteralExpAdapter();
-			}
-			public Object caseTypeExp(TypeExp object) {
-				return createTypeExpAdapter();
-			}
-			public Object caseStateExp(StateExp object) {
-				return createStateExpAdapter();
 			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();

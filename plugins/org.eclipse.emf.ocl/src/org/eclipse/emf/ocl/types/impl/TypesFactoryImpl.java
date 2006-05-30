@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.2 2006/04/28 14:46:28 cdamus Exp $
+ * $Id: TypesFactoryImpl.java,v 1.3 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -102,6 +102,9 @@ public class TypesFactoryImpl
 			case TypesPackage.ANY_TYPE: return createAnyType();
 			case TypesPackage.BAG_TYPE: return createBagType();
 			case TypesPackage.COLLECTION_TYPE: return createCollectionType();
+			case TypesPackage.ELEMENT_TYPE: return createElementType();
+			case TypesPackage.INVALID_TYPE: return createInvalidType();
+			case TypesPackage.MESSAGE_TYPE: return createMessageType();
 			case TypesPackage.ORDERED_SET_TYPE: return createOrderedSetType();
 			case TypesPackage.PRIMITIVE_BOOLEAN: return createPrimitiveBoolean();
 			case TypesPackage.PRIMITIVE_INTEGER: return createPrimitiveInteger();
@@ -110,11 +113,8 @@ public class TypesFactoryImpl
 			case TypesPackage.SEQUENCE_TYPE: return createSequenceType();
 			case TypesPackage.SET_TYPE: return createSetType();
 			case TypesPackage.TUPLE_TYPE: return createTupleType();
-			case TypesPackage.VOID_TYPE: return createVoidType();
-			case TypesPackage.MESSAGE_TYPE: return createMessageType();
-			case TypesPackage.ELEMENT_TYPE: return createElementType();
-			case TypesPackage.INVALID_TYPE: return createInvalidType();
 			case TypesPackage.TYPE_TYPE: return createTypeType();
+			case TypesPackage.VOID_TYPE: return createVoidType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -242,7 +242,7 @@ public class TypesFactoryImpl
 		TypeTypeImpl typeType = new TypeTypeImpl();
 		return typeType;
 	}
-	
+
 	public TypeType createTypeType(EClassifier type) {
 		return TypeTypeImpl.createType(type);
 	}

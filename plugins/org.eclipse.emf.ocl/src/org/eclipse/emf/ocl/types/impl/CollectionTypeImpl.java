@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.7 2006/04/28 14:46:28 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.8 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -439,14 +439,13 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
     	return iterators;
     }
 
-    /**
-     * The cached value of the '{@link #getElementType() <em>Element Type</em>}'
-     * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see #getElementType()
-     * @generated
-     * @ordered
-     */
+	/**
+	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getElementType()
+	 * @generated
+	 * @ordered
+	 */
     protected EClassifier elementType = null;
 
 	/**

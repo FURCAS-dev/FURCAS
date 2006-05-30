@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryPackageImpl.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: QueryPackageImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -29,8 +29,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.cst.CSTPackage;
-import org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.query.QueryPackage;
@@ -135,7 +133,6 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
 		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
-		CSTPackageImpl theCSTPackage = (CSTPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) instanceof CSTPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) : CSTPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQueryPackage.createPackageContents();
@@ -143,7 +140,6 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		theExpressionsPackage.createPackageContents();
 		theUMLPackage.createPackageContents();
 		theUtilitiesPackage.createPackageContents();
-		theCSTPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theQueryPackage.initializePackageContents();
@@ -151,7 +147,6 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		theExpressionsPackage.initializePackageContents();
 		theUMLPackage.initializePackageContents();
 		theUtilitiesPackage.initializePackageContents();
-		theCSTPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theQueryPackage.freeze();
@@ -255,28 +250,28 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getQuery_ExtentMap(), ecorePackage.getEMap(), "extentMap", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getQuery_ExtentMap(), theEcorePackage.getEMap(), "extentMap", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getQuery_Expression(), theExpressionsPackage.getOCLExpression(), null, "expression", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(queryEClass, ecorePackage.getEJavaObject(), "evaluate", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEJavaObject(), "obj", 0, 1); //$NON-NLS-1$
+		EOperation op = addEOperation(queryEClass, theEcorePackage.getEJavaObject(), "evaluate", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEJavaObject(), "obj", 0, 1); //$NON-NLS-1$
 
-		addEOperation(queryEClass, ecorePackage.getEJavaObject(), "evaluate", 0, 1); //$NON-NLS-1$
+		addEOperation(queryEClass, theEcorePackage.getEJavaObject(), "evaluate", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, ecorePackage.getEBoolean(), "check", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEJavaObject(), "obj", 0, 1); //$NON-NLS-1$
+		op = addEOperation(queryEClass, theEcorePackage.getEBoolean(), "check", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEJavaObject(), "obj", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(queryEClass, this.getList(), "evaluate", 0, 1); //$NON-NLS-1$
 		addEParameter(op, this.getList(), "objects", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(queryEClass, ecorePackage.getEBoolean(), "check", 0, 1); //$NON-NLS-1$
+		op = addEOperation(queryEClass, theEcorePackage.getEBoolean(), "check", 0, 1); //$NON-NLS-1$
 		addEParameter(op, this.getList(), "objects", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(queryEClass, this.getList(), "select", 0, 1); //$NON-NLS-1$
@@ -287,10 +282,10 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 
 		addEOperation(queryEClass, theEcorePackage.getEClassifier(), "resultType", 0, 1); //$NON-NLS-1$
 
-		addEOperation(queryEClass, ecorePackage.getEString(), "queryText", 0, 1); //$NON-NLS-1$
+		addEOperation(queryEClass, theEcorePackage.getEString(), "queryText", 0, 1); //$NON-NLS-1$
 
 		// Initialize data types
-		initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(listEDataType, List.class, "List", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

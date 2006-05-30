@@ -164,7 +164,7 @@ public interface QueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>List</em>'.
 	 * @see java.util.List
-	 * @model instanceClass="java.util.List"
+	 * @model instanceClass="java.util.List" serializable="false"
 	 * @generated
 	 */
 	EDataType getList();

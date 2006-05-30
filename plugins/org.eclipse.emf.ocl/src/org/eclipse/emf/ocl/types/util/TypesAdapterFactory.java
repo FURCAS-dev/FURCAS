@@ -119,6 +119,15 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 			public Object caseCollectionType(CollectionType object) {
 				return createCollectionTypeAdapter();
 			}
+			public Object caseElementType(ElementType object) {
+				return createElementTypeAdapter();
+			}
+			public Object caseInvalidType(InvalidType object) {
+				return createInvalidTypeAdapter();
+			}
+			public Object caseMessageType(MessageType object) {
+				return createMessageTypeAdapter();
+			}
 			public Object caseOrderedSetType(OrderedSetType object) {
 				return createOrderedSetTypeAdapter();
 			}
@@ -146,20 +155,11 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 			public Object caseTupleType(TupleType object) {
 				return createTupleTypeAdapter();
 			}
-			public Object caseVoidType(VoidType object) {
-				return createVoidTypeAdapter();
-			}
-			public Object caseMessageType(MessageType object) {
-				return createMessageTypeAdapter();
-			}
-			public Object caseElementType(ElementType object) {
-				return createElementTypeAdapter();
-			}
-			public Object caseInvalidType(InvalidType object) {
-				return createInvalidTypeAdapter();
-			}
 			public Object caseTypeType(TypeType object) {
 				return createTypeTypeAdapter();
+			}
+			public Object caseVoidType(VoidType object) {
+				return createVoidTypeAdapter();
 			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
@@ -173,15 +173,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 			public Object casePredefinedType(PredefinedType object) {
 				return createPredefinedTypeAdapter();
 			}
-			public Object caseEcore_EModelElement(EModelElement object) {
-				return createEcore_EModelElementAdapter();
-			}
-			public Object caseEcore_ENamedElement(ENamedElement object) {
-				return createEcore_ENamedElementAdapter();
-			}
-			public Object caseEcore_EClassifier(EClassifier object) {
-				return createEcore_EClassifierAdapter();
-			}
 			public Object caseEDataType(EDataType object) {
 				return createEDataTypeAdapter();
 			}
@@ -191,14 +182,8 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 			public Object caseTypedASTNode(TypedASTNode object) {
 				return createTypedASTNodeAdapter();
 			}
-			public Object caseEcore_EDataType(EDataType object) {
-				return createEcore_EDataTypeAdapter();
-			}
 			public Object caseEClass(EClass object) {
 				return createEClassAdapter();
-			}
-			public Object caseEcore_EClass(EClass object) {
-				return createEcore_EClassAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -513,48 +498,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EModelElement
-	 * @generated
-	 */
-	public Adapter createEcore_EModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ENamedElement <em>ENamed Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.ENamedElement
-	 * @generated
-	 */
-	public Adapter createEcore_ENamedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClassifier <em>EClassifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EClassifier
-	 * @generated
-	 */
-	public Adapter createEcore_EClassifierAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EDataType <em>EData Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -597,20 +540,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EDataType <em>EData Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EDataType
-	 * @generated
-	 */
-	public Adapter createEcore_EDataTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -621,20 +550,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEClassAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EClass <em>EClass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EClass
-	 * @generated
-	 */
-	public Adapter createEcore_EClassAdapter() {
 		return null;
 	}
 

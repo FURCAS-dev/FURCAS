@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLAdapterFactory.java,v 1.2 2006/04/04 18:07:25 cdamus Exp $
+ * $Id: UMLAdapterFactory.java,v 1.3 2006/05/30 21:37:21 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -112,12 +112,6 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseVisitable(Visitable object) {
 				return createVisitableAdapter();
-			}
-			public Object caseEcore_EModelElement(EModelElement object) {
-				return createEcore_EModelElementAdapter();
-			}
-			public Object caseEcore_ENamedElement(ENamedElement object) {
-				return createEcore_ENamedElementAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -232,34 +226,6 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVisitableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EModelElement
-	 * @generated
-	 */
-	public Adapter createEcore_EModelElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ENamedElement <em>ENamed Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.ENamedElement
-	 * @generated
-	 */
-	public Adapter createEcore_ENamedElementAdapter() {
 		return null;
 	}
 

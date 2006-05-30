@@ -148,19 +148,19 @@ public class ExpressionsSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ExpressionsPackage.PROPERTY_CALL_EXP: {
-				PropertyCallExp propertyCallExp = (PropertyCallExp)theEObject;
-				Object result = casePropertyCallExp(propertyCallExp);
-				if (result == null) result = caseNavigationCallExp(propertyCallExp);
-				if (result == null) result = caseFeatureCallExp(propertyCallExp);
-				if (result == null) result = caseCallExp(propertyCallExp);
-				if (result == null) result = caseOCLExpression(propertyCallExp);
-				if (result == null) result = caseCallingASTNode(propertyCallExp);
-				if (result == null) result = caseTypedElement(propertyCallExp);
-				if (result == null) result = caseVisitable(propertyCallExp);
-				if (result == null) result = caseASTNode(propertyCallExp);
-				if (result == null) result = caseENamedElement(propertyCallExp);
-				if (result == null) result = caseEModelElement(propertyCallExp);
+			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: {
+				AssociationClassCallExp associationClassCallExp = (AssociationClassCallExp)theEObject;
+				Object result = caseAssociationClassCallExp(associationClassCallExp);
+				if (result == null) result = caseNavigationCallExp(associationClassCallExp);
+				if (result == null) result = caseFeatureCallExp(associationClassCallExp);
+				if (result == null) result = caseCallExp(associationClassCallExp);
+				if (result == null) result = caseOCLExpression(associationClassCallExp);
+				if (result == null) result = caseCallingASTNode(associationClassCallExp);
+				if (result == null) result = caseTypedElement(associationClassCallExp);
+				if (result == null) result = caseVisitable(associationClassCallExp);
+				if (result == null) result = caseASTNode(associationClassCallExp);
+				if (result == null) result = caseENamedElement(associationClassCallExp);
+				if (result == null) result = caseEModelElement(associationClassCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -175,6 +175,19 @@ public class ExpressionsSwitch {
 				if (result == null) result = caseASTNode(booleanLiteralExp);
 				if (result == null) result = caseENamedElement(booleanLiteralExp);
 				if (result == null) result = caseEModelElement(booleanLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionsPackage.CALL_EXP: {
+				CallExp callExp = (CallExp)theEObject;
+				Object result = caseCallExp(callExp);
+				if (result == null) result = caseOCLExpression(callExp);
+				if (result == null) result = caseCallingASTNode(callExp);
+				if (result == null) result = caseTypedElement(callExp);
+				if (result == null) result = caseVisitable(callExp);
+				if (result == null) result = caseASTNode(callExp);
+				if (result == null) result = caseENamedElement(callExp);
+				if (result == null) result = caseEModelElement(callExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -233,6 +246,20 @@ public class ExpressionsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ExpressionsPackage.FEATURE_CALL_EXP: {
+				FeatureCallExp featureCallExp = (FeatureCallExp)theEObject;
+				Object result = caseFeatureCallExp(featureCallExp);
+				if (result == null) result = caseCallExp(featureCallExp);
+				if (result == null) result = caseOCLExpression(featureCallExp);
+				if (result == null) result = caseCallingASTNode(featureCallExp);
+				if (result == null) result = caseTypedElement(featureCallExp);
+				if (result == null) result = caseVisitable(featureCallExp);
+				if (result == null) result = caseASTNode(featureCallExp);
+				if (result == null) result = caseENamedElement(featureCallExp);
+				if (result == null) result = caseEModelElement(featureCallExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ExpressionsPackage.IF_EXP: {
 				IfExp ifExp = (IfExp)theEObject;
 				Object result = caseIfExp(ifExp);
@@ -257,6 +284,19 @@ public class ExpressionsSwitch {
 				if (result == null) result = caseASTNode(integerLiteralExp);
 				if (result == null) result = caseENamedElement(integerLiteralExp);
 				if (result == null) result = caseEModelElement(integerLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionsPackage.INVALID_LITERAL_EXP: {
+				InvalidLiteralExp invalidLiteralExp = (InvalidLiteralExp)theEObject;
+				Object result = caseInvalidLiteralExp(invalidLiteralExp);
+				if (result == null) result = caseLiteralExp(invalidLiteralExp);
+				if (result == null) result = caseOCLExpression(invalidLiteralExp);
+				if (result == null) result = caseTypedElement(invalidLiteralExp);
+				if (result == null) result = caseVisitable(invalidLiteralExp);
+				if (result == null) result = caseASTNode(invalidLiteralExp);
+				if (result == null) result = caseENamedElement(invalidLiteralExp);
+				if (result == null) result = caseEModelElement(invalidLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -328,17 +368,16 @@ public class ExpressionsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpressionsPackage.FEATURE_CALL_EXP: {
-				FeatureCallExp featureCallExp = (FeatureCallExp)theEObject;
-				Object result = caseFeatureCallExp(featureCallExp);
-				if (result == null) result = caseCallExp(featureCallExp);
-				if (result == null) result = caseOCLExpression(featureCallExp);
-				if (result == null) result = caseCallingASTNode(featureCallExp);
-				if (result == null) result = caseTypedElement(featureCallExp);
-				if (result == null) result = caseVisitable(featureCallExp);
-				if (result == null) result = caseASTNode(featureCallExp);
-				if (result == null) result = caseENamedElement(featureCallExp);
-				if (result == null) result = caseEModelElement(featureCallExp);
+			case ExpressionsPackage.MESSAGE_EXP: {
+				MessageExp messageExp = (MessageExp)theEObject;
+				Object result = caseMessageExp(messageExp);
+				if (result == null) result = caseOCLExpression(messageExp);
+				if (result == null) result = caseCallingASTNode(messageExp);
+				if (result == null) result = caseTypedElement(messageExp);
+				if (result == null) result = caseVisitable(messageExp);
+				if (result == null) result = caseASTNode(messageExp);
+				if (result == null) result = caseENamedElement(messageExp);
+				if (result == null) result = caseEModelElement(messageExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -354,6 +393,19 @@ public class ExpressionsSwitch {
 				if (result == null) result = caseASTNode(navigationCallExp);
 				if (result == null) result = caseENamedElement(navigationCallExp);
 				if (result == null) result = caseEModelElement(navigationCallExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionsPackage.NULL_LITERAL_EXP: {
+				NullLiteralExp nullLiteralExp = (NullLiteralExp)theEObject;
+				Object result = caseNullLiteralExp(nullLiteralExp);
+				if (result == null) result = caseLiteralExp(nullLiteralExp);
+				if (result == null) result = caseOCLExpression(nullLiteralExp);
+				if (result == null) result = caseTypedElement(nullLiteralExp);
+				if (result == null) result = caseVisitable(nullLiteralExp);
+				if (result == null) result = caseASTNode(nullLiteralExp);
+				if (result == null) result = caseENamedElement(nullLiteralExp);
+				if (result == null) result = caseEModelElement(nullLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -379,19 +431,6 @@ public class ExpressionsSwitch {
 				if (result == null) result = caseASTNode(oclExpression);
 				if (result == null) result = caseENamedElement(oclExpression);
 				if (result == null) result = caseEModelElement(oclExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExpressionsPackage.MESSAGE_EXP: {
-				MessageExp messageExp = (MessageExp)theEObject;
-				Object result = caseMessageExp(messageExp);
-				if (result == null) result = caseOCLExpression(messageExp);
-				if (result == null) result = caseCallingASTNode(messageExp);
-				if (result == null) result = caseTypedElement(messageExp);
-				if (result == null) result = caseVisitable(messageExp);
-				if (result == null) result = caseASTNode(messageExp);
-				if (result == null) result = caseENamedElement(messageExp);
-				if (result == null) result = caseEModelElement(messageExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -423,16 +462,19 @@ public class ExpressionsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExpressionsPackage.CALL_EXP: {
-				CallExp callExp = (CallExp)theEObject;
-				Object result = caseCallExp(callExp);
-				if (result == null) result = caseOCLExpression(callExp);
-				if (result == null) result = caseCallingASTNode(callExp);
-				if (result == null) result = caseTypedElement(callExp);
-				if (result == null) result = caseVisitable(callExp);
-				if (result == null) result = caseASTNode(callExp);
-				if (result == null) result = caseENamedElement(callExp);
-				if (result == null) result = caseEModelElement(callExp);
+			case ExpressionsPackage.PROPERTY_CALL_EXP: {
+				PropertyCallExp propertyCallExp = (PropertyCallExp)theEObject;
+				Object result = casePropertyCallExp(propertyCallExp);
+				if (result == null) result = caseNavigationCallExp(propertyCallExp);
+				if (result == null) result = caseFeatureCallExp(propertyCallExp);
+				if (result == null) result = caseCallExp(propertyCallExp);
+				if (result == null) result = caseOCLExpression(propertyCallExp);
+				if (result == null) result = caseCallingASTNode(propertyCallExp);
+				if (result == null) result = caseTypedElement(propertyCallExp);
+				if (result == null) result = caseVisitable(propertyCallExp);
+				if (result == null) result = caseASTNode(propertyCallExp);
+				if (result == null) result = caseENamedElement(propertyCallExp);
+				if (result == null) result = caseEModelElement(propertyCallExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -448,6 +490,18 @@ public class ExpressionsSwitch {
 				if (result == null) result = caseASTNode(realLiteralExp);
 				if (result == null) result = caseENamedElement(realLiteralExp);
 				if (result == null) result = caseEModelElement(realLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionsPackage.STATE_EXP: {
+				StateExp stateExp = (StateExp)theEObject;
+				Object result = caseStateExp(stateExp);
+				if (result == null) result = caseOCLExpression(stateExp);
+				if (result == null) result = caseTypedElement(stateExp);
+				if (result == null) result = caseVisitable(stateExp);
+				if (result == null) result = caseASTNode(stateExp);
+				if (result == null) result = caseENamedElement(stateExp);
+				if (result == null) result = caseEModelElement(stateExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -490,6 +544,18 @@ public class ExpressionsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ExpressionsPackage.TYPE_EXP: {
+				TypeExp typeExp = (TypeExp)theEObject;
+				Object result = caseTypeExp(typeExp);
+				if (result == null) result = caseOCLExpression(typeExp);
+				if (result == null) result = caseTypedElement(typeExp);
+				if (result == null) result = caseVisitable(typeExp);
+				if (result == null) result = caseASTNode(typeExp);
+				if (result == null) result = caseENamedElement(typeExp);
+				if (result == null) result = caseEModelElement(typeExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP: {
 				UnspecifiedValueExp unspecifiedValueExp = (UnspecifiedValueExp)theEObject;
 				Object result = caseUnspecifiedValueExp(unspecifiedValueExp);
@@ -524,72 +590,6 @@ public class ExpressionsSwitch {
 				if (result == null) result = caseASTNode(variableExp);
 				if (result == null) result = caseENamedElement(variableExp);
 				if (result == null) result = caseEModelElement(variableExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: {
-				AssociationClassCallExp associationClassCallExp = (AssociationClassCallExp)theEObject;
-				Object result = caseAssociationClassCallExp(associationClassCallExp);
-				if (result == null) result = caseNavigationCallExp(associationClassCallExp);
-				if (result == null) result = caseFeatureCallExp(associationClassCallExp);
-				if (result == null) result = caseCallExp(associationClassCallExp);
-				if (result == null) result = caseOCLExpression(associationClassCallExp);
-				if (result == null) result = caseCallingASTNode(associationClassCallExp);
-				if (result == null) result = caseTypedElement(associationClassCallExp);
-				if (result == null) result = caseVisitable(associationClassCallExp);
-				if (result == null) result = caseASTNode(associationClassCallExp);
-				if (result == null) result = caseENamedElement(associationClassCallExp);
-				if (result == null) result = caseEModelElement(associationClassCallExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExpressionsPackage.NULL_LITERAL_EXP: {
-				NullLiteralExp nullLiteralExp = (NullLiteralExp)theEObject;
-				Object result = caseNullLiteralExp(nullLiteralExp);
-				if (result == null) result = caseLiteralExp(nullLiteralExp);
-				if (result == null) result = caseOCLExpression(nullLiteralExp);
-				if (result == null) result = caseTypedElement(nullLiteralExp);
-				if (result == null) result = caseVisitable(nullLiteralExp);
-				if (result == null) result = caseASTNode(nullLiteralExp);
-				if (result == null) result = caseENamedElement(nullLiteralExp);
-				if (result == null) result = caseEModelElement(nullLiteralExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExpressionsPackage.INVALID_LITERAL_EXP: {
-				InvalidLiteralExp invalidLiteralExp = (InvalidLiteralExp)theEObject;
-				Object result = caseInvalidLiteralExp(invalidLiteralExp);
-				if (result == null) result = caseLiteralExp(invalidLiteralExp);
-				if (result == null) result = caseOCLExpression(invalidLiteralExp);
-				if (result == null) result = caseTypedElement(invalidLiteralExp);
-				if (result == null) result = caseVisitable(invalidLiteralExp);
-				if (result == null) result = caseASTNode(invalidLiteralExp);
-				if (result == null) result = caseENamedElement(invalidLiteralExp);
-				if (result == null) result = caseEModelElement(invalidLiteralExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExpressionsPackage.TYPE_EXP: {
-				TypeExp typeExp = (TypeExp)theEObject;
-				Object result = caseTypeExp(typeExp);
-				if (result == null) result = caseOCLExpression(typeExp);
-				if (result == null) result = caseTypedElement(typeExp);
-				if (result == null) result = caseVisitable(typeExp);
-				if (result == null) result = caseASTNode(typeExp);
-				if (result == null) result = caseENamedElement(typeExp);
-				if (result == null) result = caseEModelElement(typeExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExpressionsPackage.STATE_EXP: {
-				StateExp stateExp = (StateExp)theEObject;
-				Object result = caseStateExp(stateExp);
-				if (result == null) result = caseOCLExpression(stateExp);
-				if (result == null) result = caseTypedElement(stateExp);
-				if (result == null) result = caseVisitable(stateExp);
-				if (result == null) result = caseASTNode(stateExp);
-				if (result == null) result = caseENamedElement(stateExp);
-				if (result == null) result = caseEModelElement(stateExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

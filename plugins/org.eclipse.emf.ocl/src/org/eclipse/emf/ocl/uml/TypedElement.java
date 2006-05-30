@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TypedElement.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: TypedElement.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface TypedElement extends EObject, ENamedElement {
+public interface TypedElement extends ENamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

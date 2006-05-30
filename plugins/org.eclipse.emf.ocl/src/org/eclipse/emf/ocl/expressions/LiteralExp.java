@@ -25,6 +25,13 @@ package org.eclipse.emf.ocl.expressions;
  * 
  */
 public interface LiteralExp
-	extends OCLExpression {
+	extends OCLExpression{
 	//	empty impl.
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

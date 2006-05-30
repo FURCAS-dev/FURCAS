@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLSwitch.java,v 1.2 2006/04/04 18:07:25 cdamus Exp $
+ * $Id: UMLSwitch.java,v 1.3 2006/05/30 21:37:21 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -135,8 +135,8 @@ public class UMLSwitch {
 			case UMLPackage.TYPED_ELEMENT: {
 				TypedElement typedElement = (TypedElement)theEObject;
 				Object result = caseTypedElement(typedElement);
-				if (result == null) result = caseEcore_ENamedElement(typedElement);
-				if (result == null) result = caseEcore_EModelElement(typedElement);
+				if (result == null) result = caseENamedElement(typedElement);
+				if (result == null) result = caseEModelElement(typedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -246,36 +246,6 @@ public class UMLSwitch {
 	 * @generated
 	 */
 	public Object caseVisitable(Visitable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseEcore_EModelElement(EModelElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseEcore_ENamedElement(ENamedElement object) {
 		return null;
 	}
 

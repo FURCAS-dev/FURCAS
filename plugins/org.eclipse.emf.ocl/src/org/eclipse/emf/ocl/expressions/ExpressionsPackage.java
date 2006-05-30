@@ -85,7 +85,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getOCLExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 17;
+	int OCL_EXPRESSION = 21;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -149,7 +149,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getCallExp()
 	 * @generated
 	 */
-	int CALL_EXP = 21;
+	int CALL_EXP = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.FeatureCallExpImpl <em>Feature Call Exp</em>}' class.
@@ -159,7 +159,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getFeatureCallExp()
 	 * @generated
 	 */
-	int FEATURE_CALL_EXP = 14;
+	int FEATURE_CALL_EXP = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
@@ -169,7 +169,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 15;
+	int NAVIGATION_CALL_EXP = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
@@ -179,7 +179,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 12;
+	int LITERAL_EXP = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
@@ -189,7 +189,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 20;
+	int PRIMITIVE_LITERAL_EXP = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -209,7 +209,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralPart()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_PART = 4;
+	int COLLECTION_LITERAL_PART = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.CollectionItemImpl <em>Collection Item</em>}' class.
@@ -219,7 +219,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionItem()
 	 * @generated
 	 */
-	int COLLECTION_ITEM = 2;
+	int COLLECTION_ITEM = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
@@ -229,7 +229,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralExp()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_EXP = 3;
+	int COLLECTION_LITERAL_EXP = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.CollectionRangeImpl <em>Collection Range</em>}' class.
@@ -239,7 +239,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionRange()
 	 * @generated
 	 */
-	int COLLECTION_RANGE = 5;
+	int COLLECTION_RANGE = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -249,7 +249,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 6;
+	int ENUM_LITERAL_EXP = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -259,7 +259,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 7;
+	int IF_EXP = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
@@ -269,7 +269,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 16;
+	int NUMERIC_LITERAL_EXP = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -279,7 +279,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 8;
+	int INTEGER_LITERAL_EXP = 10;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -370,7 +370,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 13;
+	int LOOP_EXP = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
@@ -380,7 +380,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 9;
+	int ITERATE_EXP = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
@@ -390,7 +390,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 10;
+	int ITERATOR_EXP = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.LetExpImpl <em>Let Exp</em>}' class.
@@ -400,7 +400,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 11;
+	int LET_EXP = 14;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -608,7 +608,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 19;
+	int OPERATION_CALL_EXP = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -618,7 +618,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 22;
+	int REAL_LITERAL_EXP = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -628,7 +628,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 23;
+	int STRING_LITERAL_EXP = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -638,7 +638,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 24;
+	int TUPLE_LITERAL_EXP = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -648,7 +648,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 26;
+	int UNSPECIFIED_VALUE_EXP = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -658,7 +658,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 28;
+	int VARIABLE_EXP = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
@@ -668,7 +668,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getAssociationClassCallExp()
 	 * @generated
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP = 29;
+	int ASSOCIATION_CLASS_CALL_EXP = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.MessageExpImpl <em>Message Exp</em>}' class.
@@ -678,7 +678,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getMessageExp()
 	 * @generated
 	 */
-	int MESSAGE_EXP = 18;
+	int MESSAGE_EXP = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.VariableImpl <em>Variable</em>}' class.
@@ -688,7 +688,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 27;
+	int VARIABLE = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
@@ -698,7 +698,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 30;
+	int NULL_LITERAL_EXP = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -708,7 +708,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getInvalidLiteralExp()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP = 31;
+	int INVALID_LITERAL_EXP = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -718,7 +718,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 32;
+	int TYPE_EXP = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -728,7 +728,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 33;
+	int STATE_EXP = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -738,7 +738,17 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 0;
+	int PROPERTY_CALL_EXP = 24;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ocl.expressions.impl.TupleLiteralPartImpl
+	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralPart()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_PART = 29;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -747,7 +757,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
+	int ASSOCIATION_CLASS_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -756,7 +766,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
+	int ASSOCIATION_CLASS_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -765,7 +775,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
+	int ASSOCIATION_CLASS_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -774,7 +784,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
+	int ASSOCIATION_CLASS_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -783,7 +793,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
+	int ASSOCIATION_CLASS_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
@@ -792,7 +802,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
+	int ASSOCIATION_CLASS_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
@@ -801,7 +811,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
+	int ASSOCIATION_CLASS_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -810,7 +820,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
+	int ASSOCIATION_CLASS_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
@@ -819,7 +829,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
+	int ASSOCIATION_CLASS_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
 
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
@@ -828,7 +838,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
+	int ASSOCIATION_CLASS_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
@@ -837,25 +847,25 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+	int ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
+	 * The feature id for the '<em><b>Referred Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Property Call Exp</em>' class.
+	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -1503,6 +1513,60 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int INVALID_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
+
+	/**
+	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int LOOP_EXP__EANNOTATIONS = CALL_EXP__EANNOTATIONS;
 
 	/**
@@ -1989,6 +2053,60 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int NULL_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
+
+	/**
+	 * The number of structural features of the '<em>Null Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int OPERATION_CALL_EXP__EANNOTATIONS = FEATURE_CALL_EXP__EANNOTATIONS;
 
 	/**
@@ -2097,6 +2215,123 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int PROPERTY_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Property Call Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int REAL_LITERAL_EXP__EANNOTATIONS = NUMERIC_LITERAL_EXP__EANNOTATIONS;
 
 	/**
@@ -2152,6 +2387,69 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__NAME = OCL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Referred State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__REFERRED_STATE = OCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>State Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2280,16 +2578,6 @@ public interface ExpressionsPackage extends EPackage {
 	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ocl.expressions.impl.TupleLiteralPartImpl
-	 * @see org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralPart()
-	 * @generated
-	 */
-	int TUPLE_LITERAL_PART = 25;
-
-	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2378,6 +2666,69 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_FEATURE_COUNT = UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__NAME = OCL_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__TYPE = OCL_EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__REFERRED_TYPE = OCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Type Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2603,357 +2954,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__TYPE = NAVIGATION_CALL_EXP__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__START_POSITION = NAVIGATION_CALL_EXP__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__END_POSITION = NAVIGATION_CALL_EXP__END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__PROPERTY_START_POSITION = NAVIGATION_CALL_EXP__PROPERTY_START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__PROPERTY_END_POSITION = NAVIGATION_CALL_EXP__PROPERTY_END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__SOURCE = NAVIGATION_CALL_EXP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__MARKED_PRE = NAVIGATION_CALL_EXP__MARKED_PRE;
-
-	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__QUALIFIER = NAVIGATION_CALL_EXP__QUALIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE = NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Referred Association Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
-
-	/**
-	 * The number of structural features of the '<em>Null Literal Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__START_POSITION = LITERAL_EXP__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__END_POSITION = LITERAL_EXP__END_POSITION;
-
-	/**
-	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__NAME = OCL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__TYPE = OCL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__REFERRED_TYPE = OCL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Type Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__NAME = OCL_EXPRESSION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__TYPE = OCL_EXPRESSION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__START_POSITION = OCL_EXPRESSION__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__END_POSITION = OCL_EXPRESSION__END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Referred State</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__REFERRED_STATE = OCL_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>State Exp</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.expressions.CollectionKind <em>Collection Kind</em>}' enum.
@@ -3726,7 +3726,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Visitor</em>'.
 	 * @see org.eclipse.emf.ocl.expressions.Visitor
-	 * @model instanceClass="org.eclipse.emf.ocl.expressions.Visitor"
+	 * @model instanceClass="org.eclipse.emf.ocl.expressions.Visitor" serializable="false"
 	 * @generated
 	 */
 	EDataType getVisitor();

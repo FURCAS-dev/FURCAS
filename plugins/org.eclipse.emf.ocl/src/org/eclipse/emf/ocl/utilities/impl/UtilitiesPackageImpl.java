@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -26,12 +26,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.cst.CSTPackage;
-
-import org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl;
-
 import org.eclipse.emf.ocl.parser.SemanticException;
-
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -164,7 +159,6 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
 		UMLPackageImpl theUMLPackage = (UMLPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) instanceof UMLPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI) : UMLPackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		CSTPackageImpl theCSTPackage = (CSTPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) instanceof CSTPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) : CSTPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUtilitiesPackage.createPackageContents();
@@ -172,7 +166,6 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		theExpressionsPackage.createPackageContents();
 		theUMLPackage.createPackageContents();
 		theQueryPackage.createPackageContents();
-		theCSTPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theUtilitiesPackage.initializePackageContents();
@@ -180,7 +173,6 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		theExpressionsPackage.initializePackageContents();
 		theUMLPackage.initializePackageContents();
 		theQueryPackage.initializePackageContents();
-		theCSTPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theUtilitiesPackage.freeze();
@@ -321,21 +313,21 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		isCreated = true;
 
 		// Create classes and their features
-		visitableEClass = createEClass(VISITABLE);
-
 		astNodeEClass = createEClass(AST_NODE);
 		createEAttribute(astNodeEClass, AST_NODE__START_POSITION);
 		createEAttribute(astNodeEClass, AST_NODE__END_POSITION);
-
-		typedASTNodeEClass = createEClass(TYPED_AST_NODE);
-		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_START_POSITION);
-		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_END_POSITION);
 
 		callingASTNodeEClass = createEClass(CALLING_AST_NODE);
 		createEAttribute(callingASTNodeEClass, CALLING_AST_NODE__PROPERTY_START_POSITION);
 		createEAttribute(callingASTNodeEClass, CALLING_AST_NODE__PROPERTY_END_POSITION);
 
 		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
+
+		typedASTNodeEClass = createEClass(TYPED_AST_NODE);
+		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_START_POSITION);
+		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_END_POSITION);
+
+		visitableEClass = createEClass(VISITABLE);
 
 		// Create data types
 		semanticExceptionEDataType = createEDataType(SEMANTIC_EXCEPTION);
@@ -364,26 +356,17 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Add supertypes to classes
-		typedASTNodeEClass.getESuperTypes().add(this.getASTNode());
 		callingASTNodeEClass.getESuperTypes().add(this.getASTNode());
+		typedASTNodeEClass.getESuperTypes().add(this.getASTNode());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(visitableEClass, Visitable.class, "Visitable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		EOperation op = addEOperation(visitableEClass, ecorePackage.getEJavaObject(), "accept", 0, 1); //$NON-NLS-1$
-		addEParameter(op, theExpressionsPackage.getVisitor(), "v", 0, 1); //$NON-NLS-1$
-
 		initEClass(astNodeEClass, ASTNode.class, "ASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getASTNode_StartPosition(), theEcorePackage.getEInt(), "startPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getASTNode_EndPosition(), theEcorePackage.getEInt(), "endPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
-		initEClass(typedASTNodeEClass, TypedASTNode.class, "TypedASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypedASTNode_TypeStartPosition(), theEcorePackage.getEInt(), "typeStartPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getTypedASTNode_TypeEndPosition(), theEcorePackage.getEInt(), "typeEndPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(callingASTNodeEClass, CallingASTNode.class, "CallingASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCallingASTNode_PropertyStartPosition(), theEcorePackage.getEInt(), "propertyStartPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -391,29 +374,38 @@ public class UtilitiesPackageImpl extends EPackageImpl implements
 
 		initEClass(predefinedTypeEClass, PredefinedType.class, "PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(predefinedTypeEClass, ecorePackage.getEOperation(), "getOperations", 0, -1); //$NON-NLS-1$
+		addEOperation(predefinedTypeEClass, theEcorePackage.getEOperation(), "getOperations", 0, -1); //$NON-NLS-1$
 
-		op = addEOperation(predefinedTypeEClass, ecorePackage.getEString(), "getOperationNameFor", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEInt(), "opcode", 0, 1); //$NON-NLS-1$
+		EOperation op = addEOperation(predefinedTypeEClass, theEcorePackage.getEString(), "getOperationNameFor", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEInt(), "opcode", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(predefinedTypeEClass, ecorePackage.getEInt(), "getOperationCodeFor", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "operName", 0, 1); //$NON-NLS-1$
+		op = addEOperation(predefinedTypeEClass, theEcorePackage.getEInt(), "getOperationCodeFor", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEString(), "operName", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(predefinedTypeEClass, ecorePackage.getEClassifier(), "getResultTypeFor", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEClassifier(), "ownerType", 1, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEInt(), "opcode", 0, 1); //$NON-NLS-1$
+		op = addEOperation(predefinedTypeEClass, theEcorePackage.getEClassifier(), "getResultTypeFor", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEClassifier(), "ownerType", 1, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEInt(), "opcode", 0, 1); //$NON-NLS-1$
 		addEParameter(op, theExpressionsPackage.getOCLExpression(), "args", 0, -1); //$NON-NLS-1$
 		addEException(op, this.getSemanticException());
 
-		op = addEOperation(predefinedTypeEClass, ecorePackage.getEInt(), "getRelationshipTo", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEClassifier(), "type", 1, 1); //$NON-NLS-1$
+		op = addEOperation(predefinedTypeEClass, theEcorePackage.getEInt(), "getRelationshipTo", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEClassifier(), "type", 1, 1); //$NON-NLS-1$
 
 		op = addEOperation(predefinedTypeEClass, theEcorePackage.getEClassifier(), "getCommonSupertype", 0, 1); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEClassifier(), "type", 1, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEClassifier(), "type", 1, 1); //$NON-NLS-1$
 		addEException(op, this.getSemanticException());
 
+		initEClass(typedASTNodeEClass, TypedASTNode.class, "TypedASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTypedASTNode_TypeStartPosition(), theEcorePackage.getEInt(), "typeStartPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getTypedASTNode_TypeEndPosition(), theEcorePackage.getEInt(), "typeEndPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+
+		initEClass(visitableEClass, Visitable.class, "Visitable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		op = addEOperation(visitableEClass, theEcorePackage.getEJavaObject(), "accept", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theExpressionsPackage.getVisitor(), "v", 0, 1); //$NON-NLS-1$
+
 		// Initialize data types
-		initEDataType(semanticExceptionEDataType, SemanticException.class, "SemanticException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(semanticExceptionEDataType, SemanticException.class, "SemanticException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

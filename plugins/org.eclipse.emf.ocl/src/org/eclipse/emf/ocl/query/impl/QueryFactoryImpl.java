@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: QueryFactoryImpl.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: QueryFactoryImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
-
-import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -95,8 +93,6 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case QueryPackage.LIST:
-				return createListFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -109,8 +105,6 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
 	 */
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case QueryPackage.LIST:
-				return convertListToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -149,24 +143,6 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
 		}
 	}
 
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public List createListFromString(EDataType eDataType, String initialValue) {
-		return (List)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertListToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
 
 	/**
 	 * <!-- begin-user-doc -->

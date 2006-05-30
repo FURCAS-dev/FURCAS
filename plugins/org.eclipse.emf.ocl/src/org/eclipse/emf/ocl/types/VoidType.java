@@ -25,4 +25,11 @@ import org.eclipse.emf.ocl.utilities.PredefinedType;
  */
 public interface VoidType extends EClassifier, PredefinedType {
 	// nothing to add
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

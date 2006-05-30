@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsFactoryImpl.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: ExpressionsFactoryImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -56,7 +56,6 @@ import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
-import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.internal.parser.OCLLexer;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.parser.ParserException;
@@ -112,7 +111,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 */
     public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ExpressionsPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
+			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
 			case ExpressionsPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
 			case ExpressionsPackage.COLLECTION_ITEM: return createCollectionItem();
 			case ExpressionsPackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
@@ -121,24 +120,24 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 			case ExpressionsPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
 			case ExpressionsPackage.IF_EXP: return createIfExp();
 			case ExpressionsPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
+			case ExpressionsPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
 			case ExpressionsPackage.ITERATE_EXP: return createIterateExp();
 			case ExpressionsPackage.ITERATOR_EXP: return createIteratorExp();
 			case ExpressionsPackage.LET_EXP: return createLetExp();
 			case ExpressionsPackage.LOOP_EXP: return createLoopExp();
 			case ExpressionsPackage.MESSAGE_EXP: return createMessageExp();
+			case ExpressionsPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
 			case ExpressionsPackage.OPERATION_CALL_EXP: return createOperationCallExp();
+			case ExpressionsPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
 			case ExpressionsPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
+			case ExpressionsPackage.STATE_EXP: return createStateExp();
 			case ExpressionsPackage.STRING_LITERAL_EXP: return createStringLiteralExp();
 			case ExpressionsPackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
 			case ExpressionsPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
+			case ExpressionsPackage.TYPE_EXP: return createTypeExp();
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
 			case ExpressionsPackage.VARIABLE: return createVariable();
 			case ExpressionsPackage.VARIABLE_EXP: return createVariableExp();
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
-			case ExpressionsPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
-			case ExpressionsPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
-			case ExpressionsPackage.TYPE_EXP: return createTypeExp();
-			case ExpressionsPackage.STATE_EXP: return createStateExp();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -152,8 +151,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 			case ExpressionsPackage.COLLECTION_KIND:
 				return createCollectionKindFromString(eDataType, initialValue);
-			case ExpressionsPackage.VISITOR:
-				return createVisitorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -167,8 +164,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 			case ExpressionsPackage.COLLECTION_KIND:
 				return convertCollectionKindToString(eDataType, instanceValue);
-			case ExpressionsPackage.VISITOR:
-				return convertVisitorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -466,24 +461,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 */
 	public String convertCollectionKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Visitor createVisitorFromString(EDataType eDataType, String initialValue) {
-		return (Visitor)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertVisitorToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

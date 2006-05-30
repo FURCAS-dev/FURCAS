@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.1 2006/04/04 18:09:05 cdamus Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -23,10 +23,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.ocl.parser.SemanticException;
-
-import org.eclipse.emf.ocl.utilities.*;
+import org.eclipse.emf.ocl.utilities.UtilitiesFactory;
+import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
+import org.eclipse.emf.ocl.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,8 +93,6 @@ public class UtilitiesFactoryImpl
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case UtilitiesPackage.SEMANTIC_EXCEPTION:
-				return createSemanticExceptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -108,8 +105,6 @@ public class UtilitiesFactoryImpl
 	 */
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case UtilitiesPackage.SEMANTIC_EXCEPTION:
-				return convertSemanticExceptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -123,24 +118,6 @@ public class UtilitiesFactoryImpl
 	public Visitable createVisitable() {
 		VisitableImpl visitable = new VisitableImpl();
 		return visitable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SemanticException createSemanticExceptionFromString(EDataType eDataType, String initialValue) {
-		return (SemanticException)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSemanticExceptionToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

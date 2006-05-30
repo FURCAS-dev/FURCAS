@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesAdapterFactory.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: UtilitiesAdapterFactory.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.util;
@@ -86,20 +86,20 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected UtilitiesSwitch modelSwitch =
 		new UtilitiesSwitch() {
-			public Object caseVisitable(Visitable object) {
-				return createVisitableAdapter();
-			}
 			public Object caseASTNode(ASTNode object) {
 				return createASTNodeAdapter();
-			}
-			public Object caseTypedASTNode(TypedASTNode object) {
-				return createTypedASTNodeAdapter();
 			}
 			public Object caseCallingASTNode(CallingASTNode object) {
 				return createCallingASTNodeAdapter();
 			}
 			public Object casePredefinedType(PredefinedType object) {
 				return createPredefinedTypeAdapter();
+			}
+			public Object caseTypedASTNode(TypedASTNode object) {
+				return createTypedASTNodeAdapter();
+			}
+			public Object caseVisitable(Visitable object) {
+				return createVisitableAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();

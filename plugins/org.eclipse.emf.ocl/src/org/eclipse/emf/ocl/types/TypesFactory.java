@@ -181,7 +181,7 @@ public interface TypesFactory extends EFactory {
 	 * @generated
 	 */
 	TypeType createTypeType();
-	
+
 	TypeType createTypeType(EClassifier type);
 
 	/**

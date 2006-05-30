@@ -24,6 +24,13 @@ package org.eclipse.emf.ocl.expressions;
  * @model abstract="true"
  */
 public interface PrimitiveLiteralExp
-	extends LiteralExp {
+	extends LiteralExp{
 	//	empty impl.
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

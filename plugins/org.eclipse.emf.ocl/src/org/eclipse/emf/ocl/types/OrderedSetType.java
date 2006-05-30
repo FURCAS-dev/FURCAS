@@ -21,7 +21,14 @@ package org.eclipse.emf.ocl.types;
 /**
  * @author Edith Schonberg (edith)
  */
-public interface OrderedSetType extends CollectionType{
+public interface OrderedSetType extends CollectionType {
 	// nothing to add
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }
 

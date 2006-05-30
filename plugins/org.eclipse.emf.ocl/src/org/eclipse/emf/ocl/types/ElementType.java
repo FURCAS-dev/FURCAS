@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementType.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: ElementType.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types;
@@ -24,4 +24,11 @@ import org.eclipse.emf.ecore.EClass;
  */
 public interface ElementType extends EClass {
 	// nothing to add
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String copyright = ""; //$NON-NLS-1$
+
 }

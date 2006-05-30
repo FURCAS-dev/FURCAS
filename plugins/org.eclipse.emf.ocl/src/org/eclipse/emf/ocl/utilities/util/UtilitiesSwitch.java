@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesSwitch.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: UtilitiesSwitch.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.util;
@@ -105,22 +105,9 @@ public class UtilitiesSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case UtilitiesPackage.VISITABLE: {
-				Visitable visitable = (Visitable)theEObject;
-				Object result = caseVisitable(visitable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case UtilitiesPackage.AST_NODE: {
 				ASTNode astNode = (ASTNode)theEObject;
 				Object result = caseASTNode(astNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case UtilitiesPackage.TYPED_AST_NODE: {
-				TypedASTNode typedASTNode = (TypedASTNode)theEObject;
-				Object result = caseTypedASTNode(typedASTNode);
-				if (result == null) result = caseASTNode(typedASTNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,6 +121,19 @@ public class UtilitiesSwitch {
 			case UtilitiesPackage.PREDEFINED_TYPE: {
 				PredefinedType predefinedType = (PredefinedType)theEObject;
 				Object result = casePredefinedType(predefinedType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UtilitiesPackage.TYPED_AST_NODE: {
+				TypedASTNode typedASTNode = (TypedASTNode)theEObject;
+				Object result = caseTypedASTNode(typedASTNode);
+				if (result == null) result = caseASTNode(typedASTNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UtilitiesPackage.VISITABLE: {
+				Visitable visitable = (Visitable)theEObject;
+				Object result = caseVisitable(visitable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

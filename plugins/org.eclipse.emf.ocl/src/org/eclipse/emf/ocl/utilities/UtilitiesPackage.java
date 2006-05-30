@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -84,16 +84,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Visitable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITABLE_FEATURE_COUNT = 0;
+	int VISITABLE = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.utilities.ASTNode <em>AST Node</em>}' class.
@@ -103,7 +94,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl#getASTNode()
 	 * @generated
 	 */
-	int AST_NODE = 1;
+	int AST_NODE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -140,52 +131,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl#getTypedASTNode()
 	 * @generated
 	 */
-	int TYPED_AST_NODE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_AST_NODE__START_POSITION = AST_NODE__START_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_AST_NODE__END_POSITION = AST_NODE__END_POSITION;
-
-	/**
-	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_AST_NODE__TYPE_START_POSITION = AST_NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_AST_NODE__TYPE_END_POSITION = AST_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Typed AST Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_AST_NODE_FEATURE_COUNT = AST_NODE_FEATURE_COUNT + 2;
+	int TYPED_AST_NODE = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.ocl.utilities.CallingASTNode <em>Calling AST Node</em>}' class.
@@ -195,7 +141,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl#getCallingASTNode()
 	 * @generated
 	 */
-	int CALLING_AST_NODE = 3;
+	int CALLING_AST_NODE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -250,7 +196,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl#getPredefinedType()
 	 * @generated
 	 */
-	int PREDEFINED_TYPE = 4;
+	int PREDEFINED_TYPE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
@@ -261,6 +207,60 @@ public interface UtilitiesPackage extends EPackage {
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
 
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_AST_NODE__START_POSITION = AST_NODE__START_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_AST_NODE__END_POSITION = AST_NODE__END_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_AST_NODE__TYPE_START_POSITION = AST_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_AST_NODE__TYPE_END_POSITION = AST_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Typed AST Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_AST_NODE_FEATURE_COUNT = AST_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Visitable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISITABLE_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '<em>Semantic Exception</em>' data type.
@@ -395,7 +395,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Semantic Exception</em>'.
 	 * @see org.eclipse.emf.ocl.parser.SemanticException
-	 * @model instanceClass="org.eclipse.emf.ocl.parser.SemanticException"
+	 * @model instanceClass="org.eclipse.emf.ocl.parser.SemanticException" serializable="false"
 	 * @generated
 	 */
 	EDataType getSemanticException();

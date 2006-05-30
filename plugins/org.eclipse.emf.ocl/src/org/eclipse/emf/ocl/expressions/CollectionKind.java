@@ -61,36 +61,34 @@ public final class CollectionKind extends AbstractEnumerator {
      */
     public static final int SEQUENCE = 4;
 
-    /**
-     * The '<em><b>Collection</b></em>' literal object. <!-- begin-user-doc
+	/**
+	 * The '<em><b>Collection</b></em>' literal object.
+	 * <!-- begin-user-doc
      * -->
      * <p>
      * If the meaning of '<em><b>Collection</b></em>' literal object isn't
      * clear, there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * 
-     * @see #COLLECTION
-     * @generated
-     * @ordered
-     */
-    public static final CollectionKind COLLECTION_LITERAL = new CollectionKind(
-            COLLECTION, "collection");//$NON-NLS-1$
+	 * @see #COLLECTION
+	 * @generated
+	 * @ordered
+	 */
+    public static final CollectionKind COLLECTION_LITERAL = new CollectionKind(COLLECTION, "collection", "collection");//$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Set</b></em>' literal object. <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>Set</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Set</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * 
-     * @see #SET
-     * @generated
-     * @ordered
-     */
-    public static final CollectionKind SET_LITERAL = new CollectionKind(SET,
-            "set");//$NON-NLS-1$
+	 * @see #SET
+	 * @generated
+	 * @ordered
+	 */
+    public static final CollectionKind SET_LITERAL = new CollectionKind(SET, "set", "set");//$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Ordered Set</b></em>' literal object. <!--
@@ -100,39 +98,36 @@ public final class CollectionKind extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-    public static final CollectionKind ORDERED_SET_LITERAL = new CollectionKind(
-            ORDERED_SET, "orderedSet");//$NON-NLS-1$
+    public static final CollectionKind ORDERED_SET_LITERAL = new CollectionKind(ORDERED_SET, "orderedSet", "orderedSet");//$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Bag</b></em>' literal object. <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>Bag</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Bag</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * 
-     * @see #BAG
-     * @generated
-     * @ordered
-     */
-    public static final CollectionKind BAG_LITERAL = new CollectionKind(BAG,
-            "bag");//$NON-NLS-1$
+	 * @see #BAG
+	 * @generated
+	 * @ordered
+	 */
+    public static final CollectionKind BAG_LITERAL = new CollectionKind(BAG, "bag", "bag");//$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>Sequence</b></em>' literal object. <!-- begin-user-doc
+	/**
+	 * The '<em><b>Sequence</b></em>' literal object.
+	 * <!-- begin-user-doc
      * -->
      * <p>
      * If the meaning of '<em><b>Sequence</b></em>' literal object isn't
      * clear, there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * 
-     * @see #SEQUENCE
-     * @generated
-     * @ordered
-     */
-    public static final CollectionKind SEQUENCE_LITERAL = new CollectionKind(
-            SEQUENCE, "sequence");//$NON-NLS-1$
+	 * @see #SEQUENCE
+	 * @generated
+	 * @ordered
+	 */
+    public static final CollectionKind SEQUENCE_LITERAL = new CollectionKind(SEQUENCE, "sequence", "sequence");//$NON-NLS-1$ //$NON-NLS-2$
 
     private static final CollectionKind[] VALUES_ARRAY = new CollectionKind[] {
             COLLECTION_LITERAL, SET_LITERAL, BAG_LITERAL, SEQUENCE_LITERAL,
@@ -201,9 +196,5 @@ public final class CollectionKind extends AbstractEnumerator {
 	private CollectionKind(int value, String name, String literal) {
 		super(value, name, literal);
 	}
-
-    private CollectionKind(int value, String name) {
-        this(value, name, name);
-    }
 }
 

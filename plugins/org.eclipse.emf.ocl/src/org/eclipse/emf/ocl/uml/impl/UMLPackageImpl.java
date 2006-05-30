@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: UMLPackageImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.impl;
 
@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.cst.CSTPackage;
-import org.eclipse.emf.ocl.internal.cst.impl.CSTPackageImpl;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -148,7 +146,6 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		CSTPackageImpl theCSTPackage = (CSTPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) instanceof CSTPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CSTPackage.eNS_URI) : CSTPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUMLPackage.createPackageContents();
@@ -156,7 +153,6 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
 		theExpressionsPackage.createPackageContents();
 		theUtilitiesPackage.createPackageContents();
 		theQueryPackage.createPackageContents();
-		theCSTPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theUMLPackage.initializePackageContents();
@@ -164,7 +160,6 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
 		theExpressionsPackage.initializePackageContents();
 		theUtilitiesPackage.initializePackageContents();
 		theQueryPackage.initializePackageContents();
-		theCSTPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theUMLPackage.freeze();
@@ -346,20 +341,20 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
 		// Add supertypes to classes
 		constraintEClass.getESuperTypes().add(theEcorePackage.getENamedElement());
 		constraintEClass.getESuperTypes().add(theUtilitiesPackage.getVisitable());
-		typedElementEClass.getESuperTypes().add(ecorePackage.getENamedElement());
+		typedElementEClass.getESuperTypes().add(theEcorePackage.getENamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(callOperationActionEClass, CallOperationAction.class, "CallOperationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCallOperationAction_Operation(), theEcorePackage.getEOperation(), null, "operation", null, 1, 1, CallOperationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getConstraint_InstanceVarName(), ecorePackage.getEString(), "instanceVarName", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstraint_InstanceVarName(), theEcorePackage.getEString(), "instanceVarName", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraint_Body(), theExpressionsPackage.getOCLExpression(), null, "body", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraint_ConstrainedElement(), theEcorePackage.getENamedElement(), null, "constrainedElement", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraint_Stereotype(), theEcorePackage.getEString(), "stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(sendSignalActionEClass, SendSignalAction.class, "SendSignalAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSendSignalAction_Signal(), ecorePackage.getEClass(), null, "signal", null, 1, 1, SendSignalAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSendSignalAction_Signal(), theEcorePackage.getEClass(), null, "signal", null, 1, 1, SendSignalAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypedElement_Type(), theEcorePackage.getEClassifier(), null, "type", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

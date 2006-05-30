@@ -41,11 +41,11 @@
     <nestedGenPackages prefix="Expressions" basePackage="org.eclipse.emf.ocl" disposableProviderFactory="true"
         ecorePackage="OCL.ecore#//expressions">
       <genEnums ecoreEnum="OCL.ecore#//expressions/CollectionKind">
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Collection"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Set"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/OrderedSet"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Bag"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Sequence"/>
+        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/collection"/>
+        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/set"/>
+        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/orderedSet"/>
+        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/bag"/>
+        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/sequence"/>
       </genEnums>
       <genDataTypes ecoreDataType="OCL.ecore#//expressions/Visitor"/>
       <genClasses ecoreClass="OCL.ecore#//expressions/AssociationClassCallExp">
