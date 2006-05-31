@@ -24,7 +24,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="org.eclipse.emf.query.examples.category"
-            name="EMFT Query"
+            name="%Query_category"
             parentCategory="org.eclipse.ui.Examples"/>
       <wizard
             canFinishEarly="true"
@@ -32,13 +32,19 @@
             class="org.eclipse.emf.query.examples.internal.wizard.StatementsExampleWizard"
             hasPages="false"
             id="org.eclipse.emf.query.examples.statements"
-            name="Query Statements Example"/>
+            name="%Query_Statements_name"
+            icon="icons/query.gif">
+         <description>%Query_Statements_description</description>
+      </wizard>
       <wizard
             canFinishEarly="true"
             category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
             class="org.eclipse.emf.query.examples.internal.wizard.OCLExampleWizard"
             hasPages="false"
             id="org.eclipse.emf.query.examples.ocl"
-            name="OCL Example"/>
+            name="%Query_OCL_name"
+            icon="icons/ocl.gif">
+         <description>%Query_OCL_description</description>
+      </wizard>
    </extension>
 </plugin>
