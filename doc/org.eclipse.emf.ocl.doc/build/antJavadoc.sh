@@ -13,6 +13,9 @@ mkdir -p $destDir
 # The plugin name
 pluginName="org.eclipse.emf.ocl"
 
+# Packages to exclude from the Javadoc
+javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
+
 # Don't execute if the destination directory has files
 #if [ -d "$destDir" ]; then
 #	exit
@@ -55,6 +58,7 @@ for pluginDir in $pluginDirs; do
 	srcDir=$pluginDir/src
 	if [ -d "$srcDir" ]; then
 		packagesets=$packagesets"<packageset dir=\"$srcDir\"><exclude name=\"$srcDir/**/doc-files/**\"/></packageset>"
+		packagesets=$packagesets""$javadocExclusions
 		copydocfiles=$copydocfiles"<copyDocFiles pluginDir=\"$pluginDir\"/>"
 	fi
 done
