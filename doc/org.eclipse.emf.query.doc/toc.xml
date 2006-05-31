@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="EMFT Query Programmer&apos;s Guide">
+<toc label="EMFT Query Developer Guide">
 
 	<anchor id="overviews-before" />
-	<topic label="Overviews">
-		<topic label="Query Overview" href="references/overview/QueryOverview.html" />
+	<topic label="Programmer&apos;s Guides">
+		<topic label="Query Programmer&apos;s Guide" href="references/overview/QueryOverview.html" />
 	</topic>
 	<anchor id="overviews-after" />
 
