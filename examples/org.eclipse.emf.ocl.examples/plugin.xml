@@ -24,7 +24,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="org.eclipse.emf.ocl.examples.category"
-            name="EMFT OCL"
+            name="%OCL_category"
             parentCategory="org.eclipse.ui.Examples"/>
       <wizard
             canFinishEarly="true"
@@ -32,6 +32,9 @@
             class="org.eclipse.emf.ocl.examples.internal.wizard.InterpreterExampleWizard"
             hasPages="false"
             id="org.eclipse.emf.ocl.examples.interpreter"
-            name="Interpreter Example"/>
+            name="%OCL_Interpreter_name"
+            icon="icons/ocl.gif">
+         <description>%OCL_Interpreter_description</description>
+      </wizard>
    </extension>
 </plugin>
