@@ -13,6 +13,9 @@ mkdir -p $destDir
 # The plugin name
 pluginName="org.eclipse.emf.query"
 
+# Packages to exclude from the Javadoc
+javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
+
 # Don't execute if the destination directory has files
 #if [ -d "$destDir" ]; then
 #	exit
@@ -54,7 +57,10 @@ for pluginDir in $pluginDirs; do
 	pluginDir=`echo $pluginDir | sed -e 's/\/runtime$//g'`
 	srcDir=$pluginDir/src
 	if [ -d "$srcDir" ]; then
-		packagesets=$packagesets"<packageset dir=\"$srcDir\"><exclude name=\"$srcDir/**/doc-files/**\"/></packageset>"
+		packagesets=$packagesets"<packageset dir=\"$srcDir\">"
+		packagesets=$packagesets"<exclude name=\"$srcDir/**/doc-files/**\"/>"
+		packagesets=$packagesets""$javadocExclusions
+		packagesets=$packagesets"</packageset>"
 		copydocfiles=$copydocfiles"<copyDocFiles pluginDir=\"$pluginDir\"/>"
 	fi
 done
