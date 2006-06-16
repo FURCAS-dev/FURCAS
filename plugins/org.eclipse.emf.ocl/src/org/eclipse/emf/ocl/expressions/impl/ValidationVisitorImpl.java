@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.8 2006/04/28 14:46:28 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.9 2006/06/16 19:08:06 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -302,6 +302,12 @@ public class ValidationVisitorImpl
 				}
 				
 				resultType = pt.getResultTypeFor(sourceType, opcode, args);
+				
+				if (resultType == null) {
+					// maybe this operation was an "extra" contribution by a
+					//    custom environment implementation
+					resultType = TypeUtil.getOCLType(oper);
+				}
 			} else {
 				// source is an EClass, an enumeration, or a user data type
 				if (opcode != AnyTypeImpl.getOperationCode(operName)) {
