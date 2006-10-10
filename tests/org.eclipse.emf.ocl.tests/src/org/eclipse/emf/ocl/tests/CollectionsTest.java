@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.5 2006/04/04 18:03:10 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.6 2006/10/10 14:29:19 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -702,6 +703,52 @@ public class CollectionsTest
 					"self.getFakes()->union(self.getFakes().getFakes()->asSet())"); //$NON-NLS-1$
 		} catch (Exception exc) {
 			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that the syntax for collection ranges is supported.
+	 */
+	public void test_collectionRange_152208() {
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		try {
+			Collection result = (Collection) helper.evaluate(new Integer(1),
+					"Sequence{1 .. 10}"); //$NON-NLS-1$
+
+			for (int i = 1; i <= 10; i++) {
+				assertTrue(result.contains(new Integer(i)));
+			}
+			
+			result = (Collection) helper.evaluate(new Integer(1),
+				"Sequence{1, (2+1)..(3+4), 10}"); //$NON-NLS-1$
+
+			assertTrue(result.contains(new Integer(1)));
+			for (int i = 3; i <= 7; i++) {
+				assertTrue(result.contains(new Integer(i)));
+			}
+			assertTrue(result.contains(new Integer(10)));
+			
+			// try the first expression without spaces (needed a grammar change)
+			result = (Collection) helper.evaluate(new Integer(1),
+				"Sequence{1..10}"); //$NON-NLS-1$
+		
+			for (int i = 1; i <= 10; i++) {
+				assertTrue(result.contains(new Integer(i)));
+			}
+			
+			// and a negation, too (the same grammar change)
+			result = (Collection) helper.evaluate(new Integer(1),
+				"Sequence{-20, -10..-1, 1}"); //$NON-NLS-1$
+		
+			assertTrue(result.contains(new Integer(-20)));
+			for (int i = -10; i <= -1; i++) {
+				assertTrue(result.contains(new Integer(i)));
+			}
+			assertTrue(result.contains(new Integer(1)));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 }

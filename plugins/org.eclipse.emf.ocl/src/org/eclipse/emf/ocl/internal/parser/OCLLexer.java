@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.5 2006/05/26 18:13:04 cdamus Exp $
+* $Id: OCLLexer.java,v 1.6 2006/10/10 14:29:26 cdamus Exp $
 */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -61,7 +61,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     public void lexer(Monitor monitor, PrsStream prsStream)
     {
         if (getInputChars() == null)
-            throw new NullPointerException("LexStream was not initialized");//$NON-NLS-1$
+            throw new NullPointerException("LexStream was not initialized"); //$NON-NLS-1$
 
         this.prsStream = prsStream;
 
@@ -291,7 +291,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     }
 
 	public OCLLexer(char[] chars) {
-		this(chars, "OCL", ECLIPSE_TAB_VALUE);//$NON-NLS-1$
+		this(chars, "OCL", ECLIPSE_TAB_VALUE); //$NON-NLS-1$
 		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
 	}
 
@@ -373,249 +373,257 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
             }
 	 
             //
-            // Rule 8:  Token ::= SLC
+            // Rule 8:  Token ::= IntegerRangeStart
             //
             case 8: { 
+				makeToken(TK_INTEGER_RANGE_START);
+	            break;
+            }
+	 
+            //
+            // Rule 9:  Token ::= SLC
+            //
+            case 9: { 
 				skipToken();
 	            break;
             }
 	 
             //
-            // Rule 9:  Token ::= / * Inside Stars /
+            // Rule 10:  Token ::= / * Inside Stars /
             //
-            case 9: { 
+            case 10: { 
                 skipToken();
                 break;
             }
      
             //
-            // Rule 10:  Token ::= WS
+            // Rule 11:  Token ::= WS
             //
-            case 10: { 
+            case 11: { 
 				skipToken();
 	            break;
             }
 	 
             //
-            // Rule 11:  Token ::= +
+            // Rule 12:  Token ::= +
             //
-            case 11: { 
+            case 12: { 
 				makeToken(TK_PLUS);
 	            break;
             }
 	 
             //
-            // Rule 12:  Token ::= -
+            // Rule 13:  Token ::= -
             //
-            case 12: { 
+            case 13: { 
 				makeToken(TK_MINUS);
 	            break;
             }
 	 
             //
-            // Rule 13:  Token ::= *
+            // Rule 14:  Token ::= *
             //
-            case 13: { 
+            case 14: { 
 				makeToken(TK_MULTIPLY);
 	            break;
             }
 	 
             //
-            // Rule 14:  Token ::= /
+            // Rule 15:  Token ::= /
             //
-            case 14: { 
+            case 15: { 
 				makeToken(TK_DIVIDE);
 	            break;
             }
 	 
             //
-            // Rule 15:  Token ::= (
+            // Rule 16:  Token ::= (
             //
-            case 15: { 
+            case 16: { 
 				makeToken(TK_LPAREN);
 	            break;
             }
 	 
             //
-            // Rule 16:  Token ::= )
+            // Rule 17:  Token ::= )
             //
-            case 16: { 
+            case 17: { 
 				makeToken(TK_RPAREN);
 	            break;
             }
 	 
             //
-            // Rule 17:  Token ::= >
+            // Rule 18:  Token ::= >
             //
-            case 17: { 
+            case 18: { 
 				makeToken(TK_GREATER);
 	            break;
             }
 	 
             //
-            // Rule 18:  Token ::= <
+            // Rule 19:  Token ::= <
             //
-            case 18: { 
+            case 19: { 
 				makeToken(TK_LESS);
 	            break;
             }
 	 
             //
-            // Rule 19:  Token ::= =
+            // Rule 20:  Token ::= =
             //
-            case 19: { 
+            case 20: { 
 				makeToken(TK_EQUAL);
 	            break;
             }
 	 
             //
-            // Rule 20:  Token ::= > =
+            // Rule 21:  Token ::= > =
             //
-            case 20: { 
+            case 21: { 
 				makeToken(TK_GREATER_EQUAL);
 	            break;
             }
 	 
             //
-            // Rule 21:  Token ::= < =
+            // Rule 22:  Token ::= < =
             //
-            case 21: { 
+            case 22: { 
 				makeToken(TK_LESS_EQUAL);
 	            break;
             }
 	 
             //
-            // Rule 22:  Token ::= < >
+            // Rule 23:  Token ::= < >
             //
-            case 22: { 
+            case 23: { 
 				makeToken(TK_NOT_EQUAL);
 	            break;
             }
 	 
             //
-            // Rule 23:  Token ::= [
+            // Rule 24:  Token ::= [
             //
-            case 23: { 
+            case 24: { 
 				makeToken(TK_LBRACKET);
 	            break;
             }
 	 
             //
-            // Rule 24:  Token ::= ]
+            // Rule 25:  Token ::= ]
             //
-            case 24: { 
+            case 25: { 
 				makeToken(TK_RBRACKET);
 	            break;
             }
 	 
             //
-            // Rule 25:  Token ::= {
+            // Rule 26:  Token ::= {
             //
-            case 25: { 
+            case 26: { 
 				makeToken(TK_LBRACE);
 	            break;
             }
 	 
             //
-            // Rule 26:  Token ::= }
+            // Rule 27:  Token ::= }
             //
-            case 26: { 
+            case 27: { 
 				makeToken(TK_RBRACE);
 	            break;
             }
 	 
             //
-            // Rule 27:  Token ::= - >
+            // Rule 28:  Token ::= - >
             //
-            case 27: { 
+            case 28: { 
 				makeToken(TK_ARROW);
 	            break;
             }
 	 
             //
-            // Rule 28:  Token ::= |
+            // Rule 29:  Token ::= |
             //
-            case 28: { 
+            case 29: { 
 				makeToken(TK_BAR);
 	            break;
             }
 	 
             //
-            // Rule 29:  Token ::= ,
+            // Rule 30:  Token ::= ,
             //
-            case 29: { 
+            case 30: { 
 				makeToken(TK_COMMA);
 	            break;
             }
 	 
             //
-            // Rule 30:  Token ::= :
+            // Rule 31:  Token ::= :
             //
-            case 30: { 
+            case 31: { 
 				makeToken(TK_COLON);
 	            break;
             }
 	 
             //
-            // Rule 31:  Token ::= : :
+            // Rule 32:  Token ::= : :
             //
-            case 31: { 
+            case 32: { 
 				makeToken(TK_COLONCOLON);
 	            break;
             }
 	 
             //
-            // Rule 32:  Token ::= ;
+            // Rule 33:  Token ::= ;
             //
-            case 32: { 
+            case 33: { 
 				makeToken(TK_SEMICOLON);
 	            break;
             }
 	 
             //
-            // Rule 33:  Token ::= .
+            // Rule 34:  Token ::= .
             //
-            case 33: { 
+            case 34: { 
 				makeToken(TK_DOT);
 	            break;
             }
 	 
             //
-            // Rule 34:  Token ::= . .
+            // Rule 35:  Token ::= . .
             //
-            case 34: { 
+            case 35: { 
 				makeToken(TK_DOTDOT);
 	            break;
             }
 	 
             //
-            // Rule 35:  Token ::= @ p r e
+            // Rule 36:  Token ::= @ p r e
             //
-            case 35: { 
+            case 36: { 
 				makeToken(TK_ATPRE);
 	            break;
             }
 	 
             //
-            // Rule 36:  Token ::= ^
+            // Rule 37:  Token ::= ^
             //
-            case 36: { 
+            case 37: { 
 				makeToken(TK_CARET);
 	            break;
             }
 	 
             //
-            // Rule 37:  Token ::= ^ ^
+            // Rule 38:  Token ::= ^ ^
             //
-            case 37: { 
+            case 38: { 
 				makeToken(TK_CARETCARET);
 	            break;
             }
 	 
             //
-            // Rule 38:  Token ::= ?
+            // Rule 39:  Token ::= ?
             //
-            case 38: { 
+            case 39: { 
 				makeToken(TK_QUESTIONMARK);
 	            break;
             }

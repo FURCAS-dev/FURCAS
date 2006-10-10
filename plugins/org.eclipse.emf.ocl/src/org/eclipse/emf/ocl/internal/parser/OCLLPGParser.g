@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.6 2006/05/26 18:13:04 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.7 2006/10/10 14:29:26 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.6 2006/05/26 18:13:04 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.7 2006/10/10 14:29:26 cdamus Exp $
  */
 	./
 $End
@@ -654,6 +654,22 @@ $Headers
 			CollectionRangeCS result = CSTFactory.eINSTANCE.createCollectionRangeCS();
 			result.setExpressionCS(oclExpressionCS);
 			result.setLastExpressionCS(lastOCLExpressionCS);
+			return result;
+		}
+	
+		protected IntegerLiteralExpCS createRangeStart(
+				String integerDotDot,
+				boolean isNegative) {
+			String intToken = integerDotDot.substring(0, integerDotDot.indexOf('.'));
+			int intValue = Integer.parseInt(intToken);
+			if (isNegative) {
+				intValue = -intValue;
+			}
+			
+			IntegerLiteralExpCS result = CSTFactory.eINSTANCE.createIntegerLiteralExpCS();
+			result.setIntegerSymbol(new Integer(intValue));
+			result.setSymbol(Integer.toString(intValue));
+			
 			return result;
 		}
 	
@@ -1747,6 +1763,30 @@ $Rules
 		  $EndJava
 		./
 
+	collectionRangeCS ::= '-' INTEGER_RANGE_START oclExpressionCS
+		/.$BeginJava
+					OCLExpressionCS rangeStart = createRangeStart(
+							getTokenText($getToken(2)), true);
+					CSTNode result = createCollectionRangeCS(
+							rangeStart,
+							(OCLExpressionCS)$getSym(3)
+						);
+					setOffsets(result, rangeStart, (CSTNode)$getSym(3));
+					$setResult(result);
+		  $EndJava
+		./
+	collectionRangeCS ::= INTEGER_RANGE_START oclExpressionCS
+		/.$BeginJava
+					OCLExpressionCS rangeStart = createRangeStart(
+							getTokenText($getToken(1)), false);
+					CSTNode result = createCollectionRangeCS(
+							rangeStart,
+							(OCLExpressionCS)$getSym(2)
+						);
+					setOffsets(result, rangeStart, (CSTNode)$getSym(2));
+					$setResult(result);
+		  $EndJava
+		./
 	collectionRangeCS ::= oclExpressionCS '..' oclExpressionCS
 		/.$BeginJava
 					CSTNode result = createCollectionRangeCS(

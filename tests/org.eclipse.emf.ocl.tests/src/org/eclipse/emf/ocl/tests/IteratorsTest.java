@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.3 2006/05/29 19:07:45 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.4 2006/10/10 14:29:19 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -495,6 +495,63 @@ public class IteratorsTest
 		} catch (OCLParsingException e) {
 			// success
 			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests the validation of the closure() iterator for conformance of the
+	 * body type with the iterator variable (source element) type.
+	 */
+	public void test_closureValidation_typeConformance_154695() {
+		EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
+		fakePkg.setName("fake"); //$NON-NLS-1$
+		EClass fake = EcoreFactory.eINSTANCE.createEClass();
+		fake.setName("Fake"); //$NON-NLS-1$
+		fakePkg.getEClassifiers().add(fake);
+		EOperation getFakes = EcoreFactory.eINSTANCE.createEOperation();
+		getFakes.setName("getFakes"); //$NON-NLS-1$
+		getFakes.setEType(fake);
+		getFakes.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		fake.getEOperations().add(getFakes);
+
+		// subclass the Fake class
+		EClass subFake = EcoreFactory.eINSTANCE.createEClass();
+		subFake.setName("Subfake"); //$NON-NLS-1$
+		fakePkg.getEClassifiers().add(subFake);
+		subFake.getESuperTypes().add(fake);
+		
+		// get sub-fakes from a fake
+		EOperation getSubFakes = EcoreFactory.eINSTANCE.createEOperation();
+		getSubFakes.setName("getSubFakes"); //$NON-NLS-1$
+		getSubFakes.setEType(subFake);
+		getSubFakes.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+		fake.getEOperations().add(getSubFakes);
+		
+		IOCLHelper helper = HelperUtil.createOCLHelper();
+		helper.setContext(subFake);
+		
+		try {
+			// this should not parse because the result of the closure expression
+			//   is more general than the iterator variable, so cannot be
+			//   assigned recursively
+			helper.createQuery(
+					"self->closure(getFakes())"); //$NON-NLS-1$
+			fail("Validation should have failed"); //$NON-NLS-1$
+		} catch (OCLParsingException e) {
+			// success
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+		
+		helper.setContext(fake);
+		
+		try {
+			// this should parse OK because the result of the closure expression
+			//   is more specific than the iterator variable, so it can be
+			//   assigned recursively
+			helper.createQuery(
+					"self->closure(getSubFakes())"); //$NON-NLS-1$
+		} catch (Exception exc) {
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 	

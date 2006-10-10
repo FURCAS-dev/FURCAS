@@ -83,6 +83,7 @@ public abstract class AbstractTestSuite
 	protected static EOperation fruit_ripen;
 	protected static EOperation fruit_preferredColor;
 	protected static EOperation fruit_newFruit;
+	protected static EOperation fruit_setColor;
 	protected static EAttribute fruit_color;
 	
 	protected static EClass apple;
@@ -571,6 +572,7 @@ public abstract class AbstractTestSuite
 		fruit_ripen = (EOperation) fruit.getEOperations().get(0);
 		fruit_preferredColor = (EOperation) fruit.getEOperations().get(1);
 		fruit_newFruit = (EOperation) fruit.getEOperations().get(2);
+		fruit_setColor = (EOperation) fruit.getEOperations().get(3);
 		fruit_color = (EAttribute) fruit.getEStructuralFeature("color"); //$NON-NLS-1$
 		
 		apple = (EClass) fruitPackage.getEClassifier("Apple"); //$NON-NLS-1$

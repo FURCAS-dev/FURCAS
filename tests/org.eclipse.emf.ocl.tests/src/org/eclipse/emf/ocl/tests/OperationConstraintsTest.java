@@ -30,9 +30,14 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ocl.expressions.IteratorExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.OperationCallExp;
 import org.eclipse.emf.ocl.expressions.PropertyCallExp;
 import org.eclipse.emf.ocl.expressions.VariableExp;
+import org.eclipse.emf.ocl.helper.HelperUtil;
+import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.helper.OCLParsingException;
 
 
 /**
@@ -327,6 +332,177 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		} finally {
 			apple.getEOperations().remove(foo);
 			apple.getEStructuralFeatures().remove(myStr);
+		}
+	}
+	
+	/**
+	 * Tests that an expression resolves the implicit source of a property call
+	 * correctly when the environment has additional variable names such as
+	 * parameters that define the same property.  This test parses raw OCL.
+	 */
+	public void test_implicitPropertySourceLookup_raw_151234() {
+		OCLExpression expr = parseConstraint(
+			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
+			"pre: color <> newColor " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
+
+		assertTrue(expr instanceof OperationCallExp);
+		OperationCallExp notEquals = (OperationCallExp) expr;
+		assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+		PropertyCallExp propertyCall = (PropertyCallExp) notEquals.getSource();
+		
+		assertTrue(propertyCall.getSource() instanceof VariableExp);
+		VariableExp var = (VariableExp) propertyCall.getSource();
+		
+		// we did not resolve against "fruit", which also has a color property
+		assertEquals("self", var.getName()); //$NON-NLS-1$
+		
+		// now check the resolution of implicit iterator variables as sources
+		expr = parseConstraint(
+				"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
+				"pre: Fruit.allInstances()->forAll(color <> newColor) " + //$NON-NLS-1$
+				"endpackage"); //$NON-NLS-1$
+
+		assertTrue(expr instanceof IteratorExp);
+		IteratorExp forAll = (IteratorExp) expr;
+		assertTrue(forAll.getBody() instanceof OperationCallExp);
+		notEquals = (OperationCallExp) forAll.getBody();
+		assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+		propertyCall = (PropertyCallExp) notEquals.getSource();
+		
+		assertTrue(propertyCall.getSource() instanceof VariableExp);
+		var = (VariableExp) propertyCall.getSource();
+		
+		// we did not resolve against "fruit", which also has a color property
+		assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that an expression resolves the implicit source of a property call
+	 * correctly when the environment has additional variable names such as
+	 * parameters that define the same property.  This test uses a helper.
+	 */
+	public void test_implicitPropertySourceLookup_helper_151234() {
+		try {
+			IOCLHelper helper = HelperUtil.createOCLHelper();
+			helper.setContextOperation(fruit, fruit_setColor);
+			OCLExpression expr = helper.createPrecondition("color <> newColor"); //$NON-NLS-1$
+	
+			assertTrue(expr instanceof OperationCallExp);
+			OperationCallExp notEquals = (OperationCallExp) expr;
+			assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+			PropertyCallExp propertyCall = (PropertyCallExp) notEquals.getSource();
+			
+			assertTrue(propertyCall.getSource() instanceof VariableExp);
+			VariableExp var = (VariableExp) propertyCall.getSource();
+			
+			// we did not resolve against "fruit", which also has a color property
+			assertEquals("self", var.getName()); //$NON-NLS-1$
+			
+			// now check the resolution of implicit iterator variables as sources
+			expr = helper.createPrecondition(
+					"Fruit.allInstances()->forAll(color <> newColor)"); //$NON-NLS-1$
+	
+			assertTrue(expr instanceof IteratorExp);
+			IteratorExp forAll = (IteratorExp) expr;
+			assertTrue(forAll.getBody() instanceof OperationCallExp);
+			notEquals = (OperationCallExp) forAll.getBody();
+			assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+			propertyCall = (PropertyCallExp) notEquals.getSource();
+			
+			assertTrue(propertyCall.getSource() instanceof VariableExp);
+			var = (VariableExp) propertyCall.getSource();
+			
+			// we did not resolve against "fruit", which also has a color property
+			assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+		} catch (OCLParsingException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that an expression resolves the implicit source of an operation call
+	 * correctly when the environment has additional variable names such as
+	 * parameters that define the same property.  This test parses raw OCL.
+	 */
+	public void test_implicitOperationSourceLookup_raw_151234() {
+		OCLExpression expr = parseConstraint(
+			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
+			"pre: preferredColor() <> newColor " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
+
+		assertTrue(expr instanceof OperationCallExp);
+		OperationCallExp notEquals = (OperationCallExp) expr;
+		assertTrue(notEquals.getSource() instanceof OperationCallExp);
+		OperationCallExp operationCall = (OperationCallExp) notEquals.getSource();
+		
+		assertTrue(operationCall.getSource() instanceof VariableExp);
+		VariableExp var = (VariableExp) operationCall.getSource();
+		
+		// we did not resolve against "fruit", which also has a color property
+		assertEquals("self", var.getName()); //$NON-NLS-1$
+		
+		// now check the resolution of implicit iterator variables as sources
+		expr = parseConstraint(
+				"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
+				"pre: Fruit.allInstances()->forAll(preferredColor() <> newColor) " + //$NON-NLS-1$
+				"endpackage"); //$NON-NLS-1$
+
+		assertTrue(expr instanceof IteratorExp);
+		IteratorExp forAll = (IteratorExp) expr;
+		assertTrue(forAll.getBody() instanceof OperationCallExp);
+		notEquals = (OperationCallExp) forAll.getBody();
+		assertTrue(notEquals.getSource() instanceof OperationCallExp);
+		operationCall = (OperationCallExp) notEquals.getSource();
+		
+		assertTrue(operationCall.getSource() instanceof VariableExp);
+		var = (VariableExp) operationCall.getSource();
+		
+		// we did not resolve against "fruit", which also has a color property
+		assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that an expression resolves the implicit source of an operation call
+	 * correctly when the environment has additional variable names such as
+	 * parameters that define the same property.  This test uses a helper.
+	 */
+	public void test_implicitOperationSourceLookup_helper_151234() {
+		try {
+			IOCLHelper helper = HelperUtil.createOCLHelper();
+			helper.setContextOperation(fruit, fruit_setColor);
+			OCLExpression expr = helper.createPrecondition(
+					"preferredColor() <> newColor"); //$NON-NLS-1$
+	
+			assertTrue(expr instanceof OperationCallExp);
+			OperationCallExp notEquals = (OperationCallExp) expr;
+			assertTrue(notEquals.getSource() instanceof OperationCallExp);
+			OperationCallExp operationCall = (OperationCallExp) notEquals.getSource();
+			
+			assertTrue(operationCall.getSource() instanceof VariableExp);
+			VariableExp var = (VariableExp) operationCall.getSource();
+			
+			// we did not resolve against "fruit", which also has a color property
+			assertEquals("self", var.getName()); //$NON-NLS-1$
+			
+			// now check the resolution of implicit iterator variables as sources
+			expr = helper.createPrecondition(
+					"Fruit.allInstances()->forAll(preferredColor() <> newColor)"); //$NON-NLS-1$
+	
+			assertTrue(expr instanceof IteratorExp);
+			IteratorExp forAll = (IteratorExp) expr;
+			assertTrue(forAll.getBody() instanceof OperationCallExp);
+			notEquals = (OperationCallExp) forAll.getBody();
+			assertTrue(notEquals.getSource() instanceof OperationCallExp);
+			operationCall = (OperationCallExp) notEquals.getSource();
+			
+			assertTrue(operationCall.getSource() instanceof VariableExp);
+			var = (VariableExp) operationCall.getSource();
+			
+			// we did not resolve against "fruit", which also has a color property
+			assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+		} catch (OCLParsingException e) {
+			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 }

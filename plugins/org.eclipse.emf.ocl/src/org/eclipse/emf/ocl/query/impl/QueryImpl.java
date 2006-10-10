@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.3 2006/05/18 19:55:44 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.4 2006/10/10 14:29:27 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +25,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -39,6 +39,7 @@ import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.emf.ocl.internal.parser.LazyExtentMap;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.parser.SemanticException;
@@ -68,6 +69,11 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * @generated
 	 */
 	public static final String copyright = ""; //$NON-NLS-1$
+	
+	/**
+	 * The OCL "self" context variable.
+	 */
+	private static final String SELF = "self"; //$NON-NLS-1$
 
 	/**
 	 * The default value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
@@ -111,7 +117,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 */
 	protected QueryImpl() {
 		super();
-		env = new EvalEnvironment();
 	}
 
 	/**
@@ -126,7 +131,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 */
 	protected QueryImpl(String qs) throws ParserException {
 		expression = ExpressionsFactory.eINSTANCE.createOCLExpression(qs);
-		env = new EvalEnvironment();
 		//validate(); -- parser validates
 	}
 
@@ -142,7 +146,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 */
 	protected QueryImpl(OCLExpression expr) throws SemanticException {
 		expression = expr;
-		env = new EvalEnvironment();
 		validate();
 	}
 
@@ -162,7 +165,15 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 */
 	public Map getExtentMap() {
 		if (extentMap == EXTENT_MAP_EDEFAULT) {
-			extentMap = new HashMap();
+			EvaluationEnvironment myEnv = getEvaluationEnvironment();
+			Object context = myEnv.getValueOf(SELF);
+			
+			if (context instanceof EObject) {
+				extentMap = new LazyExtentMap((EObject) context);
+			} else {
+				// no useful context from which to determine extents
+				extentMap = new java.util.HashMap();
+			}
 		}
 		
 		return extentMap;
@@ -216,13 +227,23 @@ public class QueryImpl extends EObjectImpl implements Query {
 			OCLPlugin.throwing(getClass(), "evaluate", error);//$NON-NLS-1$
 			throw error;
 		}
+		
+		// lazily create the evaluation environment, if not already done by
+		//    the client.  Initialize it with the "self" context variable
+		EvaluationEnvironment myEnv = getEvaluationEnvironment();
+		myEnv.add(SELF, obj);
+		
 		EvaluationVisitor ev = EvaluationVisitorImpl
-			.getInstance(env, extentMap);
-		env = ((EvaluationVisitorImpl) ev).getEvalEnvironment();
-		// env.clear();
-		env.add("self", obj);//$NON-NLS-1$
-		Object result = expression.accept(ev);
-		env.remove("self");//$NON-NLS-1$
+			.getInstance(myEnv, getExtentMap());
+		
+		Object result;
+		
+		try {
+			result = expression.accept(ev);
+		} finally {
+			myEnv.remove(SELF);
+		}
+		
 		return result;
 	}
 
@@ -230,9 +251,11 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * @generated NOT
 	 */
 	public Object evaluate() {
-		Visitor ev = EvaluationVisitorImpl.getInstance(env, extentMap);
-		env = ((EvaluationVisitorImpl) ev).getEvalEnvironment();
-		env.clear();
+		// lazily create the evaluation environment, if not already done by
+		//    the client.  There is no "self" context variable
+		Visitor ev = EvaluationVisitorImpl.getInstance(
+				getEvaluationEnvironment(), getExtentMap());
+		
 		return expression.accept(ev);
 	}
 

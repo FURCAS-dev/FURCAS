@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.2 2006/04/28 14:46:16 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.3 2006/10/10 14:29:19 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -242,7 +242,7 @@ public class MessagesTest
 			//    operation type, not by the MessageExp arguments
 			helper.createPostcondition(
 					"let msgs : Collection(OclMessage) = Fruit.allInstances()->collect(f | self^^setColor(?, ?)) in " + //$NON-NLS-1$
-					"msgs->forAll(m | m.fruit.color = Color::black implies m.color = Color::black)"); //$NON-NLS-1$
+					"msgs->forAll(m | m.fruit.color = Color::black implies m.newColor = Color::black)"); //$NON-NLS-1$
 			
 			// return values
 			helper.createPostcondition(

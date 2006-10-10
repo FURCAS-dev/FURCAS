@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.16 2006/05/05 13:19:14 cdamus Exp $
+ * $Id: OCLParser.java,v 1.17 2006/10/10 14:29:26 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -1062,7 +1062,7 @@ public class OCLParser extends OCLLPGParser {
 
 		Environment operationEnv = environmentFactory.createEnvironment(env);
 		
-		EOperation operation = operationCS(operationContextDeclCS.getOperationCS(), env);
+		EOperation operation = operationCS(operationContextDeclCS.getOperationCS(), operationEnv);
 		
 		Constraint astNode;
 		for (Iterator i = operationContextDeclCS.getPrePostOrBodyDecls().iterator(); i.hasNext(); ) {
@@ -1109,10 +1109,17 @@ public class OCLParser extends OCLLPGParser {
 				makeString(operationName));
 			ERROR("operationContextDeclCS", message);//$NON-NLS-1$
 		}
-			
-		genVariableDeclaration("\noperationCS", env,//$NON-NLS-1$
-			"self", classifier, null, true, true, true);//$NON-NLS-1$
-							
+		
+		Environment selfEnv = env.getParent();
+		if (selfEnv == null) {
+			selfEnv = env;
+		}
+		
+		if (selfEnv.lookup("self") == null) { //$NON-NLS-1$
+			genVariableDeclaration("\noperationCS", selfEnv,//$NON-NLS-1$
+				"self", classifier, null, true, true, true);//$NON-NLS-1$
+		}
+		
 		TRACE("operationCS", "context", operationName);//$NON-NLS-2$//$NON-NLS-1$
 
 		return operation;
@@ -1253,10 +1260,17 @@ public class OCLParser extends OCLLPGParser {
 				makeString(propertyName));
 			ERROR("propertyContextCS", message);//$NON-NLS-1$
 		}
-
-		genVariableDeclaration("\npropertyContextCS", env, //$NON-NLS-1$
-			"self", owner, null, true, true, true); //$NON-NLS-1$
-							
+		
+		Environment selfEnv = env.getParent();
+		if (selfEnv == null) {
+			selfEnv = env;
+		}
+		
+		if (selfEnv.lookup("self") == null) { //$NON-NLS-1$
+			genVariableDeclaration("\npropertyContextCS", selfEnv, //$NON-NLS-1$
+				"self", owner, null, true, true, true); //$NON-NLS-1$
+		}
+		
 		TRACE("propertyContextCS", "context", propertyName);  //$NON-NLS-2$//$NON-NLS-1$
 		
 		Constraint astNode;

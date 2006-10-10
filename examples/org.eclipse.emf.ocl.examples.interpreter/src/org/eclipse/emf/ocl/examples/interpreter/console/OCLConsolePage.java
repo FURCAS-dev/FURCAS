@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.7 2006/05/25 15:36:46 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.8 2006/10/10 14:29:24 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -22,8 +22,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
@@ -493,8 +495,10 @@ public class OCLConsolePage
 			super(
 				OCLInterpreterMessages.console_saveAction_label,
 				ImageDescriptor.createFromURL(
-					OCLExamplePlugin.getDefault().getBundle().getEntry(
-						"/icons/save.gif"))); //$NON-NLS-1$
+					FileLocator.find(
+							OCLExamplePlugin.getDefault().getBundle(),
+							new Path("$nl$/icons/elcl16/save.gif"), //$NON-NLS-1$
+							null)));
 			
 			tip = OCLInterpreterMessages.console_saveAction_tip;
 		}

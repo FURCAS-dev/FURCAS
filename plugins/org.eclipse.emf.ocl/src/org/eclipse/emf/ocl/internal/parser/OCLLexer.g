@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.3 2006/05/17 13:58:27 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.4 2006/10/10 14:29:26 cdamus Exp $
 -- */
 --
 -- The OCL Lexer
@@ -59,7 +59,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.3 2006/05/17 13:58:27 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.4 2006/10/10 14:29:26 cdamus Exp $
  */
 	./
 $End
@@ -107,6 +107,7 @@ $Export
 	INTEGER_LITERAL
 	REAL_LITERAL
 	NUMERIC_OPERATION
+	INTEGER_RANGE_START
 	
 	PLUS
 	MINUS
@@ -265,6 +266,12 @@ $Rules
 	Token ::= NumericOperation
 		/.$BeginAction
 					makeToken($_NUMERIC_OPERATION);
+		  $EndAction
+		./
+
+	Token ::= IntegerRangeStart
+		/.$BeginAction
+					makeToken($_INTEGER_RANGE_START);
 		  $EndAction
 		./
 
@@ -607,5 +614,7 @@ $Rules
 	NumericOperation -> Integer '.' '<' '='
 	NumericOperation -> Integer '.' '>' '='
 	NumericOperation -> Integer '.' '>'
+
+	IntegerRangeStart -> Integer '.' '.'
 
 $End

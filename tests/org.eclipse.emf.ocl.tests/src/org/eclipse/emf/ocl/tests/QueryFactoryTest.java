@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,8 +21,11 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
+import org.eclipse.emf.ocl.query.QueryPackage;
 
 
 /**
@@ -82,5 +85,46 @@ public class QueryFactoryTest
 
 		anApple.eSet(apple_label, "Granny Smith");//$NON-NLS-1$
 		assertTrue(q.check(anApple.eGet(apple_label)));
+	}
+	
+	/**
+	 * Tests the support for allInstances() via the LazyExtentMap by default in
+	 * the Query API, no longer requiring the use of IOCLHelper to get this.
+	 */
+	public void test_allinstances_query_146378() {
+		// create various coloured apples
+		Resource res = new ResourceImpl();
+		EObject anApple = fruitFactory.create(apple);
+		anApple.eSet(fruit_color, color_brown);
+		res.getContents().add(anApple);
+		
+		anApple = fruitFactory.create(apple);
+		anApple.eSet(fruit_color, color_red);
+		res.getContents().add(anApple);
+		
+		anApple = fruitFactory.create(apple);
+		anApple.eSet(fruit_color, color_green);
+		res.getContents().add(anApple);
+		
+		anApple = fruitFactory.create(apple);
+		anApple.eSet(fruit_color, color_yellow);
+		res.getContents().add(anApple);
+
+		Query query = QueryFactory.eINSTANCE.createQuery(
+				"Apple.allInstances()->isUnique(color)", apple); //$NON-NLS-1$
+		
+		// provide context for the lazy initialization of the extent map, to
+		//    find the resource
+		assertTrue(query.check(anApple));
+		
+		// add a second red apple to the extent
+		anApple = fruitFactory.create(apple);
+		anApple.eSet(fruit_color, color_red);
+		res.getContents().add(anApple);
+		
+		// forget the extent map because we have increased the extent
+		query.eUnset(QueryPackage.Literals.QUERY__EXTENT_MAP);
+		
+		assertFalse(query.check(anApple));
 	}
 }

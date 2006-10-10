@@ -11,7 +11,7 @@
     <eOperations name="newFruit" eType="#//Fruit"/>
     <eOperations name="setColor">
       <eParameters name="fruit" eType="#//Fruit"/>
-      <eParameters name="color" eType="#//Color"/>
+      <eParameters name="newColor" eType="#//Color"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Color"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

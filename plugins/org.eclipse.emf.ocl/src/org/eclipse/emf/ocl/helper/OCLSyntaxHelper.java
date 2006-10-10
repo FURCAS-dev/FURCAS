@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.5 2006/04/07 21:58:39 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.6 2006/10/10 14:29:27 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;

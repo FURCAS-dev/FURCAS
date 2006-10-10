@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005-2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -727,7 +727,7 @@ public class EcoreEnvironment
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
-			if (vdcl.getType() instanceof EClass) {
+			if (!element.isExplicit && (vdcl.getType() instanceof EClass)) {
 				EStructuralFeature property = lookupProperty(vdcl.getType(), name);
 				if (property != null)
 					return vdcl;
@@ -754,7 +754,7 @@ public class EcoreEnvironment
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
-			if (vdcl.getType() instanceof EClass) {
+			if (!element.isExplicit && (vdcl.getType() instanceof EClass)) {
 				EClass ac = lookupAssociationClassReference(vdcl.getType(), name);
 				if (ac != null)
 					return vdcl;
@@ -903,7 +903,7 @@ public class EcoreEnvironment
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
-			if (vdcl.getType() instanceof EClass) {
+			if (!element.isExplicit && (vdcl.getType() instanceof EClass)) {
 				EOperation eop = TypeUtil.findOperationMatching(vdcl.getType(), name, params);
 				if (eop != null)
 					return vdcl;
@@ -1027,6 +1027,11 @@ public class EcoreEnvironment
 			this.name = name;
 			this.variable = variable;
 			this.isExplicit = isExplicit;
+		}
+		
+		public String toString() {
+			return "VariableEntry[" + name + ", "  //$NON-NLS-1$//$NON-NLS-2$
+				+ (isExplicit? "explicit, " : "implicit, " + variable + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 }

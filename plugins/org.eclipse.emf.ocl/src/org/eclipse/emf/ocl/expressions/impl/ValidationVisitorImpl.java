@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.9 2006/06/16 19:08:06 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.10 2006/10/10 14:29:27 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -1171,13 +1171,13 @@ public class ValidationVisitorImpl
 			// checked above that the source is a collection type
 			EClassifier sourceElementType =
 				((CollectionType) source.getType()).getElementType();
-			EClassifier iteratorElementType =
+			EClassifier bodyType =
 				((CollectionType) type).getElementType();
 			
-			if (TypeUtil.typeCompare(sourceElementType, iteratorElementType) < 0) {
+			if (TypeUtil.typeCompare(sourceElementType, bodyType) < 0) {
 				String message = OCLMessages.bind(
 						OCLMessages.ElementTypeConformanceClosure_ERROR_,
-						getName(iteratorElementType),
+						getName(bodyType),
 						getName(sourceElementType));
 					IllegalArgumentException error = new IllegalArgumentException(
 						message);
