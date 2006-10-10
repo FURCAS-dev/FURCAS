@@ -23,6 +23,8 @@
  <!-- ============================= -->
   <extension point="org.eclipse.pde.core.javadoc">
       <javadoc path="references/javadoc"> <!-- defaults to reference/api -->
+          <plugin id="org.eclipse.emf.query"/>
+          <plugin id="org.eclipse.emf.query.ocl"/>
       </javadoc>
   </extension>
 </plugin>

@@ -33,7 +33,7 @@
             hasPages="false"
             id="org.eclipse.emf.query.examples.statements"
             name="%Query_Statements_name"
-            icon="icons/query.gif">
+            icon="$nl$/icons/elcl16/queryedit_co.gif">
          <description>%Query_Statements_description</description>
       </wizard>
       <wizard
@@ -43,7 +43,7 @@
             hasPages="false"
             id="org.eclipse.emf.query.examples.ocl"
             name="%Query_OCL_name"
-            icon="icons/ocl.gif">
+            icon="$nl$/icons/elcl16/oclqryedit_co.gif">
          <description>%Query_OCL_description</description>
       </wizard>
    </extension>
