@@ -19,7 +19,6 @@ package org.eclipse.emf.query.tests;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.Test;
@@ -38,10 +37,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
+import org.eclipse.emf.examples.extlibrary.Library;
+import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.Not;
 import org.eclipse.emf.query.conditions.ObjectInstanceCondition;
@@ -49,7 +49,6 @@ import org.eclipse.emf.query.conditions.booleans.BooleanCondition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectSource;
 import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
-import org.eclipse.emf.query.conditions.eobjects.TypeRelation;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectAttributeValueCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectReferenceValueCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
@@ -58,16 +57,8 @@ import org.eclipse.emf.query.conditions.strings.StringValue;
 import org.eclipse.emf.query.internal.statements.QueryStatement;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
-import org.eclipse.emf.query.statements.IteratorKind;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Parameter;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @author Yasser Lulu 
@@ -85,78 +76,24 @@ public class EMFQueryTest
 
 	private Collection modelElements;
 
-	private Model model;
+	private Library library;
 
-	private org.eclipse.uml2.uml.Class instance_Class1;
+	private Book instance_Book1;
 
 	private Resource resource;
 
 	protected IEStructuralFeatureValueGetter eStructuralFeatureValueGetter;
 
-	//    private EClass namedElement_EClass;
-	private EClass class_EClass;
+	private EClass book_EClass;
 
-	//    private EClass classifier_EClass;
-	//    private EClass association_EClass;
-	//    private EClass generalization_EClass;
-	private EClass parameter_EClass;
-
+	private EAttribute title_EAttribute;
 	private EAttribute name_EAttribute;
 
-	private EReference operation_EReference;
-
-	//    private EReference relationship_EReference;    
-	//    private EReference property_associationEnd_EReference;
-	//    private EReference simplerelationship_nonOwningEnd_EReference;
+	private EReference author_EReference;
 
 	public EMFQueryTest(String name) {
 		super(name);
 
-	}
-
-	public EObject findElementWithFullyQualifiedName(EObject inputModel,
-		String fullyQualifiedName) {
-
-		QueryStatement query = new SELECT(1, new FROM(inputModel), new WHERE(
-			new EObjectTypeRelationCondition(UMLPackage.eINSTANCE
-				.getNamedElement(), TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)
-				.AND(new EObjectAttributeValueCondition(UMLPackage.eINSTANCE
-					.getNamedElement_QualifiedName(), new StringValue(
-					fullyQualifiedName), EStructuralFeatureValueGetter.getInstance()))));
-
-		IQueryResult resultSet = query.execute();
-
-		//return the EObject found -if any
-		Iterator it = resultSet.iterator();
-		return (it.hasNext()) ? (EObject) it.next() : null;
-
-	}
-
-	//	Optimized version; first its gets the namespace whose fully qualified name is a prefix for the one we're looking for, then looks for 
-	//	the one we are looking for in the direct contents of this name space using the simple name. None namespaces are pruned out completely from the search
-	//	and then only namesaces are asked for their fully qualified name -which a costly operation- and then the first one matches will have its children asked for their simple
-	//	name
-	public EObject findElementWithFullyQualifiedName(EObject inputModel,
-		String containingFullyQualifiedName, String simpleName) {
-		QueryStatement query = new SELECT(1, new FROM(new SELECT(1, new FROM(
-			inputModel, new EObjectTypeRelationCondition(UMLPackage.eINSTANCE
-				.getNamespace(), TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)),
-			new WHERE(new EObjectAttributeValueCondition(UMLPackage.eINSTANCE
-				.getNamedElement_QualifiedName(), new StringValue(
-				containingFullyQualifiedName),
-				EStructuralFeatureValueGetter.getInstance()))),
-			IteratorKind.FLAT_LITERAL), new WHERE(
-			new EObjectTypeRelationCondition(UMLPackage.eINSTANCE
-				.getNamedElement(), TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)
-				.AND(new EObjectAttributeValueCondition(UMLPackage.eINSTANCE
-					.getNamedElement_Name(), new StringValue(simpleName),
-					EStructuralFeatureValueGetter.getInstance()))));
-
-		IQueryResult resultSet = query.execute();
-
-		//return the EObject found -if any
-		Iterator it = resultSet.iterator();
-		return (it.hasNext()) ? (EObject) it.next() : null;
 	}
 
 	protected IEStructuralFeatureValueGetter getEStructuralFeatureValueGetter() {
@@ -171,27 +108,14 @@ public class EMFQueryTest
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
+		
 		modelElements = new ArrayList();
-		modelElements.add(getModel());
+		modelElements.add(getLibrary());
 
-		//        namedElement_EClass = UML2Package.eINSTANCE.getNamedElement();
-		class_EClass = UMLPackage.eINSTANCE.getClass_();
-		//        classifier_EClass = UML2Package.eINSTANCE.getClassifier();
-		//        generalization_EClass = UML2Package.eINSTANCE.getGeneralization();
-		//        association_EClass = UML2Package.eINSTANCE.getAssociation();
-		parameter_EClass = UMLPackage.eINSTANCE.getParameter();
-		name_EAttribute = UMLPackage.eINSTANCE.getNamedElement_Name();
-		operation_EReference = UMLPackage.eINSTANCE.getClass_OwnedOperation();
-
-		////        relationship_EReference = 
-		////        //CorePackage.eINSTANCE.getNamedModelElement_Relationship();
-		////
-		////        property_associationEnd_EReference 
-		////        //CorePackage.eINSTANCE.getAssociation_End();
-		////
-		////        simplerelationship_nonOwningEnd_EReference = 
-		////        //        RelationshipsPackage.eINSTANCE.getSimpleRelationship_NonOwningEnd()
-
+		book_EClass = EXTLibraryPackage.Literals.BOOK;
+		title_EAttribute = EXTLibraryPackage.Literals.BOOK__TITLE;
+		name_EAttribute = EXTLibraryPackage.Literals.PERSON__LAST_NAME;
+		author_EReference = EXTLibraryPackage.Literals.BOOK__AUTHOR;
 	}
 
 	/**
@@ -238,200 +162,29 @@ public class EMFQueryTest
 	public void test_EMFQuery() {
 		logicalOperatorsTesting();
 
-		IQueryResult resultSet = getClassInstances_NamedQuery(1, "Class1")//$NON-NLS-1$
+		IQueryResult resultSet = getBookInstances_TitledQuery(1, "Book1")//$NON-NLS-1$
 			.execute();
 		assertTrue(resultSet.size() == 1);
-		instance_Class1 = (org.eclipse.uml2.uml.Class) resultSet.toArray()[0];
-		org.eclipse.uml2.uml.Class ccc = getClassNamed_InstanceBruteForce("Class1"); //$NON-NLS-1$
-		assertTrue(ccc.equals(instance_Class1));
+		instance_Book1 = (Book) resultSet.toArray()[0];
+		Book bbb = getBookTitled_InstanceBruteForce("Book1"); //$NON-NLS-1$
+		assertTrue(bbb.equals(instance_Book1));
 
-		resultSet = getAllParamsQuery().execute();
-		assertTrue(resultSet.size() == 2);
-
-		resultSet = getAllClassesQuery().execute();
+		resultSet = getAllBooksQuery().execute();
 		assertTrue(resultSet.size() == 6);
 
-		resultSet = getClassInstances_NOT_NamedQuery("Class2").execute(); //$NON-NLS-1$
+		resultSet = getBookInstances_NOT_TitledQuery("Book2").execute(); //$NON-NLS-1$
 		assertTrue(resultSet.size() == 5);
 
-		resultSet = getClassInstances_NamedQuery(1, "ClassFoo").execute(); //$NON-NLS-1$
+		resultSet = getBookInstances_TitledQuery(1, "BookFoo").execute(); //$NON-NLS-1$
 		assertTrue(resultSet.size() == 1);
 
-		resultSet = getParamInstances_NamedQuery("Parameter2").execute(); //$NON-NLS-1$
-		assertTrue(resultSet.size() == 1);
-
-		resultSet = getClassesWithFunctionNamedQuery("foo").execute(); //$NON-NLS-1$
+		resultSet = getBooksWithAuthorNamedQuery("foo").execute(); //$NON-NLS-1$
 		assertTrue(resultSet.getException() == null);
 		assertTrue(resultSet.size() == 0);
 
-		resultSet = getClassesWithFunctionNamedQuery("Operation1").execute(); //$NON-NLS-1$
+		resultSet = getBooksWithAuthorNamedQuery("Doe").execute(); //$NON-NLS-1$
 		assertTrue(resultSet.size() == 1);
-
-		resultSet = getElementNamedQuery("Operation22").execute(); //$NON-NLS-1$
-		assertTrue(resultSet.size() == 1);
-
-		//        resultSet = getDirectSubClassesQuery_Refined(instance_Class1).execute();
-		//        QueryResultSet resultSet_2 =
-		//            getDirectSubClassesQuery(instance_Class1).execute();
-		//        assertTrue(resultSet.getEObjects().equals(resultSet_2.getEObjects()));
-		//        assertTrue(resultSet.size() == 1);
-		//
-		//        resultSet = getAllSubClassesQuery(instance_Class1).execute();
-		//        assertTrue(resultSet.size() == 2);
-		//
-		//        resultSet =
-		//            getAssociatedClassesQuery_Refined(instance_Class1).execute();
-		//        resultSet_2 = getAssociatedClassesQuery(instance_Class1).execute();
-		//        assertTrue(resultSet.getEObjects().equals(resultSet_2.getEObjects()));
-		//        assertTrue(resultSet.size() == 1);
-
-		//TODO: temporarily disabled until we start using jdk 1.4 whihc is needed by the
-		//ocl.jar we use
-
-		////        resultSet = getOCLQuery("Blank Model", namedElement_EClass).execute(); //$NON-NLS-1$
-		////        assertTrue(resultSet.getEObjects().toArray()[0].equals(getModel()));
-		////
-		////        resultSet = getOCLQuery("contextFree", null).execute(); //$NON-NLS-1$
-		////        assertTrue(resultSet.size() == 3);
-		////
-		////        resultSet = getOCLQuery("0123456789", null).execute(); //$NON-NLS-1$
-		////        assertTrue(
-		////            (resultSet.getException() == null) && (resultSet.size() == 0));
-
 	}
-
-	//	private QueryStatement getOCLQuery(String name, EClass eClass) {
-	//		String oclQueryString = "name = '" + name + "'"; //$NON-NLS-2$//$NON-NLS-1$
-	//		return new SELECT(new FROM(getQueryObjects()), new WHERE(
-	//			new OclConstraintCondition(oclQueryString, eClass,
-	//				getEStructuralFeatureValueGetter())));
-	//	}
-
-	//    private QueryStatement getAssociatedClassesQuery(Class clazz) {
-	//        return new SELECT(
-	//            new FROM(
-	//                new SELECT(
-	//                    new FROM(getQueryObjects()),
-	//                    new WHERE(
-	//                        new EObjectTypeRelationCondition(
-	//                            class_EClass,
-	//                            new TypeContainmentPruneHandler(
-	//                                classifier_EClass)).AND(
-	//                            new ENot(new EObjectInstanceCondition(clazz)))))),
-	//            new WHERE(
-	//                new EObjectReferenceValueCondition(
-	//                    CorePackage.eINSTANCE.getNamedModelElement_Relationship(),
-	//                    new EObjectTypeRelationCondition(
-	//                        association_EClass).AND(
-	//                        new EObjectReferenceValueCondition(
-	//                            CorePackage.eINSTANCE.getAssociation_End(),
-	//                            new EObjectReferenceValueCondition(
-	//                                RelationshipsPackage
-	//                                    .eINSTANCE
-	//                                    .getSimpleRelationship_NonOwningEnd(),
-	//                                new EObjectInstanceCondition(clazz),
-	//                                getEStructuralFeatureValueGetter()),
-	//                            getEStructuralFeatureValueGetter())),
-	//                    getEStructuralFeatureValueGetter())));
-	//    }
-	//
-	//    private QueryStatement getAssociatedClassesQuery_Refined(Class clazz) {
-	//        return new SELECT(
-	//            new FROM(getQueryObjects()),
-	//            new WHERE(
-	//                new EObjectReferenceValueCondition(
-	//                    new EObjectTypeRelationCondition(
-	//                        class_EClass,
-	//                        new TypeContainmentPruneHandler(
-	//                            classifier_EClass)).AND(
-	//                        new ENot(new EObjectInstanceCondition(clazz))),
-	//                    CorePackage.eINSTANCE.getNamedModelElement_Relationship(),
-	//                    new EObjectTypeRelationCondition(
-	//                        association_EClass).AND(
-	//                        new EObjectReferenceValueCondition(
-	//                            CorePackage.eINSTANCE.getAssociation_End(),
-	//                            new EObjectReferenceValueCondition(
-	//                                RelationshipsPackage
-	//                                    .eINSTANCE
-	//                                    .getSimpleRelationship_NonOwningEnd(),
-	//                                new EObjectInstanceCondition(clazz),
-	//                                getEStructuralFeatureValueGetter()),
-	//                            getEStructuralFeatureValueGetter())),
-	//                    getEStructuralFeatureValueGetter())));
-	//    }
-	//
-	//    private QueryStatement getAllSubClassesQuery(final Class clazz) {
-	//        return new QueryStatement(false, new NullProgressMonitor()) {
-	//            protected void doExecute() {
-	//                QueryResultSet recursiveResultSet = new QueryResultSet();
-	//                QueryResultSet resultSet =
-	//                    getDirectSubClassesQuery_Refined(clazz).execute();
-	//                recursiveResultSet.addAll(resultSet);
-	//                Iterator it = resultSet.iterator();
-	//                while (it.hasNext() && (resultSet.getException() == null)) {
-	//                    resultSet =
-	//                        getAllSubClassesQuery((Class)it.next()).execute();
-	//                    recursiveResultSet.addAll(resultSet);
-	//                }
-	//                Exception exeption = resultSet.getException();
-	//                if (exeption != null) {
-	//                    //preserve exceptions to caller...
-	//                    recursiveResultSet =
-	//                        new QueryResultSet(new HashSet(), exeption);
-	//                }
-	//                setResultSet(recursiveResultSet);
-	//            }
-	//            public boolean canBeResumed() {
-	//                return false;
-	//            }
-	//            protected void doResume() {}
-	//        };
-	//    }
-	//
-	//    private QueryStatement getDirectSubClassesQuery(Class clazz) {
-	//        return new SELECT(
-	//            new FROM(
-	//                new SELECT(
-	//                    new FROM(getQueryObjects()),
-	//                    new WHERE(
-	//                        new EObjectTypeRelationCondition(
-	//                            class_EClass,
-	//                            new TypeContainmentPruneHandler(
-	//                                classifier_EClass))))),
-	//            new WHERE(
-	//                new EObjectReferenceValueCondition(
-	//                    CorePackage.eINSTANCE.getNamedModelElement_Relationship(),
-	//                    new EObjectTypeRelationCondition(
-	//                        generalization_EClass).AND(
-	//                        new EObjectReferenceValueCondition(
-	//                            RelationshipsPackage
-	//                                .eINSTANCE
-	//                                .getSimpleRelationship_NonOwningEnd(),
-	//                            new EObjectInstanceCondition(clazz),
-	//                            getEStructuralFeatureValueGetter())),
-	//                    getEStructuralFeatureValueGetter())));
-	//    }
-	//
-	//    private QueryStatement getDirectSubClassesQuery_Refined(Class clazz) {
-	//        return new SELECT(
-	//            new FROM(getQueryObjects()),
-	//            new WHERE(
-	//                new EObjectReferenceValueCondition(
-	//                    new EObjectTypeRelationCondition(
-	//                        class_EClass,
-	//                        new TypeContainmentPruneHandler(
-	//                            classifier_EClass)),
-	//                    CorePackage.eINSTANCE.getNamedModelElement_Relationship(),
-	//                    new EObjectTypeRelationCondition(
-	//                        generalization_EClass).AND(
-	//                        new EObjectReferenceValueCondition(
-	//                            RelationshipsPackage
-	//                                .eINSTANCE
-	//                                .getSimpleRelationship_NonOwningEnd(),
-	//                            new EObjectInstanceCondition(clazz),
-	//                            getEStructuralFeatureValueGetter())),
-	//                    getEStructuralFeatureValueGetter())));
-	//    }
 
 	public void test_QueryStatementExceptionHandling() {
 		final RuntimeException exception = new RuntimeException();
@@ -484,53 +237,40 @@ public class EMFQueryTest
 		assertEquals(1,result.getEObjects().size());
 	}
 	
-	private QueryStatement getClassesWithFunctionNamedQuery(String functionName) {
+	private QueryStatement getBooksWithAuthorNamedQuery(String lastName) {
 		return new SELECT(new FROM(getQueryObjects()), new WHERE(
-			new EObjectTypeRelationCondition(class_EClass)
-				.AND(new EObjectReferenceValueCondition(operation_EReference,
+			new EObjectTypeRelationCondition(book_EClass)
+				.AND(new EObjectReferenceValueCondition(author_EReference,
 					new EObjectAttributeValueCondition(name_EAttribute,
-						new StringValue(functionName),
+						new StringValue(lastName),
 						getEStructuralFeatureValueGetter()),
 					getEStructuralFeatureValueGetter()))));
 	}
 
-	private QueryStatement getClassInstances_NamedQuery(int maxCount,
-		String className) {
+	private QueryStatement getBookInstances_TitledQuery(int maxCount,
+		String bookTitle) {
 		return new SELECT(maxCount, new FROM(getQueryObjects()), new WHERE(
-			new EObjectTypeRelationCondition(class_EClass)
-				.AND(new EObjectAttributeValueCondition(name_EAttribute,
-					new StringValue(className),
+			new EObjectTypeRelationCondition(book_EClass)
+				.AND(new EObjectAttributeValueCondition(title_EAttribute,
+					new StringValue(bookTitle),
 					getEStructuralFeatureValueGetter()))));
 	}
 
-	private QueryStatement getParamInstances_NamedQuery(String parameterName) {
+	private QueryStatement getAllBooksQuery() {
+		return new SELECT(new FROM(getQueryObjects()), new WHERE(
+			new EObjectTypeRelationCondition(book_EClass)));
+	}
+
+	private QueryStatement getBookInstances_NOT_TitledQuery(String bookTitle) {
 		return new SELECT(new FROM(getQueryObjects()), new WHERE(
 			new EObjectAttributeValueCondition(
-				new EObjectTypeRelationCondition(parameter_EClass),
-				name_EAttribute, new StringValue(parameterName),
+				new EObjectTypeRelationCondition(book_EClass),
+				title_EAttribute, new Not(new StringValue(bookTitle)),
 				getEStructuralFeatureValueGetter())));
 	}
 
-	private QueryStatement getAllClassesQuery() {
-		return new SELECT(new FROM(getQueryObjects()), new WHERE(
-			new EObjectTypeRelationCondition(class_EClass)));
-	}
-
-	private QueryStatement getAllParamsQuery() {
-		return new SELECT(new FROM(getQueryObjects()), new WHERE(
-			new EObjectTypeRelationCondition(parameter_EClass)));
-	}
-
-	private QueryStatement getClassInstances_NOT_NamedQuery(String className) {
-		return new SELECT(new FROM(getQueryObjects()), new WHERE(
-			new EObjectAttributeValueCondition(
-				new EObjectTypeRelationCondition(class_EClass),
-				name_EAttribute, new Not(new StringValue(className)),
-				getEStructuralFeatureValueGetter())));
-	}
-
-	private org.eclipse.uml2.uml.Class getClassNamed_InstanceBruteForce(
-		final String name) {
+	private Book getBookTitled_InstanceBruteForce(
+		final String title) {
 		QueryStatement statement = new SELECT(new FROM(getQueryObjects()),
 			new WHERE(new EObjectCondition() {
 
@@ -541,8 +281,8 @@ public class EMFQueryTest
 				}
 
 				public boolean isSatisfied(EObject element) {
-					if (element.eClass() == class_EClass) {
-						if (((NamedElement) element).getName().equals(name)) {
+					if (element.eClass() == book_EClass) {
+						if (((Book) element).getTitle().equals(title)) {
 							shouldPrune = true;
 							return true;
 						}
@@ -551,29 +291,9 @@ public class EMFQueryTest
 				}
 			}));
 		Collection resultSet = statement.execute();
-		instance_Class1 = (org.eclipse.uml2.uml.Class) ((resultSet.isEmpty()) ? null
+		instance_Book1 = (Book) ((resultSet.isEmpty()) ? null
 			: (EObject) resultSet.toArray()[0]);
-		return instance_Class1;
-	}
-
-	private QueryStatement getElementNamedQuery(final String elementName) {
-		return new SELECT(new FROM(getQueryObjects()), new WHERE(
-			new EObjectCondition() {
-
-				public boolean isSatisfied(EObject element) {
-					if (element instanceof NamedElement) {
-						if (elementName.equals(((NamedElement) element)
-							.getName())) {
-							return true;
-						}
-					}
-					return false;
-				}
-
-				public boolean shouldPrune(EObject element) {
-					return false;
-				}
-			}));
+		return instance_Book1;
 	}
 
 	private Resource getResource() {
@@ -582,44 +302,38 @@ public class EMFQueryTest
 			
 			List contents = resource.getContents();
 			
-			Model m = UMLFactory.eINSTANCE.createModel();
-			m.setName("Blank Model"); //$NON-NLS-1$
-			contents.add(m);
+			Library l = EXTLibraryFactory.eINSTANCE.createLibrary();
+			l.setName("New Library"); //$NON-NLS-1$
+			contents.add(l);
 			
-			org.eclipse.uml2.uml.Package pkg = UMLFactory.eINSTANCE.createPackage();
-			pkg.setName("contextFree"); //$NON-NLS-1$
-			m.getPackagedElements().add(pkg);
-			
-			for (int i=0; i<5; i++) {
-				org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
-				cls.setName("Class"+(i+1)); //$NON-NLS-1$
-				m.getPackagedElements().add(cls);
+			for (int i=1; i<=5; i++) {
+				Book book = EXTLibraryFactory.eINSTANCE.createBook();
+				book.setTitle("Book"+i); //$NON-NLS-1$
+				l.getBooks().add(book);
 			}
 			
-			org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
-			cls.setName("ClassFoo"); //$NON-NLS-1$
-			Operation op = cls.createOwnedOperation("Operation1",null,null); //$NON-NLS-1$
-			op.setIsUnique(true);
-			Parameter p = op.createOwnedParameter("Parameter1",null); //$NON-NLS-1$
-			p = op.createOwnedParameter("Parameter2",null); //$NON-NLS-1$
-			op = cls.createOwnedOperation("Operation22",null,null); //$NON-NLS-1$
-			m.getPackagedElements().add(cls);
+			Book book = EXTLibraryFactory.eINSTANCE.createBook();
+			book.setTitle("BookFoo"); //$NON-NLS-1$
+			l.getBooks().add(book);
 			
-			org.eclipse.uml2.uml.Interface i = UMLFactory.eINSTANCE.createInterface();
-			i.setName("contextFree"); //$NON-NLS-1$
-			Property prop = i.createOwnedAttribute("contextFree",null); //$NON-NLS-1$
-			prop.setIsUnique(true);
-			m.getPackagedElements().add(i);
-
+			Writer writer = EXTLibraryFactory.eINSTANCE.createWriter();
+			writer.setName("John Doe"); //$NON-NLS-1$
+			l.getWriters().add(writer);
+			
+			book.setAuthor(writer);
+			
+			writer = EXTLibraryFactory.eINSTANCE.createWriter();
+			writer.setName("Richard Roe"); //$NON-NLS-1$
+			l.getWriters().add(writer);
 		}
 		return resource;
 	}
 
-	private Model getModel() {
-		if (model == null) {
-			model = (Model) (getResource().getContents().get(0));
+	private Library getLibrary() {
+		if (library == null) {
+			library = (Library) (getResource().getContents().get(0));
 		}
-		return model;
+		return library;
 	}
 
 	private Collection getQueryObjects() {
