@@ -95,3 +95,17 @@ ant -f $currentPath/javadoc.xml \
 
 # Clean up templates
 rm -f $currentPath/javadoc.xml.template.tmp $currentPath/javadoc.xml.template.tmp2 $currentPath/javadoc.xml
+
+# Generate topics_Reference.xml (replacement for doclet). 
+trXML=$currentPath"/../topics_Reference.xml";
+echo '<?xml version="1.0" encoding="UTF-8"?>' > $trXML;
+echo '<?NLS TYPE="org.eclipse.help.toc"?>' >> $trXML;
+echo '<toc label="Reference">' >> $trXML;
+echo '  <topic label="API Reference" href="references/javadoc/overview-summary.html">' >> $trXML;
+for packSum in `find $destDir -name "package-summary.html" | sort`; do
+	path=${packSum%/package-summary.html}; path=${path#$destDir/}; # org/eclipse/xsd/ecore/importer/taskdefs
+	label=${path//\//.}; # org.eclipse.xsd.ecore.importer.taskdefs
+	echo '    <topic label="'$label'" href="references/javadoc/'$path'/package-summary.html" />' >> $trXML;
+done
+echo '  </topic>' >> $trXML;
+echo '</toc>' >> $trXML;
