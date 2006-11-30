@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.ocl;singleton:=true
 Bundle-Version: 1.0.1.qualifier
-Bundle-ClassPath: lib/lpgjavaruntime.jar
+Bundle-ClassPath: .,
+ lib/lpgjavaruntime.jar
 Bundle-Activator: org.eclipse.emf.ocl.internal.OCLPlugin$Implementation
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
