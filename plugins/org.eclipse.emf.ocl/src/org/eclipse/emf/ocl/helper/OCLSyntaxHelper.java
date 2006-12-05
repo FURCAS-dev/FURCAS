@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.6 2006/10/10 14:29:27 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.7 2006/12/05 16:24:41 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -66,6 +66,7 @@ import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.expressions.Visitor;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
+import org.eclipse.emf.ocl.internal.l10n.UnicodeSupport;
 import org.eclipse.emf.ocl.internal.parser.OCLLPGParsersym;
 import org.eclipse.emf.ocl.internal.parser.OCLLexer;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
@@ -81,8 +82,6 @@ import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
-
-import com.ibm.icu.text.UTF16;
 
 /**
  * Engine for computation of possible syntax completions at a point in the
@@ -361,7 +360,7 @@ final class OCLSyntaxHelper {
 		}
 
 		public Object visitIfExp(IfExp exp) {
-			int lastCharPos = UTF16.moveCodePointOffset(text, exp.getEndPosition(), -1);
+			int lastCharPos = UnicodeSupport.shiftCodePointOffsetBy(text, exp.getEndPosition(), -1);
 			
 			if (text.charAt(lastCharPos) == ')') { // known BMP code point
 				return getChoices(exp, constraintType);

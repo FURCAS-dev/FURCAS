@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.10 2006/05/29 19:07:47 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.11 2006/12/05 16:24:41 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -79,6 +79,7 @@ import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.OCLStatusCodes;
+import org.eclipse.emf.ocl.internal.l10n.UnicodeSupport;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
@@ -95,9 +96,6 @@ import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.impl.CollectionFactory;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -430,11 +428,11 @@ public class EvaluationVisitorImpl
 
 					case PredefinedType.TO_LOWER:
 						// String::toLower()
-						return UCharacter.toLowerCase((String) sourceVal);
+						return UnicodeSupport.toLowerCase((String) sourceVal);
 
 					case PredefinedType.TO_UPPER:
 						// String::toUpper()
-						return UCharacter.toUpperCase((String) sourceVal);
+						return UnicodeSupport.toUpperCase((String) sourceVal);
 
 					case PredefinedType.IS_EMPTY:
 						// Collection::isEmpty()
@@ -1965,10 +1963,10 @@ public class EvaluationVisitorImpl
 		EReference result = null;
 		
 		StringBuffer nameBuf = new StringBuffer(associationClass.getName());
-		UTF16.setCharAt(
+		UnicodeSupport.setCodePointAt(
 				nameBuf,
 				0,
-				UCharacter.toLowerCase(UTF16.charAt(nameBuf, 0)));
+				UnicodeSupport.toLowerCase(UnicodeSupport.codePointAt(nameBuf, 0)));
 		String name = nameBuf.toString();
 		
 		for (Iterator iter = context.eClass().getEAllReferences().iterator();
