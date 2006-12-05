@@ -37,13 +37,11 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
+import org.eclipse.emf.ocl.internal.l10n.UnicodeSupport;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.OCLParser;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
-
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
 
 /**
  * An Environment stores the variables created while evaluating an OCL
@@ -633,10 +631,10 @@ public class EcoreEnvironment
 		StringBuffer result = new StringBuffer(elem.getName());
 		
 		if (result.length() > 0) {
-			UTF16.setCharAt(
+			UnicodeSupport.setCodePointAt(
 					result,
 					0,
-					UCharacter.toLowerCase(UTF16.charAt(result, 0)));
+					UnicodeSupport.toLowerCase(UnicodeSupport.codePointAt(result, 0)));
 		}
 		
 		return result.toString();
