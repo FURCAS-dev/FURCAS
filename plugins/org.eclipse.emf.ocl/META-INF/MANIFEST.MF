@@ -3,8 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.ocl;singleton:=true
 Bundle-Version: 1.1.0.qualifier
-Bundle-ClassPath: .,
- lib/lpgjavaruntime.jar
+Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.ocl.internal.OCLPlugin$Implementation
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
@@ -36,5 +35,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.edit;bundle-version="[2.2.0,3.0.0)",
  org.eclipse.emf.ecore.edit;bundle-version="[2.2.0,3.0.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)";resolution:=optional
+Import-Package: lpg.lpgjavaruntime;version="[1.0.0,1.2.0)"
 Eclipse-LazyStart: true
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
