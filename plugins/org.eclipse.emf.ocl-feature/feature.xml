@@ -64,7 +64,7 @@ http://www.eclipse.org/legal/epl-v10.html
          id="net.sourceforge.lpg.lpgjavaruntime"
          download-size="0"
          install-size="0"
-         version="1.0.0"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
