@@ -55,8 +55,7 @@ http://www.eclipse.org/legal/epl-v10.html
         
     <includes
          id="org.eclipse.emf.query.examples.source"
-         version="0.0.0"
-         match="compatible"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.query.examples"
