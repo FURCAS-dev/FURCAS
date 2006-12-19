@@ -31,6 +31,7 @@
             category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
             class="org.eclipse.emf.query.examples.internal.wizard.StatementsExampleWizard"
             hasPages="false"
+            project="true"
             id="org.eclipse.emf.query.examples.statements"
             name="%Query_Statements_name"
             icon="$nl$/icons/elcl16/queryedit_co.gif">
@@ -41,6 +42,7 @@
             category="org.eclipse.ui.Examples/org.eclipse.emf.query.examples.category"
             class="org.eclipse.emf.query.examples.internal.wizard.OCLExampleWizard"
             hasPages="false"
+            project="true"
             id="org.eclipse.emf.query.examples.ocl"
             name="%Query_OCL_name"
             icon="$nl$/icons/elcl16/oclqryedit_co.gif">
