@@ -6,17 +6,25 @@
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
-   <description>
+   <description url="http://www.eclipse.org/modeling/mdt/">
       %description
    </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2005, 2006 IBM Corporation and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
 
    <license url="%licenseURL">
       %license
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
    </url>
 
    <includes
