@@ -31,6 +31,7 @@
             category="org.eclipse.ui.Examples/org.eclipse.emf.ocl.examples.category"
             class="org.eclipse.emf.ocl.examples.internal.wizard.InterpreterExampleWizard"
             hasPages="false"
+            project="true"
             id="org.eclipse.emf.ocl.examples.interpreter"
             name="%OCL_Interpreter_name"
             icon="$nl$/icons/elcl16/oclconsole_co.gif">
