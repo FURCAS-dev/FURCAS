@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
 Bundle-Activator: org.eclipse.emf.query.examples.internal.QueryExamplesPlugin
 Export-Package: org.eclipse.emf.query.examples.internal;x-internal:=true,
  org.eclipse.emf.query.examples.internal.wizard;x-internal:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
