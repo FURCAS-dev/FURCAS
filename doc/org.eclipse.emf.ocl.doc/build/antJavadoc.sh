@@ -21,6 +21,10 @@ javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/example
 #	exit
 #fi
 
+if [ "x"$ANT_HOME = "x" ]; then export ANT_HOME=/opt/apache-ant-1.6; fi
+if [ "x"$JAVA_HOME = "x" ]; then export JAVA_HOME=/opt/ibm-java2-1.4; fi
+export PATH=${PATH}:${ANT_HOME}/bin
+
 function groupPackage
 {
 	plugin=$1
