@@ -3,7 +3,13 @@
 	<property name="destDir"    value="doc"/>
 	<property name="classpath"  value="bin"/>
 	<property name="overview"   value="build/overview.html"/>
-	<property name="eclipseDir" value="@eclipseDir@"/>
+	<property name="eclipseDir" value="."/>
+	<property name="docjar" value="org.eclipse.platform.doc.isv.jar"/>
+	
+	<!-- other properties that must be passed to this script include:
+		 windowTitle
+		 groupTitle 
+	-->
 	
 	<property environment="env"/>
 	<property name="javaHome" value="${env.JAVA_HOME}"/>
@@ -27,24 +33,13 @@
 	<!-- <target name="javadoc" depends="extractPlatformJavadoc"> -->
 	
 	<target name="javadoc">
-   <!--  Doesn't compile with 5.0
-		<echo message="Get Doclet and compile it with JDK5.0 for use with javadoc"/>
-		<cvs cvsRoot=":pserver:anonymous@dev.eclipse.org:/cvsroot/tools" 
-		  package="org.eclipse.emf.releng.build/org.eclipse.emf.build" 
-		  reallyquiet="yes"/>
-		<delete dir="org.eclipse.emf.releng.build/org.eclipse.emf.build/src/CVS"/>
-		<move todir="."><fileset dir="org.eclipse.emf.releng.build/org.eclipse.emf.build/src"/></move>
-	
-		<javac srcdir="org/eclipse/emf/build/doclet" classpath=".:${java.home}/../lib/tools.jar" failonerror="true"/>
-		-->
-		
 		<javadoc 
 			destdir="${destDir}" 
 			classpath="${classpath}"
 			overview="${overview}"
 
-			windowtitle="EMF Query Javadoc"
-			footer="Copyright 2002, 2006 IBM Corporation and others.&lt;br&gt; All Rights Reserved."
+			windowtitle="${windowTitle}"
+			footer="Copyright 2002, 2007 IBM Corporation and others.&lt;br&gt; All Rights Reserved."
 
 			access="protected" 
 			additionalparam="-breakiterator -tag model:X -tag generated:X -tag ordered:X"
@@ -63,14 +58,6 @@
 			version="true"> 
 				<arg value="-J-Xmx180m"/>
 				
-   				<!--  Doesn't compile with 5.0
-				<doclet name="org.eclipse.emf.build.doclet.Doclet" path=".">
-			      <param name="-tocFilename" value="topics_Reference.xml"/>
-			      <param name="-tocRefPrefix" value="references/javadoc/"/>
-			      <param name="-tocTitle" value="API Reference"/>
-			    </doclet>
-			    -->
-				
 				<link offline="true" href="http://java.sun.com/j2se/1.4/docs/api/" packagelistLoc="${javaHome}/docs/api/"/>
 				<!-- TODO Enable link to platform documentation -->
 				<!-- <link offline="true" href="/help/topic/org.eclipse.platform.doc.isv/reference/api/" packagelistLoc="${javadoc.link.location}/platform/reference/api/"/> -->
@@ -85,7 +72,7 @@
 
 				<!-- If you add a @ plugin @ below, don't forget to update the antjavadoc.sh file -->
 
-				<group title="EMF Query" packages="@plugin@"/>
+				<group title="${groupTitle}" packages="@plugin@"/>
 				
 				<!-- If you add a @ plugin @ above, don't forget to update the antjavadoc.sh file -->
 
