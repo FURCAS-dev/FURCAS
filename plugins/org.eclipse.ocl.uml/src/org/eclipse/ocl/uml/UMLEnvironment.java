@@ -1,0 +1,642 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: UMLEnvironment.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ */
+
+package org.eclipse.ocl.uml;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.AbstractEnvironment;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.uml.util.OCLUMLUtil;
+import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.ParameterEffectKind;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.SendSignalAction;
+import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.StateMachine;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Vertex;
+
+/**
+ * Implementation of the {@link Environment} for parsing OCL expressions on
+ * UML models.  The <code>UMLEnvironment</code> uses a client-supplied
+ * resource set to look up UML {@link Package}s in UML resources.  It also uses
+ * an {@link EPackage} registry to find the corresponding Ecore definitions of
+ * packages when evaluating expressions on instances of the UML model (in the
+ * case of evaluation on UML2-generated API objects).
+ * 
+ * @author Christian W. Damus (cdamus)
+ */
+public class UMLEnvironment extends AbstractEnvironment<
+		Package, Classifier, Operation, Property,
+		EnumerationLiteral, Parameter,
+		State, CallOperationAction, SendSignalAction, Constraint,
+		Class, EObject> {
+
+	private static OCLStandardLibraryImpl standardLibrary;
+    
+    private UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint>
+    reflection;
+    
+	/** The resource set for package lookups. */
+	private ResourceSet resourceSet;
+    /** The package registry for Ecore definition lookups. */
+	private EPackage.Registry registry;
+	
+    private EnvironmentFactory<
+			Package, Classifier, Operation, Property,
+			EnumerationLiteral, Parameter,
+			State, CallOperationAction, SendSignalAction, Constraint,
+			Class, EObject>
+	factory;
+
+	private TypeResolver<Classifier, Operation, Property> typeResolver;
+	
+    private Package umlMetamodel;
+    
+    private Map<List<String>, Classifier> classifierCache =
+        new java.util.HashMap<List<String>, Classifier>();
+    private Map<List<String>, Package> packageCache =
+        new java.util.HashMap<List<String>, Package>();
+
+	/**
+	 * Initializes me with a package registry for looking up the Ecore
+     * representations of UML packages and a resource set for looking up
+     * UML packages in UML resources.
+	 * 
+	 * @param registry the Ecore package registry to use
+	 * @param rset the resource set to use
+	 */
+	protected UMLEnvironment(EPackage.Registry registry, ResourceSet rset) {
+		this.registry = registry;
+		resourceSet = rset;
+	}
+	
+    /**
+     * Initializes me with a package registry for looking up the Ecore
+     * representations of UML packages, a resource set for looking up
+     * UML packages in UML resources, and a resource from which to load myself.
+     * 
+     * @param registry the Ecore package registry to use
+     * @param rset the resource set to use
+     * @param resource my resource for persistence
+     */
+	protected UMLEnvironment(EPackage.Registry registry, ResourceSet rset, Resource resource) {
+		this(registry, rset);
+		
+		typeResolver = new TypeResolverImpl(this, resource);
+	}
+
+    /**
+     * Initializes me with a parent environment.  I inherit my package registry,
+     * resource set, and resource from it.
+     * 
+     * @param parent my parent environment
+     */
+	protected UMLEnvironment(
+			Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> parent) {
+		
+		super((UMLEnvironment) parent);
+		
+		UMLEnvironment uparent = (UMLEnvironment) parent;
+		
+		if (uparent != null) {
+			this.registry = uparent.registry;
+			resourceSet = uparent.resourceSet;
+			typeResolver = uparent.getTypeResolver();
+		} else {
+			this.registry = (EPackage.Registry.INSTANCE);
+			resourceSet = new ResourceSetImpl();
+		}
+	}
+
+    // implements the inherited specification
+	public EnvironmentFactory<
+			org.eclipse.uml2.uml.Package, Classifier, Operation, Property,
+			EnumerationLiteral, Parameter,
+			State, CallOperationAction, SendSignalAction, Constraint,
+			org.eclipse.uml2.uml.Class, EObject>
+	getFactory() {
+		if (factory != null) {
+			return factory;
+		}
+		
+		if (getParent() != null) {
+			factory = getParent().getFactory();
+			if (factory != null) {
+				return factory;
+			}
+		}
+		
+		// obtain a reasonable default factory
+		factory = new UMLEnvironmentFactory(getResourceSet());
+		
+		return factory;
+	}
+	
+	/**
+	 * Sets the factory that created me.  This method should only be invoked
+	 * by that factory.
+	 * 
+	 * @param factory my originating factory
+	 */
+	protected void setFactory(EnvironmentFactory<
+			Package, Classifier, Operation, Property,
+			EnumerationLiteral, Parameter,
+			State, CallOperationAction, SendSignalAction, Constraint,
+			Class, EObject> factory) {
+		this.factory = factory;
+	}
+	
+    // implements the inherited specification
+	public void setParent(Environment<
+			Package, Classifier, Operation, Property,
+			EnumerationLiteral, Parameter,
+			State, CallOperationAction, SendSignalAction, Constraint,
+			Class, EObject> env) {
+		super.setParent((UMLEnvironment) env);
+	}
+	
+    // implements the inherited specification
+	public OCLStandardLibrary<Classifier> getOCLStandardLibrary() {
+		if (standardLibrary == null) {
+			 standardLibrary = OCLStandardLibraryImpl.INSTANCE;
+		}
+		
+		return standardLibrary;
+	}
+
+    /**
+     * Obtains the resource set in which I look for UML packages when resolving
+     * package names.
+     * 
+     * @return my resource set
+     */
+	protected final ResourceSet getResourceSet() {
+		return resourceSet;
+	}
+	
+    /**
+     * Obtains the UML metamodel library, loaded in my resource set.
+     * 
+     * @return the UML metamodel
+     */
+	protected Package getUMLMetamodel() {
+        if (umlMetamodel == null) {
+            if (getFactory() instanceof UMLEnvironmentFactory) {
+                umlMetamodel = ((UMLEnvironmentFactory) getFactory()).getUMLMetamodel();
+            } else {
+                umlMetamodel = OCLUMLUtil.getUMLMetamodel(getResourceSet());
+            }
+        }
+        
+        return umlMetamodel;
+	}
+	
+    // implements the inherited specification
+	public TypeResolver<Classifier, Operation, Property> getTypeResolver() {
+		if (typeResolver == null) {
+			typeResolver = createTypeResolver();
+		}
+		
+		return typeResolver;
+	}
+
+    // implements the inherited specification
+    public TypeFactory getTypeFactory() {
+        return org.eclipse.ocl.uml.UMLFactory.eINSTANCE;
+    }
+
+    // implements the inherited specification
+    public UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> getUMLReflection() {
+        if (reflection == null) {
+            if (getParent() != null) {
+                reflection = getParent().getUMLReflection();
+            } else {
+                reflection = new UMLReflectionImpl(registry);
+            }
+        }
+        
+        return reflection;
+    }
+	
+	/**
+     * Creates a new type resolver for use with this environment.
+     * 
+     * @return a new type resolver
+     */
+	protected TypeResolver<Classifier, Operation, Property> createTypeResolver() {
+		return new TypeResolverImpl(this);
+	}
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Implements the inherited specification by looking in my resource set for
+     * a resource containing the specified package.
+     * </p>
+     */
+	public org.eclipse.uml2.uml.Package lookupPackage(List<String> path) {
+        Package tryCache = packageCache.get(path);
+        if (tryCache != null) {
+            return tryCache;
+        }
+        
+		Package pkg = null;
+		Package currPkg = getContextPackage();
+
+		// Check whether this package is in the default package
+		if (currPkg != null) {
+			while (currPkg != null) {
+				pkg = currPkg;
+				
+				for (int i = 0; i < path.size(); i++) {
+					String name = (String) path.get(i);
+					EList<Package> subPackages = pkg.getNestedPackages();
+					pkg = null;
+					for (int j = 0; j < subPackages.size(); j++) {
+						pkg = subPackages.get(j);
+						if (name.equals(pkg.getName()))
+							break;
+						pkg = null;
+					}
+					if (pkg == null)
+						break;
+				}
+				
+				if (pkg != null) {
+                    packageCache.put(path, pkg);
+					return pkg;
+				}
+				
+				currPkg = currPkg.getNestingPackage();
+			}
+		}
+		
+		// Check whether this package exists in the resource set
+		Package result = OCLUMLUtil.findPackage(path, getResourceSet());
+        packageCache.put(path, result);
+        return result;
+	}
+
+    // implements the inherited specification
+	public Classifier lookupClassifier(List<String> names) {
+        Classifier tryCache = classifierCache.get(names);
+        if (tryCache != null) {
+            return tryCache;
+        }
+        
+		Namespace ns = null;
+		Namespace currNs = getContextPackage();
+
+		if (names.size() > 1) {
+
+			// Check whether this package is in the default package
+			if (currNs != null) {
+				while (currNs != null) {
+
+					ns = currNs;
+					for (int i = 0; i < names.size() - 1; i++) {
+						String name = names.get(i);
+						EList<NamedElement> members = ns.getMembers();
+						ns = null;
+						for (int j = 0; j < members.size(); j++) {
+							NamedElement member = members.get(j);
+							
+							if (member instanceof Namespace) {
+								ns = (Namespace) member;
+								if (name.equals(ns.getName())) {
+									break;
+								}
+							}
+							ns = null;
+						}
+						
+						if (ns == null) {
+							break;
+						}
+					}
+					
+					if (ns != null) {
+						Classifier member = (Classifier) ns.getMember(
+								names.get(names.size() - 1),
+								false,
+								UMLPackage.Literals.CLASSIFIER);
+						
+						if (member != null) {
+                            classifierCache.put(names, member);
+							return member;
+						}
+					}
+					
+					currNs = currNs.getNamespace();
+				}
+			}
+			
+			// Check whether this package exists
+			List<String> newNames = names.subList(0, names.size() - 1);
+			ns = OCLUMLUtil.findNamespace(newNames, getResourceSet());
+			if (ns == null)
+				return null;
+			
+			Classifier member = (Classifier) ns.getMember(
+					names.get(names.size() - 1),
+					false,
+					UMLPackage.Literals.CLASSIFIER);
+			
+			if (member != null) {
+                classifierCache.put(names, member);
+				return member;
+			}
+			
+			if (member instanceof Classifier) {
+				return (Classifier) member;
+			}
+			
+			return null;
+		} else if (getContextPackage() != null) {
+			String name = (String) names.get(0);
+			Classifier result = null;
+			while (currNs != null) {
+				result = (Classifier) currNs.getMember(
+						name,
+						false,
+						UMLPackage.Literals.CLASSIFIER);
+				
+				if (result != null) {
+                    classifierCache.put(names, result);
+					return result;
+				}
+				
+				currNs = currNs.getNamespace();
+			}
+		}
+		
+		return null;
+	}
+	
+    // implements the inherited specification
+	public List<State> getStates(Classifier owner, List<String> pathPrefix) {
+		EList<State> result = new BasicEList.FastCompare<State>();
+		
+		collectStates(owner, pathPrefix, result);
+		
+		// search supertypes
+		for (Classifier general : owner.allParents()) {
+			collectStates(general, pathPrefix, result);
+		}
+		
+		// now, filter out redefinitions, in case our prefix match found
+		//   states that are redefined by other matches (as an instance of the
+		//   owner type cannot be in a state that is redefined by a more
+		//   specific state)
+		Set<State> redefinitions = new java.util.HashSet<State>();
+		for (State s : result) {
+			State redef = s.getRedefinedState();
+			
+			while (redef != null) {
+				redefinitions.add(redef);
+				redef = redef.getRedefinedState();
+			}
+		}
+		
+		result.removeAll(redefinitions);
+		
+		return result;
+	}
+	
+	/**
+	 * Finds all states in the specified owner type
+	 * that match the given path name prefix and add them to the accumulator
+	 * list.
+	 * 
+	 * @param owner the owner type
+	 * @param pathPrefix partial qualified name, specifying the parent of the
+     *     states to be collected
+	 * @param states a list of states directly owned by the namespace indicated
+	 *     by path prefix, within the owner type
+	 */
+	private void collectStates(Classifier owner, List<String> pathPrefix, List<State> states) {
+		if (owner instanceof BehavioredClassifier) {
+			List<Behavior> behaviors = ((BehavioredClassifier) owner).getOwnedBehaviors();
+			
+			for (Behavior b : behaviors) {
+				if (b instanceof StateMachine) {
+					collectStates((StateMachine) b, pathPrefix, states);
+				}
+			}
+		}
+	}
+	
+	private void collectStates(StateMachine machine, List<String> pathPrefix, List<State> states) {
+		if (pathPrefix.isEmpty()) {
+			for (Region r : machine.getRegions()) {
+				collectStates(r, pathPrefix, states);
+			}
+		} else {
+			String firstName = pathPrefix.get(0);
+			
+			if (firstName.equals(machine.getName())) {
+				// we are allowed to qualify the states by machine name
+				pathPrefix = pathPrefix.subList(1, pathPrefix.size());
+			}
+		
+			for (Region r : machine.getRegions()) {
+				collectStates(r, pathPrefix, states);
+			}
+		}
+	}
+	
+	private void collectStates(Region region, List<String> pathPrefix, List<State> states) {
+		if (pathPrefix.isEmpty()) {
+			// terminus of the recursion:  get all the states in this region
+			for (Vertex v : region.getSubvertices()) {
+				if (v instanceof State) {
+					states.add((State) v);
+				}
+			}
+		} else {
+			String firstName = pathPrefix.get(0);
+			
+			Vertex v = region.getSubvertex(firstName);
+			if (v instanceof State) {
+				State state = (State) v;
+				
+				if (state.isComposite()) {
+					// recursively search the regions of this composite state
+					pathPrefix = pathPrefix.subList(1, pathPrefix.size());
+					
+					for (Region r : state.getRegions()) {
+						collectStates(r, pathPrefix, states);
+					}
+				}
+			}
+		}
+	}
+
+    // implements the inherited specification
+	public Property defineAttribute(
+			Classifier owner,
+			Variable<Classifier, Parameter> variable,
+			Constraint constraint) {
+		
+		Property result;
+		
+		String name = variable.getName();
+		Classifier type = variable.getType();
+		
+		result = UMLFactory.eINSTANCE.createProperty();
+		
+        result.addKeyword(UMLReflection.OCL_HELPER);
+        
+		result.setName(name);
+		result.setType(type);
+		
+		owner.getOwnedRules().add(constraint);
+		
+		addProperty(owner, result);
+		
+		return result;
+	}
+	
+    // implements the inherited specification
+	public Operation defineOperation(Classifier owner, String name,
+			Classifier type,
+			List<Variable<Classifier, Parameter>> params,
+			Constraint constraint) {
+		Operation result = UMLFactory.eINSTANCE.createOperation();
+        
+        result.addKeyword(UMLReflection.OCL_HELPER);
+		
+		result.setName(name);
+		result.setType(type == null ? getOCLStandardLibrary().getOclVoid() : type);
+		result.setIsQuery(true); // OCL can only define queries
+		
+		for (Variable<Classifier, Parameter> next : params) {
+			Parameter param = UMLFactory.eINSTANCE.createParameter();
+			param.setName(next.getName());
+			param.setType(next.getType() == null ?
+                getOCLStandardLibrary().getOclVoid() : next.getType());
+			
+			param.setDirection(ParameterDirectionKind.IN_LITERAL);
+			param.setEffect(ParameterEffectKind.READ_LITERAL);
+			
+			result.getOwnedParameters().add(param);
+		}
+		
+		owner.getOwnedRules().add(constraint);
+		
+		addOperation(owner, result);
+		
+		return result;
+	}
+	
+    // implements the inherited specification
+	public void undefine(Object feature) {
+		Constraint definition = getDefinition(feature);
+		
+		if (definition == null) {
+			throw new IllegalArgumentException("not an additional feature: " + feature); //$NON-NLS-1$
+		}
+		
+		EcoreUtil.remove((EObject) feature);
+		EcoreUtil.remove(definition);
+		
+		definition.getConstrainedElements().clear();
+	}
+	
+    // implements the inherited specification
+	public Constraint getDefinition(Object feature) {
+    	Constraint result = null;
+		Feature umlFeature = (Feature) feature;
+    	
+    	Classifier owner = (Classifier) umlFeature.getOwner();
+    	
+		if (owner instanceof Class) {
+			Classifier shadowed = ((TypeResolverImpl) getTypeResolver())
+                .getShadowedClassifier((Class) owner);
+			
+			if (shadowed != null) {
+				owner = shadowed;
+			}
+		}
+		
+    	if (owner != null) {
+	    	for (Constraint ct : owner.getOwnedRules()) {
+	    		if (ct.getKeywords().contains(UMLReflection.DEFINITION)
+	    				&& ct.getConstrainedElements().contains(umlFeature)) {
+	    			result = ct;
+	    			break;
+	    		}
+	    	}
+    	}
+    	
+    	return result;
+	}
+
+    // implements the inherited specification
+	public boolean isInPostcondition(
+			org.eclipse.ocl.expressions.OCLExpression<Classifier> exp) {
+		
+		Constraint constraint = null;
+		EObject parent = exp;
+		while (parent != null) {
+			if (parent instanceof Constraint) {
+				constraint = (Constraint) parent;
+				break;
+			}
+			
+			parent = parent.eContainer();
+		}
+		
+		return (constraint != null) && (!constraint.getKeywords().isEmpty())
+				&& UMLReflection.POSTCONDITION.equals(
+						constraint.getKeywords().get(0));
+	}
+}

@@ -1,0 +1,225 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: VoidTypeImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ */
+package org.eclipse.ocl.uml.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.uml.UMLPackage;
+import org.eclipse.ocl.uml.VoidType;
+import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Void Type</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.uml.impl.VoidTypeImpl#getOwnedOperations <em>Owned Operations</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class VoidTypeImpl extends ClassifierImpl implements VoidType {
+    private EList<Operation> operations;
+    
+    /**
+     * The cached value of the '{@link #getOwnedOperations() <em>Owned Operations</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOwnedOperations()
+     * @generated
+     * @ordered
+     */
+    protected EList<Operation> ownedOperations = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected VoidTypeImpl() {
+        super();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return UMLPackage.Literals.VOID_TYPE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Operation> getOwnedOperations() {
+        if (ownedOperations == null) {
+            ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.VOID_TYPE__OWNED_OPERATIONS);
+        }
+        return ownedOperations;
+    }
+
+    /**
+     * @generated NOT
+     */
+    public EList<Operation> oclOperations() {
+        if (operations == null) {
+            VoidType prototype = (VoidType) OCLStandardLibraryImpl.INSTANCE.getOclVoid();
+            
+            if (prototype == this) {
+                // I *am* the standard library type!
+                operations = getOperations();
+            } else {
+                // the prototype defines my operations for me
+                operations = prototype.oclOperations();
+            }
+        }
+        return operations;
+    }
+    
+    /**
+     * @generated NOT
+     */
+    public String getName() {
+        if (name == null) {
+            name = SINGLETON_NAME;
+        }
+        
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public EList<Feature> getFeatures() {
+//TODO: Remove the "NOT"
+        CacheAdapter cache = getCacheAdapter();
+        if (cache != null) {
+            Resource eResource = eResource();
+            @SuppressWarnings("unchecked")
+            EList<Feature> features = (EList<Feature>) cache.get(eResource,
+                this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
+            if (features == null) {
+                cache.put(eResource, this,
+                    org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
+                    features = new DerivedUnionEObjectEList<Feature>(
+                        Feature.class, this, UMLPackage.VOID_TYPE__FEATURE,
+                        FEATURE_ESUBSETS));
+            }
+            return features;
+        }
+        return new DerivedUnionEObjectEList<Feature>(Feature.class, this,
+            UMLPackage.VOID_TYPE__FEATURE, FEATURE_ESUBSETS);
+    }
+
+    /**
+     * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFeatures()
+     * @generated NOT
+     * @ordered
+     */
+    protected static final int[] FEATURE_ESUBSETS = new int[]{
+//TODO: Remove the "NOT"
+        UMLPackage.VOID_TYPE__ATTRIBUTE, UMLPackage.VOID_TYPE__OWNED_OPERATIONS};
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UMLPackage.VOID_TYPE__OWNED_OPERATIONS:
+                return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case UMLPackage.VOID_TYPE__OWNED_OPERATIONS:
+                return getOwnedOperations();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case UMLPackage.VOID_TYPE__OWNED_OPERATIONS:
+                getOwnedOperations().clear();
+                getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case UMLPackage.VOID_TYPE__OWNED_OPERATIONS:
+                getOwnedOperations().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case UMLPackage.VOID_TYPE__OWNED_OPERATIONS:
+                return ownedOperations != null && !ownedOperations.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
+
+} //VoidTypeImpl
