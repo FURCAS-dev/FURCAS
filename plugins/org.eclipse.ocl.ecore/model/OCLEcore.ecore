@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
+    nsURI="http://www.eclipse.org/ocl/1.1.0/OCL" nsPrefix="ocl">
+  <eSubpackages name="ecore" nsURI="http://www.eclipse.org/ocl/1.1.0/Ecore" nsPrefix="ocl.ecore">
+    <eClassifiers xsi:type="ecore:EClass" name="AnyType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/AnyType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BagType">
+      <eGenericSuperTypes eClassifier="#//ecore/CollectionType"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/BagType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CollectionType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/CollectionType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ElementType" eSuperTypes="../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/ElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InvalidType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/InvalidType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MessageType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/MessageType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrderedSetType">
+      <eGenericSuperTypes eClassifier="#//ecore/CollectionType"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/OrderedSetType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/PrimitiveType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceType">
+      <eGenericSuperTypes eClassifier="#//ecore/CollectionType"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/SequenceType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SetType">
+      <eGenericSuperTypes eClassifier="#//ecore/CollectionType"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/SetType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TupleType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/TupleType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypeType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/TypeType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VoidType">
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/VoidType">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
+          eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ENamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specification" lowerBound="1"
+          containment="true">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//utilities/ExpressionInOCL">
+          <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+          <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EParameter"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedElements"
+          upperBound="-1" eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ENamedElement"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SendSignalAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signal" lowerBound="1"
+          eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="ExpressionInOcl"/>
+      </eAnnotations>
+      <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//utilities/ExpressionInOCL">
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EParameter"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

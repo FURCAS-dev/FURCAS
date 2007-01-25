@@ -1,0 +1,432 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: AbstractEvaluationVisitor.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ */
+package org.eclipse.ocl;
+
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.types.InvalidType;
+import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.utilities.AbstractVisitor;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.Visitable;
+
+/**
+ * An evaluation visitor implementation for OCL expressions.
+ * <p>
+ * <b>Note</b> that this class is not intended to be used or extended by
+ * clients.  Use the {@link AbstractEvaluationVisitor} interface, instead.
+ * </p>
+ * <p>
+ * See the {@link Environment} class for a description of the
+ * generic type parameters of this class. 
+ * </p>
+ * 
+ * @author Tim Klinger (tklinger)
+ * @author Christian W. Damus (cdamus)
+ */
+public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	extends AbstractVisitor<Object, C, O, P, EL, PM, S, COA, SSA, CT>
+	implements EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+
+    // stereotypes associated with boolean-valued constraints
+	private static Set<String> BOOLEAN_CONSTRAINTS;
+	
+	private EvaluationEnvironment<C, O, P, CLS, E> evalEnv;
+	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env;
+	private OCLStandardLibrary<C> stdlib;
+	
+	private Map<? extends CLS, ? extends Set<? extends E>> extentMap;
+
+    private EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor;
+    
+	static {
+		BOOLEAN_CONSTRAINTS = new java.util.HashSet<String>();
+		BOOLEAN_CONSTRAINTS.add(UMLReflection.INVARIANT);
+		BOOLEAN_CONSTRAINTS.add(UMLReflection.PRECONDITION);
+		BOOLEAN_CONSTRAINTS.add(UMLReflection.POSTCONDITION);
+	}
+	
+	/**
+	 * Initializes me.
+	 * 
+     * @param env the current environment
+	 * @param evalEnv an evaluation environment (map of variable names to values)
+	 * @param extentMap a map of classes to their instance sets
+	 */
+	protected AbstractEvaluationVisitor(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			EvaluationEnvironment<C, O, P, CLS, E> evalEnv,
+			Map<? extends CLS, ? extends Set<? extends E>> extentMap) {
+        
+        this.evalEnv = evalEnv;
+        this.env = env;
+        stdlib = env.getOCLStandardLibrary();
+        this.extentMap = extentMap;
+        
+        this.visitor = this;  // assume I have no decorator
+    }
+    
+    /**
+     * Obtains the visitor on which I perform nested
+     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.  This
+     * handles the case in which I am decorated by another visitor that must
+     * intercept every <tt>visitXxx()</tt> method.  If I internally just
+     * recursively visit myself, then this decorator is cut out of the picture.
+     * 
+     * @return my delegate visitor, which may be my own self or some other
+     */
+    protected final EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+    getVisitor() {
+        return visitor;
+    }
+
+    /**
+     * Sets the visitor on which I perform nested
+     * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.
+     * 
+     * @param visitor my delegate visitor
+     * 
+     * @see #getVisitor()
+     */
+    void setVisitor(EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> visitor) {
+        this.visitor = visitor;
+    }
+    
+    // implements the interface method
+	public EvaluationEnvironment<C, O, P, CLS, E> getEvaluationEnvironment() {
+		return evalEnv;
+	}
+
+    // implements the interface method
+	public Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getEnvironment() {
+		return env;
+	}
+    
+    protected UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> getUMLReflection() {
+        return env.getUMLReflection();
+    }
+	
+    // implements the interface method
+	public Map<? extends CLS, ? extends Set<? extends E>> getExtentMap() {
+		return extentMap;
+	}
+
+    /**
+     * Obtains my environment's OCL Standard Library implementation.
+     * 
+     * @return the OCL standard library
+     */
+	protected OCLStandardLibrary<C> getStandardLibrary() {
+		return stdlib;
+	}
+	
+    /**
+     * Obtains my environment's implementation of the <tt>OclInvalid</tt> value.
+     * 
+     * @return the invalid result
+     */
+	protected final Object getOclInvalid() {
+		return getStandardLibrary().getOclInvalid();
+	}
+    
+    /**
+     * Obtains my environment's implementation of the OCL <tt>Boolean</tt> type.
+     * 
+     * @return the boolean type
+     */
+    protected final C getBoolean() {
+        return getStandardLibrary().getBoolean();
+    }
+    
+    /**
+     * Obtains my environment's implementation of the OCL <tt>String</tt> type.
+     * 
+     * @return the string type
+     */
+    protected final C getString() {
+        return getStandardLibrary().getString();
+    }
+    
+    /**
+     * Obtains my environment's implementation of the OCL <tt>Integer</tt> type.
+     * 
+     * @return the integer type
+     */
+    protected final C getInteger() {
+        return getStandardLibrary().getInteger();
+    }
+    
+    /**
+     * Obtains my environment's implementation of the OCL <tt>UnlimitedNatural</tt> type.
+     * 
+     * @return the unlimited natural type
+     */
+    protected final C getUnlimitedNatural() {
+        return getStandardLibrary().getUnlimitedNatural();
+    }
+    
+    /**
+     * Obtains my environment's implementation of the OCL <tt>Real</tt> type.
+     * 
+     * @return the real type
+     */
+    protected final C getReal() {
+        return getStandardLibrary().getReal();
+    }
+	
+    /**
+     * Obtains the name of the specified element, if it has one.
+     * 
+     * @param namedElement a named element
+     * @return its name, or <code>null</code> if it has none
+     */
+	protected String getName(Object namedElement) {
+		return getEnvironment().getUMLReflection().getName(namedElement);
+	}
+
+	/**
+	 * This default implementation simply asks the <tt>expression</tt> to
+	 * {@linkplain Visitable#accept(org.eclipse.ocl.utilities.Visitor) accept}
+	 * me.
+	 * 
+	 * @param expression an OCL expression to evaluate
+	 * 
+	 * @return the result of the evaluation
+	 */
+	public Object visitExpression(OCLExpression<C> expression) {
+		return expression.accept(getVisitor());
+	}
+	
+	/**
+	 * This default implementation asserts that the <tt>constraint</tt> is
+	 * boolean-valued if it is an invariant, pre-condition, or post-condition
+	 * constraint and returns the value of its body expression by delegation to
+	 * {@link #visitExpression(OCLExpression)}.
+	 */
+	public Object visitConstraint(CT constraint) {
+		OCLExpression<C> body = getSpecification(constraint).getBodyExpression();
+		boolean isBoolean = BOOLEAN_CONSTRAINTS.contains(
+				getEnvironment().getUMLReflection().getStereotype(constraint));
+		
+		if (body == null) {
+			throw new IllegalArgumentException("constraint has no body expression"); //$NON-NLS-1$
+		}
+		
+		if (isBoolean && (body.getType() != getBoolean())) {
+			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
+		}
+		
+		Object result = getVisitor().visitExpression(body);
+		
+		return isBoolean? Boolean.TRUE.equals(result) : result;
+	}
+    
+    // overrides the inherited no-op implementation
+    @Override
+    protected ExpressionInOCL<C, PM> getSpecification(CT constraint) {
+        return getEnvironment().getUMLReflection().getSpecification(constraint);
+    }
+	
+	public String toString() {
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (evaluation environment: ");//$NON-NLS-1$
+		result.append(getEvaluationEnvironment());
+		result.append(')');
+		return result.toString();
+	}
+	
+	/**
+	 * Convenience method to determine whether the specified value is the null
+     * or <tt>OclInvalid</tt>.
+	 * 
+	 * @param value a value
+	 * 
+	 * @return whether it is undefined
+	 */
+	protected boolean isUndefined(Object value) {
+		return (value == null) || 
+			(value == getEnvironment().getOCLStandardLibrary().getOclInvalid());
+	}
+    
+    /**
+     * Invokes the specified additional operation on a target object.
+     * The invocation is performed in a nested evaluation environment.
+     * 
+     * @param operation the operation to invoke
+     * @param body the operation's body expression
+     * @param target the object on which to evaluate the operation body
+     * @param args the arguments to the operation call
+     */
+    protected Object call(O operation, OCLExpression<C> body, Object target, Object[] args) {
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> myEnv =
+			getEnvironment();
+
+		EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> factory =
+			myEnv.getFactory();
+
+    	// create a nested evaluation environment for this operation call
+    	EvaluationEnvironment<C, O, P, CLS, E> nested =
+    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
+    	
+    	// bind "self"
+    	nested.add(Environment.SELF_VARIABLE_NAME, target);
+    	
+    	// add the parameter bindings to the local variables
+    	if (args.length > 0) {
+    		int i = 0;
+    		for (PM param : myEnv.getUMLReflection().getParameters(operation)) {
+    			nested.add(myEnv.getUMLReflection().getName(param), args[i]);
+    		}
+    	}
+    	
+    	return factory.createEvaluationVisitor(
+    			myEnv, nested, getExtentMap()).visitExpression(body);
+    }
+    
+    /**
+     * Obtains the body of the specified operation's def or body expression,
+     * if any.
+     * 
+     * @param operation an operation
+     * 
+     * @return its value expression, if any
+     */
+    protected OCLExpression<C> getOperationBody(O operation) {
+    	OCLExpression<C> result = null;
+    	
+    	CT body = env.getDefinition(operation);
+    	if (body == null) {
+    		body = env.getBodyCondition(operation);
+    	}
+    	
+    	if (body != null) {
+    		result = env.getUMLReflection().getSpecification(body).getBodyExpression();
+    	}
+    	
+    	return result;
+    }
+    
+    /**
+     * Obtains the body of the specified property's def or der expression,
+     * if any.
+     * 
+     * @param property a property
+     * 
+     * @return its value expression, if any
+     */
+    protected OCLExpression<C> getPropertyBody(P property) {
+    	OCLExpression<C> result = null;
+    	
+    	CT body = env.getDefinition(property);
+    	if (body == null) {
+    		body = env.getDeriveConstraint(property);
+    	}
+    	
+    	if (body != null) {
+    		result = env.getUMLReflection().getSpecification(body).getBodyExpression();
+    	}
+    	
+    	return result;
+    }
+
+    /**
+     * Obtains an object's value of the specified additional property.
+     * 
+     * @param property the property to navigate
+     * @param derivation the expression that computes its value
+     * @param target the object in which context to evaluate the derivation
+     * 
+     * @return the property's value
+     */
+    protected Object navigate(P property, OCLExpression<C> derivation, Object target) {
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> myEnv =
+			getEnvironment();
+
+		EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> factory =
+			myEnv.getFactory();
+
+    	// create a nested evaluation environment for this property call
+    	EvaluationEnvironment<C, O, P, CLS, E> nested =
+    		factory.createEvaluationEnvironment(getEvaluationEnvironment());
+    	
+    	// bind "self"
+    	nested.add(Environment.SELF_VARIABLE_NAME, target);
+    	
+    	return factory.createEvaluationVisitor(
+    			myEnv, nested, getExtentMap()).visitExpression(derivation);
+    }
+
+	/**
+	 * Checks whether the supplied object is an instance of the supplied type.
+	 * 
+	 * @param value the value to check
+	 * @param typeArg the type to check
+	 * @return true if the object is an instance of the type, false otherwise.
+	 */
+	protected Boolean oclIsTypeOf(Object value, Object typeArg) {
+		@SuppressWarnings("unchecked")
+		C type = (C) typeArg;
+		
+		// regardless of the source value, if the type is undefined, then so
+		//    is oclIsTypeOf
+		if (type == null) {
+			return null;
+		}
+		
+		// the type of null is OclVoid
+		if (value == null) {
+			return Boolean.valueOf(type instanceof VoidType);
+		}
+		
+		// the type of OclInvalid is Invalid
+		if (value == stdlib.getOclInvalid()) {
+			return Boolean.valueOf(type instanceof InvalidType);
+		}
+
+		return Boolean.valueOf(getEvaluationEnvironment().isTypeOf(value, type));
+	}
+
+	/**
+	 * Checks whether the supplied value is an instance of the supplied type or
+	 * one of its super types.
+	 * 
+	 * @param value the value to check
+	 * @param typeArg the type to check
+	 * @return true iff the value is of the type or one of its super types.
+	 */
+	protected Boolean oclIsKindOf(Object value, Object typeArg) {
+		@SuppressWarnings("unchecked")
+		C type = (C) typeArg;
+		
+		// regardless of the source value, if the type is undefined, then so
+		//    is oclIsTypeOf
+		if (type == null) {
+			return null;
+		}
+		
+		// OclVoid and Invalid conform to all classifiers
+		if (isUndefined(value)) {
+			return Boolean.TRUE;
+		}
+
+		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));
+	}
+} //EvaluationVisitorImpl

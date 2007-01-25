@@ -1,0 +1,1967 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: ValidationVisitor.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+ */
+
+package org.eclipse.ocl.internal.parser;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.expressions.AssociationClassCallExp;
+import org.eclipse.ocl.expressions.BooleanLiteralExp;
+import org.eclipse.ocl.expressions.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.CollectionLiteralExp;
+import org.eclipse.ocl.expressions.CollectionLiteralPart;
+import org.eclipse.ocl.expressions.CollectionRange;
+import org.eclipse.ocl.expressions.EnumLiteralExp;
+import org.eclipse.ocl.expressions.FeatureCallExp;
+import org.eclipse.ocl.expressions.IfExp;
+import org.eclipse.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.IterateExp;
+import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.LetExp;
+import org.eclipse.ocl.expressions.MessageExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.RealLiteralExp;
+import org.eclipse.ocl.expressions.StateExp;
+import org.eclipse.ocl.expressions.StringLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.TypeExp;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.expressions.UnspecifiedValueExp;
+import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.internal.OCLPlugin;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.BagType;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.InvalidType;
+import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.types.OrderedSetType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.types.TypeType;
+import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.utilities.AbstractVisitor;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.Visitor;
+
+/**
+ * Checks the well-formedness rules for the expressions package
+ * 
+ * @author Edith Schonberg (edith)
+ * @author Christian W. Damus (cdamus)
+ */
+public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	implements Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
+	
+	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = null;
+    private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = null;
+	
+	/**
+	 * Obtains an instance of the validation visitor that validates against the
+	 * specified environment, which presumably was used in parsing the OCL in
+	 * the first place.
+	 * 
+	 * @param environment an OCL environment (must no be <code>null</code>)
+	 * 
+	 * @return a validation visitor instance for the specified environment
+	 */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
+		
+		if (environment == null) {
+			throw new NullPointerException();
+		}
+		
+		return new ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment);
+	}
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param environment the environment
+	 */
+	private ValidationVisitor(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
+		
+		super();
+		
+		this.env = environment;
+        this.uml = environment.getUMLReflection();
+	}
+
+	/**
+	 * Callback for an OperationCallExp visit.
+	 * 
+	 * Well-formedness rule: All of the arguments must conform to the parameters
+	 * of the referred operation. There must be exactly as many arguments as the
+	 * referred operation has parameters.
+	 * 
+	 * @param oc
+	 *            the operation call expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitOperationCallExp(OperationCallExp<C, O> oc) {
+
+		OCLExpression<C> source = oc.getSource();
+		O oper = oc.getReferredOperation();
+		int opcode = oc.getOperationCode();
+		List<OCLExpression<C>> args = oc.getArgument();
+
+		if (oper == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullOperation_ERROR_,
+					oc.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin
+				.throwing(getClass(), "visitOperationCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		if (source == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullSourceOperation_ERROR_,
+					oc.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin
+				.throwing(getClass(), "visitOperationCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		C sourceType = source.getType();
+		String operName = getName(oper);
+
+		for (OCLExpression<C> expr : args) {
+			expr.accept(this);
+		}
+		
+		visitFeatureCallExp(oc);
+		
+		if (opcode == PredefinedType.OCL_IS_NEW) {
+			// oclIsNew() may only be used in postcondition constraints
+			if (!env.isInPostcondition(oc)) {
+				
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.OCLIsNewInPostcondition_ERROR_);
+				OCLPlugin.throwing(getClass(),
+					"visitOperationCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		source.accept(this);
+
+		// Check argument conformance.
+		try {
+			O oper1 = env.lookupOperation(sourceType,
+				operName, args);
+			if (oper1 != oper) {
+				String message = OCLMessages.bind(
+						OCLMessages.IllegalOperation_ERROR_,
+						oc.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitOperationCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			if (!uml.isQuery(oper)) {
+				String message = OCLMessages.bind(
+						OCLMessages.NonQueryOperation_ERROR_,
+						getName(oper));
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitOperationCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			C resultType;
+
+			if (sourceType instanceof PredefinedType) {
+				if (opcode != OCLStandardLibraryUtil.getOperationCode(operName)) {
+					String message = OCLMessages.bind(
+							OCLMessages.IllegalOpcode_ERROR_,
+							operName);
+					IllegalArgumentException error = new IllegalArgumentException(
+						message);
+					OCLPlugin.throwing(getClass(),
+						"visitOperationCallExp", error);//$NON-NLS-1$
+					throw error;
+				}
+				
+				resultType = OCLStandardLibraryUtil.getResultTypeOf(
+					env, sourceType, opcode, args);
+				
+				if (resultType == null) {
+					// maybe this operation was an "extra" contribution by a
+					//    custom environment implementation
+					resultType = uml.getOCLType(oper);
+				}
+			} else if (TypeUtil.isOclAnyOperation(env, oper)) {
+				// source is an EClass, an enumeration, or a user data type and
+				//   operation is defined by OclAny (not the source, itself)
+				if (opcode != OCLStandardLibraryUtil.getOclAnyOperationCode(operName)) {
+					String message = OCLMessages.bind(
+							OCLMessages.IllegalOpcode_ERROR_,
+							operName);
+					IllegalArgumentException error = new IllegalArgumentException(
+						message);
+					OCLPlugin.throwing(getClass(),
+						"visitOperationCallExp", error);//$NON-NLS-1$
+					throw error;
+				}
+				
+				resultType = OCLStandardLibraryUtil.getResultTypeOf(
+					env, sourceType, opcode, args);
+				
+				if (resultType == null) {
+					resultType = uml.getOCLType(oper);
+				}
+			} else {
+				// user-defined operation
+				resultType = uml.getOCLType(oper);
+			}
+			
+			if (TypeUtil.typeCompare(env, resultType, oc.getType()) != 0) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceOperation_ERROR_,
+						oc.getType().toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitOperationCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		} catch (Exception e) {
+			IllegalArgumentException error = new IllegalArgumentException(e
+				.getMessage());
+			OCLPlugin
+				.throwing(getClass(), "visitOperationCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for an EnumLiteralExp visit. Well-formedness rule: The type of
+	 * an enum Literal expression is the type of the referred literal.
+	 * 
+	 * @param el
+	 *            the enumeration literal expresion
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
+		EL l = el.getReferredEnumLiteral();
+		C type = el.getType();
+		if (!uml.isEnumeration(type) || uml.getEnumeration(l) != type) {
+			String message = OCLMessages.bind(
+					OCLMessages.IllegalEnumLiteral_ERROR_,
+					el.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitEnumLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for a VariableExp visit. Well-formedness rule: The type of a
+	 * VariableExp is the type of the Variable to which it refers.
+	 * 
+	 * @param v
+	 *            the variable expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitVariableExp(VariableExp<C, PM> v) {
+		// get the referred variable name
+		Variable<C, PM> vd = v.getReferredVariable();
+
+		if (vd == null || v.getType() == null || vd.getName() == null
+			|| vd.getType() == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteVariableExp_ERROR_,
+					v.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		vd.accept(this);
+		if (TypeUtil.typeCompare(env, vd.getType(), v.getType()) != 0) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(OCLMessages.VariableTypeMismatch_ERROR_, vd.getName()));
+			OCLPlugin.throwing(getClass(), "visitVariableExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for an PropertyCallExp visit. Well-formedness rule: The
+	 * type of the PropertyCallExp is the type of the referred
+	 * EStructuralFeature.
+	 * 
+	 * @param pc the property call expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitPropertyCallExp(PropertyCallExp<C, P> pc) {
+		P property = pc.getReferredProperty();
+		OCLExpression<C> source = pc.getSource();
+		C type = pc.getType();
+
+		if (property == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullProperty_ERROR_,
+					pc.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitPropertyCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		if (source == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationSource_ERROR_,
+					pc.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitPropertyCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		if (type == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationType_ERROR_,
+					pc.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitPropertyCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		List<OCLExpression<C>> qualifiers = pc.getQualifier();
+		if (!qualifiers.isEmpty()) {
+			// navigation qualifiers must conform to expected qualifier types
+			List<P> expectedQualifierTypes = uml.getQualifiers(property);
+			
+			if (expectedQualifierTypes.size() != qualifiers.size()) {
+				String message = OCLMessages.bind(
+						OCLMessages.MismatchedQualifiers_ERROR_,
+						pc.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitPropertyCallExp", error);//$NON-NLS-1$
+				throw error;
+			} else {
+				Iterator<P> eiter = expectedQualifierTypes.iterator();
+				Iterator<OCLExpression<C>> qiter = qualifiers.iterator();
+				
+				while (eiter.hasNext()) {
+					C expectedType = uml.getOCLType(eiter.next());
+					OCLExpression<C> qualifier = qiter.next();
+					
+					C qualifierType = qualifier.getType();
+					
+					if ((TypeUtil.getRelationship(env, qualifierType, expectedType)
+							& UMLReflection.SUBTYPE) == 0) {
+						
+						String message = OCLMessages.bind(
+								OCLMessages.MismatchedQualifiers_ERROR_,
+								pc.toString());
+						IllegalArgumentException error = new IllegalArgumentException(
+							message);
+						OCLPlugin.throwing(getClass(),
+							"visitPropertyCallExp", error);//$NON-NLS-1$
+						throw error;
+					}
+				}
+			}
+		}
+		
+		visitFeatureCallExp(pc);
+		
+		source.accept(this);
+
+		C refType = TypeUtil.getPropertyType(env, source.getType(), property);
+		
+		if (!pc.getQualifier().isEmpty() && (refType instanceof CollectionType)) {
+			// qualifying the navigation results in a non-collection
+			//    type
+			@SuppressWarnings("unchecked")
+			CollectionType<C, O> ct = (CollectionType<C, O>) refType;
+			
+			refType = ct.getElementType();
+		}
+		
+		return Boolean.valueOf(TypeUtil.typeCompare(env, refType, type) == 0);
+	}
+
+	/**
+	 * Callback for an AssociationClassCallExp visit. Well-formedness rules:
+	 * <ul>
+	 *   <li>the type of the AssociationClassCallExp is the type of the
+	 *       referenced EReference</li>
+	 *   <li>the referenced EReference is an AssociationClassEnd, and its
+	 *       associationClass reference is not null</li>
+	 * </ul>
+	 * 
+	 * @param ae
+	 *            the association end expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitAssociationClassCallExp(AssociationClassCallExp<C, P> ae) {
+		C ref = ae.getReferredAssociationClass();
+		OCLExpression<C> source = ae.getSource();
+		C type = ae.getType();
+
+		if (ref == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.MissingAssociationClass_ERROR_,
+					ae.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitAssociationClassCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		if (source == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationSource_ERROR_,
+					ae.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitAssociationClassCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		C sourceType = source.getType();
+		
+		if (type == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.NullNavigationType_ERROR_,
+					ae.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitAssociationClassCallExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		if (type instanceof CollectionType) {
+			@SuppressWarnings("unchecked")
+			C elementType = ((CollectionType<C, O>) type).getElementType();
+			type = elementType;
+		}
+		
+		if (ae.getNavigationSource() != null) {
+			// navigation source must be an end of the association class
+			P end = ae.getNavigationSource();
+			
+			if (ref != uml.getAssociationClass(end)
+					|| (end != env.lookupProperty(sourceType, getName(end)))) {
+				String message = OCLMessages.bind(
+						OCLMessages.AssociationClassQualifierType_ERROR_,
+						ae.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitAssociationClassCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		visitFeatureCallExp(ae);
+		
+		source.accept(this);
+
+		if (TypeUtil.typeCompare(env, ref, type) == 0)
+			return Boolean.TRUE;
+		return Boolean.FALSE;
+	}
+
+	/**
+	 * Callback for a VariableDeclaration visit. Well-formedness rule: The type
+	 * of the initExpression must conform to the type of the declared variable.
+	 * 
+	 * @param vd --
+	 *            variable declaration
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitVariable(Variable<C, PM> vd) {
+		String varName = vd.getName();
+		if (varName == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.MissingNameInVariableDeclaration_ERROR_);
+			OCLPlugin.throwing(getClass(),
+				"visitVariableDeclaration", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		C type = vd.getType();
+		OCLExpression<C> init = vd.getInitExpression();
+
+		if (init != null) {
+			init.accept(this);
+			if (TypeUtil.typeCompare(env, init.getType(), type) > 0) {
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.bind(
+								OCLMessages.TypeConformanceInit_ERROR_,
+								varName));
+				OCLPlugin.throwing(getClass(),
+					"visitVariableDeclaration", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for an IfExp visit. Well-formedness Rule: The type of the
+	 * condition must be Boolean. The type of the if expression is the common
+	 * supertype of the then and else
+	 * 
+	 * @param i -
+	 *            if expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitIfExp(IfExp<C> i) {
+		OCLExpression<C> cond = i.getCondition();
+		OCLExpression<C> thenexp = i.getThenExpression();
+		OCLExpression<C> elseexp = i.getElseExpression();
+
+		if (cond == null || thenexp == null | elseexp == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteIfExp_ERROR_,
+					i.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		cond.accept(this);
+		thenexp.accept(this);
+		elseexp.accept(this);
+		if (cond.getType() != getStandardLibrary().getBoolean()) {
+			String message = OCLMessages.bind(
+					OCLMessages.NonBooleanIfExp_ERROR_,
+					cond.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		C thenelsetype = null;
+		try {
+			thenelsetype = TypeUtil.commonSuperType(
+					env,
+					thenexp.getType(),
+					elseexp.getType());
+		} catch (Exception e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+		
+		if (TypeUtil.typeCompare(env, i.getType(), thenelsetype) != 0) {
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceIfExp_ERROR_,
+					i.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIfExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	public Boolean visitMessageExp(MessageExp<C, COA, SSA> m) {
+		if (m.getTarget() == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.MissingMessageTarget_ERROR_,
+							m.toString()));
+			OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		m.getTarget().accept(this);
+		
+		if (m.getCalledOperation() == null && m.getSentSignal() == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.UnrecognizedMessageType_ERROR_);
+			OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		if (m.getCalledOperation() != null && m.getSentSignal() != null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.AmbiguousMessageType_ERROR_);
+			OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		List<?> parameters;
+		
+		if (m.getCalledOperation() != null) {
+			O operation = uml.getOperation(m.getCalledOperation());
+			
+			if (operation == null) {
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.bind(
+								OCLMessages.MissingOperationInCallAction_ERROR_,
+								m.toString()));
+				OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			parameters = uml.getParameters(operation);
+		} else {
+			C signal = uml.getSignal(m.getSentSignal());
+			
+			if (signal == null) {
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.bind(
+								OCLMessages.MissingSignalInCallAction_ERROR_,
+								m.toString()));
+				OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			parameters = uml.getAttributes((C) signal);
+		}
+		
+		List<OCLExpression<C>> arguments = m.getArgument();
+		
+		if (arguments.size() != parameters.size()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(OCLMessages.MessageArgumentCount_ERROR_,
+							getName(m.getType())));
+			OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		// check type conformance against operatioers
+		Iterator<?> paramsIter = parameters.iterator();
+		Iterator<OCLExpression<C>> argsIter =
+			arguments.iterator();
+		while (paramsIter.hasNext()) {
+			Object param = paramsIter.next();
+			OCLExpression<C> arg = argsIter.next();
+			
+			if (TypeUtil.typeCompare(env, arg.getType(), uml.getOCLType(param)) > 0) {
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.bind(OCLMessages.MessageArgConformance_ERROR_,
+							getName(param), arg.toString()));
+				OCLPlugin.throwing(getClass(), "visitMessageExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			// validate the argument
+			arg.accept(this);
+		}
+		
+		return Boolean.TRUE;
+	}
+	
+	/**
+	 * Callback for an UnspecifiedValueExp visit.
+	 * 
+	 * @param uv --
+	 *            unspecified value expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
+		// unspecified values need not declare a type (it can be OclVoid).
+		//   The only restriction is that they can only be used in message expressions
+		if (!(uv.eContainer() instanceof MessageExp)) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.IllegalUnspecifiedValueExp_ERROR_,
+							uv.toString()));
+			OCLPlugin.throwing(getClass(), "visitUnspecifiedValueExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		return Boolean.TRUE;
+	}
+	
+	/**
+	 * Callback for a TypeExp visit.
+	 */
+	public Boolean visitTypeExp(TypeExp<C> t) {
+		if (!(t.getType() instanceof TypeType)) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(OCLMessages.TypeConformanceTypeExp_ERROR_,
+							getName(t.getType())));
+			OCLPlugin.throwing(getClass(),
+				"visitTypeExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		if (t.getReferredType() == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.TypeExpMissingType_ERROR_,
+							t.toString()));
+			OCLPlugin.throwing(getClass(),
+				"visitTypeExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for an IntegerLiteralExp visit. Well-formedness rule: The type
+	 * of an integer Literal expression is the type Integer
+	 * 
+	 * @param il -
+	 *            integer literal expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
+		if (il.getType()  != getStandardLibrary().getInteger()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.TypeConformanceIntegerLiteral_ERROR_);
+			OCLPlugin.throwing(getClass(),
+				"visitIntegerLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+    /**
+     * Callback for an UnlimitedNaturalLiteralExp visit. Well-formedness rule: The type
+     * of an unlimited natural Literal expression is the type UnlimitedNatural
+     * 
+     * @param unl -
+     *            unlimited literal expression
+     * @return Boolean -- true if validated
+     */
+    public Boolean visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp<C> unl) {
+        if (unl.getType() != getStandardLibrary().getUnlimitedNatural()) {
+            IllegalArgumentException error = new IllegalArgumentException(
+                    OCLMessages.TypeConformanceUnlimitedNaturalLiteral_ERROR_);
+            OCLPlugin.throwing(getClass(),
+                "visitUnlimitedNaturalLiteralExp", error);//$NON-NLS-1$
+            throw error;
+        }
+        return Boolean.TRUE;
+    }
+
+	/**
+	 * Callback for a RealLiteralExp visit. Well-formedness rule: The type of a
+	 * real literal expression is the type Real.
+	 * 
+	 * @param rl --
+	 *            real literal expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitRealLiteralExp(RealLiteralExp<C> rl) {
+		if (rl.getType() != getStandardLibrary().getReal()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.TypeConformanceRealLiteral_ERROR_);
+			OCLPlugin.throwing(getClass(), "visitRealLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for a StringLiteralExp visit. Well-formedness rule: The type of
+	 * a string literal expression is the type of the string.
+	 * 
+	 * @param sl --
+	 *            string literal expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitStringLiteralExp(StringLiteralExp<C> sl) {
+		if (sl.getType() != getStandardLibrary().getString()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.TypeConformanceStringLiteral_ERROR_);
+			OCLPlugin
+				.throwing(getClass(), "visitStringLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for a BooleanLiteralExp visit. Well-formedness rule: The type of
+	 * a Boolean Literal expression is the type of the boolean.
+	 * 
+	 * @param bl -
+	 *            boolean literal expression
+	 * @return Boolean - true if validated
+	 */
+	public Boolean visitBooleanLiteralExp(BooleanLiteralExp<C> bl) {
+		if (bl.getType() != getStandardLibrary().getBoolean()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.TypeConformanceBooleanLiteral_ERROR_);
+			OCLPlugin.throwing(getClass(),
+				"visitBooleanLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for LetExp visit. Well-formedness rule: The type of the Let
+	 * expression is the type of the in expression.
+	 * 
+	 * @param l --
+	 *            let expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitLetExp(LetExp<C, PM> l) {
+		Variable<C, PM> vd = l.getVariable();
+		OCLExpression<C> in = l.getIn();
+		C type = l.getType();
+
+		if (vd == null || in == null || type == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteLetExp_ERROR_,
+					l.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		vd.accept(this);
+		in.accept(this);
+
+		if (TypeUtil.typeCompare(env, type, in.getType()) != 0) {
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceLetExp_ERROR_,
+					type, in.getType());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitLetExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * 
+	 * Callback for an IterateExp visit. *Well-formedness rule: The type of the
+	 * iterate is the type of the result variable. The type of the body
+	 * expression must conform to the declared type of the result variable. *A
+	 * result variable must have an init expression. *The type of a source
+	 * expression must be a collection. *The loop variable has no init
+	 * expression. *The type of the iterator variable must be the type of the
+	 * elements of the *source collection.
+	 * 
+	 * @param ie -
+	 *            iterate expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitIterateExp(IterateExp<C, PM> ie) {
+		// get the variable declaration for the result
+		Variable<C, PM> vd = ie.getResult();
+		C type = ie.getType();
+		OCLExpression<C> body = ie.getBody();
+		OCLExpression<C> source = ie.getSource();
+		List<Variable<C, PM>> iterators = ie.getIterator();
+
+		if (vd == null || type == null || source == null || body == null
+			|| iterators.isEmpty()) {
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteIterateExp_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		// Validate all of the iterate parts
+		source.accept(this);
+		vd.accept(this);
+		body.accept(this);
+
+		if (vd.getInitExpression() == null) {
+			String message = OCLMessages.bind(
+					OCLMessages.MissingInitIterateExp_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		if (TypeUtil.typeCompare(env, type, vd.getType()) != 0) {
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceIterateExp_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		if (TypeUtil.typeCompare(env, body.getType(), vd.getType()) > 0) {
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceIterateExpBody_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		C sourceType = source.getType();
+		if (!(sourceType instanceof CollectionType)) {
+			String message = OCLMessages.bind(
+					OCLMessages.IteratorSource_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+        // validate the number of iterator variables
+        if (iterators.size() > 1) {
+            String message = OCLMessages.bind(
+                OCLMessages.TooManyIteratorVariables_ERROR_,
+                ie.getName());
+            IllegalArgumentException error = new IllegalArgumentException(
+                message);
+            OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+            throw error;
+        }
+
+		for (Variable<C, PM> loopiter : iterators) {
+			// Validate the iterator expressions
+			loopiter.accept(this);
+			if (loopiter.getInitExpression() != null) {
+				String message = OCLMessages.bind(
+						OCLMessages.IterateExpLoopVarInit_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			@SuppressWarnings("unchecked")
+			CollectionType<C, O> ct = (CollectionType<C, O>) sourceType;
+			
+			if (TypeUtil.typeCompare(env, loopiter.getType(), ct.getElementType())
+					!= 0) {
+				
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceIterateExpLoopVar_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIterateExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for an IteratorExp visit. Well-formedness rule: If the iterator
+	 * is "forall", "isUnique", "any", "one", or "exists", the type of the
+	 * iterator must be Boolean. The result type of the collect operation on a
+	 * sequence type is a sequence; the result type of collect on any other type
+	 * is a bag. The select and reject iterators have the same type as its
+	 * source. They type of the body of the select, reject, forall, exists must
+	 * be boolean. The type of a source expression must be a collection. The
+	 * loop variable has no init expression. The type of the iterator variable
+	 * must be the type of the elements of the source collection.
+	 * 
+	 * @param ie --
+	 *            iterator expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitIteratorExp(IteratorExp<C, PM> ie) {
+		C type = ie.getType();
+		OCLExpression<C> body = ie.getBody();
+		OCLExpression<C> source = ie.getSource();
+		List<Variable<C, PM>> iterators = ie.getIterator();
+		String name = ie.getName();
+
+		if (type == null || name == null || source == null || body == null
+			|| iterators.isEmpty()) {
+			String message = OCLMessages.bind(
+					OCLMessages.IncompleteIteratorExp_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		int opcode = 0;
+		if (source.getType() instanceof PredefinedType) {
+			opcode = OCLStandardLibraryUtil.getOperationCode(name);
+		}
+		
+		// Validate all of the iterate parts
+		source.accept(this);
+		body.accept(this);
+
+		switch (opcode) {
+		case PredefinedType.FOR_ALL:
+		case PredefinedType.EXISTS:
+		case PredefinedType.IS_UNIQUE:
+			if (type != getStandardLibrary().getBoolean()) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceIteratorResult_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		if (opcode == PredefinedType.COLLECT) {
+			if (source.getType() instanceof SequenceType
+				|| source.getType() instanceof OrderedSetType) {
+				if (!(type instanceof SequenceType)) {
+					String message = OCLMessages.bind(
+							OCLMessages.TypeConformanceCollectSequence_ERROR_,
+							ie.toString());
+					IllegalArgumentException error = new IllegalArgumentException(
+						message);
+					OCLPlugin.throwing(getClass(),
+						"visitIteratorExp", error);//$NON-NLS-1$
+					throw error;
+				}
+			} else if (!(type instanceof BagType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceCollectBag_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		switch (opcode) {
+		case PredefinedType.SELECT:
+		case PredefinedType.REJECT:
+			if (TypeUtil.typeCompare(env, type, source.getType()) != 0) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceSelectReject_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+
+		switch (opcode) {
+		case PredefinedType.SELECT:
+		case PredefinedType.REJECT:
+		case PredefinedType.FOR_ALL:
+		case PredefinedType.ANY:
+		case PredefinedType.EXISTS:
+		case PredefinedType.ONE:
+			if (body.getType() != getStandardLibrary().getBoolean()) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceIteratorBodyBoolean_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+
+		C sourceType = source.getType();
+		if (!(sourceType instanceof CollectionType)) {
+			String message = OCLMessages.bind(
+					OCLMessages.IteratorSource_ERROR_,
+					ie.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		if (opcode == PredefinedType.CLOSURE) {
+			if (!(type instanceof SetType)) {
+				String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceClosure_ERROR_,
+					ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			// recursive reference must be to a type conforming
+			//   to the source, otherwise it isn't recursive
+			
+			// checked above that the source is a collection type
+			@SuppressWarnings("unchecked")
+			CollectionType<C, O> sourceCT = (CollectionType<C, O>) source.getType();
+			@SuppressWarnings("unchecked")
+			CollectionType<C, O> bodyCT = (CollectionType<C, O>) type;
+			
+			C sourceElementType = sourceCT.getElementType();
+			C bodyType = bodyCT.getElementType();
+			
+			if (TypeUtil.typeCompare(env, sourceElementType, bodyType) < 0) {
+				String message = OCLMessages.bind(
+						OCLMessages.ElementTypeConformanceClosure_ERROR_,
+						getName(bodyType),
+						getName(sourceElementType));
+					IllegalArgumentException error = new IllegalArgumentException(
+						message);
+					OCLPlugin.throwing(getClass(),
+						"visitIteratorExp", error);//$NON-NLS-1$
+					throw error;
+			}
+		}
+
+        // validate the number of iterators
+        switch (opcode) {
+        case PredefinedType.FOR_ALL:
+        case PredefinedType.EXISTS:
+            if (iterators.size() > 2) {
+                String message = OCLMessages.bind(
+                    OCLMessages.TooManyIteratorVariables_ERROR_,
+                    ie.getName());
+                IllegalArgumentException error = new IllegalArgumentException(
+                    message);
+                OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+                throw error;
+            }
+            break;
+        default:
+            if (iterators.size() > 1) {
+                String message = OCLMessages.bind(
+                    OCLMessages.TooManyIteratorVariables_ERROR_,
+                    ie.getName());
+                IllegalArgumentException error = new IllegalArgumentException(
+                    message);
+                OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+                throw error;
+            }
+        }
+        
+		for (Variable<C, PM> loopiter : iterators) {
+			// Validate the iterator expressions
+			loopiter.accept(this);
+			if (loopiter.getInitExpression() != null) {
+				String message = OCLMessages.bind(
+						OCLMessages.IterateExpLoopVarInit_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			@SuppressWarnings("unchecked")
+			CollectionType<C, O> ct = (CollectionType<C, O>) sourceType;
+			
+			if (TypeUtil.typeCompare(env, loopiter.getType(), ct.getElementType())
+					!= 0) {
+				
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
+						ie.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(), "visitIteratorExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+
+		return Boolean.TRUE;
+	}
+
+	/**
+	 * Callback for a CollectionLiteralExp visit. Well-formedness rule: The type
+	 * of a collection literal expression is determined by the collection kind
+	 * selection, and the common supertype of all elements. The empty collection
+	 * has a Classifier as element type.
+	 * 
+	 * @param cl --
+	 *            collection literal expression
+	 * @return Boolean -- true if validated
+	 */
+	public Boolean visitCollectionLiteralExp(CollectionLiteralExp<C> cl) {
+		CollectionKind kind = cl.getKind();
+		C type = cl.getType();
+		
+		if (!(type instanceof CollectionType)) {
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceCollectionLiteralExp_ERROR_,
+					cl.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitCollectionLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		switch (kind) {
+		case SET_LITERAL:
+			if (!(type instanceof SetType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceSetLiteral_ERROR_,
+						cl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitCollectionLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			break;
+		case ORDERED_SET_LITERAL:
+			if (!(type instanceof OrderedSetType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceOrderedSetLiteral_ERROR_,
+						cl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitCollectionLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			break;
+		case BAG_LITERAL:
+			if (!(type instanceof BagType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceBagLiteral_ERROR_,
+						cl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitCollectionLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			break;
+		default:
+			if ((kind != CollectionKind.SEQUENCE_LITERAL)
+					|| !(type instanceof SequenceType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceSequenceLiteral_ERROR_,
+						cl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitCollectionLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		break;
+		}
+
+		List<CollectionLiteralPart<C>> parts = cl.getPart();
+		
+		@SuppressWarnings("unchecked")
+		CollectionType<C, O> collectionType = (CollectionType<C, O>) type;
+		
+		if (parts.isEmpty()) {
+			if (!(collectionType.getElementType() instanceof VoidType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TypeConformanceEmptyCollection_ERROR_,
+						cl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitCollectionLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			} else
+				return Boolean.TRUE;
+		}
+
+		C partsType = parts.get(0).getType();
+
+		for (CollectionLiteralPart<C> part : parts) {
+			part.accept(this);
+            
+			try {
+				partsType = TypeUtil.commonSuperType(env, partsType, part.getType());
+			} catch (Exception e) {
+				throw new IllegalArgumentException(e.getMessage());
+			}
+		}
+        
+		if (TypeUtil.typeCompare(env, partsType, collectionType.getElementType())
+				!= 0) {
+			
+			String message = OCLMessages.bind(
+					OCLMessages.TypeConformanceCollectionElementType_ERROR_,
+					cl.toString());
+			IllegalArgumentException error = new IllegalArgumentException(
+				message);
+			OCLPlugin.throwing(getClass(),
+				"visitCollectionLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+    
+    public Boolean visitCollectionItem(CollectionItem<C> item) {
+        return item.getItem().accept(this);
+    }
+    
+    public Boolean visitCollectionRange(CollectionRange<C> range) {
+        return range.getFirst().accept(this) && range.getLast().accept(this);
+    }
+
+	/**
+	 * Callback for a TupleLiteralExp visit.
+	 * 
+	 * Well-formedness rule: The type of a tuple literal is a TupleType the
+	 * specified parts All tuple literal expression parts must have unique
+	 * names. The type of each attribute in a tuple literal part must match the
+	 * type of the initialization expression.
+	 * 
+	 * @param tl
+	 *            tuple literal expression
+	 * @return Boolean
+	 */
+	public Boolean visitTupleLiteralExp(TupleLiteralExp<C, P> tl) {
+
+		C type = tl.getType();
+		if (!(type instanceof TupleType)) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.TypeConformanceTupleLiteralExp_ERROR_,
+							tl.toString()));
+			OCLPlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		// The fields of the tuple are the properties of the EClass.
+
+		List<TupleLiteralPart<C, P>> tp = tl.getPart();
+		
+		if (tp.size() != uml.getAttributes(type).size()) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.TypeConformanceTupleLiteralExpParts_ERROR_,
+							tl.toString()));
+			OCLPlugin.throwing(getClass(), "visitTupleLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+
+		Set<String> names = new java.util.HashSet<String>();
+		
+		// Match each property with a tuple part
+		for (TupleLiteralPart<C, P> part : tl.getPart()) {
+			String name = part.getName();
+			P property = env.lookupProperty(type, name);
+			
+			if (property == null) {
+				String message = OCLMessages.bind(
+						OCLMessages.TupleLiteralExpressionPart_ERROR_,
+						name,
+						tl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitTupleLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			}
+
+			// Validate each TupleLiteralPart in the tuple literal
+			// At the same time, check for unique names
+			if (!names.add(name)) {
+				String message = OCLMessages.bind(
+						OCLMessages.TupleDuplicateName_ERROR_,
+						name, tl.toString());
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitTupleLiteralExp", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			part.accept(this);
+		}
+		
+		return Boolean.TRUE;
+	}
+	
+	public Boolean visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
+		P property = tp.getAttribute();
+		
+		if (property == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.MissingPropertyInTupleLiteralPart_ERROR_,
+							tp.getName(),
+							tp.eContainer().toString()));
+			OCLPlugin.throwing(getClass(),
+				"visitTupleLiteralPart", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		C type = tp.getType();
+		
+		if (type == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.MissingTypeInTupleLiteralPart_ERROR_,
+							tp.getName(),
+							tp.eContainer().toString()));
+			OCLPlugin.throwing(getClass(),
+				"visitTupleLiteralPart", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		// convert property type to OCL type because it may be an Ecore primitive
+		//    such as EIntegerObject
+		if (TypeUtil.typeCompare(env, uml.getOCLType(property), type) != 0) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.TuplePartType_ERROR_,
+							tp.getName(),
+							tp.eContainer().toString()));
+			OCLPlugin.throwing(getClass(),
+				"visitTupleLiteralPart", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		OCLExpression<C> value = tp.getValue();
+		
+		if (value != null) {
+			value.accept(this);
+			
+			if (TypeUtil.typeCompare(env, value.getType(), type) > 0) {
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.TypeConformanceTuplePartValue_ERROR_);
+				OCLPlugin.throwing(getClass(),
+					"visitTupleLiteralPart", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		return Boolean.TRUE;
+	}
+	
+	public Boolean visitStateExp(StateExp<C, S> s) {
+		Object state = s.getReferredState();
+		
+		if (state == null) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.bind(
+							OCLMessages.MissingStateInStateExp_ERROR_,
+							s.toString()));
+			OCLPlugin.throwing(getClass(),
+				"visitStateExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		
+		return Boolean.TRUE;
+	}
+	
+	/**
+	 * Applies well-formedness rules for model property calls in general.
+	 * This includes checking that "@pre" notation is only used in a
+	 * postcondition constraint.
+	 * 
+	 * @param exp the model property call expression to validate
+	 */
+	private void visitFeatureCallExp(FeatureCallExp<C> exp) {
+		if (exp.isMarkedPre()) {
+			// check for a postcondition constraint
+			if (!env.isInPostcondition(exp)) {
+				
+				IllegalArgumentException error = new IllegalArgumentException(
+						OCLMessages.AtPreInPostcondition_ERROR_);
+				OCLPlugin.throwing(getClass(),
+					"visitModelPropertyCallExp", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+	}
+
+	public Boolean visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
+		if (!(il.getType() instanceof InvalidType)) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.TypeConformanceInvalidLiteral_ERROR_);
+			OCLPlugin.throwing(getClass(),
+				"visitInvalidLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+
+	public Boolean visitNullLiteralExp(NullLiteralExp<C> il) {
+		if (!(il.getType() instanceof VoidType)) {
+			IllegalArgumentException error = new IllegalArgumentException(
+					OCLMessages.TypeConformanceNullLiteral_ERROR_);
+			OCLPlugin.throwing(getClass(),
+				"visitNullLiteralExp", error);//$NON-NLS-1$
+			throw error;
+		}
+		return Boolean.TRUE;
+	}
+	
+    public Boolean visitExpressionInOCL(ExpressionInOCL<C, PM> expression) {
+        if (expression.getContextVariable() == null) {
+            IllegalArgumentException error = new IllegalArgumentException(
+                OCLMessages.MissingContextVariable_ERROR_);
+            OCLPlugin.throwing(getClass(),
+                "visitExpressionInOCL", error);//$NON-NLS-1$
+            throw error;
+        }
+        
+        CT constraint = uml.getConstraint(expression);
+        if (constraint != null) {
+            O operation = getConstrainedOperation(constraint);
+             
+            if (operation == null) {
+                if (!expression.getParameterVariable().isEmpty()) {
+                    IllegalArgumentException error = new IllegalArgumentException(
+                        OCLMessages.ExtraneousParameterVariables_ERROR_);
+                    OCLPlugin.throwing(getClass(),
+                        "visitExpressionInOCL", error);//$NON-NLS-1$
+                    throw error;
+                }
+                
+                if (expression.getResultVariable() != null) {
+                    IllegalArgumentException error = new IllegalArgumentException(
+                        OCLMessages.ExtraneousResultVariable_ERROR_);
+                    OCLPlugin.throwing(getClass(),
+                        "visitExpressionInOCL", error);//$NON-NLS-1$
+                    throw error;
+                }
+            } else {
+                List<PM> parameters = uml.getParameters(operation);
+                List<Variable<C, PM>> variables = expression.getParameterVariable();
+                
+                if (parameters.size() != variables.size()) {
+                    IllegalArgumentException error = new IllegalArgumentException(
+                        OCLMessages.MismatchedParameterVariables_ERROR_);
+                    OCLPlugin.throwing(getClass(),
+                        "visitExpressionInOCL", error);//$NON-NLS-1$
+                    throw error;
+                }
+                
+                Iterator<PM> iter = parameters.iterator();
+                for (Variable<C, PM> var : expression.getParameterVariable()) {
+                    PM param = iter.next();
+                    var.accept(this);
+                    
+                    C paramType = uml.getOCLType(param);
+                    if (paramType != null) {
+                        if (TypeUtil.typeCompare(env, paramType, var.getType()) != 0) {
+                            IllegalArgumentException error = new IllegalArgumentException(
+                                OCLMessages.MismatchedParameterVariables_ERROR_);
+                            OCLPlugin.throwing(getClass(),
+                                "visitExpressionInOCL", error);//$NON-NLS-1$
+                            throw error;
+                        }
+                    }
+                }
+                
+                // we need to validate the result variable against the operation
+                //   result type in body expressions and postconditions.  In
+                //   other constraints, the result variable does not exist
+                Variable<C, PM> resultVar = expression.getResultVariable();
+                C operType = null;
+                if (UMLReflection.BODY.equals(uml.getStereotype(constraint))
+                        || UMLReflection.POSTCONDITION.equals(uml.getStereotype(constraint))) {
+                    operType = uml.getOCLType(operation);
+                    
+                    if (operType instanceof VoidType) {
+                        operType = null;
+                    }
+                }
+                
+                if ((operType == null) != (resultVar == null)) {
+                    IllegalArgumentException error;
+                    
+                    if (resultVar == null) {
+                        error = new IllegalArgumentException(
+                            OCLMessages.MissingResultVariable_ERROR_);
+                    } else {
+                        error = new IllegalArgumentException(
+                            OCLMessages.ExtraneousResultVariable_ERROR_);
+                    }
+                    
+                    OCLPlugin.throwing(getClass(),
+                        "visitExpressionInOCL", error);//$NON-NLS-1$
+                    throw error;
+                } else if (resultVar != null) {
+                    if (TypeUtil.typeCompare(env, operType, resultVar.getType()) != 0) {
+                        IllegalArgumentException error = new IllegalArgumentException(
+                            OCLMessages.MissingResultVariable_ERROR_);
+                        OCLPlugin.throwing(getClass(),
+                            "visitExpressionInOCL", error);//$NON-NLS-1$
+                        throw error;
+                    }
+                    
+                    expression.getResultVariable().accept(this);
+                }
+            }
+        }
+        
+        return expression.getBodyExpression().accept(this);
+    }
+    
+	/**
+	 * Applies well-formedness rules to constraints.
+	 * 
+	 * @param constraint the constraint to validate
+	 */
+	public Boolean visitConstraint(CT constraint) {
+		String stereo = uml.getStereotype(constraint);
+
+        ExpressionInOCL<C, PM> specification = uml.getSpecification(constraint);
+        specification.accept(this);
+        
+		C bodyType = specification.getBodyExpression().getType();
+		C operationType = null;
+		C propertyType = null;
+		String operationName = null;
+		String propertyName = null;
+		String classifierName = null;
+		
+		if (!uml.getConstrainedElements(constraint).isEmpty()) {
+			EObject constrained = uml.getConstrainedElements(constraint).get(0);
+			
+			if (uml.isOperation(constrained)) {
+				operationName = getName(constrained);
+				
+				classifierName = getName(uml.getOwningClassifier(constrained));
+				operationType = uml.getOCLType(constrained);
+			} else if (uml.isProperty(constrained)) {
+				propertyName = getName(constrained);
+				
+				classifierName = getName(uml.getOwningClassifier(constrained));
+				
+				propertyType = uml.getOCLType(constrained);
+			} else if (uml.isClassifier(constrained)) {
+				classifierName = getName(constrained);
+			}
+		}
+		
+		if (operationType == null) {
+			operationType = (C) env.getOCLStandardLibrary().getOclVoid();
+		}
+		
+		if (propertyType == null) {
+			propertyType = (C) env.getOCLStandardLibrary().getOclVoid();
+		}
+		
+		if (UMLReflection.BODY.equals(stereo)
+				|| UMLReflection.POSTCONDITION.equals(stereo)
+				|| UMLReflection.PRECONDITION.equals(stereo)) {
+			// operation constraints must be boolean-valued
+			if (bodyType != getStandardLibrary().getBoolean()) {
+				String message = OCLMessages.bind(
+						OCLMessages.OperationConstraintBoolean_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+		} else if (UMLReflection.INVARIANT.equals(stereo)) {
+			if (bodyType != getStandardLibrary().getBoolean()) {
+				// so must invariants, but they have a different kind of context
+				String message = OCLMessages.bind(
+						OCLMessages.InvariantConstraintBoolean_ERROR_,
+						classifierName);
+				IllegalArgumentException error = new IllegalArgumentException(
+						message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+		} else if (UMLReflection.DEFINITION.equals(stereo)) {
+			// expression type must conform to feature type
+			EObject feature = null;
+			if (uml.getConstrainedElements(constraint).size() >= 2) {
+				EObject constrained = uml.getConstrainedElements(constraint).get(1);
+				if (uml.isOperation(constrained) || uml.isProperty(constrained)) {
+					feature = constrained;
+				}
+			}
+			
+			if (feature == null) {
+				String message = OCLMessages.bind(
+						OCLMessages.DefinitionConstraintFeature_ERROR_,
+						classifierName);
+				IllegalArgumentException error = new IllegalArgumentException(
+						message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			C featureType = uml.getOCLType(feature);
+			
+			if ((featureType == null)
+					|| TypeUtil.typeCompare(env, bodyType, featureType) > 0) {
+				
+				String message = OCLMessages.bind(
+						OCLMessages.DefinitionConstraintConformance_ERROR_,
+						getName(bodyType),
+						getName(featureType));
+				IllegalArgumentException error = new IllegalArgumentException(
+						message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+		} else if (UMLReflection.INITIAL.equals(stereo) || UMLReflection.DERIVATION.equals(stereo)) {
+			// expression type must conform to property type
+			if (TypeUtil.typeCompare(env, bodyType, propertyType) > 0) {
+				
+				String message = OCLMessages.bind(
+						OCLMessages.InitOrDerConstraintConformance_ERROR_,
+						new Object[] {
+								getName(bodyType),
+								propertyName,
+								getName(propertyType)});
+				IllegalArgumentException error = new IllegalArgumentException(
+						message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		if (UMLReflection.BODY.equals(uml.getStereotype(constraint))) {
+			if (operationType instanceof VoidType) {
+				String message = OCLMessages.bind(
+						OCLMessages.BodyConditionNotAllowed_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			// the expression must be of the form result = <expr> or
+			//    <expr> = result, where <expr> is some expression whose type
+			//    conforms to the operation type.  However, this expression is
+			//    allowed to be nested inside any number of lets for the user's
+			//    convenience
+			OCLExpression<C> exp = uml.getSpecification(constraint).getBodyExpression();
+			while (exp instanceof LetExp) {
+				exp = ((LetExp<C, PM>) exp).getIn();
+			}
+			OperationCallExp<C, O> body = null;
+			if (exp instanceof OperationCallExp) {
+				body = (OperationCallExp<C, O>) exp;
+			}
+			
+			if ((body == null)
+					|| (body.getOperationCode() != PredefinedType.EQUAL)
+					|| (body.getArgument().size() != 1)) {
+				String message = OCLMessages.bind(
+						OCLMessages.BodyConditionForm_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			OCLExpression<C> bodyExpr;
+			
+			if (isResultVariable(body.getSource(), operationType)) {
+				bodyExpr = body.getArgument().get(0);
+			} else if (isResultVariable(body.getArgument().get(0), operationType)) {
+				bodyExpr = body.getSource();
+			} else {
+				String message = OCLMessages.bind(
+						OCLMessages.BodyConditionForm_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			bodyType = bodyExpr.getType();
+			
+			if ((TypeUtil.getRelationship(env, bodyType, operationType) & UMLReflection.SUBTYPE) == 0) {
+				String message = OCLMessages.bind(
+						OCLMessages.BodyConditionConformance_ERROR_,
+					new Object[] {
+						operationName,
+						getName(bodyType),
+						getName(operationType)});
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+			
+			// one last check:  does the "body" part of the condition include
+			//    the result variable?  It must not
+			if (findResultVariable(bodyExpr, operationType)) {
+				String message = OCLMessages.bind(
+						OCLMessages.BodyConditionForm_ERROR_,
+					operationName);
+				IllegalArgumentException error = new IllegalArgumentException(
+					message);
+				OCLPlugin.throwing(getClass(),
+					"visitConstraint", error);//$NON-NLS-1$
+				throw error;
+			}
+		}
+		
+		// check the body condition, itself, for well-formedness
+		return uml.getSpecification(constraint).getBodyExpression().accept(this);
+	}
+    
+    /**
+     * Obtains the operation that is constrained by the specified constraint,
+     * either as context (for pre/post condition etc.) or as a definition of
+     * the operation.
+     * 
+     * @param constraint a constraint
+     * @return the constrained operation, if any
+     */
+    @SuppressWarnings("unchecked")
+    private O getConstrainedOperation(CT constraint) {
+        for (EObject constrained : uml.getConstrainedElements(constraint)) {
+            if (uml.isOperation(constrained)) {
+                return (O) constrained;
+            }
+        }
+        
+        return null;
+    }
+	
+	/**
+	 * Null-safe alternative to {@link ENamedElement#getName()}.
+	 * 
+	 * @param element a named element that may be <code>null</code>
+	 * @return the element's name, or <code>null</code> if the element is <code>null</code>
+	 */
+	String getName(Object element) {
+		return (element == null)? null : uml.getName(element);
+	}
+	
+    private OCLStandardLibrary<C> getStandardLibrary() {
+        return env.getOCLStandardLibrary();
+    }
+    
+	/**
+	 * Determines whether the specified expression is a reference to the
+	 * special <code>result</code> variable of an operation body constraint.
+	 * 
+	 * @param expr an OCL expression
+	 * @param expectedType the expected type of the result variable (i.e.,
+	 *     the operation type
+	 * 
+	 * @return <code>true</code> if it is the result variable;
+	 *     <code>false</code>, otherwise
+	 */
+	private boolean isResultVariable(OCLExpression<C> expr, C expectedType) {
+		
+		// the implicitly defined "result" variable always has the same type
+		//    as the operation
+		boolean result = (expr instanceof VariableExp);
+		
+		if (result) {
+			try {
+				result = TypeUtil.typeCompare(env, expr.getType(), expectedType) == 0;
+			} catch (Exception e) {
+				// get an exception on incompatible types.  This is expected
+				result = false;
+			}
+		}
+		
+		if (result) {
+			Variable<C, PM> var = ((VariableExp<C, PM>) expr).getReferredVariable();
+			
+			result = (var != null) && Environment.RESULT_VARIABLE_NAME.equals(var.getName());
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Queries whether the special <code>result</code> variable can be found
+	 * anywhere in the specified OCL expression.
+	 * 
+	 * @param expr the expression to search
+	 * @param expectedType the expected type of the result variable
+	 * 
+	 * @return <code>true</code> if it includes some reference to the result
+	 *    variable; <code>false</code>, otherwise
+	 */
+	private boolean findResultVariable(
+			OCLExpression<C> expr,
+			final C expectedType) {
+		
+		class ResultFinder extends AbstractVisitor<
+				Variable<C, PM>, C, O, P, EL, PM, S, COA, SSA, CT> {
+			boolean found = false;
+			
+			public Variable<C, PM>
+			visitVariableExp(VariableExp<C, PM> v) {
+				if (isResultVariable(v, expectedType)) {
+					found = true;
+					return v.getReferredVariable();
+				}
+				
+				// no need to call super because this is a leaf expression
+				return null;
+			}
+		}
+		
+		ResultFinder finder = new ResultFinder();
+		expr.accept(finder);
+		
+		return finder.found;
+	}
+} // ValidationVisitorImpl
+
