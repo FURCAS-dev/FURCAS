@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/3" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/3 pathmap://UML_PROFILES/Ecore.profile.uml#_Tdx1UH_qEduFh9vQSiuTjQ http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Package xmi:id="_V1gZMJKXEduSuoVplfUaYA" name="ocl-uml">
+    <packagedElement xmi:type="uml:Class" xmi:id="_K-_MEJMaEdugRJdZaj9hoA" name="ExpressionInOCL">
+      <generalization xmi:id="_O9tEYJMaEdugRJdZaj9hoA">
+        <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#OpaqueExpression"/>
+      </generalization>
+      <ownedAttribute xmi:id="_qu23IJMaEdugRJdZaj9hoA" name="contextVariable" aggregation="composite"/>
+      <ownedAttribute xmi:id="_bSw8kJMaEdugRJdZaj9hoA" name="resultVariable" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_h_xAEJMaEdugRJdZaj9hoA"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_xRW60JMaEdugRJdZaj9hoA" name="parameterVariable" aggregation="composite">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1oU7EJMaEdugRJdZaj9hoA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zb78AJMaEdugRJdZaj9hoA"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_BiEwQJMbEdugRJdZaj9hoA" name="bodyExpression" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_jtmxcJKXEduSuoVplfUaYA" name="types">
+      <packagedElement xmi:type="uml:Class" xmi:id="_K246EJKYEduSuoVplfUaYA" name="AnyType">
+        <generalization xmi:id="_P473oJKYEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Ua_REJKZEduSuoVplfUaYA" name="VoidType">
+        <generalization xmi:id="_Ua_REZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VTJBEJKZEduSuoVplfUaYA" name="InvalidType">
+        <generalization xmi:id="_VTJBEZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VbE1EJKZEduSuoVplfUaYA" name="ElementType">
+        <generalization xmi:id="_VbE1EZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ViVToJKZEduSuoVplfUaYA" name="TypeType">
+        <generalization xmi:id="_ViVToZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Vp4GEJKZEduSuoVplfUaYA" name="MessageType">
+        <generalization xmi:id="_Vp4GEZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VxUx4JKZEduSuoVplfUaYA" name="PrimitiveType">
+        <generalization xmi:id="_VxUx4ZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WFMJEJKZEduSuoVplfUaYA" name="CollectionType">
+        <generalization xmi:id="_WFMJEZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WMWhAJKZEduSuoVplfUaYA" name="TupleType">
+        <generalization xmi:id="_WMWhAZKZEduSuoVplfUaYA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+        </generalization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WTzM0JKZEduSuoVplfUaYA" name="PrimitiveBoolean">
+        <generalization xmi:id="_WTzM0ZKZEduSuoVplfUaYA" general="_VxUx4JKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Wb0gYJKZEduSuoVplfUaYA" name="PrimitiveInteger">
+        <generalization xmi:id="_Wb0gYZKZEduSuoVplfUaYA" general="_VxUx4JKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WjLFkJKZEduSuoVplfUaYA" name="PrimitiveReal">
+        <generalization xmi:id="_WjLFkZKZEduSuoVplfUaYA" general="_VxUx4JKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WrZNcJKZEduSuoVplfUaYA" name="PrimitiveString">
+        <generalization xmi:id="_WrZNcZKZEduSuoVplfUaYA" general="_VxUx4JKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WzINIJKZEduSuoVplfUaYA" name="BagType">
+        <generalization xmi:id="_WzINIZKZEduSuoVplfUaYA" general="_WFMJEJKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MvtyAJKaEduSuoVplfUaYA" name="SetType">
+        <generalization xmi:id="_MvtyAZKaEduSuoVplfUaYA" general="_WFMJEJKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_M8UqoJKaEduSuoVplfUaYA" name="OrderedSetType">
+        <generalization xmi:id="_M8UqoZKaEduSuoVplfUaYA" general="_WFMJEJKZEduSuoVplfUaYA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NKpagJKaEduSuoVplfUaYA" name="SequenceType">
+        <generalization xmi:id="_NKpagZKaEduSuoVplfUaYA" general="_WFMJEJKZEduSuoVplfUaYA"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_3kTPEJKXEduSuoVplfUaYA">
+      <eAnnotations xmi:id="_3kTPEZKXEduSuoVplfUaYA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_Tdx1UH_qEduFh9vQSiuTjQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_gfnWAJKYEduSuoVplfUaYA">
+      <eAnnotations xmi:id="_gfnWAZKYEduSuoVplfUaYA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Package>
+  <Ecore:EPackage xmi:id="_5jITQJKXEduSuoVplfUaYA" base_Package="_V1gZMJKXEduSuoVplfUaYA" packageName="ocl-uml" nsPrefix="ocluml" nsURI="http://www.eclipse.org/OCL2/1.1.0/ocl-uml" prefix="UML"/>
+  <Ecore:EPackage xmi:id="_66IicJKXEduSuoVplfUaYA" base_Package="_jtmxcJKXEduSuoVplfUaYA" packageName="types" nsPrefix="ocluml.types" nsURI="http://www.eclipse.org/OCL2/1.1.0/ocl-uml/types" basePackage="" prefix="Types"/>
+  <Ecore:EClass xmi:id="_fIUy8JKYEduSuoVplfUaYA" base_Class="_K246EJKYEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_iXYI4JKYEduSuoVplfUaYA" base_Class="_K246EJKYEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_zvKpMJKaEduSuoVplfUaYA" base_Class="_Ua_REJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_zvKpMZKaEduSuoVplfUaYA" base_Class="_Ua_REJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_1xDBYJKaEduSuoVplfUaYA" base_Class="_VTJBEJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_1xDBYZKaEduSuoVplfUaYA" base_Class="_VTJBEJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_4ces4JKaEduSuoVplfUaYA" base_Class="_VbE1EJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_4ces4ZKaEduSuoVplfUaYA" base_Class="_VbE1EJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_6krIcJKaEduSuoVplfUaYA" base_Class="_ViVToJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_6krIcZKaEduSuoVplfUaYA" base_Class="_ViVToJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_76iIIJKaEduSuoVplfUaYA" base_Class="_Vp4GEJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_76iIIZKaEduSuoVplfUaYA" base_Class="_Vp4GEJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_9WHVUJKaEduSuoVplfUaYA" base_Class="_VxUx4JKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_9WHVUZKaEduSuoVplfUaYA" base_Class="_VxUx4JKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_-uju8JKaEduSuoVplfUaYA" base_Class="_WFMJEJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_-uju8ZKaEduSuoVplfUaYA" base_Class="_WFMJEJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="___7QMJKaEduSuoVplfUaYA" base_Class="_WMWhAJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="___7QMZKaEduSuoVplfUaYA" base_Class="_WMWhAJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_Ba2WEJKbEduSuoVplfUaYA" base_Class="_WTzM0JKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_Ba2WEZKbEduSuoVplfUaYA" base_Class="_WTzM0JKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_C8crsJKbEduSuoVplfUaYA" base_Class="_Wb0gYJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_C8crsZKbEduSuoVplfUaYA" base_Class="_Wb0gYJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_EYCf8JKbEduSuoVplfUaYA" base_Class="_WjLFkJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_EYCf8ZKbEduSuoVplfUaYA" base_Class="_WjLFkJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_G-HxYJKbEduSuoVplfUaYA" base_Class="_WrZNcJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_G-HxYZKbEduSuoVplfUaYA" base_Class="_WrZNcJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_IXtagJKbEduSuoVplfUaYA" base_Class="_WzINIJKZEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_IXtagZKbEduSuoVplfUaYA" base_Class="_WzINIJKZEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_Lo3CMJKbEduSuoVplfUaYA" base_Class="_MvtyAJKaEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_Lo3CMZKbEduSuoVplfUaYA" base_Class="_MvtyAJKaEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_NQS6EJKbEduSuoVplfUaYA" base_Class="_M8UqoJKaEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_NQS6EZKbEduSuoVplfUaYA" base_Class="_M8UqoJKaEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_PrrXYJKbEduSuoVplfUaYA" base_Class="_NKpagJKaEduSuoVplfUaYA"/>
+  <Standard:Metaclass xmi:id="_PrrXYZKbEduSuoVplfUaYA" base_Class="_NKpagJKaEduSuoVplfUaYA"/>
+  <Ecore:EClass xmi:id="_NHLnoJMaEdugRJdZaj9hoA" xmlName="ExpressionInOcl" base_Class="_K-_MEJMaEdugRJdZaj9hoA"/>
+  <Standard:Metaclass xmi:id="_NHLnoZMaEdugRJdZaj9hoA" base_Class="_K-_MEJMaEdugRJdZaj9hoA"/>
+</xmi:XMI>

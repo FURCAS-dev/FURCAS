@@ -1,0 +1,83 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: PrimitiveTypeImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ */
+package org.eclipse.ocl.uml.impl;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.uml.PrimitiveType;
+import org.eclipse.ocl.uml.UMLPackage;
+import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Primitive Type</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
+ * @generated
+ */
+public class PrimitiveTypeImpl extends 
+org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl implements PrimitiveType {
+    protected EList<Operation> operations;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PrimitiveTypeImpl() {
+        super();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return UMLPackage.Literals.PRIMITIVE_TYPE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public EList<Operation> oclOperations() {
+        if (operations == null) {
+            PrimitiveType prototype;
+            String myName = getName();
+            
+            if (BOOLEAN_NAME.equals(myName)) {
+                prototype = (PrimitiveType) OCLStandardLibraryImpl.INSTANCE.getBoolean();
+            } else if (STRING_NAME.equals(myName)) {
+                prototype = (PrimitiveType) OCLStandardLibraryImpl.INSTANCE.getString();
+            } else if (INTEGER_NAME.equals(myName)) {
+                prototype = (PrimitiveType) OCLStandardLibraryImpl.INSTANCE.getInteger();
+            } else if (REAL_NAME.equals(myName)) {
+                prototype = (PrimitiveType) OCLStandardLibraryImpl.INSTANCE.getReal();
+            } else {
+                prototype = (PrimitiveType) OCLStandardLibraryImpl.INSTANCE.getUnlimitedNatural();
+            }
+            
+            if (prototype == this) {
+                // I *am* the standard library type!
+                operations = getOwnedOperations();
+            } else {
+                // the prototype defines my operations for me
+                operations = prototype.oclOperations();
+            }
+        }
+        
+        return operations;
+    }
+
+} //PrimitiveTypeImpl
