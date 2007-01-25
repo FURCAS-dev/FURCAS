@@ -1,0 +1,19 @@
+# Debugging options for the org.eclipse.ocl plug-in
+
+# Turn on general debugging for the org.eclipse.ocl plug-in
+org.eclipse.ocl/debug=true
+
+# Trace parsing of OCL expressions, construct by construct
+org.eclipse.ocl/debug/parsing=false
+# Trace evaluation of OCL expressions, sub-expression by sub-expression
+org.eclipse.ocl/debug/evaluation=false
+
+# Trace when exceptions are caught
+org.eclipse.ocl/debug/exceptions/catching=false
+# Trace when exceptions are thrown
+org.eclipse.ocl/debug/exceptions/throwing=false
+
+# Trace when methods are entered
+org.eclipse.ocl/debug/methods/entering=false
+# Trace when methods are exited
+org.eclipse.ocl/debug/methods/exiting=false

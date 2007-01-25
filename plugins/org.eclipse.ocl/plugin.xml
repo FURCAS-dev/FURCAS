@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2007/01/25 18:24:38 cdamus Exp $
+-->
+
+<plugin>
+   <extension-point id="environments" name="Registered OCL Environments" schema="schema/environments.exsd"/>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/OCL2/1.1.0/ocl/types" 
+       class = "org.eclipse.ocl.types.TypesPackage"
+       genModel = "model/OCL.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/OCL2/1.1.0/ocl/expressions" 
+       class = "org.eclipse.ocl.expressions.ExpressionsPackage"
+       genModel = "model/OCL.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/OCL2/1.1.0/ocl/utilities" 
+       class = "org.eclipse.ocl.utilities.UtilitiesPackage"
+       genModel = "model/OCL.genmodel" /> 
+  </extension>
+
+</plugin>
