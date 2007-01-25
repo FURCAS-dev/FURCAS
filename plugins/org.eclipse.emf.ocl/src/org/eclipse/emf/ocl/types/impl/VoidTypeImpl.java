@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.4 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: VoidTypeImpl.java,v 1.5 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.VoidType;
@@ -120,7 +120,7 @@ public class VoidTypeImpl extends EClassifierImpl implements VoidType {
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
 				TypeUtil.getName(type));
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		
 		// don't get this far
 		return null;

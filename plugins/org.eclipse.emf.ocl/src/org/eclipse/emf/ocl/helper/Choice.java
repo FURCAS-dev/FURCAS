@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,8 @@
 
 package org.eclipse.emf.ocl.helper;
 
+import org.eclipse.ocl.helper.OCLHelper;
+
 
 /**
  * Representation of a particular OCL expression syntax completion suggestion.
@@ -26,6 +28,9 @@ package org.eclipse.emf.ocl.helper;
  * <b>Note</b> that this class is not intended to be extended nor instantiated
  * by clients.
  * </p>
+ * 
+ * @deprecated Use the {@link org.eclipse.ocl.helper.Choice} interface with
+ * the {@link OCLHelper}, instead.
  * 
  * @see IOCLHelper#getSyntaxHelp(String)
  * 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,11 +22,15 @@ import java.io.StringReader;
 
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
+import org.eclipse.ocl.ecore.OCL;
 
 /**
  * Factory class for the creation of {@link IOCLHelper}s.  Clients should use
  * the {@link #createOCLHelper()} or {@link #createOCLHelper(EnvironmentFactory)}
  * method to obtain OCL helpers.
+ * 
+ * @deprecated Use the {@link OCL} class, instead, to create
+ * {@link org.eclipse.ocl.helper.OCLHelper}s.
  * 
  * @author Yasser Lulu 
  * @author Christian W. Damus (cdamus)

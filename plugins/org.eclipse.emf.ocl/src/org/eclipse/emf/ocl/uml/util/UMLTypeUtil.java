@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: UMLTypeUtil.java,v 1.2 2006/04/18 17:55:07 cdamus Exp $
+ * $Id: UMLTypeUtil.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -28,10 +28,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ocl.types.TupleType;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * Utility methods for working with the annotations that extend the Ecore
  * model to implement certain UML semantics required by OCL.
+ * 
+ * @deprecated Use the {@link UMLReflection} interface, instead, to introspect
+ * UML models.
  * 
  * @author Christian W. Damus (cdamus)
  */

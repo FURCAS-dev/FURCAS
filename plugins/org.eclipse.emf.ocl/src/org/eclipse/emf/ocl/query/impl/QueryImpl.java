@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.4 2006/10/10 14:29:27 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.5 2007/01/25 18:34:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -39,13 +39,13 @@ import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.LazyExtentMap;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.types.util.Types;
+import org.eclipse.ocl.LazyExtentMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -169,7 +169,11 @@ public class QueryImpl extends EObjectImpl implements Query {
 			Object context = myEnv.getValueOf(SELF);
 			
 			if (context instanceof EObject) {
-				extentMap = new LazyExtentMap((EObject) context);
+				extentMap = new LazyExtentMap<EClass, EObject>((EObject) context) {
+					@Override
+					protected boolean isInstance(EClass cls, EObject element) {
+						return cls.isInstance(element);
+					}};
 			} else {
 				// no useful context from which to determine extents
 				extentMap = new java.util.HashMap();

@@ -12,15 +12,23 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.8 2006/10/10 14:29:27 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.9 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -30,6 +38,9 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityUtil;
+import org.eclipse.emf.ocl.parser.EcoreEnvironment;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
@@ -37,6 +48,10 @@ import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.PrimitiveBoolean;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.SendSignalAction;
 
 /**
  * Default implementation of the {@link IOCLHelper} interface.
@@ -49,8 +64,6 @@ class OCLHelper
 
 	private EnvironmentFactory environmentFactory;
 	private Environment environment;
-
-	private OCLSyntaxHelper oclSyntaxHelper;
 	
 	/**
 	 * Initializes me with my environment factory.
@@ -93,14 +106,38 @@ class OCLHelper
 
 	public void setContext(Object context) {
 		environment = environmentFactory.createClassifierContext(context);
+        adjustEnvironmentFactory(environment, environmentFactory);
 	}
-	
+
+    /**
+     * In case the particular environment factory didn't correctly assign the
+     * factory back-reference of the environments that it creates, force
+     * consistency in case of an <code>EcoreEnvironment</code>.  We do this
+     * because, prior to the introduction of this compatibility layer, the
+     * {@link Environment#getFactory()} API was never actually used by the
+     * helper.
+     * 
+     * @param env an environment
+     * @param factory the factory that I used to create it
+     */
+    private void adjustEnvironmentFactory(Environment env, EnvironmentFactory factory) {
+        if (env instanceof EcoreEnvironment) {
+            ((EcoreEnvironment) env).new Access() {
+                public void setFactory(EnvironmentFactory factory) {
+                    super.setFactory(factory);
+                }
+            }.setFactory(factory);
+        }
+    }
+    
 	public void setContextOperation(Object context, Object operation) {
 		environment = environmentFactory.createOperationContext(context, operation);
+        adjustEnvironmentFactory(environment, environmentFactory);
 	}
 	
 	public void setContextProperty(Object context, Object property) {
 		environment = environmentFactory.createPropertyContext(context, property);
+        adjustEnvironmentFactory(environment, environmentFactory);
 	}
 	
 	public EClassifier getContextClassifier() {
@@ -123,7 +160,22 @@ class OCLHelper
 	}
 
 	public List getSyntaxHelp(ConstraintType constraintType, String txt) {
-		return getOCLSyntaxHelper().getSyntaxHelp(environment, constraintType, txt);
+		org.eclipse.ocl.EnvironmentFactory<
+				EPackage, EClassifier, EOperation, EStructuralFeature,
+				EEnumLiteral, EParameter,
+				EObject, CallOperationAction, SendSignalAction, Constraint,
+				EClass, EObject> factory =
+			CompatibilityUtil.getCompatibilityFactory(environmentFactory);
+		
+		org.eclipse.ocl.helper.OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint>
+		helper = org.eclipse.ocl.internal.helper.HelperUtil.createOCLHelper(
+					OCL.newInstance(CompatibilityUtil.getCompatibilityEnvironment(
+							null,
+							environment, factory)));
+		
+		List<org.eclipse.ocl.helper.Choice> choices = helper.getSyntaxHelp(
+				convertConstraintType(constraintType), txt);
+		return convertChoices(choices);
 	}
 
 	public OCLExpression createQuery(String expression) throws OCLParsingException {
@@ -357,16 +409,63 @@ class OCLHelper
 		
 		throw ope;
 	}
-
-	/**
-	 * returns the ocl syntax helper object
-	 * 
-	 * @return OCLSyntaxHelper
-	 */
-	protected OCLSyntaxHelper getOCLSyntaxHelper() {
-		if (oclSyntaxHelper == null) {
-			oclSyntaxHelper = new OCLSyntaxHelper(getEnvironmentFactory());
+	
+	private static List<Choice> convertChoices(
+			List<org.eclipse.ocl.helper.Choice> choices) {
+		
+		List<Choice> result = new ArrayList<Choice>(choices.size());
+		
+		for (org.eclipse.ocl.helper.Choice choice : choices) {
+			result.add(new Choice(
+					choice.getName(),
+					choice.getDescription(),
+					convertKind(choice)));
 		}
-		return oclSyntaxHelper;
+		
+		return result;
+	}
+	
+	private static ChoiceType convertKind(org.eclipse.ocl.helper.Choice choice) {
+		switch (choice.getKind()) {
+		case PROPERTY:
+			if (choice.getElement() instanceof EAttribute) {
+				EAttribute attr = (EAttribute) choice.getElement();
+				
+				if (attr.getEType() instanceof EEnum) {
+					// maintain the old mapping of enumeration-type attributes
+					return ChoiceType.ENUMERATION_LITERAL;
+				}
+			}
+			// other properties are just the old structural-feature kind
+			return ChoiceType.STRUCTURAL_FEATURE;
+		case OPERATION:
+		case SIGNAL:
+			return ChoiceType.BEHAVIORAL_FEATURE;
+		case VARIABLE:
+			return ChoiceType.VARIABLE;
+		case TYPE:
+		case STATE:
+		case ASSOCIATION_CLASS:
+		case PACKAGE:
+		case ENUMERATION_LITERAL: // maintain the old mapping of enumeration values
+			return ChoiceType.STRUCTURAL_FEATURE;
+		default:
+			return ChoiceType.UNCATEGORIZED;
+		}
+	}
+	
+	private static org.eclipse.ocl.helper.ConstraintKind convertConstraintType(
+			ConstraintType kind) {
+		
+		switch (kind.getValue()) {
+		case ConstraintType.PRECONDITION_VALUE:
+			return org.eclipse.ocl.helper.ConstraintKind.PRECONDITION;
+		case ConstraintType.BODYCONDITION_VALUE:
+			return org.eclipse.ocl.helper.ConstraintKind.BODYCONDITION;
+		case ConstraintType.POSTCONDITION_VALUE:
+			return org.eclipse.ocl.helper.ConstraintKind.POSTCONDITION;
+		default:
+			return org.eclipse.ocl.helper.ConstraintKind.INVARIANT;
+		}
 	}
 }

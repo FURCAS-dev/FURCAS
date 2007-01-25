@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.3 2007/01/25 18:34:39 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -32,6 +32,9 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * @deprecated Use the {@link org.eclipse.ocl.utilities.UtilitiesPackage} interface,
+ * instead.
+ * 
  * @see org.eclipse.emf.ocl.utilities.UtilitiesFactory
  * @model kind="package"
  * @generated

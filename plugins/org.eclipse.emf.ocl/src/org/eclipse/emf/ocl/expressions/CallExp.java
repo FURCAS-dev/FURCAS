@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExp.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: CallExp.java,v 1.2 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions;
@@ -20,9 +20,10 @@ package org.eclipse.emf.ocl.expressions;
 import org.eclipse.emf.ocl.utilities.CallingASTNode;
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.expressions.CallExp} interface,
+ * instead.
+ * 
  * @author Edith Schonberg (edith)
- */
-/**
  * @model abstract="true"
  */
 public interface CallExp extends OCLExpression, CallingASTNode {

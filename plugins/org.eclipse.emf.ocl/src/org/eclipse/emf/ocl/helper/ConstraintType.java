@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,11 +21,16 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.helper.OCLHelper;
 
 /**
  * An enumeration of OCL constraint types, primarily for determining the
  * appropriate choices for syntax completion.
- *
+ * 
+ * @deprecated Use the {@link ConstraintKind} enumeration with the
+ * {@link OCLHelper}, instead.
+ * 
  * @see IOCLHelper#getSyntaxHelp(ConstraintType, String)
  * 
  * @author Christian W. Damus (cdamus)

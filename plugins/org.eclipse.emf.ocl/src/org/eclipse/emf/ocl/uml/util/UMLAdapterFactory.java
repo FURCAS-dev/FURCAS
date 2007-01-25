@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLAdapterFactory.java,v 1.3 2006/05/30 21:37:21 cdamus Exp $
+ * $Id: UMLAdapterFactory.java,v 1.4 2007/01/25 18:34:37 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -34,6 +34,9 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.util.EcoreAdapterFactory} class,
+ * instead.
+ * 
  * @see org.eclipse.emf.ocl.uml.UMLPackage
  * @generated
  */

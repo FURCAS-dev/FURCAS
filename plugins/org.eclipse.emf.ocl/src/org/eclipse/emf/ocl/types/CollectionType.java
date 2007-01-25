@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,8 +23,13 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.TypedASTNode;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.types.CollectionType} interface,
+ * instead.  Note also, that the {@link OCLStandardLibrary#getCollection()}
+ * method provides the <tt>Collection(T)</tt> generic instance of this metaclass.
+ * 
  * @author Edith Schonberg (edith)
  */
 public interface CollectionType extends EDataType, TypedASTNode, PredefinedType {

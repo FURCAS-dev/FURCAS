@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.11 2006/12/05 16:24:41 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.12 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -79,7 +79,6 @@ import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.OCLStatusCodes;
-import org.eclipse.emf.ocl.internal.l10n.UnicodeSupport;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
@@ -96,6 +95,7 @@ import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.impl.CollectionFactory;
+import org.eclipse.ocl.util.UnicodeSupport;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -1406,33 +1406,33 @@ public class EvaluationVisitorImpl
 		Variable vd = ie.getResult();
 		String resultName = (String) vd.accept(this);
 
-		// get the list of ocl iterators
-		EList iterators = ie.getIterator();
-
-		// evaluate the source collection
-		Object sourceValue = ie.getSource().accept(this);
-
-		// value of iteration expression is undefined if the source is
-		//   null or OclInvalid
-		if (isUndefined(sourceValue)) {
-			return Types.OCL_INVALID;
+		try {
+			// get the list of ocl iterators
+			EList iterators = ie.getIterator();
+	
+			// evaluate the source collection
+			Object sourceValue = ie.getSource().accept(this);
+	
+			// value of iteration expression is undefined if the source is
+			//   null or OclInvalid
+			if (isUndefined(sourceValue)) {
+				return Types.OCL_INVALID;
+			}
+			
+			Collection coll = (Collection) sourceValue;
+			
+			// get the body expression
+			OCLExpression body = ie.getBody();
+	
+			// construct an iteration template to evaluate the iterator
+			IterationTemplate is = IterationTemplate.getInstance(this);
+	
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result variable from environment
+			env.remove(resultName);
 		}
-		
-		Collection coll = (Collection) sourceValue;
-		
-		// get the body expression
-		OCLExpression body = ie.getBody();
-
-		// construct an iteration template to evaluate the iterator
-		IterationTemplate is = IterationTemplate.getInstance(this);
-
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result variable from environment
-		env.remove(resultName);
-
-		return result;
 	}
 
 	/**

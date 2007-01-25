@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,20 @@
  *
  * </copyright>
  *
- * $Id: OCLParsingException.java,v 1.4 2006/10/10 14:29:27 cdamus Exp $
+ * $Id: OCLParsingException.java,v 1.5 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
+
+import org.eclipse.ocl.ParserException;
 
 
 
 /**
  * Exception indicating that OCL parsing failed.  The status includes
  * human-presentable details.
+ * 
+ * @deprecated Use the {@link ParserException} type, instead.
  *
  * @author Christian W. Damus (cdamus)
  */

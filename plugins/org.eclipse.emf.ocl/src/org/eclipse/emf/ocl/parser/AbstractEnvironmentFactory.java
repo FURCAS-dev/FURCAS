@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -31,8 +32,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
-import org.eclipse.emf.ocl.internal.parser.LazyExtentMap;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
+import org.eclipse.ocl.LazyExtentMap;
 
 
 /**
@@ -65,6 +66,9 @@ import org.eclipse.emf.ocl.types.impl.TypeUtil;
  * implementing metamodel-specified environment factories.
  * </p>
  *
+ * @deprecated Use the {@link org.eclipse.ocl.AbstractEnvironmentFactory} class,
+ * instead.
+ * 
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEnvironmentFactory
@@ -124,27 +128,36 @@ public abstract class AbstractEnvironmentFactory
 	protected abstract EStructuralFeature asEStructuralFeature(Object property);
 	
 	public Environment createClassifierContext(Object context) {
-		return createClassifierContext(asEClassifier(context));
+        EClassifier eclassifier = (context instanceof EClassifier)?
+            (EClassifier) context : asEClassifier(context);
+        
+		return createClassifierContext(eclassifier);
 	}
 
 	public Environment createPackageContext(List pathname) {
 		EPackage defaultPackage = EcoreEnvironment.findPackage(pathname);
 		if (defaultPackage != null) {
-			return new EcoreEnvironment(defaultPackage);
+			return createEnvironment(defaultPackage);
 		}
 		return null;
 	}
 	
 	public Environment createOperationContext(Object context, Object operation) {
-		return createOperationContext(
-			asEClassifier(context),
-			asEOperation(operation));
+        EClassifier eclassifier = (context instanceof EClassifier)?
+            (EClassifier) context : asEClassifier(context);
+        EOperation eoperation = (operation instanceof EOperation)?
+            (EOperation) operation : asEOperation(operation);
+            
+		return createOperationContext(eclassifier, eoperation);
 	}
 	
 	public Environment createPropertyContext(Object context, Object property) {
-		return createPropertyContext(
-			asEClassifier(context),
-			asEStructuralFeature(property));
+        EClassifier eclassifier = (context instanceof EClassifier)?
+            (EClassifier) context : asEClassifier(context);
+        EStructuralFeature eproperty = (property instanceof EStructuralFeature)?
+            (EStructuralFeature) property : asEStructuralFeature(property);
+            
+		return createPropertyContext(eclassifier, eproperty);
 	}
 
 	/**
@@ -245,10 +258,15 @@ public abstract class AbstractEnvironmentFactory
 	 */
 	public Map createExtentMap(Object object) {
 		if (object instanceof EObject) {
-			return new LazyExtentMap((EObject) object);
+			return new LazyExtentMap<EClass, EObject>((EObject) object) {
+				@Override
+				protected boolean isInstance(EClass cls, EObject element) {
+					return cls.isInstance(element);
+				}
+			};
 		}
 		
-		return Collections.EMPTY_MAP;
+		return Collections.emptyMap();
 	}
 	
 	/**

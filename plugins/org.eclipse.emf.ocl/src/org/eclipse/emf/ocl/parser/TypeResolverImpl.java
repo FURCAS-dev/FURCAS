@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.2 2006/04/28 18:41:57 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.3 2007/01/25 18:34:33 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -32,10 +32,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.impl.EClassImpl;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
@@ -64,6 +62,9 @@ import org.eclipse.emf.ocl.utilities.impl.TupleFactory;
  * where the resolved types are stored and the <code>resolveXyzType()</code>
  * methods to create or find types are required.
  * </p>
+ * 
+ * @deprecated Use the {@link org.eclipse.ocl.AbstractTypeResolver} class,
+ * instead, with the {@link org.eclipse.ocl.AbstractEnvironment}.
  * 
  * @author Christian W. Damus (cdamus)
  */
@@ -121,15 +122,23 @@ public class TypeResolverImpl
 	 * @return the new resource
 	 */
 	protected Resource createResource() {
-		Resource result = new ResourceImpl() {
-			public EObject getEObject(String uriFragment) {
-				// our default package implementation encodes type names because
-				//    they may contain spaces or other bad characters
-				return super.getEObject(URI.decode(uriFragment));
-			}};
-		
-		result.setURI(URI.createURI("ocltypes:///")); //$NON-NLS-1$
-		return result;
+        Resource.Factory factory;
+        Object maybeFactory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(
+            "ecore"); //$NON-NLS-1$
+        if (maybeFactory instanceof Resource.Factory) {
+            factory = (Resource.Factory) maybeFactory;
+        } else {
+            maybeFactory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(
+                Resource.Factory.Registry.DEFAULT_EXTENSION);
+            
+            if (maybeFactory instanceof Resource.Factory) {
+                factory = (Resource.Factory) maybeFactory;
+            } else {
+                factory = new ResourceFactoryImpl();
+            }
+        }
+        
+        return factory.createResource(URI.createURI("ocl:///oclenv.ecore")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -151,7 +160,7 @@ public class TypeResolverImpl
 	 * @return the new collection type package
 	 */
 	protected EPackage createCollectionPackage() {
-		EPackage result = new EncodingPackage();
+		EPackage result = EcoreFactory.eINSTANCE.createEPackage();
 		
 		result.setName("collections"); //$NON-NLS-1$
 		getResource().getContents().add(result);
@@ -229,7 +238,7 @@ public class TypeResolverImpl
 	 * @return the new tuple type package
 	 */
 	protected EPackage createTuplePackage() {
-		EPackage result = new EncodingPackage();
+		EPackage result = EcoreFactory.eINSTANCE.createEPackage();
 		
 		result.setName("tuples"); //$NON-NLS-1$
 		result.setEFactoryInstance(new TupleFactory());
@@ -282,7 +291,7 @@ public class TypeResolverImpl
 					
 					if ((property == null) ||
 							(TypeUtil.getRelationship(
-								property.getEType(),
+								TypeUtil.getOCLType(property),
 								part.getType()) != PredefinedType.SAME_TYPE)) {
 						// this isn't the tuple type we're looking for
 						break;
@@ -316,7 +325,7 @@ public class TypeResolverImpl
 	 * @return the new type type package
 	 */
 	protected EPackage createTypePackage() {
-		EPackage result = new EncodingPackage();
+		EPackage result = EcoreFactory.eINSTANCE.createEPackage();
 		
 		result.setName("types"); //$NON-NLS-1$
 		getResource().getContents().add(result);
@@ -390,7 +399,7 @@ public class TypeResolverImpl
 	 * @return the new message type package
 	 */
 	protected EPackage createMessagePackage() {
-		EPackage result = new EncodingPackage();
+		EPackage result = EcoreFactory.eINSTANCE.createEPackage();
 		
 		result.setName("messages"); //$NON-NLS-1$
 		getResource().getContents().add(result);
@@ -477,7 +486,7 @@ public class TypeResolverImpl
 	 * @return the new additional features package
 	 */
 	protected EPackage createAdditionalFeaturesPackage() {
-		EPackage result = new EncodingPackage();
+		EPackage result = EcoreFactory.eINSTANCE.createEPackage();
 		
 		result.setName("additional"); //$NON-NLS-1$
 		getResource().getContents().add(result);
@@ -597,12 +606,7 @@ public class TypeResolverImpl
 	 * @return the class containing its additional features
 	 */
 	protected EClass createShadowClass(EClassifier type) {
-		// the additional features may have invalid characters in their names
-		EClass result = new EClassImpl() {
-			public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
-				String result = super.eURIFragmentSegment(eStructuralFeature, eObject);
-				return URI.encodeFragment(result, false);
-			}};
+		EClass result = EcoreFactory.eINSTANCE.createEClass();
 		result.setName(type.getName() + "_Class"); //$NON-NLS-1$
 		
 		EAnnotation ann = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -686,19 +690,6 @@ public class TypeResolverImpl
 			}
 			
 			return result;
-		}
-	}
-	
-	/**
-	 * A package that encodes the classifier names that it contains, for
-	 * serialization of URI fragments.
-	 *
-	 * @author Christian W. Damus (cdamus)
-	 */
-	private static class EncodingPackage extends EPackageImpl {
-		public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
-			String result = super.eURIFragmentSegment(eStructuralFeature, eObject);
-			return URI.encodeFragment(result, false);
 		}
 	}
 }

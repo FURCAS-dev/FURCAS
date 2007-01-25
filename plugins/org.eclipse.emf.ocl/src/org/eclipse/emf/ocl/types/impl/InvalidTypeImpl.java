@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.6 2006/04/28 14:46:28 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.7 2007/01/25 18:34:37 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.InvalidType;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -132,7 +132,7 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
 				TypeUtil.getName(type));
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		
 		// don't get this far
 		return null;

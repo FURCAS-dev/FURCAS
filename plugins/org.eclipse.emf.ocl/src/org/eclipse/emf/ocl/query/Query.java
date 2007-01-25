@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,15 +24,17 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.ocl.ecore.OCL;
 
 /**
  * An OCL constraint or query.  The query is validated for correctness
  * when it is created.  The query can subsequently be evaluated on a single
  * object or on multiple objects in one operation.
  * 
- * @author Edith Schonberg (edith)
+ * @deprecated Use the {@link org.eclipse.ocl.Query} interface with the
+ * {@link OCL} class, instead.
  * 
- *
+ * @author Edith Schonberg (edith)
  */
 public interface Query extends EObject {
 	

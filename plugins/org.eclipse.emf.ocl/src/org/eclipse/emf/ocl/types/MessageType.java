@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,8 +20,13 @@ package org.eclipse.emf.ocl.types;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.types.MessageType} interface,
+ * instead.  Note also, that the {@link OCLStandardLibrary#getOclMessage()}
+ * method provides the <tt>OclMessage</tt> generic instance of this metaclass.
+ * 
  * @author Edith Schonberg (edith)
  *
  */

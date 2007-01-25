@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallOperationAction.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: CallOperationAction.java,v 1.2 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.uml;
@@ -21,6 +21,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.CallOperationAction} interface,
+ * instead.
+ * 
  * @author Edith Schonberg (edith)
  */
 public interface CallOperationAction extends EObject {

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,6 +40,9 @@ import org.eclipse.emf.ocl.expressions.Variable;
  * It is highly recommended to extend the {@link EcoreEnvironment} class,
  * instead.
  * </p>
+ * 
+ * @deprecated Use the {@link org.eclipse.ocl.Environment} interface,
+ * instead.
  * 
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
@@ -298,10 +301,10 @@ public interface Environment {
 	 * If the name is null, then a new unique temporary name is generated.
 	 * @param name
 	 * @param elem -- variable declaration
-	 * @param imp -- is the variable implicit?
+	 * @param exp -- is the variable explicit?
 	 * @return - boolean
 	 */	
-	public boolean addElement(String name, Variable elem, boolean imp);
+	public boolean addElement(String name, Variable elem, boolean exp);
 	
 	/**
 	 * Removes a name when it goes out of scope.

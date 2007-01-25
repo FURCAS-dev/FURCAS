@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,6 +20,7 @@ package org.eclipse.emf.ocl.parser;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -34,14 +35,25 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
-import org.eclipse.emf.ocl.internal.l10n.UnicodeSupport;
+import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
+import org.eclipse.emf.ocl.query.QueryPackage;
+import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
+import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
+import org.eclipse.emf.ocl.types.impl.TypesPackageImpl;
+import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.emf.ocl.uml.impl.UMLPackageImpl;
 import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
+import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
+import org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl;
+import org.eclipse.ocl.util.UnicodeSupport;
 
 /**
  * An Environment stores the variables created while evaluating an OCL
@@ -59,15 +71,53 @@ import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
  * encoded in their URI fragments.
  * </p>
  * 
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.EcoreEnvironment} class,
+ * instead.
+ * 
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
  */
 public class EcoreEnvironment
 	implements PersistentEnvironment {
 
+    private static final Map<List<String>, EPackage> OCL_PACKAGES =
+        new java.util.HashMap<List<String>, EPackage>();
+    
 	/* Used to generate implicit iterator variables */
 	private static int generatorInt = 0;
 	
+    static {
+        List<String> names = new java.util.ArrayList<String>();
+        names.add(ExpressionsPackageImpl.OCL_ROOT_PACKAGE.getName());
+        OCL_PACKAGES.put(names, ExpressionsPackageImpl.OCL_ROOT_PACKAGE);
+        
+        names = new java.util.ArrayList<String>(names);
+        names.add(ExpressionsPackageImpl.init().getName());
+        OCL_PACKAGES.put(names, ExpressionsPackage.eINSTANCE);
+        
+        names = new java.util.ArrayList<String>(names);
+        names.set(1, TypesPackageImpl.init().getName());
+        OCL_PACKAGES.put(names, TypesPackage.eINSTANCE);
+        
+        names = new java.util.ArrayList<String>(names);
+        names.set(1, UtilitiesPackageImpl.init().getName());
+        OCL_PACKAGES.put(names, UtilitiesPackage.eINSTANCE);
+        
+        names = new java.util.ArrayList<String>(names);
+        names.set(1, QueryPackageImpl.init().getName());
+        OCL_PACKAGES.put(names, QueryPackage.eINSTANCE);
+        
+        names = new java.util.ArrayList<String>(names);
+        names.set(1, UMLPackageImpl.init().getName());
+        OCL_PACKAGES.put(names, UMLPackage.eINSTANCE);
+        
+        // add the Ecore package, too, to ensure that it is trivially resolvable
+        //    in all environments (regardless of package registry)
+        names = new java.util.ArrayList<String>(1);
+        names.add(EcorePackage.eINSTANCE.getName());
+        OCL_PACKAGES.put(names, EcorePackage.eINSTANCE);
+    }
+    
 	/**
 	 * Obtains the appropriate OCL type for an Ecore typed element, according
 	 * to its type, multiplicity, orderedness, and uniqueness.  The mapping is
@@ -213,7 +263,7 @@ public class EcoreEnvironment
 		}
 		this.parent = parent;
 	}
-
+	
 	public EnvironmentFactory getFactory() {
 		if (factory != null) {
 			return factory;
@@ -365,6 +415,10 @@ public class EcoreEnvironment
 	}
 
 	public EPackage lookupPackage(List path) {
+        if (!path.isEmpty() && OCL_PACKAGES.containsKey(path)) {
+            return OCL_PACKAGES.get(path);
+        }
+        
 		EPackage pkg = null;
 		EPackage currPkg = defaultPackage;
 
@@ -490,7 +544,7 @@ public class EcoreEnvironment
 			while (lookup(name) != null) {
 				name = generateName();
 			}
-		} else if (lookup(name) != null)
+		} else if (lookupLocal(name) != null)
 			return false;
 
 		elem.setName(name);
@@ -798,6 +852,10 @@ public class EcoreEnvironment
 			return null;
 		}
 		
+        if (OCL_PACKAGES.containsKey(packageNames)) {
+            return OCL_PACKAGES.get(packageNames);
+        }
+        
 		String name = (String) packageNames.get(0);
 		for (Iterator iter = registry.values().iterator(); iter.hasNext();) {
 			Object next = iter.next();
@@ -820,7 +878,13 @@ public class EcoreEnvironment
 			}
 		}
 
-		return findPackageByNSPrefix(packageNames, registry);
+		EPackage result = findPackageByNSPrefix(packageNames, registry);
+        
+//        if ((result == null) && (registry != EPackage.Registry.INSTANCE)) {
+//            result = findPackage(packageNames, EPackage.Registry.INSTANCE);
+//        }
+        
+        return result;
 	}
 
 	/**
@@ -928,7 +992,7 @@ public class EcoreEnvironment
 		String message = OCLMessages.bind(
 				OCLMessages.IllegalSignature_ERROR_,
 				errMessage);
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		return null;
 	}
 	
@@ -1015,7 +1079,23 @@ public class EcoreEnvironment
 	public EList getQualifiers(EStructuralFeature property) {
 		return UMLTypeUtil.getQualifiers(property);
 	}
-	
+    
+    public class Access {
+        protected Access() {
+            super();
+        }
+        
+        /**
+         * Used by the <code>OCLHelper</code> compatibility implementation to set
+         * the factory of an Ecore environment.
+         * 
+         * @param factory the factory that was used to create the environment
+         */
+        protected void setFactory(EnvironmentFactory factory) {
+            EcoreEnvironment.this.setFactory(factory);
+        }
+    }
+    
 	private static final class VariableEntry {
 		final String name;
 		final Variable variable;
@@ -1029,7 +1109,7 @@ public class EcoreEnvironment
 		
 		public String toString() {
 			return "VariableEntry[" + name + ", "  //$NON-NLS-1$//$NON-NLS-2$
-				+ (isExplicit? "explicit, " : "implicit, " + variable + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				+ (isExplicit? "explicit, " : "implicit, ") + variable + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 }

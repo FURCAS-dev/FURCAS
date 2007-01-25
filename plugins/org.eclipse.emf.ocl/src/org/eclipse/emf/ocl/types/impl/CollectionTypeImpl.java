@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.8 2006/05/30 21:37:21 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.9 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -42,7 +42,7 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.BagType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -509,7 +509,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             if (type != Types.OCL_REAL
                     && type != Types.OCL_INTEGER) {
                 String message = OCLMessages.SumOperator_ERROR_;
-                OCLParser.ERR(message);
+                CompatibilityParser.ERR(message);
             }
             return type;
         case PRODUCT:
@@ -543,7 +543,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         		OCLMessages.CollectionType_ERROR_,
                 this.getName(),
                 getOperationNameFor(opcode));
-        OCLParser.ERR(message);
+        CompatibilityParser.ERR(message);
         return null;
     }
     
@@ -618,7 +618,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             		OCLMessages.TypeMismatch_ERROR_,
                     this.getName(),
                     TypeUtil.getName(type));
-            OCLParser.ERR(message);
+            CompatibilityParser.ERR(message);
         }
 
         CollectionType other = (CollectionType) type;
