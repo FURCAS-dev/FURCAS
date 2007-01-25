@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,6 +37,10 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.emf.ocl.query.QueryFactory
  * @model kind="package"
  * @generated
+ * 
+ * @deprecated The {@link org.eclipse.ocl.Query} API is not an element of
+ * the OCL abstract syntax model.
+ * 
  */
 public interface QueryPackage extends EPackage {
 	/**

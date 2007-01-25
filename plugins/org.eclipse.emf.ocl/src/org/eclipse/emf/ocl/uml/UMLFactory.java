@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLFactory.java,v 1.2 2006/04/04 18:07:23 cdamus Exp $
+ * $Id: UMLFactory.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml;
 
@@ -23,6 +23,10 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
+ * 
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.EcoreFactory} interface,
+ * instead.
+ * 
  * @see org.eclipse.emf.ocl.uml.UMLPackage
  * @generated
  */

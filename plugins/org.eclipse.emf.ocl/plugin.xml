@@ -42,4 +42,12 @@
          class="org.eclipse.emf.ocl.query.QueryPackage"
          genModel="model/OCL.genmodel"/>
    </extension>
+   
+  <extension
+        point="org.eclipse.emf.ecore.protocol_parser">
+     <parser
+           class="org.eclipse.emf.ocl.parser.EnvironmentResource$Factory"
+           protocolName="oclenv">
+     </parser>
+  </extension>
 </plugin>

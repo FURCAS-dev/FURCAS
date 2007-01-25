@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.types.PrimitiveType} interface,
+ * instead.
+ * 
  * @author Tim Klinger (tklinger)
  *
  *

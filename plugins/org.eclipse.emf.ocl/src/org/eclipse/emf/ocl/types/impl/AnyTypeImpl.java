@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.9 2006/04/20 20:04:44 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.10 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.AnyType;
 import org.eclipse.emf.ocl.types.CollectionType;
@@ -219,10 +219,6 @@ public class AnyTypeImpl
 			return SAME_TYPE;
 		}
 		
-		if (type == AnyTypeImpl.UML_CLASSIFIER) {
-			return STRICT_SUBTYPE;
-		}
-		
 		if (!(type instanceof CollectionType)) {
 			return STRICT_SUPERTYPE;
 		}
@@ -237,10 +233,6 @@ public class AnyTypeImpl
 	 */
 	public EClassifier getCommonSupertype(EClassifier type) throws SemanticException {
 
-		if (type == AnyTypeImpl.UML_CLASSIFIER) {
-			return AnyTypeImpl.UML_CLASSIFIER;
-		}
-		
 		if (!(type instanceof CollectionType)) {
 			return this;
 		}
@@ -249,7 +241,7 @@ public class AnyTypeImpl
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
 				TypeUtil.getName(type));
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		return null;
 	}
 
@@ -282,7 +274,7 @@ public class AnyTypeImpl
 								OCLMessages.Noncomforming_ERROR_,
 								type.getName(),
 								getOperationName(opcode));
-						OCLParser.ERR(message);
+						CompatibilityParser.ERR(message);
 					}
 				} else if (type instanceof TupleType) {
 					((TupleTypeImpl) type).getCommonSupertype(argType);
@@ -300,7 +292,7 @@ public class AnyTypeImpl
 								OCLMessages.Noncomforming_ERROR_,
 								type.getName(),
 								getOperationName(opcode));
-						OCLParser.ERR(message);
+						CompatibilityParser.ERR(message);
 					} /*
 					 * else if (argType instanceof PrimitiveType) { // Do
 					 * conformance test commonSuperType(type, argType); }
@@ -322,7 +314,7 @@ public class AnyTypeImpl
 					String message = OCLMessages.bind(
 							OCLMessages.SourceEClass_ERROR_,
 							getOperationName(opcode));
-					OCLParser.ERR(message);
+					CompatibilityParser.ERR(message);
 				}
 				
 				EOperation oper = null;
@@ -339,12 +331,12 @@ public class AnyTypeImpl
 					String message = OCLMessages.bind(
 							OCLMessages.SourceOperationCompareTo_ERROR_,
 							getOperationName(opcode));
-					OCLParser.ERR(message);
+					CompatibilityParser.ERR(message);
 				}
 				
 				if ((oper != null) && "compareTo".equals(oper.getName()) //$NON-NLS-1$
 						&& (TypeUtil.getOCLType(oper) != Types.OCL_INTEGER)) {
-					OCLParser.ERR(OCLMessages.ResultCompareToInt_ERROR_);
+					CompatibilityParser.ERR(OCLMessages.ResultCompareToInt_ERROR_);
 				}
 			// NEED TO CHECK CONFORMANCE OF ARGS if ECLASS...
 
@@ -361,7 +353,7 @@ public class AnyTypeImpl
 							OCLMessages.Noncomforming_ERROR_,
 							type.getName(),
 							getOperationName(opcode));
-					OCLParser.ERR(message);
+					CompatibilityParser.ERR(message);
 				}
 				// we can require neither a common supertype nor that type2
 				// and type1 have any conformance relationship whatsoever

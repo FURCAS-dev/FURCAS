@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,9 +17,15 @@
 
 package org.eclipse.emf.ocl.types;
 
+import org.eclipse.ocl.types.OCLStandardLibrary;
+
 
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.types.PrimitiveType} interface,
+ * instead.  Note also, that the {@link OCLStandardLibrary#getReal()}
+ * method provides the <tt>Real</tt> instance of this metaclass.
+ * 
  * @author Tim Klinger (tklinger)
  *
  * The OCL primitive type real.

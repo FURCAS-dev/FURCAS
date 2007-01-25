@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: DelegatingPackageRegistry.java,v 1.1 2006/05/25 15:36:46 cdamus Exp $
+ * $Id: DelegatingPackageRegistry.java,v 1.2 2007/01/25 18:34:43 cdamus Exp $
  */
 package org.eclipse.emf.ocl.examples.interpreter.console;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +25,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
-import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 
 /**
  * A package registry that delegates to multiple other registries (in order),
@@ -39,36 +38,32 @@ import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 public class DelegatingPackageRegistry extends EPackageRegistryImpl {
 	private static final long serialVersionUID = -7606528898701523821L;
 
-	private final List delegates;
+	private final List<EPackage.Registry> delegates;
 	
 	public DelegatingPackageRegistry(EPackage.Registry delegate) {
-		delegates = new BasicEList(1);
+		delegates = new BasicEList.FastCompare<EPackage.Registry>(1);
 		delegates.add(delegate);
 	}
 	
 	public DelegatingPackageRegistry(EPackage.Registry delegate1, EPackage.Registry delegate2) {
-		delegates = new BasicEList(2);
+		delegates = new BasicEList.FastCompare<EPackage.Registry>(2);
 		delegates.add(delegate1);
 		delegates.add(delegate2);
 	}
 	
-	public DelegatingPackageRegistry(List delegates) {
-		this.delegates = new BasicEList(delegates);
+	public DelegatingPackageRegistry(List<EPackage.Registry> delegates) {
+		this.delegates = new BasicEList.FastCompare<EPackage.Registry>(delegates);
 	}
 	
-	public Collection values() {
-		Collection result = new java.util.ArrayList();
+	public Collection<Object> values() {
+		Collection<Object> result = new java.util.ArrayList<Object>();
 		
-		Set keys = new java.util.HashSet(keySet());
+		Set<String> keys = new java.util.HashSet<String>(keySet());
 		result.addAll(super.values());
 		
-		for (Iterator i = delegates.iterator(); i.hasNext();) {
-			EPackage.Registry next = (EPackage.Registry) i.next();
-			
+		for (EPackage.Registry next : delegates) {
 			// get values from the delegates for the keys that we do not yet have
-			for (Iterator j = next.keySet().iterator(); j.hasNext();) {
-				String key = (String) j.next();
-				
+			for (String key : next.keySet()) {
 				if (!keys.contains(key)) {
 					result.add(next.get(key));
 				}
@@ -81,9 +76,7 @@ public class DelegatingPackageRegistry extends EPackageRegistryImpl {
 	protected EFactory delegatedGetEFactory(String nsURI) {
 		EFactory result = null;
 		
-		for (Iterator i = delegates.iterator(); (result == null) && i.hasNext();) {
-			EPackage.Registry next = (EPackage.Registry) i.next();
-			
+		for (EPackage.Registry next : delegates) {
 			result = next.getEFactory(nsURI);
 		}
 		
@@ -93,9 +86,7 @@ public class DelegatingPackageRegistry extends EPackageRegistryImpl {
 	protected EPackage delegatedGetEPackage(String nsURI) {
 		EPackage result = null;
 		
-		for (Iterator i = delegates.iterator(); (result == null) && i.hasNext();) {
-			EPackage.Registry next = (EPackage.Registry) i.next();
-			
+		for (EPackage.Registry next : delegates) {
 			result = next.getEPackage(nsURI);
 		}
 		

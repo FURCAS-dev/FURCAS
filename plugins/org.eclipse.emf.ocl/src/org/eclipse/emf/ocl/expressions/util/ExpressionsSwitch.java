@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,10 +24,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ocl.expressions.*;
-
-import org.eclipse.emf.ocl.uml.TypedElement;
-
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CallExp;
@@ -58,10 +54,12 @@ import org.eclipse.emf.ocl.expressions.RealLiteralExp;
 import org.eclipse.emf.ocl.expressions.StateExp;
 import org.eclipse.emf.ocl.expressions.StringLiteralExp;
 import org.eclipse.emf.ocl.expressions.TupleLiteralExp;
+import org.eclipse.emf.ocl.expressions.TupleLiteralPart;
 import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
+import org.eclipse.emf.ocl.uml.TypedElement;
 import org.eclipse.emf.ocl.utilities.ASTNode;
 import org.eclipse.emf.ocl.utilities.CallingASTNode;
 import org.eclipse.emf.ocl.utilities.TypedASTNode;
@@ -77,6 +75,9 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * @deprecated Use the {@link org.eclipse.ocl.expressions.util.ExpressionsSwitch} class,
+ * instead.
+ * 
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage
  * @generated
  */

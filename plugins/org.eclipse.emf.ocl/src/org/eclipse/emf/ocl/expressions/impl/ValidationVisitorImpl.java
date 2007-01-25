@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.10 2006/10/10 14:29:27 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.11 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -307,7 +307,11 @@ public class ValidationVisitorImpl
 					// maybe this operation was an "extra" contribution by a
 					//    custom environment implementation
 					resultType = TypeUtil.getOCLType(oper);
-				}
+				} else {
+                    // be sure to compare apples to apples (the call expression's
+                    //    type is an OCL type)
+				    resultType = TypeUtil.getOCLType(resultType);
+                }
 			} else {
 				// source is an EClass, an enumeration, or a user data type
 				if (opcode != AnyTypeImpl.getOperationCode(operName)) {
@@ -551,6 +555,10 @@ public class ValidationVisitorImpl
 			OCLPlugin.throwing(getClass(),
 				"visitAssociationClassCallExp", error);//$NON-NLS-1$
 			throw error;
+		}
+		
+		if (type instanceof CollectionType) {
+			type = ((CollectionType) type).getElementType();
 		}
 		
 		if (ae.getNavigationSource() != null) {
@@ -1289,7 +1297,7 @@ public class ValidationVisitorImpl
 
 		List parts = cl.getPart();
 		if (parts.isEmpty()) {
-			if (((CollectionType) collectionType).getElementType() != AnyTypeImpl.UML_CLASSIFIER) {
+			if (((CollectionType) collectionType).getElementType() != Types.OCL_VOID) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceEmptyCollection_ERROR_,
 						cl.toString());
@@ -1587,7 +1595,7 @@ public class ValidationVisitorImpl
 				throw error;
 			}
 			
-			EClassifier featureType = feature.getEType();
+			EClassifier featureType = TypeUtil.getOCLType(feature);
 			
 			if ((featureType == null)
 					|| TypeUtil.typeCompare(bodyType, featureType) > 0) {

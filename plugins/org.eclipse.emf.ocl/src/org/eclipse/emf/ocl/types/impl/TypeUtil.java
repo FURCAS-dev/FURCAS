@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.11 2006/05/03 19:42:20 cmcgee Exp $
+ * $Id: TypeUtil.java,v 1.12 2007/01/25 18:34:37 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.TypeExp;
@@ -47,12 +48,16 @@ import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.PersistentEnvironment;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.parser.TypeResolver;
 import org.eclipse.emf.ocl.types.CollectionType;
+import org.eclipse.emf.ocl.types.PrimitiveBoolean;
+import org.eclipse.emf.ocl.types.PrimitiveInteger;
+import org.eclipse.emf.ocl.types.PrimitiveReal;
+import org.eclipse.emf.ocl.types.PrimitiveString;
 import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypeType;
@@ -244,6 +249,14 @@ public class TypeUtil {
 			EClassifier paramType = TypeUtil.getOCLType(param);
 			paramType = resolveGenericType(owner, paramType, argType);
 			
+			if (paramType == AnyTypeImpl.OCL_T) {
+				// this is a collection operation, and the collection is empty
+				//   (element type is OclVoid).  Any argument matches in this
+				//   case, because any kind of element can be considered to not
+				//   be in an empty collection
+				continue;
+			}
+			
 			if ((TypeUtil.getRelationship(argType, paramType) & AnyTypeImpl.SUBTYPE) == 0) {
 				return false;
 			}
@@ -263,6 +276,13 @@ public class TypeUtil {
 			result = owner;
 			if (result instanceof CollectionType) {
 				result = ((CollectionType) result).getElementType();
+				
+				if (result == Types.OCL_VOID) {
+					// special case for empty collections, whose element type is OclVoid.
+					//   We want any argument to be accepted, and to solely determine
+					//   the element type of the resulting collection
+					result = AnyTypeImpl.OCL_T;
+				}
 			}
 		} else if (result instanceof CollectionType) {
 			// handle generic collection operation with parameter of
@@ -366,7 +386,7 @@ public class TypeUtil {
 				OCLMessages.CastTypeMismatch_ERROR_,
 				getName(type1),
 				getName(type2));
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		return false;
 	}
 
@@ -426,13 +446,12 @@ public class TypeUtil {
 			return type2;
 		}
 		
-		// as a special case, where one type is the UML Classifier type,
-		//   take the other as the common super type (we use UML_CLASSIFIER
-		//   internally as a wildcard for empty collection literals).  Likewise
-		//   the generic type T represents any type
-		if (type1 == AnyTypeImpl.UML_CLASSIFIER || type1 == AnyTypeImpl.OCL_T) {
+		// as a special case, where one type is the generic T type,
+		//   take the other as the common super type (the generic type T
+		//   represents any type, so matches the other type by definition)
+		if (type1 == AnyTypeImpl.OCL_T) {
 			return type2;
-		} else if (type2 == AnyTypeImpl.UML_CLASSIFIER || type2 == AnyTypeImpl.OCL_T) {
+		} else if (type2 == AnyTypeImpl.OCL_T) {
 			return type1;
 		}
 		
@@ -484,7 +503,7 @@ public class TypeUtil {
 		String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 				getName(type1),
 				getName(type2));
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		return null;
 	}
 	
@@ -515,13 +534,6 @@ public class TypeUtil {
 			return PredefinedType.SAME_TYPE;
 		}
 		
-		// all types are classifiers
-		if (type1 == AnyTypeImpl.UML_CLASSIFIER) {
-			return PredefinedType.STRICT_SUPERTYPE;
-		} else if (type2 == AnyTypeImpl.UML_CLASSIFIER) {
-			return PredefinedType.STRICT_SUBTYPE;
-		}
-		
 		if (type1 == Types.OCL_ANY_TYPE && !(type2 instanceof CollectionType))
 			return PredefinedType.STRICT_SUPERTYPE;
 		if (type2 == Types.OCL_ANY_TYPE && !(type1 instanceof CollectionType))
@@ -530,7 +542,7 @@ public class TypeUtil {
 		if (type1 instanceof PredefinedType) {
 			return ((PredefinedType) type1).getRelationshipTo(type2);
 		} else if (type2 instanceof PredefinedType) {
-			return ((PredefinedType) type2).getRelationshipTo(type1);
+			return inverseRelationship(((PredefinedType) type2).getRelationshipTo(type1));
 		}
 		
 		if (type1 instanceof EClass && type2 instanceof EClass) {
@@ -545,6 +557,22 @@ public class TypeUtil {
 		return PredefinedType.UNRELATED_TYPE;
 	}
 
+	static int inverseRelationship(int rel) {
+		switch (rel) {
+		case PredefinedType.STRICT_SUBTYPE:
+			return PredefinedType.STRICT_SUPERTYPE;
+		case PredefinedType.STRICT_SUPERTYPE:
+			return PredefinedType.STRICT_SUBTYPE;
+		case PredefinedType.SUBTYPE:
+			return PredefinedType.SUPERTYPE;
+		case PredefinedType.SUPERTYPE:
+			return PredefinedType.SUBTYPE;
+		default:
+			// same type, unrelated type, related type are their own inverses
+			return rel;
+		}
+	}
+	
 	static boolean isPrimitive(Object o) {
 		return o instanceof Integer || o instanceof String
 			|| o instanceof Boolean || o instanceof Double;
@@ -847,7 +875,8 @@ public class TypeUtil {
 		}
 		
 		result.setName(name);
-		result.setEType(type);
+		
+		setType(result, type);
 		
 		AdditionalFeaturesAdapter adapter = getAdditionalFeatures(owner);
 		if (adapter == null) {
@@ -864,14 +893,15 @@ public class TypeUtil {
 		EOperation result = EcoreFactory.eINSTANCE.createEOperation();
 		
 		result.setName(name);
-		result.setEType(type == null ? Types.OCL_VOID : getOCLType(type));
+		
+		setType(result, type);
 		
 		for (Iterator iter = params.iterator(); iter.hasNext();) {
 			Variable next = (Variable) iter.next();
 			
 			EParameter param = EcoreFactory.eINSTANCE.createEParameter();
 			param.setName(next.getName());
-			param.setEType(next.getType() == null ? Types.OCL_VOID : getOCLType(next.getType()));
+			setType(param, next.getType());
 			
 			result.getEParameters().add(param);
 		}
@@ -883,6 +913,63 @@ public class TypeUtil {
 		}
 		
 		adapter.define(result);
+		
+		return result;
+	}
+	
+	private static void setType(ETypedElement element, EClassifier type) {
+		if (type == Types.OCL_VOID) {
+			type = null;
+		}
+		
+		if (!(type instanceof CollectionType)) {
+			element.setEType(unOCLType(type));
+		} else {
+			CollectionType collType = (CollectionType) type;
+			EClassifier elementType = collType.getElementType();
+			
+			if (elementType == Types.OCL_VOID) {
+				elementType = null;
+			}
+			
+			element.setEType(unOCLType(elementType));
+			element.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+			
+			switch (collType.getKind().getValue()) {
+			case CollectionKind.BAG:
+				element.setOrdered(false);
+				element.setUnique(false);
+				break;
+			case CollectionKind.SET:
+				element.setOrdered(false);
+				element.setUnique(true);
+				break;
+			case CollectionKind.SEQUENCE:
+				element.setOrdered(true);
+				element.setUnique(false);
+				break;
+			case CollectionKind.ORDERED_SET:
+				element.setOrdered(true);
+				element.setUnique(true);
+				break;
+			}
+		}
+	}
+	
+	static EClassifier unOCLType(EClassifier oclType) {
+		EClassifier result = oclType;
+		
+		if (oclType instanceof PrimitiveType) {
+			if (oclType instanceof PrimitiveBoolean) {
+				result = EcorePackage.Literals.EBOOLEAN_OBJECT;
+			} else if (oclType instanceof PrimitiveString) {
+				result = EcorePackage.Literals.ESTRING;
+			} else if (oclType instanceof PrimitiveInteger) {
+				result = EcorePackage.Literals.EINTEGER_OBJECT;
+			} else if (oclType instanceof PrimitiveReal) {
+				result = EcorePackage.Literals.EDOUBLE_OBJECT;
+			}
+		}
 		
 		return result;
 	}

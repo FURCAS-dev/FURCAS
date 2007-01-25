@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,8 +19,11 @@ package org.eclipse.emf.ocl.parser;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * A facotry for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -35,6 +38,9 @@ import org.eclipse.emf.ecore.EClassifier;
  * {@link EcoreEnvironmentFactory} class, instead.
  * </p>
  *
+ * @deprecated Use the {@link org.eclipse.ocl.EnvironmentFactory} interface,
+ * instead.
+ * 
  * @author Christian W. Damus (cdamus)
  */
 public interface EnvironmentFactory {
@@ -151,5 +157,5 @@ public interface EnvironmentFactory {
 	 *     classifier extents
 	 * @return the extent map
 	 */
-	Map createExtentMap(Object object);
+	Map<EClass, Set<EObject>> createExtentMap(Object object);
 }

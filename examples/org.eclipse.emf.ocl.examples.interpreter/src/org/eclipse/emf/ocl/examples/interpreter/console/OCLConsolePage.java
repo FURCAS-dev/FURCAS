@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.8 2006/10/10 14:29:24 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.9 2007/01/25 18:34:43 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -28,8 +28,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -37,11 +38,6 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.ocl.examples.interpreter.OCLExamplePlugin;
 import org.eclipse.emf.ocl.examples.interpreter.internal.l10n.OCLInterpreterMessages;
-import org.eclipse.emf.ocl.helper.HelperUtil;
-import org.eclipse.emf.ocl.helper.IOCLHelper;
-import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
-import org.eclipse.emf.ocl.query.Query;
-import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -55,6 +51,12 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.util.Tuple;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyleRange;
@@ -91,7 +93,7 @@ public class OCLConsolePage
 	private Color blue;
 	
 	private String lastOCLExpression;
-	private EObject lastContext;
+	private EClassifier lastContext;
 	
 	private static final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
@@ -103,20 +105,22 @@ public class OCLConsolePage
 		}
 	
 		public String getText(Object object) {
-			EObject tuple = (EObject) object;
-			EClass tupleType = tuple.eClass();
+            @SuppressWarnings("unchecked")
+			Tuple<EOperation, EStructuralFeature> tuple =
+                (Tuple<EOperation, EStructuralFeature>) object;
+			TupleType tupleType = (TupleType) tuple.getTupleType();
 			
 			StringBuffer result = new StringBuffer();
 			result.append("Tuple{");//$NON-NLS-1$
 			
-			for (Iterator iter = tupleType.getEStructuralFeatures().iterator();
+			for (Iterator<EStructuralFeature> iter = tupleType.oclProperties().iterator();
 					iter.hasNext();) {
 				
 				EStructuralFeature next = (EStructuralFeature) iter.next();
 				
 				result.append(next.getName());
 				result.append(" = "); //$NON-NLS-1$
-				result.append(OCLConsolePage.toString(tuple.eGet(next)));
+				result.append(OCLConsolePage.toString(tuple.getValue(next)));
 				
 				if (iter.hasNext()) {
 					result.append(", "); //$NON-NLS-1$
@@ -199,7 +203,7 @@ public class OCLConsolePage
 	}
 	
 	/**
-	 * Evaluates an OCL expression using the OCL Interpreter's {@link Query}
+	 * Evaluates an OCL expression using the OCL Interpreter's {@link OCLHelper}
 	 * API.
 	 * 
 	 * @param expression an OCL expression
@@ -229,13 +233,18 @@ public class OCLConsolePage
 			// create an OCL helper to do our parsing and evaluating.  Use
 			//    the current resource set's package registry to resolve
 			//    OCL namespaces, with the global registry as a back-up
-			IOCLHelper helper = HelperUtil.createOCLHelper(new EcoreEnvironmentFactory(
-					new DelegatingPackageRegistry(
-							context.eResource().getResourceSet().getPackageRegistry(),
-							EPackage.Registry.INSTANCE)));
+            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(
+                    new DelegatingPackageRegistry(
+                            context.eResource().getResourceSet().getPackageRegistry(),
+                            EPackage.Registry.INSTANCE)));
+			OCL.Helper helper = ocl.createOCLHelper();
 			
-			// set our helper's context object to parse against it
-			helper.setContext(context);
+			// set our helper's context classifier to parse against it
+			helper.setContext(context.eClass());
+            
+            if (helper.getContextClassifier() == context) {
+                helper.setContext(context.eClass());
+            }
 			
 			try {
 				IDocument doc = getDocument();
@@ -247,11 +256,12 @@ public class OCLConsolePage
 				print(OCLInterpreterMessages.console_evaluating, black, true);
 				print(expression, black, false);
 				print(OCLInterpreterMessages.console_results, black, true);
-				print(helper.evaluate(context, expression), blue, false);
+                OCLExpression<EClassifier> parsed = helper.createQuery(expression);
+				print(ocl.evaluate(context, parsed), blue, false);
 				
 				// store the successfully parsed expression
 				lastOCLExpression = expression;
-				lastContext = context;
+				lastContext = context.eClass();
 			} catch (Exception e) {
 				result = false;
 				error(e.getLocalizedMessage());
@@ -304,19 +314,19 @@ public class OCLConsolePage
 	 * @param bold whether to display it in bold text
 	 */
 	private void print(Object object, Color color, boolean bold) {
-		Collection toPrint;
+		Collection<?> toPrint;
 		
 		if (object == null) {
 			toPrint = Collections.EMPTY_SET;
 		} else if (object instanceof Collection) {
-			toPrint = (Collection) object;
+			toPrint = (Collection<?>) object;
 		} else if (object.getClass().isArray()) {
 			toPrint = Arrays.asList((Object[]) object);
 		} else {
 			toPrint = Collections.singleton(object);
 		}
 		
-		for (Iterator iter = toPrint.iterator(); iter.hasNext();) {
+		for (Iterator<?> iter = toPrint.iterator(); iter.hasNext();) {
 			append(toString(iter.next()), color, bold);
 		}
 		

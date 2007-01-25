@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 /**
  * Environment factory for the Ecore metamodel.
  *
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.EcoreEnvironmentFactory} class,
+ * instead.
+ * 
  * @author Christian W. Damus (cdamus)
  */
 public class EcoreEnvironmentFactory
@@ -124,7 +127,7 @@ public class EcoreEnvironmentFactory
 	}
 
 	public Environment createEnvironment(Environment parent) {
-		if (parent.getClass() != EcoreEnvironment.class) {
+		if (!(parent instanceof EcoreEnvironment)) {
 			throw new IllegalArgumentException(
 				"Parent environment must be an Ecore environment: " + parent); //$NON-NLS-1$
 		}

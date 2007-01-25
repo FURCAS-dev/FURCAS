@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolver.java,v 1.2 2006/04/28 18:41:57 cdamus Exp $
+ * $Id: TypeResolver.java,v 1.3 2007/01/25 18:34:33 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -41,6 +41,9 @@ import org.eclipse.emf.ocl.types.TypeType;
  * This interface is not intended to be implemented directly by clients; use or
  * extend the {@link TypeResolverImpl} class, instead.
  * </p>
+ * 
+ * @deprecated Use the {@link org.eclipse.ocl.TypeResolver} interface with the
+ * {@link org.eclipse.ocl.Environment}, instead.
  * 
  * @author Christian W. Damus (cdamus)
  */

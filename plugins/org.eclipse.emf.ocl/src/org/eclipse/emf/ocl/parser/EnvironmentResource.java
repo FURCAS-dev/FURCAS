@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentResource.java,v 1.1 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: EnvironmentResource.java,v 1.2 2007/01/25 18:34:33 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.parser;
@@ -31,21 +31,21 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.Variable;
+import org.eclipse.ocl.AbstractEnvironment;
 
 /**
  * A specialized resource implementation that stores the variables in an OCL
  * {@link Environment}.  This resource can dynamically re-construct
  * {@link Variable}s on resolution of proxies in OCL expressions.
  * 
+ * @deprecated This class is obsolete with the introduction of the
+ * {@link org.eclipse.ocl.Environment} API and the
+ * {@link AbstractEnvironment}.
+ * 
  * @author Christian W. Damus (cdamus)
  */
 class EnvironmentResource extends ResourceImpl {
 	private static final Pattern FRAGMENT_PATTERN = Pattern.compile("var:([^:]+):(.*)"); //$NON-NLS-1$
-	
-	static {
-		Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap().put(
-			"oclenv", new Factory()); //$NON-NLS-1$
-	}
 	
 	public EnvironmentResource() {
 		super(URI.createURI("oclenv:///")); //$NON-NLS-1$

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,9 @@
 package org.eclipse.emf.ocl.expressions;
 
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.expressions.CollectionKind} enumeration,
+ * instead.
+ * 
  * @author Edith Schonberg (edith)
  */
 
@@ -195,6 +198,28 @@ public final class CollectionKind extends AbstractEnumerator {
 	 */
 	private CollectionKind(int value, String name, String literal) {
 		super(value, name, literal);
+	}
+
+	public org.eclipse.ocl.expressions.CollectionKind asNewKind() {
+		switch (getValue()) {
+		case SET: return org.eclipse.ocl.expressions.CollectionKind.SET_LITERAL;
+		case ORDERED_SET: return org.eclipse.ocl.expressions.CollectionKind.ORDERED_SET_LITERAL;
+		case BAG: return org.eclipse.ocl.expressions.CollectionKind.BAG_LITERAL;
+		case SEQUENCE: return org.eclipse.ocl.expressions.CollectionKind.SEQUENCE_LITERAL;
+		case COLLECTION: return org.eclipse.ocl.expressions.CollectionKind.COLLECTION_LITERAL;
+		default: return null;
+		}
+	}
+
+	public static CollectionKind getCompatibleKind(org.eclipse.ocl.expressions.CollectionKind kind) {
+		switch (kind) {
+		case SET_LITERAL: return SET_LITERAL;
+		case ORDERED_SET_LITERAL: return ORDERED_SET_LITERAL;
+		case BAG_LITERAL: return BAG_LITERAL;
+		case SEQUENCE_LITERAL: return SEQUENCE_LITERAL;
+		case COLLECTION_LITERAL: return COLLECTION_LITERAL;
+		default: return null;
+		}
 	}
 }
 

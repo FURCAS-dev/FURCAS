@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.1 2006/04/04 18:08:40 cdamus Exp $
+ * $Id: StatesTest.java,v 1.2 2007/01/25 18:34:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -197,7 +197,9 @@ public class StatesTest
 	public static class StatefulFruitEnvironmentFactory extends AbstractEnvironmentFactory {
 
 		protected Environment createEnvironment(EPackage packageContext) {
-			return new StatefulFruitEnvironment();
+			StatefulFruitEnvironment result = new StatefulFruitEnvironment();
+			result.setFactory(this);
+			return result;
 		}
 
 		protected EClassifier asEClassifier(Object context) {
@@ -213,7 +215,9 @@ public class StatesTest
 		}
 
 		public Environment createEnvironment(Environment parent) {
-			return new StatefulFruitEnvironment(parent);
+			StatefulFruitEnvironment result = new StatefulFruitEnvironment(parent);
+			result.setFactory(this);
+			return result;
 		}
 	}
 	
@@ -226,6 +230,16 @@ public class StatesTest
 		public StatefulFruitEnvironment() {
 			super(fruitPackage);
 			
+			init();
+		}
+		
+		public StatefulFruitEnvironment(Environment parent) {
+			super(parent);
+			
+			init();
+		}
+
+		private void init() {
 			fruitRipe = EcoreFactory.eINSTANCE.createEObject();
 			((InternalEObject) fruitRipe).eSetClass(Types.STATE);
 			fruitBad = EcoreFactory.eINSTANCE.createEObject();
@@ -236,10 +250,10 @@ public class StatesTest
 			((InternalEObject) appleRotten).eSetClass(Types.STATE);
 		}
 		
-		public StatefulFruitEnvironment(Environment parent) {
-			super(parent);
+		void setFactory(StatefulFruitEnvironmentFactory factory) {
+			super.setFactory(factory);
 		}
-
+		
 		protected void collectStates(EClassifier owner, List pathPrefix, List states) {
 			if (owner == fruit) {
 				if (pathPrefix.isEmpty()) {

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,10 +23,15 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
+import org.eclipse.ocl.AbstractEvaluationEnvironment;
+import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 
 /**
  * 
  * A mapping of names to objects used in the evaluation of expressions.
+ * 
+ * @deprecated Use the {@link AbstractEvaluationEnvironment} or
+ * {@link EcoreEvaluationEnvironment} class, instead.
  * 
  * @author Tim Klinger (tklinger)
  */

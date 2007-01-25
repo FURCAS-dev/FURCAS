@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ElementType.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
+ * $Id: ElementType.java,v 1.3 2007/01/25 18:34:33 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 /**
+ * @deprecated Use the {@link org.eclipse.ocl.types.ElementType} interface,
+ * instead.  Note also, that the {@link OCLStandardLibrary#getOclElement()}
+ * method provides the <tt>OclElement</tt> generic instance of this metaclass.
+ * 
  * @author Edith Schonberg (edith)
  *
  */

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.3 2006/10/10 14:29:19 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.4 2007/01/25 18:34:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -441,7 +441,7 @@ public class MessagesTest
 			choices = helper.getSyntaxHelp(
 					ConstraintType.POSTCONDITION, "self^^^"); //$NON-NLS-1$
 			assertNotNull(choices);
-			assertChoice(choices, ChoiceType.VARIABLE, "result"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceType.VARIABLE, "color"); //$NON-NLS-1$
 
 			choices = helper.getSyntaxHelp(
 					ConstraintType.POSTCONDITION,
@@ -488,7 +488,7 @@ public class MessagesTest
 			choices = helper.getSyntaxHelp(
 					ConstraintType.POSTCONDITION, "self^^^"); //$NON-NLS-1$
 			assertNotNull(choices);
-			assertChoice(choices, ChoiceType.VARIABLE, "result"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceType.VARIABLE, "color"); //$NON-NLS-1$
 
 			choices = helper.getSyntaxHelp(
 					ConstraintType.POSTCONDITION,
@@ -523,7 +523,9 @@ public class MessagesTest
 	public static class MessagingFruitEnvironmentFactory extends AbstractEnvironmentFactory {
 
 		protected Environment createEnvironment(EPackage packageContext) {
-			return new MessagingFruitEnvironment();
+			MessagingFruitEnvironment result = new MessagingFruitEnvironment();
+			result.setFactory(this);
+			return result;
 		}
 
 		protected EClassifier asEClassifier(Object context) {
@@ -539,7 +541,9 @@ public class MessagesTest
 		}
 
 		public Environment createEnvironment(Environment parent) {
-			return new MessagingFruitEnvironment(parent);
+			MessagingFruitEnvironment result = new MessagingFruitEnvironment(parent);
+			result.setFactory(this);
+			return result;
 		}
 	}
 	
@@ -551,6 +555,16 @@ public class MessagesTest
 		public MessagingFruitEnvironment() {
 			super(fruitPackage);
 			
+			init();
+		}
+		
+		public MessagingFruitEnvironment(Environment parent) {
+			super(parent);
+			
+			init();
+		}
+
+		private void init() {
 			dropSignal = EcoreFactory.eINSTANCE.createEClass();
 			dropSignal.setName("Drop"); //$NON-NLS-1$
 			UMLTypeUtil.setSignal(dropSignal, true);
@@ -569,10 +583,10 @@ public class MessagesTest
 			fruitPackage.getEClassifiers().add(dropSignal);
 		}
 		
-		public MessagingFruitEnvironment(Environment parent) {
-			super(parent);
+		void setFactory(MessagingFruitEnvironmentFactory factory) {
+			super.setFactory(factory);
 		}
-
+		
 		public EList getSignals(EClassifier owner) {
 			if (getParent() != null) {
 				return getParent().getSignals(owner);

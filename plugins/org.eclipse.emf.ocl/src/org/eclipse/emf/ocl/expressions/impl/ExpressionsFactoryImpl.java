@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsFactoryImpl.java,v 1.2 2006/05/30 21:37:21 cdamus Exp $
+ * $Id: ExpressionsFactoryImpl.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -56,10 +56,10 @@ import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
-import org.eclipse.emf.ocl.internal.parser.OCLLexer;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.uml.Constraint;
+import org.eclipse.ocl.internal.parser.OCLLexer;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory </b>. <!--
@@ -176,7 +176,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 			throws ParserException {
 		//
 		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		OCLParser parser = new OCLParser(lexer);
+		CompatibilityParser parser = new CompatibilityParser(lexer);
 		parser.setTraceFlag(false);
 
 		EList constraints = new BasicEList();

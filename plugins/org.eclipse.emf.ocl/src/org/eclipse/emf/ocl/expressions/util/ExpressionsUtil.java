@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,24 +21,30 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.internal.OCLDebugOptions;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
-import org.eclipse.emf.ocl.internal.parser.OCLLexer;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
-import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityUtil;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.uml.UMLPackage;
+import org.eclipse.ocl.OCL;
+import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.internal.parser.OCLLexer;
 
 /**
  * Static utilities for working with expressions.
  *
+ * @deprecated Use the {@link OCL} and {@link OCLHelper} APIs, instead.
+ * 
  * @author Christian W. Damus (cdamus)
  */
 public class ExpressionsUtil {
@@ -174,9 +180,11 @@ public class ExpressionsUtil {
 			Environment env,
 			String expression, boolean validate) throws ParserException {
 		
-		OCLParser parser = createParser("inv:", expression); //$NON-NLS-1$
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "inv:", expression); //$NON-NLS-1$
 		
-		Constraint constraint = parser.parseInvOrDefCS(env);
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parseInvOrDefCS(env));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -227,9 +235,11 @@ public class ExpressionsUtil {
 			Environment env,
 			String expression, boolean validate) throws ParserException {
 		
-		OCLParser parser = createParser("inv:", expression); //$NON-NLS-1$
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "inv:", expression); //$NON-NLS-1$
 		
-		Constraint constraint = parser.parseInvOrDefCS(env);
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parseInvOrDefCS(env));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -299,10 +309,10 @@ public class ExpressionsUtil {
 			String expression, boolean validate)
 			throws ParserException {
 		
-		OCLParser parser = createParser("pre:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.parsePrePostOrBodyDeclCS(
-			env,
-			env.getContextOperation());
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "pre:", expression); //$NON-NLS-1$
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parsePrePostOrBodyDeclCS(env, env.getContextOperation()));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -373,10 +383,10 @@ public class ExpressionsUtil {
 			String expression, boolean validate)
 			throws ParserException {
 		
-		OCLParser parser = createParser("post:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.parsePrePostOrBodyDeclCS(
-			env,
-			env.getContextOperation());
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "post:", expression); //$NON-NLS-1$
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parsePrePostOrBodyDeclCS(env, env.getContextOperation()));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -446,10 +456,10 @@ public class ExpressionsUtil {
 			String expression, boolean validate)
 			throws ParserException {
 		
-		OCLParser parser = createParser("body:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.parsePrePostOrBodyDeclCS(
-			env,
-			env.getContextOperation());
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "body:", expression); //$NON-NLS-1$
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parsePrePostOrBodyDeclCS(env, env.getContextOperation()));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -519,10 +529,10 @@ public class ExpressionsUtil {
 			String expression, boolean validate)
 			throws ParserException {
 		
-		OCLParser parser = createParser("init:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.parseInitOrDerValueCS(
-			env,
-			env.getContextProperty());
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "init:", expression); //$NON-NLS-1$
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parseInitOrDerValueCS(env, env.getContextProperty()));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -592,10 +602,10 @@ public class ExpressionsUtil {
 			String expression, boolean validate)
 			throws ParserException {
 		
-		OCLParser parser = createParser("derive:", expression); //$NON-NLS-1$
-		Constraint constraint = parser.parseInitOrDerValueCS(
-			env,
-			env.getContextProperty());
+		CompatibilityParser parser = createParser(
+				env.getFactory(), "derive:", expression); //$NON-NLS-1$
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parseInitOrDerValueCS(env, env.getContextProperty()));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		OCLExpression result = constraint.getBody();
@@ -640,9 +650,10 @@ public class ExpressionsUtil {
 			Environment env,
 			String defExpression) throws ParserException {
 		
-		OCLParser parser = createParser("def:", env.getFactory(), defExpression); //$NON-NLS-1$
+		CompatibilityParser parser = createParser("def:", env.getFactory(), defExpression); //$NON-NLS-1$
 		
-		Constraint constraint = parser.parseInvOrDefCS(env);
+		Constraint constraint = (Constraint) CompatibilityUtil.getOldAS(
+				env, parser.parseInvOrDefCS(env));
 		constraint.setInstanceVarName(SELF_NAME);
 		
 		constraint.accept(ValidationVisitorImpl.getInstance(env));
@@ -659,8 +670,8 @@ public class ExpressionsUtil {
 	 * 
 	 * @return the parser
 	 */
-	private static OCLParser createParser(String prefix, String text) {
-		return createParser(prefix, EcoreEnvironmentFactory.ECORE_INSTANCE, text);
+	private static CompatibilityParser createParser(EnvironmentFactory factory, String prefix, String text) {
+		return createParser(prefix, factory, text);
 	}
 
 	/**
@@ -674,11 +685,11 @@ public class ExpressionsUtil {
 	 * 
 	 * @return the parser
 	 */
-	private static OCLParser createParser(String prefix,
+	private static CompatibilityParser createParser(String prefix,
 			EnvironmentFactory environmentFactory, String text) {
 		
 		OCLLexer lexer = new OCLLexer((prefix + '\n' + text).toCharArray());
-		OCLParser result = new OCLParser(lexer, environmentFactory);
+		CompatibilityParser result = new CompatibilityParser(lexer, environmentFactory);
 		
 		// we prefix the constraint with "inv:", "pre:", "def:", etc. which the
 		//    user cannot see, so we want error resporting to be relative
@@ -732,4 +743,62 @@ public class ExpressionsUtil {
 		return (constraint != null)
 				&& Constraint.POSTCONDITION.equals(constraint.getStereotype());
 	}
+    
+    /**
+     * Converts the specified expression to the generic AST model.  Useful for
+     * migration from the pre-1.1 API.
+     * 
+     * @param env the OCL environment
+     * @param expression an expression to convert to the 1.1-version generic
+     *     model
+     * 
+     * @return the converted expression
+     * 
+     * @since 1.1
+     */
+    @SuppressWarnings("unchecked")
+    public static org.eclipse.ocl.expressions.OCLExpression<EClassifier>
+    toGenericAST(Environment env, OCLExpression expression) {
+        
+        return (org.eclipse.ocl.expressions.OCLExpression<EClassifier>)
+            CompatibilityUtil.getNewAS(env, expression);
+    }
+    
+    /**
+     * Converts the specified variable to the generic AST model.  Useful for
+     * migration from the pre-1.1 API.
+     * 
+     * @param env the OCL environment
+     * @param variable a variable to convert to the 1.1-version generic model
+     * 
+     * @return the converted variable
+     * 
+     * @since 1.1
+     */
+    @SuppressWarnings("unchecked")
+    public static org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>
+    toGenericAST(Environment env, Variable variable) {
+        
+        return (org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>)
+            CompatibilityUtil.getNewAS(env, variable);
+    }
+    
+    /**
+     * Converts the specified constraint to the generic AST model.  Useful for
+     * migration from the pre-1.1 API.
+     * 
+     * @param env the OCL environment
+     * @param constraint a constraint to convert to the 1.1-version generic model
+     * 
+     * @return the converted constraint
+     * 
+     * @since 1.1
+     */
+    public static org.eclipse.ocl.ecore.Constraint toGenericAST(
+        Environment env,
+        Constraint constraint) {
+        
+        return (org.eclipse.ocl.ecore.Constraint)
+            CompatibilityUtil.getNewAS(env, constraint);
+    }
 }

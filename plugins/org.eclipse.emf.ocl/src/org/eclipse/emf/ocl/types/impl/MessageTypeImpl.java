@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.5 2006/04/28 14:46:28 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.6 2007/01/25 18:34:37 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.MessageType;
 import org.eclipse.emf.ocl.types.TypesPackage;
@@ -334,7 +334,7 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 				OCLMessages.TypeMismatch_ERROR_,
 				this.getName(),
 				TypeUtil.getName(type));
-		OCLParser.ERR(message);
+		CompatibilityParser.ERR(message);
 		
 		// don't get this far
 		return null;

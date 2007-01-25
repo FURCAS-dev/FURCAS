@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,13 +25,10 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.EClassImpl;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.AnyType;
@@ -56,9 +53,15 @@ import org.eclipse.emf.ocl.types.impl.PrimitiveStringImpl;
 import org.eclipse.emf.ocl.types.impl.TypeTypeImpl;
 import org.eclipse.emf.ocl.types.impl.VoidTypeImpl;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
  * A collection of global static types.
+ * 
+ * @deprecated Use the {@link OCLStandardLibrary} interface,
+ * instead, to access the standard library types.
+ * 
  */
 public class Types {
 	/**
@@ -141,21 +144,13 @@ public class Types {
 			return standardLibrary;
 		}
 		
-		standardLibrary = new EPackageImpl() {
-			public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
-				String result = super.eURIFragmentSegment(eStructuralFeature, eObject);
-				return URI.encodeFragment(result, false);
-			}};
+		standardLibrary = EcoreFactory.eINSTANCE.createEPackage();
 		standardLibrary.setName("oclstdlib"); //$NON-NLS-1$
 		standardLibrary.setNsPrefix("oclstdlib"); //$NON-NLS-1$
 		standardLibrary.setNsURI("http://www.eclipse.org/OCL2/1.0.0/oclstdlib"); //$NON-NLS-1$
 		
-		Resource res = new ResourceImpl(URI.createURI(standardLibrary.getNsURI())){
-			public EObject getEObject(String uriFragment) {
-				// our stdlib package implementation encodes type names because
-				//    they may contain spaces or other bad characters
-				return super.getEObject(URI.decode(uriFragment));
-			}};
+		Resource res = OCLEcorePlugin.getEcoreResourceFactory().createResource(
+            URI.createURI(standardLibrary.getNsURI()));
 		res.getContents().add(standardLibrary);
 		
 		register(OCL_ANY_TYPE);
@@ -199,11 +194,7 @@ public class Types {
 				eclass = (EClass) stdType;
 			} else {
 				// create the shadow class to store the operations
-				eclass = new EClassImpl() {
-					public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
-						String result = super.eURIFragmentSegment(eStructuralFeature, eObject);
-						return URI.encodeFragment(result, false);
-					}};
+				eclass = EcoreFactory.eINSTANCE.createEClass();
 				eclass.setName(stdType.getName() + "_Class"); //$NON-NLS-1$
 			}
 			

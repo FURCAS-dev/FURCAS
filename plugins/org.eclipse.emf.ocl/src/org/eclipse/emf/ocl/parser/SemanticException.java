@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SemanticException.java,v 1.1 2006/04/04 18:09:06 cdamus Exp $
+ * $Id: SemanticException.java,v 1.2 2007/01/25 18:34:33 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.parser;
@@ -20,6 +20,9 @@ package org.eclipse.emf.ocl.parser;
 /**
  * This exception is thrown when an error is found
  * while building the OCL AST.
+ * 
+ * @deprecated Use the {@link org.eclipse.ocl.SemanticException} interface,
+ * instead.
  * 
  * @author Christian Vogt (cvogt)
  */
