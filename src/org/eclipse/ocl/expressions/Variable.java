@@ -1,0 +1,83 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: Variable.java,v 1.1 2007/01/25 18:24:32 cdamus Exp $
+ */
+package org.eclipse.ocl.expressions;
+
+import org.eclipse.ocl.utilities.TypedASTNode;
+import org.eclipse.ocl.utilities.TypedElement;
+import org.eclipse.ocl.utilities.Visitable;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Variable</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.expressions.Variable#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.expressions.Variable#getRepresentedParameter <em>Represented Parameter</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable()
+ * @model
+ * @generated
+ */
+public interface Variable<C, PM> extends TypedElement<C>, Visitable, TypedASTNode {
+	/**
+	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Init Expression</em>' containment reference.
+	 * @see #setInitExpression(OCLExpression<C>)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_InitExpression()
+	 * @model containment="true"
+	 * @generated
+	 */
+	OCLExpression<C> getInitExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.Variable#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
+	 * @see #getInitExpression()
+	 * @generated
+	 */
+	void setInitExpression(OCLExpression<C> value);
+
+	/**
+	 * Returns the value of the '<em><b>Represented Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Represented Parameter</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Represented Parameter</em>' reference.
+	 * @see #setRepresentedParameter(PM)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_RepresentedParameter()
+	 * @model
+	 * @generated
+	 */
+	PM getRepresentedParameter();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.Variable#getRepresentedParameter <em>Represented Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Represented Parameter</em>' reference.
+	 * @see #getRepresentedParameter()
+	 * @generated
+	 */
+	void setRepresentedParameter(PM value);
+
+} // Variable

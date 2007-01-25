@@ -1,0 +1,53 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: EnumLiteralExp.java,v 1.1 2007/01/25 18:24:32 cdamus Exp $
+ */
+package org.eclipse.ocl.expressions;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Enum Literal Exp</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.expressions.EnumLiteralExp#getReferredEnumLiteral <em>Referred Enum Literal</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.ocl.expressions.ExpressionsPackage#getEnumLiteralExp()
+ * @model
+ * @generated
+ */
+public interface EnumLiteralExp<C, EL> extends LiteralExp<C> {
+	/**
+	 * Returns the value of the '<em><b>Referred Enum Literal</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referred Enum Literal</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referred Enum Literal</em>' reference.
+	 * @see #setReferredEnumLiteral(EL)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getEnumLiteralExp_ReferredEnumLiteral()
+	 * @model
+	 * @generated
+	 */
+	EL getReferredEnumLiteral();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.EnumLiteralExp#getReferredEnumLiteral <em>Referred Enum Literal</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referred Enum Literal</em>' reference.
+	 * @see #getReferredEnumLiteral()
+	 * @generated
+	 */
+	void setReferredEnumLiteral(EL value);
+
+} // EnumLiteralExp
