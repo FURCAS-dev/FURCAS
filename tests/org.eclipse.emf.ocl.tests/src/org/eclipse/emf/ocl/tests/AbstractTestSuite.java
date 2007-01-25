@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -52,8 +53,7 @@ import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.helper.Choice;
 import org.eclipse.emf.ocl.helper.ChoiceType;
-import org.eclipse.emf.ocl.internal.parser.OCLLexer;
-import org.eclipse.emf.ocl.internal.parser.OCLParser;
+import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.ParserException;
@@ -61,6 +61,7 @@ import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.Visitable;
+import org.eclipse.ocl.internal.parser.OCLLexer;
 
 
 /**
@@ -123,7 +124,7 @@ public abstract class AbstractTestSuite
 	 * @return the suite
 	 */
 	public static Test suite() {
-		TestSuite result = new TestSuite("OCL Parsing Tests"); //$NON-NLS-1$
+		TestSuite result = new TestSuite("Old OCL API Tests"); //$NON-NLS-1$
 		
 		result.addTest(BasicOCLTest.suite());
 		result.addTest(ComparisonTest.suite());
@@ -225,9 +226,13 @@ public abstract class AbstractTestSuite
 	}
 
 	private Environment createEnvironment(Constraint constraint) {
+		ENamedElement context = (ENamedElement) constraint.getConstrainedElement().get(0);
+		return createEnvironment(context);
+	}
+	
+	protected Environment createEnvironment(ENamedElement context) {
 		Environment result = null;
 		
-		Object context = constraint.getConstrainedElement().get(0);
 		if (context instanceof EClassifier) {
 			result = ExpressionsUtil.createClassifierContext((EClassifier) context);
 		} else if (context instanceof EOperation) {
@@ -296,8 +301,8 @@ public abstract class AbstractTestSuite
 	 */
 	protected OCLExpression parseConstraintUnvalidated(String text) {
 		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		OCLParser parser = new OCLParser(lexer);
-		parser.setTraceFlag(true);
+		CompatibilityParser parser = new CompatibilityParser(lexer);
+//		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
 		Constraint constraint = null;
@@ -335,8 +340,8 @@ public abstract class AbstractTestSuite
 	 */
 	protected OCLExpression parseConstraintUnvalidated(String text, Environment[] env) {
 		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		OCLParser parser = new OCLParser(lexer);
-		parser.setTraceFlag(true);
+		CompatibilityParser parser = new CompatibilityParser(lexer);
+//		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
 		Constraint constraint = null;
@@ -440,13 +445,14 @@ public abstract class AbstractTestSuite
 	 * constraint, which is critically important to the structure of the defined
 	 * feature.
 	 * 
+	 * @param env the environment in which the operation or property is to be defined
 	 * @param text the OCL text
 	 * @return the OCL def expression
 	 */
 	protected OCLExpression parseDef(String text) {
 		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		OCLParser parser = new OCLParser(lexer);
-		parser.setTraceFlag(true);
+		CompatibilityParser parser = new CompatibilityParser(lexer);
+//		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
 		Constraint constraint = null;

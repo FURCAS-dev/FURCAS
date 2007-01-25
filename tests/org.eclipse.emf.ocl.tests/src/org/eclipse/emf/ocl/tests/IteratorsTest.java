@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.4 2006/10/10 14:29:19 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.5 2007/01/25 18:34:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -802,7 +802,7 @@ public class IteratorsTest
 		
 		try {
 			Object result = helper.evaluate(EcorePackage.eINSTANCE,
-				"let b:Boolean = null in eClassifiers->closure(c | b implies c.name.size() > 0)"); //$NON-NLS-1$
+				"eClassifiers->closure(OclInvalid)"); //$NON-NLS-1$
 			
 			assertSame(Types.OCL_INVALID, result);
 			

@@ -53,7 +53,6 @@ import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
-import org.eclipse.emf.ocl.internal.cst.CSTPackage;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
@@ -72,6 +71,7 @@ import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.UMLPackage;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
+import org.eclipse.ocl.internal.cst.CSTPackage;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -1527,8 +1527,9 @@ public class RegressionTest
 		assertNotNull(UtilitiesPackage.eINSTANCE.getESuperPackage());
 		assertEquals("ocl", UtilitiesPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
 		
-		assertNotNull(CSTPackage.eINSTANCE.getESuperPackage());
-		assertEquals("ocl", CSTPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
+// TODO: Refactor such that CST is no longer a sub-package of ocl
+//		assertNotNull(CSTPackage.eINSTANCE.getESuperPackage());
+//		assertEquals("ocl", CSTPackage.eINSTANCE.getESuperPackage().getName()); //$NON-NLS-1$
 		
 		assertNotNull(TypesPackage.eINSTANCE.getESuperPackage().eResource());
 		assertEquals(

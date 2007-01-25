@@ -19,6 +19,9 @@ package org.eclipse.emf.ocl.tests;
 
 import java.util.Arrays;
 
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
@@ -36,6 +39,12 @@ public class AllTests
 	}
 
 	public static Test suite() {
+		if (System.getProperty("standalone") != null) {
+			// running tests stand-alone:  must set up the environment registry
+			Environment.Registry.INSTANCE.registerEnvironment(
+					EcoreEnvironmentFactory.INSTANCE.createEnvironment());
+		}
+		
 		return AbstractTestSuite.suite();
 	}
 

@@ -360,12 +360,8 @@ public class AssociationTest
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
 			constraint);
 		
-		// the OCL is implicitly Set{self.stem}->notEmpty()
-		CollectionLiteralExp setExp = LocationInformationTest.asCollectionLiteral(
-			notEmptyExp.getSource());
-		
 		FeatureCallExp mpcExp = LocationInformationTest.asFeatureCall(
-			((CollectionItem) setExp.getPart().get(0)).getItem());
+				notEmptyExp.getSource());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
 			exprString.indexOf("stem"), //$NON-NLS-1$
@@ -411,12 +407,8 @@ public class AssociationTest
 		OperationCallExp notEmptyExp = LocationInformationTest.asOperationCall(
 			constraint);
 		
-		// the OCL is implicitly Set{self.stem}->notEmpty()
-		CollectionLiteralExp setExp = LocationInformationTest.asCollectionLiteral(
-			notEmptyExp.getSource());
-		
 		AssociationClassCallExp accExp = LocationInformationTest.asAssociationClassCall(
-			((CollectionItem) setExp.getPart().get(0)).getItem());
+				notEmptyExp.getSource());
 		
 		List qualifiers = accExp.getQualifier();
 		assertEquals(1, qualifiers.size());
