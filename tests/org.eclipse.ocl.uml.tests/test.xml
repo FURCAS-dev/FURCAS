@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: test.xml,v 1.1 2007/01/25 18:41:54 cdamus Exp $
+ * $Id: test.xml,v 1.2 2007/01/25 20:49:38 cdamus Exp $
  */
 -->
 
@@ -24,7 +24,7 @@
   <property name="eclipse-home" value="${basedir}\..\.."/>
 
   <!-- sets the properties plugin-name, and library-file -->
-  <property name="plugin-name" value="org.eclipse.emf.ocl.tests"/>
+  <property name="plugin-name" value="org.eclipse.ocl.uml.tests"/>
   <property name="library-file" value="${eclipse-home}/plugins/org.eclipse.test/library.xml"/>
 
   <!-- This target holds all initialization code that needs to be done for -->
@@ -44,7 +44,7 @@
     <ant target="core-test" antfile="${library-file}" dir="${eclipse-home}">
       <property name="data-dir" value="${emft-folder}"/>
       <property name="plugin-name" value="${plugin-name}"/>
-      <property name="classname" value="org.eclipse.emf.ocl.tests.AllTests"/>
+      <property name="classname" value="org.eclipse.ocl.uml.tests.AllTests"/>
     </ant>
   </target>
 
