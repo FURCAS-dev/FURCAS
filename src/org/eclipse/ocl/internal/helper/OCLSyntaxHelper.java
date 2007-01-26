@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.1 2007/01/25 18:24:39 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.2 2007/01/26 21:35:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -259,7 +259,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			result.append(')');
 		} else {
 			result.append(") : "); //$NON-NLS-1$
-			result.append(getDescription(uml.getOCLType(operation)));
+			result.append(uml.getName(uml.getOCLType(operation)));
 		}
 		
 		return result.toString();
@@ -491,7 +491,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		for (P property : properties) {
 			result.add(new ChoiceImpl(
                 uml.getName(property),
-                uml.getDescription(property),
+                getDescription(property),
                 ChoiceKind.PROPERTY,
 				property));
 			
