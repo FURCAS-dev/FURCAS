@@ -7,7 +7,7 @@ pluginName="org.eclipse.emf.ocl";
 
 # string labels for javadoc content
 windowTitle="OCL Javadoc";
-groupTitle="OCL";
+groupTitle="OCL Compatibility API";
 
 # files to exclude from javadoc process - use Ant syntax
 javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
@@ -132,8 +132,8 @@ rm -f $antScript $antScript.template.tmp $antScript.template.tmp2;
 trXML=$currentPath"/../topics_Reference.xml";
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $trXML;
 echo '<?NLS TYPE="org.eclipse.help.toc"?>' >> $trXML;
-echo '<toc label="Reference">' >> $trXML;
-echo '  <topic label="API Reference" href="references/javadoc/overview-summary.html">' >> $trXML;
+echo '<toc link_to="../org.eclipse.ocl.doc/toc.xml#other-reference" label="OCL Compatibility API Reference">' >> $trXML;
+echo '  <topic label="OCL Compatibility API Reference" href="references/javadoc/overview-summary.html">' >> $trXML;
 for packSum in `find $destDir -name "package-summary.html" | sort`; do
 	path=${packSum%/package-summary.html}; path=${path#$destDir/}; # org/eclipse/xsd/ecore/importer/taskdefs
 	label=${path//\//.}; # org.eclipse.xsd.ecore.importer.taskdefs
