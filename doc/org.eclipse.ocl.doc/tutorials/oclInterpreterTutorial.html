@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="Stylesheet" type="text/css" href="doc.css" />
+		<title>Tutorial: Working with OCL</title>
+	</head>
+	<body>
+		<h1><a name="top">Tutorial: Working with OCL</a></h1>
+
+		<h2>Contents</h2>
+
+		<ul>
+			<li><a href="#overview">Overview</a></li>
+			<li><a href="#refs">References</a></li>
+			<li><a href="#validating">Validating OCL Expressions</a></li>
+			<li><a href="#evaluating">Evaluating OCL Expressions</a></li>
+			<li><a href="#ast">Working with the AST</a></li>
+			<li><a href="#summary">Summary</a></li>
+		</ul>
+
+		<h2><a name="overview">Overview</a></h2>
+		<p>
+			The project includes a parser/interpreter for the
+			Object Constraint Language (OCL) version 2.0 for EMF.  Using this parser, you
+			can evaluate OCL expressions on elements in any EMF metamodel.  The following
+			features are supported in the current version:
+			<ul>
+				<li>Classifier invariant constraints</li>
+				<li>Operation precondition and postcondition constraints and body conditions</li>
+				<li>Package context declaration</li>
+				<li>Basic values and types</li>
+				<li>Collection types</li>
+				<li>Navigation of attributes and association ends</li>
+				<li>Operation invocation</li>
+				<li>Iteration expressions (all standard iterators)</li>
+				<li>Let expressions</li>
+				<li>If expressions</li>
+				<li>Tuples</li>
+				<li>Operations predefined by OCL:  allInstances(), oclIsKindOf(), oclIsTypeOf()</li>
+				<li>Attribute and operation definitions, including init:, derive:, and def: expressions</li>
+				<li>Navigation to association classes</li>
+				<li>Operations predefined by OCL: oclIsInState(), oclIsNew()</li>
+				<li>Message expressions</li>
+				<li>
+					Escape syntax for illegal names:  type, operation, attribute, etc. names
+					that correspond to OCL reserved words or that contain spaces or tabs can
+					be escaped by enclosing them in double-quotes (").  e.g.,
+					<pre class="codeblock">self.expressions-&gt;collect(expr : OclExpression | expr."context")</pre>
+				</li>
+			</ul>
+		</p>
+		<p>
+			The following features are provided in addition to the OCL specification:
+			<ul>
+				<li>String case conversion operations:  toUpper(), toLower()</li>
+				<li>Support for comparison (&lt;, &lt;=, etc.) and sorting of any
+				    java <code>Comparable</code>s of conformant types</li>
+				<li>Transitive closure of associations:  closure(expr : OCLExpression) iterator</li>
+			</ul>
+		</p>
+		<p>
+			This tutorial will illustrate the various functions that the OCL parser can
+			perform.
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="refs">References</a></h2>
+		<p>
+			This tutorial assumes that the reader is familiar with the Eclipse extension point
+			architecture.  There is an abundance of on-line help in Eclipse for those
+			unfamiliar with extension points.
+		</p>
+		<p>
+			To see the complete source code for the examples shown in this tutorial, install
+			the <a href="../references/examples/oclInterpreterExample.html">OCL Interpreter Example</a>
+			plug-in into your workspace.
+		</p>
+		<p>
+			Other references:
+			<ul>
+				<li>
+					For an environment in which to test the OCL expressions that you will create
+					in this tutorial, install the
+					<a href="../references/examples/exampleOverview.html">Library Metamodel</a>
+					example.
+				</li>
+				<li>
+					<a target="_blank" href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14">OCL 2.0</a> specification.
+				</li>
+			</ul>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="validating">Validating OCL Expressions</a></h2>
+		<p>
+			The first responsibility of the OCL interpreter is to parse OCL expressions.
+			This capability by itself allows us to validate the well-formedness of OCL text.
+			We do this by creating a
+			<code><a href="../references/javadoc/org/eclipse/emf/ocl/query/Query.html">Query</a></code>
+			instance which automatically validates itself when it is constructed:
+<pre class="codeblock">
+boolean valid;
+
+try {
+    Query query = QueryFactory.eINSTANCE.createQuery(
+        "self.books-&gt;collect(b : Book | b.category)-&gt;asSet()",
+        LibraryPackage.eINSTANCE.getWriter());
+    
+    // record success
+    valid = true;
+} catch (IllegalArgumentException e) {
+    // record failure to parse
+    valid = false;
+    System.err.println(e.getLocalizedMessage());
+}
+</pre>
+		</p>
+		<p>
+			The example above parses an expression that computes the distinct categories
+			of <code>Book</code>s associated with a <code>Writer</code>.  The possible
+			reasons why it would fail to parse (in which case an
+			<code>IllegalArgumentException</code> is thrown) include:
+			<ul>
+				<li>
+					syntactical problems:  misplaced or missing constructs such as closing
+					parentheses, variable declarations, type expressions, etc.
+				</li>
+				<li>
+					contextual problems:  unknown attributes or operations of the context
+					type or referenced types, unknown <code>EPackage</code>s, etc.
+				</li>
+			</ul>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="evaluating">Evaluating OCL Expressions</a></h2>
+		<p>
+			More interesting than validating an OCL expression is evaluating it on some
+			object.  The
+			<code><a href="../references/javadoc/org/eclipse/emf/ocl/query/Query.html">Query</a></code>
+			interface provides two methods for evaluating expressions:
+			<ul>
+				<li>
+					<code><a href="../references/javadoc/org/eclipse/emf/ocl/query/Query.html#evaluate(org.eclipse.emf.ecore.EObject)">evaluate(EObject eobj)</a></code>:
+					evaluates the expression on the specified object, returning the result.
+					The caller is expected to know the result type, which could be a
+					primitive, <code>EObject</code>, or a collection.  There are variants
+					of this method for evaluation of the query on multiple objects and on
+					no object at all (for queries that require no "self" context).
+				</li>
+				<li>
+					<code><a href="../references/javadoc/org/eclipse/emf/ocl/query/Query.html#check(org.eclipse.emf.ecore.EObject)">check(EObject eobj)</a></code>:
+					This method evaluates a special kind of OCL expression called a
+					<i>constraint</i>.  Constraints are distinguished from other OCL queries
+					by having a boolean value; thus, they can be used to implement invariant
+					or pre/post-condition constraints.  There are variants for checking
+					multiple objects and for selecting/rejecting elements of a list that
+					satisfy the constraint.
+				</li>
+			</ul>
+		</p>
+		<p>
+			In order to support the <code>allInstances()</code> operation on OCL types,
+			the <code>Query</code> API provides the
+			<code><a href="../references/javadoc/org/eclipse/emf/ocl/query/Query.html#setExtentMap(java.util.Map)">setExtentMap(Map extentMap)</a></code>
+			method.  This assigns a mapping of <code>EClass</code>es to the sets of
+			their instances.  We will use this in evaluating a query expression that finds
+			books that have the same title as a designated book:
+<pre class="codeblock">
+Map extents = new HashMap();
+Set books = new HashSet();
+extents.put(LibraryPackage.eINSTANCE.getBook(), books);
+
+Book myBook = Factory.eINSTANCE.createBook();
+myBook.setTitle("David Copperfield");
+books.add(myBook);
+
+Book aBook = Factory.eINSTANCE.createBook();
+aBook.setTitle("The Pickwick Papers");
+books.add(aBook);
+aBook = Factory.eINSTANCE.createBook();
+aBook.setTitle("David Copperfield");
+books.add(aBook);
+aBook = Factory.eINSTANCE.createBook();
+aBook.setTitle("Nicholas Nickleby");
+books.add(aBook);
+
+Query query = QueryFactory.eINSTANCE.createQuery(
+    "Book.allInstances()-&gt;select(b : Book | b &lt;&gt; self and b.title = self.title)",
+    LibraryPackage.eINSTANCE.getBook());
+
+query.setExtentMap(extents);
+
+Collection result = query.evaluate(myBook);
+System.out.println(result);
+</pre>
+		</p>
+		<p>
+			Now, let's imagine the confusion that arises from a library that has more than
+			one book of the same title (we are not intending to model copies).  We will
+			create an invariant constraint for <code>Book</code>s stipulating that this is
+			not permitted, and use the <code>check()</code> method to assert it.  Using
+			the <code>myBook</code> and <code>extents</code> map from above:
+<pre class="codeblock">
+Query query = QueryFactory.eINSTANCE.createQuery(
+    "Book.allInstances()-&gt;select(b : Book | b &lt;&gt; self and b.title = self.title)-&gt;isEmpty()",
+    LibraryPackage.eINSTANCE.getBook());
+
+query.setExtentMap(extents);
+
+boolean result = query.check(myBook);
+System.out.println(result);
+</pre>
+		</p>
+		<p>
+			The difference here is the <code>-&gt;isEmpty()</code> expression that changes
+			our query to a boolean-valued constraint.  <code>myBook</code> checks
+			<code>false</code>.
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<a name="ast" />
+		<h2>Working with the AST</h2>
+		<p>
+			The OCL Interpreter models the OCL language using EMF.  Thus, the AST that
+			results from parsing text is actually an EMF model in its own right.
+		</p>
+		<p>
+			By implementing the 
+			<code><a href="../references/javadoc/org/eclipse/emf/ocl/expressions/Visitor.html">Visitor</a></code>
+			interface, we can walk the AST of an OCL expression to transform it in some way.
+			This is exactly what the interpreter, itself, does when evaluating an
+			expression:  it just walks the expression using an evaluation visitor.  For
+			example, we can count the number times that a specific attribute is
+			referenced in the expression:
+<pre class="codeblock">
+Query query = QueryFactory.eINSTANCE.createQuery(
+    "Book.allInstances()-&gt;select(b : Book | b &lt;&gt; self and b.title = self.title)-&gt;isEmpty()",
+    LibraryPackage.eINSTANCE.getBook());
+OclExpression expr = query.getExpression();
+
+AttributeCounter visitor = new AttributeCounter(
+    LibraryPackage.eINSTANCE.getBook_Title());
+expr.accept(visitor);
+
+System.out.println(
+    "Number of accesses to the 'Book::title' attribute: " + visitor.getCount());
+</pre>
+			where the visitor is defined thus:
+<pre class="codeblock">
+class AttributeCounter implements Visitor {
+    private final EAttribute attribute;
+    private int count = 0;
+    
+    AttributeCounter(EAttribute attribute) {
+        this.attribute = attribute;
+    }
+    
+    int getCount() {
+        return count;
+    }
+    
+    public Object visitPropertyCallExp(PropertyCallExp pc) {
+        if (pc.getReferredProperty() == attribute) {
+            // count one
+            count++;
+        }
+        
+        return null;
+    }
+    
+    // other visitor methods are no-ops ...
+</pre>
+		</p>
+		<p>
+			Because the OCL expression AST is a graph of EMF objects, we can serialize it
+			to an XMI file and deserialize it again later.  To save our example expression:
+<pre class="codeblock">
+Query query = QueryFactory.eINSTANCE.createQuery(
+    "Book.allInstances()-&gt;select(b : Book | b &lt;&gt; self and b.title = self.title)-&gt;isEmpty()",
+    LibraryPackage.eINSTANCE.getBook());
+OclExpression expr = query.getExpression();
+
+OclResource res = new OclResource(URI.createFileURI("C:\\temp\\expr.xmi"));
+res.setOclExpression(expr);
+res.save(Collections.EMPTY_MAP);
+</pre>
+		</p>
+		<p>
+			To load a saved OCL expression is just as easy:
+<pre class="codeblock">
+OclResource res = new OclResource(URI.createFileURI("C:\\temp\\expr.xmi"));
+res.load(Collections.EMPTY_MAP);
+
+Query query = QueryFactory.eINSTANCE.createQuery(
+    res.getOclExpression());
+
+System.out.println(query.check(myBook));
+</pre>
+		</p>
+		<p>
+			Defining the <code>OclResource</code> implementation is fairly straightforward.
+			Because the AST actually comprises multiple distinct <code>EObject</code> trees,
+			we must take care to find all referenced elements and include them in the
+			resource, otherwise we will lose data:
+<pre class="codeblock">
+public class OclResource extends XMIResourceImpl {
+
+    public OclResource(URI uri) {
+        super(uri);
+    }
+    
+    public void setOclExpression(OclExpression expr) {
+        getContents().clear();  // clear any previous contents
+        getContents().add(expr);
+        
+        addAllDetachedObjects();  // find detached objects and attach them
+    }
+    
+    public OclExpression getOclExpression() {
+        OclExpression result = null;
+        
+        if (!getContents().isEmpty()) {
+            result = (OclExpression) getContents().get(0);
+        }
+        
+        return result;
+    }
+</pre>
+		</p>
+		<p>
+			The <code>addAllDetachedObjects()</code> method uses EMF's cross-referencing
+			feature together with the
+			<code><a href="/help/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/ecore/util/EcoreUtil.html">EcoreUtil</a></code>
+			API to iterate the content tree searching for referenced objects that are not
+			attached to the resource.  This process is repeated on each detached tree until
+			no more detached elements can be found.
+<pre class="codeblock">
+    private void addAllDetachedObjects() {
+        List toProcess = Collections.singletonList(getOclExpression());
+        
+        while (!toProcess.isEmpty()) {
+            List detachedFound = new ArrayList();
+            
+            for (Iterator tree = EcoreUtil.getAllContents(toProcess); tree.hasNext();) {
+                EObject next = (EObject) tree.next();
+                
+                for (Iterator xrefs = next.eCrossReferences().iterator(); xrefs.hasNext();) {
+                    EObject xref = (EObject) xrefs.next();
+                    
+                    if (xref.eResource() == null) {
+                        // get the root container so that we may attach the entire
+                        //    contents of this detached tree
+                        xref = EcoreUtil.getRootContainer(xref);
+                        
+                        detachedFound.add(xref);
+                        
+                        // attach it to me
+                        getContents().add(xref);
+                    }
+                }
+            }
+            
+            toProcess = detachedFound;
+        }
+    }
+</pre>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<h2><a name="summary">Summary</a></h2>
+		<p>
+			To illustrate how to work with the OCL Interpreter, we
+			<ol>
+				<li>Parsed and validated OCL expressions.</li>
+				<li>Evaluated OCL query expressions and constraints.</li>
+				<li>Transformed an OCL expression AST using the <i>Visitor</i> pattern.</li>
+				<li>Saved and loaded OCL expressions to/from XMI resources.</li>
+			</ol>
+		</p>
+		<p class="small">[<a href="#top">back to top</a>]</p>
+
+		<hr />
+
+		<p><a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000,2005 IBM Corporation and others. All Rights Reserved.</a></p>
+	</body>
+</html>
