@@ -22,5 +22,6 @@
 
 	<topic label="Reference">
 		<link toc="topics_Reference.xml"/>
+		<anchor id="other-reference"/>
 	</topic>
 </toc>

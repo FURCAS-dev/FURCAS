@@ -1,11 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
-Bundle-SymbolicName: org.eclipse.emf.ocl.doc;singleton:=true
+Bundle-SymbolicName: org.eclipse.ocl.doc;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: %Provider.name
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.help;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ocl.doc;bundle-version="[1.1.0,2.0.0)"
+Require-Bundle: org.eclipse.help;bundle-version="[3.2.0,4.0.0)"
 Eclipse-LazyStart: true
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
