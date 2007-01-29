@@ -74,6 +74,9 @@
 
 				<group title="${groupTitle}" packages="@plugin@"/>
 				
+				<group title="OCL Binding for Ecore Metamodel" packages="org.eclipse.ocl.ecore:org.eclipse.ocl.ecore.impl:org.eclipse.ocl.ecore.util"/>
+				<group title="OCL Binding for UML Metamodel" packages="org.eclipse.ocl.uml:org.eclipse.ocl.uml.impl:org.eclipse.ocl.uml.util"/>
+				
 				<!-- If you add a @ plugin @ above, don't forget to update the antjavadoc.sh file -->
 
 				@packagesets@
