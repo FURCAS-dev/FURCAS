@@ -2,7 +2,7 @@
 <project name="org.eclipse.emf.ocl.doc" default="build.jars" basedir=".">
 
 	<!-- Plug-in information.  This is a HACK.  Do not forget to update version numbers, etc.. -->
-	<property name="pluginVersion" value="1.0.1"/>
+	<property name="pluginVersion" value="1.1.0"/>
 
 	<property name="plugin" value="org.eclipse.emf.ocl"/>
 	<property name="docPlugin" value="org.eclipse.emf.ocl.doc"/>
@@ -13,8 +13,8 @@
 	<property name="javacFailOnError" value="false"/>
 	<property name="javacDebugInfo" value="on"/>
 	<property name="javacVerbose" value="true"/>
-	<property name="javacSource" value="1.4"/>
-	<property name="javacTarget" value="1.4"/>
+	<property name="javacSource" value="1.5"/>
+	<property name="javacTarget" value="1.5"/>
 	<property name="compilerArg" value=""/>
 	<path id="path_bootclasspath">
 		<fileset dir="${java.home}/lib">
@@ -66,8 +66,9 @@
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
 		</exec>
-		
-		<antcall target="build.index"/>
+
+		<!-- We don't have anything to index at this stage. -->
+		<!-- <antcall target="build.index"/> -->
 	</target>
 
 	<target name="build.index" depends="init" description="Builds search index for the plug-in" if="eclipse.running">
