@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.12 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.13 2007/01/29 20:31:18 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -47,7 +47,6 @@ import org.eclipse.emf.ocl.expressions.TypeExp;
 import org.eclipse.emf.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.PersistentEnvironment;
@@ -65,6 +64,7 @@ import org.eclipse.emf.ocl.types.TypesFactory;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.TypedElement;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
  * Static utilities for introspecting OCL types.

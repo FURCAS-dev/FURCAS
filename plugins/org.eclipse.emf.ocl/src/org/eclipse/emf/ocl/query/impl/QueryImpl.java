@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.5 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.6 2007/01/29 20:31:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -38,7 +38,6 @@ import org.eclipse.emf.ocl.expressions.impl.ToStringVisitorImpl;
 import org.eclipse.emf.ocl.expressions.impl.ValidationVisitorImpl;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.parser.SemanticException;
@@ -46,6 +45,7 @@ import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.ocl.LazyExtentMap;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
  * <!-- begin-user-doc -->

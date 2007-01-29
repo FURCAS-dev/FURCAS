@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.6 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.7 2007/01/29 20:31:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.MessageType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
  * <!-- begin-user-doc -->

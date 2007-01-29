@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionFactory.java,v 1.3 2006/04/13 22:04:10 cdamus Exp $
+ * $Id: CollectionFactory.java,v 1.4 2007/01/29 20:31:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -24,7 +24,7 @@ import java.util.LinkedHashSet;
 
 import org.eclipse.emf.ocl.expressions.CollectionKind;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
  * A factory for creating java collection types from their OCL equivalents.

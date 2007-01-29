@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.9 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.10 2007/01/29 20:31:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -41,7 +41,6 @@ import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.BagType;
@@ -58,6 +57,7 @@ import org.eclipse.emf.ocl.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.utilities.impl.Bag;
 import org.eclipse.emf.ocl.utilities.impl.CollectionFactory;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
  * @generated
