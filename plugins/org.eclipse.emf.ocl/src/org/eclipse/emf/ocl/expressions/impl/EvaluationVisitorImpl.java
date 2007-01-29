@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.12 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.13 2007/01/29 20:31:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -79,7 +79,6 @@ import org.eclipse.emf.ocl.expressions.util.AbstractVisitor;
 import org.eclipse.emf.ocl.expressions.util.EvalEnvironment;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.OCLStatusCodes;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.emf.ocl.types.BagType;
@@ -95,6 +94,7 @@ import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.impl.CollectionFactory;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.UnicodeSupport;
 
 /**

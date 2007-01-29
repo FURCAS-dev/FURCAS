@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
  * 

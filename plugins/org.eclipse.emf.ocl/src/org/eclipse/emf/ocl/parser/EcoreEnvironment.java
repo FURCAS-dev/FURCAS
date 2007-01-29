@@ -41,7 +41,6 @@ import org.eclipse.emf.ocl.expressions.ExpressionsPackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.ocl.internal.l10n.OCLMessages;
 import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.query.QueryPackage;
 import org.eclipse.emf.ocl.query.impl.QueryPackageImpl;
@@ -53,6 +52,7 @@ import org.eclipse.emf.ocl.uml.impl.UMLPackageImpl;
 import org.eclipse.emf.ocl.uml.util.UMLTypeUtil;
 import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
 import org.eclipse.emf.ocl.utilities.impl.UtilitiesPackageImpl;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.UnicodeSupport;
 
 /**
