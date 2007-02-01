@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.1 2007/01/25 18:32:34 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.2 2007/02/01 15:38:26 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -45,16 +45,18 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.ocl.ecore.BagType;
+import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.BagType;
-import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
+import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.Variable;
@@ -1649,4 +1651,63 @@ public class RegressionTest
 		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
 		assertEquals("foo", exp.toString()); //$NON-NLS-1$
 	}
+    
+    /**
+     * Regression test for the case of Let expression declaring multiple
+     * variables that is well-formed.
+     */
+    public void test_letWithMultipleVariables_bug164503() {
+        OCLExpression<EClassifier> expr = parse(
+            "package ocltest context Fruit " + //$NON-NLS-1$
+            " inv: let s : String = '', i : Set(Integer) = Set{1}, n : UnlimitedNatural = * in true" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        // verify the structure of the nested let expression
+        
+        // first level let is the String variable
+        assertTrue(expr instanceof LetExp);
+        LetExp<EClassifier, ?> letExp = (LetExp<EClassifier, ?>) expr;
+        Variable<EClassifier, ?> var = letExp.getVariable();
+        assertEquals("s", var.getName()); //$NON-NLS-1$
+        assertSame(getOCLStandardLibrary().getString(), var.getType());
+        
+        // second level is the Set(Integer)
+        assertTrue(letExp.getIn() instanceof LetExp);
+        letExp = (LetExp<EClassifier, ?>) letExp.getIn();
+        var = letExp.getVariable();
+        assertEquals("i", var.getName()); //$NON-NLS-1$
+        assertTrue(var.getType() instanceof SetType);
+        
+        // third level is the UnlimitedNatural
+        assertTrue(letExp.getIn() instanceof LetExp);
+        letExp = (LetExp<EClassifier, ?>) letExp.getIn();
+        var = letExp.getVariable();
+        assertEquals("n", var.getName()); //$NON-NLS-1$
+        assertSame(getOCLStandardLibrary().getUnlimitedNatural(), var.getType());
+        
+        // now we have a real "in"
+        assertTrue(letExp.getIn() instanceof BooleanLiteralExp);
+    }
+    
+    /**
+     * Regression test for the case of Let expression declaring multiple
+     * variables that is ill-formed, that we don't fail parsing with a runtime
+     * exception.
+     */
+    public void test_letWithMultipleVariables_illFormed_bug164503() {
+        
+        try {
+            parse(
+                "package ocltest context Fruit " + //$NON-NLS-1$
+                " inv: let s : String = '', i : Set(Integer) in true" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse or validate"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed with run-time exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 }
