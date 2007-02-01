@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2006 IBM Corporation and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParsersym.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+* $Id: OCLLPGParsersym.java,v 1.2 2007/02/01 16:14:55 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -118,104 +118,104 @@ public interface OCLLPGParsersym {
       TK_ERROR_TOKEN = 97;
 
       public final static String orderedTerminalSymbols[] = {
-                 "",
-                 "LPAREN",
-                 "RPAREN",
-                 "IDENTIFIER",
-                 "EQUAL",
-                 "GREATER",
-                 "LESS",
-                 "GREATER_EQUAL",
-                 "LESS_EQUAL",
-                 "NOT_EQUAL",
-                 "String",
-                 "Integer",
-                 "UnlimitedNatural",
-                 "Real",
-                 "Boolean",
-                 "OclAny",
-                 "OclVoid",
-                 "Invalid",
-                 "OclMessage",
-                 "MULTIPLY",
-                 "DIVIDE",
-                 "COLON",
-                 "self",
-                 "and",
-                 "or",
-                 "xor",
-                 "PLUS",
-                 "MINUS",
-                 "not",
-                 "Set",
-                 "Bag",
-                 "Sequence",
-                 "Collection",
-                 "OrderedSet",
-                 "oclIsKindOf",
-                 "oclIsTypeOf",
-                 "oclAsType",
-                 "oclIsNew",
-                 "oclIsUndefined",
-                 "oclIsInvalid",
-                 "oclIsInState",
-                 "allInstances",
-                 "Tuple",
-                 "COMMA",
-                 "NUMERIC_OPERATION",
-                 "STRING_LITERAL",
-                 "INTEGER_LITERAL",
-                 "REAL_LITERAL",
-                 "true",
-                 "false",
-                 "null",
-                 "OclInvalid",
-                 "COLONCOLON",
-                 "if",
-                 "let",
-                 "ATPRE",
-                 "BAR",
-                 "context",
-                 "EOF_TOKEN",
-                 "inv",
-                 "pre",
-                 "post",
-                 "body",
-                 "def",
-                 "INTEGER_RANGE_START",
-                 "LBRACE",
-                 "RBRACE",
-                 "LBRACKET",
-                 "RBRACKET",
-                 "QUESTIONMARK",
-                 "package",
-                 "derive",
-                 "init",
-                 "ARROW",
-                 "SEMICOLON",
-                 "DOT",
-                 "DOTDOT",
-                 "CARET",
-                 "CARETCARET",
-                 "endpackage",
-                 "then",
-                 "else",
-                 "endif",
-                 "implies",
-                 "in",
-                 "iterate",
-                 "forAll",
-                 "exists",
-                 "isUnique",
-                 "any",
-                 "one",
-                 "collect",
-                 "select",
-                 "reject",
-                 "collectNested",
-                 "sortedBy",
-                 "closure",
-                 "ERROR_TOKEN"
+                 "", //$NON-NLS-1$
+                 "LPAREN", //$NON-NLS-1$
+                 "RPAREN", //$NON-NLS-1$
+                 "IDENTIFIER", //$NON-NLS-1$
+                 "EQUAL", //$NON-NLS-1$
+                 "GREATER", //$NON-NLS-1$
+                 "LESS", //$NON-NLS-1$
+                 "GREATER_EQUAL", //$NON-NLS-1$
+                 "LESS_EQUAL", //$NON-NLS-1$
+                 "NOT_EQUAL", //$NON-NLS-1$
+                 "String", //$NON-NLS-1$
+                 "Integer", //$NON-NLS-1$
+                 "UnlimitedNatural", //$NON-NLS-1$
+                 "Real", //$NON-NLS-1$
+                 "Boolean", //$NON-NLS-1$
+                 "OclAny", //$NON-NLS-1$
+                 "OclVoid", //$NON-NLS-1$
+                 "Invalid", //$NON-NLS-1$
+                 "OclMessage", //$NON-NLS-1$
+                 "MULTIPLY", //$NON-NLS-1$
+                 "DIVIDE", //$NON-NLS-1$
+                 "COLON", //$NON-NLS-1$
+                 "self", //$NON-NLS-1$
+                 "and", //$NON-NLS-1$
+                 "or", //$NON-NLS-1$
+                 "xor", //$NON-NLS-1$
+                 "PLUS", //$NON-NLS-1$
+                 "MINUS", //$NON-NLS-1$
+                 "not", //$NON-NLS-1$
+                 "Set", //$NON-NLS-1$
+                 "Bag", //$NON-NLS-1$
+                 "Sequence", //$NON-NLS-1$
+                 "Collection", //$NON-NLS-1$
+                 "OrderedSet", //$NON-NLS-1$
+                 "oclIsKindOf", //$NON-NLS-1$
+                 "oclIsTypeOf", //$NON-NLS-1$
+                 "oclAsType", //$NON-NLS-1$
+                 "oclIsNew", //$NON-NLS-1$
+                 "oclIsUndefined", //$NON-NLS-1$
+                 "oclIsInvalid", //$NON-NLS-1$
+                 "oclIsInState", //$NON-NLS-1$
+                 "allInstances", //$NON-NLS-1$
+                 "Tuple", //$NON-NLS-1$
+                 "COMMA", //$NON-NLS-1$
+                 "NUMERIC_OPERATION", //$NON-NLS-1$
+                 "STRING_LITERAL", //$NON-NLS-1$
+                 "INTEGER_LITERAL", //$NON-NLS-1$
+                 "REAL_LITERAL", //$NON-NLS-1$
+                 "true", //$NON-NLS-1$
+                 "false", //$NON-NLS-1$
+                 "null", //$NON-NLS-1$
+                 "OclInvalid", //$NON-NLS-1$
+                 "COLONCOLON", //$NON-NLS-1$
+                 "if", //$NON-NLS-1$
+                 "let", //$NON-NLS-1$
+                 "ATPRE", //$NON-NLS-1$
+                 "BAR", //$NON-NLS-1$
+                 "context", //$NON-NLS-1$
+                 "EOF_TOKEN", //$NON-NLS-1$
+                 "inv", //$NON-NLS-1$
+                 "pre", //$NON-NLS-1$
+                 "post", //$NON-NLS-1$
+                 "body", //$NON-NLS-1$
+                 "def", //$NON-NLS-1$
+                 "INTEGER_RANGE_START", //$NON-NLS-1$
+                 "LBRACE", //$NON-NLS-1$
+                 "RBRACE", //$NON-NLS-1$
+                 "LBRACKET", //$NON-NLS-1$
+                 "RBRACKET", //$NON-NLS-1$
+                 "QUESTIONMARK", //$NON-NLS-1$
+                 "package", //$NON-NLS-1$
+                 "derive", //$NON-NLS-1$
+                 "init", //$NON-NLS-1$
+                 "ARROW", //$NON-NLS-1$
+                 "SEMICOLON", //$NON-NLS-1$
+                 "DOT", //$NON-NLS-1$
+                 "DOTDOT", //$NON-NLS-1$
+                 "CARET", //$NON-NLS-1$
+                 "CARETCARET", //$NON-NLS-1$
+                 "endpackage", //$NON-NLS-1$
+                 "then", //$NON-NLS-1$
+                 "else", //$NON-NLS-1$
+                 "endif", //$NON-NLS-1$
+                 "implies", //$NON-NLS-1$
+                 "in", //$NON-NLS-1$
+                 "iterate", //$NON-NLS-1$
+                 "forAll", //$NON-NLS-1$
+                 "exists", //$NON-NLS-1$
+                 "isUnique", //$NON-NLS-1$
+                 "any", //$NON-NLS-1$
+                 "one", //$NON-NLS-1$
+                 "collect", //$NON-NLS-1$
+                 "select", //$NON-NLS-1$
+                 "reject", //$NON-NLS-1$
+                 "collectNested", //$NON-NLS-1$
+                 "sortedBy", //$NON-NLS-1$
+                 "closure", //$NON-NLS-1$
+                 "ERROR_TOKEN" //$NON-NLS-1$
              };
 
     public final static boolean isValidForParser = true;

@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2006 IBM Corporation and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,12 +12,11 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexer.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+* $Id: OCLKWLexer.java,v 1.2 2007/02/01 16:14:55 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
 
-import lpg.lpgjavaruntime.*;
 
 public class OCLKWLexer extends OCLKWLexerprs implements OCLLPGParsersym
 {
