@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2006 IBM Corporation and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,14 +12,18 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+* $Id: OCLLexer.java,v 1.2 2007/02/01 16:14:56 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
 
-import lpg.lpgjavaruntime.*;
-import java.io.IOException;
-import java.io.Reader;
+import lpg.lpgjavaruntime.LexParser;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.LpgLexStream;
+import lpg.lpgjavaruntime.Monitor;
+import lpg.lpgjavaruntime.ParseTable;
+import lpg.lpgjavaruntime.PrsStream;
+import lpg.lpgjavaruntime.RuleAction;
 public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexersym, RuleAction
 {
     private static ParseTable prs = new OCLLexerprs();
@@ -49,7 +53,9 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
         this(input_chars, filename, 1);
     }
 
-    public OCLLexer() {}
+    public OCLLexer() {
+        super();
+    }
 
     public String[] orderedExportedSymbols() { return OCLLPGParsersym.orderedTerminalSymbols; }
     public LexStream getLexStream() { return (LexStream) this; }
@@ -62,7 +68,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     public void lexer(Monitor monitor, PrsStream prsStream)
     {
         if (getInputChars() == null)
-            throw new NullPointerException("LexStream was not initialized");
+            throw new NullPointerException("LexStream was not initialized"); //$NON-NLS-1$
 
         this.prsStream = prsStream;
 
@@ -290,7 +296,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
                            Char_AfterASCIINotAcute;
     }
 	public OCLLexer(char[] chars) {
-		this(chars, "OCL", ECLIPSE_TAB_VALUE);
+		this(chars, "OCL", ECLIPSE_TAB_VALUE); //$NON-NLS-1$
 		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
 	}
 
