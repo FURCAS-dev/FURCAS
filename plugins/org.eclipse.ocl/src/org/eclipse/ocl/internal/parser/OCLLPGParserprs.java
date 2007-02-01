@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2006 IBM Corporation and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParserprs.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+* $Id: OCLLPGParserprs.java,v 1.2 2007/02/01 16:14:56 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -1278,145 +1278,145 @@ public class OCLLPGParserprs implements lpg.lpgjavaruntime.ParseTable, OCLLPGPar
 
     public interface Name {
         public final static String name[] = {
-            "",
-            "+",
-            "-",
-            "*",
-            "/",
-            ">",
-            "<",
-            "=",
-            ">=",
-            "<=",
-            "<>",
-            "(",
-            ")",
-            "{",
-            "}",
-            "[",
-            "]",
-            "->",
-            "|",
-            ",",
-            ":",
-            "::",
-            ";",
-            ".",
-            "..",
-            "@pre",
-            "^",
-            "^^",
-            "?",
-            "$empty",
-            "NUMERIC_OPERATION",
-            "STRING_LITERAL",
-            "INTEGER_LITERAL",
-            "REAL_LITERAL",
-            "self",
-            "inv",
-            "pre",
-            "post",
-            "body",
-            "context",
-            "package",
-            "endpackage",
-            "def",
-            "derive",
-            "init",
-            "if",
-            "then",
-            "else",
-            "endif",
-            "and",
-            "or",
-            "xor",
-            "not",
-            "implies",
-            "let",
-            "in",
-            "true",
-            "false",
-            "Set",
-            "Bag",
-            "Sequence",
-            "Collection",
-            "OrderedSet",
-            "iterate",
-            "forAll",
-            "exists",
-            "isUnique",
-            "any",
-            "one",
-            "collect",
-            "select",
-            "reject",
-            "collectNested",
-            "sortedBy",
-            "closure",
-            "oclIsKindOf",
-            "oclIsTypeOf",
-            "oclAsType",
-            "oclIsNew",
-            "oclIsUndefined",
-            "oclIsInvalid",
-            "oclIsInState",
-            "allInstances",
-            "String",
-            "Integer",
-            "UnlimitedNatural",
-            "Real",
-            "Boolean",
-            "Tuple",
-            "OclAny",
-            "OclVoid",
-            "Invalid",
-            "OclMessage",
-            "null",
-            "OclInvalid",
-            "EOF_TOKEN",
-            "IDENTIFIER",
-            "INTEGER_RANGE_START",
-            "ERROR_TOKEN",
-            "packageDeclarationCSm",
-            "invOrDefCS",
-            "prePostOrBodyDeclCS",
-            "initOrDerValueCS",
-            "variableCS",
-            "packageDeclarationCS",
-            "pathNameCS",
-            "contextDeclCSm",
-            "contextDeclCS",
-            "simpleNameCS",
-            "typeCS",
-            "oclExpressionCS",
-            "defExpressionCS",
-            "operationCS1",
-            "operationCS",
-            "prePostOrBodyDeclCSm",
-            "parametersCS",
-            "oclExp0CS",
-            "oclExp1CS",
-            "oclExp2CS",
-            "oclExp3CS",
-            "oclExp4CS",
-            "oclExp5CS",
-            "oclExp6CS",
-            "oclExp7CS",
-            "callExpCS",
-            "messageExpCS",
-            "argumentsCS",
-            "collectionTypeIdentifierCS",
-            "collectionLiteralPartsCS",
-            "collectionLiteralPartCS",
-            "variableListCS2",
-            "featureCallExpCS",
-            "loopExpCS",
-            "iterContents",
-            "variableCS2",
-            "variableListCS",
-            "letExpSubCS",
-            "oclMessageArgumentsCS",
-            "oclMessageArgCS"
+            "", //$NON-NLS-1$
+            "+", //$NON-NLS-1$
+            "-", //$NON-NLS-1$
+            "*", //$NON-NLS-1$
+            "/", //$NON-NLS-1$
+            ">", //$NON-NLS-1$
+            "<", //$NON-NLS-1$
+            "=", //$NON-NLS-1$
+            ">=", //$NON-NLS-1$
+            "<=", //$NON-NLS-1$
+            "<>", //$NON-NLS-1$
+            "(", //$NON-NLS-1$
+            ")", //$NON-NLS-1$
+            "{", //$NON-NLS-1$
+            "}", //$NON-NLS-1$
+            "[", //$NON-NLS-1$
+            "]", //$NON-NLS-1$
+            "->", //$NON-NLS-1$
+            "|", //$NON-NLS-1$
+            ",", //$NON-NLS-1$
+            ":", //$NON-NLS-1$
+            "::", //$NON-NLS-1$
+            ";", //$NON-NLS-1$
+            ".", //$NON-NLS-1$
+            "..", //$NON-NLS-1$
+            "@pre", //$NON-NLS-1$
+            "^", //$NON-NLS-1$
+            "^^", //$NON-NLS-1$
+            "?", //$NON-NLS-1$
+            "$empty", //$NON-NLS-1$
+            "NUMERIC_OPERATION", //$NON-NLS-1$
+            "STRING_LITERAL", //$NON-NLS-1$
+            "INTEGER_LITERAL", //$NON-NLS-1$
+            "REAL_LITERAL", //$NON-NLS-1$
+            "self", //$NON-NLS-1$
+            "inv", //$NON-NLS-1$
+            "pre", //$NON-NLS-1$
+            "post", //$NON-NLS-1$
+            "body", //$NON-NLS-1$
+            "context", //$NON-NLS-1$
+            "package", //$NON-NLS-1$
+            "endpackage", //$NON-NLS-1$
+            "def", //$NON-NLS-1$
+            "derive", //$NON-NLS-1$
+            "init", //$NON-NLS-1$
+            "if", //$NON-NLS-1$
+            "then", //$NON-NLS-1$
+            "else", //$NON-NLS-1$
+            "endif", //$NON-NLS-1$
+            "and", //$NON-NLS-1$
+            "or", //$NON-NLS-1$
+            "xor", //$NON-NLS-1$
+            "not", //$NON-NLS-1$
+            "implies", //$NON-NLS-1$
+            "let", //$NON-NLS-1$
+            "in", //$NON-NLS-1$
+            "true", //$NON-NLS-1$
+            "false", //$NON-NLS-1$
+            "Set", //$NON-NLS-1$
+            "Bag", //$NON-NLS-1$
+            "Sequence", //$NON-NLS-1$
+            "Collection", //$NON-NLS-1$
+            "OrderedSet", //$NON-NLS-1$
+            "iterate", //$NON-NLS-1$
+            "forAll", //$NON-NLS-1$
+            "exists", //$NON-NLS-1$
+            "isUnique", //$NON-NLS-1$
+            "any", //$NON-NLS-1$
+            "one", //$NON-NLS-1$
+            "collect", //$NON-NLS-1$
+            "select", //$NON-NLS-1$
+            "reject", //$NON-NLS-1$
+            "collectNested", //$NON-NLS-1$
+            "sortedBy", //$NON-NLS-1$
+            "closure", //$NON-NLS-1$
+            "oclIsKindOf", //$NON-NLS-1$
+            "oclIsTypeOf", //$NON-NLS-1$
+            "oclAsType", //$NON-NLS-1$
+            "oclIsNew", //$NON-NLS-1$
+            "oclIsUndefined", //$NON-NLS-1$
+            "oclIsInvalid", //$NON-NLS-1$
+            "oclIsInState", //$NON-NLS-1$
+            "allInstances", //$NON-NLS-1$
+            "String", //$NON-NLS-1$
+            "Integer", //$NON-NLS-1$
+            "UnlimitedNatural", //$NON-NLS-1$
+            "Real", //$NON-NLS-1$
+            "Boolean", //$NON-NLS-1$
+            "Tuple", //$NON-NLS-1$
+            "OclAny", //$NON-NLS-1$
+            "OclVoid", //$NON-NLS-1$
+            "Invalid", //$NON-NLS-1$
+            "OclMessage", //$NON-NLS-1$
+            "null", //$NON-NLS-1$
+            "OclInvalid", //$NON-NLS-1$
+            "EOF_TOKEN", //$NON-NLS-1$
+            "IDENTIFIER", //$NON-NLS-1$
+            "INTEGER_RANGE_START", //$NON-NLS-1$
+            "ERROR_TOKEN", //$NON-NLS-1$
+            "packageDeclarationCSm", //$NON-NLS-1$
+            "invOrDefCS", //$NON-NLS-1$
+            "prePostOrBodyDeclCS", //$NON-NLS-1$
+            "initOrDerValueCS", //$NON-NLS-1$
+            "variableCS", //$NON-NLS-1$
+            "packageDeclarationCS", //$NON-NLS-1$
+            "pathNameCS", //$NON-NLS-1$
+            "contextDeclCSm", //$NON-NLS-1$
+            "contextDeclCS", //$NON-NLS-1$
+            "simpleNameCS", //$NON-NLS-1$
+            "typeCS", //$NON-NLS-1$
+            "oclExpressionCS", //$NON-NLS-1$
+            "defExpressionCS", //$NON-NLS-1$
+            "operationCS1", //$NON-NLS-1$
+            "operationCS", //$NON-NLS-1$
+            "prePostOrBodyDeclCSm", //$NON-NLS-1$
+            "parametersCS", //$NON-NLS-1$
+            "oclExp0CS", //$NON-NLS-1$
+            "oclExp1CS", //$NON-NLS-1$
+            "oclExp2CS", //$NON-NLS-1$
+            "oclExp3CS", //$NON-NLS-1$
+            "oclExp4CS", //$NON-NLS-1$
+            "oclExp5CS", //$NON-NLS-1$
+            "oclExp6CS", //$NON-NLS-1$
+            "oclExp7CS", //$NON-NLS-1$
+            "callExpCS", //$NON-NLS-1$
+            "messageExpCS", //$NON-NLS-1$
+            "argumentsCS", //$NON-NLS-1$
+            "collectionTypeIdentifierCS", //$NON-NLS-1$
+            "collectionLiteralPartsCS", //$NON-NLS-1$
+            "collectionLiteralPartCS", //$NON-NLS-1$
+            "variableListCS2", //$NON-NLS-1$
+            "featureCallExpCS", //$NON-NLS-1$
+            "loopExpCS", //$NON-NLS-1$
+            "iterContents", //$NON-NLS-1$
+            "variableCS2", //$NON-NLS-1$
+            "variableListCS", //$NON-NLS-1$
+            "letExpSubCS", //$NON-NLS-1$
+            "oclMessageArgumentsCS", //$NON-NLS-1$
+            "oclMessageArgCS" //$NON-NLS-1$
         };
     };
     public final static String name[] = Name.name;

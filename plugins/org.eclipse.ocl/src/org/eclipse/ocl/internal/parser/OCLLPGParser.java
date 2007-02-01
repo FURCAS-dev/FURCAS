@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2006 IBM Corporation and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParser.java,v 1.2 2007/02/01 15:38:28 cdamus Exp $
+* $Id: OCLLPGParser.java,v 1.3 2007/02/01 16:14:55 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -92,6 +92,7 @@ import lpg.lpgjavaruntime.RuleAction;
 import lpg.lpgjavaruntime.UndefinedEofSymbolException;
 import lpg.lpgjavaruntime.UnimplementedTerminalsException;
 
+@SuppressWarnings("unchecked")
 public class OCLLPGParser extends PrsStream implements RuleAction {
 	protected static ParseTable prs = new OCLLPGParserprs();
 	private DeterministicParser dtParser;
@@ -110,15 +111,15 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 		}
 		catch(UnimplementedTerminalsException e) {
 			java.util.ArrayList unimplemented_symbols = e.getSymbols();
-			String error = "The Lexer will not scan the following token(s):";
+			String error = "The Lexer will not scan the following token(s):"; //$NON-NLS-1$
 			for (int i = 0; i < unimplemented_symbols.size(); i++) {
 				Integer id = (Integer) unimplemented_symbols.get(i);
-				error += "\t" + OCLLPGParsersym.orderedTerminalSymbols[id.intValue()];			   
+				error += "\t" + OCLLPGParsersym.orderedTerminalSymbols[id.intValue()]; //$NON-NLS-1$			   
 			}
-			throw new RuntimeException(error + "\n");						
+			throw new RuntimeException(error + "\n");	 //$NON-NLS-1$					
 		}
 		catch(UndefinedEofSymbolException e) {
-			throw new RuntimeException("The Lexer does not implement the Eof symbol " +
+			throw new RuntimeException("The Lexer does not implement the Eof symbol " + //$NON-NLS-1$
 				 OCLLPGParsersym.orderedTerminalSymbols[OCLLPGParserprs.EOFT_SYMBOL]);
 		} 
 	}
@@ -147,10 +148,10 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			dtParser = new DeterministicParser(monitor, this, prsTable, this);
 		}
 		catch (NotDeterministicParseTableException e) {
-			throw new RuntimeException("****Error: Regenerate OCLLPGParserprs.java with -NOBACKTRACK option");
+			throw new RuntimeException("****Error: Regenerate OCLLPGParserprs.java with -NOBACKTRACK option"); //$NON-NLS-1$
 		}
 		catch (BadParseSymFileException e) {
-			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLLPGParsersym.java. Regenerate OCLLPGParserprs.java");
+			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLLPGParsersym.java. Regenerate OCLLPGParserprs.java"); //$NON-NLS-1$
 		}
 
 		try {
@@ -475,7 +476,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 	protected UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS(String string) {
 		UnlimitedNaturalLiteralExpCS result = CSTFactory.eINSTANCE.createUnlimitedNaturalLiteralExpCS();
 		result.setSymbol(string);
-		if ("*".equals(string)) {
+		if ("*".equals(string)) { //$NON-NLS-1$
 			result.setIntegerSymbol(-1);
 		} else {
 			result.setIntegerSymbol(Integer.valueOf(string));
