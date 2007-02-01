@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParser.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+* $Id: OCLLPGParser.java,v 1.2 2007/02/01 15:38:28 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -2542,7 +2542,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			case 208: {
 				
 				EList variables = (EList)dtParser.getSym(3);
-				variables.add(dtParser.getSym(2));
+				variables.add(0, dtParser.getSym(2));
 				CSTNode result = createLetExpCS(
 						variables,
 						(OCLExpressionCS)dtParser.getSym(5)
@@ -2565,7 +2565,7 @@ public class OCLLPGParser extends PrsStream implements RuleAction {
 			case 211: {
 				
 				EList result = new BasicEList();
-				result.add(dtParser.getSym(1));
+				result.add(dtParser.getSym(2));
 				dtParser.setSym1(result);
 	  		  break;
 			}
