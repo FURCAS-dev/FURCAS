@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.2 2007/02/01 15:38:28 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.2 2007/02/01 15:38:28 cdamus Exp $
  */
 	./
 $End
@@ -2377,7 +2377,7 @@ $Rules
 	letExpCS ::= let variableCS letExpSubCSopt in oclExpressionCS
 		/.$BeginJava
 					EList variables = (EList)$getSym(3);
-					variables.add($getSym(2));
+					variables.add(0, $getSym(2));
 					CSTNode result = createLetExpCS(
 							variables,
 							(OCLExpressionCS)$getSym(5)
@@ -2395,7 +2395,7 @@ $Rules
 	letExpSubCS ::= ',' variableCS
 		/.$BeginJava
 					EList result = new BasicEList();
-					result.add($getSym(1));
+					result.add($getSym(2));
 					$setResult(result);
 		  $EndJava
 		./
