@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.3 2007/02/01 16:14:55 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.4 2007/02/02 20:06:28 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.3 2007/02/01 16:14:55 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.4 2007/02/02 20:06:28 cdamus Exp $
  */
 	./
 $End
@@ -1586,6 +1586,21 @@ $Rules
 		  $EndJava
 		./
 
+    -- static operation call (@pre is not permitted in this context)
+	oclExp7CS ::=  pathNameCS '::' simpleNameCS '(' argumentsCSopt ')'
+		/.$BeginJava
+					OperationCallExpCS result = createOperationCallExpCS(
+							(PathNameCS)$getSym(1),
+							(SimpleNameCS)$getSym(3),
+							(EList)$getSym(5)
+						);
+					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(6)));
+					result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
+					$setResult(result);
+		  $EndJava
+		./
+
+
 	oclExpCS -> variableExpCS
 	oclExpCS -> literalExpCS
 	oclExpCS -> operationCallExpCS
@@ -1776,6 +1791,8 @@ $Rules
 	literalExpCS -> nullLiteralExpCS
 	literalExpCS -> invalidLiteralExpCS
 
+    -- also covers the case of static attribute call, in which
+    --    case @pre is not allowed anyway
 	enumLiteralExpCS ::= pathNameCS '::' simpleNameCS
 		/.$BeginJava
 					CSTNode result = createEnumLiteralExpCS(

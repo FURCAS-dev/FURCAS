@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -133,6 +133,18 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	protected String getName(Object named) {
 		return (uml == null)? NULL_PLACEHOLDER : uml.getName(named);
 	}
+    
+    /**
+     * Null-safe access to the qualified name of a named element.
+     * 
+     * @param named a named element or <code>null</code>
+     * @return a qualified name, or the null placeholder if the named element
+     *    or its name be <code>null</code>.  i.e., <code>null</code> is never
+     *    returned
+     */
+    protected String getQualifiedName(Object named) {
+        return (uml == null)? NULL_PLACEHOLDER : uml.getQualifiedName(named);
+    }
 
 	/**
 	 * Callback for an OperationCallExp visit.
@@ -172,7 +184,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 */
 	public String visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
 		EL l = el.getReferredEnumLiteral();
-		return getName(l);
+		return getQualifiedName(l);
 	}
 
 	/**
@@ -302,10 +314,6 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	public String visitTypeExp(TypeExp<C> t) {
 		return getQualifiedName(t.getReferredType());
-	}
-	
-	protected String getQualifiedName(C type) {
-		return (uml == null)? null : uml.getQualifiedName(type);
 	}
 	
 	public String visitStateExp(StateExp<C, S> s) {
