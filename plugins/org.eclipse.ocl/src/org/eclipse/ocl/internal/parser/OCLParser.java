@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+ * $Id: OCLParser.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -130,6 +130,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
@@ -3057,49 +3058,86 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
 
-		OCLExpression<C> astNode;
+		OCLExpression<C> astNode = null;
 
 		EList<String> sequenceOfNames = enumLiteralExpCS.getPathNameCS().getSequenceOfNames();
 		String lastToken = enumLiteralExpCS.getSimpleNameCS().getValue();
 
-		EL literal = null;		
+		EL literal = null;
+        P attribute = null;
 		C enumType = env.lookupClassifier(sequenceOfNames);
-		if ((enumType == null) || !uml.isEnumeration(enumType)) {
-			TypeExp<C> typeExp = ExpressionsFactory.eINSTANCE.createTypeExp();
+		if (enumType == null) {
 			
 			// Check to see whether the pathname corresponds to a type
 			sequenceOfNames.add(lastToken);
 			C type = env.lookupClassifier(sequenceOfNames);
-			if (type == null) {		
+			if (type == null) {
 				String message = OCLMessages.bind(
 						OCLMessages.UnrecognizedType_ERROR_,
 						sequenceOfNames);
 				ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
 			} else {
-				typeExp.setReferredType(type);
-				
-				typeExp.setType(getTypeType(env, type));
+                astNode = typeCS(type, env);
 			}
-			
-			astNode = typeExp;
-		} else { // is an enum
-			astNode = ExpressionsFactory.eINSTANCE.createEnumLiteralExp();
-			literal = uml.getEnumerationLiteral(enumType, lastToken);
-			if (literal == null) {
-				String message = OCLMessages.bind(
-						OCLMessages.UnrecognizedEnum_ERROR_,
-						lastToken);
-				ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
-			}
-			
-			EnumLiteralExp<C, EL> litExp = (EnumLiteralExp<C, EL>) astNode;
-			litExp.setReferredEnumLiteral(literal);
-			astNode = litExp;
-			if (enumType == null || literal == null) {
-				astNode.setType((C) env.getOCLStandardLibrary().getInvalid());
-			} else {
-				astNode.setType(enumType);
-			}			
+		} else {
+            if (uml.isEnumeration(enumType)) {
+                // look first for an enumeration literal with this name, rather
+                //    than a static attribute
+                literal = uml.getEnumerationLiteral(enumType, lastToken);
+                if (literal == null) {
+                    // try looking for a static attribute
+                    attribute = env.lookupProperty(enumType, lastToken);
+                }
+            } else {
+                // look for a static attribute
+                attribute = env.lookupProperty(enumType, lastToken);
+            }
+            
+            if (literal != null) {
+    			astNode = ExpressionsFactory.eINSTANCE.createEnumLiteralExp();
+    			
+    			EnumLiteralExp<C, EL> litExp = (EnumLiteralExp<C, EL>) astNode;
+    			litExp.setReferredEnumLiteral(literal);
+    			astNode = litExp;
+    			if (enumType == null || literal == null) {
+    				astNode.setType((C) env.getOCLStandardLibrary().getInvalid());
+    			} else {
+    				astNode.setType(enumType);
+    			}
+            } else if (attribute != null) {
+                if (!uml.isStatic(attribute)) {
+                    String message = OCLMessages.bind(
+                        OCLMessages.NonStaticAttribute_ERROR_,
+                        lastToken);
+                    ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+                }
+                
+                PropertyCallExp<C, P> pcExp = ExpressionsFactory.eINSTANCE.createPropertyCallExp();
+                astNode = pcExp;
+                
+                TypeExp<C> typeExp = typeCS(enumType, env);
+                initStartEndPositions(typeExp, enumLiteralExpCS.getPathNameCS());
+                
+                pcExp.setSource(typeExp);
+                pcExp.setReferredProperty(attribute);
+                pcExp.setType(TypeUtil.getPropertyType(env, enumType, attribute));
+                pcExp.setName(lastToken);
+                
+                initPropertyPositions(pcExp, enumLiteralExpCS.getSimpleNameCS());
+            } else {
+                // try looking for a nested classifier
+                sequenceOfNames.add(lastToken);
+                
+                C type = env.lookupClassifier(sequenceOfNames);
+                if (type == null) {
+                    String message = OCLMessages.bind(
+                        OCLMessages.UnrecognizedEnum_ERROR_,
+                        lastToken);
+                    ERROR("enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+                } else {
+                    astNode = typeCS(type, env);
+                }
+            }
 		}
 		String traceText = new String();
 		for (String next : sequenceOfNames) {
@@ -3110,6 +3148,16 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			
 		return astNode;
 	}
+    
+    private TypeExp<C> typeCS(C type,
+        Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+        
+        TypeExp<C> astNode = ExpressionsFactory.eINSTANCE.createTypeExp();
+        astNode.setReferredType(type);
+        astNode.setType(getTypeType(env, type));
+        
+        return astNode;
+    }
 
 	/**
 	 * CollectionLiteralExpCS
@@ -3640,11 +3688,28 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		 * may be a collection type (-> operation) or a regular navigation expression
 		 * (. operation)
 		 */
-		OCLExpression<C> source;
+		OCLExpression<C> source = null;
 		if (operator == DotOrArrowEnum.ARROW) {
 			source = getCollectionSourceExpression(operationCallExpCS.getSource(), env);
 		} else {
-			source = oclExpressionCS(operationCallExpCS.getSource(), env);
+            OCLExpressionCS sourceCS = operationCallExpCS.getSource();
+            
+            if (sourceCS instanceof PathNameCS) {
+                // static operation call
+                PathNameCS pathName = (PathNameCS) sourceCS;
+                
+                C sourceType = env.lookupClassifier(pathName.getSequenceOfNames());
+                if (sourceType == null) {
+                    String message = OCLMessages.bind(
+                            OCLMessages.UnrecognizedType_ERROR_,
+                            pathName.getSequenceOfNames());
+                    ERROR("operatonCallExpCS", message);//$NON-NLS-1$
+                } else {
+                    source = typeCS(sourceType, env);
+                }
+            } else {
+                source = oclExpressionCS(operationCallExpCS.getSource(), env);
+            }
 		}
 		
 		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
@@ -3713,9 +3778,29 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			operationSourceType = ct.getElementType();
 		}
 		
+        // if the sourceType is a TypeType then this must be a static operation
+        boolean isStatic = operationSourceType instanceof TypeType;
+        
 		astNode = genOperationCallExp(env, "operationCallExpCS", operationName,//$NON-NLS-1$
 				source, operationSourceType, args);
 		
+        if (isStatic) {
+            @SuppressWarnings("unchecked")
+            TypeType<C, O> typeType = (TypeType<C, O>) operationSourceType;
+            O operation = astNode.getReferredOperation();
+        
+            // operation must either be defined by the TypeType (e.g., allInstances())
+            //    or be a static operation of the referred classifier
+            if (!(typeType.oclOperations().contains(operation)
+                    || uml.isStatic(operation))) {
+                
+                String message = OCLMessages.bind(
+                    OCLMessages.NonStaticOperation_ERROR_,
+                    operationName);
+                ERROR("operationCallExpCS", message);//$NON-NLS-1$
+            }
+        }
+        
 		astNode.setMarkedPre(operationCallExpCS.getIsMarkedPreCS().isPre());
 
 		initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());

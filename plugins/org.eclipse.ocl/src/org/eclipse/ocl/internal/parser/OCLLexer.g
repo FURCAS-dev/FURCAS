@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2006 IBM Corporation and others.
+-- * Copyright (c) 2005, 2007 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.2 2007/02/02 20:06:28 cdamus Exp $
 -- */
 --
 -- The OCL Lexer
@@ -48,7 +48,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,7 +59,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.2 2007/02/02 20:06:28 cdamus Exp $
  */
 	./
 $End

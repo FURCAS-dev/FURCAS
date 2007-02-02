@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.1 2007/01/25 18:24:39 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -189,6 +189,9 @@ public class OCLMessages {
     public static String MismatchedParameterVariables_ERROR_;
     public static String MismatchedResultVariable_ERROR_;
     public static String MissingResultVariable_ERROR_;
+    
+    public static String NonStaticAttribute_ERROR_;
+    public static String NonStaticOperation_ERROR_;
     
 	public static String InvalidOCL_ERROR_;
 	public static String ParseCSTNodeType_ERROR_;
