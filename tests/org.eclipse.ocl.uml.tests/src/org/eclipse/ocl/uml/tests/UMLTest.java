@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.1 2007/01/25 18:41:56 cdamus Exp $
+ * $Id: UMLTest.java,v 1.2 2007/02/02 20:06:26 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.Set;
 
+import junit.framework.AssertionFailedError;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -92,6 +93,238 @@ public class UMLTest
         
         // check that we got the value of the slot for the redefining property
         assertEquals(apples, evaluate(expr, anApple));
+    }
+    
+    /**
+     * Tests parsing static operation calls using the dot.
+     */
+    public void test_staticOperations_dot_bug164887() {
+        try {
+            fruit_ripen.setIsStatic(true);
+            
+            // access via an instance
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: self.ripen(Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit.ripen(Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit.ripen(ocltest::Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+        } finally {
+            fruit_ripen.setIsStatic(false);
+        }
+    }
+    
+    /**
+     * Tests parsing static operation calls using the double colon.
+     */
+    public void test_staticOperations_colonColon_bug164887() {
+        try {
+            fruit_ripen.setIsStatic(true);
+            
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit::ripen(Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit::ripen(ocltest::Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+        } finally {
+            fruit_ripen.setIsStatic(false);
+        }
+    }
+    
+    /**
+     * Tests parsing static attribute calls using the dot.
+     */
+    public void test_staticAttributes_dot_bug164887() {
+        try {
+            fruit_color.setIsStatic(true);
+            
+            // access via an instance
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: self.color = Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit.color = Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit.color = ocltest::Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+        } finally {
+            fruit_color.setIsStatic(false);
+        }
+    }
+    
+    /**
+     * Tests parsing static attribute calls using the double colon.
+     */
+    public void test_staticAttributes_colonColon_bug164887() {
+        try {
+            fruit_color.setIsStatic(true);
+            
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit::color = Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit::color = ocltest::Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+        } finally {
+            fruit_color.setIsStatic(false);
+        }
+    }
+    
+    /**
+     * Tests validation of static operation calls using the dot (in particular,
+     * that the operation is static).
+     */
+    public void test_staticOperations_dot_val_bug164887() {
+        try {
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit.ripen(Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+
+        try {
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit.ripen(ocltest::Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests validation of static operation calls using the double colon (in particular,
+     * that the operation is static).
+     */
+    public void test_staticOperations_colonColon_val_bug164887() {
+        try {
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit::ripen(Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+
+        try {
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit::ripen(ocltest::Color::black)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests validation of static attribute calls using the dot (in particular,
+     * that the operation is static).
+     */
+    public void test_staticAttributes_dot_val_bug164887() {
+        try {
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit.color = Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+
+        try {
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit.color = ocltest::Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests validation of static attribute calls using the double colon (in particular,
+     * that the operation is static).
+     */
+    public void test_staticAttributes_colonColon_val_bug164887() {
+        try {
+            // access via an unqualified type name
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv: Fruit::color = Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+
+        try {
+            // access via a qualified type name
+            parseConstraint(
+                "package uml context Classifier " + //$NON-NLS-1$
+                "inv: ocltest::Fruit::color = ocltest::Color::black" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
     }
 
     //
