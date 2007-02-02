@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -1514,11 +1514,58 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				IllegalArgumentException error = new IllegalArgumentException(
 						OCLMessages.AtPreInPostcondition_ERROR_);
 				OCLPlugin.throwing(getClass(),
-					"visitModelPropertyCallExp", error);//$NON-NLS-1$
+					"visitFeatureCallExp", error);//$NON-NLS-1$
 				throw error;
 			}
 		}
+        
+        // check for static access to non-static features
+        if (exp.getSource() != null) {
+            OCLExpression<C> source = exp.getSource();
+            
+            if (source.getType() instanceof TypeType) {
+                TypeType<C, ?>  typeType = (TypeType<C, ?>) source.getType();
+                
+                Object feature = null;
+                
+                if (exp instanceof OperationCallExp) {
+                    feature = ((OperationCallExp<?, ?>) exp).getReferredOperation();
+                    
+                    // operation must either be defined by the TypeType
+                    //    (e.g., allInstances()) or be a static operation of
+                    //    the referred classifier
+                    if (!(typeType.oclOperations().contains(feature)
+                            || isStatic(feature))) {
+                        String message = OCLMessages.bind(
+                            OCLMessages.NonStaticOperation_ERROR_,
+                            getName(feature));
+                        IllegalArgumentException error = new IllegalArgumentException(
+                                message);
+                        OCLPlugin.throwing(getClass(),
+                            "visitFeatureCallExp", error);//$NON-NLS-1$
+                    }
+                } else if (exp instanceof PropertyCallExp) {
+                    feature = ((PropertyCallExp<?, ?>) exp).getReferredProperty();
+                    
+                    // property must be a static attribute of
+                    //    the referred classifier
+                    if (!isStatic(feature)) {
+                        String message = OCLMessages.bind(
+                            OCLMessages.NonStaticAttribute_ERROR_,
+                            getName(feature));
+                        IllegalArgumentException error = new IllegalArgumentException(
+                                message);
+                        OCLPlugin.throwing(getClass(),
+                            "visitFeatureCallExp", error);//$NON-NLS-1$
+                    }
+                }
+            }
+        }
 	}
+    
+    private boolean isStatic(Object feature) {
+        return (uml != null) && uml.isStatic(feature);
+    }
 
 	public Boolean visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 		if (!(il.getType() instanceof InvalidType)) {
