@@ -7,7 +7,7 @@
 	<property name="plugin" value="org.eclipse.ocl"/>
 	<property name="docPlugin" value="org.eclipse.ocl.doc"/>
 
-	<property name="filesToInclude" value="META-INF/**,about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties,toc.xml,topics_*.xml,index/**,images/**,tutorials/**,references/**"/>
+	<property name="filesToInclude" value="META-INF/**,about.html,about.ini,about.mappings,about.properties,eclipse.gif,eclipse.png,eclipse24.gif,eclipse32.gif,eclipse48.gif,eclipse32.png,eclipse48.png,eclipse_lg.gif,plugin.xml,plugin.properties,toc.xml,schema.css,book.css,topics_*.xml,index/**,images/**,tutorials/**,references/**"/>
 
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="false"/>
