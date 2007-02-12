@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.ocl.all.sdk"
+      label="%featureName"
+      version="1.1.0.qualifier"
+      provider-name="%providerName"
+      image="eclipse_update_120.jpg">
+
+   <description url="http://www.eclipse.org/modeling/mdt/">
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2005, 2007 IBM Corporation and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
+   </url>
+
+   <includes
+         id="org.eclipse.ocl"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.uml"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.doc"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.uml.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ocl"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ocl.doc"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ocl.source"
+         version="0.0.0"/>
+
+</feature>
