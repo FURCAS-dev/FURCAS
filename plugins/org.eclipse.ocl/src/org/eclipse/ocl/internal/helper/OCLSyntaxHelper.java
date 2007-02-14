@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.2 2007/01/26 21:35:25 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.3 2007/02/14 18:00:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -826,7 +826,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 		
 		if ((tokenIndex >= 0) && (tokenIndex < tokens.size())) {
-			result = ((IToken) tokens.get(tokenIndex)).getKind();
+			result = tokens.get(tokenIndex).getKind();
 		}
 		
 		return result;
@@ -936,7 +936,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					switch (prev.getKind()) {
 					case OCLLPGParsersym.TK_LPAREN:
 						if (iter.hasPrevious()) {
-							prev = (IToken) iter.previous();
+							prev = iter.previous();
 							
 							if (prev.getKind() == OCLLPGParsersym.TK_oclIsInState) {
 								syntaxHelpStringSuffix = OCL_IS_IN_STATE;
@@ -1143,7 +1143,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				int beginIndex = 0;
 				while (tokens.hasPrevious()) {
 					// search for the left parenthesis
-					IToken ot = (IToken) tokens.previous();
+					IToken ot = tokens.previous();
 					if (ot.getKind() == OCLLPGParsersym.TK_LPAREN) {
 						beginIndex = ot.getEndOffset() + 1;
 						break;
@@ -1159,7 +1159,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				int beginIndex = 0;
 				while (tokens.hasPrevious()) {
 					// search for the "let" token
-					IToken ot = (IToken) tokens.previous();
+					IToken ot = tokens.previous();
 					if (ot.getKind() == OCLLPGParsersym.TK_let) {
 						beginIndex = ot.getEndOffset() + 1;
 						break;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateAny.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: IterationTemplateAny.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -46,7 +46,7 @@ class IterationTemplateAny<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();
 		// should be exactly one iterator
-		String iterName = ((Variable<C, PM>)iterators.get(0)).getName();
+		String iterName = iterators.get(0).getName();
 		Object currObj = env.getValueOf(iterName);
 		Object resultVal = null;
 		

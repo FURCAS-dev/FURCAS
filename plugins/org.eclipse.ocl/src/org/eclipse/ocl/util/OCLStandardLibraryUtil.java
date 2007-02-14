@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -438,7 +438,7 @@ public final class OCLStandardLibraryUtil {
 			case OCL_IS_TYPE_OF:
 			case OCL_IS_NEW:
 			case OCL_IS_IN_STATE:
-				return (C) stdlib.getBoolean();
+				return stdlib.getBoolean();
 			case OCL_AS_TYPE:
 				TypeExp<C> typeExp = (TypeExp<C>) args.get(0);
 				argType = typeExp.getReferredType();
@@ -458,7 +458,7 @@ public final class OCLStandardLibraryUtil {
 				return argType;
 			case OCL_IS_UNDEFINED:
 			case OCL_IS_INVALID:
-				return (C) stdlib.getBoolean();
+				return stdlib.getBoolean();
 		}
 		
 		// unknown operation (shouldn't get here)
@@ -491,7 +491,7 @@ public final class OCLStandardLibraryUtil {
 			
 			// assert the relationship between the types
 			TypeUtil.commonSuperType(env, argType, sourceType);
-			return (C) stdlib.getReal();
+			return stdlib.getReal();
 		case MINUS:
 			// unary minus
 			if (args == null || args.size() == 0) return sourceType;
@@ -507,7 +507,7 @@ public final class OCLStandardLibraryUtil {
 		case NOT:
 		case AND:
 		case OR:
-			return (C) stdlib.getBoolean();			
+			return stdlib.getBoolean();			
 		case MIN:
 		case MAX:
 		case ABS:
@@ -520,12 +520,12 @@ public final class OCLStandardLibraryUtil {
 		case TO_INTEGER:
 		case SIZE:
 		case ROUND:
-			return (C) stdlib.getInteger(); 
+			return stdlib.getInteger(); 
 		case TO_REAL:
-			return (C) stdlib.getReal();
+			return stdlib.getReal();
 		case TO_LOWER:
 		case TO_UPPER:
-			return (C) stdlib.getString();
+			return stdlib.getString();
 		}
 		
 		// must be an operation defined for all types, then
@@ -557,7 +557,7 @@ public final class OCLStandardLibraryUtil {
 			
 		case EQUAL:
 		case NOT_EQUAL:
-			return (C) stdlib.getBoolean();
+			return stdlib.getBoolean();
 		case UNION:
 			argType = args.get(0).getType(); 
 			otherType =	(CollectionType<C, O>) argType;
@@ -582,9 +582,9 @@ public final class OCLStandardLibraryUtil {
 						TypeUtil.commonSuperType(env, elemType, argElementType));
 			}
 		case EXCLUDING:
-			return (C) sourceType;
+			return sourceType;
 		case COUNT:
-			return (C) stdlib.getInteger();
+			return stdlib.getInteger();
 		case  FLATTEN:
 			if (!(elemType instanceof CollectionType)) {
 				return sourceType;
@@ -637,7 +637,7 @@ public final class OCLStandardLibraryUtil {
 			
 		case EQUAL:
 		case NOT_EQUAL:
-			return (C) stdlib.getBoolean();
+			return stdlib.getBoolean();
 			
 		case UNION:  
 			argType = args.get(0).getType(); 
@@ -663,13 +663,13 @@ public final class OCLStandardLibraryUtil {
 			
 			resultType = getSetType(env, typeFactory,
 					TypeUtil.commonSuperType(env, elemType, argElementType));
-			return (C) resultType;
+			return resultType;
 			
 		case INCLUDING:
 			argType = args.get(0).getType();
 			resultType = getSetType(env, typeFactory,
 					TypeUtil.commonSuperType(env, elemType, argType));
-			return (C) resultType;	
+			return resultType;	
 			
 		case INTERSECTION:
 			argType = args.get(0).getType(); 
@@ -685,7 +685,7 @@ public final class OCLStandardLibraryUtil {
 		case EXCLUDING:
 			return sourceType;
 		case COUNT:
-			return (C) stdlib.getInteger();
+			return stdlib.getInteger();
 		case FLATTEN:
 			if (!(elemType instanceof CollectionType)) {
 				return sourceType;
@@ -738,10 +738,10 @@ public final class OCLStandardLibraryUtil {
 			
 		case EQUAL:
 		case NOT_EQUAL:
-			return (C) stdlib.getBoolean();
+			return stdlib.getBoolean();
 			
 		case INDEX_OF:
-			return (C) stdlib.getInteger();
+			return stdlib.getInteger();
 		
 		case APPEND:
 		case PREPEND:
@@ -804,10 +804,10 @@ public final class OCLStandardLibraryUtil {
 
 			case COUNT:
 			case INDEX_OF:
-				return (C) stdlib.getInteger();
+				return stdlib.getInteger();
 			case EQUAL:
 			case NOT_EQUAL:
-				return (C) stdlib.getBoolean();
+				return stdlib.getBoolean();
 			case UNION:
 				argType = args.get(0).getType(); 
 				otherType =	(CollectionType<C, O>) argType;
@@ -879,7 +879,7 @@ public final class OCLStandardLibraryUtil {
         switch (opcode) {
         case SIZE:
         case COUNT:
-            return (C) stdlib.getInteger();
+            return stdlib.getInteger();
         case INCLUDES:
         case EXCLUDES:
         case INCLUDES_ALL:
@@ -888,7 +888,7 @@ public final class OCLStandardLibraryUtil {
         case NOT_EMPTY:
         case EQUAL:
         case NOT_EQUAL:
-            return (C) stdlib.getBoolean();
+            return stdlib.getBoolean();
         case SUM:
             C type = collType.getElementType();
             if (type != stdlib.getReal() && type != stdlib.getInteger()) {
@@ -913,7 +913,7 @@ public final class OCLStandardLibraryUtil {
         case FOR_ALL:
         case IS_UNIQUE:
         case ONE:
-        	return (C) stdlib.getBoolean();
+        	return stdlib.getBoolean();
         case ANY:
         	return collType.getElementType();
         case COLLECT:
@@ -987,7 +987,7 @@ public final class OCLStandardLibraryUtil {
 			case HAS_RETURNED:
 			case IS_SIGNAL_SENT:
 			case IS_OPERATION_CALL:
-				return (C) stdlib.getBoolean();
+				return stdlib.getBoolean();
 			case RESULT:
 				MessageType<C, O, P> mtype =
 					(MessageType<C, O, P>) sourceType;

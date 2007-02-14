@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.2 2007/02/14 18:00:29 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -218,7 +218,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Collection<Variable<C, PM>> result = new java.util.ArrayList<Variable<C, PM>>();
 		
 		for (int i = 0; i < namedElements.size(); i++) {
-			VariableEntry elem = (VariableEntry) namedElements.get(i);
+			VariableEntry elem = namedElements.get(i);
 			
 			if (elem.isExplicit) {
 				result.add(elem.variable);
@@ -477,7 +477,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public Variable<C, PM> lookupLocal(String name) {
 
 		for (int i = 0; i < namedElements.size(); i++) {
-			VariableEntry elem = (VariableEntry) namedElements.get(i);
+			VariableEntry elem = namedElements.get(i);
 			if (elem.name.equals(name)) {
 				return elem.variable;
 			}
@@ -622,7 +622,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Variable<C, PM> vdcl;
 		
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
+			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
 			
 			if (!element.isExplicit) {
@@ -650,7 +650,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Variable<C, PM> vdcl;
 		
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
+			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
 			if (!element.isExplicit) {
 				P property = lookupProperty(vdcl.getType(), name);
@@ -678,7 +678,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public Variable<C, PM> lookupImplicitSourceForAssociationClass(String name) {
 		Variable<C, PM> vdcl;
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
+			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
 			if (!element.isExplicit) {
 				C ac = lookupAssociationClassReference(vdcl.getType(), name);
@@ -708,7 +708,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Variable<C, PM> vdcl;
 		
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
+			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
 			C owner = vdcl.getType();
 			
@@ -742,7 +742,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Variable<C, PM> vdcl;
 		
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
-			VariableEntry element = (VariableEntry) namedElements.get(i);
+			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
 			C owner = vdcl.getType();
 			
