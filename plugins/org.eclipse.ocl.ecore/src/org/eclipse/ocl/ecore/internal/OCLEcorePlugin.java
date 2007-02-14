@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ * 
+ * $Id: OCLEcorePlugin.java,v 1.2 2007/02/14 14:45:45 cdamus Exp $
+ * 
+ *******************************************************************************/
 package org.eclipse.ocl.ecore.internal;
 
 import org.eclipse.core.runtime.IStatus;

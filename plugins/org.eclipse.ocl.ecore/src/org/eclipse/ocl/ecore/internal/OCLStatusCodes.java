@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2004, 2006 IBM Corporation and others.
+ * Copyright (c) 2004, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStatusCodes.java,v 1.1 2007/01/25 18:29:10 cdamus Exp $
+ * $Id: OCLStatusCodes.java,v 1.2 2007/02/14 14:45:45 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;

@@ -1,8 +1,8 @@
 /**
  * <copyright>
- *
- * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
+ * 
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.1 2007/01/25 18:32:35 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -289,7 +289,7 @@ public abstract class AbstractTestSuite
 		
 		try {
 			constraints = ocl.parse(new OCLInput(text));
-			constraint = (Constraint) constraints.get(0);
+			constraint = constraints.get(0);
 		} catch (ParserException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		} catch (IllegalArgumentException e) {
@@ -640,17 +640,17 @@ public abstract class AbstractTestSuite
 		fruitFactory = fruitPackage.getEFactoryInstance();
 		
 		fruit = (EClass) fruitPackage.getEClassifier("Fruit"); //$NON-NLS-1$
-		fruit_ripen = (EOperation) fruit.getEOperations().get(0);
-		fruit_preferredColor = (EOperation) fruit.getEOperations().get(1);
-		fruit_newFruit = (EOperation) fruit.getEOperations().get(2);
-		fruit_setColor = (EOperation) fruit.getEOperations().get(3);
+		fruit_ripen = fruit.getEOperations().get(0);
+		fruit_preferredColor = fruit.getEOperations().get(1);
+		fruit_newFruit = fruit.getEOperations().get(2);
+		fruit_setColor = fruit.getEOperations().get(3);
 		fruit_color = (EAttribute) fruit.getEStructuralFeature("color"); //$NON-NLS-1$
 		
 		apple = (EClass) fruitPackage.getEClassifier("Apple"); //$NON-NLS-1$
 		apple_label = (EAttribute) apple.getEStructuralFeature("label"); //$NON-NLS-1$
 		apple_stem = (EReference) apple.getEStructuralFeature("stem"); //$NON-NLS-1$
-		apple_labelOper = (EOperation) apple.getEOperations().get(0);
-		apple_newApple = (EOperation) apple.getEOperations().get(1);
+		apple_labelOper = apple.getEOperations().get(0);
+		apple_newApple = apple.getEOperations().get(1);
 		
 		stem = (EClass) fruitPackage.getEClassifier("Stem"); //$NON-NLS-1$
 		
@@ -668,9 +668,9 @@ public abstract class AbstractTestSuite
 		util_set = (EReference) util.getEStructuralFeature("set"); //$NON-NLS-1$
 		util_bag = (EReference) util.getEStructuralFeature("bag"); //$NON-NLS-1$
 		util_sequence = (EReference) util.getEStructuralFeature("sequence"); //$NON-NLS-1$
-		util_processOrderedSet = (EOperation) util.getEOperations().get(0);
-		util_processSet = (EOperation) util.getEOperations().get(1);
-		util_processBag = (EOperation) util.getEOperations().get(2);
-		util_processSequence = (EOperation) util.getEOperations().get(3);
+		util_processOrderedSet = util.getEOperations().get(0);
+		util_processSet = util.getEOperations().get(1);
+		util_processBag = util.getEOperations().get(2);
+		util_processSequence = util.getEOperations().get(3);
 	}
 }

@@ -1,8 +1,8 @@
 /**
  * <copyright>
- *
- * Copyright (c) 2006 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
+ * 
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.1 2007/01/25 18:32:35 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -36,11 +36,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.utilities.ASTNode;
 
 /**
  * Tests for serialization of OCL constraints and expressions.
@@ -211,7 +210,7 @@ public class SerializationTest
 		EOperation eoper = null;
 		
 		try {
-			eoper = (EOperation) helper.defineOperation(
+			eoper = helper.defineOperation(
 					"getUniqueClassifierNames() : Set(String) = " + //$NON-NLS-1$
 					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
 			
@@ -254,7 +253,7 @@ public class SerializationTest
 		EStructuralFeature esf = null;
 		
 		try {
-			esf = (EStructuralFeature) helper.defineAttribute(
+			esf = helper.defineAttribute(
 					"uniqueClassifierNames : Set(String) = " + //$NON-NLS-1$
 					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
 			
@@ -368,7 +367,7 @@ public class SerializationTest
 			assertFalse("No contents in serial data", res.getContents().isEmpty()); //$NON-NLS-1$
 			assertNoProxies(res);
 			
-			result = (ASTNode) res.getContents().get(0);
+			result = res.getContents().get(0);
 		} catch (Exception e) {
 			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
