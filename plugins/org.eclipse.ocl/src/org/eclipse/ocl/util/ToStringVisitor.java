@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -618,7 +618,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
         List<EObject> constrained = getConstrainedElements(constraint);
         
         if (!constrained.isEmpty()) {
-            EObject elem = (EObject) constrained.get(0);
+            EObject elem = constrained.get(0);
             
             result.append("context "); //$NON-NLS-1$
             if (isClassifier(elem)) {
@@ -650,7 +650,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
         } else if (UMLReflection.POSTCONDITION.equals(stereo)) {
             result.append("def: "); //$NON-NLS-1$
             
-            EObject elem = (EObject) constrained.get(1);
+            EObject elem = constrained.get(1);
             
             if (isOperation(elem)) {
                 @SuppressWarnings("unchecked")
@@ -701,7 +701,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		
 		boolean comma = false;
 		for (Iterator<PM> iter = getParameters(operation).iterator(); iter.hasNext();) {
-			PM parm = (PM) iter.next();
+			PM parm = iter.next();
 			
 			if (comma) {
 				buf.append(", "); //$NON-NLS-1$

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -665,7 +665,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				throw error;
 			}
 			
-			parameters = uml.getAttributes((C) signal);
+			parameters = uml.getAttributes(signal);
 		}
 		
 		List<OCLExpression<C>> arguments = m.getArgument();
@@ -1730,11 +1730,11 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 		
 		if (operationType == null) {
-			operationType = (C) env.getOCLStandardLibrary().getOclVoid();
+			operationType = env.getOCLStandardLibrary().getOclVoid();
 		}
 		
 		if (propertyType == null) {
-			propertyType = (C) env.getOCLStandardLibrary().getOclVoid();
+			propertyType = env.getOCLStandardLibrary().getOclVoid();
 		}
 		
 		if (UMLReflection.BODY.equals(stereo)
