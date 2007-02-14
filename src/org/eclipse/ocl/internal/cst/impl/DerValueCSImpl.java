@@ -1,8 +1,8 @@
 /**
  * <copyright>
- *
- * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
+ * 
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DerValueCSImpl.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: DerValueCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
