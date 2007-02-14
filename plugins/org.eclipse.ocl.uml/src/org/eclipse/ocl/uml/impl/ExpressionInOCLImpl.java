@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -43,6 +43,7 @@ import org.eclipse.uml2.uml.internal.impl.OpaqueExpressionImpl;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class ExpressionInOCLImpl extends OpaqueExpressionImpl implements ExpressionInOCL {
     /**
      * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.

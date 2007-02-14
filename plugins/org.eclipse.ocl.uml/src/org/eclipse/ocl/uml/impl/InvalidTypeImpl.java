@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class InvalidTypeImpl extends ClassifierImpl implements InvalidType {
     private EList<Operation> operations;
     
@@ -144,6 +145,7 @@ public class InvalidTypeImpl extends ClassifierImpl implements InvalidType {
      * @generated NOT
      * @ordered
      */
+    @SuppressWarnings("hiding")
     protected static final int[] FEATURE_ESUBSETS = new int[]{
 //TODO: Remove the "NOT"
         UMLPackage.INVALID_TYPE__ATTRIBUTE, UMLPackage.INVALID_TYPE__OWNED_OPERATIONS};
