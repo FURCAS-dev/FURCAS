@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
+ * $Id: OCLParser.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -370,7 +370,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private String makeString(EList<String> namelist) {
 		String msg = "";//$NON-NLS-1$
 		for (int i = 0; i < namelist.size(); i++) {
-			msg += " " + (String) namelist.get(i);//$NON-NLS-1$
+			msg += " " + namelist.get(i);//$NON-NLS-1$
 		}
 		return msg;
 	}
@@ -386,7 +386,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		StringBuffer msg = new StringBuffer();
 		for (int i = 0; i < namelist.size(); i++) {
 			if (i > 0) msg.append("::");//$NON-NLS-1$
-			msg.append((String) namelist.get(i));
+			msg.append(namelist.get(i));
 		}
 		return msg.toString();
 	}
@@ -467,8 +467,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					
 					while (eiter.hasNext()) {
 						C expectedType = uml.getOCLType(eiter.next());
-						OCLExpression<C> qualifier =
-							(OCLExpression<C>) qiter.next();
+						OCLExpression<C> qualifier = qiter.next();
 						
 						C qualifierType = qualifier.getType();
 						if (TypeUtil.typeCompare(env, expectedType, qualifierType) < 0) {
@@ -678,7 +677,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					operationString(env, operName, args),
 					(ownerType == null)? null : uml.getName(ownerType));
 			ERROR(rule, message);
-			result.setType((C) env.getOCLStandardLibrary().getOclVoid());
+			result.setType(env.getOCLStandardLibrary().getOclVoid());
 		} else {
 		  	TRACE(rule, uml.getName(oper));
 			result.setReferredOperation(oper);
@@ -1122,7 +1121,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				List<Variable<C, PM>> contextParms =
 					parametersCS(operationCS.getParameters(), env);
 				operation = env.lookupOperation(
-					classifier, (String) operationName.get(lastName), contextParms);
+					classifier, operationName.get(lastName), contextParms);
 
 				if (operation == null) {
 					String message = OCLMessages.bind(
@@ -2181,7 +2180,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				(AssociationClassCallExp<C, P>) navigation;
 			OCLExpression<C> source = acc.getSource();
 			
-			OCLExpressionCS arg = (OCLExpressionCS)arguments.get(0);
+			OCLExpressionCS arg = arguments.get(0);
 
 			if (!(arg instanceof VariableExpCS)) {
 				ERROR("qualifiersCS",//$NON-NLS-1$
@@ -2307,7 +2306,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		if (index < letExpCS.getVariables().size()) {
 			Variable<C, PM> variableDeclaration =
-				variableDeclarationCS((VariableCS)letExpCS.getVariables().get(index),
+				variableDeclarationCS(letExpCS.getVariables().get(index),
 					env, true);
 	
 			String varName = variableDeclaration.getName();
@@ -2476,7 +2475,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			initPropertyPositions(propertyCall, simpleNameCS);
 			astNode = propertyCall;
 						
-		} else if ((assocClass = (C) env.lookupAssociationClassReference(sourceElementType, simpleName)) != null) {
+		} else if ((assocClass = env.lookupAssociationClassReference(sourceElementType, simpleName)) != null) {
 			TRACE("variableExpCS", "Association class: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 			acref = ExpressionsFactory.eINSTANCE.createAssociationClassCallExp();
 			acref.setReferredAssociationClass(assocClass);
@@ -2614,15 +2613,13 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		if (source.getType() instanceof SequenceType ||
 				source.getType() instanceof OrderedSetType) {
-			@SuppressWarnings("unchecked")
-			C c = (C) getCollectionType(
+			C c = getCollectionType(
 					env,
 					CollectionKind.SEQUENCE_LITERAL,
 					bodyType);
 			result.setType(c);
 		} else {
-			@SuppressWarnings("unchecked")
-			C c = (C) getCollectionType(
+			C c = getCollectionType(
 					env,
 					CollectionKind.BAG_LITERAL,
 					bodyType);
@@ -2649,39 +2646,39 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		switch (simpleType) {
 			case INTEGER_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getInteger();
+				astNode = env.getOCLStandardLibrary().getInteger();
 				break;
 	
             case UNLIMITED_NATURAL_LITERAL:
-                astNode = (C) env.getOCLStandardLibrary().getUnlimitedNatural();
+                astNode = env.getOCLStandardLibrary().getUnlimitedNatural();
                 break;
     
 			case STRING_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getString();
+				astNode = env.getOCLStandardLibrary().getString();
 				break;
 	
 			case REAL_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getReal();
+				astNode = env.getOCLStandardLibrary().getReal();
 				break;
 	
 			case BOOLEAN_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getBoolean();
+				astNode = env.getOCLStandardLibrary().getBoolean();
 				break;
 	
 			case OCL_ANY_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getOclAny();
+				astNode = env.getOCLStandardLibrary().getOclAny();
 				break;
 	
 			case OCL_VOID_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getOclVoid();
+				astNode = env.getOCLStandardLibrary().getOclVoid();
 				break;
 				
 			case INVALID_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getInvalid();
+				astNode = env.getOCLStandardLibrary().getInvalid();
 				break;
 				
 			case OCL_MESSAGE_LITERAL:
-				astNode = (C) env.getOCLStandardLibrary().getOclMessage();
+				astNode = env.getOCLStandardLibrary().getOclMessage();
 				break;
 		}
 		return astNode;
@@ -2732,7 +2729,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	
 		IntegerLiteralExp<C> astNode = ExpressionsFactory.eINSTANCE.createIntegerLiteralExp();
 		astNode.setIntegerSymbol(integerLiteralExpCS.getIntegerSymbol());
-		astNode.setType((C) env.getOCLStandardLibrary().getInteger());
+		astNode.setType(env.getOCLStandardLibrary().getInteger());
 		astNode.setName(PrimitiveType.INTEGER_NAME);
 		TRACE("integerLiteralExpCS", "Integer: " + integerLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
@@ -2754,7 +2751,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     
         UnlimitedNaturalLiteralExp<C> astNode = ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
         astNode.setIntegerSymbol(unlimitedNaturalLiteralExpCS.getIntegerSymbol());
-        astNode.setType((C) env.getOCLStandardLibrary().getUnlimitedNatural());
+        astNode.setType(env.getOCLStandardLibrary().getUnlimitedNatural());
         astNode.setName(PrimitiveType.UNLIMITED_NATURAL_NAME);
         TRACE("unlimitedNaturalLiteralExpCS", "UnlimitedNatural: " + unlimitedNaturalLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
             
@@ -2777,7 +2774,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		RealLiteralExp<C> astNode =
 			ExpressionsFactory.eINSTANCE.createRealLiteralExp();
 		astNode.setRealSymbol(realLiteralExpCS.getRealSymbol());
-		astNode.setType((C) env.getOCLStandardLibrary().getReal());
+		astNode.setType(env.getOCLStandardLibrary().getReal());
 		astNode.setName(PrimitiveType.REAL_NAME);
 		TRACE("realLiteralExpCS", "Real: " + realLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
@@ -2805,7 +2802,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		} else {
 			astNode.setStringSymbol(stringLiteral.substring(1, stringLiteral.length()-1));
 		}
-		astNode.setType((C) env.getOCLStandardLibrary().getString());
+		astNode.setType(env.getOCLStandardLibrary().getString());
 		astNode.setName(PrimitiveType.STRING_NAME);
 		TRACE("stringLiteralExpCS", "String: " + stringLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
@@ -2828,7 +2825,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		BooleanLiteralExp<C> astNode =
 			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp(); 
 		astNode.setBooleanSymbol(booleanLiteralExpCS.getBooleanSymbol());
-		astNode.setType((C) env.getOCLStandardLibrary().getBoolean());
+		astNode.setType(env.getOCLStandardLibrary().getBoolean());
 		astNode.setName(PrimitiveType.BOOLEAN_NAME);
 		TRACE("booleanLiteralExpCS", "Boolean: " + booleanLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
@@ -2871,7 +2868,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		InvalidLiteralExp<C> astNode =
 			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp(); 
-		astNode.setType((C) env.getOCLStandardLibrary().getInvalid());
+		astNode.setType(env.getOCLStandardLibrary().getInvalid());
 		astNode.setName("Invalid");//$NON-NLS-1$
 		TRACE("invalidLiteralExpCS", "Invalid: OclInvalid");//$NON-NLS-2$//$NON-NLS-1$
 			
@@ -3100,7 +3097,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     			litExp.setReferredEnumLiteral(literal);
     			astNode = litExp;
     			if (enumType == null || literal == null) {
-    				astNode.setType((C) env.getOCLStandardLibrary().getInvalid());
+    				astNode.setType(env.getOCLStandardLibrary().getInvalid());
     			} else {
     				astNode.setType(enumType);
     			}
@@ -3200,7 +3197,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	
 			while (i.hasNext()) {
 					collectionLiteralPartExp = collectionLiteralPartCS(
-						(CollectionLiteralPartCS)i.next(), env);
+						i.next(), env);
 					C type1 = collectionLiteralPartExp.getType();					
 					type = TypeUtil.commonSuperType(env, type, type1);
 					collectionParts.add(collectionLiteralPartExp);
@@ -3435,7 +3432,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		TRACE("oclIteratorExpCS: ", name);//$NON-NLS-1$
 		
 		if (name.equals("forAll") || name.equals("exists") || name.equals("one") || name.equals("isUnique")) {//$NON-NLS-4$//$NON-NLS-3$//$NON-NLS-2$//$NON-NLS-1$
-			astNode.setType((C) env.getOCLStandardLibrary().getBoolean());
+			astNode.setType(env.getOCLStandardLibrary().getBoolean());
 		} else if (name.equals("select") || name.equals("reject") ) {//$NON-NLS-2$//$NON-NLS-1$
 			astNode.setType(source.getType());
 		} else if (name.equals("collect")) {//$NON-NLS-1$
@@ -3722,7 +3719,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 								computeInputString(operationCallExpCS)));
 			}
 			
-			OCLExpressionCS arg = (OCLExpressionCS) operationCallExpCS.getArguments().get(0);
+			OCLExpressionCS arg = operationCallExpCS.getArguments().get(0);
 			if (!(arg instanceof StateExpCS)) {
 				ERROR("operationCallExpCS", //$NON-NLS-1$
 						OCLMessages.bind(
@@ -3848,7 +3845,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					initStartEndPositions(arg, argCS);
 					if (argCS.getTypeCS() == null) {
 						// OclVoid matches any parameter type in an operation signature
-						arg.setType((C) env.getOCLStandardLibrary().getOclVoid());
+						arg.setType(env.getOCLStandardLibrary().getOclVoid());
 					} else {
 						arg.setType(typeCS(argCS.getTypeCS(), env));
 						initTypePositions(
@@ -3890,7 +3887,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 		
 		if (messageExpCS.getKind() == MessageExpKind.HAS_SENT_LITERAL) {
-			result.setType((C) env.getOCLStandardLibrary().getBoolean());
+			result.setType(env.getOCLStandardLibrary().getBoolean());
 		} else if (uml.isOperation(behavioralFeature)) {
 			result.setType(
 					getSequenceType(env,

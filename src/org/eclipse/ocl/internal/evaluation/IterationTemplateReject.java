@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateReject.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: IterationTemplateReject.java,v 1.2 2007/02/14 18:00:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -45,7 +45,7 @@ public class IterationTemplateReject<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();
 		
 		// should be exactly one iterator
-		String iterName = ((Variable<C, PM>)iterators.get(0)).getName();
+		String iterName = iterators.get(0).getName();
 		Object currObj = env.getValueOf(iterName);
 		
 		@SuppressWarnings("unchecked")

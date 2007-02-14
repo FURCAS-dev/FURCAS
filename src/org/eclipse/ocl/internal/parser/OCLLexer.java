@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.2 2007/02/01 16:14:56 cdamus Exp $
+* $Id: OCLLexer.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -58,7 +58,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     }
 
     public String[] orderedExportedSymbols() { return OCLLPGParsersym.orderedTerminalSymbols; }
-    public LexStream getLexStream() { return (LexStream) this; }
+    public LexStream getLexStream() { return this; }
 
     public void lexer(PrsStream prsStream)
     {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -947,11 +947,11 @@ public class TypeUtil {
 		}
 	
 		if (type1 instanceof MessageType && type2 instanceof MessageType) {
-			return (C) stdlib.getOclMessage();
+			return stdlib.getOclMessage();
 		}
 		
 		if (type1 instanceof TypeType && type2 instanceof TypeType) {
-			return (C) stdlib.getOclType();
+			return stdlib.getOclType();
 		}
 		
         UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = env.getUMLReflection();

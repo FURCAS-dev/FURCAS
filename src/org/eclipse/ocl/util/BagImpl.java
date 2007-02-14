@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagImpl.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: BagImpl.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -69,7 +69,7 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 	}
 
 	public boolean add(E o) {
-		MutableInteger count = (MutableInteger) coll.get(o);
+		MutableInteger count = coll.get(o);
 		if (count == null)
 			coll.put(o, new MutableInteger(1));
 		else
@@ -84,7 +84,7 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
     }
     
     public int count(Object o) {
-        MutableInteger count = (MutableInteger) coll.get(o);
+        MutableInteger count = coll.get(o);
         
         if (count != null) {
             return count.i;
@@ -112,9 +112,8 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 			if (size() == b.size()) {
 				for (Iterator<?> it = iterator(); it.hasNext();) {
 					Object obj = it.next();
-					MutableInteger count = (MutableInteger) coll.get(obj);
-					MutableInteger otherCount = (MutableInteger) b.coll
-						.get(obj);
+					MutableInteger count = coll.get(obj);
+					MutableInteger otherCount = b.coll.get(obj);
 					if (otherCount == null || otherCount.i != count.i)
 						return false;
 				}
@@ -148,14 +147,14 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 			public boolean hasNext() {
 				if (it.hasNext())
 					return true;
-				MutableInteger count = (MutableInteger) coll.get(curr);
+				MutableInteger count = coll.get(curr);
 				return curr != null && offset < count.i - 1;
 			}
 
 			public E next() {
 				if (!hasNext())
 					throw new NoSuchElementException();
-				MutableInteger count = (MutableInteger) coll.get(curr);
+				MutableInteger count = coll.get(curr);
 				if (count != null && offset < count.i - 1) {
 					offset++;
 					return curr;

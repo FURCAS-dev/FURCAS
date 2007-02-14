@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.1 2007/01/25 18:24:39 cdamus Exp $
+ * $Id: HelperUtil.java,v 1.2 2007/02/14 18:00:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -387,10 +387,8 @@ public class HelperUtil {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			ASTNode astNode) {
 		
-		EObject astEObject = (EObject) astNode;
-		
-		if (astEObject.eResource() == null) {
-			env.getTypeResolver().getResource().getContents().add(astEObject);
+		if (astNode.eResource() == null) {
+			env.getTypeResolver().getResource().getContents().add(astNode);
 		}
 	}
 	
