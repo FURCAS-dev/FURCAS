@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentFactory.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: UMLEnvironmentFactory.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -266,6 +266,6 @@ public class UMLEnvironmentFactory
 	public EvaluationEnvironment<Classifier, Operation, Property, Class, EObject>
 	createEvaluationEnvironment(
 			EvaluationEnvironment<Classifier, Operation, Property, Class, EObject> parent) {
-		return new UMLEvaluationEnvironment((UMLEvaluationEnvironment) parent);
+		return new UMLEvaluationEnvironment(parent);
 	}
 }

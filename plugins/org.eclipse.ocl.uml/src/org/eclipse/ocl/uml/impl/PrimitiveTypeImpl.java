@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -12,7 +12,6 @@ import org.eclipse.ocl.uml.PrimitiveType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +22,7 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class PrimitiveTypeImpl extends 
 org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl implements PrimitiveType {
     protected EList<Operation> operations;

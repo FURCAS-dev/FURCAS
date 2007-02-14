@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -297,7 +297,7 @@ public class UMLEnvironment extends AbstractEnvironment<
 				pkg = currPkg;
 				
 				for (int i = 0; i < path.size(); i++) {
-					String name = (String) path.get(i);
+					String name = path.get(i);
 					EList<Package> subPackages = pkg.getNestedPackages();
 					pkg = null;
 					for (int j = 0; j < subPackages.size(); j++) {
@@ -395,13 +395,9 @@ public class UMLEnvironment extends AbstractEnvironment<
 				return member;
 			}
 			
-			if (member instanceof Classifier) {
-				return (Classifier) member;
-			}
-			
-			return null;
+			return member;
 		} else if (getContextPackage() != null) {
-			String name = (String) names.get(0);
+			String name = names.get(0);
 			Classifier result = null;
 			while (currNs != null) {
 				result = (Classifier) currNs.getMember(
@@ -600,7 +596,7 @@ public class UMLEnvironment extends AbstractEnvironment<
     	
 		if (owner instanceof Class) {
 			Classifier shadowed = ((TypeResolverImpl) getTypeResolver())
-                .getShadowedClassifier((Class) owner);
+                .getShadowedClassifier(owner);
 			
 			if (shadowed != null) {
 				owner = shadowed;

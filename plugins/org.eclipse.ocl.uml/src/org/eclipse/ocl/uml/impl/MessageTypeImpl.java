@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -54,6 +54,7 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class MessageTypeImpl extends ClassifierImpl implements MessageType {
     /**
      * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
@@ -315,6 +316,7 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
      * @generated NOT
      * @ordered
      */
+    @SuppressWarnings("hiding")
     protected static final int[] OWNED_MEMBER_ESUBSETS = new int[]{
 //TODO: Remove the "NOT"
         UMLPackage.MESSAGE_TYPE__OWNED_RULE, UMLPackage.MESSAGE_TYPE__OWNED_USE_CASE,

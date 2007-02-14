@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.1 2007/01/25 18:39:27 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -53,6 +53,7 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
     /**
      * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
@@ -345,10 +346,11 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
             
             myName.append('(');
             
+            @SuppressWarnings("hiding")
             Classifier elementType = getElementType();
             String elementTypeName;
             if (elementType instanceof VoidType) {
-                elementTypeName = "T";
+                elementTypeName = "T"; //$NON-NLS-1$
             } else {
                 elementTypeName = elementType.getName();
             }

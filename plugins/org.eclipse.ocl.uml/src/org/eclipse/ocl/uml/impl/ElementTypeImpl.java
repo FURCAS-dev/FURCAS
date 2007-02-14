@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class ElementTypeImpl extends ClassifierImpl implements ElementType {
     /**
      * <!-- begin-user-doc -->
