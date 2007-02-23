@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: Environment.java,v 1.2 2007/02/23 22:06:00 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -76,7 +76,7 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * Namespace URI of the OCL core metamodel, used for example as the
 	 * source of certain Ecore annotations.
 	 */
-	String OCL_NAMESPACE_URI = "http://www.eclipse.org/OCL2/1.1.0/ocl"; //$NON-NLS-1$
+	String OCL_NAMESPACE_URI = "http://www.eclipse.org/ocl/1.1.0/OCL"; //$NON-NLS-1$
 	
     /**
      * The name of the context variable 'self'.

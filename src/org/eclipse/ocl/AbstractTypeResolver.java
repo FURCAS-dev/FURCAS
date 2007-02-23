@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.2 2007/02/14 14:46:07 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.3 2007/02/23 22:06:00 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -35,7 +35,6 @@ import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.util.TypesSwitch;
 import org.eclipse.ocl.util.TypeUtil;
-import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypeFactory;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -772,9 +771,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	 *      if not found
 	 */
 	protected C findShadowClass(C type) {
-        PK pkg = (type instanceof PredefinedType)? uml.getPackage(type) :
-            hasAdditionalFeatures()? getAdditionalFeaturesPackage() :
-                null;
+        PK pkg = hasAdditionalFeatures()? getAdditionalFeaturesPackage() : null;
         
         if (pkg != null) {
     		for (C next : uml.getClassifiers(pkg)) {
@@ -814,8 +811,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		if (result == null) {
 			result = createShadowClass(type);
             
-            PK pkg = (type instanceof PredefinedType)? uml.getPackage(type) :
-                getAdditionalFeaturesPackage();
+            PK pkg = getAdditionalFeaturesPackage();
             
             if (pkg != null) {
                 addClassifier(pkg, result);

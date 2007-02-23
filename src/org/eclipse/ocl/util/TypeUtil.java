@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.3 2007/02/23 22:06:00 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -184,39 +184,40 @@ public class TypeUtil {
 			}
 			
 			result = Collections.unmodifiableList(result);
-		} else if (owner instanceof PredefinedType) {
-			@SuppressWarnings("unchecked")
-			PredefinedType<O> source = (PredefinedType<O>) owner;
-			result = Collections.unmodifiableList(source.oclOperations());
 		} else {
-			// it's a user type.  Try to convert it to an OCL standard type
-			C type = uml.asOCLType(owner);
-			
-			if (type instanceof PredefinedType) {
-				@SuppressWarnings("unchecked")
-				PredefinedType<O> pt = (PredefinedType<O>) type;
-				
-				result = Collections.unmodifiableList(pt.oclOperations());
-			} else {
-				result = new ArrayList<O>();
-				
-				// Include both the AnyType operations (oclIsKindOf, etc)
-				// and the operations of the class itself.
-				
-				@SuppressWarnings("unchecked")
-				AnyType<O> oclAny = (AnyType<O>) env.getOCLStandardLibrary().getOclAny();
-				
-				result.addAll(uml.getOperations(owner));
-                
-                List<O> additionalOperations = env.getAdditionalOperations(owner);
-                if (additionalOperations != null && !additionalOperations.isEmpty()) {
-                    result.addAll(additionalOperations);
-                }
-                
-				result.addAll(oclAny.oclOperations());
-				
-				result = Collections.unmodifiableList(result);
-			}
+            if (owner instanceof PredefinedType) {
+    			@SuppressWarnings("unchecked")
+    			PredefinedType<O> source = (PredefinedType<O>) owner;
+    			result = new ArrayList<O>(source.oclOperations());
+    		} else {
+    			// it's a user type.  Try to convert it to an OCL standard type
+    			owner = uml.asOCLType(owner);
+    			
+    			if (owner instanceof PredefinedType) {
+    				@SuppressWarnings("unchecked")
+    				PredefinedType<O> pt = (PredefinedType<O>) owner;
+    				result = new ArrayList<O>(pt.oclOperations());
+    			} else {
+    				result = new ArrayList<O>();
+    				
+    				// Include both the AnyType operations (oclIsKindOf, etc)
+    				// and the operations of the class itself.
+    				
+    				@SuppressWarnings("unchecked")
+    				AnyType<O> oclAny = (AnyType<O>) env.getOCLStandardLibrary().getOclAny();
+    				
+    				result.addAll(uml.getOperations(owner));
+                    
+    				result.addAll(oclAny.oclOperations());
+    			}
+            }
+            
+            List<O> additionalOperations = env.getAdditionalOperations(owner);
+            if (additionalOperations != null && !additionalOperations.isEmpty()) {
+                result.addAll(additionalOperations);
+            }
+            
+            result = Collections.unmodifiableList(result);
 		}
 		
 		return result;
@@ -254,6 +255,11 @@ public class TypeUtil {
 			
 			result = Collections.unmodifiableList(result);
 		} else {
+            if (!(owner instanceof PredefinedType)) { 
+                // it's a user type.  Try to convert it to an OCL standard type
+                owner = uml.asOCLType(owner);
+            }
+            
 			result = new java.util.ArrayList<P>(uml.getAttributes(owner));
             
             List<P> additionalProperties = env.getAdditionalAttributes(owner);
