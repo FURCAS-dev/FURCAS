@@ -6,7 +6,7 @@
       nsPrefix="oclstdlib">
     <eClassifiers xsi:type="ocl.ecore:AnyType" name="OclAny"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/OclAny"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/OclAny"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -43,7 +43,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:VoidType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclVoid_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/OclVoid"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/OclVoid"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -80,7 +80,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:InvalidType"/>
     <eClassifiers xsi:type="ecore:EClass" name="Invalid_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Invalid"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Invalid"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -117,7 +117,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Boolean" instanceClassName="java.lang.Boolean"/>
     <eClassifiers xsi:type="ecore:EClass" name="Boolean_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Boolean"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Boolean"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -155,7 +155,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Integer" instanceClassName="java.lang.Integer"/>
     <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Integer"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Integer"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -232,7 +232,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="UnlimitedNatural"/>
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNatural_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/UnlimitedNatural"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/UnlimitedNatural"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -309,7 +309,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="Real" instanceClassName="java.lang.Double"/>
     <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Real"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Real"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -368,7 +368,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="String" instanceClassName="java.lang.String"/>
     <eClassifiers xsi:type="ecore:EClass" name="String_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/String"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/String"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -417,7 +417,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:TypeType" name="OclType"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclType_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/OclType"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/OclType"/>
       <eOperations name="=" eType="#/0/Boolean">
         <eParameters name="object" eType="#/0/OclAny"/>
       </eOperations>
@@ -473,7 +473,7 @@
     <eClassifiers xsi:type="ocl.ecore:ElementType" name="OclExpression"/>
     <eClassifiers xsi:type="ocl.ecore:CollectionType" name="Collection(T)" elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Collection(T)_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Collection(T)"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Collection(T)"/>
       <eOperations name="count" eType="#/0/Integer">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
@@ -497,43 +497,43 @@
       <eOperations name="sum" eType="#/0/Real"/>
       <eOperations name="size" eType="#/0/Integer"/>
       <eOperations name="exists" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="forAll" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="isUnique" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="one" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="any" eType="#/0/T">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collect" eType="#/2/Collection(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="closure" eType="#/2/Set(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
@@ -541,7 +541,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Set(T)_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Set(T)"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Set(T)"/>
       <eOperations name="count" eType="#/0/Integer">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
@@ -600,67 +600,67 @@
       <eOperations name="asSequence" eType="#/0/Sequence(T)"/>
       <eOperations name="asOrderedSet" eType="#/0/OrderedSet(T)"/>
       <eOperations name="exists" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="forAll" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="isUnique" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="one" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="any" eType="#/0/T">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collect" eType="#/2/Collection(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="closure" eType="#/2/Set(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="select" eType="#/0/Set(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="reject" eType="#/0/Set(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="sortedBy" eType="#/0/OrderedSet(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collectNested" eType="#/2/Bag(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
@@ -668,7 +668,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(T)" elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="OrderedSet(T)_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/OrderedSet(T)"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/OrderedSet(T)"/>
       <eOperations name="count" eType="#/0/Integer">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
@@ -755,67 +755,67 @@
       <eOperations name="first" eType="#/0/T"/>
       <eOperations name="last" eType="#/0/T"/>
       <eOperations name="exists" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="forAll" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="isUnique" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="one" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="any" eType="#/0/T">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collect" eType="#/2/Collection(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="closure" eType="#/2/Set(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="select" eType="#/0/Set(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="reject" eType="#/0/Set(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="sortedBy" eType="#/0/OrderedSet(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collectNested" eType="#/2/Bag(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
@@ -823,7 +823,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T)" elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Bag(T)_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Bag(T)"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Bag(T)"/>
       <eOperations name="count" eType="#/0/Integer">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
@@ -876,67 +876,67 @@
       <eOperations name="asSequence" eType="#/0/Sequence(T)"/>
       <eOperations name="asOrderedSet" eType="#/0/OrderedSet(T)"/>
       <eOperations name="exists" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="forAll" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="isUnique" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="one" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="any" eType="#/0/T">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collect" eType="#/2/Collection(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="closure" eType="#/2/Set(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="select" eType="#/0/Bag(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="reject" eType="#/0/Bag(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="sortedBy" eType="#/0/Sequence(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collectNested" eType="#/2/Bag(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
@@ -944,7 +944,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T)" elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Sequence(T)_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/Sequence(T)"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Sequence(T)"/>
       <eOperations name="count" eType="#/0/Integer">
         <eParameters name="object" eType="#/0/T"/>
       </eOperations>
@@ -1010,67 +1010,67 @@
       <eOperations name="asSequence" eType="#/0/Boolean"/>
       <eOperations name="asOrderedSet" eType="#/0/OrderedSet(T)"/>
       <eOperations name="exists" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="forAll" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="isUnique" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="one" eType="#/0/Boolean">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="any" eType="#/0/T">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collect" eType="#/2/Collection(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="closure" eType="#/2/Set(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="select" eType="#/0/Sequence(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="reject" eType="#/0/Sequence(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="sortedBy" eType="#/0/Sequence(T)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
       <eOperations name="collectNested" eType="#/2/Sequence(T2)">
-        <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
@@ -1078,11 +1078,11 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:AnyType" name="T"/>
     <eClassifiers xsi:type="ecore:EClass" name="T_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/T"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/T"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:AnyType" name="T2"/>
     <eClassifiers xsi:type="ecore:EClass" name="T2_Class">
-      <eAnnotations source="http://www.eclipse.org/OCL2/1.1.0/ocl" references="#/0/T2"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/T2"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="tuples">
