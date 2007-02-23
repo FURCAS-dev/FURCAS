@@ -613,22 +613,16 @@ public class EcoreEnvironment
 	}
 	
 	public EStructuralFeature lookupProperty(EClassifier owner, String name) {
-		EClass ownerClass = null;
-		
-		if (owner != null && owner instanceof EClass) {
-			ownerClass = (EClass) owner;
-		}
-
-		if (ownerClass == null) {
+		if (owner == null) {
 			Variable vdcl = lookupImplicitSourceForProperty(name);
-			if (vdcl == null) {
+			if (vdcl == null || vdcl.getType() == null) {
 				return null;
 			}
 			
-			ownerClass = (EClass) vdcl.getType();
+			owner = vdcl.getType();
 		}
 
-		EList properties = TypeUtil.getProperties(ownerClass);
+		EList properties = TypeUtil.getProperties(owner);
 		
 		for (Iterator iter = properties.iterator(); iter.hasNext();) {
 			EStructuralFeature next = (EStructuralFeature) iter.next();
@@ -779,7 +773,7 @@ public class EcoreEnvironment
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
-			if (!element.isExplicit && (vdcl.getType() instanceof EClass)) {
+			if (!element.isExplicit && (vdcl.getType() != null)) {
 				EStructuralFeature property = lookupProperty(vdcl.getType(), name);
 				if (property != null)
 					return vdcl;
@@ -790,7 +784,7 @@ public class EcoreEnvironment
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			if (vdcl.getType() instanceof EClass) {
+			if (vdcl.getType() != null) {
 				EStructuralFeature property = lookupProperty(vdcl.getType(), name);
 				if (property != null)
 					return vdcl;
@@ -965,7 +959,7 @@ public class EcoreEnvironment
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = (VariableEntry) namedElements.get(i);
 			vdcl = element.variable;
-			if (!element.isExplicit && (vdcl.getType() instanceof EClass)) {
+			if (!element.isExplicit && (vdcl.getType() != null)) {
 				EOperation eop = TypeUtil.findOperationMatching(vdcl.getType(), name, params);
 				if (eop != null)
 					return vdcl;
@@ -975,7 +969,7 @@ public class EcoreEnvironment
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			if (vdcl.getType() instanceof EClass) {
+			if (vdcl.getType() != null) {
 				EOperation eop = TypeUtil.findOperationMatching(vdcl.getType(), name, params);
 				if (eop != null)
 					return vdcl;
