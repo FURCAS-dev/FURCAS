@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.13 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.14 2007/02/23 22:05:59 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -162,10 +162,11 @@ public class TypeUtil {
 			result = ECollections.unmodifiableEList(
 					Types.OCL_ANY_TYPE.getOperations());
 		} else if (owner instanceof EDataType) {
-			EClassifier prim = TypeUtil.getOCLTypeFor((EDataType) owner);
-			if (prim instanceof PrimitiveType) {
+            // in case there is a corresponding OCL type
+			owner = TypeUtil.getOCLTypeFor((EDataType) owner);
+			if (owner instanceof PrimitiveType) {
 				result = ECollections.unmodifiableEList(
-						((PrimitiveType) prim).getOperations());
+						((PrimitiveType) owner).getOperations());
 			} else {
 				result = ECollections.unmodifiableEList(
 						Types.OCL_ANY_TYPE.getOperations());
@@ -191,6 +192,8 @@ public class TypeUtil {
 		if (owner instanceof EClass) {
 			result = ((EClass) owner).getEAllStructuralFeatures();
 		} else {
+            // in case there is a corresponding OCL type
+            owner = TypeUtil.getOCLType(owner);
 			result = ECollections.EMPTY_ELIST;
 		}
 		

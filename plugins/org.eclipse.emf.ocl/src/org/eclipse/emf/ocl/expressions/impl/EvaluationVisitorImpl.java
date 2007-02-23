@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.13 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.14 2007/02/23 22:05:59 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -1888,7 +1888,7 @@ public class EvaluationVisitorImpl
 		OCLExpression source = pc.getSource();
 
 		// evaluate source
-		EObject context = (EObject) source.accept(this);
+		Object context = source.accept(this);
 
 		// if source is undefined, result is OclInvalid
 		if (isUndefined(context))
@@ -1902,21 +1902,25 @@ public class EvaluationVisitorImpl
 		}
 		
 		// evaluate attribute on source value
-		Object result = context.eGet(property);
-		
-		if ((pc.getType() instanceof CollectionType) && !(result instanceof Collection)) {
-			// this was an XSD "unspecified multiplicity".  Now that we know what
-			//    the multiplicity is, we can coerce it to a collection value
-			
-			CollectionKind kind = ((CollectionType) pc.getType()).getKind();
-			Collection collection = CollectionFactory.getInstance().createCollection(
-					kind.getValue());
-			
-			collection.add(result);
-			result = collection;
-		}
-		
-		return result;
+        if (context instanceof EObject) {
+            Object result = ((EObject) context).eGet(property);
+            
+    		if ((pc.getType() instanceof CollectionType) && !(result instanceof Collection)) {
+    			// this was an XSD "unspecified multiplicity".  Now that we know what
+    			//    the multiplicity is, we can coerce it to a collection value
+    			
+    			CollectionKind kind = ((CollectionType) pc.getType()).getKind();
+    			Collection collection = CollectionFactory.getInstance().createCollection(
+    					kind.getValue());
+    			
+    			collection.add(result);
+    			result = collection;
+    		}
+            
+            return result;
+        }
+        
+		throw new IllegalArgumentException("No such property: " + property.getName());
 	}
     
     /**

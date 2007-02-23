@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.3 2007/02/23 22:06:03 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -31,12 +31,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -572,4 +575,238 @@ public class DefExpressionTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * Tests the definition of additional attributes on the metamodel's
+     * representation of a primitive type for which OCL has a counterpart.
+     */
+    public void test_defAttributeOnPrimitiveType_172782() {
+        // context is the Ecore metamodel's EString data type
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            EStructuralFeature feature = helper.defineAttribute(
+                "reverse : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+            Collection<Choice> choices = helper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                "self.reverse"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
+                .contains(feature));
+            assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), EcorePackage.Literals.ESTRING)
+                .contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        // now, make sure that this definition was local to the OCL that
+        //   parsed it (that it is not shared via the standard library package)
+        OCL localOCL = OCL.newInstance();
+        OCL.Helper localHelper = localOCL.createOCLHelper();
+        localHelper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+        try {
+            Collection<Choice> choices = localHelper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            
+            localHelper.createQuery("self.reverse"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse the undefined attribute"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success!
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the definition of additional operations on the metamodel's
+     * representation of a primitive type for which OCL has a counterpart.
+     */
+    public void test_defOperationOnPrimitiveType_172782() {
+        // context is the Ecore metamodel's EString data type
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            EOperation feature = helper.defineOperation(
+                "reversed() : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+            Collection<Choice> choices = helper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                "self.reversed()"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
+                .contains(feature));
+            assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), EcorePackage.Literals.ESTRING)
+                .contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        // now, make sure that this definition was local to the OCL that
+        //   parsed it (that it is not shared via the standard library package)
+        OCL localOCL = OCL.newInstance();
+        OCL.Helper localHelper = localOCL.createOCLHelper();
+        localHelper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+        try {
+            Collection<Choice> choices = localHelper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertNotChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            
+            localHelper.createQuery("self.reversed()"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse the undefined operation"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success!
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the definition of additional attributes on an OCL pre-defined type.
+     */
+    public void test_defAttributeOnPredefinedType_172782() {
+        // context is the predefined OCL String type
+        helper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+        try {
+            EStructuralFeature feature = helper.defineAttribute(
+                "reverse : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(EcorePackage.Literals.ESTRING);
+        
+            Collection<Choice> choices = helper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                "self.reverse"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
+                .contains(feature));
+            assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), EcorePackage.Literals.ESTRING)
+                .contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        // now, make sure that this definition was local to the OCL that
+        //   parsed it (that it is not shared via the standard library package)
+        OCL localOCL = OCL.newInstance();
+        OCL.Helper localHelper = localOCL.createOCLHelper();
+        localHelper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+        try {
+            Collection<Choice> choices = localHelper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            
+            localHelper.createQuery("self.reverse"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse the undefined attribute"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success!
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the definition of additional operations on an OCL pre-defined type.
+     */
+    public void test_defOperationOnPredefinedType_172782() {
+        // context is the predefined OCL String type
+        helper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+        try {
+            EOperation feature = helper.defineOperation(
+                "reversed() : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(EcorePackage.Literals.ESTRING);
+        
+            Collection<Choice> choices = helper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                "self.reversed()"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
+                .contains(feature));
+            assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), EcorePackage.Literals.ESTRING)
+                .contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        // now, make sure that this definition was local to the OCL that
+        //   parsed it (that it is not shared via the standard library package)
+        OCL localOCL = OCL.newInstance();
+        OCL.Helper localHelper = localOCL.createOCLHelper();
+        localHelper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
+        
+        try {
+            Collection<Choice> choices = localHelper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+        
+            assertNotChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            
+            localHelper.createQuery("self.reversed()"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse the undefined operation"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success!
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 }

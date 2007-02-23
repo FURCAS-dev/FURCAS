@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2007/01/25 18:24:38 cdamus Exp $
+ $Id: plugin.xml,v 1.2 2007/02/23 22:06:00 cdamus Exp $
 -->
 
 <plugin>
@@ -13,21 +13,21 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/OCL2/1.1.0/ocl/types" 
+       uri = "http://www.eclipse.org/ocl/1.1.0/OCL/Types" 
        class = "org.eclipse.ocl.types.TypesPackage"
        genModel = "model/OCL.genmodel" /> 
   </extension>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/OCL2/1.1.0/ocl/expressions" 
+       uri = "http://www.eclipse.org/ocl/1.1.0/OCL/Expressions" 
        class = "org.eclipse.ocl.expressions.ExpressionsPackage"
        genModel = "model/OCL.genmodel" /> 
   </extension>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/OCL2/1.1.0/ocl/utilities" 
+       uri = "http://www.eclipse.org/ocl/1.1.0/OCL/Utilities" 
        class = "org.eclipse.ocl.utilities.UtilitiesPackage"
        genModel = "model/OCL.genmodel" /> 
   </extension>

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.1 2006/04/04 18:08:40 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.2 2007/02/23 22:06:03 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -28,6 +28,8 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.ChoiceType;
@@ -40,6 +42,7 @@ import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
+import org.eclipse.ocl.helper.Choice;
 
 /**
  * Tests for def expressions (additional properties and operations).
@@ -445,6 +448,122 @@ public class DefExpressionTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    public void test_defAttributeOnPrimitiveType_172782() {
+        // context is the Ecore metamodel's EString data type
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            EStructuralFeature feature = (EStructuralFeature) helper.define(
+                "reverse : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(Types.OCL_STRING);
+            OCLExpression expr = helper.createQuery("self.reverse"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                helper.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getProperties(Types.OCL_STRING).contains(feature));
+            assertTrue(TypeUtil.getProperties(EcorePackage.Literals.ESTRING).contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            TypeUtil.undefineAdditionalFeatures(Types.OCL_STRING);
+        }
+    }
+    
+    public void test_defOperationOnPrimitiveType_172782() {
+        // context is the Ecore metamodel's EString data type
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            EOperation feature = (EOperation) helper.define(
+                "reversed() : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(Types.OCL_STRING);
+            OCLExpression expr = helper.createQuery("self.reversed()"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                helper.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getOperations(Types.OCL_STRING).contains(feature));
+            assertTrue(TypeUtil.getOperations(EcorePackage.Literals.ESTRING).contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            TypeUtil.undefineAdditionalFeatures(Types.OCL_STRING);
+        }
+    }
+    
+    public void test_defAttributeOnPredefinedType_172782() {
+        // context is the predefined OCL String type
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(Types.OCL_STRING);
+        
+        try {
+            EStructuralFeature feature = (EStructuralFeature) helper.define(
+                "reverse : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+            
+            // the other representation of 'String'
+            helper.setContext(EcorePackage.Literals.ESTRING);
+            OCLExpression expr = helper.createQuery("self.reverse"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                helper.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getProperties(Types.OCL_STRING).contains(feature));
+            assertTrue(TypeUtil.getProperties(EcorePackage.Literals.ESTRING).contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            TypeUtil.undefineAdditionalFeatures(Types.OCL_STRING);
+        }
+    }
+    
+    public void test_defOperationOnPredefinedType_172782() {
+        // context is the predefined OCL String type
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(Types.OCL_STRING);
+        
+        try {
+            EOperation feature = (EOperation) helper.define(
+                "reversed() : String = " + //$NON-NLS-1$
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
+                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+        
+            // the other representation of 'String'
+            helper.setContext(EcorePackage.Literals.ESTRING);
+            OCLExpression expr = helper.createQuery("self.reversed()"); //$NON-NLS-1$
+            
+            assertEquals(
+                "ablE was i ere I saw elbA", //$NON-NLS-1$
+                helper.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+            
+            // verify that TypeUtil produces the correct result
+            assertTrue(TypeUtil.getOperations(Types.OCL_STRING).contains(feature));
+            assertTrue(TypeUtil.getOperations(EcorePackage.Literals.ESTRING).contains(feature));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            TypeUtil.undefineAdditionalFeatures(Types.OCL_STRING);
+        }
+    }
 	
 	//
 	// test framework

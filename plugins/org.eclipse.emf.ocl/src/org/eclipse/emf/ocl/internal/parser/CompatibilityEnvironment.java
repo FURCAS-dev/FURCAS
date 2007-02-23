@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironment.java,v 1.2 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: CompatibilityEnvironment.java,v 1.3 2007/02/23 22:05:59 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -226,11 +226,13 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 
     @Override
 	public EStructuralFeature lookupProperty(EClassifier owner, String name) {
-		if (owner instanceof PredefinedType) {
-			return super.lookupProperty(owner, name);
-		}
+        EClassifier oldStyleOwner = owner;
+        
+        if (owner instanceof PredefinedType) {
+            oldStyleOwner = (EClassifier) CompatibilityUtil.getOldAS(oldStyle, owner);
+        }
 		
-		return oldStyle.lookupProperty(owner, name);
+		return oldStyle.lookupProperty(oldStyleOwner, name);
 	}
 	
 	@Override
@@ -262,7 +264,8 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 			EClassifier type, List<Variable<EClassifier, EParameter>> params,
 			Constraint constraint) {
 		EOperation result = TypeUtil.defineOperation(
-				owner, name,
+                (EClassifier) CompatibilityUtil.getOldAS(oldStyle, owner),
+                name,
 				CompatibilityUtil.getOldAS(oldStyle, params),
 				(EClassifier) CompatibilityUtil.getOldAS(oldStyle, type));
 		
@@ -270,12 +273,17 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 		
 		return result;
 	}
+    
+    @Override
+    public void undefine(Object feature) {
+        // can't undefine a feature in the old implementation
+    }
 	
     @Override
 	public EStructuralFeature defineAttribute(EClassifier owner,
 			Variable<EClassifier, EParameter> variable, Constraint constraint) {
 		EStructuralFeature result = TypeUtil.defineProperty(
-				owner,
+                (EClassifier) CompatibilityUtil.getOldAS(oldStyle, owner),
 				(org.eclipse.emf.ocl.expressions.Variable)
 					CompatibilityUtil.getOldAS(oldStyle, variable));
 		
