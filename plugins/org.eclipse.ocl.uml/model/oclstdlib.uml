@@ -694,7 +694,7 @@
     <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_asjMv6jQEdu4LJng8Rasow"/>
     <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_as1gcKjQEdu4LJng8Rasow" name="State"/>
     <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_as1gcajQEdu4LJng8Rasow" name="OclExpression"/>
-    <packagedElement xmi:type="ocl.uml:CollectionType" xmi:id="_as1gcqjQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
+    <packagedElement xmi:type="ocl.uml:CollectionType" xmi:id="_as1gcqjQEdu4LJng8Rasow" isAbstract="true" elementType="_awji1ajQEdu4LJng8Rasow">
       <ownedOperation xmi:id="_atscE6jQEdu4LJng8Rasow" name="count" isQuery="true">
         <ownedParameter xmi:id="_atscFKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_atscFajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>

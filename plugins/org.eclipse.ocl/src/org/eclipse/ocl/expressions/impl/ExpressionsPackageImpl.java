@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.3 2007/03/15 21:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -1623,7 +1623,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
         initEClass(literalExpEClass, LiteralExp.class, "LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(loopExpEClass, LoopExp.class, "LoopExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEClass(loopExpEClass, LoopExp.class, "LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         g1 = createEGenericType(this.getOCLExpression());
         g2 = createEGenericType(loopExpEClass_C);
         g1.getETypeArguments().add(g2);

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsFactoryImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: ExpressionsFactoryImpl.java,v 1.3 2007/03/15 21:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -39,7 +39,6 @@ import org.eclipse.ocl.expressions.InvalidLiteralExp;
 import org.eclipse.ocl.expressions.IterateExp;
 import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.LetExp;
-import org.eclipse.ocl.expressions.LoopExp;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OperationCallExp;
@@ -112,7 +111,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
             case ExpressionsPackage.ITERATE_EXP: return createIterateExp();
             case ExpressionsPackage.ITERATOR_EXP: return createIteratorExp();
             case ExpressionsPackage.LET_EXP: return createLetExp();
-            case ExpressionsPackage.LOOP_EXP: return createLoopExp();
             case ExpressionsPackage.MESSAGE_EXP: return createMessageExp();
             case ExpressionsPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
             case ExpressionsPackage.OPERATION_CALL_EXP: return createOperationCallExp();
@@ -299,16 +297,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
 	public <C, PM> LetExp<C, PM> createLetExp() {
         LetExpImpl<C, PM> letExp = new LetExpImpl<C, PM>();
         return letExp;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public <C, PM> LoopExp<C, PM> createLoopExp() {
-        LoopExpImpl<C, PM> loopExp = new LoopExpImpl<C, PM>();
-        return loopExp;
     }
 
 	/**

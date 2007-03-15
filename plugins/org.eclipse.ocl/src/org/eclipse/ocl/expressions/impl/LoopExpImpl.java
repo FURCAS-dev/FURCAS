@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.3 2007/03/15 21:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -45,185 +45,185 @@ import org.eclipse.ocl.expressions.Variable;
  *
  * @generated
  */
-public class LoopExpImpl<C, PM> extends CallExpImpl<C> implements LoopExp<C, PM> {
+public abstract class LoopExpImpl<C, PM> extends CallExpImpl<C> implements LoopExp<C, PM> {
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLExpression<C> body = null;
+     * @see #getBody()
+     * @generated
+     * @ordered
+     */
+	protected OCLExpression<C> body;
 
 	/**
-	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIterator()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Variable<C, PM>> iterator = null;
+     * @see #getIterator()
+     * @generated
+     * @ordered
+     */
+	protected EList<Variable<C, PM>> iterator;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LoopExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.LOOP_EXP;
-	}
+        return ExpressionsPackage.Literals.LOOP_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression<C> getBody() {
-		return body;
-	}
+        return body;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBody(OCLExpression<C> newBody, NotificationChain msgs) {
-		OCLExpression<C> oldBody = body;
-		body = newBody;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.LOOP_EXP__BODY, oldBody, newBody);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        OCLExpression<C> oldBody = body;
+        body = newBody;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.LOOP_EXP__BODY, oldBody, newBody);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBody(OCLExpression<C> newBody) {
-		if (newBody != body) {
-			NotificationChain msgs = null;
-			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.LOOP_EXP__BODY, null, msgs);
-			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.LOOP_EXP__BODY, null, msgs);
-			msgs = basicSetBody(newBody, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.LOOP_EXP__BODY, newBody, newBody));
-	}
+        if (newBody != body) {
+            NotificationChain msgs = null;
+            if (body != null)
+                msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.LOOP_EXP__BODY, null, msgs);
+            if (newBody != null)
+                msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.LOOP_EXP__BODY, null, msgs);
+            msgs = basicSetBody(newBody, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.LOOP_EXP__BODY, newBody, newBody));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Variable<C, PM>> getIterator() {
-		if (iterator == null) {
-			iterator = new EObjectContainmentEList<Variable<C, PM>>(Variable.class, this, ExpressionsPackage.LOOP_EXP__ITERATOR);
-		}
-		return iterator;
-	}
+        if (iterator == null) {
+            iterator = new EObjectContainmentEList<Variable<C, PM>>(Variable.class, this, ExpressionsPackage.LOOP_EXP__ITERATOR);
+        }
+        return iterator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.LOOP_EXP__BODY:
-				return basicSetBody(null, msgs);
-			case ExpressionsPackage.LOOP_EXP__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.LOOP_EXP__BODY:
+                return basicSetBody(null, msgs);
+            case ExpressionsPackage.LOOP_EXP__ITERATOR:
+                return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.LOOP_EXP__BODY:
-				return getBody();
-			case ExpressionsPackage.LOOP_EXP__ITERATOR:
-				return getIterator();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.LOOP_EXP__BODY:
+                return getBody();
+            case ExpressionsPackage.LOOP_EXP__ITERATOR:
+                return getIterator();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<C>)newValue);
-				return;
-			case ExpressionsPackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				getIterator().addAll((Collection<? extends Variable<C, PM>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.LOOP_EXP__BODY:
+                setBody((OCLExpression<C>)newValue);
+                return;
+            case ExpressionsPackage.LOOP_EXP__ITERATOR:
+                getIterator().clear();
+                getIterator().addAll((Collection<? extends Variable<C, PM>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<C>)null);
-				return;
-			case ExpressionsPackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.LOOP_EXP__BODY:
+                setBody((OCLExpression<C>)null);
+                return;
+            case ExpressionsPackage.LOOP_EXP__ITERATOR:
+                getIterator().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.LOOP_EXP__BODY:
-				return body != null;
-			case ExpressionsPackage.LOOP_EXP__ITERATOR:
-				return iterator != null && !iterator.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.LOOP_EXP__BODY:
+                return body != null;
+            case ExpressionsPackage.LOOP_EXP__ITERATOR:
+                return iterator != null && !iterator.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //LoopExpImpl
