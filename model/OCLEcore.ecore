@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
-    nsURI="http://www.eclipse.org/ocl/1.1.0/OCL" nsPrefix="ocl">
+    nsURI="http://www.eclipse.org/ocl/1.1.0/OCLEcore" nsPrefix="ocl">
   <eSubpackages name="ecore" nsURI="http://www.eclipse.org/ocl/1.1.0/Ecore" nsPrefix="ocl.ecore">
     <eClassifiers xsi:type="ecore:EClass" name="AnyType">
       <eGenericSuperTypes eClassifier="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
