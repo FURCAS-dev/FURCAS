@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLPGParsersym.java,v 1.2 2007/02/01 16:14:55 cdamus Exp $
+* $Id: OCLLPGParsersym.java,v 1.3 2007/03/15 21:35:11 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -27,12 +27,12 @@ public interface OCLLPGParsersym {
       TK_MINUS = 27,
       TK_MULTIPLY = 19,
       TK_DIVIDE = 20,
-      TK_GREATER = 5,
-      TK_LESS = 6,
+      TK_GREATER = 14,
+      TK_LESS = 15,
       TK_EQUAL = 4,
-      TK_GREATER_EQUAL = 7,
-      TK_LESS_EQUAL = 8,
-      TK_NOT_EQUAL = 9,
+      TK_GREATER_EQUAL = 16,
+      TK_LESS_EQUAL = 17,
+      TK_NOT_EQUAL = 18,
       TK_LPAREN = 1,
       TK_RPAREN = 2,
       TK_LBRACE = 65,
@@ -42,7 +42,7 @@ public interface OCLLPGParsersym {
       TK_ARROW = 73,
       TK_BAR = 56,
       TK_COMMA = 43,
-      TK_COLON = 21,
+      TK_COLON = 22,
       TK_COLONCOLON = 52,
       TK_SEMICOLON = 74,
       TK_DOT = 75,
@@ -51,7 +51,7 @@ public interface OCLLPGParsersym {
       TK_CARET = 77,
       TK_CARETCARET = 78,
       TK_QUESTIONMARK = 69,
-      TK_self = 22,
+      TK_self = 21,
       TK_inv = 59,
       TK_pre = 60,
       TK_post = 61,
@@ -69,17 +69,17 @@ public interface OCLLPGParsersym {
       TK_and = 23,
       TK_or = 24,
       TK_xor = 25,
-      TK_not = 28,
+      TK_not = 33,
       TK_implies = 83,
       TK_let = 54,
       TK_in = 84,
       TK_true = 48,
       TK_false = 49,
-      TK_Set = 29,
-      TK_Bag = 30,
-      TK_Sequence = 31,
-      TK_Collection = 32,
-      TK_OrderedSet = 33,
+      TK_Set = 28,
+      TK_Bag = 29,
+      TK_Sequence = 30,
+      TK_Collection = 31,
+      TK_OrderedSet = 32,
       TK_iterate = 85,
       TK_forAll = 86,
       TK_exists = 87,
@@ -100,16 +100,16 @@ public interface OCLLPGParsersym {
       TK_oclIsInvalid = 39,
       TK_oclIsInState = 40,
       TK_allInstances = 41,
-      TK_String = 10,
-      TK_Integer = 11,
-      TK_UnlimitedNatural = 12,
-      TK_Real = 13,
-      TK_Boolean = 14,
+      TK_String = 5,
+      TK_Integer = 6,
+      TK_UnlimitedNatural = 7,
+      TK_Real = 8,
+      TK_Boolean = 9,
       TK_Tuple = 42,
-      TK_OclAny = 15,
-      TK_OclVoid = 16,
-      TK_Invalid = 17,
-      TK_OclMessage = 18,
+      TK_OclAny = 10,
+      TK_OclVoid = 11,
+      TK_Invalid = 12,
+      TK_OclMessage = 13,
       TK_null = 50,
       TK_OclInvalid = 51,
       TK_EOF_TOKEN = 58,
@@ -123,11 +123,6 @@ public interface OCLLPGParsersym {
                  "RPAREN", //$NON-NLS-1$
                  "IDENTIFIER", //$NON-NLS-1$
                  "EQUAL", //$NON-NLS-1$
-                 "GREATER", //$NON-NLS-1$
-                 "LESS", //$NON-NLS-1$
-                 "GREATER_EQUAL", //$NON-NLS-1$
-                 "LESS_EQUAL", //$NON-NLS-1$
-                 "NOT_EQUAL", //$NON-NLS-1$
                  "String", //$NON-NLS-1$
                  "Integer", //$NON-NLS-1$
                  "UnlimitedNatural", //$NON-NLS-1$
@@ -137,21 +132,26 @@ public interface OCLLPGParsersym {
                  "OclVoid", //$NON-NLS-1$
                  "Invalid", //$NON-NLS-1$
                  "OclMessage", //$NON-NLS-1$
+                 "GREATER", //$NON-NLS-1$
+                 "LESS", //$NON-NLS-1$
+                 "GREATER_EQUAL", //$NON-NLS-1$
+                 "LESS_EQUAL", //$NON-NLS-1$
+                 "NOT_EQUAL", //$NON-NLS-1$
                  "MULTIPLY", //$NON-NLS-1$
                  "DIVIDE", //$NON-NLS-1$
-                 "COLON", //$NON-NLS-1$
                  "self", //$NON-NLS-1$
+                 "COLON", //$NON-NLS-1$
                  "and", //$NON-NLS-1$
                  "or", //$NON-NLS-1$
                  "xor", //$NON-NLS-1$
                  "PLUS", //$NON-NLS-1$
                  "MINUS", //$NON-NLS-1$
-                 "not", //$NON-NLS-1$
                  "Set", //$NON-NLS-1$
                  "Bag", //$NON-NLS-1$
                  "Sequence", //$NON-NLS-1$
                  "Collection", //$NON-NLS-1$
                  "OrderedSet", //$NON-NLS-1$
+                 "not", //$NON-NLS-1$
                  "oclIsKindOf", //$NON-NLS-1$
                  "oclIsTypeOf", //$NON-NLS-1$
                  "oclAsType", //$NON-NLS-1$

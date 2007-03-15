@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: PathNameCS.java,v 1.3 2007/03/15 21:35:10 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -46,7 +46,7 @@ public interface PathNameCS extends TypeCS {
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Sequence Of Names</em>' attribute list.
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getPathNameCS_SequenceOfNames()
-     * @model type="java.lang.String"
+     * @model type="java.lang.String" unique="false"
      * @generated
      */
 	EList<String> getSequenceOfNames();

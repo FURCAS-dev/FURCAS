@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: PathNameCSImpl.java,v 1.3 2007/03/15 21:35:11 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.eclipse.ocl.internal.cst.CSTPackage;
 import org.eclipse.ocl.internal.cst.PathNameCS;
@@ -49,7 +49,7 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
      * @generated
      * @ordered
      */
-	protected EList<String> sequenceOfNames = null;
+	protected EList<String> sequenceOfNames;
 
 	/**
      * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
      */
 	public EList<String> getSequenceOfNames() {
         if (sequenceOfNames == null) {
-            sequenceOfNames = new EDataTypeUniqueEList<String>(String.class, this, CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES);
+            sequenceOfNames = new EDataTypeEList<String>(String.class, this, CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES);
         }
         return sequenceOfNames;
     }
