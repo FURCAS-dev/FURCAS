@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.4 2007/03/15 21:33:33 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -1524,6 +1524,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
             OCLExpression<C> source = exp.getSource();
             
             if (source.getType() instanceof TypeType) {
+                @SuppressWarnings("unchecked")
                 TypeType<C, ?>  typeType = (TypeType<C, ?>) source.getType();
                 
                 Object feature = null;

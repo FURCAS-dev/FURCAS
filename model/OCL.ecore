@@ -162,11 +162,11 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CollectionKind">
-      <eLiterals name="set"/>
-      <eLiterals name="orderedSet" value="1"/>
-      <eLiterals name="bag" value="2"/>
-      <eLiterals name="sequence" value="3"/>
-      <eLiterals name="collection" value="4"/>
+      <eLiterals name="Set"/>
+      <eLiterals name="OrderedSet" value="1"/>
+      <eLiterals name="Bag" value="2"/>
+      <eLiterals name="Sequence" value="3"/>
+      <eLiterals name="Collection" value="4"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp">
       <eTypeParameters name="C"/>
@@ -319,7 +319,7 @@
         <eTypeArguments eTypeParameter="#//expressions/LiteralExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LoopExp">
+    <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true">
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="body" containment="true">
