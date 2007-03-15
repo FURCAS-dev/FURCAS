@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.2 2007/02/01 15:38:26 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.3 2007/03/15 21:15:52 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ecore.BagType;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
@@ -1708,6 +1709,90 @@ public class RegressionTest
             System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Parse failed with run-time exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that, where a path name includes two or more components
+     * having the same name, the PathNameCS does not remove duplicates.
+     */
+    public void test_repeatedNamesInPath_176308() {
+        EPackage rootpkg = EcoreFactory.eINSTANCE.createEPackage();
+        rootpkg.setName("rootpkg"); //$NON-NLS-1$
+        EPackage first = EcoreFactory.eINSTANCE.createEPackage();
+        first.setName("repeated"); //$NON-NLS-1$
+        EPackage second = EcoreFactory.eINSTANCE.createEPackage();
+        second.setName("repeated"); //$NON-NLS-1$
+        
+        rootpkg.getESubpackages().add(first);
+        first.getESubpackages().add(second);
+        
+        EEnum enum1 = EcoreFactory.eINSTANCE.createEEnum();
+        enum1.setName("Enum1"); //$NON-NLS-1$
+        
+        EEnumLiteral enum1Literal1 = EcoreFactory.eINSTANCE.createEEnumLiteral();
+        enum1Literal1.setName("Enum1Literal1"); //$NON-NLS-1$
+        
+        enum1.getELiterals().add(enum1Literal1);
+        
+        second.getEClassifiers().add(enum1);
+        
+        EClass dummy = EcoreFactory.eINSTANCE.createEClass();
+        dummy.setName("Dummy"); //$NON-NLS-1$
+        rootpkg.getEClassifiers().add(dummy);
+        
+        EAttribute attr1 = EcoreFactory.eINSTANCE.createEAttribute();
+        attr1.setName("attr1"); //$NON-NLS-1$
+        attr1.setEType(enum1);
+        dummy.getEStructuralFeatures().add(attr1);
+        
+        helper.setContext(dummy);
+        
+        try {
+            // should not attempt to look up "repeated::Enum1"
+            helper.createInvariant(
+                "attr1 = repeated::repeated::Enum1::Enum1Literal1"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that dollar signs are supported in string literals and in
+     * element names.
+     */
+    public void test_dollarSignInStrings_163542() {
+        EPackage rootpkg = EcoreFactory.eINSTANCE.createEPackage();
+        rootpkg.setName("rootpkg"); //$NON-NLS-1$
+        rootpkg.setNsURI("http:///rootpkg.ecore"); //$NON-NLS-1$
+        
+        EClass superclass = EcoreFactory.eINSTANCE.createEClass();
+        superclass.setName("Superclass"); //$NON-NLS-1$
+        EClass subclass = EcoreFactory.eINSTANCE.createEClass();
+        subclass.setName("Sub$Class"); //$NON-NLS-1$
+        subclass.getESuperTypes().add(superclass);
+        
+        rootpkg.getEClassifiers().add(superclass);
+        rootpkg.getEClassifiers().add(subclass);
+        
+        EAttribute attr1 = EcoreFactory.eINSTANCE.createEAttribute();
+        attr1.setName("attr$1"); //$NON-NLS-1$
+        attr1.setEType(EcorePackage.Literals.ESTRING);
+        superclass.getEStructuralFeatures().add(attr1);
+        
+        EPackage.Registry.INSTANCE.put(rootpkg.getNsURI(), rootpkg);
+        
+        try {
+            // parse dollar sign in comments, element names, and string literals
+            ocl.parse(new OCLInput(
+                "package rootpkg context Superclass\n" + //$NON-NLS-1$
+                "-- this comment has a $ in it\n" + //$NON-NLS-1$
+                "inv: attr$1 = 'dollar$sign' implies self.oclIsKindOf(Sub$Class)\n" + //$NON-NLS-1$
+                "endpackage")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            EPackage.Registry.INSTANCE.remove(rootpkg.getNsURI());
         }
     }
 }
