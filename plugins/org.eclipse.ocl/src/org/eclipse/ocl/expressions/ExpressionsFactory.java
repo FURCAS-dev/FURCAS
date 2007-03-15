@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsFactory.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: ExpressionsFactory.java,v 1.3 2007/03/15 21:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -160,15 +160,6 @@ public interface ExpressionsFactory extends EFactory {
      * @generated
      */
 	<C, PM> LetExp<C, PM> createLetExp();
-
-	/**
-     * Returns a new object of class '<em>Loop Exp</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Loop Exp</em>'.
-     * @generated
-     */
-	<C, PM> LoopExp<C, PM> createLoopExp();
 
 	/**
      * Returns a new object of class '<em>Message Exp</em>'.
