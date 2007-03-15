@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
+ * $Id: OCLParser.java,v 1.4 2007/03/15 21:19:40 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -1506,14 +1506,17 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		result = environmentFactory.createClassifierContext(env, type);
 		
-		genVariableDeclaration("classifierContextDeclCS", env, //$NON-NLS-1$
-			SELF_VARIABLE_NAME, type, null, true, true, true);
-							
+        if (result.getSelfVariable() == null) {
+            // ensure that the classifier context has a "self" variable
+    		genVariableDeclaration("classifierContextDeclCS", result, //$NON-NLS-1$
+    			SELF_VARIABLE_NAME, type, null, true, true, true);
+        }
+        
 		TRACE("classifierContextDeclCS", "context", pathName);  //$NON-NLS-2$//$NON-NLS-1$
 		
 		InvOrDefCS invOrDefCS = classifierContextDeclCS.getInvOrDefCS();
 		while (invOrDefCS != null) {
-			CT astNode = invOrDefCS(invOrDefCS, env);
+			CT astNode = invOrDefCS(invOrDefCS, result);
 			constraints.add(astNode);
 			
 			invOrDefCS = invOrDefCS.getInvOrDefCS();
@@ -3057,7 +3060,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		OCLExpression<C> astNode = null;
 
-		EList<String> sequenceOfNames = enumLiteralExpCS.getPathNameCS().getSequenceOfNames();
+		EList<String> sequenceOfNames = new BasicEList<String>(
+                enumLiteralExpCS.getPathNameCS().getSequenceOfNames());
 		String lastToken = enumLiteralExpCS.getSimpleNameCS().getValue();
 
 		EL literal = null;
