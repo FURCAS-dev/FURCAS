@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.4 2007/02/02 20:06:28 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.5 2007/03/15 21:35:11 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.4 2007/02/02 20:06:28 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.5 2007/03/15 21:35:11 cdamus Exp $
  */
 	./
 $End
@@ -678,6 +678,13 @@ $Headers
 			result.setPathNameCS(pathNameCS);
 			result.setSimpleNameCS(simpleNameCS);
 			return result;
+		}
+	
+		protected EnumLiteralExpCS createEnumLiteralExpCS(
+				PathNameCS pathNameCS,
+				String simpleName) {
+			return createEnumLiteralExpCS(pathNameCS,
+				createSimpleNameCS(SimpleTypeEnum.IDENTIFIER_LITERAL, simpleName));
 		}
 	
 		protected CollectionLiteralExpCS createCollectionLiteralExpCS(
@@ -1793,6 +1800,24 @@ $Rules
 
     -- also covers the case of static attribute call, in which
     --    case @pre is not allowed anyway
+	enumLiteralExpCS ::= pathNameCS '::' Bag
+		/.$NewCase./
+	enumLiteralExpCS ::= pathNameCS '::' Collection
+		/.$NewCase./
+	enumLiteralExpCS ::= pathNameCS '::' OrderedSet
+		/.$NewCase./
+	enumLiteralExpCS ::= pathNameCS '::' Sequence
+		/.$NewCase./
+	enumLiteralExpCS ::= pathNameCS '::' Set
+		/.$BeginJava
+					CSTNode result = createEnumLiteralExpCS(
+							(PathNameCS)$getSym(1),
+							getTokenText($getToken(3))
+						);
+					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(3)));
+					$setResult(result);
+		  $EndJava
+		./
 	enumLiteralExpCS ::= pathNameCS '::' simpleNameCS
 		/.$BeginJava
 					CSTNode result = createEnumLiteralExpCS(
