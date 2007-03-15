@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: CSTPackageImpl.java,v 1.3 2007/03/15 21:35:11 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -2080,7 +2080,7 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         initEReference(getDefExpressionCS_ExpressionCS(), this.getOCLExpressionCS(), null, "expressionCS", null, 0, 1, DefExpressionCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(pathNameCSEClass, PathNameCS.class, "PathNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEAttribute(getPathNameCS_SequenceOfNames(), ecorePackage.getEString(), "sequenceOfNames", null, 0, -1, PathNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getPathNameCS_SequenceOfNames(), ecorePackage.getEString(), "sequenceOfNames", null, 0, -1, PathNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(variableExpCSEClass, VariableExpCS.class, "VariableExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getVariableExpCS_Arguments(), this.getOCLExpressionCS(), null, "arguments", null, 0, -1, VariableExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

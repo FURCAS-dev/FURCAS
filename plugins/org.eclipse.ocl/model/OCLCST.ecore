@@ -94,8 +94,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PathNameCS" eSuperTypes="#//cst/TypeCS">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sequenceOfNames" upperBound="-1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sequenceOfNames" unique="false"
+          upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariableExpCS" eSuperTypes="#//cst/OCLExpressionCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"

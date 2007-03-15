@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.3 2007/03/15 21:35:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -439,18 +439,21 @@ public class ComparisonTest
 	}
 
 	public void test_enumerationLiteralEquality_137546() {
-		CollectionLiteralExp<EClassifier> ctx = ExpressionsFactory.eINSTANCE.createCollectionLiteralExp();
-		helper.setContext(ctx.eClass());
-		ctx.setKind(CollectionKind.BAG_LITERAL);
-
-		try {
-			assertTrue(check(helper, ctx,
-					"ocl::expressions::CollectionKind::bag = self.kind")); //$NON-NLS-1$	
-			assertTrue(check(helper, ctx,
-					"self.kind = ocl::expressions::CollectionKind::bag")); //$NON-NLS-1$	
-		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
+        // test all of the collection kinds for bug 176308
+        for (CollectionKind kind : CollectionKind.values()) {
+    		CollectionLiteralExp<EClassifier> ctx = ExpressionsFactory.eINSTANCE.createCollectionLiteralExp();
+            ctx.setKind(kind);
+    		helper.setInstanceContext(ctx);
+    
+    		try {
+    			assertTrue(check(helper, ctx,
+    					"ocl::expressions::CollectionKind::" + kind.getLiteral() + " = self.kind")); //$NON-NLS-1$ //$NON-NLS-2$	
+    			assertTrue(check(helper, ctx,
+    					"self.kind = ocl::expressions::CollectionKind::" + kind.getLiteral())); //$NON-NLS-1$
+    		} catch (Exception e) {
+    			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+    		}
+        }
 	}
 
 	/**
