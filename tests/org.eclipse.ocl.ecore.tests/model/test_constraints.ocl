@@ -11,6 +11,10 @@ package ocltest
 			otherFruits : Set(Fruit) = Fruit.allInstances()->excluding(self)
 		def operation_helper:
 			getOtherFruits(dummy : Boolean) : Set(Fruit) = Fruit.allInstances()->excluding(self)
+	context Apple
+	    inv second_classifier_context: label.oclIsUndefined() implies true
+	context Color
+	    inv third_classifier_context: self <> Color::black implies true
 endpackage
 
 package ocltest
