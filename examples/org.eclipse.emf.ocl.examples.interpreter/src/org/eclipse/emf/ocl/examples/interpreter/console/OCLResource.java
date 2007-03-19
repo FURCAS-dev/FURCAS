@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.10 2007/01/25 18:34:43 cdamus Exp $
+ * $Id: OCLResource.java,v 1.11 2007/03/19 15:18:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -88,14 +89,14 @@ public class OCLResource
 	 * Saves the specified OCL expression to an XMI file.
 	 * 
 	 * @param path the fully-qualified path of the XMI file to save
-	 * @param context the OCL context classifier
+	 * @param context the OCL context element
 	 * @param expr the OCL expression to save
 	 * 
 	 * @throws RuntimeException if anything goes wrong in parsing
 	 * @throws IOException if anything goes wrong in saving
 	 * @throws OCLParsingException if anything goes wrong in parsing
 	 */
-	public static void save(String path, EClassifier context, String expr)
+	public static void save(String path, EObject context, String expr)
 			throws IOException, ParserException {
 		final OCLResource res = new OCLResource(URI.createFileURI(path));
 		
@@ -113,7 +114,7 @@ public class OCLResource
 		
 		// use an OCL helper to parse the OCL expression and extract
 		//    the AST from it
-		helper.setContext(context);
+		helper.setContext(context.eClass());
 		
 		OCLExpression<EClassifier> parsed = helper.createQuery(expr);
         
