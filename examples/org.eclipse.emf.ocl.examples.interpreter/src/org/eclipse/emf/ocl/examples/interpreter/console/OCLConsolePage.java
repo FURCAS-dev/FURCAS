@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.9 2007/01/25 18:34:43 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.10 2007/03/19 15:18:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -93,7 +93,7 @@ public class OCLConsolePage
 	private Color blue;
 	
 	private String lastOCLExpression;
-	private EClassifier lastContext;
+	private EObject lastContext;
 	
 	private static final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
@@ -116,7 +116,7 @@ public class OCLConsolePage
 			for (Iterator<EStructuralFeature> iter = tupleType.oclProperties().iterator();
 					iter.hasNext();) {
 				
-				EStructuralFeature next = (EStructuralFeature) iter.next();
+				EStructuralFeature next = iter.next();
 				
 				result.append(next.getName());
 				result.append(" = "); //$NON-NLS-1$
@@ -261,7 +261,7 @@ public class OCLConsolePage
 				
 				// store the successfully parsed expression
 				lastOCLExpression = expression;
-				lastContext = context.eClass();
+				lastContext = context;
 			} catch (Exception e) {
 				result = false;
 				error(e.getLocalizedMessage());
