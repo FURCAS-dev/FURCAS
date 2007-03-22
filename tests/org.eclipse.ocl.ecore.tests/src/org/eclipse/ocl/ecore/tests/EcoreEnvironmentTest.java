@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.3 2007/03/22 21:59:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -22,12 +22,16 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.Constraint;
@@ -106,6 +110,17 @@ public class EcoreEnvironmentTest
 		assertFalse(choices.isEmpty());
 		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "green"); //$NON-NLS-1$
 	}
+    
+    public void test_evaluationEnvironment_getType_178901() {
+        EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
+        evalEnv = ocl.getEvaluationEnvironment();
+        
+        assertSame(EcorePackage.Literals.EPACKAGE, evalEnv.getType(fruitPackage));
+        assertSame(EcorePackage.Literals.ECLASS, evalEnv.getType(fruit));
+        assertSame(EcorePackage.Literals.ERESOURCE_SET, evalEnv.getType(new ResourceSetImpl()));
+        assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo")); //$NON-NLS-1$
+        assertSame(getOCLStandardLibrary().getOclAny(), evalEnv.getType(this));
+    }
 	
 	//
 	// Framework methods

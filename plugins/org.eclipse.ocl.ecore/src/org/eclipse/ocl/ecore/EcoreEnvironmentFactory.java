@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentFactory.java,v 1.1 2007/01/25 18:29:09 cdamus Exp $
+ * $Id: EcoreEnvironmentFactory.java,v 1.2 2007/03/22 21:59:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -34,6 +34,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 
 
 
@@ -111,27 +112,31 @@ public class EcoreEnvironmentFactory
     // implements the inherited specification
 	@Override
 	protected EClassifier getClassifier(Object context) {
-		EClassifier result = null;
-		
-		if (context instanceof EObject) {
-			result = ((EObject) context).eClass();
-		} else {
-			// maybe it's an instance of an Ecore data type?
-			for (EClassifier next : EcorePackage.eINSTANCE.getEClassifiers()) {
-				if ((next != EcorePackage.Literals.EJAVA_OBJECT) && (next.isInstance(context))) {
-					result = next;
-					break;
-				}
-			}
-			
-			if (result == null) {
-				// it's just some weirdo object that we don't understand
-                result = OCLStandardLibraryImpl.INSTANCE.getOclAny();
-			}
-		}
-		
-		return result;
+        return oclType(context);
 	}
+    
+    static EClassifier oclType(Object object) {
+        EClassifier result = null;
+        
+        if (object instanceof EObject) {
+            result = ((EObject) object).eClass();
+        } else {
+            // maybe it's an instance of an Ecore data type?
+            for (EClassifier next : EcorePackage.eINSTANCE.getEClassifiers()) {
+                if ((next != EcorePackage.Literals.EJAVA_OBJECT) && (next.isInstance(object))) {
+                    result = UMLReflectionImpl.INSTANCE.asOCLType(next);
+                    break;
+                }
+            }
+            
+            if (result == null) {
+                // it's just some weirdo object that we don't understand
+                result = OCLStandardLibraryImpl.INSTANCE.getOclAny();
+            }
+        }
+        
+        return result;
+    }
 
     // implements the inherited specification
 	public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
@@ -156,6 +161,6 @@ public class EcoreEnvironmentFactory
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
 	createEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
-		return new EcoreEvaluationEnvironment((EcoreEvaluationEnvironment) parent);
+		return new EcoreEvaluationEnvironment(parent);
 	}
 }

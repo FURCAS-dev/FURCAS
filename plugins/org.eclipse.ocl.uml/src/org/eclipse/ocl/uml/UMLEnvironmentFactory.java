@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentFactory.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
+ * $Id: UMLEnvironmentFactory.java,v 1.3 2007/03/22 21:59:20 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -259,7 +259,7 @@ public class UMLEnvironmentFactory
 
     // implements the inherited specification
 	public EvaluationEnvironment<Classifier, Operation, Property, Class, EObject> createEvaluationEnvironment() {
-		return new UMLEvaluationEnvironment(registry);
+		return new UMLEvaluationEnvironment(this);
 	}
 
     // implements the inherited specification
