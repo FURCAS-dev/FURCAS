@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.emf.query.ocl
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.emf.query.ocl.internal.OCLPlugin$Implementation
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
@@ -12,6 +12,7 @@ Export-Package: org.eclipse.emf.query.ocl,
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.2.0,3.0.0)",
  org.eclipse.emf.query;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.emf.ocl;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.ocl;bundle-version="[1.1.0,2.0.0)";visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)"
 Eclipse-LazyStart: true
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

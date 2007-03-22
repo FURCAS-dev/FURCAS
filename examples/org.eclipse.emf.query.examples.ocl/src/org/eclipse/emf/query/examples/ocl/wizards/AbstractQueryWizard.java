@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,9 +17,11 @@
 
 package org.eclipse.emf.query.examples.ocl.wizards;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition;
 import org.eclipse.jface.wizard.Wizard;
-
-import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
 
 
 /**
@@ -29,7 +31,7 @@ abstract class AbstractQueryWizard
 	extends Wizard {
 
 	private IOCLQueryWizardPage page;
-	private OCLConstraintCondition condition;
+	private BooleanOCLCondition<EClassifier, EClass, EObject> condition;
 	
 	/**
 	 * Initializes me.
@@ -64,7 +66,7 @@ abstract class AbstractQueryWizard
 	 * @return the condition, or <code>null</code> if the user canceled or
 	 *     has not yet finished the wizard
 	 */
-	public OCLConstraintCondition getCondition() {
+	public BooleanOCLCondition<EClassifier, EClass, EObject> getCondition() {
 		return condition;
 	}
 }

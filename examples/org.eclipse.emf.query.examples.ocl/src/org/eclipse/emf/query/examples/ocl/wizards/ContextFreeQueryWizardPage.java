@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,10 +17,13 @@
 
 package org.eclipse.emf.query.examples.ocl.wizards;
 
-import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages;
-import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -44,7 +47,7 @@ class ContextFreeQueryWizardPage
 	private static String CONDITION_DEFAULT = QueryOCLMessages.cfQuery_default_condition;
 	
 	private Text conditionText;
-	private OCLConstraintCondition condition;
+	private BooleanOCLCondition<EClassifier, EClass, EObject> condition;
 	
 	/**
 	 * Initializes me.
@@ -90,10 +93,11 @@ class ContextFreeQueryWizardPage
 		try {
 			String text = conditionText.getText();
 			
-			condition = new OCLConstraintCondition(
+            OCL ocl = OCL.newInstance();
+			condition = new BooleanOCLCondition<EClassifier, EClass, EObject>(
+                ocl.getEnvironment(),
 				text,
-				null,
-				EStructuralFeatureValueGetter.getInstance());
+				null);
 			
 			setErrorMessage(null);
 		} catch (Exception e) {
@@ -104,7 +108,7 @@ class ContextFreeQueryWizardPage
 		return result;
 	}
 	
-	public OCLConstraintCondition getCondition() {
+	public BooleanOCLCondition<EClassifier, EClass, EObject> getCondition() {
 		return condition;
 	}
 	

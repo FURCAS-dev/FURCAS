@@ -55,7 +55,7 @@ abstract class AbstractQueryDelegate
 	/**
 	 * Selected {@link EObject}s.
 	 */
-	private Collection selectedEObjects = Collections.EMPTY_SET;
+	private Collection<EObject> selectedEObjects = Collections.emptySet();
 
 	/**
 	 * Initializes me.
@@ -72,10 +72,10 @@ abstract class AbstractQueryDelegate
 	 * @return a collection of selected {@link EObject}s
 	 */
 	protected Collection getSelectedObjects() {
-		Collection result = selectedEObjects;
+		Collection<EObject> result = selectedEObjects;
 		
 		if (editor != null && (result == null || result.isEmpty())) {
-			result = new java.util.ArrayList();
+			result = new java.util.ArrayList<EObject>();
 			ResourceSet rset = editor.getEditingDomain().getResourceSet();
 			
 			for (Iterator outer = rset.getResources().iterator(); outer.hasNext();) {
@@ -112,17 +112,17 @@ abstract class AbstractQueryDelegate
 	 * Gets all of the {@link EObject}s in the current selection, if any.
 	 */
 	public void selectionChanged(IAction action, final ISelection selection) {
-		selectedEObjects = Collections.EMPTY_SET;
+		selectedEObjects = Collections.emptySet();
 		
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			selectedEObjects = new java.util.ArrayList();
+			selectedEObjects = new java.util.ArrayList<EObject>();
 			
 			for (Iterator iter = structuredSelection.iterator(); iter.hasNext();) {
 				Object next = iter.next();
 				
 				if (next instanceof EObject) {
-					selectedEObjects.add(next);
+					selectedEObjects.add((EObject) next);
 				}
 			}
 		}

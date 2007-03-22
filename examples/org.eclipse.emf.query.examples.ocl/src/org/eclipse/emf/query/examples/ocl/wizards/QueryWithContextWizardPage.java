@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,10 +23,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
-import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
 import org.eclipse.emf.query.examples.ocl.internal.l10n.QueryOCLMessages;
-import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -37,6 +37,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -63,7 +64,7 @@ class QueryWithContextWizardPage
 	
 	private ComboViewer contextCombo;
 	private Text conditionText;
-	private OCLConstraintCondition condition;
+	private BooleanOCLCondition<EClassifier, EClass, EObject> condition;
 	
 	/**
 	 * Initializes me.
@@ -138,7 +139,7 @@ class QueryWithContextWizardPage
 			}});
 		
 		// show only EClasses (cannot query for EDataType values)
-		List classes = new LinkedList(
+		List<EClassifier> classes = new LinkedList<EClassifier>(
 			EXTLibraryPackage.eINSTANCE.getEClassifiers());
 		for (Iterator iter = classes.iterator(); iter.hasNext();) {
 			if (!(iter.next() instanceof EClass)) {
@@ -172,10 +173,11 @@ class QueryWithContextWizardPage
 				(IStructuredSelection) contextCombo.getSelection();
 			EClass contextClass = (EClass) selection.getFirstElement();
 			
-			condition = new OCLConstraintCondition(
-				text,
-				contextClass,
-				EStructuralFeatureValueGetter.getInstance());
+            OCL ocl = OCL.newInstance();
+            condition = new BooleanOCLCondition<EClassifier, EClass, EObject>(
+                ocl.getEnvironment(),
+                text,
+                contextClass);
 			
 			if (condition.getResultType(null).getInstanceClass() == Boolean.class) {
 				setErrorMessage(null);
@@ -192,7 +194,7 @@ class QueryWithContextWizardPage
 		return result;
 	}
 	
-	public OCLConstraintCondition getCondition() {
+	public BooleanOCLCondition<EClassifier, EClass, EObject> getCondition() {
 		return condition;
 	}
 	
