@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.1 2007/01/25 18:29:09 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.2 2007/03/22 21:59:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -114,7 +114,7 @@ public class EcoreEvaluationEnvironment
 		EList<EParameter> parms = operation.getEParameters();
 		Class<?>[] javaParms = new Class[parms.size()];
 		for (int i = 0, n = parms.size(); i < n; i++) {
-			EParameter parm = (EParameter) parms.get(i);
+			EParameter parm = parms.get(i);
 			
 			if (parm.isMany()) {
 				javaParms[i] = EList.class; // TODO: EList could be suppressed
@@ -261,4 +261,9 @@ public class EcoreEvaluationEnvironment
 		
 		return false;
 	}
+    
+    // implements the inherited specification
+    public EClassifier getType(Object object) {
+        return EcoreEnvironmentFactory.oclType(object);
+    }
 }
