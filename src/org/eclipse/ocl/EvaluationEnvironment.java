@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: EvaluationEnvironment.java,v 1.2 2007/03/22 21:59:20 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -198,6 +198,14 @@ public interface EvaluationEnvironment<C, O, P, CLS, E> {
      *     type; <code>false</code>, otherwise
      */
     boolean isTypeOf(Object object, C classifier);
+    
+    /**
+     * Queries the type of the specified object.
+     * 
+     * @param object an object
+     * @return its type
+     */
+    C getType(Object object);
     
     /**
      * Creates a new tuple instance.
