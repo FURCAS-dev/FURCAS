@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.2 2007/03/22 21:59:20 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -87,14 +87,16 @@ public class UMLEvaluationEnvironment
 	
     // cache of UML to Ecore package mappings
     private final Map<Package, EPackage> packageMap = new java.util.HashMap<Package, EPackage>();
+    private final UMLEnvironmentFactory factory;
     
     private ValueExtractor valueExtractor;
     
     /**
      * Initializes me.
      */
-    public UMLEvaluationEnvironment(EPackage.Registry registry) {
-        this.registry = registry;
+    public UMLEvaluationEnvironment(UMLEnvironmentFactory factory) {
+        this.factory = factory;
+        this.registry = factory.getEPackageRegistry();
     }
     
     /**
@@ -105,7 +107,11 @@ public class UMLEvaluationEnvironment
     public UMLEvaluationEnvironment(
     		EvaluationEnvironment<Classifier, Operation, Property, Class, EObject> parent) {
     	super(parent);
-    	this.registry = ((UMLEvaluationEnvironment) parent).getEPackageRegistry();
+        
+        UMLEvaluationEnvironment umlParent = (UMLEvaluationEnvironment) getParent();
+        
+        this.factory = umlParent.factory;
+    	this.registry = umlParent.getEPackageRegistry();
     }
 
     /**
@@ -654,6 +660,10 @@ public class UMLEvaluationEnvironment
 		
 		return false;
 	}
+    
+    public Classifier getType(Object object) {
+        return factory.getClassifier(object);
+    }
 	
     /**
      * Looks up the Ecore definition of the specified UML package.
