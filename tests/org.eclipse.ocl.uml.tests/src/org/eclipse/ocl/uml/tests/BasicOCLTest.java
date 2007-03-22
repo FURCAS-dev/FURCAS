@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.3 2007/03/22 21:59:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,12 +24,16 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * Basic tests for OCL engine.
@@ -296,4 +300,14 @@ public class BasicOCLTest
 		assertTrue(check("ocltest::Color::red = ocltest::Color::red")); //$NON-NLS-1$
 		assertFalse(check("ocltest::Color::red = ocltest::Color::black")); //$NON-NLS-1$
 	}
+    
+    public void test_evaluationEnvironment_getType_178901() {
+        EvaluationEnvironment<Classifier, Operation, Property, Class, EObject>
+        evalEnv = ocl.getEvaluationEnvironment();
+        
+        assertSame(getMetaclass("Package"), evalEnv.getType(fruitPackage)); //$NON-NLS-1$
+        assertSame(getMetaclass("Class"), evalEnv.getType(fruit)); //$NON-NLS-1$
+        assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo")); //$NON-NLS-1$
+        assertSame(getOCLStandardLibrary().getOclAny(), evalEnv.getType(this));
+    }
 }
