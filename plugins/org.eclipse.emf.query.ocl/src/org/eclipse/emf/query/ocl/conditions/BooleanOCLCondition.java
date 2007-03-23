@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanOCLCondition.java,v 1.1 2007/03/22 22:20:38 cdamus Exp $
+ * $Id: BooleanOCLCondition.java,v 1.2 2007/03/23 13:08:44 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -142,10 +142,10 @@ public class BooleanOCLCondition<C, CLS, E>
 	public BooleanOCLCondition(
             Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, CLS, E> env,
             String oclExpressionString,
-            C contextEObjectType,
+            C contextClassifier,
             IEStructuralFeatureValueGetter eStructuralFeatureValueGetter,
             PruneHandler pruneHandler) throws ParserException {
-		super(env, oclExpressionString, contextEObjectType,
+		super(env, oclExpressionString, contextClassifier,
 			eStructuralFeatureValueGetter, pruneHandler);
 	}
 
