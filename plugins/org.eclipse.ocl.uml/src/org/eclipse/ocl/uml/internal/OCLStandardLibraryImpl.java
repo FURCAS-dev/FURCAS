@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.2 2007/03/27 18:46:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -297,12 +297,12 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         OCL_T2 = UMLFactory.eINSTANCE.createAnyType();
         OCL_T2.setName("T2"); //$NON-NLS-1$
         
-        OCL_TYPE = (Classifier) UMLFactory.eINSTANCE.createTypeType(OCL_T);
-        OCL_SET = (Classifier) UMLFactory.eINSTANCE.createSetType(OCL_T);
-        OCL_ORDERED_SET = (Classifier) UMLFactory.eINSTANCE.createOrderedSetType(OCL_T);
-        OCL_BAG = (Classifier) UMLFactory.eINSTANCE.createBagType(OCL_T);
-        OCL_SEQUENCE = (Classifier) UMLFactory.eINSTANCE.createSequenceType(OCL_T);
-        OCL_COLLECTION = (Classifier) UMLFactory.eINSTANCE.createCollectionType(OCL_T);
+        OCL_TYPE = (Classifier) OCLFactoryImpl.INSTANCE.createTypeType(OCL_T);
+        OCL_SET = (Classifier) OCLFactoryImpl.INSTANCE.createSetType(OCL_T);
+        OCL_ORDERED_SET = (Classifier) OCLFactoryImpl.INSTANCE.createOrderedSetType(OCL_T);
+        OCL_BAG = (Classifier) OCLFactoryImpl.INSTANCE.createBagType(OCL_T);
+        OCL_SEQUENCE = (Classifier) OCLFactoryImpl.INSTANCE.createSequenceType(OCL_T);
+        OCL_COLLECTION = (Classifier) OCLFactoryImpl.INSTANCE.createCollectionType(OCL_T);
         
         STATE = UMLFactory.eINSTANCE.createElementType();
         STATE.setName("State"); //$NON-NLS-1$
