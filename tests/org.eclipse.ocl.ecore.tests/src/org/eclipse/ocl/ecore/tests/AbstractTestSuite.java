@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.3 2007/03/27 15:05:43 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.4 2007/03/27 18:46:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -51,12 +51,12 @@ import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.EcoreFactory;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -118,7 +118,7 @@ public abstract class AbstractTestSuite
 	protected OCL ocl;
 	protected OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint>
 	helper;
-	protected final OCLFactory oclFactory = EcoreFactory.eINSTANCE;
+	protected final OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
 	
 	public AbstractTestSuite(String name) {
 		super(name);
