@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.1 2007/01/25 18:41:55 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.2 2007/03/27 15:05:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -28,10 +28,8 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.uml.BagType;
 import org.eclipse.ocl.uml.CollectionType;
@@ -39,6 +37,7 @@ import org.eclipse.ocl.uml.OrderedSetType;
 import org.eclipse.ocl.uml.SequenceType;
 import org.eclipse.ocl.uml.SetType;
 import org.eclipse.ocl.uml.TupleType;
+import org.eclipse.ocl.uml.UMLFactory;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -1341,13 +1340,13 @@ public class RegressionTest
 	 * that contains a reference to a variable that has no name.
 	 */
 	public void test_nullVariableName_143386() {
-		Variable<Classifier, Parameter> var =
-			ExpressionsFactory.eINSTANCE.createVariable();
+		org.eclipse.ocl.uml.Variable var =
+			UMLFactory.eINSTANCE.createVariable();
 		
 		assertEquals("\"<null>\"", var.toString()); //$NON-NLS-1$
 		
 		VariableExp<Classifier, Parameter> exp =
-			ExpressionsFactory.eINSTANCE.createVariableExp();
+			UMLFactory.eINSTANCE.createVariableExp();
 		exp.setReferredVariable(var);
 		
 		assertEquals("\"<null>\"", exp.toString()); //$NON-NLS-1$
@@ -1359,11 +1358,11 @@ public class RegressionTest
 		
 		// recreate to avoid caching of names
 		
-		var = ExpressionsFactory.eINSTANCE.createVariable();
+		var = UMLFactory.eINSTANCE.createVariable();
 		var.setName("foo"); //$NON-NLS-1$
 		var.setType(getUMLString());
 		
-		exp = ExpressionsFactory.eINSTANCE.createVariableExp();
+		exp = UMLFactory.eINSTANCE.createVariableExp();
 		exp.setReferredVariable(var);
 		
 		assertEquals("foo : String", var.toString()); //$NON-NLS-1$

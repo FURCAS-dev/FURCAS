@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.3 2007/03/27 15:05:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -286,7 +286,18 @@ public class SerializationTest
 		
 		super.setUp();
 		
-		res = new XMIResourceImpl();
+		//FIXME:  Need to use extrinsic IDs because lookup fails on hierarchical
+		//    name-based fragments
+		res = new XMIResourceImpl() {
+			@Override
+			protected boolean useIDs() {
+				return true;
+			}
+			
+			@Override
+			protected boolean useUUIDs() {
+				return true;
+			}};
 		res.setURI(URI.createFileURI("/tmp/ocltest.xmi")); //$NON-NLS-1$
 		((XMLResource) res).setEncoding("UTF-8"); //$NON-NLS-1$
 		
@@ -329,7 +340,8 @@ public class SerializationTest
 		try {
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
 			res.getContents().add(eobject);
-			res.save(output, Collections.EMPTY_MAP);
+			res.save(output,
+					Collections.singletonMap(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE));
 			result = output.toString("UTF-8"); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
