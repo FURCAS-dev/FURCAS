@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.3 2007/02/14 18:00:29 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.4 2007/03/27 15:05:00 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -573,7 +573,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		} else {
 			if (syntaxHelpStringSuffix == ARROW) {
 				@SuppressWarnings("unchecked")
-				C setType = (C) environment.getTypeFactory().createSetType(type);
+				C setType = (C) environment.getOCLFactory().createSetType(type);
 				return getChoices(setType, constraintType);
 			} else if (syntaxHelpStringSuffix == DOT) {
 				rawChoices = getChoicesForEClassEStructuralFeatures(type);

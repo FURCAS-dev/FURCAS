@@ -187,7 +187,7 @@
         <eTypeArguments eTypeParameter="#//expressions/CollectionLiteralExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPart">
+    <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPart" abstract="true">
       <eTypeParameters name="C"/>
       <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
         <eTypeArguments eTypeParameter="#//expressions/CollectionLiteralPart/C"/>
@@ -596,10 +596,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
       <eTypeParameters name="C"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1">
+      <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eOperations name="getType">
         <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
-      </eStructuralFeatures>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Visitor" abstract="true" interface="true">
       <eTypeParameters name="T"/>

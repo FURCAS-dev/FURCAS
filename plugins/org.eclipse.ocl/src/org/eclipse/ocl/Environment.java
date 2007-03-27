@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.2 2007/02/23 22:06:00 cdamus Exp $
+ * $Id: Environment.java,v 1.3 2007/03/27 15:04:58 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -24,7 +24,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.EnvironmentRegistryImpl;
 import org.eclipse.ocl.types.OCLStandardLibrary;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -564,7 +564,7 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * 
      * @return the appropriate type factory
      */
-    TypeFactory getTypeFactory();
+    OCLFactory getOCLFactory();
     
     /**
      * Obtains a utility for for reflection on the UML metaclasses that are

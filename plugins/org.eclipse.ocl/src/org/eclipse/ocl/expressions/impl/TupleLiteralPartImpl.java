@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -45,8 +45,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getTypeStartPosition <em>Type Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getTypeEndPosition <em>Type End Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
@@ -134,36 +132,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 	 * @ordered
 	 */
 	protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected C type = null;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -291,61 +259,19 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getName() {
-		return name;
+		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TUPLE_LITERAL_PART__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
 	public C getType() {
-		if (type != null && ((EObject)type).eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (C)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.TUPLE_LITERAL_PART__TYPE, oldType, type));
-			}
-		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public C basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(C newType) {
-		C oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TUPLE_LITERAL_PART__TYPE, oldType, type));
+		return null;
 	}
 
 	/**
@@ -469,11 +395,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 				return new Integer(getTypeStartPosition());
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
 				return new Integer(getTypeEndPosition());
-			case ExpressionsPackage.TUPLE_LITERAL_PART__NAME:
-				return getName();
-			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE:
 				return getValue();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
@@ -503,12 +424,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
 				setTypeEndPosition(((Integer)newValue).intValue());
-				return;
-			case ExpressionsPackage.TUPLE_LITERAL_PART__NAME:
-				setName((String)newValue);
-				return;
-			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE:
-				setType((C)newValue);
 				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE:
 				setValue((OCLExpression<C>)newValue);
@@ -540,12 +455,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
 				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
 				return;
-			case ExpressionsPackage.TUPLE_LITERAL_PART__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE:
-				setType((C)null);
-				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE:
 				setValue((OCLExpression<C>)null);
 				return;
@@ -572,10 +481,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
 				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-			case ExpressionsPackage.TUPLE_LITERAL_PART__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE:
-				return type != null;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE:
 				return value != null;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
@@ -607,8 +512,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 		}
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
-				case ExpressionsPackage.TUPLE_LITERAL_PART__NAME: return UtilitiesPackage.TYPED_ELEMENT__NAME;
-				case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE: return UtilitiesPackage.TYPED_ELEMENT__TYPE;
 				default: return -1;
 			}
 		}
@@ -638,8 +541,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 		}
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.TYPED_ELEMENT__NAME: return ExpressionsPackage.TUPLE_LITERAL_PART__NAME;
-				case UtilitiesPackage.TYPED_ELEMENT__TYPE: return ExpressionsPackage.TUPLE_LITERAL_PART__TYPE;
 				default: return -1;
 			}
 		}

@@ -1,39 +1,165 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *   IBM - Initial API and implementation
- * 
+ *
  * </copyright>
  *
- * $Id: ExpressionsFactory.java,v 1.4 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: OCLFactory.java,v 1.1 2007/03/27 15:04:59 cdamus Exp $
  */
-package org.eclipse.ocl.expressions;
 
-import org.eclipse.emf.ecore.EFactory;
+package org.eclipse.ocl.utilities;
+
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.expressions.AssociationClassCallExp;
+import org.eclipse.ocl.expressions.BooleanLiteralExp;
+import org.eclipse.ocl.expressions.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.CollectionLiteralExp;
+import org.eclipse.ocl.expressions.CollectionRange;
+import org.eclipse.ocl.expressions.EnumLiteralExp;
+import org.eclipse.ocl.expressions.IfExp;
+import org.eclipse.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.IterateExp;
+import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.LetExp;
+import org.eclipse.ocl.expressions.MessageExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
+import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.RealLiteralExp;
+import org.eclipse.ocl.expressions.StateExp;
+import org.eclipse.ocl.expressions.StringLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.TypeExp;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.expressions.UnspecifiedValueExp;
+import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.types.BagType;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.MessageType;
+import org.eclipse.ocl.types.OrderedSetType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.types.TypeType;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Factory</b> for the model.
- * It provides a create method for each non-abstract class of the model.
- * <!-- end-user-doc -->
- * @see org.eclipse.ocl.expressions.ExpressionsPackage
- * @generated
+ * Interface for a factory of OCl Abstract Syntax elements.
+ * 
+ * @author Christian W. Damus (cdamus
  */
-public interface ExpressionsFactory extends EFactory {
+public interface OCLFactory {
+
 	/**
-	 * The singleton instance of the factory.
+	 * Returns a new object of class '<em>Bag Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @return a new object of class '<em>Bag Type</em>'.
+	 * @generated NOT
 	 */
-	ExpressionsFactory eINSTANCE = org.eclipse.ocl.expressions.impl.ExpressionsFactoryImpl.init();
+	<C, O> BagType<C, O> createBagType(C elementType);
+
+	/**
+	 * Returns a new object of class '<em>Collection Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Collection Type</em>'.
+	 * @generated NOT
+	 */
+	<C, O> CollectionType<C, O> createCollectionType(C elementType);
+
+	/**
+	 * Returns a new object of class '<em>Collection Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Collection Type</em>'.
+	 * @generated NOT
+	 */
+	<C, O> CollectionType<C, O>	createCollectionType(CollectionKind kind, C elementType);
+
+	/**
+	 * Returns a new object of class '<em>Ordered Set Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ordered Set Type</em>'.
+	 * @generated NOT
+	 */
+	<C, O> OrderedSetType<C, O> createOrderedSetType(C elementType);
+
+	/**
+	 * Returns a new object of class '<em>Sequence Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sequence Type</em>'.
+	 * @generated NOT
+	 */
+	<C, O> SequenceType<C, O> createSequenceType(C elementType);
+
+	/**
+	 * Returns a new object of class '<em>Set Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Set Type</em>'.
+	 * @generated NOT
+	 */
+	<C, O> SetType<C, O> createSetType(C elementType);
+
+	/**
+	 * Creates the type for the messages representing invocation of the
+	 * specified signal.
+	 * 
+	 * @param behavioralFeature either an {@link EOperation} or an 
+	 *    {@link EClass} representing the received signal
+	 * 
+	 * @return the message type
+	 * @generated NOT
+	 */
+	<C, O, P> MessageType<C, O, P> createSignalMessageType(C signal);
+
+	/**
+	 * Creates the type for the messages representing invocation of the
+	 * specified operation.
+	 * 
+	 * @param behavioralFeature either an {@link EOperation} or an 
+	 *    {@link EClass} representing the received signal
+	 * 
+	 * @return the message type
+	 * @generated NOT
+	 */
+	<C, O, P> MessageType<C, O, P> createOperationMessageType(O operation);
+
+	/**
+	 * Creates a tuple type based on tthe specified part descriptions.
+	 * 
+	 * @param parts a list of {@link TypedElement}s describing the tuple parts
+	 * 
+	 * @return the new tuple type
+	 * @generated NOT
+	 */
+	<C, O, P> TupleType<O, P> createTupleType(List<? extends TypedElement<C>> parts);
+
+	/**
+	 * Returns a new object of class '<em>Type Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Type</em>'.
+	 * @generated NOT
+	 */
+	<C, O> TypeType<C, O> createTypeType(C type);
 
 	/**
 	 * Returns a new object of class '<em>Association Class Call Exp</em>'.
@@ -269,13 +395,4 @@ public interface ExpressionsFactory extends EFactory {
 	 */
 	<C, PM> VariableExp<C, PM> createVariableExp();
 
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	ExpressionsPackage getExpressionsPackage();
-
-} //ExpressionsFactory
+}

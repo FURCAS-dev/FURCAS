@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.3 2007/02/23 22:06:00 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.4 2007/03/27 15:04:59 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.expressions.CollectionKind;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -513,9 +513,9 @@ public class TypeUtil {
 				
 				if (paramType instanceof TypeType) {
 					// need a TypeExp
-					TypeExp<C> exp = ExpressionsFactory.eINSTANCE.createTypeExp();
+					TypeExp<C> exp = env.getOCLFactory().createTypeExp();
 					exp.setReferredType(env.getOCLStandardLibrary().getT());
-					exp.setType(paramType);
+					uml.setType(exp, paramType);
 					args.add(exp);
 				} else {
 					if (paramType instanceof CollectionType) {
@@ -533,8 +533,8 @@ public class TypeUtil {
 					
 					// unspecified value expression will do
 					UnspecifiedValueExp<C> exp =
-						ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp();
-					exp.setType(paramType);
+						env.getOCLFactory().createUnspecifiedValueExp();
+					uml.setType(exp, paramType);
 					args.add(exp);
 				}
 			}
@@ -982,7 +982,7 @@ public class TypeUtil {
 				OCLParser.ERR(message);
 			}
 
-			ExpressionsFactory exprFactory = ExpressionsFactory.eINSTANCE;
+			OCLFactory oclFactory = env.getOCLFactory();
 			
 			EList<Variable<C, PM>> tupleParts = new BasicEList<Variable<C, PM>>();
 
@@ -996,9 +996,9 @@ public class TypeUtil {
 						
 						found = true;
 						
-						Variable<C, PM> var = exprFactory.createVariable();
-						var.setName(getName(env, prop1));
-						var.setType(resultElementType);
+						Variable<C, PM> var = oclFactory.createVariable();
+						uml.setName(var, getName(env, prop1));
+						uml.setType(var, resultElementType);
 						
 						tupleParts.add(var);
 						break;

@@ -12,18 +12,65 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.2 2007/02/14 14:46:07 cdamus Exp $
+ * $Id: CSTAdapterFactory.java,v 1.3 2007/03/27 15:05:00 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.internal.cst.*;
+import org.eclipse.ocl.internal.cst.BooleanLiteralExpCS;
+import org.eclipse.ocl.internal.cst.CSTNode;
+import org.eclipse.ocl.internal.cst.CSTPackage;
+import org.eclipse.ocl.internal.cst.CallExpCS;
+import org.eclipse.ocl.internal.cst.ClassifierContextDeclCS;
+import org.eclipse.ocl.internal.cst.CollectionLiteralExpCS;
+import org.eclipse.ocl.internal.cst.CollectionLiteralPartCS;
+import org.eclipse.ocl.internal.cst.CollectionRangeCS;
+import org.eclipse.ocl.internal.cst.CollectionTypeCS;
+import org.eclipse.ocl.internal.cst.ContextDeclCS;
+import org.eclipse.ocl.internal.cst.DefCS;
+import org.eclipse.ocl.internal.cst.DefExpressionCS;
+import org.eclipse.ocl.internal.cst.DerValueCS;
+import org.eclipse.ocl.internal.cst.EnumLiteralExpCS;
+import org.eclipse.ocl.internal.cst.FeatureCallExpCS;
+import org.eclipse.ocl.internal.cst.IfExpCS;
+import org.eclipse.ocl.internal.cst.InitOrDerValueCS;
+import org.eclipse.ocl.internal.cst.InitValueCS;
+import org.eclipse.ocl.internal.cst.IntegerLiteralExpCS;
+import org.eclipse.ocl.internal.cst.InvCS;
+import org.eclipse.ocl.internal.cst.InvOrDefCS;
+import org.eclipse.ocl.internal.cst.InvalidLiteralExpCS;
+import org.eclipse.ocl.internal.cst.IsMarkedPreCS;
+import org.eclipse.ocl.internal.cst.IterateExpCS;
+import org.eclipse.ocl.internal.cst.IteratorExpCS;
+import org.eclipse.ocl.internal.cst.LetExpCS;
+import org.eclipse.ocl.internal.cst.LiteralExpCS;
+import org.eclipse.ocl.internal.cst.LoopExpCS;
+import org.eclipse.ocl.internal.cst.MessageExpCS;
+import org.eclipse.ocl.internal.cst.NullLiteralExpCS;
+import org.eclipse.ocl.internal.cst.OCLExpressionCS;
+import org.eclipse.ocl.internal.cst.OCLMessageArgCS;
+import org.eclipse.ocl.internal.cst.OperationCS;
+import org.eclipse.ocl.internal.cst.OperationCallExpCS;
+import org.eclipse.ocl.internal.cst.OperationContextDeclCS;
+import org.eclipse.ocl.internal.cst.PackageDeclarationCS;
+import org.eclipse.ocl.internal.cst.PathNameCS;
+import org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS;
+import org.eclipse.ocl.internal.cst.PrimitiveLiteralExpCS;
+import org.eclipse.ocl.internal.cst.PrimitiveTypeCS;
+import org.eclipse.ocl.internal.cst.PropertyContextCS;
+import org.eclipse.ocl.internal.cst.RealLiteralExpCS;
+import org.eclipse.ocl.internal.cst.SimpleNameCS;
+import org.eclipse.ocl.internal.cst.StateExpCS;
+import org.eclipse.ocl.internal.cst.StringLiteralExpCS;
+import org.eclipse.ocl.internal.cst.TupleLiteralExpCS;
+import org.eclipse.ocl.internal.cst.TupleTypeCS;
+import org.eclipse.ocl.internal.cst.TypeCS;
+import org.eclipse.ocl.internal.cst.UnlimitedNaturalLiteralExpCS;
+import org.eclipse.ocl.internal.cst.VariableCS;
+import org.eclipse.ocl.internal.cst.VariableExpCS;
 
 /**
  * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.2 2007/02/14 18:00:29 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.3 2007/03/27 15:04:58 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -249,7 +249,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			return false;
 		}
 		
-		elem.setName(name);
+		getUMLReflection().setName(elem, name);
 		VariableEntry newelem = new VariableEntry(name, elem, isExplicit);
 		namedElements.add(newelem);
 		
