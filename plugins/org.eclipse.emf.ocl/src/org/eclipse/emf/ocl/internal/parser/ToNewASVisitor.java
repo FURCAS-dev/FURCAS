@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToNewASVisitor.java,v 1.3 2007/03/27 15:05:42 cdamus Exp $
+ * $Id: ToNewASVisitor.java,v 1.4 2007/03/27 18:46:40 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -85,12 +85,11 @@ import org.eclipse.emf.ocl.uml.SendSignalAction;
 import org.eclipse.emf.ocl.uml.TypedElement;
 import org.eclipse.emf.ocl.utilities.ASTNode;
 import org.eclipse.emf.ocl.utilities.CallingASTNode;
-import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
 /**
@@ -703,7 +702,7 @@ final class ToNewASVisitor implements Visitor {
                         return stdlib.getOclType();
                     }
                     
-					return (EClassifier) EcoreFactory.eINSTANCE.createTypeType(
+					return (EClassifier) OCLFactoryImpl.INSTANCE.createTypeType(
 							(EClassifier) CompatibilityUtil.getNewAS(
 									env, ((TypeTypeImpl) object).getReferredType()));
 				}
@@ -722,7 +721,7 @@ final class ToNewASVisitor implements Visitor {
                         return stdlib.getCollection();
                     }
                     
-					return (EClassifier) EcoreFactory.eINSTANCE.createCollectionType(
+					return (EClassifier) OCLFactoryImpl.INSTANCE.createCollectionType(
 							object.getKind().asNewKind(),
 							(EClassifier) CompatibilityUtil.getNewAS(
 									env, object.getElementType()));
@@ -735,10 +734,10 @@ final class ToNewASVisitor implements Visitor {
 					}
 					
 					if (object.getReferredOperation() != null) {
-						return (EClassifier) EcoreFactory.eINSTANCE.createOperationMessageType(
+						return (EClassifier) OCLFactoryImpl.INSTANCE.createOperationMessageType(
 								object.getReferredOperation());
 					} else {
-						return (EClassifier) EcoreFactory.eINSTANCE.createSignalMessageType(
+						return (EClassifier) OCLFactoryImpl.INSTANCE.createSignalMessageType(
 								object.getReferredSignal());
 					}
 				}
@@ -759,7 +758,7 @@ final class ToNewASVisitor implements Visitor {
 						parts.add(part);
 					}
 					
-					return (EClassifier) EcoreFactory.eINSTANCE.createTupleType(
+					return (EClassifier) OCLFactoryImpl.INSTANCE.createTupleType(
 							parts);
 				}
 				
