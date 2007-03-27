@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.4 2007/03/27 18:46:39 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -81,6 +81,10 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
         this();
         
         this.referredType = referredType;
+    }
+    
+    public static TypeType createTypeType(EClassifier referredType) {
+        return new TypeTypeImpl(referredType);
     }
 
     /**

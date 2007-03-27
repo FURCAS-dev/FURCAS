@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.1 2007/01/25 18:29:10 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.2 2007/03/27 18:46:39 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -300,12 +300,12 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
         OCL_T2 = EcoreFactory.eINSTANCE.createAnyType();
         OCL_T2.setName("T2"); //$NON-NLS-1$
         
-        OCL_TYPE = (EClassifier) EcoreFactory.eINSTANCE.createTypeType(OCL_T);
-        OCL_SET = (EClassifier) EcoreFactory.eINSTANCE.createSetType(OCL_T);
-        OCL_ORDERED_SET = (EClassifier) EcoreFactory.eINSTANCE.createOrderedSetType(OCL_T);
-        OCL_BAG = (EClassifier) EcoreFactory.eINSTANCE.createBagType(OCL_T);
-        OCL_SEQUENCE = (EClassifier) EcoreFactory.eINSTANCE.createSequenceType(OCL_T);
-        OCL_COLLECTION = (EClassifier) EcoreFactory.eINSTANCE.createCollectionType(OCL_T);
+        OCL_TYPE = (EClassifier) OCLFactoryImpl.INSTANCE.createTypeType(OCL_T);
+        OCL_SET = (EClassifier) OCLFactoryImpl.INSTANCE.createSetType(OCL_T);
+        OCL_ORDERED_SET = (EClassifier) OCLFactoryImpl.INSTANCE.createOrderedSetType(OCL_T);
+        OCL_BAG = (EClassifier) OCLFactoryImpl.INSTANCE.createBagType(OCL_T);
+        OCL_SEQUENCE = (EClassifier) OCLFactoryImpl.INSTANCE.createSequenceType(OCL_T);
+        OCL_COLLECTION = (EClassifier) OCLFactoryImpl.INSTANCE.createCollectionType(OCL_T);
         
         STATE = EcoreFactory.eINSTANCE.createElementType();
         STATE.setName("State"); //$NON-NLS-1$
