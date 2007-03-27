@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.3 2007/02/23 22:06:00 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.4 2007/03/27 15:04:58 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.ocl.expressions.CollectionKind;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
@@ -35,7 +34,7 @@ import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.util.TypesSwitch;
 import org.eclipse.ocl.util.TypeUtil;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -67,7 +66,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	private final TypesSwitch<C> resolveSwitch = new ResolveSwitch();
 	
 	private final Environment<PK, C, O, P, ?, PM, ?, ?, ?, ?, ?, ?> env;
-    private final TypeFactory typeFactory;
+    private final OCLFactory oclFactory;
     private final UMLReflection<PK, C, O, P, ?, PM, ?, ?, ?, ?> uml;
     
 	private Resource resource;
@@ -101,7 +100,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		this.env = env;
 		this.resource = resource;
         
-        typeFactory = env.getTypeFactory();
+        oclFactory = env.getOCLFactory();
         uml = env.getUMLReflection();
 	}
 	
@@ -205,7 +204,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 			CollectionKind kind, C elementType) {
 		
 		CollectionType<C, O> result =
-			typeFactory.createCollectionType(kind, elementType);
+			oclFactory.createCollectionType(kind, elementType);
 		addClassifier(getCollectionPackage(), (C) result);
 		
 		return result;
@@ -302,7 +301,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	protected TupleType<O, P> createTupleType(
 			EList<? extends TypedElement<C>> parts) {
 		TupleType<O, P> result =
-			typeFactory.createTupleType(parts);
+			oclFactory.createTupleType(parts);
 		
 		addClassifier(getTuplePackage(), (C) result);
 		return result;
@@ -405,7 +404,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	 */
     @SuppressWarnings("unchecked")
 	protected TypeType<C, O> createTypeType(C type) {
-		TypeType<C, O> result = typeFactory.createTypeType(type);
+		TypeType<C, O> result = oclFactory.createTypeType(type);
 		
 		addClassifier(getTypePackage(), (C) result);
 		
@@ -509,7 +508,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
     @SuppressWarnings("unchecked")
 	protected MessageType<C, O, P> createOperationMessageType(O operation) {
 		MessageType<C, O, P> result =
-			typeFactory.createOperationMessageType(operation);
+			oclFactory.createOperationMessageType(operation);
 		addClassifier(getMessagePackage(), (C) result);
 		return result;
 	}
@@ -525,7 +524,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
     @SuppressWarnings("unchecked")
 	protected MessageType<C, O, P> createSignalMessageType(C signal) {
 		MessageType<C, O, P> result =
-			typeFactory.createSignalMessageType(signal);
+			oclFactory.createSignalMessageType(signal);
 		addClassifier(getMessagePackage(), (C) result);
 		return result;
 	}
@@ -900,10 +899,12 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 			EList<Variable<C, PM>> result =
                 new BasicEList.FastCompare<Variable<C, PM>>();
 			
+			OCLFactory oclFactory = env.getOCLFactory();
+			
 			for (P next : properties) {
-				Variable<C, PM> v = ExpressionsFactory.eINSTANCE.createVariable();
-				v.setName(uml.getName(next));
-				v.setType(resolve(uml.getOCLType(next)));
+				Variable<C, PM> v = oclFactory.createVariable();
+				uml.setName(v, uml.getName(next));
+				uml.setType(v, resolve(uml.getOCLType(next)));
 				result.add(v);
 			}
 			
