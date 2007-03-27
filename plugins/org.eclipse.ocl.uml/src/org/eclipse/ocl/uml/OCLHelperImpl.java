@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.2 2007/03/27 15:05:18 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -20,7 +20,6 @@ package org.eclipse.ocl.uml;
 import java.util.List;
 
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
@@ -42,8 +41,8 @@ class OCLHelperImpl implements OCL.Helper {
         this.delegate = delegate;
     }
 
-    public org.eclipse.ocl.OCL<?, Classifier, Operation, Property, ?, ?, ?, ?, ?, Constraint, ?, ?> getOCL() {
-        return delegate.getOCL();
+    public OCL getOCL() {
+        return (OCL) delegate.getOCL();
     }
     
     public Constraint createConstraint(ConstraintKind kind, String expression)
@@ -81,9 +80,9 @@ class OCLHelperImpl implements OCL.Helper {
         return delegate.createPrecondition(expression);
     }
 
-    public OCLExpression<Classifier> createQuery(String expression)
+    public OCLExpression createQuery(String expression)
         throws ParserException {
-        return delegate.createQuery(expression);
+        return (OCLExpression) delegate.createQuery(expression);
     }
 
     public Property defineAttribute(String defExpression)

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.2 2007/02/14 02:05:55 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.3 2007/03/27 15:05:17 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
@@ -249,7 +249,7 @@ public class UMLEnvironment extends AbstractEnvironment<
 	}
 
     // implements the inherited specification
-    public TypeFactory getTypeFactory() {
+    public OCLFactory getOCLFactory() {
         return org.eclipse.ocl.uml.UMLFactory.eINSTANCE;
     }
 

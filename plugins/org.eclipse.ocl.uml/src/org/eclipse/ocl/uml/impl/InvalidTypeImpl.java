@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.3 2007/02/14 13:42:07 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -32,6 +32,8 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 
 /**
@@ -41,7 +43,8 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.uml.impl.InvalidTypeImpl#getOwnedOperations <em>Owned Operations</em>}</li>
+ *   <li>{@link org.eclipse.ocl.uml.impl.InvalidTypeImpl#getFeatures <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.uml.impl.InvalidTypeImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,33 +55,33 @@ public class InvalidTypeImpl extends ClassifierImpl implements InvalidType {
     private EList<Operation> operations;
     
     /**
-     * The cached value of the '{@link #getOwnedOperations() <em>Owned Operations</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOwnedOperations()
-     * @generated
-     * @ordered
-     */
-    protected EList<Operation> ownedOperations = null;
+	 * @see #getOwnedOperations()
+	 * @generated
+	 * @ordered
+	 */
+    protected EList<Operation> ownedOperations;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected InvalidTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.INVALID_TYPE;
-    }
+		return UMLPackage.Literals.INVALID_TYPE;
+	}
 
     /**
      * @generated NOT
@@ -110,128 +113,167 @@ public class InvalidTypeImpl extends ClassifierImpl implements InvalidType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Operation> getOwnedOperations() {
-        if (ownedOperations == null) {
-            ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.INVALID_TYPE__OWNED_OPERATIONS);
-        }
-        return ownedOperations;
-    }
+		if (ownedOperations == null) {
+			ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.INVALID_TYPE__OWNED_OPERATION);
+		}
+		return ownedOperations;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
+		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes, false);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes, boolean ignoreCase) {
+		ownedOperationLoop: for (Operation ownedOperation : getOwnedOperations()) {
+			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedOperation.getName()) : name.equals(ownedOperation.getName())))
+				continue ownedOperationLoop;
+			EList<Parameter> ownedParameterList = ownedOperation.getOwnedParameters();
+			int ownedParameterListSize = ownedParameterList.size();
+			if (ownedParameterNames != null && ownedParameterNames.size() != ownedParameterListSize || (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+				continue  ownedOperationLoop;
+			for (int j = 0; j < ownedParameterListSize; j++) {
+				Parameter ownedParameter = ownedParameterList.get(j);
+				if (ownedParameterNames != null && !(ignoreCase ? (ownedParameterNames.get(j)).equalsIgnoreCase(ownedParameter.getName()) : ownedParameterNames.get(j).equals(ownedParameter.getName())))
+					continue ownedOperationLoop;
+				if (ownedParameterTypes != null && !ownedParameterTypes.get(j).equals(ownedParameter.getType()))
+					continue ownedOperationLoop;
+			}
+			return ownedOperation;
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public EList<Feature> getFeatures() {
-//TODO: Remove the "NOT"
-        CacheAdapter cache = getCacheAdapter();
-        if (cache != null) {
-            Resource eResource = eResource();
-            @SuppressWarnings("unchecked")
-            EList<Feature> features = (EList<Feature>) cache.get(eResource,
-                this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
-            if (features == null) {
-                cache.put(eResource, this,
-                    org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
-                    features = new DerivedUnionEObjectEList<Feature>(
-                        Feature.class, this, UMLPackage.INVALID_TYPE__FEATURE,
-                        FEATURE_ESUBSETS));
-            }
-            return features;
-        }
-        return new DerivedUnionEObjectEList<Feature>(Feature.class, this,
-                UMLPackage.INVALID_TYPE__FEATURE, FEATURE_ESUBSETS);
-    }
+	 * @generated
+	 */
+    @Override
+				public EList<Feature> getFeatures() {
+
+		CacheAdapter cache = getCacheAdapter();
+		if (cache != null) {
+			Resource eResource = eResource();
+			@SuppressWarnings("unchecked")
+			EList<Feature> features = (EList<Feature>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
+			if (features == null) {
+				cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE, features = new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.INVALID_TYPE__FEATURE, FEATURE_ESUBSETS));
+			}
+			return features;
+		}
+		return new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.INVALID_TYPE__FEATURE, FEATURE_ESUBSETS);
+	}
 
     /**
-     * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFeatures()
-     * @generated NOT
-     * @ordered
-     */
+	 * @see #getFeatures()
+	 * @generated
+	 * @ordered
+	 */
     @SuppressWarnings("hiding")
-    protected static final int[] FEATURE_ESUBSETS = new int[]{
-//TODO: Remove the "NOT"
-        UMLPackage.INVALID_TYPE__ATTRIBUTE, UMLPackage.INVALID_TYPE__OWNED_OPERATIONS};
+    protected static final int[] FEATURE_ESUBSETS = new int[] {UMLPackage.INVALID_TYPE__ATTRIBUTE, UMLPackage.INVALID_TYPE__OWNED_OPERATION};
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case UMLPackage.INVALID_TYPE__OWNED_OPERATIONS:
-                return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case UMLPackage.INVALID_TYPE__OWNED_OPERATION:
+				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.INVALID_TYPE__OWNED_OPERATIONS:
-                return getOwnedOperations();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.INVALID_TYPE__OWNED_OPERATION:
+				return getOwnedOperations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.INVALID_TYPE__OWNED_OPERATIONS:
-                getOwnedOperations().clear();
-                getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.INVALID_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.INVALID_TYPE__OWNED_OPERATIONS:
-                getOwnedOperations().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.INVALID_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.INVALID_TYPE__OWNED_OPERATIONS:
-                return ownedOperations != null && !ownedOperations.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.INVALID_TYPE__OWNED_OPERATION:
+				return ownedOperations != null && !ownedOperations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public boolean isSetFeatures() {
+		return super.isSetFeatures()
+			|| eIsSet(UMLPackage.INVALID_TYPE__OWNED_OPERATION);
+	}
 
 } //InvalidTypeImpl
