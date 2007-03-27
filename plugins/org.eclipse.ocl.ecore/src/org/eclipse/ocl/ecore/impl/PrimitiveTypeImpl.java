@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.2 2007/02/14 13:42:02 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -37,23 +37,23 @@ public class PrimitiveTypeImpl extends EDataTypeImpl implements PrimitiveType {
     protected EList<EOperation> operations;
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PrimitiveTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.PRIMITIVE_TYPE;
-    }
+		return EcorePackage.Literals.PRIMITIVE_TYPE;
+	}
 
     /**
      * <!-- begin-user-doc -->

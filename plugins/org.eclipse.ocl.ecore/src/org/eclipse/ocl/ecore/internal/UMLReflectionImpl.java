@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.1 2007/01/25 18:29:10 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.2 2007/03/27 15:05:33 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -48,7 +48,8 @@ import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
+import org.eclipse.ocl.utilities.TypedElement;
 
 /**
  * Implementation of the UML reflection service for the Ecore environment.
@@ -629,19 +630,19 @@ public class UMLReflectionImpl
             resultType = getOCLTypeFor((EDataType) resultType);
         }
         
-        TypeFactory typeFactory = EcoreFactory.eINSTANCE;
+        OCLFactory oclFactory = EcoreFactory.eINSTANCE;
         
         if (isOrdered) {
             if (isUnique) {
-                resultType = (EClassifier) typeFactory.createOrderedSetType(resultType);
+                resultType = (EClassifier) oclFactory.createOrderedSetType(resultType);
             } else {
-                resultType = (EClassifier) typeFactory.createSequenceType(resultType);
+                resultType = (EClassifier) oclFactory.createSequenceType(resultType);
             }
         } else {
             if (isUnique) {
-                resultType = (EClassifier) typeFactory.createSetType(resultType);
+                resultType = (EClassifier) oclFactory.createSetType(resultType);
             } else {
-                resultType = (EClassifier) typeFactory.createBagType(resultType);
+                resultType = (EClassifier) oclFactory.createBagType(resultType);
             }
         }
         
@@ -686,5 +687,13 @@ public class UMLReflectionImpl
         }
         
         return false;
+    }
+    
+    public void setName(TypedElement<EClassifier> element, String name) {
+    	((ETypedElement) element).setName(name);
+    }
+    
+    public void setType(TypedElement<EClassifier> element, EClassifier type) {
+    	((ETypedElement) element).setEType(type);
     }
 }

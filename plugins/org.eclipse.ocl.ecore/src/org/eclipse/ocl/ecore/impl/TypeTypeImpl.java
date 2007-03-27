@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.2 2007/02/14 13:42:02 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -54,23 +54,23 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
     private EList<EOperation> operations;
     
     /**
-     * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReferredType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredType()
+	 * @generated
+	 * @ordered
+	 */
     protected EClassifier referredType = null;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected TypeTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -84,41 +84,41 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.TYPE_TYPE;
-    }
+		return EcorePackage.Literals.TYPE_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     public EClassifier getReferredType() {
-        if (referredType != null && ((EObject)referredType).eIsProxy()) {
-            InternalEObject oldReferredType = (InternalEObject)referredType;
-            referredType = (EClassifier)eResolveProxy(oldReferredType);
-            if (referredType != oldReferredType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
-            }
-        }
-        return referredType;
-    }
+		if (referredType != null && ((EObject)referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject)referredType;
+			referredType = (EClassifier)eResolveProxy(oldReferredType);
+			if (referredType != oldReferredType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+			}
+		}
+		return referredType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EClassifier basicGetReferredType() {
-        return referredType;
-    }
+		return referredType;
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -156,74 +156,74 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
-                if (resolve) return getReferredType();
-                return basicGetReferredType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
+				if (resolve) return getReferredType();
+				return basicGetReferredType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
-                return referredType != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
+				return referredType != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == PredefinedType.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == org.eclipse.ocl.types.TypeType.class) {
-            switch (derivedFeatureID) {
-                case EcorePackage.TYPE_TYPE__REFERRED_TYPE: return TypesPackage.TYPE_TYPE__REFERRED_TYPE;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == PredefinedType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == org.eclipse.ocl.types.TypeType.class) {
+			switch (derivedFeatureID) {
+				case EcorePackage.TYPE_TYPE__REFERRED_TYPE: return TypesPackage.TYPE_TYPE__REFERRED_TYPE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == PredefinedType.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == org.eclipse.ocl.types.TypeType.class) {
-            switch (baseFeatureID) {
-                case TypesPackage.TYPE_TYPE__REFERRED_TYPE: return EcorePackage.TYPE_TYPE__REFERRED_TYPE;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == PredefinedType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == org.eclipse.ocl.types.TypeType.class) {
+			switch (baseFeatureID) {
+				case TypesPackage.TYPE_TYPE__REFERRED_TYPE: return EcorePackage.TYPE_TYPE__REFERRED_TYPE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 } //TypeTypeImpl

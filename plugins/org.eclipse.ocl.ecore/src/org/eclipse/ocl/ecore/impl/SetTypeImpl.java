@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.2 2007/02/14 13:42:02 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -34,13 +34,13 @@ import org.eclipse.ocl.expressions.CollectionKind;
  */
 public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SetTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -52,14 +52,14 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.SET_TYPE;
-    }
+		return EcorePackage.Literals.SET_TYPE;
+	}
 
     /**
      * <!-- begin-user-doc -->

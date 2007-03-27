@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.2 2007/02/14 13:42:01 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.3 2007/03/27 15:05:31 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -40,23 +40,23 @@ public class AnyTypeImpl extends EClassifierImpl implements AnyType {
     private EList<EOperation> operations;
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected AnyTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.ANY_TYPE;
-    }
+		return EcorePackage.Literals.ANY_TYPE;
+	}
 
     /**
      * <!-- begin-user-doc -->
