@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.1 2007/01/25 18:29:09 cdamus Exp $
+ * $Id: OCL.java,v 1.2 2007/03/27 15:05:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.helper.OCLHelper;
 
 /**
@@ -150,9 +151,40 @@ public class OCL extends org.eclipse.ocl.OCL<
 		return new OCL(envFactory, resource);
 	}
     
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * The return type is narrowed to the Ecore binding for the generic
+	 * <tt>OCLHelper&lt;C,O,P,CT&gt;</tt> type.
+	 * </p>
+	 */
     @Override
     public Helper createOCLHelper() {
        return new OCLHelperImpl(super.createOCLHelper());
+    }
+    
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * The return type is narrowed to the Ecore binding for the generic
+	 * <tt>Query&lt;C,CLS,E&gt;</tt> type.
+	 * </p>
+	 */
+    @Override
+    public Query createQuery(Constraint constraint) {
+    	return new QueryImpl(super.createQuery(constraint), this);
+    }
+    
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * The return type is narrowed to the Ecore binding for the generic
+	 * <tt>Query&lt;C,CLS,E&gt;</tt> type.
+	 * </p>
+	 */
+    @Override
+    public Query createQuery(org.eclipse.ocl.expressions.OCLExpression<EClassifier> query) {
+    	return new QueryImpl(super.createQuery(query), this);
     }
     
     /**
@@ -162,6 +194,48 @@ public class OCL extends org.eclipse.ocl.OCL<
      * @author Christian W. Damus (cdamus)
      */
     public static interface Helper extends OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint> {
-        // no additional features
+    	/**
+    	 * {@inheritDoc}
+    	 * <p>
+    	 * The return type is narrowed to the Ecore binding for the generic
+    	 * <tt>OCLExpression&lt;C&gt;</tt> type.
+    	 * </p>
+    	 */
+        OCLExpression createQuery(String expression) throws ParserException;
+        
+    	/**
+    	 * {@inheritDoc}
+    	 * <p>
+    	 * The return type is narrowed to the Ecore binding for the generic
+    	 * <tt>OCLExpression&lt;PK,C,O,P,EL,PM,S,COA,SSA,CT,CLS,E&gt;</tt> type.
+    	 * </p>
+    	 */
+        OCL getOCL();
+    }
+    
+    /**
+     * Convenient interface aliasing the type parameter substitutions for the
+     * UML environment, for ease of typing.
+     * 
+     * @author Christian W. Damus (cdamus)
+     */
+    public static interface Query extends org.eclipse.ocl.Query<EClassifier, EClass, EObject> {
+    	/**
+    	 * {@inheritDoc}
+    	 * <p>
+    	 * The return type is narrowed to the Ecore binding for the generic
+    	 * <tt>OCLExpression&lt;C&gt;</tt> type.
+    	 * </p>
+    	 */
+    	OCLExpression getExpression();
+        
+    	/**
+    	 * {@inheritDoc}
+    	 * <p>
+    	 * The return type is narrowed to the Ecore binding for the generic
+    	 * <tt>OCLExpression&lt;PK,C,O,P,EL,PM,S,COA,SSA,CT,CLS,E&gt;</tt> type.
+    	 * </p>
+    	 */
+        OCL getOCL();
     }
 }
