@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
-  <uml:Model xmi:id="_O6JI4Np9Eduf94aRL_gBBg" name="OCLUML">
+  <uml:Model xmi:id="_O6JI4Np9Eduf94aRL_gBBg" name="ocl">
     <packagedElement xmi:type="uml:Package" xmi:id="_O6JI4dp9Eduf94aRL_gBBg" name="uml">
       <packagedElement xmi:type="uml:Class" xmi:id="_O6JI4tp9Eduf94aRL_gBBg" name="AnyType">
         <generalization xmi:id="_O6JI49p9Eduf94aRL_gBBg">
@@ -272,13 +272,13 @@
           </parameterSubstitution>
         </templateBinding>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJVNp9Eduf94aRL_gBBg" name="ExpressionInOCL">
+      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJVNp9Eduf94aRL_gBBg" name="ExpressionInOcl">
         <generalization xmi:id="_O6JJVdp9Eduf94aRL_gBBg">
           <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#OpaqueExpression"/>
         </generalization>
         <generalization xmi:id="_O6JJVtp9Eduf94aRL_gBBg" general="_O6JJV9p9Eduf94aRL_gBBg"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJV9p9Eduf94aRL_gBBg" name="ExpressionInOCL_Classifier_Parameter">
+      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJV9p9Eduf94aRL_gBBg" name="ExpressionInOcl_Classifier_Parameter">
         <templateBinding xmi:id="_O6JJWNp9Eduf94aRL_gBBg">
           <signature xmi:type="uml:RedefinableTemplateSignature" href="../../org.eclipse.ocl/model/OCL.uml#_unvU2dppEdu-d8Dv4wLx9Q"/>
           <parameterSubstitution xmi:id="_O6JJWdp9Eduf94aRL_gBBg">
@@ -307,13 +307,13 @@
         <generalization xmi:id="_O6JJZdp9Eduf94aRL_gBBg" general="_O6JJZ9p9Eduf94aRL_gBBg"/>
         <generalization xmi:id="_O6JJZtp9Eduf94aRL_gBBg" general="_O6JJbdp9Eduf94aRL_gBBg"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJZ9p9Eduf94aRL_gBBg" name="OCLExpression" isAbstract="true">
+      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJZ9p9Eduf94aRL_gBBg" name="OclExpression" isAbstract="true">
         <generalization xmi:id="_O6JJaNp9Eduf94aRL_gBBg">
           <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TypedElement"/>
         </generalization>
         <generalization xmi:id="_O6JJadp9Eduf94aRL_gBBg" general="_O6JJatp9Eduf94aRL_gBBg"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJatp9Eduf94aRL_gBBg" name="OCLExpression_Classifier">
+      <packagedElement xmi:type="uml:Class" xmi:id="_O6JJatp9Eduf94aRL_gBBg" name="OclExpression_Classifier">
         <templateBinding xmi:id="_O6JJa9p9Eduf94aRL_gBBg">
           <signature xmi:type="uml:RedefinableTemplateSignature" href="../../org.eclipse.ocl/model/OCL.uml#_unvVNdppEdu-d8Dv4wLx9Q"/>
           <parameterSubstitution xmi:id="_O6JJbNp9Eduf94aRL_gBBg">
@@ -859,13 +859,13 @@
   <Ecore:EGenericType xmi:id="_O6PPkdp9Eduf94aRL_gBBg" base_Class="_O6JJSdp9Eduf94aRL_gBBg"/>
   <Ecore:EClass xmi:id="_O6PPktp9Eduf94aRL_gBBg" base_Class="_O6JJTdp9Eduf94aRL_gBBg"/>
   <Ecore:EGenericType xmi:id="_O6PPk9p9Eduf94aRL_gBBg" base_Class="_O6JJUNp9Eduf94aRL_gBBg"/>
-  <Ecore:EClass xmi:id="_O6PPlNp9Eduf94aRL_gBBg" base_Class="_O6JJVNp9Eduf94aRL_gBBg"/>
+  <Ecore:EClass xmi:id="_O6PPlNp9Eduf94aRL_gBBg" xmlName="ExpressionInOcl" base_Class="_O6JJVNp9Eduf94aRL_gBBg" className="ExpressionInOCL"/>
   <Ecore:EGenericType xmi:id="_O6PPldp9Eduf94aRL_gBBg" base_Class="_O6JJV9p9Eduf94aRL_gBBg"/>
   <Ecore:EClass xmi:id="_O6PPltp9Eduf94aRL_gBBg" base_Class="_O6JJW9p9Eduf94aRL_gBBg"/>
   <Ecore:EClass xmi:id="_O6PPl9p9Eduf94aRL_gBBg" base_Class="_O6JJXtp9Eduf94aRL_gBBg"/>
   <Ecore:EClass xmi:id="_O6PPmNp9Eduf94aRL_gBBg" base_Class="_O6JJYdp9Eduf94aRL_gBBg"/>
   <Ecore:EClass xmi:id="_O6PPmdp9Eduf94aRL_gBBg" base_Class="_O6JJZNp9Eduf94aRL_gBBg"/>
-  <Ecore:EClass xmi:id="_O6PPmtp9Eduf94aRL_gBBg" xmlName="OclExpression" base_Class="_O6JJZ9p9Eduf94aRL_gBBg"/>
+  <Ecore:EClass xmi:id="_O6PPmtp9Eduf94aRL_gBBg" xmlName="OclExpression" base_Class="_O6JJZ9p9Eduf94aRL_gBBg" className="OCLExpression"/>
   <Ecore:EGenericType xmi:id="_O6PPm9p9Eduf94aRL_gBBg" base_Class="_O6JJatp9Eduf94aRL_gBBg"/>
   <Ecore:EGenericType xmi:id="_O6PPnNp9Eduf94aRL_gBBg" base_Class="_O6JJbdp9Eduf94aRL_gBBg"/>
   <Ecore:EGenericType xmi:id="_O6PPndp9Eduf94aRL_gBBg" base_Class="_O6JJcNp9Eduf94aRL_gBBg"/>
