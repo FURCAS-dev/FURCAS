@@ -25,7 +25,7 @@ import org.eclipse.emf.ocl.parser.ParserException;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @deprecated Use the {@link org.eclipse.ocl.expressions.ExpressionsFactory} interface,
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.EcoreFactory} interface,
  * instead.
  * 
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage

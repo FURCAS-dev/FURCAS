@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToNewASVisitor.java,v 1.2 2007/02/14 14:45:42 cdamus Exp $
+ * $Id: ToNewASVisitor.java,v 1.3 2007/03/27 15:05:42 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.emf.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.emf.ocl.expressions.CallExp;
@@ -129,8 +130,9 @@ final class ToNewASVisitor implements Visitor {
 	}
 	
 	void copyTypedElement(TypedElement src, org.eclipse.ocl.utilities.TypedElement<EClassifier> dst) {
-		dst.setName(src.getName());
-		dst.setType((EClassifier) CompatibilityUtil.getNewAS(env, src.getType()));
+		ETypedElement element = (ETypedElement) dst;
+		element.setName(src.getName());
+		element.setEType((EClassifier) CompatibilityUtil.getNewAS(env, src.getType()));
 	}
 	
 	void copyCollectionType(CollectionType src, org.eclipse.ocl.ecore.CollectionType dst) {
@@ -210,7 +212,7 @@ final class ToNewASVisitor implements Visitor {
 	
 	public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
 		org.eclipse.ocl.expressions.AssociationClassCallExp<EClassifier, EStructuralFeature> result =
-			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp();
+			EcoreFactory.eINSTANCE.createAssociationClassCallExp();
 		
 		result.setReferredAssociationClass(ae.getReferredAssociationClass());
 		
@@ -227,7 +229,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitBooleanLiteralExp(BooleanLiteralExp bl) {
 		org.eclipse.ocl.expressions.BooleanLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp();
+			EcoreFactory.eINSTANCE.createBooleanLiteralExp();
 		
 		result.setBooleanSymbol(bl.getBooleanSymbol());
 		
@@ -238,7 +240,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitCollectionLiteralExp(CollectionLiteralExp cl) {
 		org.eclipse.ocl.expressions.CollectionLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp();
+			EcoreFactory.eINSTANCE.createCollectionLiteralExp();
 		
 		result.setKind(cl.getKind().asNewKind());
 		
@@ -255,7 +257,7 @@ final class ToNewASVisitor implements Visitor {
 	
 	public EObject visitCollectionItem(CollectionItem item) {
 		org.eclipse.ocl.expressions.CollectionItem<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createCollectionItem();
+			EcoreFactory.eINSTANCE.createCollectionItem();
 		
 		result.setItem(
 				(org.eclipse.ocl.expressions.OCLExpression<EClassifier>)
@@ -268,7 +270,7 @@ final class ToNewASVisitor implements Visitor {
 	
 	public EObject visitCollectionRange(CollectionRange range) {
 		org.eclipse.ocl.expressions.CollectionRange<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createCollectionRange();
+			EcoreFactory.eINSTANCE.createCollectionRange();
 		
 		
 		result.setFirst(
@@ -306,7 +308,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitEnumLiteralExp(EnumLiteralExp el) {
 		org.eclipse.ocl.expressions.EnumLiteralExp<EClassifier, EEnumLiteral> result =
-			ExpressionsFactory.eINSTANCE.createEnumLiteralExp();
+			EcoreFactory.eINSTANCE.createEnumLiteralExp();
 		
 		result.setReferredEnumLiteral(el.getReferredEnumLiteral());
 		
@@ -317,7 +319,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitIfExp(IfExp i) {
 		org.eclipse.ocl.expressions.IfExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createIfExp();
+			EcoreFactory.eINSTANCE.createIfExp();
 		
 		result.setCondition(
 				(org.eclipse.ocl.expressions.OCLExpression<EClassifier>)
@@ -336,7 +338,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitIntegerLiteralExp(IntegerLiteralExp il) {
 		org.eclipse.ocl.expressions.IntegerLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp();
+			EcoreFactory.eINSTANCE.createIntegerLiteralExp();
 		
 		result.setIntegerSymbol(il.getIntegerSymbol());
 		
@@ -347,7 +349,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
 		org.eclipse.ocl.expressions.InvalidLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp();
+			EcoreFactory.eINSTANCE.createInvalidLiteralExp();
 		
 		copyLiteralExp(il, result);
 		
@@ -356,7 +358,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitIterateExp(IterateExp ie) {
 		org.eclipse.ocl.expressions.IterateExp<EClassifier, EParameter> result =
-			ExpressionsFactory.eINSTANCE.createIterateExp();
+			EcoreFactory.eINSTANCE.createIterateExp();
 		
 		result.setResult(
 				(org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>)
@@ -369,7 +371,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitIteratorExp(IteratorExp ie) {
 		org.eclipse.ocl.expressions.IteratorExp<EClassifier, EParameter> result =
-			ExpressionsFactory.eINSTANCE.createIteratorExp();
+			EcoreFactory.eINSTANCE.createIteratorExp();
 		
 		copyLoopExp(ie, result);
 		
@@ -378,7 +380,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitLetExp(LetExp l) {
 		org.eclipse.ocl.expressions.LetExp<EClassifier, EParameter> result =
-			ExpressionsFactory.eINSTANCE.createLetExp();
+			EcoreFactory.eINSTANCE.createLetExp();
 		
 		result.setVariable(
 				(org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>)
@@ -394,7 +396,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitMessageExp(MessageExp m) {
 		org.eclipse.ocl.expressions.MessageExp<EClassifier, org.eclipse.ocl.ecore.CallOperationAction, org.eclipse.ocl.ecore.SendSignalAction> result =
-			ExpressionsFactory.eINSTANCE.createMessageExp();
+			EcoreFactory.eINSTANCE.createMessageExp();
 		
 		result.setTarget(
 				(org.eclipse.ocl.expressions.OCLExpression<EClassifier>)
@@ -420,7 +422,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitNullLiteralExp(NullLiteralExp il) {
 		org.eclipse.ocl.expressions.NullLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createNullLiteralExp();
+			EcoreFactory.eINSTANCE.createNullLiteralExp();
 		
 		copyLiteralExp(il, result);
 		
@@ -429,7 +431,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitOperationCallExp(OperationCallExp oc) {
 		org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> result =
-			ExpressionsFactory.eINSTANCE.createOperationCallExp();
+			EcoreFactory.eINSTANCE.createOperationCallExp();
 		
 		for (Object a : oc.getArgument()) {
 			result.getArgument().add(
@@ -455,7 +457,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitPropertyCallExp(PropertyCallExp ae) {
 		org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> result =
-			ExpressionsFactory.eINSTANCE.createPropertyCallExp();
+			EcoreFactory.eINSTANCE.createPropertyCallExp();
 		
 		copyNavigationCallExp(ae, result);
 		
@@ -494,7 +496,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitRealLiteralExp(RealLiteralExp rl) {
 		org.eclipse.ocl.expressions.RealLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createRealLiteralExp();
+			EcoreFactory.eINSTANCE.createRealLiteralExp();
 		
 		result.setRealSymbol(rl.getRealSymbol());
 		
@@ -505,7 +507,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitStateExp(StateExp s) {
 		org.eclipse.ocl.expressions.StateExp<EClassifier, EObject> result =
-			ExpressionsFactory.eINSTANCE.createStateExp();
+			EcoreFactory.eINSTANCE.createStateExp();
 		
 		result.setReferredState(s.getReferredState());
 		
@@ -516,7 +518,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitStringLiteralExp(StringLiteralExp sl) {
 		org.eclipse.ocl.expressions.StringLiteralExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createStringLiteralExp();
+			EcoreFactory.eINSTANCE.createStringLiteralExp();
 		
 		result.setStringSymbol(sl.getStringSymbol());
 		
@@ -527,7 +529,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitTupleLiteralExp(TupleLiteralExp tl) {
 		org.eclipse.ocl.expressions.TupleLiteralExp<EClassifier, EStructuralFeature> result =
-			ExpressionsFactory.eINSTANCE.createTupleLiteralExp();
+			EcoreFactory.eINSTANCE.createTupleLiteralExp();
 		
 		// do this first so that we have the tuple type assigned before
 		//   finding corresponding properties
@@ -550,7 +552,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitTupleLiteralPart(TupleLiteralPart tp) {
 		org.eclipse.ocl.expressions.TupleLiteralPart<EClassifier, EStructuralFeature> result =
-			ExpressionsFactory.eINSTANCE.createTupleLiteralPart();
+			EcoreFactory.eINSTANCE.createTupleLiteralPart();
 		
 		result.setAttribute(tp.getAttribute());
 		result.setValue(
@@ -565,7 +567,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitTypeExp(TypeExp t) {
 		org.eclipse.ocl.expressions.TypeExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createTypeExp();
+			EcoreFactory.eINSTANCE.createTypeExp();
 		
 		result.setReferredType(
 				(EClassifier) CompatibilityUtil.getNewAS(env, t.getReferredType()));
@@ -577,7 +579,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
 		org.eclipse.ocl.expressions.UnspecifiedValueExp<EClassifier> result =
-			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp();
+			EcoreFactory.eINSTANCE.createUnspecifiedValueExp();
 		
 		copyTypedASTNode(uv, result);
 		copyOCLExpression(uv, result);
@@ -587,7 +589,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitVariable(Variable vd) {
 		org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> result =
-			ExpressionsFactory.eINSTANCE.createVariable();
+			EcoreFactory.eINSTANCE.createVariable();
 		
 		result.setRepresentedParameter(vd.getRepresentedParameter());
 		result.setInitExpression(
@@ -602,7 +604,7 @@ final class ToNewASVisitor implements Visitor {
 
 	public Object visitVariableExp(VariableExp v) {
 		org.eclipse.ocl.expressions.VariableExp<EClassifier, EParameter> result =
-			ExpressionsFactory.eINSTANCE.createVariableExp();
+			EcoreFactory.eINSTANCE.createVariableExp();
 		
 		result.setReferredVariable(
 				(org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>)
@@ -747,11 +749,11 @@ final class ToNewASVisitor implements Visitor {
 						new BasicEList<org.eclipse.ocl.expressions.Variable<EClassifier,EParameter>>(
 								object.getEStructuralFeatures().size());
 					for (EStructuralFeature p : object.getEStructuralFeatures()) {
-						org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> part =
-							ExpressionsFactory.eINSTANCE.createVariable();
+						org.eclipse.ocl.ecore.Variable part =
+							EcoreFactory.eINSTANCE.createVariable();
 						
 						part.setName(p.getName());
-						part.setType((EClassifier) CompatibilityUtil.getNewAS(
+						part.setEType((EClassifier) CompatibilityUtil.getNewAS(
 								env, p.getEType()));
 						
 						parts.add(part);

@@ -32,7 +32,7 @@ import org.eclipse.emf.ocl.uml.TypedElement;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @deprecated Use the {@link org.eclipse.ocl.types.TypesFactory} interface,
+ * @deprecated Use the {@link org.eclipse.ocl.ecore.EcoreFactory} interface,
  * instead.
  * 
  * @see org.eclipse.emf.ocl.types.TypesPackage
