@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.3 2007/03/15 21:35:11 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.4 2007/03/27 15:05:43 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -40,7 +40,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.types.CollectionType;
 
@@ -441,7 +440,7 @@ public class ComparisonTest
 	public void test_enumerationLiteralEquality_137546() {
         // test all of the collection kinds for bug 176308
         for (CollectionKind kind : CollectionKind.values()) {
-    		CollectionLiteralExp<EClassifier> ctx = ExpressionsFactory.eINSTANCE.createCollectionLiteralExp();
+    		CollectionLiteralExp<EClassifier> ctx = oclFactory.createCollectionLiteralExp();
             ctx.setKind(kind);
     		helper.setInstanceContext(ctx);
     
