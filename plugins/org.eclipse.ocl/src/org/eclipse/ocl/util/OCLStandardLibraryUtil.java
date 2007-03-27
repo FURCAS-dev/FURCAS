@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -41,7 +40,8 @@ import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypeType;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
+import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -544,7 +544,7 @@ public final class OCLStandardLibraryUtil {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
-		TypeFactory typeFactory = env.getTypeFactory();
+		OCLFactory oclFactory = env.getOCLFactory();
 		
 		C argType;
 		CollectionType<C, O> otherType;
@@ -563,11 +563,11 @@ public final class OCLStandardLibraryUtil {
 			otherType =	(CollectionType<C, O>) argType;
 			
 			argElementType = otherType.getElementType();
-			return getBagType(env, typeFactory,
+			return getBagType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argElementType));	
 		case INCLUDING:
 			argType = args.get(0).getType();			 
-			return getBagType(env, typeFactory,
+			return getBagType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argType));
 		case INTERSECTION:
 			argType = args.get(0).getType(); 
@@ -575,10 +575,10 @@ public final class OCLStandardLibraryUtil {
 			argElementType = otherType.getElementType();
 			
 			if (otherType instanceof SetType) {
-				return getSetType(env, typeFactory,
+				return getSetType(env, oclFactory,
 						TypeUtil.commonSuperType(env, elemType, argElementType));				
 			} else {
-				return getBagType(env, typeFactory,
+				return getBagType(env, oclFactory,
 						TypeUtil.commonSuperType(env, elemType, argElementType));
 			}
 		case EXCLUDING:
@@ -590,23 +590,23 @@ public final class OCLStandardLibraryUtil {
 				return sourceType;
 			}
 			
-			return getBagType(env, typeFactory,
+			return getBagType(env, oclFactory,
 					((CollectionType<C, O>) elemType).getElementType());
 		case AS_BAG:
 			return sourceType;
 		case AS_SEQUENCE:
-			return getSequenceType(env, typeFactory, elemType);
+			return getSequenceType(env, oclFactory, elemType);
 		case AS_SET:
-			return  getSetType(env, typeFactory, elemType);
+			return  getSetType(env, oclFactory, elemType);
 		case AS_ORDERED_SET:
-			return getOrderedSetType(env, typeFactory, elemType);
+			return getOrderedSetType(env, oclFactory, elemType);
         case SELECT:
         case REJECT:
         	return sourceType;
         case SORTED_BY:
-        	return getSequenceType(env, typeFactory, elemType);
+        	return getSequenceType(env, oclFactory, elemType);
         case COLLECT_NESTED:
-        	return getBagType(env, typeFactory, stdlib.getT2());
+        	return getBagType(env, oclFactory, stdlib.getT2());
 		}
 	
 		return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
@@ -624,7 +624,7 @@ public final class OCLStandardLibraryUtil {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
-		TypeFactory typeFactory = env.getTypeFactory();
+		OCLFactory oclFactory = env.getOCLFactory();
 		
 		C argType;
 		CollectionType<C, O> otherType;
@@ -648,9 +648,9 @@ public final class OCLStandardLibraryUtil {
 			
 			C resultType;
 			if (argType instanceof BagType) {
-				resultType = getBagType(env, typeFactory, newElementType);
+				resultType = getBagType(env, oclFactory, newElementType);
 			} else {
-				resultType = getSetType(env, typeFactory, newElementType);
+				resultType = getSetType(env, oclFactory, newElementType);
 			}
 			
 			return resultType;
@@ -661,13 +661,13 @@ public final class OCLStandardLibraryUtil {
 			otherType =	(CollectionType<C, O>) argType;
 			argElementType = otherType.getElementType();
 			
-			resultType = getSetType(env, typeFactory,
+			resultType = getSetType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argElementType));
 			return resultType;
 			
 		case INCLUDING:
 			argType = args.get(0).getType();
-			resultType = getSetType(env, typeFactory,
+			resultType = getSetType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argType));
 			return resultType;	
 			
@@ -676,7 +676,7 @@ public final class OCLStandardLibraryUtil {
 			otherType =	(CollectionType<C, O>) argType;
 			argElementType = otherType.getElementType();
 			
-			resultType = getSetType(env, typeFactory,
+			resultType = getSetType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argElementType));
             
             // both variants in both set and bag return the source type
@@ -691,25 +691,25 @@ public final class OCLStandardLibraryUtil {
 				return sourceType;
 			}
 			
-			resultType = getSetType(env, typeFactory,
+			resultType = getSetType(env, oclFactory,
 					((CollectionType<C, O>) elemType).getElementType());
 			
 			return resultType;
 		case AS_BAG:
-			return getBagType(env, typeFactory, elemType);
+			return getBagType(env, oclFactory, elemType);
 		case AS_SEQUENCE:
-			return getSequenceType(env, typeFactory, elemType);
+			return getSequenceType(env, oclFactory, elemType);
 		case AS_SET:
 			return  sourceType;
 		case AS_ORDERED_SET:
-			return getOrderedSetType(env, typeFactory, elemType);
+			return getOrderedSetType(env, oclFactory, elemType);
         case SELECT:
         case REJECT:
         	return sourceType;
         case SORTED_BY:
-        	return getOrderedSetType(env, typeFactory, elemType);
+        	return getOrderedSetType(env, oclFactory, elemType);
         case COLLECT_NESTED:
-        	return getBagType(env, typeFactory, stdlib.getT2());
+        	return getBagType(env, oclFactory, stdlib.getT2());
 		}
 	
 		return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
@@ -727,7 +727,7 @@ public final class OCLStandardLibraryUtil {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
-		TypeFactory typeFactory = env.getTypeFactory();
+		OCLFactory oclFactory = env.getOCLFactory();
 		
 		C argType;
 		
@@ -747,13 +747,13 @@ public final class OCLStandardLibraryUtil {
 		case PREPEND:
 			argType = args.get(0).getType(); 
 			
-			return getOrderedSetType(env, typeFactory,
+			return getOrderedSetType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argType));
 			
 		case INSERT_AT:
 			argType = args.get(1).getType(); // arg 0 is the index
 			
-			return getOrderedSetType(env, typeFactory,
+			return getOrderedSetType(env, oclFactory,
 					TypeUtil.commonSuperType(env, elemType, argType));
 			
 		case SUB_ORDERED_SET:
@@ -765,16 +765,16 @@ public final class OCLStandardLibraryUtil {
 			return elemType;
 			
 		case AS_SET:
-			return getSetType(env, typeFactory, elemType);
+			return getSetType(env, oclFactory, elemType);
 		case AS_BAG:
-			return getBagType(env, typeFactory, elemType);
+			return getBagType(env, oclFactory, elemType);
 		case AS_SEQUENCE:
-			return getSequenceType(env, typeFactory, elemType);				
+			return getSequenceType(env, oclFactory, elemType);				
 		}
 		
 		return getSetTypeResultTypeOf(
 				env,
-				getSetType(env, typeFactory, elemType),
+				getSetType(env, oclFactory, elemType),
 				opcode,
 				args);
 	}
@@ -791,7 +791,7 @@ public final class OCLStandardLibraryUtil {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
-		TypeFactory typeFactory = env.getTypeFactory();
+		OCLFactory oclFactory = env.getOCLFactory();
 		
 		C argType;
 		CollectionType<C, O> otherType;
@@ -813,19 +813,19 @@ public final class OCLStandardLibraryUtil {
 				otherType =	(CollectionType<C, O>) argType;
 				argElementType = otherType.getElementType();
 				
-				return getSequenceType(env, typeFactory,
+				return getSequenceType(env, oclFactory,
 						TypeUtil.commonSuperType(env, elemType, argElementType));
 			case INCLUDING:
 			case APPEND:
 			case PREPEND:
 				argType = args.get(0).getType();
 				
-				return getSequenceType(env, typeFactory,
+				return getSequenceType(env, oclFactory,
 						TypeUtil.commonSuperType(env, elemType, argType));
 			case INSERT_AT:
 				argType = args.get(1).getType(); // arg 0 is the index
 				
-				return getSequenceType(env, typeFactory,
+				return getSequenceType(env, oclFactory,
 						TypeUtil.commonSuperType(env, elemType, argType));
 			case EXCLUDING:
 				return sourceType;
@@ -834,27 +834,27 @@ public final class OCLStandardLibraryUtil {
 					return sourceType;
 				}
 				
-				return getSequenceType(env, typeFactory,
+				return getSequenceType(env, oclFactory,
 						((CollectionType<C, O>) elemType).getElementType());
 			case AT:
 			case FIRST:
 			case LAST:
 				return elemType;
 			case AS_BAG:
-				return getBagType(env, typeFactory, elemType);
+				return getBagType(env, oclFactory, elemType);
 			case AS_SEQUENCE:
 			case SUB_SEQUENCE:
 				return sourceType;
 			case AS_SET:
-				return getSetType(env, typeFactory, elemType);
+				return getSetType(env, oclFactory, elemType);
 			case AS_ORDERED_SET:
-				return getOrderedSetType(env, typeFactory, elemType);
+				return getOrderedSetType(env, oclFactory, elemType);
 	        case SELECT:
 	        case REJECT:
 	        case SORTED_BY:
 	        	return sourceType;
 	        case COLLECT_NESTED:
-	        	return getSequenceType(env, typeFactory, stdlib.getT2());
+	        	return getSequenceType(env, oclFactory, stdlib.getT2());
 		}
 	
 		return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
@@ -905,10 +905,10 @@ public final class OCLStandardLibraryUtil {
             argType = args.get(0).getType();
             C t2 = ((CollectionType<C, O>) argType).getElementType();
             
-            TypeFactory typeFactory = env.getTypeFactory();
+            OCLFactory oclFactory = env.getOCLFactory();
             
-            return getSetType(env, typeFactory,
-					getTupleType(env, typeFactory, createTupleParts(env, t, t2)));
+            return getSetType(env, oclFactory,
+					getTupleType(env, oclFactory, createTupleParts(env, t, t2)));
         case EXISTS:
         case FOR_ALL:
         case IS_UNIQUE:
@@ -917,9 +917,9 @@ public final class OCLStandardLibraryUtil {
         case ANY:
         	return collType.getElementType();
         case COLLECT:
-        	return getCollectionType(env, env.getTypeFactory(), stdlib.getT2());
+        	return getCollectionType(env, env.getOCLFactory(), stdlib.getT2());
         case CLOSURE:
-        	return getSetType(env, env.getTypeFactory(), stdlib.getT2());
+        	return getSetType(env, env.getOCLFactory(), stdlib.getT2());
         }
         
         String message = OCLMessages.bind(
@@ -937,14 +937,17 @@ public final class OCLStandardLibraryUtil {
 		
     	EList<Variable<C, PM>> result = new BasicEList<Variable<C, PM>>();
     	
-    	Variable<C, PM> var = ExpressionsFactory.eINSTANCE.createVariable();
-    	var.setName(PRODUCT_FIRST);
-    	var.setType(firstType);
+    	UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env.getUMLReflection();
+    	OCLFactory oclFactory = env.getOCLFactory();
+    	
+    	Variable<C, PM> var = oclFactory.createVariable();
+    	uml.setName(var, PRODUCT_FIRST);
+    	uml.setType(var, firstType);
     	result.add(var);
     	
-    	var = ExpressionsFactory.eINSTANCE.createVariable();
-    	var.setName(PRODUCT_SECOND);
-    	var.setType(secondType);
+    	var = oclFactory.createVariable();
+    	uml.setName(var, PRODUCT_SECOND);
+    	uml.setType(var, secondType);
     	result.add(var);
     	
     	return result;
@@ -962,7 +965,7 @@ public final class OCLStandardLibraryUtil {
 
 		switch (opcode) {
 			case ALL_INSTANCES:
-				return getSetType(env, env.getTypeFactory(),
+				return getSetType(env, env.getOCLFactory(),
 						((TypeType<C, O>) sourceType).getReferredType());
 		}
 		
@@ -1360,13 +1363,13 @@ public final class OCLStandardLibraryUtil {
 				stdlib.getBoolean(),
 	            NOT_EMPTY_NAME));
 		
-        TypeFactory typeFactory = env.getTypeFactory();
-        C resultType = getSetType(env, typeFactory,
-        		getTupleType(env, typeFactory,
+        OCLFactory oclFactory = env.getOCLFactory();
+        C resultType = getSetType(env, oclFactory,
+        		getTupleType(env, oclFactory,
         				createTupleParts(env, stdlib.getT(), stdlib.getT2())));
 		result.add(createBinaryOperation(uml,
 	    		resultType,
-	    		PRODUCT_NAME, getCollectionType(env, typeFactory, stdlib.getT2()), "c2"));//$NON-NLS-1$
+	    		PRODUCT_NAME, getCollectionType(env, oclFactory, stdlib.getT2()), "c2"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml,
 	            stdlib.getReal(),
 	            SUM_NAME));
@@ -1419,7 +1422,7 @@ public final class OCLStandardLibraryUtil {
 		result.add(createBinaryOperation(uml, stdlib.getSet(),
 				SYMMETRIC_DIFFERENCE_NAME, stdlib.getSet(), "s"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml,
-				getSetType(env, env.getTypeFactory(), stdlib.getT2()),
+				getSetType(env, env.getOCLFactory(), stdlib.getT2()),
 				FLATTEN_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getBag(),
 				AS_BAG_NAME));
@@ -1514,7 +1517,7 @@ public final class OCLStandardLibraryUtil {
 		result.add(createBinaryOperation(uml, stdlib.getBag(),
 				EXCLUDING_NAME, stdlib.getT(), "object"));//$NON-NLS-1$
 		result.add(createUnaryOperation(uml,
-				getBagType(env, env.getTypeFactory(), stdlib.getT2()),
+				getBagType(env, env.getOCLFactory(), stdlib.getT2()),
 				FLATTEN_NAME));
 		result.add(createUnaryOperation(uml, stdlib.getBag(),
 				AS_BAG_NAME));
@@ -1576,7 +1579,7 @@ public final class OCLStandardLibraryUtil {
 			result.add(createUnaryOperation(uml, stdlib.getT(),
 				LAST_NAME));
 			result.add(createUnaryOperation(uml,
-					getSequenceType(env, env.getTypeFactory(), stdlib.getT2()),
+					getSequenceType(env, env.getOCLFactory(), stdlib.getT2()),
 				FLATTEN_NAME));
 			result.add(createUnaryOperation(uml, stdlib.getBag(),
 				AS_BAG_NAME));
@@ -1633,11 +1636,11 @@ public final class OCLStandardLibraryUtil {
                 ANY_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
     	
     	result.add(createBinaryOperation(uml, 
-    			getCollectionType(env, env.getTypeFactory(), stdlib.getT2()),
+    			getCollectionType(env, env.getOCLFactory(), stdlib.getT2()),
                 COLLECT_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
     	
     	result.add(createBinaryOperation(uml, 
-    			getSetType(env, env.getTypeFactory(), stdlib.getT2()),
+    			getSetType(env, env.getOCLFactory(), stdlib.getT2()),
                 CLOSURE_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
 
 		return result;
@@ -1680,7 +1683,7 @@ public final class OCLStandardLibraryUtil {
                 stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
     	
     	result.add(createBinaryOperation(uml, 
-    			getBagType(env, env.getTypeFactory(), stdlib.getT2()),
+    			getBagType(env, env.getOCLFactory(), stdlib.getT2()),
                 COLLECT_NESTED_NAME,
                 stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
 
@@ -1738,7 +1741,7 @@ public final class OCLStandardLibraryUtil {
                 SORTED_BY_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
     	
     	result.add(createBinaryOperation(uml, 
-    			getBagType(env, env.getTypeFactory(), stdlib.getT2()),
+    			getBagType(env, env.getOCLFactory(), stdlib.getT2()),
                 COLLECT_NESTED_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
 
 		return result;
@@ -1776,7 +1779,7 @@ public final class OCLStandardLibraryUtil {
                 SORTED_BY_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
     	
     	result.add(createBinaryOperation(uml, 
-    			getSequenceType(env, env.getTypeFactory(), stdlib.getT2()),
+    			getSequenceType(env, env.getOCLFactory(), stdlib.getT2()),
                 COLLECT_NESTED_NAME, stdlib.getOclExpression(), "expr")); //$NON-NLS-1$
 
 		return result;
@@ -1826,7 +1829,7 @@ public final class OCLStandardLibraryUtil {
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getBagType(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			TypeFactory factory,
+			OCLFactory factory,
 			C elementType) {
 		return TypeUtil.resolveType(env, (C) factory.createBagType(elementType)); 
 	}
@@ -1835,7 +1838,7 @@ public final class OCLStandardLibraryUtil {
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getSetType(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			TypeFactory factory,
+			OCLFactory factory,
 			C elementType) {
 		return TypeUtil.resolveType(env, (C) factory.createSetType(elementType)); 
 	}
@@ -1844,7 +1847,7 @@ public final class OCLStandardLibraryUtil {
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getOrderedSetType(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			TypeFactory factory,
+			OCLFactory factory,
 			C elementType) {
 		return TypeUtil.resolveType(env, (C) factory.createOrderedSetType(elementType)); 
 	}
@@ -1853,7 +1856,7 @@ public final class OCLStandardLibraryUtil {
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getSequenceType(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			TypeFactory factory,
+			OCLFactory factory,
 			C elementType) {
 		return TypeUtil.resolveType(env, (C) factory.createSequenceType(elementType)); 
 	}
@@ -1862,7 +1865,7 @@ public final class OCLStandardLibraryUtil {
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getCollectionType(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			TypeFactory factory,
+			OCLFactory factory,
 			C elementType) {
 		return TypeUtil.resolveType(env, (C) factory.createCollectionType(elementType)); 
 	}
@@ -1871,7 +1874,7 @@ public final class OCLStandardLibraryUtil {
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getTupleType(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			TypeFactory factory,
+			OCLFactory factory,
 			List<? extends TypedElement<C>> parts) {
 		return TypeUtil.resolveType(env, (C) factory.createTupleType(parts)); 
 	}

@@ -16,157 +16,157 @@
       </contents>
     </eAnnotations>
     <packagedElement xmi:type="ocl.uml:AnyType" xmi:id="_akI3cKjQEdu4LJng8Rasow">
-      <ownedOperations xmi:id="_akVEsKjQEdu4LJng8Rasow" name="=" isQuery="true">
+      <ownedOperation xmi:id="_akVEsKjQEdu4LJng8Rasow" name="=" isQuery="true">
         <ownedParameter xmi:id="_akVEsajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEsqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEs6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEs6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
         <ownedParameter xmi:id="_akVEtKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEtajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEtqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEtqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
         <ownedParameter xmi:id="_akVEt6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEuKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEuajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEuajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
         <ownedParameter xmi:id="_akVEuqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEu6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEvKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEvKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
         <ownedParameter xmi:id="_akVEvajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEvqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEv6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEv6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
         <ownedParameter xmi:id="_akVEwKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEwajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEwajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
         <ownedParameter xmi:id="_akVEwqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEw6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEw6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
         <ownedParameter xmi:id="_akVExKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVExajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVExajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
         <ownedParameter xmi:id="_akVExqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEx6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEyKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEyKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
         <ownedParameter xmi:id="_akVEyajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEyqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEy6jQEdu4LJng8Rasow" name=">" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEy6jQEdu4LJng8Rasow" name=">" isQuery="true">
         <ownedParameter xmi:id="_akVEzKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVEzajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVEzqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVEzqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
         <ownedParameter xmi:id="_akVEz6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVE0KjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_akVE0ajQEdu4LJng8Rasow" name=">=" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_akVE0ajQEdu4LJng8Rasow" name=">=" isQuery="true">
         <ownedParameter xmi:id="_akVE0qjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_akVE06jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:VoidType" xmi:id="_akVE1KjQEdu4LJng8Rasow">
-      <ownedOperations xmi:id="_ak5scKjQEdu4LJng8Rasow" name="=" isQuery="true">
+      <ownedOperation xmi:id="_ak5scKjQEdu4LJng8Rasow" name="=" isQuery="true">
         <ownedParameter xmi:id="_ak5scajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5scqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sc6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sc6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
         <ownedParameter xmi:id="_ak5sdKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5sdajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sdqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sdqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
         <ownedParameter xmi:id="_ak5sd6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5seKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5seajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5seajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
         <ownedParameter xmi:id="_ak5seqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5se6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sfKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sfKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
         <ownedParameter xmi:id="_ak5sfajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5sfqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sf6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sf6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
         <ownedParameter xmi:id="_ak5sgKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sgajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sgajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
         <ownedParameter xmi:id="_ak5sgqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sg6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sg6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
         <ownedParameter xmi:id="_ak5shKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5shajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5shajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
         <ownedParameter xmi:id="_ak5shqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5sh6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5siKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5siKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
         <ownedParameter xmi:id="_ak5siajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5siqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5si6jQEdu4LJng8Rasow" name=">" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5si6jQEdu4LJng8Rasow" name=">" isQuery="true">
         <ownedParameter xmi:id="_ak5sjKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5sjajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5sjqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5sjqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
         <ownedParameter xmi:id="_ak5sj6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5skKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak5skajQEdu4LJng8Rasow" name=">=" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak5skajQEdu4LJng8Rasow" name=">=" isQuery="true">
         <ownedParameter xmi:id="_ak5skqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak5sk6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:InvalidType" xmi:id="_ak5slKjQEdu4LJng8Rasow">
-      <ownedOperations xmi:id="_ak_zEKjQEdu4LJng8Rasow" name="=" isQuery="true">
+      <ownedOperation xmi:id="_ak_zEKjQEdu4LJng8Rasow" name="=" isQuery="true">
         <ownedParameter xmi:id="_ak_zEajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zEqjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zE6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zE6jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
         <ownedParameter xmi:id="_ak_zFKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zFajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zFqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zFqjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
         <ownedParameter xmi:id="_ak_zF6jQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zGKjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zGajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zGajQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
         <ownedParameter xmi:id="_ak_zGqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zG6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zHKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zHKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
         <ownedParameter xmi:id="_ak_zHajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zHqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zH6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zH6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
         <ownedParameter xmi:id="_ak_zIKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zIajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zIajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
         <ownedParameter xmi:id="_ak_zIqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zI6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zI6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
         <ownedParameter xmi:id="_ak_zJKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zJajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zJajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
         <ownedParameter xmi:id="_ak_zJqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zJ6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zKKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zKKjQEdu4LJng8Rasow" name="&lt;" isQuery="true">
         <ownedParameter xmi:id="_ak_zKajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zKqjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zK6jQEdu4LJng8Rasow" name=">" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zK6jQEdu4LJng8Rasow" name=">" isQuery="true">
         <ownedParameter xmi:id="_ak_zLKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zLajQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zLqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zLqjQEdu4LJng8Rasow" name="&lt;=" isQuery="true">
         <ownedParameter xmi:id="_ak_zL6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zMKjQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_ak_zMajQEdu4LJng8Rasow" name=">=" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_ak_zMajQEdu4LJng8Rasow" name=">=" isQuery="true">
         <ownedParameter xmi:id="_ak_zMqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_ak_zM6jQEdu4LJng8Rasow" name="object" type="_awji1ajQEdu4LJng8Rasow"/>
-      </ownedOperations>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:PrimitiveType" xmi:id="_ak_zNKjQEdu4LJng8Rasow" name="Boolean">
       <ownedOperation xmi:id="_alYNkKjQEdu4LJng8Rasow" name="=" isQuery="true">
@@ -607,89 +607,89 @@
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:TypeType" xmi:id="_asdGHajQEdu4LJng8Rasow">
-      <ownedOperations xmi:id="_asdGHqjQEdu4LJng8Rasow" name="=" isQuery="true">
+      <ownedOperation xmi:id="_asdGHqjQEdu4LJng8Rasow" name="=" isQuery="true">
         <ownedParameter xmi:id="_asdGH6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGIKjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asdGIajQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGIajQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
         <ownedParameter xmi:id="_asdGIqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGI6jQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asdGJKjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGJKjQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
         <ownedParameter xmi:id="_asdGJajQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGJqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asdGJ6jQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asdGJ6jQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
         <ownedParameter xmi:id="_asdGKKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asdGKajQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMkKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMkKjQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
         <ownedParameter xmi:id="_asjMkajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMkqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMk6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMk6jQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
         <ownedParameter xmi:id="_asjMlKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMlajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMlajQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
         <ownedParameter xmi:id="_asjMlqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMl6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMl6jQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
         <ownedParameter xmi:id="_asjMmKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMmajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMmajQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
         <ownedParameter xmi:id="_asjMmqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMm6jQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMnKjQEdu4LJng8Rasow" name="allInstances" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMnKjQEdu4LJng8Rasow" name="allInstances" isQuery="true">
         <ownedParameter xmi:id="_asjMnajQEdu4LJng8Rasow" type="_auE2s6jQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:MessageType" xmi:id="_asjMnqjQEdu4LJng8Rasow">
-      <ownedOperations xmi:id="_asjMn6jQEdu4LJng8Rasow" name="=" isQuery="true">
+      <ownedOperation xmi:id="_asjMn6jQEdu4LJng8Rasow" name="=" isQuery="true">
         <ownedParameter xmi:id="_asjMoKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMoajQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMoqjQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMoqjQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
         <ownedParameter xmi:id="_asjMo6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMpKjQEdu4LJng8Rasow" name="object" type="_akI3cKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMpajQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMpajQEdu4LJng8Rasow" name="oclAsType" isQuery="true">
         <ownedParameter xmi:id="_asjMpqjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMp6jQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMqKjQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMqKjQEdu4LJng8Rasow" name="oclIsKindOf" isQuery="true">
         <ownedParameter xmi:id="_asjMqajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMqqjQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMq6jQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMq6jQEdu4LJng8Rasow" name="oclIsTypeOf" isQuery="true">
         <ownedParameter xmi:id="_asjMrKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMrajQEdu4LJng8Rasow" name="typespec" type="_asdGHajQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMrqjQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMrqjQEdu4LJng8Rasow" name="oclIsUndefined" isQuery="true">
         <ownedParameter xmi:id="_asjMr6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMsKjQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMsKjQEdu4LJng8Rasow" name="oclIsInvalid" isQuery="true">
         <ownedParameter xmi:id="_asjMsajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMsqjQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMsqjQEdu4LJng8Rasow" name="oclIsNew" isQuery="true">
         <ownedParameter xmi:id="_asjMs6jQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMtKjQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMtKjQEdu4LJng8Rasow" name="oclIsInState" isQuery="true">
         <ownedParameter xmi:id="_asjMtajQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_asjMtqjQEdu4LJng8Rasow" name="statespec" type="_as1gcKjQEdu4LJng8Rasow"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMt6jQEdu4LJng8Rasow" name="hasReturned" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMt6jQEdu4LJng8Rasow" name="hasReturned" isQuery="true">
         <ownedParameter xmi:id="_asjMuKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMuajQEdu4LJng8Rasow" name="result" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMuajQEdu4LJng8Rasow" name="result" isQuery="true">
         <ownedParameter xmi:id="_asjMuqjQEdu4LJng8Rasow" type="_awji1ajQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMu6jQEdu4LJng8Rasow" name="isSignalSent" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMu6jQEdu4LJng8Rasow" name="isSignalSent" isQuery="true">
         <ownedParameter xmi:id="_asjMvKjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
-      <ownedOperations xmi:id="_asjMvajQEdu4LJng8Rasow" name="isOperationCall" isQuery="true">
+      </ownedOperation>
+      <ownedOperation xmi:id="_asjMvajQEdu4LJng8Rasow" name="isOperationCall" isQuery="true">
         <ownedParameter xmi:id="_asjMvqjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-      </ownedOperations>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_asjMv6jQEdu4LJng8Rasow"/>
     <packagedElement xmi:type="ocl.uml:ElementType" xmi:id="_as1gcKjQEdu4LJng8Rasow" name="State"/>

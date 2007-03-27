@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.2 2007/03/27 15:05:17 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -36,7 +36,7 @@ import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.BehavioredClassifier;
@@ -625,19 +625,19 @@ class UMLReflectionImpl
             resultType = getOCLTypeFor((DataType) resultType);
         }
         
-        TypeFactory typeFactory = org.eclipse.ocl.uml.UMLFactory.eINSTANCE;
+        OCLFactory oclFactory = org.eclipse.ocl.uml.UMLFactory.eINSTANCE;
         
         if (isOrdered) {
             if (isUnique) {
-                resultType = (Classifier) typeFactory.createOrderedSetType(resultType);
+                resultType = (Classifier) oclFactory.createOrderedSetType(resultType);
             } else {
-                resultType = (Classifier) typeFactory.createSequenceType(resultType);
+                resultType = (Classifier) oclFactory.createSequenceType(resultType);
             }
         } else {
             if (isUnique) {
-                resultType = (Classifier) typeFactory.createSetType(resultType);
+                resultType = (Classifier) oclFactory.createSetType(resultType);
             } else {
-                resultType = (Classifier) typeFactory.createBagType(resultType);
+                resultType = (Classifier) oclFactory.createBagType(resultType);
             }
         }
         
@@ -683,5 +683,17 @@ class UMLReflectionImpl
 
     public ExpressionInOCL<Classifier, Parameter> createExpressionInOCL() {
         return org.eclipse.ocl.uml.UMLFactory.eINSTANCE.createExpressionInOCL();
+    }
+    
+    public void setName(
+    		org.eclipse.ocl.utilities.TypedElement<Classifier> element,
+    		String name) {
+    	((TypedElement) element).setName(name);
+    }
+    
+    public void setType(
+    		org.eclipse.ocl.utilities.TypedElement<Classifier> element,
+    		Classifier type) {
+    	((TypedElement) element).setType(type);
     }
 }

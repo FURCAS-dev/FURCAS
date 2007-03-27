@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.3 2007/03/27 15:05:43 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -345,7 +345,8 @@ public class SerializationTest
 		try {
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
 			res.getContents().add(eobject);
-			res.save(output, Collections.EMPTY_MAP);
+			res.save(output,
+					Collections.singletonMap(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE));
 			result = output.toString("UTF-8"); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -369,7 +370,7 @@ public class SerializationTest
 			
 			result = res.getContents().get(0);
 		} catch (Exception e) {
-			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Exception deserializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 		
 		assertNotNull(result);

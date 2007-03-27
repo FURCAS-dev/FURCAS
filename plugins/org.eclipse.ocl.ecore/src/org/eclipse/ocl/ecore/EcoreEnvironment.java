@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.1 2007/01/25 18:29:09 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.2 2007/03/27 15:05:30 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -47,7 +47,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.TypesPackage;
-import org.eclipse.ocl.utilities.TypeFactory;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
@@ -217,7 +217,7 @@ public class EcoreEnvironment
 	}
 
     // implements the inherited specification
-    public TypeFactory getTypeFactory() {
+    public OCLFactory getOCLFactory() {
         return org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE;
     }
     

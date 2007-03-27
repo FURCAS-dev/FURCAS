@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.11 2007/03/19 15:18:50 cdamus Exp $
+ * $Id: OCLResource.java,v 1.12 2007/03/27 15:05:39 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -22,7 +22,6 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,7 +31,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.util.ToStringVisitor;
 
 
@@ -77,7 +76,7 @@ public class OCLResource
 		
 		res.load(Collections.EMPTY_MAP);
 		
-		OCLExpression<EClassifier> expr = res.getOCLExpression();
+		OCLExpression expr = res.getOCLExpression();
 		if (expr != null) {
 			result = expr.accept(ToStringVisitor.getInstance(expr));
 		}
@@ -116,7 +115,7 @@ public class OCLResource
 		//    the AST from it
 		helper.setContext(context.eClass());
 		
-		OCLExpression<EClassifier> parsed = helper.createQuery(expr);
+		OCLExpression parsed = helper.createQuery(expr);
         
 		// add the AST to the resource and save it
 		res.setOCLExpression(parsed);
@@ -129,7 +128,7 @@ public class OCLResource
 	 * 
 	 * @param expr an OCL expression
 	 */
-	public void setOCLExpression(OCLExpression<EClassifier> expr) {
+	public void setOCLExpression(OCLExpression expr) {
 		// add my expression as the first root, because I already contain
 		//    variables and EPackages defining dynamically-generated types
 		getContents().add(0, expr);
@@ -140,12 +139,11 @@ public class OCLResource
 	 * 
 	 * @return my OCL expression
 	 */
-    @SuppressWarnings("unchecked")
-	public OCLExpression<EClassifier> getOCLExpression() {
-		OCLExpression<EClassifier> result = null;
+	public OCLExpression getOCLExpression() {
+		OCLExpression result = null;
 		
 		if (!getContents().isEmpty()) {
-			result = (OCLExpression<EClassifier>) getContents().get(0);
+			result = (OCLExpression) getContents().get(0);
 		}
 		
 		return result;

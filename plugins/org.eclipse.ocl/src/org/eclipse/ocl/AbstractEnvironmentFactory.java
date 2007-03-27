@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.2 2007/03/27 15:04:58 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -20,10 +20,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.utilities.OCLFactory;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 
 /**
@@ -121,11 +122,12 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
             createEnvironment(parent);
         
         // in case it corresponds to an OCL primitive type
-        context = parent.getUMLReflection().asOCLType(context);
+        UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = parent.getUMLReflection();
+        context = uml.asOCLType(context);
 
-        Variable<C, PM> self = ExpressionsFactory.eINSTANCE.createVariable();
-        self.setName(Environment.SELF_VARIABLE_NAME);
-        self.setType(context);
+        Variable<C, PM> self = parent.getOCLFactory().createVariable();
+        uml.setName(self, Environment.SELF_VARIABLE_NAME);
+        uml.setType(self, context);
         
         result.addElement(self.getName(), self, true);
         result.setSelfVariable(self);
@@ -156,11 +158,14 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
 				.setContextOperation(operation);
 		}
 		
-		for (PM next : parent.getUMLReflection().getParameters(operation)) {
+        UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = parent.getUMLReflection();
+		OCLFactory oclFactory = parent.getOCLFactory();
+		
+        for (PM next : parent.getUMLReflection().getParameters(operation)) {
 			// ensure that we use the OCL primitive types wherever possible
-			Variable<C, PM> var = ExpressionsFactory.eINSTANCE.createVariable();
-			var.setName(parent.getUMLReflection().getName(next));
-            var.setType(parent.getUMLReflection().getOCLType(next));
+			Variable<C, PM> var = oclFactory.createVariable();
+			uml.setName(var, uml.getName(next));
+			uml.setType(var, uml.getOCLType(next));
 			var.setRepresentedParameter(next);
 			
 			result.addElement(var.getName(), var, true);

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.10 2007/03/19 15:18:50 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.11 2007/03/27 15:05:36 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -28,7 +28,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -53,8 +52,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleType;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.swt.SWT;
@@ -256,8 +255,12 @@ public class OCLConsolePage
 				print(OCLInterpreterMessages.console_evaluating, black, true);
 				print(expression, black, false);
 				print(OCLInterpreterMessages.console_results, black, true);
-                OCLExpression<EClassifier> parsed = helper.createQuery(expression);
-				print(ocl.evaluate(context, parsed), blue, false);
+				
+                OCLExpression parsed = helper.createQuery(expression);
+                
+                OCL.Query query = ocl.createQuery(parsed);
+                
+				print(query.evaluate(context), blue, false);
 				
 				// store the successfully parsed expression
 				lastOCLExpression = expression;

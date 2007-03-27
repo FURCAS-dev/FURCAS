@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.1 2007/01/25 18:24:32 cdamus Exp $
+ * $Id: UMLReflection.java,v 1.2 2007/03/27 15:04:59 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -658,4 +658,23 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
      */
     int getRelationship(C type1, C type2);
 
+    /**
+     * Sets the name of the specified typed element.
+     * 
+     * @param element a typed element
+     * @param name the type element's name
+     * 
+     * @see TypedElement#getName()
+     */
+    void setName(TypedElement<C> element, String name);
+    
+    /**
+     * Sets the type of the specified typed element.
+     * 
+     * @param element a typed element
+     * @param name the type element's type
+     * 
+     * @see TypedElement#getType()
+     */
+    void setType(TypedElement<C> element, C type);
 }

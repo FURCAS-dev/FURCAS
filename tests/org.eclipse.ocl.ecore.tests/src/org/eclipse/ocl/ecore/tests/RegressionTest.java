@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.3 2007/03/15 21:15:52 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.4 2007/03/27 15:05:43 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -56,7 +56,6 @@ import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
@@ -1631,13 +1630,13 @@ public class RegressionTest
 	 * that contains a reference to a variable that has no name.
 	 */
 	public void test_nullVariableName_143386() {
-		Variable<EClassifier, EParameter> var =
-			ExpressionsFactory.eINSTANCE.createVariable();
+		org.eclipse.ocl.ecore.Variable var =
+			(org.eclipse.ocl.ecore.Variable) oclFactory.<EClassifier, EParameter>createVariable();
 		
 		assertEquals("\"<null>\"", var.toString()); //$NON-NLS-1$
 		
 		VariableExp<EClassifier, EParameter> exp =
-			ExpressionsFactory.eINSTANCE.createVariableExp();
+			oclFactory.createVariableExp();
 		exp.setReferredVariable(var);
 		
 		assertEquals("\"<null>\"", exp.toString()); //$NON-NLS-1$
@@ -1647,7 +1646,7 @@ public class RegressionTest
 		assertEquals("foo", var.toString()); //$NON-NLS-1$
 		assertEquals("foo", exp.toString()); //$NON-NLS-1$
 		
-		var.setType(getOCLStandardLibrary().getString());
+		var.setEType(getOCLStandardLibrary().getString());
 		
 		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
 		assertEquals("foo", exp.toString()); //$NON-NLS-1$

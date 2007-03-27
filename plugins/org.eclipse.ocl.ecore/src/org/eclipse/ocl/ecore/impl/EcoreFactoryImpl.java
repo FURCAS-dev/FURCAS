@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactoryImpl.java,v 1.2 2007/02/14 13:42:01 cdamus Exp $
+ * $Id: EcoreFactoryImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.BagType;
@@ -57,255 +58,542 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * <!-- end-user-doc -->
  * @generated
  */
+@SuppressWarnings("unchecked")
 public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
     /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static EcoreFactory init() {
-        try {
-            EcoreFactory theEcoreFactory = (EcoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/Ecore"); //$NON-NLS-1$ 
-            if (theEcoreFactory != null) {
-                return theEcoreFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new EcoreFactoryImpl();
-    }
+		try {
+			EcoreFactory theEcoreFactory = (EcoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/Ecore"); //$NON-NLS-1$ 
+			if (theEcoreFactory != null) {
+				return theEcoreFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new EcoreFactoryImpl();
+	}
 
     /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EcoreFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case EcorePackage.ANY_TYPE: return createAnyType();
-            case EcorePackage.BAG_TYPE: return createBagType();
-            case EcorePackage.COLLECTION_TYPE: return createCollectionType();
-            case EcorePackage.ELEMENT_TYPE: return createElementType();
-            case EcorePackage.INVALID_TYPE: return createInvalidType();
-            case EcorePackage.MESSAGE_TYPE: return createMessageType();
-            case EcorePackage.ORDERED_SET_TYPE: return createOrderedSetType();
-            case EcorePackage.PRIMITIVE_TYPE: return createPrimitiveType();
-            case EcorePackage.SEQUENCE_TYPE: return createSequenceType();
-            case EcorePackage.SET_TYPE: return createSetType();
-            case EcorePackage.TUPLE_TYPE: return createTupleType();
-            case EcorePackage.TYPE_TYPE: return createTypeType();
-            case EcorePackage.VOID_TYPE: return createVoidType();
-            case EcorePackage.CALL_OPERATION_ACTION: return createCallOperationAction();
-            case EcorePackage.CONSTRAINT: return createConstraint();
-            case EcorePackage.SEND_SIGNAL_ACTION: return createSendSignalAction();
-            case EcorePackage.EXPRESSION_IN_OCL: return createExpressionInOCL();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case EcorePackage.ANY_TYPE: return createAnyType();
+			case EcorePackage.BAG_TYPE: return createBagType();
+			case EcorePackage.COLLECTION_TYPE: return createCollectionType();
+			case EcorePackage.ELEMENT_TYPE: return createElementType();
+			case EcorePackage.INVALID_TYPE: return createInvalidType();
+			case EcorePackage.MESSAGE_TYPE: return createMessageType();
+			case EcorePackage.ORDERED_SET_TYPE: return createOrderedSetType();
+			case EcorePackage.PRIMITIVE_TYPE: return createPrimitiveType();
+			case EcorePackage.SEQUENCE_TYPE: return createSequenceType();
+			case EcorePackage.SET_TYPE: return createSetType();
+			case EcorePackage.TUPLE_TYPE: return createTupleType();
+			case EcorePackage.TYPE_TYPE: return createTypeType();
+			case EcorePackage.VOID_TYPE: return createVoidType();
+			case EcorePackage.CALL_OPERATION_ACTION: return createCallOperationAction();
+			case EcorePackage.CONSTRAINT: return createConstraint();
+			case EcorePackage.SEND_SIGNAL_ACTION: return createSendSignalAction();
+			case EcorePackage.EXPRESSION_IN_OCL: return createExpressionInOCL();
+			case EcorePackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
+			case EcorePackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
+			case EcorePackage.COLLECTION_ITEM: return createCollectionItem();
+			case EcorePackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
+			case EcorePackage.COLLECTION_RANGE: return createCollectionRange();
+			case EcorePackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
+			case EcorePackage.IF_EXP: return createIfExp();
+			case EcorePackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
+			case EcorePackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
+			case EcorePackage.ITERATE_EXP: return createIterateExp();
+			case EcorePackage.ITERATOR_EXP: return createIteratorExp();
+			case EcorePackage.LET_EXP: return createLetExp();
+			case EcorePackage.MESSAGE_EXP: return createMessageExp();
+			case EcorePackage.NULL_LITERAL_EXP: return createNullLiteralExp();
+			case EcorePackage.OPERATION_CALL_EXP: return createOperationCallExp();
+			case EcorePackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
+			case EcorePackage.REAL_LITERAL_EXP: return createRealLiteralExp();
+			case EcorePackage.STATE_EXP: return createStateExp();
+			case EcorePackage.STRING_LITERAL_EXP: return createStringLiteralExp();
+			case EcorePackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
+			case EcorePackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
+			case EcorePackage.TYPE_EXP: return createTypeExp();
+			case EcorePackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
+			case EcorePackage.VARIABLE: return createVariable();
+			case EcorePackage.VARIABLE_EXP: return createVariableExp();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public AnyType createAnyType() {
-        AnyTypeImpl anyType = new AnyTypeImpl();
-        return anyType;
-    }
+		AnyTypeImpl anyType = new AnyTypeImpl();
+		return anyType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BagType createBagType() {
-        BagTypeImpl bagType = new BagTypeImpl();
-        return bagType;
-    }
+		BagTypeImpl bagType = new BagTypeImpl();
+		return bagType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CollectionType createCollectionType() {
-        CollectionTypeImpl collectionType = new CollectionTypeImpl();
-        return collectionType;
-    }
+		CollectionTypeImpl collectionType = new CollectionTypeImpl();
+		return collectionType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ElementType createElementType() {
-        ElementTypeImpl elementType = new ElementTypeImpl();
-        return elementType;
-    }
+		ElementTypeImpl elementType = new ElementTypeImpl();
+		return elementType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public InvalidType createInvalidType() {
-        InvalidTypeImpl invalidType = new InvalidTypeImpl();
-        return invalidType;
-    }
+		InvalidTypeImpl invalidType = new InvalidTypeImpl();
+		return invalidType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MessageType createMessageType() {
-        MessageTypeImpl messageType = new MessageTypeImpl();
-        return messageType;
-    }
+		MessageTypeImpl messageType = new MessageTypeImpl();
+		return messageType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public OrderedSetType createOrderedSetType() {
-        OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
-        return orderedSetType;
-    }
+		OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
+		return orderedSetType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public PrimitiveType createPrimitiveType() {
-        PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
-        return primitiveType;
-    }
+		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
+		return primitiveType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SequenceType createSequenceType() {
-        SequenceTypeImpl sequenceType = new SequenceTypeImpl();
-        return sequenceType;
-    }
+		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
+		return sequenceType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SetType createSetType() {
-        SetTypeImpl setType = new SetTypeImpl();
-        return setType;
-    }
+		SetTypeImpl setType = new SetTypeImpl();
+		return setType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public TupleType createTupleType() {
-        TupleTypeImpl tupleType = new TupleTypeImpl();
-        return tupleType;
-    }
+		TupleTypeImpl tupleType = new TupleTypeImpl();
+		return tupleType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public TypeType createTypeType() {
-        TypeTypeImpl typeType = new TypeTypeImpl();
-        return typeType;
-    }
+		TypeTypeImpl typeType = new TypeTypeImpl();
+		return typeType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public VoidType createVoidType() {
-        VoidTypeImpl voidType = new VoidTypeImpl();
-        return voidType;
-    }
+		VoidTypeImpl voidType = new VoidTypeImpl();
+		return voidType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CallOperationAction createCallOperationAction() {
-        CallOperationActionImpl callOperationAction = new CallOperationActionImpl();
-        return callOperationAction;
-    }
+		CallOperationActionImpl callOperationAction = new CallOperationActionImpl();
+		return callOperationAction;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Constraint createConstraint() {
-        ConstraintImpl constraint = new ConstraintImpl();
-        return constraint;
-    }
+		ConstraintImpl constraint = new ConstraintImpl();
+		return constraint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SendSignalAction createSendSignalAction() {
-        SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
-        return sendSignalAction;
-    }
+		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
+		return sendSignalAction;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ExpressionInOCL createExpressionInOCL() {
-        ExpressionInOCLImpl expressionInOCL = new ExpressionInOCLImpl();
-        return expressionInOCL;
-    }
+		ExpressionInOCLImpl expressionInOCL = new ExpressionInOCLImpl();
+		return expressionInOCL;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AssociationClassCallExp createAssociationClassCallExp() {
+		AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
+		return associationClassCallExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BooleanLiteralExp createBooleanLiteralExp() {
+		BooleanLiteralExpImpl booleanLiteralExp = new BooleanLiteralExpImpl();
+		return booleanLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CollectionItem createCollectionItem() {
+		CollectionItemImpl collectionItem = new CollectionItemImpl();
+		return collectionItem;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CollectionLiteralExp createCollectionLiteralExp() {
+		CollectionLiteralExpImpl collectionLiteralExp = new CollectionLiteralExpImpl();
+		return collectionLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CollectionRange createCollectionRange() {
+		CollectionRangeImpl collectionRange = new CollectionRangeImpl();
+		return collectionRange;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EnumLiteralExp createEnumLiteralExp() {
+		EnumLiteralExpImpl enumLiteralExp = new EnumLiteralExpImpl();
+		return enumLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfExp createIfExp() {
+		IfExpImpl ifExp = new IfExpImpl();
+		return ifExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntegerLiteralExp createIntegerLiteralExp() {
+		IntegerLiteralExpImpl integerLiteralExp = new IntegerLiteralExpImpl();
+		return integerLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
+		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
+		return unlimitedNaturalLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InvalidLiteralExp createInvalidLiteralExp() {
+		InvalidLiteralExpImpl invalidLiteralExp = new InvalidLiteralExpImpl();
+		return invalidLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IterateExp createIterateExp() {
+		IterateExpImpl iterateExp = new IterateExpImpl();
+		return iterateExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IteratorExp createIteratorExp() {
+		IteratorExpImpl iteratorExp = new IteratorExpImpl();
+		return iteratorExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LetExp createLetExp() {
+		LetExpImpl letExp = new LetExpImpl();
+		return letExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MessageExp createMessageExp() {
+		MessageExpImpl messageExp = new MessageExpImpl();
+		return messageExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NullLiteralExp createNullLiteralExp() {
+		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
+		return nullLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperationCallExp createOperationCallExp() {
+		OperationCallExpImpl operationCallExp = new OperationCallExpImpl();
+		return operationCallExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyCallExp createPropertyCallExp() {
+		PropertyCallExpImpl propertyCallExp = new PropertyCallExpImpl();
+		return propertyCallExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RealLiteralExp createRealLiteralExp() {
+		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
+		return realLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateExp createStateExp() {
+		StateExpImpl stateExp = new StateExpImpl();
+		return stateExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringLiteralExp createStringLiteralExp() {
+		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
+		return stringLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleLiteralExp createTupleLiteralExp() {
+		TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
+		return tupleLiteralExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TupleLiteralPart createTupleLiteralPart() {
+		TupleLiteralPartImpl tupleLiteralPart = new TupleLiteralPartImpl();
+		return tupleLiteralPart;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeExp createTypeExp() {
+		TypeExpImpl typeExp = new TypeExpImpl();
+		return typeExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnspecifiedValueExp createUnspecifiedValueExp() {
+		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
+		return unspecifiedValueExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Variable createVariable() {
+		VariableImpl variable = new VariableImpl();
+		return variable;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VariableExp createVariableExp() {
+		VariableExpImpl variableExp = new VariableExpImpl();
+		return variableExp;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EcorePackage getEcorePackage() {
-        return (EcorePackage)getEPackage();
-    }
+		return (EcorePackage)getEPackage();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
     @Deprecated
     public static EcorePackage getPackage() {
-        return EcorePackage.eINSTANCE;
-    }
+		return EcorePackage.eINSTANCE;
+	}
 
     @SuppressWarnings("unchecked")
     public <C, O> org.eclipse.ocl.types.BagType<C, O> createBagType(C elementType) {

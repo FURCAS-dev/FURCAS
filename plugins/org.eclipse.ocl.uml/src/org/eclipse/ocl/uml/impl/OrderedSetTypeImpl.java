@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.2 2007/02/14 13:42:07 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.3 2007/03/27 15:05:16 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -34,13 +34,13 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSetType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected OrderedSetTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * @generated NOT
@@ -50,14 +50,14 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.ORDERED_SET_TYPE;
-    }
+		return UMLPackage.Literals.ORDERED_SET_TYPE;
+	}
 
     /**
      * @generated NOT

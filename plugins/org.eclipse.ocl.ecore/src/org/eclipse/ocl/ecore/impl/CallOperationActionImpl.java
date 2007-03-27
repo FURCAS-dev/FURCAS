@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CallOperationActionImpl.java,v 1.2 2007/02/14 13:42:02 cdamus Exp $
+ * $Id: CallOperationActionImpl.java,v 1.3 2007/03/27 15:05:31 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -43,129 +43,129 @@ import org.eclipse.ocl.ecore.EcorePackage;
  */
 public class CallOperationActionImpl extends EObjectImpl implements CallOperationAction {
     /**
-     * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOperation()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOperation()
+	 * @generated
+	 * @ordered
+	 */
     protected EOperation operation = null;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CallOperationActionImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.CALL_OPERATION_ACTION;
-    }
+		return EcorePackage.Literals.CALL_OPERATION_ACTION;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EOperation getOperation() {
-        if (operation != null && operation.eIsProxy()) {
-            InternalEObject oldOperation = (InternalEObject)operation;
-            operation = (EOperation)eResolveProxy(oldOperation);
-            if (operation != oldOperation) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
-            }
-        }
-        return operation;
-    }
+		if (operation != null && operation.eIsProxy()) {
+			InternalEObject oldOperation = (InternalEObject)operation;
+			operation = (EOperation)eResolveProxy(oldOperation);
+			if (operation != oldOperation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
+			}
+		}
+		return operation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EOperation basicGetOperation() {
-        return operation;
-    }
+		return operation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setOperation(EOperation newOperation) {
-        EOperation oldOperation = operation;
-        operation = newOperation;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
-    }
+		EOperation oldOperation = operation;
+		operation = newOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
-                if (resolve) return getOperation();
-                return basicGetOperation();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
+				if (resolve) return getOperation();
+				return basicGetOperation();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
-                setOperation((EOperation)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
+				setOperation((EOperation)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
-                setOperation((EOperation)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
+				setOperation((EOperation)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
-                return operation != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.CALL_OPERATION_ACTION__OPERATION:
+				return operation != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //CallOperationActionImpl

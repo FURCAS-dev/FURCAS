@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.1 2007/01/25 18:24:39 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.2 2007/03/27 15:05:00 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -25,7 +25,6 @@ import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
-import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.helper.Choice;
@@ -34,6 +33,7 @@ import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -48,6 +48,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private final EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	environmentFactory;
     private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml;
+    private OCLFactory oclFactory;
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	env;
 
@@ -65,6 +66,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         this.ocl = ocl;
         
         uml = ocl.getEnvironment().getUMLReflection();
+        oclFactory = ocl.getEnvironment().getOCLFactory();
 		environmentFactory = ocl.getEnvironment().getFactory();
 	}
 	
@@ -344,20 +346,20 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         
 		if (type == stdlib.getBoolean()) {
 			BooleanLiteralExp<C> literal =
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp();
+				oclFactory.createBooleanLiteralExp();
 			condition = literal;
-			literal.setType(env.getOCLStandardLibrary().getBoolean());
+			uml.setType(literal, env.getOCLStandardLibrary().getBoolean());
 			literal.setBooleanSymbol(Boolean.FALSE);
 		} else {
 			UnspecifiedValueExp<C> unspec =
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp();
+				oclFactory.createUnspecifiedValueExp();
 			condition = unspec;
 			
 			if (type == null) {
 				type = env.getOCLStandardLibrary().getOclVoid();
 			}
 			
-			unspec.setType(type);
+			uml.setType(unspec, type);
 		}
 		
 		CT result = uml.createConstraint();

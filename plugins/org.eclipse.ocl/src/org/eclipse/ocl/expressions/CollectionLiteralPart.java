@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralPart.java,v 1.2 2007/02/14 13:42:13 cdamus Exp $
+ * $Id: CollectionLiteralPart.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -26,7 +26,7 @@ import org.eclipse.ocl.utilities.Visitable;
  *
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralPart()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface CollectionLiteralPart<C> extends TypedElement<C>, Visitable {

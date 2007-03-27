@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.2 2007/02/14 13:42:01 cdamus Exp $
+ * $Id: ConstraintImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -50,248 +51,246 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  */
 public class ConstraintImpl extends ENamedElementImpl implements Constraint {
     /**
-     * The cached value of the '{@link #getSpecification() <em>Specification</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSpecification() <em>Specification</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSpecification()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSpecification()
+	 * @generated
+	 * @ordered
+	 */
     protected ExpressionInOCL<EClassifier, EParameter> specification = null;
 
     /**
-     * The cached value of the '{@link #getConstrainedElements() <em>Constrained Elements</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getConstrainedElements() <em>Constrained Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConstrainedElements()
-     * @generated
-     * @ordered
-     */
+	 * @see #getConstrainedElements()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<ENamedElement> constrainedElements = null;
 
     /**
-     * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStereotype()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String STEREOTYPE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStereotype()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStereotype()
+	 * @generated
+	 * @ordered
+	 */
     protected String stereotype = STEREOTYPE_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ConstraintImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.CONSTRAINT;
-    }
+		return EcorePackage.Literals.CONSTRAINT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ExpressionInOCL<EClassifier, EParameter> getSpecification() {
-        return specification;
-    }
+		return specification;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetSpecification(ExpressionInOCL<EClassifier, EParameter> newSpecification, NotificationChain msgs) {
-        ExpressionInOCL<EClassifier, EParameter> oldSpecification = specification;
-        specification = newSpecification;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.CONSTRAINT__SPECIFICATION, oldSpecification, newSpecification);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		ExpressionInOCL<EClassifier, EParameter> oldSpecification = specification;
+		specification = newSpecification;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.CONSTRAINT__SPECIFICATION, oldSpecification, newSpecification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setSpecification(ExpressionInOCL<EClassifier, EParameter> newSpecification) {
-        if (newSpecification != specification) {
-            NotificationChain msgs = null;
-            if (specification != null)
-                msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.CONSTRAINT__SPECIFICATION, null, msgs);
-            if (newSpecification != null)
-                msgs = ((InternalEObject)newSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.CONSTRAINT__SPECIFICATION, null, msgs);
-            msgs = basicSetSpecification(newSpecification, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CONSTRAINT__SPECIFICATION, newSpecification, newSpecification));
-    }
+		if (newSpecification != specification) {
+			NotificationChain msgs = null;
+			if (specification != null)
+				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.CONSTRAINT__SPECIFICATION, null, msgs);
+			if (newSpecification != null)
+				msgs = ((InternalEObject)newSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.CONSTRAINT__SPECIFICATION, null, msgs);
+			msgs = basicSetSpecification(newSpecification, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CONSTRAINT__SPECIFICATION, newSpecification, newSpecification));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<ENamedElement> getConstrainedElements() {
-        if (constrainedElements == null) {
-            constrainedElements = new EObjectResolvingEList<ENamedElement>(ENamedElement.class, this, EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS);
-        }
-        return constrainedElements;
-    }
+		if (constrainedElements == null) {
+			constrainedElements = new EObjectResolvingEList<ENamedElement>(ENamedElement.class, this, EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS);
+		}
+		return constrainedElements;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getStereotype() {
-        return stereotype;
-    }
+		return stereotype;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setStereotype(String newStereotype) {
-        String oldStereotype = stereotype;
-        stereotype = newStereotype;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CONSTRAINT__STEREOTYPE, oldStereotype, stereotype));
-    }
+		String oldStereotype = stereotype;
+		stereotype = newStereotype;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CONSTRAINT__STEREOTYPE, oldStereotype, stereotype));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case EcorePackage.CONSTRAINT__SPECIFICATION:
-                return basicSetSpecification(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case EcorePackage.CONSTRAINT__SPECIFICATION:
+				return basicSetSpecification(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EcorePackage.CONSTRAINT__SPECIFICATION:
-                return getSpecification();
-            case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
-                return getConstrainedElements();
-            case EcorePackage.CONSTRAINT__STEREOTYPE:
-                return getStereotype();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EcorePackage.CONSTRAINT__SPECIFICATION:
+				return getSpecification();
+			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
+				return getConstrainedElements();
+			case EcorePackage.CONSTRAINT__STEREOTYPE:
+				return getStereotype();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EcorePackage.CONSTRAINT__SPECIFICATION:
-                setSpecification((ExpressionInOCL<EClassifier, EParameter>)newValue);
-                return;
-            case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
-                getConstrainedElements().clear();
-                getConstrainedElements().addAll((Collection<? extends ENamedElement>)newValue);
-                return;
-            case EcorePackage.CONSTRAINT__STEREOTYPE:
-                setStereotype((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case EcorePackage.CONSTRAINT__SPECIFICATION:
+				setSpecification((ExpressionInOCL<EClassifier, EParameter>)newValue);
+				return;
+			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
+				getConstrainedElements().clear();
+				getConstrainedElements().addAll((Collection<? extends ENamedElement>)newValue);
+				return;
+			case EcorePackage.CONSTRAINT__STEREOTYPE:
+				setStereotype((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case EcorePackage.CONSTRAINT__SPECIFICATION:
-                setSpecification((ExpressionInOCL<EClassifier, EParameter>)null);
-                return;
-            case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
-                getConstrainedElements().clear();
-                return;
-            case EcorePackage.CONSTRAINT__STEREOTYPE:
-                setStereotype(STEREOTYPE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.CONSTRAINT__SPECIFICATION:
+				setSpecification((ExpressionInOCL<EClassifier, EParameter>)null);
+				return;
+			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
+				getConstrainedElements().clear();
+				return;
+			case EcorePackage.CONSTRAINT__STEREOTYPE:
+				setStereotype(STEREOTYPE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EcorePackage.CONSTRAINT__SPECIFICATION:
-                return specification != null;
-            case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
-                return constrainedElements != null && !constrainedElements.isEmpty();
-            case EcorePackage.CONSTRAINT__STEREOTYPE:
-                return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.CONSTRAINT__SPECIFICATION:
+				return specification != null;
+			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS:
+				return constrainedElements != null && !constrainedElements.isEmpty();
+			case EcorePackage.CONSTRAINT__STEREOTYPE:
+				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (stereotype: "); //$NON-NLS-1$
-        result.append(stereotype);
-        result.append(')');
-        return result.toString();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+		
+		return ToStringVisitor.getInstance(getSpecification().getContextVariable()).visitConstraint(this);
+	}
 
 } //ConstraintImpl

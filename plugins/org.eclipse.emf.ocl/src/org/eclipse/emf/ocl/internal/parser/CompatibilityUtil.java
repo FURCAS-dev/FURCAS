@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUtil.java,v 1.2 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: CompatibilityUtil.java,v 1.3 2007/03/27 15:05:42 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -45,11 +45,11 @@ import org.eclipse.emf.ocl.utilities.ASTNode;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.TypedASTNode;
 import org.eclipse.emf.ocl.utilities.Visitable;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.AnyType;
-import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -364,24 +364,22 @@ public class CompatibilityUtil {
 			Object feature = msg.getFeature();
 			Object notifier = msg.getNotifier();
 			
-			if (feature == UtilitiesPackage.Literals.TYPED_ELEMENT__TYPE
-					|| feature == UtilitiesPackage.Literals.TYPED_ELEMENT__NAME) {
+			if (notifier == getNewAS() &&
+					(feature == EcorePackage.Literals.ETYPED_ELEMENT__ETYPE
+					|| feature == EcorePackage.Literals.ENAMED_ELEMENT__NAME)) {
 				// the inferred type of a Variable is set after the variable
 				//   is created in the environment and copied to the old/new
 				//   syntax
-				if (notifier == getNewAS()) {
-					ToOldASVisitor.getInstance(env).copyTypedElement(
-							(org.eclipse.ocl.utilities.TypedElement<EClassifier>) getNewAS(),
-							(TypedElement) getOldAS());
-				}
-			} else if (feature == UMLPackage.Literals.TYPED_ELEMENT__TYPE
-					|| feature == EcorePackage.Literals.ENAMED_ELEMENT__NAME) {
+				ToOldASVisitor.getInstance(env).copyTypedElement(
+						(org.eclipse.ocl.utilities.TypedElement<EClassifier>) getNewAS(),
+						(TypedElement) getOldAS());
+			} else if ((notifier instanceof TypedElement) && (notifier == getOldAS()) &&
+					(feature == UMLPackage.Literals.TYPED_ELEMENT__TYPE
+					|| feature == EcorePackage.Literals.ENAMED_ELEMENT__NAME)) {
 				// the inverse case
-				if ((notifier instanceof TypedElement) && (notifier == getOldAS())) {
-					ToNewASVisitor.getInstance(env).copyTypedElement(
-							(TypedElement) getOldAS(),
-							(org.eclipse.ocl.utilities.TypedElement<EClassifier>) getNewAS());
-				}
+				ToNewASVisitor.getInstance(env).copyTypedElement(
+						(TypedElement) getOldAS(),
+						(org.eclipse.ocl.utilities.TypedElement<EClassifier>) getNewAS());
 			} else if (feature == TypesPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE) {
 				// likewise, the element type of a collection literal is set to the
 				//   common super type of its parts after it has already been
