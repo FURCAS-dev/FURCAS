@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.2 2007/03/27 15:05:30 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.3 2007/03/27 18:46:39 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -40,6 +40,7 @@ import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
@@ -218,7 +219,7 @@ public class EcoreEnvironment
 
     // implements the inherited specification
     public OCLFactory getOCLFactory() {
-        return org.eclipse.ocl.ecore.EcoreFactory.eINSTANCE;
+        return OCLFactoryImpl.INSTANCE;
     }
     
     // implements the inherited specification
@@ -257,7 +258,7 @@ public class EcoreEnvironment
 				pkg = currPkg;
 				
 				for (int i = 0; i < path.size(); i++) {
-					String name = (String) path.get(i);
+					String name = path.get(i);
 					EList<EPackage> subPackages = pkg.getESubpackages();
 					pkg = null;
 					for (int j = 0; j < subPackages.size(); j++) {
@@ -295,7 +296,7 @@ public class EcoreEnvironment
 
 					pkg = currPkg;
 					for (int i = 0; i < names.size() - 1; i++) {
-						String name = (String) names.get(i);
+						String name = names.get(i);
 						EList<EPackage> subPackages = pkg.getESubpackages();
 						pkg = null;
 						for (int j = 0; j < subPackages.size(); j++) {
@@ -308,8 +309,7 @@ public class EcoreEnvironment
 							break;
 					}
 					if (pkg != null) {
-						return pkg.getEClassifier((String) names
-							.get(names.size() - 1));
+						return pkg.getEClassifier(names.get(names.size() - 1));
 					}
 					currPkg = currPkg.getESuperPackage();
 				}
@@ -321,7 +321,7 @@ public class EcoreEnvironment
 				return null;
 			return pkg.getEClassifier(names.get(names.size() - 1));
 		} else if (getContextPackage() != null) {
-			String name = (String) names.get(0);
+			String name = names.get(0);
 			EClassifier result = null;
 			while (currPkg != null) {
 				result = currPkg.getEClassifier(name);
@@ -530,7 +530,7 @@ public class EcoreEnvironment
             return OCL_PACKAGES.get(packageNames);
         }
         
-		String name = (String) packageNames.get(0);
+		String name = packageNames.get(0);
 		for (Object next : registry.values()) {
 			if (next instanceof EPackage) {
 				EPackage ePackage = (EPackage) next;
@@ -571,7 +571,7 @@ public class EcoreEnvironment
 			return superpackage;
 		}
 		
-		String name = (String) packageNames.get(0);
+		String name = packageNames.get(0);
 		
 		for (EPackage next : superpackage.getESubpackages()) {
 			if (name.equals(next.getName())) {

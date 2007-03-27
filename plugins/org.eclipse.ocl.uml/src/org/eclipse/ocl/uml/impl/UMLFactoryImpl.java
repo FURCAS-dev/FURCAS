@@ -12,42 +12,57 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactoryImpl.java,v 1.3 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: UMLFactoryImpl.java,v 1.4 2007/03/27 18:46:41 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.uml.*;
-import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.uml.AnyType;
+import org.eclipse.ocl.uml.AssociationClassCallExp;
 import org.eclipse.ocl.uml.BagType;
+import org.eclipse.ocl.uml.BooleanLiteralExp;
+import org.eclipse.ocl.uml.CollectionItem;
+import org.eclipse.ocl.uml.CollectionLiteralExp;
+import org.eclipse.ocl.uml.CollectionRange;
 import org.eclipse.ocl.uml.CollectionType;
 import org.eclipse.ocl.uml.ElementType;
+import org.eclipse.ocl.uml.EnumLiteralExp;
 import org.eclipse.ocl.uml.ExpressionInOCL;
+import org.eclipse.ocl.uml.IfExp;
+import org.eclipse.ocl.uml.IntegerLiteralExp;
+import org.eclipse.ocl.uml.InvalidLiteralExp;
 import org.eclipse.ocl.uml.InvalidType;
+import org.eclipse.ocl.uml.IterateExp;
+import org.eclipse.ocl.uml.IteratorExp;
+import org.eclipse.ocl.uml.LetExp;
+import org.eclipse.ocl.uml.MessageExp;
 import org.eclipse.ocl.uml.MessageType;
+import org.eclipse.ocl.uml.NullLiteralExp;
+import org.eclipse.ocl.uml.OperationCallExp;
 import org.eclipse.ocl.uml.OrderedSetType;
 import org.eclipse.ocl.uml.PrimitiveType;
+import org.eclipse.ocl.uml.PropertyCallExp;
+import org.eclipse.ocl.uml.RealLiteralExp;
 import org.eclipse.ocl.uml.SequenceType;
 import org.eclipse.ocl.uml.SetType;
+import org.eclipse.ocl.uml.StateExp;
+import org.eclipse.ocl.uml.StringLiteralExp;
+import org.eclipse.ocl.uml.TupleLiteralExp;
+import org.eclipse.ocl.uml.TupleLiteralPart;
 import org.eclipse.ocl.uml.TupleType;
+import org.eclipse.ocl.uml.TypeExp;
 import org.eclipse.ocl.uml.TypeType;
 import org.eclipse.ocl.uml.UMLFactory;
 import org.eclipse.ocl.uml.UMLPackage;
+import org.eclipse.ocl.uml.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.uml.UnspecifiedValueExp;
+import org.eclipse.ocl.uml.Variable;
+import org.eclipse.ocl.uml.VariableExp;
 import org.eclipse.ocl.uml.VoidType;
-import org.eclipse.ocl.utilities.TypedElement;
-import org.eclipse.ocl.utilities.UMLReflection;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +70,6 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * @generated
  */
-@SuppressWarnings("unchecked")
 public class UMLFactoryImpl extends EFactoryImpl implements UMLFactory {
     /**
 	 * Creates the default factory implementation.
@@ -547,105 +561,5 @@ public class UMLFactoryImpl extends EFactoryImpl implements UMLFactory {
     public UMLPackage getUMLPackage() {
 		return (UMLPackage)getEPackage();
 	}
-
-    /**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
-    @Deprecated
-    public static UMLPackage getPackage() {
-		return UMLPackage.eINSTANCE;
-	}
-
-    @SuppressWarnings("unchecked")
-    public <C, O> org.eclipse.ocl.types.BagType<C, O> createBagType(C elementType) {
-        return (org.eclipse.ocl.types.BagType<C, O>)
-            new BagTypeImpl((Classifier) elementType);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O> org.eclipse.ocl.types.OrderedSetType<C, O> createOrderedSetType(C elementType) {
-        return (org.eclipse.ocl.types.OrderedSetType<C, O>)
-        new OrderedSetTypeImpl((Classifier) elementType);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O> org.eclipse.ocl.types.SequenceType<C, O> createSequenceType(C elementType) {
-        return (org.eclipse.ocl.types.SequenceType<C, O>)
-        new SequenceTypeImpl((Classifier) elementType);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O> org.eclipse.ocl.types.SetType<C, O> createSetType(C elementType) {
-        return (org.eclipse.ocl.types.SetType<C, O>)
-        new SetTypeImpl((Classifier) elementType);
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O> org.eclipse.ocl.types.CollectionType<C, O> createCollectionType(C elementType) {
-        return (org.eclipse.ocl.types.CollectionType<C, O>)
-        new CollectionTypeImpl((Classifier) elementType);
-    }
-
-    public <C, O> org.eclipse.ocl.types.CollectionType<C, O> createCollectionType(
-            CollectionKind kind, C elementType) {
-        switch (kind) {
-        case BAG_LITERAL:
-            return createBagType(elementType);
-        case SET_LITERAL:
-            return createSetType(elementType);
-        case SEQUENCE_LITERAL:
-            return createSequenceType(elementType);
-        case ORDERED_SET_LITERAL:
-            return createOrderedSetType(elementType);
-        default:
-            return createCollectionType(elementType);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O, P> org.eclipse.ocl.types.MessageType<C, O, P> createOperationMessageType(O operation) {
-        MessageType result = createMessageType();
-        result.setReferredOperation((Operation) operation);
-        result.oclProperties(); // ensure that the structural features are created
-        return (org.eclipse.ocl.types.MessageType<C, O, P>) result;
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O, P> org.eclipse.ocl.types.MessageType<C, O, P> createSignalMessageType(C signal) {
-        MessageType result = createMessageType();
-        result.setReferredSignal((Classifier) signal);
-        result.oclProperties(); // ensure that the structural features are created
-        return (org.eclipse.ocl.types.MessageType<C, O, P>) result;
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O, P> org.eclipse.ocl.types.TupleType<O, P> createTupleType(
-            List<? extends TypedElement<C>> parts) {
-        TupleType result = createTupleType();
-        
-        if (!parts.isEmpty()) {
-            Environment<?, C, O, P, ?, ?, ?, ?, ?, ?, ?, ?> env =
-                Environment.Registry.INSTANCE.getEnvironmentFor(parts.get(0));
-            UMLReflection<?, C, O, P, ?, ?, ?, ?, ?, ?> reflection = env.getUMLReflection();
-            
-            EList<Property> properties = result.oclProperties();
-            
-            for (TypedElement<C> part : parts) {
-                properties.add((Property) reflection.createProperty(
-                        part.getName(), part.getType()));
-            }
-        }
-        
-        return (org.eclipse.ocl.types.TupleType<O, P>) result;
-    }
-
-    @SuppressWarnings("unchecked")
-    public <C, O> org.eclipse.ocl.types.TypeType<C, O> createTypeType(C type) {
-        return (org.eclipse.ocl.types.TypeType<C, O>)
-            new TypeTypeImpl((Classifier) type);
-    }
 
 } //UMLFactoryImpl

@@ -12,12 +12,11 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactory.java,v 1.3 2007/03/27 15:05:17 cdamus Exp $
+ * $Id: UMLFactory.java,v 1.4 2007/03/27 18:46:41 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.ocl.utilities.OCLFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,7 @@ import org.eclipse.ocl.utilities.OCLFactory;
  * @see org.eclipse.ocl.uml.UMLPackage
  * @generated
  */
-public interface UMLFactory extends EFactory, OCLFactory {
+public interface UMLFactory extends EFactory {
     /**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -169,57 +168,51 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Association Class Call Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	AssociationClassCallExp createAssociationClassCallExp();
 
-				/**
+	/**
 	 * Returns a new object of class '<em>Boolean Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Boolean Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	BooleanLiteralExp createBooleanLiteralExp();
 
-				/**
+	/**
 	 * Returns a new object of class '<em>Collection Item</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Item</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	CollectionItem createCollectionItem();
 
-				/**
+	/**
 	 * Returns a new object of class '<em>Collection Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	CollectionLiteralExp createCollectionLiteralExp();
 
-				/**
+	/**
 	 * Returns a new object of class '<em>Collection Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Range</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	CollectionRange createCollectionRange();
 
-				/**
+	/**
 	 * Returns a new object of class '<em>Enum Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Enum Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	EnumLiteralExp createEnumLiteralExp();
 
 	/**
@@ -229,7 +222,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>If Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	IfExp createIfExp();
 
 	/**
@@ -239,7 +231,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Integer Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	IntegerLiteralExp createIntegerLiteralExp();
 
     /**
@@ -249,7 +240,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Unlimited Natural Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp();
 
 	/**
@@ -259,7 +249,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Invalid Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	InvalidLiteralExp createInvalidLiteralExp();
 
 	/**
@@ -269,7 +258,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Iterate Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	IterateExp createIterateExp();
 
 	/**
@@ -279,7 +267,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Iterator Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	IteratorExp createIteratorExp();
 
 	/**
@@ -289,7 +276,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Let Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	LetExp createLetExp();
 
 	/**
@@ -299,7 +285,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Message Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	MessageExp createMessageExp();
 
 	/**
@@ -309,7 +294,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Null Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	NullLiteralExp createNullLiteralExp();
 
 	/**
@@ -319,7 +303,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Operation Call Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	OperationCallExp createOperationCallExp();
 
 	/**
@@ -329,7 +312,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Property Call Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	PropertyCallExp createPropertyCallExp();
 
 	/**
@@ -339,7 +321,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Real Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	RealLiteralExp createRealLiteralExp();
 
 	/**
@@ -349,7 +330,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>State Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	StateExp createStateExp();
 
 	/**
@@ -359,7 +339,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>String Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	StringLiteralExp createStringLiteralExp();
 
 	/**
@@ -369,7 +348,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Tuple Literal Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	TupleLiteralExp createTupleLiteralExp();
 
 	/**
@@ -379,7 +357,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Tuple Literal Part</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	TupleLiteralPart createTupleLiteralPart();
 
 	/**
@@ -389,7 +366,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Type Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	TypeExp createTypeExp();
 
 	/**
@@ -399,7 +375,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Unspecified Value Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	UnspecifiedValueExp createUnspecifiedValueExp();
 
 	/**
@@ -409,7 +384,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Variable</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	Variable createVariable();
 
 	/**
@@ -419,7 +393,6 @@ public interface UMLFactory extends EFactory, OCLFactory {
 	 * @return a new object of class '<em>Variable Exp</em>'.
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
 	VariableExp createVariableExp();
 
 	/**

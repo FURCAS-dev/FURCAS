@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.2 2007/03/27 15:05:17 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.3 2007/03/27 18:46:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -32,6 +32,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -625,7 +626,7 @@ class UMLReflectionImpl
             resultType = getOCLTypeFor((DataType) resultType);
         }
         
-        OCLFactory oclFactory = org.eclipse.ocl.uml.UMLFactory.eINSTANCE;
+        OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
         
         if (isOrdered) {
             if (isUnique) {

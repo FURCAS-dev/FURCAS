@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.2 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.3 2007/03/27 18:46:39 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -484,8 +484,7 @@ public class UMLReflectionImpl
             if (!allSuperAndSelf1.isEmpty()) {
                 // because EMF records supertypes from highest to lowest in the
                 //   hierarchy, the least common supertype is the *last*
-                return (EClassifier) allSuperAndSelf1.get(allSuperAndSelf1
-                    .size() - 1);
+                return allSuperAndSelf1.get(allSuperAndSelf1.size() - 1);
             }
         }
     
@@ -630,7 +629,7 @@ public class UMLReflectionImpl
             resultType = getOCLTypeFor((EDataType) resultType);
         }
         
-        OCLFactory oclFactory = EcoreFactory.eINSTANCE;
+        OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
         
         if (isOrdered) {
             if (isUnique) {
