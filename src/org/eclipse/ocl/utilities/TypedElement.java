@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypedElement.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: TypedElement.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -48,5 +48,21 @@ public interface TypedElement<C> extends EObject {
 	 * @generated
 	 */
 	C getType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void setName(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void setType(C name);
 
 } // TypedElement

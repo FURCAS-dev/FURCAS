@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -153,6 +153,9 @@ public class VariableImpl<C, PM> extends EObjectImpl implements Variable<C, PM> 
 	 */
 	protected PM representedParameter = null;
 
+	private String name;
+	private C type;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -178,7 +181,7 @@ public class VariableImpl<C, PM> extends EObjectImpl implements Variable<C, PM> 
 	 * @generated NOT
 	 */
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	/**
@@ -187,7 +190,25 @@ public class VariableImpl<C, PM> extends EObjectImpl implements Variable<C, PM> 
 	 * @generated NOT
 	 */
 	public C getType() {
-		return null;
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setType(C type) {
+		this.type = type;
 	}
 
 	/**

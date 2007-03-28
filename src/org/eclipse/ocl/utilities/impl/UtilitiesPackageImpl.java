@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.3 2007/03/27 15:05:00 cdamus Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -457,9 +457,9 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 
 		initEClass(predefinedTypeEClass, PredefinedType.class, "PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		EOperation op = addEOperation(predefinedTypeEClass, ecorePackage.getEString(), "getName", 1, 1); //$NON-NLS-1$
+		addEOperation(predefinedTypeEClass, ecorePackage.getEString(), "getName", 1, 1); //$NON-NLS-1$
 
-		op = addEOperation(predefinedTypeEClass, null, "oclOperations", 0, -1); //$NON-NLS-1$
+		EOperation op = addEOperation(predefinedTypeEClass, null, "oclOperations", 0, -1); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(predefinedTypeEClass_O);
 		initEOperation(op, g1);
 
@@ -501,11 +501,18 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		op = addEOperation(typedElementEClass, ecorePackage.getEString(), "getName", 0, 1); //$NON-NLS-1$
+		addEOperation(typedElementEClass, ecorePackage.getEString(), "getName", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(typedElementEClass, null, "getType", 0, 1); //$NON-NLS-1$
 		g1 = createEGenericType(typedElementEClass_C);
 		initEOperation(op, g1);
+
+		op = addEOperation(typedElementEClass, null, "setName"); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 0, 1); //$NON-NLS-1$
+
+		op = addEOperation(typedElementEClass, null, "setType"); //$NON-NLS-1$
+		g1 = createEGenericType(typedElementEClass_C);
+		addEParameter(op, g1, "name", 0, 1); //$NON-NLS-1$
 
 		initEClass(visitorEClass, Visitor.class, "Visitor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

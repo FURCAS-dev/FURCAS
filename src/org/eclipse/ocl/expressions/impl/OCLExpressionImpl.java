@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -84,6 +84,9 @@ public abstract class OCLExpressionImpl<C> extends EObjectImpl implements OCLExp
 	 */
 	protected int endPosition = END_POSITION_EDEFAULT;
 
+	private String name;
+	private C type;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,7 +112,7 @@ public abstract class OCLExpressionImpl<C> extends EObjectImpl implements OCLExp
 	 * @generated NOT
 	 */
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	/**
@@ -118,7 +121,25 @@ public abstract class OCLExpressionImpl<C> extends EObjectImpl implements OCLExp
 	 * @generated NOT
 	 */
 	public C getType() {
-		return null;
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setType(C type) {
+		this.type = type;
 	}
 
 	/**

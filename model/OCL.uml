@@ -676,6 +676,14 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU19ppEdu-d8Dv4wLx9Q"/>
           </ownedParameter>
         </ownedOperation>
+        <ownedOperation xmi:id="_0UOPMN1mEduZ74nG8yJaxg" name="setName">
+          <ownedParameter xmi:id="_7Yh_cN1mEduZ74nG8yJaxg" name="name">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_1EvGIN1mEduZ74nG8yJaxg" name="setType">
+          <ownedParameter xmi:id="_FcnTgN1nEduZ74nG8yJaxg" name="type" type="_unvU0dppEdu-d8Dv4wLx9Q"/>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_unvU2NppEdu-d8Dv4wLx9Q" name="ExpressionInOCL">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvU2dppEdu-d8Dv4wLx9Q" parameter="_unvU2tppEdu-d8Dv4wLx9Q _unvU3NppEdu-d8Dv4wLx9Q">
@@ -1947,4 +1955,8 @@
   <Ecore:EReference xmi:id="_up8S19ppEdu-d8Dv4wLx9Q" base_Property="_un1axNppEdu-d8Dv4wLx9Q"/>
   <Ecore:EGenericType xmi:id="_up8S2NppEdu-d8Dv4wLx9Q" base_Class="_un1axtppEdu-d8Dv4wLx9Q"/>
   <Ecore:EGenericType xmi:id="_up8S2dppEdu-d8Dv4wLx9Q" base_Class="_un1aydppEdu-d8Dv4wLx9Q"/>
+  <Ecore:EOperation xmi:id="_C67Z4N1nEduZ74nG8yJaxg" base_Operation="_0UOPMN1mEduZ74nG8yJaxg"/>
+  <Ecore:EParameter xmi:id="_EKlD4N1nEduZ74nG8yJaxg" base_Parameter="_7Yh_cN1mEduZ74nG8yJaxg"/>
+  <Ecore:EOperation xmi:id="_QNxwAN1nEduZ74nG8yJaxg" base_Operation="_1EvGIN1mEduZ74nG8yJaxg"/>
+  <Ecore:EParameter xmi:id="_SCfO4N1nEduZ74nG8yJaxg" base_Parameter="_FcnTgN1nEduZ74nG8yJaxg"/>
 </xmi:XMI>

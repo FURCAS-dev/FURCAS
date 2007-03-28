@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -32,6 +32,9 @@ import org.eclipse.ocl.utilities.Visitor;
  * @generated
  */
 public abstract class CollectionLiteralPartImpl<C> extends EObjectImpl implements CollectionLiteralPart<C> {
+	private String name;
+	private C type;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,7 +60,7 @@ public abstract class CollectionLiteralPartImpl<C> extends EObjectImpl implement
 	 * @generated NOT
 	 */
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	/**
@@ -66,7 +69,25 @@ public abstract class CollectionLiteralPartImpl<C> extends EObjectImpl implement
 	 * @generated NOT
 	 */
 	public C getType() {
-		return null;
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setType(C type) {
+		this.type = type;
 	}
 
 	/**
