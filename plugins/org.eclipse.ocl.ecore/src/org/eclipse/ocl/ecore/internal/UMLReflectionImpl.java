@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.3 2007/03/27 18:46:39 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.4 2007/03/28 20:45:35 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -689,10 +689,10 @@ public class UMLReflectionImpl
     }
     
     public void setName(TypedElement<EClassifier> element, String name) {
-    	((ETypedElement) element).setName(name);
+    	element.setName(name);
     }
     
     public void setType(TypedElement<EClassifier> element, EClassifier type) {
-    	((ETypedElement) element).setEType(type);
+    	element.setType(type);
     }
 }
