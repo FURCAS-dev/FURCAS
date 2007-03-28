@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.1 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.2 2007/03/28 20:39:37 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -59,6 +59,15 @@ public abstract class CollectionLiteralPartImpl extends ETypedElementImpl implem
 	 */
 	public EClassifier getType() {
 		return getEType();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setType(EClassifier type) {
+		setEType(type);
 	}
 
 	/**
