@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.3 2007/03/27 18:46:41 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.4 2007/03/28 20:45:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -689,12 +689,12 @@ class UMLReflectionImpl
     public void setName(
     		org.eclipse.ocl.utilities.TypedElement<Classifier> element,
     		String name) {
-    	((TypedElement) element).setName(name);
+    	element.setName(name);
     }
     
     public void setType(
     		org.eclipse.ocl.utilities.TypedElement<Classifier> element,
     		Classifier type) {
-    	((TypedElement) element).setType(type);
+    	element.setType(type);
     }
 }
