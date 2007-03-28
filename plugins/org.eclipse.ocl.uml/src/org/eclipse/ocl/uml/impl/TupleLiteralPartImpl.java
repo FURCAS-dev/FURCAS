@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.1 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.2 2007/03/28 20:39:30 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.utilities.Visitor;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
 
 /**
@@ -603,6 +604,13 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	public Classifier getType() {
 		// override in order to unambiguously narrow the return type
 		return (Classifier) super.getType();
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	public void setType(Classifier type) {
+		setType((Type) type);
 	}
 
 } //TupleLiteralPartImpl

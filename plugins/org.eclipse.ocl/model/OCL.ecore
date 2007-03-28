@@ -600,6 +600,14 @@
       <eOperations name="getType">
         <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
       </eOperations>
+      <eOperations name="setName">
+        <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
+      <eOperations name="setType">
+        <eParameters name="name">
+          <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Visitor" abstract="true" interface="true">
       <eTypeParameters name="T"/>

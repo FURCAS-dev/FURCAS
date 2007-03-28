@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.1 2007/03/27 15:05:17 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.2 2007/03/28 20:39:29 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.utilities.Visitor;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
 
 /**
@@ -603,6 +604,13 @@ public class VariableImpl extends TypedElementImpl implements Variable {
 	public Classifier getType() {
 		// override in order to unambiguously narrow the return type
 		return (Classifier) super.getType();
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	public void setType(Classifier type) {
+		setType((Type) type);
 	}
 
 } //VariableImpl
