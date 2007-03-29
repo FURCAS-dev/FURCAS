@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.3 2007/03/29 22:34:35 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -26,11 +26,15 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.uml.TupleType;
+import org.eclipse.ocl.util.Tuple;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -716,4 +720,76 @@ public class CollectionsTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * Tests the support for tuples whose parts are collections that are
+     * not collection literals.
+     */
+    public void test_tupleWithCollectionPart_175490() {
+        helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
+        
+        try {
+            OCLExpression<Classifier> expr = helper.createQuery(
+                    "Tuple{a = self.ownedType}"); //$NON-NLS-1$
+            
+            assertTrue(expr.getType() instanceof TupleType);
+            TupleType tt = (TupleType) expr.getType();
+            
+            assertEquals(1, tt.getOwnedAttributes().size());
+            Property part = tt.getOwnedAttribute("a", null); //$NON-NLS-1$
+            
+            assertNotNull(part);
+            assertTrue(part.getType() instanceof CollectionType);
+            
+            CollectionType collType = (CollectionType) part.getType();
+            assertSame(getMetaclass("Type"), collType.getElementType()); //$NON-NLS-1$
+            
+            Object result = ocl.evaluate(umlMetamodel, expr);
+            assertTrue(result instanceof Tuple);
+            
+            @SuppressWarnings("unchecked")
+            Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) result;
+            
+            assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+            assertTrue(((Collection) tuple.getValue("a")).contains(getMetaclass("Classifier"))); //$NON-NLS-1$ //$NON-NLS-2$
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the support for tuples whose parts are collections that are
+     * collection literals.
+     */
+    public void test_tupleWithCollectionLiteralPart_175490() {
+        helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
+        
+        try {
+            OCLExpression<Classifier> expr = helper.createQuery(
+                    "Tuple{a = Sequence{'a', 'b', 'c'}}"); //$NON-NLS-1$
+            
+            assertTrue(expr.getType() instanceof TupleType);
+            TupleType tt = (TupleType) expr.getType();
+            
+            assertEquals(1, tt.getOwnedAttributes().size());
+            Property part = tt.getOwnedAttribute("a", null); //$NON-NLS-1$
+            
+            assertNotNull(part);
+            assertTrue(part.getType() instanceof CollectionType);
+            
+            CollectionType collType = (CollectionType) part.getType();
+            assertSame(getOCLStandardLibrary().getString(), collType.getElementType());
+            
+            Object result = ocl.evaluate(umlMetamodel, expr);
+            assertTrue(result instanceof Tuple);
+            
+            @SuppressWarnings("unchecked")
+            Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) result;
+            
+            assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+            assertTrue(((Collection) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 }
