@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.BagType;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.util.Bag;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,6 +41,7 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
 	 */
     protected BagTypeImpl() {
 		super();
+        setInstanceClass(Bag.class);
 	}
 
     /**
@@ -49,6 +51,7 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
      */
     protected BagTypeImpl(EClassifier elementType) {
         super(elementType);
+        setInstanceClass(Bag.class);
     }
 
     /**

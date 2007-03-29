@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.14 2007/02/23 22:05:59 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.15 2007/03/29 22:34:34 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -2331,6 +2331,27 @@ public class EvaluationVisitorImpl
 			// Set the tuple field with the value of the init expression
 			// from the variable declaration.
 			Object value = part.accept(this);
+            
+            if (value instanceof Collection && sf.getEType() instanceof CollectionType) {
+                // always copy collections
+                Collection orig = (Collection) value;
+                
+                switch (((CollectionType) sf.getEType()).getKind().getValue()) {
+                case CollectionKind.BAG:
+                    value = CollectionTypeImpl.createNewBag(orig);
+                    break;
+                case CollectionKind.SET:
+                    value = CollectionTypeImpl.createNewSet(orig);
+                    break;
+                case CollectionKind.ORDERED_SET:
+                    value = CollectionTypeImpl.createNewOrderedSet(orig);
+                    break;
+                case CollectionKind.SEQUENCE:
+                    value = CollectionTypeImpl.createNewSequence(orig);
+                    break;
+                }
+            }
+            
 			result.eSet(sf, value);
 		}
 

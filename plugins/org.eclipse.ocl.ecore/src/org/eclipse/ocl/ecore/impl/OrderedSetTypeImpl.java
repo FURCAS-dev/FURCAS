@@ -12,13 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.3 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.LinkedHashSet;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -40,6 +41,7 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 */
     protected OrderedSetTypeImpl() {
 		super();
+        setInstanceClass(LinkedHashSet.class);
 	}
 
     /**
@@ -49,6 +51,7 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
      */
     protected OrderedSetTypeImpl(EClassifier elementType) {
         super(elementType);
+        setInstanceClass(LinkedHashSet.class);
     }
 
     /**

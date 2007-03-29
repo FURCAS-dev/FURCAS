@@ -12,13 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -40,6 +41,7 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
 	 */
     protected SetTypeImpl() {
 		super();
+        setInstanceClass(Set.class);
 	}
 
     /**
@@ -49,6 +51,7 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
      */
     protected SetTypeImpl(EClassifier elementType) {
         super(elementType);
+        setInstanceClass(Set.class);
     }
 
     /**

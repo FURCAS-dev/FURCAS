@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.3 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -46,6 +46,7 @@ public class AnyTypeImpl extends EClassifierImpl implements AnyType {
 	 */
     protected AnyTypeImpl() {
 		super();
+        setInstanceClass(Object.class);
 	}
 
     /**
