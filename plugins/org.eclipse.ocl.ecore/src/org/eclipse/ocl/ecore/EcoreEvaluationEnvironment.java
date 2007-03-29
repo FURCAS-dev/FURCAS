@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.2 2007/03/22 21:59:19 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.3 2007/03/29 22:34:30 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,8 @@ import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.UnicodeSupport;
@@ -214,8 +217,25 @@ public class EcoreEvaluationEnvironment
     	
     	EObject tuple = tupleType.getEPackage().getEFactoryInstance().create(tupleType);
     	
-    	for (Map.Entry<EStructuralFeature, Object> value : values.entrySet()) {
-    		tuple.eSet(value.getKey(), value.getValue());
+    	for (Map.Entry<EStructuralFeature, Object> entry : values.entrySet()) {
+            EStructuralFeature property = entry.getKey();
+            Object value = entry.getValue();
+            
+            if (property.isMany() && (value instanceof Collection)) {
+                @SuppressWarnings("unchecked")
+                Collection<Object> coll = (Collection<Object>) tuple.eGet(property);
+                coll.addAll((Collection<?>) value);
+            } else if ((property.getEType() instanceof CollectionType)
+                    && (value instanceof Collection)) {
+                // always copy the collection to the correct type
+                CollectionType<EClassifier, EOperation> collType =
+                    (CollectionType<EClassifier, EOperation>) property.getEType();
+                tuple.eSet(property, CollectionUtil.createNewCollection(
+                    collType.getKind(),
+                    (Collection<?>) value));
+            } else {
+                tuple.eSet(property, value);
+            }
     	}
     	
     	@SuppressWarnings("unchecked")

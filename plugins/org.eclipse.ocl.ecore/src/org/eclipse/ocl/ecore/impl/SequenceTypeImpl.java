@@ -12,13 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -40,6 +41,7 @@ public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType
 	 */
     protected SequenceTypeImpl() {
 		super();
+        setInstanceClass(List.class);
 	}
 
     /**
@@ -49,6 +51,7 @@ public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType
      */
     protected SequenceTypeImpl(EClassifier elementType) {
         super(elementType);
+        setInstanceClass(List.class);
     }
 
     /**
