@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.3 2007/03/29 22:34:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -29,11 +29,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.util.Tuple;
 
 /**
  * Tests for collection types.
@@ -722,4 +726,78 @@ public class CollectionsTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * Tests the support for tuples whose parts are collections that are
+     * not collection literals.
+     */
+    public void test_tupleWithCollectionPart_175490() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        try {
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                    "Tuple{a = self.eClassifiers}"); //$NON-NLS-1$
+            
+            assertTrue(expr.getType() instanceof TupleType);
+            TupleType tt = (TupleType) expr.getType();
+            
+            assertEquals(1, tt.getEStructuralFeatures().size());
+            EStructuralFeature part = tt.getEStructuralFeature("a"); //$NON-NLS-1$
+            
+            assertNotNull(part);
+            assertTrue(part.getEType() instanceof CollectionType);
+            
+            CollectionType collType = (CollectionType) part.getEType();
+            assertSame(EcorePackage.Literals.ECLASSIFIER, collType.getElementType());
+            
+            Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
+            assertTrue(result instanceof Tuple);
+            
+            @SuppressWarnings("unchecked")
+            Tuple<EOperation, EStructuralFeature> tuple =
+                (Tuple<EOperation, EStructuralFeature>) result;
+            
+            assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+            assertTrue(((Collection) tuple.getValue("a")).contains(EcorePackage.Literals.ECLASSIFIER)); //$NON-NLS-1$
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the support for tuples whose parts are collections that are
+     * collection literals.
+     */
+    public void test_tupleWithCollectionLiteralPart_175490() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        try {
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                    "Tuple{a = Sequence{'a', 'b', 'c'}}"); //$NON-NLS-1$
+            
+            assertTrue(expr.getType() instanceof TupleType);
+            TupleType tt = (TupleType) expr.getType();
+            
+            assertEquals(1, tt.getEStructuralFeatures().size());
+            EStructuralFeature part = tt.getEStructuralFeature("a"); //$NON-NLS-1$
+            
+            assertNotNull(part);
+            assertTrue(part.getEType() instanceof CollectionType);
+            
+            CollectionType collType = (CollectionType) part.getEType();
+            assertSame(getOCLStandardLibrary().getString(), collType.getElementType());
+            
+            Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
+            assertTrue(result instanceof Tuple);
+            
+            @SuppressWarnings("unchecked")
+            Tuple<EOperation, EStructuralFeature> tuple =
+                (Tuple<EOperation, EStructuralFeature>) result;
+            
+            assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+            assertTrue(((Collection) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 }
