@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/**
- * <copyright>
- *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   IBM - Initial API and implementation
- *
- * </copyright>
- */
--->
 <feature
       id="org.eclipse.emf.query.ocl"
       label="%featureName"
@@ -46,7 +30,8 @@ http://www.eclipse.org/legal/epl-v10.html
    <requires>
       <import plugin="org.eclipse.emf.ecore" version="2.2.0" match="compatible"/>
       <import plugin="org.eclipse.emf.query" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.ocl" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.ocl" version="1.1.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl" version="1.1.0" match="compatible"/>
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
    </requires>
 
