@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.1 2006/02/13 16:12:06 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.2 2007/03/30 19:23:37 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.internal;
@@ -161,7 +161,7 @@ public class OCLPlugin
     	/**
     	 * The cached debug options (for optimization).
     	 */
-    	private static final Map cachedOptions = new HashMap();
+    	private static final Map<String, Object> cachedOptions = new HashMap<String, Object>();
 
     	/**
     	 * Retrieves a Boolean value indicating whether tracing is enabled.
@@ -303,7 +303,7 @@ public class OCLPlugin
     	 */
     	public static void changing(
             String option,
-            Class clazz,
+            Class<?> clazz,
             String methodName,
             String valueDescription,
             Object oldValue,
@@ -342,7 +342,7 @@ public class OCLPlugin
     	 */
     	public static void catching(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Throwable throwable) {
 
@@ -375,7 +375,7 @@ public class OCLPlugin
     	 */
     	public static void throwing(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Throwable throwable) {
 
@@ -405,7 +405,7 @@ public class OCLPlugin
     	 */
     	public static void entering(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName) {
 
     		if (shouldTrace(option)) {
@@ -459,7 +459,7 @@ public class OCLPlugin
     	 */
     	public static void entering(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Object[] parameters) {
 
@@ -486,7 +486,7 @@ public class OCLPlugin
     	 */
     	public static void exiting(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName) {
 
     		if (shouldTrace(option)) {
@@ -511,7 +511,7 @@ public class OCLPlugin
     	 */
     	public static void exiting(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Object returnValue) {
 
@@ -528,11 +528,11 @@ public class OCLPlugin
     	}
     }
 
-	public static void catching(Class class1, String functionName, Throwable exception) {
+	public static void catching(Class<?> class1, String functionName, Throwable exception) {
 		Tracing.catching(OCLDebugOptions.EXCEPTIONS_CATCHING, class1, functionName, exception);
 	}
 	
-	public static void throwing(Class class1, String functionName, Throwable exception) {
+	public static void throwing(Class<?> class1, String functionName, Throwable exception) {
 		Tracing.throwing(OCLDebugOptions.EXCEPTIONS_THROWING, class1, functionName, exception);
 	}
 

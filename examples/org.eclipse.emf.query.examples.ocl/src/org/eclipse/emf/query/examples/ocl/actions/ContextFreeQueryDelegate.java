@@ -56,7 +56,7 @@ public class ContextFreeQueryDelegate
 	}
 
 	public void run(IAction action) {
-		Collection selection = getSelectedObjects();
+		Collection<EObject> selection = getSelectedObjects();
 		
 		if (selection == null || selection.isEmpty()) {
 			action.setEnabled(false);
@@ -91,7 +91,7 @@ public class ContextFreeQueryDelegate
 	/**
 	 * Implements the inherited method using an OCL query condition.
 	 */
-	protected IQueryResult performQuery(Collection context, String value,
+	protected IQueryResult performQuery(Collection<EObject> context, String value,
 			IProgressMonitor monitor)
 		throws Exception {
 		if (null == context) {

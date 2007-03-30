@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLCondition.java,v 1.4 2007/03/22 22:20:38 cdamus Exp $
+ * $Id: OCLCondition.java,v 1.5 2007/03/30 19:23:37 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -66,7 +66,7 @@ public abstract class OCLCondition
 
 	private IEStructuralFeatureValueGetter eStructuralFeatureValueGetter;
 
-	private Map contextFreeOclQueriesMap;
+	private Map<EClass, OclQueryCacheEntry> contextFreeOclQueriesMap;
 
 	/**
 	 * A datastructure to be used with context-free conditions to hold queries
@@ -301,10 +301,9 @@ public abstract class OCLCondition
 				return query.resultType();
 			}
 		} else if (getOclQueryRecordMap().isEmpty() == false) {
-			Iterator it = getOclQueryRecordMap().values().iterator();
+			Iterator<OclQueryCacheEntry> it = getOclQueryRecordMap().values().iterator();
 			while (it.hasNext()) {
-				Query query = ((OclQueryCacheEntry) it.next())
-					.getCachedOclQuery();
+				Query query = it.next().getCachedOclQuery();
 				if (query != null) {
 					return query.resultType();
 				}
@@ -318,9 +317,9 @@ public abstract class OCLCondition
 	 * 
 	 * @return the query cache
 	 */
-	private Map getOclQueryRecordMap() {
+	private Map<EClass, OclQueryCacheEntry> getOclQueryRecordMap() {
 		if (contextFreeOclQueriesMap == null) {
-			contextFreeOclQueriesMap = new HashMap();
+			contextFreeOclQueriesMap = new HashMap<EClass, OclQueryCacheEntry>();
 		}
 		return contextFreeOclQueriesMap;
 	}
@@ -333,7 +332,7 @@ public abstract class OCLCondition
 	 *     nothing in the cache for this context classifier
 	 */
 	private OclQueryCacheEntry getOclQueryRecord(EClass contextEClass) {
-		OclQueryCacheEntry oclQueryRecord = (OclQueryCacheEntry) getOclQueryRecordMap()
+		OclQueryCacheEntry oclQueryRecord = getOclQueryRecordMap()
 			.get(contextEClass);
 		if (oclQueryRecord == null) {
 			Query query = null;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLQueryHelperTest.java,v 1.1 2006/02/13 16:12:02 cdamus Exp $
+ * $Id: OCLQueryHelperTest.java,v 1.2 2007/03/30 19:23:34 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;
@@ -49,6 +49,7 @@ import org.eclipse.emf.query.statements.WHERE;
  * 
  * @author Christian W. Damus
  */
+@SuppressWarnings("unchecked")
 public class OCLQueryHelperTest
 	extends TestCase {
 

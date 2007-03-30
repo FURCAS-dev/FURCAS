@@ -141,7 +141,7 @@ class QueryWithContextWizardPage
 		// show only EClasses (cannot query for EDataType values)
 		List<EClassifier> classes = new LinkedList<EClassifier>(
 			EXTLibraryPackage.eINSTANCE.getEClassifiers());
-		for (Iterator iter = classes.iterator(); iter.hasNext();) {
+		for (Iterator<EClassifier> iter = classes.iterator(); iter.hasNext();) {
 			if (!(iter.next() instanceof EClass)) {
 				iter.remove();
 			}

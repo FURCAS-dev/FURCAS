@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLQueryDelegate.java,v 1.2 2007/03/22 22:20:45 cdamus Exp $
+ * $Id: OCLQueryDelegate.java,v 1.3 2007/03/30 19:23:40 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl.actions;
@@ -56,7 +56,7 @@ public class OCLQueryDelegate
 	}
 
 	public void run(IAction action) {
-		Collection selection = getSelectedObjects();
+		Collection<EObject> selection = getSelectedObjects();
 		
 		if (selection == null || selection.isEmpty()) {
 			action.setEnabled(false);
@@ -91,7 +91,7 @@ public class OCLQueryDelegate
 	/**
 	 * Implements the inherited method using an OCL query condition.
 	 */
-	protected IQueryResult performQuery(Collection context, String value,
+	protected IQueryResult performQuery(Collection<EObject> context, String value,
 			IProgressMonitor monitor)
 		throws Exception {
 		if (null == context) {
