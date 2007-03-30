@@ -29,9 +29,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <requires>
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.edit" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.ecore.edit" version="2.2.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.ecore" version="1.1.0" match="compatible"/>
       <import plugin="net.sourceforge.lpg.lpgjavaruntime"/>
    </requires>
