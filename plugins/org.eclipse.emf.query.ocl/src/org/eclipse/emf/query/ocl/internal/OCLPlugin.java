@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.2 2007/03/30 19:23:37 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.3 2007/03/30 19:42:14 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.internal;
@@ -430,7 +430,7 @@ public class OCLPlugin
     	 */
     	public static void entering(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Object parameter) {
 
