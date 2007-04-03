@@ -22,7 +22,7 @@
       provider-name="%providerName"
       image="modeling32.png">
 
-   <description url="http://www.eclipse.org/emft">
+   <description url="http://www.eclipse.org/modeling/emf/?project=query">
       %description
    </description>
 
