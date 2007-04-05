@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.1 2007/04/05 20:35:50 cdamus Exp $
+ * $Id: KeywordsTest.java,v 1.2 2007/04/05 21:00:14 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -87,6 +87,17 @@ public class KeywordsTest
         try {
             helper.createInvariant("self.context <> null implies context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
             helper.createInvariant("context <> null implies self.context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_body_162300() {
+        helper.setContext(getMetaclass("OpaqueExpression")); //$NON-NLS-1$
+        
+        try {
+            helper.createInvariant("self.language->includes('OCL') implies self.body->notEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("language->includes('OCL') implies body->notEmpty()"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }

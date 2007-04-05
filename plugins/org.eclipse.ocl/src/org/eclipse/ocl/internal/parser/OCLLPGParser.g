@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.6 2007/04/05 20:36:07 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.7 2007/04/05 21:00:17 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +208,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.6 2007/04/05 20:36:07 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.7 2007/04/05 21:00:17 cdamus Exp $
  */
 	./
 $End
@@ -1009,6 +1009,7 @@ $Rules
 	keywordAsIdentifier -> closure
 	keywordAsIdentifier -> package
 	keywordAsIdentifier -> context
+	keywordAsIdentifier -> body
 	
 
 	packageDeclarationCSm -> packageDeclarationCS
