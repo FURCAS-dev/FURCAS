@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.3 2007/03/29 22:34:35 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.4 2007/04/05 20:35:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -741,7 +741,9 @@ public class CollectionsTest
             assertNotNull(part);
             assertTrue(part.getType() instanceof CollectionType);
             
-            CollectionType collType = (CollectionType) part.getType();
+            @SuppressWarnings("unchecked")
+            CollectionType<Classifier, Operation> collType =
+                (CollectionType<Classifier, Operation>) part.getType();
             assertSame(getMetaclass("Type"), collType.getElementType()); //$NON-NLS-1$
             
             Object result = ocl.evaluate(umlMetamodel, expr);
@@ -751,7 +753,7 @@ public class CollectionsTest
             Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) result;
             
             assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
-            assertTrue(((Collection) tuple.getValue("a")).contains(getMetaclass("Classifier"))); //$NON-NLS-1$ //$NON-NLS-2$
+            assertTrue(((Collection<?>) tuple.getValue("a")).contains(getMetaclass("Classifier"))); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -777,7 +779,9 @@ public class CollectionsTest
             assertNotNull(part);
             assertTrue(part.getType() instanceof CollectionType);
             
-            CollectionType collType = (CollectionType) part.getType();
+            @SuppressWarnings("unchecked")
+            CollectionType<Classifier, Operation> collType =
+                (CollectionType<Classifier, Operation>) part.getType();
             assertSame(getOCLStandardLibrary().getString(), collType.getElementType());
             
             Object result = ocl.evaluate(umlMetamodel, expr);
@@ -787,7 +791,7 @@ public class CollectionsTest
             Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) result;
             
             assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
-            assertTrue(((Collection) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
+            assertTrue(((Collection<?>) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }
