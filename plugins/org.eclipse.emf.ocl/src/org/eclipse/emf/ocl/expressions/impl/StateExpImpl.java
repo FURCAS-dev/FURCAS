@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.2 2007/04/09 17:35:25 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -40,39 +40,39 @@ import org.eclipse.emf.ocl.expressions.Visitor;
  */
 public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredState()
-	 * @generated
-	 * @ordered
-	 */
-	protected EObject referredState = null;
+     * @see #getReferredState()
+     * @generated
+     * @ordered
+     */
+	protected EObject referredState;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StateExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.STATE_EXP;
-	}
+        return ExpressionsPackage.Literals.STATE_EXP;
+    }
 
 	/**
 	 * @generated NOT
@@ -82,96 +82,96 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	}
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EObject getReferredState() {
-		if (referredState != null && referredState.eIsProxy()) {
-			InternalEObject oldReferredState = (InternalEObject)referredState;
-			referredState = eResolveProxy(oldReferredState);
-			if (referredState != oldReferredState) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-			}
-		}
-		return referredState;
-	}
+        if (referredState != null && referredState.eIsProxy()) {
+            InternalEObject oldReferredState = (InternalEObject)referredState;
+            referredState = eResolveProxy(oldReferredState);
+            if (referredState != oldReferredState) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+            }
+        }
+        return referredState;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EObject basicGetReferredState() {
-		return referredState;
-	}
+        return referredState;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredState(EObject newReferredState) {
-		EObject oldReferredState = referredState;
-		referredState = newReferredState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-	}
+        EObject oldReferredState = referredState;
+        referredState = newReferredState;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
-				if (resolve) return getReferredState();
-				return basicGetReferredState();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
+                if (resolve) return getReferredState();
+                return basicGetReferredState();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
-				setReferredState((EObject)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
+                setReferredState((EObject)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
-				setReferredState((EObject)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
+                setReferredState((EObject)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
-				return referredState != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
+                return referredState != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //StateExpImpl

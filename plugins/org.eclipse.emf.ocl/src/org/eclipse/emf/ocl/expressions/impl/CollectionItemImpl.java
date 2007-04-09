@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItemImpl.java,v 1.2 2007/02/14 14:45:39 cdamus Exp $
+ * $Id: CollectionItemImpl.java,v 1.3 2007/04/09 17:35:25 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -41,148 +41,148 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
  */
 public class CollectionItemImpl extends CollectionLiteralPartImpl implements CollectionItem {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getItem() <em>Item</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getItem() <em>Item</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getItem()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLExpression item = null;
+     * @see #getItem()
+     * @generated
+     * @ordered
+     */
+	protected OCLExpression item;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CollectionItemImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.COLLECTION_ITEM;
-	}
+        return ExpressionsPackage.Literals.COLLECTION_ITEM;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression getItem() {
-		return item;
-	}
+        return item;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetItem(OCLExpression newItem, NotificationChain msgs) {
-		OCLExpression oldItem = item;
-		item = newItem;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_ITEM__ITEM, oldItem, newItem);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        OCLExpression oldItem = item;
+        item = newItem;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_ITEM__ITEM, oldItem, newItem);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setItem(OCLExpression newItem) {
-		if (newItem != item) {
-			NotificationChain msgs = null;
-			if (item != null)
-				msgs = ((InternalEObject)item).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_ITEM__ITEM, null, msgs);
-			if (newItem != null)
-				msgs = ((InternalEObject)newItem).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_ITEM__ITEM, null, msgs);
-			msgs = basicSetItem(newItem, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_ITEM__ITEM, newItem, newItem));
-	}
+        if (newItem != item) {
+            NotificationChain msgs = null;
+            if (item != null)
+                msgs = ((InternalEObject)item).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_ITEM__ITEM, null, msgs);
+            if (newItem != null)
+                msgs = ((InternalEObject)newItem).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_ITEM__ITEM, null, msgs);
+            msgs = basicSetItem(newItem, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_ITEM__ITEM, newItem, newItem));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				return basicSetItem(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_ITEM__ITEM:
+                return basicSetItem(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				return getItem();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_ITEM__ITEM:
+                return getItem();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				setItem((OCLExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_ITEM__ITEM:
+                setItem((OCLExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				setItem((OCLExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_ITEM__ITEM:
+                setItem((OCLExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_ITEM__ITEM:
-				return item != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_ITEM__ITEM:
+                return item != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //CollectionItemImpl

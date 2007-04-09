@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.6 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.7 2007/04/09 17:35:26 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -64,10 +64,10 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 public class QueryImpl extends EObjectImpl implements Query {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 	
 	/**
@@ -76,34 +76,34 @@ public class QueryImpl extends EObjectImpl implements Query {
 	private static final String SELF = "self"; //$NON-NLS-1$
 
 	/**
-	 * The default value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtentMap()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtentMap()
+     * @generated
+     * @ordered
+     */
 	protected static final Map EXTENT_MAP_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtentMap()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtentMap()
+     * @generated
+     * @ordered
+     */
 	protected Map extentMap = EXTENT_MAP_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLExpression expression = null;
+     * @see #getExpression()
+     * @generated
+     * @ordered
+     */
+	protected OCLExpression expression;
 
 	/**
 	 * @generated NOT
@@ -150,13 +150,13 @@ public class QueryImpl extends EObjectImpl implements Query {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return QueryPackage.Literals.QUERY;
-	}
+        return QueryPackage.Literals.QUERY;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,42 +184,42 @@ public class QueryImpl extends EObjectImpl implements Query {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExtentMap(Map newExtentMap) {
-		Map oldExtentMap = extentMap;
-		extentMap = newExtentMap;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.QUERY__EXTENT_MAP, oldExtentMap, extentMap));
-	}
+        Map oldExtentMap = extentMap;
+        extentMap = newExtentMap;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.QUERY__EXTENT_MAP, oldExtentMap, extentMap));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression getExpression() {
-		if (expression != null && expression.eIsProxy()) {
-			InternalEObject oldExpression = (InternalEObject)expression;
-			expression = (OCLExpression)eResolveProxy(oldExpression);
-			if (expression != oldExpression) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.QUERY__EXPRESSION, oldExpression, expression));
-			}
-		}
-		return expression;
-	}
+        if (expression != null && expression.eIsProxy()) {
+            InternalEObject oldExpression = (InternalEObject)expression;
+            expression = (OCLExpression)eResolveProxy(oldExpression);
+            if (expression != oldExpression) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.QUERY__EXPRESSION, oldExpression, expression));
+            }
+        }
+        return expression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression basicGetExpression() {
-		return expression;
-	}
+        return expression;
+    }
 
 	/**
 	 * @generated NOT
@@ -385,63 +385,63 @@ public class QueryImpl extends EObjectImpl implements Query {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				return getExtentMap();
-			case QueryPackage.QUERY__EXPRESSION:
-				if (resolve) return getExpression();
-				return basicGetExpression();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case QueryPackage.QUERY__EXTENT_MAP:
+                return getExtentMap();
+            case QueryPackage.QUERY__EXPRESSION:
+                if (resolve) return getExpression();
+                return basicGetExpression();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				setExtentMap((Map)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case QueryPackage.QUERY__EXTENT_MAP:
+                setExtentMap((Map)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				setExtentMap(EXTENT_MAP_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case QueryPackage.QUERY__EXTENT_MAP:
+                setExtentMap(EXTENT_MAP_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case QueryPackage.QUERY__EXTENT_MAP:
-				return EXTENT_MAP_EDEFAULT == null ? extentMap != null : !EXTENT_MAP_EDEFAULT.equals(extentMap);
-			case QueryPackage.QUERY__EXPRESSION:
-				return expression != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case QueryPackage.QUERY__EXTENT_MAP:
+                return EXTENT_MAP_EDEFAULT == null ? extentMap != null : !EXTENT_MAP_EDEFAULT.equals(extentMap);
+            case QueryPackage.QUERY__EXPRESSION:
+                return expression != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * Validates me according to the rules for OCL well-formedness.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.4 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: PredefinedType.java,v 1.5 2007/04/09 17:35:27 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -38,10 +38,10 @@ import org.eclipse.emf.ocl.parser.SemanticException;
  */
 public interface PredefinedType extends EObject {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String copyright = ""; //$NON-NLS-1$
 
 	int SAME_TYPE = 1;
@@ -237,51 +237,51 @@ public interface PredefinedType extends EObject {
 	String SORTED_BY_NAME = "sortedBy"; //$NON-NLS-1$
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" type="org.eclipse.emf.ecore.EOperation"
-	 * @generated
-	 */
+     * @model kind="operation" type="org.eclipse.emf.ecore.EOperation"
+     * @generated
+     */
 	EList getOperations();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	String getOperationNameFor(int code);
+     * @model
+     * @generated
+     */
+	String getOperationNameFor(int opcode);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
+     * @model
+     * @generated
+     */
 	int getOperationCodeFor(String operName);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ownerTypeRequired="true" argsType="org.eclipse.emf.ocl.expressions.OCLExpression" argsMany="true"
-	 * @generated
-	 */
+     * @model exceptions="org.eclipse.emf.ocl.utilities.SemanticException" ownerTypeRequired="true" argsType="org.eclipse.emf.ocl.expressions.OCLExpression" argsMany="true"
+     * @generated
+     */
 	EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args) throws SemanticException;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model typeRequired="true"
-	 * @generated
-	 */
+     * @model typeRequired="true"
+     * @generated
+     */
 	int getRelationshipTo(EClassifier type);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model typeRequired="true"
-	 * @generated
-	 */
+     * @model exceptions="org.eclipse.emf.ocl.utilities.SemanticException" typeRequired="true"
+     * @generated
+     */
 	EClassifier getCommonSupertype(EClassifier type) throws SemanticException;
 
 } // PredefinedType

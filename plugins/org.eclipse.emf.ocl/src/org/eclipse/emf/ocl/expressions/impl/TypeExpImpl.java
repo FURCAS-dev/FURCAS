@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.2 2007/04/09 17:35:26 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -40,132 +40,132 @@ import org.eclipse.emf.ocl.expressions.Visitor;
  */
 public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EClassifier referredType = null;
+     * @see #getReferredType()
+     * @generated
+     * @ordered
+     */
+	protected EClassifier referredType;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TypeExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.TYPE_EXP;
-	}
+        return ExpressionsPackage.Literals.TYPE_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClassifier getReferredType() {
-		if (referredType != null && referredType.eIsProxy()) {
-			InternalEObject oldReferredType = (InternalEObject)referredType;
-			referredType = (EClassifier)eResolveProxy(oldReferredType);
-			if (referredType != oldReferredType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
-			}
-		}
-		return referredType;
-	}
+        if (referredType != null && referredType.eIsProxy()) {
+            InternalEObject oldReferredType = (InternalEObject)referredType;
+            referredType = (EClassifier)eResolveProxy(oldReferredType);
+            if (referredType != oldReferredType) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+            }
+        }
+        return referredType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClassifier basicGetReferredType() {
-		return referredType;
-	}
+        return referredType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredType(EClassifier newReferredType) {
-		EClassifier oldReferredType = referredType;
-		referredType = newReferredType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
-	}
+        EClassifier oldReferredType = referredType;
+        referredType = newReferredType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-				if (resolve) return getReferredType();
-				return basicGetReferredType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
+                if (resolve) return getReferredType();
+                return basicGetReferredType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-				setReferredType((EClassifier)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
+                setReferredType((EClassifier)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-				setReferredType((EClassifier)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
+                setReferredType((EClassifier)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-				return referredType != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
+                return referredType != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * @generated NOT

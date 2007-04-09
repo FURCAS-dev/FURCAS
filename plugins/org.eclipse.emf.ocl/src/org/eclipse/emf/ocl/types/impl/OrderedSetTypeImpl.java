@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.3 2007/02/14 14:45:42 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.4 2007/04/09 17:35:27 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -43,10 +43,10 @@ import org.eclipse.emf.ocl.types.util.Types;
 public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSetType {
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	private static EList operations;
@@ -224,12 +224,12 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 */
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return TypesPackage.eINSTANCE.getOrderedSetType();
-	}
+        return TypesPackage.Literals.ORDERED_SET_TYPE;
+    }
 
 } //OrderedSetTypeImpl

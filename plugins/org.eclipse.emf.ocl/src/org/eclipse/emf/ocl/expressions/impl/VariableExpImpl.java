@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.2 2007/02/14 14:45:39 cdamus Exp $
+ * $Id: VariableExpImpl.java,v 1.3 2007/04/09 17:35:26 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -41,135 +41,135 @@ import org.eclipse.emf.ocl.expressions.Visitor;
  */
 public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredVariable()
-	 * @generated
-	 * @ordered
-	 */
-	protected Variable referredVariable = null;
+     * @see #getReferredVariable()
+     * @generated
+     * @ordered
+     */
+	protected Variable referredVariable;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected VariableExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.VARIABLE_EXP;
-	}
+        return ExpressionsPackage.Literals.VARIABLE_EXP;
+    }
 
 	public Object accept(Visitor v) {
 		return v.visitVariableExp(this);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Variable getReferredVariable() {
-		if (referredVariable != null && referredVariable.eIsProxy()) {
-			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
-			referredVariable = (Variable)eResolveProxy(oldReferredVariable);
-			if (referredVariable != oldReferredVariable) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
-			}
-		}
-		return referredVariable;
-	}
+        if (referredVariable != null && referredVariable.eIsProxy()) {
+            InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
+            referredVariable = (Variable)eResolveProxy(oldReferredVariable);
+            if (referredVariable != oldReferredVariable) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
+            }
+        }
+        return referredVariable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Variable basicGetReferredVariable() {
-		return referredVariable;
-	}
+        return referredVariable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredVariable(Variable newReferredVariable) {
-		Variable oldReferredVariable = referredVariable;
-		referredVariable = newReferredVariable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
-	}
+        Variable oldReferredVariable = referredVariable;
+        referredVariable = newReferredVariable;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				if (resolve) return getReferredVariable();
-				return basicGetReferredVariable();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
+                if (resolve) return getReferredVariable();
+                return basicGetReferredVariable();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				setReferredVariable((Variable)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
+                setReferredVariable((Variable)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				setReferredVariable((Variable)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
+                setReferredVariable((Variable)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				return referredVariable != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE:
+                return referredVariable != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //VariableExpImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: TypedElementImpl.java,v 1.2 2007/04/09 17:35:25 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.impl;
 
@@ -40,131 +40,131 @@ import org.eclipse.emf.ocl.uml.UMLPackage;
  */
 public abstract class TypedElementImpl extends ENamedElementImpl implements TypedElement {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EClassifier type = null;
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
+	protected EClassifier type;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TypedElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.TYPED_ELEMENT;
-	}
+        return UMLPackage.Literals.TYPED_ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClassifier getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (EClassifier)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TYPED_ELEMENT__TYPE, oldType, type));
-			}
-		}
-		return type;
-	}
+        if (type != null && type.eIsProxy()) {
+            InternalEObject oldType = (InternalEObject)type;
+            type = (EClassifier)eResolveProxy(oldType);
+            if (type != oldType) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TYPED_ELEMENT__TYPE, oldType, type));
+            }
+        }
+        return type;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClassifier basicGetType() {
-		return type;
-	}
+        return type;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setType(EClassifier newType) {
-		EClassifier oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TYPED_ELEMENT__TYPE, oldType, type));
-	}
+        EClassifier oldType = type;
+        type = newType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TYPED_ELEMENT__TYPE, oldType, type));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.TYPED_ELEMENT__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.TYPED_ELEMENT__TYPE:
+                if (resolve) return getType();
+                return basicGetType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.TYPED_ELEMENT__TYPE:
-				setType((EClassifier)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.TYPED_ELEMENT__TYPE:
+                setType((EClassifier)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.TYPED_ELEMENT__TYPE:
-				setType((EClassifier)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.TYPED_ELEMENT__TYPE:
+                setType((EClassifier)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.TYPED_ELEMENT__TYPE:
-				return type != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.TYPED_ELEMENT__TYPE:
+                return type != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //TypedElementImpl

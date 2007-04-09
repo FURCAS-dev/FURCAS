@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SendSignalActionImpl.java,v 1.2 2007/02/14 14:45:42 cdamus Exp $
+ * $Id: SendSignalActionImpl.java,v 1.3 2007/04/09 17:35:25 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.uml.impl;
@@ -40,131 +40,131 @@ import org.eclipse.emf.ocl.uml.UMLPackage;
  */
 public class SendSignalActionImpl extends EObjectImpl implements SendSignalAction {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getSignal() <em>Signal</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSignal() <em>Signal</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSignal()
-	 * @generated
-	 * @ordered
-	 */
-	protected EClass signal = null;
+     * @see #getSignal()
+     * @generated
+     * @ordered
+     */
+	protected EClass signal;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SendSignalActionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.SEND_SIGNAL_ACTION;
-	}
+        return UMLPackage.Literals.SEND_SIGNAL_ACTION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getSignal() {
-		if (signal != null && signal.eIsProxy()) {
-			InternalEObject oldSignal = (InternalEObject)signal;
-			signal = (EClass)eResolveProxy(oldSignal);
-			if (signal != oldSignal) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
-			}
-		}
-		return signal;
-	}
+        if (signal != null && signal.eIsProxy()) {
+            InternalEObject oldSignal = (InternalEObject)signal;
+            signal = (EClass)eResolveProxy(oldSignal);
+            if (signal != oldSignal) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
+            }
+        }
+        return signal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass basicGetSignal() {
-		return signal;
-	}
+        return signal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSignal(EClass newSignal) {
-		EClass oldSignal = signal;
-		signal = newSignal;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
-	}
+        EClass oldSignal = signal;
+        signal = newSignal;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
-				if (resolve) return getSignal();
-				return basicGetSignal();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
+                if (resolve) return getSignal();
+                return basicGetSignal();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
-				setSignal((EClass)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
+                setSignal((EClass)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
-				setSignal((EClass)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
+                setSignal((EClass)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
-				return signal != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.SEND_SIGNAL_ACTION__SIGNAL:
+                return signal != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SendActionImpl

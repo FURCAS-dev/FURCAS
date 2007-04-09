@@ -61,7 +61,7 @@ import org.eclipse.emf.ocl.utilities.TypedASTNode;
  * instead.
  * 
  * @see org.eclipse.emf.ocl.types.TypesPackage
- * @generated
+ * @generated NOT
  */
 public class TypesSwitch<T> {
 	/**
