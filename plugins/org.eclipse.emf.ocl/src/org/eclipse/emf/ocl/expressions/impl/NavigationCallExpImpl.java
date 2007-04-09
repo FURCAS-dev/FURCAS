@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationCallExpImpl.java,v 1.2 2007/02/14 14:45:39 cdamus Exp $
+ * $Id: NavigationCallExpImpl.java,v 1.3 2007/04/09 17:35:26 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -48,177 +48,177 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
  */
 public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implements NavigationCallExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getQualifier() <em>Qualifier</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getQualifier() <em>Qualifier</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList qualifier = null;
+     * @see #getQualifier()
+     * @generated
+     * @ordered
+     */
+	protected EList qualifier;
 
 	/**
-	 * The cached value of the '{@link #getNavigationSource() <em>Navigation Source</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNavigationSource() <em>Navigation Source</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNavigationSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature navigationSource = null;
+     * @see #getNavigationSource()
+     * @generated
+     * @ordered
+     */
+	protected EStructuralFeature navigationSource;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NavigationCallExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.NAVIGATION_CALL_EXP;
-	}
+        return ExpressionsPackage.Literals.NAVIGATION_CALL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList getQualifier() {
-		if (qualifier == null) {
-			qualifier = new EObjectContainmentEList(OCLExpression.class, this, ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER);
-		}
-		return qualifier;
-	}
+        if (qualifier == null) {
+            qualifier = new EObjectContainmentEList(OCLExpression.class, this, ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER);
+        }
+        return qualifier;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EStructuralFeature getNavigationSource() {
-		if (navigationSource != null && navigationSource.eIsProxy()) {
-			InternalEObject oldNavigationSource = (InternalEObject)navigationSource;
-			navigationSource = (EStructuralFeature)eResolveProxy(oldNavigationSource);
-			if (navigationSource != oldNavigationSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
-			}
-		}
-		return navigationSource;
-	}
+        if (navigationSource != null && navigationSource.eIsProxy()) {
+            InternalEObject oldNavigationSource = (InternalEObject)navigationSource;
+            navigationSource = (EStructuralFeature)eResolveProxy(oldNavigationSource);
+            if (navigationSource != oldNavigationSource) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
+            }
+        }
+        return navigationSource;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EStructuralFeature basicGetNavigationSource() {
-		return navigationSource;
-	}
+        return navigationSource;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setNavigationSource(EStructuralFeature newNavigationSource) {
-		EStructuralFeature oldNavigationSource = navigationSource;
-		navigationSource = newNavigationSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
-	}
+        EStructuralFeature oldNavigationSource = navigationSource;
+        navigationSource = newNavigationSource;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return ((InternalEList)getQualifier()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+                return ((InternalEList)getQualifier()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return getQualifier();
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				if (resolve) return getNavigationSource();
-				return basicGetNavigationSource();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+                return getQualifier();
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
+                if (resolve) return getNavigationSource();
+                return basicGetNavigationSource();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				getQualifier().clear();
-				getQualifier().addAll((Collection)newValue);
-				return;
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				setNavigationSource((EStructuralFeature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+                getQualifier().clear();
+                getQualifier().addAll((Collection)newValue);
+                return;
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
+                setNavigationSource((EStructuralFeature)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				getQualifier().clear();
-				return;
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				setNavigationSource((EStructuralFeature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+                getQualifier().clear();
+                return;
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
+                setNavigationSource((EStructuralFeature)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return qualifier != null && !qualifier.isEmpty();
-			case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				return navigationSource != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+                return qualifier != null && !qualifier.isEmpty();
+            case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
+                return navigationSource != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //NavigationCallExpImpl

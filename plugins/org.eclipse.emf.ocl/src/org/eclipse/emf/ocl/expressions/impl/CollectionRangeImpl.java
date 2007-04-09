@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.2 2007/02/14 14:45:39 cdamus Exp $
+ * $Id: CollectionRangeImpl.java,v 1.3 2007/04/09 17:35:26 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -42,213 +42,213 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
  */
 public class CollectionRangeImpl extends CollectionLiteralPartImpl implements CollectionRange {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getLast() <em>Last</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFirst() <em>First</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLast()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLExpression last = null;
+     * @see #getFirst()
+     * @generated
+     * @ordered
+     */
+	protected OCLExpression first;
+
+    /**
+     * The cached value of the '{@link #getLast() <em>Last</em>}' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see #getLast()
+     * @generated
+     * @ordered
+     */
+	protected OCLExpression last;
 
 	/**
-	 * The cached value of the '{@link #getFirst() <em>First</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFirst()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLExpression first = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CollectionRangeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.COLLECTION_RANGE;
-	}
+        return ExpressionsPackage.Literals.COLLECTION_RANGE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression getLast() {
-		return last;
-	}
+        return last;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetLast(OCLExpression newLast, NotificationChain msgs) {
-		OCLExpression oldLast = last;
-		last = newLast;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__LAST, oldLast, newLast);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        OCLExpression oldLast = last;
+        last = newLast;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__LAST, oldLast, newLast);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setLast(OCLExpression newLast) {
-		if (newLast != last) {
-			NotificationChain msgs = null;
-			if (last != null)
-				msgs = ((InternalEObject)last).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__LAST, null, msgs);
-			if (newLast != null)
-				msgs = ((InternalEObject)newLast).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__LAST, null, msgs);
-			msgs = basicSetLast(newLast, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__LAST, newLast, newLast));
-	}
+        if (newLast != last) {
+            NotificationChain msgs = null;
+            if (last != null)
+                msgs = ((InternalEObject)last).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__LAST, null, msgs);
+            if (newLast != null)
+                msgs = ((InternalEObject)newLast).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__LAST, null, msgs);
+            msgs = basicSetLast(newLast, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__LAST, newLast, newLast));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				return basicSetFirst(null, msgs);
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				return basicSetLast(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+                return basicSetFirst(null, msgs);
+            case ExpressionsPackage.COLLECTION_RANGE__LAST:
+                return basicSetLast(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				return getFirst();
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				return getLast();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+                return getFirst();
+            case ExpressionsPackage.COLLECTION_RANGE__LAST:
+                return getLast();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				setFirst((OCLExpression)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				setLast((OCLExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+                setFirst((OCLExpression)newValue);
+                return;
+            case ExpressionsPackage.COLLECTION_RANGE__LAST:
+                setLast((OCLExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				setFirst((OCLExpression)null);
-				return;
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				setLast((OCLExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+                setFirst((OCLExpression)null);
+                return;
+            case ExpressionsPackage.COLLECTION_RANGE__LAST:
+                setLast((OCLExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_RANGE__FIRST:
-				return first != null;
-			case ExpressionsPackage.COLLECTION_RANGE__LAST:
-				return last != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_RANGE__FIRST:
+                return first != null;
+            case ExpressionsPackage.COLLECTION_RANGE__LAST:
+                return last != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression getFirst() {
-		return first;
-	}
+        return first;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetFirst(OCLExpression newFirst, NotificationChain msgs) {
-		OCLExpression oldFirst = first;
-		first = newFirst;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__FIRST, oldFirst, newFirst);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        OCLExpression oldFirst = first;
+        first = newFirst;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__FIRST, oldFirst, newFirst);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setFirst(OCLExpression newFirst) {
-		if (newFirst != first) {
-			NotificationChain msgs = null;
-			if (first != null)
-				msgs = ((InternalEObject)first).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__FIRST, null, msgs);
-			if (newFirst != null)
-				msgs = ((InternalEObject)newFirst).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__FIRST, null, msgs);
-			msgs = basicSetFirst(newFirst, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
-	}
+        if (newFirst != first) {
+            NotificationChain msgs = null;
+            if (first != null)
+                msgs = ((InternalEObject)first).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__FIRST, null, msgs);
+            if (newFirst != null)
+                msgs = ((InternalEObject)newFirst).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.COLLECTION_RANGE__FIRST, null, msgs);
+            msgs = basicSetFirst(newFirst, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
+    }
 
 } //CollectionRangeImpl

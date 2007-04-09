@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.2 2007/02/14 14:45:39 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.3 2007/04/09 17:35:25 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -53,59 +53,59 @@ public class CollectionLiteralExpImpl
 	implements CollectionLiteralExp {
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected static final CollectionKind KIND_EDEFAULT = CollectionKind.COLLECTION_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected CollectionKind kind = KIND_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPart()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList part = null;
+     * @see #getPart()
+     * @generated
+     * @ordered
+     */
+	protected EList part;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CollectionLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP;
+    }
 
 	public Object accept(Visitor v) {
 		return v.visitCollectionLiteralExp(this);
@@ -123,115 +123,115 @@ public class CollectionLiteralExpImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionKind getKind() {
-		return kind;
-	}
+        return kind;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setKind(CollectionKind newKind) {
-		CollectionKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
-	}
+        CollectionKind oldKind = kind;
+        kind = newKind == null ? KIND_EDEFAULT : newKind;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList getPart() {
-		if (part == null) {
-			part = new EObjectContainmentEList(CollectionLiteralPart.class, this, ExpressionsPackage.COLLECTION_LITERAL_EXP__PART);
-		}
-		return part;
-	}
+        if (part == null) {
+            part = new EObjectContainmentEList(CollectionLiteralPart.class, this, ExpressionsPackage.COLLECTION_LITERAL_EXP__PART);
+        }
+        return part;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-				return ((InternalEList)getPart()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
+                return ((InternalEList)getPart()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-				return getKind();
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-				return getPart();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
+                return getKind();
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
+                return getPart();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-				setKind((CollectionKind)newValue);
-				return;
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-				getPart().clear();
-				getPart().addAll((Collection)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
+                setKind((CollectionKind)newValue);
+                return;
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
+                getPart().clear();
+                getPart().addAll((Collection)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-				setKind(KIND_EDEFAULT);
-				return;
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-				getPart().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
+                setKind(KIND_EDEFAULT);
+                return;
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
+                getPart().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-				return kind != KIND_EDEFAULT;
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-				return part != null && !part.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
+                return kind != KIND_EDEFAULT;
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
+                return part != null && !part.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * @generated NOT

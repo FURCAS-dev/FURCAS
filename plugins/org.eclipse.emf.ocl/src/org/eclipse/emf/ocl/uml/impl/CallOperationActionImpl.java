@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallOperationActionImpl.java,v 1.2 2007/02/14 14:45:42 cdamus Exp $
+ * $Id: CallOperationActionImpl.java,v 1.3 2007/04/09 17:35:25 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.uml.impl;
@@ -41,131 +41,131 @@ import org.eclipse.emf.ocl.uml.UMLPackage;
  */
 public class CallOperationActionImpl extends EObjectImpl implements CallOperationAction {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EOperation operation = null;
+     * @see #getOperation()
+     * @generated
+     * @ordered
+     */
+	protected EOperation operation;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CallOperationActionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.CALL_OPERATION_ACTION;
-	}
+        return UMLPackage.Literals.CALL_OPERATION_ACTION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation getOperation() {
-		if (operation != null && operation.eIsProxy()) {
-			InternalEObject oldOperation = (InternalEObject)operation;
-			operation = (EOperation)eResolveProxy(oldOperation);
-			if (operation != oldOperation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
-			}
-		}
-		return operation;
-	}
+        if (operation != null && operation.eIsProxy()) {
+            InternalEObject oldOperation = (InternalEObject)operation;
+            operation = (EOperation)eResolveProxy(oldOperation);
+            if (operation != oldOperation) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
+            }
+        }
+        return operation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EOperation basicGetOperation() {
-		return operation;
-	}
+        return operation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOperation(EOperation newOperation) {
-		EOperation oldOperation = operation;
-		operation = newOperation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
-	}
+        EOperation oldOperation = operation;
+        operation = newOperation;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CALL_OPERATION_ACTION__OPERATION, oldOperation, operation));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
-				if (resolve) return getOperation();
-				return basicGetOperation();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
+                if (resolve) return getOperation();
+                return basicGetOperation();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
-				setOperation((EOperation)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
+                setOperation((EOperation)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
-				setOperation((EOperation)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
+                setOperation((EOperation)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
-				return operation != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.CALL_OPERATION_ACTION__OPERATION:
+                return operation != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //CallActionImpl

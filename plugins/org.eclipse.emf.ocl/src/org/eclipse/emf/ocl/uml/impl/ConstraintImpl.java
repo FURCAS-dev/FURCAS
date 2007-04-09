@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.2 2007/02/14 14:45:42 cdamus Exp $
+ * $Id: ConstraintImpl.java,v 1.3 2007/04/09 17:35:25 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.uml.impl;
@@ -52,20 +52,20 @@ import org.eclipse.emf.ocl.uml.UMLPackage;
  */
 public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final String copyright = ""; //$NON-NLS-1$
 
 	/**
-	 * The default value of the '{@link #getInstanceVarName() <em>Instance Var Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getInstanceVarName() <em>Instance Var Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstanceVarName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInstanceVarName()
+     * @generated
+     * @ordered
+     */
 	protected static final String INSTANCE_VAR_NAME_EDEFAULT = null;
 
 	/**
@@ -74,105 +74,105 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	private String instanceVarName = null;
 	
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
-	 * @generated
-	 * @ordered
-	 */
-	protected OCLExpression body = null;
+     * @see #getBody()
+     * @generated
+     * @ordered
+     */
+	protected OCLExpression body;
 
 	/**
-	 * The cached value of the '{@link #getConstrainedElement() <em>Constrained Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getConstrainedElement() <em>Constrained Element</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstrainedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList constrainedElement = null;
+     * @see #getConstrainedElement()
+     * @generated
+     * @ordered
+     */
+	protected EList constrainedElement;
 
 	/**
-	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStereotype()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStereotype()
+     * @generated
+     * @ordered
+     */
 	protected static final String STEREOTYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStereotype()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStereotype()
+     * @generated
+     * @ordered
+     */
 	protected String stereotype = STEREOTYPE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstraintImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.CONSTRAINT;
-	}
+        return UMLPackage.Literals.CONSTRAINT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression getBody() {
-		return body;
-	}
+        return body;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBody(OCLExpression newBody, NotificationChain msgs) {
-		OCLExpression oldBody = body;
-		body = newBody;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.CONSTRAINT__BODY, oldBody, newBody);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        OCLExpression oldBody = body;
+        body = newBody;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.CONSTRAINT__BODY, oldBody, newBody);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBody(OCLExpression newBody) {
-		if (newBody != body) {
-			NotificationChain msgs = null;
-			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.CONSTRAINT__BODY, null, msgs);
-			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.CONSTRAINT__BODY, null, msgs);
-			msgs = basicSetBody(newBody, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CONSTRAINT__BODY, newBody, newBody));
-	}
+        if (newBody != body) {
+            NotificationChain msgs = null;
+            if (body != null)
+                msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.CONSTRAINT__BODY, null, msgs);
+            if (newBody != null)
+                msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.CONSTRAINT__BODY, null, msgs);
+            msgs = basicSetBody(newBody, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CONSTRAINT__BODY, newBody, newBody));
+    }
 
 	/**
 	 * @return the variable name for "self" in the body of the expression
@@ -193,135 +193,135 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	}
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLPackage.CONSTRAINT__BODY:
-				return basicSetBody(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UMLPackage.CONSTRAINT__BODY:
+                return basicSetBody(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
-				return getInstanceVarName();
-			case UMLPackage.CONSTRAINT__BODY:
-				return getBody();
-			case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				return getConstrainedElement();
-			case UMLPackage.CONSTRAINT__STEREOTYPE:
-				return getStereotype();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
+                return getInstanceVarName();
+            case UMLPackage.CONSTRAINT__BODY:
+                return getBody();
+            case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
+                return getConstrainedElement();
+            case UMLPackage.CONSTRAINT__STEREOTYPE:
+                return getStereotype();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
-				setInstanceVarName((String)newValue);
-				return;
-			case UMLPackage.CONSTRAINT__BODY:
-				setBody((OCLExpression)newValue);
-				return;
-			case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				getConstrainedElement().clear();
-				getConstrainedElement().addAll((Collection)newValue);
-				return;
-			case UMLPackage.CONSTRAINT__STEREOTYPE:
-				setStereotype((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
+                setInstanceVarName((String)newValue);
+                return;
+            case UMLPackage.CONSTRAINT__BODY:
+                setBody((OCLExpression)newValue);
+                return;
+            case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
+                getConstrainedElement().clear();
+                getConstrainedElement().addAll((Collection)newValue);
+                return;
+            case UMLPackage.CONSTRAINT__STEREOTYPE:
+                setStereotype((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
-				setInstanceVarName(INSTANCE_VAR_NAME_EDEFAULT);
-				return;
-			case UMLPackage.CONSTRAINT__BODY:
-				setBody((OCLExpression)null);
-				return;
-			case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				getConstrainedElement().clear();
-				return;
-			case UMLPackage.CONSTRAINT__STEREOTYPE:
-				setStereotype(STEREOTYPE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
+                setInstanceVarName(INSTANCE_VAR_NAME_EDEFAULT);
+                return;
+            case UMLPackage.CONSTRAINT__BODY:
+                setBody((OCLExpression)null);
+                return;
+            case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
+                getConstrainedElement().clear();
+                return;
+            case UMLPackage.CONSTRAINT__STEREOTYPE:
+                setStereotype(STEREOTYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
-				return INSTANCE_VAR_NAME_EDEFAULT == null ? instanceVarName != null : !INSTANCE_VAR_NAME_EDEFAULT.equals(instanceVarName);
-			case UMLPackage.CONSTRAINT__BODY:
-				return body != null;
-			case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				return constrainedElement != null && !constrainedElement.isEmpty();
-			case UMLPackage.CONSTRAINT__STEREOTYPE:
-				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
+                return INSTANCE_VAR_NAME_EDEFAULT == null ? instanceVarName != null : !INSTANCE_VAR_NAME_EDEFAULT.equals(instanceVarName);
+            case UMLPackage.CONSTRAINT__BODY:
+                return body != null;
+            case UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
+                return constrainedElement != null && !constrainedElement.isEmpty();
+            case UMLPackage.CONSTRAINT__STEREOTYPE:
+                return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList getConstrainedElement() {
-		if (constrainedElement == null) {
-			constrainedElement = new EObjectResolvingEList(ENamedElement.class, this, UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT);
-		}
-		return constrainedElement;
-	}
+        if (constrainedElement == null) {
+            constrainedElement = new EObjectResolvingEList(ENamedElement.class, this, UMLPackage.CONSTRAINT__CONSTRAINED_ELEMENT);
+        }
+        return constrainedElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getStereotype() {
-		return stereotype;
-	}
+        return stereotype;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setStereotype(String newStereotype) {
-		String oldStereotype = stereotype;
-		stereotype = newStereotype;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CONSTRAINT__STEREOTYPE, oldStereotype, stereotype));
-	}
+        String oldStereotype = stereotype;
+        stereotype = newStereotype;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.CONSTRAINT__STEREOTYPE, oldStereotype, stereotype));
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
