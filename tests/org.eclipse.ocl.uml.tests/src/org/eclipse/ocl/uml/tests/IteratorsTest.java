@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.3 2007/04/12 19:46:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -109,6 +109,10 @@ public class IteratorsTest
 			// shortest form
 			assertEquals(expected, evaluate(helper, pkg1,
 				"nestedPackage->select(name <> 'bob')")); //$NON-NLS-1$
+            
+            assertEquals(
+                new java.util.LinkedHashSet<Package>(pkg1.getNestedPackages()),
+                evaluate(helper, pkg1, "nestedPackage->select(true)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -136,6 +140,9 @@ public class IteratorsTest
 			// shortest form
 			assertEquals(expected, evaluate(helper, pkg1,
 				"nestedPackage->reject(name = 'bob')")); //$NON-NLS-1$
+            
+            assertTrue(((Collection<?>) evaluate(helper, pkg1,
+                "nestedPackage->reject(true)")).isEmpty()); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -163,6 +170,9 @@ public class IteratorsTest
 			// negative
 			assertNotSame(bob, evaluate(helper, pkg1,
 				"nestedPackage->any(name = 'pkg2')")); //$NON-NLS-1$
+			
+			assertNotNull(evaluate(helper, pkg1,
+			    "nestedPackage->any(true)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -185,6 +195,9 @@ public class IteratorsTest
 			//    different result
 			assertTrue(check(helper, pkg1,
 				"Sequence{}->isUnique(e | e)")); //$NON-NLS-1$
+            
+            assertNotNull(evaluate(helper, pkg1,
+                "nestedPackage->isUnique(name)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -210,6 +223,9 @@ public class IteratorsTest
 			//    does not occur
 			assertFalse(check(helper, pkg1,
 				"Sequence{}->exists(e | e = 'c')")); //$NON-NLS-1$
+            
+            assertTrue(check(helper, pkg1,
+                "nestedPackage->exists(true)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -238,6 +254,9 @@ public class IteratorsTest
 			//    desired result
 			assertTrue(check(helper, pkg1,
 				"Sequence{}->forAll(e | e = 'c')")); //$NON-NLS-1$
+            
+            assertTrue(check(helper, pkg1,
+                "nestedPackage->forAll(true)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -258,6 +277,9 @@ public class IteratorsTest
 
 			assertFalse(check(helper, pkg1,
 				"Sequence{'a', 'b', 'd', 'e'}->one(e | e = 'c')")); //$NON-NLS-1$
+            
+            assertTrue(check(helper, pkg1,
+                "Sequence{'a'}->one(true)")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
