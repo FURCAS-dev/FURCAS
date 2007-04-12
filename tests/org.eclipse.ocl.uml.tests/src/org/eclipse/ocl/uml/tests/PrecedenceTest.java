@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.1 2007/04/05 20:35:09 cdamus Exp $
+ * $Id: PrecedenceTest.java,v 1.2 2007/04/12 20:38:24 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -23,7 +23,13 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.expressions.LetExp;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -79,6 +85,58 @@ public class PrecedenceTest
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
+    }
+
+    /**
+     * Test that the "in" expression part of a let expression consumes as much
+     * of the input as possible, so that
+     * <blockquote><code>let a = ... in a.b</code></blockquote>
+     * parses as
+     * <blockquote><code>let a = ... in (a.b)</code></blockquote>
+     * not as
+     * <blockquote><code>(let a = ... in a).b</code></blockquote>
+     */
+    public void test_let_inExpression_182201() {
+        helper.setContext(getMetaclass("NamedElement")); //$NON-NLS-1$
+
+        OCLExpression<Classifier> expr = null;
+        
+        try {
+            expr = helper.createQuery("let ne : NamedElement = self in ne.name"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+
+        assertNotNull(expr);
+        assertTrue(expr instanceof LetExp);  // not a PropertyCallExp
+        
+        LetExp<Classifier, ?> letExp = (LetExp<Classifier, ?>) expr;
+        assertTrue(letExp.getIn() instanceof PropertyCallExp);
+        
+        try {
+            expr = helper.createQuery(
+                "let n : String = let ne : NamedElement = self in ne.name in n <> null and n.size() > 0"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+
+        assertNotNull(expr);
+        assertTrue(expr instanceof LetExp);  // not a PropertyCallExp
+        
+        letExp = (LetExp<Classifier, ?>) expr;
+        assertTrue(letExp.getIn() instanceof OperationCallExp);
+        
+        @SuppressWarnings("unchecked")
+        OperationCallExp<Classifier, Operation> opCall =
+            (OperationCallExp<Classifier, Operation>) letExp.getIn();
+        
+        assertEquals("and", opCall.getReferredOperation().getName()); //$NON-NLS-1$
+        
+        expr = letExp.getVariable().getInitExpression();
+        assertTrue(expr instanceof LetExp);
+        
+        letExp = (LetExp<Classifier, ?>) letExp.getVariable().getInitExpression();
+        assertTrue(letExp.getIn() instanceof PropertyCallExp);
     }
     
     public void test_equality_relational_179249() {
