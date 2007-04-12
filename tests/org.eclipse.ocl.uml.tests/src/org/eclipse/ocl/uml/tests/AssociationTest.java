@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.3 2007/04/12 18:55:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -200,6 +200,55 @@ public class AssociationTest
 		setValue(anotherStem, stem_length, 0);
 		assertFalse(check(expr, aTree));
 	}
+    
+    /**
+     * Tests support for association class navigation in a scalar (multiplicity
+     * upper bound is 1) direction.
+     */
+    public void test_associationClass_scalar_182193() {
+        InstanceSpecification aTree = instantiate(instancePackage, tree);
+        setValue(aTree, tree_height, 30);
+        
+        InstanceSpecification anApple = instantiate(instancePackage, apple);
+        setValue(anApple, fruit_color, color_red);
+        
+        InstanceSpecification anotherApple = instantiate(instancePackage, apple);
+        setValue(anotherApple, fruit_color, color_green);
+        
+        InstanceSpecification aStem = link(instancePackage,
+                aTree, tree_apples,
+                anApple, apple_tree,
+                stem);
+        setValue(aStem, stem_length, 3);
+        
+        InstanceSpecification anotherStem = link(instancePackage,
+                aTree, tree_apples,
+                anotherApple, apple_tree,
+                stem);
+        setValue(anotherStem, stem_length, 2);
+        
+        // navigate the association end as usual
+        OCLExpression<Classifier> expr = parse(
+            "package ocltest context Apple " + //$NON-NLS-1$
+            "inv: self.tree.height > 20" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        assertTrue(check(expr, anApple));
+        
+        setValue(aTree, tree_height, 20);
+        assertFalse(check(expr, anApple));
+        
+        // navigate to the association class, itself
+        expr = parse(
+            "package ocltest context Apple " + //$NON-NLS-1$
+            "inv: self.stem.length > 0" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        assertTrue(check(expr, anApple));
+        
+        setValue(anotherStem, stem_length, 0);
+        assertFalse(check(expr, anotherApple));
+    }
 	
 	/**
 	 * Tests support for association class navigation qualifiers.
@@ -377,7 +426,8 @@ public class AssociationTest
 	 */
 	public void test_navigateFromAssociationClass_RATLC00538077() {
 		InstanceSpecification aTree = instantiate(instancePackage, tree);
-		
+		setValue(aTree, tree_height, 20);
+        
 		InstanceSpecification anApple = instantiate(instancePackage, apple);
 		setValue(anApple, fruit_color, color_red);
 		
@@ -409,13 +459,13 @@ public class AssociationTest
 		// this end, too, is 1..1
 		expr = parse(
 			"package ocltest context Stem " + //$NON-NLS-1$
-			"inv: self.tree.apples->forAll(a : Apple | a.color <> Color::black)" + //$NON-NLS-1$
+			"inv: self.tree.height > 20" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
 		
 		assertFalse(check(expr, aStem));
 		assertFalse(check(expr, anotherStem));
 		
-		setValue(anotherApple, fruit_color, color_green);
+		setValue(aTree, tree_height, 30);
 		assertTrue(check(expr, aStem));
 		assertTrue(check(expr, anotherStem));
 		

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.2 2007/04/05 20:36:05 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.3 2007/04/12 18:55:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -123,6 +123,7 @@ public abstract class AbstractTestSuite
 	
 	protected static Class tree;
 	protected static Property tree_apples;
+    protected static Property tree_height;
 	
 	protected static Enumeration color;
 	protected static EnumerationLiteral color_black;
@@ -930,7 +931,8 @@ public abstract class AbstractTestSuite
 		
 		tree = (Class) fruitPackage.getOwnedType("Tree"); //$NON-NLS-1$
 		tree_apples = tree.getOwnedAttribute("apples", null); //$NON-NLS-1$
-		
+		tree_height = tree.getOwnedAttribute("height", null); //$NON-NLS-1$
+        
 		color = (Enumeration) fruitPackage.getOwnedType("Color"); //$NON-NLS-1$
 		color_black = color.getOwnedLiteral("black"); //$NON-NLS-1$
 		color_red = color.getOwnedLiteral("red"); //$NON-NLS-1$

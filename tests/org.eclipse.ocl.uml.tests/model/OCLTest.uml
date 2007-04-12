@@ -171,6 +171,9 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aImgwJaiEdunUqiNpqprXQ" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZMPmMJaiEdunUqiNpqprXQ"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_P-3OsOj2EduQJ6rCINLedw" name="height">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_M5BZsJalEdunUqiNpqprXQ" name="Forest">
       <ownedAttribute xmi:id="_UXyRUJalEdunUqiNpqprXQ" name="trees" type="_uwFXkJahEdunUqiNpqprXQ" aggregation="shared" association="_hZEWUJalEdunUqiNpqprXQ">

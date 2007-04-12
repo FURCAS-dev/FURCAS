@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironment.java,v 1.3 2007/02/23 22:05:59 cdamus Exp $
+ * $Id: CompatibilityEnvironment.java,v 1.4 2007/04/12 18:55:24 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -43,6 +43,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -209,7 +210,10 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 					result,
 					owner,
 					oldStyleOwner);
-		}
+		} else if (owner instanceof TypeType) {
+		    // this is a static operation
+            CompatibilityUMLReflection.setStatic(result);
+        }
 		
 		return result;
 	}

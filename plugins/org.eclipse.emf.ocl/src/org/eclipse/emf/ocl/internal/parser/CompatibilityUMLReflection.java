@@ -12,20 +12,24 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUMLReflection.java,v 1.1 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: CompatibilityUMLReflection.java,v 1.2 2007/04/12 18:55:24 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
 
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
@@ -37,6 +41,9 @@ import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
  *
  */
 class CompatibilityUMLReflection extends UMLReflectionImpl {
+    private static final Map<ETypedElement, Boolean> staticFeatures =
+        new java.util.WeakHashMap<ETypedElement, Boolean>();
+    
     private final Environment oldStyle;
     
     CompatibilityUMLReflection(Environment oldStyle) {
@@ -112,5 +119,23 @@ class CompatibilityUMLReflection extends UMLReflectionImpl {
     @Override
     public List<EStructuralFeature> getAttributes(EClassifier classifier) {
         return TypeUtil.getProperties(classifier);
+    }
+    
+    /**
+     * Mark the specified feature as static.
+     * 
+     * @param feature a static structural feature or operation
+     */
+    static void setStatic(ETypedElement feature) {
+        staticFeatures.put(feature, Boolean.TRUE);
+    }
+    
+    /**
+     * Extends the inherited implementation to support an annotation that
+     * denotes static-ness.
+     */
+    public boolean isStatic(Object feature) {
+        return Boolean.TRUE.equals(staticFeatures.get(feature))
+                || super.isStatic(feature);
     }
 }

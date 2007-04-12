@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.12 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.13 2007/04/12 18:55:24 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -494,7 +494,8 @@ public class ValidationVisitorImpl
 		
 		source.accept(this);
 
-		EClassifier refType = TypeUtil.getOCLType(property);
+		EClassifier refType = getPropertyType(getEnvironment(source),
+            source.getType(), property);
 		
 		if (!pc.getQualifier().isEmpty() && (refType instanceof CollectionType)) {
 			// qualifying the navigation results in a non-collection
@@ -505,6 +506,42 @@ public class ValidationVisitorImpl
 		return Boolean.valueOf(TypeUtil.typeCompare(refType, type) == 0);
 	}
 
+    /**
+     * Gets the type of a property, accounting for the possibility that it may
+     * be an association class member end, in which case its multiplicity is
+     * defined as 1 and the type may not be a collection type if otherwise it
+     * would be.
+     * 
+     * @param env the current environment
+     * @param owner the owner type that is the source of the property navigation.
+     *     The interesting case is when this is an association class
+     * @param property the property being navigated.  The interesting case is
+     *     when this is a member end of an association class
+     * 
+     * @return the appropriate OCL-ish property type, which may or may not be
+     *     a collection type
+     */
+    private EClassifier getPropertyType(Environment env, EClassifier owner, EStructuralFeature property) {
+        EClassifier result = TypeUtil.getOCLType(property);
+        
+        if (owner instanceof EClass) {
+            EClass eclass = (EClass) owner;
+            
+            if (env.isAssociationClass(eclass)
+                    && env.getMemberEnds(eclass).contains(property)) {
+                
+                // from the perspective of the association class, its ends have
+                //   multiplicity 1 regardless of their definition (which is from
+                //   the perspective of the classifiers at the ends)
+                if (result instanceof CollectionType) {
+                    result = ((CollectionType) result).getElementType();
+                }
+            }
+        }
+        
+        return result;
+    }
+    
 	/**
 	 * Callback for an AssociationClassCallExp visit. Well-formedness rules:
 	 * <ul>
