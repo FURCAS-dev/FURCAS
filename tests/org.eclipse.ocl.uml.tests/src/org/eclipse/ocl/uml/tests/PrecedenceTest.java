@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.3 2007/04/12 21:13:23 cdamus Exp $
+ * $Id: PrecedenceTest.java,v 1.4 2007/04/13 17:26:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -63,14 +63,12 @@ public class PrecedenceTest
 
         try {
             helper.createInvariant(
-                "self.base_Property.redefinedProperty->isEmpty() = false implies (\n" + //$NON-NLS-1$
+                "self.base_Property.redefinedProperty->isEmpty() = false implies \n" + //$NON-NLS-1$
                 "   self.base_Property.redefinedProperty->size() = 1 and\n" + //$NON-NLS-1$
                 "   let rp : uml::Property =\n" + //$NON-NLS-1$
-                "            self.base_Property.redefinedProperty->asSequence()->at(1) in (\n" + //$NON-NLS-1$
+                "            self.base_Property.redefinedProperty->asSequence()->at(1) in \n" + //$NON-NLS-1$
                 "     self.base_Property.name = rp.name and\n" + //$NON-NLS-1$
-                "     self.base_Property.type = rp.type\n" + //$NON-NLS-1$
-                "   )\n" + //$NON-NLS-1$
-            ")"); //$NON-NLS-1$
+                "     self.base_Property.type = rp.type"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
