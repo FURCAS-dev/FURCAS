@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.3 2007/02/14 18:00:28 cdamus Exp $
+* $Id: OCLLexer.java,v 1.4 2007/04/13 17:08:46 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
@@ -24,6 +24,8 @@ import lpg.lpgjavaruntime.Monitor;
 import lpg.lpgjavaruntime.ParseTable;
 import lpg.lpgjavaruntime.PrsStream;
 import lpg.lpgjavaruntime.RuleAction;
+
+@SuppressWarnings("nls")
 public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexersym, RuleAction
 {
     private static ParseTable prs = new OCLLexerprs();
@@ -58,7 +60,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     }
 
     public String[] orderedExportedSymbols() { return OCLLPGParsersym.orderedTerminalSymbols; }
-    public LexStream getLexStream() { return this; }
+    public LexStream getLexStream() { return (LexStream) this; }
 
     public void lexer(PrsStream prsStream)
     {
@@ -68,7 +70,7 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
     public void lexer(Monitor monitor, PrsStream prsStream)
     {
         if (getInputChars() == null)
-            throw new NullPointerException("LexStream was not initialized"); //$NON-NLS-1$
+            throw new NullPointerException("LexStream was not initialized");
 
         this.prsStream = prsStream;
 
@@ -295,8 +297,9 @@ public class OCLLexer extends LpgLexStream implements OCLLPGParsersym, OCLLexers
                        Char_Acute :
                            Char_AfterASCIINotAcute;
     }
+
 	public OCLLexer(char[] chars) {
-		this(chars, "OCL", ECLIPSE_TAB_VALUE); //$NON-NLS-1$
+		this(chars, "OCL", ECLIPSE_TAB_VALUE);
 		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);
 	}
 
