@@ -9,10 +9,11 @@
 -- *
 -- * Contributors:
 -- *   IBM - Initial API and implementation
+-- *   E.D. Willink - Elimination of some shift-reduce conflicts
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.7 2007/04/05 21:00:17 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.8 2007/04/13 17:08:46 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -208,7 +209,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.7 2007/04/05 21:00:17 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.8 2007/04/13 17:08:46 cdamus Exp $
  */
 	./
 $End
@@ -1010,6 +1011,9 @@ $Rules
 	keywordAsIdentifier -> package
 	keywordAsIdentifier -> context
 	keywordAsIdentifier -> body
+	keywordAsIdentifier -> derive
+	keywordAsIdentifier -> init
+	keywordAsIdentifier -> allInstances
 	
 
 	packageDeclarationCSm -> packageDeclarationCS
@@ -1307,17 +1311,28 @@ $Rules
 	simpleNameCSopt -> simpleNameCS	
 
 	oclExpressionCS -> impliesExpCS
+	oclExpressionCS -> impliesWithLet
 	
 	impliesExpCS -> andOrXorExpCS
+	impliesWithLet -> andOrXorWithLet
 	impliesExpCS ::= impliesExpCS implies andOrXorExpCS
+		/.$NewCase./
+	impliesWithLet ::= impliesExpCS implies andOrXorWithLet
 		/.$NewCase./
 
 	andOrXorExpCS -> equalityExpCS
+	andOrXorWithLet -> equalityWithLet
 	andOrXorExpCS ::= andOrXorExpCS and equalityExpCS
 		/.$NewCase./
 	andOrXorExpCS ::= andOrXorExpCS or equalityExpCS
 		/.$NewCase./
 	andOrXorExpCS ::= andOrXorExpCS xor equalityExpCS
+		/.$NewCase./
+	andOrXorWithLet ::= andOrXorExpCS and equalityWithLet
+		/.$NewCase./
+	andOrXorWithLet ::= andOrXorExpCS or equalityWithLet
+		/.$NewCase./
+	andOrXorWithLet ::= andOrXorExpCS xor equalityWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1337,7 +1352,10 @@ $Rules
 		./
 
 	equalityExpCS -> relationalExpCS
+	equalityWithLet -> relationalWithLet
 	equalityExpCS ::= equalityExpCS '=' relationalExpCS
+		/.$NewCase./
+	equalityWithLet ::= equalityExpCS '=' relationalWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1356,6 +1374,8 @@ $Rules
 		  $EndJava
 		./
 	equalityExpCS ::= equalityExpCS '<>' relationalExpCS
+		/.$NewCase./
+	equalityWithLet ::= equalityExpCS '<>' relationalWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1375,7 +1395,11 @@ $Rules
 		./
 	
 	relationalExpCS -> ifExpCSPrec
+	-- Note that ifExp already embeds let, so we needn't deal with it here
+	relationalWithLet -> additiveWithLet
 	relationalExpCS ::= relationalExpCS '>' ifExpCSPrec
+		/.$NewCase./
+	relationalWithLet ::= relationalExpCS '>' additiveWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1394,6 +1418,8 @@ $Rules
 		  $EndJava
 		./
 	relationalExpCS ::= relationalExpCS '<' ifExpCSPrec
+		/.$NewCase./
+	relationalWithLet ::= relationalExpCS '<' additiveWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1412,6 +1438,8 @@ $Rules
 		  $EndJava
 		./
 	relationalExpCS ::= relationalExpCS '>=' ifExpCSPrec
+		/.$NewCase./
+	relationalWithLet ::= relationalExpCS '>=' additiveWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1430,6 +1458,8 @@ $Rules
 		  $EndJava
 		./
 	relationalExpCS ::= relationalExpCS '<=' ifExpCSPrec
+		/.$NewCase./
+	relationalWithLet ::= relationalExpCS '<=' additiveWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1452,7 +1482,10 @@ $Rules
 	ifExpCSPrec -> ifExpCS
 
 	additiveExpCS -> multiplicativeExpCS
+	additiveWithLet -> multiplicativeWithLet
 	additiveExpCS ::= additiveExpCS '+' multiplicativeExpCS
+		/.$NewCase./
+	additiveWithLet ::= additiveExpCS '+' multiplicativeWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1471,6 +1504,8 @@ $Rules
 		  $EndJava
 		./
 	additiveExpCS ::= additiveExpCS '-' multiplicativeExpCS
+		/.$NewCase./
+	additiveWithLet ::= additiveExpCS '-' multiplicativeWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1490,7 +1525,10 @@ $Rules
 		./
 	
 	multiplicativeExpCS -> unaryExpCS
+	multiplicativeWithLet -> unaryWithLet
 	multiplicativeExpCS ::= multiplicativeExpCS '*' unaryExpCS
+		/.$NewCase./
+	multiplicativeWithLet ::= multiplicativeExpCS '*' unaryWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1509,6 +1547,8 @@ $Rules
 		  $EndJava
 		./
 	multiplicativeExpCS ::= multiplicativeExpCS '/' unaryExpCS
+		/.$NewCase./
+	multiplicativeWithLet ::= multiplicativeExpCS '/' unaryWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
@@ -1528,6 +1568,7 @@ $Rules
 		./
 	
 	unaryExpCS -> dotArrowExpCS
+	unaryWithLet -> letExpCS
 	unaryExpCS ::= '-' unaryExpCS
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
@@ -1634,7 +1675,7 @@ $Rules
 	oclExpCS -> variableExpCS
 	oclExpCS -> literalExpCS
 	oclExpCS -> operationCallExpCS
-	oclExpCS -> letExpCS
+	oclExpCS -> keywordOperationCallExpCS
 
 	oclExpCS ::= '(' oclExpressionCS ')'
 		/.$BeginJava
@@ -2061,6 +2102,8 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
+	callExpCS ::= '.' keywordOperationCallExpCS
+		/.$NewCase./
 	callExpCS ::= '.' featureCallExpCS
 		/.$BeginJava
 					CallExpCS result = (CallExpCS)$getSym(2);
@@ -2298,6 +2341,24 @@ $Rules
 	featureCallExpCS -> attrOrNavCallExpCS
 
 	featureCallExpCS -> operationCallExpCS
+	featureCallExpCS ::= MINUS isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	featureCallExpCS ::= not isMarkedPreCS '(' argumentsCSopt ')'
+		/.$BeginJava
+					SimpleNameCS simpleNameCS = createSimpleNameCS(
+								SimpleTypeEnum.IDENTIFIER_LITERAL,
+								getTokenText($getToken(1))
+							);
+					setOffsets(simpleNameCS, getIToken($getToken(1)));
+					CSTNode result = createOperationCallExpCS(
+							simpleNameCS,
+							(IsMarkedPreCS)$getSym(2),
+							(EList)$getSym(4)
+						);
+					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
+					$setResult(result);
+		  $EndJava
+		./
 
 	operationCallExpCS ::=  simpleNameCS isMarkedPreCS '(' argumentsCSopt ')'
 		/.$BeginJava
@@ -2322,8 +2383,6 @@ $Rules
 		/.$NewCase./
 	operationCallExpCS ::= oclIsNew isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
-	operationCallExpCS ::= allInstances isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
 	operationCallExpCS ::= oclAsType isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= oclIsKindOf isMarkedPreCS '(' argumentsCSopt ')'
@@ -2335,8 +2394,6 @@ $Rules
 	operationCallExpCS ::= NOT_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= PLUS isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= MINUS isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= MULTIPLY isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
@@ -2350,15 +2407,13 @@ $Rules
 		/.$NewCase./
 	operationCallExpCS ::= LESS_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
-	operationCallExpCS ::= not isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
 	operationCallExpCS ::= and isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= or isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
 	operationCallExpCS ::= xor isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
-	operationCallExpCS ::= keywordAsIdentifier isMarkedPreCS '(' argumentsCSopt ')'
+	keywordOperationCallExpCS ::= keywordAsIdentifier isMarkedPreCS '(' argumentsCSopt ')'
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.IDENTIFIER_LITERAL,
