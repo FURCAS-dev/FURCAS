@@ -12,7 +12,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexerprs.java,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+* $Id: OCLKWLexerprs.java,v 1.2 2007/04/13 17:08:46 cdamus Exp $
 */
 
 package org.eclipse.ocl.internal.parser;
