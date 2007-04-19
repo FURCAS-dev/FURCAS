@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.2 2007/02/14 14:46:07 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3 2007/04/19 22:07:49 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -960,6 +960,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 
+                    // bug 183144:  inputting OclInvalid should result in OclInvalid
+                    if (argVal == getOclInvalid()) {
+                        return argVal;
+                    }
+                    
 					switch (opCode) {
 						case PredefinedType.INCLUDES:
 							// Collection::includes(T)

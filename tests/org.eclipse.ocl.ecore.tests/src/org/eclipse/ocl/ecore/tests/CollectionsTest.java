@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.3 2007/03/29 22:34:28 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.4 2007/04/19 22:07:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -29,15 +29,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.Tuple;
+import org.eclipse.ocl.util.TypeUtil;
 
 /**
  * Tests for collection types.
@@ -796,6 +800,65 @@ public class CollectionsTest
             
             assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
             assertTrue(((Collection) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that passing OclInvalid to a collection operation results in
+     * OclInvalid, not a ClassCastException.
+     */
+    public void test_passOclInvalidToCollectionOperation_183144() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        Variable<EClassifier, EParameter> var = ExpressionsFactory.eINSTANCE.createVariable();
+        var.setName("var"); //$NON-NLS-1$
+        var.setType(TypeUtil.resolveSetType(
+            ocl.getEnvironment(), getOCLStandardLibrary().getString()));
+        
+        ocl.getEnvironment().addElement(var.getName(), var, true);
+        
+        try {
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                    "Set{'a', 'b', 'c'}->union(var)"); //$NON-NLS-1$
+            
+            ocl.getEvaluationEnvironment().add("var", getOclInvalid()); //$NON-NLS-1$
+            Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
+            assertInvalid(result);
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that passing null to a collection operation (for which null is
+     * not appropriate) results in OclInvalid, not a NullPointerException.
+     * For example, <code>includes(null)</code> is OK but <code>union(null)</code>
+     * is not.
+     */
+    public void test_passNullToCollectionOperation_183144() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        Variable<EClassifier, EParameter> var = ExpressionsFactory.eINSTANCE.createVariable();
+        var.setName("var"); //$NON-NLS-1$
+        var.setType(TypeUtil.resolveSetType(
+            ocl.getEnvironment(), getOCLStandardLibrary().getString()));
+        
+        ocl.getEnvironment().addElement(var.getName(), var, true);
+        
+        try {
+            OCLExpression<EClassifier> expr = helper.createQuery(
+                    "Set{'a', 'b', 'c'}->union(var)"); //$NON-NLS-1$
+            
+            ocl.getEvaluationEnvironment().add("var", null); //$NON-NLS-1$
+            Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
+            assertInvalid(result);
+            
+            expr = helper.createQuery(
+                    "Set{'a', 'b', 'c'}->includes(null)"); //$NON-NLS-1$
+            result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
+            assertEquals(Boolean.FALSE, result);
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }
