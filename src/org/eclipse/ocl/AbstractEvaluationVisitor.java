@@ -12,14 +12,18 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.2 2007/04/19 22:07:49 cdamus Exp $
  */
 package org.eclipse.ocl;
 
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.internal.OCLPlugin;
+import org.eclipse.ocl.internal.OCLStatusCodes;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.VoidType;
@@ -46,6 +50,9 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	extends AbstractVisitor<Object, C, O, P, EL, PM, S, COA, SSA, CT>
 	implements EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
+    // FIXME: Localize this (too late for PII cut-off for Europa)
+    private static String EvaluationFailed_ERROR_ = "Evaluation failed with an exception"; //$NON-NLS-1$
+    
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
 	
@@ -212,7 +219,19 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @return the result of the evaluation
 	 */
 	public Object visitExpression(OCLExpression<C> expression) {
-		return expression.accept(getVisitor());
+        try {
+            return expression.accept(getVisitor());
+        } catch (RuntimeException e) {
+            String msg = e.getLocalizedMessage();
+            if (msg == null) {
+                msg = OCLMessages.no_message;
+            }
+            OCLPlugin.log(IStatus.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
+                /*OCLMessages.*/EvaluationFailed_ERROR_, e);
+            
+            // failure to evaluate results in OclInvalid
+            return getOclInvalid();
+        }
 	}
 	
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: IterationTemplate.java,v 1.2 2007/04/19 22:07:49 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -81,7 +81,7 @@ class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 		while (true) {
 			// evaluate the body of the expression in this environment
-			Object bodyVal = body.accept(evalVisitor);
+			Object bodyVal = evalVisitor.visitExpression(body);
 	
 			// get the new result value
 			Object resultVal = evaluateResult(iterators, resultName, bodyVal);
