@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.1 2007/01/25 18:32:35 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.2 2007/04/19 22:07:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -230,6 +230,24 @@ public class OCLDocumentTest extends AbstractTestSuite {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * Tests that we get a proper ParserException from parsing an operation
+     * context declaration that is missing the classifier (qualified) name.
+     */
+    public void test_operationContextWithoutClassifierName_182286() {
+        try {
+            ocl.parse(new OCLInput(
+                "context label(s : String) : \n" + //$NON-NLS-1$
+                "  pre: true" //$NON-NLS-1$
+                ));
+        } catch (ParserException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (RuntimeException e) {
+            fail("Got runtime exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Framework methods

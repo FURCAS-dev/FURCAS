@@ -13,7 +13,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.8 2007/04/13 17:08:46 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.9 2007/04/19 22:07:29 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -209,7 +209,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.8 2007/04/13 17:08:46 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.9 2007/04/19 22:07:29 cdamus Exp $
  */
 	./
 $End
@@ -1193,7 +1193,7 @@ $Rules
 		  $EndJava
 		./
 
-	operationContextDeclCS ::= context operationCS prePostOrBodyDeclCSm
+	operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclCSm
 		/.$BeginJava
 					EList prePostOrBodyDecls = (EList)$getSym(3);
 					CSTNode result = createOperationContextDeclCS(
@@ -1254,7 +1254,11 @@ $Rules
 		  $EndJava
 		./
 
+	--
+	-- the 'operationCS' non-terminal is not referenced in this grammar
+	--
 	operationCS -> operationCS1
+	operationCS -> operationCS2
 	operationCS1 ::= IDENTIFIER '(' parametersCSopt ')' ':' typeCSopt
 		/.$BeginJava
 					CSTNode result = createOperationCS(
@@ -1270,7 +1274,7 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	operationCS ::= pathNameCS '::' simpleNameCS '(' parametersCSopt ')' ':' typeCSopt
+	operationCS2 ::= pathNameCS '::' simpleNameCS '(' parametersCSopt ')' ':' typeCSopt
 		/.$BeginJava
 					CSTNode result = createOperationCS(
 							(PathNameCS)$getSym(1),
