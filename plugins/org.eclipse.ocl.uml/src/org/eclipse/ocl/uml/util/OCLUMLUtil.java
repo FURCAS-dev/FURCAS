@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.1 2007/01/25 18:39:27 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.2 2007/04/20 22:42:59 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.uml.internal.UMLForeignMethods;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -174,9 +175,10 @@ public class OCLUMLUtil extends UMLUtil {
 					Package pkg = (Package) root;
 					
 					// we are only looking for root packages
-					if ((pkg.getOwner() == null) && firstName.equals(pkg.getName())) {
+					if ((pkg.getOwner() == null)
+					        && UMLForeignMethods.isNamed(firstName, pkg)) {
 						for (String name : packageNames.subList(1, packageNames.size())) {
-							pkg = pkg.getNestedPackage(name);
+							pkg = UMLForeignMethods.getNestedPackage(pkg, name);
 							
 							if (pkg == null) {
 								return null;
@@ -214,12 +216,13 @@ public class OCLUMLUtil extends UMLUtil {
 					Namespace ns = (Package) root;
 					
 					// we are only looking for root namespaces
-					if ((ns.getOwner() == null) && firstName.equals(ns.getName())) {
+					if ((ns.getOwner() == null)
+					        && UMLForeignMethods.isNamed(firstName, ns)) {
 						for (String name : qualifiedName.subList(1, qualifiedName.size())) {
-							ns = (Namespace) ns.getMember(
-									name,
-									false,
-									UMLPackage.Literals.NAMESPACE);
+							ns = (Namespace) UMLForeignMethods.getMember(
+							    ns,
+								name,
+								UMLPackage.Literals.NAMESPACE);
 							
 							if (ns == null) {
 								break;

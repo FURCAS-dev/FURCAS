@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.4 2007/03/27 18:46:36 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.5 2007/04/20 22:42:54 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -133,6 +133,7 @@ public abstract class AbstractTestSuite
 		TestSuite result = new TestSuite("OCL Tests for Ecore Metamodel"); //$NON-NLS-1$
 		
 		result.addTest(BasicOCLTest.suite());
+		result.addTest(KeywordsTest.suite());
 		result.addTest(ComparisonTest.suite());
         result.addTest(PrimitiveTypesTest.suite());
 		result.addTest(CollectionsTest.suite());

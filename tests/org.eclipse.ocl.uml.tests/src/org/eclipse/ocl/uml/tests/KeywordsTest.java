@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.3 2007/04/20 12:14:27 cdamus Exp $
+ * $Id: KeywordsTest.java,v 1.4 2007/04/20 22:42:58 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -22,21 +22,24 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
- * defined by the LPG grammar but not as reserved words by the OCL spec, or that
- * conflict with OCL reserved words.
+ * defined as reserved words by the OCL specification and/or by the LPG grammar.
  *
  * @author Christian W. Damus (cdamus)
  */
@@ -48,13 +51,14 @@ public class KeywordsTest
     private Package smalltalk;
     private Class collection;
     private Class block;
+    private Class elseClass;
     
 	public KeywordsTest(String name) {
 		super(name);
 	}
 	
 	public static Test suite() {
-		return new TestSuite(KeywordsTest.class, "LPG Keyword Tests"); //$NON-NLS-1$
+		return new TestSuite(KeywordsTest.class, "LPG and OCL Keyword Tests"); //$NON-NLS-1$
 	}
 	
 	public void test_isUnique_162300() {
@@ -68,39 +72,36 @@ public class KeywordsTest
 		}
 	}
     
-	// FIXME: bug 183362
-    public void hide_test_package_162300() {
+	public void test_package_162300() {
         helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
         
         try {
             helper.createInvariant(
-                "self.package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::package}->excludes(self.visibility)"); //$NON-NLS-1$
+                "self._package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)"); //$NON-NLS-1$
             helper.createInvariant(
-                "package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::package}->excludes(self.visibility)"); //$NON-NLS-1$
+                "_package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
     
-    // FIXME: bug 183362
-    public void hide_test_context_162300() {
+    public void test_context_162300() {
         helper.setContext(getMetaclass("Constraint")); //$NON-NLS-1$
         
         try {
-            helper.createInvariant("self.context <> null implies context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
-            helper.createInvariant("context <> null implies self.context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
+            helper.createInvariant("self._context <> null implies _context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
+            helper.createInvariant("_context <> null implies self._context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
     
-    // FIXME: bug 183362
-    public void hide_test_body_162300() {
+    public void test_body_162300() {
         helper.setContext(getMetaclass("OpaqueExpression")); //$NON-NLS-1$
         
         try {
-            helper.createInvariant("self.language->includes('OCL') implies self.body->notEmpty()"); //$NON-NLS-1$
-            helper.createInvariant("language->includes('OCL') implies body->notEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("self.language->includes('OCL') implies self._body->notEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("language->includes('OCL') implies _body->notEmpty()"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -140,13 +141,72 @@ public class KeywordsTest
         }
     }
     
-    // FIXME: bug 183362
-    public void hide_test_contextOperation_162300() {
+    public void test_contextOperation_162300() {
         helper.setContext(block);
         
         try {
-            helper.createInvariant("self.context(self).name = 'Block'"); //$NON-NLS-1$
-            helper.createInvariant("context(self).name = 'Block'"); //$NON-NLS-1$
+            helper.createInvariant("self._context(self).name = 'Block'"); //$NON-NLS-1$
+            helper.createInvariant("_context(self).name = 'Block'"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_reservedPackageName_183362() {
+        helper.setContext(block);
+        
+        try {
+            helper.createInvariant(
+                "Smalltalk::runtime::_context::language.allInstances()->notEmpty()"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_reservedPackageName_packageContext_183362() {
+        try {
+            ocl.parse(new OCLInput(
+                "package Smalltalk::runtime::_context context language inv: true endpackage")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_reservedClassName_183362() {
+        helper.setContext(elseClass);
+        
+        try {
+            helper.createInvariant(
+                "let e : _else = self in _else.allInstances()->forAll(oclIsKindOf(_else))"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        try {
+            helper.createInvariant(
+                "self.oclIsKindOf(_context::_else)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_reservedClassName_operationContext_183362() {
+        try {
+            ocl.parse(new OCLInput(
+                "package Smalltalk context runtime::_context::_else::doIt() : pre: true endpackage")); //$NON-NLS-1$
+            ocl.parse(new OCLInput(
+                "package Smalltalk::runtime::_context context _else::doIt() : pre: true endpackage")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_reservedStateName_183362() {
+        helper.setContext(elseClass);
+        
+        try {
+            helper.createInvariant(
+                "not self.oclIsInState(_init::_body)"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -166,6 +226,7 @@ public class KeywordsTest
         //    defines operations corresponding to OCL iterators
         
         res = new ResourceImpl(URI.createURI("foo://uml")); //$NON-NLS-1$
+        resourceSet.getResources().add(res);
         
         smalltalk = UMLFactory.eINSTANCE.createPackage();
         smalltalk.setName("Smalltalk"); //$NON-NLS-1$
@@ -198,6 +259,22 @@ public class KeywordsTest
         names.clear();
         types.clear();
         collection.createOwnedOperation("isEmpty", names, types, getUMLBoolean()).setIsQuery(true); //$NON-NLS-1$
+        
+        // create some qualified classifier and package names that need
+        //    escaping of one or more segments.  Likewise state names
+        Package contextPackage = smalltalk.createNestedPackage("runtime") //$NON-NLS-1$
+            .createNestedPackage("context"); //$NON-NLS-1$
+        contextPackage.createOwnedClass("language", false); //$NON-NLS-1$
+        elseClass = contextPackage.createOwnedClass("else", false); //$NON-NLS-1$
+        
+        elseClass.createOwnedOperation("doIt", null, null); //$NON-NLS-1$
+        
+        StateMachine machine = (StateMachine) elseClass.createOwnedBehavior(
+            "StateMachine", UMLPackage.Literals.STATE_MACHINE); //$NON-NLS-1$
+        State state = (State) machine.createRegion("region").createSubvertex( //$NON-NLS-1$
+            "init", UMLPackage.Literals.STATE); //$NON-NLS-1$
+        state.createRegion("region").createSubvertex("body", //$NON-NLS-1$ //$NON-NLS-2$
+            UMLPackage.Literals.STATE);
     }
     
     @Override
@@ -207,8 +284,10 @@ public class KeywordsTest
         smalltalk = null;
         collection = null;
         block = null;
+        elseClass = null;
         
         res.unload();
+        resourceSet.getResources().remove(res);
         res = null;
         
         super.tearDown();

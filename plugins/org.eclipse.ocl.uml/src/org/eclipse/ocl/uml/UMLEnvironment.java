@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.4 2007/03/27 18:46:41 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.5 2007/04/20 22:42:59 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -37,6 +37,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.uml.internal.UMLForeignMethods;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -48,7 +49,6 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -294,29 +294,34 @@ public class UMLEnvironment extends AbstractEnvironment<
 
 		// Check whether this package is in the default package
 		if (currPkg != null) {
+		    List<String> lookup = path;
+		    
 			while (currPkg != null) {
 				pkg = currPkg;
 				
-				for (int i = 0; i < path.size(); i++) {
-					String name = path.get(i);
-					EList<Package> subPackages = pkg.getNestedPackages();
-					pkg = null;
-					for (int j = 0; j < subPackages.size(); j++) {
-						pkg = subPackages.get(j);
-						if (name.equals(pkg.getName()))
-							break;
-						pkg = null;
-					}
-					if (pkg == null)
+				for (int i = 0; i < lookup.size(); i++) {
+					String name = lookup.get(i);
+					pkg = UMLForeignMethods.getNestedPackage(pkg, name);
+					
+					if (pkg == null) {
 						break;
+					}
 				}
 				
 				if (pkg != null) {
                     packageCache.put(path, pkg);
 					return pkg;
 				}
-				
-				currPkg = currPkg.getNestingPackage();
+
+                if ((currPkg == getContextPackage()) && (lookup.size() > 0)
+                    && UMLForeignMethods.isNamed(lookup.get(0), currPkg)) {
+                    // handle the case where the first part of the qualified
+                    // name matches the context package name
+                    lookup = lookup.subList(1, lookup.size());
+                } else {
+                    lookup = path;
+                    currPkg = currPkg.getNestingPackage();
+                }
 			}
 		}
 		
@@ -337,27 +342,19 @@ public class UMLEnvironment extends AbstractEnvironment<
 		Namespace currNs = getContextPackage();
 
 		if (names.size() > 1) {
-
+		    List<String> lookup = names;
+		    
 			// Check whether this package is in the default package
 			if (currNs != null) {
 				while (currNs != null) {
 
 					ns = currNs;
-					for (int i = 0; i < names.size() - 1; i++) {
-						String name = names.get(i);
-						EList<NamedElement> members = ns.getMembers();
-						ns = null;
-						for (int j = 0; j < members.size(); j++) {
-							NamedElement member = members.get(j);
-							
-							if (member instanceof Namespace) {
-								ns = (Namespace) member;
-								if (name.equals(ns.getName())) {
-									break;
-								}
-							}
-							ns = null;
-						}
+					int last = lookup.size() - 1;
+					
+					for (int i = 0; i < last; i++) {
+						String name = lookup.get(i);
+						ns = (Namespace) UMLForeignMethods.getMember(ns, name,
+                            UMLPackage.Literals.NAMESPACE);
 						
 						if (ns == null) {
 							break;
@@ -365,32 +362,40 @@ public class UMLEnvironment extends AbstractEnvironment<
 					}
 					
 					if (ns != null) {
-						Classifier member = (Classifier) ns.getMember(
-								names.get(names.size() - 1),
-								false,
-								UMLPackage.Literals.CLASSIFIER);
-						
+					    String name = lookup.get(last);
+					    
+						Classifier member = (Classifier) UMLForeignMethods
+                            .getMember(ns, name, UMLPackage.Literals.CLASSIFIER);
+                        
 						if (member != null) {
                             classifierCache.put(names, member);
 							return member;
 						}
 					}
-					
-					currNs = currNs.getNamespace();
+
+					if ((currNs == getContextPackage()) && (lookup.size() > 1)
+                        && UMLForeignMethods.isNamed(lookup.get(0), currNs)) {
+                        // handle the case where the first part of the qualified
+                        // name matches the context package name
+                        lookup = lookup.subList(1, lookup.size());
+                    } else {
+                        lookup = names;
+                        currNs = currNs.getNamespace();
+                    }
 				}
 			}
 			
 			// Check whether this package exists
 			List<String> newNames = names.subList(0, names.size() - 1);
 			ns = OCLUMLUtil.findNamespace(newNames, getResourceSet());
-			if (ns == null)
+			if (ns == null) {
 				return null;
+			}
 			
-			Classifier member = (Classifier) ns.getMember(
-					names.get(names.size() - 1),
-					false,
-					UMLPackage.Literals.CLASSIFIER);
-			
+			String name = names.get(names.size() - 1);
+			Classifier member = (Classifier) UMLForeignMethods.getMember(ns,
+                name, UMLPackage.Literals.CLASSIFIER);
+            
 			if (member != null) {
                 classifierCache.put(names, member);
 				return member;
@@ -401,10 +406,8 @@ public class UMLEnvironment extends AbstractEnvironment<
 			String name = names.get(0);
 			Classifier result = null;
 			while (currNs != null) {
-				result = (Classifier) currNs.getMember(
-						name,
-						false,
-						UMLPackage.Literals.CLASSIFIER);
+				result = (Classifier) UMLForeignMethods.getMember(currNs, name,
+                    UMLPackage.Literals.CLASSIFIER);
 				
 				if (result != null) {
                     classifierCache.put(names, result);
@@ -479,7 +482,7 @@ public class UMLEnvironment extends AbstractEnvironment<
 		} else {
 			String firstName = pathPrefix.get(0);
 			
-			if (firstName.equals(machine.getName())) {
+			if (UMLForeignMethods.isNamed(firstName, machine)) {
 				// we are allowed to qualify the states by machine name
 				pathPrefix = pathPrefix.subList(1, pathPrefix.size());
 			}
@@ -501,7 +504,7 @@ public class UMLEnvironment extends AbstractEnvironment<
 		} else {
 			String firstName = pathPrefix.get(0);
 			
-			Vertex v = region.getSubvertex(firstName);
+			Vertex v = UMLForeignMethods.getSubvertex(region, firstName);
 			if (v instanceof State) {
 				State state = (State) v;
 				

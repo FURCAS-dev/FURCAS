@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.3 2007/03/27 18:46:39 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.4 2007/04/20 22:42:55 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -40,6 +40,7 @@ import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
@@ -254,28 +255,33 @@ public class EcoreEnvironment
 
 		// Check whether this package is in the default package
 		if (currPkg != null) {
+            List<String> lookup = path;
+            
 			while (currPkg != null) {
 				pkg = currPkg;
 				
-				for (int i = 0; i < path.size(); i++) {
-					String name = path.get(i);
-					EList<EPackage> subPackages = pkg.getESubpackages();
-					pkg = null;
-					for (int j = 0; j < subPackages.size(); j++) {
-						pkg = subPackages.get(j);
-						if (name.equals(pkg.getName()))
-							break;
-						pkg = null;
-					}
-					if (pkg == null)
+				for (int i = 0; i < lookup.size(); i++) {
+					String name = lookup.get(i);
+					pkg = EcoreForeignMethods.getESubpackage(pkg, name);
+					
+					if (pkg == null) {
 						break;
+					}
 				}
 				
 				if (pkg != null) {
 					return pkg;
 				}
-				
-				currPkg = currPkg.getESuperPackage();
+
+                if ((currPkg == getContextPackage()) && (lookup.size() > 0)
+                    && EcoreForeignMethods.isNamed(lookup.get(0), currPkg)) {
+                    // handle the case where the first part of the qualified
+                    // name matches the context package name
+                    lookup = lookup.subList(1, lookup.size());
+                } else {
+                    lookup = path;
+                    currPkg = currPkg.getESuperPackage();
+                }
 			}
 		}
 		
@@ -289,48 +295,61 @@ public class EcoreEnvironment
 		EPackage currPkg = getContextPackage();
 
 		if (names.size() > 1) {
+            List<String> lookup = names;
 
 			// Check whether this package is in the default package
 			if (currPkg != null) {
 				while (currPkg != null) {
 
 					pkg = currPkg;
-					for (int i = 0; i < names.size() - 1; i++) {
-						String name = names.get(i);
-						EList<EPackage> subPackages = pkg.getESubpackages();
-						pkg = null;
-						for (int j = 0; j < subPackages.size(); j++) {
-							pkg = subPackages.get(j);
-							if (name.equals(pkg.getName()))
-								break;
-							pkg = null;
-						}
-						if (pkg == null)
+					for (int i = 0; i < lookup.size() - 1; i++) {
+						String name = lookup.get(i);
+						pkg = EcoreForeignMethods.getESubpackage(pkg, name);
+						
+						if (pkg == null) {
 							break;
+						}
 					}
+					
 					if (pkg != null) {
-						return pkg.getEClassifier(names.get(names.size() - 1));
+						return EcoreForeignMethods.getEClassifier(pkg, lookup
+                            .get(lookup.size() - 1));
 					}
-					currPkg = currPkg.getESuperPackage();
+
+                    if ((currPkg == getContextPackage()) && (lookup.size() > 1)
+                        && EcoreForeignMethods.isNamed(lookup.get(0), currPkg)) {
+                        // handle the case where the first part of the qualified
+                        // name matches the context package name
+                        lookup = lookup.subList(1, lookup.size());
+                    } else {
+                        lookup = names;
+                        currPkg = currPkg.getESuperPackage();
+                    }
 				}
 			}
+			
 			// Check whether this package exists
 			List<String> newNames = names.subList(0, names.size() - 1);
 			pkg = findPackage(newNames, registry);
-			if (pkg == null)
+			if (pkg == null) {
 				return null;
-			return pkg.getEClassifier(names.get(names.size() - 1));
+			}
+			
+			return EcoreForeignMethods.getEClassifier(pkg, names.get(names.size() - 1));
 		} else if (getContextPackage() != null) {
 			String name = names.get(0);
 			EClassifier result = null;
 			while (currPkg != null) {
-				result = currPkg.getEClassifier(name);
+				result = EcoreForeignMethods.getEClassifier(currPkg, name);
+				
 				if (result != null) {
 					return result;
 				}
+				
 				currPkg = currPkg.getESuperPackage();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -537,7 +556,7 @@ public class EcoreEnvironment
 				
 				// only consider root-level packages when searching by name
 				if ((ePackage.getESuperPackage() == null)
-						&& name.equals(ePackage.getName())) {
+						&& EcoreForeignMethods.isNamed(name, ePackage)) {
 					
 					EPackage tentativeResult = findNestedPackage(
 							packageNames.subList(1, packageNames.size()),
@@ -559,33 +578,24 @@ public class EcoreEnvironment
 	 * 
 	 * @param packageNames
 	 *            the relativ package name
-	 * @param package the starting package to look in
+	 * @param epackage the starting package to look in
 	 * @return the matching EPackage, or <code>null</code> if not found
 	 */
 	private static EPackage findNestedPackage(
 			List<String> packageNames,
-			EPackage superpackage) {
+			EPackage epackage) {
 		
-		if (packageNames.isEmpty()) {
-			// stopping condition
-			return superpackage;
+	    EPackage result = epackage;
+	    
+		for (String name : packageNames) {
+		    result = EcoreForeignMethods.getESubpackage(result, name);
+		    
+		    if (result == null) {
+		        break;
+		    }
 		}
 		
-		String name = packageNames.get(0);
-		
-		for (EPackage next : superpackage.getESubpackages()) {
-			if (name.equals(next.getName())) {
-				EPackage tentativeResult = findNestedPackage(
-						packageNames.subList(1, packageNames.size()),
-						next);
-				
-				if (tentativeResult != null) {
-					return tentativeResult;
-				}
-			}
-		}
-
-		return null;
+		return result;
 	}
 
 	/**
