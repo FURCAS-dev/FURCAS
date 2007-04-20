@@ -13,7 +13,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.9 2007/04/19 22:07:29 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.10 2007/04/20 12:14:25 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -206,10 +206,11 @@ $Notice
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D. Willink - Elimination of some shift-reduce conflicts
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.9 2007/04/19 22:07:29 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.10 2007/04/20 12:14:25 cdamus Exp $
  */
 	./
 $End
@@ -1008,11 +1009,6 @@ $Rules
 	keywordAsIdentifier -> collectNested
 	keywordAsIdentifier -> sortedBy
 	keywordAsIdentifier -> closure
-	keywordAsIdentifier -> package
-	keywordAsIdentifier -> context
-	keywordAsIdentifier -> body
-	keywordAsIdentifier -> derive
-	keywordAsIdentifier -> init
 	keywordAsIdentifier -> allInstances
 	
 
@@ -1899,8 +1895,6 @@ $Rules
 	enumLiteralExpCS ::= pathNameCS '::' Sequence
 		/.$NewCase./
 	enumLiteralExpCS ::= pathNameCS '::' Set
-		/.$NewCase./
-	enumLiteralExpCS ::= pathNameCS '::' package
 		/.$BeginJava
 					CSTNode result = createEnumLiteralExpCS(
 							(PathNameCS)$getSym(1),

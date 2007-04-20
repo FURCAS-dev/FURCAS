@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.2 2007/04/05 21:00:14 cdamus Exp $
+ * $Id: KeywordsTest.java,v 1.3 2007/04/20 12:14:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -68,7 +68,8 @@ public class KeywordsTest
 		}
 	}
     
-    public void test_package_162300() {
+	// FIXME: bug 183362
+    public void hide_test_package_162300() {
         helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
         
         try {
@@ -81,7 +82,8 @@ public class KeywordsTest
         }
     }
     
-    public void test_context_162300() {
+    // FIXME: bug 183362
+    public void hide_test_context_162300() {
         helper.setContext(getMetaclass("Constraint")); //$NON-NLS-1$
         
         try {
@@ -92,7 +94,8 @@ public class KeywordsTest
         }
     }
     
-    public void test_body_162300() {
+    // FIXME: bug 183362
+    public void hide_test_body_162300() {
         helper.setContext(getMetaclass("OpaqueExpression")); //$NON-NLS-1$
         
         try {
@@ -137,7 +140,8 @@ public class KeywordsTest
         }
     }
     
-    public void test_contextOperation_162300() {
+    // FIXME: bug 183362
+    public void hide_test_contextOperation_162300() {
         helper.setContext(block);
         
         try {
