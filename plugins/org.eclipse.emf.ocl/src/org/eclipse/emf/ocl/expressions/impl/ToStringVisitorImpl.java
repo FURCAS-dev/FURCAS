@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D. Willink - Robustness enhancements (null-proofing)
  *
  * </copyright>
  *
- * $Id: ToStringVisitorImpl.java,v 1.5 2006/05/26 18:12:33 cdamus Exp $
+ * $Id: ToStringVisitorImpl.java,v 1.6 2007/04/20 12:14:24 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
