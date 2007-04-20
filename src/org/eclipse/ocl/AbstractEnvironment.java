@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.3 2007/03/27 15:04:58 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.4 2007/04/20 22:42:57 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -24,6 +24,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.internal.parser.OCLParser;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -472,10 +473,20 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
     	return operationBodies.get(operation);
 	}
-	
+    
     // implements the interface method
-	public Variable<C, PM> lookupLocal(String name) {
-
+    public Variable<C, PM> lookupLocal(String name) {
+        // support operation parameters whose names need to be escaped in OCL
+        Variable<C, PM> result = doLookupLocal(name);
+        
+        if ((result == null) && OCLParser.isEscaped(name)) {
+            result = doLookupLocal(OCLParser.unescape(name));
+        }
+        
+        return result;
+    }
+    
+    private Variable<C, PM> doLookupLocal(String name) {
 		for (int i = 0; i < namedElements.size(); i++) {
 			VariableEntry elem = namedElements.get(i);
 			if (elem.name.equals(name)) {
@@ -498,9 +509,19 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		} else
 			return null;
 	}
-	
+    
     // implements the interface method
-	public O lookupOperation(C owner, String name, List<? extends TypedElement<C>> args) {
+    public O lookupOperation(C owner, String name, List<? extends TypedElement<C>> args) {
+        O result = doLookupOperation(owner, name, args);
+        
+        if ((result == null) && OCLParser.isEscaped(name)) {
+            result = doLookupOperation(owner, OCLParser.unescape(name), args);
+        }
+        
+        return result;
+    }
+    
+	private O doLookupOperation(C owner, String name, List<? extends TypedElement<C>> args) {
 		if (owner == null) {
 			Variable<C, PM> vdcl = lookupImplicitSourceForOperation(name, args);
 			if (vdcl == null) {
@@ -515,28 +536,50 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public P lookupProperty(C owner, String name) {
-		if (owner == null) {
-			Variable<C, PM> vdcl = lookupImplicitSourceForProperty(name);
-			if (vdcl == null) {
-				return null;
-			}
-			
-			owner = vdcl.getType();
-		}
+	    P result = doLookupProperty(owner, name);
+	    
+	    if ((result == null) && OCLParser.isEscaped(name)) {
+            result = doLookupProperty(owner, OCLParser.unescape(name));
+        }
+	    
+	    return result;
+	}
+	
+	private P doLookupProperty(C owner, String name) {
+        if (owner == null) {
+            Variable<C, PM> vdcl = lookupImplicitSourceForProperty(name);
+            if (vdcl == null) {
+                return null;
+            }
+            
+            owner = vdcl.getType();
+        }
 
-		List<P> properties = TypeUtil.getAttributes(this, owner);
-		
-		for (P property : properties) {
-			if (name.equals(getUMLReflection().getName(property))) {
-				return property;
-			}
-		}
-		
-		return null;
+        List<P> properties = TypeUtil.getAttributes(this, owner);
+        
+        for (P property : properties) {
+            if (name.equals(getUMLReflection().getName(property))) {
+                return property;
+            }
+        }
+        
+        return null;
 	}
 
     // implements the interface method
-	public C lookupAssociationClassReference(C owner, String name) {
+    public C lookupAssociationClassReference(C owner, String name) {
+        C result = doLookupAssociationClassReference(owner, name);
+        
+        if ((result == null) && OCLParser.isEscaped(name)) {
+            result = doLookupAssociationClassReference(owner, OCLParser
+                .unescape(name));
+        }
+        
+        return result;
+    }
+    
+    // implements the interface method
+	private C doLookupAssociationClassReference(C owner, String name) {
 		if (owner == null) {
 			Variable<C, PM> vdcl = lookupImplicitSourceForAssociationClass(name);
 			
@@ -564,7 +607,17 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
     // implements the interface method
-	public C lookupSignal(C owner, String name, List<? extends TypedElement<C>> args) {
+    public C lookupSignal(C owner, String name, List<? extends TypedElement<C>> args) {
+        C result = doLookupSignal(owner, name, args);
+        
+        if ((result == null) && OCLParser.isEscaped(name)) {
+            result = doLookupSignal(owner, OCLParser.unescape(name), args);
+        }
+        
+        return result;
+    }
+    
+    private C doLookupSignal(C owner, String name, List<? extends TypedElement<C>> args) {
 		if (owner == null) {
 			Variable<C, PM> vdcl = lookupImplicitSourceForSignal(name, args);
 			if (vdcl == null) {
@@ -597,7 +650,14 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		S result = null;
 		
 		for (S next : states) {
-			if (lastName.equals(getUMLReflection().getName(next))) {
+		    String nextName = getUMLReflection().getName(next);
+		    
+		    boolean matched = lastName.equals(nextName);
+		    if (!matched && OCLParser.isEscaped(lastName)) {
+		        matched = OCLParser.unescape(lastName).equals(nextName);
+		    }
+		    
+			if (matched) {
 				if (result == null) {
 					result = next;
 				} else {
@@ -626,7 +686,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			vdcl = element.variable;
 			
 			if (!element.isExplicit) {
-				O eop = TypeUtil.findOperationMatching(this, vdcl.getType(), name, args);
+				O eop = lookupOperation(vdcl.getType(), name, args);
 				if (eop != null) {
 					return vdcl;
 				}
@@ -636,7 +696,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			O eop = TypeUtil.findOperationMatching(this, vdcl.getType(), name, args);
+			O eop = lookupOperation(vdcl.getType(), name, args);
 			if (eop != null) {
 				return vdcl;
 			}
@@ -713,8 +773,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			C owner = vdcl.getType();
 			
 			if (!element.isExplicit) {
-				C sig = TypeUtil.findSignalMatching(this, owner,
-                    getUMLReflection().getSignals(owner), name, args);
+				C sig = lookupSignal(owner, name, args);
 				if (sig != null) {
 					return vdcl;
 				}
@@ -726,8 +785,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (vdcl != null) {
 			C owner = vdcl.getType();
 			
-			C sig = TypeUtil.findSignalMatching(this, owner,
-                getUMLReflection().getSignals(owner), name, args);
+			C sig = lookupSignal(owner, name, args);
 			if (sig != null) {
 				return vdcl;
 			}
