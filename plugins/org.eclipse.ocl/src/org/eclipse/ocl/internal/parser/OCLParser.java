@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.6 2007/03/28 20:39:33 cdamus Exp $
+ * $Id: OCLParser.java,v 1.7 2007/04/20 22:42:57 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -169,6 +169,10 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	    /* INVALID_TOKEN_CODE */                 OCLMessages.OCLParseErrorCodes_INVALID_TOKEN
 	};
 
+    /** Prefix used by OCL to escape names that clash with keywords. */
+    private static final String OCL_ESCAPE_PREFIX = "_"; //$NON-NLS-1$
+    private static final int OCL_ESCAPE_LENGTH = OCL_ESCAPE_PREFIX.length();
+    
 	/*
 	 * Factories for creating OCL AST nodes
 	 */	 	
@@ -3084,6 +3088,10 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 // look first for an enumeration literal with this name, rather
                 //    than a static attribute
                 literal = uml.getEnumerationLiteral(enumType, lastToken);
+                if ((literal == null) && isEscaped(lastToken)) {
+                    literal = uml.getEnumerationLiteral(enumType,
+                        unescape(lastToken));
+                }
                 if (literal == null) {
                     // try looking for a static attribute
                     attribute = env.lookupProperty(enumType, lastToken);
@@ -3983,4 +3991,45 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		return null;
 	}
+    
+    /**
+     * Queries whether the specified name is escaped with an initial underscore
+     * (<code>'_'</code>) character.
+     * 
+     * @param name a name
+     * @return whether it begins with the underscore escape prefix
+     */
+    public static boolean isEscaped(String name) {
+        return (name != null) && name.startsWith(OCL_ESCAPE_PREFIX);
+    }
+    
+    /**
+     * Obtains the unescaped name (assuming that it
+     * {@linkplain #isEscaped(String) is escaped}) for another attempt to look
+     * it up.
+     * 
+     * @param name an OCL-escaped name
+     * @return the unescaped name
+     */
+    public static String unescape(String name) {
+        return name.substring(OCL_ESCAPE_LENGTH);
+    }
+    
+    /**
+     * Checks whether the names are equal, accounting for
+     * possibility of underscore-escaped names.
+     * 
+     * @param name a possibly underscore-escaped name
+     * @param elementName name of an element in the model
+     * 
+     * @return whether the element name is equivalent to this name
+     */
+    public static boolean equalName(String name, String elementName) {
+        boolean result = name.equals(elementName);
+        if (!result && isEscaped(name)) {
+            result = unescape(name).equals(elementName);
+        }
+        
+        return result;
+    }
 }
