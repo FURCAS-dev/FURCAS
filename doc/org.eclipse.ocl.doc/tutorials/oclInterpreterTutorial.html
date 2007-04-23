@@ -44,9 +44,10 @@
 				<li>Message expressions</li>
 				<li>
 					Escape syntax for illegal names:  type, operation, attribute, etc. names
-					that correspond to OCL reserved words or that contain spaces or tabs can
-					be escaped by enclosing them in double-quotes (").  e.g.,
-					<pre class="codeblock">self.expressions-&gt;collect(expr : OclExpression | expr."context")</pre>
+					that correspond to OCL reserved words can be escaped in the standard
+					fashion using a leading underscore ('_').  In addition, names that contain spaces or tabs can
+					be escaped by enclosing them in double-quotes ('"'; this is non-standard).  e.g.,
+					<pre class="codeblock">self.ownedRule-&gt;forAll(c : Constraint | c._context = self)</pre>
 				</li>
 			</ul>
 		</p>
@@ -86,7 +87,7 @@
 					example.
 				</li>
 				<li>
-					<a target="_blank" href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14">OCL 2.0</a> specification.
+					<a target="_blank" href="http://www.omg.org/technology/documents/modeling_spec_catalog.htm#OCL">OCL 2.0</a> specification.
 				</li>
 			</ul>
 		</p>
