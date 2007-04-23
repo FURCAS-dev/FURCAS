@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.3 2007/03/29 22:34:30 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.4 2007/04/23 21:16:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -32,10 +32,12 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -44,15 +46,15 @@ import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
- * Implementation of the {@link EvaluationEnvironment} for evaluation of
- * OCL expressions on instances of Ecore models (i.e., on M0 models).
+ * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
+ * expressions on instances of Ecore models (i.e., on M0 models).
  * 
  * @author Tim Klinger (tklinger)
  * @author Christian W. Damus (cdamus)
  */
 public class EcoreEvaluationEnvironment
-		extends AbstractEvaluationEnvironment<
-			EClassifier, EOperation, EStructuralFeature, EClass, EObject> {
+    extends
+    AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> {
 
     /**
      * Initializes me.
@@ -60,228 +62,306 @@ public class EcoreEvaluationEnvironment
     public EcoreEvaluationEnvironment() {
         super();
     }
-    
+
     /**
      * Initializes me with my parent evaluation environment (nesting scope).
      * 
-     * @param parent my parent (nesting scope); must not be <code>null</code>
+     * @param parent
+     *            my parent (nesting scope); must not be <code>null</code>
      */
     public EcoreEvaluationEnvironment(
-    		EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
-    	super(parent);
+            EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
+        super(parent);
     }
-    
-    // implements the inherited specification
-	protected Method getJavaMethodFor(EOperation operation, Object receiver) {
-		Method result = null;
 
-		// in the case of infix operators, we need to replace the name with
-		//    a valid Java name.  We will choose the legacy OCL parser names
-		//    which some clients already depend on
-		String operName = operation.getName();
-		int opcode = OCLStandardLibraryUtil.getOperationCode(operName);
-		switch (opcode) {
-		case PredefinedType.PLUS:
-			operName = "plus"; //$NON-NLS-1$
-			break;
-		case PredefinedType.MINUS:
-			operName = "minus"; //$NON-NLS-1$
-			break;
-		case PredefinedType.TIMES:
-			operName = "times"; //$NON-NLS-1$
-			break;
-		case PredefinedType.DIVIDE:
-			operName = "divide"; //$NON-NLS-1$
-			break;
-		case PredefinedType.LESS_THAN:
-			operName = "lessThan"; //$NON-NLS-1$
-			break;
-		case PredefinedType.LESS_THAN_EQUAL:
-			operName = "lessThanEqual"; //$NON-NLS-1$
-			break;
-		case PredefinedType.GREATER_THAN:
-			operName = "greaterThan"; //$NON-NLS-1$
-			break;
-		case PredefinedType.GREATER_THAN_EQUAL:
-			operName = "greaterThanEqual"; //$NON-NLS-1$
-			break;
-		}
-		
-		// get containing class for the operation
-		EClass container = operation.getEContainingClass();
+    @Override
+    public Object callOperation(EOperation operation, int opcode,
+            Object source, Object[] args)
+        throws IllegalArgumentException {
 
-		// get the corresponding java instance class
-		Class<?> containerClass = container.getInstanceClass();
-
-		// get the parameter types as java classes
-		EList<EParameter> parms = operation.getEParameters();
-		Class<?>[] javaParms = new Class[parms.size()];
-		for (int i = 0, n = parms.size(); i < n; i++) {
-			EParameter parm = parms.get(i);
-			
-			if (parm.isMany()) {
-				javaParms[i] = EList.class; // TODO: EList could be suppressed
-			} else {
-				javaParms[i] = parm.getEType().getInstanceClass();
-			}
-		}
-
-		// lookup the method on the java class
-		try {
-			result = containerClass.getMethod(operName, javaParms);
-		} catch (NoSuchMethodException e) {
-			//do nothing
-		}
-
-		return result;
-	}
-	
-    // implements the inherited specification
-	@Override
-	protected Object getInvalidResult() {
-		return OCLStandardLibraryImpl.OCL_INVALID;
-	}
-    
-    // implements the inherited specification
-    public Object navigateProperty(
-    		EStructuralFeature property,
-    		List<?> qualifiers,
-    		Object target) throws IllegalArgumentException {
-    	
-    	if (target instanceof EObject) {
-    		EObject etarget = (EObject) target;
-    		
-    		if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
-    			return etarget.eGet(property);
-    		}
-    	}
-    	
-    	throw new IllegalArgumentException();
+        // TODO: WBN to pull up createValue to the superclass as a pass-thru
+        // so that subclasses don't have to override callOperation
+        return coerceValue(operation, super.callOperation(operation, opcode,
+            source, args), true);
     }
 
     // implements the inherited specification
-    public Object navigateAssociationClass(
-    		EClassifier associationClass,
-    		EStructuralFeature navigationSource,
-    		Object target)
-    		throws IllegalArgumentException {
+    @Override
+    protected Method getJavaMethodFor(EOperation operation, Object receiver) {
+        Method result = null;
 
-    	if (target instanceof EObject) {
-    		EObject etarget = (EObject) target;
-    		
-	    	EReference ref = getAssociationClassReference(
-				etarget, (EClass) associationClass);
-	
-	    	if (etarget.eClass().getEAllStructuralFeatures().contains(ref)) {
-	    		return etarget.eGet(ref);
-	    	}
-    	}
-    	
-    	throw new IllegalArgumentException();
-	}
+        // in the case of infix operators, we need to replace the name with
+        // a valid Java name. We will choose the legacy OCL parser names
+        // which some clients already depend on
+        String operName = operation.getName();
+        int opcode = OCLStandardLibraryUtil.getOperationCode(operName);
+        switch (opcode) {
+            case PredefinedType.PLUS:
+                operName = "plus"; //$NON-NLS-1$
+                break;
+            case PredefinedType.MINUS:
+                operName = "minus"; //$NON-NLS-1$
+                break;
+            case PredefinedType.TIMES:
+                operName = "times"; //$NON-NLS-1$
+                break;
+            case PredefinedType.DIVIDE:
+                operName = "divide"; //$NON-NLS-1$
+                break;
+            case PredefinedType.LESS_THAN:
+                operName = "lessThan"; //$NON-NLS-1$
+                break;
+            case PredefinedType.LESS_THAN_EQUAL:
+                operName = "lessThanEqual"; //$NON-NLS-1$
+                break;
+            case PredefinedType.GREATER_THAN:
+                operName = "greaterThan"; //$NON-NLS-1$
+                break;
+            case PredefinedType.GREATER_THAN_EQUAL:
+                operName = "greaterThanEqual"; //$NON-NLS-1$
+                break;
+        }
 
-	/**
-	 * Retrieves the reference feature in the specified context object that
-	 * references the specified association class.
-	 * 
-	 * @param context the context object
-	 * @param associationClass the association class that it references
-	 * @return the reference in question
-	 */
-	private EReference getAssociationClassReference(
-			EObject context, EClass associationClass) {
-		EReference result = null;
-		
-		StringBuffer nameBuf = new StringBuffer(associationClass.getName());
-		UnicodeSupport.setCodePointAt(
-				nameBuf,
-				0,
-				UnicodeSupport.toLowerCase(UnicodeSupport.codePointAt(nameBuf, 0)));
-		String name = nameBuf.toString();
-		
-		for (EReference next : context.eClass().getEAllReferences()) {
-			if (name.equals(next.getName()) && (associationClass == next.getEReferenceType())) {
-				result = next;
-				break;
-			}
-		}
-		
-		return result;
-	}
-    
+        // get containing class for the operation
+        EClass container = operation.getEContainingClass();
+
+        // get the corresponding java instance class
+        Class<?> containerClass = container.getInstanceClass();
+
+        // get the parameter types as java classes
+        EList<EParameter> parms = operation.getEParameters();
+        Class<?>[] javaParms = new Class[parms.size()];
+        for (int i = 0, n = parms.size(); i < n; i++) {
+            EParameter parm = parms.get(i);
+
+            if (parm.isMany()) {
+                javaParms[i] = EList.class; // TODO: EList could be suppressed
+            } else {
+                javaParms[i] = parm.getEType().getInstanceClass();
+            }
+        }
+
+        // lookup the method on the java class
+        try {
+            result = containerClass.getMethod(operName, javaParms);
+        } catch (NoSuchMethodException e) {
+            // do nothing
+        }
+
+        return result;
+    }
+
     // implements the inherited specification
-    public Tuple<EOperation, EStructuralFeature> createTuple(
-    		EClassifier type, Map<EStructuralFeature, Object> values) {
-    	
-    	EClass tupleType = (EClass) type;
-    	
-    	EObject tuple = tupleType.getEPackage().getEFactoryInstance().create(tupleType);
-    	
-    	for (Map.Entry<EStructuralFeature, Object> entry : values.entrySet()) {
+    @Override
+    protected Object getInvalidResult() {
+        return OCLStandardLibraryImpl.OCL_INVALID;
+    }
+
+    // implements the inherited specification
+    public Object navigateProperty(EStructuralFeature property,
+            List<?> qualifiers, Object target)
+        throws IllegalArgumentException {
+
+        if (target instanceof EObject) {
+            EObject etarget = (EObject) target;
+
+            if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
+                return coerceValue(property, etarget.eGet(property), true);
+            }
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    /**
+     * Obtains the collection kind appropriate for representing the values of
+     * the specified typed element.
+     * 
+     * @param element
+     *            a typed element (property, operation, etc.)
+     * 
+     * @return the collection kind appropriate to the multiplicity, orderedness,
+     *         and uniqueness of the element, or <code>null</code> if it is
+     *         not many
+     */
+    private static CollectionKind getCollectionKind(ETypedElement element) {
+        return element.isMany() ? CollectionKind.getKind(element.isOrdered(),
+            element.isUnique())
+            : null;
+    }
+
+    /**
+     * Coerces the value of the specified typed element into the appropriate
+     * representation, derived from the supplied <code>value</code> template.
+     * The <code>value</code> is coerced to the appropriate collection kind
+     * for this element (or scalar if not multi-valued). The original value may
+     * either be used as is where possible or, optionally, copied into the new
+     * collection (if multi-valued).
+     * 
+     * @param element
+     *            a typed element (property, operation, etc.)
+     * @param value
+     *            the computed value of the element
+     * @param copy
+     *            whether to copy the specified value into the resulting
+     *            collection/scalar value
+     * 
+     * @return the value, in the appropriate OCL collection type or scalar form
+     *         as required
+     * 
+     * @see #getCollectionKind(ETypedElement)
+     */
+    private Object coerceValue(ETypedElement element, Object value, boolean copy) {
+        CollectionKind kind = getCollectionKind(element);
+
+        if (kind != null) {
+            if (value instanceof Collection) {
+                return copy ? CollectionUtil.createNewCollection(kind,
+                    (Collection<?>) value)
+                    : value;
+            } else {
+                Collection<Object> result = CollectionUtil
+                    .createNewCollection(kind);
+                result.add(value);
+                return result;
+            }
+        } else {
+            if (value instanceof Collection) {
+                Collection<?> collection = (Collection<?>) value;
+                return collection.isEmpty() ? null
+                    : collection.iterator().next();
+            } else {
+                return value;
+            }
+        }
+    }
+
+    // implements the inherited specification
+    public Object navigateAssociationClass(EClassifier associationClass,
+            EStructuralFeature navigationSource, Object target)
+        throws IllegalArgumentException {
+
+        if (target instanceof EObject) {
+            EObject etarget = (EObject) target;
+
+            EReference ref = getAssociationClassReference(etarget,
+                (EClass) associationClass);
+
+            if (etarget.eClass().getEAllStructuralFeatures().contains(ref)) {
+                return etarget.eGet(ref);
+            }
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    /**
+     * Retrieves the reference feature in the specified context object that
+     * references the specified association class.
+     * 
+     * @param context
+     *            the context object
+     * @param associationClass
+     *            the association class that it references
+     * @return the reference in question
+     */
+    private EReference getAssociationClassReference(EObject context,
+            EClass associationClass) {
+        EReference result = null;
+
+        StringBuffer nameBuf = new StringBuffer(associationClass.getName());
+        UnicodeSupport.setCodePointAt(nameBuf, 0, UnicodeSupport
+            .toLowerCase(UnicodeSupport.codePointAt(nameBuf, 0)));
+        String name = nameBuf.toString();
+
+        for (EReference next : context.eClass().getEAllReferences()) {
+            if (name.equals(next.getName())
+                && (associationClass == next.getEReferenceType())) {
+                result = next;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    // implements the inherited specification
+    public Tuple<EOperation, EStructuralFeature> createTuple(EClassifier type,
+            Map<EStructuralFeature, Object> values) {
+
+        EClass tupleType = (EClass) type;
+
+        EObject tuple = tupleType.getEPackage().getEFactoryInstance().create(
+            tupleType);
+
+        for (Map.Entry<EStructuralFeature, Object> entry : values.entrySet()) {
             EStructuralFeature property = entry.getKey();
             Object value = entry.getValue();
-            
+
             if (property.isMany() && (value instanceof Collection)) {
                 @SuppressWarnings("unchecked")
-                Collection<Object> coll = (Collection<Object>) tuple.eGet(property);
+                Collection<Object> coll = (Collection<Object>) tuple
+                    .eGet(property);
                 coll.addAll((Collection<?>) value);
             } else if ((property.getEType() instanceof CollectionType)
-                    && (value instanceof Collection)) {
+                && (value instanceof Collection)) {
                 // always copy the collection to the correct type
-                CollectionType<EClassifier, EOperation> collType =
-                    (CollectionType<EClassifier, EOperation>) property.getEType();
+                @SuppressWarnings("unchecked")
+                CollectionType<EClassifier, EOperation> collType = (CollectionType<EClassifier, EOperation>) property
+                    .getEType();
                 tuple.eSet(property, CollectionUtil.createNewCollection(
-                    collType.getKind(),
-                    (Collection<?>) value));
+                    collType.getKind(), (Collection<?>) value));
             } else {
                 tuple.eSet(property, value);
             }
-    	}
-    	
-    	@SuppressWarnings("unchecked")
-    	Tuple<EOperation, EStructuralFeature> result = 
-    		(Tuple<EOperation, EStructuralFeature>) tuple;
-    	
-    	return result;
+        }
+
+        @SuppressWarnings("unchecked")
+        Tuple<EOperation, EStructuralFeature> result = (Tuple<EOperation, EStructuralFeature>) tuple;
+
+        return result;
     }
-	
-    // implements the inherited specification
-	public Map<EClass, Set<EObject>> createExtentMap(Object object) {
-		if (object instanceof EObject) {
-			return new LazyExtentMap<EClass, EObject>((EObject) object) {
-                // implements the inherited specification
-				@Override
-				protected boolean isInstance(EClass cls, EObject element) {
-					return cls.isInstance(element);
-				}};
-		}
-		
-		return Collections.emptyMap();
-	}
 
     // implements the inherited specification
-	public boolean isKindOf(Object object, EClassifier classifier) {
-		// special case for Integer/UnlimitedNatural and Real which
-        //   are not related types in java but are in OCL
-		if ((object.getClass() == Integer.class)
-				&& (classifier.getInstanceClass() == Double.class)) {
-			return Boolean.TRUE;
-		}
-		
-		return classifier.isInstance(object);
-	}
-    
+    public Map<EClass, Set<EObject>> createExtentMap(Object object) {
+        if (object instanceof EObject) {
+            return new LazyExtentMap<EClass, EObject>((EObject) object) {
+
+                // implements the inherited specification
+                @Override
+                protected boolean isInstance(EClass cls, EObject element) {
+                    return cls.isInstance(element);
+                }
+            };
+        }
+
+        return Collections.emptyMap();
+    }
+
     // implements the inherited specification
-	public boolean isTypeOf(Object object, EClassifier classifier) {
-		if (classifier instanceof EClass && object instanceof EObject) {
-			return ((EObject) object).eClass() == classifier;
-		} else if (!(object instanceof EObject) && !(classifier instanceof EClass)) {
-			return object.getClass() == classifier.getInstanceClass();
-		}
-		
-		return false;
-	}
-    
+    public boolean isKindOf(Object object, EClassifier classifier) {
+        // special case for Integer/UnlimitedNatural and Real which
+        // are not related types in java but are in OCL
+        if ((object.getClass() == Integer.class)
+            && (classifier.getInstanceClass() == Double.class)) {
+            return Boolean.TRUE;
+        }
+
+        return classifier.isInstance(object);
+    }
+
+    // implements the inherited specification
+    public boolean isTypeOf(Object object, EClassifier classifier) {
+        if (classifier instanceof EClass && object instanceof EObject) {
+            return ((EObject) object).eClass() == classifier;
+        } else if (!(object instanceof EObject)
+            && !(classifier instanceof EClass)) {
+            return object.getClass() == classifier.getInstanceClass();
+        }
+
+        return false;
+    }
+
     // implements the inherited specification
     public EClassifier getType(Object object) {
         return EcoreEnvironmentFactory.oclType(object);
