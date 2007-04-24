@@ -13,7 +13,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLPGParser.g,v 1.10 2007/04/20 12:14:25 cdamus Exp $
+-- * $Id: OCLLPGParser.g,v 1.11 2007/04/24 23:27:58 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -210,7 +210,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLPGParser.g,v 1.10 2007/04/20 12:14:25 cdamus Exp $
+ * $Id: OCLLPGParser.g,v 1.11 2007/04/24 23:27:58 cdamus Exp $
  */
 	./
 $End
@@ -299,13 +299,10 @@ $KeyWords
 	inv
 	pre
 	post
-	body
 	context
 	package
 	endpackage
 	def
-	derive
-	init
 	if
 	then
 	else
@@ -320,6 +317,29 @@ $KeyWords
 	true
 	false
 
+	--
+	-- the following appear to have been omitted from the list of
+	-- OCL reserved words in Section 7.4.9.  They will be treated 
+	-- as unreserved for compliance
+	--
+	body
+	derive
+	init
+	null
+--  return  -- don't need a keyword for LPG purposes
+	
+	--
+	-- the following are not used in the OCL concrete syntax, but
+	-- are defined as reserved words in the Spec 7.4.9
+	--
+	attr
+	oper
+
+	--
+	-- the remainder of the LPG keywords are defined as such for the
+	-- purpose of constructing the CST grammar.  They are not OCL
+	-- reserved words
+	--		
 	Set
 	Bag
 	Sequence
@@ -361,7 +381,6 @@ $KeyWords
 	Invalid
 	OclMessage
 	
-	null
 	OclInvalid
 $End
 
@@ -997,19 +1016,30 @@ $Rules
 	-- of constructing an LPG grammar, but that are not reserved by OCL
 	-- and are commonly used in models such as the UML metamodel, itself
 	--
-	keywordAsIdentifier -> iterate
-	keywordAsIdentifier -> forAll
-	keywordAsIdentifier -> exists
-	keywordAsIdentifier -> isUnique
-	keywordAsIdentifier -> any
-	keywordAsIdentifier -> one
-	keywordAsIdentifier -> collect
-	keywordAsIdentifier -> select
-	keywordAsIdentifier -> reject
-	keywordAsIdentifier -> collectNested
-	keywordAsIdentifier -> sortedBy
-	keywordAsIdentifier -> closure
-	keywordAsIdentifier -> allInstances
+	keywordAsIdentifier1 -> iterate
+	keywordAsIdentifier1 -> forAll
+	keywordAsIdentifier1 -> exists
+	keywordAsIdentifier1 -> isUnique
+	keywordAsIdentifier1 -> any
+	keywordAsIdentifier1 -> one
+	keywordAsIdentifier1 -> collect
+	keywordAsIdentifier1 -> select
+	keywordAsIdentifier1 -> reject
+	keywordAsIdentifier1 -> collectNested
+	keywordAsIdentifier1 -> sortedBy
+	keywordAsIdentifier1 -> closure
+	keywordAsIdentifier1 -> allInstances
+	keywordAsIdentifier1 -> body
+	keywordAsIdentifier1 -> derive
+	keywordAsIdentifier1 -> init
+	keywordAsIdentifier1 -> Set
+	keywordAsIdentifier1 -> Bag
+	keywordAsIdentifier1 -> Sequence
+	keywordAsIdentifier1 -> Collection
+	keywordAsIdentifier1 -> OrderedSet
+	--------
+	keywordAsIdentifier -> keywordAsIdentifier1
+	keywordAsIdentifier -> null
 	
 
 	packageDeclarationCSm -> packageDeclarationCS
@@ -1701,7 +1731,7 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	variableExpCS ::= keywordAsIdentifier isMarkedPreCS
+	variableExpCS ::= keywordAsIdentifier1 isMarkedPreCS
 		/.$BeginJava
 					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
@@ -1725,6 +1755,27 @@ $Rules
 	variableExpCS ::= simpleNameCS '[' argumentsCS ']' isMarkedPreCS
 		/.$BeginJava
 					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(5);
+					CSTNode result = createVariableExpCS(
+							(SimpleNameCS)$getSym(1),
+							(EList)$getSym(3),
+							isMarkedPreCS
+						);
+					if (isMarkedPreCS.isPre()) {
+						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
+					} else {
+						setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
+					}
+					$setResult(result);
+		  $EndJava
+		./
+	variableExpCS ::= keywordAsIdentifier1 '[' argumentsCS ']' isMarkedPreCS
+		/.$BeginJava
+					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(5);
+					SimpleNameCS simpleNameCS = createSimpleNameCS(
+								SimpleTypeEnum.IDENTIFIER_LITERAL,
+								getTokenText($getToken(1))
+							);
+					setOffsets(simpleNameCS, getIToken($getToken(1)));
 					CSTNode result = createVariableExpCS(
 							(SimpleNameCS)$getSym(1),
 							(EList)$getSym(3),
@@ -1886,15 +1937,7 @@ $Rules
 
     -- also covers the case of static attribute call, in which
     --    case @pre is not allowed anyway
-	enumLiteralExpCS ::= pathNameCS '::' Bag
-		/.$NewCase./
-	enumLiteralExpCS ::= pathNameCS '::' Collection
-		/.$NewCase./
-	enumLiteralExpCS ::= pathNameCS '::' OrderedSet
-		/.$NewCase./
-	enumLiteralExpCS ::= pathNameCS '::' Sequence
-		/.$NewCase./
-	enumLiteralExpCS ::= pathNameCS '::' Set
+	enumLiteralExpCS ::= pathNameCS '::' keywordAsIdentifier
 		/.$BeginJava
 					CSTNode result = createEnumLiteralExpCS(
 							(PathNameCS)$getSym(1),
