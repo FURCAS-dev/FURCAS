@@ -6,7 +6,8 @@
          point="org.eclipse.help.toc">
       <toc
             file="toc.xml"
-            primary="true"/>
+            primary="true"
+            category="org.eclipse.emf.qtv"/>
       <index path="index"/>
    </extension>
    

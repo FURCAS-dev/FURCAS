@@ -30,11 +30,6 @@
 
 		<h2><a name="refs">References</a></h2>
 		<p>
-			This tutorial assumes that the reader is familiar with the Eclipse extension point
-			architecture.  There is an abundance of on-line help in Eclipse for those
-			unfamiliar with extension points.
-		</p>
-		<p>
 			To see the complete source code for the examples shown in this tutorial, install
 			the <a href="../references/examples/oclQueryExample.html">OCL Query Example</a>
 			plug-in into your workspace.
@@ -49,32 +44,35 @@
 					example.
 				</li>
 				<li><a href="queryTutorial.html">EMF Query Framework</a> tutorial.</li>
-				<li><a target="_blank" href="http://www.omg.org/cgi-bin/doc?ptc/2003-10-14">OCL 2.0</a> specification</li>
+				<li><a target="_blank" href="http://www.omg.org/technology/documents/modeling_spec_catalog.htm#OCL">OCL 2.0</a> specification</li>
 			</ul>
 		</p>
 		<p class="small">[<a href="#top">back to top</a>]</p>
 
 		<h2><a name="basic">Querying a Model with an OCL Condition</a></h2>
 		<p>
-			The simplest kind of query is one that searches for a single kind of model
+			The simplest sort of query is one that searches for a single kind of model
 			element using a single OCL condition.  This OCL condition may be arbitrarily
-			complex, but is still a single expression.  This case is best handled using the
-			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
-			API for its convenience.
+			complex, but is still a single expression.  This case is handled using the
+			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/conditions/BooleanOCLCondition.html">BooleanOCLCondition</a></code>
+			API.
 		</p>
 		<p>
 			For example, to find writers that have written books in more than 2 categories:
 <pre class="codeblock">
 Resource myResource = ... // get the resource
-EObject root = (EObject) myResource.getContents().get(0);
 
-IOclQueryHelper helper = new OclQueryHelper();
+OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+Condition condition = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
+    ocl.getEnvironment(),
+    "self.books-&gt;collect(b : Book | b.category)-&gt;asSet()-&gt;size() &gt; 2",
+    LibraryPackage.Literals.WRITER);
 
-Set results = helper.executeQueryUsingOclFilter(
-	root,
-	LibraryPackage.eINSTANCE.getWriter(),
-	"self.books-&gt;collect(b : Book | b.category)-&gt;asSet()-&gt;size() &gt; 2",
+SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+	new FROM(myResource.getContents()), new WHERE(condition),
 	new NullProgressMonitor());
+
+IQueryResult results = statement.execute();
 	
 // do something with the results
 selectInEditor(results);
@@ -101,7 +99,7 @@ selectInEditor(results);
 		<p>
 			The solution is these cases is a <i>context-free</i> OCL condition.  It allows
 			us to specify a condition which may be applicable to one or more context types,
-			and the query engine will take care of determining to which metaclasses is does
+			and the query engine will take care of determining to which metaclasses it does
 			apply.  In effect, any metaclass on which the OCL expression will parse can be
 			selected by the query.
 		</p>
@@ -110,15 +108,18 @@ selectInEditor(results);
 			This is probably unlikely to match a library, but we can try it anyway:
 <pre class="codeblock">
 Resource myResource = ... // get the resource
-EObject root = (EObject) myResource.getContents().get(0);
 
-IOclQueryHelper helper = new OclQueryHelper();
+OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+Condition condition = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
+    ocl.getEnvironment(),
+    "self.name = 'Bob'",
+    <b>null</b>);  // this indicates a context-free condition
 
-Set results = helper.executeQueryUsingOclFilter(
-	root,
-	<b>null</b>,  // this indicates a context-free condition
-	"self.name = 'Bob'",
+SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+	new FROM(myResource.getContents()), new WHERE(condition),
 	new NullProgressMonitor());
+
+IQueryResult results = statement.execute();
 	
 // do something with the results
 selectInEditor(results);
@@ -133,50 +134,40 @@ selectInEditor(results);
 			all of the writers and books that have a specific name/title?
 			We could try a disjunction ("or") with type testing and casting:
 <pre class="codeblock">
-Set results = helper.executeQueryUsingOclFilter(
-	root,
-	<b>null</b>,  // this indicates a context-free condition
-	"(self.oclIsKindOf(Writer) and self.oclAsType(Writer).name = 'Bob')" +
+Condition condition = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
+    ocl.getEnvironment(),
+    "(self.oclIsKindOf(Writer) and self.oclAsType(Writer).name = 'Bob')" +
 	    "or (self.oclIsKindOf(Book) and self.oclAsType(Book).title = 'Bob')",
-	new NullProgressMonitor());
+    <b>null</b>);  // this indicates a context-free condition
 </pre>
-			but we find that this does not actually work.  We get a
-			<tt>"java.lang.IllegalArgumentException: Conformance Type Mismatch. No common
-			supertype: (Writer), (Book)"</tt> error in trying to parse this expression
+			but we find that this does not actually work.  We get an exception:
+			<tt>"Conformance Type Mismatch. No common supertype: (Writer), (Book)"</tt>
+			in trying to parse this expression
 			against either the <code>Writer</code> or <code>Book</code> type, because OCL
 			knows that neither of these types can be cast to the other.
 		</p>
 		<p>
 			The solution is to break the query into two distinct OCL condition expressions.
-			Because the
-			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/IOclQueryHelper.html">IOclQueryHelper</a></code>
-			API does not accept more than one condition, we use the more flexible (and
-			complex) EMF Query Framework.  We will construct a
-			<code><a href="../references/javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a></code>
-			query with two
-			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/conditions/OclConstraintCondition.html">OclConstraintCondition</a></code>s
-			in a disjunction:
+			That can be separately evaluated (if applicable) and combine them
+			using the capabilities of the core query framework:
 <pre class="codeblock">
 Resource myResource = ... // get the resource
-EObject root = (EObject) myResource.getContents().get(0);
-
-IEStructuralFeatureValueGetter getter = new EStructuralFeatureValueGetter();
 
 // create the two OCL conditions
-Condition cond1 = new OclConstraintCondition(
+Condition cond1 = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
+    ocl.getEnvironment(),
     "self.name = 'Bob'",
-    LibraryPackage.eINSTANCE.getWriter(),
-    getter);
-Condition cond2 = new OclConstraintCondition(
+    LibraryPackage.Literals.WRITER);
+Condition cond2 = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
+    ocl.getEnvironment(),
     "self.title = 'Bob'",
-    LibraryPackage.eINSTANCE.getBook(),
-    getter);
+    LibraryPackage.Literals.BOOK);
 
-// combine them into a SELECT query statement
+// combine them into a single SELECT query statement
 SELECT statement = new SELECT(
     SELECT.UNBOUNDED, false,
-    new FROM(Collections.singleton(root)),
-    new WHERE(cond1.OR(cond2)),
+    new FROM(myResource.getContents()),
+    new WHERE(<b>cond1.OR(cond2)</b>),  // retrieve objects matching either OCL condition
     new NullProgressMonitor());
 
 // execute the query
@@ -187,7 +178,7 @@ selectInEditor(results);
 </pre>
 		</p>
 		<p>
-			This gives us the result that we were looking for.  Using this query framework,
+			This gives us the result that we were looking for.  Using the query framework,
 			we can even mix OCL conditions with other kinds of conditions (implemented in
 			Java code).
 		</p>
@@ -207,7 +198,7 @@ selectInEditor(results);
 		<hr/>
 
 		<p>
-			<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000,2005 IBM Corporation and others. All Rights Reserved.</a>
+			<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
 		</p>
 	</body>
 </html>
