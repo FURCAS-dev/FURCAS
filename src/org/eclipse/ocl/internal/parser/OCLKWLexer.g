@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2006 IBM Corporation and others.
+-- * Copyright (c) 2005, 2007 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+-- * $Id: OCLKWLexer.g,v 1.2 2007/04/24 23:27:58 cdamus Exp $
 -- */
 --
 -- The OCL KeyWord Lexer
@@ -39,7 +39,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -50,7 +50,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLKWLexer.g,v 1.1 2007/01/25 18:24:35 cdamus Exp $
+ * $Id: OCLKWLexer.g,v 1.2 2007/04/24 23:27:58 cdamus Exp $
  */
 	./
 $End
@@ -68,13 +68,10 @@ $Export
 	inv
 	pre
 	post
-	body
 	context
 	package
 	endpackage
 	def
-	derive
-	init
 	if
 	then
 	else
@@ -89,6 +86,29 @@ $Export
 	true
 	false
 
+	--
+	-- the following appear to have been omitted from the list of
+	-- OCL reserved words in Section 7.4.9.  They will be treated 
+	-- as unreserved for compliance
+	--
+	body
+	derive
+	init
+	null
+--  return  -- don't need a keyword for LPG purposes
+	
+	--
+	-- the following are not used in the OCL concrete syntax, but
+	-- are defined as reserved words in the Spec 7.4.9
+	--
+	attr
+	oper
+
+	--
+	-- the remainder of the LPG keywords are defined as such for the
+	-- purpose of constructing the CST grammar.  They are not OCL
+	-- reserved words
+	--		
 	Set
 	Bag
 	Sequence
@@ -129,10 +149,8 @@ $Export
 	OclVoid
 	Invalid
 	OclMessage
-	
-	null
-	OclInvalid
 
+	OclInvalid
 $End
 
 $Terminals
@@ -517,6 +535,18 @@ $Rules
 		| O c l I n v a l i d
 		/.$BeginAction
 			$setResult($_OclInvalid);
+		  $EndAction
+		./
+
+		| a t t r
+		/.$BeginAction
+			$setResult($_attr);
+		  $EndAction
+		./
+
+		| o p e r
+		/.$BeginAction
+			$setResult($_oper);
 		  $EndAction
 		./
 $End
