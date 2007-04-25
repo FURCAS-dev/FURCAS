@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.7 2007/04/20 22:42:57 cdamus Exp $
+ * $Id: OCLParser.java,v 1.8 2007/04/25 21:26:53 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -753,7 +753,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed constraints
 	 * @throws ParserException if unable to parse the expression
 	 */
-	public final List<CT> parsePackageDeclarationCS(List<CT> constraints) throws ParserException {
+	public List<CT> parsePackageDeclarationCS(List<CT> constraints) throws ParserException {
 		EObject cstNode = runParser();
 		
 		if ((cstNode != null) && !(cstNode instanceof PackageDeclarationCS)) {
@@ -778,7 +778,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed OCL constraint
 	 * @throws ParserException if unable to parse the expression
 	 */
-	public final CT parseInvOrDefCS() throws ParserException {
+	public CT parseInvOrDefCS() throws ParserException {
 		
 		EObject cstNode = runParser();
 		if (cstNode != null) {
@@ -801,7 +801,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed OCL constraint
 	 * @throws ParserException if unable to parse the expression
 	 */
-	public final CT parsePrePostOrBodyDeclCS() throws ParserException {
+	public CT parsePrePostOrBodyDeclCS() throws ParserException {
 		
 		EObject cstNode = runParser();
 		if (cstNode != null) {
@@ -826,7 +826,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed OCL constraint
 	 * @throws ParserException if unable to parse the expression
 	 */
-	public final CT parseInitOrDerValueCS() throws ParserException {
+	public CT parseInitOrDerValueCS() throws ParserException {
 		
 		EObject cstNode = runParser();
 		if (cstNode != null) {
@@ -852,7 +852,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed variable declaration
 	 * @throws ParserException if unable to parse the expression
 	 */
-	public final Variable<C, PM>
+	public Variable<C, PM>
 	parseVariableDeclarationCS(boolean addToEnvironment) throws ParserException {
 		
 		EObject cstNode = runParser();
@@ -1007,7 +1007,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param constraints the constraints list to populate
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final void packageDeclarationCS(
+	protected void packageDeclarationCS(
 			PackageDeclarationCS packageDeclarationCS,
 			List<CT> constraints) throws SemanticException {
 		
@@ -1047,7 +1047,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param constraints the constraints list to populate
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final void contextDeclCS(
+	protected void contextDeclCS(
 			ContextDeclCS contextDeclCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			List<CT> constraints
@@ -1070,7 +1070,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param constraints the constraints list to populate
 	 * @throws SemanticException if te expression contains semantic errors
 	 */
-	protected final void operationContextDeclCS(
+	protected void operationContextDeclCS(
 			OperationContextDeclCS operationContextDeclCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			List<CT> constraints
@@ -1093,7 +1093,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed context <code>EOperation</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	operationCS(OperationCS operationCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
 			throws SemanticException {
@@ -1203,7 +1203,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return a list of <code>VariableDeclaration</code>s
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final List<Variable<C, PM>>
+	protected List<Variable<C, PM>>
 	parametersCS(
 			List<VariableCS> parameters,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
@@ -1221,7 +1221,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>Constraint</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CT prePostOrBodyDeclCS(
+	protected CT prePostOrBodyDeclCS(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			PrePostOrBodyDeclCS prePostOrBodyDeclCS) throws SemanticException {
 
@@ -1332,7 +1332,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param constraints the constraints list to populate
 	 * @throws SemanticException if te expression contains semantic errors
 	 */
-	protected final P propertyContextCS(
+	protected P propertyContextCS(
 			PropertyContextCS propertyContextCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			List<CT> constraints) throws SemanticException {
@@ -1430,7 +1430,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>Constraint</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CT initOrDerValueCS(
+	protected CT initOrDerValueCS(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			InitOrDerValueCS initOrDerValueCS) throws SemanticException {
 
@@ -1487,7 +1487,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param constraints the constraints list to populate
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	classifierContextDeclCS(
 			ClassifierContextDeclCS classifierContextDeclCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
@@ -1555,7 +1555,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>Constraint</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CT invOrDefCS(
+	protected CT invOrDefCS(
 			InvOrDefCS invOrDefCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
 			throws SemanticException {
@@ -1585,7 +1585,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>Constraint</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CT invCS(
+	protected CT invCS(
 			InvCS invCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
 			throws SemanticException {
@@ -1623,7 +1623,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>Constraint</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CT defCS(
+	protected CT defCS(
 			DefCS defCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
 			throws SemanticException {
@@ -1758,7 +1758,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>VariableDeclaration</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final Variable<C, PM>
+	protected Variable<C, PM>
 	variableDeclarationCS(
 			VariableCS variableDeclarationCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
@@ -1830,7 +1830,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return list of <code>VariableDeclaration</code>s
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final List<Variable<C, PM>>
+	protected List<Variable<C, PM>>
 	variableDeclarationListCS(
 			List<VariableCS> variableDeclarationCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
@@ -1855,7 +1855,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return an <code>EClassifier</code> representing the type
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final C typeCS(
+	protected C typeCS(
 			TypeCS typeCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
 			throws SemanticException {
@@ -1888,7 +1888,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return a <code>StateExp</code> representing the state
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final StateExp<C, S>
+	protected StateExp<C, S>
 	stateExpCS(
 			OCLExpression<C> source,
 			StateExpCS stateExpCS,
@@ -1936,7 +1936,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return an <code>EClassifier</code> representing the collection type
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final C collectionTypeCS(
+	protected C collectionTypeCS(
 			CollectionTypeCS collectionTypeCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) throws SemanticException {
 
@@ -1960,7 +1960,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>CollectionType</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CollectionKind collectionTypeIdentifierCS(
+	protected CollectionKind collectionTypeIdentifierCS(
 			CollectionTypeIdentifierEnum collectionTypeIdentifier
 		) throws SemanticException {
 	
@@ -2014,7 +2014,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>TupleTypeCS</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final C tupleTypeCS(
+	protected C tupleTypeCS(
 			TupleTypeCS tupleTypeCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2076,7 +2076,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> oclExpressionCS(
+	protected OCLExpression<C> oclExpressionCS(
 			OCLExpressionCS oclExpressionCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2113,7 +2113,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> variableExpCS(
+	protected OCLExpression<C> variableExpCS(
 			VariableExpCS variableExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2165,7 +2165,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>s list
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final List<OCLExpression<C>> qualifiersCS(
+	protected List<OCLExpression<C>> qualifiersCS(
 			List<OCLExpressionCS> arguments,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> navigation
@@ -2242,7 +2242,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>IfExpCS</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final IfExp<C> ifExpCS(
+	protected IfExp<C> ifExpCS(
 			IfExpCS ifExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2284,7 +2284,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>LetExpCS</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final LetExp<C, PM> letExpCS(
+	protected LetExp<C, PM> letExpCS(
 			LetExpCS letExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2301,7 +2301,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C>
+	protected OCLExpression<C>
 	letExpCSRecursive(
 			LetExpCS letExpCS,
 			int index,
@@ -2356,7 +2356,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> simpleNameCS(
+	protected OCLExpression<C> simpleNameCS(
 			SimpleNameCS simpleNameCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source
@@ -2644,7 +2644,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return an <code>EClassifie</code> representing the primitive type
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final C primitiveTypeCS(SimpleTypeEnum simpleType,
+	protected C primitiveTypeCS(SimpleTypeEnum simpleType,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env)
 			throws SemanticException {
 		
@@ -2698,7 +2698,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>LiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final LiteralExp<C>  primitiveLiteralExpCS(
+	protected LiteralExp<C>  primitiveLiteralExpCS(
 			PrimitiveLiteralExpCS primitiveLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2728,7 +2728,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>IntegerLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final IntegerLiteralExp<C> integerLiteralExpCS(
+	protected IntegerLiteralExp<C> integerLiteralExpCS(
 			IntegerLiteralExpCS integerLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2750,7 +2750,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * @return the parsed <code>UnlimitedNaturalLiteralExp</code>
      * @throws SemanticException if the expression contains semantic errors
      */
-    protected final UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExpCS(
+    protected UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExpCS(
             UnlimitedNaturalLiteralExpCS unlimitedNaturalLiteralExpCS,
             Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
         ) throws SemanticException {
@@ -2772,7 +2772,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>RealLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final RealLiteralExp<C> realLiteralExpCS(
+	protected RealLiteralExp<C> realLiteralExpCS(
 			RealLiteralExpCS realLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2795,7 +2795,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>StringLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final StringLiteralExp<C> stringLiteralExpCS(
+	protected StringLiteralExp<C> stringLiteralExpCS(
 			StringLiteralExpCS stringLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2823,7 +2823,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>BooleanLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final BooleanLiteralExp<C> booleanLiteralExpCS(
+	protected BooleanLiteralExp<C> booleanLiteralExpCS(
 			BooleanLiteralExpCS booleanLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2846,7 +2846,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>NullLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final NullLiteralExp<C> nullLiteralExpCS(
+	protected NullLiteralExp<C> nullLiteralExpCS(
 			NullLiteralExpCS nullLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2867,7 +2867,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>InvalidLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final InvalidLiteralExp<C> invalidLiteralExpCS(
+	protected InvalidLiteralExp<C> invalidLiteralExpCS(
 			InvalidLiteralExpCS nullLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2889,7 +2889,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>LiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> literalExpCS(
+	protected OCLExpression<C> literalExpCS(
 			LiteralExpCS literalExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -2922,7 +2922,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>TupleLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final TupleLiteralExp<C, P> tupleLiteralExpCS(
+	protected TupleLiteralExp<C, P> tupleLiteralExpCS(
 			TupleLiteralExpCS tupleLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3056,7 +3056,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>EnumLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> enumLiteralExpCS(
+	protected OCLExpression<C> enumLiteralExpCS(
 			EnumLiteralExpCS enumLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3175,7 +3175,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>CollectionLiteralExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CollectionLiteralExp<C> collectionLiteralExpCS(
+	protected CollectionLiteralExp<C> collectionLiteralExpCS(
 			CollectionLiteralExpCS collectionLiteralExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3236,7 +3236,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>CollectionLiteralPart</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final CollectionLiteralPart<C> collectionLiteralPartCS(
+	protected CollectionLiteralPart<C> collectionLiteralPartCS(
 			CollectionLiteralPartCS collectionLiteralPartCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3287,7 +3287,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> propertyCallExpCS(
+	protected OCLExpression<C> propertyCallExpCS(
 			CallExpCS propertyCallExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3312,7 +3312,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>LoopExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final LoopExp<C, PM> loopExpCS(
+	protected LoopExp<C, PM> loopExpCS(
 			LoopExpCS loopExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3336,7 +3336,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> getCollectionSourceExpression(
+	protected OCLExpression<C> getCollectionSourceExpression(
 			OCLExpressionCS oclExpressionCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 			) throws SemanticException {
@@ -3375,7 +3375,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>IteratorExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final IteratorExp<C, PM> iteratorExpCS(
+	protected IteratorExp<C, PM> iteratorExpCS(
 			IteratorExpCS iteratorExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3518,7 +3518,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>IterateExp</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final IterateExp<C, PM> iterateExpCS(
+	protected IterateExp<C, PM> iterateExpCS(
 			IterateExpCS iterateExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3609,7 +3609,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> modelPropertyCallExpCS(
+	protected OCLExpression<C> modelPropertyCallExpCS(
 			FeatureCallExpCS modelPropertyCallExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3677,7 +3677,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> operationCallExpCS(
+	protected OCLExpression<C> operationCallExpCS(
 			OperationCallExpCS operationCallExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env
 		) throws SemanticException {
@@ -3830,7 +3830,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed <code>OCLExpression</code>
 	 * @throws SemanticException if the expression contains semantic errors
 	 */
-	protected final OCLExpression<C> messageExpCS(
+	protected OCLExpression<C> messageExpCS(
 			MessageExpCS messageExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) throws SemanticException {
 		MessageExp<C, COA, SSA> result;
