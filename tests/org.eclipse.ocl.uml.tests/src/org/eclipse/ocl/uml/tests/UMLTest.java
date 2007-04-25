@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.3 2007/04/23 21:13:54 cdamus Exp $
+ * $Id: UMLTest.java,v 1.4 2007/04/25 22:22:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -23,22 +23,13 @@ import junit.framework.AssertionFailedError;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Tests involving constructs peculiar to the UML.
@@ -323,64 +314,6 @@ public class UMLTest
             // success
             System.out
                 .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        }
-    }
-
-    public void test_nonNavigableAttribute() {
-        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
-
-        InstanceSpecification aForest = instantiate(instancePackage, forest);
-
-        InstanceSpecification aTree = instantiate(instancePackage, tree);
-        addValue(aForest, forest_trees, aTree);
-        InstanceSpecification anotherTree = instantiate(instancePackage, tree);
-        addValue(aForest, forest_trees, anotherTree);
-        aTree = instantiate(instancePackage, tree);
-        addValue(aForest, forest_trees, aTree);
-
-        assertTrue(check(expr, anotherTree));
-    }
-
-    public void test_nonNavigableAttribute_instanceSpecification() {
-        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
-
-        EPackage epackage = UMLUtil.convertToEcore(fruitPackage, null)
-            .iterator().next();
-        EFactory factory = epackage.getEFactoryInstance();
-
-        // create a resource to provide the context of instance searches
-        Resource res = new ResourceImpl(URI.createURI("test://foo")); //$NON-NLS-1$
-        res.eAdapters().add(new ECrossReferenceAdapter());
-
-        EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
-
-        try {
-            EClass eTree = (EClass) epackage.getEClassifier("Tree"); //$NON-NLS-1$
-            EClass eForest = (EClass) epackage.getEClassifier("Forest"); //$NON-NLS-1$
-            EStructuralFeature eTrees = eForest.getEStructuralFeature("trees"); //$NON-NLS-1$
-
-            EObject aForest = factory.create(eForest);
-            res.getContents().add(aForest);
-
-            @SuppressWarnings("unchecked")
-            EList<EObject> trees = (EList<EObject>) aForest.eGet(eTrees);
-            EObject aTree = factory.create(eTree);
-            res.getContents().add(aTree);
-            trees.add(aTree);
-            EObject anotherTree = factory.create(eTree);
-            res.getContents().add(anotherTree);
-            trees.add(anotherTree);
-            aTree = factory.create(eTree);
-            res.getContents().add(aTree);
-            trees.add(aTree);
-
-            assertTrue(check(expr, anotherTree));
-        } finally {
-            res.unload();
         }
     }
 
