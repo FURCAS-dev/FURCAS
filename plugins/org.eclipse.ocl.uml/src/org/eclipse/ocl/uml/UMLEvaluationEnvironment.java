@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.3 2007/04/23 21:15:56 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.4 2007/04/25 22:22:00 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -711,7 +711,6 @@ public class UMLEvaluationEnvironment
                     if (isInstance(associationClass, link)) {
                         // found a link!
                         links.add(link);
-                        break;
                     }
                 }
             }
