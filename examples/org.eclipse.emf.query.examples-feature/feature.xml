@@ -39,8 +39,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/technology/emft/updates/"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
    </url>
 
    <includes

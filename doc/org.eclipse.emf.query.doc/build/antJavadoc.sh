@@ -6,8 +6,8 @@
 pluginName="org.eclipse.emf.query"; 
 
 # string labels for javadoc content
-windowTitle="EMFT Query Javadoc";
-groupTitle="EMFT Query";
+windowTitle="EMF Model Query Javadoc";
+groupTitle="EMF Model Query";
 
 # files to exclude from javadoc process - use Ant syntax
 javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
