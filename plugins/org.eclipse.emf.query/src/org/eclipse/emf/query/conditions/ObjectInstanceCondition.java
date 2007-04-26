@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,12 +17,33 @@
 
 package org.eclipse.emf.query.conditions;
 
+import org.eclipse.emf.ecore.EAttribute;
+
 /**
  * A <code>Condition</code> that tests whether the argument object instance
  * equals a given object.
+ * <p>
+ * To look for <code>null</code> values in scalar {@link EAttribute}s, use the
+ * special {@link #IS_NULL} shared condition instance.  Simply initializing
+ * an <code>ObjectInstanceCondition</code> with <code>null</code> will not
+ * work.
+ * </p>
  */
 public class ObjectInstanceCondition
 	extends Condition {
+
+    /**
+     * A special object-instance condition checking that a value is
+     * <code>null</code>.
+     * 
+     * @since 1.1
+     */
+    public static final ObjectInstanceCondition IS_NULL =
+        new ObjectInstanceCondition(null) {
+
+        public boolean isSatisfied(Object obj) {
+            return obj == null;
+        }};
 
 	private Object object;
 

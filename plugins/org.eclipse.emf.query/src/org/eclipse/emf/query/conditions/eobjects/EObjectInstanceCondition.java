@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,15 +18,35 @@
 package org.eclipse.emf.query.conditions.eobjects;
 
 import org.eclipse.emf.ecore.EObject;
-
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.query.handlers.PruneHandler;
 
 /**
  * A <code>EObjectCondition</code> that tests whether the argument eObject
  * instance equals a given eObject.
+ * <p>
+ * To look for <code>null</code> values in scalar {@link EReference}s, use the
+ * special {@link #IS_NULL} shared condition instance.  Simply initializing
+ * an <code>EObjectInstanceCondition</code> with <code>null</code> will not
+ * work.
+ * </p>
  */
 public class EObjectInstanceCondition
 	extends EObjectTypeRelationCondition {
+
+    /**
+     * A special object-instance condition checking that a value is
+     * <code>null</code>.
+     * 
+     * @since 1.1
+     */
+    public static final EObjectInstanceCondition IS_NULL =
+        new EObjectInstanceCondition(null) {
+        
+        public boolean isSatisfied(Object object) {
+            return object == null;
+        }};
 
 	private EObject eObject;
 
@@ -53,7 +73,8 @@ public class EObjectInstanceCondition
 	 *            the <code>PruneHandler</code> to use
 	 */
 	public EObjectInstanceCondition(EObject eObject, PruneHandler pruneHandler) {
-		super(eObject.eClass(), pruneHandler);
+		super(eObject == null? EcorePackage.Literals.EOBJECT : eObject.eClass(),
+		    pruneHandler);
 		this.eObject = eObject;
 	}
 

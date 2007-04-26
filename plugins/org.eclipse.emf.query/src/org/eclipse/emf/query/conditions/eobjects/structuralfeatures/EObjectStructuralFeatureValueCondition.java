@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,9 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.ConditionPolicy;
+import org.eclipse.emf.query.conditions.ObjectInstanceCondition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
+import org.eclipse.emf.query.conditions.eobjects.EObjectInstanceCondition;
 import org.eclipse.emf.query.handlers.PruneHandler;
 
 /**
@@ -208,18 +210,31 @@ public abstract class EObjectStructuralFeatureValueCondition
 			this.resolve = resolve;
 		}
 
-		public boolean isSatisfied(EObject eObject) {
-			Object featureValue = null;
-			if (eObject.eIsSet(feature)) {
-				featureValue = eStructuralFeatureValueGetter.eGet(
-					eObject, feature, resolve);
-			} else if (feature.getDefaultValue() != null) {
-				featureValue = feature.getDefaultValue();
-			}
-			
-			return (featureValue == null) ? false : policy.isSatisfied(
-					valueCondition, featureValue);
-		}
+        public boolean isSatisfied(EObject eObject) {
+            Object featureValue = null;
+            if (eObject.eIsSet(feature)) {
+                featureValue = eStructuralFeatureValueGetter.eGet(eObject,
+                    feature, resolve);
+            } else if (feature.getDefaultValue() != null) {
+                featureValue = feature.getDefaultValue();
+            }
+
+            if (featureValue == null) {
+                // are we looking for null via the supported means?
+                if (isNullSearchCondition(valueCondition)) {
+                    return policy.isSatisfied(valueCondition, featureValue);
+                }
+
+                return false;
+            }
+
+            return policy.isSatisfied(valueCondition, featureValue);
+        }
+
+        private boolean isNullSearchCondition(Condition cond) {
+            return (cond == ObjectInstanceCondition.IS_NULL)
+                || (cond == EObjectInstanceCondition.IS_NULL);
+        }
 	}
 
 	private static class MultipleStructuralFeatureValueEvaluator
