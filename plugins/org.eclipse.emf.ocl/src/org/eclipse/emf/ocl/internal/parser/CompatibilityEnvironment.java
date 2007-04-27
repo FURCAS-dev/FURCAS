@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironment.java,v 1.4 2007/04/12 18:55:24 cdamus Exp $
+ * $Id: CompatibilityEnvironment.java,v 1.5 2007/04/27 22:01:49 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -263,6 +263,11 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 					CompatibilityUtil.getOldAS(oldStyle, var));
 	}
 	
+    @Override @SuppressWarnings("unchecked")
+    public List<EOperation> getAdditionalOperations(EClassifier classifier) {
+        return TypeUtil.getAdditionalOperations(classifier);
+    }
+    
     @Override
 	public EOperation defineOperation(EClassifier owner, String name,
 			EClassifier type, List<Variable<EClassifier, EParameter>> params,
@@ -283,6 +288,11 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
         // can't undefine a feature in the old implementation
     }
 	
+    @Override @SuppressWarnings("unchecked")
+    public List<EStructuralFeature> getAdditionalAttributes(EClassifier classifier) {
+        return TypeUtil.getAdditionalProperties(classifier);
+    }
+    
     @Override
 	public EStructuralFeature defineAttribute(EClassifier owner,
 			Variable<EClassifier, EParameter> variable, Constraint constraint) {
