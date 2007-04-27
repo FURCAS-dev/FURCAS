@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.14 2007/02/23 22:05:59 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.15 2007/04/27 22:01:49 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -977,7 +977,7 @@ public class TypeUtil {
 		return result;
 	}
 	
-	static EList getAdditionalProperties(EClassifier owner) {
+	public static EList getAdditionalProperties(EClassifier owner) {
 		EList result = null;
 		
 		AdditionalFeaturesAdapter adapter = getAdditionalFeatures(owner);
@@ -1005,7 +1005,7 @@ public class TypeUtil {
 		return result;
 	}
 	
-	static EList getAdditionalOperations(EClassifier owner) {
+	public static EList getAdditionalOperations(EClassifier owner) {
 		EList result = null;
 		
 		AdditionalFeaturesAdapter adapter = getAdditionalFeatures(owner);

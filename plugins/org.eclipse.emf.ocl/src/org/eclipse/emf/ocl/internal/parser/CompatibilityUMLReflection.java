@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUMLReflection.java,v 1.2 2007/04/12 18:55:24 cdamus Exp $
+ * $Id: CompatibilityUMLReflection.java,v 1.3 2007/04/27 22:01:49 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -20,10 +20,8 @@ package org.eclipse.emf.ocl.internal.parser;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -31,7 +29,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.parser.Environment;
-import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 
@@ -113,12 +110,12 @@ class CompatibilityUMLReflection extends UMLReflectionImpl {
     
     @Override
     public List<EOperation> getOperations(EClassifier classifier) {
-        return TypeUtil.getOperations(classifier);
+        return UMLReflectionImpl.INSTANCE.getOperations(classifier);
     }
     
     @Override
     public List<EStructuralFeature> getAttributes(EClassifier classifier) {
-        return TypeUtil.getProperties(classifier);
+        return UMLReflectionImpl.INSTANCE.getAttributes(classifier);
     }
     
     /**
