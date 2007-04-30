@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: VariableCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: VariableCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -65,24 +66,24 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' reference.
+     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getTypeCS()
      * @generated
      * @ordered
      */
-	protected TypeCS typeCS = null;
+	protected TypeCS typeCS;
 
 	/**
-     * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' reference.
+     * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getInitExpression()
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS initExpression = null;
+	protected OCLExpressionCS initExpression;
 
 	/**
      * <!-- begin-user-doc -->
@@ -130,36 +131,41 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
      * @generated
      */
 	public TypeCS getTypeCS() {
-        if (typeCS != null && typeCS.eIsProxy()) {
-            InternalEObject oldTypeCS = (InternalEObject)typeCS;
-            typeCS = (TypeCS)eResolveProxy(oldTypeCS);
-            if (typeCS != oldTypeCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS, typeCS));
-            }
-        }
         return typeCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public TypeCS basicGetTypeCS() {
-        return typeCS;
+    public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
+        TypeCS oldTypeCS = typeCS;
+        typeCS = newTypeCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS, newTypeCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setTypeCS(TypeCS newTypeCS) {
-        TypeCS oldTypeCS = typeCS;
-        typeCS = newTypeCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS, typeCS));
+        if (newTypeCS != typeCS) {
+            NotificationChain msgs = null;
+            if (typeCS != null)
+                msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
+            if (newTypeCS != null)
+                msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
+            msgs = basicSetTypeCS(newTypeCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, newTypeCS, newTypeCS));
     }
 
 	/**
@@ -168,39 +174,60 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
      * @generated
      */
 	public OCLExpressionCS getInitExpression() {
-        if (initExpression != null && initExpression.eIsProxy()) {
-            InternalEObject oldInitExpression = (InternalEObject)initExpression;
-            initExpression = (OCLExpressionCS)eResolveProxy(oldInitExpression);
-            if (initExpression != oldInitExpression) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, initExpression));
-            }
-        }
         return initExpression;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OCLExpressionCS basicGetInitExpression() {
-        return initExpression;
+    public NotificationChain basicSetInitExpression(OCLExpressionCS newInitExpression, NotificationChain msgs) {
+        OCLExpressionCS oldInitExpression = initExpression;
+        initExpression = newInitExpression;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setInitExpression(OCLExpressionCS newInitExpression) {
-        OCLExpressionCS oldInitExpression = initExpression;
-        initExpression = newInitExpression;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, initExpression));
+        if (newInitExpression != initExpression) {
+            NotificationChain msgs = null;
+            if (initExpression != null)
+                msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
+            if (newInitExpression != null)
+                msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
+            msgs = basicSetInitExpression(newInitExpression, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, newInitExpression, newInitExpression));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.VARIABLE_CS__TYPE_CS:
+                return basicSetTypeCS(null, msgs);
+            case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+                return basicSetInitExpression(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -211,11 +238,9 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
             case CSTPackage.VARIABLE_CS__NAME:
                 return getName();
             case CSTPackage.VARIABLE_CS__TYPE_CS:
-                if (resolve) return getTypeCS();
-                return basicGetTypeCS();
+                return getTypeCS();
             case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-                if (resolve) return getInitExpression();
-                return basicGetInitExpression();
+                return getInitExpression();
         }
         return super.eGet(featureID, resolve, coreType);
     }

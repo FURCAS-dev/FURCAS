@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: IfExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -52,7 +52,7 @@ public class IfExpCSImpl extends OCLExpressionCSImpl implements IfExpCS {
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS thenExpression = null;
+	protected OCLExpressionCS thenExpression;
 
 	/**
      * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
@@ -62,7 +62,7 @@ public class IfExpCSImpl extends OCLExpressionCSImpl implements IfExpCS {
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS elseExpression = null;
+	protected OCLExpressionCS elseExpression;
 
 	/**
      * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
@@ -72,7 +72,7 @@ public class IfExpCSImpl extends OCLExpressionCSImpl implements IfExpCS {
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS condition = null;
+	protected OCLExpressionCS condition;
 
 	/**
      * <!-- begin-user-doc -->

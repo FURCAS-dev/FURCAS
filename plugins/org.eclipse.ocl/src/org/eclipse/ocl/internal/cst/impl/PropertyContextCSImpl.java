@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: PropertyContextCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -53,7 +53,7 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
      * @generated
      * @ordered
      */
-	protected PathNameCS pathNameCS = null;
+	protected PathNameCS pathNameCS;
 
 	/**
      * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
@@ -63,7 +63,7 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
      * @generated
      * @ordered
      */
-	protected SimpleNameCS simpleNameCS = null;
+	protected SimpleNameCS simpleNameCS;
 
 	/**
      * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
@@ -73,7 +73,7 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
      * @generated
      * @ordered
      */
-	protected TypeCS typeCS = null;
+	protected TypeCS typeCS;
 
 	/**
      * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' containment reference.
@@ -83,7 +83,7 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
      * @generated
      * @ordered
      */
-	protected InitOrDerValueCS initOrDerValueCS = null;
+	protected InitOrDerValueCS initOrDerValueCS;
 
 	/**
      * <!-- begin-user-doc -->

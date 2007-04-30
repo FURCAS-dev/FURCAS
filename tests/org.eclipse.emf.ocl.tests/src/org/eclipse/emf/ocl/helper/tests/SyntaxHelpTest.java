@@ -530,6 +530,27 @@ public class SyntaxHelpTest
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    public void test_completeCollectionValuedSubexpression() {
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+
+        helper.setContext(apple);
+        
+        try {
+            List<Choice> choices = helper.getSyntaxHelp(
+                    ConstraintType.INVARIANT, "true and false implies color->"); //$NON-NLS-1$
+            
+            // iterators and collection operations
+            assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "forAll"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "size"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceType.STRUCTURAL_FEATURE, "color"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "preferredLabel"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Test framework

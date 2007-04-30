@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: InitOrDerValueCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -50,17 +51,17 @@ public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOr
      * @generated
      * @ordered
      */
-	protected InitOrDerValueCS initOrDerValueCS = null;
+	protected InitOrDerValueCS initOrDerValueCS;
 
 	/**
-     * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' reference.
+     * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getExpressionCS()
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS expressionCS = null;
+	protected OCLExpressionCS expressionCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -125,39 +126,58 @@ public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOr
      * @generated
      */
 	public OCLExpressionCS getExpressionCS() {
-        if (expressionCS != null && expressionCS.eIsProxy()) {
-            InternalEObject oldExpressionCS = (InternalEObject)expressionCS;
-            expressionCS = (OCLExpressionCS)eResolveProxy(oldExpressionCS);
-            if (expressionCS != oldExpressionCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, oldExpressionCS, expressionCS));
-            }
-        }
         return expressionCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OCLExpressionCS basicGetExpressionCS() {
-        return expressionCS;
+    public NotificationChain basicSetExpressionCS(OCLExpressionCS newExpressionCS, NotificationChain msgs) {
+        OCLExpressionCS oldExpressionCS = expressionCS;
+        expressionCS = newExpressionCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setExpressionCS(OCLExpressionCS newExpressionCS) {
-        OCLExpressionCS oldExpressionCS = expressionCS;
-        expressionCS = newExpressionCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, oldExpressionCS, expressionCS));
+        if (newExpressionCS != expressionCS) {
+            NotificationChain msgs = null;
+            if (expressionCS != null)
+                msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, null, msgs);
+            if (newExpressionCS != null)
+                msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, null, msgs);
+            msgs = basicSetExpressionCS(newExpressionCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
+                return basicSetExpressionCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -169,8 +189,7 @@ public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOr
                 if (resolve) return getInitOrDerValueCS();
                 return basicGetInitOrDerValueCS();
             case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
-                if (resolve) return getExpressionCS();
-                return basicGetExpressionCS();
+                return getExpressionCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

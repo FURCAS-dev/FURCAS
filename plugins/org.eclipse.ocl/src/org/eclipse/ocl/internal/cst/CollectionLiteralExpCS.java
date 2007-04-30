@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCS.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: CollectionLiteralExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -66,7 +66,7 @@ public interface CollectionLiteralExpCS extends LiteralExpCS {
 	void setCollectionType(CollectionTypeIdentifierEnum value);
 
 	/**
-     * Returns the value of the '<em><b>Collection Literal Parts</b></em>' reference list.
+     * Returns the value of the '<em><b>Collection Literal Parts</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS}.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -74,9 +74,9 @@ public interface CollectionLiteralExpCS extends LiteralExpCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Collection Literal Parts</em>' reference list.
+     * @return the value of the '<em>Collection Literal Parts</em>' containment reference list.
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralExpCS_CollectionLiteralParts()
-     * @model type="org.eclipse.ocl.internal.cst.CollectionLiteralPartCS"
+     * @model type="org.eclipse.ocl.internal.cst.CollectionLiteralPartCS" containment="true"
      * @generated
      */
 	EList<CollectionLiteralPartCS> getCollectionLiteralParts();

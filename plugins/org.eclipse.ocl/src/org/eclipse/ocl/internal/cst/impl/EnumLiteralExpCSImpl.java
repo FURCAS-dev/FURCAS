@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: EnumLiteralExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -44,24 +45,24 @@ import org.eclipse.ocl.internal.cst.SimpleNameCS;
  */
 public class EnumLiteralExpCSImpl extends LiteralExpCSImpl implements EnumLiteralExpCS {
 	/**
-     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' reference.
+     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getPathNameCS()
      * @generated
      * @ordered
      */
-	protected PathNameCS pathNameCS = null;
+	protected PathNameCS pathNameCS;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' reference.
+     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getSimpleNameCS()
      * @generated
      * @ordered
      */
-	protected SimpleNameCS simpleNameCS = null;
+	protected SimpleNameCS simpleNameCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -88,36 +89,41 @@ public class EnumLiteralExpCSImpl extends LiteralExpCSImpl implements EnumLitera
      * @generated
      */
 	public PathNameCS getPathNameCS() {
-        if (pathNameCS != null && pathNameCS.eIsProxy()) {
-            InternalEObject oldPathNameCS = (InternalEObject)pathNameCS;
-            pathNameCS = (PathNameCS)eResolveProxy(oldPathNameCS);
-            if (pathNameCS != oldPathNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, oldPathNameCS, pathNameCS));
-            }
-        }
         return pathNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public PathNameCS basicGetPathNameCS() {
-        return pathNameCS;
+    public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+        PathNameCS oldPathNameCS = pathNameCS;
+        pathNameCS = newPathNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setPathNameCS(PathNameCS newPathNameCS) {
-        PathNameCS oldPathNameCS = pathNameCS;
-        pathNameCS = newPathNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, oldPathNameCS, pathNameCS));
+        if (newPathNameCS != pathNameCS) {
+            NotificationChain msgs = null;
+            if (pathNameCS != null)
+                msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, null, msgs);
+            if (newPathNameCS != null)
+                msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, null, msgs);
+            msgs = basicSetPathNameCS(newPathNameCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
     }
 
 	/**
@@ -126,39 +132,60 @@ public class EnumLiteralExpCSImpl extends LiteralExpCSImpl implements EnumLitera
      * @generated
      */
 	public SimpleNameCS getSimpleNameCS() {
-        if (simpleNameCS != null && simpleNameCS.eIsProxy()) {
-            InternalEObject oldSimpleNameCS = (InternalEObject)simpleNameCS;
-            simpleNameCS = (SimpleNameCS)eResolveProxy(oldSimpleNameCS);
-            if (simpleNameCS != oldSimpleNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
-            }
-        }
         return simpleNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SimpleNameCS basicGetSimpleNameCS() {
-        return simpleNameCS;
+    public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+        SimpleNameCS oldSimpleNameCS = simpleNameCS;
+        simpleNameCS = newSimpleNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
+        if (newSimpleNameCS != simpleNameCS) {
+            NotificationChain msgs = null;
+            if (simpleNameCS != null)
+                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            if (newSimpleNameCS != null)
+                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
+                return basicSetPathNameCS(null, msgs);
+            case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
+                return basicSetSimpleNameCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -167,11 +194,9 @@ public class EnumLiteralExpCSImpl extends LiteralExpCSImpl implements EnumLitera
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
-                if (resolve) return getPathNameCS();
-                return basicGetPathNameCS();
+                return getPathNameCS();
             case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
-                if (resolve) return getSimpleNameCS();
-                return basicGetSimpleNameCS();
+                return getSimpleNameCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

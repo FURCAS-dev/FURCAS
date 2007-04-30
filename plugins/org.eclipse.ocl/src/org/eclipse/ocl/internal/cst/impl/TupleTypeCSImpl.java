@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: TupleTypeCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.internal.cst.CSTPackage;
 import org.eclipse.ocl.internal.cst.TupleTypeCS;
@@ -43,14 +46,14 @@ import org.eclipse.ocl.internal.cst.VariableCS;
  */
 public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
 	/**
-     * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
+     * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getVariables()
      * @generated
      * @ordered
      */
-	protected EList<VariableCS> variables = null;
+	protected EList<VariableCS> variables;
 
 	/**
      * <!-- begin-user-doc -->
@@ -78,12 +81,26 @@ public class TupleTypeCSImpl extends TypeCSImpl implements TupleTypeCS {
      */
 	public EList<VariableCS> getVariables() {
         if (variables == null) {
-            variables = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, CSTPackage.TUPLE_TYPE_CS__VARIABLES);
+            variables = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.TUPLE_TYPE_CS__VARIABLES);
         }
         return variables;
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.TUPLE_TYPE_CS__VARIABLES:
+                return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

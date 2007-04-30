@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.2 2007/02/14 14:46:06 cdamus Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -64,14 +65,14 @@ public class CollectionTypeCSImpl extends TypeCSImpl implements CollectionTypeCS
 	protected CollectionTypeIdentifierEnum collectionTypeIdentifier = COLLECTION_TYPE_IDENTIFIER_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' reference.
+     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getTypeCS()
      * @generated
      * @ordered
      */
-	protected TypeCS typeCS = null;
+	protected TypeCS typeCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -119,39 +120,58 @@ public class CollectionTypeCSImpl extends TypeCSImpl implements CollectionTypeCS
      * @generated
      */
 	public TypeCS getTypeCS() {
-        if (typeCS != null && typeCS.eIsProxy()) {
-            InternalEObject oldTypeCS = (InternalEObject)typeCS;
-            typeCS = (TypeCS)eResolveProxy(oldTypeCS);
-            if (typeCS != oldTypeCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, oldTypeCS, typeCS));
-            }
-        }
         return typeCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public TypeCS basicGetTypeCS() {
-        return typeCS;
+    public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
+        TypeCS oldTypeCS = typeCS;
+        typeCS = newTypeCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, oldTypeCS, newTypeCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setTypeCS(TypeCS newTypeCS) {
-        TypeCS oldTypeCS = typeCS;
-        typeCS = newTypeCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, oldTypeCS, typeCS));
+        if (newTypeCS != typeCS) {
+            NotificationChain msgs = null;
+            if (typeCS != null)
+                msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
+            if (newTypeCS != null)
+                msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
+            msgs = basicSetTypeCS(newTypeCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, newTypeCS, newTypeCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
+                return basicSetTypeCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -162,8 +182,7 @@ public class CollectionTypeCSImpl extends TypeCSImpl implements CollectionTypeCS
             case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
                 return getCollectionTypeIdentifier();
             case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-                if (resolve) return getTypeCS();
-                return basicGetTypeCS();
+                return getTypeCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

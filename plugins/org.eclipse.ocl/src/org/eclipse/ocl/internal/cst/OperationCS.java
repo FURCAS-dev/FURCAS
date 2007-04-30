@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCS.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: OperationCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -39,59 +39,59 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface OperationCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Path Name CS</b></em>' reference.
+     * Returns the value of the '<em><b>Path Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path Name CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Path Name CS</em>' reference.
+     * @return the value of the '<em>Path Name CS</em>' containment reference.
      * @see #setPathNameCS(PathNameCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getOperationCS_PathNameCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	PathNameCS getPathNameCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.OperationCS#getPathNameCS <em>Path Name CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.OperationCS#getPathNameCS <em>Path Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Path Name CS</em>' reference.
+     * @param value the new value of the '<em>Path Name CS</em>' containment reference.
      * @see #getPathNameCS()
      * @generated
      */
 	void setPathNameCS(PathNameCS value);
 
 	/**
-     * Returns the value of the '<em><b>Simple Name CS</b></em>' reference.
+     * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simple Name CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Simple Name CS</em>' reference.
+     * @return the value of the '<em>Simple Name CS</em>' containment reference.
      * @see #setSimpleNameCS(SimpleNameCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getOperationCS_SimpleNameCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	SimpleNameCS getSimpleNameCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.OperationCS#getSimpleNameCS <em>Simple Name CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.OperationCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Simple Name CS</em>' reference.
+     * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
      * @see #getSimpleNameCS()
      * @generated
      */
 	void setSimpleNameCS(SimpleNameCS value);
 
 	/**
-     * Returns the value of the '<em><b>Parameters</b></em>' reference list.
+     * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.ocl.internal.cst.VariableCS}.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -99,34 +99,34 @@ public interface OperationCS extends CSTNode {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameters</em>' reference list.
+     * @return the value of the '<em>Parameters</em>' containment reference list.
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getOperationCS_Parameters()
-     * @model type="org.eclipse.ocl.internal.cst.VariableCS"
+     * @model type="org.eclipse.ocl.internal.cst.VariableCS" containment="true"
      * @generated
      */
 	EList<VariableCS> getParameters();
 
 	/**
-     * Returns the value of the '<em><b>Type CS</b></em>' reference.
+     * Returns the value of the '<em><b>Type CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Type CS</em>' reference.
+     * @return the value of the '<em>Type CS</em>' containment reference.
      * @see #setTypeCS(TypeCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getOperationCS_TypeCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	TypeCS getTypeCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.OperationCS#getTypeCS <em>Type CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.OperationCS#getTypeCS <em>Type CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type CS</em>' reference.
+     * @param value the new value of the '<em>Type CS</em>' containment reference.
      * @see #getTypeCS()
      * @generated
      */

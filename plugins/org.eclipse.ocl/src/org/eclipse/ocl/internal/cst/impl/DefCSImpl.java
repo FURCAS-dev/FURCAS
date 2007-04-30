@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: DefCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: DefCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -42,14 +43,14 @@ import org.eclipse.ocl.internal.cst.DefExpressionCS;
  */
 public class DefCSImpl extends InvOrDefCSImpl implements DefCS {
 	/**
-     * The cached value of the '{@link #getDefExpressionCS() <em>Def Expression CS</em>}' reference.
+     * The cached value of the '{@link #getDefExpressionCS() <em>Def Expression CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getDefExpressionCS()
      * @generated
      * @ordered
      */
-	protected DefExpressionCS defExpressionCS = null;
+	protected DefExpressionCS defExpressionCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -76,39 +77,58 @@ public class DefCSImpl extends InvOrDefCSImpl implements DefCS {
      * @generated
      */
 	public DefExpressionCS getDefExpressionCS() {
-        if (defExpressionCS != null && defExpressionCS.eIsProxy()) {
-            InternalEObject oldDefExpressionCS = (InternalEObject)defExpressionCS;
-            defExpressionCS = (DefExpressionCS)eResolveProxy(oldDefExpressionCS);
-            if (defExpressionCS != oldDefExpressionCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.DEF_CS__DEF_EXPRESSION_CS, oldDefExpressionCS, defExpressionCS));
-            }
-        }
         return defExpressionCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public DefExpressionCS basicGetDefExpressionCS() {
-        return defExpressionCS;
+    public NotificationChain basicSetDefExpressionCS(DefExpressionCS newDefExpressionCS, NotificationChain msgs) {
+        DefExpressionCS oldDefExpressionCS = defExpressionCS;
+        defExpressionCS = newDefExpressionCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_CS__DEF_EXPRESSION_CS, oldDefExpressionCS, newDefExpressionCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setDefExpressionCS(DefExpressionCS newDefExpressionCS) {
-        DefExpressionCS oldDefExpressionCS = defExpressionCS;
-        defExpressionCS = newDefExpressionCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_CS__DEF_EXPRESSION_CS, oldDefExpressionCS, defExpressionCS));
+        if (newDefExpressionCS != defExpressionCS) {
+            NotificationChain msgs = null;
+            if (defExpressionCS != null)
+                msgs = ((InternalEObject)defExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_CS__DEF_EXPRESSION_CS, null, msgs);
+            if (newDefExpressionCS != null)
+                msgs = ((InternalEObject)newDefExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_CS__DEF_EXPRESSION_CS, null, msgs);
+            msgs = basicSetDefExpressionCS(newDefExpressionCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_CS__DEF_EXPRESSION_CS, newDefExpressionCS, newDefExpressionCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.DEF_CS__DEF_EXPRESSION_CS:
+                return basicSetDefExpressionCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -117,8 +137,7 @@ public class DefCSImpl extends InvOrDefCSImpl implements DefCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.DEF_CS__DEF_EXPRESSION_CS:
-                if (resolve) return getDefExpressionCS();
-                return basicGetDefExpressionCS();
+                return getDefExpressionCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

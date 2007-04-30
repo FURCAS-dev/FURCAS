@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: ClassifierContextDeclCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -44,24 +45,24 @@ import org.eclipse.ocl.internal.cst.PathNameCS;
  */
 public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements ClassifierContextDeclCS {
 	/**
-     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' reference.
+     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getPathNameCS()
      * @generated
      * @ordered
      */
-	protected PathNameCS pathNameCS = null;
+	protected PathNameCS pathNameCS;
 
 	/**
-     * The cached value of the '{@link #getInvOrDefCS() <em>Inv Or Def CS</em>}' reference.
+     * The cached value of the '{@link #getInvOrDefCS() <em>Inv Or Def CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getInvOrDefCS()
      * @generated
      * @ordered
      */
-	protected InvOrDefCS invOrDefCS = null;
+	protected InvOrDefCS invOrDefCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -88,36 +89,41 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
      * @generated
      */
 	public PathNameCS getPathNameCS() {
-        if (pathNameCS != null && pathNameCS.eIsProxy()) {
-            InternalEObject oldPathNameCS = (InternalEObject)pathNameCS;
-            pathNameCS = (PathNameCS)eResolveProxy(oldPathNameCS);
-            if (pathNameCS != oldPathNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, oldPathNameCS, pathNameCS));
-            }
-        }
         return pathNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public PathNameCS basicGetPathNameCS() {
-        return pathNameCS;
+    public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+        PathNameCS oldPathNameCS = pathNameCS;
+        pathNameCS = newPathNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setPathNameCS(PathNameCS newPathNameCS) {
-        PathNameCS oldPathNameCS = pathNameCS;
-        pathNameCS = newPathNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, oldPathNameCS, pathNameCS));
+        if (newPathNameCS != pathNameCS) {
+            NotificationChain msgs = null;
+            if (pathNameCS != null)
+                msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
+            if (newPathNameCS != null)
+                msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
+            msgs = basicSetPathNameCS(newPathNameCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
     }
 
 	/**
@@ -126,39 +132,60 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
      * @generated
      */
 	public InvOrDefCS getInvOrDefCS() {
-        if (invOrDefCS != null && invOrDefCS.eIsProxy()) {
-            InternalEObject oldInvOrDefCS = (InternalEObject)invOrDefCS;
-            invOrDefCS = (InvOrDefCS)eResolveProxy(oldInvOrDefCS);
-            if (invOrDefCS != oldInvOrDefCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
-            }
-        }
         return invOrDefCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public InvOrDefCS basicGetInvOrDefCS() {
-        return invOrDefCS;
+    public NotificationChain basicSetInvOrDefCS(InvOrDefCS newInvOrDefCS, NotificationChain msgs) {
+        InvOrDefCS oldInvOrDefCS = invOrDefCS;
+        invOrDefCS = newInvOrDefCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, newInvOrDefCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setInvOrDefCS(InvOrDefCS newInvOrDefCS) {
-        InvOrDefCS oldInvOrDefCS = invOrDefCS;
-        invOrDefCS = newInvOrDefCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+        if (newInvOrDefCS != invOrDefCS) {
+            NotificationChain msgs = null;
+            if (invOrDefCS != null)
+                msgs = ((InternalEObject)invOrDefCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, null, msgs);
+            if (newInvOrDefCS != null)
+                msgs = ((InternalEObject)newInvOrDefCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, null, msgs);
+            msgs = basicSetInvOrDefCS(newInvOrDefCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, newInvOrDefCS, newInvOrDefCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+                return basicSetPathNameCS(null, msgs);
+            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
+                return basicSetInvOrDefCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -167,11 +194,9 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-                if (resolve) return getPathNameCS();
-                return basicGetPathNameCS();
+                return getPathNameCS();
             case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-                if (resolve) return getInvOrDefCS();
-                return basicGetInvOrDefCS();
+                return getInvOrDefCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

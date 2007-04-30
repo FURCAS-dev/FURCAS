@@ -11,9 +11,10 @@
           defaultValueLiteral="0"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PackageDeclarationCS" eSuperTypes="#//cst/CSTNode">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="contextDecls" upperBound="-1"
-          eType="#//cst/ContextDeclCS"/>
+          eType="#//cst/ContextDeclCS" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="packageDeclarationCS"
           eType="#//cst/PackageDeclarationCS"/>
     </eClassifiers>
@@ -29,8 +30,10 @@
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ClassifierContextDeclCS" eSuperTypes="#//cst/ContextDeclCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="invOrDefCS" eType="#//cst/InvOrDefCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="invOrDefCS" eType="#//cst/InvOrDefCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperationContextDeclCS" eSuperTypes="#//cst/ContextDeclCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="operationCS" eType="#//cst/OperationCS"
@@ -40,8 +43,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrePostOrBodyDeclCS" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//cst/PrePostOrBodyEnum"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="oclExpressionCS"/>
         </eAnnotations>
@@ -53,16 +58,20 @@
       <eLiterals name="body" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperationCS" eSuperTypes="#//cst/CSTNode">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-          eType="#//cst/VariableCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"/>
+          eType="#//cst/VariableCS" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InitOrDerValueCS" abstract="true"
         eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initOrDerValueCS" eType="#//cst/InitOrDerValueCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="oclExpressionCS"/>
         </eAnnotations>
@@ -71,23 +80,29 @@
     <eClassifiers xsi:type="ecore:EClass" name="DerValueCS" eSuperTypes="#//cst/InitOrDerValueCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="InitValueCS" eSuperTypes="#//cst/InitOrDerValueCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="InvOrDefCS" abstract="true" eSuperTypes="#//cst/CSTNode">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="invOrDefCS" eType="#//cst/InvOrDefCS"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InvCS" eSuperTypes="#//cst/InvOrDefCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="oclExpressionCS"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DefCS" eSuperTypes="#//cst/InvOrDefCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defExpressionCS" eType="#//cst/DefExpressionCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defExpressionCS" eType="#//cst/DefExpressionCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DefExpressionCS" eSuperTypes="#//cst/CSTNode">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="operationCS" eType="#//cst/OperationCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variableCS" eType="#//cst/VariableCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operationCS" eType="#//cst/OperationCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variableCS" eType="#//cst/VariableCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="oclExpressionCS"/>
         </eAnnotations>
@@ -99,9 +114,11 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariableExpCS" eSuperTypes="#//cst/OCLExpressionCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-          eType="#//cst/OCLExpressionCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="isMarkedPreCS" eType="#//cst/IsMarkedPreCS"/>
+          eType="#//cst/OCLExpressionCS" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="isMarkedPreCS" eType="#//cst/IsMarkedPreCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleNameCS" eSuperTypes="#//cst/OCLExpressionCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -125,12 +142,13 @@
     <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeCS" eSuperTypes="#//cst/SimpleNameCS #//cst/TypeCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="TupleTypeCS" eSuperTypes="#//cst/TypeCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" lowerBound="1"
-          upperBound="-1" eType="#//cst/VariableCS"/>
+          upperBound="-1" eType="#//cst/VariableCS" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeCS" eSuperTypes="#//cst/TypeCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="collectionTypeIdentifier"
           eType="#//cst/CollectionTypeIdentifierEnum"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CollectionTypeIdentifierEnum">
       <eLiterals name="Set" value="1"/>
@@ -146,8 +164,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LetExpCS" eSuperTypes="#//cst/OCLExpressionCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" lowerBound="1"
-          upperBound="-1" eType="#//cst/VariableCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="inExpression" eType="#//cst/OCLExpressionCS"/>
+          upperBound="-1" eType="#//cst/VariableCS" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inExpression" eType="#//cst/OCLExpressionCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfExpCS" eSuperTypes="#//cst/OCLExpressionCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" lowerBound="1"
@@ -161,7 +180,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//cst/OCLExpressionCS"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//cst/MessageExpKind"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
           eType="#//cst/OCLMessageArgCS" containment="true"/>
     </eClassifiers>
@@ -169,8 +189,10 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="name" value="OclMessageArgCS"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="oclExpression"/>
         </eAnnotations>
@@ -178,22 +200,26 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariableCS" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" eType="#//cst/OCLExpressionCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" eType="#//cst/OCLExpressionCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" abstract="true" eSuperTypes="#//cst/OCLExpressionCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="collectionType" eType="#//cst/CollectionTypeIdentifierEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="collectionLiteralParts"
-          upperBound="-1" eType="#//cst/CollectionLiteralPartCS"/>
+          upperBound="-1" eType="#//cst/CollectionLiteralPartCS" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-          eType="#//cst/VariableCS"/>
+          eType="#//cst/VariableCS" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -220,35 +246,43 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPartCS" eSuperTypes="#//cst/CSTNode">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="oclExpressionCS"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionRangeCS" eSuperTypes="#//cst/CollectionLiteralPartCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lastExpressionCS" eType="#//cst/OCLExpressionCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lastExpressionCS" eType="#//cst/OCLExpressionCS"
+          containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
           <details key="name" value="lastOclExpressionCS"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CallExpCS" eSuperTypes="#//cst/OCLExpressionCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//cst/OCLExpressionCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//cst/OCLExpressionCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessor" eType="#//cst/DotOrArrowEnum"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LoopExpCS" eSuperTypes="#//cst/CallExpCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variable1" eType="#//cst/VariableCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variable2" eType="#//cst/VariableCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//cst/OCLExpressionCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variable1" eType="#//cst/VariableCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variable2" eType="#//cst/VariableCS"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//cst/OCLExpressionCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IteratorExpCS" eSuperTypes="#//cst/LoopExpCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="IterateExpCS" eSuperTypes="#//cst/LoopExpCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExpCS" eSuperTypes="#//cst/CallExpCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-          eType="#//cst/OCLExpressionCS"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="isMarkedPreCS" eType="#//cst/IsMarkedPreCS"/>
+          eType="#//cst/OCLExpressionCS" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="isMarkedPreCS" eType="#//cst/IsMarkedPreCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DotOrArrowEnum">
       <eLiterals name="none" value="1"/>

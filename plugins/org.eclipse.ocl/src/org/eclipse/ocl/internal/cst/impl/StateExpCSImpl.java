@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: StateExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -49,7 +49,7 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
      * @generated
      * @ordered
      */
-	protected EList<String> sequenceOfNames = null;
+	protected EList<String> sequenceOfNames;
 
 	/**
      * <!-- begin-user-doc -->
