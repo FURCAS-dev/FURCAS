@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpCS.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: MessageExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -94,26 +94,26 @@ public interface MessageExpCS extends OCLExpressionCS {
 	void setKind(MessageExpKind value);
 
 	/**
-     * Returns the value of the '<em><b>Simple Name CS</b></em>' reference.
+     * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simple Name CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Simple Name CS</em>' reference.
+     * @return the value of the '<em>Simple Name CS</em>' containment reference.
      * @see #setSimpleNameCS(SimpleNameCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getMessageExpCS_SimpleNameCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	SimpleNameCS getSimpleNameCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.MessageExpCS#getSimpleNameCS <em>Simple Name CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.MessageExpCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Simple Name CS</em>' reference.
+     * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
      * @see #getSimpleNameCS()
      * @generated
      */

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: OperationContextDeclCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -54,7 +54,7 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
      * @generated
      * @ordered
      */
-	protected OperationCS operationCS = null;
+	protected OperationCS operationCS;
 
 	/**
      * The cached value of the '{@link #getPrePostOrBodyDecls() <em>Pre Post Or Body Decls</em>}' containment reference list.
@@ -64,7 +64,7 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
      * @generated
      * @ordered
      */
-	protected EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = null;
+	protected EList<PrePostOrBodyDeclCS> prePostOrBodyDecls;
 
 	/**
      * <!-- begin-user-doc -->

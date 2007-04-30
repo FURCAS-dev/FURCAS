@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: FeatureCallExpCS.java,v 1.3 2007/04/30 12:38:58 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface FeatureCallExpCS extends CallExpCS {
 	/**
-     * Returns the value of the '<em><b>Arguments</b></em>' reference list.
+     * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.ocl.internal.cst.OCLExpressionCS}.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -45,34 +45,34 @@ public interface FeatureCallExpCS extends CallExpCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Arguments</em>' reference list.
+     * @return the value of the '<em>Arguments</em>' containment reference list.
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getFeatureCallExpCS_Arguments()
-     * @model type="org.eclipse.ocl.internal.cst.OCLExpressionCS"
+     * @model type="org.eclipse.ocl.internal.cst.OCLExpressionCS" containment="true"
      * @generated
      */
 	EList<OCLExpressionCS> getArguments();
 
 	/**
-     * Returns the value of the '<em><b>Is Marked Pre CS</b></em>' reference.
+     * Returns the value of the '<em><b>Is Marked Pre CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Marked Pre CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Is Marked Pre CS</em>' reference.
+     * @return the value of the '<em>Is Marked Pre CS</em>' containment reference.
      * @see #setIsMarkedPreCS(IsMarkedPreCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getFeatureCallExpCS_IsMarkedPreCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	IsMarkedPreCS getIsMarkedPreCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.FeatureCallExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.FeatureCallExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Marked Pre CS</em>' reference.
+     * @param value the new value of the '<em>Is Marked Pre CS</em>' containment reference.
      * @see #getIsMarkedPreCS()
      * @generated
      */

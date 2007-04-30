@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.3 2007/03/27 15:05:00 cdamus Exp $
+ * $Id: CSTFactoryImpl.java,v 1.4 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -648,7 +648,9 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
      */
 	public PrePostOrBodyEnum createPrePostOrBodyEnumFromString(EDataType eDataType, String initialValue) {
         PrePostOrBodyEnum result = PrePostOrBodyEnum.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
         return result;
     }
 
@@ -668,7 +670,9 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
      */
 	public SimpleTypeEnum createSimpleTypeEnumFromString(EDataType eDataType, String initialValue) {
         SimpleTypeEnum result = SimpleTypeEnum.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
         return result;
     }
 
@@ -688,7 +692,9 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
      */
 	public CollectionTypeIdentifierEnum createCollectionTypeIdentifierEnumFromString(EDataType eDataType, String initialValue) {
         CollectionTypeIdentifierEnum result = CollectionTypeIdentifierEnum.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
         return result;
     }
 
@@ -708,7 +714,9 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
      */
 	public DotOrArrowEnum createDotOrArrowEnumFromString(EDataType eDataType, String initialValue) {
         DotOrArrowEnum result = DotOrArrowEnum.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
         return result;
     }
 
@@ -728,7 +736,9 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
      */
 	public MessageExpKind createMessageExpKindFromString(EDataType eDataType, String initialValue) {
         MessageExpKind result = MessageExpKind.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
         return result;
     }
 

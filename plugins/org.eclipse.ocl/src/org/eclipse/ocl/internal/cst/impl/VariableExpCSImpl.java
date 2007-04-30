@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: VariableExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,7 +28,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.internal.cst.CSTPackage;
 import org.eclipse.ocl.internal.cst.IsMarkedPreCS;
@@ -52,34 +54,34 @@ import org.eclipse.ocl.internal.cst.VariableExpCS;
  */
 public class VariableExpCSImpl extends OCLExpressionCSImpl implements VariableExpCS {
 	/**
-     * The cached value of the '{@link #getArguments() <em>Arguments</em>}' reference list.
+     * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getArguments()
      * @generated
      * @ordered
      */
-	protected EList<OCLExpressionCS> arguments = null;
+	protected EList<OCLExpressionCS> arguments;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' reference.
+     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getSimpleNameCS()
      * @generated
      * @ordered
      */
-	protected SimpleNameCS simpleNameCS = null;
+	protected SimpleNameCS simpleNameCS;
 
 	/**
-     * The cached value of the '{@link #getIsMarkedPreCS() <em>Is Marked Pre CS</em>}' reference.
+     * The cached value of the '{@link #getIsMarkedPreCS() <em>Is Marked Pre CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getIsMarkedPreCS()
      * @generated
      * @ordered
      */
-	protected IsMarkedPreCS isMarkedPreCS = null;
+	protected IsMarkedPreCS isMarkedPreCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -107,7 +109,7 @@ public class VariableExpCSImpl extends OCLExpressionCSImpl implements VariableEx
      */
 	public EList<OCLExpressionCS> getArguments() {
         if (arguments == null) {
-            arguments = new EObjectResolvingEList<OCLExpressionCS>(OCLExpressionCS.class, this, CSTPackage.VARIABLE_EXP_CS__ARGUMENTS);
+            arguments = new EObjectContainmentEList<OCLExpressionCS>(OCLExpressionCS.class, this, CSTPackage.VARIABLE_EXP_CS__ARGUMENTS);
         }
         return arguments;
     }
@@ -118,36 +120,50 @@ public class VariableExpCSImpl extends OCLExpressionCSImpl implements VariableEx
      * @generated
      */
 	public SimpleNameCS getSimpleNameCS() {
-        if (simpleNameCS != null && simpleNameCS.eIsProxy()) {
-            InternalEObject oldSimpleNameCS = (InternalEObject)simpleNameCS;
-            simpleNameCS = (SimpleNameCS)eResolveProxy(oldSimpleNameCS);
-            if (simpleNameCS != oldSimpleNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
-            }
-        }
         return simpleNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SimpleNameCS basicGetSimpleNameCS() {
-        return simpleNameCS;
+    public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+        SimpleNameCS oldSimpleNameCS = simpleNameCS;
+        simpleNameCS = newSimpleNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+            if (msgs == null) {
+                msgs = notification;
+            } else {
+                msgs.add(notification);
+            }
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
+        if (newSimpleNameCS != simpleNameCS) {
+            NotificationChain msgs = null;
+            if (simpleNameCS != null) {
+                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            }
+            if (newSimpleNameCS != null) {
+                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            }
+            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        }
+        else if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+        }
     }
 
 	/**
@@ -156,39 +172,71 @@ public class VariableExpCSImpl extends OCLExpressionCSImpl implements VariableEx
      * @generated
      */
 	public IsMarkedPreCS getIsMarkedPreCS() {
-        if (isMarkedPreCS != null && isMarkedPreCS.eIsProxy()) {
-            InternalEObject oldIsMarkedPreCS = (InternalEObject)isMarkedPreCS;
-            isMarkedPreCS = (IsMarkedPreCS)eResolveProxy(oldIsMarkedPreCS);
-            if (isMarkedPreCS != oldIsMarkedPreCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS, oldIsMarkedPreCS, isMarkedPreCS));
-            }
-        }
         return isMarkedPreCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public IsMarkedPreCS basicGetIsMarkedPreCS() {
-        return isMarkedPreCS;
+    public NotificationChain basicSetIsMarkedPreCS(IsMarkedPreCS newIsMarkedPreCS, NotificationChain msgs) {
+        IsMarkedPreCS oldIsMarkedPreCS = isMarkedPreCS;
+        isMarkedPreCS = newIsMarkedPreCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS, oldIsMarkedPreCS, newIsMarkedPreCS);
+            if (msgs == null) {
+                msgs = notification;
+            } else {
+                msgs.add(notification);
+            }
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setIsMarkedPreCS(IsMarkedPreCS newIsMarkedPreCS) {
-        IsMarkedPreCS oldIsMarkedPreCS = isMarkedPreCS;
-        isMarkedPreCS = newIsMarkedPreCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS, oldIsMarkedPreCS, isMarkedPreCS));
+        if (newIsMarkedPreCS != isMarkedPreCS) {
+            NotificationChain msgs = null;
+            if (isMarkedPreCS != null) {
+                msgs = ((InternalEObject)isMarkedPreCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS, null, msgs);
+            }
+            if (newIsMarkedPreCS != null) {
+                msgs = ((InternalEObject)newIsMarkedPreCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS, null, msgs);
+            }
+            msgs = basicSetIsMarkedPreCS(newIsMarkedPreCS, msgs);
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        }
+        else if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS, newIsMarkedPreCS, newIsMarkedPreCS));
+        }
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.VARIABLE_EXP_CS__ARGUMENTS:
+                return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+            case CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS:
+                return basicSetSimpleNameCS(null, msgs);
+            case CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS:
+                return basicSetIsMarkedPreCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -199,11 +247,9 @@ public class VariableExpCSImpl extends OCLExpressionCSImpl implements VariableEx
             case CSTPackage.VARIABLE_EXP_CS__ARGUMENTS:
                 return getArguments();
             case CSTPackage.VARIABLE_EXP_CS__SIMPLE_NAME_CS:
-                if (resolve) return getSimpleNameCS();
-                return basicGetSimpleNameCS();
+                return getSimpleNameCS();
             case CSTPackage.VARIABLE_EXP_CS__IS_MARKED_PRE_CS:
-                if (resolve) return getIsMarkedPreCS();
-                return basicGetIsMarkedPreCS();
+                return getIsMarkedPreCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

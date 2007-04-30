@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PrePostOrBodyDeclCSImpl.java,v 1.2 2007/02/14 14:46:06 cdamus Exp $
+ * $Id: PrePostOrBodyDeclCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -66,24 +67,24 @@ public class PrePostOrBodyDeclCSImpl extends CSTNodeImpl implements PrePostOrBod
 	protected PrePostOrBodyEnum kind = KIND_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' reference.
+     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getSimpleNameCS()
      * @generated
      * @ordered
      */
-	protected SimpleNameCS simpleNameCS = null;
+	protected SimpleNameCS simpleNameCS;
 
 	/**
-     * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' reference.
+     * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getExpressionCS()
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS expressionCS = null;
+	protected OCLExpressionCS expressionCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -131,36 +132,41 @@ public class PrePostOrBodyDeclCSImpl extends CSTNodeImpl implements PrePostOrBod
      * @generated
      */
 	public SimpleNameCS getSimpleNameCS() {
-        if (simpleNameCS != null && simpleNameCS.eIsProxy()) {
-            InternalEObject oldSimpleNameCS = (InternalEObject)simpleNameCS;
-            simpleNameCS = (SimpleNameCS)eResolveProxy(oldSimpleNameCS);
-            if (simpleNameCS != oldSimpleNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
-            }
-        }
         return simpleNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SimpleNameCS basicGetSimpleNameCS() {
-        return simpleNameCS;
+    public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+        SimpleNameCS oldSimpleNameCS = simpleNameCS;
+        simpleNameCS = newSimpleNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
+        if (newSimpleNameCS != simpleNameCS) {
+            NotificationChain msgs = null;
+            if (simpleNameCS != null)
+                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, null, msgs);
+            if (newSimpleNameCS != null)
+                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, null, msgs);
+            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
     }
 
 	/**
@@ -169,39 +175,60 @@ public class PrePostOrBodyDeclCSImpl extends CSTNodeImpl implements PrePostOrBod
      * @generated
      */
 	public OCLExpressionCS getExpressionCS() {
-        if (expressionCS != null && expressionCS.eIsProxy()) {
-            InternalEObject oldExpressionCS = (InternalEObject)expressionCS;
-            expressionCS = (OCLExpressionCS)eResolveProxy(oldExpressionCS);
-            if (expressionCS != oldExpressionCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, oldExpressionCS, expressionCS));
-            }
-        }
         return expressionCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OCLExpressionCS basicGetExpressionCS() {
-        return expressionCS;
+    public NotificationChain basicSetExpressionCS(OCLExpressionCS newExpressionCS, NotificationChain msgs) {
+        OCLExpressionCS oldExpressionCS = expressionCS;
+        expressionCS = newExpressionCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setExpressionCS(OCLExpressionCS newExpressionCS) {
-        OCLExpressionCS oldExpressionCS = expressionCS;
-        expressionCS = newExpressionCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, oldExpressionCS, expressionCS));
+        if (newExpressionCS != expressionCS) {
+            NotificationChain msgs = null;
+            if (expressionCS != null)
+                msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, null, msgs);
+            if (newExpressionCS != null)
+                msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, null, msgs);
+            msgs = basicSetExpressionCS(newExpressionCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
+                return basicSetSimpleNameCS(null, msgs);
+            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
+                return basicSetExpressionCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -212,11 +239,9 @@ public class PrePostOrBodyDeclCSImpl extends CSTNodeImpl implements PrePostOrBod
             case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
                 return getKind();
             case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
-                if (resolve) return getSimpleNameCS();
-                return basicGetSimpleNameCS();
+                return getSimpleNameCS();
             case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
-                if (resolve) return getExpressionCS();
-                return basicGetExpressionCS();
+                return getExpressionCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

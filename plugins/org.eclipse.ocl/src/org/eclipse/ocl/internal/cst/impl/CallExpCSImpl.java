@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CallExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: CallExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -46,14 +47,14 @@ import org.eclipse.ocl.internal.cst.SimpleNameCS;
  */
 public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	/**
-     * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+     * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getSource()
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS source = null;
+	protected OCLExpressionCS source;
 
 	/**
      * The default value of the '{@link #getAccessor() <em>Accessor</em>}' attribute.
@@ -76,14 +77,14 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	protected DotOrArrowEnum accessor = ACCESSOR_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' reference.
+     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getSimpleNameCS()
      * @generated
      * @ordered
      */
-	protected SimpleNameCS simpleNameCS = null;
+	protected SimpleNameCS simpleNameCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -110,36 +111,41 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
      * @generated
      */
 	public OCLExpressionCS getSource() {
-        if (source != null && source.eIsProxy()) {
-            InternalEObject oldSource = (InternalEObject)source;
-            source = (OCLExpressionCS)eResolveProxy(oldSource);
-            if (source != oldSource) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.CALL_EXP_CS__SOURCE, oldSource, source));
-            }
-        }
         return source;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OCLExpressionCS basicGetSource() {
-        return source;
+    public NotificationChain basicSetSource(OCLExpressionCS newSource, NotificationChain msgs) {
+        OCLExpressionCS oldSource = source;
+        source = newSource;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SOURCE, oldSource, newSource);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setSource(OCLExpressionCS newSource) {
-        OCLExpressionCS oldSource = source;
-        source = newSource;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SOURCE, oldSource, source));
+        if (newSource != source) {
+            NotificationChain msgs = null;
+            if (source != null)
+                msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SOURCE, null, msgs);
+            if (newSource != null)
+                msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SOURCE, null, msgs);
+            msgs = basicSetSource(newSource, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SOURCE, newSource, newSource));
     }
 
 	/**
@@ -169,39 +175,60 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
      * @generated
      */
 	public SimpleNameCS getSimpleNameCS() {
-        if (simpleNameCS != null && simpleNameCS.eIsProxy()) {
-            InternalEObject oldSimpleNameCS = (InternalEObject)simpleNameCS;
-            simpleNameCS = (SimpleNameCS)eResolveProxy(oldSimpleNameCS);
-            if (simpleNameCS != oldSimpleNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
-            }
-        }
         return simpleNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SimpleNameCS basicGetSimpleNameCS() {
-        return simpleNameCS;
+    public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+        SimpleNameCS oldSimpleNameCS = simpleNameCS;
+        simpleNameCS = newSimpleNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
+        if (newSimpleNameCS != simpleNameCS) {
+            NotificationChain msgs = null;
+            if (simpleNameCS != null)
+                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            if (newSimpleNameCS != null)
+                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.CALL_EXP_CS__SOURCE:
+                return basicSetSource(null, msgs);
+            case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
+                return basicSetSimpleNameCS(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -210,13 +237,11 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.CALL_EXP_CS__SOURCE:
-                if (resolve) return getSource();
-                return basicGetSource();
+                return getSource();
             case CSTPackage.CALL_EXP_CS__ACCESSOR:
                 return getAccessor();
             case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
-                if (resolve) return getSimpleNameCS();
-                return basicGetSimpleNameCS();
+                return getSimpleNameCS();
         }
         return super.eGet(featureID, resolve, coreType);
     }

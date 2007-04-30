@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: CollectionLiteralExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -20,13 +20,16 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.internal.cst.CSTPackage;
 import org.eclipse.ocl.internal.cst.CollectionLiteralExpCS;
@@ -69,14 +72,14 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	protected CollectionTypeIdentifierEnum collectionType = COLLECTION_TYPE_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getCollectionLiteralParts() <em>Collection Literal Parts</em>}' reference list.
+     * The cached value of the '{@link #getCollectionLiteralParts() <em>Collection Literal Parts</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getCollectionLiteralParts()
      * @generated
      * @ordered
      */
-	protected EList<CollectionLiteralPartCS> collectionLiteralParts = null;
+	protected EList<CollectionLiteralPartCS> collectionLiteralParts;
 
 	/**
      * <!-- begin-user-doc -->
@@ -114,8 +117,9 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	public void setCollectionType(CollectionTypeIdentifierEnum newCollectionType) {
         CollectionTypeIdentifierEnum oldCollectionType = collectionType;
         collectionType = newCollectionType == null ? COLLECTION_TYPE_EDEFAULT : newCollectionType;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE, oldCollectionType, collectionType));
+        }
     }
 
 	/**
@@ -125,12 +129,26 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
      */
 	public EList<CollectionLiteralPartCS> getCollectionLiteralParts() {
         if (collectionLiteralParts == null) {
-            collectionLiteralParts = new EObjectResolvingEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
+            collectionLiteralParts = new EObjectContainmentEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
         }
         return collectionLiteralParts;
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+                return ((InternalEList<?>)getCollectionLiteralParts()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -207,7 +225,9 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
      */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+        if (eIsProxy()) {
+            return super.toString();
+        }
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (collectionType: "); //$NON-NLS-1$

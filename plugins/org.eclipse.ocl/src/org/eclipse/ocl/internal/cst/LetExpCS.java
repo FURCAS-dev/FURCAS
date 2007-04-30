@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: LetExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface LetExpCS extends OCLExpressionCS {
 	/**
-     * Returns the value of the '<em><b>Variables</b></em>' reference list.
+     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.ocl.internal.cst.VariableCS}.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -45,34 +45,34 @@ public interface LetExpCS extends OCLExpressionCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variables</em>' reference list.
+     * @return the value of the '<em>Variables</em>' containment reference list.
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getLetExpCS_Variables()
-     * @model type="org.eclipse.ocl.internal.cst.VariableCS" required="true"
+     * @model type="org.eclipse.ocl.internal.cst.VariableCS" containment="true" required="true"
      * @generated
      */
 	EList<VariableCS> getVariables();
 
 	/**
-     * Returns the value of the '<em><b>In Expression</b></em>' reference.
+     * Returns the value of the '<em><b>In Expression</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>In Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>In Expression</em>' reference.
+     * @return the value of the '<em>In Expression</em>' containment reference.
      * @see #setInExpression(OCLExpressionCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getLetExpCS_InExpression()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	OCLExpressionCS getInExpression();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LetExpCS#getInExpression <em>In Expression</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LetExpCS#getInExpression <em>In Expression</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>In Expression</em>' reference.
+     * @param value the new value of the '<em>In Expression</em>' containment reference.
      * @see #getInExpression()
      * @generated
      */

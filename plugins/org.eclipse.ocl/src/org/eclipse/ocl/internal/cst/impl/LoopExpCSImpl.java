@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: LoopExpCSImpl.java,v 1.2 2007/02/14 14:46:06 cdamus Exp $
+ * $Id: LoopExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -45,34 +46,34 @@ import org.eclipse.ocl.internal.cst.VariableCS;
  */
 public class LoopExpCSImpl extends CallExpCSImpl implements LoopExpCS {
 	/**
-     * The cached value of the '{@link #getVariable1() <em>Variable1</em>}' reference.
+     * The cached value of the '{@link #getVariable1() <em>Variable1</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getVariable1()
      * @generated
      * @ordered
      */
-	protected VariableCS variable1 = null;
+	protected VariableCS variable1;
 
 	/**
-     * The cached value of the '{@link #getVariable2() <em>Variable2</em>}' reference.
+     * The cached value of the '{@link #getVariable2() <em>Variable2</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getVariable2()
      * @generated
      * @ordered
      */
-	protected VariableCS variable2 = null;
+	protected VariableCS variable2;
 
 	/**
-     * The cached value of the '{@link #getBody() <em>Body</em>}' reference.
+     * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getBody()
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS body = null;
+	protected OCLExpressionCS body;
 
 	/**
      * <!-- begin-user-doc -->
@@ -99,36 +100,41 @@ public class LoopExpCSImpl extends CallExpCSImpl implements LoopExpCS {
      * @generated
      */
 	public VariableCS getVariable1() {
-        if (variable1 != null && variable1.eIsProxy()) {
-            InternalEObject oldVariable1 = (InternalEObject)variable1;
-            variable1 = (VariableCS)eResolveProxy(oldVariable1);
-            if (variable1 != oldVariable1) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.LOOP_EXP_CS__VARIABLE1, oldVariable1, variable1));
-            }
-        }
         return variable1;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public VariableCS basicGetVariable1() {
-        return variable1;
+    public NotificationChain basicSetVariable1(VariableCS newVariable1, NotificationChain msgs) {
+        VariableCS oldVariable1 = variable1;
+        variable1 = newVariable1;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__VARIABLE1, oldVariable1, newVariable1);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setVariable1(VariableCS newVariable1) {
-        VariableCS oldVariable1 = variable1;
-        variable1 = newVariable1;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__VARIABLE1, oldVariable1, variable1));
+        if (newVariable1 != variable1) {
+            NotificationChain msgs = null;
+            if (variable1 != null)
+                msgs = ((InternalEObject)variable1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LOOP_EXP_CS__VARIABLE1, null, msgs);
+            if (newVariable1 != null)
+                msgs = ((InternalEObject)newVariable1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LOOP_EXP_CS__VARIABLE1, null, msgs);
+            msgs = basicSetVariable1(newVariable1, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__VARIABLE1, newVariable1, newVariable1));
     }
 
 	/**
@@ -137,36 +143,41 @@ public class LoopExpCSImpl extends CallExpCSImpl implements LoopExpCS {
      * @generated
      */
 	public VariableCS getVariable2() {
-        if (variable2 != null && variable2.eIsProxy()) {
-            InternalEObject oldVariable2 = (InternalEObject)variable2;
-            variable2 = (VariableCS)eResolveProxy(oldVariable2);
-            if (variable2 != oldVariable2) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.LOOP_EXP_CS__VARIABLE2, oldVariable2, variable2));
-            }
-        }
         return variable2;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public VariableCS basicGetVariable2() {
-        return variable2;
+    public NotificationChain basicSetVariable2(VariableCS newVariable2, NotificationChain msgs) {
+        VariableCS oldVariable2 = variable2;
+        variable2 = newVariable2;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__VARIABLE2, oldVariable2, newVariable2);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setVariable2(VariableCS newVariable2) {
-        VariableCS oldVariable2 = variable2;
-        variable2 = newVariable2;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__VARIABLE2, oldVariable2, variable2));
+        if (newVariable2 != variable2) {
+            NotificationChain msgs = null;
+            if (variable2 != null)
+                msgs = ((InternalEObject)variable2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LOOP_EXP_CS__VARIABLE2, null, msgs);
+            if (newVariable2 != null)
+                msgs = ((InternalEObject)newVariable2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LOOP_EXP_CS__VARIABLE2, null, msgs);
+            msgs = basicSetVariable2(newVariable2, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__VARIABLE2, newVariable2, newVariable2));
     }
 
 	/**
@@ -175,39 +186,62 @@ public class LoopExpCSImpl extends CallExpCSImpl implements LoopExpCS {
      * @generated
      */
 	public OCLExpressionCS getBody() {
-        if (body != null && body.eIsProxy()) {
-            InternalEObject oldBody = (InternalEObject)body;
-            body = (OCLExpressionCS)eResolveProxy(oldBody);
-            if (body != oldBody) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.LOOP_EXP_CS__BODY, oldBody, body));
-            }
-        }
         return body;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OCLExpressionCS basicGetBody() {
-        return body;
+    public NotificationChain basicSetBody(OCLExpressionCS newBody, NotificationChain msgs) {
+        OCLExpressionCS oldBody = body;
+        body = newBody;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__BODY, oldBody, newBody);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setBody(OCLExpressionCS newBody) {
-        OCLExpressionCS oldBody = body;
-        body = newBody;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__BODY, oldBody, body));
+        if (newBody != body) {
+            NotificationChain msgs = null;
+            if (body != null)
+                msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LOOP_EXP_CS__BODY, null, msgs);
+            if (newBody != null)
+                msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LOOP_EXP_CS__BODY, null, msgs);
+            msgs = basicSetBody(newBody, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LOOP_EXP_CS__BODY, newBody, newBody));
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.LOOP_EXP_CS__VARIABLE1:
+                return basicSetVariable1(null, msgs);
+            case CSTPackage.LOOP_EXP_CS__VARIABLE2:
+                return basicSetVariable2(null, msgs);
+            case CSTPackage.LOOP_EXP_CS__BODY:
+                return basicSetBody(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -216,14 +250,11 @@ public class LoopExpCSImpl extends CallExpCSImpl implements LoopExpCS {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.LOOP_EXP_CS__VARIABLE1:
-                if (resolve) return getVariable1();
-                return basicGetVariable1();
+                return getVariable1();
             case CSTPackage.LOOP_EXP_CS__VARIABLE2:
-                if (resolve) return getVariable2();
-                return basicGetVariable2();
+                return getVariable2();
             case CSTPackage.LOOP_EXP_CS__BODY:
-                if (resolve) return getBody();
-                return basicGetBody();
+                return getBody();
         }
         return super.eGet(featureID, resolve, coreType);
     }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: LetExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,7 +28,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.internal.cst.CSTPackage;
 import org.eclipse.ocl.internal.cst.LetExpCS;
@@ -50,24 +52,24 @@ import org.eclipse.ocl.internal.cst.VariableCS;
  */
 public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	/**
-     * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
+     * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getVariables()
      * @generated
      * @ordered
      */
-	protected EList<VariableCS> variables = null;
+	protected EList<VariableCS> variables;
 
 	/**
-     * The cached value of the '{@link #getInExpression() <em>In Expression</em>}' reference.
+     * The cached value of the '{@link #getInExpression() <em>In Expression</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getInExpression()
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS inExpression = null;
+	protected OCLExpressionCS inExpression;
 
 	/**
      * <!-- begin-user-doc -->
@@ -95,7 +97,7 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
      */
 	public EList<VariableCS> getVariables() {
         if (variables == null) {
-            variables = new EObjectResolvingEList<VariableCS>(VariableCS.class, this, CSTPackage.LET_EXP_CS__VARIABLES);
+            variables = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.LET_EXP_CS__VARIABLES);
         }
         return variables;
     }
@@ -106,39 +108,69 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
      * @generated
      */
 	public OCLExpressionCS getInExpression() {
-        if (inExpression != null && inExpression.eIsProxy()) {
-            InternalEObject oldInExpression = (InternalEObject)inExpression;
-            inExpression = (OCLExpressionCS)eResolveProxy(oldInExpression);
-            if (inExpression != oldInExpression) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.LET_EXP_CS__IN_EXPRESSION, oldInExpression, inExpression));
-            }
-        }
         return inExpression;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OCLExpressionCS basicGetInExpression() {
-        return inExpression;
+    public NotificationChain basicSetInExpression(OCLExpressionCS newInExpression, NotificationChain msgs) {
+        OCLExpressionCS oldInExpression = inExpression;
+        inExpression = newInExpression;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.LET_EXP_CS__IN_EXPRESSION, oldInExpression, newInExpression);
+            if (msgs == null) {
+                msgs = notification;
+            } else {
+                msgs.add(notification);
+            }
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setInExpression(OCLExpressionCS newInExpression) {
-        OCLExpressionCS oldInExpression = inExpression;
-        inExpression = newInExpression;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LET_EXP_CS__IN_EXPRESSION, oldInExpression, inExpression));
+        if (newInExpression != inExpression) {
+            NotificationChain msgs = null;
+            if (inExpression != null) {
+                msgs = ((InternalEObject)inExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LET_EXP_CS__IN_EXPRESSION, null, msgs);
+            }
+            if (newInExpression != null) {
+                msgs = ((InternalEObject)newInExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LET_EXP_CS__IN_EXPRESSION, null, msgs);
+            }
+            msgs = basicSetInExpression(newInExpression, msgs);
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        }
+        else if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LET_EXP_CS__IN_EXPRESSION, newInExpression, newInExpression));
+        }
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.LET_EXP_CS__VARIABLES:
+                return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+            case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
+                return basicSetInExpression(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -149,8 +181,7 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
             case CSTPackage.LET_EXP_CS__VARIABLES:
                 return getVariables();
             case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
-                if (resolve) return getInExpression();
-                return basicGetInExpression();
+                return getInExpression();
         }
         return super.eGet(featureID, resolve, coreType);
     }

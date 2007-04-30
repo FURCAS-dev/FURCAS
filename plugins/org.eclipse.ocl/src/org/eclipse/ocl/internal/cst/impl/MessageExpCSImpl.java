@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: MessageExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -58,7 +58,7 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
      * @generated
      * @ordered
      */
-	protected OCLExpressionCS target = null;
+	protected OCLExpressionCS target;
 
 	/**
      * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -81,14 +81,14 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	protected MessageExpKind kind = KIND_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' reference.
+     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getSimpleNameCS()
      * @generated
      * @ordered
      */
-	protected SimpleNameCS simpleNameCS = null;
+	protected SimpleNameCS simpleNameCS;
 
 	/**
      * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
@@ -98,7 +98,7 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
      * @generated
      * @ordered
      */
-	protected EList<OCLMessageArgCS> arguments = null;
+	protected EList<OCLMessageArgCS> arguments;
 
 	/**
      * <!-- begin-user-doc -->
@@ -189,36 +189,41 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
      * @generated
      */
 	public SimpleNameCS getSimpleNameCS() {
-        if (simpleNameCS != null && simpleNameCS.eIsProxy()) {
-            InternalEObject oldSimpleNameCS = (InternalEObject)simpleNameCS;
-            simpleNameCS = (SimpleNameCS)eResolveProxy(oldSimpleNameCS);
-            if (simpleNameCS != oldSimpleNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
-            }
-        }
         return simpleNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SimpleNameCS basicGetSimpleNameCS() {
-        return simpleNameCS;
+    public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+        SimpleNameCS oldSimpleNameCS = simpleNameCS;
+        simpleNameCS = newSimpleNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, simpleNameCS));
+        if (newSimpleNameCS != simpleNameCS) {
+            NotificationChain msgs = null;
+            if (simpleNameCS != null)
+                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            if (newSimpleNameCS != null)
+                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
     }
 
 	/**
@@ -243,6 +248,8 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
         switch (featureID) {
             case CSTPackage.MESSAGE_EXP_CS__TARGET:
                 return basicSetTarget(null, msgs);
+            case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
+                return basicSetSimpleNameCS(null, msgs);
             case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
                 return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
         }
@@ -262,8 +269,7 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
             case CSTPackage.MESSAGE_EXP_CS__KIND:
                 return getKind();
             case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
-                if (resolve) return getSimpleNameCS();
-                return basicGetSimpleNameCS();
+                return getSimpleNameCS();
             case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
                 return getArguments();
         }
