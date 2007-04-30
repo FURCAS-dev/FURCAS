@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.11 2007/03/27 15:05:36 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.12 2007/04/30 12:39:31 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -21,25 +21,35 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.ocl.examples.interpreter.OCLExamplePlugin;
+import org.eclipse.emf.ocl.examples.interpreter.console.text.ColorManager;
+import org.eclipse.emf.ocl.examples.interpreter.console.text.OCLDocument;
+import org.eclipse.emf.ocl.examples.interpreter.console.text.OCLSourceViewer;
 import org.eclipse.emf.ocl.examples.interpreter.internal.l10n.OCLInterpreterMessages;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ActionContributionItem;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -48,13 +58,19 @@ import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.TextViewer;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ocl.OCL;
+import org.eclipse.ocl.Query;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.uml.UMLEnvironmentFactory;
+import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -66,14 +82,19 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorDescriptor;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.console.actions.ClearOutputAction;
 import org.eclipse.ui.part.Page;
+import org.eclipse.uml2.uml.NamedElement;
+import org.osgi.framework.Bundle;
 
 
 /**
@@ -82,44 +103,54 @@ import org.eclipse.ui.part.Page;
 public class OCLConsolePage
 	extends Page {
 
+    private static int BUNDLE_AVAILABLE = Bundle.ACTIVE | Bundle.RESOLVED |
+        Bundle.STARTING | Bundle.STOPPING;
+    
 	private Composite page;
 	
 	private ITextViewer output;
-	private Text input;
+	private OCLSourceViewer input;
+	private OCLDocument document;
 	
-	private Color red;
-	private Color black;
-	private Color blue;
+	private ColorManager colorManager;
 	
 	private String lastOCLExpression;
-	private EObject lastContext;
+	private EObject context;
+	
+	private ISelectionService selectionService;
+	private ISelectionListener selectionListener;
+	
+	private IOCLFactory<Object> oclFactory = new EcoreOCLFactory();
+	private ModelingLevel modelingLevel = ModelingLevel.M2;
+	
+	private Map<TargetMetamodel, IAction> metamodelActions =
+	    new java.util.HashMap<TargetMetamodel, IAction>();
 	
 	private static final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
 
-	public static IItemLabelProvider TUPLE_TYPE_LABEL_PROVIDER = new IItemLabelProvider() {
+	public IItemLabelProvider tupleTypeLabelProvider = new IItemLabelProvider() {
 	
 		public Object getImage(Object object) {
 			return null;
 		}
 	
 		public String getText(Object object) {
-            @SuppressWarnings("unchecked")
-			Tuple<EOperation, EStructuralFeature> tuple =
-                (Tuple<EOperation, EStructuralFeature>) object;
-			TupleType tupleType = (TupleType) tuple.getTupleType();
+		    @SuppressWarnings("unchecked")
+            Tuple<?, Object> tuple = (Tuple<?, Object>) object;
+			TupleType<?, ?> tupleType = tuple.getTupleType();
 			
 			StringBuffer result = new StringBuffer();
 			result.append("Tuple{");//$NON-NLS-1$
 			
-			for (Iterator<EStructuralFeature> iter = tupleType.oclProperties().iterator();
+			for (Iterator<?> iter = tupleType.oclProperties().iterator();
 					iter.hasNext();) {
 				
-				EStructuralFeature next = iter.next();
+				Object next = iter.next();
 				
-				result.append(next.getName());
+				result.append(oclFactory.getName(next));
 				result.append(" = "); //$NON-NLS-1$
-				result.append(OCLConsolePage.toString(tuple.getValue(next)));
+				result.append(OCLConsolePage.this.toString(tuple.getValue(next)));
 				
 				if (iter.hasNext()) {
 					result.append(", "); //$NON-NLS-1$
@@ -138,7 +169,8 @@ public class OCLConsolePage
 		super();
 	}
 	
-	public void createControl(Composite parent) {
+	@Override
+    public void createControl(Composite parent) {
 		// force left-to-right text direction in the console, because it
 		//    works with OCL text and the OCL language is based on English
 		page = new SashForm(parent, SWT.VERTICAL | SWT.LEFT_TO_RIGHT);
@@ -149,8 +181,24 @@ public class OCLConsolePage
 		output.setEditable(false);
 		output.setDocument(new Document());
 
-		input = new Text(page, SWT.BORDER | SWT.MULTI);
-		input.addKeyListener(new InputKeyListener());
+		colorManager = new ColorManager();
+		document = new OCLDocument();
+		document.setOCLFactory(oclFactory);
+		document.setModelingLevel(modelingLevel);
+		
+		input = new OCLSourceViewer(page, colorManager, SWT.BORDER | SWT.MULTI);
+		input.setDocument(document);
+		input.getTextWidget().addKeyListener(new InputKeyListener());
+		
+		selectionListener = new ISelectionListener() {
+            public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+                OCLConsolePage.this.selectionChanged(selection);
+            }};
+		selectionService = getSite().getWorkbenchWindow().getSelectionService();
+		selectionService.addPostSelectionListener(selectionListener);
+		
+		// get current selection
+		selectionChanged(selectionService.getSelection());
 		
 		((SashForm) page).setWeights(new int[] {2, 1});
 		
@@ -164,41 +212,157 @@ public class OCLConsolePage
 		menu.add(save);
 		menu.add(clear);
 		menu.add(close);
+	    
+		IMenuManager metamodelMenu = new MenuManager(
+		    OCLInterpreterMessages.console_metamodelMenu,
+		    "org.eclipse.emf.ocl.examples.interpreter.metamodel"); //$NON-NLS-1$
+		menu.add(metamodelMenu);
+		DropDownAction metamodelAction = new DropDownAction();
+		metamodelAction.setToolTipText(OCLInterpreterMessages.console_metamodelTip);
+		addMetamodelActions(metamodelMenu, metamodelAction);
+		
+		IMenuManager levelMenu = new MenuManager(OCLInterpreterMessages.console_modelingLevel);
+		menu.add(levelMenu);
+        DropDownAction levelAction = new DropDownAction();
+        levelAction.setToolTipText(OCLInterpreterMessages.console_modelingLevelTip);
+		IAction m2 = new ModelingLevelAction(ModelingLevel.M2);
+		m2.setChecked(true);
+		levelMenu.add(m2);
+		levelAction.addAction(m2);
+		IAction m1 = new ModelingLevelAction(ModelingLevel.M1);
+		levelMenu.add(m1);
+		levelAction.addAction(m1);
+
+		ActionContributionItem metamodelItem = new ActionContributionItem(
+		    metamodelAction);
+		metamodelItem.setMode(ActionContributionItem.MODE_FORCE_TEXT);
 		
 		IToolBarManager toolbar = getSite().getActionBars().getToolBarManager();
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, load);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, save);
+        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
+        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, close);
-		
-		blue = new Color(parent.getDisplay(), 0, 0, 255);
-		red = new Color(parent.getDisplay(), 255, 0, 0);
-		black = new Color(parent.getDisplay(), 0, 0, 0);
 	}
+
+    /**
+     * Adds actions for the available target metamodels to the action bars.
+     * 
+     * @param metamodelMenu the console's drop-down action bar menu
+     * @param metamodelAction the console's drop-down tool bar button
+     */
+    private void addMetamodelActions(IMenuManager metamodelMenu,
+            DropDownAction metamodelAction) {
+        IAction ecore = new EcoreMetamodelAction();
+		ecore.setChecked(true);
+		ImageDescriptor img = getImage("org.eclipse.emf.ecore.presentation.EcoreEditorID"); //$NON-NLS-1$
+		if (img != null) {
+		    ecore.setImageDescriptor(img);
+		}
+		
+		metamodelMenu.add(ecore);
+		metamodelAction.addAction(ecore);
+        metamodelActions.put(TargetMetamodel.Ecore, ecore);
+        
+        Bundle umlBundle = Platform.getBundle("org.eclipse.uml2.uml"); //$NON-NLS-1$
+        if ((umlBundle != null) && isAvailable(umlBundle)) {
+    		IAction uml = new UMLMetamodelAction();
+            img = getImage("org.eclipse.uml2.uml.editor.presentation.UMLEditorID"); //$NON-NLS-1$
+            if (img != null) {
+                uml.setImageDescriptor(img);
+            }
+            
+    		metamodelMenu.add(uml);
+            metamodelAction.addAction(uml);
+            metamodelActions.put(TargetMetamodel.UML, uml);
+        }
+    }
 	
-	public Control getControl() {
+    /**
+     * Queries whether a bundle is available.
+     * 
+     * @param bundle a bundle
+     * @return whether it is active or resolved
+     */
+    static boolean isAvailable(Bundle bundle) {
+        return (bundle.getState() & BUNDLE_AVAILABLE) != 0;
+    }
+    
+    /**
+     * Gets the editor image for the specified editor.
+     * 
+     * @param editorID an editor ID
+     * 
+     * @return the corresponding editor image
+     */
+    private ImageDescriptor getImage(String editorID) {
+        ImageDescriptor result = null;
+        
+        IEditorDescriptor editor = PlatformUI.getWorkbench().getEditorRegistry()
+            .findEditor(editorID);
+        if (editor != null) {
+            result = editor.getImageDescriptor();
+        }
+        
+        return result;
+    }
+    
+	@Override
+    public Control getControl() {
 		return page;
 	}
 
-	public void setFocus() {
-		input.setFocus();
+	@Override
+    public void setFocus() {
+		input.getTextWidget().setFocus();
 	}
 	
 	/**
 	 * Extends the inherited method to dispose of additional colour resources.
 	 */
-	public void dispose() {
+	@Override
+    public void dispose() {
+	    colorManager.dispose();
+	    selectionService.removePostSelectionListener(selectionListener);
+	    
 		super.dispose();
-		
-		if (red != null) {
-			red.dispose();
-			blue.dispose();
-			black.dispose();
-			
-			red = null;
-			blue = null;
-			black = null;
-		}
+	}
+	
+	/**
+	 * Programmatically sets my target metamodel.
+	 * 
+	 * @param metamodel the target metamodel
+	 */
+	public void setTargetMetamodel(TargetMetamodel metamodel) {
+	    IAction action = metamodelActions.get(metamodel);
+
+	    if (action != null) {
+	        // deselect the old one
+	        metamodelActions.get(oclFactory.getTargetMetamodel()).setChecked(false);
+	        
+    	    action.run();
+    	    action.setChecked(true);
+	    }
+	}
+	
+	private void selectionChanged(ISelection sel) {
+	    if (sel instanceof IStructuredSelection) {
+            IStructuredSelection ssel = (IStructuredSelection) sel;
+            
+            if (!ssel.isEmpty()) {
+                Object selected = ssel.getFirstElement();
+                
+                if (selected instanceof EObject) {
+                    context = (EObject) selected;
+                } else if (selected instanceof IAdaptable) {
+                    context = (EObject) ((IAdaptable) selected).getAdapter(
+                        EObject.class);
+                }
+                
+                document.setOCLContext(context);
+            }
+	    }
 	}
 	
 	/**
@@ -213,82 +377,53 @@ public class OCLConsolePage
 	boolean evaluate(String expression) {
 		boolean result = true;
 		
-		EObject context = null;
-		IStructuredSelection sel = getCurrentSelection();
-		if (sel != null && !sel.isEmpty()) {
-			Object selected = sel.getFirstElement();
-			
-			if (selected instanceof EObject) {
-				context = (EObject) selected;
-			} else if (selected instanceof IAdaptable) {
-				context = (EObject) ((IAdaptable) selected).getAdapter(EObject.class);
-			}
-		}
-		
 		if (context == null) {
 			result = false;
 			error(OCLInterpreterMessages.console_noContext);
 		} else {
-			// create an OCL helper to do our parsing and evaluating.  Use
-			//    the current resource set's package registry to resolve
-			//    OCL namespaces, with the global registry as a back-up
-            OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(
-                    new DelegatingPackageRegistry(
-                            context.eResource().getResourceSet().getPackageRegistry(),
-                            EPackage.Registry.INSTANCE)));
-			OCL.Helper helper = ocl.createOCLHelper();
+			// create an OCL helper to do our parsing and evaluating
+            OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl = oclFactory.createOCL();
+            OCLHelper<Object, ?, ?, ?> helper = ocl.createOCLHelper();
 			
 			// set our helper's context classifier to parse against it
-			helper.setContext(context.eClass());
-            
-            if (helper.getContextClassifier() == context) {
-                helper.setContext(context.eClass());
-            }
+            ConstraintKind kind = modelingLevel.setContext(helper, context, oclFactory);
 			
 			try {
 				IDocument doc = getDocument();
+				Color outputDefault = colorManager.getColor(ColorManager.DEFAULT);
+                Color outputResults = colorManager.getColor(ColorManager.OUTPUT_RESULTS);
+				
 				if (doc.getLength() > 0) {
 					// separate previous output by a blank line
-					append("", black, false); //$NON-NLS-1$
+					append("", outputDefault, false); //$NON-NLS-1$
 				}
 				
-				print(OCLInterpreterMessages.console_evaluating, black, true);
-				print(expression, black, false);
-				print(OCLInterpreterMessages.console_results, black, true);
-				
-                OCLExpression parsed = helper.createQuery(expression);
+				print(OCLInterpreterMessages.console_evaluating, outputDefault, true);
+				print(expression, outputDefault, false);
+				print(OCLInterpreterMessages.console_results, outputDefault, true);
                 
-                OCL.Query query = ocl.createQuery(parsed);
+                switch (modelingLevel) {
+                    case M2:
+                        OCLExpression<Object> parsed = helper.createQuery(expression);
+                        
+                        // evaluate the query
+                        Query<Object, ?, ?> query = ocl.createQuery(parsed);
+                        print(query.evaluate(context), outputResults, false);
+                        break;
+                    case M1:
+                        helper.createConstraint(kind, expression);
+                        
+                        // just report a successful parse
+                        print(OCLInterpreterMessages.console_parsed,
+                            outputResults, false);
+                        break;
+                }
                 
-				print(query.evaluate(context), blue, false);
-				
 				// store the successfully parsed expression
 				lastOCLExpression = expression;
-				lastContext = context;
 			} catch (Exception e) {
 				result = false;
 				error(e.getLocalizedMessage());
-			}
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Gets the current selection from the workbench's active editor.
-	 * 
-	 * @return the current active editor selection, or <code>null</code> if
-	 *     no editor is active or the selection is not structured
-	 */
-	private IStructuredSelection getCurrentSelection() {
-		IStructuredSelection result = null;
-		IEditorPart editor = getSite().getWorkbenchWindow().getActivePage().getActiveEditor();
-		
-		if (editor != null) {
-			ISelection selection = editor.getSite().getSelectionProvider().getSelection();
-			
-			if (selection instanceof IStructuredSelection) {
-				result = (IStructuredSelection) selection;
 			}
 		}
 		
@@ -345,7 +480,7 @@ public class OCLConsolePage
 	 * 
 	 * @see #print(Object, Color, boolean)
 	 */
-	static String toString(Object object) {
+	String toString(Object object) {
 		if (object instanceof EObject) {
 			EObject eObject = (EObject) object;
 			
@@ -356,7 +491,7 @@ public class OCLConsolePage
 			
 			if (labeler == null) {
 				if (eObject.eClass() instanceof TupleType) {
-					labeler = TUPLE_TYPE_LABEL_PROVIDER;
+					labeler = tupleTypeLabelProvider;
 				} else {
 					labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(
 						eObject,
@@ -378,7 +513,7 @@ public class OCLConsolePage
 	 * @param message the error message to print
 	 */
 	private void error(String message) {
-		append(message, red, false);
+		append(message, colorManager.getColor(ColorManager.OUTPUT_ERROR), false);
 		scrollText();
 	}
 	
@@ -443,8 +578,9 @@ public class OCLConsolePage
 		public void keyPressed(KeyEvent e) {
 			switch (e.keyCode) {
 			case SWT.CR :
-				if ((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
-					String text = input.getText();
+			    if (!input.isContentAssistActive()
+			            && (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
+					String text = document.get();
 					evaluationSuccess = evaluate(text);
 				}
 				
@@ -457,13 +593,17 @@ public class OCLConsolePage
 			case SWT.CR :
 				if ((e.stateMask & SWT.CTRL) == 0) {
 					if (evaluationSuccess) {
-						input.setText(""); //$NON-NLS-1$
+						document.set(""); //$NON-NLS-1$
 					}
 					
 					evaluationSuccess = false;
 				}
 				
 				break;
+			case ' ':
+			    if ((e.stateMask & SWT.CTRL) == SWT.CTRL) {
+			        input.getContentAssistant().showPossibleCompletions();
+			    }
 			}
 		}
 	}
@@ -486,11 +626,13 @@ public class OCLConsolePage
 			tip = OCLInterpreterMessages.console_closeAction_tip;
 		}
 		
-		public String getToolTipText() {
+		@Override
+        public String getToolTipText() {
 			return tip;
 		}
 		
-		public void run() {
+		@Override
+        public void run() {
 			OCLConsole.getInstance().close();
 		}
 	}
@@ -516,11 +658,13 @@ public class OCLConsolePage
 			tip = OCLInterpreterMessages.console_saveAction_tip;
 		}
 		
-		public String getToolTipText() {
+		@Override
+        public String getToolTipText() {
 			return tip;
 		}
 		
-		public void run() {
+		@Override
+        public void run() {
 			Shell shell = getControl().getShell();
 			
 			if (lastOCLExpression != null) {
@@ -531,7 +675,7 @@ public class OCLConsolePage
 				String file = dlg.open();
 				if (file != null) {
 					try {
-						OCLResource.save(file, lastContext, lastOCLExpression);
+						OCLResource.save(file, document, lastOCLExpression);
 					} catch (Exception e) {
 						MessageDialog.openError(
 							shell,
@@ -554,7 +698,6 @@ public class OCLConsolePage
 	private class LoadAction extends Action {
 		private final String tip;
 		
-		
 		/**
 		 * Initializes me.
 		 */
@@ -567,11 +710,13 @@ public class OCLConsolePage
 			tip = OCLInterpreterMessages.console_loadAction_tip;
 		}
 		
-		public String getToolTipText() {
+		@Override
+        public String getToolTipText() {
 			return tip;
 		}
 		
-		public void run() {
+		@Override
+        public void run() {
 			Shell shell = getControl().getShell();
 			
 			FileDialog dlg = new FileDialog(shell, SWT.OPEN);
@@ -584,7 +729,7 @@ public class OCLConsolePage
 					String text = OCLResource.load(file);
 					
 					if (text != null) {
-						input.setText(text);
+						document.set(text);
 					} else {
 						MessageDialog.openWarning(
 							shell,
@@ -600,4 +745,216 @@ public class OCLConsolePage
 			}
 		}
 	}
+	
+	private class EcoreMetamodelAction extends Action {
+        private final String tip;
+        
+        /**
+         * Initializes me.
+         */
+        EcoreMetamodelAction() {
+            super(OCLInterpreterMessages.console_metamodel_ecore);
+            
+            tip = OCLInterpreterMessages.console_metamodel_ecoreTip;
+        }
+        
+        @Override
+        public int getStyle() {
+            return AS_RADIO_BUTTON;
+        }
+        
+        @Override
+        public String getToolTipText() {
+            return tip;
+        }
+        
+        @Override
+        public void run() {
+            oclFactory = new EcoreOCLFactory();
+            document.setOCLFactory(oclFactory);
+        }
+	}
+	
+	private class EcoreOCLFactory implements IOCLFactory<Object> {
+        public TargetMetamodel getTargetMetamodel() {
+            return TargetMetamodel.Ecore;
+        }
+        
+	    @SuppressWarnings("unchecked")
+	    public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL() {
+            return OCL.newInstance(
+                new EcoreEnvironmentFactory(
+                    new DelegatingPackageRegistry(
+                            context.eResource().getResourceSet().getPackageRegistry(),
+                            EPackage.Registry.INSTANCE)));
+	    }
+	    
+        @SuppressWarnings("unchecked")
+        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(Resource res) {
+            return OCL.newInstance(
+                new EcoreEnvironmentFactory(
+                    new DelegatingPackageRegistry(
+                            context.eResource().getResourceSet().getPackageRegistry(),
+                            EPackage.Registry.INSTANCE)),
+                res);
+        }
+        
+	    public Object getContextClassifier(EObject object) {
+	        return context.eClass();
+	    }
+	    
+	    public String getName(Object modelElement) {
+	        return ((ENamedElement) modelElement).getName();
+	    }
+	}
+    
+    private class UMLMetamodelAction extends Action {
+        private final String tip;
+        
+        /**
+         * Initializes me.
+         */
+        UMLMetamodelAction() {
+            super(OCLInterpreterMessages.console_metamodel_uml);
+            
+            tip = OCLInterpreterMessages.console_metamodel_umlTip;
+        }
+        
+        @Override
+        public int getStyle() {
+            return AS_RADIO_BUTTON;
+        }
+        
+        @Override
+        public String getToolTipText() {
+            return tip;
+        }
+        
+        @Override
+        public void run() {
+            oclFactory = new UMLOCLFactory();
+            document.setOCLFactory(oclFactory);
+        }
+    }
+    
+    private class UMLOCLFactory implements IOCLFactory<Object> {
+        public TargetMetamodel getTargetMetamodel() {
+            return TargetMetamodel.UML;
+        }
+        
+        @SuppressWarnings("unchecked")
+        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL() {
+            return OCL.newInstance(
+                new UMLEnvironmentFactory(
+                    new DelegatingPackageRegistry(
+                            context.eResource().getResourceSet().getPackageRegistry(),
+                            EPackage.Registry.INSTANCE),
+                    context.eResource().getResourceSet()));
+        }
+        
+        @SuppressWarnings("unchecked")
+        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(Resource res) {
+            return OCL.newInstance(
+                new UMLEnvironmentFactory(
+                    new DelegatingPackageRegistry(
+                            context.eResource().getResourceSet().getPackageRegistry(),
+                            EPackage.Registry.INSTANCE),
+                    context.eResource().getResourceSet()),
+                res);
+        }
+        
+        public Object getContextClassifier(EObject object) {
+            return OCLUMLUtil.getClassifier(context.eClass(),
+                context.eResource().getResourceSet());
+        }
+        
+        public String getName(Object modelElement) {
+            return ((NamedElement) modelElement).getName();
+        }
+    }
+    
+    private class ModelingLevelAction extends Action {
+        private final ModelingLevel level;
+        
+        /**
+         * Initializes me.
+         */
+        ModelingLevelAction(ModelingLevel level) {
+            super(level.name());
+            
+            this.level = level;
+        }
+        
+        @Override
+        public int getStyle() {
+            return AS_RADIO_BUTTON;
+        }
+        
+        @Override
+        public void run() {
+            modelingLevel = level;
+            document.setModelingLevel(level);
+        }
+    }
+    
+    private class DropDownAction extends Action implements IMenuCreator {
+        private Menu menu;
+        private List<IAction> actions = new java.util.ArrayList<IAction>();
+        
+        private IPropertyChangeListener listener = new IPropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent event) {
+                if (IAction.CHECKED.equals(event.getProperty())) {
+                    if (Boolean.TRUE.equals(event.getNewValue())) {
+                        actionChecked((IAction) event.getSource());
+                    }
+                }
+            }};
+        
+        DropDownAction() {
+            super();
+            
+            setMenuCreator(this);
+        }
+        
+        public void addAction(IAction action) {
+            actions.add(action);
+            action.addPropertyChangeListener(listener);
+            
+            if (action.isChecked()) {
+                actionChecked(action);
+            }
+        }
+
+        private void actionChecked(IAction action) {
+            setImageDescriptor(action.getImageDescriptor());
+            setText(action.getText());
+        }
+        
+        public Menu getMenu(Control parent) {
+            if (menu == null) {
+                menu = new Menu(parent);
+                
+                for (IAction action : actions) {
+                    addAction(menu, action);
+                }
+            }
+            
+            return menu;
+        }
+        
+        private void addAction(Menu m, IAction action) {
+            ActionContributionItem contrib = new ActionContributionItem(action);
+            contrib.fill(m, -1);
+        }
+        
+        public void dispose() {
+            if (menu != null) {
+                menu.dispose();
+            }
+        }
+        
+        public Menu getMenu(Menu parent) {
+            return null;
+        }
+    }
 }

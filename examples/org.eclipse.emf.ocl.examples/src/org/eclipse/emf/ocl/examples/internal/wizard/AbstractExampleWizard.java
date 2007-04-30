@@ -126,7 +126,7 @@ public abstract class AbstractExampleWizard extends Wizard
 						protected void execute(IProgressMonitor m)
 						
 							throws CoreException, InvocationTargetException, InterruptedException {
-							m.beginTask("Unzipping Projects", projectDescriptors.size());
+							m.beginTask("Unzipping Projects", projectDescriptors.size()); //$NON-NLS-1$
 							
 							for (Iterator i = projectDescriptors.iterator(); i.hasNext();) {
 								unzipProject((ProjectDescriptor)i.next(), m);
@@ -230,8 +230,9 @@ public abstract class AbstractExampleWizard extends Wizard
 							byte[] buffer = new byte[102400];
 							while (true) {
 								int len = zipFileStream.read(buffer);
-								if (zipFileStream.available() == 0)
-									break;
+								if (zipFileStream.available() == 0) {
+                                    break;
+                                }
 								os.write(buffer, 0, len);
 							}
 						} finally {
