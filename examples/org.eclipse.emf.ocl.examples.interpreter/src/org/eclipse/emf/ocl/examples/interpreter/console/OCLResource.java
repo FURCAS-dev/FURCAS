@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.12 2007/03/27 15:05:39 cdamus Exp $
+ * $Id: OCLResource.java,v 1.13 2007/04/30 12:39:31 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -22,16 +22,16 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ocl.examples.interpreter.console.text.OCLDocument;
+import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.util.ToStringVisitor;
 
 
@@ -56,6 +56,16 @@ public class OCLResource
 		super(uri);
 	}
 	
+	@Override
+	protected boolean useIDs() {
+	    return true;
+	}
+	
+	@Override
+	protected boolean useUUIDs() {
+	    return true;
+	}
+	
 	/**
 	 * Loads an OCL expression from the specified <code>path</code>.  The
 	 * OCL expression is converted to a string using a custom AST visitor that
@@ -76,7 +86,7 @@ public class OCLResource
 		
 		res.load(Collections.EMPTY_MAP);
 		
-		OCLExpression expr = res.getOCLExpression();
+		OCLExpression<Object> expr = res.getOCLExpression();
 		if (expr != null) {
 			result = expr.accept(ToStringVisitor.getInstance(expr));
 		}
@@ -88,34 +98,38 @@ public class OCLResource
 	 * Saves the specified OCL expression to an XMI file.
 	 * 
 	 * @param path the fully-qualified path of the XMI file to save
-	 * @param context the OCL context element
-	 * @param expr the OCL expression to save
+	 * @param document the current OCL document
+	 * @param expression the expression to save
 	 * 
 	 * @throws RuntimeException if anything goes wrong in parsing
 	 * @throws IOException if anything goes wrong in saving
 	 * @throws OCLParsingException if anything goes wrong in parsing
 	 */
-	public static void save(String path, EObject context, String expr)
+	public static void save(String path, OCLDocument document, String expression)
 			throws IOException, ParserException {
 		final OCLResource res = new OCLResource(URI.createFileURI(path));
 		
-		// create an OCL helper to do our parsing.  Use the current resource
-		//    set's package registry to resolve OCL namespaces with the global
-		//    registry as a back-up, and create an environment that persists
-		//    the dynamically-generated types in me
-        OCL ocl = OCL.newInstance(
-            new EcoreEnvironmentFactory(
-                new DelegatingPackageRegistry(
-                        context.eResource().getResourceSet().getPackageRegistry(),
-                        EPackage.Registry.INSTANCE)),
-            res);
-        OCL.Helper helper = ocl.createOCLHelper();
+		// create an OCL helper to do our parsing
+        OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, Object, ?, ?> ocl =
+            document.getOCLFactory().createOCL(res);
+        OCLHelper<Object, ?, ?, Object> helper = ocl.createOCLHelper();
+        
+        // set our helper's context classifier to parse against it
+        ConstraintKind kind = document.getModelingLevel().setContext(
+            helper, document.getOCLContext(), document.getOCLFactory());
 		
-		// use an OCL helper to parse the OCL expression and extract
-		//    the AST from it
-		helper.setContext(context.eClass());
-		
-		OCLExpression parsed = helper.createQuery(expr);
+		OCLExpression<Object> parsed = null;
+        
+        switch (document.getModelingLevel()) {
+            case M2:
+                parsed = helper.createQuery(expression);
+                break;
+            case M1:
+                Object constraint = helper.createConstraint(kind, expression);
+                parsed = ocl.getEnvironment().getUMLReflection().getSpecification(
+                    constraint).getBodyExpression();
+                break;
+        }
         
 		// add the AST to the resource and save it
 		res.setOCLExpression(parsed);
@@ -128,7 +142,7 @@ public class OCLResource
 	 * 
 	 * @param expr an OCL expression
 	 */
-	public void setOCLExpression(OCLExpression expr) {
+	public void setOCLExpression(OCLExpression<Object> expr) {
 		// add my expression as the first root, because I already contain
 		//    variables and EPackages defining dynamically-generated types
 		getContents().add(0, expr);
@@ -139,11 +153,12 @@ public class OCLResource
 	 * 
 	 * @return my OCL expression
 	 */
-	public OCLExpression getOCLExpression() {
-		OCLExpression result = null;
+	@SuppressWarnings("unchecked")
+	public OCLExpression<Object> getOCLExpression() {
+		OCLExpression<Object> result = null;
 		
 		if (!getContents().isEmpty()) {
-			result = (OCLExpression) getContents().get(0);
+			result = (OCLExpression<Object>) getContents().get(0);
 		}
 		
 		return result;

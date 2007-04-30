@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsole.java,v 1.2 2006/04/04 17:52:14 cdamus Exp $
+ * $Id: OCLConsole.java,v 1.3 2007/04/30 12:39:31 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -65,6 +65,10 @@ public class OCLConsole
 	public IPageBookViewPage createPage(IConsoleView view) {
 		page = new OCLConsolePage();
 		return page;
+	}
+	
+	public void setTargetMetamodel(TargetMetamodel metamodel) {
+	    page.setTargetMetamodel(metamodel);
 	}
 	
 	/**
