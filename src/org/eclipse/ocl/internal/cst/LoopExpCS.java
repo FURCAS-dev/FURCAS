@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: LoopExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -37,78 +37,78 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface LoopExpCS extends CallExpCS {
 	/**
-     * Returns the value of the '<em><b>Variable1</b></em>' reference.
+     * Returns the value of the '<em><b>Variable1</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable1</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variable1</em>' reference.
+     * @return the value of the '<em>Variable1</em>' containment reference.
      * @see #setVariable1(VariableCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getLoopExpCS_Variable1()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	VariableCS getVariable1();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable1 <em>Variable1</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable1 <em>Variable1</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Variable1</em>' reference.
+     * @param value the new value of the '<em>Variable1</em>' containment reference.
      * @see #getVariable1()
      * @generated
      */
 	void setVariable1(VariableCS value);
 
 	/**
-     * Returns the value of the '<em><b>Variable2</b></em>' reference.
+     * Returns the value of the '<em><b>Variable2</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable2</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variable2</em>' reference.
+     * @return the value of the '<em>Variable2</em>' containment reference.
      * @see #setVariable2(VariableCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getLoopExpCS_Variable2()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	VariableCS getVariable2();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable2 <em>Variable2</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable2 <em>Variable2</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Variable2</em>' reference.
+     * @param value the new value of the '<em>Variable2</em>' containment reference.
      * @see #getVariable2()
      * @generated
      */
 	void setVariable2(VariableCS value);
 
 	/**
-     * Returns the value of the '<em><b>Body</b></em>' reference.
+     * Returns the value of the '<em><b>Body</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Body</em>' reference.
+     * @return the value of the '<em>Body</em>' containment reference.
      * @see #setBody(OCLExpressionCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getLoopExpCS_Body()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	OCLExpressionCS getBody();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getBody <em>Body</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getBody <em>Body</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Body</em>' reference.
+     * @param value the new value of the '<em>Body</em>' containment reference.
      * @see #getBody()
      * @generated
      */

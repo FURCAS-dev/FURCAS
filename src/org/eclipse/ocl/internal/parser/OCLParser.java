@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.8 2007/04/25 21:26:53 cdamus Exp $
+ * $Id: OCLParser.java,v 1.9 2007/04/30 12:38:59 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -67,6 +67,7 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.internal.cst.CSTNode;
@@ -388,7 +389,9 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private String makeName(EList<String> namelist) {
 		StringBuffer msg = new StringBuffer();
 		for (int i = 0; i < namelist.size(); i++) {
-			if (i > 0) msg.append("::");//$NON-NLS-1$
+			if (i > 0) {
+                msg.append("::");//$NON-NLS-1$
+            }
 			msg.append(namelist.get(i));
 		}
 		return msg.toString();
@@ -730,14 +733,14 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 	
 	/**
-	 * Runs the parser and throws an <code>LpgException</code>
+	 * Performs a concrete-syntax parser and throws <code>ParserException</code>
 	 * if any parse errors are encountered.
 	 * 
 	 * @return the parsed CST
 	 * @throws ParserException if unable to parse the expression
 	 */
-	private EObject runParser() throws ParserException {
-		EObject cstNode = parser();
+	public CSTNode parseConcreteSyntax() throws ParserException {
+		CSTNode cstNode = (CSTNode) parser();
 		if (errorString.length() > 0) {
 			String error = errorString;
 			errorString = ""; //$NON-NLS-1$
@@ -745,6 +748,47 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 		return cstNode;
 	}
+    
+    /**
+     * Parses the specified concrete syntax model to an abstract syntax model.
+     * 
+     * @param cst the OCL concrete syntax model
+     * @param constraintType the kind of constraint to parse
+     * @return the OCL expression, if it successfully parsed
+     * 
+     * @throws ParserException any exception thrown in parsing
+     */
+    public OCLExpression<C> parseAST(OCLExpressionCS cst, ConstraintKind constraintType)
+            throws ParserException {
+        
+        OCLExpression<C> result = null;
+        switch (constraintType) {
+        case PRECONDITION:
+            PrePostOrBodyDeclCS pre = createPrePostOrBodyDeclCS(
+                PrePostOrBodyEnum.PRE_LITERAL, null, cst);
+            result = uml.getSpecification(prePostOrBodyDeclCS(
+                environment, pre)).getBodyExpression();
+            break;
+        case BODYCONDITION:
+            PrePostOrBodyDeclCS body = createPrePostOrBodyDeclCS(
+                PrePostOrBodyEnum.BODY_LITERAL, null, cst);
+            result = uml.getSpecification(prePostOrBodyDeclCS(
+                environment, body)).getBodyExpression();
+            break;
+        case POSTCONDITION:
+            PrePostOrBodyDeclCS post = createPrePostOrBodyDeclCS(
+                PrePostOrBodyEnum.POST_LITERAL, null, cst);
+            result = uml.getSpecification(prePostOrBodyDeclCS(
+                environment, post)).getBodyExpression();
+            break;
+        default:
+            InvCS inv = createInvCS(null, null, cst);
+            result = uml.getSpecification(invCS(inv, environment)).getBodyExpression();
+            break;
+        }
+        
+        return result;
+    }
 
 	/**
 	 * Parses the input as a PackageDeclarationCS.
@@ -754,7 +798,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @throws ParserException if unable to parse the expression
 	 */
 	public List<CT> parsePackageDeclarationCS(List<CT> constraints) throws ParserException {
-		EObject cstNode = runParser();
+		CSTNode cstNode = parseConcreteSyntax();
 		
 		if ((cstNode != null) && !(cstNode instanceof PackageDeclarationCS)) {
 			ERROR("parsePackageDeclarationCS",//$NON-NLS-1$
@@ -780,7 +824,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	public CT parseInvOrDefCS() throws ParserException {
 		
-		EObject cstNode = runParser();
+		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof InvOrDefCS) {
 				return invOrDefCS((InvOrDefCS)cstNode, environment);
@@ -803,7 +847,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	public CT parsePrePostOrBodyDeclCS() throws ParserException {
 		
-		EObject cstNode = runParser();
+		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof PrePostOrBodyDeclCS) {
 				return prePostOrBodyDeclCS(
@@ -828,7 +872,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	public CT parseInitOrDerValueCS() throws ParserException {
 		
-		EObject cstNode = runParser();
+		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof InitOrDerValueCS) {
 				return initOrDerValueCS(
@@ -855,7 +899,7 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	public Variable<C, PM>
 	parseVariableDeclarationCS(boolean addToEnvironment) throws ParserException {
 		
-		EObject cstNode = runParser();
+		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof VariableCS) {
 				return variableDeclarationCS((VariableCS)cstNode, environment, true);
@@ -873,7 +917,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * Called when encountering a single bad character. Do not report
 	 * this error at this point.
 	 */
-	public void reportError(int left_char, int right_char) {
+	@Override
+    public void reportError(int left_char, int right_char) {
 		// empty
 	}
 
@@ -886,7 +931,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param rightToken the token to the right of the error
 	 * @param tokenText the text of the bad token
 	 */
-	public void reportError(int errorCode, String locationInfo, int leftToken, int rightToken, String tokenText) {
+	@Override
+    public void reportError(int errorCode, String locationInfo, int leftToken, int rightToken, String tokenText) {
 
 		int leftTokenLoc = (leftToken > rightToken ? rightToken : leftToken);
 		int rightTokenLoc = rightToken;
@@ -980,7 +1026,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Empty.
 	 */
-	public void reportError(int errorCode, String locationInfo, String tokenText) {
+	@Override
+    public void reportError(int errorCode, String locationInfo, String tokenText) {
 		// empty
 	}
 
@@ -990,7 +1037,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param i token index
 	 * @param code error code
 	 */
-	public void reportError(int i, String code) {
+	@Override
+    public void reportError(int i, String code) {
 		errorString = code
 			+ " (" + getKind(i) + ") : "  //$NON-NLS-1$//$NON-NLS-2$
 			+ getStartOffset(i)
@@ -1768,12 +1816,14 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		String varName = variableDeclarationCS.getName();
 		C type = null;
-		if (variableDeclarationCS.getTypeCS() != null)
-			type = typeCS(variableDeclarationCS.getTypeCS(), env);
+		if (variableDeclarationCS.getTypeCS() != null) {
+            type = typeCS(variableDeclarationCS.getTypeCS(), env);
+        }
 
 	  	OCLExpression<C> expr = null;
-	  	if (variableDeclarationCS.getInitExpression() != null)
-	  		expr = oclExpressionCS(variableDeclarationCS.getInitExpression(), env);
+	  	if (variableDeclarationCS.getInitExpression() != null) {
+            expr = oclExpressionCS(variableDeclarationCS.getInitExpression(), env);
+        }
 	
 	  	// handle the generic typing of OclMessages
 	  	if (expr != null) {
@@ -3026,12 +3076,14 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		String varName = variableDeclarationCS.getName();
 		C type = null;
-		if (variableDeclarationCS.getTypeCS() != null)
-			type = typeCS(variableDeclarationCS.getTypeCS(), env);
+		if (variableDeclarationCS.getTypeCS() != null) {
+            type = typeCS(variableDeclarationCS.getTypeCS(), env);
+        }
 
 	  	OCLExpression<C> expr = null;
-	  	if (variableDeclarationCS.getInitExpression() != null)
-	  		expr = oclExpressionCS(variableDeclarationCS.getInitExpression(), env);
+	  	if (variableDeclarationCS.getInitExpression() != null) {
+            expr = oclExpressionCS(variableDeclarationCS.getInitExpression(), env);
+        }
 	
 		TupleLiteralPart<C, P> astNode =
 			oclFactory.createTupleLiteralPart();
@@ -3754,8 +3806,9 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			if (implicitSource == null) {
 				String errMessage = name + "(";//$NON-NLS-1$
 				for (int i = 0; i < args.size(); i++) {
-					if (i > 0)
-						errMessage += ", ";//$NON-NLS-1$
+					if (i > 0) {
+                        errMessage += ", ";//$NON-NLS-1$
+                    }
 					errMessage += uml.getName(args.get(i).getType());
 				}
 				errMessage += ")";//$NON-NLS-1$

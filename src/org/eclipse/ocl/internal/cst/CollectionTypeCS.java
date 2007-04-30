@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: CollectionTypeCS.java,v 1.3 2007/04/30 12:38:58 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -65,26 +65,26 @@ public interface CollectionTypeCS extends TypeCS {
 	void setCollectionTypeIdentifier(CollectionTypeIdentifierEnum value);
 
 	/**
-     * Returns the value of the '<em><b>Type CS</b></em>' reference.
+     * Returns the value of the '<em><b>Type CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Type CS</em>' reference.
+     * @return the value of the '<em>Type CS</em>' containment reference.
      * @see #setTypeCS(TypeCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionTypeCS_TypeCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	TypeCS getTypeCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CollectionTypeCS#getTypeCS <em>Type CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CollectionTypeCS#getTypeCS <em>Type CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type CS</em>' reference.
+     * @param value the new value of the '<em>Type CS</em>' containment reference.
      * @see #getTypeCS()
      * @generated
      */

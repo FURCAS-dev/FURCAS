@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -136,7 +136,7 @@ public interface CSTPackage extends EPackage {
 	int PACKAGE_DECLARATION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Path Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -145,7 +145,7 @@ public interface CSTPackage extends EPackage {
 	int PACKAGE_DECLARATION_CS__PATH_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Context Decls</b></em>' reference list.
+     * The feature id for the '<em><b>Context Decls</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -740,7 +740,7 @@ public interface CSTPackage extends EPackage {
 	int CLASSIFIER_CONTEXT_DECL_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Path Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -749,7 +749,7 @@ public interface CSTPackage extends EPackage {
 	int CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Inv Or Def CS</b></em>' reference.
+     * The feature id for the '<em><b>Inv Or Def CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -839,7 +839,7 @@ public interface CSTPackage extends EPackage {
 	int PRE_POST_OR_BODY_DECL_CS__KIND = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -848,7 +848,7 @@ public interface CSTPackage extends EPackage {
 	int PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -884,7 +884,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Path Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -893,7 +893,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CS__PATH_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -902,7 +902,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Parameters</b></em>' reference list.
+     * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -911,7 +911,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CS__PARAMETERS = CST_NODE_FEATURE_COUNT + 2;
 
 	/**
-     * The feature id for the '<em><b>Type CS</b></em>' reference.
+     * The feature id for the '<em><b>Type CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -956,7 +956,7 @@ public interface CSTPackage extends EPackage {
 	int INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1001,7 +1001,7 @@ public interface CSTPackage extends EPackage {
 	int DER_VALUE_CS__INIT_OR_DER_VALUE_CS = INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1046,7 +1046,7 @@ public interface CSTPackage extends EPackage {
 	int INIT_VALUE_CS__INIT_OR_DER_VALUE_CS = INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1082,7 +1082,7 @@ public interface CSTPackage extends EPackage {
 	int INV_OR_DEF_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1127,7 +1127,7 @@ public interface CSTPackage extends EPackage {
 	int INV_CS__END_OFFSET = INV_OR_DEF_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1145,7 +1145,7 @@ public interface CSTPackage extends EPackage {
 	int INV_CS__INV_OR_DEF_CS = INV_OR_DEF_CS__INV_OR_DEF_CS;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1181,7 +1181,7 @@ public interface CSTPackage extends EPackage {
 	int DEF_CS__END_OFFSET = INV_OR_DEF_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1199,7 +1199,7 @@ public interface CSTPackage extends EPackage {
 	int DEF_CS__INV_OR_DEF_CS = INV_OR_DEF_CS__INV_OR_DEF_CS;
 
 	/**
-     * The feature id for the '<em><b>Def Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Def Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1235,7 +1235,7 @@ public interface CSTPackage extends EPackage {
 	int DEF_EXPRESSION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Operation CS</b></em>' reference.
+     * The feature id for the '<em><b>Operation CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1244,7 +1244,7 @@ public interface CSTPackage extends EPackage {
 	int DEF_EXPRESSION_CS__OPERATION_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Variable CS</b></em>' reference.
+     * The feature id for the '<em><b>Variable CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1253,7 +1253,7 @@ public interface CSTPackage extends EPackage {
 	int DEF_EXPRESSION_CS__VARIABLE_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1379,7 +1379,7 @@ public interface CSTPackage extends EPackage {
 	int VARIABLE_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Arguments</b></em>' reference list.
+     * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1388,7 +1388,7 @@ public interface CSTPackage extends EPackage {
 	int VARIABLE_EXP_CS__ARGUMENTS = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1397,7 +1397,7 @@ public interface CSTPackage extends EPackage {
 	int VARIABLE_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Is Marked Pre CS</b></em>' reference.
+     * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1523,7 +1523,7 @@ public interface CSTPackage extends EPackage {
 	int TUPLE_TYPE_CS__END_OFFSET = TYPE_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Variables</b></em>' reference list.
+     * The feature id for the '<em><b>Variables</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1568,7 +1568,7 @@ public interface CSTPackage extends EPackage {
 	int COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER = TYPE_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Type CS</b></em>' reference.
+     * The feature id for the '<em><b>Type CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1604,7 +1604,7 @@ public interface CSTPackage extends EPackage {
 	int LET_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Variables</b></em>' reference list.
+     * The feature id for the '<em><b>Variables</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1613,7 +1613,7 @@ public interface CSTPackage extends EPackage {
 	int LET_EXP_CS__VARIABLES = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>In Expression</b></em>' reference.
+     * The feature id for the '<em><b>In Expression</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1721,7 +1721,7 @@ public interface CSTPackage extends EPackage {
 	int MESSAGE_EXP_CS__KIND = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1766,7 +1766,7 @@ public interface CSTPackage extends EPackage {
 	int OCL_MESSAGE_ARG_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Type CS</b></em>' reference.
+     * The feature id for the '<em><b>Type CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1775,7 +1775,7 @@ public interface CSTPackage extends EPackage {
 	int OCL_MESSAGE_ARG_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Expression</b></em>' reference.
+     * The feature id for the '<em><b>Expression</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1820,7 +1820,7 @@ public interface CSTPackage extends EPackage {
 	int VARIABLE_CS__NAME = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Type CS</b></em>' reference.
+     * The feature id for the '<em><b>Type CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1829,7 +1829,7 @@ public interface CSTPackage extends EPackage {
 	int VARIABLE_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Init Expression</b></em>' reference.
+     * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1892,7 +1892,7 @@ public interface CSTPackage extends EPackage {
 	int ENUM_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Path Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1901,7 +1901,7 @@ public interface CSTPackage extends EPackage {
 	int ENUM_LITERAL_EXP_CS__PATH_NAME_CS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1946,7 +1946,7 @@ public interface CSTPackage extends EPackage {
 	int COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Collection Literal Parts</b></em>' reference list.
+     * The feature id for the '<em><b>Collection Literal Parts</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1982,7 +1982,7 @@ public interface CSTPackage extends EPackage {
 	int TUPLE_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Variables</b></em>' reference list.
+     * The feature id for the '<em><b>Variables</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2361,7 +2361,7 @@ public interface CSTPackage extends EPackage {
 	int COLLECTION_LITERAL_PART_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2397,7 +2397,7 @@ public interface CSTPackage extends EPackage {
 	int COLLECTION_RANGE_CS__END_OFFSET = COLLECTION_LITERAL_PART_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2406,7 +2406,7 @@ public interface CSTPackage extends EPackage {
 	int COLLECTION_RANGE_CS__EXPRESSION_CS = COLLECTION_LITERAL_PART_CS__EXPRESSION_CS;
 
 	/**
-     * The feature id for the '<em><b>Last Expression CS</b></em>' reference.
+     * The feature id for the '<em><b>Last Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2442,7 +2442,7 @@ public interface CSTPackage extends EPackage {
 	int CALL_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Source</b></em>' reference.
+     * The feature id for the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2460,7 +2460,7 @@ public interface CSTPackage extends EPackage {
 	int CALL_EXP_CS__ACCESSOR = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2496,7 +2496,7 @@ public interface CSTPackage extends EPackage {
 	int LOOP_EXP_CS__END_OFFSET = CALL_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Source</b></em>' reference.
+     * The feature id for the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2514,7 +2514,7 @@ public interface CSTPackage extends EPackage {
 	int LOOP_EXP_CS__ACCESSOR = CALL_EXP_CS__ACCESSOR;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2523,7 +2523,7 @@ public interface CSTPackage extends EPackage {
 	int LOOP_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
-     * The feature id for the '<em><b>Variable1</b></em>' reference.
+     * The feature id for the '<em><b>Variable1</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2532,7 +2532,7 @@ public interface CSTPackage extends EPackage {
 	int LOOP_EXP_CS__VARIABLE1 = CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Variable2</b></em>' reference.
+     * The feature id for the '<em><b>Variable2</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2541,7 +2541,7 @@ public interface CSTPackage extends EPackage {
 	int LOOP_EXP_CS__VARIABLE2 = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-     * The feature id for the '<em><b>Body</b></em>' reference.
+     * The feature id for the '<em><b>Body</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2577,7 +2577,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATOR_EXP_CS__END_OFFSET = LOOP_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Source</b></em>' reference.
+     * The feature id for the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2595,7 +2595,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATOR_EXP_CS__ACCESSOR = LOOP_EXP_CS__ACCESSOR;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2604,7 +2604,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATOR_EXP_CS__SIMPLE_NAME_CS = LOOP_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
-     * The feature id for the '<em><b>Variable1</b></em>' reference.
+     * The feature id for the '<em><b>Variable1</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2613,7 +2613,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATOR_EXP_CS__VARIABLE1 = LOOP_EXP_CS__VARIABLE1;
 
 	/**
-     * The feature id for the '<em><b>Variable2</b></em>' reference.
+     * The feature id for the '<em><b>Variable2</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2622,7 +2622,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATOR_EXP_CS__VARIABLE2 = LOOP_EXP_CS__VARIABLE2;
 
 	/**
-     * The feature id for the '<em><b>Body</b></em>' reference.
+     * The feature id for the '<em><b>Body</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2658,7 +2658,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATE_EXP_CS__END_OFFSET = LOOP_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Source</b></em>' reference.
+     * The feature id for the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2676,7 +2676,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATE_EXP_CS__ACCESSOR = LOOP_EXP_CS__ACCESSOR;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2685,7 +2685,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATE_EXP_CS__SIMPLE_NAME_CS = LOOP_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
-     * The feature id for the '<em><b>Variable1</b></em>' reference.
+     * The feature id for the '<em><b>Variable1</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2694,7 +2694,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATE_EXP_CS__VARIABLE1 = LOOP_EXP_CS__VARIABLE1;
 
 	/**
-     * The feature id for the '<em><b>Variable2</b></em>' reference.
+     * The feature id for the '<em><b>Variable2</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2703,7 +2703,7 @@ public interface CSTPackage extends EPackage {
 	int ITERATE_EXP_CS__VARIABLE2 = LOOP_EXP_CS__VARIABLE2;
 
 	/**
-     * The feature id for the '<em><b>Body</b></em>' reference.
+     * The feature id for the '<em><b>Body</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2739,7 +2739,7 @@ public interface CSTPackage extends EPackage {
 	int FEATURE_CALL_EXP_CS__END_OFFSET = CALL_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Source</b></em>' reference.
+     * The feature id for the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2757,7 +2757,7 @@ public interface CSTPackage extends EPackage {
 	int FEATURE_CALL_EXP_CS__ACCESSOR = CALL_EXP_CS__ACCESSOR;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2766,7 +2766,7 @@ public interface CSTPackage extends EPackage {
 	int FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
-     * The feature id for the '<em><b>Arguments</b></em>' reference list.
+     * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2775,7 +2775,7 @@ public interface CSTPackage extends EPackage {
 	int FEATURE_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Is Marked Pre CS</b></em>' reference.
+     * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2811,7 +2811,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CALL_EXP_CS__END_OFFSET = FEATURE_CALL_EXP_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Source</b></em>' reference.
+     * The feature id for the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2829,7 +2829,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CALL_EXP_CS__ACCESSOR = FEATURE_CALL_EXP_CS__ACCESSOR;
 
 	/**
-     * The feature id for the '<em><b>Simple Name CS</b></em>' reference.
+     * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2838,7 +2838,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CALL_EXP_CS__SIMPLE_NAME_CS = FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
-     * The feature id for the '<em><b>Arguments</b></em>' reference list.
+     * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2847,7 +2847,7 @@ public interface CSTPackage extends EPackage {
 	int OPERATION_CALL_EXP_CS__ARGUMENTS = FEATURE_CALL_EXP_CS__ARGUMENTS;
 
 	/**
-     * The feature id for the '<em><b>Is Marked Pre CS</b></em>' reference.
+     * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -3041,10 +3041,10 @@ public interface CSTPackage extends EPackage {
 	EClass getPackageDeclarationCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.PackageDeclarationCS#getPathNameCS <em>Path Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.PackageDeclarationCS#getPathNameCS <em>Path Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Path Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Path Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.PackageDeclarationCS#getPathNameCS()
      * @see #getPackageDeclarationCS()
      * @generated
@@ -3052,10 +3052,10 @@ public interface CSTPackage extends EPackage {
 	EReference getPackageDeclarationCS_PathNameCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.PackageDeclarationCS#getContextDecls <em>Context Decls</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.PackageDeclarationCS#getContextDecls <em>Context Decls</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Context Decls</em>'.
+     * @return the meta object for the containment reference list '<em>Context Decls</em>'.
      * @see org.eclipse.ocl.internal.cst.PackageDeclarationCS#getContextDecls()
      * @see #getPackageDeclarationCS()
      * @generated
@@ -3094,10 +3094,10 @@ public interface CSTPackage extends EPackage {
 	EClass getClassifierContextDeclCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.ClassifierContextDeclCS#getPathNameCS <em>Path Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.ClassifierContextDeclCS#getPathNameCS <em>Path Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Path Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Path Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.ClassifierContextDeclCS#getPathNameCS()
      * @see #getClassifierContextDeclCS()
      * @generated
@@ -3105,10 +3105,10 @@ public interface CSTPackage extends EPackage {
 	EReference getClassifierContextDeclCS_PathNameCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Inv Or Def CS</em>'.
+     * @return the meta object for the containment reference '<em>Inv Or Def CS</em>'.
      * @see org.eclipse.ocl.internal.cst.ClassifierContextDeclCS#getInvOrDefCS()
      * @see #getClassifierContextDeclCS()
      * @generated
@@ -3169,10 +3169,10 @@ public interface CSTPackage extends EPackage {
 	EAttribute getPrePostOrBodyDeclCS_Kind();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS#getSimpleNameCS()
      * @see #getPrePostOrBodyDeclCS()
      * @generated
@@ -3180,10 +3180,10 @@ public interface CSTPackage extends EPackage {
 	EReference getPrePostOrBodyDeclCS_SimpleNameCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS#getExpressionCS <em>Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS#getExpressionCS <em>Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.PrePostOrBodyDeclCS#getExpressionCS()
      * @see #getPrePostOrBodyDeclCS()
      * @generated
@@ -3201,10 +3201,10 @@ public interface CSTPackage extends EPackage {
 	EClass getOperationCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.OperationCS#getPathNameCS <em>Path Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.OperationCS#getPathNameCS <em>Path Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Path Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Path Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.OperationCS#getPathNameCS()
      * @see #getOperationCS()
      * @generated
@@ -3212,10 +3212,10 @@ public interface CSTPackage extends EPackage {
 	EReference getOperationCS_PathNameCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.OperationCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.OperationCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.OperationCS#getSimpleNameCS()
      * @see #getOperationCS()
      * @generated
@@ -3223,10 +3223,10 @@ public interface CSTPackage extends EPackage {
 	EReference getOperationCS_SimpleNameCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.OperationCS#getParameters <em>Parameters</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.OperationCS#getParameters <em>Parameters</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Parameters</em>'.
+     * @return the meta object for the containment reference list '<em>Parameters</em>'.
      * @see org.eclipse.ocl.internal.cst.OperationCS#getParameters()
      * @see #getOperationCS()
      * @generated
@@ -3234,10 +3234,10 @@ public interface CSTPackage extends EPackage {
 	EReference getOperationCS_Parameters();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.OperationCS#getTypeCS <em>Type CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.OperationCS#getTypeCS <em>Type CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Type CS</em>'.
+     * @return the meta object for the containment reference '<em>Type CS</em>'.
      * @see org.eclipse.ocl.internal.cst.OperationCS#getTypeCS()
      * @see #getOperationCS()
      * @generated
@@ -3266,10 +3266,10 @@ public interface CSTPackage extends EPackage {
 	EReference getInitOrDerValueCS_InitOrDerValueCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.InitOrDerValueCS#getExpressionCS <em>Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.InitOrDerValueCS#getExpressionCS <em>Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.InitOrDerValueCS#getExpressionCS()
      * @see #getInitOrDerValueCS()
      * @generated
@@ -3307,10 +3307,10 @@ public interface CSTPackage extends EPackage {
 	EClass getInvOrDefCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.InvOrDefCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.InvOrDefCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.InvOrDefCS#getSimpleNameCS()
      * @see #getInvOrDefCS()
      * @generated
@@ -3339,10 +3339,10 @@ public interface CSTPackage extends EPackage {
 	EClass getInvCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.InvCS#getExpressionCS <em>Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.InvCS#getExpressionCS <em>Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.InvCS#getExpressionCS()
      * @see #getInvCS()
      * @generated
@@ -3360,10 +3360,10 @@ public interface CSTPackage extends EPackage {
 	EClass getDefCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Def Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Def Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.DefCS#getDefExpressionCS()
      * @see #getDefCS()
      * @generated
@@ -3381,10 +3381,10 @@ public interface CSTPackage extends EPackage {
 	EClass getDefExpressionCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.DefExpressionCS#getOperationCS <em>Operation CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.DefExpressionCS#getOperationCS <em>Operation CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Operation CS</em>'.
+     * @return the meta object for the containment reference '<em>Operation CS</em>'.
      * @see org.eclipse.ocl.internal.cst.DefExpressionCS#getOperationCS()
      * @see #getDefExpressionCS()
      * @generated
@@ -3392,10 +3392,10 @@ public interface CSTPackage extends EPackage {
 	EReference getDefExpressionCS_OperationCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.DefExpressionCS#getVariableCS <em>Variable CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.DefExpressionCS#getVariableCS <em>Variable CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Variable CS</em>'.
+     * @return the meta object for the containment reference '<em>Variable CS</em>'.
      * @see org.eclipse.ocl.internal.cst.DefExpressionCS#getVariableCS()
      * @see #getDefExpressionCS()
      * @generated
@@ -3403,10 +3403,10 @@ public interface CSTPackage extends EPackage {
 	EReference getDefExpressionCS_VariableCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.DefExpressionCS#getExpressionCS <em>Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.DefExpressionCS#getExpressionCS <em>Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.DefExpressionCS#getExpressionCS()
      * @see #getDefExpressionCS()
      * @generated
@@ -3445,10 +3445,10 @@ public interface CSTPackage extends EPackage {
 	EClass getVariableExpCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getArguments <em>Arguments</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getArguments <em>Arguments</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Arguments</em>'.
+     * @return the meta object for the containment reference list '<em>Arguments</em>'.
      * @see org.eclipse.ocl.internal.cst.VariableExpCS#getArguments()
      * @see #getVariableExpCS()
      * @generated
@@ -3456,10 +3456,10 @@ public interface CSTPackage extends EPackage {
 	EReference getVariableExpCS_Arguments();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.VariableExpCS#getSimpleNameCS()
      * @see #getVariableExpCS()
      * @generated
@@ -3467,10 +3467,10 @@ public interface CSTPackage extends EPackage {
 	EReference getVariableExpCS_SimpleNameCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Is Marked Pre CS</em>'.
+     * @return the meta object for the containment reference '<em>Is Marked Pre CS</em>'.
      * @see org.eclipse.ocl.internal.cst.VariableExpCS#getIsMarkedPreCS()
      * @see #getVariableExpCS()
      * @generated
@@ -3540,10 +3540,10 @@ public interface CSTPackage extends EPackage {
 	EClass getTupleTypeCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.TupleTypeCS#getVariables <em>Variables</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.TupleTypeCS#getVariables <em>Variables</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Variables</em>'.
+     * @return the meta object for the containment reference list '<em>Variables</em>'.
      * @see org.eclipse.ocl.internal.cst.TupleTypeCS#getVariables()
      * @see #getTupleTypeCS()
      * @generated
@@ -3572,10 +3572,10 @@ public interface CSTPackage extends EPackage {
 	EAttribute getCollectionTypeCS_CollectionTypeIdentifier();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.CollectionTypeCS#getTypeCS <em>Type CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.CollectionTypeCS#getTypeCS <em>Type CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Type CS</em>'.
+     * @return the meta object for the containment reference '<em>Type CS</em>'.
      * @see org.eclipse.ocl.internal.cst.CollectionTypeCS#getTypeCS()
      * @see #getCollectionTypeCS()
      * @generated
@@ -3603,10 +3603,10 @@ public interface CSTPackage extends EPackage {
 	EClass getLetExpCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.LetExpCS#getVariables <em>Variables</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.LetExpCS#getVariables <em>Variables</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Variables</em>'.
+     * @return the meta object for the containment reference list '<em>Variables</em>'.
      * @see org.eclipse.ocl.internal.cst.LetExpCS#getVariables()
      * @see #getLetExpCS()
      * @generated
@@ -3614,10 +3614,10 @@ public interface CSTPackage extends EPackage {
 	EReference getLetExpCS_Variables();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.LetExpCS#getInExpression <em>In Expression</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.LetExpCS#getInExpression <em>In Expression</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>In Expression</em>'.
+     * @return the meta object for the containment reference '<em>In Expression</em>'.
      * @see org.eclipse.ocl.internal.cst.LetExpCS#getInExpression()
      * @see #getLetExpCS()
      * @generated
@@ -3678,10 +3678,10 @@ public interface CSTPackage extends EPackage {
 	EClass getOCLMessageArgCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.OCLMessageArgCS#getTypeCS <em>Type CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.OCLMessageArgCS#getTypeCS <em>Type CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Type CS</em>'.
+     * @return the meta object for the containment reference '<em>Type CS</em>'.
      * @see org.eclipse.ocl.internal.cst.OCLMessageArgCS#getTypeCS()
      * @see #getOCLMessageArgCS()
      * @generated
@@ -3689,10 +3689,10 @@ public interface CSTPackage extends EPackage {
 	EReference getOCLMessageArgCS_TypeCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.OCLMessageArgCS#getExpression <em>Expression</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.OCLMessageArgCS#getExpression <em>Expression</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Expression</em>'.
+     * @return the meta object for the containment reference '<em>Expression</em>'.
      * @see org.eclipse.ocl.internal.cst.OCLMessageArgCS#getExpression()
      * @see #getOCLMessageArgCS()
      * @generated
@@ -3720,10 +3720,10 @@ public interface CSTPackage extends EPackage {
 	EClass getEnumLiteralExpCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.EnumLiteralExpCS#getPathNameCS <em>Path Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.EnumLiteralExpCS#getPathNameCS <em>Path Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Path Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Path Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.EnumLiteralExpCS#getPathNameCS()
      * @see #getEnumLiteralExpCS()
      * @generated
@@ -3731,10 +3731,10 @@ public interface CSTPackage extends EPackage {
 	EReference getEnumLiteralExpCS_PathNameCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.EnumLiteralExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.EnumLiteralExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.EnumLiteralExpCS#getSimpleNameCS()
      * @see #getEnumLiteralExpCS()
      * @generated
@@ -3763,10 +3763,10 @@ public interface CSTPackage extends EPackage {
 	EAttribute getCollectionLiteralExpCS_CollectionType();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.CollectionLiteralExpCS#getCollectionLiteralParts <em>Collection Literal Parts</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.CollectionLiteralExpCS#getCollectionLiteralParts <em>Collection Literal Parts</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Collection Literal Parts</em>'.
+     * @return the meta object for the containment reference list '<em>Collection Literal Parts</em>'.
      * @see org.eclipse.ocl.internal.cst.CollectionLiteralExpCS#getCollectionLiteralParts()
      * @see #getCollectionLiteralExpCS()
      * @generated
@@ -3784,10 +3784,10 @@ public interface CSTPackage extends EPackage {
 	EClass getTupleLiteralExpCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.TupleLiteralExpCS#getVariables <em>Variables</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.TupleLiteralExpCS#getVariables <em>Variables</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Variables</em>'.
+     * @return the meta object for the containment reference list '<em>Variables</em>'.
      * @see org.eclipse.ocl.internal.cst.TupleLiteralExpCS#getVariables()
      * @see #getTupleLiteralExpCS()
      * @generated
@@ -3931,10 +3931,10 @@ public interface CSTPackage extends EPackage {
 	EClass getCollectionLiteralPartCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.CollectionLiteralPartCS#getExpressionCS()
      * @see #getCollectionLiteralPartCS()
      * @generated
@@ -3952,10 +3952,10 @@ public interface CSTPackage extends EPackage {
 	EClass getCollectionRangeCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.CollectionRangeCS#getLastExpressionCS <em>Last Expression CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.CollectionRangeCS#getLastExpressionCS <em>Last Expression CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Last Expression CS</em>'.
+     * @return the meta object for the containment reference '<em>Last Expression CS</em>'.
      * @see org.eclipse.ocl.internal.cst.CollectionRangeCS#getLastExpressionCS()
      * @see #getCollectionRangeCS()
      * @generated
@@ -3973,10 +3973,10 @@ public interface CSTPackage extends EPackage {
 	EClass getLoopExpCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable1 <em>Variable1</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable1 <em>Variable1</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Variable1</em>'.
+     * @return the meta object for the containment reference '<em>Variable1</em>'.
      * @see org.eclipse.ocl.internal.cst.LoopExpCS#getVariable1()
      * @see #getLoopExpCS()
      * @generated
@@ -3984,10 +3984,10 @@ public interface CSTPackage extends EPackage {
 	EReference getLoopExpCS_Variable1();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable2 <em>Variable2</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getVariable2 <em>Variable2</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Variable2</em>'.
+     * @return the meta object for the containment reference '<em>Variable2</em>'.
      * @see org.eclipse.ocl.internal.cst.LoopExpCS#getVariable2()
      * @see #getLoopExpCS()
      * @generated
@@ -3995,10 +3995,10 @@ public interface CSTPackage extends EPackage {
 	EReference getLoopExpCS_Variable2();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getBody <em>Body</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.LoopExpCS#getBody <em>Body</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Body</em>'.
+     * @return the meta object for the containment reference '<em>Body</em>'.
      * @see org.eclipse.ocl.internal.cst.LoopExpCS#getBody()
      * @see #getLoopExpCS()
      * @generated
@@ -4164,10 +4164,10 @@ public interface CSTPackage extends EPackage {
 	EAttribute getMessageExpCS_Kind();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.MessageExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.MessageExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.MessageExpCS#getSimpleNameCS()
      * @see #getMessageExpCS()
      * @generated
@@ -4207,10 +4207,10 @@ public interface CSTPackage extends EPackage {
 	EAttribute getVariableCS_Name();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.VariableCS#getTypeCS <em>Type CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.VariableCS#getTypeCS <em>Type CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Type CS</em>'.
+     * @return the meta object for the containment reference '<em>Type CS</em>'.
      * @see org.eclipse.ocl.internal.cst.VariableCS#getTypeCS()
      * @see #getVariableCS()
      * @generated
@@ -4218,10 +4218,10 @@ public interface CSTPackage extends EPackage {
 	EReference getVariableCS_TypeCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.VariableCS#getInitExpression <em>Init Expression</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.VariableCS#getInitExpression <em>Init Expression</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Init Expression</em>'.
+     * @return the meta object for the containment reference '<em>Init Expression</em>'.
      * @see org.eclipse.ocl.internal.cst.VariableCS#getInitExpression()
      * @see #getVariableCS()
      * @generated
@@ -4281,10 +4281,10 @@ public interface CSTPackage extends EPackage {
 	EClass getCallExpCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSource <em>Source</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSource <em>Source</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Source</em>'.
+     * @return the meta object for the containment reference '<em>Source</em>'.
      * @see org.eclipse.ocl.internal.cst.CallExpCS#getSource()
      * @see #getCallExpCS()
      * @generated
@@ -4303,10 +4303,10 @@ public interface CSTPackage extends EPackage {
 	EAttribute getCallExpCS_Accessor();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Simple Name CS</em>'.
+     * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
      * @see org.eclipse.ocl.internal.cst.CallExpCS#getSimpleNameCS()
      * @see #getCallExpCS()
      * @generated
@@ -4324,10 +4324,10 @@ public interface CSTPackage extends EPackage {
 	EClass getFeatureCallExpCS();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.ocl.internal.cst.FeatureCallExpCS#getArguments <em>Arguments</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.internal.cst.FeatureCallExpCS#getArguments <em>Arguments</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Arguments</em>'.
+     * @return the meta object for the containment reference list '<em>Arguments</em>'.
      * @see org.eclipse.ocl.internal.cst.FeatureCallExpCS#getArguments()
      * @see #getFeatureCallExpCS()
      * @generated
@@ -4335,10 +4335,10 @@ public interface CSTPackage extends EPackage {
 	EReference getFeatureCallExpCS_Arguments();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.internal.cst.FeatureCallExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.internal.cst.FeatureCallExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Is Marked Pre CS</em>'.
+     * @return the meta object for the containment reference '<em>Is Marked Pre CS</em>'.
      * @see org.eclipse.ocl.internal.cst.FeatureCallExpCS#getIsMarkedPreCS()
      * @see #getFeatureCallExpCS()
      * @generated
@@ -4454,7 +4454,7 @@ public interface CSTPackage extends EPackage {
 		EClass PACKAGE_DECLARATION_CS = eINSTANCE.getPackageDeclarationCS();
 
 		/**
-         * The meta object literal for the '<em><b>Path Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4462,7 +4462,7 @@ public interface CSTPackage extends EPackage {
 		EReference PACKAGE_DECLARATION_CS__PATH_NAME_CS = eINSTANCE.getPackageDeclarationCS_PathNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Context Decls</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Context Decls</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4498,7 +4498,7 @@ public interface CSTPackage extends EPackage {
 		EClass CLASSIFIER_CONTEXT_DECL_CS = eINSTANCE.getClassifierContextDeclCS();
 
 		/**
-         * The meta object literal for the '<em><b>Path Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4506,7 +4506,7 @@ public interface CSTPackage extends EPackage {
 		EReference CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS = eINSTANCE.getClassifierContextDeclCS_PathNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Inv Or Def CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Inv Or Def CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4558,7 +4558,7 @@ public interface CSTPackage extends EPackage {
 		EAttribute PRE_POST_OR_BODY_DECL_CS__KIND = eINSTANCE.getPrePostOrBodyDeclCS_Kind();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4566,7 +4566,7 @@ public interface CSTPackage extends EPackage {
 		EReference PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS = eINSTANCE.getPrePostOrBodyDeclCS_SimpleNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4584,7 +4584,7 @@ public interface CSTPackage extends EPackage {
 		EClass OPERATION_CS = eINSTANCE.getOperationCS();
 
 		/**
-         * The meta object literal for the '<em><b>Path Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4592,7 +4592,7 @@ public interface CSTPackage extends EPackage {
 		EReference OPERATION_CS__PATH_NAME_CS = eINSTANCE.getOperationCS_PathNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4600,7 +4600,7 @@ public interface CSTPackage extends EPackage {
 		EReference OPERATION_CS__SIMPLE_NAME_CS = eINSTANCE.getOperationCS_SimpleNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Parameters</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4608,7 +4608,7 @@ public interface CSTPackage extends EPackage {
 		EReference OPERATION_CS__PARAMETERS = eINSTANCE.getOperationCS_Parameters();
 
 		/**
-         * The meta object literal for the '<em><b>Type CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Type CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4634,7 +4634,7 @@ public interface CSTPackage extends EPackage {
 		EReference INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS = eINSTANCE.getInitOrDerValueCS_InitOrDerValueCS();
 
 		/**
-         * The meta object literal for the '<em><b>Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4672,7 +4672,7 @@ public interface CSTPackage extends EPackage {
 		EClass INV_OR_DEF_CS = eINSTANCE.getInvOrDefCS();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4698,7 +4698,7 @@ public interface CSTPackage extends EPackage {
 		EClass INV_CS = eINSTANCE.getInvCS();
 
 		/**
-         * The meta object literal for the '<em><b>Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4716,7 +4716,7 @@ public interface CSTPackage extends EPackage {
 		EClass DEF_CS = eINSTANCE.getDefCS();
 
 		/**
-         * The meta object literal for the '<em><b>Def Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Def Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4734,7 +4734,7 @@ public interface CSTPackage extends EPackage {
 		EClass DEF_EXPRESSION_CS = eINSTANCE.getDefExpressionCS();
 
 		/**
-         * The meta object literal for the '<em><b>Operation CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Operation CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4742,7 +4742,7 @@ public interface CSTPackage extends EPackage {
 		EReference DEF_EXPRESSION_CS__OPERATION_CS = eINSTANCE.getDefExpressionCS_OperationCS();
 
 		/**
-         * The meta object literal for the '<em><b>Variable CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Variable CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4750,7 +4750,7 @@ public interface CSTPackage extends EPackage {
 		EReference DEF_EXPRESSION_CS__VARIABLE_CS = eINSTANCE.getDefExpressionCS_VariableCS();
 
 		/**
-         * The meta object literal for the '<em><b>Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4786,7 +4786,7 @@ public interface CSTPackage extends EPackage {
 		EClass VARIABLE_EXP_CS = eINSTANCE.getVariableExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Arguments</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4794,7 +4794,7 @@ public interface CSTPackage extends EPackage {
 		EReference VARIABLE_EXP_CS__ARGUMENTS = eINSTANCE.getVariableExpCS_Arguments();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4802,7 +4802,7 @@ public interface CSTPackage extends EPackage {
 		EReference VARIABLE_EXP_CS__SIMPLE_NAME_CS = eINSTANCE.getVariableExpCS_SimpleNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Is Marked Pre CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Is Marked Pre CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4866,7 +4866,7 @@ public interface CSTPackage extends EPackage {
 		EClass TUPLE_TYPE_CS = eINSTANCE.getTupleTypeCS();
 
 		/**
-         * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4892,7 +4892,7 @@ public interface CSTPackage extends EPackage {
 		EAttribute COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER = eINSTANCE.getCollectionTypeCS_CollectionTypeIdentifier();
 
 		/**
-         * The meta object literal for the '<em><b>Type CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Type CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4920,7 +4920,7 @@ public interface CSTPackage extends EPackage {
 		EClass LET_EXP_CS = eINSTANCE.getLetExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4928,7 +4928,7 @@ public interface CSTPackage extends EPackage {
 		EReference LET_EXP_CS__VARIABLES = eINSTANCE.getLetExpCS_Variables();
 
 		/**
-         * The meta object literal for the '<em><b>In Expression</b></em>' reference feature.
+         * The meta object literal for the '<em><b>In Expression</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4980,7 +4980,7 @@ public interface CSTPackage extends EPackage {
 		EClass OCL_MESSAGE_ARG_CS = eINSTANCE.getOCLMessageArgCS();
 
 		/**
-         * The meta object literal for the '<em><b>Type CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Type CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -4988,7 +4988,7 @@ public interface CSTPackage extends EPackage {
 		EReference OCL_MESSAGE_ARG_CS__TYPE_CS = eINSTANCE.getOCLMessageArgCS_TypeCS();
 
 		/**
-         * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5016,7 +5016,7 @@ public interface CSTPackage extends EPackage {
 		EClass ENUM_LITERAL_EXP_CS = eINSTANCE.getEnumLiteralExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Path Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5024,7 +5024,7 @@ public interface CSTPackage extends EPackage {
 		EReference ENUM_LITERAL_EXP_CS__PATH_NAME_CS = eINSTANCE.getEnumLiteralExpCS_PathNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5050,7 +5050,7 @@ public interface CSTPackage extends EPackage {
 		EAttribute COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE = eINSTANCE.getCollectionLiteralExpCS_CollectionType();
 
 		/**
-         * The meta object literal for the '<em><b>Collection Literal Parts</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Collection Literal Parts</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5068,7 +5068,7 @@ public interface CSTPackage extends EPackage {
 		EClass TUPLE_LITERAL_EXP_CS = eINSTANCE.getTupleLiteralExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5194,7 +5194,7 @@ public interface CSTPackage extends EPackage {
 		EClass COLLECTION_LITERAL_PART_CS = eINSTANCE.getCollectionLiteralPartCS();
 
 		/**
-         * The meta object literal for the '<em><b>Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5212,7 +5212,7 @@ public interface CSTPackage extends EPackage {
 		EClass COLLECTION_RANGE_CS = eINSTANCE.getCollectionRangeCS();
 
 		/**
-         * The meta object literal for the '<em><b>Last Expression CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Last Expression CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5230,7 +5230,7 @@ public interface CSTPackage extends EPackage {
 		EClass LOOP_EXP_CS = eINSTANCE.getLoopExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Variable1</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Variable1</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5238,7 +5238,7 @@ public interface CSTPackage extends EPackage {
 		EReference LOOP_EXP_CS__VARIABLE1 = eINSTANCE.getLoopExpCS_Variable1();
 
 		/**
-         * The meta object literal for the '<em><b>Variable2</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Variable2</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5246,7 +5246,7 @@ public interface CSTPackage extends EPackage {
 		EReference LOOP_EXP_CS__VARIABLE2 = eINSTANCE.getLoopExpCS_Variable2();
 
 		/**
-         * The meta object literal for the '<em><b>Body</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5388,7 +5388,7 @@ public interface CSTPackage extends EPackage {
 		EAttribute MESSAGE_EXP_CS__KIND = eINSTANCE.getMessageExpCS_Kind();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5422,7 +5422,7 @@ public interface CSTPackage extends EPackage {
 		EAttribute VARIABLE_CS__NAME = eINSTANCE.getVariableCS_Name();
 
 		/**
-         * The meta object literal for the '<em><b>Type CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Type CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5430,7 +5430,7 @@ public interface CSTPackage extends EPackage {
 		EReference VARIABLE_CS__TYPE_CS = eINSTANCE.getVariableCS_TypeCS();
 
 		/**
-         * The meta object literal for the '<em><b>Init Expression</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Init Expression</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5484,7 +5484,7 @@ public interface CSTPackage extends EPackage {
 		EClass CALL_EXP_CS = eINSTANCE.getCallExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5500,7 +5500,7 @@ public interface CSTPackage extends EPackage {
 		EAttribute CALL_EXP_CS__ACCESSOR = eINSTANCE.getCallExpCS_Accessor();
 
 		/**
-         * The meta object literal for the '<em><b>Simple Name CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5518,7 +5518,7 @@ public interface CSTPackage extends EPackage {
 		EClass FEATURE_CALL_EXP_CS = eINSTANCE.getFeatureCallExpCS();
 
 		/**
-         * The meta object literal for the '<em><b>Arguments</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -5526,7 +5526,7 @@ public interface CSTPackage extends EPackage {
 		EReference FEATURE_CALL_EXP_CS__ARGUMENTS = eINSTANCE.getFeatureCallExpCS_Arguments();
 
 		/**
-         * The meta object literal for the '<em><b>Is Marked Pre CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Is Marked Pre CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: DefCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,26 +35,26 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface DefCS extends InvOrDefCS {
 	/**
-     * Returns the value of the '<em><b>Def Expression CS</b></em>' reference.
+     * Returns the value of the '<em><b>Def Expression CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Def Expression CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Def Expression CS</em>' reference.
+     * @return the value of the '<em>Def Expression CS</em>' containment reference.
      * @see #setDefExpressionCS(DefExpressionCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getDefCS_DefExpressionCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	DefExpressionCS getDefExpressionCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Def Expression CS</em>' reference.
+     * @param value the new value of the '<em>Def Expression CS</em>' containment reference.
      * @see #getDefExpressionCS()
      * @generated
      */

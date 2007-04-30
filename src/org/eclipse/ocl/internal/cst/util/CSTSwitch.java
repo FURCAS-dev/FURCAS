@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: CSTSwitch.java,v 1.4 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.util;
 
@@ -149,417 +149,749 @@ public class CSTSwitch<T> {
             case CSTPackage.CST_NODE: {
                 CSTNode cstNode = (CSTNode)theEObject;
                 T result = caseCSTNode(cstNode);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.PACKAGE_DECLARATION_CS: {
                 PackageDeclarationCS packageDeclarationCS = (PackageDeclarationCS)theEObject;
                 T result = casePackageDeclarationCS(packageDeclarationCS);
-                if (result == null) result = caseCSTNode(packageDeclarationCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(packageDeclarationCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.CONTEXT_DECL_CS: {
                 ContextDeclCS contextDeclCS = (ContextDeclCS)theEObject;
                 T result = caseContextDeclCS(contextDeclCS);
-                if (result == null) result = caseCSTNode(contextDeclCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(contextDeclCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.PROPERTY_CONTEXT_CS: {
                 PropertyContextCS propertyContextCS = (PropertyContextCS)theEObject;
                 T result = casePropertyContextCS(propertyContextCS);
-                if (result == null) result = caseContextDeclCS(propertyContextCS);
-                if (result == null) result = caseCSTNode(propertyContextCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseContextDeclCS(propertyContextCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(propertyContextCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS: {
                 ClassifierContextDeclCS classifierContextDeclCS = (ClassifierContextDeclCS)theEObject;
                 T result = caseClassifierContextDeclCS(classifierContextDeclCS);
-                if (result == null) result = caseContextDeclCS(classifierContextDeclCS);
-                if (result == null) result = caseCSTNode(classifierContextDeclCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseContextDeclCS(classifierContextDeclCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(classifierContextDeclCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.OPERATION_CONTEXT_DECL_CS: {
                 OperationContextDeclCS operationContextDeclCS = (OperationContextDeclCS)theEObject;
                 T result = caseOperationContextDeclCS(operationContextDeclCS);
-                if (result == null) result = caseContextDeclCS(operationContextDeclCS);
-                if (result == null) result = caseCSTNode(operationContextDeclCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseContextDeclCS(operationContextDeclCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(operationContextDeclCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.PRE_POST_OR_BODY_DECL_CS: {
                 PrePostOrBodyDeclCS prePostOrBodyDeclCS = (PrePostOrBodyDeclCS)theEObject;
                 T result = casePrePostOrBodyDeclCS(prePostOrBodyDeclCS);
-                if (result == null) result = caseCSTNode(prePostOrBodyDeclCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(prePostOrBodyDeclCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.OPERATION_CS: {
                 OperationCS operationCS = (OperationCS)theEObject;
                 T result = caseOperationCS(operationCS);
-                if (result == null) result = caseCSTNode(operationCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(operationCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.INIT_OR_DER_VALUE_CS: {
                 InitOrDerValueCS initOrDerValueCS = (InitOrDerValueCS)theEObject;
                 T result = caseInitOrDerValueCS(initOrDerValueCS);
-                if (result == null) result = caseCSTNode(initOrDerValueCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(initOrDerValueCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.DER_VALUE_CS: {
                 DerValueCS derValueCS = (DerValueCS)theEObject;
                 T result = caseDerValueCS(derValueCS);
-                if (result == null) result = caseInitOrDerValueCS(derValueCS);
-                if (result == null) result = caseCSTNode(derValueCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseInitOrDerValueCS(derValueCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(derValueCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.INIT_VALUE_CS: {
                 InitValueCS initValueCS = (InitValueCS)theEObject;
                 T result = caseInitValueCS(initValueCS);
-                if (result == null) result = caseInitOrDerValueCS(initValueCS);
-                if (result == null) result = caseCSTNode(initValueCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseInitOrDerValueCS(initValueCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(initValueCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.INV_OR_DEF_CS: {
                 InvOrDefCS invOrDefCS = (InvOrDefCS)theEObject;
                 T result = caseInvOrDefCS(invOrDefCS);
-                if (result == null) result = caseCSTNode(invOrDefCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(invOrDefCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.INV_CS: {
                 InvCS invCS = (InvCS)theEObject;
                 T result = caseInvCS(invCS);
-                if (result == null) result = caseInvOrDefCS(invCS);
-                if (result == null) result = caseCSTNode(invCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseInvOrDefCS(invCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(invCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.DEF_CS: {
                 DefCS defCS = (DefCS)theEObject;
                 T result = caseDefCS(defCS);
-                if (result == null) result = caseInvOrDefCS(defCS);
-                if (result == null) result = caseCSTNode(defCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseInvOrDefCS(defCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(defCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.DEF_EXPRESSION_CS: {
                 DefExpressionCS defExpressionCS = (DefExpressionCS)theEObject;
                 T result = caseDefExpressionCS(defExpressionCS);
-                if (result == null) result = caseCSTNode(defExpressionCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(defExpressionCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.PATH_NAME_CS: {
                 PathNameCS pathNameCS = (PathNameCS)theEObject;
                 T result = casePathNameCS(pathNameCS);
-                if (result == null) result = caseTypeCS(pathNameCS);
-                if (result == null) result = caseOCLExpressionCS(pathNameCS);
-                if (result == null) result = caseCSTNode(pathNameCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTypeCS(pathNameCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(pathNameCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(pathNameCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.VARIABLE_EXP_CS: {
                 VariableExpCS variableExpCS = (VariableExpCS)theEObject;
                 T result = caseVariableExpCS(variableExpCS);
-                if (result == null) result = caseOCLExpressionCS(variableExpCS);
-                if (result == null) result = caseCSTNode(variableExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(variableExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(variableExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.SIMPLE_NAME_CS: {
                 SimpleNameCS simpleNameCS = (SimpleNameCS)theEObject;
                 T result = caseSimpleNameCS(simpleNameCS);
-                if (result == null) result = caseOCLExpressionCS(simpleNameCS);
-                if (result == null) result = caseCSTNode(simpleNameCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(simpleNameCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(simpleNameCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.TYPE_CS: {
                 TypeCS typeCS = (TypeCS)theEObject;
                 T result = caseTypeCS(typeCS);
-                if (result == null) result = caseOCLExpressionCS(typeCS);
-                if (result == null) result = caseCSTNode(typeCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(typeCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(typeCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.PRIMITIVE_TYPE_CS: {
                 PrimitiveTypeCS primitiveTypeCS = (PrimitiveTypeCS)theEObject;
                 T result = casePrimitiveTypeCS(primitiveTypeCS);
-                if (result == null) result = caseSimpleNameCS(primitiveTypeCS);
-                if (result == null) result = caseTypeCS(primitiveTypeCS);
-                if (result == null) result = caseOCLExpressionCS(primitiveTypeCS);
-                if (result == null) result = caseCSTNode(primitiveTypeCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseSimpleNameCS(primitiveTypeCS);
+                }
+                if (result == null) {
+                    result = caseTypeCS(primitiveTypeCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(primitiveTypeCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(primitiveTypeCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.TUPLE_TYPE_CS: {
                 TupleTypeCS tupleTypeCS = (TupleTypeCS)theEObject;
                 T result = caseTupleTypeCS(tupleTypeCS);
-                if (result == null) result = caseTypeCS(tupleTypeCS);
-                if (result == null) result = caseOCLExpressionCS(tupleTypeCS);
-                if (result == null) result = caseCSTNode(tupleTypeCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTypeCS(tupleTypeCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(tupleTypeCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(tupleTypeCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.COLLECTION_TYPE_CS: {
                 CollectionTypeCS collectionTypeCS = (CollectionTypeCS)theEObject;
                 T result = caseCollectionTypeCS(collectionTypeCS);
-                if (result == null) result = caseTypeCS(collectionTypeCS);
-                if (result == null) result = caseOCLExpressionCS(collectionTypeCS);
-                if (result == null) result = caseCSTNode(collectionTypeCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTypeCS(collectionTypeCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(collectionTypeCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(collectionTypeCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.OCL_EXPRESSION_CS: {
                 OCLExpressionCS oclExpressionCS = (OCLExpressionCS)theEObject;
                 T result = caseOCLExpressionCS(oclExpressionCS);
-                if (result == null) result = caseCSTNode(oclExpressionCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(oclExpressionCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.LET_EXP_CS: {
                 LetExpCS letExpCS = (LetExpCS)theEObject;
                 T result = caseLetExpCS(letExpCS);
-                if (result == null) result = caseOCLExpressionCS(letExpCS);
-                if (result == null) result = caseCSTNode(letExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(letExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(letExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.IF_EXP_CS: {
                 IfExpCS ifExpCS = (IfExpCS)theEObject;
                 T result = caseIfExpCS(ifExpCS);
-                if (result == null) result = caseOCLExpressionCS(ifExpCS);
-                if (result == null) result = caseCSTNode(ifExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(ifExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(ifExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.MESSAGE_EXP_CS: {
                 MessageExpCS messageExpCS = (MessageExpCS)theEObject;
                 T result = caseMessageExpCS(messageExpCS);
-                if (result == null) result = caseOCLExpressionCS(messageExpCS);
-                if (result == null) result = caseCSTNode(messageExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(messageExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(messageExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.OCL_MESSAGE_ARG_CS: {
                 OCLMessageArgCS oclMessageArgCS = (OCLMessageArgCS)theEObject;
                 T result = caseOCLMessageArgCS(oclMessageArgCS);
-                if (result == null) result = caseCSTNode(oclMessageArgCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(oclMessageArgCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.VARIABLE_CS: {
                 VariableCS variableCS = (VariableCS)theEObject;
                 T result = caseVariableCS(variableCS);
-                if (result == null) result = caseCSTNode(variableCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(variableCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.LITERAL_EXP_CS: {
                 LiteralExpCS literalExpCS = (LiteralExpCS)theEObject;
                 T result = caseLiteralExpCS(literalExpCS);
-                if (result == null) result = caseOCLExpressionCS(literalExpCS);
-                if (result == null) result = caseCSTNode(literalExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(literalExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(literalExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.ENUM_LITERAL_EXP_CS: {
                 EnumLiteralExpCS enumLiteralExpCS = (EnumLiteralExpCS)theEObject;
                 T result = caseEnumLiteralExpCS(enumLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(enumLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(enumLiteralExpCS);
-                if (result == null) result = caseCSTNode(enumLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteralExpCS(enumLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(enumLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(enumLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.COLLECTION_LITERAL_EXP_CS: {
                 CollectionLiteralExpCS collectionLiteralExpCS = (CollectionLiteralExpCS)theEObject;
                 T result = caseCollectionLiteralExpCS(collectionLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(collectionLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(collectionLiteralExpCS);
-                if (result == null) result = caseCSTNode(collectionLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteralExpCS(collectionLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(collectionLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(collectionLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.TUPLE_LITERAL_EXP_CS: {
                 TupleLiteralExpCS tupleLiteralExpCS = (TupleLiteralExpCS)theEObject;
                 T result = caseTupleLiteralExpCS(tupleLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(tupleLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(tupleLiteralExpCS);
-                if (result == null) result = caseCSTNode(tupleLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteralExpCS(tupleLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(tupleLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(tupleLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.PRIMITIVE_LITERAL_EXP_CS: {
                 PrimitiveLiteralExpCS primitiveLiteralExpCS = (PrimitiveLiteralExpCS)theEObject;
                 T result = casePrimitiveLiteralExpCS(primitiveLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(primitiveLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(primitiveLiteralExpCS);
-                if (result == null) result = caseCSTNode(primitiveLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteralExpCS(primitiveLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(primitiveLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(primitiveLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.INTEGER_LITERAL_EXP_CS: {
                 IntegerLiteralExpCS integerLiteralExpCS = (IntegerLiteralExpCS)theEObject;
                 T result = caseIntegerLiteralExpCS(integerLiteralExpCS);
-                if (result == null) result = casePrimitiveLiteralExpCS(integerLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(integerLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(integerLiteralExpCS);
-                if (result == null) result = caseCSTNode(integerLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePrimitiveLiteralExpCS(integerLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseLiteralExpCS(integerLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(integerLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(integerLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS: {
                 UnlimitedNaturalLiteralExpCS unlimitedNaturalLiteralExpCS = (UnlimitedNaturalLiteralExpCS)theEObject;
                 T result = caseUnlimitedNaturalLiteralExpCS(unlimitedNaturalLiteralExpCS);
-                if (result == null) result = casePrimitiveLiteralExpCS(unlimitedNaturalLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(unlimitedNaturalLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(unlimitedNaturalLiteralExpCS);
-                if (result == null) result = caseCSTNode(unlimitedNaturalLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePrimitiveLiteralExpCS(unlimitedNaturalLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseLiteralExpCS(unlimitedNaturalLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(unlimitedNaturalLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(unlimitedNaturalLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.REAL_LITERAL_EXP_CS: {
                 RealLiteralExpCS realLiteralExpCS = (RealLiteralExpCS)theEObject;
                 T result = caseRealLiteralExpCS(realLiteralExpCS);
-                if (result == null) result = casePrimitiveLiteralExpCS(realLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(realLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(realLiteralExpCS);
-                if (result == null) result = caseCSTNode(realLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePrimitiveLiteralExpCS(realLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseLiteralExpCS(realLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(realLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(realLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.STRING_LITERAL_EXP_CS: {
                 StringLiteralExpCS stringLiteralExpCS = (StringLiteralExpCS)theEObject;
                 T result = caseStringLiteralExpCS(stringLiteralExpCS);
-                if (result == null) result = casePrimitiveLiteralExpCS(stringLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(stringLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(stringLiteralExpCS);
-                if (result == null) result = caseCSTNode(stringLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePrimitiveLiteralExpCS(stringLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseLiteralExpCS(stringLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(stringLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(stringLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.BOOLEAN_LITERAL_EXP_CS: {
                 BooleanLiteralExpCS booleanLiteralExpCS = (BooleanLiteralExpCS)theEObject;
                 T result = caseBooleanLiteralExpCS(booleanLiteralExpCS);
-                if (result == null) result = casePrimitiveLiteralExpCS(booleanLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(booleanLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(booleanLiteralExpCS);
-                if (result == null) result = caseCSTNode(booleanLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = casePrimitiveLiteralExpCS(booleanLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseLiteralExpCS(booleanLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(booleanLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(booleanLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.NULL_LITERAL_EXP_CS: {
                 NullLiteralExpCS nullLiteralExpCS = (NullLiteralExpCS)theEObject;
                 T result = caseNullLiteralExpCS(nullLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(nullLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(nullLiteralExpCS);
-                if (result == null) result = caseCSTNode(nullLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteralExpCS(nullLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(nullLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(nullLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.INVALID_LITERAL_EXP_CS: {
                 InvalidLiteralExpCS invalidLiteralExpCS = (InvalidLiteralExpCS)theEObject;
                 T result = caseInvalidLiteralExpCS(invalidLiteralExpCS);
-                if (result == null) result = caseLiteralExpCS(invalidLiteralExpCS);
-                if (result == null) result = caseOCLExpressionCS(invalidLiteralExpCS);
-                if (result == null) result = caseCSTNode(invalidLiteralExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLiteralExpCS(invalidLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(invalidLiteralExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(invalidLiteralExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.COLLECTION_LITERAL_PART_CS: {
                 CollectionLiteralPartCS collectionLiteralPartCS = (CollectionLiteralPartCS)theEObject;
                 T result = caseCollectionLiteralPartCS(collectionLiteralPartCS);
-                if (result == null) result = caseCSTNode(collectionLiteralPartCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(collectionLiteralPartCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.COLLECTION_RANGE_CS: {
                 CollectionRangeCS collectionRangeCS = (CollectionRangeCS)theEObject;
                 T result = caseCollectionRangeCS(collectionRangeCS);
-                if (result == null) result = caseCollectionLiteralPartCS(collectionRangeCS);
-                if (result == null) result = caseCSTNode(collectionRangeCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCollectionLiteralPartCS(collectionRangeCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(collectionRangeCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.CALL_EXP_CS: {
                 CallExpCS callExpCS = (CallExpCS)theEObject;
                 T result = caseCallExpCS(callExpCS);
-                if (result == null) result = caseOCLExpressionCS(callExpCS);
-                if (result == null) result = caseCSTNode(callExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseOCLExpressionCS(callExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(callExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.LOOP_EXP_CS: {
                 LoopExpCS loopExpCS = (LoopExpCS)theEObject;
                 T result = caseLoopExpCS(loopExpCS);
-                if (result == null) result = caseCallExpCS(loopExpCS);
-                if (result == null) result = caseOCLExpressionCS(loopExpCS);
-                if (result == null) result = caseCSTNode(loopExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCallExpCS(loopExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(loopExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(loopExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.ITERATOR_EXP_CS: {
                 IteratorExpCS iteratorExpCS = (IteratorExpCS)theEObject;
                 T result = caseIteratorExpCS(iteratorExpCS);
-                if (result == null) result = caseLoopExpCS(iteratorExpCS);
-                if (result == null) result = caseCallExpCS(iteratorExpCS);
-                if (result == null) result = caseOCLExpressionCS(iteratorExpCS);
-                if (result == null) result = caseCSTNode(iteratorExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLoopExpCS(iteratorExpCS);
+                }
+                if (result == null) {
+                    result = caseCallExpCS(iteratorExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(iteratorExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(iteratorExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.ITERATE_EXP_CS: {
                 IterateExpCS iterateExpCS = (IterateExpCS)theEObject;
                 T result = caseIterateExpCS(iterateExpCS);
-                if (result == null) result = caseLoopExpCS(iterateExpCS);
-                if (result == null) result = caseCallExpCS(iterateExpCS);
-                if (result == null) result = caseOCLExpressionCS(iterateExpCS);
-                if (result == null) result = caseCSTNode(iterateExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseLoopExpCS(iterateExpCS);
+                }
+                if (result == null) {
+                    result = caseCallExpCS(iterateExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(iterateExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(iterateExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.FEATURE_CALL_EXP_CS: {
                 FeatureCallExpCS featureCallExpCS = (FeatureCallExpCS)theEObject;
                 T result = caseFeatureCallExpCS(featureCallExpCS);
-                if (result == null) result = caseCallExpCS(featureCallExpCS);
-                if (result == null) result = caseOCLExpressionCS(featureCallExpCS);
-                if (result == null) result = caseCSTNode(featureCallExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCallExpCS(featureCallExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(featureCallExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(featureCallExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.OPERATION_CALL_EXP_CS: {
                 OperationCallExpCS operationCallExpCS = (OperationCallExpCS)theEObject;
                 T result = caseOperationCallExpCS(operationCallExpCS);
-                if (result == null) result = caseFeatureCallExpCS(operationCallExpCS);
-                if (result == null) result = caseCallExpCS(operationCallExpCS);
-                if (result == null) result = caseOCLExpressionCS(operationCallExpCS);
-                if (result == null) result = caseCSTNode(operationCallExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseFeatureCallExpCS(operationCallExpCS);
+                }
+                if (result == null) {
+                    result = caseCallExpCS(operationCallExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(operationCallExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(operationCallExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.IS_MARKED_PRE_CS: {
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)theEObject;
                 T result = caseIsMarkedPreCS(isMarkedPreCS);
-                if (result == null) result = caseCSTNode(isMarkedPreCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseCSTNode(isMarkedPreCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             case CSTPackage.STATE_EXP_CS: {
                 StateExpCS stateExpCS = (StateExpCS)theEObject;
                 T result = caseStateExpCS(stateExpCS);
-                if (result == null) result = caseTypeCS(stateExpCS);
-                if (result == null) result = caseOCLExpressionCS(stateExpCS);
-                if (result == null) result = caseCSTNode(stateExpCS);
-                if (result == null) result = defaultCase(theEObject);
+                if (result == null) {
+                    result = caseTypeCS(stateExpCS);
+                }
+                if (result == null) {
+                    result = caseOCLExpressionCS(stateExpCS);
+                }
+                if (result == null) {
+                    result = caseCSTNode(stateExpCS);
+                }
+                if (result == null) {
+                    result = defaultCase(theEObject);
+                }
                 return result;
             }
             default: return defaultCase(theEObject);

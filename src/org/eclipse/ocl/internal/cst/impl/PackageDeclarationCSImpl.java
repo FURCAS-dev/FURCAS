@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,7 +28,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.internal.cst.CSTPackage;
 import org.eclipse.ocl.internal.cst.ContextDeclCS;
@@ -51,24 +53,24 @@ import org.eclipse.ocl.internal.cst.PathNameCS;
  */
 public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDeclarationCS {
 	/**
-     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' reference.
+     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getPathNameCS()
      * @generated
      * @ordered
      */
-	protected PathNameCS pathNameCS = null;
+	protected PathNameCS pathNameCS;
 
 	/**
-     * The cached value of the '{@link #getContextDecls() <em>Context Decls</em>}' reference list.
+     * The cached value of the '{@link #getContextDecls() <em>Context Decls</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getContextDecls()
      * @generated
      * @ordered
      */
-	protected EList<ContextDeclCS> contextDecls = null;
+	protected EList<ContextDeclCS> contextDecls;
 
 	/**
      * The cached value of the '{@link #getPackageDeclarationCS() <em>Package Declaration CS</em>}' reference.
@@ -78,7 +80,7 @@ public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDecl
      * @generated
      * @ordered
      */
-	protected PackageDeclarationCS packageDeclarationCS = null;
+	protected PackageDeclarationCS packageDeclarationCS;
 
 	/**
      * <!-- begin-user-doc -->
@@ -105,36 +107,50 @@ public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDecl
      * @generated
      */
 	public PathNameCS getPathNameCS() {
-        if (pathNameCS != null && pathNameCS.eIsProxy()) {
-            InternalEObject oldPathNameCS = (InternalEObject)pathNameCS;
-            pathNameCS = (PathNameCS)eResolveProxy(oldPathNameCS);
-            if (pathNameCS != oldPathNameCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, oldPathNameCS, pathNameCS));
-            }
-        }
         return pathNameCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public PathNameCS basicGetPathNameCS() {
-        return pathNameCS;
+    public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+        PathNameCS oldPathNameCS = pathNameCS;
+        pathNameCS = newPathNameCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
+            if (msgs == null) {
+                msgs = notification;
+            } else {
+                msgs.add(notification);
+            }
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setPathNameCS(PathNameCS newPathNameCS) {
-        PathNameCS oldPathNameCS = pathNameCS;
-        pathNameCS = newPathNameCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, oldPathNameCS, pathNameCS));
+        if (newPathNameCS != pathNameCS) {
+            NotificationChain msgs = null;
+            if (pathNameCS != null) {
+                msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, null, msgs);
+            }
+            if (newPathNameCS != null) {
+                msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, null, msgs);
+            }
+            msgs = basicSetPathNameCS(newPathNameCS, msgs);
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        }
+        else if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+        }
     }
 
 	/**
@@ -144,7 +160,7 @@ public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDecl
      */
 	public EList<ContextDeclCS> getContextDecls() {
         if (contextDecls == null) {
-            contextDecls = new EObjectResolvingEList<ContextDeclCS>(ContextDeclCS.class, this, CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS);
+            contextDecls = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS);
         }
         return contextDecls;
     }
@@ -159,8 +175,9 @@ public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDecl
             InternalEObject oldPackageDeclarationCS = (InternalEObject)packageDeclarationCS;
             packageDeclarationCS = (PackageDeclarationCS)eResolveProxy(oldPackageDeclarationCS);
             if (packageDeclarationCS != oldPackageDeclarationCS) {
-                if (eNotificationRequired())
+                if (eNotificationRequired()) {
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS, oldPackageDeclarationCS, packageDeclarationCS));
+                }
             }
         }
         return packageDeclarationCS;
@@ -183,11 +200,28 @@ public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDecl
 	public void setPackageDeclarationCS(PackageDeclarationCS newPackageDeclarationCS) {
         PackageDeclarationCS oldPackageDeclarationCS = packageDeclarationCS;
         packageDeclarationCS = newPackageDeclarationCS;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS, oldPackageDeclarationCS, packageDeclarationCS));
+        }
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
+                return basicSetPathNameCS(null, msgs);
+            case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
+                return ((InternalEList<?>)getContextDecls()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -196,12 +230,13 @@ public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDecl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
-                if (resolve) return getPathNameCS();
-                return basicGetPathNameCS();
+                return getPathNameCS();
             case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
                 return getContextDecls();
             case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
-                if (resolve) return getPackageDeclarationCS();
+                if (resolve) {
+                    return getPackageDeclarationCS();
+                }
                 return basicGetPackageDeclarationCS();
         }
         return super.eGet(featureID, resolve, coreType);

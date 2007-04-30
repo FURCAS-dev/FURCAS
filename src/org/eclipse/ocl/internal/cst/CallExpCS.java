@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: CallExpCS.java,v 1.3 2007/04/30 12:38:58 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -37,26 +37,26 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface CallExpCS extends OCLExpressionCS {
 	/**
-     * Returns the value of the '<em><b>Source</b></em>' reference.
+     * Returns the value of the '<em><b>Source</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Source</em>' reference.
+     * @return the value of the '<em>Source</em>' containment reference.
      * @see #setSource(OCLExpressionCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getCallExpCS_Source()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	OCLExpressionCS getSource();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSource <em>Source</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSource <em>Source</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Source</em>' reference.
+     * @param value the new value of the '<em>Source</em>' containment reference.
      * @see #getSource()
      * @generated
      */
@@ -92,26 +92,26 @@ public interface CallExpCS extends OCLExpressionCS {
 	void setAccessor(DotOrArrowEnum value);
 
 	/**
-     * Returns the value of the '<em><b>Simple Name CS</b></em>' reference.
+     * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simple Name CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Simple Name CS</em>' reference.
+     * @return the value of the '<em>Simple Name CS</em>' containment reference.
      * @see #setSimpleNameCS(SimpleNameCS)
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getCallExpCS_SimpleNameCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	SimpleNameCS getSimpleNameCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSimpleNameCS <em>Simple Name CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CallExpCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Simple Name CS</em>' reference.
+     * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
      * @see #getSimpleNameCS()
      * @generated
      */

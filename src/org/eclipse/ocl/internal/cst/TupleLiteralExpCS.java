@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCS.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: TupleLiteralExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TupleLiteralExpCS extends LiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>Variables</b></em>' reference list.
+     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.ocl.internal.cst.VariableCS}.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -44,9 +44,9 @@ public interface TupleLiteralExpCS extends LiteralExpCS {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variables</em>' reference list.
+     * @return the value of the '<em>Variables</em>' containment reference list.
      * @see org.eclipse.ocl.internal.cst.CSTPackage#getTupleLiteralExpCS_Variables()
-     * @model type="org.eclipse.ocl.internal.cst.VariableCS"
+     * @model type="org.eclipse.ocl.internal.cst.VariableCS" containment="true"
      * @generated
      */
 	EList<VariableCS> getVariables();
