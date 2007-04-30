@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.12 2007/04/30 12:39:31 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.13 2007/04/30 13:48:40 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -34,10 +34,13 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.emf.ocl.examples.interpreter.OCLExamplePlugin;
 import org.eclipse.emf.ocl.examples.interpreter.console.text.ColorManager;
 import org.eclipse.emf.ocl.examples.interpreter.console.text.OCLDocument;
@@ -84,7 +87,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.ISharedImages;
@@ -94,6 +96,7 @@ import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.console.actions.ClearOutputAction;
 import org.eclipse.ui.part.Page;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.osgi.framework.Bundle;
 
 
@@ -256,7 +259,7 @@ public class OCLConsolePage
             DropDownAction metamodelAction) {
         IAction ecore = new EcoreMetamodelAction();
 		ecore.setChecked(true);
-		ImageDescriptor img = getImage("org.eclipse.emf.ecore.presentation.EcoreEditorID"); //$NON-NLS-1$
+		ImageDescriptor img = getImage(EcoreFactory.eINSTANCE.getEPackage());
 		if (img != null) {
 		    ecore.setImageDescriptor(img);
 		}
@@ -268,7 +271,7 @@ public class OCLConsolePage
         Bundle umlBundle = Platform.getBundle("org.eclipse.uml2.uml"); //$NON-NLS-1$
         if ((umlBundle != null) && isAvailable(umlBundle)) {
     		IAction uml = new UMLMetamodelAction();
-            img = getImage("org.eclipse.uml2.uml.editor.presentation.UMLEditorID"); //$NON-NLS-1$
+            img = getImage(UMLFactory.eINSTANCE.createModel());
             if (img != null) {
                 uml.setImageDescriptor(img);
             }
@@ -290,19 +293,23 @@ public class OCLConsolePage
     }
     
     /**
-     * Gets the editor image for the specified editor.
+     * Gets the editor image for the specified element.
      * 
-     * @param editorID an editor ID
+     * @param element a model element
      * 
-     * @return the corresponding editor image
+     * @return the corresponding image
      */
-    private ImageDescriptor getImage(String editorID) {
+    private ImageDescriptor getImage(EObject element) {
         ImageDescriptor result = null;
         
-        IEditorDescriptor editor = PlatformUI.getWorkbench().getEditorRegistry()
-            .findEditor(editorID);
-        if (editor != null) {
-            result = editor.getImageDescriptor();
+        IItemLabelProvider provider = (IItemLabelProvider) new ComposedAdapterFactory(
+            ComposedAdapterFactory.Descriptor.Registry.INSTANCE).adapt(
+                element, IItemLabelProvider.class);
+        if (provider != null) {
+            Object image = provider.getImage(element);
+            if (image != null) {
+                result = ExtendedImageRegistry.INSTANCE.getImageDescriptor(image);
+            }
         }
         
         return result;
