@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.5 2007/04/30 12:38:20 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.6 2007/04/30 13:23:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -1025,8 +1025,12 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				
 				if ((tokens.size() > 0) &&
 				        (tokens.get(tokens.size() - 1).getKind() == OCLLPGParsersym.TK_IDENTIFIER)) {
-				    return getPartialNameChoices(txt, constraintType,
+				    List<Choice> choices = getPartialNameChoices(txt, constraintType,
 				        tokens.get(tokens.size() - 1).getStartOffset());
+				    
+				    if (!choices.isEmpty()) {
+				        return choices;
+				    }
 				}
 				
 				// no partial names to complete:  go for variables
