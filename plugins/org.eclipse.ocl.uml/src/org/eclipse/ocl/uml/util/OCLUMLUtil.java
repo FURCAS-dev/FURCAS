@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.2 2007/04/20 22:42:59 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.3 2007/04/30 12:38:18 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -124,16 +125,29 @@ public class OCLUMLUtil extends UMLUtil {
 				result = (Classifier) ne;
 			}
 		} else {
-			// look for the UML model describing a generated EPackage
-			List<String> names = getQualifiedName(epackage);
-			
-			Package umlPackage = findPackage(names, rset);
+		    Package umlPackage = null;
+		    
+		    if (epackage == UMLPackage.eINSTANCE) {
+		        // easy.  We know where the UML metamodel, itself, is
+		        umlPackage = getUMLMetamodel(rset);
+		    } else if (epackage == EcorePackage.eINSTANCE) {
+		        // another easy one
+		        umlPackage = getEcoreMetamodel(rset);
+		    }
+		    
+		    if (umlPackage == null) {
+    			// look for the UML model describing a generated EPackage
+    			List<String> names = getQualifiedName(epackage);
+    			
+    			umlPackage = findPackage(names, rset);
+		    }
+		    
 			if (umlPackage != null) {
 				result = (Classifier) umlPackage.getMember(
 						eclassifier.getName(),
 						false,
 						UMLPackage.Literals.CLASSIFIER);
-			}
+		    }
 		}
 		
 		return result;
@@ -168,7 +182,7 @@ public class OCLUMLUtil extends UMLUtil {
 			return null;
 		}
 		
-		String firstName = (String) packageNames.get(0);
+		String firstName = packageNames.get(0);
 		for (Resource res : rset.getResources()) {
 			for (EObject root : res.getContents()) {
 				if (root instanceof Package) {
@@ -209,7 +223,7 @@ public class OCLUMLUtil extends UMLUtil {
 		
         Namespace result = null;
         
-		String firstName = (String) qualifiedName.get(0);
+		String firstName = qualifiedName.get(0);
 		for (Resource res : rset.getResources()) {
 			for (EObject root : res.getContents()) {
 				if (root instanceof Package) {
@@ -357,7 +371,7 @@ public class OCLUMLUtil extends UMLUtil {
 			return null;
 		}
 		
-		String name = (String) packageNames.get(0);
+		String name = packageNames.get(0);
 		for (Object next : registry.values()) {
 			if (next instanceof EPackage) {
 				EPackage ePackage = (EPackage) next;
@@ -403,7 +417,7 @@ public class OCLUMLUtil extends UMLUtil {
 			return superpackage;
 		}
 		
-		String name = (String) packageNames.get(0);
+		String name = packageNames.get(0);
 		
 		for (EPackage next : superpackage.getESubpackages()) {
 			if (name.equals(next.getName())) {
@@ -475,4 +489,25 @@ public class OCLUMLUtil extends UMLUtil {
 		
 		return result;
 	}
+
+    /**
+     * Obtains the Ecore metamodel library loaded in the specified resource set,
+     * loading it if necessary.
+     * 
+     * @param resourceSet a resource set
+     * @return the Ecore metamodel
+     */
+    static Package getEcoreMetamodel(ResourceSet resourceSet) {
+        Package result = null;
+        Resource res = resourceSet.getResource(
+                URI.createURI(UMLResource.ECORE_METAMODEL_URI), true);
+        
+        if (res != null) {
+            result = (Package) EcoreUtil.getObjectByType(
+                    res.getContents(),
+                    UMLPackage.Literals.PACKAGE);
+        }
+        
+        return result;
+    }
 }

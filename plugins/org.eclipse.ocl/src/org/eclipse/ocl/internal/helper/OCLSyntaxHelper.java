@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.4 2007/03/27 15:05:00 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.5 2007/04/30 12:38:20 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -60,6 +60,10 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.internal.cst.ClassifierContextDeclCS;
+import org.eclipse.ocl.internal.cst.InvCS;
+import org.eclipse.ocl.internal.cst.OCLExpressionCS;
+import org.eclipse.ocl.internal.cst.PackageDeclarationCS;
 import org.eclipse.ocl.internal.parser.OCLLPGParsersym;
 import org.eclipse.ocl.internal.parser.OCLLexer;
 import org.eclipse.ocl.internal.parser.OCLParser;
@@ -480,13 +484,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param eClass the eclass to get features from 
 	 * @return List oclchoices list for structural features
 	 */
-	private List<Choice> getChoicesForEClassEStructuralFeatures(C eClass) {
+	private List<Choice> getPropertyChoices(C eClass) {
 		List<Choice> result = new ArrayList<Choice>();
 		Set<P> properties = new HashSet<P>(TypeUtil.getAttributes(environment, eClass));
-		
-		// TODO: Filter out EModelElement features?  Why?
-//		features.removeAll(EcorePackage.eINSTANCE.getEModelElement()
-//			.getEAllStructuralFeatures());
 		
 		for (P property : properties) {
 			result.add(new ChoiceImpl(
@@ -502,7 +502,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				
 				Choice choice = new ChoiceImpl(
 					name,
-					getDescription(assocClass),
+					uml.getName(assocClass),
 					ChoiceKind.ASSOCIATION_CLASS,
 					assocClass);
 				
@@ -576,7 +576,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				C setType = (C) environment.getOCLFactory().createSetType(type);
 				return getChoices(setType, constraintType);
 			} else if (syntaxHelpStringSuffix == DOT) {
-				rawChoices = getChoicesForEClassEStructuralFeatures(type);
+				rawChoices = getPropertyChoices(type);
 				rawChoices.addAll(getOperationChoices(type));
 			} else if (syntaxHelpStringSuffix == CARET) {
 				rawChoices = getOperationChoices(type);
@@ -764,7 +764,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		for (Variable<C, PM> var : env.getVariables()) {
 			choices.add(new ChoiceImpl(
 				var.getName(),
-				getDescription(var.getType()),
+				uml.getName(var.getType()),
 				ChoiceKind.VARIABLE,
 				var));
 		}
@@ -792,11 +792,12 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		
 		// filter out choices that don't start with the partial text
 		String partial = text.substring(position).trim();
+		int length = partial.length();
 		
 		for (Iterator<Choice> iter = result.iterator(); iter.hasNext();) {
 			Choice next = iter.next();
 			
-			if (!next.getName().startsWith(partial)) {
+			if (!next.getName().regionMatches(true, 0, partial, 0, length)) {
 				iter.remove();
 			}
 		}
@@ -1022,6 +1023,12 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					}
 				}
 				
+				if ((tokens.size() > 0) &&
+				        (tokens.get(tokens.size() - 1).getKind() == OCLLPGParsersym.TK_IDENTIFIER)) {
+				    return getPartialNameChoices(txt, constraintType,
+				        tokens.get(tokens.size() - 1).getStartOffset());
+				}
+				
 				// no partial names to complete:  go for variables
 				syntaxHelpStringSuffix = NONE;
 				
@@ -1079,54 +1086,174 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			int index, String txt,
 			ConstraintKind constraintType) throws Exception {
 		
-		try {
-			return getOCLExpression(env, txt.substring(0, index), constraintType);
-		} catch (Exception ex) {
-			//give it one more try to handle partial ocl expression i.e., 
-			//if this is a compound statement and we are at the second statement,
-			//therefore we'll try to remove the first statement and parse the second part
-			
-			String newTxt = txt.substring(0, index);
-			OCLLexer lexer = new OCLLexer(newTxt.toCharArray());
-			OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-				new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-						lexer, env);
-			List<IToken> tokens = tokenize(parser);
-			ListIterator<IToken> it = tokens.listIterator(tokens.size());
-			
-			IToken token = null;
-			while (it.hasPrevious()) {
-				token = it.previous();
-				if (OCLParser.isIdentifierOrKeyword(token.getKind())) {
-					if (it.hasPrevious()) {
-						IToken previousToken = it.previous();
-						if ((previousToken.getKind() == OCLLPGParsersym.TK_ARROW)
-							|| (previousToken.getKind() == OCLLPGParsersym.TK_DOT)) {
-							continue;
-						}
-						if (parser.getTokenText(token.getTokenIndex()) != null) {
-							// step back over the previous token in case it is
-							//    a "|" or an "in"
-							it.next();
-							
-							int beginIndex = token.getStartOffset();
-							
-							env = copyEnvironment(env);
-							getVariables(env, txt.substring(0, index), it);
-							
-							if (beginIndex != NONE) {
-								return getOCLExpression(
-									env,
-									txt.substring(beginIndex, index),
-									constraintType);
-							}
-						}
-						break;//failure, then exit to rethrow the exception
-					}//it.hasPrevious()
-				}//if (token.getType() == OCLParserTokenTypes.NAME)
-			}//while
-			throw ex;//failed... then just rethrow			
-		}
+	    // don't pollute the caller's environment with variables
+        env = copyEnvironment(env);
+        
+	    int start = 0;
+	    int end = index;
+	    
+        String newTxt = txt.substring(start, end);
+        OCLLexer lexer = new OCLLexer(newTxt.toCharArray());
+        OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
+            new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+                    lexer, env);
+        
+        PackageDeclarationCS packageContext = null;
+        OCLExpressionCS cst = null;
+        
+        // Start backing up from the end a token at a time to find the
+        // right-most subexpression that parses
+        
+        // initialize the token list
+        lexer.reset();
+        List<IToken> tokens = tokenize(parser);
+        
+        ListIterator<IToken> it = tokens.listIterator(tokens.size());
+        
+        final String preamble = "context foo inv: "; //$NON-NLS-1$
+        final int offset = -preamble.length();
+        
+        int[] balance = {0};
+        
+        IToken token;  // possible start token of a complete sub-expression
+        IToken bdry;   // peek back one more looking for a boundary token
+        
+        for (int i = 0; it.hasPrevious() && i < 100; i++) {
+            token = it.previous();
+            
+            // as long as we have an unmatched right paren/bracket/brace, there
+            //   is no point in trying to parse anything.  Even if the previous
+            //   token were the matching left, the pair cannot be parsed in
+            //   isolation
+            while ((updateBalance(balance, token)) > 0 && it.hasPrevious()) {
+                token = it.previous();
+            }
+            
+            boolean tryParse = true;
+            
+            if (isBoundaryToken(token)) {
+                // can't proceed any farther left looking for a sub-expression
+                //   to parse
+                break;
+            }
+            
+            // if we're at the beginning of input, try to parse
+            if (it.hasPrevious()) {
+                // otherwise, see whether we are at a syntactic boundary
+                bdry = it.previous();
+                
+                int oldBalance = balance[0];
+                
+                // can't go farther left than a mismatched left paren/bracket/brace
+                if (isBoundaryToken(bdry) || (updateBalance(balance, bdry) < 0)) {
+                    tryParse = true;
+                } else {
+                    tryParse = false;
+                    it.next();  // push this non-boundary token back
+                    
+                    // restore the balance if it changed
+                    balance[0] = oldBalance;
+                }
+            }
+            
+            if (tryParse) {
+                try {
+                    start = token.getStartOffset();
+                    newTxt = preamble + txt.substring(start, end);
+                    
+                    lexer = new OCLLexer(newTxt.toCharArray());
+                    parser = new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+                                lexer, env);
+                    
+                    // offset the parser left by the length of our preamble text
+                    // and right by the number of characters on the left side
+                    // that we are ignoring
+                    parser.setCharacterOffset(offset + start);
+                    
+                    packageContext = (PackageDeclarationCS) parser.parseConcreteSyntax();
+                    ClassifierContextDeclCS context = (ClassifierContextDeclCS)
+                        packageContext.getContextDecls().get(0);
+                    cst = ((InvCS) context.getInvOrDefCS()).getExpressionCS();
+                    break;
+                } catch (ParserException ignore) {
+                    // continue to try another backtrack, unless we are at a
+                    // mismatched left token, in which case we give up
+                    if (balance[0] < 0) {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (cst != null && start >= 0) {
+            // populate the environment with variables up to the CST
+            it.next();  // in case we stepped onto a bar or in boundary token
+            getVariables(env, txt.substring(0, start), it);
+            
+            return parser.parseAST(cst, constraintType);
+        }
+        
+        return null;
+	}
+	
+	/**
+	 * A token marking a boundary to the right of which the right-most
+	 * sub-expression (which we are to complete) must lie, barring parentheses,
+	 * brackets, or braces.  These boundary tokens include all infix operations
+	 * and other tokens such as ':', ';', ',', 'let', 'in', 'if', 'then',
+	 * 'else', 'endif'.  This boundary token and anything to the left cannot
+	 * be considered as part of the expression that we are completing.
+	 * 
+	 * @param token a token
+	 * @return whether it is a boundary token
+	 */
+	private boolean isBoundaryToken(IToken token) {
+	    switch (token.getKind()) {
+            case OCLLPGParsersym.TK_COLON:
+            case OCLLPGParsersym.TK_COMMA:
+            case OCLLPGParsersym.TK_SEMICOLON:
+            case OCLLPGParsersym.TK_BAR:
+            case OCLLPGParsersym.TK_in:
+            case OCLLPGParsersym.TK_let:
+	        case OCLLPGParsersym.TK_and:
+            case OCLLPGParsersym.TK_or:
+            case OCLLPGParsersym.TK_xor:
+            case OCLLPGParsersym.TK_implies:
+            case OCLLPGParsersym.TK_endif:
+            case OCLLPGParsersym.TK_then:
+            case OCLLPGParsersym.TK_else:
+            case OCLLPGParsersym.TK_if:
+            case OCLLPGParsersym.TK_EQUAL:
+            case OCLLPGParsersym.TK_NOT_EQUAL:
+            case OCLLPGParsersym.TK_GREATER:
+            case OCLLPGParsersym.TK_GREATER_EQUAL:
+            case OCLLPGParsersym.TK_LESS:
+            case OCLLPGParsersym.TK_LESS_EQUAL:
+            case OCLLPGParsersym.TK_PLUS:
+            case OCLLPGParsersym.TK_MINUS:
+            case OCLLPGParsersym.TK_MULTIPLY:
+            case OCLLPGParsersym.TK_DIVIDE:
+                return true;
+            default:
+                return false;
+	    }
+	}
+	
+	private int updateBalance(int[] balance, IToken token) {
+	    switch (token.getKind()) {
+            case OCLLPGParsersym.TK_LPAREN:
+            case OCLLPGParsersym.TK_LBRACKET:
+            case OCLLPGParsersym.TK_LBRACE:
+                balance[0]--;
+                break;
+            case OCLLPGParsersym.TK_RPAREN:
+            case OCLLPGParsersym.TK_RBRACKET:
+            case OCLLPGParsersym.TK_RBRACE:
+                balance[0]++;
+                break;
+	    }
+	    
+	    return balance[0];
 	}
 	
 	private void getVariables(
@@ -1206,9 +1333,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 								lexer, env);
 						if (parseVariableDeclaration(env, parser)) {
 							break;
-			}
-		}
-	}
+            			}
+            		}
+            	}
 				token = mainParser.getIToken(mainParser.getToken());
 			}
 		}
@@ -1258,47 +1385,6 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		//    delegate unknown variables to the parent.  We cannot modify the
 		//    parent by this means
 		return env.getFactory().createEnvironment(env);
-	}
-	
-	/**
-	 * Parses the specified text in the specified environment.
-	 * 
-	 * @param env the parser environment
-	 * @param text the OCL text
-	 * @param constraintType the kind of constraint to parse
-	 * @return the OCL expression, if it successfully parsed
-	 * 
-	 * @throws Exception any exception thrown in parsing
-	 */
-	private OCLExpression<C> getOCLExpression(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			String text, ConstraintKind constraintType)
-			throws Exception {
-		
-		OCLExpression<C> result = null;
-		switch (constraintType) {
-		case PRECONDITION:
-			result = uml.getSpecification(
-					HelperUtil.parsePrecondition(env, text, false, false)).getBodyExpression();
-			break;
-		case BODYCONDITION:
-			result = uml.getSpecification(
-					HelperUtil.parseBodyCondition(env, text, false, false)).getBodyExpression();
-			break;
-		case POSTCONDITION:
-			result = uml.getSpecification(
-					HelperUtil.parsePostcondition(env, text, false, false)).getBodyExpression();
-			break;
-		case INVARIANT:
-			result = uml.getSpecification(
-					HelperUtil.parseInvariant(env, text, false, false)).getBodyExpression();
-			break;
-		default:
-			result = HelperUtil.parseQuery(env, text, false, false);
-			break;
-		}
-		
-		return result;
 	}
 
 }
