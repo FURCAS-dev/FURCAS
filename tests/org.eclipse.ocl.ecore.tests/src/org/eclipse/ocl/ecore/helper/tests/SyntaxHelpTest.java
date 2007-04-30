@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SyntaxHelpTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: SyntaxHelpTest.java,v 1.3 2007/04/30 12:38:16 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -496,6 +496,133 @@ public class SyntaxHelpTest
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    public void test_completeOperationCallFollowedByArrow() {
+        helper.setContext(apple);
+        
+        try {
+            List<Choice> choices = helper.getSyntaxHelp(
+                    ConstraintKind.INVARIANT, "true and false implies preferredLabel(label)->"); //$NON-NLS-1$
+            
+            // iterators and collection operations
+            assertChoice(choices, ChoiceKind.OPERATION, "forAll"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_completeAfterOpeningParenthesis() {
+        helper.setContext(apple);
+        
+        try {
+            List<Choice> choices = helper.getSyntaxHelp(
+                    ConstraintKind.INVARIANT, "preferredLabel((label)."); //$NON-NLS-1$
+            
+            // features of String
+            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "toUpper"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            
+            // try unmatched brace
+            choices = helper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "Set{label."); //$NON-NLS-1$
+            
+            // features of String
+            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "toUpper"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            
+            // a little more complex
+            choices = helper.getSyntaxHelp(
+                ConstraintKind.INVARIANT, "preferredLabel(Set{label}->"); //$NON-NLS-1$
+        
+            // iterators and collection operations
+            assertChoice(choices, ChoiceKind.OPERATION, "union"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            
+            // not features of String
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "concat"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_completeAfterInfixOperation() {
+        helper.setContext(apple);
+        
+        try {
+            List<Choice> choices = helper.getSyntaxHelp(
+                    ConstraintKind.INVARIANT, "true and 3 * label."); //$NON-NLS-1$
+            
+            // String operations
+            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            
+            // not numeric operations
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "abs"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_completeAfterThen() {
+        helper.setContext(apple);
+        
+        try {
+            // note that 'foo' isn't even valid; it is irrelevant
+            List<Choice> choices = helper.getSyntaxHelp(
+                    ConstraintKind.INVARIANT, "if foo then label."); //$NON-NLS-1$
+            
+            // String operations
+            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    public void test_parentheseEscapeLeftBoundaries() {
+        helper.setContext(apple);
+        
+        try {
+            // note that 'and' isn't even valid here; it is irrelevant
+            List<Choice> choices = helper.getSyntaxHelp(
+                    ConstraintKind.INVARIANT, "and (if true then (label) else '' endif)."); //$NON-NLS-1$
+            
+            // String operations
+            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            
+            // not features of Apple
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Test framework
