@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.13 2007/04/30 13:48:40 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.14 2007/04/30 16:03:10 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -106,8 +106,8 @@ import org.osgi.framework.Bundle;
 public class OCLConsolePage
 	extends Page {
 
-    private static int BUNDLE_AVAILABLE = Bundle.ACTIVE | Bundle.RESOLVED |
-        Bundle.STARTING | Bundle.STOPPING;
+    private static int BUNDLE_AVAILABLE = Bundle.RESOLVED | Bundle.ACTIVE |
+        Bundle.STARTING;
     
 	private Composite page;
 	
