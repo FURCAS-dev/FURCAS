@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.14 2007/04/30 16:03:10 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.15 2007/05/01 15:22:13 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -241,10 +241,10 @@ public class OCLConsolePage
 		metamodelItem.setMode(ActionContributionItem.MODE_FORCE_TEXT);
 		
 		IToolBarManager toolbar = getSite().getActionBars().getToolBarManager();
-		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, load);
-		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, save);
         toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
         toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
+		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, load);
+		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, save);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, close);
 	}
