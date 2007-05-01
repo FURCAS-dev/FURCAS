@@ -277,7 +277,7 @@ constructs are restricted in the kinds of constraints in which they may be used)
 <pre class="Code">
 helper.setContext(EXTLibraryPackage.Literals.BOOK);
 
-List<Choice> choices = helper.<b>getSyntaxHelp</b>(
+List&lt;Choice&gt; choices = helper.<b>getSyntaxHelp</b>(
     ConstraintKind.INVARIANT,
     "Book.allInstances()-&gt;excluding(self).");
 
@@ -341,7 +341,7 @@ referenced in an expression:
 <pre class="Code">
 helper.setContext(EXTLibraryPackage.Literals.BOOK);
 
-OCLExpression<EClassifier> query = helper.parseQuery(
+OCLExpression&lt;EClassifier&gt; query = helper.parseQuery(
     "Book.allInstances()-&gt;select(b : Book | b &lt;&gt; self and b.title = self.title)");
 
 AttributeCounter <b>visitor</b> = new AttributeCounter(
