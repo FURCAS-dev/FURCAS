@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.1 2007/01/25 18:24:32 cdamus Exp $
+ * $Id: AbstractVisitor.java,v 1.2 2007/05/01 15:25:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
@@ -51,9 +51,17 @@ import org.eclipse.ocl.expressions.VariableExp;
 
 
 /**
+ * <p>
  * An abstract implementation of the {@link Visitor} API, in which subclasses
  * need only selectively override <code>handleXxx(...)</code> methods for
  * internal AST nodes and <code>visitXxx(...)</code> methods for leaf nodes.
+ * </p><p>
+ * The {@link #result} value is convenient for accumulating the result of the
+ * visitation.  In the subclass, simply assign/modify the result value as
+ * necessary in the overridden visitation methods, and this framework will
+ * ensure that it is returned as the overall value of the
+ * {@link Visitable#accept(Visitor)} call.
+ * </p>
  * 
  * @author Christian W. Damus (cdamus)
  */
@@ -61,10 +69,24 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
 		implements Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> {
     
     /**
+     * Accumulator for the result of the AST visitation.
+     */
+    protected T result;
+    
+    /**
      * Initializes me.
      */
 	protected AbstractVisitor() {
 		super();
+	}
+	
+	/**
+	 * Initializes me with an initial value for my result.
+	 * 
+	 * @param initialValue my initial result value
+	 */
+	protected AbstractVisitor(T initialValue) {
+	    this.result = initialValue;
 	}
 
     /**
@@ -98,20 +120,20 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param argumentResults the results of visiting the expression's
      *     arguments, or an empty list if there are no arguments
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitOperationCallExp(OperationCallExp)
      */
     protected T handleOperationCallExp(OperationCallExp<C, O> callExp,
             T sourceResult, List<T> argumentResults) {
-        return null;
+        return result;
     }
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitVariableExp(VariableExp<C, PM> v) {
-		return null;
+		return result;
 	}
 
     /**
@@ -153,13 +175,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param qualifierResults the results of visiting the expression's
      *     qualifiers, or an empty list if there are no qualifiers
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitPropertyCallExp(PropertyCallExp)
      */
     protected T handlePropertyCallExp(PropertyCallExp<C, P> callExp,
             T sourceResult, List<T> qualifierResults) {
-        return null;
+        return result;
     }
 
     /**
@@ -193,13 +215,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param qualifierResults the results of visiting the expression's
      *     qualifiers, or an empty list if there are no qualifiers
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitAssociationClassCallExp(AssociationClassCallExp)
      */
     protected T handleAssociationClassCallExp(AssociationClassCallExp<C, P> callExp,
             T sourceResult, List<T> qualifierResults) {
-        return null;
+        return result;
     }
 
     /**
@@ -224,13 +246,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param initResult the result of visiting the expression's initializer,
      *    or <code>null</code> if it has none
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitVariable(Variable)
      */
     protected T handleVariable(Variable<C, PM> variable,
             T initResult) {
-        return null;
+        return result;
     }
 
     /**
@@ -253,20 +275,20 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param thenResult the result of visiting the expression's then
      * @param elseResult the result of visiting the expression's else
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitIfExp(IfExp)
      */
     protected T handleIfExp(IfExp<C> ifExp, T conditionResult, T thenResult,
             T elseResult) {
-        return null;
+        return result;
     }
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitTypeExp(TypeExp<C> t) {
-		return null;
+		return result;
 	}
 	
     /**
@@ -300,76 +322,76 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param argumentResults the results of visiting the expression's
      *     arguments, or an empty list if there are no arguments
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitMessageExp(MessageExp)
      */
     protected T handleMessageExp(MessageExp<C, COA, SSA> messageExp,
             T targetResult, List<T> argumentResults) {
-        return null;
+        return result;
     }
 	
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitUnspecifiedValueExp(UnspecifiedValueExp<C> unspecExp) {
-		return null;
+		return result;
 	}
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitStateExp(StateExp<C, S> stateExp) {
-		return null;
+		return result;
 	}
 	
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitIntegerLiteralExp(IntegerLiteralExp<C> literalExp) {
-		return null;
+		return result;
 	}
     
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
     public T visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp<C> literalExp) {
-        return null;
+        return result;
     }
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitRealLiteralExp(RealLiteralExp<C> literalExp) {
-		return null;
+		return result;
 	}
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitStringLiteralExp(StringLiteralExp<C> literalExp) {
-		return null;
+		return result;
 	}
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitBooleanLiteralExp(BooleanLiteralExp<C> literalExp) {
-		return null;
+		return result;
 	}
 	
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitNullLiteralExp(NullLiteralExp<C> literalExp) {
-		return null;
+		return result;
 	}
 	
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitInvalidLiteralExp(InvalidLiteralExp<C> literalExp) {
-		return null;
+		return result;
 	}
 
     /**
@@ -400,13 +422,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param partResults the results of visiting the expression's
      *     parts, or an empty list if there are no parts
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitTupleLiteralExp(TupleLiteralExp)
      */
     protected T handleTupleLiteralExp(TupleLiteralExp<C, P> literalExp,
             List<T> partResults) {
-        return null;
+        return result;
     }
 	
     /**
@@ -431,13 +453,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param valueResult the result of visiting the expression's value, or
      *     <code>null</code> if it has no value
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitTupleLiteralPart(TupleLiteralPart)
      */
     protected T handleTupleLiteralPart(TupleLiteralPart<C, P> part,
             T valueResult) {
-        return null;
+        return result;
     }
 
     /**
@@ -458,19 +480,19 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param variableResult the result of visiting the expression's variable
      * @param inResult the result of visiting the expression's in expression
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitLetExp(LetExp)
      */
     protected T handleLetExp(LetExp<C, PM> letExp, T variableResult, T inResult) {
-        return null;
+        return result;
     }
 
     /**
-     * Simply returns <code>null</code>.
+     * Simply returns {@link #result}.
      */
 	public T visitEnumLiteralExp(EnumLiteralExp<C, EL> literalExp) {
-		return null;
+		return result;
 	}
 
     /**
@@ -502,13 +524,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param partResults the results of visiting the expression's
      *     parts, or an empty list if there are no parts
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitCollectionLiteralExp(CollectionLiteralExp)
      */
     protected T handleCollectionLiteralExp(CollectionLiteralExp<C> literalExp,
             List<T> partResults) {
-        return null;
+        return result;
     }
     
     /**
@@ -527,12 +549,12 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param item the collection item
      * @param itemResult the result of visiting the item's item expression
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitCollectionItem(CollectionItem)
      */
     protected T handleCollectionItem(CollectionItem<C> item, T itemResult) {
-        return null;
+        return result;
     }
     
     /**
@@ -554,13 +576,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param firstResult the result of visiting the range's first expression
      * @param lastResult the result of visiting the range's last expression
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitCollectionRange(CollectionRange)
      */
     protected T handleCollectionRange(CollectionRange<C> range, T firstResult,
             T lastResult) {
-        return null;
+        return result;
     }
 
     /**
@@ -598,13 +620,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      *     iterator variables
      * @param bodyResult the result of visiting the expression's body
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitIteratorExp(IteratorExp)
      */
     protected T handleIteratorExp(IteratorExp<C, PM> callExp,
             T sourceResult, List<T> variableResults, T bodyResult) {
-        return null;
+        return result;
     }
 
     /**
@@ -646,13 +668,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @param resultResult the result of visiting the expressions' result variable
      * @param bodyResult the result of visiting the expression's body
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitIterateExp(IterateExp)
      */
     protected T handleIterateExp(IterateExp<C, PM> callExp,
             T sourceResult, List<T> variableResults, T resultResult, T bodyResult) {
-        return null;
+        return result;
     }
 
     /**
@@ -697,13 +719,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      *     parameter variables, or an empty list if there are none
      * @param bodyResult the result of visiting the expression's body
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * @see #visitExpressionInOCL(ExpressionInOCL)
      */
     protected T handleExpressionInOCL(ExpressionInOCL<C, PM> callExp,
             T contextResult, T resultResult, List<T> parameterResults, T bodyResult) {
-        return null;
+        return result;
     }
     
     /**
@@ -733,13 +755,13 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      *     specification, or <code>null</code> if either it has none or the
      *     {@link #getSpecification(Object)} method is not overridden
      * 
-     * @return <code>null</code>, by default
+     * @return the accumulated {@link #result}, by default
      * 
      * #see {@link #getSpecification(Object)}
      * @see #visitConstraint(Object)
      */
     protected T handleConstraint(CT constraint, T specificationResult) {
-        return null;
+        return result;
     }
 	
     /**
