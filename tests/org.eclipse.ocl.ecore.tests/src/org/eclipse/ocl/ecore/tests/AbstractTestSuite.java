@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.5 2007/04/20 22:42:54 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.6 2007/05/01 15:25:06 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -148,6 +148,7 @@ public abstract class AbstractTestSuite
 		result.addTest(DefExpressionTest.suite());
 		result.addTest(InitOrDerExpressionTest.suite());
 		result.addTest(OCLDocumentTest.suite());
+		result.addTest(AbstractVisitorTest.suite());
 		result.addTest(org.eclipse.ocl.ecore.helper.tests.AbstractTestSuite.suite());
 		result.addTest(RegressionTest.suite());
 		result.addTest(EcoreEnvironmentTest.suite());
@@ -161,7 +162,8 @@ public abstract class AbstractTestSuite
 	// Framework methods
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		System.out.println("==> Start  " + getName()); //$NON-NLS-1$
@@ -193,7 +195,8 @@ public abstract class AbstractTestSuite
 		return ocl.createOCLHelper();
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
