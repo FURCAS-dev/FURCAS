@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.2 2007/03/27 18:46:39 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.3 2007/05/03 13:05:13 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -416,6 +417,21 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		
 		return result;
 	}
+    
+    public static EClassifier getOwner(EStructuralFeature property) {
+        EClass ownerClass = property.getEContainingClass();
+        EClassifier result = ownerClass;
+        
+        if (ownerClass != null) {
+            EClassifier shadowed = getRealClassifier(ownerClass);
+            
+            if (shadowed != null) {
+                result = shadowed;
+            }
+        }
+        
+        return result;
+    }
 	
 	/**
 	 * Creates the shadow class to contain features that an Ecore classifier
