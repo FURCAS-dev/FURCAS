@@ -12,16 +12,20 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.2 2007/05/03 13:06:51 cdamus Exp $
  */
 
 package org.eclipse.ocl;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -127,6 +131,7 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     /**
      * Returns a string representation of the bindings
      */
+    @Override
     public String toString() {
         return map.toString();
     }
@@ -161,6 +166,22 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     	
     	if (method != null) {
     		try {
+    		    // coerce any collection arguments to EList as necessary
+    		    Class<?>[] parmTypes = method.getParameterTypes();
+    		    for (int i = 0; i < parmTypes.length; i++) {
+    		        if (EList.class.isAssignableFrom(parmTypes[i])) {
+    		            if (args[i] == null) {
+    		                args[i] = ECollections.EMPTY_ELIST;
+    		            } else if (!(args[i] instanceof Collection)) {
+    		                EList<Object> list = new BasicEList.FastCompare<Object>(1);
+    		                list.add(args[i]);
+    		                args[i] = list;
+    		            } else if (!(args[i] instanceof EList)) {
+    		                args[i] = new BasicEList.FastCompare<Object>((Collection<?>) args[i]);
+    		            }
+    		        }
+    		    }
+    		    
 				return method.invoke(source, args);
 			} catch (Exception e) {
 				OCLPlugin.catching(getClass(), "callOperation", e);//$NON-NLS-1$
