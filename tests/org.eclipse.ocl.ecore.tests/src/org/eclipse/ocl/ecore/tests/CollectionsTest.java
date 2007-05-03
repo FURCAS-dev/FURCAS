@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.4 2007/04/19 22:07:51 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.5 2007/05/03 13:06:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -751,7 +751,9 @@ public class CollectionsTest
             assertNotNull(part);
             assertTrue(part.getEType() instanceof CollectionType);
             
-            CollectionType collType = (CollectionType) part.getEType();
+            @SuppressWarnings("unchecked")
+            CollectionType<EClassifier, EOperation> collType =
+                (CollectionType<EClassifier, EOperation>) part.getEType();
             assertSame(EcorePackage.Literals.ECLASSIFIER, collType.getElementType());
             
             Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
@@ -762,7 +764,7 @@ public class CollectionsTest
                 (Tuple<EOperation, EStructuralFeature>) result;
             
             assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
-            assertTrue(((Collection) tuple.getValue("a")).contains(EcorePackage.Literals.ECLASSIFIER)); //$NON-NLS-1$
+            assertTrue(((Collection<?>) tuple.getValue("a")).contains(EcorePackage.Literals.ECLASSIFIER)); //$NON-NLS-1$
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -788,7 +790,9 @@ public class CollectionsTest
             assertNotNull(part);
             assertTrue(part.getEType() instanceof CollectionType);
             
-            CollectionType collType = (CollectionType) part.getEType();
+            @SuppressWarnings("unchecked")
+            CollectionType<EClassifier, EOperation> collType =
+                (CollectionType<EClassifier, EOperation>) part.getEType();
             assertSame(getOCLStandardLibrary().getString(), collType.getElementType());
             
             Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
@@ -799,7 +803,7 @@ public class CollectionsTest
                 (Tuple<EOperation, EStructuralFeature>) result;
             
             assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
-            assertTrue(((Collection) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
+            assertTrue(((Collection<?>) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -861,6 +865,24 @@ public class CollectionsTest
             assertEquals(Boolean.FALSE, result);
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the OCL Standard Library defines the correct signature for
+     * the <code>Sequence::&lt;&gt;(Sequence(T))</code> operation.
+     */
+    public void test_sequenceNotEqualSignature_184327() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3} <> Sequence{3, 2, 1}")); //$NON-NLS-1$
+
+            assertFalse(check(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3} <> Sequence{1, 2, 3}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
 }

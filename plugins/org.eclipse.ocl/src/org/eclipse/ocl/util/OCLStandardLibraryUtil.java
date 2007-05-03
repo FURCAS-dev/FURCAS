@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.4 2007/05/03 13:06:41 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -494,7 +494,9 @@ public final class OCLStandardLibraryUtil {
 			return stdlib.getReal();
 		case MINUS:
 			// unary minus
-			if (args == null || args.size() == 0) return sourceType;
+			if (args == null || args.size() == 0) {
+                return sourceType;
+            }
 			
 			argType = args.get(0).getType();
 			return TypeUtil.commonSuperType(env, argType, sourceType);
@@ -1553,7 +1555,7 @@ public final class OCLStandardLibraryUtil {
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
 				EQUAL_NAME, stdlib.getSequence(), "s"));//$NON-NLS-1$
 			result.add(createBinaryOperation(uml, stdlib.getBoolean(),
-				NOT_EQUAL_NAME, stdlib.getBoolean(), "s")); //$NON-NLS-1$
+				NOT_EQUAL_NAME, stdlib.getSequence(), "s")); //$NON-NLS-1$
 			result.add(createBinaryOperation(uml, stdlib.getSequence(),
 				UNION_NAME, stdlib.getSequence(), "s")); //$NON-NLS-1$
 			result.add(createBinaryOperation(uml, stdlib.getBoolean(),
