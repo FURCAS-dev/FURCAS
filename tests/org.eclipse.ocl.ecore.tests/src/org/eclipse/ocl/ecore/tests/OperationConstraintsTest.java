@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.3 2007/05/03 22:04:27 cdamus Exp $
+ * $Id: OperationConstraintsTest.java,v 1.4 2007/05/03 22:52:16 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -120,7 +120,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			"pre different: let ok : Boolean = c <> color in " + //$NON-NLS-1$
 			"  ok " + //$NON-NLS-1$
 			"body: let b : Boolean = c <> color in " + //$NON-NLS-1$
-			"  result = b implies color <> Color::black " + //$NON-NLS-1$
+			"  b implies color <> Color::black " + //$NON-NLS-1$
 			"post worked: result implies color <> color@pre " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
 	}
@@ -576,6 +576,34 @@ public class OperationConstraintsTest extends AbstractTestSuite {
         }
         
         assertNull(err);
+    }
+    
+    /**
+     * Tests that OCL body expressions cannot reference the result of the
+     * operation. 
+     */
+    public void test_bodyExpressionResultUsage_185345() {
+        AssertionFailedError err = null;
+        
+        try {
+            // not allowed to reference the result variable
+            parseConstraint(
+                "package ocltest context Apple::preferredLabel(text : String) : String " + //$NON-NLS-1$
+                "body: if true then text else result endif " + //$NON-NLS-1$
+                "endpackage"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            err = e;
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        assertNotNull(err);
+        err = null;
+        
+        // unless, of course, 'result' is a parameter name
+        parseConstraint(
+            "package ocltest context Apple::preferredLabel(result : String) : String " + //$NON-NLS-1$
+            "body: if true then 'me' else result endif " + //$NON-NLS-1$
+            "endpackage"); //$NON-NLS-1$
     }
     
     /**
