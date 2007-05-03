@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.4 2007/03/28 20:45:32 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.5 2007/05/03 13:05:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -229,13 +229,22 @@ class UMLReflectionImpl
     }
     
     public Classifier getOwningClassifier(Object feature) {
-        if (feature instanceof Operation) {
-            return (Classifier) ((Operation) feature).getOwner();
-        } else if (feature instanceof Property) {
-            return (Classifier) ((Property) feature).getOwner();
+        Classifier result = null;
+        
+        if (feature instanceof Feature) {
+            result = (Classifier) ((Feature) feature).getOwner();
         }
         
-        return null;
+        if (result instanceof Class) {
+            Classifier shadowed = OCLStandardLibraryImpl.getRealClassifier(
+                (Class) result);
+            
+            if (shadowed != null) {
+                result = shadowed;
+            }
+        }
+        
+        return result;
     }
     
     public List<Parameter> getParameters(Operation operation) {
@@ -522,56 +531,41 @@ class UMLReflectionImpl
     
         // First check if it is already an OCL data type (Enumerations represent
         //    themselves)
-        if (dataType instanceof Enumeration)
+        if (dataType instanceof Enumeration) {
             return dataType;
-        if (dataType instanceof CollectionType)
+        }
+        if (dataType instanceof CollectionType) {
             return dataType;
-        if (dataType instanceof PrimitiveType)
+        }
+        if (dataType instanceof PrimitiveType) {
             return dataType;
+        }
     
         if (dataType instanceof org.eclipse.uml2.uml.PrimitiveType) {
             // Boolean -> OCL_BOOLEAN
-            if (PrimitiveType.BOOLEAN_NAME.equals(dataType.getName()))
+            if (PrimitiveType.BOOLEAN_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getBoolean();
-        
-            // Double/double/Float/float -> OCL_REAL
-            else if (PrimitiveType.REAL_NAME.equals(dataType.getName()))
+            } else if (PrimitiveType.REAL_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getReal();
-        
-            // String -> OCL_STRING
-            else if (PrimitiveType.STRING_NAME.equals(dataType.getName()))
+            } else if (PrimitiveType.STRING_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getString();
-        
-            // Integer -> OCL_INTEGER
-            else if (PrimitiveType.INTEGER_NAME.equals(dataType.getName()))
+            } else if (PrimitiveType.INTEGER_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getInteger();
-        
-            else if (PrimitiveType.UNLIMITED_NATURAL_NAME.equals(dataType.getName()))
+            } else if (PrimitiveType.UNLIMITED_NATURAL_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getUnlimitedNatural();
-        
-            // Sequence -> OCL_SEQUENCE
-            else if (SequenceType.SINGLETON_NAME.equals(dataType.getName()))
+            } else if (SequenceType.SINGLETON_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getSequence();
-        
-            // Set -> OCL_SET
-            else if (SetType.SINGLETON_NAME.equals(dataType.getName()))
+            } else if (SetType.SINGLETON_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getSet();
-        
-            // Bag -> OCL_BAG
-            else if (BagType.SINGLETON_NAME.equals(dataType.getName()))
+            } else if (BagType.SINGLETON_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getBag();
-        
-            // OrderedSet -> OCL_ORDERED_SET
-            else if (OrderedSetType.SINGLETON_NAME.equals(dataType.getName()))
+            } else if (OrderedSetType.SINGLETON_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getOrderedSet();
-        
-            // Collection -> OCL_COLLECTION
-            else if (CollectionType.SINGLETON_NAME.equals(dataType.getName()))
+            } else if (CollectionType.SINGLETON_NAME.equals(dataType.getName())) {
                 return OCLStandardLibraryImpl.INSTANCE.getCollection();
-        
-            // Object -> OCL_ANY
-            else if ("Object".equals(dataType.getName())) //$NON-NLS-1$
+            } else if ("Object".equals(dataType.getName())) { //$NON-NLS-1$
                 return OCLStandardLibraryImpl.INSTANCE.getOclAny();
+            }
         }
         
         // All other data types map to themselves
