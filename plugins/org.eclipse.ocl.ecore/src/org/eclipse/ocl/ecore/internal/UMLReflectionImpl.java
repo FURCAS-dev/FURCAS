@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.4 2007/03/28 20:45:35 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.5 2007/05/03 13:05:13 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -184,13 +184,9 @@ public class UMLReflectionImpl
         if (feature instanceof EOperation) {
             EOperation operation = (EOperation) feature;
             
-            if (isAncestor(OCLStandardLibraryImpl.stdlibPackage, operation)) {
-                return OCLStandardLibraryImpl.getOwner(operation);
-            }
-            
-            return operation.getEContainingClass();
+            return OCLStandardLibraryImpl.getOwner(operation);
         } else if (feature instanceof EStructuralFeature) {
-            return ((EStructuralFeature) feature).getEContainingClass();
+            return OCLStandardLibraryImpl.getOwner((EStructuralFeature) feature);
         }
         
         return null;
@@ -530,52 +526,42 @@ public class UMLReflectionImpl
     
         // First check if it is already an OCL data type (EEnums represent
         //    themselves)
-        if (dataType instanceof EEnum)
+        if (dataType instanceof EEnum) {
             return dataType;
-        if (dataType instanceof CollectionType)
+        }
+        if (dataType instanceof CollectionType) {
             return dataType;
-        if (dataType instanceof PrimitiveType)
+        }
+        if (dataType instanceof PrimitiveType) {
             return dataType;
+        }
     
         Class<?> instanceClass = dataType.getInstanceClass();
     
         // Boolean/boolean -> OCL_BOOLEAN
         if (instanceClass == Boolean.class
-            || instanceClass == boolean.class)
+            || instanceClass == boolean.class) {
             return OCLStandardLibraryImpl.INSTANCE.getBoolean();
-    
-        // Double/double/Float/float -> OCL_REAL
-        else if (instanceClass == Double.class
+        } else if (instanceClass == Double.class
             || instanceClass == double.class
-            || instanceClass == Float.class || instanceClass == float.class)
+            || instanceClass == Float.class || instanceClass == float.class) {
             return OCLStandardLibraryImpl.INSTANCE.getReal();
-    
-        // String -> OCL_STRING
-        else if (instanceClass == String.class)
+        } else if (instanceClass == String.class) {
             return OCLStandardLibraryImpl.INSTANCE.getString();
-    
-        // Integer/int/Long/long/Short/short -> OCL_INTEGER
-        else if (instanceClass == Integer.class
+        } else if (instanceClass == Integer.class
             || instanceClass == int.class || instanceClass == Long.class
             || instanceClass == long.class || instanceClass == Short.class
-            || instanceClass == short.class)
+            || instanceClass == short.class) {
             return OCLStandardLibraryImpl.INSTANCE.getInteger();
-    
-        // List -> OCL_SEQUENCE
-        else if (List.class.isAssignableFrom(instanceClass))
+        } else if (List.class.isAssignableFrom(instanceClass)) {
             return OCLStandardLibraryImpl.INSTANCE.getSequence();
-    
-        // Set -> OCL_SET
-        else if (Set.class.isAssignableFrom(instanceClass))
+        } else if (Set.class.isAssignableFrom(instanceClass)) {
             return OCLStandardLibraryImpl.INSTANCE.getSet();
-    
-        // Collection -> OCL_COLLECTION
-        else if (Collection.class.isAssignableFrom(instanceClass))
+        } else if (Collection.class.isAssignableFrom(instanceClass)) {
             return OCLStandardLibraryImpl.INSTANCE.getCollection();
-    
-        // Object -> OCL_ANY
-        else if (instanceClass == Object.class)
+        } else if (instanceClass == Object.class) {
             return OCLStandardLibraryImpl.INSTANCE.getOclAny();
+        }
         
         // All other data types map to themselves
         return dataType;
