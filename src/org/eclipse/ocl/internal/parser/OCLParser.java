@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.10 2007/05/03 12:59:09 cdamus Exp $
+ * $Id: OCLParser.java,v 1.11 2007/05/03 22:52:24 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -1321,6 +1321,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				stereotype = UMLReflection.BODY;
 				 
 				// likewise, body conditions have an implicit variable "result"
+				// when using the UML-style post-condition-like form of body
+				// condition constraint
 				if ((operationType != null) && (env.lookupLocal(Environment.RESULT_VARIABLE_NAME) == null)) {
 					resultVar = genVariableDeclaration(
 						"prePostOrBodyDeclCS", env, //$NON-NLS-1$
