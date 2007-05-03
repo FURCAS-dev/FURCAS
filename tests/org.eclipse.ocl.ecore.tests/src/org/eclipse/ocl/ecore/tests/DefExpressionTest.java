@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.3 2007/02/23 22:06:03 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.4 2007/05/03 13:04:56 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -807,6 +807,56 @@ public class DefExpressionTest
         } catch (ParserException e) {
             // success!
             System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the {@link UMLReflection} API provides the correct owner of an
+     * additional operation.
+     */
+    public void test_defExpression_operation_owner() {
+        helper.setContext(fruit);
+        
+        try {
+            EOperation o = helper.defineOperation(
+                    "bestColor(c : Color) : Color = " + //$NON-NLS-1$
+                    "if self.color = Color::black then c else self.color endif"); //$NON-NLS-1$
+            
+            UMLReflection<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?> uml =
+                ocl.getEnvironment().getUMLReflection();
+            
+            // sanity check
+            assertSame(fruit, uml.getOwningClassifier(fruit_ripen));
+            
+            // check the owner of the additional operation
+            assertSame(fruit, uml.getOwningClassifier(o));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the {@link UMLReflection} API provides the correct owner of an
+     * additional attribute.
+     */
+    public void test_defExpression_attribute_owner() {
+        helper.setContext(fruit);
+        
+        try {
+            EStructuralFeature p = helper.defineAttribute(
+                    "isBlack : Boolean = " + //$NON-NLS-1$
+                    "color = Color::black"); //$NON-NLS-1$
+            
+            UMLReflection<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?> uml =
+                ocl.getEnvironment().getUMLReflection();
+            
+            // sanity check
+            assertSame(fruit, uml.getOwningClassifier(fruit_color));
+            
+            // check the owner of the additional operation
+            assertSame(fruit, uml.getOwningClassifier(p));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
 }
