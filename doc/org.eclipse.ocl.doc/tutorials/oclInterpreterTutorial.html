@@ -240,7 +240,7 @@ library.addAll(books);  // and they are all in our library
 // use the query expression parsed before to create a Query
 Query&lt;EClassifier, EClass, EObject&gt; eval = ocl.<b>createQuery</b>(query);
 
-Collection<?> result = (Collection<?>) eval.<b>evaluate</b>(dickens);
+Collection&lt;?&gt; result = (Collection&lt;?&gt;) eval.<b>evaluate</b>(dickens);
 System.out.println(result);
 </pre>
 <p>
