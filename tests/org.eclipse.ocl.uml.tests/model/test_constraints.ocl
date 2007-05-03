@@ -28,6 +28,9 @@ package ocltest
 		pre text_not_label: text <> label
 		post label_is_changed: label <> label@pre
 		post label_is_set: label = text
+
+	context Apple::preferredLabel(proposed : String) : String
+		body compute_label: if proposed = label then '' else proposed endif
 		
 	context Apple::name : String
 		init: ''

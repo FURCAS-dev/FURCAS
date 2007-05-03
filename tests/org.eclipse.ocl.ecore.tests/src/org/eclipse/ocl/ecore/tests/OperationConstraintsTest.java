@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: OperationConstraintsTest.java,v 1.3 2007/05/03 22:04:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -26,6 +26,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -526,4 +527,79 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * Tests that body conditions are correctly checked for conformance to the
+     * operation type when they are specified as OCL body expressions, not as
+     * UML body constraints. 
+     */
+    public void test_bodyExpressionConformance_185345() {
+        AssertionFailedError err = null;
+        
+        try {
+            // try a scenario with no common supertype
+            parseConstraint(
+                "package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
+                "body: if true then 'red' else 'brown' endif " + //$NON-NLS-1$
+                "endpackage"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            err = e;
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        assertNotNull(err);
+        err = null;
+        
+        try {
+            // try a scenario with a common supertype
+            parseConstraint(
+                "package ocltest context Apple::newApple() : Apple " + //$NON-NLS-1$
+                "body: self.newFruit() " + //$NON-NLS-1$
+                "endpackage"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            err = e;
+            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        assertNotNull(err);
+        err = null;
+        
+        try {
+            // this scenario is OK
+            parseConstraint(
+                "package ocltest context Apple::newFruit() : Fruit " + //$NON-NLS-1$
+                "body: self.newApple() " + //$NON-NLS-1$
+                "endpackage"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            err = e;
+            System.err.println("Got unexpected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        assertNull(err);
+    }
+    
+    /**
+     * Now that body expressions can be specified as OCL intended, we can use
+     * them to evaluate operations at run-time. 
+     */
+    public void test_bodyExpressionEvaluation_185345() {
+        parseConstraint(
+            "package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
+            "body: if color = Color::black then Color::red else Color::black endif " + //$NON-NLS-1$
+            "endpackage"); //$NON-NLS-1$
+        
+        OCLExpression<EClassifier> query = parse(
+            "package ocltest context Apple " + //$NON-NLS-1$
+            "inv: self.preferredColor() " + //$NON-NLS-1$
+            "endpackage"); //$NON-NLS-1$
+        
+        EObject anApple = fruitFactory.create(apple);
+        anApple.eSet(fruit_color, color_black);
+        
+        assertSame(color_red, evaluate(query, anApple));
+        
+        anApple.eSet(fruit_color, color_green);
+        
+        assertSame(color_black, evaluate(query, anApple));
+    }
 }

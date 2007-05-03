@@ -30,7 +30,7 @@ package ocltest
 	context Apple::preferredLabel(text : String) : String
 		pre text_not_null: not text.oclIsUndefined()
 		pre text_not_label: text <> label
-		body compute_label: result = if text = label then '' else text endif
+		body compute_label: if text = label then '' else text endif
 		post label_is_changed: label = label@pre
 		post label_is_set: label = text
 		

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.4 2007/03/27 15:05:43 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.5 2007/05/03 22:04:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -955,20 +955,6 @@ public class RegressionTest
 	public void test_operationBodyBoolean_116251() {
 		AssertionFailedError err = null;
 		
-		// this should not work
-		try {
-			parseConstraint(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-				"body: x->asSet()->asBag()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
-		} catch (AssertionFailedError e) {
-			// this is expected (success case)
-			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
-		
 		// this should work
 		parseConstraint(
 			"package ocltest context " + //$NON-NLS-1$
@@ -1474,7 +1460,8 @@ public class RegressionTest
 				this.key = key;
 			}
 			
-			public boolean equals(Object o) {
+			@Override
+            public boolean equals(Object o) {
 				return (o instanceof EqualsEClass)
 					&& (key == ((EqualsEClass) o).key);
 			}
