@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.1 2007/01/25 18:32:35 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.2 2007/05/03 12:59:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -28,7 +28,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -300,4 +302,49 @@ public class BasicOCLTest
 		assertTrue(check("ocltest::Color::red = ocltest::Color::red")); //$NON-NLS-1$
 		assertFalse(check("ocltest::Color::red = ocltest::Color::black")); //$NON-NLS-1$
 	}
+    
+	/**
+	 * Tests backslashes in strings and the non-standard escape for
+	 * double-quotes in the double-quote syntax that is non-standard, anyway.
+	 */
+    public void test_backslashes_184948() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        String self = ""; //$NON-NLS-1$
+        
+        try {
+            assertEquals("str\\ning", //$NON-NLS-1$
+                evaluate(helper, self, "'str\\ning'")); //$NON-NLS-1$
+            
+            assertEquals("str\\(ing", //$NON-NLS-1$
+                evaluate(helper, self, "'str\\(ing'")); //$NON-NLS-1$
+            
+            assertEquals("string", //$NON-NLS-1$
+                evaluate(helper, self, "let \"s\\\"g\" : String = 'string' in " + //$NON-NLS-1$
+                    "\"s\\\"g\"")); //$NON-NLS-1$
+        } catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Test non-standard doubled single-quote syntax for embedding single-quotes
+     * in string literals.
+     */
+    public void test_stringEscapes_184948() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        String self = ""; //$NON-NLS-1$
+        
+        try {
+            assertEquals("str'ing", //$NON-NLS-1$
+                evaluate(helper, self, "'str''ing'")); //$NON-NLS-1$
+            
+            assertEquals("", //$NON-NLS-1$
+                evaluate(helper, self, "''")); //$NON-NLS-1$
+            
+            assertEquals("'", //$NON-NLS-1$
+                evaluate(helper, self, "''''")); //$NON-NLS-1$
+        } catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 }
