@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.9 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: OCLParser.java,v 1.10 2007/05/03 12:59:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -807,10 +807,19 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							cstNode.eClass().getName()));
 		}
 		
+		List<PackageDeclarationCS> packageDecls =
+		    new BasicEList.FastCompare<PackageDeclarationCS>(4);
+		
+		// reverse the chain of package declarations to process them in the
+		// forward order
 		PackageDeclarationCS pkgdecl = (PackageDeclarationCS) cstNode;
 		while (pkgdecl != null) {
-			packageDeclarationCS(pkgdecl, constraints);
+		    packageDecls.add(0, pkgdecl);
 			pkgdecl = pkgdecl.getPackageDeclarationCS();
+		}
+		
+		for (PackageDeclarationCS packageDeclCS : packageDecls) {
+		    packageDeclarationCS(packageDeclCS, constraints);
 		}
 		
 		return constraints;
@@ -2856,7 +2865,8 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (stringLiteral.length() <= 2) {
 			astNode.setStringSymbol("");//$NON-NLS-1$
 		} else {
-			astNode.setStringSymbol(stringLiteral.substring(1, stringLiteral.length()-1));
+			astNode.setStringSymbol(processStringEscapes(
+                stringLiteral.substring(1, stringLiteral.length()-1)));
 		}
 		astNode.setType(env.getOCLStandardLibrary().getString());
 		astNode.setName(PrimitiveType.STRING_NAME);
@@ -2864,6 +2874,66 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			
 		return astNode;
 	}
+    
+	/**
+	 * Processes escape sequences in string literals.  Currently, only the
+	 * non-standard " '' " escape for single-quotes is supported.
+	 * 
+	 * @param stringLiteral a string literal
+	 * 
+	 * @return the string, with any escape sequences converted
+	 */
+    private String processStringEscapes(String stringLiteral) {
+        String result = stringLiteral;
+        
+        int length = stringLiteral.length();
+        
+        for (int i = 0; i < length; i++) {
+            // optimize for the case that there is no escape:  don't create
+            // any new string object or buffer unless we need one
+            if (stringLiteral.charAt(i) == '\'') {  // known BMP code point
+                StringBuilder buf = new StringBuilder(length);
+                
+                // found an escape.  Copy content up to this point
+                buf.append(stringLiteral, 0, i);
+                
+                // continue processing to the end, appending to the buffer
+                for (; i < length; i++) {
+                    char c = stringLiteral.charAt(i);
+                    
+                    if (c != '\'') {  // known BMP code point
+                        buf.append(c);
+                    } else {
+                        i++;  // next char
+                        
+                        if (i >= length) {
+                            // trailing signle-quote is not an escape (although,
+                            // the lexer couldn't have parsed it, anyway)
+                            buf.append('\'');
+                        } else {
+                            c = stringLiteral.charAt(i);
+                            
+                            switch (c) {
+                                case '\'':  // known BMP code point
+                                    // append the escaped single-quote
+                                    buf.append('\'');
+                                    break;
+                                default:
+                                    // parser shouldn't have produced this
+                                    buf.append('\'');  // include the escape
+                                    buf.append(c);
+                                    break;
+                            }
+                        }
+                    }
+                }
+                
+                result = buf.toString();  // convert the buffer
+            }
+        }
+        
+        return result;
+    }
 	
 	/**
 	 * BooleanLiteralExpCS
