@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.2 2007/04/19 22:07:31 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.3 2007/05/03 13:00:12 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -246,6 +246,44 @@ public class OCLDocumentTest extends AbstractTestSuite {
             System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
         } catch (RuntimeException e) {
             fail("Got runtime exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that a constraint can reference an operation defined in a package
+     * context earlier in the OCL document.
+     */
+    public void test_dependenciesOnDefExpressions_packageContext_176109() {
+        try {
+            ocl.parse(new OCLInput(
+                "package ecore context EClassifier \n" + //$NON-NLS-1$
+                "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
+                "endpackage \n" + //$NON-NLS-1$
+                "package ecore context ETypedElement \n" + //$NON-NLS-1$
+                "inv: eType <> null implies eType.isHappy() \n" + //$NON-NLS-1$
+                "endpackage \n" //$NON-NLS-1$
+                ));
+        } catch (ParserException e) {
+            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that a constraint can reference an operation defined in a classifier
+     * context earlier in the OCL document.
+     */
+    public void test_dependenciesOnDefExpressions_classifierContext_176109() {
+        try {
+            ocl.parse(new OCLInput(
+                "package ecore \n" + //$NON-NLS-1$
+                "context EClassifier \n" + //$NON-NLS-1$
+                "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
+                "context ETypedElement \n" + //$NON-NLS-1$
+                "inv: eType <> null implies eType.isHappy() \n" + //$NON-NLS-1$
+                "endpackage \n" //$NON-NLS-1$
+                ));
+        } catch (ParserException e) {
+            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
 	
