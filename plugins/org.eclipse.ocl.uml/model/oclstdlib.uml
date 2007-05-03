@@ -1366,7 +1366,7 @@
       </ownedOperation>
       <ownedOperation xmi:id="_awXV16jQEdu4LJng8Rasow" name="&lt;>" isQuery="true">
         <ownedParameter xmi:id="_awXV2KjQEdu4LJng8Rasow" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-        <ownedParameter xmi:id="_awXV2ajQEdu4LJng8Rasow" name="s" type="_ak_zNKjQEdu4LJng8Rasow"/>
+        <ownedParameter xmi:id="_awXV2ajQEdu4LJng8Rasow" name="s" type="_awXVuKjQEdu4LJng8Rasow"/>
       </ownedOperation>
       <ownedOperation xmi:id="_awXV2qjQEdu4LJng8Rasow" name="union" isQuery="true">
         <ownedParameter xmi:id="_awXV26jQEdu4LJng8Rasow" type="_awXVuKjQEdu4LJng8Rasow" direction="return"/>
