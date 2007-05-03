@@ -126,10 +126,24 @@ public class ParsingTest
 		}
 	}
 	
-	public void test_createBodyCondition() {
+	/**
+	 * Test that the Compatibility API still requires the post-condition-like
+	 * form of operation body constraints.
+	 */
+	public void test_createBodyCondition_185345() {
 		IOCLHelper helper = HelperUtil.createOCLHelper();
 
 		helper.setContextOperation(fruit, fruit_preferredColor);
+        
+        try {
+            OCLExpression expr = helper.createBodyCondition(
+                "if true then Color::red else Color::brown endif"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (Exception e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
 		
 		try {
 			OCLExpression expr = helper.createBodyCondition(
