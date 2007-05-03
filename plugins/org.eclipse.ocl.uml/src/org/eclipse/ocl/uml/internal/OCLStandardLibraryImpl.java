@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.2 2007/03/27 18:46:41 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.3 2007/05/03 13:06:50 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -236,6 +236,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
             OCL_EXPRESSION = (Classifier) stdlibPackage.getOwnedType("OclExpression"); //$NON-NLS-1$
             
             ((InstanceSpecification) OCL_INVALID).getClassifiers().add(INVALID);
+            ((InstanceSpecification) OCL_INVALID).setName("OclInvalid"); //$NON-NLS-1$
             
             addToPackageRegistry(stdlibPackage);
            
