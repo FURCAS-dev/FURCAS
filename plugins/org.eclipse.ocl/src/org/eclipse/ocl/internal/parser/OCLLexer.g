@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.3 2007/03/15 21:35:25 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.4 2007/05/03 12:59:26 cdamus Exp $
 -- */
 --
 -- The OCL Lexer
@@ -59,7 +59,7 @@ $Notice
  *
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.3 2007/03/15 21:35:25 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.4 2007/05/03 12:59:26 cdamus Exp $
  */
 	./
 $End
@@ -233,7 +233,14 @@ $Rules
 		  $EndAction
 		./
 
-	Token ::= SingleQuote SLNotSQOpt SingleQuote
+	-- an empty String literal looks just like an escaped single-quote
+	Token ::= EscapedSQ
+		/.$BeginAction
+					makeToken($_STRING_LITERAL);
+		  $EndAction
+		./
+
+	Token ::= SingleQuote SLNotSQ SingleQuote
 		/.$BeginAction
 					makeToken($_STRING_LITERAL);
 		  $EndAction
@@ -552,7 +559,7 @@ $Rules
                     '[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' | '#' | DollarSign
 
     SpecialNotSQ -> '+' | '-' | '/' | '(' | ')' | '*' | '!' | '@' | '`' | '~' |
-                    '%' | '&' | '^' | ':' | ';' | '"' | '|' | '{' | '}' |
+                    '%' | '&' | '^' | ':' | ';' | '"' | '|' | '{' | '}' | '\' |
                     '[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' | '#' | DollarSign
 
     NotSlashOrStar -> Letter
@@ -573,7 +580,7 @@ $Rules
            | Digit
            | SpecialNotDQ
            | Space
-           | EscapeSequence
+           | EscapedDQ
            --| '\' u HexDigit HexDigit HexDigit HexDigit
            --| '\' OctalDigit
 
@@ -581,19 +588,15 @@ $Rules
            | Digit
            | SpecialNotSQ
            | Space
-           | EscapeSequence
+           | EscapedSQ
            --| '\' u HexDigit HexDigit HexDigit HexDigit
            --| '\' OctalDigit
 
-    EscapeSequence ::= '\' b
-                     | '\' t
-                     | '\' n
-                     | '\' f
-                     | '\' r
-                     | '\' '"'
-                     | '\' "'"
-                     | '\' Acute
-                     | '\' '\'
+	EscapedSQ -> SingleQuote SingleQuote
+
+	-- maintain this for compatibility with the "...\"..." escapes in an
+	-- escape mechanism (double-quotes) that isn't compliant, anyway
+	EscapedDQ -> '\' DoubleQuote
 
 	SLNotDQ -> NotDQ
 	         | SLNotDQ NotDQ
