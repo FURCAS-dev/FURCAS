@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.1 2007/01/25 18:24:38 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.2 2007/05/03 22:04:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.helper;
@@ -269,7 +269,11 @@ public interface OCLHelper<C, O, P, CT> {
 	 * if my context is an operation.
 	 * 
 	 * @param expression the constraint expression (without any context
-	 *    declaration).  This must be a boolean-valued expression
+	 *    declaration).  Ordinarily, this is an expression of the same type
+	 *    as the operation, specifying the value of the operation.
+	 *    Alternatively, this may be a boolean-valued expression phrased like
+	 *    a post-condition (according to the well-formedness rules of UML
+	 *    constraints)
 	 * 
 	 * @return the body condition
 	 * 
