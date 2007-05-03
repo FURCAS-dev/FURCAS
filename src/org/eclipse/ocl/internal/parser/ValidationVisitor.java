@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.4 2007/03/15 21:33:33 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.5 2007/05/03 22:04:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -514,8 +514,9 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		source.accept(this);
 
-		if (TypeUtil.typeCompare(env, ref, type) == 0)
-			return Boolean.TRUE;
+		if (TypeUtil.typeCompare(env, ref, type) == 0) {
+            return Boolean.TRUE;
+        }
 		return Boolean.FALSE;
 	}
 
@@ -1312,8 +1313,9 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				OCLPlugin.throwing(getClass(),
 					"visitCollectionLiteralExp", error);//$NON-NLS-1$
 				throw error;
-			} else
-				return Boolean.TRUE;
+			} else {
+                return Boolean.TRUE;
+            }
 		}
 
 		C partsType = parts.get(0).getType();
@@ -1705,6 +1707,8 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         specification.accept(this);
         
 		C bodyType = specification.getBodyExpression().getType();
+		C oclBoolean = getStandardLibrary().getBoolean();
+		
 		C operationType = null;
 		C propertyType = null;
 		String operationName = null;
@@ -1738,11 +1742,10 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			propertyType = env.getOCLStandardLibrary().getOclVoid();
 		}
 		
-		if (UMLReflection.BODY.equals(stereo)
-				|| UMLReflection.POSTCONDITION.equals(stereo)
+		if (UMLReflection.POSTCONDITION.equals(stereo)
 				|| UMLReflection.PRECONDITION.equals(stereo)) {
-			// operation constraints must be boolean-valued
-			if (bodyType != getStandardLibrary().getBoolean()) {
+			// pre/post-condition constraints must be boolean-valued
+			if (bodyType != oclBoolean) {
 				String message = OCLMessages.bind(
 						OCLMessages.OperationConstraintBoolean_ERROR_,
 					operationName);
@@ -1753,7 +1756,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				throw error;
 			}
 		} else if (UMLReflection.INVARIANT.equals(stereo)) {
-			if (bodyType != getStandardLibrary().getBoolean()) {
+			if (bodyType != oclBoolean) {
 				// so must invariants, but they have a different kind of context
 				String message = OCLMessages.bind(
 						OCLMessages.InvariantConstraintBoolean_ERROR_,
@@ -1830,83 +1833,114 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				throw error;
 			}
 			
-			// the expression must be of the form result = <expr> or
-			//    <expr> = result, where <expr> is some expression whose type
-			//    conforms to the operation type.  However, this expression is
-			//    allowed to be nested inside any number of lets for the user's
-			//    convenience
-			OCLExpression<C> exp = uml.getSpecification(constraint).getBodyExpression();
-			while (exp instanceof LetExp) {
-				exp = ((LetExp<C, PM>) exp).getIn();
-			}
-			OperationCallExp<C, O> body = null;
-			if (exp instanceof OperationCallExp) {
-				body = (OperationCallExp<C, O>) exp;
-			}
-			
-			if ((body == null)
-					|| (body.getOperationCode() != PredefinedType.EQUAL)
-					|| (body.getArgument().size() != 1)) {
-				String message = OCLMessages.bind(
-						OCLMessages.BodyConditionForm_ERROR_,
-					operationName);
-				IllegalArgumentException error = new IllegalArgumentException(
-					message);
-				OCLPlugin.throwing(getClass(),
-					"visitConstraint", error);//$NON-NLS-1$
-				throw error;
-			}
-			
-			OCLExpression<C> bodyExpr;
-			
-			if (isResultVariable(body.getSource(), operationType)) {
-				bodyExpr = body.getArgument().get(0);
-			} else if (isResultVariable(body.getArgument().get(0), operationType)) {
-				bodyExpr = body.getSource();
+			if ((bodyType == oclBoolean) && (operationType != oclBoolean)) {
+			    // this is a UML-style body condition constraint
+			    visitBodyConditionConstraint(constraint, operationType,
+                    operationName);
 			} else {
-				String message = OCLMessages.bind(
-						OCLMessages.BodyConditionForm_ERROR_,
-					operationName);
-				IllegalArgumentException error = new IllegalArgumentException(
-					message);
-				OCLPlugin.throwing(getClass(),
-					"visitConstraint", error);//$NON-NLS-1$
-				throw error;
-			}
-			
-			bodyType = bodyExpr.getType();
-			
-			if ((TypeUtil.getRelationship(env, bodyType, operationType) & UMLReflection.SUBTYPE) == 0) {
-				String message = OCLMessages.bind(
-						OCLMessages.BodyConditionConformance_ERROR_,
-					new Object[] {
-						operationName,
-						getName(bodyType),
-						getName(operationType)});
-				IllegalArgumentException error = new IllegalArgumentException(
-					message);
-				OCLPlugin.throwing(getClass(),
-					"visitConstraint", error);//$NON-NLS-1$
-				throw error;
-			}
-			
-			// one last check:  does the "body" part of the condition include
-			//    the result variable?  It must not
-			if (findResultVariable(bodyExpr, operationType)) {
-				String message = OCLMessages.bind(
-						OCLMessages.BodyConditionForm_ERROR_,
-					operationName);
-				IllegalArgumentException error = new IllegalArgumentException(
-					message);
-				OCLPlugin.throwing(getClass(),
-					"visitConstraint", error);//$NON-NLS-1$
-				throw error;
+			    // the body expression type must conform to the operation type
+	            if (TypeUtil.typeCompare(env, bodyType, operationType) > 0) {
+	                
+	                String message = OCLMessages.bind(
+    	                    OCLMessages.BodyConditionConformance_ERROR_,
+    	                new Object[] {
+    	                    operationName,
+    	                    getName(bodyType),
+    	                    getName(operationType)});
+	                IllegalArgumentException error = new IllegalArgumentException(
+	                        message);
+	                OCLPlugin.throwing(getClass(),
+	                    "visitConstraint", error);//$NON-NLS-1$
+	                throw error;
+	            }
 			}
 		}
 		
 		// check the body condition, itself, for well-formedness
 		return uml.getSpecification(constraint).getBodyExpression().accept(this);
 	}
+
+    /**
+     * @param constraint
+     * @param operationType
+     * @param operationName
+     */
+    private void visitBodyConditionConstraint(CT constraint,
+            C operationType, String operationName) {
+        C bodyType;
+        // the expression must be of the form result = <expr> or
+        //    <expr> = result, where <expr> is some expression whose type
+        //    conforms to the operation type.  However, this expression is
+        //    allowed to be nested inside any number of lets for the user's
+        //    convenience
+        OCLExpression<C> exp = uml.getSpecification(constraint).getBodyExpression();
+        while (exp instanceof LetExp) {
+        	exp = ((LetExp<C, PM>) exp).getIn();
+        }
+        OperationCallExp<C, O> body = null;
+        if (exp instanceof OperationCallExp) {
+        	body = (OperationCallExp<C, O>) exp;
+        }
+        
+        if ((body == null)
+        		|| (body.getOperationCode() != PredefinedType.EQUAL)
+        		|| (body.getArgument().size() != 1)) {
+        	String message = OCLMessages.bind(
+        			OCLMessages.BodyConditionForm_ERROR_,
+        		operationName);
+        	IllegalArgumentException error = new IllegalArgumentException(
+        		message);
+        	OCLPlugin.throwing(getClass(),
+        		"visitBodyConditionConstraint", error);//$NON-NLS-1$
+        	throw error;
+        }
+        
+        OCLExpression<C> bodyExpr;
+        
+        if (isResultVariable(body.getSource(), operationType)) {
+        	bodyExpr = body.getArgument().get(0);
+        } else if (isResultVariable(body.getArgument().get(0), operationType)) {
+        	bodyExpr = body.getSource();
+        } else {
+        	String message = OCLMessages.bind(
+        			OCLMessages.BodyConditionForm_ERROR_,
+        		operationName);
+        	IllegalArgumentException error = new IllegalArgumentException(
+        		message);
+        	OCLPlugin.throwing(getClass(),
+        		"visitBodyConditionConstraint", error);//$NON-NLS-1$
+        	throw error;
+        }
+        
+        bodyType = bodyExpr.getType();
+        
+        if ((TypeUtil.getRelationship(env, bodyType, operationType) & UMLReflection.SUBTYPE) == 0) {
+        	String message = OCLMessages.bind(
+        			OCLMessages.BodyConditionConformance_ERROR_,
+        		new Object[] {
+        			operationName,
+        			getName(bodyType),
+        			getName(operationType)});
+        	IllegalArgumentException error = new IllegalArgumentException(
+        		message);
+        	OCLPlugin.throwing(getClass(),
+        		"visitBodyConditionConstraint", error);//$NON-NLS-1$
+        	throw error;
+        }
+        
+        // one last check:  does the "body" part of the condition include
+        //    the result variable?  It must not
+        if (findResultVariable(bodyExpr, operationType)) {
+        	String message = OCLMessages.bind(
+        			OCLMessages.BodyConditionForm_ERROR_,
+        		operationName);
+        	IllegalArgumentException error = new IllegalArgumentException(
+        		message);
+        	OCLPlugin.throwing(getClass(),
+        		"visitBodyConditionConstraint", error);//$NON-NLS-1$
+        	throw error;
+        }
+    }
     
     /**
      * Obtains the operation that is constrained by the specified constraint,
@@ -1994,7 +2028,8 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				Variable<C, PM>, C, O, P, EL, PM, S, COA, SSA, CT> {
 			boolean found = false;
 			
-			public Variable<C, PM>
+			@Override
+            public Variable<C, PM>
 			visitVariableExp(VariableExp<C, PM> v) {
 				if (isResultVariable(v, expectedType)) {
 					found = true;
