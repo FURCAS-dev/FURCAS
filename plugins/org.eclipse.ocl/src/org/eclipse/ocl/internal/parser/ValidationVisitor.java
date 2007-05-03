@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.5 2007/05/03 22:04:29 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.6 2007/05/03 22:52:24 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -72,6 +72,7 @@ import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -1651,12 +1652,14 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 }
                 
                 // we need to validate the result variable against the operation
-                //   result type in body expressions and postconditions.  In
-                //   other constraints, the result variable does not exist
+                //   result type in postconditions.  In other constraints, the
+                //   result variable does not exist (in body expressions, we
+                //   allow it for now for compatibility)
                 Variable<C, PM> resultVar = expression.getResultVariable();
                 C operType = null;
-                if (UMLReflection.BODY.equals(uml.getStereotype(constraint))
-                        || UMLReflection.POSTCONDITION.equals(uml.getStereotype(constraint))) {
+                String stereotype = uml.getStereotype(constraint);
+                if (UMLReflection.BODY.equals(stereotype)
+                        || UMLReflection.POSTCONDITION.equals(stereotype)) {
                     operType = uml.getOCLType(operation);
                     
                     if (operType instanceof VoidType) {
@@ -1664,7 +1667,8 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     }
                 }
                 
-                if ((operType == null) != (resultVar == null)) {
+                if (((operType == null) != (resultVar == null)) &&
+                        !UMLReflection.BODY.equals(stereotype)) {
                     IllegalArgumentException error;
                     
                     if (resultVar == null) {
@@ -1853,6 +1857,20 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	                    "visitConstraint", error);//$NON-NLS-1$
 	                throw error;
 	            }
+                
+                // check that the body doesn't reference the result variable
+                if (findResultVariable(specification.getBodyExpression(),
+                        operationType)) {
+                    
+                    String message = OCLMessages.bind(
+                            OCLMessages.BodyConditionForm_ERROR_,
+                        operationName);
+                    IllegalArgumentException error = new IllegalArgumentException(
+                        message);
+                    OCLPlugin.throwing(getClass(),
+                        "visitConstraint", error);//$NON-NLS-1$
+                    throw error;
+                }
 			}
 		}
 		
@@ -2004,7 +2022,11 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (result) {
 			Variable<C, PM> var = ((VariableExp<C, PM>) expr).getReferredVariable();
 			
-			result = (var != null) && Environment.RESULT_VARIABLE_NAME.equals(var.getName());
+			// the result variable is a context variable, contained in the
+			//    ExpressionInOcl::resultVariable property
+			result = (var != null) && Environment.RESULT_VARIABLE_NAME.equals(var.getName())
+			        && (var.eContainmentFeature() ==
+			            UtilitiesPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE);
 		}
 		
 		return result;
