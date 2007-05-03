@@ -971,7 +971,7 @@
         <eParameters name="s" eType="#/0/Sequence(T)"/>
       </eOperations>
       <eOperations name="&lt;>" eType="#/0/Boolean">
-        <eParameters name="s" eType="#/0/Boolean"/>
+        <eParameters name="s" eType="#/0/Sequence(T)"/>
       </eOperations>
       <eOperations name="union" eType="#/0/Sequence(T)">
         <eParameters name="s" eType="#/0/Sequence(T)"/>
