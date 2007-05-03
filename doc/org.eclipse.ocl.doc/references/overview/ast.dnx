@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.0/notation" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_grZlQPmQEduizMx9s-jNuw" type="Class" name="ast.dnx">
+  <children xmi:id="_IEbaEPmREduizMx9s-jNuw">
+    <children xmi:id="_IEcoMPmREduizMx9s-jNuw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_IEcoMfmREduizMx9s-jNuw" width="530" height="530"/>
+    </children>
+    <children xmi:id="_IEdPQPmREduizMx9s-jNuw" type="Stereotype"/>
+    <children xmi:id="_IEdPQfmREduizMx9s-jNuw" type="Kind"/>
+    <children xmi:id="_IEdPQvmREduizMx9s-jNuw" type="Name"/>
+    <children xmi:id="_IEd2UPmREduizMx9s-jNuw" type="Parent"/>
+    <children xmi:id="_IEd2UfmREduizMx9s-jNuw" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_IEd2UvmREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_IEedYPmREduizMx9s-jNuw" visible="false" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_IEedYfmREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_RSzb4PmWEduFSL-sFMpB5w" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_RSzb4fmWEduFSL-sFMpB5w" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_RPd0APmWEduFSL-sFMpB5w"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_IEbaEfmREduizMx9s-jNuw" fontName="Sans" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IEbaEvmREduizMx9s-jNuw" x="1824" y="5776"/>
+  </children>
+  <children xmi:id="_Lz6jkPmREduizMx9s-jNuw">
+    <children xmi:id="_Lz7KoPmREduizMx9s-jNuw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_Lz7KofmREduizMx9s-jNuw" width="530" height="530"/>
+    </children>
+    <children xmi:id="_Lz7xsPmREduizMx9s-jNuw" type="Stereotype"/>
+    <children xmi:id="_Lz7xsfmREduizMx9s-jNuw" type="Kind"/>
+    <children xmi:id="_Lz8YwPmREduizMx9s-jNuw" type="Name"/>
+    <children xmi:id="_Lz8YwfmREduizMx9s-jNuw" type="Parent"/>
+    <children xmi:id="_Lz8_0PmREduizMx9s-jNuw" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Lz8_0fmREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_Lz8_0vmREduizMx9s-jNuw" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Lz8_0_mREduizMx9s-jNuw"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_Lz6jkfmREduizMx9s-jNuw" fontName="Sans" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Visitable%5Bjcu%5Ename=Visitable.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Lz6jkvmREduizMx9s-jNuw" x="4876" y="1455"/>
+  </children>
+  <children xmi:id="_Me1I0PmREduizMx9s-jNuw">
+    <children xmi:id="_Me1v4PmREduizMx9s-jNuw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_Me1v4fmREduizMx9s-jNuw" width="530" height="530"/>
+    </children>
+    <children xmi:id="_Me1v4vmREduizMx9s-jNuw" type="Stereotype"/>
+    <children xmi:id="_Me2W8PmREduizMx9s-jNuw" type="Kind"/>
+    <children xmi:id="_Me2W8fmREduizMx9s-jNuw" type="Name"/>
+    <children xmi:id="_Me2W8vmREduizMx9s-jNuw" type="Parent"/>
+    <children xmi:id="_Me2-APmREduizMx9s-jNuw" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Me2-AfmREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_Me2-AvmREduizMx9s-jNuw" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Me2-A_mREduizMx9s-jNuw" collapsed="true"/>
+    </children>
+    <children xmi:id="_RWb-sPmWEduFSL-sFMpB5w" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_RWb-sfmWEduFSL-sFMpB5w" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_QbUaQPmWEduFSL-sFMpB5w"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_Me1I0fmREduizMx9s-jNuw" fontName="Sans" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Visitor%5Bjcu%5Ename=Visitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Me1I0vmREduizMx9s-jNuw" x="13880" y="1520"/>
+  </children>
+  <children xmi:id="_PVhCEPmREduizMx9s-jNuw">
+    <children xmi:id="_PVhpIPmREduizMx9s-jNuw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_PVhpIfmREduizMx9s-jNuw" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_PVhpIvmREduizMx9s-jNuw" type="Stereotype"/>
+    <children xmi:id="_PViQMPmREduizMx9s-jNuw" type="Name"/>
+    <children xmi:id="_PViQMfmREduizMx9s-jNuw" type="Parent"/>
+    <children xmi:id="_PViQMvmREduizMx9s-jNuw" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_PVi3QPmREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_PVi3QfmREduizMx9s-jNuw" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_PVi3QvmREduizMx9s-jNuw" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitIfExp%5Esign=(QIfExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleIfExp%5Esign=(QIfExp%3CQC;%3E;QT;QT;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitTypeExp%5Esign=(QTypeExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitMessageExp%5Esign=(QMessageExp%3CQC;QCOA;QSSA;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleMessageExp%5Esign=(QMessageExp%3CQC;QCOA;QSSA;%3E;QT;QList%3CQT;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitUnspecifiedValueExp%5Esign=(QUnspecifiedValueExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitStateExp%5Esign=(QStateExp%3CQC;QS;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitIntegerLiteralExp%5Esign=(QIntegerLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitUnlimitedNaturalLiteralExp%5Esign=(QUnlimitedNaturalLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitRealLiteralExp%5Esign=(QRealLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitStringLiteralExp%5Esign=(QStringLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitBooleanLiteralExp%5Esign=(QBooleanLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitNullLiteralExp%5Esign=(QNullLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitInvalidLiteralExp%5Esign=(QInvalidLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitTupleLiteralExp%5Esign=(QTupleLiteralExp%3CQC;QP;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleTupleLiteralExp%5Esign=(QTupleLiteralExp%3CQC;QP;%3E;QList%3CQT;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitTupleLiteralPart%5Esign=(QTupleLiteralPart%3CQC;QP;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleTupleLiteralPart%5Esign=(QTupleLiteralPart%3CQC;QP;%3E;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitLetExp%5Esign=(QLetExp%3CQC;QPM;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleLetExp%5Esign=(QLetExp%3CQC;QPM;%3E;QT;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitEnumLiteralExp%5Esign=(QEnumLiteralExp%3CQC;QEL;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitCollectionLiteralExp%5Esign=(QCollectionLiteralExp%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleCollectionLiteralExp%5Esign=(QCollectionLiteralExp%3CQC;%3E;QList%3CQT;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitCollectionItem%5Esign=(QCollectionItem%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleCollectionItem%5Esign=(QCollectionItem%3CQC;%3E;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitCollectionRange%5Esign=(QCollectionRange%3CQC;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleCollectionRange%5Esign=(QCollectionRange%3CQC;%3E;QT;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitIteratorExp%5Esign=(QIteratorExp%3CQC;QPM;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleIteratorExp%5Esign=(QIteratorExp%3CQC;QPM;%3E;QT;QList%3CQT;%3E;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitIterateExp%5Esign=(QIterateExp%3CQC;QPM;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleIterateExp%5Esign=(QIterateExp%3CQC;QPM;%3E;QT;QList%3CQT;%3E;QT;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitExpressionInOCL%5Esign=(QExpressionInOCL%3CQC;QPM;%3E;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleExpressionInOCL%5Esign=(QExpressionInOCL%3CQC;QPM;%3E;QT;QT;QList%3CQT;%3E;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=visitConstraint%5Esign=(QCT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=handleConstraint%5Esign=(QCT;QT;)QT;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getSpecification%5Esign=(QCT;)QExpressionInOCL%3CQC;QPM;%3E;%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <children xmi:id="_RX3iEPmWEduFSL-sFMpB5w" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_RX3iEfmWEduFSL-sFMpB5w" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_Qz88sPmWEduFSL-sFMpB5w"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_PVhCEfmREduizMx9s-jNuw" fontName="Sans" showStereotype="Label"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PVhCEvmREduizMx9s-jNuw" x="12160" y="5776"/>
+  </children>
+  <children xmi:id="_Re2tIPmREduizMx9s-jNuw">
+    <children xmi:id="_Re3UMPmREduizMx9s-jNuw" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_Re3UMfmREduizMx9s-jNuw" width="530" height="530"/>
+    </children>
+    <children xmi:id="_Re37QPmREduizMx9s-jNuw" type="Stereotype"/>
+    <children xmi:id="_Re37QfmREduizMx9s-jNuw" type="Kind"/>
+    <children xmi:id="_Re4iUPmREduizMx9s-jNuw" type="Name"/>
+    <children xmi:id="_Re4iUfmREduizMx9s-jNuw" type="Parent"/>
+    <children xmi:id="_Re5JYPmREduizMx9s-jNuw" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Re5JYfmREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_Re5JYvmREduizMx9s-jNuw" visible="false" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_Re5JY_mREduizMx9s-jNuw"/>
+    </children>
+    <children xmi:id="_RbrrEvmWEduFSL-sFMpB5w" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_RbrrE_mWEduFSL-sFMpB5w" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_RblkcPmWEduFSL-sFMpB5w"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_Re2tIfmREduizMx9s-jNuw" fontName="Sans" showStereotype="Label" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Variable%5Bjcu%5Ename=Variable.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Re2tIvmREduizMx9s-jNuw" x="6992" y="5776"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_grZlQfmQEduizMx9s-jNuw"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_L01woPmREduizMx9s-jNuw" source="_IEbaEPmREduizMx9s-jNuw" target="_Lz6jkPmREduizMx9s-jNuw">
+    <children xmi:id="_L02XsPmREduizMx9s-jNuw" type="NameLabel">
+      <children xmi:id="_L02-wPmREduizMx9s-jNuw" type="Stereotype"/>
+      <children xmi:id="_L02-wfmREduizMx9s-jNuw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L02XsfmREduizMx9s-jNuw" y="-238"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_L01wofmREduizMx9s-jNuw" fontName="Sans" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Visitable%5Bjcu%5Ename=Visitable.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_L01wovmREduizMx9s-jNuw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_Mr57gPmREduizMx9s-jNuw" source="_Lz6jkPmREduizMx9s-jNuw" target="_Me1I0PmREduizMx9s-jNuw">
+    <children xmi:id="_Mr6ikPmREduizMx9s-jNuw" type="KindLabel">
+      <children xmi:id="_Mr6ikvmREduizMx9s-jNuw" type="Stereotype"/>
+      <children xmi:id="_Mr7JofmREduizMx9s-jNuw" type="Kind"/>
+      <children xmi:id="_Mr7JoPmREduizMx9s-jNuw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mr6ikfmREduizMx9s-jNuw" y="-238"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_Mr57gfmREduizMx9s-jNuw" fontName="Sans" routing="Rectilinear" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=Visitable%5Bjcu%5Ename=Visitable.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Visitor%5Bjcu%5Ename=Visitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Mr57gvmREduizMx9s-jNuw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_Rm1kcPmREduizMx9s-jNuw" source="_Re2tIPmREduizMx9s-jNuw" target="_Lz6jkPmREduizMx9s-jNuw">
+    <children xmi:id="_Rm2LgPmREduizMx9s-jNuw" type="NameLabel">
+      <children xmi:id="_Rm2ykPmREduizMx9s-jNuw" type="Stereotype"/>
+      <children xmi:id="_Rm2ykfmREduizMx9s-jNuw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Rm2LgfmREduizMx9s-jNuw" y="-238"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_Rm1kcfmREduizMx9s-jNuw" fontName="Sans" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=Variable%5Bjcu%5Ename=Variable.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Visitable%5Bjcu%5Ename=Visitable.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Rm1kcvmREduizMx9s-jNuw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_k2yLIPmREduizMx9s-jNuw" source="_PVhCEPmREduizMx9s-jNuw" target="_Me1I0PmREduizMx9s-jNuw">
+    <children xmi:id="_k2yyMPmREduizMx9s-jNuw" type="NameLabel">
+      <children xmi:id="_k2yyMvmREduizMx9s-jNuw" type="Stereotype"/>
+      <children xmi:id="_k2zZQPmREduizMx9s-jNuw" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k2yyMfmREduizMx9s-jNuw" y="-238"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_k2yLIfmREduizMx9s-jNuw" fontName="Sans" routing="Rectilinear" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=AbstractVisitor%5Bjcu%5Ename=AbstractVisitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Visitor%5Bjcu%5Ename=Visitor.java%5Bjpack%5Ename=org.eclipse.ocl.utilities%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_k2yLIvmREduizMx9s-jNuw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+</notation:Diagram>
