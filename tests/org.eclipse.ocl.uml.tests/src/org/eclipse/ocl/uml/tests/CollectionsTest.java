@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.5 2007/04/23 21:16:24 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.6 2007/05/03 13:06:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +38,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Tests for collection types.
@@ -849,6 +851,49 @@ public class CollectionsTest
             assertFalse(value instanceof EList);
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that operation calls coerce collection-valued arguments to the
+     * Java <code>EList</code> type.
+     */
+    public void test_coercionOfCollectionParameters_184789() {
+        Package pkg = UMLFactory.eINSTANCE.createPackage();
+        pkg.createOwnedClass("Foo", false); //$NON-NLS-1$
+        pkg.createOwnedClass("Foo", false); //$NON-NLS-1$
+        pkg.createOwnedClass("Foo", false); //$NON-NLS-1$
+        Class bar = pkg.createOwnedClass("Bar", false); //$NON-NLS-1$
+       
+        helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
+
+        try {
+            OCLExpression<Classifier> expr = helper.createQuery(
+                "self.excludeCollisions(ownedType)"); //$NON-NLS-1$
+
+            Object value = ocl.evaluate(pkg, expr);
+
+            assertEquals(Collections.singleton(bar), value);
+        } catch (Exception exc) {
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the OCL Standard Library defines the correct signature for
+     * the <code>Sequence::&lt;&gt;(Sequence(T))</code> operation.
+     */
+    public void test_sequenceNotEqualSignature_184327() {
+        helper.setContext(getUMLString());
+        
+        try {
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3} <> Sequence{3, 2, 1}")); //$NON-NLS-1$
+
+            assertFalse(check(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3} <> Sequence{1, 2, 3}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
 }
