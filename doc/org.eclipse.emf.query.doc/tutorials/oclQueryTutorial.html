@@ -54,7 +54,7 @@
 			The simplest sort of query is one that searches for a single kind of model
 			element using a single OCL condition.  This OCL condition may be arbitrarily
 			complex, but is still a single expression.  This case is handled using the
-			<code><a href="../references/javadoc/org/eclipse/emf/query/ocl/conditions/BooleanOCLCondition.html">BooleanOCLCondition</a></code>
+			<code><a href="../javadoc/org/eclipse/emf/query/ocl/conditions/BooleanOCLCondition.html">BooleanOCLCondition</a></code>
 			API.
 		</p>
 		<p>
@@ -66,7 +66,7 @@ OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
 Condition condition = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
     ocl.getEnvironment(),
     "self.books-&gt;collect(b : Book | b.category)-&gt;asSet()-&gt;size() &gt; 2",
-    LibraryPackage.Literals.WRITER);
+    EXTLibraryPackage.Literals.WRITER);
 
 SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
 	new FROM(myResource.getContents()), new WHERE(condition),
@@ -157,11 +157,11 @@ Resource myResource = ... // get the resource
 Condition cond1 = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
     ocl.getEnvironment(),
     "self.name = 'Bob'",
-    LibraryPackage.Literals.WRITER);
+    EXTLibraryPackage.Literals.WRITER);
 Condition cond2 = new BooleanOCLCondition&lt;EClassifier, EClass, EObject&gt;(
     ocl.getEnvironment(),
     "self.title = 'Bob'",
-    LibraryPackage.Literals.BOOK);
+    EXTLibraryPackage.Literals.BOOK);
 
 // combine them into a single SELECT query statement
 SELECT statement = new SELECT(
