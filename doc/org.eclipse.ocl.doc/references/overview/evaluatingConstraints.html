@@ -20,14 +20,14 @@ constraints.  For this, OCL provides a <em class="CodeName">Query</em> API.
 
 <p>
 Like the <em class="CodeName">OCLHelper</em> for parsing constraints, the OCL
-fa&ccedil;ade object provides
+facade object provides
 <a href="../javadoc/org/eclipse/ocl/Query.html"><em class="CodeName">Query</em></a>
 objects for evaluating constraints and query expressions.
 </p>
 
 <blockquote>
 	<img src="images/query.png" alt="OCL Query API"/><br/>
-	<font size="-2">[<a href="images/query.svg">as SVG</a>]</font>
+	<font size="-2">[<a target="_blank" href="images/query.svg">as SVG</a>]</font>
 </blockquote>
 
 <p>
@@ -59,7 +59,7 @@ other kinds of <em class="CodeName">DataType</em>s are undefined.  For
 <em class="CodeName">Class</em> extents, the <em class="CodeName">EvaluationEnvironment</em>
 provides support for an extent map, mapping classes to the sets of their
 instances, as determined by the client.  A client sets the extent map using the
-<a href="../references/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">OCL.setExtentMap()</em></a>
+<a href="../javadoc/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">OCL.setExtentMap()</em></a>
 method.  The default extent map, if none is provided by the client, lazily
 computes the extent of a class from the EMF <em class="CodeName">Resource</em>
 containing the context element of the evaluation.
