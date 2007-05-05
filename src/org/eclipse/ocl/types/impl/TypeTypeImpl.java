@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.3 2007/05/05 00:47:15 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -51,7 +51,7 @@ public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
      * @generated
      * @ordered
      */
-	protected C referredType = null;
+	protected C referredType;
 
 	private String name;
 	private EList<O> operations;
@@ -141,6 +141,18 @@ public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setReferredType(C newReferredType) {
+        C oldReferredType = referredType;
+        referredType = newReferredType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -155,6 +167,37 @@ public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
+                setReferredType((C)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
+                setReferredType((C)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

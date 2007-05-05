@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeType.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: TypeType.java,v 1.3 2007/05/05 00:47:15 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -47,7 +47,7 @@ public interface TypeType<C, O> extends PredefinedType<O> {
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Referred Type</em>' reference.
      * @see org.eclipse.ocl.types.TypesPackage#getTypeType_ReferredType()
-     * @model required="true" transient="true" changeable="false"
+     * @model required="true" suppressedSetVisibility="true"
      * @generated
      */
 	C getReferredType();

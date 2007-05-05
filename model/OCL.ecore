@@ -102,8 +102,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="TypeType">
       <eTypeParameters name="C"/>
       <eTypeParameters name="O"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" lowerBound="1"
-          changeable="false" transient="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" lowerBound="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="suppressedSetVisibility" value="true"/>
+        </eAnnotations>
         <eGenericType eTypeParameter="#//types/TypeType/C"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//utilities/PredefinedType">
