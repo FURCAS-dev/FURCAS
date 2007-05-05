@@ -120,3 +120,7 @@ a.command-link img {
 	border-style: none;
 	vertical-align: middle;
 }
+
+.small {
+	font-size:		smaller;
+}
