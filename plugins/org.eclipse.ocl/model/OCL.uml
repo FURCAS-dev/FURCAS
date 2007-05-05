@@ -209,7 +209,7 @@
           </ownedParameter>
         </ownedTemplateSignature>
         <generalization xmi:id="_unvTp9ppEdu-d8Dv4wLx9Q" general="_unvTqdppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvTqNppEdu-d8Dv4wLx9Q" name="referredType" type="_unvTpNppEdu-d8Dv4wLx9Q" isOrdered="true" isReadOnly="true" association="_unvTrNppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvTqNppEdu-d8Dv4wLx9Q" name="referredType" type="_unvTpNppEdu-d8Dv4wLx9Q" isOrdered="true" association="_unvTrNppEdu-d8Dv4wLx9Q"/>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_unvTqdppEdu-d8Dv4wLx9Q" name="PredefinedType_O">
           <templateBinding xmi:id="_unvTqtppEdu-d8Dv4wLx9Q" signature="_unvU9tppEdu-d8Dv4wLx9Q">
             <parameterSubstitution xmi:id="_unvTq9ppEdu-d8Dv4wLx9Q" formal="_unvU99ppEdu-d8Dv4wLx9Q" actual="_unvTptppEdu-d8Dv4wLx9Q"/>
@@ -1631,7 +1631,7 @@
   <Ecore:EClass xmi:id="_upEv4NppEdu-d8Dv4wLx9Q" base_Class="_unvTodppEdu-d8Dv4wLx9Q"/>
   <Ecore:ETypeParameter xmi:id="_upEv4dppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTo9ppEdu-d8Dv4wLx9Q"/>
   <Ecore:ETypeParameter xmi:id="_upEv4tppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTpdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EReference xmi:id="_upEv49ppEdu-d8Dv4wLx9Q" isTransient="true" base_Property="_unvTqNppEdu-d8Dv4wLx9Q"/>
+  <Ecore:EReference xmi:id="_upEv49ppEdu-d8Dv4wLx9Q" base_Property="_unvTqNppEdu-d8Dv4wLx9Q"/>
   <Ecore:EGenericType xmi:id="_upEv5NppEdu-d8Dv4wLx9Q" base_Class="_unvTqdppEdu-d8Dv4wLx9Q"/>
   <Ecore:EClass xmi:id="_upEv5dppEdu-d8Dv4wLx9Q" base_Class="_unvTrtppEdu-d8Dv4wLx9Q"/>
   <Ecore:ETypeParameter xmi:id="_upEv5tppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTsNppEdu-d8Dv4wLx9Q"/>
