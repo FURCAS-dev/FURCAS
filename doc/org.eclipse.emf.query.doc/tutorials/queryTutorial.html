@@ -65,8 +65,8 @@ books contain more than 500 pages. These books are considered &quot;large&quot; 
 <h2><a name="construct_statement">Constructing a Query Statement</a></h2>
 <p>
 There are two query statements available:
-<a href="../javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a> and
-<a href="../javadoc/org/eclipse/emf/query/statements/UPDATE.html">UPDATE</a>.
+<a href="../references/javadoc/org/eclipse/emf/query/statements/SELECT.html">SELECT</a> and
+<a href="../references/javadoc/org/eclipse/emf/query/statements/UPDATE.html">UPDATE</a>.
 The SELECT statement provides querying without modification while the UPDATE statement provides
 querying with modification. In this case, we require only querying without the modification.
 </p>
@@ -94,9 +94,9 @@ describes the source of EObjects where SELECT can iterate in order to derive
 results. The latter clause describes the criteria for an EObject that matches.
 </p>
 <p>
-The <a href="../javadoc/org/eclipse/emf/query/statements/FROM.html">FROM</a>
+The <a href="../references/javadoc/org/eclipse/emf/query/statements/FROM.html">FROM</a>
 clause requires an
-<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectSource.html">EObjectSource</a>.
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectSource.html">EObjectSource</a>.
 We will trivially satisfy the FROM clause by providing a collection of EObjects
 called <code>selectedEObjects</code>:
 </p>
@@ -116,19 +116,19 @@ the leaves of the containment subtree to find its matching EObjects.
 <h2><a name="applying_conditions">Applying Conditions</a></h2>
 <p>
 The final part of a SELECT statement is the
-<a href="../javadoc/org/eclipse/emf/query/statements/WHERE.html">WHERE</a>
+<a href="../references/javadoc/org/eclipse/emf/query/statements/WHERE.html">WHERE</a>
 clause along with its condition. This condition will be evaluated at each
 EObject encountered by the FROM clause to determine whether the EObject matches
 the criteria of the query. The condition provided to the WHERE clause falls
 under a specialized condition called an
-<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectCondition.html">EObjectCondition</a>
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectCondition.html">EObjectCondition</a>
 that is a condition that is specially designed to evaluate an EObject.
 </p>
 <p>
 Our original purpose for this query is to find book EObjects whose pages are
 larger than 500. The pages EStructuralFeature is an EAttribute whose value will
 be an integer so we will choose the
-<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectAttributeValueCondition.html">EObjectAttributeValueCondition</a>.
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectAttributeValueCondition.html">EObjectAttributeValueCondition</a>.
 Its purpose is to evaluate the value of a specific EAttribute:
 </p>
 <pre class="Code">
@@ -147,7 +147,7 @@ function. This gives clients enough versatility to formulate their queries.
 </p>
 <p>
 In the case of EObjectAttributeValueCondition, it must be constructed with a
-<a href="../javadoc/org/eclipse/emf/query/conditions/Condition.html">Condition.</a>
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/Condition.html">Condition.</a>
 Unlike the WHERE clause, it does not require the special EObjectCondition. This
 is because EAttributes may store primitive values like Strings, Integers or
 Booleans. Our EAttribute &quot;pages&quot; is an Integer EAttribute so we will
@@ -162,7 +162,7 @@ SELECT
 </pre>
 <p>
 Now we have the final pseudo-code representation of the query. The
-<a href="../javadoc/org/eclipse/emf/query/conditions/numbers/NumberCondition.IntegerValue.html">NumberCondition.IntegerValue</a>
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/numbers/NumberCondition.IntegerValue.html">NumberCondition.IntegerValue</a>
 condition will match any Integer between 500 and the maximum integer value
 inclusive.
 </p>
@@ -185,7 +185,7 @@ statement =
 </pre>
 <p>
 The
-<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EStructuralFeatureValueGetter.html">EStructuralFeatureValueGetter</a>
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EStructuralFeatureValueGetter.html">EStructuralFeatureValueGetter</a>
 object is explicitly provided to perform the reflective retrieval of the
 structural feature value. This object may be substituted in order to provide
 more a more optimal way to retrieve this value. In the above example
@@ -201,9 +201,9 @@ statement.execute();
 </pre>
 <p>
 For robustness, the executor of the query statement should call the
-<a href="../javadoc/org/eclipse/emf/query/statements/IQueryResult.html#getException()">getException()</a>
+<a href="../references/javadoc/org/eclipse/emf/query/statements/IQueryResult.html#getException()">getException()</a>
 on the returned
-<a href="../javadoc/org/eclipse/emf/query/statements/IQueryResult.html">IQueryResult</a>
+<a href="../references/javadoc/org/eclipse/emf/query/statements/IQueryResult.html">IQueryResult</a>
 of the execute() method in order to verify that no exceptions occurred during
 the execution of the query.
 </p>
@@ -233,8 +233,8 @@ return statement.execute();
 </pre>
 <p>
 The above query makes use of the
-<a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectReferenceValueCondition.html">EObjectReferenceValueCondition</a>
-and <a href="../javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectTypeRelationCondition.html">EObjectTypeRelationCondition</a>.
+<a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/structuralfeatures/EObjectReferenceValueCondition.html">EObjectReferenceValueCondition</a>
+and <a href="../references/javadoc/org/eclipse/emf/query/conditions/eobjects/EObjectTypeRelationCondition.html">EObjectTypeRelationCondition</a>.
 The former allows one to evaluate the value of an EReference. In this case, it
 is evaluating the value of the books EReference. By default, if the EReference
 has a multiplicity larger than 1 this condition will default to a

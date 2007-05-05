@@ -18,11 +18,11 @@ clause that modifies the objects selected.
 <h2>The SELECT Statement</h2>
 
 <p>
-The <a href="../javadoc/org/eclipse/emf/query/conditions/statements/SELECT.html"><em class="CodeName">SELECT</em></a>
+The <a href="../javadoc/org/eclipse/emf/query/statements/SELECT.html"><em class="CodeName">SELECT</em></a>
 consists of two clauses: a
-<a href="../javadoc/org/eclipse/emf/query/conditions/statements/WHERE.html"><em class="CodeName">WHERE</em></a>
+<a href="../javadoc/org/eclipse/emf/query/statements/WHERE.html"><em class="CodeName">WHERE</em></a>
 clause that determines which objects to select (the filter) and a
-<a href="../javadoc/org/eclipse/emf/query/conditions/statements/FROM.html"><em class="CodeName">FROM</em></a>
+<a href="../javadoc/org/eclipse/emf/query/statements/FROM.html"><em class="CodeName">FROM</em></a>
 that provides the objects to be filtered.
 </p>
 
@@ -61,14 +61,14 @@ themselves, <em class="CodeName">IEObjectSource</em>s, they can provide the sear
 scope in the <em class="CodeName">FROM</em> clause of a nesting query.
 </p>
 <p>
-The <a href="../javadoc/org/eclipse/emf/query/conditions/statements/WHERE.html"><em class="CodeName">WHERE</em></a>
+The <a href="../javadoc/org/eclipse/emf/query/statements/WHERE.html"><em class="CodeName">WHERE</em></a>
 clause specifies the filtering condition that selects the objects from the
 <em class="CodeName">FROM</em> clause that are returned in the query result.  It
 is very simple, initialized only with an <em class="CodeName">EObjectCondition</em>.
 </p>
 <p>
 Query results are returned by the <em class="CodeName">execute()</em> method as an
-<a href="../javadoc/org/eclipse/emf/query/conditions/statements/IQueryResult.html"><em class="CodeName">IQueryResult</em></a>
+<a href="../javadoc/org/eclipse/emf/query/statements/IQueryResult.html"><em class="CodeName">IQueryResult</em></a>
 which is a <em class="CodeName">Collection</em> that also encapsulates an
 exception.  If any exception occurred during the execution of the query, the
 result will have it in addition to a partial result set (or none).
@@ -105,10 +105,10 @@ if (result.<b>getException()</b> != null) {
 <h2>The UPDATE Statement</h2>
 
 <p>
-The <a href="../javadoc/org/eclipse/emf/query/conditions/statements/UPDATE.html"><em class="CodeName">UPDATE</em></a>
+The <a href="../javadoc/org/eclipse/emf/query/statements/UPDATE.html"><em class="CodeName">UPDATE</em></a>
 statement is in all respects just like the <em class="CodeName">SELECT</em>
 statement except that it additionally modifies the objects that it finds using a
-<a href="../javadoc/org/eclipse/emf/query/conditions/statements/SET.html"><em class="CodeName">SET</em></a>
+<a href="../javadoc/org/eclipse/emf/query/statements/SET.html"><em class="CodeName">SET</em></a>
 clause, and then returns only those for which the <em class="CodeName">SET</em>
 returns <em class="CodeName">true</em> to indicate that the object was
 successfully updated.
