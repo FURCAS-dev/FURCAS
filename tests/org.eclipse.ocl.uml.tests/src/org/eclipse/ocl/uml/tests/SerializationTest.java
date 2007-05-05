@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.3 2007/03/27 15:05:22 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.4 2007/05/05 00:47:10 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -32,7 +32,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.OCL;
-import org.eclipse.ocl.utilities.ASTNode;
+import org.eclipse.ocl.uml.OperationCallExp;
+import org.eclipse.ocl.uml.TypeType;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Operation;
@@ -244,7 +245,7 @@ public class SerializationTest
 		Property prop = null;
 		
 		try {
-			prop = (Property) helper.defineAttribute(
+			prop = helper.defineAttribute(
 					"uniqueClassifierNames : Set(String) = " + //$NON-NLS-1$
 					"self.ownedType->collect(name)->asSet()"); //$NON-NLS-1$
 			
@@ -276,12 +277,38 @@ public class SerializationTest
 				newOCL.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
 						getMetaclass("Package"), prop)); //$NON-NLS-1$
 	}
+    
+    /**
+     * Tests the serialization of TypeTypes.
+     */
+    public void test_typeTypeSerialization_183494() {
+        OCLExpression<Classifier> expr = parseExpression(
+                getMetaclass("Package"), //$NON-NLS-1$
+                "Package.allInstances()"); //$NON-NLS-1$
+
+        String toStringForm = expr.toString();
+        String serialForm = serialize(expr);
+        
+        expr = loadExpression(serialForm);
+        validate(expr);  // ensure that it is structurally valid
+        assertEquals(toStringForm, expr.toString());  // should "look" the same
+        
+        assertTrue(expr instanceof OperationCallExp);
+        expr = ((OperationCallExp) expr).getSource();
+        
+        assertNotNull(expr);
+        assertTrue(expr.getType() instanceof TypeType);
+        
+        TypeType typeType = (TypeType) expr.getType();
+        assertSame(getMetaclass("Package"), typeType.getReferredType()); //$NON-NLS-1$
+    }
 	
 	//
 	// Framework methods
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		super.setUp();
@@ -306,7 +333,8 @@ public class SerializationTest
 		resourceSet.getResources().add(ocl.getEnvironment().getTypeResolver().getResource());
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		resourceSet.getResources().remove(ocl.getEnvironment().getTypeResolver().getResource());
@@ -363,7 +391,7 @@ public class SerializationTest
 			assertFalse("No contents in serial data", res.getContents().isEmpty()); //$NON-NLS-1$
 			assertNoProxies(res);
 			
-			result = (ASTNode) res.getContents().get(0);
+			result = res.getContents().get(0);
 		} catch (Exception e) {
 			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}

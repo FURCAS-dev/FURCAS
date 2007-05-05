@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.3 2007/03/27 15:05:43 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.4 2007/05/05 00:47:13 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -39,6 +39,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.TypeType;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -285,12 +287,38 @@ public class SerializationTest
 				newOCL.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
 						EcorePackage.Literals.EPACKAGE, esf));
 	}
+    
+    /**
+     * Tests the serialization of TypeTypes.
+     */
+    public void test_typeTypeSerialization_183494() {
+        OCLExpression<EClassifier> expr = parseExpression(
+                EcorePackage.Literals.EPACKAGE,
+                "EPackage.allInstances()"); //$NON-NLS-1$
+
+        String toStringForm = expr.toString();
+        String serialForm = serialize(expr);
+        
+        expr = loadExpression(serialForm);
+        validate(expr);  // ensure that it is structurally valid
+        assertEquals(toStringForm, expr.toString());  // should "look" the same
+        
+        assertTrue(expr instanceof OperationCallExp);
+        expr = ((OperationCallExp) expr).getSource();
+        
+        assertNotNull(expr);
+        assertTrue(expr.getType() instanceof TypeType);
+        
+        TypeType typeType = (TypeType) expr.getType();
+        assertSame(EcorePackage.Literals.EPACKAGE, typeType.getReferredType());
+    }
 	
 	//
 	// Framework methods
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		super.setUp();
@@ -304,7 +332,8 @@ public class SerializationTest
 		rset.getResources().add(fruitPackage.eResource());
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		res.unload();

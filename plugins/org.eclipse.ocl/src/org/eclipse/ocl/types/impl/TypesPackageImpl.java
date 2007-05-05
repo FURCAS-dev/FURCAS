@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: TypesPackageImpl.java,v 1.3 2007/05/05 00:47:15 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -598,7 +598,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
         initEClass(typeTypeEClass, TypeType.class, "TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         g1 = createEGenericType(typeTypeEClass_C);
-        initEReference(getTypeType_ReferredType(), g1, null, "referredType", null, 1, 1, TypeType.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getTypeType_ReferredType(), g1, null, "referredType", null, 1, 1, TypeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
