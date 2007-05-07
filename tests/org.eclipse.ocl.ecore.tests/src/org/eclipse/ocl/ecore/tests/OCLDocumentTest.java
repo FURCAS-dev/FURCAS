@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.3 2007/05/03 13:00:12 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.4 2007/05/07 12:28:46 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -280,6 +280,24 @@ public class OCLDocumentTest extends AbstractTestSuite {
                 "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
                 "context ETypedElement \n" + //$NON-NLS-1$
                 "inv: eType <> null implies eType.isHappy() \n" + //$NON-NLS-1$
+                "endpackage \n" //$NON-NLS-1$
+                ));
+        } catch (ParserException e) {
+            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that a constraint can reference an operation defined ahead of it in
+     * the same classifier context.
+     */
+    public void test_dependenciesOnDefExpressions_withinClassifierContext_176109() {
+        try {
+            ocl.parse(new OCLInput(
+                "package ecore \n" + //$NON-NLS-1$
+                "context EClassifier \n" + //$NON-NLS-1$
+                "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
+                "inv: self.isHappy() \n" + //$NON-NLS-1$
                 "endpackage \n" //$NON-NLS-1$
                 ));
         } catch (ParserException e) {
