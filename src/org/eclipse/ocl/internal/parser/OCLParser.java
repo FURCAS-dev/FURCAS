@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParser.java,v 1.11 2007/05/03 22:52:24 cdamus Exp $
+ * $Id: OCLParser.java,v 1.12 2007/05/07 12:28:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -1576,12 +1576,18 @@ public class OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         
 		TRACE("classifierContextDeclCS", "context", pathName);  //$NON-NLS-2$//$NON-NLS-1$
 		
-		InvOrDefCS invOrDefCS = classifierContextDeclCS.getInvOrDefCS();
-		while (invOrDefCS != null) {
-			CT astNode = invOrDefCS(invOrDefCS, result);
-			constraints.add(astNode);
-			
-			invOrDefCS = invOrDefCS.getInvOrDefCS();
+        // reverse the chain of constraint declarations to process them in the
+        // forward order
+		List<InvOrDefCS> constraintDecls = new BasicEList.FastCompare<InvOrDefCS>(4);
+        InvOrDefCS invOrDefCS = classifierContextDeclCS.getInvOrDefCS();
+        while (invOrDefCS != null) {
+            constraintDecls.add(0, invOrDefCS);
+            invOrDefCS = invOrDefCS.getInvOrDefCS();
+        }
+        
+        // now, parse them
+		for (InvOrDefCS decl : constraintDecls) {
+			constraints.add(invOrDefCS(decl, result));
 		}		
 		
 		return result;
