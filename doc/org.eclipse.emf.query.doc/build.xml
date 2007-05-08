@@ -8,6 +8,7 @@
 	<property name="docPlugin" value="org.eclipse.emf.query.doc"/>
 	
 	<property name="filesToInclude" value="META-INF/**,about.html,about.ini,about.mappings,about.properties,modeling*.png,plugin.xml,plugin.properties,doc.zip,toc.xml,topics_*.xml,index/**,images/**,tutorials/**,references/**"/>
+	<property name="filesToExclude" value="**/*.dnx"/>
 
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="false"/>
@@ -80,7 +81,9 @@
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"/>
 		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="${filesToInclude}"/>
+			<fileset dir="${basedir}"
+				includes="${filesToInclude}"
+				excludes="${filesToExclude}"/>
 		</copy>
 		<eclipse.versionReplacer 
 			path="${destination.temp.folder}/${docPlugin}_${pluginVersion}" 
