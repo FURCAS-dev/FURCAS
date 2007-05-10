@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: StateExpCS.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -36,19 +36,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface StateExpCS extends TypeCS {
 	/**
-     * Returns the value of the '<em><b>Sequence Of Names</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.String}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sequence Of Names</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sequence Of Names</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Sequence Of Names</em>' attribute list.
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getStateExpCS_SequenceOfNames()
-     * @model type="java.lang.String"
-     * @generated
-     */
+	 * @return the value of the '<em>Sequence Of Names</em>' attribute list.
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getStateExpCS_SequenceOfNames()
+	 * @model type="java.lang.String"
+	 * @generated
+	 */
 	EList<String> getSequenceOfNames();
 
 } // StateExpCS

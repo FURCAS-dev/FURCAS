@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.4 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -45,214 +45,214 @@ import org.eclipse.ocl.internal.cst.TypeCS;
  */
 public class CollectionTypeCSImpl extends TypeCSImpl implements CollectionTypeCS {
 	/**
-     * The default value of the '{@link #getCollectionTypeIdentifier() <em>Collection Type Identifier</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCollectionTypeIdentifier() <em>Collection Type Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCollectionTypeIdentifier()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCollectionTypeIdentifier()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final CollectionTypeIdentifierEnum COLLECTION_TYPE_IDENTIFIER_EDEFAULT = CollectionTypeIdentifierEnum.SET_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getCollectionTypeIdentifier() <em>Collection Type Identifier</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCollectionTypeIdentifier() <em>Collection Type Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCollectionTypeIdentifier()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCollectionTypeIdentifier()
+	 * @generated
+	 * @ordered
+	 */
 	protected CollectionTypeIdentifierEnum collectionTypeIdentifier = COLLECTION_TYPE_IDENTIFIER_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected TypeCS typeCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CollectionTypeCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.COLLECTION_TYPE_CS;
-    }
+		return CSTPackage.Literals.COLLECTION_TYPE_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public CollectionTypeIdentifierEnum getCollectionTypeIdentifier() {
-        return collectionTypeIdentifier;
-    }
+		return collectionTypeIdentifier;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setCollectionTypeIdentifier(CollectionTypeIdentifierEnum newCollectionTypeIdentifier) {
-        CollectionTypeIdentifierEnum oldCollectionTypeIdentifier = collectionTypeIdentifier;
-        collectionTypeIdentifier = newCollectionTypeIdentifier == null ? COLLECTION_TYPE_IDENTIFIER_EDEFAULT : newCollectionTypeIdentifier;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER, oldCollectionTypeIdentifier, collectionTypeIdentifier));
-    }
+		CollectionTypeIdentifierEnum oldCollectionTypeIdentifier = collectionTypeIdentifier;
+		collectionTypeIdentifier = newCollectionTypeIdentifier == null ? COLLECTION_TYPE_IDENTIFIER_EDEFAULT : newCollectionTypeIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER, oldCollectionTypeIdentifier, collectionTypeIdentifier));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypeCS getTypeCS() {
-        return typeCS;
-    }
+		return typeCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
-        TypeCS oldTypeCS = typeCS;
-        typeCS = newTypeCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, oldTypeCS, newTypeCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		TypeCS oldTypeCS = typeCS;
+		typeCS = newTypeCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, oldTypeCS, newTypeCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTypeCS(TypeCS newTypeCS) {
-        if (newTypeCS != typeCS) {
-            NotificationChain msgs = null;
-            if (typeCS != null)
-                msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
-            if (newTypeCS != null)
-                msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
-            msgs = basicSetTypeCS(newTypeCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, newTypeCS, newTypeCS));
-    }
+		if (newTypeCS != typeCS) {
+			NotificationChain msgs = null;
+			if (typeCS != null)
+				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
+			if (newTypeCS != null)
+				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
+			msgs = basicSetTypeCS(newTypeCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_TYPE_CS__TYPE_CS, newTypeCS, newTypeCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-                return basicSetTypeCS(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
+				return basicSetTypeCS(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
-                return getCollectionTypeIdentifier();
-            case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-                return getTypeCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
+				return getCollectionTypeIdentifier();
+			case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
+				return getTypeCS();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
-                setCollectionTypeIdentifier((CollectionTypeIdentifierEnum)newValue);
-                return;
-            case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-                setTypeCS((TypeCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
+				setCollectionTypeIdentifier((CollectionTypeIdentifierEnum)newValue);
+				return;
+			case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
+				setTypeCS((TypeCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
-                setCollectionTypeIdentifier(COLLECTION_TYPE_IDENTIFIER_EDEFAULT);
-                return;
-            case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-                setTypeCS((TypeCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
+				setCollectionTypeIdentifier(COLLECTION_TYPE_IDENTIFIER_EDEFAULT);
+				return;
+			case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
+				setTypeCS((TypeCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
-                return collectionTypeIdentifier != COLLECTION_TYPE_IDENTIFIER_EDEFAULT;
-            case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-                return typeCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER:
+				return collectionTypeIdentifier != COLLECTION_TYPE_IDENTIFIER_EDEFAULT;
+			case CSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
+				return typeCS != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (collectionTypeIdentifier: "); //$NON-NLS-1$
-        result.append(collectionTypeIdentifier);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (collectionTypeIdentifier: "); //$NON-NLS-1$
+		result.append(collectionTypeIdentifier);
+		result.append(')');
+		return result.toString();
+	}
 
 } //CollectionTypeCSImpl

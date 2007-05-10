@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCSImpl.java,v 1.2 2007/02/14 14:46:06 cdamus Exp $
+ * $Id: TypeCSImpl.java,v 1.3 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.internal.cst.TypeCS;
  */
 public abstract class TypeCSImpl extends OCLExpressionCSImpl implements TypeCS {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TypeCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.TYPE_CS;
-    }
+		return CSTPackage.Literals.TYPE_CS;
+	}
 
 } //TypeCSImpl

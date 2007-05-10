@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrePostOrBodyDeclCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: PrePostOrBodyDeclCSImpl.java,v 1.4 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -47,279 +47,279 @@ import org.eclipse.ocl.internal.cst.SimpleNameCS;
  */
 public class PrePostOrBodyDeclCSImpl extends CSTNodeImpl implements PrePostOrBodyDeclCS {
 	/**
-     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final PrePostOrBodyEnum KIND_EDEFAULT = PrePostOrBodyEnum.PRE_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
 	protected PrePostOrBodyEnum kind = KIND_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSimpleNameCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSimpleNameCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected SimpleNameCS simpleNameCS;
 
 	/**
-     * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getExpressionCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getExpressionCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS expressionCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected PrePostOrBodyDeclCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.PRE_POST_OR_BODY_DECL_CS;
-    }
+		return CSTPackage.Literals.PRE_POST_OR_BODY_DECL_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PrePostOrBodyEnum getKind() {
-        return kind;
-    }
+		return kind;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setKind(PrePostOrBodyEnum newKind) {
-        PrePostOrBodyEnum oldKind = kind;
-        kind = newKind == null ? KIND_EDEFAULT : newKind;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND, oldKind, kind));
-    }
+		PrePostOrBodyEnum oldKind = kind;
+		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND, oldKind, kind));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SimpleNameCS getSimpleNameCS() {
-        return simpleNameCS;
-    }
+		return simpleNameCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		SimpleNameCS oldSimpleNameCS = simpleNameCS;
+		simpleNameCS = newSimpleNameCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        if (newSimpleNameCS != simpleNameCS) {
-            NotificationChain msgs = null;
-            if (simpleNameCS != null)
-                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, null, msgs);
-            if (newSimpleNameCS != null)
-                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, null, msgs);
-            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
-    }
+		if (newSimpleNameCS != simpleNameCS) {
+			NotificationChain msgs = null;
+			if (simpleNameCS != null)
+				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, null, msgs);
+			if (newSimpleNameCS != null)
+				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, null, msgs);
+			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getExpressionCS() {
-        return expressionCS;
-    }
+		return expressionCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetExpressionCS(OCLExpressionCS newExpressionCS, NotificationChain msgs) {
-        OCLExpressionCS oldExpressionCS = expressionCS;
-        expressionCS = newExpressionCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldExpressionCS = expressionCS;
+		expressionCS = newExpressionCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setExpressionCS(OCLExpressionCS newExpressionCS) {
-        if (newExpressionCS != expressionCS) {
-            NotificationChain msgs = null;
-            if (expressionCS != null)
-                msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, null, msgs);
-            if (newExpressionCS != null)
-                msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, null, msgs);
-            msgs = basicSetExpressionCS(newExpressionCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
-    }
+		if (newExpressionCS != expressionCS) {
+			NotificationChain msgs = null;
+			if (expressionCS != null)
+				msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, null, msgs);
+			if (newExpressionCS != null)
+				msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, null, msgs);
+			msgs = basicSetExpressionCS(newExpressionCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
-                return basicSetSimpleNameCS(null, msgs);
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
-                return basicSetExpressionCS(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
+				return basicSetSimpleNameCS(null, msgs);
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
+				return basicSetExpressionCS(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
-                return getKind();
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
-                return getSimpleNameCS();
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
-                return getExpressionCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
+				return getKind();
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
+				return getSimpleNameCS();
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
+				return getExpressionCS();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
-                setKind((PrePostOrBodyEnum)newValue);
-                return;
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
-                setSimpleNameCS((SimpleNameCS)newValue);
-                return;
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
-                setExpressionCS((OCLExpressionCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
+				setKind((PrePostOrBodyEnum)newValue);
+				return;
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
+				setSimpleNameCS((SimpleNameCS)newValue);
+				return;
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
+				setExpressionCS((OCLExpressionCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
-                setKind(KIND_EDEFAULT);
-                return;
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
-                setSimpleNameCS((SimpleNameCS)null);
-                return;
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
-                setExpressionCS((OCLExpressionCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
+				setSimpleNameCS((SimpleNameCS)null);
+				return;
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
+				setExpressionCS((OCLExpressionCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
-                return kind != KIND_EDEFAULT;
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
-                return simpleNameCS != null;
-            case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
-                return expressionCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__KIND:
+				return kind != KIND_EDEFAULT;
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS:
+				return simpleNameCS != null;
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS:
+				return expressionCS != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (kind: "); //$NON-NLS-1$
-        result.append(kind);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (kind: "); //$NON-NLS-1$
+		result.append(kind);
+		result.append(')');
+		return result.toString();
+	}
 
 } //PrePostOrBodyDeclCSImpl

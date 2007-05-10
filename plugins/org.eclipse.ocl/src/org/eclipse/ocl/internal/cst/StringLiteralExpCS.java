@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCS.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: StringLiteralExpCS.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface StringLiteralExpCS extends PrimitiveLiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>String Symbol</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>String Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>String Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>String Symbol</em>' attribute.
-     * @see #setStringSymbol(String)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getStringLiteralExpCS_StringSymbol()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>String Symbol</em>' attribute.
+	 * @see #setStringSymbol(String)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getStringLiteralExpCS_StringSymbol()
+	 * @model
+	 * @generated
+	 */
 	String getStringSymbol();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.StringLiteralExpCS#getStringSymbol <em>String Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.StringLiteralExpCS#getStringSymbol <em>String Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>String Symbol</em>' attribute.
-     * @see #getStringSymbol()
-     * @generated
-     */
+	 * @param value the new value of the '<em>String Symbol</em>' attribute.
+	 * @see #getStringSymbol()
+	 * @generated
+	 */
 	void setStringSymbol(String value);
 
 } // StringLiteralExpCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: InvalidLiteralExpCSImpl.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -40,137 +40,137 @@ import org.eclipse.ocl.internal.cst.InvalidLiteralExpCS;
  */
 public class InvalidLiteralExpCSImpl extends LiteralExpCSImpl implements InvalidLiteralExpCS {
 	/**
-     * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String SYMBOL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected String symbol = SYMBOL_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected InvalidLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.INVALID_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.INVALID_LITERAL_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getSymbol() {
-        return symbol;
-    }
+		return symbol;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setSymbol(String newSymbol) {
-        String oldSymbol = symbol;
-        symbol = newSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
-    }
+		String oldSymbol = symbol;
+		symbol = newSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
-                return getSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
+				return getSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
-                setSymbol((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
+				setSymbol((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
-                setSymbol(SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
+				setSymbol(SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
-                return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.INVALID_LITERAL_EXP_CS__SYMBOL:
+				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (symbol: "); //$NON-NLS-1$
-        result.append(symbol);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (symbol: "); //$NON-NLS-1$
+		result.append(symbol);
+		result.append(')');
+		return result.toString();
+	}
 
 } //InvalidLiteralExpCSImpl

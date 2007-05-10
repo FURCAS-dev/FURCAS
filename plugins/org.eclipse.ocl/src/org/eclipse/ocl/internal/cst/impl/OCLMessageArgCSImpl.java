@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessageArgCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: OCLMessageArgCSImpl.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -45,212 +45,212 @@ import org.eclipse.ocl.internal.cst.TypeCS;
  */
 public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS {
 	/**
-     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected TypeCS typeCS;
 
 	/**
-     * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getExpression()
-     * @generated
-     * @ordered
-     */
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS expression;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected OCLMessageArgCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.OCL_MESSAGE_ARG_CS;
-    }
+		return CSTPackage.Literals.OCL_MESSAGE_ARG_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypeCS getTypeCS() {
-        return typeCS;
-    }
+		return typeCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
-        TypeCS oldTypeCS = typeCS;
-        typeCS = newTypeCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, oldTypeCS, newTypeCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		TypeCS oldTypeCS = typeCS;
+		typeCS = newTypeCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, oldTypeCS, newTypeCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTypeCS(TypeCS newTypeCS) {
-        if (newTypeCS != typeCS) {
-            NotificationChain msgs = null;
-            if (typeCS != null)
-                msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
-            if (newTypeCS != null)
-                msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
-            msgs = basicSetTypeCS(newTypeCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, newTypeCS, newTypeCS));
-    }
+		if (newTypeCS != typeCS) {
+			NotificationChain msgs = null;
+			if (typeCS != null)
+				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
+			if (newTypeCS != null)
+				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
+			msgs = basicSetTypeCS(newTypeCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, newTypeCS, newTypeCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getExpression() {
-        return expression;
-    }
+		return expression;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetExpression(OCLExpressionCS newExpression, NotificationChain msgs) {
-        OCLExpressionCS oldExpression = expression;
-        expression = newExpression;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, oldExpression, newExpression);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldExpression = expression;
+		expression = newExpression;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, oldExpression, newExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setExpression(OCLExpressionCS newExpression) {
-        if (newExpression != expression) {
-            NotificationChain msgs = null;
-            if (expression != null)
-                msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
-            if (newExpression != null)
-                msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
-            msgs = basicSetExpression(newExpression, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, newExpression, newExpression));
-    }
+		if (newExpression != expression) {
+			NotificationChain msgs = null;
+			if (expression != null)
+				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
+			if (newExpression != null)
+				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
+			msgs = basicSetExpression(newExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, newExpression, newExpression));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-                return basicSetTypeCS(null, msgs);
-            case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-                return basicSetExpression(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+				return basicSetTypeCS(null, msgs);
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+				return basicSetExpression(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-                return getTypeCS();
-            case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-                return getExpression();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+				return getTypeCS();
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+				return getExpression();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-                setTypeCS((TypeCS)newValue);
-                return;
-            case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-                setExpression((OCLExpressionCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+				setTypeCS((TypeCS)newValue);
+				return;
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+				setExpression((OCLExpressionCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-                setTypeCS((TypeCS)null);
-                return;
-            case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-                setExpression((OCLExpressionCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+				setTypeCS((TypeCS)null);
+				return;
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+				setExpression((OCLExpressionCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-                return typeCS != null;
-            case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-                return expression != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+				return typeCS != null;
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+				return expression != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //OCLMessageArgCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: CollectionRangeCSImpl.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -43,147 +43,147 @@ import org.eclipse.ocl.internal.cst.OCLExpressionCS;
  */
 public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implements CollectionRangeCS {
 	/**
-     * The cached value of the '{@link #getLastExpressionCS() <em>Last Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getLastExpressionCS() <em>Last Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getLastExpressionCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getLastExpressionCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS lastExpressionCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CollectionRangeCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.COLLECTION_RANGE_CS;
-    }
+		return CSTPackage.Literals.COLLECTION_RANGE_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getLastExpressionCS() {
-        return lastExpressionCS;
-    }
+		return lastExpressionCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetLastExpressionCS(OCLExpressionCS newLastExpressionCS, NotificationChain msgs) {
-        OCLExpressionCS oldLastExpressionCS = lastExpressionCS;
-        lastExpressionCS = newLastExpressionCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, oldLastExpressionCS, newLastExpressionCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldLastExpressionCS = lastExpressionCS;
+		lastExpressionCS = newLastExpressionCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, oldLastExpressionCS, newLastExpressionCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setLastExpressionCS(OCLExpressionCS newLastExpressionCS) {
-        if (newLastExpressionCS != lastExpressionCS) {
-            NotificationChain msgs = null;
-            if (lastExpressionCS != null)
-                msgs = ((InternalEObject)lastExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, null, msgs);
-            if (newLastExpressionCS != null)
-                msgs = ((InternalEObject)newLastExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, null, msgs);
-            msgs = basicSetLastExpressionCS(newLastExpressionCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, newLastExpressionCS, newLastExpressionCS));
-    }
+		if (newLastExpressionCS != lastExpressionCS) {
+			NotificationChain msgs = null;
+			if (lastExpressionCS != null)
+				msgs = ((InternalEObject)lastExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, null, msgs);
+			if (newLastExpressionCS != null)
+				msgs = ((InternalEObject)newLastExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, null, msgs);
+			msgs = basicSetLastExpressionCS(newLastExpressionCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, newLastExpressionCS, newLastExpressionCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-                return basicSetLastExpressionCS(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+				return basicSetLastExpressionCS(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-                return getLastExpressionCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+				return getLastExpressionCS();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-                setLastExpressionCS((OCLExpressionCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+				setLastExpressionCS((OCLExpressionCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-                setLastExpressionCS((OCLExpressionCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+				setLastExpressionCS((OCLExpressionCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-                return lastExpressionCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+				return lastExpressionCS != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //CollectionRangeCSImpl

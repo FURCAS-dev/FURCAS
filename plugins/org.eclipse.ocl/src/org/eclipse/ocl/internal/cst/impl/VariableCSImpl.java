@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: VariableCSImpl.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -46,279 +46,279 @@ import org.eclipse.ocl.internal.cst.VariableCS;
  */
 public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	/**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected TypeCS typeCS;
 
 	/**
-     * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getInitExpression()
-     * @generated
-     * @ordered
-     */
+	 * @see #getInitExpression()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS initExpression;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected VariableCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.VARIABLE_CS;
-    }
+		return CSTPackage.Literals.VARIABLE_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getName() {
-        return name;
-    }
+		return name;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__NAME, oldName, name));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypeCS getTypeCS() {
-        return typeCS;
-    }
+		return typeCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
-        TypeCS oldTypeCS = typeCS;
-        typeCS = newTypeCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS, newTypeCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		TypeCS oldTypeCS = typeCS;
+		typeCS = newTypeCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS, newTypeCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTypeCS(TypeCS newTypeCS) {
-        if (newTypeCS != typeCS) {
-            NotificationChain msgs = null;
-            if (typeCS != null)
-                msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
-            if (newTypeCS != null)
-                msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
-            msgs = basicSetTypeCS(newTypeCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, newTypeCS, newTypeCS));
-    }
+		if (newTypeCS != typeCS) {
+			NotificationChain msgs = null;
+			if (typeCS != null)
+				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
+			if (newTypeCS != null)
+				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
+			msgs = basicSetTypeCS(newTypeCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, newTypeCS, newTypeCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getInitExpression() {
-        return initExpression;
-    }
+		return initExpression;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetInitExpression(OCLExpressionCS newInitExpression, NotificationChain msgs) {
-        OCLExpressionCS oldInitExpression = initExpression;
-        initExpression = newInitExpression;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldInitExpression = initExpression;
+		initExpression = newInitExpression;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setInitExpression(OCLExpressionCS newInitExpression) {
-        if (newInitExpression != initExpression) {
-            NotificationChain msgs = null;
-            if (initExpression != null)
-                msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
-            if (newInitExpression != null)
-                msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
-            msgs = basicSetInitExpression(newInitExpression, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, newInitExpression, newInitExpression));
-    }
+		if (newInitExpression != initExpression) {
+			NotificationChain msgs = null;
+			if (initExpression != null)
+				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
+			if (newInitExpression != null)
+				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
+			msgs = basicSetInitExpression(newInitExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, newInitExpression, newInitExpression));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.VARIABLE_CS__TYPE_CS:
-                return basicSetTypeCS(null, msgs);
-            case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-                return basicSetInitExpression(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.VARIABLE_CS__TYPE_CS:
+				return basicSetTypeCS(null, msgs);
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+				return basicSetInitExpression(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.VARIABLE_CS__NAME:
-                return getName();
-            case CSTPackage.VARIABLE_CS__TYPE_CS:
-                return getTypeCS();
-            case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-                return getInitExpression();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.VARIABLE_CS__NAME:
+				return getName();
+			case CSTPackage.VARIABLE_CS__TYPE_CS:
+				return getTypeCS();
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+				return getInitExpression();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.VARIABLE_CS__NAME:
-                setName((String)newValue);
-                return;
-            case CSTPackage.VARIABLE_CS__TYPE_CS:
-                setTypeCS((TypeCS)newValue);
-                return;
-            case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-                setInitExpression((OCLExpressionCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.VARIABLE_CS__NAME:
+				setName((String)newValue);
+				return;
+			case CSTPackage.VARIABLE_CS__TYPE_CS:
+				setTypeCS((TypeCS)newValue);
+				return;
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+				setInitExpression((OCLExpressionCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.VARIABLE_CS__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case CSTPackage.VARIABLE_CS__TYPE_CS:
-                setTypeCS((TypeCS)null);
-                return;
-            case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-                setInitExpression((OCLExpressionCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.VARIABLE_CS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case CSTPackage.VARIABLE_CS__TYPE_CS:
+				setTypeCS((TypeCS)null);
+				return;
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+				setInitExpression((OCLExpressionCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.VARIABLE_CS__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case CSTPackage.VARIABLE_CS__TYPE_CS:
-                return typeCS != null;
-            case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-                return initExpression != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.VARIABLE_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case CSTPackage.VARIABLE_CS__TYPE_CS:
+				return typeCS != null;
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+				return initExpression != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: "); //$NON-NLS-1$
-        result.append(name);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: "); //$NON-NLS-1$
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
 
 } //VariableDeclarationCSImpl

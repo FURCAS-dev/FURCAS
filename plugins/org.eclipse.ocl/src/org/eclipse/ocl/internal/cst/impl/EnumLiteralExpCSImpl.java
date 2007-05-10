@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: EnumLiteralExpCSImpl.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -45,212 +45,212 @@ import org.eclipse.ocl.internal.cst.SimpleNameCS;
  */
 public class EnumLiteralExpCSImpl extends LiteralExpCSImpl implements EnumLiteralExpCS {
 	/**
-     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPathNameCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPathNameCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected PathNameCS pathNameCS;
 
 	/**
-     * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSimpleNameCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSimpleNameCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected SimpleNameCS simpleNameCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EnumLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.ENUM_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.ENUM_LITERAL_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PathNameCS getPathNameCS() {
-        return pathNameCS;
-    }
+		return pathNameCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
-        PathNameCS oldPathNameCS = pathNameCS;
-        pathNameCS = newPathNameCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		PathNameCS oldPathNameCS = pathNameCS;
+		pathNameCS = newPathNameCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setPathNameCS(PathNameCS newPathNameCS) {
-        if (newPathNameCS != pathNameCS) {
-            NotificationChain msgs = null;
-            if (pathNameCS != null)
-                msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, null, msgs);
-            if (newPathNameCS != null)
-                msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, null, msgs);
-            msgs = basicSetPathNameCS(newPathNameCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
-    }
+		if (newPathNameCS != pathNameCS) {
+			NotificationChain msgs = null;
+			if (pathNameCS != null)
+				msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, null, msgs);
+			if (newPathNameCS != null)
+				msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, null, msgs);
+			msgs = basicSetPathNameCS(newPathNameCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SimpleNameCS getSimpleNameCS() {
-        return simpleNameCS;
-    }
+		return simpleNameCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
-        SimpleNameCS oldSimpleNameCS = simpleNameCS;
-        simpleNameCS = newSimpleNameCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		SimpleNameCS oldSimpleNameCS = simpleNameCS;
+		simpleNameCS = newSimpleNameCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
-        if (newSimpleNameCS != simpleNameCS) {
-            NotificationChain msgs = null;
-            if (simpleNameCS != null)
-                msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
-            if (newSimpleNameCS != null)
-                msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
-            msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
-    }
+		if (newSimpleNameCS != simpleNameCS) {
+			NotificationChain msgs = null;
+			if (simpleNameCS != null)
+				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+			if (newSimpleNameCS != null)
+				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
-                return basicSetPathNameCS(null, msgs);
-            case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
-                return basicSetSimpleNameCS(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
+				return basicSetPathNameCS(null, msgs);
+			case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
+				return basicSetSimpleNameCS(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
-                return getPathNameCS();
-            case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
-                return getSimpleNameCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
+				return getPathNameCS();
+			case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
+				return getSimpleNameCS();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
-                setPathNameCS((PathNameCS)newValue);
-                return;
-            case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
-                setSimpleNameCS((SimpleNameCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
+				setPathNameCS((PathNameCS)newValue);
+				return;
+			case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
+				setSimpleNameCS((SimpleNameCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
-                setPathNameCS((PathNameCS)null);
-                return;
-            case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
-                setSimpleNameCS((SimpleNameCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
+				setPathNameCS((PathNameCS)null);
+				return;
+			case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
+				setSimpleNameCS((SimpleNameCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
-                return pathNameCS != null;
-            case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
-                return simpleNameCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.ENUM_LITERAL_EXP_CS__PATH_NAME_CS:
+				return pathNameCS != null;
+			case CSTPackage.ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS:
+				return simpleNameCS != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //EnumLiteralExpCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.4 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -53,255 +53,242 @@ import org.eclipse.ocl.internal.cst.PathNameCS;
  */
 public class PackageDeclarationCSImpl extends CSTNodeImpl implements PackageDeclarationCS {
 	/**
-     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPathNameCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPathNameCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected PathNameCS pathNameCS;
 
 	/**
-     * The cached value of the '{@link #getContextDecls() <em>Context Decls</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContextDecls() <em>Context Decls</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getContextDecls()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContextDecls()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<ContextDeclCS> contextDecls;
 
 	/**
-     * The cached value of the '{@link #getPackageDeclarationCS() <em>Package Declaration CS</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPackageDeclarationCS() <em>Package Declaration CS</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPackageDeclarationCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPackageDeclarationCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected PackageDeclarationCS packageDeclarationCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected PackageDeclarationCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.PACKAGE_DECLARATION_CS;
-    }
+		return CSTPackage.Literals.PACKAGE_DECLARATION_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PathNameCS getPathNameCS() {
-        return pathNameCS;
-    }
+		return pathNameCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
-        PathNameCS oldPathNameCS = pathNameCS;
-        pathNameCS = newPathNameCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
-            if (msgs == null) {
-                msgs = notification;
-            } else {
-                msgs.add(notification);
-            }
-        }
-        return msgs;
-    }
+		PathNameCS oldPathNameCS = pathNameCS;
+		pathNameCS = newPathNameCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setPathNameCS(PathNameCS newPathNameCS) {
-        if (newPathNameCS != pathNameCS) {
-            NotificationChain msgs = null;
-            if (pathNameCS != null) {
-                msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, null, msgs);
-            }
-            if (newPathNameCS != null) {
-                msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, null, msgs);
-            }
-            msgs = basicSetPathNameCS(newPathNameCS, msgs);
-            if (msgs != null) {
-                msgs.dispatch();
-            }
-        }
-        else if (eNotificationRequired()) {
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
-        }
-    }
+		if (newPathNameCS != pathNameCS) {
+			NotificationChain msgs = null;
+			if (pathNameCS != null)
+				msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, null, msgs);
+			if (newPathNameCS != null)
+				msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, null, msgs);
+			msgs = basicSetPathNameCS(newPathNameCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList<ContextDeclCS> getContextDecls() {
-        if (contextDecls == null) {
-            contextDecls = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS);
-        }
-        return contextDecls;
-    }
+		if (contextDecls == null) {
+			contextDecls = new EObjectContainmentEList<ContextDeclCS>(ContextDeclCS.class, this, CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS);
+		}
+		return contextDecls;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PackageDeclarationCS getPackageDeclarationCS() {
-        if (packageDeclarationCS != null && packageDeclarationCS.eIsProxy()) {
-            InternalEObject oldPackageDeclarationCS = (InternalEObject)packageDeclarationCS;
-            packageDeclarationCS = (PackageDeclarationCS)eResolveProxy(oldPackageDeclarationCS);
-            if (packageDeclarationCS != oldPackageDeclarationCS) {
-                if (eNotificationRequired()) {
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS, oldPackageDeclarationCS, packageDeclarationCS));
-                }
-            }
-        }
-        return packageDeclarationCS;
-    }
+		if (packageDeclarationCS != null && packageDeclarationCS.eIsProxy()) {
+			InternalEObject oldPackageDeclarationCS = (InternalEObject)packageDeclarationCS;
+			packageDeclarationCS = (PackageDeclarationCS)eResolveProxy(oldPackageDeclarationCS);
+			if (packageDeclarationCS != oldPackageDeclarationCS) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS, oldPackageDeclarationCS, packageDeclarationCS));
+			}
+		}
+		return packageDeclarationCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PackageDeclarationCS basicGetPackageDeclarationCS() {
-        return packageDeclarationCS;
-    }
+		return packageDeclarationCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setPackageDeclarationCS(PackageDeclarationCS newPackageDeclarationCS) {
-        PackageDeclarationCS oldPackageDeclarationCS = packageDeclarationCS;
-        packageDeclarationCS = newPackageDeclarationCS;
-        if (eNotificationRequired()) {
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS, oldPackageDeclarationCS, packageDeclarationCS));
-        }
-    }
+		PackageDeclarationCS oldPackageDeclarationCS = packageDeclarationCS;
+		packageDeclarationCS = newPackageDeclarationCS;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS, oldPackageDeclarationCS, packageDeclarationCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
-                return basicSetPathNameCS(null, msgs);
-            case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
-                return ((InternalEList<?>)getContextDecls()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
+				return basicSetPathNameCS(null, msgs);
+			case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
+				return ((InternalEList<?>)getContextDecls()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
-                return getPathNameCS();
-            case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
-                return getContextDecls();
-            case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
-                if (resolve) {
-                    return getPackageDeclarationCS();
-                }
-                return basicGetPackageDeclarationCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
+				return getPathNameCS();
+			case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
+				return getContextDecls();
+			case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
+				if (resolve) return getPackageDeclarationCS();
+				return basicGetPackageDeclarationCS();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 		@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
-                setPathNameCS((PathNameCS)newValue);
-                return;
-            case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
-                getContextDecls().clear();
-                getContextDecls().addAll((Collection<? extends ContextDeclCS>)newValue);
-                return;
-            case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
-                setPackageDeclarationCS((PackageDeclarationCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
+				setPathNameCS((PathNameCS)newValue);
+				return;
+			case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
+				getContextDecls().clear();
+				getContextDecls().addAll((Collection<? extends ContextDeclCS>)newValue);
+				return;
+			case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
+				setPackageDeclarationCS((PackageDeclarationCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
-                setPathNameCS((PathNameCS)null);
-                return;
-            case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
-                getContextDecls().clear();
-                return;
-            case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
-                setPackageDeclarationCS((PackageDeclarationCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
+				setPathNameCS((PathNameCS)null);
+				return;
+			case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
+				getContextDecls().clear();
+				return;
+			case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
+				setPackageDeclarationCS((PackageDeclarationCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
-                return pathNameCS != null;
-            case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
-                return contextDecls != null && !contextDecls.isEmpty();
-            case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
-                return packageDeclarationCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.PACKAGE_DECLARATION_CS__PATH_NAME_CS:
+				return pathNameCS != null;
+			case CSTPackage.PACKAGE_DECLARATION_CS__CONTEXT_DECLS:
+				return contextDecls != null && !contextDecls.isEmpty();
+			case CSTPackage.PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS:
+				return packageDeclarationCS != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //PackageDeclarationCSImpl

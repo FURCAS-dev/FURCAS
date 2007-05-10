@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpCSImpl.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpCSImpl.java,v 1.3 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -40,137 +40,137 @@ import org.eclipse.ocl.internal.cst.UnlimitedNaturalLiteralExpCS;
  */
 public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements UnlimitedNaturalLiteralExpCS {
     /**
-     * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
     protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected UnlimitedNaturalLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return CSTPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP_CS;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Integer getIntegerSymbol() {
-        return integerSymbol;
-    }
+		return integerSymbol;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setIntegerSymbol(Integer newIntegerSymbol) {
-        Integer oldIntegerSymbol = integerSymbol;
-        integerSymbol = newIntegerSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
-    }
+		Integer oldIntegerSymbol = integerSymbol;
+		integerSymbol = newIntegerSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
-                return getIntegerSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
+				return getIntegerSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
-                setIntegerSymbol((Integer)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
+				setIntegerSymbol((Integer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
-                setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
+				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
-                return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
+				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (integerSymbol: "); //$NON-NLS-1$
-        result.append(integerSymbol);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (integerSymbol: "); //$NON-NLS-1$
+		result.append(integerSymbol);
+		result.append(')');
+		return result.toString();
+	}
 
 } //UnlimitedNaturalLiteralExpCSImpl
