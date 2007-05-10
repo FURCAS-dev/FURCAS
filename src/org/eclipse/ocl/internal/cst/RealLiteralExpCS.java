@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpCS.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: RealLiteralExpCS.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface RealLiteralExpCS extends PrimitiveLiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>Real Symbol</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Real Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Real Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Real Symbol</em>' attribute.
-     * @see #setRealSymbol(Double)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getRealLiteralExpCS_RealSymbol()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Real Symbol</em>' attribute.
+	 * @see #setRealSymbol(Double)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getRealLiteralExpCS_RealSymbol()
+	 * @model
+	 * @generated
+	 */
 	Double getRealSymbol();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.RealLiteralExpCS#getRealSymbol <em>Real Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.RealLiteralExpCS#getRealSymbol <em>Real Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Real Symbol</em>' attribute.
-     * @see #getRealSymbol()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Real Symbol</em>' attribute.
+	 * @see #getRealSymbol()
+	 * @generated
+	 */
 	void setRealSymbol(Double value);
 
 } // RealLiteralExpCS

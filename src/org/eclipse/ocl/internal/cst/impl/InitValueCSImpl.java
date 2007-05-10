@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitValueCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: InitValueCSImpl.java,v 1.3 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.internal.cst.InitValueCS;
  */
 public class InitValueCSImpl extends InitOrDerValueCSImpl implements InitValueCS {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected InitValueCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.INIT_VALUE_CS;
-    }
+		return CSTPackage.Literals.INIT_VALUE_CS;
+	}
 
 } //InitValueCSImpl

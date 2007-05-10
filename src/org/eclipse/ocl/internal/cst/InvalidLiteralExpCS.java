@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: InvalidLiteralExpCS.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface InvalidLiteralExpCS extends LiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>Symbol</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Symbol</em>' attribute.
-     * @see #setSymbol(String)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getInvalidLiteralExpCS_Symbol()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Symbol</em>' attribute.
+	 * @see #setSymbol(String)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getInvalidLiteralExpCS_Symbol()
+	 * @model
+	 * @generated
+	 */
 	String getSymbol();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.InvalidLiteralExpCS#getSymbol <em>Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.InvalidLiteralExpCS#getSymbol <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Symbol</em>' attribute.
-     * @see #getSymbol()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Symbol</em>' attribute.
+	 * @see #getSymbol()
+	 * @generated
+	 */
 	void setSymbol(String value);
 
 } // InvalidLiteralExpCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTNodeImpl.java,v 1.2 2007/02/14 14:46:06 cdamus Exp $
+ * $Id: CSTNodeImpl.java,v 1.3 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -42,190 +42,190 @@ import org.eclipse.ocl.internal.cst.CSTPackage;
  */
 public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 	/**
-     * The default value of the '{@link #getStartOffset() <em>Start Offset</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStartOffset() <em>Start Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getStartOffset()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStartOffset()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int START_OFFSET_EDEFAULT = 0;
 
 	/**
-     * The cached value of the '{@link #getStartOffset() <em>Start Offset</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStartOffset() <em>Start Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getStartOffset()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStartOffset()
+	 * @generated
+	 * @ordered
+	 */
 	protected int startOffset = START_OFFSET_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getEndOffset() <em>End Offset</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getEndOffset() <em>End Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getEndOffset()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEndOffset()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int END_OFFSET_EDEFAULT = 0;
 
 	/**
-     * The cached value of the '{@link #getEndOffset() <em>End Offset</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEndOffset() <em>End Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getEndOffset()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEndOffset()
+	 * @generated
+	 * @ordered
+	 */
 	protected int endOffset = END_OFFSET_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CSTNodeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.CST_NODE;
-    }
+		return CSTPackage.Literals.CST_NODE;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public int getStartOffset() {
-        return startOffset;
-    }
+		return startOffset;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setStartOffset(int newStartOffset) {
-        int oldStartOffset = startOffset;
-        startOffset = newStartOffset;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__START_OFFSET, oldStartOffset, startOffset));
-    }
+		int oldStartOffset = startOffset;
+		startOffset = newStartOffset;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__START_OFFSET, oldStartOffset, startOffset));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public int getEndOffset() {
-        return endOffset;
-    }
+		return endOffset;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setEndOffset(int newEndOffset) {
-        int oldEndOffset = endOffset;
-        endOffset = newEndOffset;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__END_OFFSET, oldEndOffset, endOffset));
-    }
+		int oldEndOffset = endOffset;
+		endOffset = newEndOffset;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__END_OFFSET, oldEndOffset, endOffset));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.CST_NODE__START_OFFSET:
-                return new Integer(getStartOffset());
-            case CSTPackage.CST_NODE__END_OFFSET:
-                return new Integer(getEndOffset());
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.CST_NODE__START_OFFSET:
+				return new Integer(getStartOffset());
+			case CSTPackage.CST_NODE__END_OFFSET:
+				return new Integer(getEndOffset());
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.CST_NODE__START_OFFSET:
-                setStartOffset(((Integer)newValue).intValue());
-                return;
-            case CSTPackage.CST_NODE__END_OFFSET:
-                setEndOffset(((Integer)newValue).intValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.CST_NODE__START_OFFSET:
+				setStartOffset(((Integer)newValue).intValue());
+				return;
+			case CSTPackage.CST_NODE__END_OFFSET:
+				setEndOffset(((Integer)newValue).intValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.CST_NODE__START_OFFSET:
-                setStartOffset(START_OFFSET_EDEFAULT);
-                return;
-            case CSTPackage.CST_NODE__END_OFFSET:
-                setEndOffset(END_OFFSET_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.CST_NODE__START_OFFSET:
+				setStartOffset(START_OFFSET_EDEFAULT);
+				return;
+			case CSTPackage.CST_NODE__END_OFFSET:
+				setEndOffset(END_OFFSET_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.CST_NODE__START_OFFSET:
-                return startOffset != START_OFFSET_EDEFAULT;
-            case CSTPackage.CST_NODE__END_OFFSET:
-                return endOffset != END_OFFSET_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.CST_NODE__START_OFFSET:
+				return startOffset != START_OFFSET_EDEFAULT;
+			case CSTPackage.CST_NODE__END_OFFSET:
+				return endOffset != END_OFFSET_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (startOffset: "); //$NON-NLS-1$
-        result.append(startOffset);
-        result.append(", endOffset: "); //$NON-NLS-1$
-        result.append(endOffset);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (startOffset: "); //$NON-NLS-1$
+		result.append(startOffset);
+		result.append(", endOffset: "); //$NON-NLS-1$
+		result.append(endOffset);
+		result.append(')');
+		return result.toString();
+	}
 
 } //CSTNodeImpl

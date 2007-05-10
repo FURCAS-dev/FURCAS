@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpKind.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: MessageExpKind.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -34,65 +34,65 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum MessageExpKind implements Enumerator
 {
     /**
-     * The '<em><b>Has Sent</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Has Sent</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #HAS_SENT
-     * @generated
-     * @ordered
-     */
+	 * @see #HAS_SENT
+	 * @generated
+	 * @ordered
+	 */
     HAS_SENT_LITERAL(1, "hasSent", "hasSent"), //$NON-NLS-1$ //$NON-NLS-2$
     /**
-     * The '<em><b>Sent</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Sent</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #SENT
-     * @generated
-     * @ordered
-     */
+	 * @see #SENT
+	 * @generated
+	 * @ordered
+	 */
     SENT_LITERAL(2, "sent", "sent"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
-     * The '<em><b>Has Sent</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Has Sent</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Has Sent</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #HAS_SENT_LITERAL
-     * @model name="hasSent"
-     * @generated
-     * @ordered
-     */
+	 * @see #HAS_SENT_LITERAL
+	 * @model name="hasSent"
+	 * @generated
+	 * @ordered
+	 */
 	public static final int HAS_SENT = 1;
 
     /**
-     * The '<em><b>Sent</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Sent</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Sent</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #SENT_LITERAL
-     * @model name="sent"
-     * @generated
-     * @ordered
-     */
+	 * @see #SENT_LITERAL
+	 * @model name="sent"
+	 * @generated
+	 * @ordered
+	 */
 	public static final int SENT = 2;
 
     /**
-     * An array of all the '<em><b>Message Exp Kind</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Message Exp Kind</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private static final MessageExpKind[] VALUES_ARRAY =
 		new MessageExpKind[] {
-            HAS_SENT_LITERAL,
-            SENT_LITERAL,
-        };
+			HAS_SENT_LITERAL,
+			SENT_LITERAL,
+		};
 
     /**
 	 * A public read-only list of all the '<em><b>Message Exp Kind</b></em>' enumerators.
@@ -103,119 +103,119 @@ public enum MessageExpKind implements Enumerator
 	public static final List<MessageExpKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static MessageExpKind get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            MessageExpKind result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			MessageExpKind result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static MessageExpKind getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            MessageExpKind result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			MessageExpKind result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static MessageExpKind get(int value) {
-        switch (value) {
-            case HAS_SENT: return HAS_SENT_LITERAL;
-            case SENT: return SENT_LITERAL;
-        }
-        return null;
-    }
+		switch (value) {
+			case HAS_SENT: return HAS_SENT_LITERAL;
+			case SENT: return SENT_LITERAL;
+		}
+		return null;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final int value;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String name;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String literal;
 
     /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private MessageExpKind(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getValue() {
-      return value;
-    }
+	  return value;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-      return name;
-    }
+	  return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getLiteral() {
-      return literal;
-    }
+	  return literal;
+	}
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        return literal;
-    }
+		return literal;
+	}
 }

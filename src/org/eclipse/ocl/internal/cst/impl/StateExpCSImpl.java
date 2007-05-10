@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: StateExpCSImpl.java,v 1.4 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -42,120 +42,120 @@ import org.eclipse.ocl.internal.cst.StateExpCS;
  */
 public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	/**
-     * The cached value of the '{@link #getSequenceOfNames() <em>Sequence Of Names</em>}' attribute list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSequenceOfNames() <em>Sequence Of Names</em>}' attribute list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSequenceOfNames()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSequenceOfNames()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<String> sequenceOfNames;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StateExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.STATE_EXP_CS;
-    }
+		return CSTPackage.Literals.STATE_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList<String> getSequenceOfNames() {
-        if (sequenceOfNames == null) {
-            sequenceOfNames = new EDataTypeUniqueEList<String>(String.class, this, CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES);
-        }
-        return sequenceOfNames;
-    }
+		if (sequenceOfNames == null) {
+			sequenceOfNames = new EDataTypeUniqueEList<String>(String.class, this, CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES);
+		}
+		return sequenceOfNames;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
-                return getSequenceOfNames();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+				return getSequenceOfNames();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 		@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
-                getSequenceOfNames().clear();
-                getSequenceOfNames().addAll((Collection<? extends String>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+				getSequenceOfNames().clear();
+				getSequenceOfNames().addAll((Collection<? extends String>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
-                getSequenceOfNames().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+				getSequenceOfNames().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
-                return sequenceOfNames != null && !sequenceOfNames.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+				return sequenceOfNames != null && !sequenceOfNames.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (sequenceOfNames: "); //$NON-NLS-1$
-        result.append(sequenceOfNames);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (sequenceOfNames: "); //$NON-NLS-1$
+		result.append(sequenceOfNames);
+		result.append(')');
+		return result.toString();
+	}
 
 } //StateExpCSImpl

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpCS.java,v 1.2 2007/02/14 14:46:03 cdamus Exp $
+ * $Id: IntegerLiteralExpCS.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface IntegerLiteralExpCS extends PrimitiveLiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>Integer Symbol</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Integer Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Integer Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Integer Symbol</em>' attribute.
-     * @see #setIntegerSymbol(Integer)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getIntegerLiteralExpCS_IntegerSymbol()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Integer Symbol</em>' attribute.
+	 * @see #setIntegerSymbol(Integer)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getIntegerLiteralExpCS_IntegerSymbol()
+	 * @model
+	 * @generated
+	 */
 	Integer getIntegerSymbol();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.IntegerLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.IntegerLiteralExpCS#getIntegerSymbol <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Integer Symbol</em>' attribute.
-     * @see #getIntegerSymbol()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Integer Symbol</em>' attribute.
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 */
 	void setIntegerSymbol(Integer value);
 
 } // IntegerLiteralExpCS

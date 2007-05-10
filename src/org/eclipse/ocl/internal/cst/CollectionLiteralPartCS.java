@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: CollectionLiteralPartCS.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,30 +35,30 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface CollectionLiteralPartCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Expression CS</em>' containment reference.
-     * @see #setExpressionCS(OCLExpressionCS)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralPartCS_ExpressionCS()
-     * @model containment="true"
-     *        extendedMetaData="name='oclExpressionCS'"
-     * @generated
-     */
+	 * @return the value of the '<em>Expression CS</em>' containment reference.
+	 * @see #setExpressionCS(OCLExpressionCS)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralPartCS_ExpressionCS()
+	 * @model containment="true"
+	 *        extendedMetaData="name='oclExpressionCS'"
+	 * @generated
+	 */
 	OCLExpressionCS getExpressionCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS#getExpressionCS <em>Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Expression CS</em>' containment reference.
-     * @see #getExpressionCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Expression CS</em>' containment reference.
+	 * @see #getExpressionCS()
+	 * @generated
+	 */
 	void setExpressionCS(OCLExpressionCS value);
 
 } // CollectionLiteralPartCS

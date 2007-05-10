@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: VariableCS.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -37,81 +37,81 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface VariableCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableCS_Name()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableCS_Name()
+	 * @model
+	 * @generated
+	 */
 	String getName();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableCS#getName <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableCS#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
 	void setName(String value);
 
 	/**
-     * Returns the value of the '<em><b>Type CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Type CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Type CS</em>' containment reference.
-     * @see #setTypeCS(TypeCS)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableCS_TypeCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Type CS</em>' containment reference.
+	 * @see #setTypeCS(TypeCS)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableCS_TypeCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	TypeCS getTypeCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableCS#getTypeCS <em>Type CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableCS#getTypeCS <em>Type CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type CS</em>' containment reference.
-     * @see #getTypeCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Type CS</em>' containment reference.
+	 * @see #getTypeCS()
+	 * @generated
+	 */
 	void setTypeCS(TypeCS value);
 
 	/**
-     * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Init Expression</em>' containment reference.
-     * @see #setInitExpression(OCLExpressionCS)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableCS_InitExpression()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Init Expression</em>' containment reference.
+	 * @see #setInitExpression(OCLExpressionCS)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableCS_InitExpression()
+	 * @model containment="true"
+	 * @generated
+	 */
 	OCLExpressionCS getInitExpression();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableCS#getInitExpression <em>Init Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableCS#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Init Expression</em>' containment reference.
-     * @see #getInitExpression()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
+	 * @see #getInitExpression()
+	 * @generated
+	 */
 	void setInitExpression(OCLExpressionCS value);
 
 } // VariableDeclarationCS

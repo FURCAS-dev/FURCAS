@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpCSImpl.java,v 1.2 2007/02/14 14:46:04 cdamus Exp $
+ * $Id: IterateExpCSImpl.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.internal.cst.IterateExpCS;
  */
 public class IterateExpCSImpl extends LoopExpCSImpl implements IterateExpCS {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IterateExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.ITERATE_EXP_CS;
-    }
+		return CSTPackage.Literals.ITERATE_EXP_CS;
+	}
 
 } //IterateExpCSImpl

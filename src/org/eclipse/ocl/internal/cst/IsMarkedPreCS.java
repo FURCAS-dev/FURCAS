@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IsMarkedPreCS.java,v 1.2 2007/02/14 14:46:02 cdamus Exp $
+ * $Id: IsMarkedPreCS.java,v 1.3 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.internal.cst;
  */
 public interface IsMarkedPreCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Pre</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pre</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Pre</em>' attribute.
-     * @see #setPre(boolean)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getIsMarkedPreCS_Pre()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Pre</em>' attribute.
+	 * @see #setPre(boolean)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getIsMarkedPreCS_Pre()
+	 * @model
+	 * @generated
+	 */
 	boolean isPre();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.IsMarkedPreCS#isPre <em>Pre</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.IsMarkedPreCS#isPre <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Pre</em>' attribute.
-     * @see #isPre()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Pre</em>' attribute.
+	 * @see #isPre()
+	 * @generated
+	 */
 	void setPre(boolean value);
 
 } // IsMarkedPreCS
