@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: NavigationCallExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: NavigationCallExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -54,7 +54,7 @@ public abstract class NavigationCallExpImpl<C, P> extends FeatureCallExpImpl<C> 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLExpression<C>> qualifier = null;
+	protected EList<OCLExpression<C>> qualifier;
 
 	/**
 	 * The cached value of the '{@link #getNavigationSource() <em>Navigation Source</em>}' reference.
@@ -64,7 +64,7 @@ public abstract class NavigationCallExpImpl<C, P> extends FeatureCallExpImpl<C> 
 	 * @generated
 	 * @ordered
 	 */
-	protected P navigationSource = null;
+	protected P navigationSource;
 
 	/**
 	 * <!-- begin-user-doc -->

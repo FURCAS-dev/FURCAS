@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IfExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: IfExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -45,7 +45,7 @@ public interface IfExp<C> extends OCLExpression<C> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(OCLExpression<C>)
+	 * @see #setCondition(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_Condition()
 	 * @model containment="true"
 	 * @generated
@@ -71,7 +71,7 @@ public interface IfExp<C> extends OCLExpression<C> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Then Expression</em>' containment reference.
-	 * @see #setThenExpression(OCLExpression<C>)
+	 * @see #setThenExpression(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_ThenExpression()
 	 * @model containment="true"
 	 * @generated
@@ -97,7 +97,7 @@ public interface IfExp<C> extends OCLExpression<C> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Else Expression</em>' containment reference.
-	 * @see #setElseExpression(OCLExpression<C>)
+	 * @see #setElseExpression(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_ElseExpression()
 	 * @model containment="true"
 	 * @generated

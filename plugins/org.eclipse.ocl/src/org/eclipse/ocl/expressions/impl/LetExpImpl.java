@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: LetExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: LetExpImpl.java,v 1.3 2007/05/10 17:48:23 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -50,7 +50,7 @@ public class LetExpImpl<C, PM> extends OCLExpressionImpl<C> implements LetExp<C,
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> in = null;
+	protected OCLExpression<C> in;
 
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -60,7 +60,7 @@ public class LetExpImpl<C, PM> extends OCLExpressionImpl<C> implements LetExp<C,
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable<C, PM> variable = null;
+	protected Variable<C, PM> variable;
 
 	/**
 	 * <!-- begin-user-doc -->

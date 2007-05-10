@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CallExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: CallExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -44,7 +44,7 @@ public interface CallExp<C> extends OCLExpression<C>, CallingASTNode {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(OCLExpression<C>)
+	 * @see #setSource(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCallExp_Source()
 	 * @model containment="true"
 	 * @generated

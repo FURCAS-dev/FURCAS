@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.5 2007/05/10 17:48:23 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -141,7 +141,7 @@ public class VariableImpl<C, PM> extends EObjectImpl implements Variable<C, PM> 
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> initExpression = null;
+	protected OCLExpression<C> initExpression;
 
 	/**
 	 * The cached value of the '{@link #getRepresentedParameter() <em>Represented Parameter</em>}' reference.
@@ -151,7 +151,7 @@ public class VariableImpl<C, PM> extends EObjectImpl implements Variable<C, PM> 
 	 * @generated
 	 * @ordered
 	 */
-	protected PM representedParameter = null;
+	protected PM representedParameter;
 
 	private String name;
 	private C type;

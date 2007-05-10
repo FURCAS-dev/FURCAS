@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExp.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: CollectionLiteralExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -50,7 +50,7 @@ public interface CollectionLiteralExp<C> extends LiteralExp<C> {
 	 * @see org.eclipse.ocl.expressions.CollectionKind
 	 * @see #setKind(CollectionKind)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_Kind()
-	 * @model extendedMetaData="name='kind'"
+	 * @model
 	 * @generated
 	 */
 	CollectionKind getKind();
@@ -68,7 +68,7 @@ public interface CollectionLiteralExp<C> extends LiteralExp<C> {
 
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.expressions.CollectionLiteralPart<C>}.
+	 * The list contents are of type {@link org.eclipse.ocl.expressions.CollectionLiteralPart}&lt;C>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,

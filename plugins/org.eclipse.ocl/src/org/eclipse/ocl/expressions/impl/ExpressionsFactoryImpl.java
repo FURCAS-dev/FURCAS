@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsFactoryImpl.java,v 1.4 2007/03/27 15:04:58 cdamus Exp $
+ * $Id: ExpressionsFactoryImpl.java,v 1.5 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+//import org.eclipse.ocl.expressions.*;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -107,6 +109,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
 			case ExpressionsPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
 			case ExpressionsPackage.ITERATE_EXP: return createIterateExp();
+			case ExpressionsPackage.VARIABLE: return createVariable();
 			case ExpressionsPackage.ITERATOR_EXP: return createIteratorExp();
 			case ExpressionsPackage.LET_EXP: return createLetExp();
 			case ExpressionsPackage.MESSAGE_EXP: return createMessageExp();
@@ -120,7 +123,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
 			case ExpressionsPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
 			case ExpressionsPackage.TYPE_EXP: return createTypeExp();
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
-			case ExpressionsPackage.VARIABLE: return createVariable();
 			case ExpressionsPackage.VARIABLE_EXP: return createVariableExp();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$

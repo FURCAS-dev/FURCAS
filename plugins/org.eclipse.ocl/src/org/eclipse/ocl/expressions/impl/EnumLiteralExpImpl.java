@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -47,7 +47,7 @@ public class EnumLiteralExpImpl<C, EL> extends LiteralExpImpl<C> implements Enum
 	 * @generated
 	 * @ordered
 	 */
-	protected EL referredEnumLiteral = null;
+	protected EL referredEnumLiteral;
 
 	/**
 	 * <!-- begin-user-doc -->

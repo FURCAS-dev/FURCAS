@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -47,46 +47,46 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class MessageTypeImpl<C, O, P> extends EObjectImpl implements MessageType<C, O, P> {
 	/**
-     * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredOperation()
-     * @generated
-     * @ordered
-     */
-	protected O referredOperation = null;
+	 * @see #getReferredOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected O referredOperation;
 
 	/**
-     * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredSignal()
-     * @generated
-     * @ordered
-     */
-	protected C referredSignal = null;
+	 * @see #getReferredSignal()
+	 * @generated
+	 * @ordered
+	 */
+	protected C referredSignal;
 
 	private EList<O> operations;
 	private EList<P> properties;
 	
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected MessageTypeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.MESSAGE_TYPE;
-    }
+		return TypesPackage.Literals.MESSAGE_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,82 +115,82 @@ public class MessageTypeImpl<C, O, P> extends EObjectImpl implements MessageType
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public O getReferredOperation() {
-        if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
-            InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
-            referredOperation = (O)eResolveProxy(oldReferredOperation);
-            if (referredOperation != oldReferredOperation) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-            }
-        }
-        return referredOperation;
-    }
+		if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
+			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
+			referredOperation = (O)eResolveProxy(oldReferredOperation);
+			if (referredOperation != oldReferredOperation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+			}
+		}
+		return referredOperation;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public O basicGetReferredOperation() {
-        return referredOperation;
-    }
+		return referredOperation;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setReferredOperation(O newReferredOperation) {
-        O oldReferredOperation = referredOperation;
-        referredOperation = newReferredOperation;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-    }
+		O oldReferredOperation = referredOperation;
+		referredOperation = newReferredOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public C getReferredSignal() {
-        if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
-            InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
-            referredSignal = (C)eResolveProxy(oldReferredSignal);
-            if (referredSignal != oldReferredSignal) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
-            }
-        }
-        return referredSignal;
-    }
+		if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
+			InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
+			referredSignal = (C)eResolveProxy(oldReferredSignal);
+			if (referredSignal != oldReferredSignal) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
+			}
+		}
+		return referredSignal;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public C basicGetReferredSignal() {
-        return referredSignal;
-    }
+		return referredSignal;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setReferredSignal(C newReferredSignal) {
-        C oldReferredSignal = referredSignal;
-        referredSignal = newReferredSignal;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
-    }
+		C oldReferredSignal = referredSignal;
+		referredSignal = newReferredSignal;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -225,74 +225,74 @@ public class MessageTypeImpl<C, O, P> extends EObjectImpl implements MessageType
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                if (resolve) return getReferredOperation();
-                return basicGetReferredOperation();
-            case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                if (resolve) return getReferredSignal();
-                return basicGetReferredSignal();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				if (resolve) return getReferredOperation();
+				return basicGetReferredOperation();
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				if (resolve) return getReferredSignal();
+				return basicGetReferredSignal();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                setReferredOperation((O)newValue);
-                return;
-            case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                setReferredSignal((C)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				setReferredOperation((O)newValue);
+				return;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				setReferredSignal((C)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                setReferredOperation((O)null);
-                return;
-            case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                setReferredSignal((C)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				setReferredOperation((O)null);
+				return;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				setReferredSignal((C)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                return referredOperation != null;
-            case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                return referredSignal != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				return referredOperation != null;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				return referredSignal != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //MessageTypeImpl

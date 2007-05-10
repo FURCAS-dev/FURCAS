@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -32,27 +32,27 @@ import org.eclipse.ocl.types.TypesPackage;
  */
 public class BagTypeImpl<C, O> extends CollectionTypeImpl<C, O> implements BagType<C, O> {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected BagTypeImpl() {
-        super();
-    }
+		super();
+	}
 	
 	protected BagTypeImpl(C elementType) {
 		super(elementType);
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.BAG_TYPE;
-    }
+		return TypesPackage.Literals.BAG_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

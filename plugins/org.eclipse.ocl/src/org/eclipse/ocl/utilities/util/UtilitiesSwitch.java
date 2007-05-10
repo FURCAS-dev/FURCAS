@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesSwitch.java,v 1.3 2007/03/27 15:05:00 cdamus Exp $
+ * $Id: UtilitiesSwitch.java,v 1.4 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.util;
 
@@ -20,6 +20,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+//import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -117,12 +119,6 @@ public class UtilitiesSwitch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UtilitiesPackage.PREDEFINED_TYPE: {
-				@SuppressWarnings("unchecked") PredefinedType<?> predefinedType = (PredefinedType<?>)theEObject;
-				T1 result = casePredefinedType(predefinedType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case UtilitiesPackage.TYPED_AST_NODE: {
 				TypedASTNode typedASTNode = (TypedASTNode)theEObject;
 				T1 result = caseTypedASTNode(typedASTNode);
@@ -136,15 +132,15 @@ public class UtilitiesSwitch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case UtilitiesPackage.TYPED_ELEMENT: {
-				@SuppressWarnings("unchecked") TypedElement<?> typedElement = (TypedElement<?>)theEObject;
-				T1 result = caseTypedElement(typedElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case UtilitiesPackage.VISITOR: {
 				@SuppressWarnings("unchecked") Visitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor = (Visitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>)theEObject;
 				T1 result = caseVisitor(visitor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UtilitiesPackage.TYPED_ELEMENT: {
+				@SuppressWarnings("unchecked") TypedElement<?> typedElement = (TypedElement<?>)theEObject;
+				T1 result = caseTypedElement(typedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -152,6 +148,12 @@ public class UtilitiesSwitch<T1> {
 				@SuppressWarnings("unchecked") ExpressionInOCL<?, ?> expressionInOCL = (ExpressionInOCL<?, ?>)theEObject;
 				T1 result = caseExpressionInOCL(expressionInOCL);
 				if (result == null) result = caseVisitable(expressionInOCL);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UtilitiesPackage.PREDEFINED_TYPE: {
+				@SuppressWarnings("unchecked") PredefinedType<?> predefinedType = (PredefinedType<?>)theEObject;
+				T1 result = casePredefinedType(predefinedType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

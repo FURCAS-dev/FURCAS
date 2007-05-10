@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: IterateExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -48,7 +48,7 @@ public class IterateExpImpl<C, PM> extends LoopExpImpl<C, PM> implements Iterate
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable<C, PM> result = null;
+	protected Variable<C, PM> result;
 
 	/**
 	 * <!-- begin-user-doc -->
