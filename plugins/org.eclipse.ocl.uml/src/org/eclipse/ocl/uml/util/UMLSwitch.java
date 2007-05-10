@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLSwitch.java,v 1.3 2007/03/27 15:05:18 cdamus Exp $
+ * $Id: UMLSwitch.java,v 1.4 2007/05/10 17:48:02 cdamus Exp $
  */
 package org.eclipse.ocl.uml.util;
 
@@ -956,9 +956,9 @@ public class UMLSwitch<T> {
 				if (result == null) result = caseTypedElement(tupleLiteralPart);
 				if (result == null) result = caseTupleLiteralPart_1(tupleLiteralPart);
 				if (result == null) result = caseNamedElement(tupleLiteralPart);
+				if (result == null) result = caseTypedElement_1(tupleLiteralPart);
 				if (result == null) result = caseVisitable(tupleLiteralPart);
 				if (result == null) result = caseTypedASTNode(tupleLiteralPart);
-				if (result == null) result = caseTypedElement_1(tupleLiteralPart);
 				if (result == null) result = caseElement(tupleLiteralPart);
 				if (result == null) result = caseASTNode(tupleLiteralPart);
 				if (result == null) result = caseEModelElement(tupleLiteralPart);

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesAdapterFactory.java,v 1.3 2007/03/27 15:05:00 cdamus Exp $
+ * $Id: UtilitiesAdapterFactory.java,v 1.4 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.util;
 
@@ -20,6 +20,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
+//import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -95,10 +97,6 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl {
 				return createCallingASTNodeAdapter();
 			}
 			@Override
-			public <O> Adapter casePredefinedType(PredefinedType<O> object) {
-				return createPredefinedTypeAdapter();
-			}
-			@Override
 			public Adapter caseTypedASTNode(TypedASTNode object) {
 				return createTypedASTNodeAdapter();
 			}
@@ -107,16 +105,20 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl {
 				return createVisitableAdapter();
 			}
 			@Override
-			public <C> Adapter caseTypedElement(TypedElement<C> object) {
-				return createTypedElementAdapter();
-			}
-			@Override
 			public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitor(Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
 				return createVisitorAdapter();
 			}
 			@Override
+			public <C> Adapter caseTypedElement(TypedElement<C> object) {
+				return createTypedElementAdapter();
+			}
+			@Override
 			public <C, PM> Adapter caseExpressionInOCL(ExpressionInOCL<C, PM> object) {
 				return createExpressionInOCLAdapter();
+			}
+			@Override
+			public <O> Adapter casePredefinedType(PredefinedType<O> object) {
+				return createPredefinedTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

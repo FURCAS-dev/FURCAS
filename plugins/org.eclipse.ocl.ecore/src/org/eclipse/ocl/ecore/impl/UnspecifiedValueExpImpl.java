@@ -12,26 +12,17 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.1 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.UnspecifiedValueExp;
-
-import org.eclipse.ocl.expressions.OCLExpression;
-
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -41,8 +32,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.ecore.impl.UnspecifiedValueExpImpl#getStartPosition <em>Start Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.ecore.impl.UnspecifiedValueExpImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.UnspecifiedValueExpImpl#getTypeStartPosition <em>Type Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.UnspecifiedValueExpImpl#getTypeEndPosition <em>Type End Position</em>}</li>
  * </ul>
@@ -51,46 +40,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * @generated
  */
 public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements UnspecifiedValueExp {
-	/**
-	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startPosition = START_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endPosition = END_POSITION_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -155,48 +104,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getStartPosition() {
-		return startPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartPosition(int newStartPosition) {
-		int oldStartPosition = startPosition;
-		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION, oldStartPosition, startPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndPosition() {
-		return endPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPosition(int newEndPosition) {
-		int oldEndPosition = endPosition;
-		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION, oldEndPosition, endPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public int getTypeStartPosition() {
 		return typeStartPosition;
 	}
@@ -242,10 +149,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION:
-				return new Integer(getStartPosition());
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION:
-				return new Integer(getEndPosition());
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				return new Integer(getTypeStartPosition());
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
@@ -262,12 +165,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				setTypeStartPosition(((Integer)newValue).intValue());
 				return;
@@ -286,12 +183,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
 				return;
@@ -310,10 +201,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
@@ -329,23 +216,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
@@ -368,23 +238,6 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.UNSPECIFIED_VALUE_EXP__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.UNSPECIFIED_VALUE_EXP__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
@@ -407,11 +260,7 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.5 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -37,7 +37,7 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
     /**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
     protected OrderedSetTypeImpl() {
 		super();
@@ -69,6 +69,7 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
      * <!-- end-user-doc -->
      * @generated NOT
      */
+    @Override
     public CollectionKind getKind() {
         return CollectionKind.ORDERED_SET_LITERAL;
     }

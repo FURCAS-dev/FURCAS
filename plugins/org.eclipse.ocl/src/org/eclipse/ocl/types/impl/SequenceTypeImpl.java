@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -32,27 +32,27 @@ import org.eclipse.ocl.types.TypesPackage;
  */
 public class SequenceTypeImpl<C, O> extends CollectionTypeImpl<C, O> implements SequenceType<C, O> {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SequenceTypeImpl() {
-        super();
-    }
+		super();
+	}
 	
 	protected SequenceTypeImpl(C elementType) {
 		super(elementType);
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.SEQUENCE_TYPE;
-    }
+		return TypesPackage.Literals.SEQUENCE_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

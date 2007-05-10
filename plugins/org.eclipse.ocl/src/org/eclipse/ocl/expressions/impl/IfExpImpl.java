@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: IfExpImpl.java,v 1.3 2007/05/10 17:48:23 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -50,7 +50,7 @@ public class IfExpImpl<C> extends OCLExpressionImpl<C> implements IfExp<C> {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> condition = null;
+	protected OCLExpression<C> condition;
 
 	/**
 	 * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
@@ -60,7 +60,7 @@ public class IfExpImpl<C> extends OCLExpressionImpl<C> implements IfExp<C> {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> thenExpression = null;
+	protected OCLExpression<C> thenExpression;
 
 	/**
 	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
@@ -70,7 +70,7 @@ public class IfExpImpl<C> extends OCLExpressionImpl<C> implements IfExp<C> {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> elseExpression = null;
+	protected OCLExpression<C> elseExpression;
 
 	/**
 	 * <!-- begin-user-doc -->

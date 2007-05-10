@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -51,7 +51,7 @@ public class TupleLiteralExpImpl<C, P> extends LiteralExpImpl<C> implements Tupl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TupleLiteralPart<C, P>> part = null;
+	protected EList<TupleLiteralPart<C, P>> part;
 
 	/**
 	 * <!-- begin-user-doc -->

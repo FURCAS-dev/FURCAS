@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -77,7 +77,7 @@ public class CollectionLiteralExpImpl<C> extends LiteralExpImpl<C> implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CollectionLiteralPart<C>> part = null;
+	protected EList<CollectionLiteralPart<C>> part;
 
 	/**
 	 * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.

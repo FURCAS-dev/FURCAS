@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.2 2007/02/14 13:42:12 cdamus Exp $
+ * $Id: ExpressionInOCL.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -42,97 +42,97 @@ import org.eclipse.ocl.expressions.Variable;
  */
 public interface ExpressionInOCL<C, PM> extends Visitable {
 	/**
-     * Returns the value of the '<em><b>Body Expression</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Body Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Body Expression</em>' containment reference.
-     * @see #setBodyExpression(OCLExpression<C>)
-     * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_BodyExpression()
-     * @model containment="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Body Expression</em>' containment reference.
+	 * @see #setBodyExpression(OCLExpression)
+	 * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_BodyExpression()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
 	OCLExpression<C> getBodyExpression();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getBodyExpression <em>Body Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getBodyExpression <em>Body Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Body Expression</em>' containment reference.
-     * @see #getBodyExpression()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Body Expression</em>' containment reference.
+	 * @see #getBodyExpression()
+	 * @generated
+	 */
 	void setBodyExpression(OCLExpression<C> value);
 
 	/**
-     * Returns the value of the '<em><b>Context Variable</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Context Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Context Variable</em>' containment reference.
-     * @see #setContextVariable(Variable<C, PM>)
-     * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_ContextVariable()
-     * @model containment="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Context Variable</em>' containment reference.
+	 * @see #setContextVariable(Variable)
+	 * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_ContextVariable()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
 	Variable<C, PM> getContextVariable();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getContextVariable <em>Context Variable</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getContextVariable <em>Context Variable</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Context Variable</em>' containment reference.
-     * @see #getContextVariable()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Context Variable</em>' containment reference.
+	 * @see #getContextVariable()
+	 * @generated
+	 */
 	void setContextVariable(Variable<C, PM> value);
 
 	/**
-     * Returns the value of the '<em><b>Result Variable</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Result Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Result Variable</em>' containment reference.
-     * @see #setResultVariable(Variable<C, PM>)
-     * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_ResultVariable()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Result Variable</em>' containment reference.
+	 * @see #setResultVariable(Variable)
+	 * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_ResultVariable()
+	 * @model containment="true"
+	 * @generated
+	 */
 	Variable<C, PM> getResultVariable();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getResultVariable <em>Result Variable</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getResultVariable <em>Result Variable</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Result Variable</em>' containment reference.
-     * @see #getResultVariable()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Result Variable</em>' containment reference.
+	 * @see #getResultVariable()
+	 * @generated
+	 */
 	void setResultVariable(Variable<C, PM> value);
 
 	/**
-     * Returns the value of the '<em><b>Parameter Variable</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.ocl.expressions.Variable<C, PM>}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parameter Variable</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.expressions.Variable}&lt;C, PM>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameter Variable</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameter Variable</em>' containment reference list.
-     * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_ParameterVariable()
-     * @model type="org.eclipse.ocl.expressions.Variable" containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Parameter Variable</em>' containment reference list.
+	 * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_ParameterVariable()
+	 * @model type="org.eclipse.ocl.expressions.Variable" containment="true"
+	 * @generated
+	 */
 	EList<Variable<C, PM>> getParameterVariable();
 
 } // ExpressionInOCL

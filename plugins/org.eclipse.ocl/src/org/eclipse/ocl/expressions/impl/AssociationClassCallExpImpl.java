@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.3 2007/05/10 17:48:23 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -47,7 +47,7 @@ public class AssociationClassCallExpImpl<C, P> extends NavigationCallExpImpl<C, 
 	 * @generated
 	 * @ordered
 	 */
-	protected C referredAssociationClass = null;
+	protected C referredAssociationClass;
 
 	/**
 	 * <!-- begin-user-doc -->

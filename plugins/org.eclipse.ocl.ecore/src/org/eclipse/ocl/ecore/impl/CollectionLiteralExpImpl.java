@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -20,26 +20,19 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.EcorePackage;
-
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.ocl.expressions.CollectionRange;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -86,7 +79,7 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CollectionLiteralPart<EClassifier>> part = null;
+	protected EList<CollectionLiteralPart<EClassifier>> part;
 
 	/**
 	 * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
@@ -299,11 +292,7 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

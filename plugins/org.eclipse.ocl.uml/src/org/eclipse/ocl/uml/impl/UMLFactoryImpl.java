@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactoryImpl.java,v 1.4 2007/03/27 18:46:41 cdamus Exp $
+ * $Id: UMLFactoryImpl.java,v 1.5 2007/05/10 17:48:02 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+//import org.eclipse.ocl.uml.*;
 import org.eclipse.ocl.uml.AnyType;
 import org.eclipse.ocl.uml.AssociationClassCallExp;
 import org.eclipse.ocl.uml.BagType;
@@ -560,6 +562,17 @@ public class UMLFactoryImpl extends EFactoryImpl implements UMLFactory {
 	 */
     public UMLPackage getUMLPackage() {
 		return (UMLPackage)getEPackage();
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static UMLPackage getPackage() {
+		return UMLPackage.eINSTANCE;
 	}
 
 } //UMLFactoryImpl

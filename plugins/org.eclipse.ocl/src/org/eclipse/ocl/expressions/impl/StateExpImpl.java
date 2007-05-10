@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -47,7 +47,7 @@ public class StateExpImpl<C, S> extends OCLExpressionImpl<C> implements StateExp
 	 * @generated
 	 * @ordered
 	 */
-	protected S referredState = null;
+	protected S referredState;
 
 	/**
 	 * <!-- begin-user-doc -->

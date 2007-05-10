@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -57,7 +57,7 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> body = null;
+	protected OCLExpression<EClassifier> body;
 
 	/**
 	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
@@ -67,7 +67,7 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable<EClassifier, EParameter>> iterator = null;
+	protected EList<Variable<EClassifier, EParameter>> iterator;
 
 	/**
 	 * <!-- begin-user-doc -->

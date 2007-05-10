@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.2 2007/02/14 13:42:06 cdamus Exp $
+ * $Id: ExpressionInOCL.java,v 1.3 2007/05/10 17:48:02 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Parameter;
  *
  *
  * @see org.eclipse.ocl.uml.UMLPackage#getExpressionInOCL()
- * @model
+ * @model extendedMetaData="name='ExpressionInOcl'"
  * @generated
  */
 public interface ExpressionInOCL extends OpaqueExpression, org.eclipse.ocl.utilities.ExpressionInOCL<Classifier, Parameter> {

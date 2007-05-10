@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -101,7 +101,7 @@ public class MessageExpImpl<C, COA, SSA> extends OCLExpressionImpl<C> implements
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> target = null;
+	protected OCLExpression<C> target;
 
 	/**
 	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
@@ -111,7 +111,7 @@ public class MessageExpImpl<C, COA, SSA> extends OCLExpressionImpl<C> implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLExpression<C>> argument = null;
+	protected EList<OCLExpression<C>> argument;
 
 	/**
 	 * The cached value of the '{@link #getCalledOperation() <em>Called Operation</em>}' containment reference.
@@ -121,7 +121,7 @@ public class MessageExpImpl<C, COA, SSA> extends OCLExpressionImpl<C> implements
 	 * @generated
 	 * @ordered
 	 */
-	protected COA calledOperation = null;
+	protected COA calledOperation;
 
 	/**
 	 * The cached value of the '{@link #getSentSignal() <em>Sent Signal</em>}' containment reference.
@@ -131,7 +131,7 @@ public class MessageExpImpl<C, COA, SSA> extends OCLExpressionImpl<C> implements
 	 * @generated
 	 * @ordered
 	 */
-	protected SSA sentSignal = null;
+	protected SSA sentSignal;
 
 	/**
 	 * <!-- begin-user-doc -->

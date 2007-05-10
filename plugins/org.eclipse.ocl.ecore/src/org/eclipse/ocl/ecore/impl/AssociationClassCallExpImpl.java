@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.1 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -53,7 +53,7 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EClassifier referredAssociationClass = null;
+	protected EClassifier referredAssociationClass;
 
 	/**
 	 * <!-- begin-user-doc -->

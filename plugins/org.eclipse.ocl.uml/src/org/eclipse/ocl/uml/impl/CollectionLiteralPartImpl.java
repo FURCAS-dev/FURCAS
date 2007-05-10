@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.2 2007/03/28 20:39:30 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.3 2007/05/10 17:48:01 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -59,6 +59,16 @@ public abstract class CollectionLiteralPartImpl extends TypedElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
+	public String getName() {
+		return super.getName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		throw new UnsupportedOperationException();
 	}
@@ -72,6 +82,16 @@ public abstract class CollectionLiteralPartImpl extends TypedElementImpl impleme
 		return (Classifier) super.getType();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setName(String name) {
+		super.setName(name);
+	}
+
 	/**
 	 * @generated NOT
 	 */

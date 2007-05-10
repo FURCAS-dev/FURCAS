@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: TypesFactoryImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+//import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.AnyType;
@@ -52,209 +54,209 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static TypesFactory init() {
-        try {
-            TypesFactory theTypesFactory = (TypesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Types"); //$NON-NLS-1$ 
-            if (theTypesFactory != null) {
-                return theTypesFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new TypesFactoryImpl();
-    }
+		try {
+			TypesFactory theTypesFactory = (TypesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Types"); //$NON-NLS-1$ 
+			if (theTypesFactory != null) {
+				return theTypesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new TypesFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypesFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case TypesPackage.ANY_TYPE: return createAnyType();
-            case TypesPackage.BAG_TYPE: return createBagType();
-            case TypesPackage.COLLECTION_TYPE: return createCollectionType();
-            case TypesPackage.ELEMENT_TYPE: return createElementType();
-            case TypesPackage.INVALID_TYPE: return createInvalidType();
-            case TypesPackage.MESSAGE_TYPE: return createMessageType();
-            case TypesPackage.ORDERED_SET_TYPE: return createOrderedSetType();
-            case TypesPackage.PRIMITIVE_TYPE: return createPrimitiveType();
-            case TypesPackage.SEQUENCE_TYPE: return createSequenceType();
-            case TypesPackage.SET_TYPE: return createSetType();
-            case TypesPackage.TUPLE_TYPE: return createTupleType();
-            case TypesPackage.TYPE_TYPE: return createTypeType();
-            case TypesPackage.VOID_TYPE: return createVoidType();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case TypesPackage.ANY_TYPE: return createAnyType();
+			case TypesPackage.BAG_TYPE: return createBagType();
+			case TypesPackage.COLLECTION_TYPE: return createCollectionType();
+			case TypesPackage.ELEMENT_TYPE: return createElementType();
+			case TypesPackage.INVALID_TYPE: return createInvalidType();
+			case TypesPackage.MESSAGE_TYPE: return createMessageType();
+			case TypesPackage.ORDERED_SET_TYPE: return createOrderedSetType();
+			case TypesPackage.PRIMITIVE_TYPE: return createPrimitiveType();
+			case TypesPackage.SEQUENCE_TYPE: return createSequenceType();
+			case TypesPackage.SET_TYPE: return createSetType();
+			case TypesPackage.TUPLE_TYPE: return createTupleType();
+			case TypesPackage.TYPE_TYPE: return createTypeType();
+			case TypesPackage.VOID_TYPE: return createVoidType();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <O> AnyType<O> createAnyType() {
-        AnyTypeImpl<O> anyType = new AnyTypeImpl<O>();
-        return anyType;
-    }
+		AnyTypeImpl<O> anyType = new AnyTypeImpl<O>();
+		return anyType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O> BagType<C, O> createBagType() {
-        BagTypeImpl<C, O> bagType = new BagTypeImpl<C, O>();
-        return bagType;
-    }
+		BagTypeImpl<C, O> bagType = new BagTypeImpl<C, O>();
+		return bagType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O> CollectionType<C, O> createCollectionType() {
-        CollectionTypeImpl<C, O> collectionType = new CollectionTypeImpl<C, O>();
-        return collectionType;
-    }
+		CollectionTypeImpl<C, O> collectionType = new CollectionTypeImpl<C, O>();
+		return collectionType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ElementType createElementType() {
-        ElementTypeImpl elementType = new ElementTypeImpl();
-        return elementType;
-    }
+		ElementTypeImpl elementType = new ElementTypeImpl();
+		return elementType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <O> InvalidType<O> createInvalidType() {
-        InvalidTypeImpl<O> invalidType = new InvalidTypeImpl<O>();
-        return invalidType;
-    }
+		InvalidTypeImpl<O> invalidType = new InvalidTypeImpl<O>();
+		return invalidType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O, P> MessageType<C, O, P> createMessageType() {
-        MessageTypeImpl<C, O, P> messageType = new MessageTypeImpl<C, O, P>();
-        return messageType;
-    }
+		MessageTypeImpl<C, O, P> messageType = new MessageTypeImpl<C, O, P>();
+		return messageType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O> OrderedSetType<C, O> createOrderedSetType() {
-        OrderedSetTypeImpl<C, O> orderedSetType = new OrderedSetTypeImpl<C, O>();
-        return orderedSetType;
-    }
+		OrderedSetTypeImpl<C, O> orderedSetType = new OrderedSetTypeImpl<C, O>();
+		return orderedSetType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public <O> PrimitiveType<O> createPrimitiveType() {
-        PrimitiveTypeImpl<O> primitiveType = new PrimitiveTypeImpl<O>();
-        return primitiveType;
-    }
+		PrimitiveTypeImpl<O> primitiveType = new PrimitiveTypeImpl<O>();
+		return primitiveType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O> SequenceType<C, O> createSequenceType() {
-        SequenceTypeImpl<C, O> sequenceType = new SequenceTypeImpl<C, O>();
-        return sequenceType;
-    }
+		SequenceTypeImpl<C, O> sequenceType = new SequenceTypeImpl<C, O>();
+		return sequenceType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O> SetType<C, O> createSetType() {
-        SetTypeImpl<C, O> setType = new SetTypeImpl<C, O>();
-        return setType;
-    }
+		SetTypeImpl<C, O> setType = new SetTypeImpl<C, O>();
+		return setType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <O, P> TupleType<O, P> createTupleType() {
-        TupleTypeImpl<O, P> tupleType = new TupleTypeImpl<O, P>();
-        return tupleType;
-    }
+		TupleTypeImpl<O, P> tupleType = new TupleTypeImpl<O, P>();
+		return tupleType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <C, O> TypeType<C, O> createTypeType() {
-        TypeTypeImpl<C, O> typeType = new TypeTypeImpl<C, O>();
-        return typeType;
-    }
+		TypeTypeImpl<C, O> typeType = new TypeTypeImpl<C, O>();
+		return typeType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public <O> VoidType<O> createVoidType() {
-        VoidTypeImpl<O> voidType = new VoidTypeImpl<O>();
-        return voidType;
-    }
+		VoidTypeImpl<O> voidType = new VoidTypeImpl<O>();
+		return voidType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypesPackage getTypesPackage() {
-        return (TypesPackage)getEPackage();
-    }
+		return (TypesPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static TypesPackage getPackage() {
-        return TypesPackage.eINSTANCE;
-    }
+		return TypesPackage.eINSTANCE;
+	}
 
 	public <C, O> BagType<C, O> createBagType(C elementType) {
 		return new BagTypeImpl<C, O>(elementType);

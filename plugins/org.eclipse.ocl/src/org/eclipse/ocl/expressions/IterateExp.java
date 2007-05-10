@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IterateExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: IterateExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -43,7 +43,7 @@ public interface IterateExp<C, PM> extends LoopExp<C, PM> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result</em>' containment reference.
-	 * @see #setResult(Variable<C, PM>)
+	 * @see #setResult(Variable)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIterateExp_Result()
 	 * @model containment="true"
 	 * @generated

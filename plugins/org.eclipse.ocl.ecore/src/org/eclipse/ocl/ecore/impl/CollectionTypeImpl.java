@@ -12,11 +12,9 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.4 2007/03/29 22:34:30 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.5 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
-
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
@@ -150,7 +148,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * @generated
 	 * @ordered
 	 */
-    protected EClassifier elementType = null;
+    protected EClassifier elementType;
 
     /**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -172,7 +170,6 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 */
     protected CollectionTypeImpl() {
 		super();
-        setInstanceClass(Collection.class);
 	}
 
     /**

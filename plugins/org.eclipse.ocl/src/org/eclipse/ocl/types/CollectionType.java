@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionType.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: CollectionType.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -43,58 +43,58 @@ public interface CollectionType<C, O> extends PredefinedType<O>, TypedASTNode {
 	String SINGLETON_NAME = "Collection"; //$NON-NLS-1$
     
 	/**
-     * Returns the value of the '<em><b>Element Type</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Element Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Element Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Element Type</em>' reference.
-     * @see #setElementType(C)
-     * @see org.eclipse.ocl.types.TypesPackage#getCollectionType_ElementType()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Element Type</em>' reference.
+	 * @see #setElementType(Object)
+	 * @see org.eclipse.ocl.types.TypesPackage#getCollectionType_ElementType()
+	 * @model
+	 * @generated
+	 */
 	C getElementType();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.types.CollectionType#getElementType <em>Element Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.types.CollectionType#getElementType <em>Element Type</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Element Type</em>' reference.
-     * @see #getElementType()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Element Type</em>' reference.
+	 * @see #getElementType()
+	 * @generated
+	 */
 	void setElementType(C value);
 
 	/**
-     * Returns the value of the '<em><b>Kind</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.ocl.expressions.CollectionKind}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.expressions.CollectionKind}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Collection Kind</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Kind</em>' attribute.
-     * @see org.eclipse.ocl.expressions.CollectionKind
-     * @see org.eclipse.ocl.types.TypesPackage#getCollectionType_Kind()
-     * @model required="true" transient="true" changeable="false" volatile="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Kind</em>' attribute.
+	 * @see org.eclipse.ocl.expressions.CollectionKind
+	 * @see org.eclipse.ocl.types.TypesPackage#getCollectionType_Kind()
+	 * @model required="true" transient="true" changeable="false" volatile="true"
+	 * @generated
+	 */
 	CollectionKind getKind();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iterators</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @model type="java.lang.Object"
-     * @generated
-     */
+	 * @model type="java.lang.Object"
+	 * @generated
+	 */
 	EList<O> oclIterators();
 
 } // CollectionType

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: Variable.java,v 1.2 2007/02/14 13:42:13 cdamus Exp $
+ * $Id: Variable.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -47,7 +47,7 @@ public interface Variable<C, PM> extends TypedElement<C>, Visitable, TypedASTNod
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(OCLExpression<C>)
+	 * @see #setInitExpression(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_InitExpression()
 	 * @model containment="true"
 	 * @generated
@@ -73,7 +73,7 @@ public interface Variable<C, PM> extends TypedElement<C>, Visitable, TypedASTNod
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Represented Parameter</em>' reference.
-	 * @see #setRepresentedParameter(PM)
+	 * @see #setRepresentedParameter(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_RepresentedParameter()
 	 * @model
 	 * @generated

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
   <uml:Model xmi:id="_unvTINppEdu-d8Dv4wLx9Q" name="ocl">
     <packagedElement xmi:type="uml:Package" xmi:id="_unvTIdppEdu-d8Dv4wLx9Q" name="types">
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTItppEdu-d8Dv4wLx9Q" name="AnyType">
@@ -209,7 +209,11 @@
           </ownedParameter>
         </ownedTemplateSignature>
         <generalization xmi:id="_unvTp9ppEdu-d8Dv4wLx9Q" general="_unvTqdppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvTqNppEdu-d8Dv4wLx9Q" name="referredType" type="_unvTpNppEdu-d8Dv4wLx9Q" isOrdered="true" association="_unvTrNppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvTqNppEdu-d8Dv4wLx9Q" name="referredType" type="_unvTpNppEdu-d8Dv4wLx9Q" isOrdered="true" association="_unvTrNppEdu-d8Dv4wLx9Q">
+          <eAnnotations xmi:id="_fPg-UP17EduIT4IRhWIERQ" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:id="_gYSkQP17EduIT4IRhWIERQ" key="suppressedSetVisibility" value="true"/>
+          </eAnnotations>
+        </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_unvTqdppEdu-d8Dv4wLx9Q" name="PredefinedType_O">
           <templateBinding xmi:id="_unvTqtppEdu-d8Dv4wLx9Q" signature="_unvU9tppEdu-d8Dv4wLx9Q">
             <parameterSubstitution xmi:id="_unvTq9ppEdu-d8Dv4wLx9Q" formal="_unvU99ppEdu-d8Dv4wLx9Q" actual="_unvTptppEdu-d8Dv4wLx9Q"/>
@@ -231,520 +235,6 @@
             <parameterSubstitution xmi:id="_unvTtdppEdu-d8Dv4wLx9Q" formal="_unvU99ppEdu-d8Dv4wLx9Q" actual="_unvTsdppEdu-d8Dv4wLx9Q"/>
           </templateBinding>
         </nestedClassifier>
-      </packagedElement>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_unvTttppEdu-d8Dv4wLx9Q" name="utilities">
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTt9ppEdu-d8Dv4wLx9Q" name="ASTNode">
-        <ownedAttribute xmi:id="_unvTuNppEdu-d8Dv4wLx9Q" name="startPosition" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTudppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_unvTutppEdu-d8Dv4wLx9Q" name="endPosition" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTu9ppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTvNppEdu-d8Dv4wLx9Q" name="CallingASTNode">
-        <generalization xmi:id="_unvTvdppEdu-d8Dv4wLx9Q" general="_unvTt9ppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvTvtppEdu-d8Dv4wLx9Q" name="propertyStartPosition" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTv9ppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_unvTwNppEdu-d8Dv4wLx9Q" name="propertyEndPosition" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTwdppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTwtppEdu-d8Dv4wLx9Q" name="TypedASTNode">
-        <generalization xmi:id="_unvTw9ppEdu-d8Dv4wLx9Q" general="_unvTt9ppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvTxNppEdu-d8Dv4wLx9Q" name="typeStartPosition" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTxdppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_unvTxtppEdu-d8Dv4wLx9Q" name="typeEndPosition" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTx9ppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTyNppEdu-d8Dv4wLx9Q" name="Visitable">
-        <ownedOperation xmi:id="_unvTydppEdu-d8Dv4wLx9Q" name="accept" visibility="public">
-          <ownedParameter xmi:id="_unvTytppEdu-d8Dv4wLx9Q" type="_unvT0NppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTy9ppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvTzNppEdu-d8Dv4wLx9Q" name="v" type="_unvT0tppEdu-d8Dv4wLx9Q" isOrdered="true">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTzdppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedTemplateSignature xmi:id="_unvTztppEdu-d8Dv4wLx9Q" parameter="_unvTz9ppEdu-d8Dv4wLx9Q _unvT0dppEdu-d8Dv4wLx9Q">
-            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTz9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvT0NppEdu-d8Dv4wLx9Q">
-              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT0NppEdu-d8Dv4wLx9Q" name="T" templateParameter="_unvTz9ppEdu-d8Dv4wLx9Q"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT0dppEdu-d8Dv4wLx9Q" parameteredElement="_unvT0tppEdu-d8Dv4wLx9Q">
-              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT0tppEdu-d8Dv4wLx9Q" name="U" templateParameter="_unvT0dppEdu-d8Dv4wLx9Q"/>
-            </ownedParameter>
-          </ownedTemplateSignature>
-        </ownedOperation>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT09ppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT1NppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT1dppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT1tppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT19ppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT2NppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT2dppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT2tppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT29ppEdu-d8Dv4wLx9Q" name="Wildcard"/>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT3NppEdu-d8Dv4wLx9Q" name="Visitor_T_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard">
-          <templateBinding xmi:id="_unvT3dppEdu-d8Dv4wLx9Q" signature="_unvT6dppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvT3tppEdu-d8Dv4wLx9Q" formal="_unvT6tppEdu-d8Dv4wLx9Q" actual="_unvT0NppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT39ppEdu-d8Dv4wLx9Q" formal="_unvT7NppEdu-d8Dv4wLx9Q" actual="_unvT09ppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT4NppEdu-d8Dv4wLx9Q" formal="_unvT7tppEdu-d8Dv4wLx9Q" actual="_unvT1NppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT4dppEdu-d8Dv4wLx9Q" formal="_unvT8NppEdu-d8Dv4wLx9Q" actual="_unvT1dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT4tppEdu-d8Dv4wLx9Q" formal="_unvT8tppEdu-d8Dv4wLx9Q" actual="_unvT1tppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT49ppEdu-d8Dv4wLx9Q" formal="_unvT9NppEdu-d8Dv4wLx9Q" actual="_unvT19ppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT5NppEdu-d8Dv4wLx9Q" formal="_unvT9tppEdu-d8Dv4wLx9Q" actual="_unvT2NppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT5dppEdu-d8Dv4wLx9Q" formal="_unvT-NppEdu-d8Dv4wLx9Q" actual="_unvT2dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT5tppEdu-d8Dv4wLx9Q" formal="_unvT-tppEdu-d8Dv4wLx9Q" actual="_unvT2tppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvT59ppEdu-d8Dv4wLx9Q" formal="_unvT_NppEdu-d8Dv4wLx9Q" actual="_unvT29ppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvT6NppEdu-d8Dv4wLx9Q" name="Visitor">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvT6dppEdu-d8Dv4wLx9Q" parameter="_unvT6tppEdu-d8Dv4wLx9Q _unvT7NppEdu-d8Dv4wLx9Q _unvT7tppEdu-d8Dv4wLx9Q _unvT8NppEdu-d8Dv4wLx9Q _unvT8tppEdu-d8Dv4wLx9Q _unvT9NppEdu-d8Dv4wLx9Q _unvT9tppEdu-d8Dv4wLx9Q _unvT-NppEdu-d8Dv4wLx9Q _unvT-tppEdu-d8Dv4wLx9Q _unvT_NppEdu-d8Dv4wLx9Q">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT6tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT69ppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT69ppEdu-d8Dv4wLx9Q" name="T" templateParameter="_unvT6tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT7NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT7dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT7dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvT7NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT7tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT79ppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT79ppEdu-d8Dv4wLx9Q" name="O" templateParameter="_unvT7tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT8NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT8dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT8dppEdu-d8Dv4wLx9Q" name="P" templateParameter="_unvT8NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT8tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT89ppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT89ppEdu-d8Dv4wLx9Q" name="EL" templateParameter="_unvT8tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT9NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT9dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT9dppEdu-d8Dv4wLx9Q" name="PM" templateParameter="_unvT9NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT9tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT99ppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT99ppEdu-d8Dv4wLx9Q" name="S" templateParameter="_unvT9tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT-NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT-dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT-dppEdu-d8Dv4wLx9Q" name="COA" templateParameter="_unvT-NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT-tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT-9ppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT-9ppEdu-d8Dv4wLx9Q" name="SSA" templateParameter="_unvT-tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT_NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT_dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT_dppEdu-d8Dv4wLx9Q" name="CT" templateParameter="_unvT_NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-        <ownedOperation xmi:id="_unvT_tppEdu-d8Dv4wLx9Q" name="visitVariableExp" visibility="public">
-          <ownedParameter xmi:id="_unvT_9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUANppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUAdppEdu-d8Dv4wLx9Q" name="variableExp" type="_unvUbtppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUAtppEdu-d8Dv4wLx9Q" name="visitLetExp" visibility="public">
-          <ownedParameter xmi:id="_unvUA9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUBNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUBdppEdu-d8Dv4wLx9Q" name="letExp" type="_unvUctppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUBtppEdu-d8Dv4wLx9Q" name="visitIfExp" visibility="public">
-          <ownedParameter xmi:id="_unvUB9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUCNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUCdppEdu-d8Dv4wLx9Q" name="ifExp" type="_unvUdtppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUCtppEdu-d8Dv4wLx9Q" name="visitTypeExp" visibility="public">
-          <ownedParameter xmi:id="_unvUC9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUDNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUDdppEdu-d8Dv4wLx9Q" name="typeExp" type="_unvUedppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUDtppEdu-d8Dv4wLx9Q" name="visitPropertyCallExp" visibility="public">
-          <ownedParameter xmi:id="_unvUD9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUENppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUEdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUfNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUEtppEdu-d8Dv4wLx9Q" name="visitOperationCallExp" visibility="public">
-          <ownedParameter xmi:id="_unvUE9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUFNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUFdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUgNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUFtppEdu-d8Dv4wLx9Q" name="visitAssociationClassCallExp" visibility="public">
-          <ownedParameter xmi:id="_unvUF9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUGNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUGdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUhNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUGtppEdu-d8Dv4wLx9Q" name="visitIteratorExp" visibility="public">
-          <ownedParameter xmi:id="_unvUG9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUHNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUHdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUiNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUHtppEdu-d8Dv4wLx9Q" name="visitIterateExp" visibility="public">
-          <ownedParameter xmi:id="_unvUH9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUINppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUIdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUjNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUItppEdu-d8Dv4wLx9Q" name="visitUnspecifiedValueExp" visibility="public">
-          <ownedParameter xmi:id="_unvUI9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUJNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUJdppEdu-d8Dv4wLx9Q" name="unspecExp" type="_unvUkNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUJtppEdu-d8Dv4wLx9Q" name="visitIntegerLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUJ9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUKNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUKdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUk9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUKtppEdu-d8Dv4wLx9Q" name="visitUnlimitedNaturalLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUK9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvULNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvULdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUltppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvULtppEdu-d8Dv4wLx9Q" name="visitRealLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUL9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUMNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUMdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUmdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUMtppEdu-d8Dv4wLx9Q" name="visitStringLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUM9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUNNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUNdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUnNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUNtppEdu-d8Dv4wLx9Q" name="visitBooleanLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUN9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUONppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUOdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUn9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUOtppEdu-d8Dv4wLx9Q" name="visitEnumLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUO9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUPNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUPdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUotppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUPtppEdu-d8Dv4wLx9Q" name="visitCollectionLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUP9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUQNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUQdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUptppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUQtppEdu-d8Dv4wLx9Q" name="visitCollectionItem" visibility="public">
-          <ownedParameter xmi:id="_unvUQ9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvURNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvURdppEdu-d8Dv4wLx9Q" name="item" type="_unvUqdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvURtppEdu-d8Dv4wLx9Q" name="visitCollectionRange" visibility="public">
-          <ownedParameter xmi:id="_unvUR9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUSNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUSdppEdu-d8Dv4wLx9Q" name="range" type="_unvUrNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUStppEdu-d8Dv4wLx9Q" name="visitTupleLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUS9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUTNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUTdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUr9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUTtppEdu-d8Dv4wLx9Q" name="visitTupleLiteralPart" visibility="public">
-          <ownedParameter xmi:id="_unvUT9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUUNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUUdppEdu-d8Dv4wLx9Q" name="part" type="_unvUs9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUUtppEdu-d8Dv4wLx9Q" name="visitInvalidLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUU9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUVNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUVdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUt9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUVtppEdu-d8Dv4wLx9Q" name="visitNullLiteralExp" visibility="public">
-          <ownedParameter xmi:id="_unvUV9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUWNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUWdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUutppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUWtppEdu-d8Dv4wLx9Q" name="visitStateExp" visibility="public">
-          <ownedParameter xmi:id="_unvUW9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUXNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUXdppEdu-d8Dv4wLx9Q" name="stateExp" type="_unvUvdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUXtppEdu-d8Dv4wLx9Q" name="visitMessageExp" visibility="public">
-          <ownedParameter xmi:id="_unvUX9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUYNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUYdppEdu-d8Dv4wLx9Q" name="messageExp" type="_unvUwdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUYtppEdu-d8Dv4wLx9Q" name="visitVariable" visibility="public">
-          <ownedParameter xmi:id="_unvUY9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUZNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUZdppEdu-d8Dv4wLx9Q" name="variable" type="_unvUxtppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUZtppEdu-d8Dv4wLx9Q" name="visitExpressionInOCL" visibility="public">
-          <ownedParameter xmi:id="_unvUZ9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUaNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUadppEdu-d8Dv4wLx9Q" name="expression" type="_unvUytppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvUatppEdu-d8Dv4wLx9Q" name="visitConstraint" visibility="public">
-          <ownedParameter xmi:id="_unvUa9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUbNppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:id="_unvUbdppEdu-d8Dv4wLx9Q" name="constraint" type="_unvT_dppEdu-d8Dv4wLx9Q" isOrdered="true"/>
-        </ownedOperation>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUbtppEdu-d8Dv4wLx9Q" name="VariableExp_C_PM">
-          <templateBinding xmi:id="_unvUb9ppEdu-d8Dv4wLx9Q" signature="_un1avtppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUcNppEdu-d8Dv4wLx9Q" formal="_un1av9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUcdppEdu-d8Dv4wLx9Q" formal="_un1awdppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUctppEdu-d8Dv4wLx9Q" name="LetExp_C_PM">
-          <templateBinding xmi:id="_unvUc9ppEdu-d8Dv4wLx9Q" signature="_un1Z-tppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUdNppEdu-d8Dv4wLx9Q" formal="_un1Z-9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUddppEdu-d8Dv4wLx9Q" formal="_un1Z_dppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUdtppEdu-d8Dv4wLx9Q" name="IfExp_C">
-          <templateBinding xmi:id="_unvUd9ppEdu-d8Dv4wLx9Q" signature="_unvVsdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUeNppEdu-d8Dv4wLx9Q" formal="_unvVstppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUedppEdu-d8Dv4wLx9Q" name="TypeExp_C">
-          <templateBinding xmi:id="_unvUetppEdu-d8Dv4wLx9Q" signature="_un1aqdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUe9ppEdu-d8Dv4wLx9Q" formal="_un1aqtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUfNppEdu-d8Dv4wLx9Q" name="PropertyCallExp_C_P">
-          <templateBinding xmi:id="_unvUfdppEdu-d8Dv4wLx9Q" signature="_un1aTtppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUftppEdu-d8Dv4wLx9Q" formal="_un1aT9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUf9ppEdu-d8Dv4wLx9Q" formal="_un1aUdppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUgNppEdu-d8Dv4wLx9Q" name="OperationCallExp_C_O">
-          <templateBinding xmi:id="_unvUgdppEdu-d8Dv4wLx9Q" signature="_un1aNtppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUgtppEdu-d8Dv4wLx9Q" formal="_un1aN9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUg9ppEdu-d8Dv4wLx9Q" formal="_un1aOdppEdu-d8Dv4wLx9Q" actual="_unvT79ppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUhNppEdu-d8Dv4wLx9Q" name="AssociationClassCallExp_C_P">
-          <templateBinding xmi:id="_unvUhdppEdu-d8Dv4wLx9Q" signature="_unvVAdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUhtppEdu-d8Dv4wLx9Q" formal="_unvVAtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUh9ppEdu-d8Dv4wLx9Q" formal="_unvVBNppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUiNppEdu-d8Dv4wLx9Q" name="IteratorExp_C_PM">
-          <templateBinding xmi:id="_unvUidppEdu-d8Dv4wLx9Q" signature="_un1Z79ppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUitppEdu-d8Dv4wLx9Q" formal="_un1Z8NppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUi9ppEdu-d8Dv4wLx9Q" formal="_un1Z8tppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUjNppEdu-d8Dv4wLx9Q" name="IterateExp_C_PM">
-          <templateBinding xmi:id="_unvUjdppEdu-d8Dv4wLx9Q" signature="_unvV6tppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUjtppEdu-d8Dv4wLx9Q" formal="_unvV69ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUj9ppEdu-d8Dv4wLx9Q" formal="_unvV7dppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUkNppEdu-d8Dv4wLx9Q" name="UnspecifiedValueExp_C">
-          <templateBinding xmi:id="_unvUkdppEdu-d8Dv4wLx9Q" signature="_un1atdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUktppEdu-d8Dv4wLx9Q" formal="_un1attppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUk9ppEdu-d8Dv4wLx9Q" name="IntegerLiteralExp_C">
-          <templateBinding xmi:id="_unvUlNppEdu-d8Dv4wLx9Q" signature="_unvVxdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUldppEdu-d8Dv4wLx9Q" formal="_unvVxtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUltppEdu-d8Dv4wLx9Q" name="UnlimitedNaturalLiteralExp_C">
-          <templateBinding xmi:id="_unvUl9ppEdu-d8Dv4wLx9Q" signature="_unvV19ppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUmNppEdu-d8Dv4wLx9Q" formal="_unvV2NppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUmdppEdu-d8Dv4wLx9Q" name="RealLiteralExp_C">
-          <templateBinding xmi:id="_unvUmtppEdu-d8Dv4wLx9Q" signature="_un1aXdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUm9ppEdu-d8Dv4wLx9Q" formal="_un1aXtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUnNppEdu-d8Dv4wLx9Q" name="StringLiteralExp_C">
-          <templateBinding xmi:id="_unvUndppEdu-d8Dv4wLx9Q" signature="_un1addppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUntppEdu-d8Dv4wLx9Q" formal="_un1adtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUn9ppEdu-d8Dv4wLx9Q" name="BooleanLiteralExp_C">
-          <templateBinding xmi:id="_unvUoNppEdu-d8Dv4wLx9Q" signature="_unvVR9ppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUodppEdu-d8Dv4wLx9Q" formal="_unvVSNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUotppEdu-d8Dv4wLx9Q" name="EnumLiteralExp_C_EL">
-          <templateBinding xmi:id="_unvUo9ppEdu-d8Dv4wLx9Q" signature="_unvVo9ppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUpNppEdu-d8Dv4wLx9Q" formal="_unvVpNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUpdppEdu-d8Dv4wLx9Q" formal="_unvVptppEdu-d8Dv4wLx9Q" actual="_unvT89ppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUptppEdu-d8Dv4wLx9Q" name="CollectionLiteralExp_C">
-          <templateBinding xmi:id="_unvUp9ppEdu-d8Dv4wLx9Q" signature="_unvVftppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUqNppEdu-d8Dv4wLx9Q" formal="_unvVf9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUqdppEdu-d8Dv4wLx9Q" name="CollectionItem_C">
-          <templateBinding xmi:id="_unvUqtppEdu-d8Dv4wLx9Q" signature="_unvVYdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUq9ppEdu-d8Dv4wLx9Q" formal="_unvVYtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUrNppEdu-d8Dv4wLx9Q" name="CollectionRange_C">
-          <templateBinding xmi:id="_unvUrdppEdu-d8Dv4wLx9Q" signature="_unvVktppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUrtppEdu-d8Dv4wLx9Q" formal="_unvVk9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUr9ppEdu-d8Dv4wLx9Q" name="TupleLiteralExp_C_P">
-          <templateBinding xmi:id="_unvUsNppEdu-d8Dv4wLx9Q" signature="_un1af9ppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUsdppEdu-d8Dv4wLx9Q" formal="_un1agNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUstppEdu-d8Dv4wLx9Q" formal="_un1agtppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUs9ppEdu-d8Dv4wLx9Q" name="TupleLiteralPart_C_P">
-          <templateBinding xmi:id="_unvUtNppEdu-d8Dv4wLx9Q" signature="_un1akNppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUtdppEdu-d8Dv4wLx9Q" formal="_un1akdppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUttppEdu-d8Dv4wLx9Q" formal="_un1ak9ppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUt9ppEdu-d8Dv4wLx9Q" name="InvalidLiteralExp_C">
-          <templateBinding xmi:id="_unvUuNppEdu-d8Dv4wLx9Q" signature="_unvV4tppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUudppEdu-d8Dv4wLx9Q" formal="_unvV49ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUutppEdu-d8Dv4wLx9Q" name="NullLiteralExp_C">
-          <templateBinding xmi:id="_unvUu9ppEdu-d8Dv4wLx9Q" signature="_un1aLtppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUvNppEdu-d8Dv4wLx9Q" formal="_un1aL9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUvdppEdu-d8Dv4wLx9Q" name="StateExp_C_S">
-          <templateBinding xmi:id="_unvUvtppEdu-d8Dv4wLx9Q" signature="_un1aZ9ppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUv9ppEdu-d8Dv4wLx9Q" formal="_un1aaNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUwNppEdu-d8Dv4wLx9Q" formal="_un1aatppEdu-d8Dv4wLx9Q" actual="_unvT99ppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUwdppEdu-d8Dv4wLx9Q" name="MessageExp_C_COA_SSA">
-          <templateBinding xmi:id="_unvUwtppEdu-d8Dv4wLx9Q" signature="_un1aENppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUw9ppEdu-d8Dv4wLx9Q" formal="_un1aEdppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUxNppEdu-d8Dv4wLx9Q" formal="_un1aE9ppEdu-d8Dv4wLx9Q" actual="_unvT-dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUxdppEdu-d8Dv4wLx9Q" formal="_un1aFdppEdu-d8Dv4wLx9Q" actual="_unvT-9ppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUxtppEdu-d8Dv4wLx9Q" name="Variable_C_PM">
-          <templateBinding xmi:id="_unvUx9ppEdu-d8Dv4wLx9Q" signature="_un1Z1NppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUyNppEdu-d8Dv4wLx9Q" formal="_un1Z1dppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUydppEdu-d8Dv4wLx9Q" formal="_un1Z19ppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUytppEdu-d8Dv4wLx9Q" name="ExpressionInOCL_C_PM">
-          <templateBinding xmi:id="_unvUy9ppEdu-d8Dv4wLx9Q" signature="_unvU2dppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvUzNppEdu-d8Dv4wLx9Q" formal="_unvU2tppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvUzdppEdu-d8Dv4wLx9Q" formal="_unvU3NppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvUztppEdu-d8Dv4wLx9Q" name="TypedElement">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvUz9ppEdu-d8Dv4wLx9Q" parameter="_unvU0NppEdu-d8Dv4wLx9Q">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU0NppEdu-d8Dv4wLx9Q" parameteredElement="_unvU0dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU0dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvU0NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-        <ownedOperation xmi:id="_unvU0tppEdu-d8Dv4wLx9Q" name="getName" visibility="public">
-          <ownedParameter xmi:id="_unvU09ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU1NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvU1dppEdu-d8Dv4wLx9Q" name="getType" visibility="public">
-          <ownedParameter xmi:id="_unvU1tppEdu-d8Dv4wLx9Q" type="_unvU0dppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU19ppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:id="_0UOPMN1mEduZ74nG8yJaxg" name="setName">
-          <ownedParameter xmi:id="_7Yh_cN1mEduZ74nG8yJaxg" name="name">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:id="_1EvGIN1mEduZ74nG8yJaxg" name="setType">
-          <ownedParameter xmi:id="_FcnTgN1nEduZ74nG8yJaxg" name="type" type="_unvU0dppEdu-d8Dv4wLx9Q"/>
-        </ownedOperation>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvU2NppEdu-d8Dv4wLx9Q" name="ExpressionInOCL">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvU2dppEdu-d8Dv4wLx9Q" parameter="_unvU2tppEdu-d8Dv4wLx9Q _unvU3NppEdu-d8Dv4wLx9Q">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU2tppEdu-d8Dv4wLx9Q" parameteredElement="_unvU29ppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU29ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvU2tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU3NppEdu-d8Dv4wLx9Q" parameteredElement="_unvU3dppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU3dppEdu-d8Dv4wLx9Q" name="PM" templateParameter="_unvU3NppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-        <generalization xmi:id="_unvU3tppEdu-d8Dv4wLx9Q" general="_unvTyNppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvU39ppEdu-d8Dv4wLx9Q" name="bodyExpression" type="_unvU5tppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU7dppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvU4NppEdu-d8Dv4wLx9Q" name="contextVariable" type="_unvU6dppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU79ppEdu-d8Dv4wLx9Q"/>
-        <ownedAttribute xmi:id="_unvU4dppEdu-d8Dv4wLx9Q" name="resultVariable" type="_unvU6dppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU8dppEdu-d8Dv4wLx9Q">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU4tppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_unvU49ppEdu-d8Dv4wLx9Q" name="parameterVariable" type="_unvU6dppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU89ppEdu-d8Dv4wLx9Q">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unvU5NppEdu-d8Dv4wLx9Q" value="*"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU5dppEdu-d8Dv4wLx9Q"/>
-        </ownedAttribute>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvU5tppEdu-d8Dv4wLx9Q" name="OCLExpression_C">
-          <templateBinding xmi:id="_unvU59ppEdu-d8Dv4wLx9Q" signature="_unvVNdppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvU6NppEdu-d8Dv4wLx9Q" formal="_unvVNtppEdu-d8Dv4wLx9Q" actual="_unvU29ppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvU6dppEdu-d8Dv4wLx9Q" name="Variable_C_PM">
-          <templateBinding xmi:id="_unvU6tppEdu-d8Dv4wLx9Q" signature="_un1Z1NppEdu-d8Dv4wLx9Q">
-            <parameterSubstitution xmi:id="_unvU69ppEdu-d8Dv4wLx9Q" formal="_un1Z1dppEdu-d8Dv4wLx9Q" actual="_unvU29ppEdu-d8Dv4wLx9Q"/>
-            <parameterSubstitution xmi:id="_unvU7NppEdu-d8Dv4wLx9Q" formal="_un1Z19ppEdu-d8Dv4wLx9Q" actual="_unvU3dppEdu-d8Dv4wLx9Q"/>
-          </templateBinding>
-        </nestedClassifier>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_unvU7dppEdu-d8Dv4wLx9Q" memberEnd="_unvU39ppEdu-d8Dv4wLx9Q _unvU7tppEdu-d8Dv4wLx9Q">
-        <ownedEnd xmi:id="_unvU7tppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU7dppEdu-d8Dv4wLx9Q"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_unvU79ppEdu-d8Dv4wLx9Q" memberEnd="_unvU4NppEdu-d8Dv4wLx9Q _unvU8NppEdu-d8Dv4wLx9Q">
-        <ownedEnd xmi:id="_unvU8NppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU79ppEdu-d8Dv4wLx9Q"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_unvU8dppEdu-d8Dv4wLx9Q" memberEnd="_unvU4dppEdu-d8Dv4wLx9Q _unvU8tppEdu-d8Dv4wLx9Q">
-        <ownedEnd xmi:id="_unvU8tppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU8dppEdu-d8Dv4wLx9Q"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_unvU89ppEdu-d8Dv4wLx9Q" memberEnd="_unvU49ppEdu-d8Dv4wLx9Q _unvU9NppEdu-d8Dv4wLx9Q">
-        <ownedEnd xmi:id="_unvU9NppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU89ppEdu-d8Dv4wLx9Q"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Interface" xmi:id="_unvU9dppEdu-d8Dv4wLx9Q" name="PredefinedType">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvU9tppEdu-d8Dv4wLx9Q" parameter="_unvU99ppEdu-d8Dv4wLx9Q">
-          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU99ppEdu-d8Dv4wLx9Q" parameteredElement="_unvU-NppEdu-d8Dv4wLx9Q">
-            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU-NppEdu-d8Dv4wLx9Q" name="O" templateParameter="_unvU99ppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedTemplateSignature>
-        <ownedOperation xmi:id="_unvU-dppEdu-d8Dv4wLx9Q" name="getName" visibility="public">
-          <ownedParameter xmi:id="_unvU-tppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:id="_unvU-9ppEdu-d8Dv4wLx9Q" name="oclOperations" visibility="public">
-          <ownedParameter xmi:id="_unvU_NppEdu-d8Dv4wLx9Q" type="_unvU-NppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unvU_dppEdu-d8Dv4wLx9Q" value="*"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU_tppEdu-d8Dv4wLx9Q"/>
-          </ownedParameter>
-        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_unvU_9ppEdu-d8Dv4wLx9Q" name="expressions">
@@ -1571,6 +1061,526 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_un1azdppEdu-d8Dv4wLx9Q" memberEnd="_un1axNppEdu-d8Dv4wLx9Q _un1aztppEdu-d8Dv4wLx9Q">
         <ownedEnd xmi:id="_un1aztppEdu-d8Dv4wLx9Q" type="_un1avdppEdu-d8Dv4wLx9Q" association="_un1azdppEdu-d8Dv4wLx9Q"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_unvTttppEdu-d8Dv4wLx9Q" name="utilities">
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTt9ppEdu-d8Dv4wLx9Q" name="ASTNode">
+        <ownedAttribute xmi:id="_unvTuNppEdu-d8Dv4wLx9Q" name="startPosition" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTudppEdu-d8Dv4wLx9Q"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_BeQHQP12EduIT4IRhWIERQ" value="-1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_unvTutppEdu-d8Dv4wLx9Q" name="endPosition" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTu9ppEdu-d8Dv4wLx9Q"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_IYofcP12EduIT4IRhWIERQ" value="-1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTvNppEdu-d8Dv4wLx9Q" name="CallingASTNode">
+        <generalization xmi:id="_unvTvdppEdu-d8Dv4wLx9Q" general="_unvTt9ppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvTvtppEdu-d8Dv4wLx9Q" name="propertyStartPosition" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTv9ppEdu-d8Dv4wLx9Q"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_Lr_GkP12EduIT4IRhWIERQ" value="-1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_unvTwNppEdu-d8Dv4wLx9Q" name="propertyEndPosition" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTwdppEdu-d8Dv4wLx9Q"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_Ne4AgP12EduIT4IRhWIERQ" value="-1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTwtppEdu-d8Dv4wLx9Q" name="TypedASTNode">
+        <generalization xmi:id="_unvTw9ppEdu-d8Dv4wLx9Q" general="_unvTt9ppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvTxNppEdu-d8Dv4wLx9Q" name="typeStartPosition" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTxdppEdu-d8Dv4wLx9Q"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_QCFkIP12EduIT4IRhWIERQ" value="-1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_unvTxtppEdu-d8Dv4wLx9Q" name="typeEndPosition" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTx9ppEdu-d8Dv4wLx9Q"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_RmeIAP12EduIT4IRhWIERQ" value="-1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvTyNppEdu-d8Dv4wLx9Q" name="Visitable">
+        <ownedOperation xmi:id="_unvTydppEdu-d8Dv4wLx9Q" name="accept" visibility="public">
+          <ownedParameter xmi:id="_unvTytppEdu-d8Dv4wLx9Q" type="_unvT0NppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTy9ppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvTzNppEdu-d8Dv4wLx9Q" name="v" type="_unvT0tppEdu-d8Dv4wLx9Q" isOrdered="true">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvTzdppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedTemplateSignature xmi:id="_unvTztppEdu-d8Dv4wLx9Q" parameter="_unvTz9ppEdu-d8Dv4wLx9Q _unvT0dppEdu-d8Dv4wLx9Q">
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTz9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvT0NppEdu-d8Dv4wLx9Q">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT0NppEdu-d8Dv4wLx9Q" name="T" templateParameter="_unvTz9ppEdu-d8Dv4wLx9Q"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT0dppEdu-d8Dv4wLx9Q" parameteredElement="_unvT0tppEdu-d8Dv4wLx9Q">
+              <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT0tppEdu-d8Dv4wLx9Q" name="U" templateParameter="_unvT0dppEdu-d8Dv4wLx9Q"/>
+            </ownedParameter>
+          </ownedTemplateSignature>
+        </ownedOperation>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT09ppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT1NppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT1dppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT1tppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT19ppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT2NppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT2dppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT2tppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT29ppEdu-d8Dv4wLx9Q" name="Wildcard"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvT3NppEdu-d8Dv4wLx9Q" name="Visitor_T_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard_Wildcard">
+          <templateBinding xmi:id="_unvT3dppEdu-d8Dv4wLx9Q" signature="_unvT6dppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvT3tppEdu-d8Dv4wLx9Q" formal="_unvT6tppEdu-d8Dv4wLx9Q" actual="_unvT0NppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT39ppEdu-d8Dv4wLx9Q" formal="_unvT7NppEdu-d8Dv4wLx9Q" actual="_unvT09ppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT4NppEdu-d8Dv4wLx9Q" formal="_unvT7tppEdu-d8Dv4wLx9Q" actual="_unvT1NppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT4dppEdu-d8Dv4wLx9Q" formal="_unvT8NppEdu-d8Dv4wLx9Q" actual="_unvT1dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT4tppEdu-d8Dv4wLx9Q" formal="_unvT8tppEdu-d8Dv4wLx9Q" actual="_unvT1tppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT49ppEdu-d8Dv4wLx9Q" formal="_unvT9NppEdu-d8Dv4wLx9Q" actual="_unvT19ppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT5NppEdu-d8Dv4wLx9Q" formal="_unvT9tppEdu-d8Dv4wLx9Q" actual="_unvT2NppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT5dppEdu-d8Dv4wLx9Q" formal="_unvT-NppEdu-d8Dv4wLx9Q" actual="_unvT2dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT5tppEdu-d8Dv4wLx9Q" formal="_unvT-tppEdu-d8Dv4wLx9Q" actual="_unvT2tppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvT59ppEdu-d8Dv4wLx9Q" formal="_unvT_NppEdu-d8Dv4wLx9Q" actual="_unvT29ppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvT6NppEdu-d8Dv4wLx9Q" name="Visitor">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvT6dppEdu-d8Dv4wLx9Q" parameter="_unvT6tppEdu-d8Dv4wLx9Q _unvT7NppEdu-d8Dv4wLx9Q _unvT7tppEdu-d8Dv4wLx9Q _unvT8NppEdu-d8Dv4wLx9Q _unvT8tppEdu-d8Dv4wLx9Q _unvT9NppEdu-d8Dv4wLx9Q _unvT9tppEdu-d8Dv4wLx9Q _unvT-NppEdu-d8Dv4wLx9Q _unvT-tppEdu-d8Dv4wLx9Q _unvT_NppEdu-d8Dv4wLx9Q">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT6tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT69ppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT69ppEdu-d8Dv4wLx9Q" name="T" templateParameter="_unvT6tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT7NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT7dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT7dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvT7NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT7tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT79ppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT79ppEdu-d8Dv4wLx9Q" name="O" templateParameter="_unvT7tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT8NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT8dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT8dppEdu-d8Dv4wLx9Q" name="P" templateParameter="_unvT8NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT8tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT89ppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT89ppEdu-d8Dv4wLx9Q" name="EL" templateParameter="_unvT8tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT9NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT9dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT9dppEdu-d8Dv4wLx9Q" name="PM" templateParameter="_unvT9NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT9tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT99ppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT99ppEdu-d8Dv4wLx9Q" name="S" templateParameter="_unvT9tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT-NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT-dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT-dppEdu-d8Dv4wLx9Q" name="COA" templateParameter="_unvT-NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT-tppEdu-d8Dv4wLx9Q" parameteredElement="_unvT-9ppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT-9ppEdu-d8Dv4wLx9Q" name="SSA" templateParameter="_unvT-tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvT_NppEdu-d8Dv4wLx9Q" parameteredElement="_unvT_dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvT_dppEdu-d8Dv4wLx9Q" name="CT" templateParameter="_unvT_NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <ownedOperation xmi:id="_unvT_tppEdu-d8Dv4wLx9Q" name="visitVariableExp" visibility="public">
+          <ownedParameter xmi:id="_unvT_9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUANppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUAdppEdu-d8Dv4wLx9Q" name="variableExp" type="_unvUbtppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUAtppEdu-d8Dv4wLx9Q" name="visitLetExp" visibility="public">
+          <ownedParameter xmi:id="_unvUA9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUBNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUBdppEdu-d8Dv4wLx9Q" name="letExp" type="_unvUctppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUBtppEdu-d8Dv4wLx9Q" name="visitIfExp" visibility="public">
+          <ownedParameter xmi:id="_unvUB9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUCNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUCdppEdu-d8Dv4wLx9Q" name="ifExp" type="_unvUdtppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUCtppEdu-d8Dv4wLx9Q" name="visitTypeExp" visibility="public">
+          <ownedParameter xmi:id="_unvUC9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUDNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUDdppEdu-d8Dv4wLx9Q" name="typeExp" type="_unvUedppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUDtppEdu-d8Dv4wLx9Q" name="visitPropertyCallExp" visibility="public">
+          <ownedParameter xmi:id="_unvUD9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUENppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUEdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUfNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUEtppEdu-d8Dv4wLx9Q" name="visitOperationCallExp" visibility="public">
+          <ownedParameter xmi:id="_unvUE9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUFNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUFdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUgNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUFtppEdu-d8Dv4wLx9Q" name="visitAssociationClassCallExp" visibility="public">
+          <ownedParameter xmi:id="_unvUF9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUGNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUGdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUhNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUGtppEdu-d8Dv4wLx9Q" name="visitIteratorExp" visibility="public">
+          <ownedParameter xmi:id="_unvUG9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUHNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUHdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUiNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUHtppEdu-d8Dv4wLx9Q" name="visitIterateExp" visibility="public">
+          <ownedParameter xmi:id="_unvUH9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUINppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUIdppEdu-d8Dv4wLx9Q" name="callExp" type="_unvUjNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUItppEdu-d8Dv4wLx9Q" name="visitUnspecifiedValueExp" visibility="public">
+          <ownedParameter xmi:id="_unvUI9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUJNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUJdppEdu-d8Dv4wLx9Q" name="unspecExp" type="_unvUkNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUJtppEdu-d8Dv4wLx9Q" name="visitIntegerLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUJ9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUKNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUKdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUk9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUKtppEdu-d8Dv4wLx9Q" name="visitUnlimitedNaturalLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUK9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvULNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvULdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUltppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvULtppEdu-d8Dv4wLx9Q" name="visitRealLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUL9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUMNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUMdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUmdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUMtppEdu-d8Dv4wLx9Q" name="visitStringLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUM9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUNNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUNdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUnNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUNtppEdu-d8Dv4wLx9Q" name="visitBooleanLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUN9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUONppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUOdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUn9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUOtppEdu-d8Dv4wLx9Q" name="visitEnumLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUO9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUPNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUPdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUotppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUPtppEdu-d8Dv4wLx9Q" name="visitCollectionLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUP9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUQNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUQdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUptppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUQtppEdu-d8Dv4wLx9Q" name="visitCollectionItem" visibility="public">
+          <ownedParameter xmi:id="_unvUQ9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvURNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvURdppEdu-d8Dv4wLx9Q" name="item" type="_unvUqdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvURtppEdu-d8Dv4wLx9Q" name="visitCollectionRange" visibility="public">
+          <ownedParameter xmi:id="_unvUR9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUSNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUSdppEdu-d8Dv4wLx9Q" name="range" type="_unvUrNppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUStppEdu-d8Dv4wLx9Q" name="visitTupleLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUS9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUTNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUTdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUr9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUTtppEdu-d8Dv4wLx9Q" name="visitTupleLiteralPart" visibility="public">
+          <ownedParameter xmi:id="_unvUT9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUUNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUUdppEdu-d8Dv4wLx9Q" name="part" type="_unvUs9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUUtppEdu-d8Dv4wLx9Q" name="visitInvalidLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUU9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUVNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUVdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUt9ppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUVtppEdu-d8Dv4wLx9Q" name="visitNullLiteralExp" visibility="public">
+          <ownedParameter xmi:id="_unvUV9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUWNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUWdppEdu-d8Dv4wLx9Q" name="literalExp" type="_unvUutppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUWtppEdu-d8Dv4wLx9Q" name="visitStateExp" visibility="public">
+          <ownedParameter xmi:id="_unvUW9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUXNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUXdppEdu-d8Dv4wLx9Q" name="stateExp" type="_unvUvdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUXtppEdu-d8Dv4wLx9Q" name="visitMessageExp" visibility="public">
+          <ownedParameter xmi:id="_unvUX9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUYNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUYdppEdu-d8Dv4wLx9Q" name="messageExp" type="_unvUwdppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUYtppEdu-d8Dv4wLx9Q" name="visitVariable" visibility="public">
+          <ownedParameter xmi:id="_unvUY9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUZNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUZdppEdu-d8Dv4wLx9Q" name="variable" type="_unvUxtppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUZtppEdu-d8Dv4wLx9Q" name="visitExpressionInOCL" visibility="public">
+          <ownedParameter xmi:id="_unvUZ9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUaNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUadppEdu-d8Dv4wLx9Q" name="expression" type="_unvUytppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvUatppEdu-d8Dv4wLx9Q" name="visitConstraint" visibility="public">
+          <ownedParameter xmi:id="_unvUa9ppEdu-d8Dv4wLx9Q" type="_unvT69ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvUbNppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_unvUbdppEdu-d8Dv4wLx9Q" name="constraint" type="_unvT_dppEdu-d8Dv4wLx9Q" isOrdered="true"/>
+        </ownedOperation>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUbtppEdu-d8Dv4wLx9Q" name="VariableExp_C_PM">
+          <templateBinding xmi:id="_unvUb9ppEdu-d8Dv4wLx9Q" signature="_un1avtppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUcNppEdu-d8Dv4wLx9Q" formal="_un1av9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUcdppEdu-d8Dv4wLx9Q" formal="_un1awdppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUctppEdu-d8Dv4wLx9Q" name="LetExp_C_PM">
+          <templateBinding xmi:id="_unvUc9ppEdu-d8Dv4wLx9Q" signature="_un1Z-tppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUdNppEdu-d8Dv4wLx9Q" formal="_un1Z-9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUddppEdu-d8Dv4wLx9Q" formal="_un1Z_dppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUdtppEdu-d8Dv4wLx9Q" name="IfExp_C">
+          <templateBinding xmi:id="_unvUd9ppEdu-d8Dv4wLx9Q" signature="_unvVsdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUeNppEdu-d8Dv4wLx9Q" formal="_unvVstppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUedppEdu-d8Dv4wLx9Q" name="TypeExp_C">
+          <templateBinding xmi:id="_unvUetppEdu-d8Dv4wLx9Q" signature="_un1aqdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUe9ppEdu-d8Dv4wLx9Q" formal="_un1aqtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUfNppEdu-d8Dv4wLx9Q" name="PropertyCallExp_C_P">
+          <templateBinding xmi:id="_unvUfdppEdu-d8Dv4wLx9Q" signature="_un1aTtppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUftppEdu-d8Dv4wLx9Q" formal="_un1aT9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUf9ppEdu-d8Dv4wLx9Q" formal="_un1aUdppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUgNppEdu-d8Dv4wLx9Q" name="OperationCallExp_C_O">
+          <templateBinding xmi:id="_unvUgdppEdu-d8Dv4wLx9Q" signature="_un1aNtppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUgtppEdu-d8Dv4wLx9Q" formal="_un1aN9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUg9ppEdu-d8Dv4wLx9Q" formal="_un1aOdppEdu-d8Dv4wLx9Q" actual="_unvT79ppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUhNppEdu-d8Dv4wLx9Q" name="AssociationClassCallExp_C_P">
+          <templateBinding xmi:id="_unvUhdppEdu-d8Dv4wLx9Q" signature="_unvVAdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUhtppEdu-d8Dv4wLx9Q" formal="_unvVAtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUh9ppEdu-d8Dv4wLx9Q" formal="_unvVBNppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUiNppEdu-d8Dv4wLx9Q" name="IteratorExp_C_PM">
+          <templateBinding xmi:id="_unvUidppEdu-d8Dv4wLx9Q" signature="_un1Z79ppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUitppEdu-d8Dv4wLx9Q" formal="_un1Z8NppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUi9ppEdu-d8Dv4wLx9Q" formal="_un1Z8tppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUjNppEdu-d8Dv4wLx9Q" name="IterateExp_C_PM">
+          <templateBinding xmi:id="_unvUjdppEdu-d8Dv4wLx9Q" signature="_unvV6tppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUjtppEdu-d8Dv4wLx9Q" formal="_unvV69ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUj9ppEdu-d8Dv4wLx9Q" formal="_unvV7dppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUkNppEdu-d8Dv4wLx9Q" name="UnspecifiedValueExp_C">
+          <templateBinding xmi:id="_unvUkdppEdu-d8Dv4wLx9Q" signature="_un1atdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUktppEdu-d8Dv4wLx9Q" formal="_un1attppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUk9ppEdu-d8Dv4wLx9Q" name="IntegerLiteralExp_C">
+          <templateBinding xmi:id="_unvUlNppEdu-d8Dv4wLx9Q" signature="_unvVxdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUldppEdu-d8Dv4wLx9Q" formal="_unvVxtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUltppEdu-d8Dv4wLx9Q" name="UnlimitedNaturalLiteralExp_C">
+          <templateBinding xmi:id="_unvUl9ppEdu-d8Dv4wLx9Q" signature="_unvV19ppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUmNppEdu-d8Dv4wLx9Q" formal="_unvV2NppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUmdppEdu-d8Dv4wLx9Q" name="RealLiteralExp_C">
+          <templateBinding xmi:id="_unvUmtppEdu-d8Dv4wLx9Q" signature="_un1aXdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUm9ppEdu-d8Dv4wLx9Q" formal="_un1aXtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUnNppEdu-d8Dv4wLx9Q" name="StringLiteralExp_C">
+          <templateBinding xmi:id="_unvUndppEdu-d8Dv4wLx9Q" signature="_un1addppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUntppEdu-d8Dv4wLx9Q" formal="_un1adtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUn9ppEdu-d8Dv4wLx9Q" name="BooleanLiteralExp_C">
+          <templateBinding xmi:id="_unvUoNppEdu-d8Dv4wLx9Q" signature="_unvVR9ppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUodppEdu-d8Dv4wLx9Q" formal="_unvVSNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUotppEdu-d8Dv4wLx9Q" name="EnumLiteralExp_C_EL">
+          <templateBinding xmi:id="_unvUo9ppEdu-d8Dv4wLx9Q" signature="_unvVo9ppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUpNppEdu-d8Dv4wLx9Q" formal="_unvVpNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUpdppEdu-d8Dv4wLx9Q" formal="_unvVptppEdu-d8Dv4wLx9Q" actual="_unvT89ppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUptppEdu-d8Dv4wLx9Q" name="CollectionLiteralExp_C">
+          <templateBinding xmi:id="_unvUp9ppEdu-d8Dv4wLx9Q" signature="_unvVftppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUqNppEdu-d8Dv4wLx9Q" formal="_unvVf9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUqdppEdu-d8Dv4wLx9Q" name="CollectionItem_C">
+          <templateBinding xmi:id="_unvUqtppEdu-d8Dv4wLx9Q" signature="_unvVYdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUq9ppEdu-d8Dv4wLx9Q" formal="_unvVYtppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUrNppEdu-d8Dv4wLx9Q" name="CollectionRange_C">
+          <templateBinding xmi:id="_unvUrdppEdu-d8Dv4wLx9Q" signature="_unvVktppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUrtppEdu-d8Dv4wLx9Q" formal="_unvVk9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUr9ppEdu-d8Dv4wLx9Q" name="TupleLiteralExp_C_P">
+          <templateBinding xmi:id="_unvUsNppEdu-d8Dv4wLx9Q" signature="_un1af9ppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUsdppEdu-d8Dv4wLx9Q" formal="_un1agNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUstppEdu-d8Dv4wLx9Q" formal="_un1agtppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUs9ppEdu-d8Dv4wLx9Q" name="TupleLiteralPart_C_P">
+          <templateBinding xmi:id="_unvUtNppEdu-d8Dv4wLx9Q" signature="_un1akNppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUtdppEdu-d8Dv4wLx9Q" formal="_un1akdppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUttppEdu-d8Dv4wLx9Q" formal="_un1ak9ppEdu-d8Dv4wLx9Q" actual="_unvT8dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUt9ppEdu-d8Dv4wLx9Q" name="InvalidLiteralExp_C">
+          <templateBinding xmi:id="_unvUuNppEdu-d8Dv4wLx9Q" signature="_unvV4tppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUudppEdu-d8Dv4wLx9Q" formal="_unvV49ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUutppEdu-d8Dv4wLx9Q" name="NullLiteralExp_C">
+          <templateBinding xmi:id="_unvUu9ppEdu-d8Dv4wLx9Q" signature="_un1aLtppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUvNppEdu-d8Dv4wLx9Q" formal="_un1aL9ppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUvdppEdu-d8Dv4wLx9Q" name="StateExp_C_S">
+          <templateBinding xmi:id="_unvUvtppEdu-d8Dv4wLx9Q" signature="_un1aZ9ppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUv9ppEdu-d8Dv4wLx9Q" formal="_un1aaNppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUwNppEdu-d8Dv4wLx9Q" formal="_un1aatppEdu-d8Dv4wLx9Q" actual="_unvT99ppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUwdppEdu-d8Dv4wLx9Q" name="MessageExp_C_COA_SSA">
+          <templateBinding xmi:id="_unvUwtppEdu-d8Dv4wLx9Q" signature="_un1aENppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUw9ppEdu-d8Dv4wLx9Q" formal="_un1aEdppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUxNppEdu-d8Dv4wLx9Q" formal="_un1aE9ppEdu-d8Dv4wLx9Q" actual="_unvT-dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUxdppEdu-d8Dv4wLx9Q" formal="_un1aFdppEdu-d8Dv4wLx9Q" actual="_unvT-9ppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUxtppEdu-d8Dv4wLx9Q" name="Variable_C_PM">
+          <templateBinding xmi:id="_unvUx9ppEdu-d8Dv4wLx9Q" signature="_un1Z1NppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUyNppEdu-d8Dv4wLx9Q" formal="_un1Z1dppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUydppEdu-d8Dv4wLx9Q" formal="_un1Z19ppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvUytppEdu-d8Dv4wLx9Q" name="ExpressionInOCL_C_PM">
+          <templateBinding xmi:id="_unvUy9ppEdu-d8Dv4wLx9Q" signature="_unvU2dppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvUzNppEdu-d8Dv4wLx9Q" formal="_unvU2tppEdu-d8Dv4wLx9Q" actual="_unvT7dppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvUzdppEdu-d8Dv4wLx9Q" formal="_unvU3NppEdu-d8Dv4wLx9Q" actual="_unvT9dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvUztppEdu-d8Dv4wLx9Q" name="TypedElement">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvUz9ppEdu-d8Dv4wLx9Q" parameter="_unvU0NppEdu-d8Dv4wLx9Q">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU0NppEdu-d8Dv4wLx9Q" parameteredElement="_unvU0dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU0dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvU0NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <ownedOperation xmi:id="_unvU0tppEdu-d8Dv4wLx9Q" name="getName" visibility="public">
+          <ownedParameter xmi:id="_unvU09ppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU1NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvU1dppEdu-d8Dv4wLx9Q" name="getType" visibility="public">
+          <ownedParameter xmi:id="_unvU1tppEdu-d8Dv4wLx9Q" type="_unvU0dppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU19ppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_0UOPMN1mEduZ74nG8yJaxg" name="setName">
+          <ownedParameter xmi:id="_7Yh_cN1mEduZ74nG8yJaxg" name="name">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_1EvGIN1mEduZ74nG8yJaxg" name="setType">
+          <ownedParameter xmi:id="_FcnTgN1nEduZ74nG8yJaxg" name="type" type="_unvU0dppEdu-d8Dv4wLx9Q"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvU2NppEdu-d8Dv4wLx9Q" name="ExpressionInOCL">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvU2dppEdu-d8Dv4wLx9Q" parameter="_unvU2tppEdu-d8Dv4wLx9Q _unvU3NppEdu-d8Dv4wLx9Q">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU2tppEdu-d8Dv4wLx9Q" parameteredElement="_unvU29ppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU29ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvU2tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU3NppEdu-d8Dv4wLx9Q" parameteredElement="_unvU3dppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU3dppEdu-d8Dv4wLx9Q" name="PM" templateParameter="_unvU3NppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <generalization xmi:id="_unvU3tppEdu-d8Dv4wLx9Q" general="_unvTyNppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvU39ppEdu-d8Dv4wLx9Q" name="bodyExpression" type="_unvU5tppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU7dppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvU4NppEdu-d8Dv4wLx9Q" name="contextVariable" type="_unvU6dppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU79ppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_unvU4dppEdu-d8Dv4wLx9Q" name="resultVariable" type="_unvU6dppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU8dppEdu-d8Dv4wLx9Q">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU4tppEdu-d8Dv4wLx9Q"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_unvU49ppEdu-d8Dv4wLx9Q" name="parameterVariable" type="_unvU6dppEdu-d8Dv4wLx9Q" isOrdered="true" aggregation="composite" association="_unvU89ppEdu-d8Dv4wLx9Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unvU5NppEdu-d8Dv4wLx9Q" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU5dppEdu-d8Dv4wLx9Q"/>
+        </ownedAttribute>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvU5tppEdu-d8Dv4wLx9Q" name="OCLExpression_C">
+          <templateBinding xmi:id="_unvU59ppEdu-d8Dv4wLx9Q" signature="_unvVNdppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvU6NppEdu-d8Dv4wLx9Q" formal="_unvVNtppEdu-d8Dv4wLx9Q" actual="_unvU29ppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_unvU6dppEdu-d8Dv4wLx9Q" name="Variable_C_PM">
+          <templateBinding xmi:id="_unvU6tppEdu-d8Dv4wLx9Q" signature="_un1Z1NppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_unvU69ppEdu-d8Dv4wLx9Q" formal="_un1Z1dppEdu-d8Dv4wLx9Q" actual="_unvU29ppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_unvU7NppEdu-d8Dv4wLx9Q" formal="_un1Z19ppEdu-d8Dv4wLx9Q" actual="_unvU3dppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_unvU7dppEdu-d8Dv4wLx9Q" memberEnd="_unvU39ppEdu-d8Dv4wLx9Q _unvU7tppEdu-d8Dv4wLx9Q">
+        <ownedEnd xmi:id="_unvU7tppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU7dppEdu-d8Dv4wLx9Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_unvU79ppEdu-d8Dv4wLx9Q" memberEnd="_unvU4NppEdu-d8Dv4wLx9Q _unvU8NppEdu-d8Dv4wLx9Q">
+        <ownedEnd xmi:id="_unvU8NppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU79ppEdu-d8Dv4wLx9Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_unvU8dppEdu-d8Dv4wLx9Q" memberEnd="_unvU4dppEdu-d8Dv4wLx9Q _unvU8tppEdu-d8Dv4wLx9Q">
+        <ownedEnd xmi:id="_unvU8tppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU8dppEdu-d8Dv4wLx9Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_unvU89ppEdu-d8Dv4wLx9Q" memberEnd="_unvU49ppEdu-d8Dv4wLx9Q _unvU9NppEdu-d8Dv4wLx9Q">
+        <ownedEnd xmi:id="_unvU9NppEdu-d8Dv4wLx9Q" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_unvU89ppEdu-d8Dv4wLx9Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_unvU9dppEdu-d8Dv4wLx9Q" name="PredefinedType">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvU9tppEdu-d8Dv4wLx9Q" parameter="_unvU99ppEdu-d8Dv4wLx9Q">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvU99ppEdu-d8Dv4wLx9Q" parameteredElement="_unvU-NppEdu-d8Dv4wLx9Q">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvU-NppEdu-d8Dv4wLx9Q" name="O" templateParameter="_unvU99ppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <ownedOperation xmi:id="_unvU-dppEdu-d8Dv4wLx9Q" name="getName" visibility="public">
+          <ownedParameter xmi:id="_unvU-tppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_unvU-9ppEdu-d8Dv4wLx9Q" name="oclOperations" visibility="public">
+          <ownedParameter xmi:id="_unvU_NppEdu-d8Dv4wLx9Q" type="_unvU-NppEdu-d8Dv4wLx9Q" isOrdered="true" direction="return">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unvU_dppEdu-d8Dv4wLx9Q" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU_tppEdu-d8Dv4wLx9Q"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_un1az9ppEdu-d8Dv4wLx9Q">

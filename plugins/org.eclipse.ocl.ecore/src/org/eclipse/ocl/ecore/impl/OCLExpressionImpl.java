@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.2 2007/03/28 20:39:37 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.3 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
+import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,6 +141,16 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.OCL_EXPRESSION__END_POSITION, oldEndPosition, endPosition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+		// Subclasses must implement this method
+		throw new UnsupportedOperationException();
 	}
 
 	/**

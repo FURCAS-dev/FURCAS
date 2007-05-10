@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.2 2007/03/28 20:39:29 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.3 2007/05/10 17:48:02 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -373,6 +373,16 @@ public class VariableImpl extends TypedElementImpl implements Variable {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
+	public String getName() {
+		return super.getName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitVariable(this);
 	}
@@ -606,6 +616,16 @@ public class VariableImpl extends TypedElementImpl implements Variable {
 		return (Classifier) super.getType();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setName(String name) {
+		super.setName(name);
+	}
+
 	/**
 	 * @generated NOT
 	 */

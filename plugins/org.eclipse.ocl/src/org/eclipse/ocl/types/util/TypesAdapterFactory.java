@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesAdapterFactory.java,v 1.3 2007/03/27 15:05:00 cdamus Exp $
+ * $Id: TypesAdapterFactory.java,v 1.4 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.types.util;
 
@@ -20,6 +20,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
+//import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;

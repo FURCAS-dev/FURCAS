@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExp.java,v 1.2 2007/02/14 13:42:13 cdamus Exp $
+ * $Id: TupleLiteralExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TupleLiteralExp<C, P> extends LiteralExp<C> {
 	/**
 	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.expressions.TupleLiteralPart<C, P>}.
+	 * The list contents are of type {@link org.eclipse.ocl.expressions.TupleLiteralPart}&lt;C, P>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,

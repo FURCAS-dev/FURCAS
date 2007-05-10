@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.2 2007/02/14 13:42:13 cdamus Exp $
+ * $Id: MessageExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -48,7 +48,7 @@ public interface MessageExp<C, COA, SSA> extends OCLExpression<C>, CallingASTNod
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(OCLExpression<C>)
+	 * @see #setTarget(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_Target()
 	 * @model containment="true"
 	 * @generated
@@ -67,7 +67,7 @@ public interface MessageExp<C, COA, SSA> extends OCLExpression<C>, CallingASTNod
 
 	/**
 	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.expressions.OCLExpression<C>}.
+	 * The list contents are of type {@link org.eclipse.ocl.expressions.OCLExpression}&lt;C>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
@@ -90,7 +90,7 @@ public interface MessageExp<C, COA, SSA> extends OCLExpression<C>, CallingASTNod
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Called Operation</em>' containment reference.
-	 * @see #setCalledOperation(COA)
+	 * @see #setCalledOperation(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_CalledOperation()
 	 * @model containment="true"
 	 * @generated
@@ -116,7 +116,7 @@ public interface MessageExp<C, COA, SSA> extends OCLExpression<C>, CallingASTNod
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sent Signal</em>' containment reference.
-	 * @see #setSentSignal(SSA)
+	 * @see #setSentSignal(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_SentSignal()
 	 * @model containment="true"
 	 * @generated

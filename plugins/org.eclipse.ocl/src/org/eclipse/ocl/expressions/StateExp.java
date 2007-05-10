@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: StateExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: StateExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -43,7 +43,7 @@ public interface StateExp<C, S> extends OCLExpression<C> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred State</em>' reference.
-	 * @see #setReferredState(S)
+	 * @see #setReferredState(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getStateExp_ReferredState()
 	 * @model
 	 * @generated

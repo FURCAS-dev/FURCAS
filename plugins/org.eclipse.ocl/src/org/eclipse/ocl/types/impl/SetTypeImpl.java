@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -32,27 +32,27 @@ import org.eclipse.ocl.types.TypesPackage;
  */
 public class SetTypeImpl<C, O> extends CollectionTypeImpl<C, O> implements SetType<C, O> {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SetTypeImpl() {
-        super();
-    }
+		super();
+	}
 	
 	protected SetTypeImpl(C elementType) {
 		super(elementType);
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.SET_TYPE;
-    }
+		return TypesPackage.Literals.SET_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

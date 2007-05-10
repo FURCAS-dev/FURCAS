@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.5 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -378,23 +378,23 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		createEAttribute(callingASTNodeEClass, CALLING_AST_NODE__PROPERTY_START_POSITION);
 		createEAttribute(callingASTNodeEClass, CALLING_AST_NODE__PROPERTY_END_POSITION);
 
-		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
-
 		typedASTNodeEClass = createEClass(TYPED_AST_NODE);
 		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_START_POSITION);
 		createEAttribute(typedASTNodeEClass, TYPED_AST_NODE__TYPE_END_POSITION);
 
 		visitableEClass = createEClass(VISITABLE);
 
-		typedElementEClass = createEClass(TYPED_ELEMENT);
-
 		visitorEClass = createEClass(VISITOR);
+
+		typedElementEClass = createEClass(TYPED_ELEMENT);
 
 		expressionInOCLEClass = createEClass(EXPRESSION_IN_OCL);
 		createEReference(expressionInOCLEClass, EXPRESSION_IN_OCL__BODY_EXPRESSION);
 		createEReference(expressionInOCLEClass, EXPRESSION_IN_OCL__CONTEXT_VARIABLE);
 		createEReference(expressionInOCLEClass, EXPRESSION_IN_OCL__RESULT_VARIABLE);
 		createEReference(expressionInOCLEClass, EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
+
+		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
 	}
 
 	/**
@@ -424,8 +424,6 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Create type parameters
-		ETypeParameter predefinedTypeEClass_O = addETypeParameter(predefinedTypeEClass, "O"); //$NON-NLS-1$
-		ETypeParameter typedElementEClass_C = addETypeParameter(typedElementEClass, "C"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_T = addETypeParameter(visitorEClass, "T"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_C = addETypeParameter(visitorEClass, "C"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_O = addETypeParameter(visitorEClass, "O"); //$NON-NLS-1$
@@ -436,8 +434,10 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		ETypeParameter visitorEClass_COA = addETypeParameter(visitorEClass, "COA"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_SSA = addETypeParameter(visitorEClass, "SSA"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_CT = addETypeParameter(visitorEClass, "CT"); //$NON-NLS-1$
+		ETypeParameter typedElementEClass_C = addETypeParameter(typedElementEClass, "C"); //$NON-NLS-1$
 		ETypeParameter expressionInOCLEClass_C = addETypeParameter(expressionInOCLEClass, "C"); //$NON-NLS-1$
 		ETypeParameter expressionInOCLEClass_PM = addETypeParameter(expressionInOCLEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter predefinedTypeEClass_O = addETypeParameter(predefinedTypeEClass, "O"); //$NON-NLS-1$
 
 		// Set bounds for type parameters
 
@@ -455,24 +455,16 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		initEAttribute(getCallingASTNode_PropertyStartPosition(), ecorePackage.getEInt(), "propertyStartPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getCallingASTNode_PropertyEndPosition(), ecorePackage.getEInt(), "propertyEndPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-		initEClass(predefinedTypeEClass, PredefinedType.class, "PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(predefinedTypeEClass, ecorePackage.getEString(), "getName", 1, 1); //$NON-NLS-1$
-
-		EOperation op = addEOperation(predefinedTypeEClass, null, "oclOperations", 0, -1); //$NON-NLS-1$
-		EGenericType g1 = createEGenericType(predefinedTypeEClass_O);
-		initEOperation(op, g1);
-
 		initEClass(typedASTNodeEClass, TypedASTNode.class, "TypedASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTypedASTNode_TypeStartPosition(), ecorePackage.getEInt(), "typeStartPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getTypedASTNode_TypeEndPosition(), ecorePackage.getEInt(), "typeEndPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(visitableEClass, Visitable.class, "Visitable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		op = addEOperation(visitableEClass, null, "accept", 0, 1); //$NON-NLS-1$
+		EOperation op = addEOperation(visitableEClass, null, "accept", 0, 1); //$NON-NLS-1$
 		ETypeParameter t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
 		ETypeParameter t2 = addETypeParameter(op, "U"); //$NON-NLS-1$
-		g1 = createEGenericType(this.getVisitor());
+		EGenericType g1 = createEGenericType(this.getVisitor());
 		EGenericType g2 = createEGenericType(t1);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType();
@@ -498,21 +490,6 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		addEParameter(op, g1, "v", 0, 1); //$NON-NLS-1$
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
-
-		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(typedElementEClass, ecorePackage.getEString(), "getName", 0, 1); //$NON-NLS-1$
-
-		op = addEOperation(typedElementEClass, null, "getType", 0, 1); //$NON-NLS-1$
-		g1 = createEGenericType(typedElementEClass_C);
-		initEOperation(op, g1);
-
-		op = addEOperation(typedElementEClass, null, "setName"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "name", 0, 1); //$NON-NLS-1$
-
-		op = addEOperation(typedElementEClass, null, "setType"); //$NON-NLS-1$
-		g1 = createEGenericType(typedElementEClass_C);
-		addEParameter(op, g1, "name", 0, 1); //$NON-NLS-1$
 
 		initEClass(visitorEClass, Visitor.class, "Visitor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -612,6 +589,14 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 
 		op = addEOperation(visitorEClass, null, "visitIntegerLiteralExp", 0, 1); //$NON-NLS-1$
 		g1 = createEGenericType(theExpressionsPackage.getIntegerLiteralExp());
+		g2 = createEGenericType(visitorEClass_C);
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "literalExp", 1, 1); //$NON-NLS-1$
+		g1 = createEGenericType(visitorEClass_T);
+		initEOperation(op, g1);
+
+		op = addEOperation(visitorEClass, null, "visitUnlimitedNaturalLiteralExp", 0, 1); //$NON-NLS-1$
+		g1 = createEGenericType(theExpressionsPackage.getUnlimitedNaturalLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "literalExp", 1, 1); //$NON-NLS-1$
@@ -760,13 +745,20 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null, "visitUnlimitedNaturalLiteralExp", 0, 1); //$NON-NLS-1$
-		g1 = createEGenericType(theExpressionsPackage.getUnlimitedNaturalLiteralExp());
-		g2 = createEGenericType(visitorEClass_C);
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "literalExp", 1, 1); //$NON-NLS-1$
-		g1 = createEGenericType(visitorEClass_T);
+		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		addEOperation(typedElementEClass, ecorePackage.getEString(), "getName", 0, 1); //$NON-NLS-1$
+
+		op = addEOperation(typedElementEClass, null, "getType", 0, 1); //$NON-NLS-1$
+		g1 = createEGenericType(typedElementEClass_C);
 		initEOperation(op, g1);
+
+		op = addEOperation(typedElementEClass, null, "setName"); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1); //$NON-NLS-1$
+
+		op = addEOperation(typedElementEClass, null, "setType"); //$NON-NLS-1$
+		g1 = createEGenericType(typedElementEClass_C);
+		addEParameter(op, g1, "type", 1, 1); //$NON-NLS-1$
 
 		initEClass(expressionInOCLEClass, ExpressionInOCL.class, "ExpressionInOCL", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(theExpressionsPackage.getOCLExpression());
@@ -791,6 +783,14 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 		g2 = createEGenericType(expressionInOCLEClass_PM);
 		g1.getETypeArguments().add(g2);
 		initEReference(getExpressionInOCL_ParameterVariable(), g1, null, "parameterVariable", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(predefinedTypeEClass, PredefinedType.class, "PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		addEOperation(predefinedTypeEClass, ecorePackage.getEString(), "getName", 1, 1); //$NON-NLS-1$
+
+		op = addEOperation(predefinedTypeEClass, null, "oclOperations", 0, -1); //$NON-NLS-1$
+		g1 = createEGenericType(predefinedTypeEClass_O);
+		initEOperation(op, g1);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.3 2007/05/05 00:47:15 cdamus Exp $
+ * $Id: TypesPackageImpl.java,v 1.4 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -52,94 +52,94 @@ import org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl;
  */
 public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass anyTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass bagTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass collectionTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass elementTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass invalidTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass messageTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass orderedSetTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass primitiveTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass sequenceTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass setTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass tupleTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass typeTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private EClass voidTypeEClass = null;
 
 	/**
@@ -164,446 +164,446 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private static boolean isInited = false;
 
 	/**
-     * Creates, registers, and initializes the <b>Package</b> for this
-     * model, and for any others upon which it depends.  Simple
-     * dependencies are satisfied by calling this method on all
-     * dependent packages before doing anything else.  This method drives
-     * initialization for interdependent packages directly, in parallel
-     * with this package, itself.
-     * <p>Of this package and its interdependencies, all packages which
-     * have not yet been registered by their URI values are first created
-     * and registered.  The packages are then initialized in two steps:
-     * meta-model objects for all of the packages are created before any
-     * are initialized, since one package's meta-model objects may refer to
-     * those of another.
-     * <p>Invocation of this method will not affect any packages that have
-     * already been initialized.
-     * <!-- begin-user-doc -->
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #eNS_URI
-     * @see #createPackageContents()
-     * @see #initializePackageContents()
-     * @generated
-     */
+	 * @see #eNS_URI
+	 * @see #createPackageContents()
+	 * @see #initializePackageContents()
+	 * @generated
+	 */
 	public static TypesPackage init() {
-        if (isInited) return (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		if (isInited) return (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
-        // Obtain or create and register package
-        TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new TypesPackageImpl());
+		// Obtain or create and register package
+		TypesPackageImpl theTypesPackage = (TypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof TypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new TypesPackageImpl());
 
-        isInited = true;
+		isInited = true;
 
-        // Obtain or create and register interdependencies
-        ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
-        UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
+		// Obtain or create and register interdependencies
+		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
+		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
 
-        // Create package meta-data objects
-        theTypesPackage.createPackageContents();
-        theExpressionsPackage.createPackageContents();
-        theUtilitiesPackage.createPackageContents();
+		// Create package meta-data objects
+		theTypesPackage.createPackageContents();
+		theExpressionsPackage.createPackageContents();
+		theUtilitiesPackage.createPackageContents();
 
-        // Initialize created meta-data
-        theTypesPackage.initializePackageContents();
-        theExpressionsPackage.initializePackageContents();
-        theUtilitiesPackage.initializePackageContents();
+		// Initialize created meta-data
+		theTypesPackage.initializePackageContents();
+		theExpressionsPackage.initializePackageContents();
+		theUtilitiesPackage.initializePackageContents();
 
-        // Mark meta-data to indicate it can't be changed
-        theTypesPackage.freeze();
+		// Mark meta-data to indicate it can't be changed
+		theTypesPackage.freeze();
 
-        return theTypesPackage;
-    }
+		return theTypesPackage;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getAnyType() {
-        return anyTypeEClass;
-    }
+		return anyTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getBagType() {
-        return bagTypeEClass;
-    }
+		return bagTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getCollectionType() {
-        return collectionTypeEClass;
-    }
+		return collectionTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EReference getCollectionType_ElementType() {
-        return (EReference)collectionTypeEClass.getEStructuralFeatures().get(0);
-    }
+		return (EReference)collectionTypeEClass.getEStructuralFeatures().get(0);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EAttribute getCollectionType_Kind() {
-        return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(1);
-    }
+		return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(1);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getElementType() {
-        return elementTypeEClass;
-    }
+		return elementTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getInvalidType() {
-        return invalidTypeEClass;
-    }
+		return invalidTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getMessageType() {
-        return messageTypeEClass;
-    }
+		return messageTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EReference getMessageType_ReferredOperation() {
-        return (EReference)messageTypeEClass.getEStructuralFeatures().get(0);
-    }
+		return (EReference)messageTypeEClass.getEStructuralFeatures().get(0);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EReference getMessageType_ReferredSignal() {
-        return (EReference)messageTypeEClass.getEStructuralFeatures().get(1);
-    }
+		return (EReference)messageTypeEClass.getEStructuralFeatures().get(1);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getOrderedSetType() {
-        return orderedSetTypeEClass;
-    }
+		return orderedSetTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getPrimitiveType() {
-        return primitiveTypeEClass;
-    }
+		return primitiveTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getSequenceType() {
-        return sequenceTypeEClass;
-    }
+		return sequenceTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getSetType() {
-        return setTypeEClass;
-    }
+		return setTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getTupleType() {
-        return tupleTypeEClass;
-    }
+		return tupleTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getTypeType() {
-        return typeTypeEClass;
-    }
+		return typeTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EReference getTypeType_ReferredType() {
-        return (EReference)typeTypeEClass.getEStructuralFeatures().get(0);
-    }
+		return (EReference)typeTypeEClass.getEStructuralFeatures().get(0);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EClass getVoidType() {
-        return voidTypeEClass;
-    }
+		return voidTypeEClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypesFactory getTypesFactory() {
-        return (TypesFactory)getEFactoryInstance();
-    }
+		return (TypesFactory)getEFactoryInstance();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private boolean isCreated = false;
 
 	/**
-     * Creates the meta-model objects for the package.  This method is
-     * guarded to have no affect on any invocation but its first.
-     * <!-- begin-user-doc -->
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void createPackageContents() {
-        if (isCreated) return;
-        isCreated = true;
+		if (isCreated) return;
+		isCreated = true;
 
-        // Create classes and their features
-        anyTypeEClass = createEClass(ANY_TYPE);
+		// Create classes and their features
+		anyTypeEClass = createEClass(ANY_TYPE);
 
-        bagTypeEClass = createEClass(BAG_TYPE);
+		bagTypeEClass = createEClass(BAG_TYPE);
 
-        collectionTypeEClass = createEClass(COLLECTION_TYPE);
-        createEReference(collectionTypeEClass, COLLECTION_TYPE__ELEMENT_TYPE);
-        createEAttribute(collectionTypeEClass, COLLECTION_TYPE__KIND);
+		collectionTypeEClass = createEClass(COLLECTION_TYPE);
+		createEReference(collectionTypeEClass, COLLECTION_TYPE__ELEMENT_TYPE);
+		createEAttribute(collectionTypeEClass, COLLECTION_TYPE__KIND);
 
-        elementTypeEClass = createEClass(ELEMENT_TYPE);
+		elementTypeEClass = createEClass(ELEMENT_TYPE);
 
-        invalidTypeEClass = createEClass(INVALID_TYPE);
+		invalidTypeEClass = createEClass(INVALID_TYPE);
 
-        messageTypeEClass = createEClass(MESSAGE_TYPE);
-        createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
-        createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
+		messageTypeEClass = createEClass(MESSAGE_TYPE);
+		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
+		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
 
-        orderedSetTypeEClass = createEClass(ORDERED_SET_TYPE);
+		orderedSetTypeEClass = createEClass(ORDERED_SET_TYPE);
 
-        primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
+		primitiveTypeEClass = createEClass(PRIMITIVE_TYPE);
 
-        sequenceTypeEClass = createEClass(SEQUENCE_TYPE);
+		sequenceTypeEClass = createEClass(SEQUENCE_TYPE);
 
-        setTypeEClass = createEClass(SET_TYPE);
+		setTypeEClass = createEClass(SET_TYPE);
 
-        tupleTypeEClass = createEClass(TUPLE_TYPE);
+		tupleTypeEClass = createEClass(TUPLE_TYPE);
 
-        typeTypeEClass = createEClass(TYPE_TYPE);
-        createEReference(typeTypeEClass, TYPE_TYPE__REFERRED_TYPE);
+		typeTypeEClass = createEClass(TYPE_TYPE);
+		createEReference(typeTypeEClass, TYPE_TYPE__REFERRED_TYPE);
 
-        voidTypeEClass = createEClass(VOID_TYPE);
-    }
+		voidTypeEClass = createEClass(VOID_TYPE);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private boolean isInitialized = false;
 
 	/**
-     * Complete the initialization of the package and its meta-model.  This
-     * method is guarded to have no affect on any invocation but its first.
-     * <!-- begin-user-doc -->
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void initializePackageContents() {
-        if (isInitialized) return;
-        isInitialized = true;
+		if (isInitialized) return;
+		isInitialized = true;
 
-        // Initialize package
-        setName(eNAME);
-        setNsPrefix(eNS_PREFIX);
-        setNsURI(eNS_URI);
+		// Initialize package
+		setName(eNAME);
+		setNsPrefix(eNS_PREFIX);
+		setNsURI(eNS_URI);
 
-        // Obtain other dependent packages
-        UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
-        ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		// Obtain other dependent packages
+		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
+		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
-        // Create type parameters
-        ETypeParameter anyTypeEClass_O = addETypeParameter(anyTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter bagTypeEClass_C = addETypeParameter(bagTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter bagTypeEClass_O = addETypeParameter(bagTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter collectionTypeEClass_C = addETypeParameter(collectionTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter collectionTypeEClass_O = addETypeParameter(collectionTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter invalidTypeEClass_O = addETypeParameter(invalidTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter messageTypeEClass_C = addETypeParameter(messageTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter messageTypeEClass_O = addETypeParameter(messageTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter messageTypeEClass_P = addETypeParameter(messageTypeEClass, "P"); //$NON-NLS-1$
-        ETypeParameter orderedSetTypeEClass_C = addETypeParameter(orderedSetTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter orderedSetTypeEClass_O = addETypeParameter(orderedSetTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter primitiveTypeEClass_O = addETypeParameter(primitiveTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter sequenceTypeEClass_C = addETypeParameter(sequenceTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter sequenceTypeEClass_O = addETypeParameter(sequenceTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter setTypeEClass_C = addETypeParameter(setTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter setTypeEClass_O = addETypeParameter(setTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter tupleTypeEClass_O = addETypeParameter(tupleTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter tupleTypeEClass_P = addETypeParameter(tupleTypeEClass, "P"); //$NON-NLS-1$
-        ETypeParameter typeTypeEClass_C = addETypeParameter(typeTypeEClass, "C"); //$NON-NLS-1$
-        ETypeParameter typeTypeEClass_O = addETypeParameter(typeTypeEClass, "O"); //$NON-NLS-1$
-        ETypeParameter voidTypeEClass_O = addETypeParameter(voidTypeEClass, "O"); //$NON-NLS-1$
+		// Create type parameters
+		ETypeParameter anyTypeEClass_O = addETypeParameter(anyTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter bagTypeEClass_C = addETypeParameter(bagTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter bagTypeEClass_O = addETypeParameter(bagTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter collectionTypeEClass_C = addETypeParameter(collectionTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter collectionTypeEClass_O = addETypeParameter(collectionTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter invalidTypeEClass_O = addETypeParameter(invalidTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter messageTypeEClass_C = addETypeParameter(messageTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter messageTypeEClass_O = addETypeParameter(messageTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter messageTypeEClass_P = addETypeParameter(messageTypeEClass, "P"); //$NON-NLS-1$
+		ETypeParameter orderedSetTypeEClass_C = addETypeParameter(orderedSetTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter orderedSetTypeEClass_O = addETypeParameter(orderedSetTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter primitiveTypeEClass_O = addETypeParameter(primitiveTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter sequenceTypeEClass_C = addETypeParameter(sequenceTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter sequenceTypeEClass_O = addETypeParameter(sequenceTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter setTypeEClass_C = addETypeParameter(setTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter setTypeEClass_O = addETypeParameter(setTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter tupleTypeEClass_O = addETypeParameter(tupleTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter tupleTypeEClass_P = addETypeParameter(tupleTypeEClass, "P"); //$NON-NLS-1$
+		ETypeParameter typeTypeEClass_C = addETypeParameter(typeTypeEClass, "C"); //$NON-NLS-1$
+		ETypeParameter typeTypeEClass_O = addETypeParameter(typeTypeEClass, "O"); //$NON-NLS-1$
+		ETypeParameter voidTypeEClass_O = addETypeParameter(voidTypeEClass, "O"); //$NON-NLS-1$
 
-        // Set bounds for type parameters
+		// Set bounds for type parameters
 
-        // Add supertypes to classes
-        EGenericType g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        EGenericType g2 = createEGenericType(anyTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        anyTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getCollectionType());
-        g2 = createEGenericType(bagTypeEClass_C);
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(bagTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        bagTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(collectionTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        collectionTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
-        collectionTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(invalidTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        invalidTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(messageTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        messageTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getCollectionType());
-        g2 = createEGenericType(orderedSetTypeEClass_C);
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(orderedSetTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        orderedSetTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(primitiveTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        primitiveTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getCollectionType());
-        g2 = createEGenericType(sequenceTypeEClass_C);
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(sequenceTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        sequenceTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getCollectionType());
-        g2 = createEGenericType(setTypeEClass_C);
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(setTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        setTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(tupleTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        tupleTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(typeTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        typeTypeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
-        g2 = createEGenericType(voidTypeEClass_O);
-        g1.getETypeArguments().add(g2);
-        voidTypeEClass.getEGenericSuperTypes().add(g1);
+		// Add supertypes to classes
+		EGenericType g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		EGenericType g2 = createEGenericType(anyTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		anyTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCollectionType());
+		g2 = createEGenericType(bagTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(bagTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		bagTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(collectionTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		collectionTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
+		collectionTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(invalidTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		invalidTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(messageTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		messageTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCollectionType());
+		g2 = createEGenericType(orderedSetTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(orderedSetTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		orderedSetTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(primitiveTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		primitiveTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCollectionType());
+		g2 = createEGenericType(sequenceTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(sequenceTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		sequenceTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCollectionType());
+		g2 = createEGenericType(setTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(setTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		setTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(tupleTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		tupleTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(typeTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		typeTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getPredefinedType());
+		g2 = createEGenericType(voidTypeEClass_O);
+		g1.getETypeArguments().add(g2);
+		voidTypeEClass.getEGenericSuperTypes().add(g1);
 
-        // Initialize classes and features; add operations and parameters
-        initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		// Initialize classes and features; add operations and parameters
+		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(bagTypeEClass, BagType.class, "BagType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(bagTypeEClass, BagType.class, "BagType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        g1 = createEGenericType(collectionTypeEClass_C);
-        initEReference(getCollectionType_ElementType(), g1, null, "elementType", null, 0, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEAttribute(getCollectionType_Kind(), theExpressionsPackage.getCollectionKind(), "kind", null, 1, 1, CollectionType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(collectionTypeEClass_C);
+		initEReference(getCollectionType_ElementType(), g1, null, "elementType", null, 0, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getCollectionType_Kind(), theExpressionsPackage.getCollectionKind(), "kind", null, 1, 1, CollectionType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        EOperation op = addEOperation(collectionTypeEClass, null, "oclIterators", 0, -1); //$NON-NLS-1$
-        g1 = createEGenericType(collectionTypeEClass_O);
-        initEOperation(op, g1);
+		EOperation op = addEOperation(collectionTypeEClass, null, "oclIterators", 0, -1); //$NON-NLS-1$
+		g1 = createEGenericType(collectionTypeEClass_O);
+		initEOperation(op, g1);
 
-        initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        g1 = createEGenericType(messageTypeEClass_O);
-        initEReference(getMessageType_ReferredOperation(), g1, null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        g1 = createEGenericType(messageTypeEClass_C);
-        initEReference(getMessageType_ReferredSignal(), g1, null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(messageTypeEClass_O);
+		initEReference(getMessageType_ReferredOperation(), g1, null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(messageTypeEClass_C);
+		initEReference(getMessageType_ReferredSignal(), g1, null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        op = addEOperation(messageTypeEClass, null, "oclProperties", 0, -1); //$NON-NLS-1$
-        g1 = createEGenericType(messageTypeEClass_P);
-        initEOperation(op, g1);
+		op = addEOperation(messageTypeEClass, null, "oclProperties", 0, -1); //$NON-NLS-1$
+		g1 = createEGenericType(messageTypeEClass_P);
+		initEOperation(op, g1);
 
-        initEClass(orderedSetTypeEClass, OrderedSetType.class, "OrderedSetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(orderedSetTypeEClass, OrderedSetType.class, "OrderedSetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(sequenceTypeEClass, SequenceType.class, "SequenceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(sequenceTypeEClass, SequenceType.class, "SequenceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(setTypeEClass, SetType.class, "SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(setTypeEClass, SetType.class, "SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        op = addEOperation(tupleTypeEClass, null, "oclProperties", 0, -1); //$NON-NLS-1$
-        g1 = createEGenericType(tupleTypeEClass_P);
-        initEOperation(op, g1);
+		op = addEOperation(tupleTypeEClass, null, "oclProperties", 0, -1); //$NON-NLS-1$
+		g1 = createEGenericType(tupleTypeEClass_P);
+		initEOperation(op, g1);
 
-        initEClass(typeTypeEClass, TypeType.class, "TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        g1 = createEGenericType(typeTypeEClass_C);
-        initEReference(getTypeType_ReferredType(), g1, null, "referredType", null, 1, 1, TypeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(typeTypeEClass, TypeType.class, "TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(typeTypeEClass_C);
+		initEReference(getTypeType_ReferredType(), g1, null, "referredType", null, 1, 1, TypeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        // Create resource
-        createResource(eNS_URI);
-    }
+		// Create resource
+		createResource(eNS_URI);
+	}
 
 } //TypesPackageImpl

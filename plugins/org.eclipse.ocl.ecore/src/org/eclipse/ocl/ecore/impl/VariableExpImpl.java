@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: VariableExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -25,12 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.ASTNode;
-import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -40,8 +35,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.ecore.impl.VariableExpImpl#getStartPosition <em>Start Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.ecore.impl.VariableExpImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.VariableExpImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
  * </p>
@@ -50,46 +43,6 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	/**
-	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startPosition = START_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endPosition = END_POSITION_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,7 +50,7 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable<EClassifier, EParameter> referredVariable = null;
+	protected Variable<EClassifier, EParameter> referredVariable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,48 +69,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	protected EClass eStaticClass() {
 		return EcorePackage.Literals.VARIABLE_EXP;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getStartPosition() {
-		return startPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartPosition(int newStartPosition) {
-		int oldStartPosition = startPosition;
-		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE_EXP__START_POSITION, oldStartPosition, startPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndPosition() {
-		return endPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPosition(int newEndPosition) {
-		int oldEndPosition = endPosition;
-		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE_EXP__END_POSITION, oldEndPosition, endPosition));
 	}
 
 	/**
@@ -207,10 +118,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE_EXP__START_POSITION:
-				return new Integer(getStartPosition());
-			case EcorePackage.VARIABLE_EXP__END_POSITION:
-				return new Integer(getEndPosition());
 			case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				if (resolve) return getReferredVariable();
 				return basicGetReferredVariable();
@@ -227,12 +134,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE_EXP__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case EcorePackage.VARIABLE_EXP__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
 			case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				setReferredVariable((Variable<EClassifier, EParameter>)newValue);
 				return;
@@ -248,12 +149,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE_EXP__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case EcorePackage.VARIABLE_EXP__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
 			case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				setReferredVariable((Variable<EClassifier, EParameter>)null);
 				return;
@@ -269,10 +164,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE_EXP__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.VARIABLE_EXP__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
 			case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE:
 				return referredVariable != null;
 		}
@@ -286,23 +177,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.VARIABLE_EXP__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.VARIABLE_EXP__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE: return ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE;
@@ -319,23 +193,6 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.VARIABLE_EXP__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.VARIABLE_EXP__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE: return EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE;
@@ -352,11 +209,7 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

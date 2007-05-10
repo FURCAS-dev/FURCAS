@@ -12,20 +12,15 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.1 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.2 2007/05/10 17:48:01 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.UnspecifiedValueExp;
-
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -272,11 +267,7 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

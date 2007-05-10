@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CallOperationActionImpl.java,v 1.3 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: CallOperationActionImpl.java,v 1.4 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -50,7 +50,7 @@ public class CallOperationActionImpl extends EObjectImpl implements CallOperatio
 	 * @generated
 	 * @ordered
 	 */
-    protected EOperation operation = null;
+    protected EOperation operation;
 
     /**
 	 * <!-- begin-user-doc -->
