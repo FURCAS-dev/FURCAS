@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.3 2007/05/10 17:48:02 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.4 2007/05/10 20:31:23 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -152,16 +152,6 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.OCL_EXPRESSION__END_POSITION, oldEndPosition, endPosition));
 
 
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public String getName() {
-		return super.getName();
 	}
 
 	/**
@@ -317,16 +307,6 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	public Classifier getType() {
 		// override in order to unambiguously narrow the return type
 		return (Classifier) super.getType();
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setName(String name) {
-		super.setName(name);
 	}
 
 	/**
