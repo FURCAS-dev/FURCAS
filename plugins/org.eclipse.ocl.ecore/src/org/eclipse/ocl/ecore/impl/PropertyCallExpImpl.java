@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -49,7 +49,7 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature referredProperty = null;
+	protected EStructuralFeature referredProperty;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: Constraint.java,v 1.3 2007/03/27 15:05:29 cdamus Exp $
+ * $Id: Constraint.java,v 1.4 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -50,7 +50,7 @@ public interface Constraint extends ENamedElement {
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specification</em>' containment reference.
-	 * @see #setSpecification(ExpressionInOCL<EClassifier, EParameter>)
+	 * @see #setSpecification(ExpressionInOCL)
 	 * @see org.eclipse.ocl.ecore.EcorePackage#getConstraint_Specification()
 	 * @model containment="true" required="true"
 	 * @generated

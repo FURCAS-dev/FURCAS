@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.1 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -27,10 +27,8 @@ import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitable;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,8 +37,6 @@ import org.eclipse.ocl.utilities.Visitable;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getStartPosition <em>Start Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getPropertyStartPosition <em>Property Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getPropertyEndPosition <em>Property End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getSource <em>Source</em>}</li>
@@ -50,46 +46,6 @@ import org.eclipse.ocl.utilities.Visitable;
  * @generated
  */
 public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
-	/**
-	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startPosition = START_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endPosition = END_POSITION_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getPropertyStartPosition() <em>Property Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -138,7 +94,7 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> source = null;
+	protected OCLExpression<EClassifier> source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,48 +113,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	@Override
 	protected EClass eStaticClass() {
 		return EcorePackage.Literals.CALL_EXP;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getStartPosition() {
-		return startPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartPosition(int newStartPosition) {
-		int oldStartPosition = startPosition;
-		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CALL_EXP__START_POSITION, oldStartPosition, startPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndPosition() {
-		return endPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPosition(int newEndPosition) {
-		int oldEndPosition = endPosition;
-		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.CALL_EXP__END_POSITION, oldEndPosition, endPosition));
 	}
 
 	/**
@@ -308,10 +222,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.CALL_EXP__START_POSITION:
-				return new Integer(getStartPosition());
-			case EcorePackage.CALL_EXP__END_POSITION:
-				return new Integer(getEndPosition());
 			case EcorePackage.CALL_EXP__PROPERTY_START_POSITION:
 				return new Integer(getPropertyStartPosition());
 			case EcorePackage.CALL_EXP__PROPERTY_END_POSITION:
@@ -331,12 +241,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.CALL_EXP__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case EcorePackage.CALL_EXP__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
 			case EcorePackage.CALL_EXP__PROPERTY_START_POSITION:
 				setPropertyStartPosition(((Integer)newValue).intValue());
 				return;
@@ -358,12 +262,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.CALL_EXP__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case EcorePackage.CALL_EXP__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
 			case EcorePackage.CALL_EXP__PROPERTY_START_POSITION:
 				setPropertyStartPosition(PROPERTY_START_POSITION_EDEFAULT);
 				return;
@@ -385,10 +283,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.CALL_EXP__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.CALL_EXP__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
 			case EcorePackage.CALL_EXP__PROPERTY_START_POSITION:
 				return propertyStartPosition != PROPERTY_START_POSITION_EDEFAULT;
 			case EcorePackage.CALL_EXP__PROPERTY_END_POSITION:
@@ -406,23 +300,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.CALL_EXP__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.CALL_EXP__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == CallingASTNode.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.CALL_EXP__PROPERTY_START_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION;
@@ -446,23 +323,6 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.CALL_EXP__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.CALL_EXP__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == CallingASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION: return EcorePackage.CALL_EXP__PROPERTY_START_POSITION;

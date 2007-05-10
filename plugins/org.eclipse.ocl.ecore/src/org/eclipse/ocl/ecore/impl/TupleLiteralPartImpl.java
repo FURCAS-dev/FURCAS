@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.2 2007/03/28 20:39:37 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.3 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -144,7 +144,7 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> value = null;
+	protected OCLExpression<EClassifier> value;
 
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
@@ -154,7 +154,7 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature attribute = null;
+	protected EStructuralFeature attribute;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -490,6 +490,11 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == TypedElement.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -506,11 +511,6 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 			switch (derivedFeatureID) {
 				case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
 				case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedElement.class) {
-			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
@@ -531,6 +531,11 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == TypedElement.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
 				default: return -1;
@@ -547,11 +552,6 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION;
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedElement.class) {
-			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: ConstraintImpl.java,v 1.4 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -58,7 +58,7 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * @generated
 	 * @ordered
 	 */
-    protected ExpressionInOCL<EClassifier, EParameter> specification = null;
+    protected ExpressionInOCL<EClassifier, EParameter> specification;
 
     /**
 	 * The cached value of the '{@link #getConstrainedElements() <em>Constrained Elements</em>}' reference list.
@@ -68,7 +68,7 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * @generated
 	 * @ordered
 	 */
-    protected EList<ENamedElement> constrainedElements = null;
+    protected EList<ENamedElement> constrainedElements;
 
     /**
 	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.

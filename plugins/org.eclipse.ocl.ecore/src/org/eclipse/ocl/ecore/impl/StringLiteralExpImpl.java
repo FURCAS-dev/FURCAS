@@ -12,21 +12,16 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.1 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.StringLiteralExp;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -200,11 +195,7 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

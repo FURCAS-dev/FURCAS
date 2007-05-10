@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.1 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: CollectionRangeImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -55,7 +55,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> first = null;
+	protected OCLExpression<EClassifier> first;
 
 	/**
 	 * The cached value of the '{@link #getLast() <em>Last</em>}' containment reference.
@@ -65,7 +65,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> last = null;
+	protected OCLExpression<EClassifier> last;
 
 	/**
 	 * <!-- begin-user-doc -->

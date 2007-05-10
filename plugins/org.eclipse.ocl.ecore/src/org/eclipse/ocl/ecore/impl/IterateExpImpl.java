@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.1 2007/03/27 15:05:30 cdamus Exp $
+ * $Id: IterateExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -51,7 +51,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable<EClassifier, EParameter> result = null;
+	protected Variable<EClassifier, EParameter> result;
 
 	/**
 	 * <!-- begin-user-doc -->

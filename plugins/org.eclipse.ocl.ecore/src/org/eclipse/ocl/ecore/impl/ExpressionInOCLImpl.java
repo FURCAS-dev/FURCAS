@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.3 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.4 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -67,7 +67,7 @@ public class ExpressionInOCLImpl extends EObjectImpl implements ExpressionInOCL 
 	 * @generated
 	 * @ordered
 	 */
-    protected OCLExpression<EClassifier> bodyExpression = null;
+    protected OCLExpression<EClassifier> bodyExpression;
 
     /**
 	 * The cached value of the '{@link #getContextVariable() <em>Context Variable</em>}' containment reference.
@@ -77,7 +77,7 @@ public class ExpressionInOCLImpl extends EObjectImpl implements ExpressionInOCL 
 	 * @generated
 	 * @ordered
 	 */
-    protected Variable<EClassifier, EParameter> contextVariable = null;
+    protected Variable<EClassifier, EParameter> contextVariable;
 
     /**
 	 * The cached value of the '{@link #getResultVariable() <em>Result Variable</em>}' containment reference.
@@ -87,7 +87,7 @@ public class ExpressionInOCLImpl extends EObjectImpl implements ExpressionInOCL 
 	 * @generated
 	 * @ordered
 	 */
-    protected Variable<EClassifier, EParameter> resultVariable = null;
+    protected Variable<EClassifier, EParameter> resultVariable;
 
     /**
 	 * The cached value of the '{@link #getParameterVariable() <em>Parameter Variable</em>}' containment reference list.
@@ -97,7 +97,7 @@ public class ExpressionInOCLImpl extends EObjectImpl implements ExpressionInOCL 
 	 * @generated
 	 * @ordered
 	 */
-    protected EList<Variable<EClassifier, EParameter>> parameterVariable = null;
+    protected EList<Variable<EClassifier, EParameter>> parameterVariable;
 
     /**
 	 * <!-- begin-user-doc -->
