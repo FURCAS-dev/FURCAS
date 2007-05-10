@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: TupleTypeCS.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -36,19 +36,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TupleTypeCS extends TypeCS {
 	/**
-     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.ocl.internal.cst.VariableCS}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.internal.cst.VariableCS}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variables</em>' containment reference list.
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getTupleTypeCS_Variables()
-     * @model type="org.eclipse.ocl.internal.cst.VariableCS" containment="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Variables</em>' containment reference list.
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getTupleTypeCS_Variables()
+	 * @model type="org.eclipse.ocl.internal.cst.VariableCS" containment="true" required="true"
+	 * @generated
+	 */
 	EList<VariableCS> getVariables();
 
 } // TupleTypeCS

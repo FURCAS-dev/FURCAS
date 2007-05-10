@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: VariableExpCS.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -38,71 +38,71 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface VariableExpCS extends OCLExpressionCS {
 	/**
-     * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.ocl.internal.cst.OCLExpressionCS}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.internal.cst.OCLExpressionCS}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Arguments</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Arguments</em>' containment reference list.
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableExpCS_Arguments()
-     * @model type="org.eclipse.ocl.internal.cst.OCLExpressionCS" containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Arguments</em>' containment reference list.
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableExpCS_Arguments()
+	 * @model type="org.eclipse.ocl.internal.cst.OCLExpressionCS" containment="true"
+	 * @generated
+	 */
 	EList<OCLExpressionCS> getArguments();
 
 	/**
-     * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simple Name CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Simple Name CS</em>' containment reference.
-     * @see #setSimpleNameCS(SimpleNameCS)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableExpCS_SimpleNameCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Simple Name CS</em>' containment reference.
+	 * @see #setSimpleNameCS(SimpleNameCS)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableExpCS_SimpleNameCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	SimpleNameCS getSimpleNameCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
-     * @see #getSimpleNameCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
+	 * @see #getSimpleNameCS()
+	 * @generated
+	 */
 	void setSimpleNameCS(SimpleNameCS value);
 
 	/**
-     * Returns the value of the '<em><b>Is Marked Pre CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Is Marked Pre CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Is Marked Pre CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Is Marked Pre CS</em>' containment reference.
-     * @see #setIsMarkedPreCS(IsMarkedPreCS)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableExpCS_IsMarkedPreCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Is Marked Pre CS</em>' containment reference.
+	 * @see #setIsMarkedPreCS(IsMarkedPreCS)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getVariableExpCS_IsMarkedPreCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	IsMarkedPreCS getIsMarkedPreCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.VariableExpCS#getIsMarkedPreCS <em>Is Marked Pre CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Marked Pre CS</em>' containment reference.
-     * @see #getIsMarkedPreCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Is Marked Pre CS</em>' containment reference.
+	 * @see #getIsMarkedPreCS()
+	 * @generated
+	 */
 	void setIsMarkedPreCS(IsMarkedPreCS value);
 
 } // VariableExpCS

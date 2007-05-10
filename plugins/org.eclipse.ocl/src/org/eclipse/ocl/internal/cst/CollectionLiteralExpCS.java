@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCS.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: CollectionLiteralExpCS.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -37,48 +37,48 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CollectionLiteralExpCS extends LiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>Collection Type</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Collection Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Collection Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Collection Type</em>' attribute.
-     * @see org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum
-     * @see #setCollectionType(CollectionTypeIdentifierEnum)
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralExpCS_CollectionType()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Collection Type</em>' attribute.
+	 * @see org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum
+	 * @see #setCollectionType(CollectionTypeIdentifierEnum)
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralExpCS_CollectionType()
+	 * @model
+	 * @generated
+	 */
 	CollectionTypeIdentifierEnum getCollectionType();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CollectionLiteralExpCS#getCollectionType <em>Collection Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.internal.cst.CollectionLiteralExpCS#getCollectionType <em>Collection Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Collection Type</em>' attribute.
-     * @see org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum
-     * @see #getCollectionType()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Collection Type</em>' attribute.
+	 * @see org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum
+	 * @see #getCollectionType()
+	 * @generated
+	 */
 	void setCollectionType(CollectionTypeIdentifierEnum value);
 
 	/**
-     * Returns the value of the '<em><b>Collection Literal Parts</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Collection Literal Parts</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.internal.cst.CollectionLiteralPartCS}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Collection Literal Parts</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Collection Literal Parts</em>' containment reference list.
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralExpCS_CollectionLiteralParts()
-     * @model type="org.eclipse.ocl.internal.cst.CollectionLiteralPartCS" containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Collection Literal Parts</em>' containment reference list.
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getCollectionLiteralExpCS_CollectionLiteralParts()
+	 * @model type="org.eclipse.ocl.internal.cst.CollectionLiteralPartCS" containment="true"
+	 * @generated
+	 */
 	EList<CollectionLiteralPartCS> getCollectionLiteralParts();
 
 } // CollectionLiteralExpCS

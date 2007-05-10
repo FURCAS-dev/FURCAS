@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCS.java,v 1.3 2007/03/15 21:35:10 cdamus Exp $
+ * $Id: PathNameCS.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst;
 
@@ -36,19 +36,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface PathNameCS extends TypeCS {
 	/**
-     * Returns the value of the '<em><b>Sequence Of Names</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.String}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sequence Of Names</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sequence Of Names</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Sequence Of Names</em>' attribute list.
-     * @see org.eclipse.ocl.internal.cst.CSTPackage#getPathNameCS_SequenceOfNames()
-     * @model type="java.lang.String" unique="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Sequence Of Names</em>' attribute list.
+	 * @see org.eclipse.ocl.internal.cst.CSTPackage#getPathNameCS_SequenceOfNames()
+	 * @model type="java.lang.String" unique="false"
+	 * @generated
+	 */
 	EList<String> getSequenceOfNames();
 
 } // PathNameCS

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionCSImpl.java,v 1.2 2007/02/14 14:46:05 cdamus Exp $
+ * $Id: OCLExpressionCSImpl.java,v 1.3 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.internal.cst.OCLExpressionCS;
  */
 public abstract class OCLExpressionCSImpl extends CSTNodeImpl implements OCLExpressionCS {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected OCLExpressionCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.OCL_EXPRESSION_CS;
-    }
+		return CSTPackage.Literals.OCL_EXPRESSION_CS;
+	}
 
 } //OCLExpressionCSImpl

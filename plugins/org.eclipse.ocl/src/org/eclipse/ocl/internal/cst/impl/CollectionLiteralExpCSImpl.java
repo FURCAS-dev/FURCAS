@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: CollectionLiteralExpCSImpl.java,v 1.4 2007/05/10 18:59:14 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -52,188 +52,185 @@ import org.eclipse.ocl.internal.cst.CollectionTypeIdentifierEnum;
  */
 public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements CollectionLiteralExpCS {
 	/**
-     * The default value of the '{@link #getCollectionType() <em>Collection Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCollectionType() <em>Collection Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCollectionType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCollectionType()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final CollectionTypeIdentifierEnum COLLECTION_TYPE_EDEFAULT = CollectionTypeIdentifierEnum.SET_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getCollectionType() <em>Collection Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCollectionType() <em>Collection Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCollectionType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCollectionType()
+	 * @generated
+	 * @ordered
+	 */
 	protected CollectionTypeIdentifierEnum collectionType = COLLECTION_TYPE_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getCollectionLiteralParts() <em>Collection Literal Parts</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCollectionLiteralParts() <em>Collection Literal Parts</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCollectionLiteralParts()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCollectionLiteralParts()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<CollectionLiteralPartCS> collectionLiteralParts;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CollectionLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.COLLECTION_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.COLLECTION_LITERAL_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public CollectionTypeIdentifierEnum getCollectionType() {
-        return collectionType;
-    }
+		return collectionType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setCollectionType(CollectionTypeIdentifierEnum newCollectionType) {
-        CollectionTypeIdentifierEnum oldCollectionType = collectionType;
-        collectionType = newCollectionType == null ? COLLECTION_TYPE_EDEFAULT : newCollectionType;
-        if (eNotificationRequired()) {
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE, oldCollectionType, collectionType));
-        }
-    }
+		CollectionTypeIdentifierEnum oldCollectionType = collectionType;
+		collectionType = newCollectionType == null ? COLLECTION_TYPE_EDEFAULT : newCollectionType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE, oldCollectionType, collectionType));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList<CollectionLiteralPartCS> getCollectionLiteralParts() {
-        if (collectionLiteralParts == null) {
-            collectionLiteralParts = new EObjectContainmentEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
-        }
-        return collectionLiteralParts;
-    }
+		if (collectionLiteralParts == null) {
+			collectionLiteralParts = new EObjectContainmentEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
+		}
+		return collectionLiteralParts;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-                return ((InternalEList<?>)getCollectionLiteralParts()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+				return ((InternalEList<?>)getCollectionLiteralParts()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
-                return getCollectionType();
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-                return getCollectionLiteralParts();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+				return getCollectionType();
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+				return getCollectionLiteralParts();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 		@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
-                setCollectionType((CollectionTypeIdentifierEnum)newValue);
-                return;
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-                getCollectionLiteralParts().clear();
-                getCollectionLiteralParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+				setCollectionType((CollectionTypeIdentifierEnum)newValue);
+				return;
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+				getCollectionLiteralParts().clear();
+				getCollectionLiteralParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
-                setCollectionType(COLLECTION_TYPE_EDEFAULT);
-                return;
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-                getCollectionLiteralParts().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+				setCollectionType(COLLECTION_TYPE_EDEFAULT);
+				return;
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+				getCollectionLiteralParts().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
-                return collectionType != COLLECTION_TYPE_EDEFAULT;
-            case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-                return collectionLiteralParts != null && !collectionLiteralParts.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+				return collectionType != COLLECTION_TYPE_EDEFAULT;
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+				return collectionLiteralParts != null && !collectionLiteralParts.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) {
-            return super.toString();
-        }
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (collectionType: "); //$NON-NLS-1$
-        result.append(collectionType);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (collectionType: "); //$NON-NLS-1$
+		result.append(collectionType);
+		result.append(')');
+		return result.toString();
+	}
 
 } //CollectionLiteralExpCSImpl

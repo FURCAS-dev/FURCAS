@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCSImpl.java,v 1.3 2007/04/30 12:38:59 cdamus Exp $
+ * $Id: InitOrDerValueCSImpl.java,v 1.4 2007/05/10 18:59:15 cdamus Exp $
  */
 package org.eclipse.ocl.internal.cst.impl;
 
@@ -44,206 +44,206 @@ import org.eclipse.ocl.internal.cst.OCLExpressionCS;
  */
 public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOrDerValueCS {
 	/**
-     * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getInitOrDerValueCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getInitOrDerValueCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected InitOrDerValueCS initOrDerValueCS;
 
 	/**
-     * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getExpressionCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getExpressionCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS expressionCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected InitOrDerValueCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.INIT_OR_DER_VALUE_CS;
-    }
+		return CSTPackage.Literals.INIT_OR_DER_VALUE_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public InitOrDerValueCS getInitOrDerValueCS() {
-        if (initOrDerValueCS != null && initOrDerValueCS.eIsProxy()) {
-            InternalEObject oldInitOrDerValueCS = (InternalEObject)initOrDerValueCS;
-            initOrDerValueCS = (InitOrDerValueCS)eResolveProxy(oldInitOrDerValueCS);
-            if (initOrDerValueCS != oldInitOrDerValueCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, initOrDerValueCS));
-            }
-        }
-        return initOrDerValueCS;
-    }
+		if (initOrDerValueCS != null && initOrDerValueCS.eIsProxy()) {
+			InternalEObject oldInitOrDerValueCS = (InternalEObject)initOrDerValueCS;
+			initOrDerValueCS = (InitOrDerValueCS)eResolveProxy(oldInitOrDerValueCS);
+			if (initOrDerValueCS != oldInitOrDerValueCS) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, initOrDerValueCS));
+			}
+		}
+		return initOrDerValueCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public InitOrDerValueCS basicGetInitOrDerValueCS() {
-        return initOrDerValueCS;
-    }
+		return initOrDerValueCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setInitOrDerValueCS(InitOrDerValueCS newInitOrDerValueCS) {
-        InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
-        initOrDerValueCS = newInitOrDerValueCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, initOrDerValueCS));
-    }
+		InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
+		initOrDerValueCS = newInitOrDerValueCS;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, initOrDerValueCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getExpressionCS() {
-        return expressionCS;
-    }
+		return expressionCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetExpressionCS(OCLExpressionCS newExpressionCS, NotificationChain msgs) {
-        OCLExpressionCS oldExpressionCS = expressionCS;
-        expressionCS = newExpressionCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldExpressionCS = expressionCS;
+		expressionCS = newExpressionCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setExpressionCS(OCLExpressionCS newExpressionCS) {
-        if (newExpressionCS != expressionCS) {
-            NotificationChain msgs = null;
-            if (expressionCS != null)
-                msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, null, msgs);
-            if (newExpressionCS != null)
-                msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, null, msgs);
-            msgs = basicSetExpressionCS(newExpressionCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
-    }
+		if (newExpressionCS != expressionCS) {
+			NotificationChain msgs = null;
+			if (expressionCS != null)
+				msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, null, msgs);
+			if (newExpressionCS != null)
+				msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, null, msgs);
+			msgs = basicSetExpressionCS(newExpressionCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
-                return basicSetExpressionCS(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
+				return basicSetExpressionCS(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
-                if (resolve) return getInitOrDerValueCS();
-                return basicGetInitOrDerValueCS();
-            case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
-                return getExpressionCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
+				if (resolve) return getInitOrDerValueCS();
+				return basicGetInitOrDerValueCS();
+			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
+				return getExpressionCS();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
-                setInitOrDerValueCS((InitOrDerValueCS)newValue);
-                return;
-            case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
-                setExpressionCS((OCLExpressionCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
+				setInitOrDerValueCS((InitOrDerValueCS)newValue);
+				return;
+			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
+				setExpressionCS((OCLExpressionCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
-                setInitOrDerValueCS((InitOrDerValueCS)null);
-                return;
-            case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
-                setExpressionCS((OCLExpressionCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
+				setInitOrDerValueCS((InitOrDerValueCS)null);
+				return;
+			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
+				setExpressionCS((OCLExpressionCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
-                return initOrDerValueCS != null;
-            case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
-                return expressionCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
+				return initOrDerValueCS != null;
+			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
+				return expressionCS != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //InitOrDerValueCSImpl
