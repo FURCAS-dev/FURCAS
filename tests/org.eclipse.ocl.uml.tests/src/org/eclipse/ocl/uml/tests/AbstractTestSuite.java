@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.3 2007/04/12 18:55:23 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.4 2007/05/10 13:16:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -187,6 +187,7 @@ public abstract class AbstractTestSuite
         result.addTest(UMLTest.suite());
 		result.addTest(OCLDocumentTest.suite());
         result.addTest(UtilitiesTest.suite());
+        result.addTest(UMLEnvironmentTest.suite());
 		result.addTest(org.eclipse.ocl.uml.helper.tests.AbstractTestSuite.suite());
 		result.addTest(RegressionTest.suite());
 		result.addTest(ValidationTest.suite());
@@ -199,7 +200,8 @@ public abstract class AbstractTestSuite
 	// Framework methods
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		System.out.println("==> Start  " + getName()); //$NON-NLS-1$
@@ -229,7 +231,8 @@ public abstract class AbstractTestSuite
 		return ocl.createOCLHelper();
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
@@ -333,7 +336,7 @@ public abstract class AbstractTestSuite
 		
 		try {
 			constraints = ocl.parse(new OCLInput(text));
-			constraint = (Constraint) constraints.get(0);
+			constraint = constraints.get(0);
 		} catch (ParserException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		} catch (IllegalArgumentException e) {
