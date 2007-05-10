@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItemImpl.java,v 1.1 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: CollectionItemImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -54,7 +54,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> item = null;
+	protected OCLExpression<EClassifier> item;
 
 	/**
 	 * <!-- begin-user-doc -->

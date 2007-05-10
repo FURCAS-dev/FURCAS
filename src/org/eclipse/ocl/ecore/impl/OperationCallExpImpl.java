@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.1 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -63,7 +63,7 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OCLExpression<EClassifier>> argument = null;
+	protected EList<OCLExpression<EClassifier>> argument;
 
 	/**
 	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
@@ -73,7 +73,7 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * @generated
 	 * @ordered
 	 */
-	protected EOperation referredOperation = null;
+	protected EOperation referredOperation;
 
 	/**
 	 * The default value of the '{@link #getOperationCode() <em>Operation Code</em>}' attribute.

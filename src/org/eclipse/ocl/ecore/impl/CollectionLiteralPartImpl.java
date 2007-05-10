@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.2 2007/03/28 20:39:37 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.3 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.ocl.ecore.CollectionLiteralPart;
 import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.ocl.util.ToStringVisitor;
 
 /**
@@ -50,6 +51,16 @@ public abstract class CollectionLiteralPartImpl extends ETypedElementImpl implem
 	@Override
 	protected EClass eStaticClass() {
 		return EcorePackage.Literals.COLLECTION_LITERAL_PART;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	    // subclasses must implement this method
+		throw new UnsupportedOperationException();
 	}
 
 	/**

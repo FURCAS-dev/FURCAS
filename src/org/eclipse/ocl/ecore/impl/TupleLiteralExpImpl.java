@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -54,7 +54,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TupleLiteralPart<EClassifier, EStructuralFeature>> part = null;
+	protected EList<TupleLiteralPart<EClassifier, EStructuralFeature>> part;
 
 	/**
 	 * <!-- begin-user-doc -->

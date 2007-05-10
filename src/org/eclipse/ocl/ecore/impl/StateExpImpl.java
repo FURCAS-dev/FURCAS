@@ -12,28 +12,18 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.1 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.StateExp;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.OCLExpression;
-
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.ASTNode;
-import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -43,8 +33,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.ecore.impl.StateExpImpl#getStartPosition <em>Start Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.ecore.impl.StateExpImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.StateExpImpl#getReferredState <em>Referred State</em>}</li>
  * </ul>
  * </p>
@@ -53,46 +41,6 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	/**
-	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startPosition = START_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endPosition = END_POSITION_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,7 +48,7 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject referredState = null;
+	protected EObject referredState;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,48 +67,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	protected EClass eStaticClass() {
 		return EcorePackage.Literals.STATE_EXP;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getStartPosition() {
-		return startPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartPosition(int newStartPosition) {
-		int oldStartPosition = startPosition;
-		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__START_POSITION, oldStartPosition, startPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndPosition() {
-		return endPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPosition(int newEndPosition) {
-		int oldEndPosition = endPosition;
-		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__END_POSITION, oldEndPosition, endPosition));
 	}
 
 	/**
@@ -210,10 +116,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__START_POSITION:
-				return new Integer(getStartPosition());
-			case EcorePackage.STATE_EXP__END_POSITION:
-				return new Integer(getEndPosition());
 			case EcorePackage.STATE_EXP__REFERRED_STATE:
 				if (resolve) return getReferredState();
 				return basicGetReferredState();
@@ -230,12 +132,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case EcorePackage.STATE_EXP__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
 			case EcorePackage.STATE_EXP__REFERRED_STATE:
 				setReferredState((EObject)newValue);
 				return;
@@ -251,12 +147,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case EcorePackage.STATE_EXP__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
 			case EcorePackage.STATE_EXP__REFERRED_STATE:
 				setReferredState((EObject)null);
 				return;
@@ -272,10 +162,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.STATE_EXP__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
 			case EcorePackage.STATE_EXP__REFERRED_STATE:
 				return referredState != null;
 		}
@@ -289,23 +175,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.STATE_EXP__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.STATE_EXP__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
@@ -322,23 +191,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.STATE_EXP__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.STATE_EXP__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return EcorePackage.STATE_EXP__REFERRED_STATE;
@@ -355,11 +207,7 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

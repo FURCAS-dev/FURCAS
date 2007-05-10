@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.1 2007/03/27 15:05:31 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -25,11 +25,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.ASTNode;
-import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -39,8 +34,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.ecore.impl.TypeExpImpl#getStartPosition <em>Start Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.ecore.impl.TypeExpImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TypeExpImpl#getReferredType <em>Referred Type</em>}</li>
  * </ul>
  * </p>
@@ -49,46 +42,6 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	/**
-	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startPosition = START_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endPosition = END_POSITION_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +49,7 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected EClassifier referredType = null;
+	protected EClassifier referredType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,48 +68,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	protected EClass eStaticClass() {
 		return EcorePackage.Literals.TYPE_EXP;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getStartPosition() {
-		return startPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartPosition(int newStartPosition) {
-		int oldStartPosition = startPosition;
-		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TYPE_EXP__START_POSITION, oldStartPosition, startPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndPosition() {
-		return endPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPosition(int newEndPosition) {
-		int oldEndPosition = endPosition;
-		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TYPE_EXP__END_POSITION, oldEndPosition, endPosition));
 	}
 
 	/**
@@ -206,10 +117,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__START_POSITION:
-				return new Integer(getStartPosition());
-			case EcorePackage.TYPE_EXP__END_POSITION:
-				return new Integer(getEndPosition());
 			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
 				if (resolve) return getReferredType();
 				return basicGetReferredType();
@@ -226,12 +133,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case EcorePackage.TYPE_EXP__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
 			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
 				setReferredType((EClassifier)newValue);
 				return;
@@ -247,12 +148,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case EcorePackage.TYPE_EXP__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
 			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
 				setReferredType((EClassifier)null);
 				return;
@@ -268,10 +163,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.TYPE_EXP__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
 			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
 				return referredType != null;
 		}
@@ -285,23 +176,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.TYPE_EXP__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.TYPE_EXP__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.TYPE_EXP__REFERRED_TYPE: return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
@@ -318,23 +192,6 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.TYPE_EXP__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.TYPE_EXP__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE: return EcorePackage.TYPE_EXP__REFERRED_TYPE;
@@ -351,11 +208,7 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

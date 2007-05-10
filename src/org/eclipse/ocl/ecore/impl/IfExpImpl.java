@@ -12,29 +12,20 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: IfExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IfExp;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
-
-import org.eclipse.ocl.util.ToStringVisitor;
-import org.eclipse.ocl.utilities.ASTNode;
-import org.eclipse.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -44,8 +35,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getStartPosition <em>Start Position</em>}</li>
- *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getEndPosition <em>End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getElseExpression <em>Else Expression</em>}</li>
@@ -56,46 +45,6 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	/**
-	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startPosition = START_POSITION_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_POSITION_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndPosition()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endPosition = END_POSITION_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,7 +52,7 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> condition = null;
+	protected OCLExpression<EClassifier> condition;
 
 	/**
 	 * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
@@ -113,7 +62,7 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> thenExpression = null;
+	protected OCLExpression<EClassifier> thenExpression;
 
 	/**
 	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
@@ -123,7 +72,7 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<EClassifier> elseExpression = null;
+	protected OCLExpression<EClassifier> elseExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,48 +91,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	@Override
 	protected EClass eStaticClass() {
 		return EcorePackage.Literals.IF_EXP;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getStartPosition() {
-		return startPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartPosition(int newStartPosition) {
-		int oldStartPosition = startPosition;
-		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.IF_EXP__START_POSITION, oldStartPosition, startPosition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndPosition() {
-		return endPosition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndPosition(int newEndPosition) {
-		int oldEndPosition = endPosition;
-		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.IF_EXP__END_POSITION, oldEndPosition, endPosition));
 	}
 
 	/**
@@ -341,10 +248,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.IF_EXP__START_POSITION:
-				return new Integer(getStartPosition());
-			case EcorePackage.IF_EXP__END_POSITION:
-				return new Integer(getEndPosition());
 			case EcorePackage.IF_EXP__CONDITION:
 				return getCondition();
 			case EcorePackage.IF_EXP__THEN_EXPRESSION:
@@ -364,12 +267,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.IF_EXP__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
-				return;
-			case EcorePackage.IF_EXP__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
-				return;
 			case EcorePackage.IF_EXP__CONDITION:
 				setCondition((OCLExpression<EClassifier>)newValue);
 				return;
@@ -391,12 +288,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.IF_EXP__START_POSITION:
-				setStartPosition(START_POSITION_EDEFAULT);
-				return;
-			case EcorePackage.IF_EXP__END_POSITION:
-				setEndPosition(END_POSITION_EDEFAULT);
-				return;
 			case EcorePackage.IF_EXP__CONDITION:
 				setCondition((OCLExpression<EClassifier>)null);
 				return;
@@ -418,10 +309,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.IF_EXP__START_POSITION:
-				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.IF_EXP__END_POSITION:
-				return endPosition != END_POSITION_EDEFAULT;
 			case EcorePackage.IF_EXP__CONDITION:
 				return condition != null;
 			case EcorePackage.IF_EXP__THEN_EXPRESSION:
@@ -439,23 +326,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.IF_EXP__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.IF_EXP__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.IfExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.IF_EXP__CONDITION: return ExpressionsPackage.IF_EXP__CONDITION;
@@ -474,23 +344,6 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.IF_EXP__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.IF_EXP__END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == OCLExpression.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == org.eclipse.ocl.expressions.IfExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.IF_EXP__CONDITION: return EcorePackage.IF_EXP__CONDITION;
@@ -509,11 +362,7 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

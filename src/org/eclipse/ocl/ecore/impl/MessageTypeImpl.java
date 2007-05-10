@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.3 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.4 2007/05/10 17:48:09 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -62,7 +62,7 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * @generated
 	 * @ordered
 	 */
-    protected EOperation referredOperation = null;
+    protected EOperation referredOperation;
 
     /**
 	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
@@ -72,7 +72,7 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * @generated
 	 * @ordered
 	 */
-    protected EClassifier referredSignal = null;
+    protected EClassifier referredSignal;
 
     private EList<EOperation> operations;
     private EList<EStructuralFeature> properties;
