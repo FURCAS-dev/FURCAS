@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.0/notation" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_w9pE4P6XEdu6tYsdX_IJFg" type="Class" name="oclexpressions.dnx">
+  <children xmi:id="_1XFxav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1XFxbf6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1XFxbv6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1XFxb_6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1XFxcP6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1XFxcf6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1XFxcv6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1XFxc_6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1XFxdP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1XFxdf6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1XFxdv6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6C544P6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6C544f6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1aPzEP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1XFxa_6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=IfExp%5Bjcu%5Ename=IfExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1XFxbP6XEdu6tYsdX_IJFg" x="11095" y="5706"/>
+  </children>
+  <children xmi:id="_1XYFYv6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1XYFZf6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1XYFZv6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1XeL4P6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1XeL4f6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1XeL4v6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1XeL4_6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1XeL5P6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1XeL5f6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1XeL5v6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1XeL5_6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6DknQP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6DknQf6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1fxzUP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1XYFY_6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=UnspecifiedValueExp%5Bjcu%5Ename=UnspecifiedValueExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1XYFZP6XEdu6tYsdX_IJFg" x="1268" y="5706"/>
+  </children>
+  <children xmi:id="_1X8tJP6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1YCzoP6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1YCzof6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1YCzov6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YCzo_6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1YCzpP6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1YCzpf6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1YCzpv6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YCzp_6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1YCzqP6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YCzqf6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6EhpgP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6Ehpgf6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1kpsQP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1X8tJf6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=StateExp%5Bjcu%5Ename=StateExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1X8tJv6XEdu6tYsdX_IJFg" x="24092" y="5706"/>
+  </children>
+  <children xmi:id="_1YCzqv6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1YCzrf6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1YCzrv6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1YCzr_6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YCzsP6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1YCzsf6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1YCzsv6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1YCzs_6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YCztP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1YCztf6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YCztv6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6EnwIP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6EnwIf6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1lahRf6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1YCzq_6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Variable%5Bjcu%5Ename=Variable.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1YCzrP6XEdu6tYsdX_IJFg" x="19020" y="9193"/>
+  </children>
+  <children xmi:id="_1YI6Vf6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1YI6WP6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1YI6Wf6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1YI6Wv6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YI6W_6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1YI6XP6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1YI6Xf6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1YI6Xv6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YI6X_6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1YI6YP6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YI6Yf6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6E6EAP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6E6EAf6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1nC48P6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1YI6Vv6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=TypeExp%5Bjcu%5Ename=TypeExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1YI6V_6XEdu6tYsdX_IJFg" x="28530" y="5706"/>
+  </children>
+  <children xmi:id="_1YI6Yv6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1YI6Zf6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1YI6Zv6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1YI6Z_6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YI6aP6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1YI6af6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1YPA4P6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1YPA4f6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YPA4v6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1YPA4_6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YPA5P6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6FAKoP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6FAKof6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1nzt8v6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1YI6Y_6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=MessageExp%5Bjcu%5Ename=MessageExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1YI6ZP6XEdu6tYsdX_IJFg" x="6340" y="5706"/>
+  </children>
+  <children xmi:id="_1YPA8v6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1YPA9f6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1YPA9v6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1YPA9_6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YPA-P6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1YPA-f6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1YPA-v6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1YPA-_6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YPA_P6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1YPA_f6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YPA_v6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6F9z8P6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6F9z8f6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1p5_sP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1YPA8_6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=LetExp%5Bjcu%5Ename=LetExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1YPA9P6XEdu6tYsdX_IJFg" x="15850" y="5706"/>
+  </children>
+  <children xmi:id="_1YbON_6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1YbOOv6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1YbOO_6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1YbOPP6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YbOPf6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1YbOPv6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1YbOP_6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1YbOQP6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YbOQf6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1YbOQv6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YbOQ_6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6GoiUP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6GoiUf6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1sk5MP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1YbOOP6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=VariableExp%5Bjcu%5Ename=VariableExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1YbOOf6XEdu6tYsdX_IJFg" x="19337" y="5706"/>
+  </children>
+  <children xmi:id="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_1Ynbbf6XEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_1Ynbbv6XEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_1Ynbb_6XEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_1YnbcP6XEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_1Ynbcf6XEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_1Ynbcv6XEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_1Ynbc_6XEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1YnbdP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_1Ynbdf6XEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_1Ynbdv6XEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_6HHDcP6aEdu6tYsdX_IJFg" visible="false" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_6HHDcf6aEdu6tYsdX_IJFg"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_1vWgYP6XEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_1Ynba_6XEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1YnbbP6XEdu6tYsdX_IJFg" x="15533" y="1585"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_w9pE4f6XEdu6tYsdX_IJFg"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_2KSI9_6XEdu6tYsdX_IJFg" source="_1XFxav6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2KYPgP6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2KYPgv6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2KYPg_6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2KYPgf6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2KSI-P6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=IfExp%5Bjcu%5Ename=IfExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2KSI-f6XEdu6tYsdX_IJFg" points="[-79, -1614, -4868, 4260]$[-79, -3942, -4868, 1932]$[4809, -3942, 20, 1932]$[4809, -5345, 20, 529]"/>
+  </edges>
+  <edges xmi:id="_2KqjYP6XEdu6tYsdX_IJFg" source="_1XYFYv6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2KqjY_6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2KqjZf6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2KqjZv6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2KqjZP6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2KqjYf6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=UnspecifiedValueExp%5Bjcu%5Ename=UnspecifiedValueExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2KqjYv6XEdu6tYsdX_IJFg" points="[-238, -476, -9313, 7435]$[-238, -5979, -9313, 1932]$[9095, -5979, 20, 1932]$[9095, -7382, 20, 529]"/>
+  </edges>
+  <edges xmi:id="_2K83V_6XEdu6tYsdX_IJFg" source="_1X8tJP6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2K83Wv6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2K83XP6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2K83Xf6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2K83W_6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2K83WP6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=StateExp%5Bjcu%5Ename=StateExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2K83Wf6XEdu6tYsdX_IJFg" points="[-317, -767, 4948, 3943]$[-317, -2778, 4948, 1932]$[-5245, -2778, 20, 1932]$[-5245, -4181, 20, 529]"/>
+  </edges>
+  <edges xmi:id="_2LC98P6XEdu6tYsdX_IJFg" source="_1YI6Vf6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2LC98_6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2LC99f6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2LC99v6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2LC99P6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2LC98f6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=TypeExp%5Bjcu%5Ename=TypeExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2LC98v6XEdu6tYsdX_IJFg" points="[-317, -767, 7911, 4895]$[-317, -3730, 7911, 1932]$[-8208, -3730, 20, 1932]$[-8208, -5133, 20, 529]"/>
+  </edges>
+  <edges xmi:id="_2LJEgP6XEdu6tYsdX_IJFg" source="_1YI6Yv6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2LJEg_6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2LJEhf6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2LJEhv6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2LJEhP6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2LJEgf6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=MessageExp%5Bjcu%5Ename=MessageExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2LJEgv6XEdu6tYsdX_IJFg" points="[-158, -1826, -9075, 3625]$[-158, -3519, -9075, 1932]$[8937, -3519, 20, 1932]$[8937, -4922, 20, 529]"/>
+  </edges>
+  <edges xmi:id="_2LJEjv6XEdu6tYsdX_IJFg" source="_1YPA8v6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2LJEkf6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2LJEk_6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2LJElP6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2LJEkv6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2LJEj_6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=LetExp%5Bjcu%5Ename=LetExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2LJEkP6XEdu6tYsdX_IJFg" points="[-264, -1190, -2143, 3943]$[-264, -3201, -2143, 1932]$[1899, -3201, 20, 1932]$[1899, -4604, 20, 529]"/>
+  </edges>
+  <edges xmi:id="_2LPLNf6XEdu6tYsdX_IJFg" source="_1YbON_6XEdu6tYsdX_IJFg" target="_1YCzqv6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2LPLOP6XEdu6tYsdX_IJFg" type="KindLabel">
+      <children xmi:id="_2LPLOv6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2LPLPP6XEdu6tYsdX_IJFg" type="Kind"/>
+      <children xmi:id="_2LPLO_6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2LPLOf6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2LPLNv6XEdu6tYsdX_IJFg" routing="Rectilinear" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=VariableExp%5Bjcu%5Ename=VariableExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Variable%5Bjcu%5Ename=Variable.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2LPLN_6XEdu6tYsdX_IJFg" points="[0, 794, -159, -3122]$[0, 2726, -159, -1190]"/>
+  </edges>
+  <edges xmi:id="_2LVRwP6XEdu6tYsdX_IJFg" source="_1YbON_6XEdu6tYsdX_IJFg" target="_1Ynbav6XEdu6tYsdX_IJFg">
+    <children xmi:id="_2LVRw_6XEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_2LVRxf6XEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_2LVRxv6XEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2LVRxP6XEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_2LVRwf6XEdu6tYsdX_IJFg" routing="Tree" showStereotype="Text"/>
+    <element xmi:type="uml:Generalization" href="mmi:///#jgen%5Bjsrctype%5Ename=VariableExp%5Bjcu%5Ename=VariableExp.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=OCLExpression%5Bjcu%5Ename=OCLExpression.java%5Bjpack%5Ename=org.eclipse.ocl.expressions%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Generalization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2LVRwv6XEdu6tYsdX_IJFg" points="[-238, -767, 1693, 3943]$[-238, -2778, 1693, 1932]$[-1911, -2778, 20, 1932]$[-1911, -4181, 20, 529]"/>
+  </edges>
+</notation:Diagram>

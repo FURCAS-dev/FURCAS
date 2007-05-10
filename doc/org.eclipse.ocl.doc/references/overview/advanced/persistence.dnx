@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.0/notation" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.2/Umlnotation" xmi:id="_cMVIMP6OEdu6tYsdX_IJFg" type="Class" name="persistence.dnx">
+  <children xmi:id="_dq-QcP6OEdu6tYsdX_IJFg">
+    <children xmi:id="_drWq8P6OEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_drWq8f6OEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_drWq8v6OEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_drWq8_6OEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_drWq9P6OEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_drWq9f6OEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_drWq9v6OEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_drWq9_6OEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_dri4MP6OEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_dri4Mf6OEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_dya8QP6OEdu6tYsdX_IJFg" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_dya8Qf6OEdu6tYsdX_IJFg" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_dt8E4P6OEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_dq-Qcf6OEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=TypeResolver%5Bjcu%5Ename=TypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dq-Qcv6OEdu6tYsdX_IJFg" x="7608" y="1268"/>
+  </children>
+  <children xmi:id="_gazTzf6OEdu6tYsdX_IJFg">
+    <children xmi:id="_ga_hAP6OEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_ga_hAf6OEdu6tYsdX_IJFg" width="530" height="530"/>
+    </children>
+    <children xmi:id="_ga_hAv6OEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_ga_hA_6OEdu6tYsdX_IJFg" type="Kind"/>
+    <children xmi:id="_ga_hBP6OEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_ga_hBf6OEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_ga_hBv6OEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_gbFnoP6OEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_gbFnof6OEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_gbFnov6OEdu6tYsdX_IJFg" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getFactory%5Esign=()QEnvironmentFactory%3CQPK;QC;QO;QP;QEL;QPM;QS;QCOA;QSSA;QCT;QCLS;QE;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getParent%5Esign=()QEnvironment%3CQPK;QC;QO;QP;QEL;QPM;QS;QCOA;QSSA;QCT;QCLS;QE;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setParent%5Esign=(QEnvironment%3CQPK;QC;QO;QP;QEL;QPM;QS;QCOA;QSSA;QCT;QCLS;QE;%3E;)V%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getContextPackage%5Esign=()QPK;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getContextClassifier%5Esign=()QC;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getContextOperation%5Esign=()QO;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getContextProperty%5Esign=()QP;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getOCLStandardLibrary%5Esign=()QOCLStandardLibrary%3CQC;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=isEmpty%5Esign=()Z%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupLocal%5Esign=(QString;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookup%5Esign=(QString;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupPackage%5Esign=(QList%3CQString;%3E;)QPK;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupClassifier%5Esign=(QList%3CQString;%3E;)QC;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupOperation%5Esign=(QC;QString;QList%3C+QTypedElement%3CQC;%3E;%3E;)QO;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupProperty%5Esign=(QC;QString;)QP;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupAssociationClassReference%5Esign=(QC;QString;)QC;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupState%5Esign=(QC;QList%3CQString;%3E;)QS;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getStates%5Esign=(QC;QList%3CQString;%3E;)QList%3CQS;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupSignal%5Esign=(QC;QString;QList%3C+QTypedElement%3CQC;%3E;%3E;)QC;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=isInPostcondition%5Esign=(QOCLExpression%3CQC;%3E;)Z%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=addElement%5Esign=(QString;QVariable%3CQC;QPM;%3E;Z)Z%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=deleteElement%5Esign=(QString;)V%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getVariables%5Esign=()QCollection%3CQVariable%3CQC;QPM;%3E;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setSelfVariable%5Esign=(QVariable%3CQC;QPM;%3E;)V%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getSelfVariable%5Esign=()QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupImplicitSourceForProperty%5Esign=(QString;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupImplicitSourceForAssociationClass%5Esign=(QString;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupImplicitSourceForOperation%5Esign=(QString;QList%3C+QTypedElement%3CQC;%3E;%3E;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupImplicitSourceForSignal%5Esign=(QString;QList%3C+QTypedElement%3CQC;%3E;%3E;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=lookupImplicitSourceForState%5Esign=(QList%3CQString;%3E;)QVariable%3CQC;QPM;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setInitConstraint%5Esign=(QP;QCT;)V%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getInitConstraint%5Esign=(QP;)QCT;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setDeriveConstraint%5Esign=(QP;QCT;)V%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getDeriveConstraint%5Esign=(QP;)QCT;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=setBodyCondition%5Esign=(QO;QCT;)V%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getBodyCondition%5Esign=(QO;)QCT;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getOCLFactory%5Esign=()QOCLFactory;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getUMLReflection%5Esign=()QUMLReflection%3CQPK;QC;QO;QP;QEL;QPM;QS;QCOA;QSSA;QCT;%3E;%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <children xmi:id="_gkcX8P6OEdu6tYsdX_IJFg" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_gkcX8f6OEdu6tYsdX_IJFg" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_gdeNQP6OEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLClassifierStyle" xmi:id="_gazTzv6OEdu6tYsdX_IJFg" useClassifierShape="true"/>
+    <element xmi:type="uml:Interface" href="mmi:///#jsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Interface"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gazTz_6OEdu6tYsdX_IJFg" x="951" y="1268"/>
+  </children>
+  <children xmi:id="_lEliVf6OEdu6tYsdX_IJFg">
+    <children xmi:id="_lEro8P6OEdu6tYsdX_IJFg" type="ImageCompartment">
+      <layoutConstraint xmi:type="notation:Size" xmi:id="_lEro8f6OEdu6tYsdX_IJFg" width="1320" height="1320"/>
+    </children>
+    <children xmi:id="_lEro8v6OEdu6tYsdX_IJFg" type="Stereotype"/>
+    <children xmi:id="_lEro8_6OEdu6tYsdX_IJFg" type="Name"/>
+    <children xmi:id="_lEro9P6OEdu6tYsdX_IJFg" type="Parent"/>
+    <children xmi:id="_lEro9f6OEdu6tYsdX_IJFg" visible="false" type="AttributeCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_lEro9v6OEdu6tYsdX_IJFg"/>
+    </children>
+    <children xmi:id="_lEro9_6OEdu6tYsdX_IJFg" type="OperationCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_lEro-P6OEdu6tYsdX_IJFg" filtering="Manual">
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getEnvironment%5Esign=()QEnvironment%3CQPK;QC;QO;QP;*QPM;******%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getCollectionPackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createCollectionPackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findCollectionPackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveCollectionType%5Esign=(QCollectionKind;QC;)QCollectionType%3CQC;QO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createCollectionType%5Esign=(QCollectionKind;QC;)QCollectionType%3CQC;QO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findCollectionType%5Esign=(QCollectionKind;QC;)QCollectionType%3CQC;QO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getTuplePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createTuplePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findTuplePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveTupleType%5Esign=(QEList%3C+QTypedElement%3CQC;%3E;%3E;)QTupleType%3CQO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createTupleType%5Esign=(QEList%3C+QTypedElement%3CQC;%3E;%3E;)QTupleType%3CQO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findTupleType%5Esign=(QEList%3C+QTypedElement%3CQC;%3E;%3E;)QTupleType%3CQO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getTypePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createTypePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findTypePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveTypeType%5Esign=(QC;)QTypeType%3CQC;QO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createTypeType%5Esign=(QC;)QTypeType%3CQC;QO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findTypeType%5Esign=(QC;)QTypeType%3CQC;QO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getMessagePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createMessagePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findMessagePackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveOperationMessageType%5Esign=(QO;)QMessageType%3CQC;QO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveSignalMessageType%5Esign=(QC;)QMessageType%3CQC;QO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createOperationMessageType%5Esign=(QO;)QMessageType%3CQC;QO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createSignalMessageType%5Esign=(QC;)QMessageType%3CQC;QO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findMessageType%5Esign=(QObject;)QMessageType%3CQC;QO;QP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getAdditionalFeaturesPackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createAdditionalFeaturesPackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findAdditionalFeaturesPackage%5Esign=()QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveAdditionalOperation%5Esign=(QC;QO;)QO;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getAdditionalOperations%5Esign=(QC;)QList%3CQO;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findMatchingOperation%5Esign=(QC;QO;)QO;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=matchParameters%5Esign=(QO;QO;)Z%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findMatchingProperty%5Esign=(QC;QP;)QP;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=resolveAdditionalAttribute%5Esign=(QC;QP;)QP;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=hasAdditionalFeatures%5Esign=()Z%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getAdditionalAttributes%5Esign=(QC;)QList%3CQP;%3E;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createShadowClass%5Esign=(QC;)QC;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=addProperty%5Esign=(QC;QP;)V%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=addOperation%5Esign=(QC;QO;)V%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findShadowClass%5Esign=(QC;)QC;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getShadowedClassifier%5Esign=(QC;)QC;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=getShadowClass%5Esign=(QC;)QC;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=createPackage%5Esign=(QString;)QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=findPackage%5Esign=(QString;)QPK;%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+        <filteredObjects xmi:type="uml:Operation" href="mmi:///#jmethod%5Ename=addClassifier%5Esign=(QPK;QC;)V%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Operation"/>
+      </styles>
+    </children>
+    <children xmi:id="_lQU4QP6OEdu6tYsdX_IJFg" type="TemplateCompartment">
+      <styles xmi:type="umlnotation:UMLListCompartmentStyle" xmi:id="_lQU4Qf6OEdu6tYsdX_IJFg" collapsed="true"/>
+      <element xmi:type="uml:RedefinableTemplateSignature" href="mmi:///#_lJ7VUP6OEdu6tYsdX_IJFg"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLShapeStyle" xmi:id="_lEliVv6OEdu6tYsdX_IJFg" showListSignature="true"/>
+    <element xmi:type="uml:Class" href="mmi:///#jsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D$uml.Class"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lEliV_6OEdu6tYsdX_IJFg" x="4121" y="8559"/>
+  </children>
+  <styles xmi:type="umlnotation:UMLDiagramStyle" xmi:id="_cMVIMf6OEdu6tYsdX_IJFg"/>
+  <element xsi:nil="true"/>
+  <edges xmi:id="_gsFRC_6OEdu6tYsdX_IJFg" source="_gazTzf6OEdu6tYsdX_IJFg" target="_dq-QcP6OEdu6tYsdX_IJFg">
+    <children xmi:id="_gsLXoP6OEdu6tYsdX_IJFg" type="KindLabel">
+      <children xmi:id="_gsLXov6OEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_gsLXpP6OEdu6tYsdX_IJFg" type="Kind"/>
+      <children xmi:id="_gsLXo_6OEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gsLXof6OEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_gsFRDP6OEdu6tYsdX_IJFg" routing="Rectilinear" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=TypeResolver%5Bjcu%5Ename=TypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gsFRDf6OEdu6tYsdX_IJFg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_le2ciP6OEdu6tYsdX_IJFg" source="_lEliVf6OEdu6tYsdX_IJFg" target="_dq-QcP6OEdu6tYsdX_IJFg">
+    <children xmi:id="_le2ci_6OEdu6tYsdX_IJFg" type="NameLabel">
+      <children xmi:id="_le2cjf6OEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_le2cjv6OEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_le2cjP6OEdu6tYsdX_IJFg" y="-186"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_le2cif6OEdu6tYsdX_IJFg" routing="Rectilinear" showStereotype="Text"/>
+    <element xmi:type="uml:InterfaceRealization" href="mmi:///#jimpl%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=TypeResolver%5Bjcu%5Ename=TypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.InterfaceRealization"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_le2civ6OEdu6tYsdX_IJFg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:id="_lfIwUP6OEdu6tYsdX_IJFg" source="_lEliVf6OEdu6tYsdX_IJFg" target="_gazTzf6OEdu6tYsdX_IJFg">
+    <children xmi:id="_lfIwU_6OEdu6tYsdX_IJFg" type="KindLabel">
+      <children xmi:id="_lfIwVf6OEdu6tYsdX_IJFg" type="Stereotype"/>
+      <children xmi:id="_lfIwV_6OEdu6tYsdX_IJFg" type="Kind"/>
+      <children xmi:id="_lfIwVv6OEdu6tYsdX_IJFg" type="Name"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lfIwVP6OEdu6tYsdX_IJFg" x="224" y="749"/>
+    </children>
+    <styles xmi:type="umlnotation:UMLConnectorStyle" xmi:id="_lfIwUf6OEdu6tYsdX_IJFg" routing="Rectilinear" showStereotype="Text"/>
+    <element xmi:type="uml:Usage" href="mmi:///#jdep%5Bjsrctype%5Ename=AbstractTypeResolver%5Bjcu%5Ename=AbstractTypeResolver.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D%5Bjsrctype%5Ename=Environment%5Bjcu%5Ename=Environment.java%5Bjpack%5Ename=org.eclipse.ocl%5Bjsrcroot%5Esrcfolder=src%5Bproject%5Eid=org.eclipse.ocl%5D%5D%5D%5D%5D$uml.Usage"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_lfIwUv6OEdu6tYsdX_IJFg" points="[-5159, -635, 794, 6218]$[-6720, -635, -767, 6218]$[-6720, -5001, -767, 1852]"/>
+  </edges>
+</notation:Diagram>
