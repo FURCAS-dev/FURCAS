@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.3 2007/05/10 17:48:02 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.4 2007/05/10 20:31:23 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -373,16 +373,6 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
-	public String getName() {
-		return super.getName();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitTupleLiteralPart(this);
 	}
@@ -614,16 +604,6 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	public Classifier getType() {
 		// override in order to unambiguously narrow the return type
 		return (Classifier) super.getType();
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setName(String name) {
-		super.setName(name);
 	}
 
 	/**
