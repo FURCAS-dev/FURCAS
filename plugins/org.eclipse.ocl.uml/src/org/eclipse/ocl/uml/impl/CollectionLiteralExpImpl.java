@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.1 2007/03/27 15:05:17 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.2 2007/05/10 17:48:01 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.expressions.CollectionRange;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.uml.CollectionLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.uml2.uml.Classifier;
 
@@ -297,11 +296,7 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

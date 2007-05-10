@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.2 2007/03/28 20:39:30 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.3 2007/05/10 17:48:02 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
+import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
@@ -151,6 +152,16 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.OCL_EXPRESSION__END_POSITION, oldEndPosition, endPosition));
 
 
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		return super.getName();
 	}
 
 	/**
@@ -309,10 +320,30 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	}
 	
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setName(String name) {
+		super.setName(name);
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public void setType(Classifier type) {
 		setType((Type) type);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+		// subclasses must override
+		throw new UnsupportedOperationException();
 	}
 
 } //OCLExpressionImpl

@@ -12,21 +12,16 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.1 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.2 2007/05/10 17:48:02 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -230,11 +225,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
-		
-		return accept(ToStringVisitor.getInstance(this));
+		return super.toString();
 	}
 
 	/**

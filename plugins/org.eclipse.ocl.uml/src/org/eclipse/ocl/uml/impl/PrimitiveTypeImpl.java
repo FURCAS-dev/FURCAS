@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.5 2007/05/10 17:48:01 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -57,6 +57,16 @@ org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl implements PrimitiveType {
 	}
 
     /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		return super.getName();
+	}
+
+				/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated NOT
