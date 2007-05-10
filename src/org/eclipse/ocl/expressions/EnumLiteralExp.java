@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EnumLiteralExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: EnumLiteralExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -43,7 +43,7 @@ public interface EnumLiteralExp<C, EL> extends LiteralExp<C> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Enum Literal</em>' reference.
-	 * @see #setReferredEnumLiteral(EL)
+	 * @see #setReferredEnumLiteral(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getEnumLiteralExp_ReferredEnumLiteral()
 	 * @model
 	 * @generated

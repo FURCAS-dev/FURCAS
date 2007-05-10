@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: VoidTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -38,23 +38,23 @@ public class VoidTypeImpl<O> extends EObjectImpl implements VoidType<O> {
 	private EList<O> operations;
 	
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected VoidTypeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.VOID_TYPE;
-    }
+		return TypesPackage.Literals.VOID_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

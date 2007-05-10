@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AssociationClassCallExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: AssociationClassCallExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -43,7 +43,7 @@ public interface AssociationClassCallExp<C, P> extends NavigationCallExp<C, P> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Association Class</em>' reference.
-	 * @see #setReferredAssociationClass(C)
+	 * @see #setReferredAssociationClass(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp_ReferredAssociationClass()
 	 * @model
 	 * @generated

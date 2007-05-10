@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.5 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -29,8 +29,8 @@ import org.eclipse.ocl.expressions.TupleLiteralPart;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;
-import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
+import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
 
 
@@ -141,7 +141,7 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 	 * @generated
 	 * @ordered
 	 */
-	protected OCLExpression<C> value = null;
+	protected OCLExpression<C> value;
 
 	/**
 	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
@@ -151,7 +151,7 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 	 * @generated
 	 * @ordered
 	 */
-	protected P attribute = null;
+	protected P attribute;
 
 	private String name;
 	private C type;
@@ -517,6 +517,11 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Visitable.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
 				case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
@@ -531,11 +536,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 				default: return -1;
 			}
 		}
-		if (baseClass == TypedElement.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -546,6 +546,11 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Visitable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.AST_NODE__START_POSITION: return ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION;
@@ -557,11 +562,6 @@ public class TupleLiteralPartImpl<C, P> extends EObjectImpl implements TupleLite
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION;
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedElement.class) {
-			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: ExpressionsPackage.java,v 1.4 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -79,7 +79,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOCLExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 22;
+	int OCL_EXPRESSION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -116,7 +116,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCallExp()
 	 * @generated
 	 */
-	int CALL_EXP = 2;
+	int CALL_EXP = 3;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -180,7 +180,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getFeatureCallExp()
 	 * @generated
 	 */
-	int FEATURE_CALL_EXP = 8;
+	int FEATURE_CALL_EXP = 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -253,7 +253,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 19;
+	int NAVIGATION_CALL_EXP = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -444,7 +444,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 16;
+	int LITERAL_EXP = 7;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -481,7 +481,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 24;
+	int PRIMITIVE_LITERAL_EXP = 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -518,7 +518,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getBooleanLiteralExp()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXP = 1;
+	int BOOLEAN_LITERAL_EXP = 5;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -564,7 +564,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralPart()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_PART = 5;
+	int COLLECTION_LITERAL_PART = 9;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Part</em>' class.
@@ -583,7 +583,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionItem()
 	 * @generated
 	 */
-	int COLLECTION_ITEM = 3;
+	int COLLECTION_ITEM = 8;
 
 	/**
 	 * The feature id for the '<em><b>Item</b></em>' containment reference.
@@ -611,7 +611,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionLiteralExp()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_EXP = 4;
+	int COLLECTION_LITERAL_EXP = 10;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -675,7 +675,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getCollectionRange()
 	 * @generated
 	 */
-	int COLLECTION_RANGE = 6;
+	int COLLECTION_RANGE = 11;
 
 	/**
 	 * The feature id for the '<em><b>First</b></em>' containment reference.
@@ -712,7 +712,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 7;
+	int ENUM_LITERAL_EXP = 12;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -758,7 +758,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 9;
+	int IF_EXP = 13;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -822,7 +822,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 21;
+	int NUMERIC_LITERAL_EXP = 15;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -859,7 +859,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 10;
+	int INTEGER_LITERAL_EXP = 14;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -905,7 +905,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-    int UNLIMITED_NATURAL_LITERAL_EXP = 11;
+    int UNLIMITED_NATURAL_LITERAL_EXP = 16;
 
     /**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -960,7 +960,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getInvalidLiteralExp()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP = 12;
+	int INVALID_LITERAL_EXP = 17;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -997,7 +997,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 17;
+	int LOOP_EXP = 19;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1079,7 +1079,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 13;
+	int ITERATE_EXP = 18;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1170,7 +1170,200 @@ public interface ExpressionsPackage extends EPackage {
 	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 14;
+	int ITERATOR_EXP = 21;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.LetExpImpl <em>Let Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.LetExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLetExp()
+	 * @generated
+	 */
+	int LET_EXP = 22;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.MessageExpImpl <em>Message Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.MessageExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getMessageExp()
+	 * @generated
+	 */
+	int MESSAGE_EXP = 23;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.NullLiteralExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNullLiteralExp()
+	 * @generated
+	 */
+	int NULL_LITERAL_EXP = 24;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.OperationCallExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOperationCallExp()
+	 * @generated
+	 */
+	int OPERATION_CALL_EXP = 25;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.PropertyCallExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPropertyCallExp()
+	 * @generated
+	 */
+	int PROPERTY_CALL_EXP = 26;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.RealLiteralExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getRealLiteralExp()
+	 * @generated
+	 */
+	int REAL_LITERAL_EXP = 27;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.StateExpImpl <em>State Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.StateExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStateExp()
+	 * @generated
+	 */
+	int STATE_EXP = 28;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.StringLiteralExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStringLiteralExp()
+	 * @generated
+	 */
+	int STRING_LITERAL_EXP = 29;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralExp()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_EXP = 30;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralPart()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_PART = 31;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TypeExpImpl <em>Type Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.TypeExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTypeExp()
+	 * @generated
+	 */
+	int TYPE_EXP = 32;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
+	 * @generated
+	 */
+	int UNSPECIFIED_VALUE_EXP = 33;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.VariableImpl <em>Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.impl.VariableImpl
+	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariable()
+	 * @generated
+	 */
+	int VARIABLE = 20;
+
+	/**
+	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__INIT_EXPRESSION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__REPRESENTED_PARAMETER = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1245,16 +1438,6 @@ public interface ExpressionsPackage extends EPackage {
 	int ITERATOR_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.LetExpImpl <em>Let Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.LetExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getLetExp()
-	 * @generated
-	 */
-	int LET_EXP = 15;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1298,16 +1481,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LET_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.MessageExpImpl <em>Message Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.MessageExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getMessageExp()
-	 * @generated
-	 */
-	int MESSAGE_EXP = 18;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1391,16 +1564,6 @@ public interface ExpressionsPackage extends EPackage {
 	int MESSAGE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.NullLiteralExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getNullLiteralExp()
-	 * @generated
-	 */
-	int NULL_LITERAL_EXP = 20;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1426,16 +1589,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.OperationCallExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getOperationCallExp()
-	 * @generated
-	 */
-	int OPERATION_CALL_EXP = 23;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1528,16 +1681,6 @@ public interface ExpressionsPackage extends EPackage {
 	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.PropertyCallExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getPropertyCallExp()
-	 * @generated
-	 */
-	int PROPERTY_CALL_EXP = 25;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1628,16 +1771,6 @@ public interface ExpressionsPackage extends EPackage {
 	int PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.RealLiteralExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getRealLiteralExp()
-	 * @generated
-	 */
-	int REAL_LITERAL_EXP = 26;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1672,16 +1805,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.StateExpImpl <em>State Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.StateExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStateExp()
-	 * @generated
-	 */
-	int STATE_EXP = 27;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1720,16 +1843,6 @@ public interface ExpressionsPackage extends EPackage {
 	int STATE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.StringLiteralExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getStringLiteralExp()
-	 * @generated
-	 */
-	int STRING_LITERAL_EXP = 28;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1764,16 +1877,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralExp()
-	 * @generated
-	 */
-	int TUPLE_LITERAL_EXP = 29;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1812,23 +1915,13 @@ public interface ExpressionsPackage extends EPackage {
 	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.TupleLiteralPartImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTupleLiteralPart()
-	 * @generated
-	 */
-	int TUPLE_LITERAL_PART = 30;
-
-	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__START_POSITION = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 0;
+	int TUPLE_LITERAL_PART__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -1837,7 +1930,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__END_POSITION = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 1;
+	int TUPLE_LITERAL_PART__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -1846,7 +1939,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_START_POSITION = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 2;
+	int TUPLE_LITERAL_PART__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -1855,7 +1948,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_END_POSITION = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 3;
+	int TUPLE_LITERAL_PART__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1864,7 +1957,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__VALUE = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 4;
+	int TUPLE_LITERAL_PART__VALUE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1873,7 +1966,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__ATTRIBUTE = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 5;
+	int TUPLE_LITERAL_PART__ATTRIBUTE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
@@ -1882,17 +1975,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.VISITABLE_FEATURE_COUNT + 6;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.TypeExpImpl <em>Type Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.TypeExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getTypeExp()
-	 * @generated
-	 */
-	int TYPE_EXP = 31;
+	int TUPLE_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1929,16 +2012,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getUnspecifiedValueExp()
-	 * @generated
-	 */
-	int UNSPECIFIED_VALUE_EXP = 32;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -1984,79 +2057,6 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.VariableImpl <em>Variable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.expressions.impl.VariableImpl
-	 * @see org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl#getVariable()
-	 * @generated
-	 */
-	int VARIABLE = 33;
-
-	/**
-	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__INIT_EXPRESSION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__REPRESENTED_PARAMETER = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of structural features of the '<em>Variable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.VariableExpImpl <em>Variable Exp</em>}' class.

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeType.java,v 1.3 2007/05/05 00:47:15 cdamus Exp $
+ * $Id: TypeType.java,v 1.4 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -38,18 +38,18 @@ public interface TypeType<C, O> extends PredefinedType<O> {
     String SINGLETON_NAME = "OclType"; //$NON-NLS-1$
     
 	/**
-     * Returns the value of the '<em><b>Referred Type</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Referred Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Referred Type</em>' reference.
-     * @see org.eclipse.ocl.types.TypesPackage#getTypeType_ReferredType()
-     * @model required="true" suppressedSetVisibility="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Referred Type</em>' reference.
+	 * @see org.eclipse.ocl.types.TypesPackage#getTypeType_ReferredType()
+	 * @model required="true" suppressedSetVisibility="true"
+	 * @generated
+	 */
 	C getReferredType();
 
 } // TypeType

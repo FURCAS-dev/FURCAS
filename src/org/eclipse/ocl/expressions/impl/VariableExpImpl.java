@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: VariableExpImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -47,7 +47,7 @@ public class VariableExpImpl<C, PM> extends OCLExpressionImpl<C> implements Vari
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable<C, PM> referredVariable = null;
+	protected Variable<C, PM> referredVariable;
 
 	/**
 	 * <!-- begin-user-doc -->

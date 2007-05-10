@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.4 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -169,16 +169,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getPredefinedType()
 	 * @generated
 	 */
-	int PREDEFINED_TYPE = 2;
-
-	/**
-	 * The number of structural features of the '<em>Predefined Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
+	int PREDEFINED_TYPE = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
@@ -188,7 +179,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getTypedASTNode()
 	 * @generated
 	 */
-	int TYPED_AST_NODE = 3;
+	int TYPED_AST_NODE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -243,7 +234,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 4;
+	int VISITABLE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Visitable</em>' class.
@@ -265,15 +256,6 @@ public interface UtilitiesPackage extends EPackage {
 	int TYPED_ELEMENT = 5;
 
 	/**
-	 * The number of structural features of the '<em>Typed Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_FEATURE_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.Visitor <em>Visitor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -281,7 +263,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitor()
 	 * @generated
 	 */
-	int VISITOR = 6;
+	int VISITOR = 4;
 
 	/**
 	 * The number of structural features of the '<em>Visitor</em>' class.
@@ -293,6 +275,15 @@ public interface UtilitiesPackage extends EPackage {
 	int VISITOR_FEATURE_COUNT = 0;
 
 	/**
+	 * The number of structural features of the '<em>Typed Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.ExpressionInOCL <em>Expression In OCL</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -300,7 +291,7 @@ public interface UtilitiesPackage extends EPackage {
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getExpressionInOCL()
 	 * @generated
 	 */
-	int EXPRESSION_IN_OCL = 7;
+	int EXPRESSION_IN_OCL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -346,6 +337,15 @@ public interface UtilitiesPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Predefined Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}'.

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeExp.java,v 1.2 2007/02/14 13:42:14 cdamus Exp $
+ * $Id: TypeExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -43,7 +43,7 @@ public interface TypeExp<C> extends OCLExpression<C> {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Type</em>' reference.
-	 * @see #setReferredType(C)
+	 * @see #setReferredType(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTypeExp_ReferredType()
 	 * @model
 	 * @generated

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPart.java,v 1.2 2007/02/14 13:42:13 cdamus Exp $
+ * $Id: TupleLiteralPart.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.utilities.Visitable;
  * @model
  * @generated
  */
-public interface TupleLiteralPart<C, P> extends Visitable, TypedASTNode, TypedElement<C> {
+public interface TupleLiteralPart<C, P> extends TypedElement<C>, Visitable, TypedASTNode {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public interface TupleLiteralPart<C, P> extends Visitable, TypedASTNode, TypedEl
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(OCLExpression<C>)
+	 * @see #setValue(OCLExpression)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart_Value()
 	 * @model containment="true"
 	 * @generated
@@ -73,7 +73,7 @@ public interface TupleLiteralPart<C, P> extends Visitable, TypedASTNode, TypedEl
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' reference.
-	 * @see #setAttribute(P)
+	 * @see #setAttribute(Object)
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart_Attribute()
 	 * @model
 	 * @generated

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsAdapterFactory.java,v 1.3 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: ExpressionsAdapterFactory.java,v 1.4 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.util;
 
@@ -20,6 +20,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
+//import org.eclipse.ocl.expressions.*;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CallExp;
@@ -124,24 +126,44 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createAssociationClassCallExpAdapter();
 			}
 			@Override
-			public <C> Adapter caseBooleanLiteralExp(BooleanLiteralExp<C> object) {
-				return createBooleanLiteralExpAdapter();
+			public <C, P> Adapter caseNavigationCallExp(NavigationCallExp<C, P> object) {
+				return createNavigationCallExpAdapter();
+			}
+			@Override
+			public <C> Adapter caseFeatureCallExp(FeatureCallExp<C> object) {
+				return createFeatureCallExpAdapter();
 			}
 			@Override
 			public <C> Adapter caseCallExp(CallExp<C> object) {
 				return createCallExpAdapter();
 			}
 			@Override
+			public <C> Adapter caseOCLExpression(OCLExpression<C> object) {
+				return createOCLExpressionAdapter();
+			}
+			@Override
+			public <C> Adapter caseBooleanLiteralExp(BooleanLiteralExp<C> object) {
+				return createBooleanLiteralExpAdapter();
+			}
+			@Override
+			public <C> Adapter casePrimitiveLiteralExp(PrimitiveLiteralExp<C> object) {
+				return createPrimitiveLiteralExpAdapter();
+			}
+			@Override
+			public <C> Adapter caseLiteralExp(LiteralExp<C> object) {
+				return createLiteralExpAdapter();
+			}
+			@Override
 			public <C> Adapter caseCollectionItem(CollectionItem<C> object) {
 				return createCollectionItemAdapter();
 			}
 			@Override
-			public <C> Adapter caseCollectionLiteralExp(CollectionLiteralExp<C> object) {
-				return createCollectionLiteralExpAdapter();
-			}
-			@Override
 			public <C> Adapter caseCollectionLiteralPart(CollectionLiteralPart<C> object) {
 				return createCollectionLiteralPartAdapter();
+			}
+			@Override
+			public <C> Adapter caseCollectionLiteralExp(CollectionLiteralExp<C> object) {
+				return createCollectionLiteralExpAdapter();
 			}
 			@Override
 			public <C> Adapter caseCollectionRange(CollectionRange<C> object) {
@@ -152,16 +174,16 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createEnumLiteralExpAdapter();
 			}
 			@Override
-			public <C> Adapter caseFeatureCallExp(FeatureCallExp<C> object) {
-				return createFeatureCallExpAdapter();
-			}
-			@Override
 			public <C> Adapter caseIfExp(IfExp<C> object) {
 				return createIfExpAdapter();
 			}
 			@Override
 			public <C> Adapter caseIntegerLiteralExp(IntegerLiteralExp<C> object) {
 				return createIntegerLiteralExpAdapter();
+			}
+			@Override
+			public <C> Adapter caseNumericLiteralExp(NumericLiteralExp<C> object) {
+				return createNumericLiteralExpAdapter();
 			}
 			@Override
 			public <C> Adapter caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp<C> object) {
@@ -176,6 +198,14 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createIterateExpAdapter();
 			}
 			@Override
+			public <C, PM> Adapter caseLoopExp(LoopExp<C, PM> object) {
+				return createLoopExpAdapter();
+			}
+			@Override
+			public <C, PM> Adapter caseVariable(Variable<C, PM> object) {
+				return createVariableAdapter();
+			}
+			@Override
 			public <C, PM> Adapter caseIteratorExp(IteratorExp<C, PM> object) {
 				return createIteratorExpAdapter();
 			}
@@ -184,40 +214,16 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createLetExpAdapter();
 			}
 			@Override
-			public <C> Adapter caseLiteralExp(LiteralExp<C> object) {
-				return createLiteralExpAdapter();
-			}
-			@Override
-			public <C, PM> Adapter caseLoopExp(LoopExp<C, PM> object) {
-				return createLoopExpAdapter();
-			}
-			@Override
 			public <C, COA, SSA> Adapter caseMessageExp(MessageExp<C, COA, SSA> object) {
 				return createMessageExpAdapter();
-			}
-			@Override
-			public <C, P> Adapter caseNavigationCallExp(NavigationCallExp<C, P> object) {
-				return createNavigationCallExpAdapter();
 			}
 			@Override
 			public <C> Adapter caseNullLiteralExp(NullLiteralExp<C> object) {
 				return createNullLiteralExpAdapter();
 			}
 			@Override
-			public <C> Adapter caseNumericLiteralExp(NumericLiteralExp<C> object) {
-				return createNumericLiteralExpAdapter();
-			}
-			@Override
-			public <C> Adapter caseOCLExpression(OCLExpression<C> object) {
-				return createOCLExpressionAdapter();
-			}
-			@Override
 			public <C, O> Adapter caseOperationCallExp(OperationCallExp<C, O> object) {
 				return createOperationCallExpAdapter();
-			}
-			@Override
-			public <C> Adapter casePrimitiveLiteralExp(PrimitiveLiteralExp<C> object) {
-				return createPrimitiveLiteralExpAdapter();
 			}
 			@Override
 			public <C, P> Adapter casePropertyCallExp(PropertyCallExp<C, P> object) {
@@ -250,10 +256,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <C> Adapter caseUnspecifiedValueExp(UnspecifiedValueExp<C> object) {
 				return createUnspecifiedValueExpAdapter();
-			}
-			@Override
-			public <C, PM> Adapter caseVariable(Variable<C, PM> object) {
-				return createVariableAdapter();
 			}
 			@Override
 			public <C, PM> Adapter caseVariableExp(VariableExp<C, PM> object) {

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.3 2007/03/15 21:33:32 cdamus Exp $
+ * $Id: LoopExp.java,v 1.4 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -37,45 +37,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface LoopExp<C, PM> extends CallExp<C> {
 	/**
-     * Returns the value of the '<em><b>Body</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Body</em>' containment reference.
-     * @see #setBody(OCLExpression<C>)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getLoopExp_Body()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Body</em>' containment reference.
+	 * @see #setBody(OCLExpression)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getLoopExp_Body()
+	 * @model containment="true"
+	 * @generated
+	 */
 	OCLExpression<C> getBody();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.LoopExp#getBody <em>Body</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.LoopExp#getBody <em>Body</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Body</em>' containment reference.
-     * @see #getBody()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Body</em>' containment reference.
+	 * @see #getBody()
+	 * @generated
+	 */
 	void setBody(OCLExpression<C> value);
 
 	/**
-     * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.ocl.expressions.Variable<C, PM>}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.expressions.Variable}&lt;C, PM>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iterator</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Iterator</em>' containment reference list.
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getLoopExp_Iterator()
-     * @model type="org.eclipse.ocl.expressions.Variable" containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Iterator</em>' containment reference list.
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getLoopExp_Iterator()
+	 * @model type="org.eclipse.ocl.expressions.Variable" containment="true"
+	 * @generated
+	 */
 	EList<Variable<C, PM>> getIterator();
 
 } // LoopExp

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.4 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.5 2007/05/10 17:48:22 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -1165,21 +1165,34 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		associationClassCallExpEClass = createEClass(ASSOCIATION_CLASS_CALL_EXP);
 		createEReference(associationClassCallExpEClass, ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS);
 
-		booleanLiteralExpEClass = createEClass(BOOLEAN_LITERAL_EXP);
-		createEAttribute(booleanLiteralExpEClass, BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL);
+		navigationCallExpEClass = createEClass(NAVIGATION_CALL_EXP);
+		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__QUALIFIER);
+		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__NAVIGATION_SOURCE);
+
+		featureCallExpEClass = createEClass(FEATURE_CALL_EXP);
+		createEAttribute(featureCallExpEClass, FEATURE_CALL_EXP__MARKED_PRE);
 
 		callExpEClass = createEClass(CALL_EXP);
 		createEReference(callExpEClass, CALL_EXP__SOURCE);
 
+		oclExpressionEClass = createEClass(OCL_EXPRESSION);
+
+		booleanLiteralExpEClass = createEClass(BOOLEAN_LITERAL_EXP);
+		createEAttribute(booleanLiteralExpEClass, BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL);
+
+		primitiveLiteralExpEClass = createEClass(PRIMITIVE_LITERAL_EXP);
+
+		literalExpEClass = createEClass(LITERAL_EXP);
+
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__ITEM);
+
+		collectionLiteralPartEClass = createEClass(COLLECTION_LITERAL_PART);
 
 		collectionLiteralExpEClass = createEClass(COLLECTION_LITERAL_EXP);
 		createEAttribute(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__KIND);
 		createEReference(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__PART);
 		createEAttribute(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__SIMPLE_RANGE);
-
-		collectionLiteralPartEClass = createEClass(COLLECTION_LITERAL_PART);
 
 		collectionRangeEClass = createEClass(COLLECTION_RANGE);
 		createEReference(collectionRangeEClass, COLLECTION_RANGE__FIRST);
@@ -1188,9 +1201,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		enumLiteralExpEClass = createEClass(ENUM_LITERAL_EXP);
 		createEReference(enumLiteralExpEClass, ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL);
 
-		featureCallExpEClass = createEClass(FEATURE_CALL_EXP);
-		createEAttribute(featureCallExpEClass, FEATURE_CALL_EXP__MARKED_PRE);
-
 		ifExpEClass = createEClass(IF_EXP);
 		createEReference(ifExpEClass, IF_EXP__CONDITION);
 		createEReference(ifExpEClass, IF_EXP__THEN_EXPRESSION);
@@ -1198,6 +1208,8 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 		integerLiteralExpEClass = createEClass(INTEGER_LITERAL_EXP);
 		createEAttribute(integerLiteralExpEClass, INTEGER_LITERAL_EXP__INTEGER_SYMBOL);
+
+		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
 
 		unlimitedNaturalLiteralExpEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP);
 		createEAttribute(unlimitedNaturalLiteralExpEClass, UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL);
@@ -1208,17 +1220,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		iterateExpEClass = createEClass(ITERATE_EXP);
 		createEReference(iterateExpEClass, ITERATE_EXP__RESULT);
 
+		loopExpEClass = createEClass(LOOP_EXP);
+		createEReference(loopExpEClass, LOOP_EXP__BODY);
+		createEReference(loopExpEClass, LOOP_EXP__ITERATOR);
+
+		variableEClass = createEClass(VARIABLE);
+		createEReference(variableEClass, VARIABLE__INIT_EXPRESSION);
+		createEReference(variableEClass, VARIABLE__REPRESENTED_PARAMETER);
+
 		iteratorExpEClass = createEClass(ITERATOR_EXP);
 
 		letExpEClass = createEClass(LET_EXP);
 		createEReference(letExpEClass, LET_EXP__IN);
 		createEReference(letExpEClass, LET_EXP__VARIABLE);
-
-		literalExpEClass = createEClass(LITERAL_EXP);
-
-		loopExpEClass = createEClass(LOOP_EXP);
-		createEReference(loopExpEClass, LOOP_EXP__BODY);
-		createEReference(loopExpEClass, LOOP_EXP__ITERATOR);
 
 		messageExpEClass = createEClass(MESSAGE_EXP);
 		createEReference(messageExpEClass, MESSAGE_EXP__TARGET);
@@ -1226,22 +1240,12 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		createEReference(messageExpEClass, MESSAGE_EXP__CALLED_OPERATION);
 		createEReference(messageExpEClass, MESSAGE_EXP__SENT_SIGNAL);
 
-		navigationCallExpEClass = createEClass(NAVIGATION_CALL_EXP);
-		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__QUALIFIER);
-		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__NAVIGATION_SOURCE);
-
 		nullLiteralExpEClass = createEClass(NULL_LITERAL_EXP);
-
-		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
-
-		oclExpressionEClass = createEClass(OCL_EXPRESSION);
 
 		operationCallExpEClass = createEClass(OPERATION_CALL_EXP);
 		createEReference(operationCallExpEClass, OPERATION_CALL_EXP__ARGUMENT);
 		createEReference(operationCallExpEClass, OPERATION_CALL_EXP__REFERRED_OPERATION);
 		createEAttribute(operationCallExpEClass, OPERATION_CALL_EXP__OPERATION_CODE);
-
-		primitiveLiteralExpEClass = createEClass(PRIMITIVE_LITERAL_EXP);
 
 		propertyCallExpEClass = createEClass(PROPERTY_CALL_EXP);
 		createEReference(propertyCallExpEClass, PROPERTY_CALL_EXP__REFERRED_PROPERTY);
@@ -1266,10 +1270,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		createEReference(typeExpEClass, TYPE_EXP__REFERRED_TYPE);
 
 		unspecifiedValueExpEClass = createEClass(UNSPECIFIED_VALUE_EXP);
-
-		variableEClass = createEClass(VARIABLE);
-		createEReference(variableEClass, VARIABLE__INIT_EXPRESSION);
-		createEReference(variableEClass, VARIABLE__REPRESENTED_PARAMETER);
 
 		variableExpEClass = createEClass(VARIABLE_EXP);
 		createEReference(variableExpEClass, VARIABLE_EXP__REFERRED_VARIABLE);
@@ -1307,39 +1307,41 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		// Create type parameters
 		ETypeParameter associationClassCallExpEClass_C = addETypeParameter(associationClassCallExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter associationClassCallExpEClass_P = addETypeParameter(associationClassCallExpEClass, "P"); //$NON-NLS-1$
-		ETypeParameter booleanLiteralExpEClass_C = addETypeParameter(booleanLiteralExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter navigationCallExpEClass_C = addETypeParameter(navigationCallExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter navigationCallExpEClass_P = addETypeParameter(navigationCallExpEClass, "P"); //$NON-NLS-1$
+		ETypeParameter featureCallExpEClass_C = addETypeParameter(featureCallExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter callExpEClass_C = addETypeParameter(callExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter oclExpressionEClass_C = addETypeParameter(oclExpressionEClass, "C"); //$NON-NLS-1$
+		ETypeParameter booleanLiteralExpEClass_C = addETypeParameter(booleanLiteralExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter primitiveLiteralExpEClass_C = addETypeParameter(primitiveLiteralExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter literalExpEClass_C = addETypeParameter(literalExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter collectionItemEClass_C = addETypeParameter(collectionItemEClass, "C"); //$NON-NLS-1$
-		ETypeParameter collectionLiteralExpEClass_C = addETypeParameter(collectionLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter collectionLiteralPartEClass_C = addETypeParameter(collectionLiteralPartEClass, "C"); //$NON-NLS-1$
+		ETypeParameter collectionLiteralExpEClass_C = addETypeParameter(collectionLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter collectionRangeEClass_C = addETypeParameter(collectionRangeEClass, "C"); //$NON-NLS-1$
 		ETypeParameter enumLiteralExpEClass_C = addETypeParameter(enumLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter enumLiteralExpEClass_EL = addETypeParameter(enumLiteralExpEClass, "EL"); //$NON-NLS-1$
-		ETypeParameter featureCallExpEClass_C = addETypeParameter(featureCallExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter ifExpEClass_C = addETypeParameter(ifExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter integerLiteralExpEClass_C = addETypeParameter(integerLiteralExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter numericLiteralExpEClass_C = addETypeParameter(numericLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter unlimitedNaturalLiteralExpEClass_C = addETypeParameter(unlimitedNaturalLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter invalidLiteralExpEClass_C = addETypeParameter(invalidLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter iterateExpEClass_C = addETypeParameter(iterateExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter iterateExpEClass_PM = addETypeParameter(iterateExpEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter loopExpEClass_C = addETypeParameter(loopExpEClass, "C"); //$NON-NLS-1$
+		ETypeParameter loopExpEClass_PM = addETypeParameter(loopExpEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter variableEClass_C = addETypeParameter(variableEClass, "C"); //$NON-NLS-1$
+		ETypeParameter variableEClass_PM = addETypeParameter(variableEClass, "PM"); //$NON-NLS-1$
 		ETypeParameter iteratorExpEClass_C = addETypeParameter(iteratorExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter iteratorExpEClass_PM = addETypeParameter(iteratorExpEClass, "PM"); //$NON-NLS-1$
 		ETypeParameter letExpEClass_C = addETypeParameter(letExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter letExpEClass_PM = addETypeParameter(letExpEClass, "PM"); //$NON-NLS-1$
-		ETypeParameter literalExpEClass_C = addETypeParameter(literalExpEClass, "C"); //$NON-NLS-1$
-		ETypeParameter loopExpEClass_C = addETypeParameter(loopExpEClass, "C"); //$NON-NLS-1$
-		ETypeParameter loopExpEClass_PM = addETypeParameter(loopExpEClass, "PM"); //$NON-NLS-1$
 		ETypeParameter messageExpEClass_C = addETypeParameter(messageExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter messageExpEClass_COA = addETypeParameter(messageExpEClass, "COA"); //$NON-NLS-1$
 		ETypeParameter messageExpEClass_SSA = addETypeParameter(messageExpEClass, "SSA"); //$NON-NLS-1$
-		ETypeParameter navigationCallExpEClass_C = addETypeParameter(navigationCallExpEClass, "C"); //$NON-NLS-1$
-		ETypeParameter navigationCallExpEClass_P = addETypeParameter(navigationCallExpEClass, "P"); //$NON-NLS-1$
 		ETypeParameter nullLiteralExpEClass_C = addETypeParameter(nullLiteralExpEClass, "C"); //$NON-NLS-1$
-		ETypeParameter numericLiteralExpEClass_C = addETypeParameter(numericLiteralExpEClass, "C"); //$NON-NLS-1$
-		ETypeParameter oclExpressionEClass_C = addETypeParameter(oclExpressionEClass, "C"); //$NON-NLS-1$
 		ETypeParameter operationCallExpEClass_C = addETypeParameter(operationCallExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter operationCallExpEClass_O = addETypeParameter(operationCallExpEClass, "O"); //$NON-NLS-1$
-		ETypeParameter primitiveLiteralExpEClass_C = addETypeParameter(primitiveLiteralExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter propertyCallExpEClass_C = addETypeParameter(propertyCallExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter propertyCallExpEClass_P = addETypeParameter(propertyCallExpEClass, "P"); //$NON-NLS-1$
 		ETypeParameter realLiteralExpEClass_C = addETypeParameter(realLiteralExpEClass, "C"); //$NON-NLS-1$
@@ -1352,8 +1354,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		ETypeParameter tupleLiteralPartEClass_P = addETypeParameter(tupleLiteralPartEClass, "P"); //$NON-NLS-1$
 		ETypeParameter typeExpEClass_C = addETypeParameter(typeExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter unspecifiedValueExpEClass_C = addETypeParameter(unspecifiedValueExpEClass, "C"); //$NON-NLS-1$
-		ETypeParameter variableEClass_C = addETypeParameter(variableEClass, "C"); //$NON-NLS-1$
-		ETypeParameter variableEClass_PM = addETypeParameter(variableEClass, "PM"); //$NON-NLS-1$
 		ETypeParameter variableExpEClass_C = addETypeParameter(variableExpEClass, "C"); //$NON-NLS-1$
 		ETypeParameter variableExpEClass_PM = addETypeParameter(variableExpEClass, "PM"); //$NON-NLS-1$
 
@@ -1366,30 +1366,54 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g2 = createEGenericType(associationClassCallExpEClass_P);
 		g1.getETypeArguments().add(g2);
 		associationClassCallExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getPrimitiveLiteralExp());
-		g2 = createEGenericType(booleanLiteralExpEClass_C);
+		g1 = createEGenericType(this.getFeatureCallExp());
+		g2 = createEGenericType(navigationCallExpEClass_C);
 		g1.getETypeArguments().add(g2);
-		booleanLiteralExpEClass.getEGenericSuperTypes().add(g1);
+		navigationCallExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCallExp());
+		g2 = createEGenericType(featureCallExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		featureCallExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(callExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		callExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUtilitiesPackage.getCallingASTNode());
 		callExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getTypedElement());
+		g2 = createEGenericType(oclExpressionEClass_C);
+		g1.getETypeArguments().add(g2);
+		oclExpressionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
+		oclExpressionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getASTNode());
+		oclExpressionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getPrimitiveLiteralExp());
+		g2 = createEGenericType(booleanLiteralExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		booleanLiteralExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getLiteralExp());
+		g2 = createEGenericType(primitiveLiteralExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		primitiveLiteralExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getOCLExpression());
+		g2 = createEGenericType(literalExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		literalExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCollectionLiteralPart());
 		g2 = createEGenericType(collectionItemEClass_C);
 		g1.getETypeArguments().add(g2);
 		collectionItemEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getLiteralExp());
-		g2 = createEGenericType(collectionLiteralExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		collectionLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUtilitiesPackage.getTypedElement());
 		g2 = createEGenericType(collectionLiteralPartEClass_C);
 		g1.getETypeArguments().add(g2);
 		collectionLiteralPartEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
 		collectionLiteralPartEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getLiteralExp());
+		g2 = createEGenericType(collectionLiteralExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		collectionLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCollectionLiteralPart());
 		g2 = createEGenericType(collectionRangeEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -1398,10 +1422,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g2 = createEGenericType(enumLiteralExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		enumLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getCallExp());
-		g2 = createEGenericType(featureCallExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		featureCallExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(ifExpEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -1410,6 +1430,10 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g2 = createEGenericType(integerLiteralExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		integerLiteralExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getPrimitiveLiteralExp());
+		g2 = createEGenericType(numericLiteralExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		numericLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNumericLiteralExp());
 		g2 = createEGenericType(unlimitedNaturalLiteralExpEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -1424,6 +1448,18 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g2 = createEGenericType(iterateExpEClass_PM);
 		g1.getETypeArguments().add(g2);
 		iterateExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCallExp());
+		g2 = createEGenericType(loopExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		loopExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getTypedElement());
+		g2 = createEGenericType(variableEClass_C);
+		g1.getETypeArguments().add(g2);
+		variableEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
+		variableEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
+		variableEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getLoopExp());
 		g2 = createEGenericType(iteratorExpEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -1435,47 +1471,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1.getETypeArguments().add(g2);
 		letExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getOCLExpression());
-		g2 = createEGenericType(literalExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		literalExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getCallExp());
-		g2 = createEGenericType(loopExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		loopExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(messageExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		messageExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUtilitiesPackage.getCallingASTNode());
 		messageExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getFeatureCallExp());
-		g2 = createEGenericType(navigationCallExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		navigationCallExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getLiteralExp());
 		g2 = createEGenericType(nullLiteralExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		nullLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getPrimitiveLiteralExp());
-		g2 = createEGenericType(numericLiteralExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		numericLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getTypedElement());
-		g2 = createEGenericType(oclExpressionEClass_C);
-		g1.getETypeArguments().add(g2);
-		oclExpressionEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
-		oclExpressionEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getASTNode());
-		oclExpressionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getFeatureCallExp());
 		g2 = createEGenericType(operationCallExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		operationCallExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getLiteralExp());
-		g2 = createEGenericType(primitiveLiteralExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		primitiveLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNavigationCallExp());
 		g2 = createEGenericType(propertyCallExpEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -1498,13 +1506,13 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g2 = createEGenericType(tupleLiteralExpEClass_C);
 		g1.getETypeArguments().add(g2);
 		tupleLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
-		tupleLiteralPartEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
-		tupleLiteralPartEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUtilitiesPackage.getTypedElement());
 		g2 = createEGenericType(tupleLiteralPartEClass_C);
 		g1.getETypeArguments().add(g2);
+		tupleLiteralPartEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
+		tupleLiteralPartEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
 		tupleLiteralPartEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(typeExpEClass_C);
@@ -1516,14 +1524,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		unspecifiedValueExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
 		unspecifiedValueExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getTypedElement());
-		g2 = createEGenericType(variableEClass_C);
-		g1.getETypeArguments().add(g2);
-		variableEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getVisitable());
-		variableEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theUtilitiesPackage.getTypedASTNode());
-		variableEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(variableExpEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -1534,8 +1534,16 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1 = createEGenericType(associationClassCallExpEClass_C);
 		initEReference(getAssociationClassCallExp_ReferredAssociationClass(), g1, null, "referredAssociationClass", null, 0, 1, AssociationClassCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(booleanLiteralExpEClass, BooleanLiteralExp.class, "BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getBooleanLiteralExp_BooleanSymbol(), ecorePackage.getEBooleanObject(), "booleanSymbol", null, 0, 1, BooleanLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(navigationCallExpEClass, NavigationCallExp.class, "NavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(this.getOCLExpression());
+		g2 = createEGenericType(navigationCallExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		initEReference(getNavigationCallExp_Qualifier(), g1, null, "qualifier", null, 0, -1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(navigationCallExpEClass_P);
+		initEReference(getNavigationCallExp_NavigationSource(), g1, null, "navigationSource", null, 0, 1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(featureCallExpEClass, FeatureCallExp.class, "FeatureCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getFeatureCallExp_MarkedPre(), ecorePackage.getEBoolean(), "markedPre", null, 0, 1, FeatureCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(callExpEClass, CallExp.class, "CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getOCLExpression());
@@ -1543,11 +1551,22 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1.getETypeArguments().add(g2);
 		initEReference(getCallExp_Source(), g1, null, "source", null, 0, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(oclExpressionEClass, OCLExpression.class, "OCLExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(booleanLiteralExpEClass, BooleanLiteralExp.class, "BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getBooleanLiteralExp_BooleanSymbol(), ecorePackage.getEBooleanObject(), "booleanSymbol", null, 0, 1, BooleanLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(primitiveLiteralExpEClass, PrimitiveLiteralExp.class, "PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(literalExpEClass, LiteralExp.class, "LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(collectionItemEClass_C);
 		g1.getETypeArguments().add(g2);
 		initEReference(getCollectionItem_Item(), g1, null, "item", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(collectionLiteralPartEClass, CollectionLiteralPart.class, "CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(collectionLiteralExpEClass, CollectionLiteralExp.class, "CollectionLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCollectionLiteralExp_Kind(), this.getCollectionKind(), "kind", null, 0, 1, CollectionLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1556,8 +1575,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1.getETypeArguments().add(g2);
 		initEReference(getCollectionLiteralExp_Part(), g1, null, "part", null, 0, -1, CollectionLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCollectionLiteralExp_SimpleRange(), ecorePackage.getEBoolean(), "simpleRange", null, 0, 1, CollectionLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(collectionLiteralPartEClass, CollectionLiteralPart.class, "CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(collectionRangeEClass, CollectionRange.class, "CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getOCLExpression());
@@ -1572,9 +1589,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEClass(enumLiteralExpEClass, EnumLiteralExp.class, "EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(enumLiteralExpEClass_EL);
 		initEReference(getEnumLiteralExp_ReferredEnumLiteral(), g1, null, "referredEnumLiteral", null, 0, 1, EnumLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(featureCallExpEClass, FeatureCallExp.class, "FeatureCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFeatureCallExp_MarkedPre(), ecorePackage.getEBoolean(), "markedPre", null, 0, 1, FeatureCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifExpEClass, IfExp.class, "IfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getOCLExpression());
@@ -1593,6 +1607,8 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEClass(integerLiteralExpEClass, IntegerLiteralExp.class, "IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIntegerLiteralExp_IntegerSymbol(), ecorePackage.getEIntegerObject(), "integerSymbol", null, 0, 1, IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(numericLiteralExpEClass, NumericLiteralExp.class, "NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
 		initEClass(unlimitedNaturalLiteralExpEClass, UnlimitedNaturalLiteralExp.class, "UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getUnlimitedNaturalLiteralExp_IntegerSymbol(), ecorePackage.getEIntegerObject(), "integerSymbol", null, 0, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getUnlimitedNaturalLiteralExp_Unlimited(), ecorePackage.getEBoolean(), "unlimited", null, 1, 1, UnlimitedNaturalLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1606,6 +1622,26 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g2 = createEGenericType(iterateExpEClass_PM);
 		g1.getETypeArguments().add(g2);
 		initEReference(getIterateExp_Result(), g1, null, "result", null, 0, 1, IterateExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(loopExpEClass, LoopExp.class, "LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(this.getOCLExpression());
+		g2 = createEGenericType(loopExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		initEReference(getLoopExp_Body(), g1, null, "body", null, 0, 1, LoopExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(this.getVariable());
+		g2 = createEGenericType(loopExpEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(loopExpEClass_PM);
+		g1.getETypeArguments().add(g2);
+		initEReference(getLoopExp_Iterator(), g1, null, "iterator", null, 0, -1, LoopExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		g1 = createEGenericType(this.getOCLExpression());
+		g2 = createEGenericType(variableEClass_C);
+		g1.getETypeArguments().add(g2);
+		initEReference(getVariable_InitExpression(), g1, null, "initExpression", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(variableEClass_PM);
+		initEReference(getVariable_RepresentedParameter(), g1, null, "representedParameter", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iteratorExpEClass, IteratorExp.class, "IteratorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1621,20 +1657,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1.getETypeArguments().add(g2);
 		initEReference(getLetExp_Variable(), g1, null, "variable", null, 0, 1, LetExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(literalExpEClass, LiteralExp.class, "LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(loopExpEClass, LoopExp.class, "LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		g1 = createEGenericType(this.getOCLExpression());
-		g2 = createEGenericType(loopExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		initEReference(getLoopExp_Body(), g1, null, "body", null, 0, 1, LoopExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(this.getVariable());
-		g2 = createEGenericType(loopExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(loopExpEClass_PM);
-		g1.getETypeArguments().add(g2);
-		initEReference(getLoopExp_Iterator(), g1, null, "iterator", null, 0, -1, LoopExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(messageExpEClass, MessageExp.class, "MessageExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getOCLExpression());
 		g2 = createEGenericType(messageExpEClass_C);
@@ -1649,19 +1671,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1 = createEGenericType(messageExpEClass_SSA);
 		initEReference(getMessageExp_SentSignal(), g1, null, "sentSignal", null, 0, 1, MessageExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(navigationCallExpEClass, NavigationCallExp.class, "NavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		g1 = createEGenericType(this.getOCLExpression());
-		g2 = createEGenericType(navigationCallExpEClass_C);
-		g1.getETypeArguments().add(g2);
-		initEReference(getNavigationCallExp_Qualifier(), g1, null, "qualifier", null, 0, -1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(navigationCallExpEClass_P);
-		initEReference(getNavigationCallExp_NavigationSource(), g1, null, "navigationSource", null, 0, 1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(nullLiteralExpEClass, NullLiteralExp.class, "NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(numericLiteralExpEClass, NumericLiteralExp.class, "NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(oclExpressionEClass, OCLExpression.class, "OCLExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(operationCallExpEClass, OperationCallExp.class, "OperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getOCLExpression());
@@ -1671,8 +1681,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		g1 = createEGenericType(operationCallExpEClass_O);
 		initEReference(getOperationCallExp_ReferredOperation(), g1, null, "referredOperation", null, 0, 1, OperationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getOperationCallExp_OperationCode(), ecorePackage.getEInt(), "operationCode", null, 0, 1, OperationCallExp.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(primitiveLiteralExpEClass, PrimitiveLiteralExp.class, "PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(propertyCallExpEClass, PropertyCallExp.class, "PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(propertyCallExpEClass_P);
@@ -1710,14 +1718,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 		initEClass(unspecifiedValueExpEClass, UnspecifiedValueExp.class, "UnspecifiedValueExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		g1 = createEGenericType(this.getOCLExpression());
-		g2 = createEGenericType(variableEClass_C);
-		g1.getETypeArguments().add(g2);
-		initEReference(getVariable_InitExpression(), g1, null, "initExpression", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(variableEClass_PM);
-		initEReference(getVariable_RepresentedParameter(), g1, null, "representedParameter", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(variableExpEClass, VariableExp.class, "VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(this.getVariable());
 		g2 = createEGenericType(variableExpEClass_C);
@@ -1750,12 +1750,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 */
 	protected void createExtendedMetaDataAnnotations() {
 		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
-		addAnnotation
-		  (getCollectionLiteralExp_Kind(), 
-		   source, 
-		   new String[] {
-			 "name", "kind" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
 		addAnnotation
 		  (oclExpressionEClass, 
 		   source, 

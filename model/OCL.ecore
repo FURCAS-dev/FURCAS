@@ -132,11 +132,27 @@
         <eTypeArguments eTypeParameter="#//expressions/AssociationClassCallExp/P"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp">
+    <eClassifiers xsi:type="ecore:EClass" name="NavigationCallExp" abstract="true">
       <eTypeParameters name="C"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
-      <eGenericSuperTypes eClassifier="#//expressions/PrimitiveLiteralExp">
-        <eTypeArguments eTypeParameter="#//expressions/BooleanLiteralExp/C"/>
+      <eTypeParameters name="P"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" upperBound="-1"
+          containment="true">
+        <eGenericType eClassifier="#//expressions/OCLExpression">
+          <eTypeArguments eTypeParameter="#//expressions/NavigationCallExp/C"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="navigationSource">
+        <eGenericType eTypeParameter="#//expressions/NavigationCallExp/P"/>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//expressions/FeatureCallExp">
+        <eTypeArguments eTypeParameter="#//expressions/NavigationCallExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true">
+      <eTypeParameters name="C"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="markedPre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eGenericSuperTypes eClassifier="#//expressions/CallExp">
+        <eTypeArguments eTypeParameter="#//expressions/FeatureCallExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true">
@@ -151,6 +167,36 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//utilities/CallingASTNode"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="OclExpression"/>
+      </eAnnotations>
+      <eTypeParameters name="C"/>
+      <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
+        <eTypeArguments eTypeParameter="#//expressions/OCLExpression/C"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
+      <eGenericSuperTypes eClassifier="#//utilities/ASTNode"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp">
+      <eTypeParameters name="C"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eGenericSuperTypes eClassifier="#//expressions/PrimitiveLiteralExp">
+        <eTypeArguments eTypeParameter="#//expressions/BooleanLiteralExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExp" abstract="true">
+      <eTypeParameters name="C"/>
+      <eGenericSuperTypes eClassifier="#//expressions/LiteralExp">
+        <eTypeArguments eTypeParameter="#//expressions/PrimitiveLiteralExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LiteralExp" abstract="true">
+      <eTypeParameters name="C"/>
+      <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
+        <eTypeArguments eTypeParameter="#//expressions/LiteralExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionItem">
       <eTypeParameters name="C"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="item" lowerBound="1"
@@ -163,6 +209,13 @@
         <eTypeArguments eTypeParameter="#//expressions/CollectionItem/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPart" abstract="true">
+      <eTypeParameters name="C"/>
+      <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
+        <eTypeArguments eTypeParameter="#//expressions/CollectionLiteralPart/C"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CollectionKind">
       <eLiterals name="Set"/>
       <eLiterals name="OrderedSet" value="1"/>
@@ -172,11 +225,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp">
       <eTypeParameters name="C"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//expressions/CollectionKind">
-        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-          <details key="name" value="kind"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//expressions/CollectionKind"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1"
           containment="true">
         <eGenericType eClassifier="#//expressions/CollectionLiteralPart">
@@ -188,13 +237,6 @@
       <eGenericSuperTypes eClassifier="#//expressions/LiteralExp">
         <eTypeArguments eTypeParameter="#//expressions/CollectionLiteralExp/C"/>
       </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPart" abstract="true">
-      <eTypeParameters name="C"/>
-      <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
-        <eTypeArguments eTypeParameter="#//expressions/CollectionLiteralPart/C"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionRange">
       <eTypeParameters name="C"/>
@@ -224,13 +266,6 @@
         <eTypeArguments eTypeParameter="#//expressions/EnumLiteralExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true">
-      <eTypeParameters name="C"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="markedPre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eGenericSuperTypes eClassifier="#//expressions/CallExp">
-        <eTypeArguments eTypeParameter="#//expressions/FeatureCallExp/C"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfExp">
       <eTypeParameters name="C"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" containment="true">
@@ -257,6 +292,12 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eGenericSuperTypes eClassifier="#//expressions/NumericLiteralExp">
         <eTypeArguments eTypeParameter="#//expressions/IntegerLiteralExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true">
+      <eTypeParameters name="C"/>
+      <eGenericSuperTypes eClassifier="#//expressions/PrimitiveLiteralExp">
+        <eTypeArguments eTypeParameter="#//expressions/NumericLiteralExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp">
@@ -289,6 +330,42 @@
         <eTypeArguments eTypeParameter="#//expressions/IterateExp/PM"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true">
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="PM"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="body" containment="true">
+        <eGenericType eClassifier="#//expressions/OCLExpression">
+          <eTypeArguments eTypeParameter="#//expressions/LoopExp/C"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" upperBound="-1"
+          containment="true">
+        <eGenericType eClassifier="#//expressions/Variable">
+          <eTypeArguments eTypeParameter="#//expressions/LoopExp/C"/>
+          <eTypeArguments eTypeParameter="#//expressions/LoopExp/PM"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//expressions/CallExp">
+        <eTypeArguments eTypeParameter="#//expressions/LoopExp/C"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Variable">
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="PM"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" containment="true">
+        <eGenericType eClassifier="#//expressions/OCLExpression">
+          <eTypeArguments eTypeParameter="#//expressions/Variable/C"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter">
+        <eGenericType eTypeParameter="#//expressions/Variable/PM"/>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
+        <eTypeArguments eTypeParameter="#//expressions/Variable/C"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
+      <eGenericSuperTypes eClassifier="#//utilities/TypedASTNode"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IteratorExp">
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
@@ -313,31 +390,6 @@
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
         <eTypeArguments eTypeParameter="#//expressions/LetExp/C"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LiteralExp" abstract="true">
-      <eTypeParameters name="C"/>
-      <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
-        <eTypeArguments eTypeParameter="#//expressions/LiteralExp/C"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true">
-      <eTypeParameters name="C"/>
-      <eTypeParameters name="PM"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="body" containment="true">
-        <eGenericType eClassifier="#//expressions/OCLExpression">
-          <eTypeArguments eTypeParameter="#//expressions/LoopExp/C"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" upperBound="-1"
-          containment="true">
-        <eGenericType eClassifier="#//expressions/Variable">
-          <eTypeArguments eTypeParameter="#//expressions/LoopExp/C"/>
-          <eTypeArguments eTypeParameter="#//expressions/LoopExp/PM"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eGenericSuperTypes eClassifier="#//expressions/CallExp">
-        <eTypeArguments eTypeParameter="#//expressions/LoopExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MessageExp">
@@ -366,44 +418,11 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//utilities/CallingASTNode"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NavigationCallExp" abstract="true">
-      <eTypeParameters name="C"/>
-      <eTypeParameters name="P"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" upperBound="-1"
-          containment="true">
-        <eGenericType eClassifier="#//expressions/OCLExpression">
-          <eTypeArguments eTypeParameter="#//expressions/NavigationCallExp/C"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="navigationSource">
-        <eGenericType eTypeParameter="#//expressions/NavigationCallExp/P"/>
-      </eStructuralFeatures>
-      <eGenericSuperTypes eClassifier="#//expressions/FeatureCallExp">
-        <eTypeArguments eTypeParameter="#//expressions/NavigationCallExp/C"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp">
       <eTypeParameters name="C"/>
       <eGenericSuperTypes eClassifier="#//expressions/LiteralExp">
         <eTypeArguments eTypeParameter="#//expressions/NullLiteralExp/C"/>
       </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true">
-      <eTypeParameters name="C"/>
-      <eGenericSuperTypes eClassifier="#//expressions/PrimitiveLiteralExp">
-        <eTypeArguments eTypeParameter="#//expressions/NumericLiteralExp/C"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="name" value="OclExpression"/>
-      </eAnnotations>
-      <eTypeParameters name="C"/>
-      <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
-        <eTypeArguments eTypeParameter="#//expressions/OCLExpression/C"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
-      <eGenericSuperTypes eClassifier="#//utilities/ASTNode"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperationCallExp">
       <eTypeParameters name="C"/>
@@ -421,12 +440,6 @@
           volatile="true" transient="true"/>
       <eGenericSuperTypes eClassifier="#//expressions/FeatureCallExp">
         <eTypeArguments eTypeParameter="#//expressions/OperationCallExp/C"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExp" abstract="true">
-      <eTypeParameters name="C"/>
-      <eGenericSuperTypes eClassifier="#//expressions/LiteralExp">
-        <eTypeArguments eTypeParameter="#//expressions/PrimitiveLiteralExp/C"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExp">
@@ -489,11 +502,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute">
         <eGenericType eTypeParameter="#//expressions/TupleLiteralPart/P"/>
       </eStructuralFeatures>
-      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
-      <eGenericSuperTypes eClassifier="#//utilities/TypedASTNode"/>
       <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
         <eTypeArguments eTypeParameter="#//expressions/TupleLiteralPart/C"/>
       </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
+      <eGenericSuperTypes eClassifier="#//utilities/TypedASTNode"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypeExp">
       <eTypeParameters name="C"/>
@@ -509,23 +522,6 @@
       <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
         <eTypeArguments eTypeParameter="#//expressions/UnspecifiedValueExp/C"/>
       </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//utilities/TypedASTNode"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Variable">
-      <eTypeParameters name="C"/>
-      <eTypeParameters name="PM"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" containment="true">
-        <eGenericType eClassifier="#//expressions/OCLExpression">
-          <eTypeArguments eTypeParameter="#//expressions/Variable/C"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter">
-        <eGenericType eTypeParameter="#//expressions/Variable/PM"/>
-      </eStructuralFeatures>
-      <eGenericSuperTypes eClassifier="#//utilities/TypedElement">
-        <eTypeArguments eTypeParameter="#//expressions/Variable/C"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//utilities/Visitable"/>
       <eGenericSuperTypes eClassifier="#//utilities/TypedASTNode"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariableExp">
@@ -559,13 +555,6 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" transient="true"
           defaultValueLiteral="-1"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">
-      <eTypeParameters name="O"/>
-      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eOperations name="oclOperations" upperBound="-1">
-        <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
-      </eOperations>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypedASTNode" abstract="true" interface="true"
         eSuperTypes="#//utilities/ASTNode">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeStartPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
@@ -593,21 +582,6 @@
         </eTypeParameters>
         <eParameters name="v">
           <eGenericType eTypeParameter="#//utilities/Visitable/accept/U"/>
-        </eParameters>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
-      <eTypeParameters name="C"/>
-      <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eOperations name="getType">
-        <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
-      </eOperations>
-      <eOperations name="setName">
-        <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
-      <eOperations name="setType">
-        <eParameters name="name">
-          <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
         </eParameters>
       </eOperations>
     </eClassifiers>
@@ -860,6 +834,21 @@
         </eParameters>
       </eOperations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
+      <eTypeParameters name="C"/>
+      <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eOperations name="getType">
+        <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
+      </eOperations>
+      <eOperations name="setName" ordered="false" lowerBound="1">
+        <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
+      <eOperations name="setType" ordered="false" lowerBound="1">
+        <eParameters name="type" ordered="false" lowerBound="1">
+          <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" abstract="true" interface="true"
         eSuperTypes="#//utilities/Visitable">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -893,6 +882,13 @@
           <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
         </eGenericType>
       </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">
+      <eTypeParameters name="O"/>
+      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eOperations name="oclOperations" upperBound="-1">
+        <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
+      </eOperations>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

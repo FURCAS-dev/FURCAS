@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -47,7 +47,7 @@ public class PropertyCallExpImpl<C, P> extends NavigationCallExpImpl<C, P> imple
 	 * @generated
 	 * @ordered
 	 */
-	protected P referredProperty = null;
+	protected P referredProperty;
 
 	/**
 	 * <!-- begin-user-doc -->

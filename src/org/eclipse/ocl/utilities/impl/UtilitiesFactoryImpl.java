@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+//import org.eclipse.ocl.utilities.*;
 import org.eclipse.ocl.utilities.UtilitiesFactory;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
@@ -32,65 +34,65 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  */
 public class UtilitiesFactoryImpl extends EFactoryImpl implements UtilitiesFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static UtilitiesFactory init() {
-        try {
-            UtilitiesFactory theUtilitiesFactory = (UtilitiesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"); //$NON-NLS-1$ 
-            if (theUtilitiesFactory != null) {
-                return theUtilitiesFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new UtilitiesFactoryImpl();
-    }
+		try {
+			UtilitiesFactory theUtilitiesFactory = (UtilitiesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"); //$NON-NLS-1$ 
+			if (theUtilitiesFactory != null) {
+				return theUtilitiesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new UtilitiesFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public UtilitiesFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public UtilitiesPackage getUtilitiesPackage() {
-        return (UtilitiesPackage)getEPackage();
-    }
+		return (UtilitiesPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static UtilitiesPackage getPackage() {
-        return UtilitiesPackage.eINSTANCE;
-    }
+		return UtilitiesPackage.eINSTANCE;
+	}
 
 } //UtilitiesFactoryImpl
