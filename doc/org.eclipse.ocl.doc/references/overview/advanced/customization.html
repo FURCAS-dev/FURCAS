@@ -270,7 +270,7 @@ ocl = OCL.newInstance(new <b>MyEnvironmentFactory</b>());
 OCLHelper&lt;EClassifier, ?, ?, Constraint&gt; helper = ocl.createOCLHelper();
 helper.setContext(MyPackage.Literals.PERSON);
 
-\\ double the '\' to escape it in a Java string literal
+// double the '\' to escape it in a Java string literal
 Constraint validSSN = helper.createInvariant(
         "self.ssn.<b>regexMatch</b>('\\d{3}-\\d{3}-\\d{3}') &lt;&gt; <b>null</b>");
         
