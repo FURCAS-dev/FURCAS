@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.2 2007/03/27 15:05:28 cdamus Exp $
+ * $Id: OCL.java,v 1.3 2007/05/17 17:06:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -230,11 +230,11 @@ public class OCL extends org.eclipse.ocl.OCL<
     	OCLExpression getExpression();
         
     	/**
-    	 * {@inheritDoc}
     	 * <p>
-    	 * The return type is narrowed to the Ecore binding for the generic
-    	 * <tt>OCLExpression&lt;PK,C,O,P,EL,PM,S,COA,SSA,CT,CLS,E&gt;</tt> type.
+    	 * Obtains the {@link OCL} that created me.
     	 * </p>
+         * 
+         * @return my originating <tt>OCL</tt> instance
     	 */
         OCL getOCL();
     }
