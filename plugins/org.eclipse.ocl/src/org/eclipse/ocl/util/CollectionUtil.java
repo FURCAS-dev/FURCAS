@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.2 2007/05/17 17:06:22 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -361,26 +361,26 @@ public class CollectionUtil {
      * @param self the source collection
      * @return the flattened collection
      */
-    public static Collection<?> flatten(Collection<?> c) {
-        Iterator<?> it = c.iterator();
+    public static Collection<?> flatten(Collection<?> self) {
+        Iterator<?> it = self.iterator();
         Object object = it.next();
 
         // if the element type is not a collection type, the result is the
         // supplied collection.
         if (!(object instanceof Collection))
-            return c;
+            return self;
 
         Collection<Object> result = null;
-        if (c instanceof Bag)
+        if (self instanceof Bag)
             result = createNewBag();
-        else if (c instanceof Set)
+        else if (self instanceof Set)
             result = createNewSet();
         else
             // Sequence
             result = createNewSequence();
 
         // the element type is a collection type -- flatten
-        for (it = c.iterator(); it.hasNext();)
+        for (it = self.iterator(); it.hasNext();)
             result.addAll((Collection<?>) it.next());
 
         return result;
@@ -392,7 +392,7 @@ public class CollectionUtil {
      * operation.
      * 
      * @param self the source set
-     * @param c another set
+     * @param set another set
      * @return the subtraction of the other set from the source set
      */
     public static <E> Set<E> minus(Set<? extends E> self, Set<? extends E> set) {
@@ -816,7 +816,7 @@ public class CollectionUtil {
      * operations.
      * 
      * @param self the source collection
-     * @param an object
+     * @param object an object
      * @return the index of the object in the source collection
      */
     public static <E> Integer indexOf(Collection<? extends E> self, E object) {

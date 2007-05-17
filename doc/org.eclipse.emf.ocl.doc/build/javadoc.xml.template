@@ -15,6 +15,12 @@
 	<property environment="env"/>
 	<property name="javaHome" value="${env.JAVA_HOME}"/>
 	
+	<path id="javadoc.source.path">
+		<pathelement location="${eclipseDir}/plugins/org.eclipse.emf.ocl/src/"/>
+		<pathelement location="${eclipseDir}/plugins/org.eclipse.ocl/src/"/>
+		<pathelement location="${eclipseDir}/plugins/org.eclipse.ocl.ecore/src/"/>
+	</path>
+	
 	<property name="jdk.link.location" value="javadoc/jdk"/>
 	<available property="jdkJavadocExists" file="${jdk.link.location}/package-list"/>
 	
@@ -77,7 +83,7 @@
 				<arg value="-J-Xmx180m"/>
 				
 				<link offline="true" href="http://java.sun.com/j2se/1.5/docs/api/"
-				    packagelistloc="${jdk.link.location}/"/>
+				    packagelistLoc="${jdk.link.location}/"/>
 				<link offline="true" href="/help/topic/org.eclipse.platform.doc.isv/reference/api/"
 				    packagelistLoc="${platform.link.location}/reference/api/"/>
 				<link offline="true" href="/help/topic/org.eclipse.emf.doc/references/javadoc/"

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnicodeSupport.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: UnicodeSupport.java,v 1.2 2007/05/17 17:06:22 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -89,7 +89,7 @@ public abstract class UnicodeSupport {
 	 * Obtains the location of the code point <tt>shift</tt> positions from the
 	 * specified 16-bit character <tt>offset</tt> of a string buffer.
 	 * 
-	 * @param buffer a string buffer
+	 * @param text a string of UNICODE text
 	 * @param offset a 16-bit offset into the string buffer.  Must be between
 	 *     0 (inclusive) and the buffer's length (exclusive)
 	 * @param shift a positive or negative index, as a count of code points,

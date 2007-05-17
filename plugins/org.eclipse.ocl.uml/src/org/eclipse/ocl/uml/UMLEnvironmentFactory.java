@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentFactory.java,v 1.3 2007/03/22 21:59:20 cdamus Exp $
+ * $Id: UMLEnvironmentFactory.java,v 1.4 2007/05/17 17:06:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.AbstractEnvironmentFactory;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;

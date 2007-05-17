@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.4 2007/03/27 15:04:58 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.5 2007/05/17 17:06:23 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -501,7 +501,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	 * Creates a new message type for the specified <code>element</code>,
 	 * assuming that it does not already exist.
 	 * 
-	 * @param element the operation or signal referenced by the message type
+	 * @param operation the operation referenced by the message type
 	 * 
 	 * @return the new message type
 	 */
@@ -517,7 +517,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	 * Creates a new message type for the specified <code>element</code>,
 	 * assuming that it does not already exist.
 	 * 
-	 * @param element the operation or signal referenced by the message type
+	 * @param signal the signal referenced by the message type
 	 * 
 	 * @return the new message type
 	 */

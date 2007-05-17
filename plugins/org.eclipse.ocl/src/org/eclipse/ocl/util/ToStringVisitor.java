@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.4 2007/04/20 12:14:25 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.5 2007/05/17 17:06:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -108,9 +108,9 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	
 	/**
 	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
-	 * expression.
+	 * expression or other typed element.
 	 * 
-	 * @param expr an OCL expression
+	 * @param element an OCL expression or other typed element such as a variable
 	 * 
 	 * @return the corresponding instance
 	 */
@@ -299,8 +299,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	/**
 	 * Callback for an IfExp visit.
-	 * @param i IfExp
-	 * @return String
+	 * @param ifExp an IfExp
+     * @return the string representation
 	 */
     protected String handleIfExp(IfExp<C> ifExp, String conditionResult, String thenResult, String elseResult) {
         StringBuffer result = new StringBuffer();
@@ -394,8 +394,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	/**
 	 * Callback for LetExp visit.
-	 * @param l - let expression
-	 * @return String
+	 * @param letExp a let expression
+     * @return the string representation
 	 */
     protected String handleLetExp(LetExp<C,PM> letExp, String variableResult,
             String inResult) {
@@ -410,8 +410,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	/**
 	 *  Callback for an IterateExp visit.
-	 * @param ie -- iterate expression
-	 * @return String
+	 * @param callExp an iterate expression
+     * @return the string representation
 	 */
     protected String handleIterateExp(IterateExp<C,PM> callExp,
             String sourceResult, List<String> variableResults,
@@ -437,8 +437,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	/**
 	 * Callback for an IteratorExp visit.
-	 * @param ie - iterator expression
-	 * @return string
+	 * @param callExp an iterator expression
+     * @return the string representation
 	 */
     protected String handleIteratorExp(IteratorExp<C,PM> callExp,
             String sourceResult, List<String> variableResults, String bodyResult) {
@@ -518,8 +518,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	/**
 	 * Callback for a TupleLiteralExp visit.
-	 * @param tl tuple literal expression
-	 * @return String
+	 * @param literalExp tuple literal expression
+     * @return the string representation
 	 */
     protected String handleTupleLiteralExp(TupleLiteralExp<C,P> literalExp,
             List<String> partResults) {

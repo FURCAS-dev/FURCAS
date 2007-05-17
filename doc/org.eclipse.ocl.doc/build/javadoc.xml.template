@@ -85,7 +85,7 @@
 				<arg value="-J-Xmx180m"/>
 				
 				<link offline="true" href="http://java.sun.com/j2se/1.5/docs/api/"
-				    packagelistloc="${jdk.link.location}/"/>
+				    packagelistLoc="${jdk.link.location}/"/>
 				<link offline="true" href="/help/topic/org.eclipse.platform.doc.isv/reference/api/"
 				    packagelistLoc="${platform.link.location}/reference/api/"/>
 				<link offline="true" href="/help/topic/org.eclipse.emf.doc/references/javadoc/"
