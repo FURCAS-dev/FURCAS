@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.15 2007/04/27 22:01:49 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.16 2007/05/17 17:58:38 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -528,8 +528,10 @@ public class TypeUtil {
 	 * @param type1 a type
 	 * @param type2 another type
 	 * 
-	 * @return either {@link #UNRELATED_TYPE}, {@link #STRICT_SUBTYPE},
-	 *    {@link #STRICT_SUPERTYPE}, or {@link #SAME_TYPE} according to the
+	 * @return either {@link PredefinedType#UNRELATED_TYPE},
+     *    {@link PredefinedType#STRICT_SUBTYPE},
+	 *    {@link PredefinedType#STRICT_SUPERTYPE}, or
+     *    {@link PredefinedType#SAME_TYPE} according to the
 	 *    relationship between the types
 	 */
 	public static int getRelationship(EClassifier type1, EClassifier type2) {

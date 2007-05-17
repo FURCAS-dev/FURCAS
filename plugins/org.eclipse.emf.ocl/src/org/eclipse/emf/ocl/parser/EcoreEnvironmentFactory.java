@@ -117,7 +117,7 @@ public class EcoreEnvironmentFactory
 	 * Creates an environment for OCL constraints in the context of the
 	 * specified <code>classifier</code>.
 	 * 
-	 * @param classifier the context classifier
+	 * @param packageContext a package providing the default namespace context
 	 * @return the OCL environment
 	 */
 	protected Environment createEnvironment(EPackage packageContext) {

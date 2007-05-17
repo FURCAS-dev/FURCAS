@@ -116,7 +116,7 @@ public class ExpressionsUtil {
 	 * @param property the property context
 	 * @return the OCL environment
 	 * 
-	 * @see #createProper
+	 * @see #createPropertyContext(EStructuralFeature)
 	 */
 	public static Environment createPropertyContext(EClassifier classifier,
 			EStructuralFeature property) {
@@ -133,7 +133,7 @@ public class ExpressionsUtil {
 	 * @param property the property context
 	 * @return the OCL environment
 	 * 
-	 * @see #createOperationContext(EClassifier, EOperation)
+	 * @see #createPropertyContext(EClassifier, EStructuralFeature)
 	 */
 	public static Environment createPropertyContext(EStructuralFeature property) {
 		return EnvironmentFactory.ECORE_INSTANCE.createPropertyContext(
@@ -637,7 +637,7 @@ public class ExpressionsUtil {
 	/**
 	 * Defines a property or operation of the specified signature.
 	 * 
-	 * @param environment the OCL classifier environment
+	 * @param env the OCL classifier environment
 	 * @param defExpression the definition expression (without the <code>"def:"</code>
 	 *     preamble but including the <code>"name(...) : type ="</code> part)
 	 * 

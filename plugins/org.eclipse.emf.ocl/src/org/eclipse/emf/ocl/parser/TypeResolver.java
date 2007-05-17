@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolver.java,v 1.3 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: TypeResolver.java,v 1.4 2007/05/17 17:58:38 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.MessageType;
 import org.eclipse.emf.ocl.types.TupleType;
 import org.eclipse.emf.ocl.types.TypeType;
+import org.eclipse.emf.ocl.uml.TypedElement;
 
 
 /**
@@ -71,11 +72,9 @@ public interface TypeResolver {
 	 * <code>resolveXyzType()</code> methods defined by this interface.
 	 * </p>
 	 * 
-	 * @param a type to resolve
+	 * @param type a type to resolve
 	 * 
 	 * @return the resolved type, or <code>type</code> if it is already resolved
-	 * 
-	 * @see 
 	 */
 	EClassifier resolve(EClassifier type);
 

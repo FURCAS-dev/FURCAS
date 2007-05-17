@@ -102,7 +102,7 @@ public interface Query extends EObject {
 	 * Evaluates the query on an object. The query must be a boolean valued
 	 * constraint.
 	 * 
-	 * @param eobj an <code>Object</code> or <code>null</code> if the query
+	 * @param obj an <code>Object</code> or <code>null</code> if the query
 	 *     does not require an OCL 'self' context
 	 * @return boolean <code>true</code> or <code>false</code> according to
 	 *     whether the constraint is met
@@ -117,14 +117,14 @@ public interface Query extends EObject {
 	 * Evaluates the query on the input list.
 	 * The results are returned in a corresponding list of results.
 	 * 
-	 * @param eobjects a list of objects to evaluate the query on
+	 * @param objects a list of objects to evaluate the query on
 	 * @return a list of results, corresponding one-for-one with the
 	 *     <code>objects</code>.  Note that result elements may, themselves,
 	 *     be collections of multiple results for a single input object.
 	 *    In any case, the results conform to the expression's
 	 *    {@linkplain #resultType() result type}
 	 * 
-	 * @see #evaluate(EObject)
+	 * @see #evaluate(Object)
 	 * @see #resultType()
 	 * 
 	 * @model type="java.lang.Object"
@@ -140,8 +140,7 @@ public interface Query extends EObject {
 	 *     the constraint (including the trivial case of an empty input list);
 	 *     <code>false</code>, otherwise
 	 * 
-	 * @see #check(EObject)
-	 * 
+	 * @see #check(Object)
 	 *
 	 */
 	public boolean check(List objects); 
@@ -150,7 +149,7 @@ public interface Query extends EObject {
 	 * Determines the subset of input objects that satisfy the query.
 	 * The query must be a boolean valued constraint.
 	 * 
-	 * @param eobjects a list of objects to evaluate the constraint on
+	 * @param objects a list of objects to evaluate the constraint on
 	 * @return the subset (possibly empty) of the <code>objects</code> that
 	 *      satisfy the constraint
 	 * 
@@ -162,7 +161,7 @@ public interface Query extends EObject {
 	 * Determines the subset of input objects that do not satisfy the
 	 * query.  The query must be a boolean valued constraint.
 	 * 
-	 * @param eobjects a list of objects to evaluate the constraint on
+	 * @param objects a list of objects to evaluate the constraint on
 	 * @return the subset (possibly empty) of the <code>objects</code> that
 	 *      do not satisfy the constraint
 	 * 
