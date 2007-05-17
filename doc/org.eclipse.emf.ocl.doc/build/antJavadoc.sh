@@ -102,7 +102,7 @@ platformDocJar=`find $eclipseDir/plugins/ -name "org.eclipse.platform.doc.isv*.j
 
 # Finds the proper org.eclipse.emf.doc jar
 emfDocJar=`find $eclipseDir/plugins/ -name "org.eclipse.emf.doc*.jar" -printf "%f"`; if [ $debug -gt 1 ]; then echo "[antJd] emfDocJar: "$emfDocJar; fi
-if [ "x$emfDocJar" -eq x ]; then
+if [ "x"$emfDocJar = "x" ]; then
 	# *** NOTE: EMF docs are still a directory plug-in ***
 	emfDocJar=`find $eclipseDir/plugins/ -type d -name "org.eclipse.emf.doc*" -printf "%f/doc.zip"`; if [ $debug -gt 1 ]; then echo "[antJd] emfDocJar: "$emfDocJar; fi
 fi
