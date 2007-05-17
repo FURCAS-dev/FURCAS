@@ -2,7 +2,7 @@
 <project name="Plugin Javadoc" default="javadoc">
 	<property name="destDir"    value="doc"/>
 	<property name="classpath"  value="bin"/>
-	<property name="overview"   value="build/overview.html"/>
+	<property name="overview"   value="overview.html"/>
 	<property name="eclipseDir" value="."/>
 	<property name="platformDocJar" value="org.eclipse.platform.doc.isv.jar"/>
 	<property name="emfDocJar" value="org.eclipse.emf.doc.jar"/>
@@ -16,7 +16,7 @@
 	<property environment="env"/>
 	<property name="javaHome" value="${env.JAVA_HOME}"/>
 	
-	<property name="jdk.link.location" value="build/javadoc/jdk"/>
+	<property name="jdk.link.location" value="javadoc/jdk"/>
 	<available property="jdkJavadocExists" file="${jdk.link.location}/package-list"/>
 	
 	<target name="extractJDKJavadoc" unless="jdkJavadocExists">
@@ -24,7 +24,7 @@
 		<get dest="${jdk.link.location}/package-list" src="http://java.sun.com/j2se/1.5/docs/api/package-list"/>
 	</target>
 	
-	<property name="platform.link.location" value="build/javadoc/platform"/>
+	<property name="platform.link.location" value="javadoc/platform"/>
 	<available property="platformJavadocExists" file="${platform.link.location}/reference/api/package-list"/>
 
 	<target name="extractPlatformJavadoc" unless="platformJavadocExists">
@@ -34,7 +34,7 @@
 		</unzip>
 	</target>
 	
-	<property name="emf.link.location" value="build/javadoc/emf"/>
+	<property name="emf.link.location" value="javadoc/emf"/>
 	<available property="emfJavadocExists" file="${emf.link.location}/references/javadoc/package-list"/>
 
 	<target name="extractEMFJavadoc" unless="emfJavadocExists">
@@ -44,7 +44,7 @@
 		</unzip>
 	</target>
 	
-	<property name="uml.link.location" value="build/javadoc/uml"/>
+	<property name="uml.link.location" value="javadoc/uml"/>
 	<available property="umlJavadocExists" file="${uml.link.location}/references/javadoc/package-list"/>
 
 	<target name="extractUMLJavadoc" unless="umlJavadocExists">
