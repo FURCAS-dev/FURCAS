@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.3 2007/04/30 12:38:18 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.4 2007/05/17 17:58:37 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -212,7 +212,7 @@ public class OCLUMLUtil extends UMLUtil {
      * Searches the specified resource set for a UML namespace (not necessarily
      * a package).
      * 
-     * @param qualified the qualified namespace name
+     * @param qualifiedName the qualified namespace name
      * @param rset the resource set to search
      * @return the matching namespace, or <code>null</code> if not found
      */
