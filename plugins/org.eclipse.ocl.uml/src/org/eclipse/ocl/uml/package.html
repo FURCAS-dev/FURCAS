@@ -28,7 +28,7 @@ implementation for the <tt>UML</tt> metamodel.  Clients can use an
 {@link org.eclipse.ocl.uml.OCL} class to parse and evaluated OCL constraints
 on UML models.
 </p>
-</p>
+<p>
 Clients may extend the environment implementation to support custom requirements,
 such as overriding the
 {@link org.eclipse.ocl.Environment#lookupOperation} and
@@ -43,11 +43,12 @@ The parser environments created by the UML environment factory support OCL
 expressions at both the metamodel (M2) and user model (M1) levels.  For
 user model constraints, use the classifier in the model as the context
 classifier in invocations of th {@link org.eclipse.ocl.uml.OCL} or an
-{@link org.eclipse.ocl.helperOCLHelper} created by it.  For metamodel OCL
+{@link org.eclipse.ocl.helper.OCLHelper} created by it.  For metamodel OCL
 (used, for example, to query the user model, itself) use the metaclass of any
 kind of element in the user model as the context classifier.  A convenient way
 to obtain this metaclass is via the
-{@link OCLUMLUtil#getMetaclass(org.eclipse.uml2.uml.Element)} method.
+{@link org.eclipse.ocl.uml.util.OCLUMLUtil#getMetaclass(org.eclipse.uml2.uml.Element)}
+method.
 </p>
 
 <h3>Evaluation of OCL Expressions in the UML Environment</h3>
@@ -104,7 +105,7 @@ evaluation time.
 @see org.eclipse.ocl.uml.UMLEnvironmentFactory
 @see org.eclipse.ocl.uml.UMLEnvironment
 @see org.eclipse.ocl.uml.UMLEvaluationEnvironment
-@see OCLUMLUtil#getMetaclass(org.eclipse.uml2.uml.Element)
+@see org.eclipse.ocl.uml.util.OCLUMLUtil#getMetaclass(org.eclipse.uml2.uml.Element)
 
 </body>
 </html>

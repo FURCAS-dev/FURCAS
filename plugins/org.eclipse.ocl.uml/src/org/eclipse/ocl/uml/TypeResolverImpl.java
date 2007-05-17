@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.1 2007/01/25 18:39:26 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.2 2007/05/17 17:06:27 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -42,11 +42,9 @@ public class TypeResolverImpl
 	extends AbstractTypeResolver<Package, Classifier, Operation, Property, Parameter> {
 	
     /**
-     * Initializes me with a resource in which I will persist the model-based
-     * types that I generate in my associated {@link Environment}.
+     * Initializes me with an {@link Environment}.
      * 
      * @param env my environment
-     * @param resource my resource
      */
 	public TypeResolverImpl(UMLEnvironment env) {
 		super(env);
