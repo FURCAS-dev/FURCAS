@@ -6,7 +6,7 @@
 <!--
 
 /******************************************************************************
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,9 +29,10 @@ This package defines the abstract API for the representation of OCL types.
 These types extend the Ecore type model of
 {@link org.eclipse.emf.ecore.EClassifier}s for OCL.  Of particular interest
 are the following types:
+</p>
 <ul>
-  <li>{@link org.eclipse.emf.ocl.types.ModelElementType} representing the
-       types in the EMF meta-model that an OCL expression's context type
+  <li>{@link org.eclipse.emf.ocl.types.ElementType} representing the
+       types in the EMF metamodel that an OCL expression's context type
        belongs to</li>
   <li>{@link org.eclipse.emf.ocl.types.CollectionType} rooting the
        hierarchy of OCL collection types (sets, sequences, bags, etc.)</li>
@@ -41,6 +42,7 @@ are the following types:
   <li>{@link org.eclipse.emf.ocl.types.AnyType} representing the
        OCL "any" type</li>
 </ul>
+<p>
 These type interfaces are most commonly used to indicate the types of
 {@linkplain org.eclipse.emf.ocl.expressions.OCLExpression OCL expressions}.
 </p>

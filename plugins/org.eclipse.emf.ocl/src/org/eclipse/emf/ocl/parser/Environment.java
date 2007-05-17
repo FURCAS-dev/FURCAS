@@ -182,7 +182,7 @@ public interface Environment {
 	 * 
 	 * @return the property, or <code>null</code> if it could not be found
 	 */ 	
-	public EStructuralFeature lookupProperty(EClassifier parent, String name);
+	public EStructuralFeature lookupProperty(EClassifier owner, String name);
 	
 	/**
 	 * Find reference in the specified class to the named association class.

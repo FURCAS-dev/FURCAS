@@ -26,45 +26,10 @@ OCL language.
 This package extends the Ecore metamodel to support UML concepts required by
 the OCL language that Ecore does not implement.  These extensions are not
 required for the use of OCL on Ecore models, but would be necessary for other
-metamodels that support some of these UML concepts.  For example, a metamodel
-describing SQL might map the intersection table of a many-to-many relationship
-as an {@link org.eclipse.emf.ocl.uml.AssociationClass} rather than a
-many-to-many {@link org.eclipse.emf.ecore.EReference}, especially as it may
-have additional columns (attributes) of its own.
+metamodels that support some of these UML concepts.
 </p>
 <p>
 The following Ecore extensions are defined:
-</p>
-<ul>
-  <li>{@link org.eclipse.emf.ocl.uml.Operation}:  extends the
-      {@link org.eclipse.emf.ecore.EOperation} metaclass to add the
-      <code>query</code> boolean attribute.  OCL constraints may be defined
-      on any kind of operation, but may only invoke query operations (that are
-      therefore guaranteed not to modify the system state).  This metaclass is
-      useful to indicate which <code>EOperation</code>s are (not) queries.</li>
-  <li>{@link org.eclipse.emf.ocl.uml.Signal}:  extends the
-      {@link org.eclipse.emf.ecore.EClass} metaclass to indicate that a type
-      corresponds to a UML Signal.  Only <code>Signal</code>s can be sent
-      by OCL messages.</li>
-  <li>{@link org.eclipse.emf.ocl.uml.AssociationEnd}:  extends the
-      {@link org.eclipse.emf.ecore.EReference} metaclass represent a navigable
-      end of a UML association.  This is most useful for association ends that
-      have qualifiers, represented by {@link org.eclipse.emf.ocl.uml.Qualifier}s.
-      For other associations, the <code>EReference</code> metaclass is sufficient
-      to model the ends. <code>Qualifier</code>s have type, multiplicity,
-      and ordering/uniqueness as do other
-      {@link org.eclipse.emf.ecore.ETypedElement}s.</li>
-  <li>{@link org.eclipse.emf.ocl.uml.AssociationClassEnd}:  extends the
-      {@link org.eclipse.emf.ecore.EReference} metaclass represent a navigable
-      end of a UML association class (rather than just an association).
-      The <code>AssociationClassEnd</code> references the
-      {@link org.eclipse.emf.ecore.EClass} representing the association class, which
-      is used to resolve the navigation to association classes (navigation being
-      implied by the source's navigable association class ends).</li>
-</ul>
-<p>
-The other types in this package model portions of the OCL abstract syntax tree,
-not extending the Ecore language as such:
 </p>
 <ul>
   <li>{@link org.eclipse.emf.ocl.uml.Constraint}:  top-level construct in

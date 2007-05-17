@@ -77,7 +77,7 @@ public interface EnvironmentFactory {
 	 * expression would be parsed.  Note that, in the former case, the actual
 	 * OCL context classifier (as an OCL type or {@link EClassifier}) will be
 	 * inferred from the context object according to the nature of the
-	 * {@linkplain #getEnvironmentFactory() environment factory}
+	 * environment factory.
 	 * </p>
 	 * 
 	 * @param context the context object or classifier
@@ -93,7 +93,7 @@ public interface EnvironmentFactory {
 	 * in the client's metamodel.  Note that operation contexts can be defined
 	 * in the context of any classifier to which that operation is applicable.
 	 * 
-	 * @pararm context the context element or classifier.  Either way, this
+	 * @param context the context element or classifier.  Either way, this
 	 *     indicates the classifier context in which to define the operation
 	 *     context (as in the {@link #createClassifierContext(Object)} method)
 	 * @param operation an operation in the client's metamodel
@@ -109,7 +109,7 @@ public interface EnvironmentFactory {
 	 * in the client's metamodel.  Note that property contexts can be defined
 	 * in the context of any classifier in which that property is available.
 	 * 
-	 * @pararm context the context element or classifier.  Either way, this
+	 * @param context the context element or classifier.  Either way, this
 	 *     indicates the classifier context in which to define the property
 	 *     context (as in the {@link #createClassifierContext(Object)} method)
 	 * @param property a property (structural feature) in the client's metamodel

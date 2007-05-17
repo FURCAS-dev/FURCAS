@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: UMLTypeUtil.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: UMLTypeUtil.java,v 1.4 2007/05/17 17:58:38 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -212,7 +212,7 @@ public class UMLTypeUtil {
 	/**
 	 * Queries whether the specified operation is a query (side-effect free).
 	 * 
-	 * @param classifier an OCL operation
+	 * @param operation an OCL operation
 	 * 
 	 * @return whether it represents a query operation
 	 */
@@ -470,7 +470,7 @@ public class UMLTypeUtil {
 	/**
 	 * Sets whether the specified operation is a query (side-effect free).
 	 * 
-	 * @param classifier an OCL operation
+	 * @param operation an OCL operation
 	 * @param isQuery whether it represents a query operation
 	 */
 	public static void setQuery(EOperation operation, boolean isQuery) {

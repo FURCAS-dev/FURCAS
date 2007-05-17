@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.9 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.10 2007/05/17 17:58:38 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.ocl.helper.OCLHelper;
@@ -31,15 +32,12 @@ import org.eclipse.ocl.helper.OCLHelper;
 /**
  * A utility object that provides OCL syntax completion suggestions for OCL
  * expressions on the metamodel and user model levels.  Metamodel OCL help is
- * available for any EMF metamodel, but user model help is only available for
- * metamodels for which an
- * {@link org.eclipse.gmf.runtime.emf.core.usermodel.IUserModelSupport} extension is
- * available.
+ * available for any EMF metamodel via the {@link EcoreEnvironmentFactory}, but
+ * user model help is only available for metamodels for which an appropriate
+ * specialized {@link EnvironmentFactory} is available.
  * <p>
  * Helpers of these two flavours can be created via the
- * {@link HelperUtil#createOCLHelper(ModelingLevel)} method, which accepts
- * an enumerated modeling level parameter to indicate metamodel or user-model
- * level.
+ * {@link HelperUtil#createOCLHelper(EnvironmentFactory)} method.
  * </p>
  * <p>
  * <b>Note</b> that this interface is not intended to be implemented
@@ -303,7 +301,7 @@ public interface IOCLHelper {
 	 *     classifier, in order to find resources to search for instances
 	 *     (unless the context is a data type, in which case the instances are
 	 *     not enumerated by models)
-	 * @param expr an expression to evaluate
+	 * @param expression an expression to evaluate
 	 * 
 	 * @return the result of the expression evaluation.  This can be a single
 	 *     object, a collection of objects, or even <code>null</code>
@@ -322,7 +320,7 @@ public interface IOCLHelper {
 	 *     classifier, in order to find resources to search for instances
 	 *     (unless the context is a data type, in which case the instances are
 	 *     not enumerated by models)
-	 * @param expr an expression to evaluate
+	 * @param expression an expression to evaluate
 	 * 
 	 * @return the result of the expression evaluation.  This can be a single
 	 *     object, a collection of objects, or even <code>null</code>

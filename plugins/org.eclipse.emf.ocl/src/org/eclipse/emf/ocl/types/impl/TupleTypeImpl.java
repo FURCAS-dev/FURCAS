@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.7 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.8 2007/05/17 17:58:38 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -77,7 +77,7 @@ public class TupleTypeImpl
 	 * Create a dynamic EMF class with attributes and types defined by the
 	 * set of tuple parts.
 	 * 
-	 * @param parts a list of {@link TypedElement}s
+	 * @param tupleParts a list of {@link TypedElement}s
 	 */
 	protected TupleTypeImpl(List tupleParts) {
 
