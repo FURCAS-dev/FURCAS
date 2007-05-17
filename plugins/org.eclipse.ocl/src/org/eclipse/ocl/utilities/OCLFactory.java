@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLFactory.java,v 1.1 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: OCLFactory.java,v 1.2 2007/05/17 17:06:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -122,8 +120,7 @@ public interface OCLFactory {
 	 * Creates the type for the messages representing invocation of the
 	 * specified signal.
 	 * 
-	 * @param behavioralFeature either an {@link EOperation} or an 
-	 *    {@link EClass} representing the received signal
+	 * @param signal either a sent signal
 	 * 
 	 * @return the message type
 	 * @generated NOT
@@ -134,8 +131,7 @@ public interface OCLFactory {
 	 * Creates the type for the messages representing invocation of the
 	 * specified operation.
 	 * 
-	 * @param behavioralFeature either an {@link EOperation} or an 
-	 *    {@link EClass} representing the received signal
+	 * @param operation a called operation
 	 * 
 	 * @return the message type
 	 * @generated NOT
