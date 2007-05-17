@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibrary.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: OCLStandardLibrary.java,v 1.2 2007/05/17 17:06:22 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -67,43 +67,43 @@ public interface OCLStandardLibrary<C> {
 	Object getOclInvalid();
 	
     /**
-     * Obtains the single instance of the {@link PrimitiveBoolean} metatype, named
+     * Obtains the instance of the {@link PrimitiveType} metatype, named
      * <tt>Boolean</tt>.
      * 
-     * @return the <tt>Boolean</tt> type (an instance of {@link PrimitiveBoolean})
+     * @return the <tt>Boolean</tt> type (an instance of {@link PrimitiveType})
      */
 	C getBoolean();
 	
     /**
-     * Obtains the single instance of the {@link PrimitiveString} metatype, named
+     * Obtains the instance of the {@link PrimitiveType} metatype, named
      * <tt>String</tt>.
      * 
-     * @return the <tt>String</tt> type (an instance of {@link PrimitiveString})
+     * @return the <tt>String</tt> type (an instance of {@link PrimitiveType})
      */
 	C getString();
 	
     /**
-     * Obtains the single instance of the {@link PrimitiveReal} metatype, named
+     * Obtains the instance of the {@link PrimitiveType} metatype, named
      * <tt>Real</tt>.
      * 
-     * @return the <tt>Real</tt> type (an instance of {@link PrimitiveReal})
+     * @return the <tt>Real</tt> type (an instance of {@link PrimitiveType})
      */
 	C getReal();
 	
     /**
-     * Obtains the single instance of the {@link PrimitiveInteger} metatype, named
+     * Obtains the instance of the {@link PrimitiveType} metatype, named
      * <tt>Integer</tt>.
      * 
-     * @return the <tt>Integer</tt> type (an instance of {@link PrimitiveInteger})
+     * @return the <tt>Integer</tt> type (an instance of {@link PrimitiveType})
      */
 	C getInteger();
     
     /**
-     * Obtains the single instance of the {@link PrimitiveUnlimitedNatural} metatype,
+     * Obtains the instance of the {@link PrimitiveType} metatype,
      * named <tt>UnlimitedNatural</tt>.
      * 
      * @return the <tt>UnlimitedNatural</tt> type (an instance of
-     *     {@link PrimitiveUnlimitedNatural})
+     *     {@link PrimitiveType})
      */
     C getUnlimitedNatural();
 	

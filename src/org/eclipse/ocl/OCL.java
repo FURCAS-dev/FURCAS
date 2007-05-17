@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: OCL.java,v 1.2 2007/05/17 17:06:23 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -468,7 +468,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * different bindings for client-supplied "global" variables.
      * </p>
      * 
-     * @param query the OCL constraint
+     * @param constraint the OCL constraint
      *     
      * @return the new query object
      * 

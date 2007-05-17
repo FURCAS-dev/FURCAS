@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.2 2007/05/01 15:25:09 cdamus Exp $
+ * $Id: AbstractVisitor.java,v 1.3 2007/05/17 17:06:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
@@ -723,7 +723,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * 
      * @see #visitExpressionInOCL(ExpressionInOCL)
      */
-    protected T handleExpressionInOCL(ExpressionInOCL<C, PM> callExp,
+    protected T handleExpressionInOCL(ExpressionInOCL<C, PM> expression,
             T contextResult, T resultResult, List<T> parameterResults, T bodyResult) {
         return result;
     }

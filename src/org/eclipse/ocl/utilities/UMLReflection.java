@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.2 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: UMLReflection.java,v 1.3 2007/05/17 17:06:22 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -253,7 +253,7 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
      * operations, and in the construction of the OCL standard library types.
      * <p>
      * <b>Note</b> that the new operation must be a
-     * {@linkplain Environment#isQuery query} operation, as OCL can only define
+     * {@linkplain #isQuery(Object) query} operation, as OCL can only define
      * queries.
      * </p>
      * 
@@ -265,7 +265,7 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
      *     the parameter names
      * @return the new operation
      * 
-     * @see #isQuery
+     * @see #isQuery(Object)
      */
     O createOperation(String name, C resultType, List<String> paramNames,
             List<C> paramTypes);
@@ -672,7 +672,7 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
      * Sets the type of the specified typed element.
      * 
      * @param element a typed element
-     * @param name the type element's type
+     * @param type the type element's type
      * 
      * @see TypedElement#getType()
      */
