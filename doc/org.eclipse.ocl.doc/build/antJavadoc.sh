@@ -98,14 +98,14 @@ if [ $debug -gt 0 ]; then
 fi
 
 # Finds the proper org.eclipse.platform.doc.isv jar
-platformDocJar=`find $eclipseDir/plugins/ -name "org.eclipse.platform.doc.isv_*.jar" -printf "%f"`; if [ $debug -gt 1 ]; then echo "[antJd] platformDocJar: "$platformDocJar; fi
+platformDocJar=`find $eclipseDir/plugins/ -name "org.eclipse.platform.doc.isv*.jar" -printf "%f"`; if [ $debug -gt 1 ]; then echo "[antJd] platformDocJar: "$platformDocJar; fi
 
 # Finds the proper org.eclipse.emf.doc jar
 # *** NOTE: EMF docs are still a directory plug-in ***
-emfDocJar=`find $eclipseDir/plugins/ -type d -name "org.eclipse.emf.doc_*" -printf "%f/doc.zip"`; if [ $debug -gt 1 ]; then echo "[antJd] emfDocJar: "$emfDocJar; fi
+emfDocJar=`find $eclipseDir/plugins/ -type d -name "org.eclipse.emf.doc*" -printf "%f/doc.zip"`; if [ $debug -gt 1 ]; then echo "[antJd] emfDocJar: "$emfDocJar; fi
 
 # Finds the proper org.eclipse.uml.doc jar
-umlDocJar=`find $eclipseDir/plugins/ -name "org.eclipse.uml2.doc_*.jar" -printf "%f"`; if [ $debug -gt 1 ]; then echo "[antJd] umlDocJar: "$umlDocJar; fi
+umlDocJar=`find $eclipseDir/plugins/ -name "org.eclipse.uml2.doc*.jar" -printf "%f"`; if [ $debug -gt 1 ]; then echo "[antJd] umlDocJar: "$umlDocJar; fi
 
 if [ -f $antScript.template ]; then
 	true;

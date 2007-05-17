@@ -6,6 +6,7 @@
 	<property name="eclipseDir" value="."/>
 	<property name="platformDocJar" value="org.eclipse.platform.doc.isv.jar"/>
 	<property name="emfDocJar" value="org.eclipse.emf.doc.jar"/>
+	<property name="umlDocJar" value="org.eclipse.uml2.doc.jar"/>
 	
 	<!-- other properties that must be passed to this script include:
 		 windowTitle
