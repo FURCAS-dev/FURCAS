@@ -60,6 +60,7 @@
 		<javadoc 
 			destdir="${destDir}" 
 			classpath="${classpath}"
+			sourcepathref="javadoc.source.path"
 			overview="${overview}"
 
 			windowtitle="${windowTitle}"
