@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2007 IBM Corporation and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   IBM - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: runtests.xml,v 1.1 2007/05/23 15:05:16 cdamus Exp $
+ */
+-->
+<project name="project" default="default">
+    <description>Runs all OCL tests in stand-alone mode</description>
+
+    <target name="default">
+        <junit>
+        	<sysproperty key="workspace.location" value="${workspace.location}/"/>
+        	<sysproperty key="target.location" value="${target.location}/"/>
+        	<sysproperty key="org.eclipse.emf.ocl.tests.testmodel" value="file:${workspace.location}/org.eclipse.emf.ocl.tests/model/OCLTest.ecore"/>
+        	<sysproperty key="org.eclipse.ocl.ecore.tests.testmodel" value="file:${workspace.location}/org.eclipse.ocl.ecore.tests/model/OCLTest.ecore"/>
+        	<sysproperty key="org.eclipse.ocl.uml.tests.testmodel" value="file:${workspace.location}/org.eclipse.ocl.uml.tests/model/OCLTest.uml"/>
+        	
+        	<classpath>
+        		<fileset dir="${target.location}/plugins">
+        			<include name="org.junit_3*/junit.jar"/>
+        			<include name="org.eclipse.emf.common_*.jar"/>
+        			<include name="org.eclipse.emf.ecore_*.jar"/>
+        			<include name="org.eclipse.emf.ecore.xmi_*.jar"/>
+        			<include name="org.eclipse.uml2.common_*.jar"/>
+        			<include name="org.eclipse.uml2.uml_*.jar"/>
+        		</fileset>
+        		<dirset dir="${workspace.location}">
+        			<include name="net.sourceforge.lpg*"/>
+        			<include name="org.eclipse.ocl*/bin"/>
+        			<include name="org.eclipse.emf.ocl*/bin"/>
+        		</dirset>
+        	</classpath>
+        	
+        	<formatter type="plain"/>
+        	
+        	<test name="org.eclipse.ocl.standalone.tests.AllTests"
+        		outfile="../test-results"/>
+        </junit>
+    </target>
+
+</project>
