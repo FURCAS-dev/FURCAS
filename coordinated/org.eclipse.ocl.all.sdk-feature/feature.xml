@@ -28,11 +28,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes
-         id="org.eclipse.ocl"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.ocl.uml"
+         id="org.eclipse.ocl.all"
          version="0.0.0"/>
 
    <includes
@@ -45,10 +41,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes
          id="org.eclipse.ocl.uml.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.emf.ocl"
          version="0.0.0"/>
 
    <includes
