@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.1 2007/05/23 15:05:16 cdamus Exp $
+ * $Id: AllTests.java,v 1.2 2007/05/24 02:10:31 cdamus Exp $
  */
 package org.eclipse.ocl.standalone.tests;
 
@@ -41,7 +41,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 
@@ -91,7 +90,7 @@ public class AllTests extends TestCase {
         Map extMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
         extMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
         extMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
-        extMap.put("uml", new UMLResourceFactoryImpl()); //$NON-NLS-1$
+        extMap.put("uml", UMLResource.Factory.INSTANCE); //$NON-NLS-1$
 
         Map protMap = Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap();
         
