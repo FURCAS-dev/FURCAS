@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.4 2007/04/25 22:22:00 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.5 2007/05/30 13:54:57 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -60,6 +60,7 @@ import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
@@ -68,6 +69,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -92,6 +94,8 @@ public class UMLEvaluationEnvironment
     // cache of UML to Ecore package mappings
     private final Map<Package, EPackage> packageMap = new java.util.HashMap<Package, EPackage>();
 
+    private final Map<Feature, String> featureNameMap = new java.util.HashMap<Feature, String>();
+    
     private final UMLEnvironmentFactory factory;
 
     private ValueExtractor valueExtractor;
@@ -145,11 +149,12 @@ public class UMLEvaluationEnvironment
     @Override
     protected Method getJavaMethodFor(Operation operation, Object receiver) {
         Method result = null;
+        
+        String operName = getEcoreOperationName(operation);
 
         // in the case of infix operators, we need to replace the name with
         // a valid Java name. We will choose the legacy OCL parser names
         // which some clients already depend on
-        String operName = operation.getName();
         int opcode = OCLStandardLibraryUtil.getOperationCode(operName);
         switch (opcode) {
             case PredefinedType.PLUS:
@@ -217,6 +222,42 @@ public class UMLEvaluationEnvironment
         return result;
     }
 
+    /**
+     * Gets the name of the specified operation, accounting for the possibility
+     * that it is aliased using an Ecore stereotype.  The resulting name is
+     * cached for fast repeated access.
+     * 
+     * @param operation an operation
+     * @return the name of the corresponding Ecore operation
+     */
+    private String getEcoreOperationName(Operation operation) {
+        String result = featureNameMap.get(operation);
+        
+        if (result == null) {
+            result = operation.getName();
+            
+            Stereotype stereo = getAppliedEcoreStereotype(operation,
+                UMLUtil.STEREOTYPE__E_OPERATION);
+            if (stereo != null) {
+                // look for an <<eOperation>> alias name
+                String alias = (String) operation.getValue(stereo,
+                    UMLUtil.TAG_DEFINITION__OPERATION_NAME);
+                if ((alias != null) && (alias.length() > 0)) {
+                    result = alias;
+                }
+            }
+            
+            featureNameMap.put(operation, result);
+        }
+        
+        return result;
+    }
+    private Stereotype getAppliedEcoreStereotype(Element element,
+            String name) {
+        return element.getAppliedStereotype("Ecore" //$NON-NLS-1$
+            + NamedElement.SEPARATOR + name);
+    }
+
     // implements the inherited specification
     @Override
     protected Object getInvalidResult() {
@@ -274,7 +315,7 @@ public class UMLEvaluationEnvironment
             EObject esource = (EObject) source;
 
             EStructuralFeature feature = esource.eClass()
-                .getEStructuralFeature(property.getName());
+                .getEStructuralFeature(getEcoreAttributeName(property));
 
             if (feature != null) {
                 Object result = esource.eGet(feature);
@@ -317,6 +358,43 @@ public class UMLEvaluationEnvironment
             "no such property: " + property.getName()); //$NON-NLS-1$
     }
 
+    /**
+     * Gets the name of the specified attribute, accounting for the possibility
+     * that it is aliased using an Ecore stereotype.  The resulting name is
+     * cached for fast repeated access.
+     * 
+     * @param attribute an attribute
+     * @return the name of the corresponding Ecore attribute
+     */
+    private String getEcoreAttributeName(Property attribute) {
+        String result = featureNameMap.get(attribute);
+        
+        if (result == null) {
+            result = attribute.getName();
+            
+            Stereotype stereo = getAppliedEcoreStereotype(attribute,
+                UMLUtil.STEREOTYPE__E_ATTRIBUTE);
+            String aliasAttribute = UMLUtil.TAG_DEFINITION__ATTRIBUTE_NAME;
+            if (stereo == null) {
+                stereo = getAppliedEcoreStereotype(attribute,
+                    UMLUtil.STEREOTYPE__E_REFERENCE);
+                aliasAttribute = UMLUtil.TAG_DEFINITION__REFERENCE_NAME;
+            }
+            if (stereo != null) {
+                // look for an <<eAttribute>> or <<eReference>> alias name
+                String alias = (String) attribute.getValue(stereo,
+                    aliasAttribute);
+                if ((alias != null) && (alias.length() > 0)) {
+                    result = alias;
+                }
+            }
+            
+            featureNameMap.put(attribute, result);
+        }
+        
+        return result;
+    }
+    
     /**
      * Obtains the collection kind appropriate for representing the values of
      * the specified feature.
