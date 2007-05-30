@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
   <uml:Package xmi:id="_kFEgAJaZEdunUqiNpqprXQ" name="ocltest">
     <packagedElement xmi:type="uml:Class" xmi:id="_qpGNsJaZEdunUqiNpqprXQ" name="Fruit" clientDependency="_rBjYQKDREdu3G72hG9l7lw" isActive="true">
       <ownedAttribute xmi:id="_RJ_1wJacEdunUqiNpqprXQ" name="color" type="_AOeasJaaEdunUqiNpqprXQ"/>
@@ -16,11 +16,11 @@
       </ownedAttribute>
       <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_5m9dgJjxEdu_6rUYlTCsuA" name="Lifecycle">
         <region xmi:id="_9HTXwJjxEdu_6rUYlTCsuA" name="main">
-          <subvertex xmi:type="uml:Pseudostate" xmi:id="__qIg4JjxEdu_6rUYlTCsuA" outgoing="_JHQioJjyEdu_6rUYlTCsuA"/>
-          <subvertex xmi:type="uml:FinalState" xmi:id="_AsCCwJjyEdu_6rUYlTCsuA" incoming="_dpyLgJjyEdu_6rUYlTCsuA _1eI8EJjzEdu_6rUYlTCsuA"/>
-          <subvertex xmi:type="uml:State" xmi:id="_F1DLAJjyEdu_6rUYlTCsuA" name="Unripe" outgoing="_N1nvMJjyEdu_6rUYlTCsuA" incoming="_JHQioJjyEdu_6rUYlTCsuA"/>
-          <subvertex xmi:type="uml:State" xmi:id="_Bgp9oJjyEdu_6rUYlTCsuA" name="Ripe" outgoing="_X5g2AJjyEdu_6rUYlTCsuA _fvZXsJjzEdu_6rUYlTCsuA" incoming="_N1nvMJjyEdu_6rUYlTCsuA"/>
-          <subvertex xmi:type="uml:State" xmi:id="_CFz5IJjyEdu_6rUYlTCsuA" name="Bad" outgoing="_dpyLgJjyEdu_6rUYlTCsuA" incoming="_X5g2AJjyEdu_6rUYlTCsuA"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="__qIg4JjxEdu_6rUYlTCsuA"/>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_AsCCwJjyEdu_6rUYlTCsuA"/>
+          <subvertex xmi:type="uml:State" xmi:id="_F1DLAJjyEdu_6rUYlTCsuA" name="Unripe"/>
+          <subvertex xmi:type="uml:State" xmi:id="_Bgp9oJjyEdu_6rUYlTCsuA" name="Ripe"/>
+          <subvertex xmi:type="uml:State" xmi:id="_CFz5IJjyEdu_6rUYlTCsuA" name="Bad"/>
           <transition xmi:id="_JHQioJjyEdu_6rUYlTCsuA" name="grow" target="_F1DLAJjyEdu_6rUYlTCsuA" source="__qIg4JjxEdu_6rUYlTCsuA"/>
           <transition xmi:id="_N1nvMJjyEdu_6rUYlTCsuA" name="ripen" target="_Bgp9oJjyEdu_6rUYlTCsuA" source="_F1DLAJjyEdu_6rUYlTCsuA"/>
           <transition xmi:id="_X5g2AJjyEdu_6rUYlTCsuA" name="rot" target="_CFz5IJjyEdu_6rUYlTCsuA" source="_Bgp9oJjyEdu_6rUYlTCsuA"/>
@@ -68,11 +68,11 @@
         <region xmi:id="_6WuREJjyEdu_6rUYlTCsuA" name="main" extendedRegion="_9HTXwJjxEdu_6rUYlTCsuA">
           <subvertex xmi:type="uml:State" xmi:id="__F8ZQJjyEdu_6rUYlTCsuA" name="Bad" redefinedState="_CFz5IJjyEdu_6rUYlTCsuA">
             <region xmi:id="_IQKGEJjzEdu_6rUYlTCsuA">
-              <subvertex xmi:type="uml:State" xmi:id="_cVjuEJjzEdu_6rUYlTCsuA" name="Bruised" outgoing="_t6aE4JjzEdu_6rUYlTCsuA" incoming="_fvZXsJjzEdu_6rUYlTCsuA"/>
-              <subvertex xmi:type="uml:State" xmi:id="_d0fKMJjzEdu_6rUYlTCsuA" name="Rotten" outgoing="_1eI8EJjzEdu_6rUYlTCsuA" incoming="_t6aE4JjzEdu_6rUYlTCsuA"/>
-              <transition xmi:id="_fvZXsJjzEdu_6rUYlTCsuA" name="bruise" target="_cVjuEJjzEdu_6rUYlTCsuA" redefinedTransition="_X5g2AJjyEdu_6rUYlTCsuA" source="_Bgp9oJjyEdu_6rUYlTCsuA"/>
+              <subvertex xmi:type="uml:State" xmi:id="_cVjuEJjzEdu_6rUYlTCsuA" name="Bruised"/>
+              <subvertex xmi:type="uml:State" xmi:id="_d0fKMJjzEdu_6rUYlTCsuA" name="Rotten"/>
+              <transition xmi:id="_fvZXsJjzEdu_6rUYlTCsuA" name="bruise" redefinedTransition="_X5g2AJjyEdu_6rUYlTCsuA" target="_cVjuEJjzEdu_6rUYlTCsuA" source="_Bgp9oJjyEdu_6rUYlTCsuA"/>
               <transition xmi:id="_t6aE4JjzEdu_6rUYlTCsuA" name="rot" target="_d0fKMJjzEdu_6rUYlTCsuA" source="_cVjuEJjzEdu_6rUYlTCsuA"/>
-              <transition xmi:id="_1eI8EJjzEdu_6rUYlTCsuA" name="cease" target="_AsCCwJjyEdu_6rUYlTCsuA" redefinedTransition="_dpyLgJjyEdu_6rUYlTCsuA" source="_d0fKMJjzEdu_6rUYlTCsuA"/>
+              <transition xmi:id="_1eI8EJjzEdu_6rUYlTCsuA" name="cease" redefinedTransition="_dpyLgJjyEdu_6rUYlTCsuA" target="_AsCCwJjyEdu_6rUYlTCsuA" source="_d0fKMJjzEdu_6rUYlTCsuA"/>
             </region>
           </subvertex>
         </region>
@@ -204,12 +204,31 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedAttribute>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tI-dMA39EdymkvpiqN3P8A" name="Aliased">
+      <ownedAttribute xmi:id="_9pqBQA39EdymkvpiqN3P8A" name="isAliased">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_LJlxIA3-EdymkvpiqN3P8A" name="aliased">
+        <ownedParameter xmi:id="_S3B98A3-EdymkvpiqN3P8A" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
     <profileApplication xmi:id="_7ZyNkJaiEdunUqiNpqprXQ">
       <eAnnotations xmi:id="_7aEhcJaiEdunUqiNpqprXQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
+    <profileApplication xmi:id="_6ay4kA39EdymkvpiqN3P8A">
+      <eAnnotations xmi:id="_6bMhMA39EdymkvpiqN3P8A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
   </uml:Package>
   <Standard:Utility xmi:id="_9WOsIJaiEdunUqiNpqprXQ" base_Class="_VMUtoJaaEdunUqiNpqprXQ"/>
+  <Ecore:EClass xmi:id="_8TuwIA39EdymkvpiqN3P8A" base_Class="_tI-dMA39EdymkvpiqN3P8A" className="HasAliases"/>
+  <Ecore:EOperation xmi:id="_raDn0A3-EdymkvpiqN3P8A" base_Operation="_LJlxIA3-EdymkvpiqN3P8A" operationName="getAliased"/>
+  <Ecore:EAttribute xmi:id="_vJIhoA3-EdymkvpiqN3P8A" base_Property="_9pqBQA39EdymkvpiqN3P8A" attributeName="aliased"/>
 </xmi:XMI>

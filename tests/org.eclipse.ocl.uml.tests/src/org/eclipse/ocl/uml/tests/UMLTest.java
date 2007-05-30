@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.4 2007/04/25 22:22:01 cdamus Exp $
+ * $Id: UMLTest.java,v 1.5 2007/05/30 13:54:56 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
+import java.util.Map;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
@@ -24,12 +25,16 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Tests involving constructs peculiar to the UML.
@@ -314,6 +319,57 @@ public class UMLTest
             // success
             System.out
                 .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Test accessing operations that are aliased by the
+     * <tt>&lt;&lt;eOperation&gt;&gt;</tt> stereotype.
+     */
+    public void test_aliasedOperation_bug184753() {
+        OCLExpression<Classifier> expr = parseConstraint(
+            "package uml context Namespace " + //$NON-NLS-1$
+            "inv:  self.importedMember()->isEmpty()" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        try {
+            assertNotSame(getOclInvalid(), evaluate(expr, umlMetamodel));
+        } catch (RuntimeException e) {
+            fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Test accessing attributes that are aliased by the
+     * <tt>&lt;&lt;eAttribute&gt;&gt;</tt> stereotype.
+     */
+    public void test_aliasedAttribute_bug184753() {
+        OCLExpression<Classifier> expr = parseConstraint(
+            "package ocltest context Aliased " + //$NON-NLS-1$
+            "inv:  self.isAliased" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        Map<String, String> options = new java.util.HashMap<String, String>();
+        options.put(UMLUtil.UML2EcoreConverter.OPTION__ECORE_TAGGED_VALUES,
+            UMLUtil.OPTION__PROCESS);
+        EPackage epkg = UMLUtil.convertToEcore(fruitPackage, options).iterator().next();
+        
+        try {
+            resourceSet.getPackageRegistry().put(epkg.getNsURI(), epkg);
+            
+            // create an instance.  Note that the class name is aliased, too
+            EObject instance = epkg.getEFactoryInstance().create(
+                (EClass) epkg.getEClassifier("HasAliases")); //$NON-NLS-1$
+            
+            // the attribute alias
+            instance.eSet(instance.eClass().getEStructuralFeature("aliased"), //$NON-NLS-1$
+                Boolean.TRUE);
+            
+            assertEquals(Boolean.TRUE, evaluate(expr, instance));
+        } catch (RuntimeException e) {
+            fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            resourceSet.getPackageRegistry().remove(epkg.getNsURI());
         }
     }
 
