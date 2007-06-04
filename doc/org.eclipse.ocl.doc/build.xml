@@ -44,7 +44,7 @@
 		<property name="temp.folder" value="${basedir}/temp.folder"/>
 		<property name="plugin.destination" value="${basedir}"/>
 		
-		<available property="javadoc.already.built" file="${basedir}/references/javadoc/org/eclipse/ocl/package-summary.html"/>
+		<available property="javadoc.already.built" file="references/javadoc/org/eclipse/ocl/package-summary.html"/>
 	</target>
 
 	<target name="properties" if="eclipse.running">
