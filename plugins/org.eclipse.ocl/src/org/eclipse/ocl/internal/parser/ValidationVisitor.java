@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.6 2007/05/03 22:52:24 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.7 2007/06/06 18:56:47 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
