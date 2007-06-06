@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLQueryHelperTest.java,v 1.2 2007/03/30 19:23:34 cdamus Exp $
+ * $Id: OCLQueryHelperTest.java,v 1.3 2007/06/06 22:28:20 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;

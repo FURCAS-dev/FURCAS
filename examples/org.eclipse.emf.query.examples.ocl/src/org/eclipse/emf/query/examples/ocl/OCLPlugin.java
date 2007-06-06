@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.1 2006/02/13 16:12:04 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.2 2007/06/06 22:28:12 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl;
