@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.7 2007/06/06 18:56:47 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.8 2007/06/15 18:40:57 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.parser;
@@ -1163,6 +1163,24 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					throw error;
 			}
 		}
+        
+        if (opcode == PredefinedType.SORTED_BY) {
+            // the body type must be comparable (in OCL terms, it must
+            //   define the '<' operation)
+            
+            if (!uml.isComparable(body.getType())) {
+                // FIXME: Should be more specifically about the sortedBy iterator
+                String message = OCLMessages.bind(
+                    OCLMessages.OperationNotFound_ERROR_,
+                    PredefinedType.LESS_THAN_NAME,
+                    getName(body.getType()));
+                IllegalArgumentException error = new IllegalArgumentException(
+                    message);
+                OCLPlugin.throwing(getClass(),
+                    "visitIteratorExp", error);//$NON-NLS-1$
+                throw error;
+            }
+        }
 
         // validate the number of iterators
         switch (opcode) {
