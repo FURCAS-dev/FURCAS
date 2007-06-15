@@ -22,12 +22,18 @@ import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ocl.helper.ChoiceType;
 import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.parser.EcoreEnvironment;
+import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.parser.Environment;
+import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -429,4 +435,58 @@ public class RegressionTest
 		choices = helper.getSyntaxHelp(ConstraintType.POSTCONDITION, "self.ocl"); //$NON-NLS-1$
 		assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "oclIsNew"); //$NON-NLS-1$
 	}
+    
+    /**
+     * Test that customizations of the old Environment API that had their own
+     * logic for determining what is a query operation still work with
+     * iterators.
+     */
+    public void test_iteratorsAreQueries_192692() {
+        class MyEnvironment extends EcoreEnvironment {
+            MyEnvironment(Environment parent) {
+                super(parent);
+            }
+            
+            MyEnvironment(EPackage packageContext) {
+                super(packageContext, EPackage.Registry.INSTANCE);
+            }
+            @Override
+            public boolean isQuery(EOperation operation) {
+                return false;
+            }
+            
+            @Override
+            protected void setFactory(EnvironmentFactory factory) {
+                super.setFactory(factory);
+            }
+        }
+        class MyEnvironmentFactory extends EcoreEnvironmentFactory {
+            @Override
+            public Environment createEnvironment(Environment parent) {
+                MyEnvironment result = new MyEnvironment(parent);
+                result.setFactory(this);
+                return result;
+            }
+            
+            @Override
+            protected Environment createEnvironment(EPackage packageContext) {
+                MyEnvironment result = new MyEnvironment(packageContext);
+                result.setFactory(this);
+                return result;
+            }
+        }
+        
+        IOCLHelper helper = HelperUtil.createOCLHelper(new MyEnvironmentFactory());
+
+        helper.setContext(fruit);
+        
+        try {
+            List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self->"); //$NON-NLS-1$
+            assertNotNull(choices);
+            
+            assertChoice(choices, ChoiceType.BEHAVIORAL_FEATURE, "forAll"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 }
