@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.3 2007/04/23 21:16:23 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.4 2007/06/15 18:40:56 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -998,6 +998,39 @@ public class IteratorsTest
             // success
             System.out
                 .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Test to check the validation of the <tt>sortedBy</tt> iterator, that
+     * the body expression type has a <tt>&lt;</tt> operation.
+     */
+    public void test_sortedByRequiresComparability_192729() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        try {
+            // should fail to parse because EClassifier does not define '<'
+            helper.createQuery("eClassifiers->sortedBy(e | e)"); //$NON-NLS-1$
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        try {
+            // should parse because String defines '<'
+            helper.createQuery("eClassifiers->sortedBy(e | e.name)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        helper.setContext(EcorePackage.Literals.EDATE);
+        try {
+            // EDate defines '<' by having a Comparable instance class
+            helper.createQuery(
+                "let dates : Sequence(EDate) = Sequence{} in dates->sortedBy(e | e)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
 
