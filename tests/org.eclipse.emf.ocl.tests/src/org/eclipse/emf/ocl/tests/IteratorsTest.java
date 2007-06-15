@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.6 2007/02/14 14:46:12 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.7 2007/06/15 18:40:55 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -31,6 +31,7 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -889,6 +890,83 @@ public class IteratorsTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * Test to check the validation of the <tt>sortedBy</tt> iterator, that
+     * the body expression type has a <tt>&lt;</tt> operation.
+     */
+    public void test_sortedByRequiresComparability_192729() {
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        try {
+            // should fail to parse because EClassifier does not define '<'
+            helper.createQuery("eClassifiers->sortedBy(e | e)"); //$NON-NLS-1$
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (OCLParsingException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        try {
+            // should parse because String defines '<'
+            helper.createQuery("eClassifiers->sortedBy(e | e.name)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        helper.setContext(EcorePackage.Literals.EDATE);
+        try {
+            // EDate defines '<' by having a Comparable instance class
+            helper.createQuery(
+                "let dates : Sequence(EDate) = Sequence{} in dates->sortedBy(e | e)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Test to check the validation of the <tt>sortedBy</tt> iterator, that
+     * the body expression type has a <tt>&lt;</tt> operation where the body
+     * type is an EClass.
+     */
+    public void test_sortedByRequiresComparability_eclass_192729() {
+        EPackage foo = EcoreFactory.eINSTANCE.createEPackage();
+        foo.setName("foo"); //$NON-NLS-1$
+        EClass bar = EcoreFactory.eINSTANCE.createEClass();
+        bar.setName("Bar"); //$NON-NLS-1$
+        foo.getEClassifiers().add(bar);
+        
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(bar);
+        
+        try {
+            // should fail to parse because Bar does not define '<'
+            helper.createQuery(
+                "let bars : Sequence(Bar) = Sequence{} in bars->sortedBy(b | b)"); //$NON-NLS-1$
+            fail("Should have failed to parse"); //$NON-NLS-1$
+        } catch (OCLParsingException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        EOperation lessThan = EcoreFactory.eINSTANCE.createEOperation();
+        lessThan.setName("<"); //$NON-NLS-1$
+        lessThan.setEType(EcorePackage.Literals.EBOOLEAN);
+        bar.getEOperations().add(lessThan);
+        EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
+        parm.setName("other"); //$NON-NLS-1$
+        parm.setEType(bar);
+        lessThan.getEParameters().add(parm);
+        
+        try {
+            // should parse because Bar now defines '<'
+            helper.createQuery(
+                "let bars : Sequence(Bar) = Sequence{} in bars->sortedBy(b | b)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Framework methods
