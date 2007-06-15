@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUMLReflection.java,v 1.3 2007/04/27 22:01:49 cdamus Exp $
+ * $Id: CompatibilityUMLReflection.java,v 1.4 2007/06/15 18:40:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -81,16 +81,10 @@ class CompatibilityUMLReflection extends UMLReflectionImpl {
 
     @Override
     public boolean isQuery(EOperation operation) {
-        // if this is an OCL Standard Library operation, then we need to find
-        //   the old-style definition of it
+        // if this is an OCL Standard Library operation, then it is a query
+        //    operation as the OCL Standard Library only has queries
         if (UMLReflectionImpl.isAncestor(OCLStandardLibraryImpl.stdlibPackage, operation)) {
-            EClassifier newOwner = OCLStandardLibraryImpl.getOwner(operation);
-            EClassifier oldOwner = (EClassifier) CompatibilityUtil.getOldAS(oldStyle, newOwner);
-            
-            operation = CompatibilityUtil.getOldOperation(
-                operation,
-                oldOwner,
-                newOwner);
+            return true;
         }
         
         return oldStyle.isQuery(operation);
