@@ -12,13 +12,19 @@
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: TuplesTest.java,v 1.3 2007/07/16 17:07:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.OCLInput;
+import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * Tests for tuple expressions.
@@ -134,5 +140,39 @@ public class TuplesTest
 				"inv: Set{Tuple{a = 1, b = 'foo'}, Tuple{a = 5, b = 'bar'}} " + //$NON-NLS-1$
 					" = Set{Tuple{b = 'bar', a = 5}, Tuple{b = 'foo', a = 1}} " + //$NON-NLS-1$
 				"endpackage"))); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that the parser distinguishes <code>TupleType</code>s by the names
+	 * and types of their parts, not by the names alone.
+	 */
+	public void test_tupleTypeDistinction_192832() {
+	    OCLInput doc = new OCLInput(
+	        "package ocltest context Fruit " + //$NON-NLS-1$
+            "def: foo : Tuple(a : String) = Tuple{a = 'foo'} " + //$NON-NLS-1$
+            "def: bar : Tuple(a : Integer) = Tuple{a = 100} " + //$NON-NLS-1$
+            "endpackage"); //$NON-NLS-1$
+	    
+	    try {
+    	    ocl.parse(doc);
+    	    
+    	    helper.setContext(fruit);
+    	    OCLExpression<EClassifier> expr1 = helper.createQuery("self.foo"); //$NON-NLS-1$
+    	    OCLExpression<EClassifier> expr2 = helper.createQuery("self.bar"); //$NON-NLS-1$
+            
+    	    assertNotSame(expr1.getType(), expr2.getType());
+    	    
+    	    TupleType type = (TupleType) expr1.getType();
+    	    EStructuralFeature a = type.getEStructuralFeature("a"); //$NON-NLS-1$
+    	    assertNotNull(a);
+    	    assertEquals(getOCLStandardLibrary().getString(), a.getEType());
+            
+            type = (TupleType) expr2.getType();
+            a = type.getEStructuralFeature("a"); //$NON-NLS-1$
+            assertNotNull(a);
+            assertEquals(getOCLStandardLibrary().getInteger(), a.getEType());
+	    } catch (Exception e) {
+	        fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	    }
 	}
 }

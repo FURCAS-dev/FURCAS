@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.4 2007/05/03 13:04:56 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.5 2007/07/16 17:07:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -855,6 +855,56 @@ public class DefExpressionTest
             
             // check the owner of the additional operation
             assertSame(fruit, uml.getOwningClassifier(p));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that when we define additional operations on the <code>OclAny</code>
+     * type, they can be invoked on user model types.
+     */
+    public void test_def_operation_OclAny_192892() {
+        // define an operation on OclAny
+        helper.setContext(getOCLStandardLibrary().getOclAny());
+        
+        try {
+            helper.defineOperation("isBlack() : Boolean = true"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        // switch to context of a user model classifier
+        helper.setContext(fruit);
+        
+        try {
+            EObject instance = fruitFactory.create(apple);
+            assertTrue(check(helper, instance, "self.isBlack()")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that when we define additional attributes on the <code>OclAny</code>
+     * type, they can be invoked on user model types.
+     */
+    public void test_def_attribute_OclAny_192892() {
+        // define an operation on OclAny
+        helper.setContext(getOCLStandardLibrary().getOclAny());
+        
+        try {
+            helper.defineAttribute("isBlack : Boolean = true"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        // switch to context of a user model classifier
+        helper.setContext(fruit);
+        
+        try {
+            EObject instance = fruitFactory.create(apple);
+            assertTrue(check(helper, instance, "self.isBlack")); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
