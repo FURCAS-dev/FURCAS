@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.2 2007/05/17 17:06:22 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.3 2007/07/16 17:07:32 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -122,9 +122,11 @@ public class CollectionUtil {
      *     elements of the other
      */
     public static boolean excludesAll(Collection<?> self, Collection<?> c) {
-        for (Object next : c)
-            if (includes(self, next))
+        for (Object next : c) {
+            if (includes(self, next)) {
                 return false;
+            }
+        }
         return true;
     }
 
@@ -174,13 +176,15 @@ public class CollectionUtil {
         // two cases: Integer and Double
         if (object instanceof Integer) {
             int currVal = 0;
-            for (it = self.iterator(); it.hasNext();)
+            for (it = self.iterator(); it.hasNext();) {
                 currVal += ((Integer) it.next()).intValue();
+            }
             return new Integer(currVal);
         } else if (object instanceof Double) {
             double currVal = 0.0;
-            for (it = self.iterator(); it.hasNext();)
+            for (it = self.iterator(); it.hasNext();) {
                 currVal += ((Double) it.next()).doubleValue();
+            }
             return new Double(currVal);
         } else {
             IllegalArgumentException error = new IllegalArgumentException(
@@ -218,15 +222,17 @@ public class CollectionUtil {
             // LinkedHashSet.equals() doesn't care about order but we do
             int size1 = self.size();
             int size2 = c.size();
-            if (size1 != size2)
+            if (size1 != size2) {
                 return false;
+            }
             Iterator<?> it1 = self.iterator();
             Iterator<?> it2 = c.iterator();
             while (it1.hasNext()) {
                 Object o1 = it1.next();
                 Object o2 = it2.next();
-                if (!o1.equals(o2))
+                if (!o1.equals(o2)) {
                     return false;
+                }
             }
             
             return true;
@@ -277,22 +283,25 @@ public class CollectionUtil {
         int size2 = c.size();
         
         // if either collection is empty, then so is the result
-        if (size1 == 0)
-        	return createNewCollection(self);
-        else if (size2 == 0)
-        	return createNewCollection(c);
+        if (size1 == 0) {
+            return createNewCollection(self);
+        } else if (size2 == 0) {
+            return createNewCollection(c);
+        }
         
         Collection<E> result = null;
 
         if (self instanceof Set || c instanceof Set) {
             // if either argument is a set, so is the result
-            if (size1 == 0 || size2 == 0)
+            if (size1 == 0 || size2 == 0) {
                 return Collections.emptySet();
+            }
             result = createNewSet();
         } else {
             // both arguments are bags, so is the result
-            if (size1 == 0 || size2 == 0)
+            if (size1 == 0 || size2 == 0) {
                 return BagImpl.emptyBag();
+            }
             result = createNewBag();
         }
 
@@ -300,14 +309,17 @@ public class CollectionUtil {
         // that are in the larger collection
         if (self.size() > c.size()) {
             for (E e : c) {
-                if (includes(self, e))
+                if (includes(self, e)) {
                     result.add(e);
+                }
             }
-        } else
+        } else {
             for (E e : self) {
-                if (includes(c, e))
+                if (includes(c, e)) {
                     result.add(e);
+                }
             }
+        }
 
         return result;
     }
@@ -331,18 +343,20 @@ public class CollectionUtil {
     		Collection<? extends E> self, Collection<? extends E> c) {
     	
     	// if either argument is empty, then the union is the other
-    	if (self.isEmpty())
-    		return createNewCollection(c);
-    	else if (c.isEmpty())
-    		return createNewCollection(self);
+    	if (self.isEmpty()) {
+            return createNewCollection(c);
+        } else if (c.isEmpty()) {
+            return createNewCollection(self);
+        }
     	
         Collection<E> result = null;
-        if (self instanceof Bag || c instanceof Bag)
+        if (self instanceof Bag || c instanceof Bag) {
             result = createNewBag(self);
-        else if (self instanceof List || c instanceof List)
+        } else if (self instanceof List || c instanceof List) {
             result = createNewSequence(self);
-        else
+        } else {
             result = createNewSet(self);
+        }
         
         result.addAll(c);
 
@@ -362,27 +376,34 @@ public class CollectionUtil {
      * @return the flattened collection
      */
     public static Collection<?> flatten(Collection<?> self) {
+        if (self.isEmpty()) {
+            return self;
+        }
+        
         Iterator<?> it = self.iterator();
         Object object = it.next();
 
         // if the element type is not a collection type, the result is the
         // supplied collection.
-        if (!(object instanceof Collection))
+        if (!(object instanceof Collection)) {
             return self;
+        }
 
         Collection<Object> result = null;
-        if (self instanceof Bag)
+        if (self instanceof Bag) {
             result = createNewBag();
-        else if (self instanceof Set)
+        } else if (self instanceof Set) {
             result = createNewSet();
-        else
+        } else {
             // Sequence
             result = createNewSequence();
-
+        }
+        
         // the element type is a collection type -- flatten
-        for (it = self.iterator(); it.hasNext();)
+        for (it = self.iterator(); it.hasNext();) {
             result.addAll((Collection<?>) it.next());
-
+        }
+        
         return result;
     }
 
@@ -416,17 +437,19 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> excluding(Collection<E> self, Object object) {
         Collection<E> result = null;
-        if (self instanceof Set)
+        if (self instanceof Set) {
             result = createNewSet(self);
-        else if (self instanceof Bag)
+        } else if (self instanceof Bag) {
             result = createNewBag(self);
-        else if (self instanceof List) {
+        } else if (self instanceof List) {
             List<E> resultSeq = createNewSequence(self);
-            while (resultSeq.remove(object))
+            while (resultSeq.remove(object)) {
                 ; // for sequences we need to remove all the matching elements
+            }
             return resultSeq;
-        } else
+        } else {
             result = createNewOrderedSet(self);
+        }
 
         // non-sequences (bags remove all occurrences internally)
         result.remove(object);
@@ -449,10 +472,11 @@ public class CollectionUtil {
         Set<E> result = createNewSet(self);
         
         for (E e : set) {
-            if (result.contains(e))
+            if (result.contains(e)) {
                 result.remove(e);
-            else
+            } else {
                 result.add(e);
+            }
         }
         
         return result;
@@ -474,12 +498,13 @@ public class CollectionUtil {
     public static <E> Collection<E> including(Collection<E> self, E object) {
         Collection<E> result;
         
-        if (self instanceof Set)
+        if (self instanceof Set) {
             result = createNewSet(self);
-        else if (self instanceof Bag)
+        } else if (self instanceof Bag) {
             result = createNewBag(self);
-        else
+        } else {
             result = createNewSequence(self);
+        }
 
         result.add(object);
         
@@ -499,8 +524,9 @@ public class CollectionUtil {
      * @return the source collection as a set
      */
     public static <E> Set<E> asSet(Collection<E> self) {
-        if (self instanceof Set)
+        if (self instanceof Set) {
             return (Set<E>) self;
+        }
         return createNewSet(self);
     }
 
@@ -517,8 +543,9 @@ public class CollectionUtil {
      * @return the source collection as a bag
      */
     public static <E> Bag<E> asBag(Collection<E> self) {
-        if (self instanceof Bag)
+        if (self instanceof Bag) {
             return (Bag<E>) self;
+        }
         return createNewBag(self);
     }
 
@@ -535,8 +562,9 @@ public class CollectionUtil {
      * @return the source collection as a sequence
      */
     public static <E> List<E> asSequence(Collection<E> self) {
-        if (self instanceof List)
+        if (self instanceof List) {
             return (List<E>) self;
+        }
         return createNewSequence(self);
     }
 
@@ -554,8 +582,9 @@ public class CollectionUtil {
      */
     public static <E> LinkedHashSet<E> asOrderedSet(Collection<E> self) {
         // TODO: create an interface for OrderedSet
-        if (self instanceof LinkedHashSet)
+        if (self instanceof LinkedHashSet) {
             return (LinkedHashSet<E>) self;
+        }
         return createNewOrderedSet(self);
     }
 
@@ -638,10 +667,11 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> prepend(Collection<E> self, E object) {
         Collection<E> result;
-        if (self instanceof LinkedHashSet)
+        if (self instanceof LinkedHashSet) {
             result = createNewOrderedSet();
-        else
+        } else {
             result = createNewSequence();
+        }
         result.add(object);
         result.addAll(self);
         return result;
@@ -663,18 +693,21 @@ public class CollectionUtil {
     public static <E> Collection<E> insertAt(Collection<E> self, int index, E object) {
         index = index - 1;
         
-        if (index - 1 < 0 || index > self.size())
+        if (index - 1 < 0 || index > self.size()) {
             return null; // undefined
+        }
         
         Collection<E> result;
-        if (self instanceof LinkedHashSet)
+        if (self instanceof LinkedHashSet) {
             result = createNewOrderedSet();
-        else
+        } else {
             result = createNewSequence();
+        }
         int curr = 0;
         for (Iterator<E> it = self.iterator(); it.hasNext();) {
-            if (curr == index)
+            if (curr == index) {
                 result.add(object);
+            }
             result.add(it.next());
             curr++;
         }
@@ -696,19 +729,22 @@ public class CollectionUtil {
         lower = lower - 1;
         upper = upper - 1;
         
-        if (lower < 0 || upper >= self.size() || upper < lower)
+        if (lower < 0 || upper >= self.size() || upper < lower) {
             return null; // undefined
+        }
         
         Collection<E> result;
-        if (self instanceof LinkedHashSet)
+        if (self instanceof LinkedHashSet) {
             result = createNewOrderedSet();
-        else
+        } else {
             result = createNewSequence();
+        }
         int curr = 0;
         for (Iterator<E> it = self.iterator(); it.hasNext();) {
             E object = it.next();
-            if (curr >= lower && curr <= upper)
+            if (curr >= lower && curr <= upper) {
                 result.add(object);
+            }
             curr++;
         }
         return result;
@@ -729,15 +765,17 @@ public class CollectionUtil {
         lower = lower - 1;
         upper = upper - 1;
         
-        if (lower < 0 || upper >= self.size() || upper < lower)
+        if (lower < 0 || upper >= self.size() || upper < lower) {
             return null; // undefined
+        }
         
         Collection<E> result = createNewSequence();
         int curr = 0;
         for (Iterator<E> it = self.iterator(); it.hasNext();) {
             E object = it.next();
-            if (curr >= lower && curr <= upper)
+            if (curr >= lower && curr <= upper) {
                 result.add(object);
+            }
             curr++;
         }
         return result;
@@ -758,14 +796,16 @@ public class CollectionUtil {
     public static <E> E at(Collection<E> self, int index) {
         index = index - 1;
         
-        if (index < 0 || index >= self.size())
+        if (index < 0 || index >= self.size()) {
             return null; // undefined
+        }
         
         int curr = 0;
         for (Iterator<E> it = self.iterator(); it.hasNext();) {
             E object = it.next();
-            if (curr++ == index)
+            if (curr++ == index) {
                 return object;
+            }
         }
         return null; // undefined
     }
@@ -782,8 +822,9 @@ public class CollectionUtil {
      * @return the first object of the source collection
      */
     public static <E> E first(Collection<E> self) {
-        if (self.isEmpty())
+        if (self.isEmpty()) {
             return null; // undefined
+        }
         return self.iterator().next();
     }
 
@@ -799,11 +840,13 @@ public class CollectionUtil {
      * @return the last object in the source collection
      */
     public static <E> E last(Collection<E> self) {
-        if (self.isEmpty())
+        if (self.isEmpty()) {
             return null; // undefined
+        }
         E result = null;
-        for (E next : self)
+        for (E next : self) {
             result = next;
+        }
         return result;
     }
 
@@ -823,8 +866,9 @@ public class CollectionUtil {
         int index = 1;
         
         for (E next : self) {
-            if (object.equals(next))
+            if (object.equals(next)) {
                 return index;
+            }
             index++;
         }
         

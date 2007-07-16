@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.5 2007/05/17 17:06:23 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.6 2007/07/16 17:07:32 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -324,6 +324,8 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
     				(TupleType<O, P>) next;
     			
     			if (type.oclProperties().size() == parts.size()) {
+    			    boolean match = true;
+    			    
     				for (TypedElement<C> part : parts) {
                         @SuppressWarnings("unchecked")
     					P property = env.lookupProperty((C) type, part.getName());
@@ -334,12 +336,15 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
     									uml.getOCLType(property),
     									part.getType()) != UMLReflection.SAME_TYPE)) {
     						// this isn't the tuple type we're looking for
+    					    match = false;
     						break;
     					}
     				}
     				
-    				// this must be the tuple type we're looking for
-    				return type;
+    				if (match) {
+        				// this must be the tuple type we're looking for
+        				return type;
+    				}
     			}
             }
 		}
@@ -890,7 +895,8 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
          * @param object a classifier
          * @return the same classifier
          */
-		public C defaultCase(EObject object) {
+		@Override
+        public C defaultCase(EObject object) {
 			return (C) object;
 		}
 		

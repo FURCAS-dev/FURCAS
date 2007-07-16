@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.4 2007/03/27 15:04:59 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.5 2007/07/16 17:07:32 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -112,8 +112,9 @@ public class TypeUtil {
 		
 		for (O oper : operations) {
 			if (uml.getName(oper).equals(name) &&
-					matchArgs(env, owner, uml.getParameters(oper), args))
-				return oper;
+					matchArgs(env, owner, uml.getParameters(oper), args)) {
+                return oper;
+            }
 
 		}
 		
@@ -203,12 +204,11 @@ public class TypeUtil {
     				// Include both the AnyType operations (oclIsKindOf, etc)
     				// and the operations of the class itself.
     				
-    				@SuppressWarnings("unchecked")
-    				AnyType<O> oclAny = (AnyType<O>) env.getOCLStandardLibrary().getOclAny();
+    				C oclAny = env.getOCLStandardLibrary().getOclAny();
     				
     				result.addAll(uml.getOperations(owner));
                     
-    				result.addAll(oclAny.oclOperations());
+    				result.addAll(getOperations(env, oclAny));
     			}
             }
             
@@ -255,12 +255,28 @@ public class TypeUtil {
 			
 			result = Collections.unmodifiableList(result);
 		} else {
-            if (!(owner instanceof PredefinedType)) { 
+            if (owner instanceof PredefinedType) {
+                result = new java.util.ArrayList<P>(uml.getAttributes(owner));
+            } else {
                 // it's a user type.  Try to convert it to an OCL standard type
                 owner = uml.asOCLType(owner);
+                
+                if (owner instanceof PredefinedType) {
+                    result = new java.util.ArrayList<P>(uml.getAttributes(owner));
+                } else {
+                    result = new ArrayList<P>();
+                    
+                    // Include both the AnyType properties defined by users as
+                    // additional attributes and the properties of the class
+                    // itself.
+                    
+                    C oclAny = env.getOCLStandardLibrary().getOclAny();
+                    
+                    result.addAll(uml.getAttributes(owner));
+                    
+                    result.addAll(getAttributes(env, oclAny));
+                }
             }
-            
-			result = new java.util.ArrayList<P>(uml.getAttributes(owner));
             
             List<P> additionalProperties = env.getAdditionalAttributes(owner);
             if (additionalProperties != null && !additionalProperties.isEmpty()) {
@@ -292,13 +308,15 @@ public class TypeUtil {
 			List<? extends TypedElement<C>> args) {
 		int argsize;
 
-		if (args == null)
-			argsize = 0;
-		else
-			argsize = args.size();
+		if (args == null) {
+            argsize = 0;
+        } else {
+            argsize = args.size();
+        }
 
-		if (paramsOrProperties.size() != argsize)
-			return false;
+		if (paramsOrProperties.size() != argsize) {
+            return false;
+        }
 		
         UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = env.getUMLReflection();
 
@@ -805,9 +823,9 @@ public class TypeUtil {
 								uml.getOCLType(prop1),
 								uml.getOCLType(prop2));
 						
-						if (result == SAME_TYPE)
-							result = propResult;
-						else if (result != propResult) {
+						if (result == SAME_TYPE) {
+                            result = propResult;
+                        } else if (result != propResult) {
 							return UNRELATED_TYPE;
 						}
 						found = true;
@@ -920,22 +938,28 @@ public class TypeUtil {
 			return type1;
 		}
 		
-		if ((type1 == stdlib.getOclVoid()) || (type1 == stdlib.getInvalid()))
-			return type2;
-		if ((type2 == stdlib.getOclVoid()) || (type2 == stdlib.getInvalid()))
-			return type1;
+		if ((type1 == stdlib.getOclVoid()) || (type1 == stdlib.getInvalid())) {
+            return type2;
+        }
+		if ((type2 == stdlib.getOclVoid()) || (type2 == stdlib.getInvalid())) {
+            return type1;
+        }
 		
-		if (type1 == stdlib.getOclAny() && !(type2 instanceof CollectionType))
-			return type1;
-		if (type2 == stdlib.getOclAny() && !(type1 instanceof CollectionType))
-			return type2;
+		if (type1 == stdlib.getOclAny() && !(type2 instanceof CollectionType)) {
+            return type1;
+        }
+		if (type2 == stdlib.getOclAny() && !(type1 instanceof CollectionType)) {
+            return type2;
+        }
 	
 		if ((type1 == stdlib.getInteger() || type1 == stdlib.getUnlimitedNatural())
-                && type2 == stdlib.getReal())
-				return type2;
+                && type2 == stdlib.getReal()) {
+            return type2;
+        }
         if ((type2 == stdlib.getInteger() || type2 == stdlib.getUnlimitedNatural())
-                && type1 == stdlib.getReal())
-				return type1;
+                && type1 == stdlib.getReal()) {
+            return type1;
+        }
 	
 		if (type1 instanceof CollectionType && type2 instanceof CollectionType) {
 	        @SuppressWarnings("unchecked")
