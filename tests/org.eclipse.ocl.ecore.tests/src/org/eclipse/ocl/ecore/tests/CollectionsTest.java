@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.5 2007/05/03 13:06:36 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.6 2007/07/16 17:07:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -444,6 +444,61 @@ public class CollectionsTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+	
+	/**
+	 * Tests the flatten() operation on an empty source collection.
+	 */
+	public void test_flatten_emptySource_195252() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Set{}->flatten()" + //$NON-NLS-1$
+                    " = Set{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "OrderedSet{}->flatten()" + //$NON-NLS-1$
+                    " = Set{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{}->flatten()" + //$NON-NLS-1$
+                    " = Sequence{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Bag{}->flatten()" + //$NON-NLS-1$
+                    " = Bag{}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+	}
+    
+    /**
+     * Tests the flatten() operation on a source collection that contains
+     * empty collections.
+     */
+    public void test_flatten_emptyChildren() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Set{Set{}, Set{}}->flatten()" + //$NON-NLS-1$
+                    " = Set{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "OrderedSet{OrderedSet{}, OrderedSet{}}->flatten()" + //$NON-NLS-1$
+                    " = Set{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{Sequence{}, Sequence{}}->flatten()" + //$NON-NLS-1$
+                    " = Sequence{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Bag{Bag{}, Bag{}}->flatten()" + //$NON-NLS-1$
+                    " = Bag{}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	public void test_count() {
 		helper.setContext(EcorePackage.Literals.EINT);

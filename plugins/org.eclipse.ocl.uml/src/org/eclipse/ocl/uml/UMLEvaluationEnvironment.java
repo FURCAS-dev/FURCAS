@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.5 2007/05/30 13:54:57 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.6 2007/07/16 17:07:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -981,7 +981,7 @@ public class UMLEvaluationEnvironment
                 return false;
             }
 
-            if (classifier instanceof EClass && object instanceof EObject) {
+            if ((eclassifier instanceof EClass) && (object instanceof EObject)) {
                 return ((EObject) object).eClass() == eclassifier;
             } else if (!(object instanceof EObject)
                 && !(eclassifier instanceof EClass)) {

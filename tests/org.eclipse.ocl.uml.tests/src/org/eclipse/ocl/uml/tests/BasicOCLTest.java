@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.3 2007/03/22 21:59:21 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.4 2007/07/16 17:07:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * Basic tests for OCL engine.
@@ -309,5 +310,37 @@ public class BasicOCLTest
         assertSame(getMetaclass("Class"), evalEnv.getType(fruit)); //$NON-NLS-1$
         assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo")); //$NON-NLS-1$
         assertSame(getOCLStandardLibrary().getOclAny(), evalEnv.getType(this));
+    }
+    
+    /**
+     * Tests the OclAny::oclIsKindOf() operation.
+     */
+    public void test_oclIsKindOf() {
+        helper.setContext(getMetaclass("Stereotype")); //$NON-NLS-1$
+        Stereotype stereo = umlf.createStereotype();
+        
+        try {
+            assertTrue(check(helper, stereo, "self.oclIsKindOf(Class)")); //$NON-NLS-1$
+            assertTrue(check(helper, stereo, "self.oclIsKindOf(Stereotype)")); //$NON-NLS-1$
+            assertFalse(check(helper, stereo, "self.oclIsKindOf(Connector)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the OclAny::oclIsTypeOf() operation.
+     */
+    public void test_oclIsTypeOf_196264() {
+        helper.setContext(getMetaclass("Stereotype")); //$NON-NLS-1$
+        Stereotype stereo = umlf.createStereotype();
+        
+        try {
+            assertFalse(check(helper, stereo, "self.oclIsTypeOf(Class)")); //$NON-NLS-1$
+            assertTrue(check(helper, stereo, "self.oclIsTypeOf(Stereotype)")); //$NON-NLS-1$
+            assertFalse(check(helper, stereo, "self.oclIsTypeOf(Connector)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
     }
 }
