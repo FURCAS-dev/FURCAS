@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironment.java,v 1.5 2007/04/27 22:01:49 cdamus Exp $
+ * $Id: CompatibilityEnvironment.java,v 1.6 2007/09/12 19:52:08 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -54,6 +54,8 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 public class CompatibilityEnvironment extends EcoreEnvironment {
+    private static final String ANNOTATION_UML_STATIC = "uml2.static"; //$NON-NLS-1$
+    
 	private Environment oldStyle;
 	private final EnvironmentFactory<
 			EPackage, EClassifier, EOperation, EStructuralFeature,
@@ -143,7 +145,7 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 	public Collection<Variable<EClassifier, EParameter>> getVariables() {
 		EList result = CompatibilityUtil.getNewAS(
 				oldStyle, (List<EObject>) oldStyle.getVariables());
-		return (EList<Variable<EClassifier, EParameter>>) result;
+		return result;
 			
 	}
 
@@ -236,7 +238,19 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
             oldStyleOwner = (EClassifier) CompatibilityUtil.getOldAS(oldStyle, owner);
         }
 		
-		return oldStyle.lookupProperty(oldStyleOwner, name);
+		EStructuralFeature result = oldStyle.lookupProperty(oldStyleOwner, name);
+        
+        // note that there are no properties in the standard library to look up
+		if (result != null) {
+		    if ((owner instanceof TypeType)
+		            || (result.getEAnnotation(ANNOTATION_UML_STATIC) != null)) {
+		    
+                // this is a static property
+                CompatibilityUMLReflection.setStatic(result);
+		    }
+        }
+        
+        return result;
 	}
 	
 	@Override
