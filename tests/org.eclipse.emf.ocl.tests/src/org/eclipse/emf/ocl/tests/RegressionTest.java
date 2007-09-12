@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -53,7 +54,10 @@ import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.parser.AbstractEnvironmentFactory;
+import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
 import org.eclipse.emf.ocl.query.QueryFactory;
@@ -64,17 +68,18 @@ import org.eclipse.emf.ocl.types.OrderedSetType;
 import org.eclipse.emf.ocl.types.SequenceType;
 import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.TupleType;
+import org.eclipse.emf.ocl.types.TypeType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.impl.InvalidTypeImpl;
+import org.eclipse.emf.ocl.types.impl.TypeTypeImpl;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.UMLPackage;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.emf.ocl.utilities.UtilitiesPackage;
-import org.eclipse.ocl.internal.cst.CSTPackage;
 
 /**
- * Regression tests for specific RATLC defects.
+ * Regression tests for specific Bugzilla defects.
  *
  * @author Christian W. Damus (cdamus)
  */
@@ -1724,5 +1729,89 @@ public class RegressionTest
 		
 		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
 		assertEquals("foo", exp.toString()); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Tests that custom environments emulating languages like UML or Java
+	 * that support static attributes can still do so.
+	 */
+	public void test_staticAttribute_203116() {
+        class StaticFruitEnvironment extends EcoreEnvironment {
+            public StaticFruitEnvironment() {
+                super(fruitPackage);
+            }
+            
+            public StaticFruitEnvironment(Environment parent) {
+                super(parent);
+            }
+            
+            protected void setFactory(EnvironmentFactory factory) {
+                super.setFactory(factory);
+            }
+            
+            @Override
+            public EStructuralFeature lookupProperty(EClassifier owner,
+                    String name) {
+                
+                EStructuralFeature result = super.lookupProperty(owner, name);
+                
+                if (result == null) {
+                    // maybe it's static?
+                    if (owner instanceof TypeType) {
+                        TypeTypeImpl typeType = (TypeTypeImpl) owner;
+                        owner = typeType.getReferredType();
+                        
+                        if ((owner instanceof EClass)
+                                && fruit.isSuperTypeOf((EClass) owner)
+                                && name.equals(fruit_color.getName())) {
+                            // we pretend that "color" is a static attribute
+                            result = fruit_color;
+                        }
+                    }
+                }
+                
+                return result;
+            }
+        };
+	    
+	    class StaticFruitEnvironmentFactory extends AbstractEnvironmentFactory {
+
+	        protected Environment createEnvironment(EPackage packageContext) {
+	            StaticFruitEnvironment result = new StaticFruitEnvironment();
+	            result.setFactory(this);
+	            return result;
+	        }
+
+	        protected EClassifier asEClassifier(Object context) {
+	            return (EClassifier) context;
+	        }
+
+	        protected EOperation asEOperation(Object operation) {
+	            return (EOperation) operation;
+	        }
+	        
+	        protected EStructuralFeature asEStructuralFeature(Object property) {
+	            return (EStructuralFeature) property;
+	        }
+
+	        public Environment createEnvironment(Environment parent) {
+	            StaticFruitEnvironment result = new StaticFruitEnvironment(parent);
+	            result.setFactory(this);
+	            return result;
+	        }
+	    };
+
+        IOCLHelper helper = HelperUtil.createOCLHelper(new StaticFruitEnvironmentFactory());
+        helper.setContext(apple);
+        
+        try {
+            // try accessing via the instance
+            helper.createInvariant("self.color = Color::black"); //$NON-NLS-1$
+
+            // and via the classifier
+            helper.createInvariant("Apple.color = Color::black"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
 	}
 }
