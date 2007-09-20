@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.4 2007/04/23 21:16:23 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.5 2007/09/20 18:08:38 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -37,6 +37,7 @@ import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
@@ -185,8 +186,10 @@ public class EcoreEvaluationEnvironment
      *         not many
      */
     private static CollectionKind getCollectionKind(ETypedElement element) {
-        return element.isMany() ? CollectionKind.getKind(element.isOrdered(),
-            element.isUnique())
+        EClassifier oclType = UMLReflectionImpl.INSTANCE.getOCLType(element);
+        
+        return (oclType instanceof CollectionType) ? ((CollectionType<?, ?>) oclType)
+            .getKind()
             : null;
     }
 
