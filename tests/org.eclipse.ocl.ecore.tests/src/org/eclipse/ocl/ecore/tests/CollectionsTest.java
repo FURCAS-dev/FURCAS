@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.6 2007/07/16 17:07:36 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.7 2007/09/20 18:08:40 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -936,6 +937,31 @@ public class CollectionsTest
 
             assertFalse(check(helper, "", //$NON-NLS-1$
                     "Sequence{1, 2, 3} <> Sequence{1, 2, 3}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that evaluating an EEList-typed operation call does not result in
+     * a scalar value.
+     */
+    public void test_valueOfOperationTypedByEEList_202611() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+        
+        try {
+            OCLExpression<EClassifier> expr = helper.createQuery("self.eContents()"); //$NON-NLS-1$
+            assertTrue(expr.getType() instanceof CollectionType);
+            
+            CollectionType<?, ?> actualType = (CollectionType<?, ?>) expr.getType();
+            
+            // should be a Sequence(OclAny)
+            assertSame(CollectionKind.SEQUENCE_LITERAL, actualType.getKind());
+            //assertSame(getOCLStandardLibrary().getOclAny(), actualType.getElementType());
+            
+            // should be the right value
+            Object value = ocl.evaluate(EcorePackage.eINSTANCE, expr);
+            assertEquals(EcorePackage.eINSTANCE.eContents(), value);
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
