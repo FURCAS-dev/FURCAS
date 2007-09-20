@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.5 2007/09/20 17:45:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -216,8 +216,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__START_POSITION, oldStartPosition, startPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__START_POSITION, oldStartPosition, startPosition));
+        }
 
 
 	}
@@ -240,8 +241,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__END_POSITION, oldEndPosition, endPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__END_POSITION, oldEndPosition, endPosition));
+        }
 
 
 	}
@@ -264,8 +266,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+        }
 
 
 	}
@@ -288,8 +291,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+        }
 
 
 	}
@@ -305,8 +309,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 			InternalEObject oldElementType = (InternalEObject)elementType;
 			elementType = (Classifier)eResolveProxy(oldElementType);
 			if (elementType != oldElementType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+				if (eNotificationRequired()) {
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+                }
 			}
 		}
 		return elementType;
@@ -331,8 +336,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 
 		Classifier oldElementType = elementType;
 		elementType = newElementType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+        }
 
 
 	}
@@ -347,6 +353,7 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
     /**
      * @generated NOT
      */
+    @Override
     @SuppressWarnings("unchecked")
     public String getName() {
         if (name == null) {
@@ -377,8 +384,10 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
             String elementTypeName;
             if (elementType instanceof VoidType) {
                 elementTypeName = "T"; //$NON-NLS-1$
-            } else {
+            } else if (elementType != null) {
                 elementTypeName = elementType.getName();
+            } else {
+                elementTypeName = ""; //$NON-NLS-1$
             }
             
             myName.append(elementTypeName);
@@ -494,7 +503,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
 				return new Integer(getTypeEndPosition());
 			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
-				if (resolve) return getElementType();
+				if (resolve) {
+                    return getElementType();
+                }
 				return basicGetElementType();
 			case UMLPackage.COLLECTION_TYPE__KIND:
 				return getKind();
@@ -660,7 +671,9 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
 	 */
     @Override
     public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+            return super.toString();
+        }
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (startPosition: "); //$NON-NLS-1$
