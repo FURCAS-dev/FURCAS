@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2003, 2006 IBM Corporation and others.
+ * Copyright (c) 2003, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,8 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Kiril Mitov - Enumerator cast for EMF 2.3 compatibility
+ * 
  * </copyright>
  *
  * $Id$
@@ -22,7 +23,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.examples.extlibrary.BookCategory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
@@ -126,8 +127,8 @@ public class SelectWritersDelegate
 		});
 		dialog.setLabelProvider(new LabelProvider() {
 			public String getText(Object element) {
-				if (element instanceof AbstractEnumerator) {
-					return ((AbstractEnumerator)element).getName();
+				if (element instanceof Enumerator) {
+					return ((Enumerator)element).getName();
 				}
 				return null;
 			}
