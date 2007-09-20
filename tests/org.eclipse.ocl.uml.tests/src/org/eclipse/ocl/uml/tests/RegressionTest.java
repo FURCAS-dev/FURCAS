@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.3 2007/05/03 22:04:28 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.4 2007/09/20 17:45:20 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -28,6 +28,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
@@ -1354,4 +1355,16 @@ public class RegressionTest
 		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
 		assertEquals("foo", exp.toString()); //$NON-NLS-1$
 	}
+    
+    /**
+     * Tests that we don't get NPEs from getting the names of collection types
+     * that do not (yet) have element types.
+     */
+    public void test_nameOfCollectionTypeWithoutElementType() {
+        org.eclipse.ocl.types.CollectionType<?, ?> collType =
+            ocl.getEnvironment().getOCLFactory().createCollectionType(
+                CollectionKind.BAG_LITERAL, null);
+        
+        collType.getName();
+    }
 }

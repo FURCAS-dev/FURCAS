@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.5 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.6 2007/09/20 17:45:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -210,8 +210,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
     public void setStartPosition(int newStartPosition) {
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__START_POSITION, oldStartPosition, startPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__START_POSITION, oldStartPosition, startPosition));
+        }
 	}
 
     /**
@@ -231,8 +232,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
     public void setEndPosition(int newEndPosition) {
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__END_POSITION, oldEndPosition, endPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__END_POSITION, oldEndPosition, endPosition));
+        }
 	}
 
     /**
@@ -252,8 +254,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
     public void setTypeStartPosition(int newTypeStartPosition) {
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+        }
 	}
 
     /**
@@ -273,8 +276,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
     public void setTypeEndPosition(int newTypeEndPosition) {
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+        }
 	}
 
     /**
@@ -288,8 +292,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 			InternalEObject oldElementType = (InternalEObject)elementType;
 			elementType = (EClassifier)eResolveProxy(oldElementType);
 			if (elementType != oldElementType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+				if (eNotificationRequired()) {
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+                }
 			}
 		}
 		return elementType;
@@ -312,8 +317,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	public void setElementType(EClassifier newElementType) {
 		EClassifier oldElementType = elementType;
 		elementType = newElementType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+		if (eNotificationRequired()) {
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+        }
 	}
 
 				/**
@@ -330,6 +336,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      * <!-- end-user-doc -->
      * @generated NOT
      */
+    @Override
     @SuppressWarnings("unchecked")
     public String getName() {
         if (name == null) {
@@ -359,8 +366,10 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
             String elementTypeName;
             if (elementType instanceof VoidType) {
                 elementTypeName = "T"; //$NON-NLS-1$
-            } else {
+            } else if (elementType != null) {
                 elementTypeName = elementType.getName();
+            } else {
+                elementTypeName = ""; //$NON-NLS-1$
             }
             
             myName.append(elementTypeName);
@@ -471,7 +480,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 			case EcorePackage.COLLECTION_TYPE__TYPE_END_POSITION:
 				return new Integer(getTypeEndPosition());
 			case EcorePackage.COLLECTION_TYPE__ELEMENT_TYPE:
-				if (resolve) return getElementType();
+				if (resolve) {
+                    return getElementType();
+                }
 				return basicGetElementType();
 			case EcorePackage.COLLECTION_TYPE__KIND:
 				return getKind();
@@ -637,7 +648,9 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 */
     @Override
     public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+            return super.toString();
+        }
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (startPosition: "); //$NON-NLS-1$
