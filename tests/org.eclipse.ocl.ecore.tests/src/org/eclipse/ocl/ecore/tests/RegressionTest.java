@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.5 2007/05/03 22:04:27 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.6 2007/09/20 17:45:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -56,6 +56,7 @@ import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
@@ -1780,5 +1781,16 @@ public class RegressionTest
         } finally {
             EPackage.Registry.INSTANCE.remove(rootpkg.getNsURI());
         }
+    }
+    
+    /**
+     * Tests that we don't get NPEs from getting the names of collection types
+     * that do not (yet) have element types.
+     */
+    public void test_nameOfCollectionTypeWithoutElementType() {
+        org.eclipse.ocl.types.CollectionType<?, ?> collType = oclFactory.createCollectionType(
+            CollectionKind.BAG_LITERAL, null);
+        
+        collType.getName();
     }
 }
