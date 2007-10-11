@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IfExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: IfExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -37,81 +37,81 @@ package org.eclipse.ocl.expressions;
  */
 public interface IfExp<C> extends OCLExpression<C> {
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(OCLExpression)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_Condition()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Condition</em>' containment reference.
+     * @see #setCondition(OCLExpression)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_Condition()
+     * @model containment="true"
+     * @generated
+     */
 	OCLExpression<C> getCondition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.IfExp#getCondition <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.IfExp#getCondition <em>Condition</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Condition</em>' containment reference.
+     * @see #getCondition()
+     * @generated
+     */
 	void setCondition(OCLExpression<C> value);
 
 	/**
-	 * Returns the value of the '<em><b>Then Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Then Expression</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Then Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Then Expression</em>' containment reference.
-	 * @see #setThenExpression(OCLExpression)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_ThenExpression()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Then Expression</em>' containment reference.
+     * @see #setThenExpression(OCLExpression)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_ThenExpression()
+     * @model containment="true"
+     * @generated
+     */
 	OCLExpression<C> getThenExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.IfExp#getThenExpression <em>Then Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.IfExp#getThenExpression <em>Then Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Then Expression</em>' containment reference.
-	 * @see #getThenExpression()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Then Expression</em>' containment reference.
+     * @see #getThenExpression()
+     * @generated
+     */
 	void setThenExpression(OCLExpression<C> value);
 
 	/**
-	 * Returns the value of the '<em><b>Else Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Else Expression</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Else Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Else Expression</em>' containment reference.
-	 * @see #setElseExpression(OCLExpression)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_ElseExpression()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Else Expression</em>' containment reference.
+     * @see #setElseExpression(OCLExpression)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp_ElseExpression()
+     * @model containment="true"
+     * @generated
+     */
 	OCLExpression<C> getElseExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.IfExp#getElseExpression <em>Else Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.IfExp#getElseExpression <em>Else Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Else Expression</em>' containment reference.
-	 * @see #getElseExpression()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Else Expression</em>' containment reference.
+     * @see #getElseExpression()
+     * @generated
+     */
 	void setElseExpression(OCLExpression<C> value);
 
 } // IfExp

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUMLReflection.java,v 1.4 2007/06/15 18:40:44 cdamus Exp $
+ * $Id: CompatibilityUMLReflection.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -125,6 +125,7 @@ class CompatibilityUMLReflection extends UMLReflectionImpl {
      * Extends the inherited implementation to support an annotation that
      * denotes static-ness.
      */
+    @Override
     public boolean isStatic(Object feature) {
         return Boolean.TRUE.equals(staticFeatures.get(feature))
                 || super.isStatic(feature);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -70,14 +70,16 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.STATE_EXP;
     }
 
 	/**
 	 * @generated NOT
 	 */
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitStateExp(this);
 	}
 	
@@ -124,7 +126,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
                 if (resolve) return getReferredState();
@@ -138,7 +141,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
                 setReferredState((EObject)newValue);
@@ -152,7 +156,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
                 setReferredState((EObject)null);
@@ -166,7 +171,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.STATE_EXP__REFERRED_STATE:
                 return referredState != null;

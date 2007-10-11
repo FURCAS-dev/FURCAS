@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.5 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.6 2007/10/11 23:04:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -40,29 +40,30 @@ public class AnyTypeImpl extends EClassifierImpl implements AnyType {
     private EList<EOperation> operations;
     
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected AnyTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return EcorePackage.Literals.ANY_TYPE;
-	}
+        return EcorePackage.Literals.ANY_TYPE;
+    }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated NOT
      */
+    @Override
     public String getName() {
         if (name == null) {
             name = SINGLETON_NAME;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.6 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.7 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -174,7 +174,8 @@ public class VariableImpl
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.VARIABLE;
     }
 
@@ -347,7 +348,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+	@Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
         if (baseClass == Visitable.class) {
             switch (derivedFeatureID) {
                 default: return -1;
@@ -375,7 +377,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+	@Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
         if (baseClass == Visitable.class) {
             switch (baseFeatureID) {
                 default: return -1;
@@ -401,7 +404,8 @@ public class VariableImpl
 	/**
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 
@@ -414,7 +418,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.VARIABLE__INIT_EXPRESSION:
                 return basicSetInitExpression(null, msgs);
@@ -427,7 +432,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.VARIABLE__START_POSITION:
                 return new Integer(getStartPosition());
@@ -451,7 +457,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.VARIABLE__START_POSITION:
                 setStartPosition(((Integer)newValue).intValue());
@@ -480,7 +487,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.VARIABLE__START_POSITION:
                 setStartPosition(START_POSITION_EDEFAULT);
@@ -509,7 +517,8 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.VARIABLE__START_POSITION:
                 return startPosition != START_POSITION_EDEFAULT;

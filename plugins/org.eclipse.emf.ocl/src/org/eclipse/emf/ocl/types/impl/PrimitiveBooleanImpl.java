@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveBooleanImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: PrimitiveBooleanImpl.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -73,7 +73,8 @@ public class PrimitiveBooleanImpl extends PrimitiveTypeImpl implements Primitive
 		return operations;
 	}
 	
-	public EList getOperations() {
+	@Override
+    public EList getOperations() {
 		if (operations == null)
 			return createOperations();
 		return operations;
@@ -95,7 +96,8 @@ public class PrimitiveBooleanImpl extends PrimitiveTypeImpl implements Primitive
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.PRIMITIVE_BOOLEAN;
 	}
 

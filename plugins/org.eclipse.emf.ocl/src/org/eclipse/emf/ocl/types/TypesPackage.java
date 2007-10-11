@@ -42,6 +42,7 @@ import org.eclipse.emf.ocl.types.util.Types;
  * @model kind="package"
  * @generated
  */
+@Deprecated
 public interface TypesPackage extends EPackage {
 	/**
      * <!-- begin-user-doc -->

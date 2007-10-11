@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElement.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: TypedElement.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml;
 
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.ENamedElement;
  * @model abstract="true"
  * @generated
  */
+@Deprecated
 public interface TypedElement extends ENamedElement {
 	/**
 	 * <!-- begin-user-doc -->

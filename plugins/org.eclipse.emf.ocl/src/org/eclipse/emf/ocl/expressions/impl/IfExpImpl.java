@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: IfExpImpl.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -94,11 +94,13 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.IF_EXP;
     }
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitIfExp(this);
 	}
 
@@ -236,7 +238,8 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.IF_EXP__CONDITION:
                 return basicSetCondition(null, msgs);
@@ -253,7 +256,8 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.IF_EXP__CONDITION:
                 return getCondition();
@@ -270,7 +274,8 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.IF_EXP__CONDITION:
                 setCondition((OCLExpression)newValue);
@@ -290,7 +295,8 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.IF_EXP__CONDITION:
                 setCondition((OCLExpression)null);
@@ -310,7 +316,8 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.IF_EXP__CONDITION:
                 return condition != null;

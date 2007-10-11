@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Visitable.java,v 1.2 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: Visitable.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -33,6 +33,7 @@ import org.eclipse.emf.ocl.expressions.Visitor;
  * @model
  * @generated
  */
+@Deprecated
 public interface Visitable extends EObject {
 	/**
 	 * <!-- begin-user-doc -->

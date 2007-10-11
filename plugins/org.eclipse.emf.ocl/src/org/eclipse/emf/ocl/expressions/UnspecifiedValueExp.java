@@ -25,6 +25,7 @@ import org.eclipse.emf.ocl.utilities.TypedASTNode;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface UnspecifiedValueExp
 	extends OCLExpression, TypedASTNode{
 	/**

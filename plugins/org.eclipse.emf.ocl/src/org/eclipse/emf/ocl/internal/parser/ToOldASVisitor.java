@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToOldASVisitor.java,v 1.2 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: ToOldASVisitor.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -218,7 +218,6 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 		
 		for (Variable<EClassifier, EParameter> i : src.getIterator()) {
 			dst.getIterator().add(
-					(org.eclipse.emf.ocl.expressions.Variable)
 					CompatibilityUtil.getOldAS(env, i));
 		}
 		
@@ -233,7 +232,6 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 		
 		for (OCLExpression<EClassifier> q : ae.getQualifier()) {
 			result.getQualifier().add(
-					(org.eclipse.emf.ocl.expressions.OCLExpression)
 					CompatibilityUtil.getOldAS(env, q));
 		}
 		
@@ -261,7 +259,6 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 		
 		for (CollectionLiteralPart<EClassifier> p : cl.getPart()) {
 			result.getPart().add(
-					(org.eclipse.emf.ocl.expressions.CollectionLiteralPart)
 					CompatibilityUtil.getOldAS(env, p));
 		}
 		
@@ -425,7 +422,6 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 		
 		for (OCLExpression<EClassifier> a : m.getArgument()) {
 			result.getArgument().add(
-					(org.eclipse.emf.ocl.expressions.OCLExpression)
 					CompatibilityUtil.getOldAS(env, a));
 		}
 		
@@ -450,7 +446,6 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 		
 		for (OCLExpression<EClassifier> a : oc.getArgument()) {
 			result.getArgument().add(
-					(org.eclipse.emf.ocl.expressions.OCLExpression)
 					CompatibilityUtil.getOldAS(env, a));
 		}
 		
@@ -716,7 +711,7 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 									env, object.getReferredType()));
 					}
 					
-					return (EClassifier) TypesFactory.eINSTANCE.createTypeType(
+					return TypesFactory.eINSTANCE.createTypeType(
 							(EClassifier) CompatibilityUtil.getOldAS(
 									env, object.getReferredType()));
 				}
@@ -739,13 +734,13 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 						return resolver.resolveCollectionType(
 								CollectionKind.getCompatibleKind(object.getKind()),
 								(EClassifier) CompatibilityUtil.getOldAS(
-									env, (EClassifier) object.getElementType()));
+									env, object.getElementType()));
 					}
 					
-					return (EClassifier) TypesFactory.eINSTANCE.createCollectionType(
+					return TypesFactory.eINSTANCE.createCollectionType(
 							CollectionKind.getCompatibleKind(object.getKind()),
 							(EClassifier) CompatibilityUtil.getOldAS(
-									env, (EClassifier) object.getElementType()));
+									env, object.getElementType()));
 				}
 				
 				@Override
@@ -760,7 +755,7 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 									object.getReferredOperation());
 						}
 						
-						return (EClassifier) TypesFactory.eINSTANCE.createMessageType(
+						return TypesFactory.eINSTANCE.createMessageType(
 								object.getReferredOperation());
 					} else {
 						if (resolver != null) {
@@ -768,7 +763,7 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 									(EClass) object.getReferredSignal());
 						}
 						
-						return (EClassifier) TypesFactory.eINSTANCE.createMessageType(
+						return TypesFactory.eINSTANCE.createMessageType(
 								object.getReferredSignal());
 					}
 				}
@@ -793,7 +788,7 @@ final class ToOldASVisitor implements Visitor<EObject, EClassifier, EOperation, 
 						return resolver.resolveTupleType(parts);
 					}
 					
-					return (EClassifier) TypesFactory.eINSTANCE.createTupleType(
+					return TypesFactory.eINSTANCE.createTupleType(
 							parts);
 				}
 				

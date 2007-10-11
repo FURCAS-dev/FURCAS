@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: CollectionLiteralExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -38,63 +38,63 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CollectionLiteralExp<C> extends LiteralExp<C> {
 	/**
-	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.ocl.expressions.CollectionKind}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Kind</b></em>' attribute.
+     * The literals are from the enumeration {@link org.eclipse.ocl.expressions.CollectionKind}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Collection Kind</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipse.ocl.expressions.CollectionKind
-	 * @see #setKind(CollectionKind)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_Kind()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Kind</em>' attribute.
+     * @see org.eclipse.ocl.expressions.CollectionKind
+     * @see #setKind(CollectionKind)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_Kind()
+     * @model
+     * @generated
+     */
 	CollectionKind getKind();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.CollectionLiteralExp#getKind <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.CollectionLiteralExp#getKind <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipse.ocl.expressions.CollectionKind
-	 * @see #getKind()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Kind</em>' attribute.
+     * @see org.eclipse.ocl.expressions.CollectionKind
+     * @see #getKind()
+     * @generated
+     */
 	void setKind(CollectionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Part</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.expressions.CollectionLiteralPart}&lt;C>.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Part</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.ocl.expressions.CollectionLiteralPart}&lt;C>.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Part</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Part</em>' containment reference list.
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_Part()
-	 * @model type="org.eclipse.ocl.expressions.CollectionLiteralPart" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Part</em>' containment reference list.
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_Part()
+     * @model containment="true"
+     * @generated
+     */
 	EList<CollectionLiteralPart<C>> getPart();
 
 	/**
-	 * Returns the value of the '<em><b>Simple Range</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Simple Range</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simple Range</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Simple Range</em>' attribute.
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_SimpleRange()
-	 * @model transient="true" changeable="false" volatile="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Simple Range</em>' attribute.
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionLiteralExp_SimpleRange()
+     * @model transient="true" changeable="false" volatile="true"
+     * @generated
+     */
 	boolean isSimpleRange();
 
 } // CollectionLiteralExp

@@ -24,6 +24,7 @@ package org.eclipse.emf.ocl.expressions;
  * @author Edith Schonberg (edith)
  *
  */
+@Deprecated
 public interface IterateExp extends LoopExp {
 	/**
 	 * <!-- begin-user-doc -->

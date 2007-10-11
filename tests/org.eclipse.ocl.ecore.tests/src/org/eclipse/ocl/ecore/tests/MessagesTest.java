@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -507,7 +507,8 @@ public class MessagesTest
 		return OCL.newInstance(new MessagingFruitEnvironmentFactory());
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 
 		// let the next test re-initialize the fruit package to eliminate the
@@ -519,11 +520,13 @@ public class MessagesTest
 	
 	public static class MessagingFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
-		public EcoreEnvironment createEnvironment() {
+		@Override
+        public EcoreEnvironment createEnvironment() {
 			return new MessagingFruitEnvironment(this);
 		}
 
-		public EcoreEnvironment createEnvironment(
+		@Override
+        public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			return new MessagingFruitEnvironment(this, parent);
 		}
@@ -575,7 +578,8 @@ public class MessagesTest
         @Override
         public UMLReflection<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> getUMLReflection() {
             return new UMLReflectionImpl() {
-        		public List<EClassifier> getSignals(EClassifier owner) {
+        		@Override
+                public List<EClassifier> getSignals(EClassifier owner) {
         			if (owner == fruit || owner == apple) {
         				return signals;
         			}

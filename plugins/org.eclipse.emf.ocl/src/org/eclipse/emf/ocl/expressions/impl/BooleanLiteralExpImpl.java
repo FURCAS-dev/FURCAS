@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -78,11 +78,13 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.BOOLEAN_LITERAL_EXP;
 	}
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitBooleanLiteralExp(this);
 	}
 	
@@ -111,7 +113,8 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				return getBooleanSymbol();
@@ -124,7 +127,8 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				setBooleanSymbol((Boolean)newValue);
@@ -138,7 +142,8 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
@@ -152,7 +157,8 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
 				return BOOLEAN_SYMBOL_EDEFAULT == null ? booleanSymbol != null : !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
@@ -163,7 +169,8 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	/**
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 

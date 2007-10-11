@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -52,96 +52,96 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class CollectionLiteralExpImpl extends LiteralExpImpl implements CollectionLiteralExp {
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected static final CollectionKind KIND_EDEFAULT = CollectionKind.SET_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected CollectionKind kind = KIND_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPart()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPart()
+     * @generated
+     * @ordered
+     */
 	protected EList<CollectionLiteralPart<EClassifier>> part;
 
 	/**
-	 * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSimpleRange()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isSimpleRange()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean SIMPLE_RANGE_EDEFAULT = false;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CollectionLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.COLLECTION_LITERAL_EXP;
-	}
+        return EcorePackage.Literals.COLLECTION_LITERAL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionKind getKind() {
-		return kind;
-	}
+        return kind;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setKind(CollectionKind newKind) {
-		CollectionKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
-	}
+        CollectionKind oldKind = kind;
+        kind = newKind == null ? KIND_EDEFAULT : newKind;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<CollectionLiteralPart<EClassifier>> getPart() {
-		if (part == null) {
-			part = new EObjectContainmentEList<CollectionLiteralPart<EClassifier>>(CollectionLiteralPart.class, this, EcorePackage.COLLECTION_LITERAL_EXP__PART);
-		}
-		return part;
-	}
+        if (part == null) {
+            part = new EObjectContainmentEList<CollectionLiteralPart<EClassifier>>(CollectionLiteralPart.class, this, EcorePackage.COLLECTION_LITERAL_EXP__PART);
+        }
+        return part;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -162,128 +162,128 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+                return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
-				return getKind();
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-				return getPart();
-			case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-				return isSimpleRange() ? Boolean.TRUE : Boolean.FALSE;
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+                return getKind();
+            case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+                return getPart();
+            case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
+                return isSimpleRange() ? Boolean.TRUE : Boolean.FALSE;
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
-				setKind((CollectionKind)newValue);
-				return;
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-				getPart().clear();
-				getPart().addAll((Collection<? extends CollectionLiteralPart<EClassifier>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+                setKind((CollectionKind)newValue);
+                return;
+            case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+                getPart().clear();
+                getPart().addAll((Collection<? extends CollectionLiteralPart<EClassifier>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
-				setKind(KIND_EDEFAULT);
-				return;
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-				getPart().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+                setKind(KIND_EDEFAULT);
+                return;
+            case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+                getPart().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
-				return kind != KIND_EDEFAULT;
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-				return part != null && !part.isEmpty();
-			case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-				return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+                return kind != KIND_EDEFAULT;
+            case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+                return part != null && !part.isEmpty();
+            case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
+                return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.COLLECTION_LITERAL_EXP__KIND: return ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND;
-				case EcorePackage.COLLECTION_LITERAL_EXP__PART: return ExpressionsPackage.COLLECTION_LITERAL_EXP__PART;
-				case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
+            switch (derivedFeatureID) {
+                case EcorePackage.COLLECTION_LITERAL_EXP__KIND: return ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND;
+                case EcorePackage.COLLECTION_LITERAL_EXP__PART: return ExpressionsPackage.COLLECTION_LITERAL_EXP__PART;
+                case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND: return EcorePackage.COLLECTION_LITERAL_EXP__KIND;
-				case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART: return EcorePackage.COLLECTION_LITERAL_EXP__PART;
-				case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND: return EcorePackage.COLLECTION_LITERAL_EXP__KIND;
+                case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART: return EcorePackage.COLLECTION_LITERAL_EXP__PART;
+                case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -298,7 +298,8 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	/**
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitCollectionLiteralExp(this);
 	}
 

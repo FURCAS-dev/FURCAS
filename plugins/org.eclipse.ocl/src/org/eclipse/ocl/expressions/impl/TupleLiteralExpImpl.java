@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -44,119 +44,119 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class TupleLiteralExpImpl<C, P> extends LiteralExpImpl<C> implements TupleLiteralExp<C, P> {
 	/**
-	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPart()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPart()
+     * @generated
+     * @ordered
+     */
 	protected EList<TupleLiteralPart<C, P>> part;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TupleLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.TUPLE_LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.TUPLE_LITERAL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<TupleLiteralPart<C, P>> getPart() {
-		if (part == null) {
-			part = new EObjectContainmentEList<TupleLiteralPart<C, P>>(TupleLiteralPart.class, this, ExpressionsPackage.TUPLE_LITERAL_EXP__PART);
-		}
-		return part;
-	}
+        if (part == null) {
+            part = new EObjectContainmentEList<TupleLiteralPart<C, P>>(TupleLiteralPart.class, this, ExpressionsPackage.TUPLE_LITERAL_EXP__PART);
+        }
+        return part;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
+                return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
-				return getPart();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
+                return getPart();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
-				getPart().clear();
-				getPart().addAll((Collection<? extends TupleLiteralPart<C, P>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
+                getPart().clear();
+                getPart().addAll((Collection<? extends TupleLiteralPart<C, P>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
-				getPart().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
+                getPart().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
-				return part != null && !part.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
+                return part != null && !part.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * @generated NOT

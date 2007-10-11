@@ -28,6 +28,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * method provides the <tt>OclAny</tt> singleton instance of this metaclass.
  * 
  */
+@Deprecated
 public interface AnyType extends EClassifier, PredefinedType {
 		
 	/**

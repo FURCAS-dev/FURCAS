@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ChoiceImpl.java,v 1.1 2007/01/25 18:24:39 cdamus Exp $
+ * $Id: ChoiceImpl.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -76,11 +76,13 @@ class ChoiceImpl implements Choice {
 		return element;
 	}
 
-	public int hashCode() {
+	@Override
+    public int hashCode() {
 		return (getName() == null) ? 0 : getName().hashCode();
 	}
 	
-	public boolean equals(Object obj) {
+	@Override
+    public boolean equals(Object obj) {
 		boolean result = obj instanceof ChoiceImpl;
 		
 		if (result) {
@@ -93,7 +95,8 @@ class ChoiceImpl implements Choice {
 		return result;
 	}
 	
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer result = new StringBuffer();
 		
 		result.append("Choice["); //$NON-NLS-1$

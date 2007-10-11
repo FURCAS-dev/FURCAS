@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EnumLiteralExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
+ * $Id: EnumLiteralExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface EnumLiteralExp<C, EL> extends LiteralExp<C> {
 	/**
-	 * Returns the value of the '<em><b>Referred Enum Literal</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Referred Enum Literal</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Enum Literal</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Enum Literal</em>' reference.
-	 * @see #setReferredEnumLiteral(Object)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getEnumLiteralExp_ReferredEnumLiteral()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Referred Enum Literal</em>' reference.
+     * @see #setReferredEnumLiteral(Object)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getEnumLiteralExp_ReferredEnumLiteral()
+     * @model kind="reference"
+     * @generated
+     */
 	EL getReferredEnumLiteral();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.EnumLiteralExp#getReferredEnumLiteral <em>Referred Enum Literal</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.EnumLiteralExp#getReferredEnumLiteral <em>Referred Enum Literal</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Enum Literal</em>' reference.
-	 * @see #getReferredEnumLiteral()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Referred Enum Literal</em>' reference.
+     * @see #getReferredEnumLiteral()
+     * @generated
+     */
 	void setReferredEnumLiteral(EL value);
 
 } // EnumLiteralExp

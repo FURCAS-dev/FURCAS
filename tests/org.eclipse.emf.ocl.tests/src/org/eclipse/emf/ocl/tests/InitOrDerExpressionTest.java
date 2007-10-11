@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerExpressionTest.java,v 1.1 2006/04/04 18:08:40 cdamus Exp $
+ * $Id: InitOrDerExpressionTest.java,v 1.2 2007/10/11 23:05:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -395,7 +395,8 @@ public class InitOrDerExpressionTest
 	// Framework methods
 	//
 	
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 		
 		banana = EcoreFactory.eINSTANCE.createEClass();
@@ -426,7 +427,8 @@ public class InitOrDerExpressionTest
 		res.getContents().addAll(allFruits);
 	}
 	
-	protected void tearDown() throws Exception {
+	@Override
+    protected void tearDown() throws Exception {
 		extents = null;
 		allApples = null;
 		

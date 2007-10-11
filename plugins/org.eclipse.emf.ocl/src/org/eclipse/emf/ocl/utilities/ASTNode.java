@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ASTNode.java,v 1.2 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: ASTNode.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
+@Deprecated
 public interface ASTNode extends EObject {
 	/**
 	 * <!-- begin-user-doc -->

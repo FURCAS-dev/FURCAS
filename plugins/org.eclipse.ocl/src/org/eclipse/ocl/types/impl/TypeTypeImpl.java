@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.4 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.5 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -44,40 +44,40 @@ import org.eclipse.ocl.util.OCLStandardLibraryUtil;
  */
 public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
 	/**
-	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredType()
+     * @generated
+     * @ordered
+     */
 	protected C referredType;
 
 	private String name;
 	private EList<O> operations;
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TypeTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	protected TypeTypeImpl(C type) {
 		this.referredType = type;
 	}
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TypesPackage.Literals.TYPE_TYPE;
-	}
+        return TypesPackage.Literals.TYPE_TYPE;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,102 +113,102 @@ public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public C getReferredType() {
-		if (referredType != null && ((EObject)referredType).eIsProxy()) {
-			InternalEObject oldReferredType = (InternalEObject)referredType;
-			referredType = (C)eResolveProxy(oldReferredType);
-			if (referredType != oldReferredType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
-			}
-		}
-		return referredType;
-	}
+        if (referredType != null && ((EObject)referredType).eIsProxy()) {
+            InternalEObject oldReferredType = (InternalEObject)referredType;
+            referredType = (C)eResolveProxy(oldReferredType);
+            if (referredType != oldReferredType) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+            }
+        }
+        return referredType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public C basicGetReferredType() {
-		return referredType;
-	}
+        return referredType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setReferredType(C newReferredType) {
-		C oldReferredType = referredType;
-		referredType = newReferredType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
-	}
+        C oldReferredType = referredType;
+        referredType = newReferredType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-				if (resolve) return getReferredType();
-				return basicGetReferredType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
+                if (resolve) return getReferredType();
+                return basicGetReferredType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-				setReferredType((C)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
+                setReferredType((C)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public void eUnset(int featureID) {
-		switch (featureID) {
-			case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-				setReferredType((C)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
+                setReferredType((C)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-				return referredType != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
+                return referredType != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //TypeTypeImpl

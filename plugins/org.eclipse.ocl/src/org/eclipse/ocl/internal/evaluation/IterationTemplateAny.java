@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateAny.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
+ * $Id: IterationTemplateAny.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -41,7 +41,8 @@ class IterationTemplateAny<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return new IterationTemplateAny<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(v);
 	}
 	
-	protected Object evaluateResult(
+	@Override
+    protected Object evaluateResult(
 			List<Variable<C, PM>> iterators, String resultName, Object bodyVal) {
 		
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();

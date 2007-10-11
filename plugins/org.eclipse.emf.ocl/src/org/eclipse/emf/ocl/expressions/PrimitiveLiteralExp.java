@@ -24,6 +24,7 @@ package org.eclipse.emf.ocl.expressions;
  * @author Edith Schonberg (edith)
  * @model abstract="true"
  */
+@Deprecated
 public interface PrimitiveLiteralExp
 	extends LiteralExp{
 	//	empty impl.

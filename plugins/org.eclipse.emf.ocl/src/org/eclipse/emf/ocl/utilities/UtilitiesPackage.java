@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.3 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.4 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model kind="package"
  * @generated
  */
+@Deprecated
 public interface UtilitiesPackage extends EPackage {
 	/**
 	 * <!-- begin-user-doc -->

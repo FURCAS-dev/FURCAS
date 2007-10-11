@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: LocationInformationTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -449,7 +449,8 @@ public class LocationInformationTest
 	// Framework methods
 	//
 	
-	protected OCLExpression<EClassifier> createQuery(EClass context, String text) {
+	@Override
+    protected OCLExpression<EClassifier> createQuery(EClass context, String text) {
 		OCLExpression<EClassifier> result = super.createQuery(context, text);
 		
 		assertAllPositionsSet(result);
@@ -457,7 +458,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<EClassifier> createQuery(
+	@Override
+    protected OCLExpression<EClassifier> createQuery(
 			EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> envFactory,
 			EClass context, String text) {
 		
@@ -469,7 +471,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<EClassifier> createInvariant(EClass context, String text) {
+	@Override
+    protected OCLExpression<EClassifier> createInvariant(EClass context, String text) {
 		OCLExpression<EClassifier> result = super.createInvariant(context, text);
 		
 		assertAllPositionsSet(result);
@@ -477,7 +480,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<EClassifier> createPrecondition(EOperation context, String text) {
+	@Override
+    protected OCLExpression<EClassifier> createPrecondition(EOperation context, String text) {
 		OCLExpression<EClassifier> result = super.createPrecondition(context, text);
 		
 		assertAllPositionsSet(result);
@@ -485,7 +489,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<EClassifier> createPostcondition(EOperation context, String text) {
+	@Override
+    protected OCLExpression<EClassifier> createPostcondition(EOperation context, String text) {
 		OCLExpression<EClassifier> result = super.createPostcondition(context, text);
 		
 		assertAllPositionsSet(result);
@@ -493,7 +498,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<EClassifier> createBodyCondition(EOperation context, String text) {
+	@Override
+    protected OCLExpression<EClassifier> createBodyCondition(EOperation context, String text) {
 		OCLExpression<EClassifier> result = super.createBodyCondition(context, text);
 		
 		assertAllPositionsSet(result);
@@ -657,31 +663,36 @@ public class LocationInformationTest
 			assertTrue("End not after start: " + tp, tp.getEndPosition() > tp.getStartPosition()); //$NON-NLS-1$
 		}
 
-		public Object visitOperationCallExp(OperationCallExp<EClassifier, EOperation> oc) {
+		@Override
+        public Object visitOperationCallExp(OperationCallExp<EClassifier, EOperation> oc) {
 			assertPositions(oc);
 
 			return super.visitOperationCallExp(oc);
 		}
 
-		public Object visitVariableExp(VariableExp<EClassifier, EParameter> v) {
+		@Override
+        public Object visitVariableExp(VariableExp<EClassifier, EParameter> v) {
 			assertPositions(v);
 			
 			return super.visitVariableExp(v);
 		}
 
-		public Object visitPropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> pc) {
+		@Override
+        public Object visitPropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> pc) {
 			assertPositions(pc);
 			
 			return super.visitPropertyCallExp(pc);
 		}
 
-		public Object visitAssociationClassCallExp(AssociationClassCallExp<EClassifier, EStructuralFeature> ac) {
+		@Override
+        public Object visitAssociationClassCallExp(AssociationClassCallExp<EClassifier, EStructuralFeature> ac) {
 			assertPositions(ac);
 			
 			return super.visitAssociationClassCallExp(ac);
 		}
 
-		public Object visitVariable(Variable<EClassifier, EParameter> vd) {
+		@Override
+        public Object visitVariable(Variable<EClassifier, EParameter> vd) {
 			// the 'self' variable is often implicit, in which case it is not
 			//    in the input at all, so don't verify it
 			if (!"self".equals(vd.getName())) { //$NON-NLS-1$
@@ -691,100 +702,118 @@ public class LocationInformationTest
 			return super.visitVariable(vd);
 		}
 
-		public Object visitIfExp(IfExp<EClassifier> i) {
+		@Override
+        public Object visitIfExp(IfExp<EClassifier> i) {
 			assertPositions(i);
 			
 			return super.visitIfExp(i);
 		}
 
-		public Object visitTypeExp(TypeExp<EClassifier> t) {
+		@Override
+        public Object visitTypeExp(TypeExp<EClassifier> t) {
 			assertPositions(t);
 			return null;
 		}
 
-		public Object visitUnspecifiedValueExp(UnspecifiedValueExp<EClassifier> uv) {
+		@Override
+        public Object visitUnspecifiedValueExp(UnspecifiedValueExp<EClassifier> uv) {
 			assertPositions(uv);
 			return null;
 		}
 		
-		public Object visitStateExp(StateExp<EClassifier, EObject> s) {
+		@Override
+        public Object visitStateExp(StateExp<EClassifier, EObject> s) {
 			assertPositions(s);
 			return null;
 		}
 		
-		public Object visitMessageExp(MessageExp<EClassifier, CallOperationAction, SendSignalAction> m) {
+		@Override
+        public Object visitMessageExp(MessageExp<EClassifier, CallOperationAction, SendSignalAction> m) {
 			assertPositions(m);
 			
 			return super.visitMessageExp(m);
 		}
 
-		public Object visitIntegerLiteralExp(IntegerLiteralExp<EClassifier> il) {
+		@Override
+        public Object visitIntegerLiteralExp(IntegerLiteralExp<EClassifier> il) {
 			assertPositions(il);
 			return null;
 		}
 
-		public Object visitRealLiteralExp(RealLiteralExp<EClassifier> rl) {
+		@Override
+        public Object visitRealLiteralExp(RealLiteralExp<EClassifier> rl) {
 			assertPositions(rl);
 			return null;
 		}
 
-		public Object visitStringLiteralExp(StringLiteralExp<EClassifier> sl) {
+		@Override
+        public Object visitStringLiteralExp(StringLiteralExp<EClassifier> sl) {
 			assertPositions(sl);
 			return null;
 		}
 
-		public Object visitBooleanLiteralExp(BooleanLiteralExp<EClassifier> bl) {
+		@Override
+        public Object visitBooleanLiteralExp(BooleanLiteralExp<EClassifier> bl) {
 			assertPositions(bl);
 			return null;
 		}
 
-		public Object visitTupleLiteralExp(TupleLiteralExp<EClassifier, EStructuralFeature> tl) {
+		@Override
+        public Object visitTupleLiteralExp(TupleLiteralExp<EClassifier, EStructuralFeature> tl) {
 			assertPositions(tl);
 			
 			return super.visitTupleLiteralExp(tl);
 		}
 		
-		public Object visitTupleLiteralPart(TupleLiteralPart<EClassifier, EStructuralFeature> tp) {
+		@Override
+        public Object visitTupleLiteralPart(TupleLiteralPart<EClassifier, EStructuralFeature> tp) {
 			assertPositions(tp);
 			
 			return super.visitTupleLiteralPart(tp);
 		}
 
-		public Object visitLetExp(LetExp<EClassifier, EParameter> l) {
+		@Override
+        public Object visitLetExp(LetExp<EClassifier, EParameter> l) {
 			assertPositions(l);
 			
 			return super.visitLetExp(l);
 		}
 
-		public Object visitEnumLiteralExp(EnumLiteralExp<EClassifier, EEnumLiteral> el) {
+		@Override
+        public Object visitEnumLiteralExp(EnumLiteralExp<EClassifier, EEnumLiteral> el) {
 			assertPositions(el);
 			return null;
 		}
 
-		public Object visitCollectionLiteralExp(CollectionLiteralExp<EClassifier> cl) {
+		@Override
+        public Object visitCollectionLiteralExp(CollectionLiteralExp<EClassifier> cl) {
 			assertPositions(cl);
 			
 			return super.visitCollectionLiteralExp(cl);
 		}
 
-		public Object visitIteratorExp(IteratorExp<EClassifier, EParameter> ie) {
+		@Override
+        public Object visitIteratorExp(IteratorExp<EClassifier, EParameter> ie) {
 			assertPositions(ie);
 			
 			return super.visitIteratorExp(ie);
 		}
 
-		public Object visitIterateExp(IterateExp<EClassifier, EParameter> ie) {
+		@Override
+        public Object visitIterateExp(IterateExp<EClassifier, EParameter> ie) {
 			assertPositions(ie);
 			
 			return super.visitIterateExp(ie);
 		}
 
-		public Object visitInvalidLiteralExp(InvalidLiteralExp<EClassifier> il) {
+		@Override
+        public Object visitInvalidLiteralExp(InvalidLiteralExp<EClassifier> il) {
 			assertPositions(il);
 			return null;
 		}
 
-		public Object visitNullLiteralExp(NullLiteralExp<EClassifier> il) {
+		@Override
+        public Object visitNullLiteralExp(NullLiteralExp<EClassifier> il) {
 			assertPositions(il);
 			return null;
 		}

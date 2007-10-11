@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
+ * $Id: MessageExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -40,97 +40,97 @@ import org.eclipse.ocl.utilities.CallingASTNode;
  */
 public interface MessageExp<C, COA, SSA> extends OCLExpression<C>, CallingASTNode {
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Target</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(OCLExpression)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_Target()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Target</em>' containment reference.
+     * @see #setTarget(OCLExpression)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_Target()
+     * @model containment="true"
+     * @generated
+     */
 	OCLExpression<C> getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.MessageExp#getTarget <em>Target</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.MessageExp#getTarget <em>Target</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' containment reference.
-	 * @see #getTarget()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Target</em>' containment reference.
+     * @see #getTarget()
+     * @generated
+     */
 	void setTarget(OCLExpression<C> value);
 
 	/**
-	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.expressions.OCLExpression}&lt;C>.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.ocl.expressions.OCLExpression}&lt;C>.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Argument</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Argument</em>' containment reference list.
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_Argument()
-	 * @model type="org.eclipse.ocl.expressions.OCLExpression" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Argument</em>' containment reference list.
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_Argument()
+     * @model containment="true"
+     * @generated
+     */
 	EList<OCLExpression<C>> getArgument();
 
 	/**
-	 * Returns the value of the '<em><b>Called Operation</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Called Operation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Called Operation</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Called Operation</em>' containment reference.
-	 * @see #setCalledOperation(Object)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_CalledOperation()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Called Operation</em>' containment reference.
+     * @see #setCalledOperation(Object)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_CalledOperation()
+     * @model kind="reference" containment="true"
+     * @generated
+     */
 	COA getCalledOperation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.MessageExp#getCalledOperation <em>Called Operation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.MessageExp#getCalledOperation <em>Called Operation</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Called Operation</em>' containment reference.
-	 * @see #getCalledOperation()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Called Operation</em>' containment reference.
+     * @see #getCalledOperation()
+     * @generated
+     */
 	void setCalledOperation(COA value);
 
 	/**
-	 * Returns the value of the '<em><b>Sent Signal</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Sent Signal</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sent Signal</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sent Signal</em>' containment reference.
-	 * @see #setSentSignal(Object)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_SentSignal()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Sent Signal</em>' containment reference.
+     * @see #setSentSignal(Object)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp_SentSignal()
+     * @model kind="reference" containment="true"
+     * @generated
+     */
 	SSA getSentSignal();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.MessageExp#getSentSignal <em>Sent Signal</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.MessageExp#getSentSignal <em>Sent Signal</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sent Signal</em>' containment reference.
-	 * @see #getSentSignal()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Sent Signal</em>' containment reference.
+     * @see #getSentSignal()
+     * @generated
+     */
 	void setSentSignal(SSA value);
 
 } // MessageExp

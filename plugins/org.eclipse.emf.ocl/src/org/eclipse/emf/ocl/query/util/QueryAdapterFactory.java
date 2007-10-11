@@ -35,6 +35,7 @@ import org.eclipse.emf.ocl.query.QueryPackage;
  * @see org.eclipse.emf.ocl.query.QueryPackage
  * @generated
  */
+@Deprecated
 public class QueryAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,7 +72,8 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
+	@Override
+    public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -89,10 +91,12 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected QuerySwitch modelSwitch =
 		new QuerySwitch() {
-			public Object caseQuery(Query object) {
+			@Override
+            public Object caseQuery(Query object) {
 				return createQueryAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+            public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -105,7 +109,8 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	@Override
+    public Adapter createAdapter(Notifier target) {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.4 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -74,7 +74,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.TUPLE_LITERAL_EXP;
     }
 
@@ -90,7 +91,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
         return part;
     }
 
-			public Object accept(Visitor v) {
+			@Override
+            public Object accept(Visitor v) {
 		return v.visitTupleLiteralExp(this);
 	}
 
@@ -99,7 +101,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
                 return ((InternalEList)getPart()).basicRemove(otherEnd, msgs);
@@ -112,7 +115,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
                 return getPart();
@@ -125,7 +129,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
                 getPart().clear();
@@ -140,7 +145,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
                 getPart().clear();
@@ -154,7 +160,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_EXP__PART:
                 return part != null && !part.isEmpty();

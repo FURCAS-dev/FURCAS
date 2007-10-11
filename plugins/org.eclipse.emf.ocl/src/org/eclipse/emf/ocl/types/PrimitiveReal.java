@@ -32,6 +32,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * 
  *
  */
+@Deprecated
 public interface PrimitiveReal extends PrimitiveType {
 	// nothing to add
 	/**

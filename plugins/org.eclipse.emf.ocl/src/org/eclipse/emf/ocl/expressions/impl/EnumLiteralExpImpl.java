@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.4 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -71,11 +71,13 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.ENUM_LITERAL_EXP;
     }
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitEnumLiteralExp(this);
 	}
 
@@ -122,7 +124,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
                 if (resolve) return getReferredEnumLiteral();
@@ -136,7 +139,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
                 setReferredEnumLiteral((EEnumLiteral)newValue);
@@ -150,7 +154,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
                 setReferredEnumLiteral((EEnumLiteral)null);
@@ -164,7 +169,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
                 return referredEnumLiteral != null;

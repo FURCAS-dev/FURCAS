@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -71,273 +71,267 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 @SuppressWarnings("restriction")
 public class MessageTypeImpl extends ClassifierImpl implements MessageType {
     /**
-	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReferredOperation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredOperation()
+     * @generated
+     * @ordered
+     */
     protected Operation referredOperation;
 
     /**
-	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReferredSignal()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredSignal()
+     * @generated
+     * @ordered
+     */
     protected Classifier referredSignal;
 
     /**
-	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getOwnedOperations()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getOwnedOperations()
+     * @generated
+     * @ordered
+     */
     protected EList<Operation> ownedOperations;
 
     /**
-	 * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attribute</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attribute</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getOwnedAttributes()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getOwnedAttributes()
+     * @generated
+     * @ordered
+     */
     protected EList<Property> ownedAttributes;
 
     private EList<Operation> operations;
     private EList<Property> properties;
     
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected MessageTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return UMLPackage.Literals.MESSAGE_TYPE;
-	}
+        return UMLPackage.Literals.MESSAGE_TYPE;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public Operation getReferredOperation() {
-		if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
-			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
-			referredOperation = (Operation)eResolveProxy(oldReferredOperation);
-			if (referredOperation != oldReferredOperation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-			}
-		}
-		return referredOperation;
-	}
+        if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
+            InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
+            referredOperation = (Operation)eResolveProxy(oldReferredOperation);
+            if (referredOperation != oldReferredOperation) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+            }
+        }
+        return referredOperation;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Operation basicGetReferredOperation() {
-		return referredOperation;
-	}
+        return referredOperation;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	public void setReferredOperation(Operation newReferredOperation) {
-
-		Operation oldReferredOperation = referredOperation;
-		referredOperation = newReferredOperation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-
-
-	}
+        Operation oldReferredOperation = referredOperation;
+        referredOperation = newReferredOperation;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public Classifier getReferredSignal() {
-		if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
-			InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
-			referredSignal = (Classifier)eResolveProxy(oldReferredSignal);
-			if (referredSignal != oldReferredSignal) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
-			}
-		}
-		return referredSignal;
-	}
+        if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
+            InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
+            referredSignal = (Classifier)eResolveProxy(oldReferredSignal);
+            if (referredSignal != oldReferredSignal) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
+            }
+        }
+        return referredSignal;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Classifier basicGetReferredSignal() {
-		return referredSignal;
-	}
+        return referredSignal;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	public void setReferredSignal(Classifier newReferredSignal) {
-
-		Classifier oldReferredSignal = referredSignal;
-		referredSignal = newReferredSignal;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
-
-
-	}
+        Classifier oldReferredSignal = referredSignal;
+        referredSignal = newReferredSignal;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	@Override
 	public EList<Feature> getFeatures() {
-
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			Resource eResource = eResource();
-			@SuppressWarnings("unchecked")
-			EList<Feature> features = (EList<Feature>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
-			if (features == null) {
-				cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE, features = new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.MESSAGE_TYPE__FEATURE, FEATURE_ESUBSETS));
-			}
-			return features;
-		}
-		return new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.MESSAGE_TYPE__FEATURE, FEATURE_ESUBSETS);
-	}
+        CacheAdapter cache = getCacheAdapter();
+        if (cache != null) {
+            Resource eResource = eResource();
+            @SuppressWarnings("unchecked")
+            EList<Feature> features = (EList<Feature>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
+            if (features == null) {
+                cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE, features = new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.MESSAGE_TYPE__FEATURE, FEATURE_ESUBSETS));
+            }
+            return features;
+        }
+        return new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.MESSAGE_TYPE__FEATURE, FEATURE_ESUBSETS);
+    }
 
 				/**
-	 * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFeatures()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFeatures()
+     * @generated
+     * @ordered
+     */
 	protected static final int[] FEATURE_ESUBSETS = new int[] {UMLPackage.MESSAGE_TYPE__ATTRIBUTE, UMLPackage.MESSAGE_TYPE__OWNED_OPERATION};
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList<Operation> getOwnedOperations() {
-		if (ownedOperations == null) {
-			ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.MESSAGE_TYPE__OWNED_OPERATION);
-		}
-		return ownedOperations;
-	}
+        if (ownedOperations == null) {
+            ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.MESSAGE_TYPE__OWNED_OPERATION);
+        }
+        return ownedOperations;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
-		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes, false);
-	}
+        return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes, false);
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes, boolean ignoreCase) {
-		ownedOperationLoop: for (Operation ownedOperation : getOwnedOperations()) {
-			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedOperation.getName()) : name.equals(ownedOperation.getName())))
-				continue ownedOperationLoop;
-			EList<Parameter> ownedParameterList = ownedOperation.getOwnedParameters();
-			int ownedParameterListSize = ownedParameterList.size();
-			if (ownedParameterNames != null && ownedParameterNames.size() != ownedParameterListSize || (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
-				continue  ownedOperationLoop;
-			for (int j = 0; j < ownedParameterListSize; j++) {
-				Parameter ownedParameter = ownedParameterList.get(j);
-				if (ownedParameterNames != null && !(ignoreCase ? (ownedParameterNames.get(j)).equalsIgnoreCase(ownedParameter.getName()) : ownedParameterNames.get(j).equals(ownedParameter.getName())))
-					continue ownedOperationLoop;
-				if (ownedParameterTypes != null && !ownedParameterTypes.get(j).equals(ownedParameter.getType()))
-					continue ownedOperationLoop;
-			}
-			return ownedOperation;
-		}
-		return null;
-	}
+        ownedOperationLoop: for (Operation ownedOperation : getOwnedOperations()) {
+            if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedOperation.getName()) : name.equals(ownedOperation.getName())))
+                continue ownedOperationLoop;
+            EList<Parameter> ownedParameterList = ownedOperation.getOwnedParameters();
+            int ownedParameterListSize = ownedParameterList.size();
+            if (ownedParameterNames != null && ownedParameterNames.size() != ownedParameterListSize || (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+                continue  ownedOperationLoop;
+            for (int j = 0; j < ownedParameterListSize; j++) {
+                Parameter ownedParameter = ownedParameterList.get(j);
+                if (ownedParameterNames != null && !(ignoreCase ? (ownedParameterNames.get(j)).equalsIgnoreCase(ownedParameter.getName()) : ownedParameterNames.get(j).equals(ownedParameter.getName())))
+                    continue ownedOperationLoop;
+                if (ownedParameterTypes != null && !ownedParameterTypes.get(j).equals(ownedParameter.getType()))
+                    continue ownedOperationLoop;
+            }
+            return ownedOperation;
+        }
+        return null;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList<Property> getOwnedAttributes() {
-		if (ownedAttributes == null) {
-			ownedAttributes = new EObjectContainmentEList<Property>(Property.class, this, UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE);
-		}
-		return ownedAttributes;
-	}
+        if (ownedAttributes == null) {
+            ownedAttributes = new EObjectContainmentEList<Property>(Property.class, this, UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE);
+        }
+        return ownedAttributes;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Property getOwnedAttribute(String name, Type type) {
-		return getOwnedAttribute(name, type, false, null);
-	}
+        return getOwnedAttribute(name, type, false, null);
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Property getOwnedAttribute(String name, Type type, boolean ignoreCase, EClass eClass) {
-		ownedAttributeLoop: for (Property ownedAttribute : getOwnedAttributes()) {
-			if (eClass != null && !eClass.isInstance(ownedAttribute))
-				continue ownedAttributeLoop;
-			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedAttribute.getName()) : name.equals(ownedAttribute.getName())))
-				continue ownedAttributeLoop;
-			if (type != null && !type.equals(ownedAttribute.getType()))
-				continue ownedAttributeLoop;
-			return ownedAttribute;
-		}
-		return null;
-	}
+        ownedAttributeLoop: for (Property ownedAttribute : getOwnedAttributes()) {
+            if (eClass != null && !eClass.isInstance(ownedAttribute))
+                continue ownedAttributeLoop;
+            if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedAttribute.getName()) : name.equals(ownedAttribute.getName())))
+                continue ownedAttributeLoop;
+            if (type != null && !type.equals(ownedAttribute.getType()))
+                continue ownedAttributeLoop;
+            return ownedAttribute;
+        }
+        return null;
+    }
 
 				/**
      * @generated NOT
      */
+    @Override
     public String getName() {
         if (name == null) {
             name = SINGLETON_NAME;
@@ -347,46 +341,45 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
 	public EList<Property> getAttributes() {
-
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			Resource eResource = eResource();
-			@SuppressWarnings("unchecked")
-			EList<Property> attributes = (EList<Property>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE);
-			if (attributes == null) {
-				cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE, attributes = new DerivedUnionEObjectEList<Property>(Property.class, this, UMLPackage.MESSAGE_TYPE__ATTRIBUTE, ATTRIBUTE_ESUBSETS));
-			}
-			return attributes;
-		}
-		return new DerivedUnionEObjectEList<Property>(Property.class, this, UMLPackage.MESSAGE_TYPE__ATTRIBUTE, ATTRIBUTE_ESUBSETS);
-	}
+        CacheAdapter cache = getCacheAdapter();
+        if (cache != null) {
+            Resource eResource = eResource();
+            @SuppressWarnings("unchecked")
+            EList<Property> attributes = (EList<Property>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE);
+            if (attributes == null) {
+                cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE, attributes = new DerivedUnionEObjectEList<Property>(Property.class, this, UMLPackage.MESSAGE_TYPE__ATTRIBUTE, ATTRIBUTE_ESUBSETS));
+            }
+            return attributes;
+        }
+        return new DerivedUnionEObjectEList<Property>(Property.class, this, UMLPackage.MESSAGE_TYPE__ATTRIBUTE, ATTRIBUTE_ESUBSETS);
+    }
 
     /**
-	 * The array of subset feature identifiers for the '{@link #getAttributes() <em>Attribute</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The array of subset feature identifiers for the '{@link #getAttributes() <em>Attribute</em>}' reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAttributes()
+     * @generated
+     * @ordered
+     */
     protected static final int[] ATTRIBUTE_ESUBSETS = new int[] {UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE};
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public boolean isSetAttributes() {
-		return super.isSetAttributes()
-			|| eIsSet(UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE);
-	}
+        return super.isSetAttributes()
+            || eIsSet(UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE);
+    }
 
     /**
      * @generated NOT
@@ -454,168 +447,168 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
-			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttributes()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
+                return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+            case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+                return ((InternalEList<?>)getOwnedAttributes()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				if (resolve) return getReferredOperation();
-				return basicGetReferredOperation();
-			case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				if (resolve) return getReferredSignal();
-				return basicGetReferredSignal();
-			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
-				return getOwnedOperations();
-			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
-				return getOwnedAttributes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+                if (resolve) return getReferredOperation();
+                return basicGetReferredOperation();
+            case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+                if (resolve) return getReferredSignal();
+                return basicGetReferredSignal();
+            case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
+                return getOwnedOperations();
+            case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+                return getOwnedAttributes();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				setReferredOperation((Operation)newValue);
-				return;
-			case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				setReferredSignal((Classifier)newValue);
-				return;
-			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
-				getOwnedOperations().clear();
-				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
-				return;
-			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttributes().clear();
-				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+                setReferredOperation((Operation)newValue);
+                return;
+            case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+                setReferredSignal((Classifier)newValue);
+                return;
+            case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
+                getOwnedOperations().clear();
+                getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+                return;
+            case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+                getOwnedAttributes().clear();
+                getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				setReferredOperation((Operation)null);
-				return;
-			case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				setReferredSignal((Classifier)null);
-				return;
-			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
-				getOwnedOperations().clear();
-				return;
-			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttributes().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+                setReferredOperation((Operation)null);
+                return;
+            case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+                setReferredSignal((Classifier)null);
+                return;
+            case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
+                getOwnedOperations().clear();
+                return;
+            case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+                getOwnedAttributes().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
-				return referredOperation != null;
-			case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-				return referredSignal != null;
-			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
-				return ownedOperations != null && !ownedOperations.isEmpty();
-			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
-				return ownedAttributes != null && !ownedAttributes.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION:
+                return referredOperation != null;
+            case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+                return referredSignal != null;
+            case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
+                return ownedOperations != null && !ownedOperations.isEmpty();
+            case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+                return ownedAttributes != null && !ownedAttributes.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == PredefinedType.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.types.MessageType.class) {
-			switch (derivedFeatureID) {
-				case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION: return TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION;
-				case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL: return TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == PredefinedType.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.types.MessageType.class) {
+            switch (derivedFeatureID) {
+                case UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION: return TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION;
+                case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL: return TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == PredefinedType.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.types.MessageType.class) {
-			switch (baseFeatureID) {
-				case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION: return UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION;
-				case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL: return UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == PredefinedType.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.types.MessageType.class) {
+            switch (baseFeatureID) {
+                case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION: return UMLPackage.MESSAGE_TYPE__REFERRED_OPERATION;
+                case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL: return UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	@Override
 	public boolean isSetFeatures() {
-		return super.isSetFeatures()
-			|| eIsSet(UMLPackage.MESSAGE_TYPE__OWNED_OPERATION);
-	}
+        return super.isSetFeatures()
+            || eIsSet(UMLPackage.MESSAGE_TYPE__OWNED_OPERATION);
+    }
 
 } //MessageTypeImpl

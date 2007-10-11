@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.4 2007/05/17 17:58:37 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.uml.internal.UMLForeignMethods;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -350,7 +351,7 @@ public class OCLUMLUtil extends UMLUtil {
 		
 		if (ecorePackage != null) {
 			result = ecorePackage.getEClassifier(
-					UMLUtil.getValidJavaIdentifier(umlClassifier.getName()));
+					UML2Util.getValidJavaIdentifier(umlClassifier.getName()));
 		}
 		
 		return result;

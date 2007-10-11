@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLPlugin.java,v 1.2 2007/02/14 14:45:53 cdamus Exp $
+ * $Id: OCLUMLPlugin.java,v 1.3 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.internal;
 
@@ -60,7 +60,8 @@ extends EMFPlugin {
 	}
 
 	// implements the inherited method
-	public ResourceLocator getPluginResourceLocator() {
+	@Override
+    public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
 

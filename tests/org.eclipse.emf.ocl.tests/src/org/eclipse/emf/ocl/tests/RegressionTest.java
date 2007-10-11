@@ -1555,7 +1555,8 @@ public class RegressionTest
 				this.key = key;
 			}
 			
-			public boolean equals(Object o) {
+			@Override
+            public boolean equals(Object o) {
 				return (o instanceof EqualsEClass)
 					&& (key == ((EqualsEClass) o).key);
 			}
@@ -1745,6 +1746,7 @@ public class RegressionTest
                 super(parent);
             }
             
+            @Override
             protected void setFactory(EnvironmentFactory factory) {
                 super.setFactory(factory);
             }
@@ -1776,21 +1778,25 @@ public class RegressionTest
 	    
 	    class StaticFruitEnvironmentFactory extends AbstractEnvironmentFactory {
 
-	        protected Environment createEnvironment(EPackage packageContext) {
+	        @Override
+            protected Environment createEnvironment(EPackage packageContext) {
 	            StaticFruitEnvironment result = new StaticFruitEnvironment();
 	            result.setFactory(this);
 	            return result;
 	        }
 
-	        protected EClassifier asEClassifier(Object context) {
+	        @Override
+            protected EClassifier asEClassifier(Object context) {
 	            return (EClassifier) context;
 	        }
 
-	        protected EOperation asEOperation(Object operation) {
+	        @Override
+            protected EOperation asEOperation(Object operation) {
 	            return (EOperation) operation;
 	        }
 	        
-	        protected EStructuralFeature asEStructuralFeature(Object property) {
+	        @Override
+            protected EStructuralFeature asEStructuralFeature(Object property) {
 	            return (EStructuralFeature) property;
 	        }
 

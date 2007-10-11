@@ -77,6 +77,7 @@ import org.eclipse.ocl.util.UnicodeSupport;
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class EcoreEnvironment
 	implements PersistentEnvironment {
 
@@ -278,7 +279,7 @@ public class EcoreEnvironment
 		
 		// obtain a reasonable default factory
 		if (registry == EPackage.Registry.INSTANCE) {
-			factory = EcoreEnvironmentFactory.ECORE_INSTANCE;
+			factory = EnvironmentFactory.ECORE_INSTANCE;
 		} else {
 			factory = new EcoreEnvironmentFactory(registry);
 		}
@@ -1101,7 +1102,8 @@ public class EcoreEnvironment
 			this.isExplicit = isExplicit;
 		}
 		
-		public String toString() {
+		@Override
+        public String toString() {
 			return "VariableEntry[" + name + ", "  //$NON-NLS-1$//$NON-NLS-2$
 				+ (isExplicit? "explicit, " : "implicit, ") + variable + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}

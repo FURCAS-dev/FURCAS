@@ -31,6 +31,7 @@ import org.eclipse.emf.ocl.parser.ParserException;
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage
  * @generated
  */
+@Deprecated
 public interface ExpressionsFactory extends EFactory {
 
 	/**

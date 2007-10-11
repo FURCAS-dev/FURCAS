@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SendSignalAction.java,v 1.2 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: SendSignalAction.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.uml;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface SendSignalAction extends EObject {
 	/**
 	 * <!-- begin-user-doc -->

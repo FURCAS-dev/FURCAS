@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VisitableImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: VisitableImpl.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -54,7 +54,8 @@ public class VisitableImpl extends EObjectImpl implements Visitable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return UtilitiesPackage.Literals.VISITABLE;
 	}
 

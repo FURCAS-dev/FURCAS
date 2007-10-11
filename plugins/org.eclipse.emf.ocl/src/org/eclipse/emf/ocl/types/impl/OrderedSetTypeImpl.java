@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.5 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.6 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -71,7 +71,8 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 		supertype = new SetTypeImpl(elementType);
 	}
 	
-	public String getName() {
+	@Override
+    public String getName() {
 		if (name == null) {
 			if (elementType != null) {
 				name = "OrderedSet(" + elementType.getName() + ')'; //$NON-NLS-1$
@@ -88,7 +89,8 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public CollectionKind getKind() {
+	@Override
+    public CollectionKind getKind() {
 		return CollectionKind.ORDERED_SET_LITERAL;
 	}
 	
@@ -98,7 +100,8 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 * 
 	 * @generated NOT
 	 */
-	public void setElementType(EClassifier newElementType) {
+	@Override
+    public void setElementType(EClassifier newElementType) {
 		super.setElementType(newElementType);
 		
 		supertype.setElementType(newElementType);
@@ -113,7 +116,8 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 * @return the result type
 	 * @throws SemanticException
 	 */
-	public EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args)
+	@Override
+    public EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args)
 											 throws SemanticException {
 		
 		EClassifier elemType = getElementType();
@@ -203,13 +207,15 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 		return result;
 	}
 	
-	public EList getOperations() {
+	@Override
+    public EList getOperations() {
 		if (operations == null)
 			operations = createOperations();
 		return operations;
 	}		
 
-	public EList getIterators() {
+	@Override
+    public EList getIterators() {
 		if (iterators == null) {
 			iterators = SetTypeImpl.createIterators();
 		}
@@ -228,7 +234,8 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return TypesPackage.Literals.ORDERED_SET_TYPE;
     }
 

@@ -29,6 +29,7 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * @author Edith Schonberg (edith)
  *
  */
+@Deprecated
 public interface Constraint extends ENamedElement, Visitable {
 	/**
 	 * <!-- begin-user-doc -->

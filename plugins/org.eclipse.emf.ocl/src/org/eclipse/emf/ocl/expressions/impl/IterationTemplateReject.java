@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateReject.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: IterationTemplateReject.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -37,7 +37,8 @@ public class IterationTemplateReject extends IterationTemplate {
 		return new IterationTemplateReject(v);
 	}
 	
-	protected Object evaluateResult(List iterators, String resultName, Object body) {
+	@Override
+    protected Object evaluateResult(List iterators, String resultName, Object body) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		// should be exactly one iterator
 		String iterName = ((Variable)iterators.get(0)).getName();

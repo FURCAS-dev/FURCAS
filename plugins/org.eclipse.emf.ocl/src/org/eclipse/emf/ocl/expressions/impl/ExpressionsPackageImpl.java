@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.7 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.8 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -324,7 +324,8 @@ public class ExpressionsPackageImpl extends EPackageImpl implements
 	
 	static {
         class OCLPackageImpl extends EPackageImpl {
-			protected Resource createResource(String uri) {
+			@Override
+            protected Resource createResource(String uri) {
 				return super.createResource(uri);
 			}
 		}

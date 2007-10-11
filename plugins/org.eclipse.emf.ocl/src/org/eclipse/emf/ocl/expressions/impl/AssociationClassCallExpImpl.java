@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -70,7 +70,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.ASSOCIATION_CLASS_CALL_EXP;
     }
 
@@ -78,7 +79,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * Accept a visitor
 	 * @param v the visitor to accept
 	 */
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitAssociationClassCallExp(this);
 	}
 
@@ -125,7 +127,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
                 if (resolve) return getReferredAssociationClass();
@@ -139,7 +142,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
                 setReferredAssociationClass((EClass)newValue);
@@ -153,7 +157,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
                 setReferredAssociationClass((EClass)null);
@@ -167,7 +172,8 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
                 return referredAssociationClass != null;

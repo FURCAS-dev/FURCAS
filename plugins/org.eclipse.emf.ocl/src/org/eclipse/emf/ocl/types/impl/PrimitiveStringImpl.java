@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveStringImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: PrimitiveStringImpl.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -83,7 +83,8 @@ public class PrimitiveStringImpl extends PrimitiveTypeImpl implements PrimitiveS
 		return operations;			
     }
 	
-	public EList getOperations() {
+	@Override
+    public EList getOperations() {
 		if (operations == null)
 			return createOperations();
 		return operations;
@@ -101,7 +102,8 @@ public class PrimitiveStringImpl extends PrimitiveTypeImpl implements PrimitiveS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.PRIMITIVE_STRING;
 	}
 

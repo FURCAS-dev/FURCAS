@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -79,11 +79,13 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.INTEGER_LITERAL_EXP;
 	}
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitIntegerLiteralExp(this);
 	}
 
@@ -113,7 +115,8 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
 				return getIntegerSymbol();
@@ -126,7 +129,8 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
 				setIntegerSymbol((Integer)newValue);
@@ -140,7 +144,8 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
@@ -154,7 +159,8 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
 				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
@@ -165,7 +171,8 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	/**
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 

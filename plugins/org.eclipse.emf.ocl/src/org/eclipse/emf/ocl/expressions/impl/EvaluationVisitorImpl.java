@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.15 2007/03/29 22:34:34 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.16 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -176,7 +176,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Returns a string representation of this visitor
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (evaluation environment: ");//$NON-NLS-1$
 		result.append(env);
@@ -200,7 +201,8 @@ public class EvaluationVisitorImpl
 	 * Callback for an OperationCallExp visit.
 	 *  
 	 */
-	public Object visitOperationCallExp(OperationCallExp oc) {
+	@Override
+    public Object visitOperationCallExp(OperationCallExp oc) {
 		// check if source type is primitive and handle the
 		// primitive ops "inline". Otherwise use java reflection
 		// to invoke the operation (there is currently no means
@@ -1400,7 +1402,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for an IterateExp visit.
 	 */
-	public Object visitIterateExp(IterateExp ie) {
+	@Override
+    public Object visitIterateExp(IterateExp ie) {
 
 		// get the variable declaration for the result
 		Variable vd = ie.getResult();
@@ -1438,7 +1441,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for an IteratorExp visit.
 	 */
-	public Object visitIteratorExp(IteratorExp ie) {
+	@Override
+    public Object visitIteratorExp(IteratorExp ie) {
 		EClassifier sourceType = ie.getSource().getType();
 		
 		if (sourceType instanceof PredefinedType) {
@@ -1853,7 +1857,8 @@ public class EvaluationVisitorImpl
 	 *            the enumeration literal expresion
 	 * @return the enumeration literal as an Integer
 	 */
-	public Object visitEnumLiteralExp(EnumLiteralExp el) {
+	@Override
+    public Object visitEnumLiteralExp(EnumLiteralExp el) {
 		return el.getReferredEnumLiteral();
 	}
 
@@ -1864,7 +1869,8 @@ public class EvaluationVisitorImpl
 	 *            the variable expression
 	 * @return the value of the variable
 	 */
-	public Object visitVariableExp(VariableExp v) {
+	@Override
+    public Object visitVariableExp(VariableExp v) {
 
 		// get the referred variable name
 		Variable vd = v.getReferredVariable();
@@ -1883,7 +1889,8 @@ public class EvaluationVisitorImpl
 	 * evaluated first, then the value of the property "foo" would be accessed
 	 * on that object.
 	 */
-	public Object visitPropertyCallExp(PropertyCallExp pc) {
+	@Override
+    public Object visitPropertyCallExp(PropertyCallExp pc) {
 		EStructuralFeature property = pc.getReferredProperty();
 		OCLExpression source = pc.getSource();
 
@@ -1943,7 +1950,8 @@ public class EvaluationVisitorImpl
 	 * evaluated first, then the value of the reference "foo" would be derived
 	 * on that object.
 	 */
-	public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
+	@Override
+    public Object visitAssociationClassCallExp(AssociationClassCallExp ae) {
 		EObject context = (EObject) ae.getSource().accept(this);
 		if (isUndefined(context)) {
 			return Types.OCL_INVALID;
@@ -1988,7 +1996,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for a VariableDeclaration visit.
 	 */
-	public Object visitVariable(Variable vd) {
+	@Override
+    public Object visitVariable(Variable vd) {
 		// add the variable to the environment, initialized to
 		// its initial expression (if it has one). return the name
 		// of the variable.
@@ -2004,7 +2013,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for an IfExp visit.
 	 */
-	public Object visitIfExp(IfExp ie) {
+	@Override
+    public Object visitIfExp(IfExp ie) {
 		// get condition
 		OCLExpression condition = ie.getCondition();
 
@@ -2021,22 +2031,26 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for a TypeExp visiy.
 	 */
-	public Object visitTypeExp(TypeExp t) {
+	@Override
+    public Object visitTypeExp(TypeExp t) {
 		return t.getReferredType();
 	}
 	
-	public Object visitStateExp(StateExp s) {
+	@Override
+    public Object visitStateExp(StateExp s) {
 		return s.getReferredState();
 	}
 	
-	public Object visitMessageExp(MessageExp m) {
+	@Override
+    public Object visitMessageExp(MessageExp m) {
 		throw new UnsupportedOperationException("evaluation of MessageExp"); //$NON-NLS-1$
 	}
 	
 	/**
 	 * Callback for an UnspecifiedValueExp visit.
 	 */
-	public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
+	@Override
+    public Object visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
 		// TODO: return a "random instance of the type of the expression"
 		throw new UnsupportedOperationException("evaluation of UnspecifiedValueExp"); //$NON-NLS-1$
 	}
@@ -2046,7 +2060,8 @@ public class EvaluationVisitorImpl
 	 * 
 	 * @return the value of the integer literal as a java.lang.Integer.
 	 */
-	public Object visitIntegerLiteralExp(IntegerLiteralExp il) {
+	@Override
+    public Object visitIntegerLiteralExp(IntegerLiteralExp il) {
 		return il.getIntegerSymbol();
 	}
 
@@ -2055,7 +2070,8 @@ public class EvaluationVisitorImpl
 	 * 
 	 * @return the value of the real literal as a java.lang.Double.
 	 */
-	public Object visitRealLiteralExp(RealLiteralExp rl) {
+	@Override
+    public Object visitRealLiteralExp(RealLiteralExp rl) {
 		return rl.getRealSymbol();
 	}
 
@@ -2064,7 +2080,8 @@ public class EvaluationVisitorImpl
 	 * 
 	 * @return the value of the string literal as a java.lang.String.
 	 */
-	public Object visitStringLiteralExp(StringLiteralExp sl) {
+	@Override
+    public Object visitStringLiteralExp(StringLiteralExp sl) {
 		return sl.getStringSymbol();
 	}
 
@@ -2073,16 +2090,19 @@ public class EvaluationVisitorImpl
 	 * 
 	 * @return the value of the boolean literal as a java.lang.Boolean.
 	 */
-	public Object visitBooleanLiteralExp(BooleanLiteralExp bl) {
+	@Override
+    public Object visitBooleanLiteralExp(BooleanLiteralExp bl) {
 		return bl.getBooleanSymbol();
 	}
 
-	public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
+	@Override
+    public Object visitInvalidLiteralExp(InvalidLiteralExp il) {
 		// just make up some object to take the place of the OclInvalid literal
 		return Types.OCL_INVALID;
 	}
 
-	public Object visitNullLiteralExp(NullLiteralExp il) {
+	@Override
+    public Object visitNullLiteralExp(NullLiteralExp il) {
 		// the single OclVoid instance is equivalent to Java null
 		return null;
 	}
@@ -2090,7 +2110,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for LetExp visit.
 	 */
-	public Object visitLetExp(LetExp l) {
+	@Override
+    public Object visitLetExp(LetExp l) {
 		// get variable decl for let variable
 		Variable vd = l.getVariable();
 		String name = (String) vd.accept(this);
@@ -2109,7 +2130,8 @@ public class EvaluationVisitorImpl
 	/**
 	 * Callback for a CollectionLiteralExp visit.
 	 */
-	public Object visitCollectionLiteralExp(CollectionLiteralExp cl) {
+	@Override
+    public Object visitCollectionLiteralExp(CollectionLiteralExp cl) {
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
@@ -2232,11 +2254,13 @@ public class EvaluationVisitorImpl
 			return last;
 		}
 
-		public int size() {
+		@Override
+        public int size() {
 			return last - first + 1;
 		}
 
-		public Object get(int index) {
+		@Override
+        public Object get(int index) {
 			if (index < 0 || index >= size()) {
 				String message = OCLMessages.bind(
 						OCLMessages.IndexOutOfRange_ERROR_,
@@ -2252,7 +2276,8 @@ public class EvaluationVisitorImpl
 			return new Integer(first + index);
 		}
 
-		public Iterator iterator() {
+		@Override
+        public Iterator iterator() {
 			// local iterator class that provides
 			// hasNext() and next() methods appropriate
 			// for this range set
@@ -2302,7 +2327,8 @@ public class EvaluationVisitorImpl
 	 *            tuple literal expression
 	 * @return String
 	 */
-	public Object visitTupleLiteralExp(TupleLiteralExp tl) {
+	@Override
+    public Object visitTupleLiteralExp(TupleLiteralExp tl) {
 		//EClass eclazz = tl.getType().eClass();
 		EClass eclazz = (EClass) tl.getType();
 		List tp = tl.getPart();
@@ -2359,7 +2385,8 @@ public class EvaluationVisitorImpl
 
 	}
 	
-	public Object visitTupleLiteralPart(TupleLiteralPart tp) {
+	@Override
+    public Object visitTupleLiteralPart(TupleLiteralPart tp) {
 		return tp.getValue().accept(this);
 	}
 

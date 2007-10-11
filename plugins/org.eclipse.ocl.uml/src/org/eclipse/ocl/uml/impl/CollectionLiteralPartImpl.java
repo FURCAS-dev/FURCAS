@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.4 2007/05/10 20:31:23 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -36,23 +36,23 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
 @SuppressWarnings("restriction")
 public abstract class CollectionLiteralPartImpl extends TypedElementImpl implements CollectionLiteralPart {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CollectionLiteralPartImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.COLLECTION_LITERAL_PART;
-	}
+        return UMLPackage.Literals.COLLECTION_LITERAL_PART;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

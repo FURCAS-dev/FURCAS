@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.2 2007/05/10 17:48:01 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.3 2007/10/11 23:05:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -42,223 +42,217 @@ import org.eclipse.ocl.utilities.Visitor;
 @SuppressWarnings("restriction")
 public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements UnspecifiedValueExp {
 	/**
-	 * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeStartPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTypeStartPosition()
+     * @generated
+     * @ordered
+     */
 	protected static final int TYPE_START_POSITION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeStartPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTypeStartPosition()
+     * @generated
+     * @ordered
+     */
 	protected int typeStartPosition = TYPE_START_POSITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeEndPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTypeEndPosition()
+     * @generated
+     * @ordered
+     */
 	protected static final int TYPE_END_POSITION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeEndPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTypeEndPosition()
+     * @generated
+     * @ordered
+     */
 	protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UnspecifiedValueExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.UNSPECIFIED_VALUE_EXP;
-	}
+        return UMLPackage.Literals.UNSPECIFIED_VALUE_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getTypeStartPosition() {
-		return typeStartPosition;
-	}
+        return typeStartPosition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTypeStartPosition(int newTypeStartPosition) {
-
-		int oldTypeStartPosition = typeStartPosition;
-		typeStartPosition = newTypeStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
-
-
-	}
+        int oldTypeStartPosition = typeStartPosition;
+        typeStartPosition = newTypeStartPosition;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getTypeEndPosition() {
-		return typeEndPosition;
-	}
+        return typeEndPosition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTypeEndPosition(int newTypeEndPosition) {
-
-		int oldTypeEndPosition = typeEndPosition;
-		typeEndPosition = newTypeEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
-
-
-	}
+        int oldTypeEndPosition = typeEndPosition;
+        typeEndPosition = newTypeEndPosition;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-				return new Integer(getTypeStartPosition());
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-				return new Integer(getTypeEndPosition());
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+                return new Integer(getTypeStartPosition());
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+                return new Integer(getTypeEndPosition());
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-				setTypeStartPosition(((Integer)newValue).intValue());
-				return;
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-				setTypeEndPosition(((Integer)newValue).intValue());
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+                setTypeStartPosition(((Integer)newValue).intValue());
+                return;
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+                setTypeEndPosition(((Integer)newValue).intValue());
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
-				return;
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+                setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
+                return;
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+                setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-			case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+                return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
+            case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+                return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == TypedASTNode.class) {
-			switch (derivedFeatureID) {
-				case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-				case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.expressions.UnspecifiedValueExp.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == TypedASTNode.class) {
+            switch (derivedFeatureID) {
+                case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+                case UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.expressions.UnspecifiedValueExp.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == TypedASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.expressions.UnspecifiedValueExp.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == TypedASTNode.class) {
+            switch (baseFeatureID) {
+                case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
+                case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return UMLPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.expressions.UnspecifiedValueExp.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -275,7 +269,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitUnspecifiedValueExp(this);
 	}
 

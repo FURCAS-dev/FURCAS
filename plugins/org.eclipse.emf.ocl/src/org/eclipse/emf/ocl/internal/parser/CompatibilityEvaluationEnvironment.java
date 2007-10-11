@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEvaluationEnvironment.java,v 1.2 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: CompatibilityEvaluationEnvironment.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -33,31 +33,38 @@ public class CompatibilityEvaluationEnvironment extends EcoreEvaluationEnvironme
 		this.oldStyle = oldStyle;
 	}
 	
-	public Object getValueOf(String name) {
+	@Override
+    public Object getValueOf(String name) {
 		return oldStyle.getValueOf(name);
 	}
 	
-	public void add(String name, Object value) {
+	@Override
+    public void add(String name, Object value) {
 		oldStyle.add(name, value);
 	}
 
-	public void replace(String name, Object value) {
+	@Override
+    public void replace(String name, Object value) {
 		oldStyle.replace(name, value);
 	}
 
-	public Object remove(String name) {
+	@Override
+    public Object remove(String name) {
 		return oldStyle.remove(name);
 	}
 
-	public void clear() {
+	@Override
+    public void clear() {
 		oldStyle.clear();
 	}
 
-	public boolean overrides(EOperation operation, int opcode) {
+	@Override
+    public boolean overrides(EOperation operation, int opcode) {
 		return oldStyle.canEvaluate(operation, opcode);
 	}
 
-	public Object callOperation(EOperation operation, int opcode, Object source,
+	@Override
+    public Object callOperation(EOperation operation, int opcode, Object source,
 			Object[] args) throws IllegalArgumentException {
 		
 		if (opcode > 0) {

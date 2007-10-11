@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.2 2007/03/27 15:05:28 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -142,5 +143,9 @@ class OCLHelperImpl implements OCL.Helper {
     
     public void setValidating(boolean validating) {
         delegate.setValidating(validating);
+    }
+    
+    public Diagnostic getProblems() {
+    	return delegate.getProblems();
     }
 }

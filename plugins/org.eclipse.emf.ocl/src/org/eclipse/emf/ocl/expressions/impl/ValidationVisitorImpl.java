@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitorImpl.java,v 1.14 2007/06/15 18:40:58 cdamus Exp $
+ * $Id: ValidationVisitorImpl.java,v 1.15 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -1862,7 +1862,8 @@ public class ValidationVisitorImpl
 		class ResultFinder extends AbstractVisitor {
 			boolean found = false;
 			
-			public Object visitVariableExp(VariableExp v) {
+			@Override
+            public Object visitVariableExp(VariableExp v) {
 				if (isResultVariable(v, expectedType)) {
 					found = true;
 				}

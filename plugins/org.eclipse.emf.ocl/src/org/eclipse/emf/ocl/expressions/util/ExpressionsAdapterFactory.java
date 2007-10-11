@@ -76,6 +76,7 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage
  * @generated
  */
+@Deprecated
 public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 {
 
@@ -114,7 +115,8 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
+	@Override
+    public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -132,130 +134,172 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected ExpressionsSwitch modelSwitch=
 		new ExpressionsSwitch() {
-			public Object caseAssociationClassCallExp(AssociationClassCallExp object) {
+			@Override
+            public Object caseAssociationClassCallExp(AssociationClassCallExp object) {
 				return createAssociationClassCallExpAdapter();
 			}
-			public Object caseBooleanLiteralExp(BooleanLiteralExp object) {
+			@Override
+            public Object caseBooleanLiteralExp(BooleanLiteralExp object) {
 				return createBooleanLiteralExpAdapter();
 			}
-			public Object caseCallExp(CallExp object) {
+			@Override
+            public Object caseCallExp(CallExp object) {
 				return createCallExpAdapter();
 			}
-			public Object caseCollectionItem(CollectionItem object) {
+			@Override
+            public Object caseCollectionItem(CollectionItem object) {
 				return createCollectionItemAdapter();
 			}
-			public Object caseCollectionLiteralExp(CollectionLiteralExp object) {
+			@Override
+            public Object caseCollectionLiteralExp(CollectionLiteralExp object) {
 				return createCollectionLiteralExpAdapter();
 			}
-			public Object caseCollectionLiteralPart(CollectionLiteralPart object) {
+			@Override
+            public Object caseCollectionLiteralPart(CollectionLiteralPart object) {
 				return createCollectionLiteralPartAdapter();
 			}
-			public Object caseCollectionRange(CollectionRange object) {
+			@Override
+            public Object caseCollectionRange(CollectionRange object) {
 				return createCollectionRangeAdapter();
 			}
-			public Object caseEnumLiteralExp(EnumLiteralExp object) {
+			@Override
+            public Object caseEnumLiteralExp(EnumLiteralExp object) {
 				return createEnumLiteralExpAdapter();
 			}
-			public Object caseFeatureCallExp(FeatureCallExp object) {
+			@Override
+            public Object caseFeatureCallExp(FeatureCallExp object) {
 				return createFeatureCallExpAdapter();
 			}
-			public Object caseIfExp(IfExp object) {
+			@Override
+            public Object caseIfExp(IfExp object) {
 				return createIfExpAdapter();
 			}
-			public Object caseIntegerLiteralExp(IntegerLiteralExp object) {
+			@Override
+            public Object caseIntegerLiteralExp(IntegerLiteralExp object) {
 				return createIntegerLiteralExpAdapter();
 			}
-			public Object caseInvalidLiteralExp(InvalidLiteralExp object) {
+			@Override
+            public Object caseInvalidLiteralExp(InvalidLiteralExp object) {
 				return createInvalidLiteralExpAdapter();
 			}
-			public Object caseIterateExp(IterateExp object) {
+			@Override
+            public Object caseIterateExp(IterateExp object) {
 				return createIterateExpAdapter();
 			}
-			public Object caseIteratorExp(IteratorExp object) {
+			@Override
+            public Object caseIteratorExp(IteratorExp object) {
 				return createIteratorExpAdapter();
 			}
-			public Object caseLetExp(LetExp object) {
+			@Override
+            public Object caseLetExp(LetExp object) {
 				return createLetExpAdapter();
 			}
-			public Object caseLiteralExp(LiteralExp object) {
+			@Override
+            public Object caseLiteralExp(LiteralExp object) {
 				return createLiteralExpAdapter();
 			}
-			public Object caseLoopExp(LoopExp object) {
+			@Override
+            public Object caseLoopExp(LoopExp object) {
 				return createLoopExpAdapter();
 			}
-			public Object caseMessageExp(MessageExp object) {
+			@Override
+            public Object caseMessageExp(MessageExp object) {
 				return createMessageExpAdapter();
 			}
-			public Object caseNavigationCallExp(NavigationCallExp object) {
+			@Override
+            public Object caseNavigationCallExp(NavigationCallExp object) {
 				return createNavigationCallExpAdapter();
 			}
-			public Object caseNullLiteralExp(NullLiteralExp object) {
+			@Override
+            public Object caseNullLiteralExp(NullLiteralExp object) {
 				return createNullLiteralExpAdapter();
 			}
-			public Object caseNumericLiteralExp(NumericLiteralExp object) {
+			@Override
+            public Object caseNumericLiteralExp(NumericLiteralExp object) {
 				return createNumericLiteralExpAdapter();
 			}
-			public Object caseOCLExpression(OCLExpression object) {
+			@Override
+            public Object caseOCLExpression(OCLExpression object) {
 				return createOCLExpressionAdapter();
 			}
-			public Object caseOperationCallExp(OperationCallExp object) {
+			@Override
+            public Object caseOperationCallExp(OperationCallExp object) {
 				return createOperationCallExpAdapter();
 			}
-			public Object casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
+			@Override
+            public Object casePrimitiveLiteralExp(PrimitiveLiteralExp object) {
 				return createPrimitiveLiteralExpAdapter();
 			}
-			public Object casePropertyCallExp(PropertyCallExp object) {
+			@Override
+            public Object casePropertyCallExp(PropertyCallExp object) {
 				return createPropertyCallExpAdapter();
 			}
-			public Object caseRealLiteralExp(RealLiteralExp object) {
+			@Override
+            public Object caseRealLiteralExp(RealLiteralExp object) {
 				return createRealLiteralExpAdapter();
 			}
-			public Object caseStateExp(StateExp object) {
+			@Override
+            public Object caseStateExp(StateExp object) {
 				return createStateExpAdapter();
 			}
-			public Object caseStringLiteralExp(StringLiteralExp object) {
+			@Override
+            public Object caseStringLiteralExp(StringLiteralExp object) {
 				return createStringLiteralExpAdapter();
 			}
-			public Object caseTupleLiteralExp(TupleLiteralExp object) {
+			@Override
+            public Object caseTupleLiteralExp(TupleLiteralExp object) {
 				return createTupleLiteralExpAdapter();
 			}
-			public Object caseTupleLiteralPart(TupleLiteralPart object) {
+			@Override
+            public Object caseTupleLiteralPart(TupleLiteralPart object) {
 				return createTupleLiteralPartAdapter();
 			}
-			public Object caseTypeExp(TypeExp object) {
+			@Override
+            public Object caseTypeExp(TypeExp object) {
 				return createTypeExpAdapter();
 			}
-			public Object caseUnspecifiedValueExp(UnspecifiedValueExp object) {
+			@Override
+            public Object caseUnspecifiedValueExp(UnspecifiedValueExp object) {
 				return createUnspecifiedValueExpAdapter();
 			}
-			public Object caseVariable(Variable object) {
+			@Override
+            public Object caseVariable(Variable object) {
 				return createVariableAdapter();
 			}
-			public Object caseVariableExp(VariableExp object) {
+			@Override
+            public Object caseVariableExp(VariableExp object) {
 				return createVariableExpAdapter();
 			}
-			public Object caseEModelElement(EModelElement object) {
+			@Override
+            public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
-			public Object caseENamedElement(ENamedElement object) {
+			@Override
+            public Object caseENamedElement(ENamedElement object) {
 				return createENamedElementAdapter();
 			}
-			public Object caseTypedElement(TypedElement object) {
+			@Override
+            public Object caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
 			}
-			public Object caseVisitable(Visitable object) {
+			@Override
+            public Object caseVisitable(Visitable object) {
 				return createVisitableAdapter();
 			}
-			public Object caseASTNode(ASTNode object) {
+			@Override
+            public Object caseASTNode(ASTNode object) {
 				return createASTNodeAdapter();
 			}
-			public Object caseCallingASTNode(CallingASTNode object) {
+			@Override
+            public Object caseCallingASTNode(CallingASTNode object) {
 				return createCallingASTNodeAdapter();
 			}
-			public Object caseTypedASTNode(TypedASTNode object) {
+			@Override
+            public Object caseTypedASTNode(TypedASTNode object) {
 				return createTypedASTNodeAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+            public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -268,7 +312,8 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	@Override
+    public Adapter createAdapter(Notifier target) {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 

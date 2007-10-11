@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidType.java,v 1.2 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: InvalidType.java,v 1.3 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * @model
  * @generated
  */
+@Deprecated
 public interface InvalidType extends EClassifier, PredefinedType {
 	/**
 	 * <!-- begin-user-doc -->

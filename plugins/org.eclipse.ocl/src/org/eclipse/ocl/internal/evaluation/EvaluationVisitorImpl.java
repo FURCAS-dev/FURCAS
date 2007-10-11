@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3 2007/04/19 22:07:49 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.4 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
@@ -115,7 +115,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * Callback for an OperationCallExp visit.
 	 *  
 	 */
-	public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
+	@Override
+    public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
 		// check if source type is primitive and handle the
 		// primitive ops "inline". Otherwise use java reflection
 		// to invoke the operation (there is currently no means
@@ -179,7 +180,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				OCLPlugin
 					.catching(getClass(), "visitOperationCallExp", e);//$NON-NLS-1$
 				OCLPlugin.log(
-					IStatus.ERROR,
+					Diagnostic.ERROR,
 					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
 					OCLMessages.bind(
 						OCLMessages.ErrorMessage_ERROR_,
@@ -260,17 +261,19 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				// undefined, then this expression is invalid
 				if (isUndefined(sourceVal)
 						&& opCode != PredefinedType.OCL_IS_UNDEFINED
-						&& opCode != PredefinedType.OCL_IS_INVALID)
-					return getOclInvalid();
+						&& opCode != PredefinedType.OCL_IS_INVALID) {
+                    return getOclInvalid();
+                }
 				
 				// evaluate this operation
 				switch (opCode) {
 						
 					case PredefinedType.MINUS:
 						// Integer::minus()
-						if (sourceVal instanceof Integer)
-							return new Integer(-((Integer) sourceVal)
+						if (sourceVal instanceof Integer) {
+                            return new Integer(-((Integer) sourceVal)
 								.intValue());
+                        }
 
 						// Double::minus()
 						return new Double(-((Double) sourceVal).doubleValue());
@@ -427,15 +430,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				C argType = arg.getType();
 
 				// AnyType::oclIsTypeOf(OclType)
-				if (opCode == PredefinedType.OCL_IS_TYPE_OF)
-					return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
-
-				// AnyType::oclIsKindOf(OclType)
-				else if (opCode == PredefinedType.OCL_IS_KIND_OF)
-					return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
-
-				// AnyType::oclAsType(OclType)
-				else if (opCode == PredefinedType.OCL_AS_TYPE) {
+				if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
+                    return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+                } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
+                    return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+                } else if (opCode == PredefinedType.OCL_AS_TYPE) {
 					// Type conversions for the built-in, non-collection
 					// types are completely checked in the parser. The only
 					// actual work that
@@ -446,15 +445,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 					// if the source is undefined or the conversion to
 					// OclVoid so is the result
-					if (sourceVal == null || (argType instanceof VoidType))
-						return null;
-					if (sourceVal == getOclInvalid() || (argType instanceof InvalidType))
-						return getOclInvalid();
+					if (sourceVal == null || (argType instanceof VoidType)) {
+                        return null;
+                    }
+					if (sourceVal == getOclInvalid() || (argType instanceof InvalidType)) {
+                        return getOclInvalid();
+                    }
 
 					if (sourceVal instanceof Double
-						&& (argType == getInteger()))
-						return new Integer(((Double) sourceVal).intValue());
-					else if (sourceVal instanceof Integer
+						&& (argType == getInteger())) {
+                        return new Integer(((Double) sourceVal).intValue());
+                    } else if (sourceVal instanceof Integer
 						&& (argType == getReal())) {
                         
                         if (sourceType == getUnlimitedNatural()) {
@@ -872,8 +873,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					switch (opCode) {
 						// Boolean::or(Boolean)
 						case PredefinedType.OR:
-							if (Boolean.TRUE.equals(sourceVal))
-								return Boolean.TRUE;
+							if (Boolean.TRUE.equals(sourceVal)) {
+                                return Boolean.TRUE;
+                            }
 							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
@@ -884,8 +886,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							// XOR does not have a short-circuit
 							argVal = arg.accept(getVisitor());
 							
-							if (sourceVal == null)
-								return argVal;
+							if (sourceVal == null) {
+                                return argVal;
+                            }
 							return (argVal == null) ? sourceVal
 								: (((Boolean) sourceVal).booleanValue()
 									^ ((Boolean) argVal).booleanValue() ? Boolean.TRUE
@@ -893,8 +896,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Boolean::and(Boolean)
 						case PredefinedType.AND:
-							if (!Boolean.TRUE.equals(sourceVal))
-								return Boolean.FALSE;
+							if (!Boolean.TRUE.equals(sourceVal)) {
+                                return Boolean.FALSE;
+                            }
 							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
@@ -902,8 +906,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Boolean::implies
 						case PredefinedType.IMPLIES:
-							if (Boolean.FALSE.equals(sourceVal))
-								return Boolean.TRUE;
+							if (Boolean.FALSE.equals(sourceVal)) {
+                                return Boolean.TRUE;
+                            }
 							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
@@ -1094,22 +1099,25 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				//
 
 				// check if undefined
-				if (isUndefined(sourceVal))
-					return getOclInvalid();
+				if (isUndefined(sourceVal)) {
+                    return getOclInvalid();
+                }
 
 				// evaluate arg1
 				Object arg1 = args.get(0).accept(getVisitor());
 
 				// check if undefined
-				if (isUndefined(arg1))
-					return getOclInvalid();
+				if (isUndefined(arg1)) {
+                    return getOclInvalid();
+                }
 
 				// evaluate arg2
 				Object arg2 = args.get(1).accept(getVisitor());
 
 				// check if undefined
-				if (isUndefined(arg2))
-					return getOclInvalid();
+				if (isUndefined(arg2)) {
+                    return getOclInvalid();
+                }
 
 				if (sourceVal instanceof String) {
 					// just one ternary string operation
@@ -1286,7 +1294,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for an IterateExp visit.
 	 */
-	public Object visitIterateExp(IterateExp<C, PM> ie) {
+	@Override
+    public Object visitIterateExp(IterateExp<C, PM> ie) {
 		// get the variable declaration for the result
 		Variable<C, PM> vd = ie.getResult();
 		String resultName = (String) vd.accept(getVisitor());
@@ -1324,7 +1333,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for an IteratorExp visit.
 	 */
-	public Object visitIteratorExp(IteratorExp<C, PM> ie) {
+	@Override
+    public Object visitIteratorExp(IteratorExp<C, PM> ie) {
 		C sourceType = ie.getSource().getType();
 		
 		if (sourceType instanceof PredefinedType) {
@@ -1441,12 +1451,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType || collType instanceof BagType)
-			// collection on a Bag or a Set yields a Bag
+		if (collType instanceof SetType || collType instanceof BagType) {
+            // collection on a Bag or a Set yields a Bag
 			initResultVal = CollectionUtil.createNewBag();
-		else
-			// Sequence or Ordered Set yields a Sequence
+        } else {
+            // Sequence or Ordered Set yields a Sequence
 			initResultVal = CollectionUtil.createNewSequence();
+        }
 		
 		// get an iteration template to evaluate the iterator
 		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
@@ -1479,12 +1490,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType || collType instanceof BagType)
-			// collection on a Bag or a Set yields a Bag
+		if (collType instanceof SetType || collType instanceof BagType) {
+            // collection on a Bag or a Set yields a Bag
 			initResultVal = CollectionUtil.createNewBag();
-		else
-			// Sequence or Ordered Set yields a Sequence
+        } else {
+            // Sequence or Ordered Set yields a Sequence
 			initResultVal = CollectionUtil.createNewSequence();
+        }
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
@@ -1517,18 +1529,19 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType)
-			// Set
+		if (collType instanceof SetType) {
+            // Set
 			initResultVal = CollectionUtil.createNewSet();
-		else if (collType instanceof BagType)
-			// Bag
+        } else if (collType instanceof BagType) {
+            // Bag
 			initResultVal = CollectionUtil.createNewBag();
-		else if (collType instanceof SequenceType)
-			// Sequence
+        } else if (collType instanceof SequenceType) {
+            // Sequence
 			initResultVal = CollectionUtil.createNewSequence();
-		else
-			// OrderedSet
+        } else {
+            // OrderedSet
 			initResultVal = CollectionUtil.createNewOrderedSet();
+        }
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
@@ -1561,18 +1574,19 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType)
-			// Set
+		if (collType instanceof SetType) {
+            // Set
 			initResultVal = CollectionUtil.createNewSet();
-		else if (collType instanceof BagType)
-			// Bag
+        } else if (collType instanceof BagType) {
+            // Bag
 			initResultVal = CollectionUtil.createNewBag();
-		else if (collType instanceof SequenceType)
-			// Sequence
+        } else if (collType instanceof SequenceType) {
+            // Sequence
 			initResultVal = CollectionUtil.createNewSequence();
-		else
-			// OrderedSet
+        } else {
+            // OrderedSet
 			initResultVal = CollectionUtil.createNewOrderedSet();
+        }
 
 		//	get an iteration template to evaluate the iterator
 		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> is =
@@ -1693,10 +1707,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// type is Sequence if source is a sequence or a Bag,
 		// SortedSet if source is a SortedSet or a Set
 		C collType = ie.getSource().getType();
-		if (collType instanceof SetType || collType instanceof OrderedSetType)
-			return CollectionUtil.createNewOrderedSet(result);
-		else
-			return CollectionUtil.createNewSequence(result);
+		if (collType instanceof SetType || collType instanceof OrderedSetType) {
+            return CollectionUtil.createNewOrderedSet(result);
+        } else {
+            return CollectionUtil.createNewSequence(result);
+        }
 	}
 
 	private Object evaluateIsUnique(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1759,7 +1774,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 *            the enumeration literal expresion
 	 * @return the enumeration literal as an Integer
 	 */
-	public Object visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
+	@Override
+    public Object visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
 		return el.getReferredEnumLiteral();
 	}
 
@@ -1770,7 +1786,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 *            the variable expression
 	 * @return the value of the variable
 	 */
-	public Object visitVariableExp(VariableExp<C, PM> v) {
+	@Override
+    public Object visitVariableExp(VariableExp<C, PM> v) {
 
 		// get the referred variable name
 		Variable<C, PM> vd = v.getReferredVariable();
@@ -1787,7 +1804,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * evaluated first, then the value of the property "foo" would be accessed
 	 * on that object.
 	 */
-	public Object visitPropertyCallExp(PropertyCallExp<C, P> pc) {
+	@Override
+    public Object visitPropertyCallExp(PropertyCallExp<C, P> pc) {
 		P property = pc.getReferredProperty();
 		OCLExpression<C> source = pc.getSource();
 
@@ -1795,8 +1813,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		Object context = source.accept(getVisitor());
 
 		// if source is undefined, result is OclInvalid
-		if (isUndefined(context))
-			return getOclInvalid();
+		if (isUndefined(context)) {
+            return getOclInvalid();
+        }
 
 		OCLExpression<C> derivation = getPropertyBody(property);
 		if (derivation != null) {
@@ -1842,7 +1861,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * evaluated first, then the value of the reference "foo" would be derived
 	 * on that object.
 	 */
-	public Object visitAssociationClassCallExp(AssociationClassCallExp<C, P> ae) {
+	@Override
+    public Object visitAssociationClassCallExp(AssociationClassCallExp<C, P> ae) {
 		Object context = ae.getSource().accept(getVisitor());
 		
 		if (isUndefined(context)) {
@@ -1859,15 +1879,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for a VariableDeclaration visit.
 	 */
-	public Object visitVariable(Variable<C, PM> vd) {
+	@Override
+    public Object visitVariable(Variable<C, PM> vd) {
 		// add the variable to the environment, initialized to
 		// its initial expression (if it has one). return the name
 		// of the variable.
 		String varName = vd.getName();
 		OCLExpression<C> initExp = vd.getInitExpression();
 		Object initVal = null;
-		if (initExp != null)
-			initVal = initExp.accept(getVisitor());
+		if (initExp != null) {
+            initVal = initExp.accept(getVisitor());
+        }
 		getEvaluationEnvironment().add(varName, initVal);
 		return varName;
 	}
@@ -1875,39 +1897,46 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for an IfExp visit.
 	 */
-	public Object visitIfExp(IfExp<C> ie) {
+	@Override
+    public Object visitIfExp(IfExp<C> ie) {
 		// get condition
 		OCLExpression<C> condition = ie.getCondition();
 
 		// evaluate condition
 		Boolean condVal = (Boolean) condition.accept(getVisitor());
-		if (condVal == null)
-			return null;
+		if (condVal == null) {
+            return null;
+        }
 
-		if (condVal.booleanValue())
-			return ie.getThenExpression().accept(getVisitor());
+		if (condVal.booleanValue()) {
+            return ie.getThenExpression().accept(getVisitor());
+        }
 		return ie.getElseExpression().accept(getVisitor());
 	}
 
 	/**
 	 * Callback for a TypeExp visiy.
 	 */
-	public Object visitTypeExp(TypeExp<C> t) {
+	@Override
+    public Object visitTypeExp(TypeExp<C> t) {
 		return t.getReferredType();
 	}
 	
-	public Object visitStateExp(StateExp<C, S> s) {
+	@Override
+    public Object visitStateExp(StateExp<C, S> s) {
 		return s.getReferredState();
 	}
 	
-	public Object visitMessageExp(MessageExp<C, COA, SSA> m) {
+	@Override
+    public Object visitMessageExp(MessageExp<C, COA, SSA> m) {
 		throw new UnsupportedOperationException("evaluation of MessageExp"); //$NON-NLS-1$
 	}
 	
 	/**
 	 * Callback for an UnspecifiedValueExp visit.
 	 */
-	public Object visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
+	@Override
+    public Object visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
 		// TODO: return a "random instance of the type of the expression"
 		throw new UnsupportedOperationException("evaluation of UnspecifiedValueExp"); //$NON-NLS-1$
 	}
@@ -1917,7 +1946,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @return the value of the integer literal as a java.lang.Integer.
 	 */
-	public Object visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
+	@Override
+    public Object visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
 		return il.getIntegerSymbol();
 	}
     
@@ -1926,6 +1956,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * 
      * @return the value of the natural literal as a java.lang.Integer.
      */
+    @Override
     public Object visitUnlimitedNaturalLiteralExp(
             UnlimitedNaturalLiteralExp<C> literalExp) {
         return literalExp.getIntegerSymbol();
@@ -1936,7 +1967,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @return the value of the real literal as a java.lang.Double.
 	 */
-	public Object visitRealLiteralExp(RealLiteralExp<C> rl) {
+	@Override
+    public Object visitRealLiteralExp(RealLiteralExp<C> rl) {
 		return rl.getRealSymbol();
 	}
 
@@ -1945,7 +1977,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @return the value of the string literal as a java.lang.String.
 	 */
-	public Object visitStringLiteralExp(StringLiteralExp<C> sl) {
+	@Override
+    public Object visitStringLiteralExp(StringLiteralExp<C> sl) {
 		return sl.getStringSymbol();
 	}
 
@@ -1954,16 +1987,19 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @return the value of the boolean literal as a java.lang.Boolean.
 	 */
-	public Object visitBooleanLiteralExp(BooleanLiteralExp<C> bl) {
+	@Override
+    public Object visitBooleanLiteralExp(BooleanLiteralExp<C> bl) {
 		return bl.getBooleanSymbol();
 	}
 
-	public Object visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
+	@Override
+    public Object visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 		// just make up some object to take the place of the OclInvalid literal
 		return getOclInvalid();
 	}
 
-	public Object visitNullLiteralExp(NullLiteralExp<C> il) {
+	@Override
+    public Object visitNullLiteralExp(NullLiteralExp<C> il) {
 		// the single OclVoid instance is equivalent to Java null
 		return null;
 	}
@@ -1971,7 +2007,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for LetExp visit.
 	 */
-	public Object visitLetExp(LetExp<C, PM> l) {
+	@Override
+    public Object visitLetExp(LetExp<C, PM> l) {
 		// get variable decl for let variable
 		Variable<C, PM> vd = l.getVariable();
 		String name = (String) vd.accept(getVisitor());
@@ -1990,7 +2027,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	/**
 	 * Callback for a CollectionLiteralExp visit.
 	 */
-	public Object visitCollectionLiteralExp(CollectionLiteralExp<C> cl) {
+	@Override
+    public Object visitCollectionLiteralExp(CollectionLiteralExp<C> cl) {
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
@@ -2019,8 +2057,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 			int firstInt = firstVal.intValue();
 			int lastInt = lastVal.intValue();
-			if (firstInt > lastInt)
-				return result;
+			if (firstInt > lastInt) {
+                return result;
+            }
 
 			// construct a lazy integer list for the range
 			return new IntegerRangeList(firstInt, lastInt);
@@ -2050,8 +2089,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// add values between first and last inclusive
 						int firstInt = firstVal.intValue();
 						int lastInt = lastVal.intValue();
-						for (int i = firstInt; i <= lastInt; i++)
-							result.add(new Integer(i));
+						for (int i = firstInt; i <= lastInt; i++) {
+                            result.add(new Integer(i));
+                        }
 					}
 				} // end of collection range
 
@@ -2084,11 +2124,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return last;
 		}
 
-		public int size() {
+		@Override
+        public int size() {
 			return last - first + 1;
 		}
 
-		public Integer get(int index) {
+		@Override
+        public Integer get(int index) {
 			if (index < 0 || index >= size()) {
 				String message = OCLMessages.bind(
 						OCLMessages.IndexOutOfRange_ERROR_,
@@ -2104,7 +2146,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return new Integer(first + index);
 		}
 
-		public Iterator<Integer> iterator() {
+		@Override
+        public Iterator<Integer> iterator() {
 			// local iterator class that provides
 			// hasNext() and next() methods appropriate
 			// for this range set
@@ -2121,8 +2164,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						curr = first - 1;
 						initialized = true;
 					}
-					if (hasNext())
-						return new Integer(++curr);
+					if (hasNext()) {
+                        return new Integer(++curr);
+                    }
 					throw new NoSuchElementException();
 				}
 
@@ -2154,7 +2198,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 *            tuple literal expression
 	 * @return String
 	 */
-	public Object visitTupleLiteralExp(TupleLiteralExp<C, P> tl) {
+	@Override
+    public Object visitTupleLiteralExp(TupleLiteralExp<C, P> tl) {
 		C type = tl.getType();
 		List<TupleLiteralPart<C, P>> tp = tl.getPart();
 		
@@ -2169,7 +2214,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 	}
 	
-	public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
+	@Override
+    public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 		return tp.getValue().accept(getVisitor());
 	}
 } //EvaluationVisitorImpl

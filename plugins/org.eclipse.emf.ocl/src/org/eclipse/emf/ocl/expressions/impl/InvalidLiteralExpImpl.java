@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.1 2006/04/04 18:09:04 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.2 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -52,11 +52,13 @@ public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLite
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.INVALID_LITERAL_EXP;
 	}
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitInvalidLiteralExp(this);
 	}
 

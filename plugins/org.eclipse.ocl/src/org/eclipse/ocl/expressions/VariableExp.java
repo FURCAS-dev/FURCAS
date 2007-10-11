@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: VariableExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface VariableExp<C, PM> extends OCLExpression<C> {
 	/**
-	 * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Variable</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Variable</em>' reference.
-	 * @see #setReferredVariable(Variable)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariableExp_ReferredVariable()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Referred Variable</em>' reference.
+     * @see #setReferredVariable(Variable)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariableExp_ReferredVariable()
+     * @model
+     * @generated
+     */
 	Variable<C, PM> getReferredVariable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.VariableExp#getReferredVariable <em>Referred Variable</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.VariableExp#getReferredVariable <em>Referred Variable</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Variable</em>' reference.
-	 * @see #getReferredVariable()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Referred Variable</em>' reference.
+     * @see #getReferredVariable()
+     * @generated
+     */
 	void setReferredVariable(Variable<C, PM> value);
 
 } // VariableExp

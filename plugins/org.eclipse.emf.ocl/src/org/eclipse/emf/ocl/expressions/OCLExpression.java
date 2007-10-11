@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpression.java,v 1.3 2007/01/25 18:34:36 cdamus Exp $
+ * $Id: OCLExpression.java,v 1.4 2007/10/11 23:05:15 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  *
  * @model abstract="true"
  */
+@Deprecated
 public interface OCLExpression extends TypedElement, Visitable, ASTNode {
 	/**
 	 * <!-- begin-user-doc -->

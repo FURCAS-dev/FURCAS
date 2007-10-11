@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.3 2006/04/28 18:41:53 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.4 2007/10/11 23:05:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -273,7 +273,8 @@ public class SerializationTest
 	// Framework methods
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		super.setUp();
@@ -287,7 +288,8 @@ public class SerializationTest
 		rset.getResources().add(fruitPackage.eResource());
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		res.unload();
@@ -354,7 +356,7 @@ public class SerializationTest
 			assertFalse("No contents in serial data", res.getContents().isEmpty()); //$NON-NLS-1$
 			assertNoProxies(res);
 			
-			result = (ASTNode) res.getContents().get(0);
+			result = res.getContents().get(0);
 		} catch (Exception e) {
 			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SemanticException.java,v 1.2 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: SemanticException.java,v 1.3 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.parser;
@@ -26,6 +26,7 @@ package org.eclipse.emf.ocl.parser;
  * 
  * @author Christian Vogt (cvogt)
  */
+@Deprecated
 public class SemanticException
 	extends ParserException {
 

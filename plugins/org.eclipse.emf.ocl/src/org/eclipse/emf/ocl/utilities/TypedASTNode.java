@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedASTNode.java,v 1.2 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: TypedASTNode.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -37,6 +37,7 @@ package org.eclipse.emf.ocl.utilities;
  * @model interface="true" abstract="true"
  * @generated
  */
+@Deprecated
 public interface TypedASTNode extends ASTNode {
 	/**
 	 * <!-- begin-user-doc -->

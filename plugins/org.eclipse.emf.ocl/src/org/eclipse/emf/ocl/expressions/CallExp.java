@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExp.java,v 1.2 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: CallExp.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions;
@@ -26,6 +26,7 @@ import org.eclipse.emf.ocl.utilities.CallingASTNode;
  * @author Edith Schonberg (edith)
  * @model abstract="true"
  */
+@Deprecated
 public interface CallExp extends OCLExpression, CallingASTNode {
 	/**
 	 * <!-- begin-user-doc -->

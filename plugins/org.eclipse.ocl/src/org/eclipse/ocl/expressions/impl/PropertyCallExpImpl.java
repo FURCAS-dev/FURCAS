@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.4 2007/10/11 23:04:55 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -40,132 +40,132 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class PropertyCallExpImpl<C, P> extends NavigationCallExpImpl<C, P> implements PropertyCallExp<C, P> {
 	/**
-	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredProperty()
+     * @generated
+     * @ordered
+     */
 	protected P referredProperty;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PropertyCallExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.PROPERTY_CALL_EXP;
-	}
+        return ExpressionsPackage.Literals.PROPERTY_CALL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public P getReferredProperty() {
-		if (referredProperty != null && ((EObject)referredProperty).eIsProxy()) {
-			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
-			referredProperty = (P)eResolveProxy(oldReferredProperty);
-			if (referredProperty != oldReferredProperty) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
-			}
-		}
-		return referredProperty;
-	}
+        if (referredProperty != null && ((EObject)referredProperty).eIsProxy()) {
+            InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
+            referredProperty = (P)eResolveProxy(oldReferredProperty);
+            if (referredProperty != oldReferredProperty) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
+            }
+        }
+        return referredProperty;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public P basicGetReferredProperty() {
-		return referredProperty;
-	}
+        return referredProperty;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredProperty(P newReferredProperty) {
-		P oldReferredProperty = referredProperty;
-		referredProperty = newReferredProperty;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
-	}
+        P oldReferredProperty = referredProperty;
+        referredProperty = newReferredProperty;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				if (resolve) return getReferredProperty();
-				return basicGetReferredProperty();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                if (resolve) return getReferredProperty();
+                return basicGetReferredProperty();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				setReferredProperty((P)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                setReferredProperty((P)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				setReferredProperty((P)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                setReferredProperty((P)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				return referredProperty != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                return referredProperty != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * @generated NOT

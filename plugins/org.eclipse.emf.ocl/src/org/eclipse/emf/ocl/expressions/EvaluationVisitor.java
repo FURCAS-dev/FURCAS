@@ -29,6 +29,7 @@ import org.eclipse.emf.ocl.parser.EvaluationEnvironment;
  * 
  * @author Tim Klinger (tklinger)
  */
+@Deprecated
 public interface EvaluationVisitor extends org.eclipse.emf.ocl.expressions.Visitor {
 	EvaluationEnvironment getEvalEnvironment();
 	void setEvalEnvironment(EvaluationEnvironment env);

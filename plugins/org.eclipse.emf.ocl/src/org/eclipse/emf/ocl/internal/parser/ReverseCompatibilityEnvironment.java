@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ReverseCompatibilityEnvironment.java,v 1.2 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: ReverseCompatibilityEnvironment.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -39,7 +39,6 @@ import org.eclipse.emf.ocl.uml.CallOperationAction;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.uml.SendSignalAction;
 import org.eclipse.emf.ocl.utilities.PredefinedType;
-import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -68,7 +67,8 @@ public class ReverseCompatibilityEnvironment extends EcoreEnvironment {
 	
 
 	// Documentation copied from the inherited specification
-	public boolean addElement(String name, Variable elem, boolean imp) {
+	@Override
+    public boolean addElement(String name, Variable elem, boolean imp) {
 		return newStyle.addElement(
 				name,
 				(org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>)
@@ -77,68 +77,81 @@ public class ReverseCompatibilityEnvironment extends EcoreEnvironment {
 	}
 
 	// Documentation copied from the inherited specification
-	public void deleteElement(String name) {
+	@Override
+    public void deleteElement(String name) {
 		newStyle.deleteElement(name);
 	}
 
 	// Documentation copied from the inherited specification
-	public EClass getAssociationClass(EReference reference) {
+	@Override
+    public EClass getAssociationClass(EReference reference) {
 		return (EClass) uml.getAssociationClass(reference);
 	}
 
 	// Documentation copied from the inherited specification
-	public EClassifier getContextClassifier() {
+	@Override
+    public EClassifier getContextClassifier() {
 		return newStyle.getContextClassifier();
 	}
 
 	// Documentation copied from the inherited specification
-	public EOperation getContextOperation() {
+	@Override
+    public EOperation getContextOperation() {
 		return newStyle.getContextOperation();
 	}
 
 	// Documentation copied from the inherited specification
-	public EStructuralFeature getContextProperty() {
+	@Override
+    public EStructuralFeature getContextProperty() {
 		return newStyle.getContextProperty();
 	}
 
 	// Documentation copied from the inherited specification
-	public String getDescription(ENamedElement namedElement) {
+	@Override
+    public String getDescription(ENamedElement namedElement) {
 		return uml.getDescription(namedElement);
 	}
 
 	// Documentation copied from the inherited specification
-	public EList getMemberEnds(EClass associationClass) {
+	@Override
+    public EList getMemberEnds(EClass associationClass) {
 		return new BasicEList(uml.getMemberEnds(associationClass));
 	}
 
 	// Documentation copied from the inherited specification
-	public EList getQualifiers(EStructuralFeature property) {
+	@Override
+    public EList getQualifiers(EStructuralFeature property) {
 		return new BasicEList(uml.getQualifiers(property));
 	}
 
 	// Documentation copied from the inherited specification
-	public Variable getSelfVariable() {
+	@Override
+    public Variable getSelfVariable() {
 		return (Variable) CompatibilityUtil.getOldAS(
 				this, newStyle.getSelfVariable());
 	}
 
 	// Documentation copied from the inherited specification
-	public EList getSignals(EClassifier owner) {
+	@Override
+    public EList getSignals(EClassifier owner) {
 		return new BasicEList(uml.getSignals(owner));
 	}
 
 	// Documentation copied from the inherited specification
-	public String getStateName(EObject state) {
+	@Override
+    public String getStateName(EObject state) {
 		return uml.getName(state);
 	}
 
 	// Documentation copied from the inherited specification
-	public EList getStates(EClassifier owner, List pathPrefix) {
+	@Override
+    public EList getStates(EClassifier owner, List pathPrefix) {
 		return new BasicEList(newStyle.getStates(owner, pathPrefix));
 	}
 
 	// Documentation copied from the inherited specification
-	public Collection getVariables() {
+	@Override
+    public Collection getVariables() {
 		EList result = CompatibilityUtil.getOldAS(
 				this,
 				(List<org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>>)
@@ -147,79 +160,92 @@ public class ReverseCompatibilityEnvironment extends EcoreEnvironment {
 	}
 
 	// Documentation copied from the inherited specification
-	public boolean isAssociationClass(EClass eclass) {
+	@Override
+    public boolean isAssociationClass(EClass eclass) {
 		return uml.isAssociationClass(eclass);
 	}
 
 	// Documentation copied from the inherited specification
-	public boolean isEmpty() {
+	@Override
+    public boolean isEmpty() {
 		return newStyle.isEmpty();
 	}
 
 	// Documentation copied from the inherited specification
-	public boolean isQuery(EOperation operation) {
+	@Override
+    public boolean isQuery(EOperation operation) {
 		return uml.isQuery(operation);
 	}
 
 	// Documentation copied from the inherited specification
-	public Variable lookup(String name) {
+	@Override
+    public Variable lookup(String name) {
 		return (Variable) newStyle.lookup(name);
 	}
 
 	// Documentation copied from the inherited specification
-	public EClass lookupAssociationClassReference(EClassifier parent,
+	@Override
+    public EClass lookupAssociationClassReference(EClassifier parent,
 			String name) {
 		return (EClass) newStyle.lookupAssociationClassReference(parent, name);
 	}
 
 	// Documentation copied from the inherited specification
-	public Variable lookupImplicitSourceForAssociationClass(String name) {
+	@Override
+    public Variable lookupImplicitSourceForAssociationClass(String name) {
 		return (Variable) CompatibilityUtil.getOldAS(
 				this, newStyle.lookupImplicitSourceForAssociationClass(name));
 	}
 
 	// Documentation copied from the inherited specification
-	public Variable lookupImplicitSourceForOperation(String name, EList params)
+	@Override
+    public Variable lookupImplicitSourceForOperation(String name, EList params)
 			throws SemanticException {
 		return (Variable) CompatibilityUtil.getOldAS(
 				this, newStyle.lookupImplicitSourceForOperation(name, params));
 	}
 
 	// Documentation copied from the inherited specification
-	public Variable lookupImplicitSourceForProperty(String name) {
+	@Override
+    public Variable lookupImplicitSourceForProperty(String name) {
 		return (Variable) CompatibilityUtil.getOldAS(
 				this, newStyle.lookupImplicitSourceForProperty(name));
 	}
 
 	// Documentation copied from the inherited specification
-	public Variable lookupLocal(String name) {
+	@Override
+    public Variable lookupLocal(String name) {
 		return (Variable) CompatibilityUtil.getOldAS(
 				this, newStyle.lookupLocal(name));
 	}
 
 	// Documentation copied from the inherited specification
-	public EOperation lookupOperation(EClassifier owner, String name, EList args) {
+	@Override
+    public EOperation lookupOperation(EClassifier owner, String name, EList args) {
 		if (owner instanceof PredefinedType) {
 			return super.lookupOperation(owner, name, args);
 		}
 		
 		List newArgs = CompatibilityUtil.getNewAS(this, args);
 		return newStyle.lookupOperation(owner, name,
-				(List<TypedElement<EClassifier>>) newArgs);
+				newArgs);
 	}
 
 	// Documentation copied from the inherited specification
-	public EPackage lookupPackage(List names) {
-		return newStyle.lookupPackage(names);
+	@Override
+    public EPackage lookupPackage(List names) {
+        return newStyle.lookupPackage(names);
 	}
 
 	// Documentation copied from the inherited specification
-	public EClassifier lookupPathName(List names) {
+	@Override
+    public EClassifier lookupPathName(List names) {
 		return newStyle.lookupClassifier(names);
 	}
 
 	// Documentation copied from the inherited specification
-	public EStructuralFeature lookupProperty(EClassifier parent, String name) {
+	@Override
+    public EStructuralFeature lookupProperty(EClassifier parent, String name) {
 		if (parent instanceof PredefinedType) {
 			return super.lookupProperty(parent, name);
 		}
@@ -228,14 +254,16 @@ public class ReverseCompatibilityEnvironment extends EcoreEnvironment {
 	}
 
 	// Documentation copied from the inherited specification
-	public EClass lookupSignal(EClassifier owner, String name, EList args) {
+	@Override
+    public EClass lookupSignal(EClassifier owner, String name, EList args) {
 		List newArgs = CompatibilityUtil.getNewAS(this, args);
 		return (EClass) newStyle.lookupSignal(owner, name,
-				(List<TypedElement<EClassifier>>) newArgs);
+				newArgs);
 	}
 
 	// Documentation copied from the inherited specification
-	public void setSelfVariable(Variable var) {
+	@Override
+    public void setSelfVariable(Variable var) {
 		newStyle.setSelfVariable(
 				(org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>)
 					CompatibilityUtil.getNewAS(this, var));

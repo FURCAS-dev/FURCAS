@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EOperation;
  * @author Tim Klinger (tklinger)
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public interface EvaluationEnvironment {
     /**
      * Returns the value associated with the supplied name

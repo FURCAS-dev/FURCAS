@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.10 2007/02/14 14:45:42 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.11 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -40,7 +40,6 @@ import org.eclipse.emf.ocl.expressions.util.ExpressionsUtil;
 import org.eclipse.emf.ocl.internal.OCLPlugin;
 import org.eclipse.emf.ocl.internal.parser.CompatibilityUtil;
 import org.eclipse.emf.ocl.parser.EcoreEnvironment;
-import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 import org.eclipse.emf.ocl.query.Query;
@@ -123,6 +122,7 @@ class OCLHelper
     private void adjustEnvironmentFactory(Environment env, EnvironmentFactory factory) {
         if (env instanceof EcoreEnvironment) {
             ((EcoreEnvironment) env).new Access() {
+                @Override
                 public void setFactory(EnvironmentFactory factory) {
                     super.setFactory(factory);
                 }
@@ -153,7 +153,8 @@ class OCLHelper
 	}
 
 	/** @deprecated */
-	public List getSyntaxHelp(String txt) {
+	@Deprecated
+    public List getSyntaxHelp(String txt) {
 		return (getContextOperation() != null)?
 			getSyntaxHelp(ConstraintType.POSTCONDITION, txt) :
 			getSyntaxHelp(ConstraintType.INVARIANT, txt);

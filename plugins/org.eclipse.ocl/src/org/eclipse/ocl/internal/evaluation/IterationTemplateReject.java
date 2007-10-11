@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateReject.java,v 1.2 2007/02/14 18:00:29 cdamus Exp $
+ * $Id: IterationTemplateReject.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -41,7 +41,8 @@ public class IterationTemplateReject<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
 		return new IterationTemplateReject<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(v);
 	}
 	
-	protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName, Object body) {
+	@Override
+    protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName, Object body) {
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();
 		
 		// should be exactly one iterator

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.6 2007/09/20 17:45:23 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.7 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1453,6 +1453,7 @@ public class RegressionTest
 	 * identity, on the understanding that usually EClasses implement equality
 	 * as identity, except for clients such as Bugzilla 126145.
 	 */
+	@SuppressWarnings("deprecation")
 	public void test_typeEquality_126145() {
 		class EqualsEClass extends EClassImpl {
 			private int key;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLFactoryImpl.java,v 1.1 2006/04/04 18:09:02 cdamus Exp $
+ * $Id: UMLFactoryImpl.java,v 1.2 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.impl;
 
@@ -76,7 +76,8 @@ public class UMLFactoryImpl extends EFactoryImpl implements UMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject create(EClass eClass) {
+	@Override
+    public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case UMLPackage.CALL_OPERATION_ACTION: return createCallOperationAction();
 			case UMLPackage.CONSTRAINT: return createConstraint();
@@ -131,7 +132,8 @@ public class UMLFactoryImpl extends EFactoryImpl implements UMLFactory {
 	 * @deprecated
 	 * @generated
 	 */
-	public static UMLPackage getPackage() {
+	@Deprecated
+    public static UMLPackage getPackage() {
 		return UMLPackage.eINSTANCE;
 	}
 

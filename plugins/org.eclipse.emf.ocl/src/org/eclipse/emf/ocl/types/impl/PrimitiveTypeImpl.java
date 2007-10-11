@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.7 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.8 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ocl.parser.SemanticException;
 import org.eclipse.emf.ocl.types.PrimitiveType;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.types.util.Types;
+import org.eclipse.emf.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 
 /**
@@ -77,10 +78,10 @@ public abstract class PrimitiveTypeImpl extends EDataTypeImpl implements Primiti
 			arg = (OCLExpression)args.get(0);
 			argType = arg.getType();
 			return TypeUtil.commonSuperType(argType, this);
-		case AnyTypeImpl.GREATER_THAN:
-		case AnyTypeImpl.LESS_THAN:
-		case AnyTypeImpl.GREATER_THAN_EQUAL:
-		case AnyTypeImpl.LESS_THAN_EQUAL:
+		case PredefinedType.GREATER_THAN:
+		case PredefinedType.LESS_THAN:
+		case PredefinedType.GREATER_THAN_EQUAL:
+		case PredefinedType.LESS_THAN_EQUAL:
 		case IMPLIES:
 		case XOR:
 		case NOT:
@@ -257,7 +258,8 @@ public abstract class PrimitiveTypeImpl extends EDataTypeImpl implements Primiti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.PRIMITIVE_TYPE;
 	}
 

@@ -32,6 +32,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface CollectionType extends EDataType, TypedASTNode, PredefinedType {
 	
 	/**

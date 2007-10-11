@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.11 2007/04/09 17:35:26 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.12 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -467,7 +467,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
         this.elementType = elementType;
     }
 	
-	public String getName() {
+	@Override
+    public String getName() {
 		if (name == null) {
 			if (elementType != null) {
 				name = "Collection(" + elementType.getName() + ')'; //$NON-NLS-1$
@@ -724,6 +725,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass() {
         return TypesPackage.Literals.COLLECTION_TYPE;
     }
@@ -861,7 +863,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TypesPackage.COLLECTION_TYPE__START_POSITION:
                 return new Integer(getStartPosition());
@@ -885,7 +888,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TypesPackage.COLLECTION_TYPE__START_POSITION:
                 setStartPosition(((Integer)newValue).intValue());
@@ -911,7 +915,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TypesPackage.COLLECTION_TYPE__START_POSITION:
                 setStartPosition(START_POSITION_EDEFAULT);
@@ -937,7 +942,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TypesPackage.COLLECTION_TYPE__START_POSITION:
                 return startPosition != START_POSITION_EDEFAULT;
@@ -960,7 +966,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+	@Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
         if (baseClass == ASTNode.class) {
             switch (derivedFeatureID) {
                 case TypesPackage.COLLECTION_TYPE__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
@@ -988,7 +995,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+	@Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
         if (baseClass == ASTNode.class) {
             switch (baseFeatureID) {
                 case UtilitiesPackage.AST_NODE__START_POSITION: return TypesPackage.COLLECTION_TYPE__START_POSITION;
@@ -1016,7 +1024,8 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String toString() {
+	@Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

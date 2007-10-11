@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -52,11 +52,13 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.ITERATOR_EXP;
 	}
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitIteratorExp(this);
 	}
 	

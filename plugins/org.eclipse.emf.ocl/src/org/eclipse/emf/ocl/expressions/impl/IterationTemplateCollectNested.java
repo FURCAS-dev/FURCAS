@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollectNested.java,v 1.4 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: IterationTemplateCollectNested.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -36,7 +36,8 @@ public final class IterationTemplateCollectNested extends IterationTemplate {
 		return new IterationTemplateCollectNested(v);
 	}
 	
-	protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
+	@Override
+    protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		Collection currVal = (Collection) env.getValueOf(resultName);
 		

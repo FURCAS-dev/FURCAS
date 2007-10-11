@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentResource.java,v 1.3 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: EnvironmentResource.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.parser;
@@ -44,6 +44,7 @@ import org.eclipse.ocl.AbstractEnvironment;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 class EnvironmentResource extends ResourceImpl {
 	private static final Pattern FRAGMENT_PATTERN = Pattern.compile("var:([^:]+):(.*)"); //$NON-NLS-1$
 	
@@ -51,7 +52,8 @@ class EnvironmentResource extends ResourceImpl {
 		super(URI.createURI("oclenv:///")); //$NON-NLS-1$
 	}
 	
-	public String getURIFragment(EObject eObject) {
+	@Override
+    public String getURIFragment(EObject eObject) {
 		if (eObject instanceof Variable) {
 			Variable var = (Variable) eObject;
 			
@@ -67,7 +69,8 @@ class EnvironmentResource extends ResourceImpl {
 		return super.getURIFragment(eObject);
 	}
 	
-	public EObject getEObject(String uriFragment) {
+	@Override
+    public EObject getEObject(String uriFragment) {
 		Matcher m = FRAGMENT_PATTERN.matcher(uriFragment);
 		
 		if (m.matches()) {
@@ -91,7 +94,8 @@ class EnvironmentResource extends ResourceImpl {
 		return super.getEObject(uriFragment);
 	}
 	
-	public void load(Map options)
+	@Override
+    public void load(Map options)
 		throws IOException {
 		
 		if (!isLoaded) {

@@ -33,6 +33,7 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
  * {@link org.eclipse.ocl.Query} instances, instead.
  * 
  */
+@Deprecated
 public interface QueryFactory extends EFactory {
 	/**
 	 * <!-- begin-user-doc -->

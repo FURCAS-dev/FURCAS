@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: IterationTemplateClosure.java,v 1.2 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -57,7 +57,8 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 	/**
 	 * Recursively evaluates the iterator body expression.
 	 */
-	protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName, Object bodyVal) {
+	@Override
+    protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName, Object bodyVal) {
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();
 		
 		@SuppressWarnings("unchecked")

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EOperation;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface OperationCallExp extends FeatureCallExp {
 	
 	/**

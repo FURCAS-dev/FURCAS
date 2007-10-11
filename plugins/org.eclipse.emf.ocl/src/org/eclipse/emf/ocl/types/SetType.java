@@ -27,6 +27,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface SetType extends CollectionType {
 	// nothing to add
 	/**

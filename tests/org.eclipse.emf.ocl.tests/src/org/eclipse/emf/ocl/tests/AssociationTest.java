@@ -33,8 +33,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.AssociationClassCallExp;
-import org.eclipse.emf.ocl.expressions.CollectionItem;
-import org.eclipse.emf.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.emf.ocl.expressions.FeatureCallExp;
 import org.eclipse.emf.ocl.expressions.LoopExp;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
@@ -314,7 +312,7 @@ public class AssociationTest
 		helper.setContext(tree);
 		
 		try {
-			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "this."); //$NON-NLS-1$
+			List choices = helper.getSyntaxHelp(ConstraintType.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			// regular reference feature
@@ -525,7 +523,8 @@ public class AssociationTest
 	/**
 	 * Sets up a common fixture for the association class tests.
 	 */
-	public void setUp() throws Exception {
+	@Override
+    public void setUp() throws Exception {
 		super.setUp();
 		
 		fruitPackage.getEClassifiers().remove(stem);
@@ -595,7 +594,8 @@ public class AssociationTest
 		UMLTypeUtil.addQualifier(forest_trees, q);
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		super.tearDown();

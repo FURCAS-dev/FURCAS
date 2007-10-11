@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveRealImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: PrimitiveRealImpl.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -98,7 +98,8 @@ public class PrimitiveRealImpl extends PrimitiveTypeImpl implements PrimitiveRea
 		return result;
 	}
 		
-	public EList getOperations() {
+	@Override
+    public EList getOperations() {
 		if (operations == null) { 
 			operations = createOperations();
 		}
@@ -111,7 +112,8 @@ public class PrimitiveRealImpl extends PrimitiveTypeImpl implements PrimitiveRea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.PRIMITIVE_REAL;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLParsingException.java,v 1.5 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: OCLParsingException.java,v 1.6 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -29,6 +29,7 @@ import org.eclipse.ocl.ParserException;
  *
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class OCLParsingException
 	extends Exception {
 

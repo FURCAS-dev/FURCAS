@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.EObject;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public interface EnvironmentFactory {
 	/**
 	 * An instance that creates {@link Environment}s suitable for parsing OCL

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -319,7 +319,7 @@ public class AssociationTest
 		
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "this."); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			// regular reference feature
@@ -525,7 +525,8 @@ public class AssociationTest
 	/**
 	 * Sets up a common fixture for the association class tests.
 	 */
-	public void setUp() throws Exception {
+	@Override
+    public void setUp() throws Exception {
 		super.setUp();
 		
 		initFruitExtensions();
@@ -602,7 +603,8 @@ public class AssociationTest
 		return OCL.newInstance(new AssocClassFruitEnvironmentFactory());
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		super.tearDown();
@@ -613,11 +615,13 @@ public class AssociationTest
 	
 	private class AssocClassFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
-		public EcoreEnvironment createEnvironment() {
+		@Override
+        public EcoreEnvironment createEnvironment() {
 			return new AssocClassFruitEnvironment(this);
 		}
 
-		public EcoreEnvironment createEnvironment(
+		@Override
+        public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			return new AssocClassFruitEnvironment(this, parent);
 		}

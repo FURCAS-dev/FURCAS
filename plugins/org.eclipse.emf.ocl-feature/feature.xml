@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ocl"
       label="%featureName"
-      version="1.1.1.qualifier"
+      version="1.1.100.qualifier"
       provider-name="%providerName"
       image="modeling32.png">
 
@@ -31,6 +31,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.ecore" version="1.1.0" match="compatible"/>
       <import plugin="net.sourceforge.lpg.lpgjavaruntime"/>
+      <import plugin="org.eclipse.ocl" version="1.2.0" match="compatible"/>
    </requires>
 
    <plugin

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.2 2007/05/10 17:48:02 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.3 2007/10/11 23:05:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -58,487 +58,472 @@ import org.eclipse.uml2.uml.SendSignalAction;
 @SuppressWarnings("restriction")
 public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	/**
-	 * The default value of the '{@link #getPropertyStartPosition() <em>Property Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPropertyStartPosition() <em>Property Start Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyStartPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPropertyStartPosition()
+     * @generated
+     * @ordered
+     */
 	protected static final int PROPERTY_START_POSITION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getPropertyStartPosition() <em>Property Start Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPropertyStartPosition() <em>Property Start Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyStartPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPropertyStartPosition()
+     * @generated
+     * @ordered
+     */
 	protected int propertyStartPosition = PROPERTY_START_POSITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPropertyEndPosition() <em>Property End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPropertyEndPosition() <em>Property End Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyEndPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPropertyEndPosition()
+     * @generated
+     * @ordered
+     */
 	protected static final int PROPERTY_END_POSITION_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getPropertyEndPosition() <em>Property End Position</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPropertyEndPosition() <em>Property End Position</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyEndPosition()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPropertyEndPosition()
+     * @generated
+     * @ordered
+     */
 	protected int propertyEndPosition = PROPERTY_END_POSITION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTarget()
+     * @generated
+     * @ordered
+     */
 	protected OCLExpression<Classifier> target;
 
 	/**
-	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArgument()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getArgument()
+     * @generated
+     * @ordered
+     */
 	protected EList<OCLExpression<Classifier>> argument;
 
 	/**
-	 * The cached value of the '{@link #getCalledOperation() <em>Called Operation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCalledOperation() <em>Called Operation</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCalledOperation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCalledOperation()
+     * @generated
+     * @ordered
+     */
 	protected CallOperationAction calledOperation;
 
 	/**
-	 * The cached value of the '{@link #getSentSignal() <em>Sent Signal</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSentSignal() <em>Sent Signal</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSentSignal()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSentSignal()
+     * @generated
+     * @ordered
+     */
 	protected SendSignalAction sentSignal;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MessageExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.MESSAGE_EXP;
-	}
+        return UMLPackage.Literals.MESSAGE_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getPropertyStartPosition() {
-		return propertyStartPosition;
-	}
+        return propertyStartPosition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPropertyStartPosition(int newPropertyStartPosition) {
-
-		int oldPropertyStartPosition = propertyStartPosition;
-		propertyStartPosition = newPropertyStartPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION, oldPropertyStartPosition, propertyStartPosition));
-
-
-	}
+        int oldPropertyStartPosition = propertyStartPosition;
+        propertyStartPosition = newPropertyStartPosition;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION, oldPropertyStartPosition, propertyStartPosition));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getPropertyEndPosition() {
-		return propertyEndPosition;
-	}
+        return propertyEndPosition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPropertyEndPosition(int newPropertyEndPosition) {
-
-		int oldPropertyEndPosition = propertyEndPosition;
-		propertyEndPosition = newPropertyEndPosition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION, oldPropertyEndPosition, propertyEndPosition));
-
-
-	}
+        int oldPropertyEndPosition = propertyEndPosition;
+        propertyEndPosition = newPropertyEndPosition;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION, oldPropertyEndPosition, propertyEndPosition));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression<Classifier> getTarget() {
-		return target;
-	}
+        return target;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTarget(OCLExpression<Classifier> newTarget, NotificationChain msgs) {
-		OCLExpression<Classifier> oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        OCLExpression<Classifier> oldTarget = target;
+        target = newTarget;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__TARGET, oldTarget, newTarget);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTarget(OCLExpression<Classifier> newTarget) {
-
-		if (newTarget != target) {
-			NotificationChain msgs = null;
-			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__TARGET, null, msgs);
-			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__TARGET, null, msgs);
-			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__TARGET, newTarget, newTarget));
-
-	}
+        if (newTarget != target) {
+            NotificationChain msgs = null;
+            if (target != null)
+                msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__TARGET, null, msgs);
+            if (newTarget != null)
+                msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__TARGET, null, msgs);
+            msgs = basicSetTarget(newTarget, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__TARGET, newTarget, newTarget));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<OCLExpression<Classifier>> getArgument() {
-		if (argument == null) {
-			argument = new EObjectContainmentEList<OCLExpression<Classifier>>(OCLExpression.class, this, UMLPackage.MESSAGE_EXP__ARGUMENT);
-		}
-		return argument;
-	}
+        if (argument == null) {
+            argument = new EObjectContainmentEList<OCLExpression<Classifier>>(OCLExpression.class, this, UMLPackage.MESSAGE_EXP__ARGUMENT);
+        }
+        return argument;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CallOperationAction getCalledOperation() {
-		return calledOperation;
-	}
+        return calledOperation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	public NotificationChain basicSetCalledOperation(CallOperationAction newCalledOperation, NotificationChain msgs) {
-		CallOperationAction oldCalledOperation = calledOperation;
-		calledOperation = newCalledOperation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__CALLED_OPERATION, oldCalledOperation, newCalledOperation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        CallOperationAction oldCalledOperation = calledOperation;
+        calledOperation = newCalledOperation;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__CALLED_OPERATION, oldCalledOperation, newCalledOperation);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	public void setCalledOperation(CallOperationAction newCalledOperation) {
-
-		if (newCalledOperation != calledOperation) {
-			NotificationChain msgs = null;
-			if (calledOperation != null)
-				msgs = ((InternalEObject)calledOperation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
-			if (newCalledOperation != null)
-				msgs = ((InternalEObject)newCalledOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
-			msgs = basicSetCalledOperation(newCalledOperation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__CALLED_OPERATION, newCalledOperation, newCalledOperation));
-
-	}
+        if (newCalledOperation != calledOperation) {
+            NotificationChain msgs = null;
+            if (calledOperation != null)
+                msgs = ((InternalEObject)calledOperation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
+            if (newCalledOperation != null)
+                msgs = ((InternalEObject)newCalledOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
+            msgs = basicSetCalledOperation(newCalledOperation, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__CALLED_OPERATION, newCalledOperation, newCalledOperation));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SendSignalAction getSentSignal() {
-		return sentSignal;
-	}
+        return sentSignal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	public NotificationChain basicSetSentSignal(SendSignalAction newSentSignal, NotificationChain msgs) {
-		SendSignalAction oldSentSignal = sentSignal;
-		sentSignal = newSentSignal;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__SENT_SIGNAL, oldSentSignal, newSentSignal);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        SendSignalAction oldSentSignal = sentSignal;
+        sentSignal = newSentSignal;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__SENT_SIGNAL, oldSentSignal, newSentSignal);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 
 	public void setSentSignal(SendSignalAction newSentSignal) {
-
-		if (newSentSignal != sentSignal) {
-			NotificationChain msgs = null;
-			if (sentSignal != null)
-				msgs = ((InternalEObject)sentSignal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
-			if (newSentSignal != null)
-				msgs = ((InternalEObject)newSentSignal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
-			msgs = basicSetSentSignal(newSentSignal, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__SENT_SIGNAL, newSentSignal, newSentSignal));
-
-	}
+        if (newSentSignal != sentSignal) {
+            NotificationChain msgs = null;
+            if (sentSignal != null)
+                msgs = ((InternalEObject)sentSignal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
+            if (newSentSignal != null)
+                msgs = ((InternalEObject)newSentSignal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
+            msgs = basicSetSentSignal(newSentSignal, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.MESSAGE_EXP__SENT_SIGNAL, newSentSignal, newSentSignal));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_EXP__TARGET:
-				return basicSetTarget(null, msgs);
-			case UMLPackage.MESSAGE_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
-			case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
-				return basicSetCalledOperation(null, msgs);
-			case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
-				return basicSetSentSignal(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_EXP__TARGET:
+                return basicSetTarget(null, msgs);
+            case UMLPackage.MESSAGE_EXP__ARGUMENT:
+                return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
+            case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
+                return basicSetCalledOperation(null, msgs);
+            case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
+                return basicSetSentSignal(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
-				return new Integer(getPropertyStartPosition());
-			case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-				return new Integer(getPropertyEndPosition());
-			case UMLPackage.MESSAGE_EXP__TARGET:
-				return getTarget();
-			case UMLPackage.MESSAGE_EXP__ARGUMENT:
-				return getArgument();
-			case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
-				return getCalledOperation();
-			case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
-				return getSentSignal();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+                return new Integer(getPropertyStartPosition());
+            case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+                return new Integer(getPropertyEndPosition());
+            case UMLPackage.MESSAGE_EXP__TARGET:
+                return getTarget();
+            case UMLPackage.MESSAGE_EXP__ARGUMENT:
+                return getArgument();
+            case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
+                return getCalledOperation();
+            case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
+                return getSentSignal();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
-				setPropertyStartPosition(((Integer)newValue).intValue());
-				return;
-			case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-				setPropertyEndPosition(((Integer)newValue).intValue());
-				return;
-			case UMLPackage.MESSAGE_EXP__TARGET:
-				setTarget((OCLExpression<Classifier>)newValue);
-				return;
-			case UMLPackage.MESSAGE_EXP__ARGUMENT:
-				getArgument().clear();
-				getArgument().addAll((Collection<? extends OCLExpression<Classifier>>)newValue);
-				return;
-			case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
-				setCalledOperation((CallOperationAction)newValue);
-				return;
-			case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
-				setSentSignal((SendSignalAction)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+                setPropertyStartPosition(((Integer)newValue).intValue());
+                return;
+            case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+                setPropertyEndPosition(((Integer)newValue).intValue());
+                return;
+            case UMLPackage.MESSAGE_EXP__TARGET:
+                setTarget((OCLExpression<Classifier>)newValue);
+                return;
+            case UMLPackage.MESSAGE_EXP__ARGUMENT:
+                getArgument().clear();
+                getArgument().addAll((Collection<? extends OCLExpression<Classifier>>)newValue);
+                return;
+            case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
+                setCalledOperation((CallOperationAction)newValue);
+                return;
+            case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
+                setSentSignal((SendSignalAction)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
-				setPropertyStartPosition(PROPERTY_START_POSITION_EDEFAULT);
-				return;
-			case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-				setPropertyEndPosition(PROPERTY_END_POSITION_EDEFAULT);
-				return;
-			case UMLPackage.MESSAGE_EXP__TARGET:
-				setTarget((OCLExpression<Classifier>)null);
-				return;
-			case UMLPackage.MESSAGE_EXP__ARGUMENT:
-				getArgument().clear();
-				return;
-			case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
-				setCalledOperation((CallOperationAction)null);
-				return;
-			case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
-				setSentSignal((SendSignalAction)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+                setPropertyStartPosition(PROPERTY_START_POSITION_EDEFAULT);
+                return;
+            case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+                setPropertyEndPosition(PROPERTY_END_POSITION_EDEFAULT);
+                return;
+            case UMLPackage.MESSAGE_EXP__TARGET:
+                setTarget((OCLExpression<Classifier>)null);
+                return;
+            case UMLPackage.MESSAGE_EXP__ARGUMENT:
+                getArgument().clear();
+                return;
+            case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
+                setCalledOperation((CallOperationAction)null);
+                return;
+            case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
+                setSentSignal((SendSignalAction)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
-				return propertyStartPosition != PROPERTY_START_POSITION_EDEFAULT;
-			case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-				return propertyEndPosition != PROPERTY_END_POSITION_EDEFAULT;
-			case UMLPackage.MESSAGE_EXP__TARGET:
-				return target != null;
-			case UMLPackage.MESSAGE_EXP__ARGUMENT:
-				return argument != null && !argument.isEmpty();
-			case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
-				return calledOperation != null;
-			case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
-				return sentSignal != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+                return propertyStartPosition != PROPERTY_START_POSITION_EDEFAULT;
+            case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+                return propertyEndPosition != PROPERTY_END_POSITION_EDEFAULT;
+            case UMLPackage.MESSAGE_EXP__TARGET:
+                return target != null;
+            case UMLPackage.MESSAGE_EXP__ARGUMENT:
+                return argument != null && !argument.isEmpty();
+            case UMLPackage.MESSAGE_EXP__CALLED_OPERATION:
+                return calledOperation != null;
+            case UMLPackage.MESSAGE_EXP__SENT_SIGNAL:
+                return sentSignal != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == CallingASTNode.class) {
-			switch (derivedFeatureID) {
-				case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION;
-				case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.expressions.MessageExp.class) {
-			switch (derivedFeatureID) {
-				case UMLPackage.MESSAGE_EXP__TARGET: return ExpressionsPackage.MESSAGE_EXP__TARGET;
-				case UMLPackage.MESSAGE_EXP__ARGUMENT: return ExpressionsPackage.MESSAGE_EXP__ARGUMENT;
-				case UMLPackage.MESSAGE_EXP__CALLED_OPERATION: return ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION;
-				case UMLPackage.MESSAGE_EXP__SENT_SIGNAL: return ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == CallingASTNode.class) {
+            switch (derivedFeatureID) {
+                case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION;
+                case UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION;
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.expressions.MessageExp.class) {
+            switch (derivedFeatureID) {
+                case UMLPackage.MESSAGE_EXP__TARGET: return ExpressionsPackage.MESSAGE_EXP__TARGET;
+                case UMLPackage.MESSAGE_EXP__ARGUMENT: return ExpressionsPackage.MESSAGE_EXP__ARGUMENT;
+                case UMLPackage.MESSAGE_EXP__CALLED_OPERATION: return ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION;
+                case UMLPackage.MESSAGE_EXP__SENT_SIGNAL: return ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == CallingASTNode.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION: return UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION;
-				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION: return UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION;
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.expressions.MessageExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.MESSAGE_EXP__TARGET: return UMLPackage.MESSAGE_EXP__TARGET;
-				case ExpressionsPackage.MESSAGE_EXP__ARGUMENT: return UMLPackage.MESSAGE_EXP__ARGUMENT;
-				case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION: return UMLPackage.MESSAGE_EXP__CALLED_OPERATION;
-				case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL: return UMLPackage.MESSAGE_EXP__SENT_SIGNAL;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == CallingASTNode.class) {
+            switch (baseFeatureID) {
+                case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION: return UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION;
+                case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION: return UMLPackage.MESSAGE_EXP__PROPERTY_END_POSITION;
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.expressions.MessageExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.MESSAGE_EXP__TARGET: return UMLPackage.MESSAGE_EXP__TARGET;
+                case ExpressionsPackage.MESSAGE_EXP__ARGUMENT: return UMLPackage.MESSAGE_EXP__ARGUMENT;
+                case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION: return UMLPackage.MESSAGE_EXP__CALLED_OPERATION;
+                case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL: return UMLPackage.MESSAGE_EXP__SENT_SIGNAL;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -555,7 +540,8 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitMessageExp(this);
 	}
 

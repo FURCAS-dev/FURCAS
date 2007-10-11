@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesFactory.java,v 1.3 2007/03/27 15:05:42 cdamus Exp $
+ * $Id: UtilitiesFactory.java,v 1.4 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.emf.ocl.utilities.UtilitiesPackage
  * @generated
  */
+@Deprecated
 public interface UtilitiesFactory extends EFactory {
 	/**
 	 * <!-- begin-user-doc -->

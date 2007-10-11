@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.5 2007/04/09 17:35:27 cdamus Exp $
+ * $Id: PredefinedType.java,v 1.6 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.utilities;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ocl.parser.SemanticException;
  * @model interface="true" abstract="true"
  * @generated
  */
+@Deprecated
 public interface PredefinedType extends EObject {
 	/**
      * <!-- begin-user-doc -->

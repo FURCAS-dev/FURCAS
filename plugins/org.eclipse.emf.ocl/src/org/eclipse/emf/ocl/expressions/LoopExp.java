@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface LoopExp  extends CallExp {
 	/**
 	 * <!-- begin-user-doc -->

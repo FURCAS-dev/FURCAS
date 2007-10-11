@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *
  * </copyright>
  *
- * $Id: EcoreForeignMethods.java,v 1.1 2007/04/20 22:42:55 cdamus Exp $
+ * $Id: EcoreForeignMethods.java,v 1.2 2007/10/11 23:04:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -20,7 +21,8 @@ package org.eclipse.ocl.ecore.internal;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.internal.parser.OCLParser;
+import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.parser.OCLAnalyzer;
 
 
 /**
@@ -46,7 +48,7 @@ public class EcoreForeignMethods {
      * @return whether the element has this name
      */
     public static boolean isNamed(String name, ENamedElement element) {
-        return OCLParser.equalName(name, element.getName());
+        return AbstractOCLAnalyzer.equalName(name, element.getName());
     }
     
     /**
@@ -61,9 +63,9 @@ public class EcoreForeignMethods {
     public static EClassifier getEClassifier(EPackage pkg, String name) {
         EClassifier result = pkg.getEClassifier(name);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
             // try the unescaped name
-            result = pkg.getEClassifier(OCLParser.unescape(name));
+            result = pkg.getEClassifier(AbstractOCLAnalyzer.unescape(name));
         }
         
         return result;
@@ -85,9 +87,9 @@ public class EcoreForeignMethods {
             }
         }
         
-        if (OCLParser.isEscaped(name)) {
+        if (AbstractOCLAnalyzer.isEscaped(name)) {
             // try the unescaped name
-            name = OCLParser.unescape(name);
+            name = AbstractOCLAnalyzer.unescape(name);
             
             for (EPackage sub : pkg.getESubpackages()) {
                 if (name.equals(sub.getName())) {

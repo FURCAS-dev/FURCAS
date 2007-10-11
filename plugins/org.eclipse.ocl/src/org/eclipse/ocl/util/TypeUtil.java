@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.5 2007/07/16 17:07:32 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.6 2007/10/11 23:04:53 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -39,7 +40,7 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.internal.parser.OCLParser;
+import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
@@ -458,7 +459,7 @@ public class TypeUtil {
 				owner, uml.getOCLType(param), env.getOCLStandardLibrary().getT()));
 		}
 		
-		C resultType = getResultType(env, owner, oper);
+		C resultType = getResultType(oper, env, owner, oper);
 		
 		return uml.createOperation(name, resultType, paramNames, paramTypes);
 	}
@@ -511,9 +512,30 @@ public class TypeUtil {
      * @param oper the operation
      * 
      * @return the operation's effect result type
+     * 
+     * @deprecated Use the {@link #getResultType(Object, Environment, Object, Object)}
+     *     method, instead
+     */
+	@Deprecated
+    public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	C getResultType(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner, O oper) {
+		return getResultType(null, env, owner, oper);
+	}
+	
+    /**
+     * Obtains the result type of the specified operation, which in the case
+     * of collection operations sometimes depends on the element type of the
+     * source collection.
+     * 
+     * @param env the OCL environment
+     * @param owner the type of the operation call source
+     * @param oper the operation
+     * 
+     * @return the operation's effect result type
      */
 	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	C getResultType(
+	C getResultType(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C owner, O oper) {
 		
@@ -559,7 +581,7 @@ public class TypeUtil {
 			
 			try {
 				return OCLStandardLibraryUtil.getResultTypeOf(
-					env, owner, opcode, args);
+					problemObject, env, owner, opcode, args);
 			} catch (Exception e) {
 				// doesn't matter.  Just return the default
 			}
@@ -579,8 +601,12 @@ public class TypeUtil {
      * 
      * @throws SemanticException if the cast fails (because the types are
      *    not conformant)
+     *    
+     * @deprecated Use the {@link #compatibleTypeMatch(Environment, Object, Object)}
+     *   method, instead, to check whether the cast is acceptable
      */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	@Deprecated
+    public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	boolean type1AsType2(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type1, C type2) throws SemanticException {
@@ -593,8 +619,48 @@ public class TypeUtil {
 				OCLMessages.CastTypeMismatch_ERROR_,
 				getName(env, type1),
 				getName(env, type2));
-		OCLParser.ERR(message);
-		return false;
+		throw new SemanticException(message);
+	}
+
+	/**
+	 * Compare two types. Returns true if types are exactly equal, false otherwise.
+	 * 
+	 * @param type1 a type
+	 * @param type2 another type
+	 * @return true if the same type 
+ 	 */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	boolean exactTypeMatch(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C type1, C type2) {
+	
+		switch (getRelationship(env, type1, type2)) {
+		case SAME_TYPE:
+			return true;
+		default:
+			return false;
+		}
+	}
+
+	/**
+	 * Compare two types. Returns true if types are compatible, false otherwise.
+	 * 
+	 * @param type1 a type
+	 * @param type2 another type
+	 * @return true if the same type or type1 is a strict subtype of type2.
+ 	 */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	boolean compatibleTypeMatch(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C type1, C type2) {
+	
+		switch (getRelationship(env, type1, type2)) {
+		case SAME_TYPE:
+		case STRICT_SUBTYPE:
+			return true;
+		default:
+			return false;
+		}
 	}
 
 	/**
@@ -609,8 +675,12 @@ public class TypeUtil {
      * 
      * @throws IllegalArgumentException if the types are not conformant one way
      *    or the other
+     *    
+     * @deprecated Use the {@link #getRelationship(Environment, Object, Object)}
+     *    method, instead.
 	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	@Deprecated
+    public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	int typeCompare(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type1, C type2) {
@@ -635,7 +705,7 @@ public class TypeUtil {
 	
     /**
      * Checks whether two types are mutually comparable in the determination of
-     * the applicability {@literal =} and {@literal <>} operations.
+     * the applicability of {@literal =} and {@literal <>} operations.
      * 
      * @param env the OCL environment
      * @param type1 a type
@@ -643,8 +713,12 @@ public class TypeUtil {
      * @param opcode the operation code
      * 
      * @throws SemanticException if the types are not comparable
+     * 
+     * @deprecated Use the {@link #checkMutuallyComparable(Object, Environment, Object, Object, int)}
+     *    method, instead
      */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	@Deprecated
+    public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	void checkMutuallyComparable(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type1, C type2,
@@ -657,9 +731,40 @@ public class TypeUtil {
 					OCLMessages.Noncomforming_ERROR_,
 					getName(env, type1),
 					OCLStandardLibraryUtil.getOperationName(opcode));
-				OCLParser.ERR(message);
+				throw new SemanticException(message);
 			}
 		}
+	}
+	
+    /**
+     * Checks whether two types are mutually comparable in the determination of
+     * the applicability of {@literal =} and {@literal <>} operations.
+     * 
+     * @param env the OCL environment
+     * @param type1 a type
+     * @param type2 another type
+     * @param opcode the operation code
+     * 
+     * @return false if the types are not comparable
+     */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	boolean checkMutuallyComparable(Object problemObject,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C type1, C type2,
+			int opcode) {
+		
+		// all of the primitive types are considered as mutually comparable
+		if (!(type1 instanceof PrimitiveType && type2 instanceof PrimitiveType)) {
+			if (commonSuperType(problemObject, env, type1, type2) == null) {
+				String message = OCLMessages.bind(
+					OCLMessages.Noncomforming_ERROR_,
+					getName(env, type1),
+					OCLStandardLibraryUtil.getOperationName(opcode));
+				error(env, message, "checkMutuallyComparable", problemObject); //$NON-NLS-1$
+				return false;
+			}
+		}
+		return true;
 	}
 	
     /**
@@ -913,16 +1018,36 @@ public class TypeUtil {
 	 * 
 	 * @param type1 a type
 	 * @param type2 another type
-	 * @return their common supertype, if any
+	 * @return their common supertype, if any, null if the two types have no common supertype
      * 
-     * @throws SemanticException if the two types have no common supertype
+     * @deprecated Use the {@link #commonSuperType(Object, Environment, Object, Object)}
+     *     method, instead.
+	 */
+	@Deprecated
+    public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	C commonSuperType(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C type1, C type2) {
+		
+		return commonSuperType(null, env, type1, type2);
+	}
+	
+	/**
+	 * Get the common supertype of two types.
+     * This operation accounts for the OCL Standard Library types, which the
+     * otherwise similar {@link UMLReflection#getCommonSuperType(Object, Object)}
+     * method does not.
+	 * 
+	 * @param type1 a type
+	 * @param type2 another type
+	 * @return their common supertype, if any, null if the two types have no common supertype
      * 
      * @see UMLReflection#getCommonSuperType(Object, Object)
 	 */
 	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	C commonSuperType(
+	C commonSuperType(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			C type1, C type2) throws SemanticException {
+			C type1, C type2) {
 	
 		if (ObjectUtil.equal(type1, type2)) {
 			return type2;
@@ -970,7 +1095,7 @@ public class TypeUtil {
 	        
 	        CollectionKind commonKind = commonSuperType(ct1.getKind(), ct2.getKind());
 	        
-	        C resultElementType = commonSuperType(
+	        C resultElementType = commonSuperType(problemObject,
 	        	env, ct1.getElementType(), ct2.getElementType());
 
 	        return resolveCollectionType(env, commonKind, resultElementType);
@@ -992,7 +1117,8 @@ public class TypeUtil {
 					OCLMessages.TupleTypeMismatch_ERROR_,
 					getName(env, type1),
 					getName(env, type2));
-				OCLParser.ERR(message);
+				error(env, message, "commonSuperType", problemObject); //$NON-NLS-1$
+				return null;
 			}
 			
 			List<P> props1 = uml.getAttributes(type1);
@@ -1003,7 +1129,8 @@ public class TypeUtil {
 						OCLMessages.TupleFieldNumMismatch_ERROR_,
 						getName(env, type1),
 						getName(env, type2));
-				OCLParser.ERR(message);
+				error(env, message, "commonSuperType", problemObject); //$NON-NLS-1$
+				return null;
 			}
 
 			OCLFactory oclFactory = env.getOCLFactory();
@@ -1016,7 +1143,7 @@ public class TypeUtil {
 				for (P prop2 : props2) {
 					if (uml.getName(prop1).equals(uml.getName(prop2))) {
 						C resultElementType = commonSuperType(
-							env, uml.getOCLType(prop1), uml.getOCLType(prop2));
+							problemObject, env, uml.getOCLType(prop1), uml.getOCLType(prop2));
 						
 						found = true;
 						
@@ -1035,7 +1162,8 @@ public class TypeUtil {
 									getName(env, type1),
 									getName(env, prop1),
 									getName(env, type2)});
-					OCLParser.ERR(message);
+					error(env, message, "commonSuperType", problemObject); //$NON-NLS-1$
+					return null;
 				}
 			}
 			
@@ -1047,7 +1175,8 @@ public class TypeUtil {
 			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 					getName(env, type1),
 					getName(env, type2));
-			OCLParser.ERR(message);
+			error(env, message, "commonSuperType", problemObject); //$NON-NLS-1$
+			return null;
 		}
 		
 		// remaining case is pure model element types.  The environment must
@@ -1059,7 +1188,8 @@ public class TypeUtil {
 			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 					getName(env, type1),
 					getName(env, type2));
-			OCLParser.ERR(message);
+			error(env, message, "commonSuperType", problemObject); //$NON-NLS-1$
+			return null;
 		}
 		
 		return result;
@@ -1287,5 +1417,18 @@ public class TypeUtil {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C signal) {
 		return (C) env.getTypeResolver().resolveSignalMessageType(signal);
+	}
+	
+	/**
+	 * Convenience method invoking <code>getProblemHandler().utilityProblem</code>
+	 * with a <code>ProblemHandler.errorSeverity</code>.
+	 * @param problemMessage message describing the problem
+	 * @param problemContext optional message describing the reporting context
+	 * @param problemObject optional object associated with the problem
+	 */
+	private static void error(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
+			String problemMessage, String problemContext, Object problemObject) {
+		OCLUtil.getAdapter(env, BasicEnvironment.class).utilityError(problemMessage,
+			problemContext, problemObject);
 	}
 }

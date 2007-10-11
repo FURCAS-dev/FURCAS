@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: StateExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
+ * $Id: StateExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface StateExp<C, S> extends OCLExpression<C> {
 	/**
-	 * Returns the value of the '<em><b>Referred State</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Referred State</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred State</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred State</em>' reference.
-	 * @see #setReferredState(Object)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getStateExp_ReferredState()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Referred State</em>' reference.
+     * @see #setReferredState(Object)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getStateExp_ReferredState()
+     * @model kind="reference"
+     * @generated
+     */
 	S getReferredState();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.StateExp#getReferredState <em>Referred State</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.StateExp#getReferredState <em>Referred State</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred State</em>' reference.
-	 * @see #getReferredState()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Referred State</em>' reference.
+     * @see #getReferredState()
+     * @generated
+     */
 	void setReferredState(S value);
 
 } // StateExp

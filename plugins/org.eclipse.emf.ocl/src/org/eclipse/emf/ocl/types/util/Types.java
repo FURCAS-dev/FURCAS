@@ -63,6 +63,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * instead, to access the standard library types.
  * 
  */
+@Deprecated
 public class Types {
 	/**
 	 * The shared type object representing OclVoid (the single instance of

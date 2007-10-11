@@ -26,6 +26,7 @@ import org.eclipse.emf.ocl.uml.TypedElement;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface CollectionLiteralPart extends TypedElement {
 	/**
 	 * <!-- begin-user-doc -->

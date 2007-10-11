@@ -35,6 +35,7 @@ import org.eclipse.ocl.ecore.OCL;
  * @author Yasser Lulu 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class HelperUtil {
 
 	private HelperUtil() {

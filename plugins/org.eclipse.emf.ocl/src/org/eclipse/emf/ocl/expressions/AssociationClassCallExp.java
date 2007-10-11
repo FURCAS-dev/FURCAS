@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
+@Deprecated
 public interface AssociationClassCallExp extends NavigationCallExp {
 	/**
 	 * <!-- begin-user-doc -->

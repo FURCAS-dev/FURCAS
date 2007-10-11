@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.3 2007/10/11 23:04:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -514,7 +514,8 @@ public class ComparisonTest
 	// Framework methods
 	//
 	
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 		
 		pkg = umlf.createPackage();
@@ -529,7 +530,7 @@ public class ComparisonTest
 		values.setIsOrdered(true);
 		values.setIsUnique(true);
 		
-		numeroType = (Class) pkg.createOwnedClass("Numero", false); //$NON-NLS-1$
+		numeroType = pkg.createOwnedClass("Numero", false); //$NON-NLS-1$
 		
 		numeroType.createOwnedOperation(
 				"+", //$NON-NLS-1$
@@ -617,17 +618,19 @@ public class ComparisonTest
 		}
 		
 		public int compareTo(Value arg0) {
-			return value.compareTo(((Value) arg0).value);
+			return value.compareTo((arg0).value);
 		}
 
-		public int hashCode() {
+		@Override
+        public int hashCode() {
 			final int PRIME = 31;
 			int result = 1;
 			result = PRIME * result + ((value == null) ? 0 : value.hashCode());
 			return result;
 		}
 
-		public boolean equals(Object obj) {
+		@Override
+        public boolean equals(Object obj) {
 			if (this == obj)
 				return true;
 			if (obj == null)
@@ -691,14 +694,16 @@ public class ComparisonTest
 			return value >= n.value;
 		}
 
-		public int hashCode() {
+		@Override
+        public int hashCode() {
 			final int PRIME = 31;
 			int result = 1;
 			result = PRIME * result + value;
 			return result;
 		}
 
-		public boolean equals(Object obj) {
+		@Override
+        public boolean equals(Object obj) {
 			if (this == obj)
 				return true;
 			if (obj == null)
@@ -711,7 +716,8 @@ public class ComparisonTest
 			return true;
 		}
 		
-		public String toString() {
+		@Override
+        public String toString() {
 			return "Numero(" + value + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}

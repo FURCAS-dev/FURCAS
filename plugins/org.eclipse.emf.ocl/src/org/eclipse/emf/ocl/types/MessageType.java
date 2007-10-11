@@ -30,6 +30,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * @author Edith Schonberg (edith)
  *
  */
+@Deprecated
 public interface MessageType extends EClass, PredefinedType {
 	/**
 	 * <!-- begin-user-doc -->

@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface CollectionLiteralExp extends LiteralExp {
 	/**
 	 * <!-- begin-user-doc -->

@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: EnvironmentFactory.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: EnvironmentFactory.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -23,6 +24,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.Adaptable;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -37,6 +40,12 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * "directly" by providers of metamodel bindings.
  * It is highly recommended to extend the {@link AbstractEnvironmentFactory}
  * class, instead.
+ * </p><p>
+ * Since 1.2, the {@link AbstractEnvironmentFactory} implements the
+ * {@link Adaptable} interface and provides an adapter for the
+ * {@link EnvironmentFactory.Lookup} interface.  Use the
+ * {@link OCLUtil#getAdapter(EnvironmentFactory, Class)} method to obtain
+ * adapters for any factory instance.
  * </p>
  * 
  * @param <PK> is substituted by the metaclass representing the metamodel's
@@ -81,7 +90,7 @@ public interface EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E
 	 * is defined.
 	 * 
 	 * @param pathname the qualified package name (the "::"-separated parts)
-	 * @return the environment
+	 * @return the environment or null if lookup fails to locate a package
 	 * 
 	 * @see #createClassifierContext
 	 * @see #createOperationContext
@@ -222,4 +231,33 @@ public interface EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			EvaluationEnvironment<C, O, P, CLS, E> evalEnv,
 			Map<? extends CLS, ? extends Set<? extends E>> extentMap);
+	
+	/**
+	 * Optional adapter interface for look-up methods that throw
+	 * {@link LookupException}s on abnormal failures (usually ambiguous names).
+	 * 
+	 * @author Christian W. Damus (cdamus)
+	 * 
+	 * @since 1.2
+	 */
+	interface Lookup<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+		/**
+		 * Creates an environment suitable for parsing OCL expressions in the
+		 * specified package context.  This context will become a classifier context
+		 * when the {@linkplain Environment#setSelfVariable "self" variable}
+		 * is defined.
+		 * 
+		 * @param pathname the qualified package name (the "::"-separated parts)
+		 * @return the environment or null if lookup fails to locate a package
+		 * @throws LookupException if package lookup encounters an error such as an ambiguity
+		 * 
+		 * @see #createClassifierContext
+		 * @see #createOperationContext
+	     * @see #createAttributeContext
+		 */
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+		tryCreatePackageContext(
+				Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent,
+				List<String> pathname) throws LookupException;
+	}
 }

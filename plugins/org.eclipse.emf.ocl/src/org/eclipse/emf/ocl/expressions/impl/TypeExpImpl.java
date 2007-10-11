@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.3 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -70,7 +70,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.TYPE_EXP;
     }
 
@@ -117,7 +118,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
                 if (resolve) return getReferredType();
@@ -131,7 +133,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
                 setReferredType((EClassifier)newValue);
@@ -145,7 +148,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
                 setReferredType((EClassifier)null);
@@ -159,7 +163,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
                 return referredType != null;
@@ -170,14 +175,16 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	/**
 	 * @generated NOT
 	 */
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitTypeExp(this);
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 	

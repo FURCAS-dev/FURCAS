@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.5 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: TypesFactoryImpl.java,v 1.6 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -97,7 +97,8 @@ public class TypesFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject create(EClass eClass) {
+	@Override
+    public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TypesPackage.ANY_TYPE: return createAnyType();
 			case TypesPackage.BAG_TYPE: return createBagType();
@@ -312,7 +313,8 @@ public class TypesFactoryImpl
 	 * @deprecated
 	 * @generated
 	 */
-	public static TypesPackage getPackage() {
+	@Deprecated
+    public static TypesPackage getPackage() {
 		return TypesPackage.eINSTANCE;
 	}
 

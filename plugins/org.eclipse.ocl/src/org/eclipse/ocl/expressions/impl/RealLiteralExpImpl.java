@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -38,122 +38,122 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class RealLiteralExpImpl<C> extends NumericLiteralExpImpl<C> implements RealLiteralExp<C> {
 	/**
-	 * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRealSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRealSymbol()
+     * @generated
+     * @ordered
+     */
 	protected static final Double REAL_SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRealSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRealSymbol()
+     * @generated
+     * @ordered
+     */
 	protected Double realSymbol = REAL_SYMBOL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RealLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.REAL_LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.REAL_LITERAL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Double getRealSymbol() {
-		return realSymbol;
-	}
+        return realSymbol;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRealSymbol(Double newRealSymbol) {
-		Double oldRealSymbol = realSymbol;
-		realSymbol = newRealSymbol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol, realSymbol));
-	}
+        Double oldRealSymbol = realSymbol;
+        realSymbol = newRealSymbol;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol, realSymbol));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				return getRealSymbol();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+                return getRealSymbol();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				setRealSymbol((Double)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+                setRealSymbol((Double)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				setRealSymbol(REAL_SYMBOL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+                setRealSymbol(REAL_SYMBOL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				return REAL_SYMBOL_EDEFAULT == null ? realSymbol != null : !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+                return REAL_SYMBOL_EDEFAULT == null ? realSymbol != null : !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

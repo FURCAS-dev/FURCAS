@@ -61,7 +61,6 @@ import org.eclipse.emf.ocl.query.QueryFactory;
 import org.eclipse.emf.ocl.types.TypesPackage;
 import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.utilities.Visitable;
-import org.eclipse.ocl.internal.parser.OCLLexer;
 
 
 /**
@@ -154,7 +153,8 @@ public abstract class AbstractTestSuite
 	// Framework methods
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		System.out.println("==> Start  " + getName()); //$NON-NLS-1$
@@ -171,7 +171,8 @@ public abstract class AbstractTestSuite
 				EcoreEnvironment.findPackage(Collections.singletonList(fruitPackage.getName())));
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
@@ -300,8 +301,7 @@ public abstract class AbstractTestSuite
 	 * @return the OCL constraint expression, unvalidated
 	 */
 	protected OCLExpression parseConstraintUnvalidated(String text) {
-		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		CompatibilityParser parser = new CompatibilityParser(lexer);
+		CompatibilityParser parser = new CompatibilityParser(text);
 //		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
@@ -339,8 +339,7 @@ public abstract class AbstractTestSuite
 	 * @return the OCL constraint expression, unvalidated
 	 */
 	protected OCLExpression parseConstraintUnvalidated(String text, Environment[] env) {
-		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		CompatibilityParser parser = new CompatibilityParser(lexer);
+		CompatibilityParser parser = new CompatibilityParser(text);
 //		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
@@ -450,8 +449,7 @@ public abstract class AbstractTestSuite
 	 * @return the OCL def expression
 	 */
 	protected OCLExpression parseDef(String text) {
-		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		CompatibilityParser parser = new CompatibilityParser(lexer);
+		CompatibilityParser parser = new CompatibilityParser(text);
 //		parser.setTraceFlag(true);
 		
 		EList constraints = new BasicEList();
@@ -575,17 +573,17 @@ public abstract class AbstractTestSuite
 		fruitFactory = fruitPackage.getEFactoryInstance();
 		
 		fruit = (EClass) fruitPackage.getEClassifier("Fruit"); //$NON-NLS-1$
-		fruit_ripen = (EOperation) fruit.getEOperations().get(0);
-		fruit_preferredColor = (EOperation) fruit.getEOperations().get(1);
-		fruit_newFruit = (EOperation) fruit.getEOperations().get(2);
-		fruit_setColor = (EOperation) fruit.getEOperations().get(3);
+		fruit_ripen = fruit.getEOperations().get(0);
+		fruit_preferredColor = fruit.getEOperations().get(1);
+		fruit_newFruit = fruit.getEOperations().get(2);
+		fruit_setColor = fruit.getEOperations().get(3);
 		fruit_color = (EAttribute) fruit.getEStructuralFeature("color"); //$NON-NLS-1$
 		
 		apple = (EClass) fruitPackage.getEClassifier("Apple"); //$NON-NLS-1$
 		apple_label = (EAttribute) apple.getEStructuralFeature("label"); //$NON-NLS-1$
 		apple_stem = (EReference) apple.getEStructuralFeature("stem"); //$NON-NLS-1$
-		apple_labelOper = (EOperation) apple.getEOperations().get(0);
-		apple_newApple = (EOperation) apple.getEOperations().get(1);
+		apple_labelOper = apple.getEOperations().get(0);
+		apple_newApple = apple.getEOperations().get(1);
 		
 		stem = (EClass) fruitPackage.getEClassifier("Stem"); //$NON-NLS-1$
 		
@@ -603,9 +601,9 @@ public abstract class AbstractTestSuite
 		util_set = (EReference) util.getEStructuralFeature("set"); //$NON-NLS-1$
 		util_bag = (EReference) util.getEStructuralFeature("bag"); //$NON-NLS-1$
 		util_sequence = (EReference) util.getEStructuralFeature("sequence"); //$NON-NLS-1$
-		util_processOrderedSet = (EOperation) util.getEOperations().get(0);
-		util_processSet = (EOperation) util.getEOperations().get(1);
-		util_processBag = (EOperation) util.getEOperations().get(2);
-		util_processSequence = (EOperation) util.getEOperations().get(3);
+		util_processOrderedSet = util.getEOperations().get(0);
+		util_processSet = util.getEOperations().get(1);
+		util_processBag = util.getEOperations().get(2);
+		util_processSequence = util.getEOperations().get(3);
 	}
 }

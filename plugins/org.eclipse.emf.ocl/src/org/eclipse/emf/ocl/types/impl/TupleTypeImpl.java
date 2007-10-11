@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.8 2007/05/17 17:58:38 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.9 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -97,7 +97,8 @@ public class TupleTypeImpl
 	/**
 	 * @generated NOT
 	 */
-	public String getName() {
+	@Override
+    public String getName() {
 		if (name == null) {
 			StringBuffer buf = new StringBuffer();
 			buf.append("Tuple("); //$NON-NLS-1$
@@ -272,7 +273,8 @@ public class TupleTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.TUPLE_TYPE;
 	}
 

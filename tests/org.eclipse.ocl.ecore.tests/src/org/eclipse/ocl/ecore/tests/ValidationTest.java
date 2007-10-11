@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: ValidationTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -88,11 +88,13 @@ public class ValidationTest extends AbstractTestSuite {
 	
 	private class CustomFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
-		public EcoreEnvironment createEnvironment() {
+		@Override
+        public EcoreEnvironment createEnvironment() {
 			return new CustomFruitEnvironment(this);
 		}
 
-		public EcoreEnvironment createEnvironment(
+		@Override
+        public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			return new CustomFruitEnvironment(this, parent);
 		}

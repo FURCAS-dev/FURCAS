@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.3 2007/03/27 15:04:58 cdamus Exp $
+ * $Id: Environment.java,v 1.4 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -24,6 +25,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.EnvironmentRegistryImpl;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.Adaptable;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -45,6 +48,12 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * providers of metamodel bindings.
  * It is highly recommended to extend the {@link AbstractEnvironment} class,
  * instead.
+ * </p><p>
+ * Since 1.2, the default abstract implementation of this interface
+ * ({@link AbstractEnvironment}) implements the {@link Adaptable} protocol to
+ * provide dynamic interface adapters.  Use the
+ * {@link OCLUtil#getAdapter(Environment, Class)} method to obtain
+ * adapters for any environment instance.
  * </p>
  * 
  * @param <PK> is substituted by the metaclass representing the metamodel's
@@ -207,7 +216,6 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 */
 	Variable<C, PM> lookup(String name);
 	
-	
 	/**
 	 * Finds the package identified by the specified sequence of names
      * (a qualified name).
@@ -275,12 +283,14 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param path the state name to seek
 	 * @return the matching state object, or <code>null</code> if not found
 	 * 
-	 * @throws SemanticException in the case that this <tt>path</tt> is
+	 * @throws LookupException in the case that this <tt>path</tt> is
 	 *     ambiguous; i.e., that it does not qualify a state reference with
 	 *     the state machine name to select between same-named states in
 	 *     different state machines
+	 * @throws SemanticException which usually would actually be a
+	 *     <tt>LookupException</tt> (see above)
 	 */
-	S lookupState(C owner, List<String> path) throws SemanticException;
+	S lookupState(C owner, List<String> path) throws LookupException, SemanticException;
 	
 	/**
 	 * Retrieves a list of all possible states of the specified <code>owner</code>
@@ -433,12 +443,15 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @return the implicit variable having the specified state,
 	 *     or <code>null</code> if not found
 	 * 
-	 * @throws SemanticException in the case that this <tt>path</tt> is
+	 * @throws LookupException in the case that this <tt>path</tt> is
 	 *     ambiguous; i.e., that it does not qualify a state reference with
 	 *     the state machine name to select between same-named states in
 	 *     different state machines
+	 * @throws SemanticException which usually would actually be a
+	 *     <tt>LookupException</tt> (see above)
 	 */
-	public Variable<C, PM> lookupImplicitSourceForState(List<String> path) throws SemanticException ;
+	public Variable<C, PM> lookupImplicitSourceForState(List<String> path)
+		throws LookupException, SemanticException;
 	
 	/**
      * In processing an additional attribute definition, constructs the
@@ -632,8 +645,91 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
          */
         void deregisterEnvironment(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> environment);
 	}
+	
+	/**
+	 * Optional adapter interface for look-up methods that throw
+	 * {@link LookupException}s on abnormal failures (usually ambiguous names).
+	 * 
+	 * @author Christian W. Damus (cdamus)
+	 * 
+	 * @since 1.2
+	 */
+	interface Lookup<PK, C, O, P> {
+		/**
+		 * Finds the package identified by the specified sequence of names
+	     * (a qualified name).
+		 * 
+		 * @param names the qualified name
+		 * @return the matching package, or <code>null</code> if not found
+		 * @throws LookupException if lookup fails due to an error such as an ambiguity
+		 */	
+		PK tryLookupPackage(List<String> names) throws LookupException; 
+		
+		/**
+		 * Finds the classifier identified by the specified sequence of names
+	     * (a qualified name).
+	     * 
+		 * @param names the qualified name
+		 * @return the matching classifier, or <code>null</code> if not found
+		 * @throws LookupException if lookup fails due to an error such as an ambiguity
+		 */	
+		C tryLookupClassifier(List<String> names) throws LookupException; 
+	    
+	    /**
+	     * Find an operation in the specified class.  Used to resolve operation
+	     * calls.
+	     * 
+	     * @param owner the owner type of the called operation, or <code>null</code>
+	     *     to find an implicit owner type (in iteration expressions)
+	     * @param name the name of the called operation
+	     * @param args the arguments (expressions or variables) to be matched against
+	     *     the parameter signature of the operation
+	     * 
+	     * @return the matching operation, or <code>null</code> if not found
+         * @throws LookupException if lookup fails due to an error such as an ambiguity
+	     */     
+	    O tryLookupOperation(C owner, String name, List<? extends TypedElement<C>> args) throws LookupException;
+	    
+	    /**
+	     * Finds a property defined or inherited by the specified classifier.
+	     * 
+	     * @param owner the owner of the property that we are looking for, or
+	     *     <code>null</code> to find an implicit owner type (in iteration
+	     *     expressions)
+	     * @param name the property name
+	     * 
+	     * @return the property, or <code>null</code> if it could not be found
+         * @throws LookupException if lookup fails due to an error such as an ambiguity
+	     */     
+	    P tryLookupProperty(C owner, String name) throws LookupException;
+	    
+	    /**
+	     * Finds a reference in the specified class to the named association class.
+	     * 
+	     * @param owner the referencing class to search, or
+	     *     <code>null</code> to find an implicit owner type (in iteration
+	     *     expressions)
+	     * @param name the association class name (with an initial lower case as
+	     *     per the OCL convention)
+	     *     
+	     * @return the association class (generically as a classifier), or
+	     *     <code>null</code> if the specified <code>owner</code> is not at the
+	     *     end of an association with this particular name
+         * @throws LookupException if lookup fails due to an error such as an ambiguity
+	     */     
+	    C tryLookupAssociationClassReference(C owner, String name) throws LookupException;
+	    
+	    /**
+	     * Finds a received signal in the specified classifier.
+	     * 
+	     * @param owner the owner type of the signal reception
+	     * @param name the name of the signal
+	     * @param args the arguments (expressions or variables) matching the
+	     *     properties of the signal (parameters of the reception feature)
+	     * 
+	     * @return the matching signal, or <code>null</code> if not found
+         * @throws LookupException if lookup fails due to an error such as an ambiguity
+	     */     
+	    C tryLookupSignal(C owner, String name, List<? extends TypedElement<C>> args) throws LookupException;
+	}
 }
-
-	
-
-	

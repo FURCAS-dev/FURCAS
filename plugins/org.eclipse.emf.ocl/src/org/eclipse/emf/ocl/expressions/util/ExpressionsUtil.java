@@ -38,7 +38,6 @@ import org.eclipse.emf.ocl.uml.Constraint;
 import org.eclipse.emf.ocl.uml.UMLPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.helper.OCLHelper;
-import org.eclipse.ocl.internal.parser.OCLLexer;
 
 /**
  * Static utilities for working with expressions.
@@ -47,6 +46,7 @@ import org.eclipse.ocl.internal.parser.OCLLexer;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class ExpressionsUtil {
 	private static final String SELF_NAME = "self"; //$NON-NLS-1$
 	
@@ -688,8 +688,9 @@ public class ExpressionsUtil {
 	private static CompatibilityParser createParser(String prefix,
 			EnvironmentFactory environmentFactory, String text) {
 		
-		OCLLexer lexer = new OCLLexer((prefix + '\n' + text).toCharArray());
-		CompatibilityParser result = new CompatibilityParser(lexer, environmentFactory);
+		CompatibilityParser result = new CompatibilityParser(
+		    prefix + '\n' + text,
+		    environmentFactory);
 		
 		// we prefix the constraint with "inv:", "pre:", "def:", etc. which the
 		//    user cannot see, so we want error resporting to be relative

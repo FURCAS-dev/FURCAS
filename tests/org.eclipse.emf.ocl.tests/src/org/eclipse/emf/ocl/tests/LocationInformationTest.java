@@ -434,7 +434,7 @@ public class LocationInformationTest
 		assertLocation(callExp, 0, exprString.length());
 		
 		
-		StateExp state = asState((OCLExpression) callExp.getArgument().get(0));
+		StateExp state = asState(callExp.getArgument().get(0));
 		assertLocation(state,
 				exprString.indexOf("Bad"), //$NON-NLS-1$
 				exprString.indexOf(")")); //$NON-NLS-1$

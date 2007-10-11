@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * @model abstract="true"
  */
+@Deprecated
 public interface NavigationCallExp extends FeatureCallExp {
 	
 	/**

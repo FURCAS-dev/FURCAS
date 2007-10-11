@@ -31,6 +31,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * 
  *
  */
+@Deprecated
 public interface PrimitiveString extends PrimitiveType {
 	// nothing to add
 	/**

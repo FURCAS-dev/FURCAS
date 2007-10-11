@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -47,156 +47,157 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralExp {
 	/**
-	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPart()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPart()
+     * @generated
+     * @ordered
+     */
 	protected EList<TupleLiteralPart<EClassifier, EStructuralFeature>> part;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TupleLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.TUPLE_LITERAL_EXP;
-	}
+        return EcorePackage.Literals.TUPLE_LITERAL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<TupleLiteralPart<EClassifier, EStructuralFeature>> getPart() {
-		if (part == null) {
-			part = new EObjectContainmentEList<TupleLiteralPart<EClassifier, EStructuralFeature>>(TupleLiteralPart.class, this, EcorePackage.TUPLE_LITERAL_EXP__PART);
-		}
-		return part;
-	}
+        if (part == null) {
+            part = new EObjectContainmentEList<TupleLiteralPart<EClassifier, EStructuralFeature>>(TupleLiteralPart.class, this, EcorePackage.TUPLE_LITERAL_EXP__PART);
+        }
+        return part;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EcorePackage.TUPLE_LITERAL_EXP__PART:
+                return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
-				return getPart();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EcorePackage.TUPLE_LITERAL_EXP__PART:
+                return getPart();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
-				getPart().clear();
-				getPart().addAll((Collection<? extends TupleLiteralPart<EClassifier, EStructuralFeature>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EcorePackage.TUPLE_LITERAL_EXP__PART:
+                getPart().clear();
+                getPart().addAll((Collection<? extends TupleLiteralPart<EClassifier, EStructuralFeature>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
-				getPart().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.TUPLE_LITERAL_EXP__PART:
+                getPart().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
-				return part != null && !part.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.TUPLE_LITERAL_EXP__PART:
+                return part != null && !part.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.TUPLE_LITERAL_EXP__PART: return ExpressionsPackage.TUPLE_LITERAL_EXP__PART;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
+            switch (derivedFeatureID) {
+                case EcorePackage.TUPLE_LITERAL_EXP__PART: return ExpressionsPackage.TUPLE_LITERAL_EXP__PART;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.TUPLE_LITERAL_EXP__PART: return EcorePackage.TUPLE_LITERAL_EXP__PART;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.TUPLE_LITERAL_EXP__PART: return EcorePackage.TUPLE_LITERAL_EXP__PART;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitTupleLiteralExp(this);
 	}
 

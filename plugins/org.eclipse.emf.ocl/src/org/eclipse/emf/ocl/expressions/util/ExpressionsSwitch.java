@@ -81,6 +81,7 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * @see org.eclipse.emf.ocl.expressions.ExpressionsPackage
  * @generated
  */
+@Deprecated
 public class ExpressionsSwitch {
 	/**
 	 * <!-- begin-user-doc -->

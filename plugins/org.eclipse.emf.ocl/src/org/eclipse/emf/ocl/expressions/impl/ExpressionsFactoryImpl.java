@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsFactoryImpl.java,v 1.4 2007/02/14 14:45:40 cdamus Exp $
+ * $Id: ExpressionsFactoryImpl.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -59,7 +59,6 @@ import org.eclipse.emf.ocl.expressions.VariableExp;
 import org.eclipse.emf.ocl.internal.parser.CompatibilityParser;
 import org.eclipse.emf.ocl.parser.ParserException;
 import org.eclipse.emf.ocl.uml.Constraint;
-import org.eclipse.ocl.internal.parser.OCLLexer;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory </b>. <!--
@@ -109,6 +108,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+    @Override
     public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
@@ -147,6 +147,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+    @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case ExpressionsPackage.COLLECTION_KIND:
@@ -160,6 +161,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+    @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case ExpressionsPackage.COLLECTION_KIND:
@@ -174,9 +176,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 */
 	public OCLExpression createOCLExpression(String text)
 			throws ParserException {
-		//
-		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		CompatibilityParser parser = new CompatibilityParser(lexer);
+		CompatibilityParser parser = new CompatibilityParser(text);
 		parser.setTraceFlag(false);
 
 		EList constraints = new BasicEList();
@@ -450,7 +450,9 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 */
 	public CollectionKind createCollectionKindFromString(EDataType eDataType, String initialValue) {
 		CollectionKind result = CollectionKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null) {
+            throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
 		return result;
 	}
 
@@ -476,6 +478,7 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements
 	 * @deprecated
 	 * @generated
 	 */
+    @Deprecated
     public static ExpressionsPackage getPackage() {
 		return ExpressionsPackage.eINSTANCE;
 	}

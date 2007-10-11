@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.3 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -51,7 +51,8 @@ public abstract class PrimitiveLiteralExpImpl extends LiteralExpImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.PRIMITIVE_LITERAL_EXP;
 	}
 

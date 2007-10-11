@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.5 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.6 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -115,7 +115,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.CALL_EXP;
     }
 
@@ -209,7 +210,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.CALL_EXP__SOURCE:
                 return basicSetSource(null, msgs);
@@ -222,7 +224,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION:
                 return new Integer(getPropertyStartPosition());
@@ -239,7 +242,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION:
                 setPropertyStartPosition(((Integer)newValue).intValue());
@@ -259,7 +263,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION:
                 setPropertyStartPosition(PROPERTY_START_POSITION_EDEFAULT);
@@ -279,7 +284,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION:
                 return propertyStartPosition != PROPERTY_START_POSITION_EDEFAULT;
@@ -296,7 +302,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+	@Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
         if (baseClass == CallingASTNode.class) {
             switch (derivedFeatureID) {
                 case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION;
@@ -312,7 +319,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+	@Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
         if (baseClass == CallingASTNode.class) {
             switch (baseFeatureID) {
                 case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION: return ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION;
@@ -328,7 +336,8 @@ public abstract class CallExpImpl extends OCLExpressionImpl implements CallExp {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 

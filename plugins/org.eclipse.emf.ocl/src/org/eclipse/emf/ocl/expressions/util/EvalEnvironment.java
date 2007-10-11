@@ -35,6 +35,7 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
  * 
  * @author Tim Klinger (tklinger)
  */
+@Deprecated
 public class EvalEnvironment implements EvaluationEnvironment {
 
     private final Map map = new HashMap();
@@ -112,6 +113,7 @@ public class EvalEnvironment implements EvaluationEnvironment {
     /**
      * Returns a string representation of the bindings
      */
+    @Override
     public String toString() {
         return map.toString();
     }

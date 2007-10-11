@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.2 2006/05/18 19:55:43 cdamus Exp $
+ * $Id: IterationTemplateClosure.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -51,7 +51,8 @@ public class IterationTemplateClosure extends IterationTemplate {
 	/**
 	 * Recursively evaluates the iterator body expression.
 	 */
-	protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
+	@Override
+    protected Object evaluateResult(List iterators, String resultName, Object bodyVal) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		Set currVal = (Set) env.getValueOf(resultName);
 		

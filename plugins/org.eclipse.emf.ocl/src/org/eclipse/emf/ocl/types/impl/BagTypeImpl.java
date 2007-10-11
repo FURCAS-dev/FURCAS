@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -66,7 +66,8 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
 		this.setClassifierID(TypesPackage.BAG_TYPE);
 	}
 	
-	public String getName() {
+	@Override
+    public String getName() {
 		if (name == null) {
 			if (elementType != null) {
 				name = "Bag(" + elementType.getName() + ')'; //$NON-NLS-1$
@@ -83,7 +84,8 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public CollectionKind getKind() {
+	@Override
+    public CollectionKind getKind() {
 		return CollectionKind.BAG_LITERAL;
 	}
 	
@@ -95,7 +97,8 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
 	 * @param args
 	 * @return the result type
 	 */
-	public EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args)
+	@Override
+    public EClassifier getResultTypeFor(EClassifier ownerType, int opcode, EList args)
 					throws SemanticException {
 		
 									
@@ -215,13 +218,15 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
     	return result;
     }
 	
-	public EList getOperations() {
+	@Override
+    public EList getOperations() {
 		if (operations == null)
 			operations = createOperations();
 		return operations;
 	}		
 
-	public EList getIterators() {
+	@Override
+    public EList getIterators() {
 		if (iterators == null) {
 			iterators = createIterators();
 		}
@@ -234,7 +239,8 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.BAG_TYPE;
 	}
 

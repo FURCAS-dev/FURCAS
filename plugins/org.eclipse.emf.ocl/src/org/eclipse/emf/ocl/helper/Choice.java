@@ -36,6 +36,7 @@ import org.eclipse.ocl.helper.OCLHelper;
  * 
  * @author Yasser Lulu 
  */
+@Deprecated
 public class Choice {
 
 	private String name;
@@ -86,11 +87,13 @@ public class Choice {
 		return kind;
 	}
 
-	public int hashCode() {
+	@Override
+    public int hashCode() {
 		return (getName() == null) ? 0 : getName().hashCode();
 	}
 	
-	public boolean equals(Object obj) {
+	@Override
+    public boolean equals(Object obj) {
 		boolean result = obj instanceof Choice;
 		
 		if (result) {
@@ -114,7 +117,8 @@ public class Choice {
 		return (a == null && b == null) || ((a != null) && a.equals(b));
 	}
 	
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer result = new StringBuffer();
 		
 		result.append("Choice["); //$NON-NLS-1$

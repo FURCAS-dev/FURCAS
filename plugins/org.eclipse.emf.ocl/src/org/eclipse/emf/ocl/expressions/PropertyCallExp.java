@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface PropertyCallExp extends NavigationCallExp {
 	/**
 	 * <!-- begin-user-doc -->

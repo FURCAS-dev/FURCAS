@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.5 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.6 2007/10/11 23:05:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal;
@@ -61,7 +61,8 @@ public class OCLPlugin
 	}
 
 	// implements the inherited method
-	public ResourceLocator getPluginResourceLocator() {
+	@Override
+    public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
 

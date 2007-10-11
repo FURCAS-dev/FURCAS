@@ -28,6 +28,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * @author Edith Schonberg (edith)
  *
  */
+@Deprecated
 public interface PrimitiveInteger extends PrimitiveReal {
 	// nothing to add
 	/**

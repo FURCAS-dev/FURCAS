@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleType.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
+ * $Id: TupleType.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -33,15 +33,15 @@ public interface TupleType<O, P> extends PredefinedType<O> {
 	String SINGLETON_NAME = "Tuple"; //$NON-NLS-1$
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model type="java.lang.Object"
-	 * @generated
-	 */
+     * @model
+     * @generated
+     */
 	EList<P> oclProperties();
 
 } // TupleType

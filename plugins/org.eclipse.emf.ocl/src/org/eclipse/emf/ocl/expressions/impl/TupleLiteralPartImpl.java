@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -172,7 +172,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.TUPLE_LITERAL_PART;
     }
 
@@ -355,7 +356,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE:
                 return basicSetValue(null, msgs);
@@ -368,7 +370,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION:
                 return new Integer(getStartPosition());
@@ -392,7 +395,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION:
                 setStartPosition(((Integer)newValue).intValue());
@@ -421,7 +425,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION:
                 setStartPosition(START_POSITION_EDEFAULT);
@@ -450,7 +455,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION:
                 return startPosition != START_POSITION_EDEFAULT;
@@ -473,7 +479,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+	@Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
         if (baseClass == Visitable.class) {
             switch (derivedFeatureID) {
                 default: return -1;
@@ -501,7 +508,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+	@Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
         if (baseClass == Visitable.class) {
             switch (baseFeatureID) {
                 default: return -1;
@@ -529,7 +537,8 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String toString() {
+	@Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

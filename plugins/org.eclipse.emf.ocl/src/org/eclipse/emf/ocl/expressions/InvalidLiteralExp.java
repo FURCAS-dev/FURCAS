@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExp.java,v 1.2 2007/01/25 18:34:36 cdamus Exp $
+ * $Id: InvalidLiteralExp.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions;
 
@@ -30,6 +30,7 @@ package org.eclipse.emf.ocl.expressions;
  * @model
  * @generated
  */
+@Deprecated
 public interface InvalidLiteralExp extends LiteralExp {
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUtil.java,v 1.3 2007/03/27 15:05:42 cdamus Exp $
+ * $Id: CompatibilityUtil.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -228,10 +228,10 @@ public class CompatibilityUtil {
 		EObject result;
 		
 		if (astNode instanceof Constraint) {
-			result = (EObject) ToOldASVisitor.getInstance(env).visitConstraint(
+			result = ToOldASVisitor.getInstance(env).visitConstraint(
 					(Constraint) astNode);
 		} else if (astNode instanceof org.eclipse.ocl.utilities.Visitable) {
-			result = (EObject) ((org.eclipse.ocl.utilities.Visitable) astNode)
+			result = ((org.eclipse.ocl.utilities.Visitable) astNode)
 				.accept(ToOldASVisitor.getInstance(env));
 		} else if (astNode instanceof CallOperationAction) {
 			result = ToOldASVisitor.getInstance(env).visitCallOperationAction(

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.3 2007/06/06 18:56:53 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.4 2007/10/11 23:05:09 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -42,7 +42,6 @@ import org.eclipse.emf.ocl.types.SetType;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.types.util.Types;
 import org.eclipse.emf.ocl.uml.Constraint;
-import org.eclipse.ocl.helper.Choice;
 
 /**
  * Tests for def expressions (additional properties and operations).
@@ -569,7 +568,8 @@ public class DefExpressionTest
 	// test framework
 	//
 	
-	protected void tearDown() throws Exception {
+	@Override
+    protected void tearDown() throws Exception {
 		super.tearDown();
 		
 		for (Iterator iter = fruitPackage.getEClassifiers().iterator(); iter.hasNext();) {

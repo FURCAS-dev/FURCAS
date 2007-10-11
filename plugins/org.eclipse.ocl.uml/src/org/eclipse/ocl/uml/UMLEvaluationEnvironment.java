@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.6 2007/07/16 17:07:29 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.7 2007/10/11 23:05:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -44,6 +44,7 @@ import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.utilities.PredefinedType;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Class;
@@ -340,7 +341,7 @@ public class UMLEvaluationEnvironment
                         if (eEnd != null) {
                             Collection<Object> result = createCollection(property);
 
-                            for (EStructuralFeature.Setting setting : UMLUtil
+                            for (EStructuralFeature.Setting setting : UML2Util
                                 .getNonNavigableInverseReferences(esource)) {
                                 if (setting.getEStructuralFeature() == eEnd) {
                                     result.add(setting.getEObject());
@@ -684,7 +685,7 @@ public class UMLEvaluationEnvironment
         Association association = property.getAssociation();
         Property otherEnd = property.getOtherEnd();
 
-        for (EStructuralFeature.Setting setting : UMLUtil
+        for (EStructuralFeature.Setting setting : UML2Util
             .getNonNavigableInverseReferences(source)) {
 
             if (setting.getEStructuralFeature() == UMLPackage.Literals.INSTANCE_VALUE__INSTANCE) {
@@ -744,7 +745,7 @@ public class UMLEvaluationEnvironment
             if (index >= 0) {
                 Object actualValue = getValue(slot);
 
-                if (UMLUtil.safeEquals(actualValue, values.get(index))) {
+                if (UML2Util.safeEquals(actualValue, values.get(index))) {
                     found++;
                 }
             }
@@ -856,7 +857,7 @@ public class UMLEvaluationEnvironment
     private Collection<Slot> getSlotsReferencing(InstanceSpecification instance) {
         Collection<Slot> result = CollectionUtil.createNewSet();
 
-        for (EStructuralFeature.Setting setting : UMLUtil
+        for (EStructuralFeature.Setting setting : UML2Util
             .getNonNavigableInverseReferences(instance)) {
             if (setting.getEStructuralFeature() == UMLPackage.Literals.INSTANCE_VALUE__INSTANCE) {
                 InstanceValue value = (InstanceValue) setting.getEObject();
@@ -1070,7 +1071,7 @@ public class UMLEvaluationEnvironment
         }
 
         if (ecorePackage != null) {
-            result = ecorePackage.getEClassifier(UMLUtil
+            result = ecorePackage.getEClassifier(UML2Util
                 .getValidJavaIdentifier(umlClassifier.getName()));
         }
 

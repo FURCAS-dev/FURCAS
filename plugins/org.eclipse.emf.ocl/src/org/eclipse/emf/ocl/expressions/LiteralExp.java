@@ -25,6 +25,7 @@ package org.eclipse.emf.ocl.expressions;
  * @model abstract="true"
  * 
  */
+@Deprecated
 public interface LiteralExp
 	extends OCLExpression{
 	//	empty impl.

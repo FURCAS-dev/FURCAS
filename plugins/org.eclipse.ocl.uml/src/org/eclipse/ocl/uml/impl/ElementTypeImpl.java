@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.5 2007/10/11 23:05:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -35,27 +35,28 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 @SuppressWarnings("restriction")
 public class ElementTypeImpl extends ClassifierImpl implements ElementType {
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ElementTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return UMLPackage.Literals.ELEMENT_TYPE;
-	}
+        return UMLPackage.Literals.ELEMENT_TYPE;
+    }
     
     /**
      * @generated NOT
      */
+    @Override
     public String getName() {
         if (name == null) {
             name = SINGLETON_NAME;
