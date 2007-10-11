@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: LocationInformationTest.java,v 1.3 2007/10/11 23:04:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -476,7 +476,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<Classifier> createPrecondition(Operation context, String text) {
+	@Override
+    protected OCLExpression<Classifier> createPrecondition(Operation context, String text) {
 		OCLExpression<Classifier> result = super.createPrecondition(context, text);
 		
 		assertAllPositionsSet(result);
@@ -484,7 +485,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<Classifier> createPostcondition(Operation context, String text) {
+	@Override
+    protected OCLExpression<Classifier> createPostcondition(Operation context, String text) {
 		OCLExpression<Classifier> result = super.createPostcondition(context, text);
 		
 		assertAllPositionsSet(result);
@@ -492,7 +494,8 @@ public class LocationInformationTest
 		return result;
 	}
 	
-	protected OCLExpression<Classifier> createBodyCondition(Operation context, String text) {
+	@Override
+    protected OCLExpression<Classifier> createBodyCondition(Operation context, String text) {
 		OCLExpression<Classifier> result = super.createBodyCondition(context, text);
 		
 		assertAllPositionsSet(result);
@@ -656,31 +659,36 @@ public class LocationInformationTest
 			assertTrue("End not after start: " + tp, tp.getEndPosition() > tp.getStartPosition()); //$NON-NLS-1$
 		}
 
-		public Object visitOperationCallExp(OperationCallExp<Classifier, Operation> oc) {
+		@Override
+        public Object visitOperationCallExp(OperationCallExp<Classifier, Operation> oc) {
 			assertPositions(oc);
 
 			return super.visitOperationCallExp(oc);
 		}
 
-		public Object visitVariableExp(VariableExp<Classifier, Parameter> v) {
+		@Override
+        public Object visitVariableExp(VariableExp<Classifier, Parameter> v) {
 			assertPositions(v);
 			
 			return super.visitVariableExp(v);
 		}
 
-		public Object visitPropertyCallExp(PropertyCallExp<Classifier, Property> pc) {
+		@Override
+        public Object visitPropertyCallExp(PropertyCallExp<Classifier, Property> pc) {
 			assertPositions(pc);
 			
 			return super.visitPropertyCallExp(pc);
 		}
 
-		public Object visitAssociationClassCallExp(AssociationClassCallExp<Classifier, Property> ac) {
+		@Override
+        public Object visitAssociationClassCallExp(AssociationClassCallExp<Classifier, Property> ac) {
 			assertPositions(ac);
 			
 			return super.visitAssociationClassCallExp(ac);
 		}
 
-		public Object visitVariable(Variable<Classifier, Parameter> vd) {
+		@Override
+        public Object visitVariable(Variable<Classifier, Parameter> vd) {
 			// the 'self' variable is often implicit, in which case it is not
 			//    in the input at all, so don't verify it
 			if (!"self".equals(vd.getName())) { //$NON-NLS-1$
@@ -690,100 +698,118 @@ public class LocationInformationTest
 			return super.visitVariable(vd);
 		}
 
-		public Object visitIfExp(IfExp<Classifier> i) {
+		@Override
+        public Object visitIfExp(IfExp<Classifier> i) {
 			assertPositions(i);
 			
 			return super.visitIfExp(i);
 		}
 
-		public Object visitTypeExp(TypeExp<Classifier> t) {
+		@Override
+        public Object visitTypeExp(TypeExp<Classifier> t) {
 			assertPositions(t);
 			return null;
 		}
 
-		public Object visitUnspecifiedValueExp(UnspecifiedValueExp<Classifier> uv) {
+		@Override
+        public Object visitUnspecifiedValueExp(UnspecifiedValueExp<Classifier> uv) {
 			assertPositions(uv);
 			return null;
 		}
 		
-		public Object visitStateExp(StateExp<Classifier, State> s) {
+		@Override
+        public Object visitStateExp(StateExp<Classifier, State> s) {
 			assertPositions(s);
 			return null;
 		}
 		
-		public Object visitMessageExp(MessageExp<Classifier, CallOperationAction, SendSignalAction> m) {
+		@Override
+        public Object visitMessageExp(MessageExp<Classifier, CallOperationAction, SendSignalAction> m) {
 			assertPositions(m);
 			
 			return super.visitMessageExp(m);
 		}
 
-		public Object visitIntegerLiteralExp(IntegerLiteralExp<Classifier> il) {
+		@Override
+        public Object visitIntegerLiteralExp(IntegerLiteralExp<Classifier> il) {
 			assertPositions(il);
 			return null;
 		}
 
-		public Object visitRealLiteralExp(RealLiteralExp<Classifier> rl) {
+		@Override
+        public Object visitRealLiteralExp(RealLiteralExp<Classifier> rl) {
 			assertPositions(rl);
 			return null;
 		}
 
-		public Object visitStringLiteralExp(StringLiteralExp<Classifier> sl) {
+		@Override
+        public Object visitStringLiteralExp(StringLiteralExp<Classifier> sl) {
 			assertPositions(sl);
 			return null;
 		}
 
-		public Object visitBooleanLiteralExp(BooleanLiteralExp<Classifier> bl) {
+		@Override
+        public Object visitBooleanLiteralExp(BooleanLiteralExp<Classifier> bl) {
 			assertPositions(bl);
 			return null;
 		}
 
-		public Object visitTupleLiteralExp(TupleLiteralExp<Classifier, Property> tl) {
+		@Override
+        public Object visitTupleLiteralExp(TupleLiteralExp<Classifier, Property> tl) {
 			assertPositions(tl);
 			
 			return super.visitTupleLiteralExp(tl);
 		}
 		
-		public Object visitTupleLiteralPart(TupleLiteralPart<Classifier, Property> tp) {
+		@Override
+        public Object visitTupleLiteralPart(TupleLiteralPart<Classifier, Property> tp) {
 			assertPositions(tp);
 			
 			return super.visitTupleLiteralPart(tp);
 		}
 
-		public Object visitLetExp(LetExp<Classifier, Parameter> l) {
+		@Override
+        public Object visitLetExp(LetExp<Classifier, Parameter> l) {
 			assertPositions(l);
 			
 			return super.visitLetExp(l);
 		}
 
-		public Object visitEnumLiteralExp(EnumLiteralExp<Classifier, EnumerationLiteral> el) {
+		@Override
+        public Object visitEnumLiteralExp(EnumLiteralExp<Classifier, EnumerationLiteral> el) {
 			assertPositions(el);
 			return null;
 		}
 
-		public Object visitCollectionLiteralExp(CollectionLiteralExp<Classifier> cl) {
+		@Override
+        public Object visitCollectionLiteralExp(CollectionLiteralExp<Classifier> cl) {
 			assertPositions(cl);
 			
 			return super.visitCollectionLiteralExp(cl);
 		}
 
-		public Object visitIteratorExp(IteratorExp<Classifier, Parameter> ie) {
+		@Override
+        public Object visitIteratorExp(IteratorExp<Classifier, Parameter> ie) {
 			assertPositions(ie);
 			
 			return super.visitIteratorExp(ie);
 		}
 
-		public Object visitIterateExp(IterateExp<Classifier, Parameter> ie) {
+		@Override
+        public Object visitIterateExp(IterateExp<Classifier, Parameter> ie) {
 			assertPositions(ie);
 			
 			return super.visitIterateExp(ie);
 		}
 
-		public Object visitInvalidLiteralExp(InvalidLiteralExp<Classifier> il) {
+		@Override
+        public Object visitInvalidLiteralExp(InvalidLiteralExp<Classifier> il) {
 			assertPositions(il);
 			return null;
 		}
 
-		public Object visitNullLiteralExp(NullLiteralExp<Classifier> il) {
+		@Override
+        public Object visitNullLiteralExp(NullLiteralExp<Classifier> il) {
 			assertPositions(il);
 			return null;
 		}

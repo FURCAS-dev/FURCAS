@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerExpressionTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: InitOrDerExpressionTest.java,v 1.3 2007/10/11 23:04:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -376,7 +376,8 @@ public class InitOrDerExpressionTest
 	// Framework methods
 	//
 	
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 		
 		banana = fruitPackage.createOwnedClass("Banana", false); //$NON-NLS-1$
@@ -392,7 +393,8 @@ public class InitOrDerExpressionTest
 		allApples.add(anotherApple);
 	}
 	
-	protected void tearDown() throws Exception {
+	@Override
+    protected void tearDown() throws Exception {
 		allApples = null;
 		
 		fruitPackage.getOwnedTypes().remove(banana);

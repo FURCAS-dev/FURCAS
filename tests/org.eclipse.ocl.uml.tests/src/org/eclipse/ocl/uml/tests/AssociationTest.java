@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.4 2007/04/25 22:22:01 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.5 2007/10/11 23:04:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -496,7 +496,7 @@ public class AssociationTest
 		
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "this."); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
 			assertNotNull(choices);
 			
 			// regular reference feature
