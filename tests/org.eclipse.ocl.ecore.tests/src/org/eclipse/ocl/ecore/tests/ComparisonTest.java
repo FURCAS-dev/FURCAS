@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.4 2007/03/27 15:05:43 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.5 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -507,7 +507,8 @@ public class ComparisonTest
 	// Framework methods
 	//
 	
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 		
 		pkg = EcoreFactory.eINSTANCE.createEPackage();
@@ -638,14 +639,16 @@ public class ComparisonTest
 			return value.compareTo((arg0).value);
 		}
 
-		public int hashCode() {
+		@Override
+        public int hashCode() {
 			final int PRIME = 31;
 			int result = 1;
 			result = PRIME * result + ((value == null) ? 0 : value.hashCode());
 			return result;
 		}
 
-		public boolean equals(Object obj) {
+		@Override
+        public boolean equals(Object obj) {
 			if (this == obj)
 				return true;
 			if (obj == null)
@@ -709,14 +712,16 @@ public class ComparisonTest
 			return value >= n.value;
 		}
 
-		public int hashCode() {
+		@Override
+        public int hashCode() {
 			final int PRIME = 31;
 			int result = 1;
 			result = PRIME * result + value;
 			return result;
 		}
 
-		public boolean equals(Object obj) {
+		@Override
+        public boolean equals(Object obj) {
 			if (this == obj)
 				return true;
 			if (obj == null)
@@ -729,7 +734,8 @@ public class ComparisonTest
 			return true;
 		}
 		
-		public String toString() {
+		@Override
+        public String toString() {
 			return "Numero(" + value + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}

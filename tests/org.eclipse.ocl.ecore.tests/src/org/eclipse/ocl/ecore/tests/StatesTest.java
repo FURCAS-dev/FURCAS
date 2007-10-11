@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.2 2007/02/14 14:45:49 cdamus Exp $
+ * $Id: StatesTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -205,11 +205,13 @@ public class StatesTest
 	
 	public static class StatefulFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
-		public EcoreEnvironment createEnvironment() {
+		@Override
+        public EcoreEnvironment createEnvironment() {
 			return new StatefulFruitEnvironment(this);
 		}
 
-		public EcoreEnvironment createEnvironment(
+		@Override
+        public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 			return new StatefulFruitEnvironment(this, parent);
 		}
@@ -255,7 +257,8 @@ public class StatesTest
 					(EClass) getOCLStandardLibrary().getState());
 		}
 
-		protected void collectStates(EClassifier owner, List<String> pathPrefix, List<EObject> states) {
+		@Override
+        protected void collectStates(EClassifier owner, List<String> pathPrefix, List<EObject> states) {
 			if (owner == fruit) {
 				if (pathPrefix.isEmpty()) {
 					states.add(fruitRipe);
@@ -275,7 +278,8 @@ public class StatesTest
         @Override
         public UMLReflection<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> getUMLReflection() {
             return new UMLReflectionImpl() {
-        		public String getName(Object namedElement) {
+        		@Override
+                public String getName(Object namedElement) {
         			if (namedElement == fruitRipe) {
         				return "Ripe"; //$NON-NLS-1$
         			} else if (namedElement == fruitBad) {
