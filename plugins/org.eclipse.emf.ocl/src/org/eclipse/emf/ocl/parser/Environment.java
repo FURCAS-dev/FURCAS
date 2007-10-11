@@ -50,6 +50,7 @@ import org.eclipse.emf.ocl.expressions.Variable;
  * @see EcoreEnvironment
  * @see EnvironmentFactory
  */
+@Deprecated
 public interface Environment {
 	/**
 	 * Source URI of the annotation for the expression defining an additional

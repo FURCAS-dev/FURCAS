@@ -31,6 +31,7 @@ import org.eclipse.emf.ocl.uml.Constraint;
  * Design Patterns -- Visitor.
  * 
  */
+@Deprecated
 public interface Visitor  {
 	public Object visitOperationCallExp(OperationCallExp oc);
 	public Object visitVariableExp(VariableExp v);

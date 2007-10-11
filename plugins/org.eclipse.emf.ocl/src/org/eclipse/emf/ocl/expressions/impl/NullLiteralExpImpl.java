@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NullLiteralExpImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: NullLiteralExpImpl.java,v 1.2 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -52,11 +52,13 @@ public class NullLiteralExpImpl extends LiteralExpImpl implements NullLiteralExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.NULL_LITERAL_EXP;
 	}
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitNullLiteralExp(this);
 	}
 

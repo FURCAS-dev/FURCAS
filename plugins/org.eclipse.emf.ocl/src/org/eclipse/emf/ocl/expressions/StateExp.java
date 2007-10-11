@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExp.java,v 1.2 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: StateExp.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions;
 
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
+@Deprecated
 public interface StateExp extends OCLExpression {
 	/**
 	 * <!-- begin-user-doc -->

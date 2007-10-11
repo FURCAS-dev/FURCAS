@@ -23,6 +23,7 @@ package org.eclipse.emf.ocl.expressions;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface CollectionRange extends CollectionLiteralPart {
 	/**
 	 * <!-- begin-user-doc -->

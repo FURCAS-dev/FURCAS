@@ -63,6 +63,7 @@ import org.eclipse.emf.ocl.utilities.TypedASTNode;
  * @see org.eclipse.emf.ocl.types.TypesPackage
  * @generated NOT
  */
+@Deprecated
 public class TypesSwitch<T> {
 	/**
 	 * <!-- begin-user-doc -->

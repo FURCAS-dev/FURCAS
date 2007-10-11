@@ -29,6 +29,7 @@ import org.eclipse.emf.ocl.utilities.PredefinedType;
  *
  *
  */
+@Deprecated
 public interface PrimitiveType extends EDataType, PredefinedType {
 	
 	/**

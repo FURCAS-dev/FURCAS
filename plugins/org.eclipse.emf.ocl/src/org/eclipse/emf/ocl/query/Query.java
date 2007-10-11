@@ -36,6 +36,7 @@ import org.eclipse.ocl.ecore.OCL;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface Query extends EObject {
 	
 	/**

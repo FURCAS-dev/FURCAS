@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLAdapterFactory.java,v 1.4 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: UMLAdapterFactory.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * @see org.eclipse.emf.ocl.uml.UMLPackage
  * @generated
  */
+@Deprecated
 public class UMLAdapterFactory extends AdapterFactoryImpl {
 
 	/**
@@ -77,7 +78,8 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
+	@Override
+    public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -95,28 +97,36 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected UMLSwitch modelSwitch =
 		new UMLSwitch() {
-			public Object caseCallOperationAction(CallOperationAction object) {
+			@Override
+            public Object caseCallOperationAction(CallOperationAction object) {
 				return createCallOperationActionAdapter();
 			}
-			public Object caseConstraint(Constraint object) {
+			@Override
+            public Object caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
-			public Object caseSendSignalAction(SendSignalAction object) {
+			@Override
+            public Object caseSendSignalAction(SendSignalAction object) {
 				return createSendSignalActionAdapter();
 			}
-			public Object caseTypedElement(TypedElement object) {
+			@Override
+            public Object caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
 			}
-			public Object caseEModelElement(EModelElement object) {
+			@Override
+            public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
-			public Object caseENamedElement(ENamedElement object) {
+			@Override
+            public Object caseENamedElement(ENamedElement object) {
 				return createENamedElementAdapter();
 			}
-			public Object caseVisitable(Visitable object) {
+			@Override
+            public Object caseVisitable(Visitable object) {
 				return createVisitableAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+            public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -129,7 +139,8 @@ public class UMLAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	@Override
+    public Adapter createAdapter(Notifier target) {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 

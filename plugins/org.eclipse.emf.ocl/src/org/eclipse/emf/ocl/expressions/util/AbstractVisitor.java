@@ -56,6 +56,7 @@ import org.eclipse.emf.ocl.uml.Constraint;
  * instead.
  * 
  */
+@Deprecated
 public abstract class AbstractVisitor implements Visitor {
 	/**
 	 * <!-- begin-user-doc -->

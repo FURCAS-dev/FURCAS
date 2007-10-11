@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLSwitch.java,v 1.4 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: UMLSwitch.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.util;
 
@@ -45,6 +45,7 @@ import org.eclipse.emf.ocl.utilities.Visitable;
  * @see org.eclipse.emf.ocl.uml.UMLPackage
  * @generated
  */
+@Deprecated
 public class UMLSwitch {
 
 	/**

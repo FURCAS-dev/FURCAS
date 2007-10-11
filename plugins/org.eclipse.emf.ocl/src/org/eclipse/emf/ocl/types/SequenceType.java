@@ -27,6 +27,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface SequenceType  extends CollectionType{	
 	// nothing to add
 	/**

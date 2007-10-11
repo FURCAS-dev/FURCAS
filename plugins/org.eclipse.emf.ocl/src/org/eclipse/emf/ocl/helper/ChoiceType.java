@@ -36,6 +36,7 @@ import org.eclipse.ocl.helper.OCLHelper;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class ChoiceType
 	extends AbstractEnumerator {
 

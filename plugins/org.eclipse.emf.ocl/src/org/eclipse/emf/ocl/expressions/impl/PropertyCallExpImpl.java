@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.4 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -71,7 +71,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.PROPERTY_CALL_EXP;
     }
 
@@ -117,7 +118,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * Accept a visitor
 	 * @param v the visitor to accept
 	 */
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitPropertyCallExp(this);
 	}
 		
@@ -127,7 +129,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
                 if (resolve) return getReferredProperty();
@@ -141,7 +144,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
                 setReferredProperty((EStructuralFeature)newValue);
@@ -155,7 +159,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
                 setReferredProperty((EStructuralFeature)null);
@@ -169,7 +174,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
                 return referredProperty != null;
@@ -180,7 +186,8 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
 	/**
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 

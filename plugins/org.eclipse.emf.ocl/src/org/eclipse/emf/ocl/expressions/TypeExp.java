@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExp.java,v 1.2 2007/01/25 18:34:36 cdamus Exp $
+ * $Id: TypeExp.java,v 1.3 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions;
 
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClassifier;
  * @model
  * @generated
  */
+@Deprecated
 public interface TypeExp extends OCLExpression {
 	/**
 	 * <!-- begin-user-doc -->

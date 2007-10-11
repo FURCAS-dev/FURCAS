@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesFactoryImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: UtilitiesFactoryImpl.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -78,7 +78,8 @@ public class UtilitiesFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject create(EClass eClass) {
+	@Override
+    public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case UtilitiesPackage.VISITABLE: return createVisitable();
 			default:
@@ -91,7 +92,8 @@ public class UtilitiesFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object createFromString(EDataType eDataType, String initialValue) {
+	@Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -103,7 +105,8 @@ public class UtilitiesFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertToString(EDataType eDataType, Object instanceValue) {
+	@Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -135,7 +138,8 @@ public class UtilitiesFactoryImpl
 	 * @deprecated
 	 * @generated
 	 */
-	public static UtilitiesPackage getPackage() {
+	@Deprecated
+    public static UtilitiesPackage getPackage() {
 		return UtilitiesPackage.eINSTANCE;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: ConstraintImpl.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.uml.impl;
@@ -127,7 +127,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return UMLPackage.Literals.CONSTRAINT;
     }
 
@@ -197,7 +198,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UMLPackage.CONSTRAINT__BODY:
                 return basicSetBody(null, msgs);
@@ -210,7 +212,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
                 return getInstanceVarName();
@@ -229,7 +232,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
                 setInstanceVarName((String)newValue);
@@ -253,7 +257,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
                 setInstanceVarName(INSTANCE_VAR_NAME_EDEFAULT);
@@ -276,7 +281,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UMLPackage.CONSTRAINT__INSTANCE_VAR_NAME:
                 return INSTANCE_VAR_NAME_EDEFAULT == null ? instanceVarName != null : !INSTANCE_VAR_NAME_EDEFAULT.equals(instanceVarName);
@@ -328,7 +334,8 @@ public class ConstraintImpl extends ENamedElementImpl implements Constraint {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return (String) accept(ToStringVisitorImpl.getInstance());
 	}
 

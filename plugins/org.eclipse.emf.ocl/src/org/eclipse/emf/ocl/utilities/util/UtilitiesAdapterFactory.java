@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesAdapterFactory.java,v 1.3 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: UtilitiesAdapterFactory.java,v 1.4 2007/10/11 23:05:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.util;
@@ -34,6 +34,7 @@ import org.eclipse.emf.ocl.utilities.*;
  * @see org.eclipse.emf.ocl.utilities.UtilitiesPackage
  * @generated
  */
+@Deprecated
 public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 {
 	/**
@@ -71,7 +72,8 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
+	@Override
+    public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -89,22 +91,28 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected UtilitiesSwitch modelSwitch =
 		new UtilitiesSwitch() {
-			public Object caseASTNode(ASTNode object) {
+			@Override
+            public Object caseASTNode(ASTNode object) {
 				return createASTNodeAdapter();
 			}
-			public Object caseCallingASTNode(CallingASTNode object) {
+			@Override
+            public Object caseCallingASTNode(CallingASTNode object) {
 				return createCallingASTNodeAdapter();
 			}
-			public Object casePredefinedType(PredefinedType object) {
+			@Override
+            public Object casePredefinedType(PredefinedType object) {
 				return createPredefinedTypeAdapter();
 			}
-			public Object caseTypedASTNode(TypedASTNode object) {
+			@Override
+            public Object caseTypedASTNode(TypedASTNode object) {
 				return createTypedASTNodeAdapter();
 			}
-			public Object caseVisitable(Visitable object) {
+			@Override
+            public Object caseVisitable(Visitable object) {
 				return createVisitableAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+            public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -117,7 +125,8 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	@Override
+    public Adapter createAdapter(Notifier target) {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 

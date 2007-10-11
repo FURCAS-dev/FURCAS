@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.6 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: VoidTypeImpl.java,v 1.7 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -65,7 +65,8 @@ public class VoidTypeImpl extends EClassifierImpl implements VoidType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.VOID_TYPE;
 	}
 
@@ -113,7 +114,7 @@ public class VoidTypeImpl extends EClassifierImpl implements VoidType {
 		}
 		
 		if (type != Types.INVALID) {
-			return (EClassifier) type;
+			return type;
 		}
 
 		String message = OCLMessages.bind(

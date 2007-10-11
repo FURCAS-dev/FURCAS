@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolver.java,v 1.4 2007/05/17 17:58:38 cdamus Exp $
+ * $Id: TypeResolver.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -48,6 +48,7 @@ import org.eclipse.emf.ocl.uml.TypedElement;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public interface TypeResolver {
 	/**
 	 * Obtains the resource in which the types that I generate are stored for

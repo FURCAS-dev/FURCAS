@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: CollectionRangeImpl.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -82,7 +82,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.COLLECTION_RANGE;
     }
 
@@ -134,7 +135,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.COLLECTION_RANGE__FIRST:
                 return basicSetFirst(null, msgs);
@@ -149,7 +151,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.COLLECTION_RANGE__FIRST:
                 return getFirst();
@@ -164,7 +167,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.COLLECTION_RANGE__FIRST:
                 setFirst((OCLExpression)newValue);
@@ -181,7 +185,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.COLLECTION_RANGE__FIRST:
                 setFirst((OCLExpression)null);
@@ -198,7 +203,8 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.COLLECTION_RANGE__FIRST:
                 return first != null;

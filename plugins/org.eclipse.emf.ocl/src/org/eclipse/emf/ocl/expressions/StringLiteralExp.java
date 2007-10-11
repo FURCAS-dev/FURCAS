@@ -25,6 +25,7 @@ package org.eclipse.emf.ocl.expressions;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface StringLiteralExp extends PrimitiveLiteralExp {
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLFactory.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: UMLFactory.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.emf.ocl.uml.UMLPackage
  * @generated
  */
+@Deprecated
 public interface UMLFactory extends EFactory {
 
 	/**

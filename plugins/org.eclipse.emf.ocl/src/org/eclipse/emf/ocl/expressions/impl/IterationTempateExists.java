@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTempateExists.java,v 1.4 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: IterationTempateExists.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -35,7 +35,8 @@ public final class IterationTempateExists extends IterationTemplate {
 		return new IterationTempateExists(v);
 	}
 	
-	protected Object evaluateResult(List iterators, String resultName, Object body) {
+	@Override
+    protected Object evaluateResult(List iterators, String resultName, Object body) {
 		EvaluationEnvironment env = getEvalEnvironment();
 		// check for undefined result:
 		// the current result value cannot be true since the short-circuit

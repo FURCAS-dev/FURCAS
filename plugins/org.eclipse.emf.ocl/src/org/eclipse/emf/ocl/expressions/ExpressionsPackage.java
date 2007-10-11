@@ -42,6 +42,7 @@ import org.eclipse.emf.ocl.uml.UMLPackage;
  * @model kind="package"
  * @generated
  */
+@Deprecated
 public interface ExpressionsPackage extends EPackage {
 	/**
 	 * <!-- begin-user-doc -->

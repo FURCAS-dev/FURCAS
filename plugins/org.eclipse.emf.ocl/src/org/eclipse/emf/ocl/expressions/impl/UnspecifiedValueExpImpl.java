@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.4 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.5 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -105,7 +105,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.UNSPECIFIED_VALUE_EXP;
 	}
 
@@ -156,7 +157,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				return new Integer(getTypeStartPosition());
@@ -171,7 +173,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				setTypeStartPosition(((Integer)newValue).intValue());
@@ -188,7 +191,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
@@ -205,7 +209,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
@@ -220,7 +225,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+	@Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
 				case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
@@ -236,7 +242,8 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+	@Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
@@ -252,11 +259,13 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitUnspecifiedValueExp(this);
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.16 2007/05/17 17:58:38 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.17 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -260,7 +260,7 @@ public class TypeUtil {
 				continue;
 			}
 			
-			if ((TypeUtil.getRelationship(argType, paramType) & AnyTypeImpl.SUBTYPE) == 0) {
+			if ((TypeUtil.getRelationship(argType, paramType) & PredefinedType.SUBTYPE) == 0) {
 				return false;
 			}
 		}
@@ -1064,7 +1064,8 @@ public class TypeUtil {
 			return (EClassifier) getTarget();
 		}
 		
-		public boolean isAdapterForType(Object type) {
+		@Override
+        public boolean isAdapterForType(Object type) {
 			return type == AdditionalFeaturesAdapter.class;
 		}
 		

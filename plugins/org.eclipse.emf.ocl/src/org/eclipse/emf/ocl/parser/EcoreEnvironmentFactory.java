@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class EcoreEnvironmentFactory
 	extends AbstractEnvironmentFactory {
 	
@@ -57,7 +58,8 @@ public class EcoreEnvironmentFactory
 		this.registry = reg;
 	}
 
-	public Environment createPackageContext(List pathname) {
+	@Override
+    public Environment createPackageContext(List pathname) {
 		EPackage defaultPackage = EcoreEnvironment.findPackage(pathname, registry);
 		if (defaultPackage != null) {
 			EcoreEnvironment result = new EcoreEnvironment(defaultPackage, registry);
@@ -67,7 +69,8 @@ public class EcoreEnvironmentFactory
 		return null;
 	}
 	
-	protected EClassifier asEClassifier(Object context) {
+	@Override
+    protected EClassifier asEClassifier(Object context) {
 		EClassifier result = null;
 		
 		if (context instanceof EClassifier) {
@@ -95,7 +98,8 @@ public class EcoreEnvironmentFactory
 		return result;
 	}
 	
-	protected EOperation asEOperation(Object operation) {
+	@Override
+    protected EOperation asEOperation(Object operation) {
 		if (!(operation instanceof EOperation)) {
 			throw new IllegalArgumentException(
 				"Not a valid Ecore operation: " + operation); //$NON-NLS-1$
@@ -104,7 +108,8 @@ public class EcoreEnvironmentFactory
 		return (EOperation) operation;
 	}
 
-	protected EStructuralFeature asEStructuralFeature(Object property) {
+	@Override
+    protected EStructuralFeature asEStructuralFeature(Object property) {
 		if (!(property instanceof EStructuralFeature)) {
 			throw new IllegalArgumentException(
 				"Not a valid Ecore property: " + property); //$NON-NLS-1$
@@ -120,7 +125,8 @@ public class EcoreEnvironmentFactory
 	 * @param packageContext a package providing the default namespace context
 	 * @return the OCL environment
 	 */
-	protected Environment createEnvironment(EPackage packageContext) {
+	@Override
+    protected Environment createEnvironment(EPackage packageContext) {
 		EcoreEnvironment result = new EcoreEnvironment(packageContext, registry);
 		result.setFactory(this);
 		return result;

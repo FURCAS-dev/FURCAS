@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.8 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.9 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -48,11 +48,13 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 	/** The single instance (OclInvalid) of the Invalid type. */
 	public static final Object OCL_INVALID = new EObjectImpl() {
 	
-		public EClass eClass() {
+		@Override
+        public EClass eClass() {
 			return (EClass) Types.INVALID;
 		}
 	
-		public String toString() {
+		@Override
+        public String toString() {
 			return "OclInvalid"; //$NON-NLS-1$
 		}
 	};
@@ -77,7 +79,8 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.INVALID_TYPE;
 	}
 

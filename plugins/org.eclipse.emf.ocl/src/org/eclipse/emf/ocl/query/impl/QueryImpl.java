@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.7 2007/04/09 17:35:26 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.8 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.query.impl;
@@ -154,7 +154,8 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return QueryPackage.Literals.QUERY;
     }
 
@@ -389,7 +390,8 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case QueryPackage.QUERY__EXTENT_MAP:
                 return getExtentMap();
@@ -405,7 +407,8 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case QueryPackage.QUERY__EXTENT_MAP:
                 setExtentMap((Map)newValue);
@@ -419,7 +422,8 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case QueryPackage.QUERY__EXTENT_MAP:
                 setExtentMap(EXTENT_MAP_EDEFAULT);
@@ -433,7 +437,8 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case QueryPackage.QUERY__EXTENT_MAP:
                 return EXTENT_MAP_EDEFAULT == null ? extentMap != null : !EXTENT_MAP_EDEFAULT.equals(extentMap);
@@ -480,7 +485,8 @@ public class QueryImpl extends EObjectImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

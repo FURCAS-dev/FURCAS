@@ -38,6 +38,7 @@ import org.eclipse.emf.ocl.uml.TypedElement;
  * @see org.eclipse.emf.ocl.types.TypesPackage
  * @generated
  */
+@Deprecated
 public interface TypesFactory extends EFactory {
 	/**
 	 * <!-- begin-user-doc -->

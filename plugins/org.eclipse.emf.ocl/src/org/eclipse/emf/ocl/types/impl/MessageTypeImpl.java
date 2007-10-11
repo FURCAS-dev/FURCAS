@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.8 2007/04/09 17:35:27 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.9 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -123,7 +123,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 		setName(name);
 	}
 	
-	public String getName() {
+	@Override
+    public String getName() {
 		if (name == null) {
 			ENamedElement elem = (getReferredOperation() != null)?
 					(ENamedElement) getReferredOperation() :
@@ -178,7 +179,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return TypesPackage.Literals.MESSAGE_TYPE;
     }
 
@@ -345,7 +347,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
                 if (resolve) return getReferredOperation();
@@ -362,7 +365,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
                 setReferredOperation((EOperation)newValue);
@@ -379,7 +383,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
                 setReferredOperation((EOperation)null);
@@ -396,7 +401,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION:
                 return referredOperation != null;

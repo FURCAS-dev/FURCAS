@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ToNewASVisitor.java,v 1.4 2007/03/27 18:46:40 cdamus Exp $
+ * $Id: ToNewASVisitor.java,v 1.5 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -468,7 +468,7 @@ final class ToNewASVisitor implements Visitor {
 			if (sourceType instanceof MessageType) {
 				// find corresponding pre-defined type's property
 				for (EStructuralFeature p : ((org.eclipse.ocl.types.MessageType<EClassifier, EOperation, EStructuralFeature>) result.getSource().getType()).oclProperties()) {
-					EStructuralFeature next = (EStructuralFeature) p;
+					EStructuralFeature next = p;
 					
 					if (next.getName().equals(refProperty.getName())) {
 						refProperty = next;
@@ -478,7 +478,7 @@ final class ToNewASVisitor implements Visitor {
 			} else if (sourceType instanceof TupleType) {
 				// find corresponding pre-defined type's property
 				for (EStructuralFeature p : ((org.eclipse.ocl.types.TupleType<EOperation, EStructuralFeature>) result.getSource().getType()).oclProperties()) {
-					EStructuralFeature next = (EStructuralFeature) p;
+					EStructuralFeature next = p;
 					
 					if (next.getName().equals(refProperty.getName())) {
 						refProperty = next;

@@ -59,6 +59,7 @@ import org.eclipse.emf.ocl.utilities.TypedASTNode;
  * @see org.eclipse.emf.ocl.types.TypesPackage
  * @generated
  */
+@Deprecated
 public class TypesAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,7 +96,8 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
+	@Override
+    public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -113,82 +115,108 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected TypesSwitch modelSwitch =
 		new TypesSwitch() {
-			public Object caseAnyType(AnyType object) {
+			@Override
+            public Object caseAnyType(AnyType object) {
 				return createAnyTypeAdapter();
 			}
-			public Object caseBagType(BagType object) {
+			@Override
+            public Object caseBagType(BagType object) {
 				return createBagTypeAdapter();
 			}
-			public Object caseCollectionType(CollectionType object) {
+			@Override
+            public Object caseCollectionType(CollectionType object) {
 				return createCollectionTypeAdapter();
 			}
-			public Object caseElementType(ElementType object) {
+			@Override
+            public Object caseElementType(ElementType object) {
 				return createElementTypeAdapter();
 			}
-			public Object caseInvalidType(InvalidType object) {
+			@Override
+            public Object caseInvalidType(InvalidType object) {
 				return createInvalidTypeAdapter();
 			}
-			public Object caseMessageType(MessageType object) {
+			@Override
+            public Object caseMessageType(MessageType object) {
 				return createMessageTypeAdapter();
 			}
-			public Object caseOrderedSetType(OrderedSetType object) {
+			@Override
+            public Object caseOrderedSetType(OrderedSetType object) {
 				return createOrderedSetTypeAdapter();
 			}
-			public Object casePrimitiveBoolean(PrimitiveBoolean object) {
+			@Override
+            public Object casePrimitiveBoolean(PrimitiveBoolean object) {
 				return createPrimitiveBooleanAdapter();
 			}
-			public Object casePrimitiveInteger(PrimitiveInteger object) {
+			@Override
+            public Object casePrimitiveInteger(PrimitiveInteger object) {
 				return createPrimitiveIntegerAdapter();
 			}
-			public Object casePrimitiveReal(PrimitiveReal object) {
+			@Override
+            public Object casePrimitiveReal(PrimitiveReal object) {
 				return createPrimitiveRealAdapter();
 			}
-			public Object casePrimitiveString(PrimitiveString object) {
+			@Override
+            public Object casePrimitiveString(PrimitiveString object) {
 				return createPrimitiveStringAdapter();
 			}
-			public Object casePrimitiveType(PrimitiveType object) {
+			@Override
+            public Object casePrimitiveType(PrimitiveType object) {
 				return createPrimitiveTypeAdapter();
 			}
-			public Object caseSequenceType(SequenceType object) {
+			@Override
+            public Object caseSequenceType(SequenceType object) {
 				return createSequenceTypeAdapter();
 			}
-			public Object caseSetType(SetType object) {
+			@Override
+            public Object caseSetType(SetType object) {
 				return createSetTypeAdapter();
 			}
-			public Object caseTupleType(TupleType object) {
+			@Override
+            public Object caseTupleType(TupleType object) {
 				return createTupleTypeAdapter();
 			}
-			public Object caseTypeType(TypeType object) {
+			@Override
+            public Object caseTypeType(TypeType object) {
 				return createTypeTypeAdapter();
 			}
-			public Object caseVoidType(VoidType object) {
+			@Override
+            public Object caseVoidType(VoidType object) {
 				return createVoidTypeAdapter();
 			}
-			public Object caseEModelElement(EModelElement object) {
+			@Override
+            public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
-			public Object caseENamedElement(ENamedElement object) {
+			@Override
+            public Object caseENamedElement(ENamedElement object) {
 				return createENamedElementAdapter();
 			}
-			public Object caseEClassifier(EClassifier object) {
+			@Override
+            public Object caseEClassifier(EClassifier object) {
 				return createEClassifierAdapter();
 			}
-			public Object casePredefinedType(PredefinedType object) {
+			@Override
+            public Object casePredefinedType(PredefinedType object) {
 				return createPredefinedTypeAdapter();
 			}
-			public Object caseEDataType(EDataType object) {
+			@Override
+            public Object caseEDataType(EDataType object) {
 				return createEDataTypeAdapter();
 			}
-			public Object caseASTNode(ASTNode object) {
+			@Override
+            public Object caseASTNode(ASTNode object) {
 				return createASTNodeAdapter();
 			}
-			public Object caseTypedASTNode(TypedASTNode object) {
+			@Override
+            public Object caseTypedASTNode(TypedASTNode object) {
 				return createTypedASTNodeAdapter();
 			}
-			public Object caseEClass(EClass object) {
+			@Override
+            public Object caseEClass(EClass object) {
 				return createEClassAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+            public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -201,7 +229,8 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	@Override
+    public Adapter createAdapter(Notifier target) {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 

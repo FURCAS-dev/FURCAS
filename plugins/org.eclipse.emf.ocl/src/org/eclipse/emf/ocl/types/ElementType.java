@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementType.java,v 1.3 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: ElementType.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
  * @author Edith Schonberg (edith)
  *
  */
+@Deprecated
 public interface ElementType extends EClass {
 	// nothing to add
 	/**

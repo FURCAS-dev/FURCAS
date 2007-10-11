@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.EReference;
  * the OCL abstract syntax model.
  * 
  */
+@Deprecated
 public interface QueryPackage extends EPackage {
 	/**
 	 * <!-- begin-user-doc -->

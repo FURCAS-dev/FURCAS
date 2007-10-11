@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.1 2006/04/04 18:09:03 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.2 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.expressions.impl;
 
@@ -103,7 +103,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.OCL_EXPRESSION;
 	}
 
@@ -163,7 +164,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.OCL_EXPRESSION__START_POSITION:
 				return new Integer(getStartPosition());
@@ -178,7 +180,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.OCL_EXPRESSION__START_POSITION:
 				setStartPosition(((Integer)newValue).intValue());
@@ -195,7 +198,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.OCL_EXPRESSION__START_POSITION:
 				setStartPosition(START_POSITION_EDEFAULT);
@@ -212,7 +216,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExpressionsPackage.OCL_EXPRESSION__START_POSITION:
 				return startPosition != START_POSITION_EDEFAULT;
@@ -227,7 +232,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+	@Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -248,7 +254,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+	@Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
 				default: return -1;
@@ -267,7 +274,8 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	/**
 	 * @generated NOT
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return ToStringVisitorImpl.toString(this);
 	}
 

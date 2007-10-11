@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.5 2007/06/06 18:56:36 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.6 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -137,7 +137,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return ExpressionsPackage.Literals.OPERATION_CALL_EXP;
     }
 
@@ -196,7 +197,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT:
                 return ((InternalEList)getArgument()).basicRemove(otherEnd, msgs);
@@ -209,7 +211,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT:
                 return getArgument();
@@ -225,7 +228,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT:
                 getArgument().clear();
@@ -243,7 +247,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT:
                 getArgument().clear();
@@ -260,7 +265,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT:
                 return argument != null && !argument.isEmpty();
@@ -270,7 +276,8 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
         return super.eIsSet(featureID);
     }
 
-	public Object accept(Visitor v) {
+	@Override
+    public Object accept(Visitor v) {
 		return v.visitOperationCallExp(this);
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: TypedElementImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml.impl;
 
@@ -70,7 +70,8 @@ public abstract class TypedElementImpl extends ENamedElementImpl implements Type
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return UMLPackage.Literals.TYPED_ELEMENT;
     }
 
@@ -117,7 +118,8 @@ public abstract class TypedElementImpl extends ENamedElementImpl implements Type
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UMLPackage.TYPED_ELEMENT__TYPE:
                 if (resolve) return getType();
@@ -131,7 +133,8 @@ public abstract class TypedElementImpl extends ENamedElementImpl implements Type
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UMLPackage.TYPED_ELEMENT__TYPE:
                 setType((EClassifier)newValue);
@@ -145,7 +148,8 @@ public abstract class TypedElementImpl extends ENamedElementImpl implements Type
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UMLPackage.TYPED_ELEMENT__TYPE:
                 setType((EClassifier)null);
@@ -159,7 +163,8 @@ public abstract class TypedElementImpl extends ENamedElementImpl implements Type
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UMLPackage.TYPED_ELEMENT__TYPE:
                 return type != null;

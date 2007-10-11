@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.10 2007/05/17 17:58:38 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.11 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -51,6 +51,7 @@ import org.eclipse.ocl.helper.OCLHelper;
  * @author Yasser Lulu
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public interface IOCLHelper {
 
 	/**
@@ -149,7 +150,8 @@ public interface IOCLHelper {
 	 * @deprecated Use the {@link #getSyntaxHelp(ConstraintType, String)}
 	 *    method, instead, to get the correct completions for the context
 	 */
-	public List getSyntaxHelp(String txt);
+	@Deprecated
+    public List getSyntaxHelp(String txt);
 
 	/**
 	 * Obtains syntax completion choices for the specified fragment of an OCL

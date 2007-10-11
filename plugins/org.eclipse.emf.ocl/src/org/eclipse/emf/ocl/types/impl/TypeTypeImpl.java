@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.7 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.8 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -205,7 +205,8 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.TYPE_TYPE;
 	}
 

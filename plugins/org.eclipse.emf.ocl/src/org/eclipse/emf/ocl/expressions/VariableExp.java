@@ -24,6 +24,7 @@ package org.eclipse.emf.ocl.expressions;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface VariableExp extends OCLExpression {
 	/**
 	 * <!-- begin-user-doc -->

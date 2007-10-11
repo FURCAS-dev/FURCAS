@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesSwitch.java,v 1.3 2007/01/25 18:34:39 cdamus Exp $
+ * $Id: UtilitiesSwitch.java,v 1.4 2007/10/11 23:05:18 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.util;
@@ -40,6 +40,7 @@ import org.eclipse.emf.ocl.utilities.*;
  * @see org.eclipse.emf.ocl.utilities.UtilitiesPackage
  * @generated
  */
+@Deprecated
 public class UtilitiesSwitch {
 	/**
 	 * <!-- begin-user-doc -->

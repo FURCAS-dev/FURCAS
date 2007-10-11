@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLPackage.java,v 1.3 2007/01/25 18:34:37 cdamus Exp $
+ * $Id: UMLPackage.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.uml;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @model kind="package"
  * @generated
  */
+@Deprecated
 public interface UMLPackage extends EPackage {
 
 	/**

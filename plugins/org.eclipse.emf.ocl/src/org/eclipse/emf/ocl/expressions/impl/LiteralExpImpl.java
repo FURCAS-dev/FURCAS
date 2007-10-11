@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.3 2007/06/06 18:56:37 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.4 2007/10/11 23:05:16 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -69,7 +69,8 @@ public abstract class LiteralExpImpl extends OCLExpressionImpl implements Litera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return ExpressionsPackage.Literals.LITERAL_EXP;
 	}
 

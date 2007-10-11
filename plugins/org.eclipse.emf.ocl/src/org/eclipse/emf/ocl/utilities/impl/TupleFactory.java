@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.2 2006/04/28 14:46:29 cdamus Exp $
+ * $Id: TupleFactory.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -34,14 +34,16 @@ import org.eclipse.emf.ocl.types.impl.AnyTypeImpl;
  * @author Christian W. Damus (cdamus)
  */
 public class TupleFactory extends EFactoryImpl {
-	protected EObject basicCreate(EClass eClass) {
+	@Override
+    protected EObject basicCreate(EClass eClass) {
 		TupleInstance result = new TupleInstance();
 		result.eSetClass(eClass);
 		return result;
 	}
 	
 	private static class TupleInstance extends EObjectImpl {
-		public boolean equals(Object o) {
+		@Override
+        public boolean equals(Object o) {
 			if (!(o instanceof TupleInstance)) {
 				return false;
 			}
@@ -79,7 +81,8 @@ public class TupleFactory extends EFactoryImpl {
 			return result;
 		}
 		
-		public int hashCode() {
+		@Override
+        public int hashCode() {
 			int result = 0;
 			
 			EList myFeatures = eClass().getEStructuralFeatures();

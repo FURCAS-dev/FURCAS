@@ -27,6 +27,7 @@ import org.eclipse.emf.ocl.utilities.PredefinedType;
  * 
  * @author Edith Schonberg (edith)
  */
+@Deprecated
 public interface TupleType  extends EClass, PredefinedType {
 	// nothing to add
 	/**

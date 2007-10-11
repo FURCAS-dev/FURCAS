@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.11 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.12 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.types.impl;
@@ -490,7 +490,8 @@ public class AnyTypeImpl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
 		return TypesPackage.Literals.ANY_TYPE;
 	}
 

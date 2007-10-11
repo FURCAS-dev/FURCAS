@@ -40,6 +40,7 @@ import org.eclipse.emf.ocl.query.QueryPackage;
  * @see org.eclipse.emf.ocl.query.QueryPackage
  * @generated
  */
+@Deprecated
 public class QuerySwitch {
 	/**
 	 * <!-- begin-user-doc -->

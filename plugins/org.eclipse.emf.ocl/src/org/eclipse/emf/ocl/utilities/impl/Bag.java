@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Bag.java,v 1.2 2007/01/29 20:31:18 cdamus Exp $
+ * $Id: Bag.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.utilities.impl;
@@ -49,14 +49,16 @@ public final class Bag
 	/**
 	 * removes every occurrence of the object from the collection
 	 */
-	public boolean remove(Object o) {
+	@Override
+    public boolean remove(Object o) {
 		MutableInteger count = (MutableInteger) coll.remove(o);
 		if (count != null)
 			size -= count.i;
 		return count != null;
 	}
 
-	public boolean add(Object o) {
+	@Override
+    public boolean add(Object o) {
 		MutableInteger count = (MutableInteger) coll.get(o);
 		if (count == null)
 			coll.put(o, new MutableInteger(1));
@@ -67,11 +69,13 @@ public final class Bag
 		return true;
 	}
 
-	public int size() {
+	@Override
+    public int size() {
 		return size;
 	}
 
-	public void clear() {
+	@Override
+    public void clear() {
 		size = 0;
 		coll.clear();
 	}
@@ -80,7 +84,8 @@ public final class Bag
 	 * Returns true iff this bag and the argument bag have the same number of the same
 	 * elements.
 	 */
-	public boolean equals(Object o) {
+	@Override
+    public boolean equals(Object o) {
 		if (o instanceof Bag) {
 			Bag b = (Bag) o;
 			if (size() == b.size()) {
@@ -98,14 +103,16 @@ public final class Bag
 		return false;
 	}
 
-	public int hashCode() {
+	@Override
+    public int hashCode() {
 		int result = 37;
 		result = 37 * result + coll.hashCode();
 		result = 37 * result + size;
 		return result;
 	}
 
-	public Iterator iterator() {
+	@Override
+    public Iterator iterator() {
 		// local inner class
 		class MyIterator
 			implements Iterator {
@@ -162,14 +169,16 @@ public final class Bag
 			this.i = i;
 		}
 
-		public String toString() {
+		@Override
+        public String toString() {
 			return Integer.toString(i);
 		}
 
 		public int i;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		return coll.toString();
 	}
 

@@ -71,6 +71,7 @@ import org.eclipse.ocl.LazyExtentMap;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public abstract class AbstractEnvironmentFactory
 	implements EnvironmentFactory {
 

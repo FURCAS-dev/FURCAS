@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PersistentEnvironment.java,v 1.2 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: PersistentEnvironment.java,v 1.3 2007/10/11 23:05:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.ocl.expressions.Variable;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public interface PersistentEnvironment extends Environment {
 	/**
 	 * Obtains a type resolver to be used to create (and cache) concrete bindings

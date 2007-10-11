@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironmentFactory.java,v 1.2 2007/02/14 14:45:41 cdamus Exp $
+ * $Id: CompatibilityEnvironmentFactory.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ocl.expressions.Variable;
 import org.eclipse.emf.ocl.parser.EcoreEnvironment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;

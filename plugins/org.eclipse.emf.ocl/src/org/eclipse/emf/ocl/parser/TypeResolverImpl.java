@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.3 2007/01/25 18:34:33 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.4 2007/10/11 23:05:15 cdamus Exp $
  */
 package org.eclipse.emf.ocl.parser;
 
@@ -68,6 +68,7 @@ import org.eclipse.emf.ocl.utilities.impl.TupleFactory;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@Deprecated
 public class TypeResolverImpl
 	implements TypeResolver {
 
@@ -647,23 +648,27 @@ public class TypeResolverImpl
 	 * @author Christian W. Damus (cdamus)
 	 */
 	private class ResolveSwitch extends TypesSwitch {
-		public Object caseCollectionType(CollectionType object) {
+		@Override
+        public Object caseCollectionType(CollectionType object) {
 			return resolveCollectionType(
 				object.getKind(),
 				resolve(object.getElementType()));
 		}
 		
-		public Object caseTupleType(TupleType object) {
+		@Override
+        public Object caseTupleType(TupleType object) {
 			return resolveTupleType(createTupleParts(
 				object.getEStructuralFeatures()));
 		}
 		
-		public Object caseTypeType(TypeType object) {
+		@Override
+        public Object caseTypeType(TypeType object) {
 			return resolveTypeType(
 				resolve(((TypeTypeImpl) object).getReferredType()));
 		}
 		
-		public Object caseMessageType(MessageType object) {
+		@Override
+        public Object caseMessageType(MessageType object) {
 			if (object.getReferredOperation() != null) {
 				return resolveMessageType(object.getReferredOperation());
 			} else if (object.getReferredSignal() != null) {
@@ -673,7 +678,8 @@ public class TypeResolverImpl
 			return null;
 		}
 		
-		public Object defaultCase(EObject object) {
+		@Override
+        public Object defaultCase(EObject object) {
 			return object;
 		}
 		
