@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.1 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.2 2007/10/11 23:04:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
  */
 public abstract class PrimitiveLiteralExpImpl extends LiteralExpImpl implements PrimitiveLiteralExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PrimitiveLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.PRIMITIVE_LITERAL_EXP;
-	}
+        return EcorePackage.Literals.PRIMITIVE_LITERAL_EXP;
+    }
 
 } //PrimitiveLiteralExpImpl

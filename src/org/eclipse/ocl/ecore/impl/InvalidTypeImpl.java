@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.3 2007/03/27 15:05:32 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -40,29 +40,30 @@ public class InvalidTypeImpl extends EClassifierImpl implements InvalidType {
     private EList<EOperation> operations;
     
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected InvalidTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return EcorePackage.Literals.INVALID_TYPE;
-	}
+        return EcorePackage.Literals.INVALID_TYPE;
+    }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated NOT
      */
+    @Override
     public String getName() {
         return SINGLETON_NAME;
     }

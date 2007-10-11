@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -50,217 +50,217 @@ import org.eclipse.ocl.expressions.Variable;
  */
 public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBody()
+     * @generated
+     * @ordered
+     */
 	protected OCLExpression<EClassifier> body;
 
 	/**
-	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIterator()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIterator()
+     * @generated
+     * @ordered
+     */
 	protected EList<Variable<EClassifier, EParameter>> iterator;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LoopExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.LOOP_EXP;
-	}
+        return EcorePackage.Literals.LOOP_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression<EClassifier> getBody() {
-		return body;
-	}
+        return body;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBody(OCLExpression<EClassifier> newBody, NotificationChain msgs) {
-		OCLExpression<EClassifier> oldBody = body;
-		body = newBody;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.LOOP_EXP__BODY, oldBody, newBody);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        OCLExpression<EClassifier> oldBody = body;
+        body = newBody;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.LOOP_EXP__BODY, oldBody, newBody);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBody(OCLExpression<EClassifier> newBody) {
-		if (newBody != body) {
-			NotificationChain msgs = null;
-			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null, msgs);
-			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null, msgs);
-			msgs = basicSetBody(newBody, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.LOOP_EXP__BODY, newBody, newBody));
-	}
+        if (newBody != body) {
+            NotificationChain msgs = null;
+            if (body != null)
+                msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null, msgs);
+            if (newBody != null)
+                msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null, msgs);
+            msgs = basicSetBody(newBody, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.LOOP_EXP__BODY, newBody, newBody));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Variable<EClassifier, EParameter>> getIterator() {
-		if (iterator == null) {
-			iterator = new EObjectContainmentEList<Variable<EClassifier, EParameter>>(Variable.class, this, EcorePackage.LOOP_EXP__ITERATOR);
-		}
-		return iterator;
-	}
+        if (iterator == null) {
+            iterator = new EObjectContainmentEList<Variable<EClassifier, EParameter>>(Variable.class, this, EcorePackage.LOOP_EXP__ITERATOR);
+        }
+        return iterator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				return basicSetBody(null, msgs);
-			case EcorePackage.LOOP_EXP__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EcorePackage.LOOP_EXP__BODY:
+                return basicSetBody(null, msgs);
+            case EcorePackage.LOOP_EXP__ITERATOR:
+                return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				return getBody();
-			case EcorePackage.LOOP_EXP__ITERATOR:
-				return getIterator();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EcorePackage.LOOP_EXP__BODY:
+                return getBody();
+            case EcorePackage.LOOP_EXP__ITERATOR:
+                return getIterator();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<EClassifier>)newValue);
-				return;
-			case EcorePackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				getIterator().addAll((Collection<? extends Variable<EClassifier, EParameter>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EcorePackage.LOOP_EXP__BODY:
+                setBody((OCLExpression<EClassifier>)newValue);
+                return;
+            case EcorePackage.LOOP_EXP__ITERATOR:
+                getIterator().clear();
+                getIterator().addAll((Collection<? extends Variable<EClassifier, EParameter>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<EClassifier>)null);
-				return;
-			case EcorePackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.LOOP_EXP__BODY:
+                setBody((OCLExpression<EClassifier>)null);
+                return;
+            case EcorePackage.LOOP_EXP__ITERATOR:
+                getIterator().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				return body != null;
-			case EcorePackage.LOOP_EXP__ITERATOR:
-				return iterator != null && !iterator.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.LOOP_EXP__BODY:
+                return body != null;
+            case EcorePackage.LOOP_EXP__ITERATOR:
+                return iterator != null && !iterator.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.LOOP_EXP__BODY: return ExpressionsPackage.LOOP_EXP__BODY;
-				case EcorePackage.LOOP_EXP__ITERATOR: return ExpressionsPackage.LOOP_EXP__ITERATOR;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
+            switch (derivedFeatureID) {
+                case EcorePackage.LOOP_EXP__BODY: return ExpressionsPackage.LOOP_EXP__BODY;
+                case EcorePackage.LOOP_EXP__ITERATOR: return ExpressionsPackage.LOOP_EXP__ITERATOR;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.LOOP_EXP__BODY: return EcorePackage.LOOP_EXP__BODY;
-				case ExpressionsPackage.LOOP_EXP__ITERATOR: return EcorePackage.LOOP_EXP__ITERATOR;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.LOOP_EXP__BODY: return EcorePackage.LOOP_EXP__BODY;
+                case ExpressionsPackage.LOOP_EXP__ITERATOR: return EcorePackage.LOOP_EXP__ITERATOR;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //LoopExpImpl

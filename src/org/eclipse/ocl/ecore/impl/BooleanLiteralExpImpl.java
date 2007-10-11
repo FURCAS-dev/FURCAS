@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -39,154 +39,154 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements BooleanLiteralExp {
 	/**
-	 * The default value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBooleanSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBooleanSymbol()
+     * @generated
+     * @ordered
+     */
 	protected static final Boolean BOOLEAN_SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBooleanSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBooleanSymbol()
+     * @generated
+     * @ordered
+     */
 	protected Boolean booleanSymbol = BOOLEAN_SYMBOL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BooleanLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.BOOLEAN_LITERAL_EXP;
-	}
+        return EcorePackage.Literals.BOOLEAN_LITERAL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Boolean getBooleanSymbol() {
-		return booleanSymbol;
-	}
+        return booleanSymbol;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBooleanSymbol(Boolean newBooleanSymbol) {
-		Boolean oldBooleanSymbol = booleanSymbol;
-		booleanSymbol = newBooleanSymbol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, booleanSymbol));
-	}
+        Boolean oldBooleanSymbol = booleanSymbol;
+        booleanSymbol = newBooleanSymbol;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, booleanSymbol));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-				return getBooleanSymbol();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+                return getBooleanSymbol();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-				setBooleanSymbol((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+                setBooleanSymbol((Boolean)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-				setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+                setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-				return BOOLEAN_SYMBOL_EDEFAULT == null ? booleanSymbol != null : !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+                return BOOLEAN_SYMBOL_EDEFAULT == null ? booleanSymbol != null : !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
+            switch (derivedFeatureID) {
+                case EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return EcorePackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,7 +201,8 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
 	/**
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitBooleanLiteralExp(this);
 	}
 

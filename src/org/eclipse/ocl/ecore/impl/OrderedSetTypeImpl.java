@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.5 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.6 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -55,14 +55,14 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return EcorePackage.Literals.ORDERED_SET_TYPE;
-	}
+        return EcorePackage.Literals.ORDERED_SET_TYPE;
+    }
 
     /**
      * <!-- begin-user-doc -->

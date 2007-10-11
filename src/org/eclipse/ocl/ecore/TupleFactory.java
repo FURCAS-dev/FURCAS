@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.2 2007/02/14 14:45:45 cdamus Exp $
+ * $Id: TupleFactory.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -37,7 +37,8 @@ import org.eclipse.ocl.util.Tuple;
  * @author Christian W. Damus (cdamus)
  */
 class TupleFactory extends EFactoryImpl {
-	protected EObject basicCreate(EClass eClass) {
+	@Override
+    protected EObject basicCreate(EClass eClass) {
 		TupleInstance result = new TupleInstance();
 		result.eSetClass(eClass);
 		return result;
@@ -47,7 +48,8 @@ class TupleFactory extends EFactoryImpl {
 			extends DynamicEObjectImpl
 			implements Tuple<EOperation, EStructuralFeature> {
 		
-		public boolean equals(Object o) {
+		@Override
+        public boolean equals(Object o) {
 			if (!(o instanceof TupleInstance)) {
 				return false;
 			}
@@ -85,7 +87,8 @@ class TupleFactory extends EFactoryImpl {
 			return result;
 		}
 		
-		public int hashCode() {
+		@Override
+        public int hashCode() {
 			int result = 0;
 			
 			for (EStructuralFeature next : eClass().getEStructuralFeatures()) {

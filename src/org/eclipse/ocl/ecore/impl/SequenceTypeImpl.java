@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.5 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.6 2007/10/11 23:04:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -55,14 +55,14 @@ public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return EcorePackage.Literals.SEQUENCE_TYPE;
-	}
+        return EcorePackage.Literals.SEQUENCE_TYPE;
+    }
 
     /**
      * <!-- begin-user-doc -->
