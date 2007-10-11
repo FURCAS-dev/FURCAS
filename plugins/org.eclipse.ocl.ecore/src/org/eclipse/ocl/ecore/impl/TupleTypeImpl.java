@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.3 2007/03/27 15:05:33 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -48,23 +48,23 @@ public class TupleTypeImpl extends EClassImpl implements TupleType {
     private EList<EStructuralFeature> properties;
     
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected TupleTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return EcorePackage.Literals.TUPLE_TYPE;
-	}
+        return EcorePackage.Literals.TUPLE_TYPE;
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -103,6 +103,7 @@ public class TupleTypeImpl extends EClassImpl implements TupleType {
      * <!-- end-user-doc -->
      * @generated NOT
      */
+    @Override
     public String getName() {
         if (name == null) {
             StringBuffer myName = new StringBuffer();

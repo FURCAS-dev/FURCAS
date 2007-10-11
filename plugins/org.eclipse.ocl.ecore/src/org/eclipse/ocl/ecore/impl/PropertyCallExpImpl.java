@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.3 2007/10/11 23:04:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -42,169 +42,170 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class PropertyCallExpImpl extends NavigationCallExpImpl implements PropertyCallExp {
 	/**
-	 * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredProperty() <em>Referred Property</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredProperty()
+     * @generated
+     * @ordered
+     */
 	protected EStructuralFeature referredProperty;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PropertyCallExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.PROPERTY_CALL_EXP;
-	}
+        return EcorePackage.Literals.PROPERTY_CALL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public EStructuralFeature getReferredProperty() {
-		if (referredProperty != null && ((EObject)referredProperty).eIsProxy()) {
-			InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
-			referredProperty = (EStructuralFeature)eResolveProxy(oldReferredProperty);
-			if (referredProperty != oldReferredProperty) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
-			}
-		}
-		return referredProperty;
-	}
+        if (referredProperty != null && ((EObject)referredProperty).eIsProxy()) {
+            InternalEObject oldReferredProperty = (InternalEObject)referredProperty;
+            referredProperty = (EStructuralFeature)eResolveProxy(oldReferredProperty);
+            if (referredProperty != oldReferredProperty) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
+            }
+        }
+        return referredProperty;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EStructuralFeature basicGetReferredProperty() {
-		return referredProperty;
-	}
+        return referredProperty;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredProperty(EStructuralFeature newReferredProperty) {
-		EStructuralFeature oldReferredProperty = referredProperty;
-		referredProperty = newReferredProperty;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
-	}
+        EStructuralFeature oldReferredProperty = referredProperty;
+        referredProperty = newReferredProperty;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY, oldReferredProperty, referredProperty));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				if (resolve) return getReferredProperty();
-				return basicGetReferredProperty();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                if (resolve) return getReferredProperty();
+                return basicGetReferredProperty();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				setReferredProperty((EStructuralFeature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                setReferredProperty((EStructuralFeature)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				setReferredProperty((EStructuralFeature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                setReferredProperty((EStructuralFeature)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
-				return referredProperty != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY:
+                return referredProperty != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY: return ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
+            switch (derivedFeatureID) {
+                case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY: return ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY: return EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY: return EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitPropertyCallExp(this);
 	}
 

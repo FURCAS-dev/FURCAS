@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.2 2007/05/10 17:48:10 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -41,164 +41,164 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	/**
-	 * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredState()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredState()
+     * @generated
+     * @ordered
+     */
 	protected EObject referredState;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StateExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.STATE_EXP;
-	}
+        return EcorePackage.Literals.STATE_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public EObject getReferredState() {
-		if (referredState != null && ((EObject)referredState).eIsProxy()) {
-			InternalEObject oldReferredState = (InternalEObject)referredState;
-			referredState = (EObject)eResolveProxy(oldReferredState);
-			if (referredState != oldReferredState) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-			}
-		}
-		return referredState;
-	}
+        if (referredState != null && (referredState).eIsProxy()) {
+            InternalEObject oldReferredState = (InternalEObject)referredState;
+            referredState = eResolveProxy(oldReferredState);
+            if (referredState != oldReferredState) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+            }
+        }
+        return referredState;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EObject basicGetReferredState() {
-		return referredState;
-	}
+        return referredState;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredState(EObject newReferredState) {
-		EObject oldReferredState = referredState;
-		referredState = newReferredState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-	}
+        EObject oldReferredState = referredState;
+        referredState = newReferredState;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				if (resolve) return getReferredState();
-				return basicGetReferredState();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EcorePackage.STATE_EXP__REFERRED_STATE:
+                if (resolve) return getReferredState();
+                return basicGetReferredState();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				setReferredState((EObject)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EcorePackage.STATE_EXP__REFERRED_STATE:
+                setReferredState((EObject)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				setReferredState((EObject)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.STATE_EXP__REFERRED_STATE:
+                setReferredState((EObject)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				return referredState != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EcorePackage.STATE_EXP__REFERRED_STATE:
+                return referredState != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
-			switch (derivedFeatureID) {
-				case EcorePackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
+            switch (derivedFeatureID) {
+                case EcorePackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return EcorePackage.STATE_EXP__REFERRED_STATE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return EcorePackage.STATE_EXP__REFERRED_STATE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -213,7 +213,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	/**
 	 * @generated NOT
 	 */
-	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	@Override
+    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitStateExp(this);
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.2 2007/05/10 17:48:09 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -32,23 +32,23 @@ import org.eclipse.ocl.util.ToStringVisitor;
  */
 public abstract class LiteralExpImpl extends OCLExpressionImpl implements LiteralExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EcorePackage.Literals.LITERAL_EXP;
-	}
+        return EcorePackage.Literals.LITERAL_EXP;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
