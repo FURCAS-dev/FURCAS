@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -37,122 +37,122 @@ import org.eclipse.ocl.expressions.FeatureCallExp;
  */
 public abstract class FeatureCallExpImpl<C> extends CallExpImpl<C> implements FeatureCallExp<C> {
 	/**
-	 * The default value of the '{@link #isMarkedPre() <em>Marked Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isMarkedPre() <em>Marked Pre</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMarkedPre()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMarkedPre()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean MARKED_PRE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isMarkedPre() <em>Marked Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The flag representing the value of the '{@link #isMarkedPre() <em>Marked Pre</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMarkedPre()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMarkedPre()
+     * @generated
+     * @ordered
+     */
 	protected static final int MARKED_PRE_EFLAG = 1 << 8;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected FeatureCallExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.FEATURE_CALL_EXP;
-	}
+        return ExpressionsPackage.Literals.FEATURE_CALL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isMarkedPre() {
-		return (eFlags & MARKED_PRE_EFLAG) != 0;
-	}
+        return (eFlags & MARKED_PRE_EFLAG) != 0;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setMarkedPre(boolean newMarkedPre) {
-		boolean oldMarkedPre = (eFlags & MARKED_PRE_EFLAG) != 0;
-		if (newMarkedPre) eFlags |= MARKED_PRE_EFLAG; else eFlags &= ~MARKED_PRE_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE, oldMarkedPre, newMarkedPre));
-	}
+        boolean oldMarkedPre = (eFlags & MARKED_PRE_EFLAG) != 0;
+        if (newMarkedPre) eFlags |= MARKED_PRE_EFLAG; else eFlags &= ~MARKED_PRE_EFLAG;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE, oldMarkedPre, newMarkedPre));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
-				return isMarkedPre() ? Boolean.TRUE : Boolean.FALSE;
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
+                return isMarkedPre() ? Boolean.TRUE : Boolean.FALSE;
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
-				setMarkedPre(((Boolean)newValue).booleanValue());
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
+                setMarkedPre(((Boolean)newValue).booleanValue());
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
-				setMarkedPre(MARKED_PRE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
+                setMarkedPre(MARKED_PRE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
-				return ((eFlags & MARKED_PRE_EFLAG) != 0) != MARKED_PRE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
+                return ((eFlags & MARKED_PRE_EFLAG) != 0) != MARKED_PRE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

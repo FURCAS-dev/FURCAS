@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.5 2007/05/17 17:06:22 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.6 2007/10/11 23:04:53 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -154,6 +154,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param oc the operation call expression
 	 * @return string
 	 */
+    @Override
     protected String handleOperationCallExp(OperationCallExp<C,O> oc,
             String sourceResult, List<String> argumentResults) {
         
@@ -183,7 +184,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param el the enumeration literal expresion
 	 * @return the enumeration literal toString()
 	 */
-	public String visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
+	@Override
+    public String visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
 		EL l = el.getReferredEnumLiteral();
 		return getQualifiedName(l);
 	}
@@ -193,7 +195,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param v the variable expression
 	 * @return the variable name
 	 */
-	public String visitVariableExp(VariableExp<C, PM> v) {
+	@Override
+    public String visitVariableExp(VariableExp<C, PM> v) {
 		Variable<C, PM> vd = v.getReferredVariable();
 		String result = vd.getName();
 		
@@ -209,6 +212,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param pc the property call expression
 	 * @return string source.ref
 	 */
+    @Override
     protected String handlePropertyCallExp(PropertyCallExp<C,P> pc,
             String sourceResult, List<String> qualifierResults) {
 		P property = pc.getReferredProperty();
@@ -244,6 +248,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param ac the association class expression
 	 * @return string source.ref
 	 */
+    @Override
     protected String handleAssociationClassCallExp(
             AssociationClassCallExp<C,P> ac,
             String sourceResult, List<String> qualifierResults) {
@@ -276,6 +281,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param vd the variable declaration
 	 * @return string
 	 */
+    @Override
     protected String handleVariable(Variable<C,PM> vd, String initResult) {
 		String varName = vd.getName();
 		
@@ -302,6 +308,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param ifExp an IfExp
      * @return the string representation
 	 */
+    @Override
     protected String handleIfExp(IfExp<C> ifExp, String conditionResult, String thenResult, String elseResult) {
         StringBuffer result = new StringBuffer();
         
@@ -313,11 +320,13 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
         return result.toString();
 	}
 
-	public String visitTypeExp(TypeExp<C> t) {
+	@Override
+    public String visitTypeExp(TypeExp<C> t) {
 		return getQualifiedName(t.getReferredType());
 	}
 	
-	public String visitStateExp(StateExp<C, S> s) {
+	@Override
+    public String visitStateExp(StateExp<C, S> s) {
 		return getName(s);
 	}
 
@@ -326,7 +335,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param uv - UnspecifiedValueExp
 	 * @return the string representation
 	 */
-	public String visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
+	@Override
+    public String visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
 		StringBuffer result = new StringBuffer();
 		result.append("?"); //$NON-NLS-1$
 		if (uv.getType() != null && !(uv.getType() instanceof VoidType)) {
@@ -342,7 +352,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param il -- integer literal expression 
 	 * @return String
 	 */
-	public String visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
+	@Override
+    public String visitIntegerLiteralExp(IntegerLiteralExp<C> il) {
 		return (il.getIntegerSymbol() == null)? NULL_PLACEHOLDER
 				: il.getIntegerSymbol().toString();
 	}
@@ -352,6 +363,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
      * @param unl -- unlimited natural literal expression 
      * @return String
      */
+    @Override
     public String visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp<C> unl) {
         if (unl.isUnlimited()) {
             return "*"; //$NON-NLS-1$
@@ -367,7 +379,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param rl -- real literal expression
 	 * @return the value of the real literal as a java.lang.Double.
 	 */
-	public String visitRealLiteralExp(RealLiteralExp<C> rl) {
+	@Override
+    public String visitRealLiteralExp(RealLiteralExp<C> rl) {
 		return (rl.getRealSymbol() == null)? NULL_PLACEHOLDER
 				: rl.getRealSymbol().toString();
 	}
@@ -377,7 +390,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param sl -- string literal expression
 	 * @return the value of the string literal as a java.lang.String.
 	 */
-	public String visitStringLiteralExp(StringLiteralExp<C> sl) {
+	@Override
+    public String visitStringLiteralExp(StringLiteralExp<C> sl) {
 		return "'" + ((sl.getStringSymbol() == null)? NULL_PLACEHOLDER //$NON-NLS-1$
 				: sl.getStringSymbol()) + "'";//$NON-NLS-1$
 	}
@@ -387,7 +401,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param bl -- boolean literal expression
 	 * @return the value of the boolean literal as a java.lang.Boolean.
 	 */
-	public String visitBooleanLiteralExp(BooleanLiteralExp<C> bl) {
+	@Override
+    public String visitBooleanLiteralExp(BooleanLiteralExp<C> bl) {
 		return (bl.getBooleanSymbol() == null)? NULL_PLACEHOLDER
 				: bl.getBooleanSymbol().toString();
 	}
@@ -397,6 +412,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param letExp a let expression
      * @return the string representation
 	 */
+    @Override
     protected String handleLetExp(LetExp<C,PM> letExp, String variableResult,
             String inResult) {
         
@@ -413,6 +429,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param callExp an iterate expression
      * @return the string representation
 	 */
+    @Override
     protected String handleIterateExp(IterateExp<C,PM> callExp,
             String sourceResult, List<String> variableResults,
             String resultResult, String bodyResult) {
@@ -440,6 +457,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param callExp an iterator expression
      * @return the string representation
 	 */
+    @Override
     protected String handleIteratorExp(IteratorExp<C,PM> callExp,
             String sourceResult, List<String> variableResults, String bodyResult) {
         
@@ -465,6 +483,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param cl collection literal expression
 	 * @return String
 	 */
+    @Override
     protected String handleCollectionLiteralExp(CollectionLiteralExp<C> cl,
             List<String> partResults) {
         
@@ -521,6 +540,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param literalExp tuple literal expression
      * @return the string representation
 	 */
+    @Override
     protected String handleTupleLiteralExp(TupleLiteralExp<C,P> literalExp,
             List<String> partResults) {
         
@@ -606,13 +626,15 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	/**
      * Renders an ExpressionInOcl with its context variables and body.
 	 */
-	public String visitExpressionInOCL(ExpressionInOCL<C, PM> expression) {
+	@Override
+    public String visitExpressionInOCL(ExpressionInOCL<C, PM> expression) {
 		return expression.getBodyExpression().accept(this);
 	}
 
     /**
      * Renders a constraint with its context and expression.
      */
+    @Override
     public String visitConstraint(CT constraint) {
         StringBuffer result = new StringBuffer();
         
@@ -693,7 +715,8 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		return (uml == null)? null : uml.getStereotype(constraint);
 	}
 	
-	protected ExpressionInOCL<C, PM> getSpecification(CT constraint) {
+	@Override
+    protected ExpressionInOCL<C, PM> getSpecification(CT constraint) {
 		return (uml == null)? null : uml.getSpecification(constraint);
 	}
 	
@@ -744,11 +767,13 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		return mpc.isMarkedPre() ? base + "@pre" : base; //$NON-NLS-1$
 	}
 
-	public String visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
+	@Override
+    public String visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 		return "OclInvalid"; //$NON-NLS-1$
 	}
 
-	public String visitNullLiteralExp(NullLiteralExp<C> il) {
+	@Override
+    public String visitNullLiteralExp(NullLiteralExp<C> il) {
 		return "null"; //$NON-NLS-1$
 	}
 	

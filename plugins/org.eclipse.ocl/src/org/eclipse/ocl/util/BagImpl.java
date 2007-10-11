@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagImpl.java,v 1.2 2007/02/14 18:00:28 cdamus Exp $
+ * $Id: BagImpl.java,v 1.3 2007/10/11 23:04:53 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -61,14 +61,16 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 	/**
 	 * removes every occurrence of the object from the collection
 	 */
-	public boolean remove(Object o) {
+	@Override
+    public boolean remove(Object o) {
 		MutableInteger count = coll.remove(o);
 		if (count != null)
 			size -= count.i;
 		return count != null;
 	}
 
-	public boolean add(E o) {
+	@Override
+    public boolean add(E o) {
 		MutableInteger count = coll.get(o);
 		if (count == null)
 			coll.put(o, new MutableInteger(1));
@@ -79,6 +81,7 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 		return true;
 	}
 
+    @Override
     public boolean contains(Object o) {
         return count(o) > 0;
     }
@@ -93,11 +96,13 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
         return 0;
     }
     
-	public int size() {
+	@Override
+    public int size() {
 		return size;
 	}
 
-	public void clear() {
+	@Override
+    public void clear() {
 		size = 0;
 		coll.clear();
 	}
@@ -106,7 +111,8 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 	 * Returns true iff this bag and the argument bag have the same number of the same
 	 * elements.
 	 */
-	public boolean equals(Object o) {
+	@Override
+    public boolean equals(Object o) {
 		if (o instanceof BagImpl) {
 			BagImpl<?> b = (BagImpl<?>) o;
 			if (size() == b.size()) {
@@ -123,14 +129,16 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 		return false;
 	}
 
-	public int hashCode() {
+	@Override
+    public int hashCode() {
 		int result = 37;
 		result = 37 * result + coll.hashCode();
 		result = 37 * result + size;
 		return result;
 	}
 
-	public Iterator<E> iterator() {
+	@Override
+    public Iterator<E> iterator() {
 		// local inner class
 		class MyIterator implements Iterator<E> {
 
@@ -184,14 +192,16 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 			this.i = i;
 		}
 
-		public String toString() {
+		@Override
+        public String toString() {
 			return Integer.toString(i);
 		}
 
 		public int i;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		return coll.toString();
 	}
 }

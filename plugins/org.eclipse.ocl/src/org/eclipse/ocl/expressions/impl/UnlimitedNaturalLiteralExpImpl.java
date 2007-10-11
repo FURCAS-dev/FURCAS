@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.3 2007/05/10 17:48:24 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -42,74 +42,74 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class UnlimitedNaturalLiteralExpImpl<C> extends NumericLiteralExpImpl<C> implements UnlimitedNaturalLiteralExp<C> {
     /**
-	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getIntegerSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIntegerSymbol()
+     * @generated
+     * @ordered
+     */
     protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
 
     /**
-	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getIntegerSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIntegerSymbol()
+     * @generated
+     * @ordered
+     */
     protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
     /**
-	 * The default value of the '{@link #isUnlimited() <em>Unlimited</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isUnlimited() <em>Unlimited</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isUnlimited()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isUnlimited()
+     * @generated
+     * @ordered
+     */
     protected static final boolean UNLIMITED_EDEFAULT = false;
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected UnlimitedNaturalLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Integer getIntegerSymbol() {
-		return integerSymbol;
-	}
+        return integerSymbol;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setIntegerSymbol(Integer newIntegerSymbol) {
-		Integer oldIntegerSymbol = integerSymbol;
-		integerSymbol = newIntegerSymbol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
-	}
+        Integer oldIntegerSymbol = integerSymbol;
+        integerSymbol = newIntegerSymbol;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -121,66 +121,66 @@ public class UnlimitedNaturalLiteralExpImpl<C> extends NumericLiteralExpImpl<C> 
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				return getIntegerSymbol();
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-				return isUnlimited() ? Boolean.TRUE : Boolean.FALSE;
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+                return getIntegerSymbol();
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
+                return isUnlimited() ? Boolean.TRUE : Boolean.FALSE;
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				setIntegerSymbol((Integer)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+                setIntegerSymbol((Integer)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+                setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-				return isUnlimited() != UNLIMITED_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+                return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
+                return isUnlimited() != UNLIMITED_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
     /**
      * @generated NOT

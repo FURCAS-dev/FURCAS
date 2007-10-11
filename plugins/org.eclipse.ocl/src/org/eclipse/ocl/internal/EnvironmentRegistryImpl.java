@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.3 2007/02/14 18:00:29 cdamus Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.4 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal;
@@ -27,9 +27,9 @@ import org.eclipse.core.runtime.IExtensionDelta;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IRegistryChangeEvent;
 import org.eclipse.core.runtime.IRegistryChangeListener;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -156,7 +156,7 @@ public class EnvironmentRegistryImpl implements Registry {
 				if (E_ENVIRONMENT_FACTORY.equals(element.getName())) {
 					readEnvironmentFactory(element);
 				} else {
-				    OCLPlugin.log(IStatus.ERROR, 1,
+				    OCLPlugin.log(Diagnostic.ERROR, 1,
                         OCLMessages.bind(
                             OCLMessages.EnvRegistry_unknownElement_ERROR_,
                             getExtensionID(extension),
@@ -188,7 +188,7 @@ public class EnvironmentRegistryImpl implements Registry {
 					readPackage(descriptor, pkg);
 				}
             } else {
-                OCLPlugin.log(IStatus.ERROR, 1,
+                OCLPlugin.log(Diagnostic.ERROR, 1,
                     OCLMessages.bind(
                         OCLMessages.EnvRegistry_missingClass_ERROR_,
                         getExtensionID(element)),
@@ -203,7 +203,7 @@ public class EnvironmentRegistryImpl implements Registry {
 			if (nsURI != null) {
 				descriptor.addPackageURI(nsURI);
             } else {
-                OCLPlugin.log(IStatus.ERROR, 1,
+                OCLPlugin.log(Diagnostic.ERROR, 1,
                     OCLMessages.bind(
                         OCLMessages.EnvRegistry_missingNsURI_ERROR_,
                         getExtensionID(element)),

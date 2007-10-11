@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.2 2007/05/17 17:06:23 cdamus Exp $
+ * $Id: OCL.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -28,16 +30,23 @@ import org.eclipse.ocl.internal.OCLDebugOptions;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.evaluation.QueryImpl;
 import org.eclipse.ocl.internal.helper.HelperUtil;
-import org.eclipse.ocl.internal.parser.OCLLexer;
-import org.eclipse.ocl.internal.parser.OCLParser;
-import org.eclipse.ocl.internal.parser.ValidationVisitor;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
+ * <p>
  * The Fa&ccedil;ade for parsing and evaluation of OCL documents and constraints.
  * The <code>OCL</code> is initialized with an environment factory that supports
  * the metamodel of the model to which the OCL constraints are to be applied.
+ * </p><p>
+ * Since 1.2, the helper supplies {@linkplain #getProblems() diagnostics}
+ * indicating any problems encountered while parsing.  The diagnostics pertain
+ * always to the most recently executed parse operation.
+ * </p>
  * <p>
  * See the {@link Environment} class for a description of the
  * generic type parameters of this class. 
@@ -59,6 +68,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private EvaluationEnvironment<C, O, P, CLS, E> evalEnv;
 	private Map<CLS, ? extends Set<? extends E>> extentMap;
 	private List<CT> constraints = new java.util.ArrayList<CT>();
+	private Diagnostic problems;
 	
 	private boolean traceParsing = OCLPlugin.shouldTrace(OCLDebugOptions.PARSING);
     private boolean traceEvaluation = OCLPlugin.shouldTrace(OCLDebugOptions.EVALUATION);
@@ -231,16 +241,19 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * @see #getConstraints()
      */
 	public List<CT> parse(OCLInput input) throws ParserException {
-		OCLLexer lexer = new OCLLexer(input.getContent());
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+		analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				rootEnvironment, input.getContentAsString());
+		analyzer.setTraceFlag(isParseTracingEnabled());
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		parser = new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				lexer, rootEnvironment);
-		
-		parser.setTraceFlag(isParseTracingEnabled());
+		// clear out old diagnostics
+		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment, ProblemHandler.class);
+		if (ph != null) {
+			ph.beginParse();
+		}
 		
 		List<CT> result = new java.util.ArrayList<CT>();
-		parser.parsePackageDeclarationCS(result);
+		analyzer.parsePackageDeclarationCS(result);
 		
 		constraints.addAll(result);
 		
@@ -250,6 +263,17 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			
 			if (constraintEObject.eResource() == null) {
 				resContents.add(constraintEObject);
+			}
+		}
+		
+		if (ph != null) {
+			ph.endParse();
+			
+			try {
+				problems = OCLUtil.checkForErrors(ph);
+			} catch (ParserException e) {
+				problems = e.getDiagnostic();
+				throw e;
 			}
 		}
 		
@@ -281,10 +305,23 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      * @see #validate(Object)
      */
 	public void validate(OCLExpression<C> expression) throws SemanticException {
-		try {
-			expression.accept(ValidationVisitor.getInstance(rootEnvironment));
-		} catch (Exception e) {
-			throw new SemanticException(e.getLocalizedMessage(), e);
+		// clear out old diagnostics
+		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment, ProblemHandler.class);
+		if (ph != null) {
+			ph.beginValidation();
+		}
+		
+		expression.accept(ValidationVisitor.getInstance(rootEnvironment));
+		
+		if (ph != null) {
+			ph.endValidation();
+			
+			try {
+				OCLUtil.checkForErrors(ph);
+			} catch (SyntaxException e) {
+				// shouldn't actually be able to get this from validation
+				throw new SemanticException(e.getDiagnostic());
+			}
 		}
 	}
 	
@@ -299,10 +336,23 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      *     in the constraint
      */
 	public void validate(CT constraint) throws SemanticException {
-		try {
-			ValidationVisitor.getInstance(rootEnvironment).visitConstraint(constraint);
-		} catch (Exception e) {
-			throw new SemanticException(e.getLocalizedMessage(), e);
+		// clear out old diagnostics
+		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment, ProblemHandler.class);
+		if (ph != null) {
+			ph.beginValidation();
+		}
+		
+		ValidationVisitor.getInstance(rootEnvironment).visitConstraint(constraint);
+		
+		if (ph != null) {
+			ph.endValidation();
+			
+			try {
+				OCLUtil.checkForErrors(ph);
+			} catch (SyntaxException e) {
+				// shouldn't actually be able to get this from validation
+				throw new SemanticException(e.getDiagnostic());
+			}
 		}
 	}
 	
@@ -555,5 +605,17 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             
             abstractFactory.setEvaluationTracingEnabled(traceEvaluation);
         }
+    }
+    
+    /**
+     * Obtains problems, if any, found in parsing the last OCL constraint or
+     * query expression.
+     * 
+     * @return parsing problems or <code>null</code> if all was OK
+     * 
+     * @since 1.2
+     */
+    public Diagnostic getProblems() {
+    	return problems;
     }
 }

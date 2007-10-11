@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionItem.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
+ * $Id: CollectionItem.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface CollectionItem<C> extends CollectionLiteralPart<C> {
 	/**
-	 * Returns the value of the '<em><b>Item</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Item</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Item</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Item</em>' containment reference.
-	 * @see #setItem(OCLExpression)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionItem_Item()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Item</em>' containment reference.
+     * @see #setItem(OCLExpression)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionItem_Item()
+     * @model containment="true" required="true"
+     * @generated
+     */
 	OCLExpression<C> getItem();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.CollectionItem#getItem <em>Item</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.CollectionItem#getItem <em>Item</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Item</em>' containment reference.
-	 * @see #getItem()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Item</em>' containment reference.
+     * @see #getItem()
+     * @generated
+     */
 	void setItem(OCLExpression<C> value);
 
 } // CollectionItem

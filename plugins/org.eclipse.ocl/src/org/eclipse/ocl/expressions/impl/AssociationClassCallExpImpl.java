@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.3 2007/05/10 17:48:23 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -40,132 +40,132 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class AssociationClassCallExpImpl<C, P> extends NavigationCallExpImpl<C, P> implements AssociationClassCallExp<C, P> {
 	/**
-	 * The cached value of the '{@link #getReferredAssociationClass() <em>Referred Association Class</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReferredAssociationClass() <em>Referred Association Class</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReferredAssociationClass()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReferredAssociationClass()
+     * @generated
+     * @ordered
+     */
 	protected C referredAssociationClass;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AssociationClassCallExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.ASSOCIATION_CLASS_CALL_EXP;
-	}
+        return ExpressionsPackage.Literals.ASSOCIATION_CLASS_CALL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public C getReferredAssociationClass() {
-		if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy()) {
-			InternalEObject oldReferredAssociationClass = (InternalEObject)referredAssociationClass;
-			referredAssociationClass = (C)eResolveProxy(oldReferredAssociationClass);
-			if (referredAssociationClass != oldReferredAssociationClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
-			}
-		}
-		return referredAssociationClass;
-	}
+        if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy()) {
+            InternalEObject oldReferredAssociationClass = (InternalEObject)referredAssociationClass;
+            referredAssociationClass = (C)eResolveProxy(oldReferredAssociationClass);
+            if (referredAssociationClass != oldReferredAssociationClass) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
+            }
+        }
+        return referredAssociationClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public C basicGetReferredAssociationClass() {
-		return referredAssociationClass;
-	}
+        return referredAssociationClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferredAssociationClass(C newReferredAssociationClass) {
-		C oldReferredAssociationClass = referredAssociationClass;
-		referredAssociationClass = newReferredAssociationClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
-	}
+        C oldReferredAssociationClass = referredAssociationClass;
+        referredAssociationClass = newReferredAssociationClass;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-				if (resolve) return getReferredAssociationClass();
-				return basicGetReferredAssociationClass();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+                if (resolve) return getReferredAssociationClass();
+                return basicGetReferredAssociationClass();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-				setReferredAssociationClass((C)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+                setReferredAssociationClass((C)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-				setReferredAssociationClass((C)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+                setReferredAssociationClass((C)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-				return referredAssociationClass != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+                return referredAssociationClass != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * @generated NOT

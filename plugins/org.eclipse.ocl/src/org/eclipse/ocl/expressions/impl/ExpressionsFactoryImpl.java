@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsFactoryImpl.java,v 1.5 2007/05/10 17:48:24 cdamus Exp $
+ * $Id: ExpressionsFactoryImpl.java,v 1.6 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -62,401 +62,401 @@ import org.eclipse.ocl.expressions.VariableExp;
  */
 public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ExpressionsFactory init() {
-		try {
-			ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"); //$NON-NLS-1$ 
-			if (theExpressionsFactory != null) {
-				return theExpressionsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ExpressionsFactoryImpl();
-	}
+        try {
+            ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"); //$NON-NLS-1$ 
+            if (theExpressionsFactory != null) {
+                return theExpressionsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ExpressionsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExpressionsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
-			case ExpressionsPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
-			case ExpressionsPackage.COLLECTION_ITEM: return createCollectionItem();
-			case ExpressionsPackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
-			case ExpressionsPackage.COLLECTION_RANGE: return createCollectionRange();
-			case ExpressionsPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
-			case ExpressionsPackage.IF_EXP: return createIfExp();
-			case ExpressionsPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
-			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
-			case ExpressionsPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
-			case ExpressionsPackage.ITERATE_EXP: return createIterateExp();
-			case ExpressionsPackage.VARIABLE: return createVariable();
-			case ExpressionsPackage.ITERATOR_EXP: return createIteratorExp();
-			case ExpressionsPackage.LET_EXP: return createLetExp();
-			case ExpressionsPackage.MESSAGE_EXP: return createMessageExp();
-			case ExpressionsPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
-			case ExpressionsPackage.OPERATION_CALL_EXP: return createOperationCallExp();
-			case ExpressionsPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
-			case ExpressionsPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
-			case ExpressionsPackage.STATE_EXP: return createStateExp();
-			case ExpressionsPackage.STRING_LITERAL_EXP: return createStringLiteralExp();
-			case ExpressionsPackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
-			case ExpressionsPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
-			case ExpressionsPackage.TYPE_EXP: return createTypeExp();
-			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
-			case ExpressionsPackage.VARIABLE_EXP: return createVariableExp();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
+            case ExpressionsPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
+            case ExpressionsPackage.COLLECTION_ITEM: return createCollectionItem();
+            case ExpressionsPackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
+            case ExpressionsPackage.COLLECTION_RANGE: return createCollectionRange();
+            case ExpressionsPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
+            case ExpressionsPackage.IF_EXP: return createIfExp();
+            case ExpressionsPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
+            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
+            case ExpressionsPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
+            case ExpressionsPackage.ITERATE_EXP: return createIterateExp();
+            case ExpressionsPackage.VARIABLE: return createVariable();
+            case ExpressionsPackage.ITERATOR_EXP: return createIteratorExp();
+            case ExpressionsPackage.LET_EXP: return createLetExp();
+            case ExpressionsPackage.MESSAGE_EXP: return createMessageExp();
+            case ExpressionsPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
+            case ExpressionsPackage.OPERATION_CALL_EXP: return createOperationCallExp();
+            case ExpressionsPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
+            case ExpressionsPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
+            case ExpressionsPackage.STATE_EXP: return createStateExp();
+            case ExpressionsPackage.STRING_LITERAL_EXP: return createStringLiteralExp();
+            case ExpressionsPackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
+            case ExpressionsPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
+            case ExpressionsPackage.TYPE_EXP: return createTypeExp();
+            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
+            case ExpressionsPackage.VARIABLE_EXP: return createVariableExp();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case ExpressionsPackage.COLLECTION_KIND:
-				return createCollectionKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case ExpressionsPackage.COLLECTION_KIND:
+                return createCollectionKindFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case ExpressionsPackage.COLLECTION_KIND:
-				return convertCollectionKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case ExpressionsPackage.COLLECTION_KIND:
+                return convertCollectionKindToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, P> AssociationClassCallExp<C, P> createAssociationClassCallExp() {
-		AssociationClassCallExpImpl<C, P> associationClassCallExp = new AssociationClassCallExpImpl<C, P>();
-		return associationClassCallExp;
-	}
+        AssociationClassCallExpImpl<C, P> associationClassCallExp = new AssociationClassCallExpImpl<C, P>();
+        return associationClassCallExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> BooleanLiteralExp<C> createBooleanLiteralExp() {
-		BooleanLiteralExpImpl<C> booleanLiteralExp = new BooleanLiteralExpImpl<C>();
-		return booleanLiteralExp;
-	}
+        BooleanLiteralExpImpl<C> booleanLiteralExp = new BooleanLiteralExpImpl<C>();
+        return booleanLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> CollectionItem<C> createCollectionItem() {
-		CollectionItemImpl<C> collectionItem = new CollectionItemImpl<C>();
-		return collectionItem;
-	}
+        CollectionItemImpl<C> collectionItem = new CollectionItemImpl<C>();
+        return collectionItem;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> CollectionLiteralExp<C> createCollectionLiteralExp() {
-		CollectionLiteralExpImpl<C> collectionLiteralExp = new CollectionLiteralExpImpl<C>();
-		return collectionLiteralExp;
-	}
+        CollectionLiteralExpImpl<C> collectionLiteralExp = new CollectionLiteralExpImpl<C>();
+        return collectionLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> CollectionRange<C> createCollectionRange() {
-		CollectionRangeImpl<C> collectionRange = new CollectionRangeImpl<C>();
-		return collectionRange;
-	}
+        CollectionRangeImpl<C> collectionRange = new CollectionRangeImpl<C>();
+        return collectionRange;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, EL> EnumLiteralExp<C, EL> createEnumLiteralExp() {
-		EnumLiteralExpImpl<C, EL> enumLiteralExp = new EnumLiteralExpImpl<C, EL>();
-		return enumLiteralExp;
-	}
+        EnumLiteralExpImpl<C, EL> enumLiteralExp = new EnumLiteralExpImpl<C, EL>();
+        return enumLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> IfExp<C> createIfExp() {
-		IfExpImpl<C> ifExp = new IfExpImpl<C>();
-		return ifExp;
-	}
+        IfExpImpl<C> ifExp = new IfExpImpl<C>();
+        return ifExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> IntegerLiteralExp<C> createIntegerLiteralExp() {
-		IntegerLiteralExpImpl<C> integerLiteralExp = new IntegerLiteralExpImpl<C>();
-		return integerLiteralExp;
-	}
+        IntegerLiteralExpImpl<C> integerLiteralExp = new IntegerLiteralExpImpl<C>();
+        return integerLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public <C> UnlimitedNaturalLiteralExp<C> createUnlimitedNaturalLiteralExp() {
-		UnlimitedNaturalLiteralExpImpl<C> unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl<C>();
-		return unlimitedNaturalLiteralExp;
-	}
+        UnlimitedNaturalLiteralExpImpl<C> unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl<C>();
+        return unlimitedNaturalLiteralExp;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> InvalidLiteralExp<C> createInvalidLiteralExp() {
-		InvalidLiteralExpImpl<C> invalidLiteralExp = new InvalidLiteralExpImpl<C>();
-		return invalidLiteralExp;
-	}
+        InvalidLiteralExpImpl<C> invalidLiteralExp = new InvalidLiteralExpImpl<C>();
+        return invalidLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, PM> IterateExp<C, PM> createIterateExp() {
-		IterateExpImpl<C, PM> iterateExp = new IterateExpImpl<C, PM>();
-		return iterateExp;
-	}
+        IterateExpImpl<C, PM> iterateExp = new IterateExpImpl<C, PM>();
+        return iterateExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, PM> IteratorExp<C, PM> createIteratorExp() {
-		IteratorExpImpl<C, PM> iteratorExp = new IteratorExpImpl<C, PM>();
-		return iteratorExp;
-	}
+        IteratorExpImpl<C, PM> iteratorExp = new IteratorExpImpl<C, PM>();
+        return iteratorExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, PM> LetExp<C, PM> createLetExp() {
-		LetExpImpl<C, PM> letExp = new LetExpImpl<C, PM>();
-		return letExp;
-	}
+        LetExpImpl<C, PM> letExp = new LetExpImpl<C, PM>();
+        return letExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, COA, SSA> MessageExp<C, COA, SSA> createMessageExp() {
-		MessageExpImpl<C, COA, SSA> messageExp = new MessageExpImpl<C, COA, SSA>();
-		return messageExp;
-	}
+        MessageExpImpl<C, COA, SSA> messageExp = new MessageExpImpl<C, COA, SSA>();
+        return messageExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> NullLiteralExp<C> createNullLiteralExp() {
-		NullLiteralExpImpl<C> nullLiteralExp = new NullLiteralExpImpl<C>();
-		return nullLiteralExp;
-	}
+        NullLiteralExpImpl<C> nullLiteralExp = new NullLiteralExpImpl<C>();
+        return nullLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, O> OperationCallExp<C, O> createOperationCallExp() {
-		OperationCallExpImpl<C, O> operationCallExp = new OperationCallExpImpl<C, O>();
-		return operationCallExp;
-	}
+        OperationCallExpImpl<C, O> operationCallExp = new OperationCallExpImpl<C, O>();
+        return operationCallExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, P> PropertyCallExp<C, P> createPropertyCallExp() {
-		PropertyCallExpImpl<C, P> propertyCallExp = new PropertyCallExpImpl<C, P>();
-		return propertyCallExp;
-	}
+        PropertyCallExpImpl<C, P> propertyCallExp = new PropertyCallExpImpl<C, P>();
+        return propertyCallExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> RealLiteralExp<C> createRealLiteralExp() {
-		RealLiteralExpImpl<C> realLiteralExp = new RealLiteralExpImpl<C>();
-		return realLiteralExp;
-	}
+        RealLiteralExpImpl<C> realLiteralExp = new RealLiteralExpImpl<C>();
+        return realLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, S> StateExp<C, S> createStateExp() {
-		StateExpImpl<C, S> stateExp = new StateExpImpl<C, S>();
-		return stateExp;
-	}
+        StateExpImpl<C, S> stateExp = new StateExpImpl<C, S>();
+        return stateExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> StringLiteralExp<C> createStringLiteralExp() {
-		StringLiteralExpImpl<C> stringLiteralExp = new StringLiteralExpImpl<C>();
-		return stringLiteralExp;
-	}
+        StringLiteralExpImpl<C> stringLiteralExp = new StringLiteralExpImpl<C>();
+        return stringLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, P> TupleLiteralExp<C, P> createTupleLiteralExp() {
-		TupleLiteralExpImpl<C, P> tupleLiteralExp = new TupleLiteralExpImpl<C, P>();
-		return tupleLiteralExp;
-	}
+        TupleLiteralExpImpl<C, P> tupleLiteralExp = new TupleLiteralExpImpl<C, P>();
+        return tupleLiteralExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, P> TupleLiteralPart<C, P> createTupleLiteralPart() {
-		TupleLiteralPartImpl<C, P> tupleLiteralPart = new TupleLiteralPartImpl<C, P>();
-		return tupleLiteralPart;
-	}
+        TupleLiteralPartImpl<C, P> tupleLiteralPart = new TupleLiteralPartImpl<C, P>();
+        return tupleLiteralPart;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> TypeExp<C> createTypeExp() {
-		TypeExpImpl<C> typeExp = new TypeExpImpl<C>();
-		return typeExp;
-	}
+        TypeExpImpl<C> typeExp = new TypeExpImpl<C>();
+        return typeExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C> UnspecifiedValueExp<C> createUnspecifiedValueExp() {
-		UnspecifiedValueExpImpl<C> unspecifiedValueExp = new UnspecifiedValueExpImpl<C>();
-		return unspecifiedValueExp;
-	}
+        UnspecifiedValueExpImpl<C> unspecifiedValueExp = new UnspecifiedValueExpImpl<C>();
+        return unspecifiedValueExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, PM> Variable<C, PM> createVariable() {
-		VariableImpl<C, PM> variable = new VariableImpl<C, PM>();
-		return variable;
-	}
+        VariableImpl<C, PM> variable = new VariableImpl<C, PM>();
+        return variable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public <C, PM> VariableExp<C, PM> createVariableExp() {
-		VariableExpImpl<C, PM> variableExp = new VariableExpImpl<C, PM>();
-		return variableExp;
-	}
+        VariableExpImpl<C, PM> variableExp = new VariableExpImpl<C, PM>();
+        return variableExp;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionKind createCollectionKindFromString(EDataType eDataType, String initialValue) {
-		CollectionKind result = CollectionKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return result;
-	}
+        CollectionKind result = CollectionKind.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertCollectionKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExpressionsPackage getExpressionsPackage() {
-		return (ExpressionsPackage)getEPackage();
-	}
+        return (ExpressionsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ExpressionsPackage getPackage() {
-		return ExpressionsPackage.eINSTANCE;
-	}
+        return ExpressionsPackage.eINSTANCE;
+    }
 
 } //ExpressionsFactoryImpl

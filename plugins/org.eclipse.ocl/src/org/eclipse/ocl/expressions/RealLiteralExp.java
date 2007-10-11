@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExp.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: RealLiteralExp.java,v 1.3 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface RealLiteralExp<C> extends NumericLiteralExp<C> {
 	/**
-	 * Returns the value of the '<em><b>Real Symbol</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Real Symbol</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Real Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Real Symbol</em>' attribute.
-	 * @see #setRealSymbol(Double)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getRealLiteralExp_RealSymbol()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Real Symbol</em>' attribute.
+     * @see #setRealSymbol(Double)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getRealLiteralExp_RealSymbol()
+     * @model
+     * @generated
+     */
 	Double getRealSymbol();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.RealLiteralExp#getRealSymbol <em>Real Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.RealLiteralExp#getRealSymbol <em>Real Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Real Symbol</em>' attribute.
-	 * @see #getRealSymbol()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Real Symbol</em>' attribute.
+     * @see #getRealSymbol()
+     * @generated
+     */
 	void setRealSymbol(Double value);
 
 } // RealLiteralExp

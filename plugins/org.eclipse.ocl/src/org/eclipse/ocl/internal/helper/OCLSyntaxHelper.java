@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.6 2007/04/30 13:23:08 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.7 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -30,6 +31,10 @@ import lpg.lpgjavaruntime.IToken;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.cst.ClassifierContextDeclCS;
+import org.eclipse.ocl.cst.InvCS;
+import org.eclipse.ocl.cst.OCLExpressionCS;
+import org.eclipse.ocl.cst.PackageDeclarationCS;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -60,15 +65,14 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
-import org.eclipse.ocl.internal.cst.ClassifierContextDeclCS;
-import org.eclipse.ocl.internal.cst.InvCS;
-import org.eclipse.ocl.internal.cst.OCLExpressionCS;
-import org.eclipse.ocl.internal.cst.PackageDeclarationCS;
-import org.eclipse.ocl.internal.parser.OCLLPGParsersym;
-import org.eclipse.ocl.internal.parser.OCLLexer;
-import org.eclipse.ocl.internal.parser.OCLParser;
+import org.eclipse.ocl.lpg.AbstractParser;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -753,9 +757,8 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		choices.addAll(getChoices(env.getSelfVariable().getType(), constraintType));
 		syntaxHelpStringSuffix = oldSuffix;
 		
-		List<IToken> tokens = tokenize(txt);
-		
 		try {
+			List<IToken> tokens = tokenize(txt);
 			getVariables(env, txt, tokens.listIterator(tokens.size()));
 		} catch (Exception e) {
 			// maybe we found a few variables.  Ignore the exception
@@ -815,11 +818,11 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param tokenIndex the token index to look at (negative indices count
 	 *    backwards from the end)
 	 *    
-	 * @return the token type at the index, or {@link OCLLPGParsersym#TK_EOF_TOKEN}
+	 * @return the token type at the index, or {@link OCLParsersym#TK_EOF_TOKEN}
 	 *    if there is no token at the specified index
 	 */
 	private int tokenAt(String text, int tokenIndex) {
-		int result = OCLLPGParsersym.TK_EOF_TOKEN;
+		int result = OCLParsersym.TK_EOF_TOKEN;
 		List<IToken> tokens = tokenize(text);
 		
 		if (tokenIndex < 0) {
@@ -840,20 +843,20 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @return the corresponding {@link OCLToken}s
 	 */
 	private List<IToken> tokenize(String text) {
-		OCLLexer lexer = new OCLLexer(text.toCharArray());
-		return tokenize(new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				lexer, environment));
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(environment, text);
+		return tokenize(analyzer);
 	}
 	
-	private List<IToken> tokenize(OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser) {
+	private List<IToken> tokenize(OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer) {
 		IToken token = null;
 		List<IToken> result = new ArrayList<IToken>();
-		
+		AbstractParser parser = analyzer.getParser();
 		for (;;) {
 			try {
 				token = parser.getIToken(parser.getToken());
 				
-				if (token.getKind() == OCLLPGParsersym.TK_EOF_TOKEN) {
+				if (token.getKind() == OCLParsersym.TK_EOF_TOKEN) {
 					break;
 				} else {			
 					result.add(token);
@@ -891,7 +894,6 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 *     for the user; could be empty
 	 */
 	List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
-		
 		try {
 			txt = txt.trim();//just to be sure
 			if (txt.endsWith(HelperUtil.DOT)) {
@@ -924,22 +926,22 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				
 				// look backwards past the path name to see whether there is an
 				//   "oclIsInState(" before it
-				OCLLexer lexer = new OCLLexer(txt.toCharArray());
-				OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-					new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-						lexer, environment);
-				List<IToken> tokens = tokenize(parser);
+				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+							environment, txt);
+				AbstractParser parser = analyzer.getParser();		
+				List<IToken> tokens = tokenize(analyzer);
 				
 				ListIterator<IToken> iter = tokens.listIterator(tokens.size());
 				while (iter.hasPrevious() && (syntaxHelpStringSuffix == NONE)) {
 					IToken prev = iter.previous();
 					
 					switch (prev.getKind()) {
-					case OCLLPGParsersym.TK_LPAREN:
+					case OCLParsersym.TK_LPAREN:
 						if (iter.hasPrevious()) {
 							prev = iter.previous();
 							
-							if (prev.getKind() == OCLLPGParsersym.TK_oclIsInState) {
+							if (prev.getKind() == OCLParsersym.TK_oclIsInState) {
 								syntaxHelpStringSuffix = OCL_IS_IN_STATE;
 								position = prev.getStartOffset();
 								break;
@@ -949,10 +951,10 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 						// a different operation?  This is a normal path name
 						syntaxHelpStringSuffix = DOUBLE_COLON;
 						break;
-					case OCLLPGParsersym.TK_IDENTIFIER:
+					case OCLParsersym.TK_IDENTIFIER:
 						pathName.add(0, parser.getTokenText(prev.getTokenIndex()));
 						break;
-					case OCLLPGParsersym.TK_COLONCOLON:
+					case OCLParsersym.TK_COLONCOLON:
 						// these are part of the name
 						break;
 					default:
@@ -975,7 +977,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					return getPathChoices(pathName);
 				}
 			} else if (txt.endsWith("(") // known BMP code point //$NON-NLS-1$
-					&& (tokenAt(txt, -2) == OCLLPGParsersym.TK_oclIsInState)) {
+					&& (tokenAt(txt, -2) == OCLParsersym.TK_oclIsInState)) {
 
 				syntaxHelpStringSuffix = OCL_IS_IN_STATE;
 				
@@ -987,10 +989,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				List<String> empty = Collections.emptyList();
 				return getStateChoices(sourceType, empty);
 			} else {
-				OCLLexer lexer = new OCLLexer(txt.toCharArray());
-				OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-					new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							lexer, environment);
+				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
+					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+							environment, txt);
 				
 				// see whether we can complete a partial name
 				List<IToken> tokens = tokenize(parser);
@@ -998,11 +999,11 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					IToken last = tokens.get(tokens.size() - 1);
 					IToken prev = tokens.get(tokens.size() - 2);
 					
-					if (OCLParser.isIdentifierOrKeyword(last.getKind())) {
+					if (AbstractOCLAnalyzer.isIdentifierOrKeyword(last.getKind())) {
 						switch (prev.getKind()) {
-							case OCLLPGParsersym.TK_ARROW:
-							case OCLLPGParsersym.TK_DOT:
-							case OCLLPGParsersym.TK_COLONCOLON:
+							case OCLParsersym.TK_ARROW:
+							case OCLParsersym.TK_DOT:
+							case OCLParsersym.TK_COLONCOLON:
 								return getPartialNameChoices(
 									txt, constraintType,
 									prev.getEndOffset() + 1); // + 1 because end is inclusive
@@ -1024,7 +1025,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				}
 				
 				if ((tokens.size() > 0) &&
-				        (tokens.get(tokens.size() - 1).getKind() == OCLLPGParsersym.TK_IDENTIFIER)) {
+				        (tokens.get(tokens.size() - 1).getKind() == OCLParsersym.TK_IDENTIFIER)) {
 				    List<Choice> choices = getPartialNameChoices(txt, constraintType,
 				        tokens.get(tokens.size() - 1).getStartOffset());
 				    
@@ -1061,9 +1062,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @return parsed pathname
 	 */
 	private List<String> parseTokensPathNameCS(
-			OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser,
+			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer,
 			List<IToken> tokens) {
-		
+		AbstractParser parser = analyzer.getParser();		
 		ArrayList<String> path = new ArrayList<String>();
 		IToken token;
 		int index = tokens.size() - 1;
@@ -1072,9 +1073,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		while (index >= 0) {
 			token = tokens.get(index--);
 			
-			if (doubleColon && token.getKind() == OCLLPGParsersym.TK_COLONCOLON) {
+			if (doubleColon && token.getKind() == OCLParsersym.TK_COLONCOLON) {
 				// do nothing
-			} else if (!doubleColon && token.getKind() == OCLLPGParsersym.TK_IDENTIFIER) {
+			} else if (!doubleColon && token.getKind() == OCLParsersym.TK_IDENTIFIER) {
 				path.add(0, parser.getTokenText(token.getTokenIndex()));
 			} else {
 				break;
@@ -1097,10 +1098,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	    int end = index;
 	    
         String newTxt = txt.substring(start, end);
-        OCLLexer lexer = new OCLLexer(newTxt.toCharArray());
-        OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-            new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-                    lexer, env);
+        OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+            new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+            		env, newTxt);
         
         PackageDeclarationCS packageContext = null;
         OCLExpressionCS cst = null;
@@ -1109,8 +1109,8 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         // right-most subexpression that parses
         
         // initialize the token list
-        lexer.reset();
-        List<IToken> tokens = tokenize(parser);
+        analyzer.getLexer().reset();
+        List<IToken> tokens = tokenize(analyzer);
         
         ListIterator<IToken> it = tokens.listIterator(tokens.size());
         
@@ -1165,16 +1165,17 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                     start = token.getStartOffset();
                     newTxt = preamble + txt.substring(start, end);
                     
-                    lexer = new OCLLexer(newTxt.toCharArray());
-                    parser = new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-                                lexer, env);
+                    analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+                    		env, newTxt);
                     
                     // offset the parser left by the length of our preamble text
                     // and right by the number of characters on the left side
                     // that we are ignoring
-                    parser.setCharacterOffset(offset + start);
+                    analyzer.setCharacterOffset(offset + start);
                     
-                    packageContext = (PackageDeclarationCS) parser.parseConcreteSyntax();
+                    packageContext = (PackageDeclarationCS) analyzer.parseConcreteSyntax();
+                    OCLUtil.checkForErrors(analyzer.getEnvironment().getProblemHandler());
+                    
                     ClassifierContextDeclCS context = (ClassifierContextDeclCS)
                         packageContext.getContextDecls().get(0);
                     cst = ((InvCS) context.getInvOrDefCS()).getExpressionCS();
@@ -1194,7 +1195,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             it.next();  // in case we stepped onto a bar or in boundary token
             getVariables(env, txt.substring(0, start), it);
             
-            return parser.parseAST(cst, constraintType);
+            return analyzer.parseAST(cst, constraintType);
         }
         
         return null;
@@ -1213,30 +1214,30 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 */
 	private boolean isBoundaryToken(IToken token) {
 	    switch (token.getKind()) {
-            case OCLLPGParsersym.TK_COLON:
-            case OCLLPGParsersym.TK_COMMA:
-            case OCLLPGParsersym.TK_SEMICOLON:
-            case OCLLPGParsersym.TK_BAR:
-            case OCLLPGParsersym.TK_in:
-            case OCLLPGParsersym.TK_let:
-	        case OCLLPGParsersym.TK_and:
-            case OCLLPGParsersym.TK_or:
-            case OCLLPGParsersym.TK_xor:
-            case OCLLPGParsersym.TK_implies:
-            case OCLLPGParsersym.TK_endif:
-            case OCLLPGParsersym.TK_then:
-            case OCLLPGParsersym.TK_else:
-            case OCLLPGParsersym.TK_if:
-            case OCLLPGParsersym.TK_EQUAL:
-            case OCLLPGParsersym.TK_NOT_EQUAL:
-            case OCLLPGParsersym.TK_GREATER:
-            case OCLLPGParsersym.TK_GREATER_EQUAL:
-            case OCLLPGParsersym.TK_LESS:
-            case OCLLPGParsersym.TK_LESS_EQUAL:
-            case OCLLPGParsersym.TK_PLUS:
-            case OCLLPGParsersym.TK_MINUS:
-            case OCLLPGParsersym.TK_MULTIPLY:
-            case OCLLPGParsersym.TK_DIVIDE:
+            case OCLParsersym.TK_COLON:
+            case OCLParsersym.TK_COMMA:
+            case OCLParsersym.TK_SEMICOLON:
+            case OCLParsersym.TK_BAR:
+            case OCLParsersym.TK_in:
+            case OCLParsersym.TK_let:
+	        case OCLParsersym.TK_and:
+            case OCLParsersym.TK_or:
+            case OCLParsersym.TK_xor:
+            case OCLParsersym.TK_implies:
+            case OCLParsersym.TK_endif:
+            case OCLParsersym.TK_then:
+            case OCLParsersym.TK_else:
+            case OCLParsersym.TK_if:
+            case OCLParsersym.TK_EQUAL:
+            case OCLParsersym.TK_NOT_EQUAL:
+            case OCLParsersym.TK_GREATER:
+            case OCLParsersym.TK_GREATER_EQUAL:
+            case OCLParsersym.TK_LESS:
+            case OCLParsersym.TK_LESS_EQUAL:
+            case OCLParsersym.TK_PLUS:
+            case OCLParsersym.TK_MINUS:
+            case OCLParsersym.TK_MULTIPLY:
+            case OCLParsersym.TK_DIVIDE:
                 return true;
             default:
                 return false;
@@ -1245,14 +1246,14 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	
 	private int updateBalance(int[] balance, IToken token) {
 	    switch (token.getKind()) {
-            case OCLLPGParsersym.TK_LPAREN:
-            case OCLLPGParsersym.TK_LBRACKET:
-            case OCLLPGParsersym.TK_LBRACE:
+            case OCLParsersym.TK_LPAREN:
+            case OCLParsersym.TK_LBRACKET:
+            case OCLParsersym.TK_LBRACE:
                 balance[0]--;
                 break;
-            case OCLLPGParsersym.TK_RPAREN:
-            case OCLLPGParsersym.TK_RBRACKET:
-            case OCLLPGParsersym.TK_RBRACE:
+            case OCLParsersym.TK_RPAREN:
+            case OCLParsersym.TK_RBRACKET:
+            case OCLParsersym.TK_RBRACE:
                 balance[0]++;
                 break;
 	    }
@@ -1268,14 +1269,14 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		while (tokens.hasPrevious()) {
 			token = tokens.previous();
 			
-			if (token.getKind() == OCLLPGParsersym.TK_BAR) {
+			if (token.getKind() == OCLParsersym.TK_BAR) {
 				// we are looking at a nested namespace in an iterator expression.
 				//   Parse the iterator variable declarations into our environment
 				int beginIndex = 0;
 				while (tokens.hasPrevious()) {
 					// search for the left parenthesis
 					IToken ot = tokens.previous();
-					if (ot.getKind() == OCLLPGParsersym.TK_LPAREN) {
+					if (ot.getKind() == OCLParsersym.TK_LPAREN) {
 						beginIndex = ot.getEndOffset() + 1;
 						break;
 					}
@@ -1284,14 +1285,14 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				parseIterators(
 					env,
 					text.substring(beginIndex, token.getStartOffset()));
-			} else if (token.getKind() == OCLLPGParsersym.TK_in) {
+			} else if (token.getKind() == OCLParsersym.TK_in) {
 				// we are looking at a nested namespace in a let expression.
 				//   Parse the iterator variable declarations into our environment
 				int beginIndex = 0;
 				while (tokens.hasPrevious()) {
 					// search for the "let" token
 					IToken ot = tokens.previous();
-					if (ot.getKind() == OCLLPGParsersym.TK_let) {
+					if (ot.getKind() == OCLParsersym.TK_let) {
 						beginIndex = ot.getEndOffset() + 1;
 						break;
 					}
@@ -1304,64 +1305,68 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void parseIterators(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String variables) throws ParserException {
 		int beginIndex = 0;
-		OCLLexer mainLexer = new OCLLexer(variables.toCharArray());
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> mainParser =
-			new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					mainLexer, env);
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> mainAnalyzer =
+			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+					env, variables);
 		
-		if (!parseVariableDeclaration(env, mainParser)) {
-			mainParser.reset();
-			OCLLexer lexer;
-			OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser;
+		if (!parseVariableDeclaration(env, mainAnalyzer)) {
+			AbstractParser parser = mainAnalyzer.getParser();		
+			parser.reset();
+			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer;
 			String newTxt;
-			IToken token = mainParser.getIToken(mainParser.getToken());
+			IToken token = parser.getIToken(parser.getToken());
 		
-			while (token.getKind() != OCLLPGParsersym.TK_EOF_TOKEN) {
-				if ((token.getKind() == OCLLPGParsersym.TK_COMMA)
-						|| (token.getKind() == OCLLPGParsersym.TK_SEMICOLON)) {
+			while (token.getKind() != OCLParsersym.TK_EOF_TOKEN) {
+				if ((token.getKind() == OCLParsersym.TK_COMMA)
+						|| (token.getKind() == OCLParsersym.TK_SEMICOLON)) {
 					newTxt = variables.substring(beginIndex, token.getStartOffset());
-					lexer = new OCLLexer(newTxt.toCharArray());
-					parser = new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-							lexer, env);
-					if (parseVariableDeclaration(env, parser)) {
+					analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+							env, newTxt);
+					if (parseVariableDeclaration(env, analyzer)) {
 						beginIndex = token.getEndOffset() + 1;
 		
 						// try to the end of the expression
 						newTxt = variables.substring(beginIndex);
-						lexer = new OCLLexer(newTxt.toCharArray());
-						parser = new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-								lexer, env);
-						if (parseVariableDeclaration(env, parser)) {
+						analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+								env, newTxt);
+						if (parseVariableDeclaration(env, analyzer)) {
 							break;
             			}
             		}
             	}
-				token = mainParser.getIToken(mainParser.getToken());
+				token = parser.getIToken(parser.getToken());
 			}
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void parseVariable(
 			Environment <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String variables) throws ParserException {
 		
-		OCLLexer lexer = new OCLLexer(variables.toCharArray());
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-					lexer, env);
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+					env, variables);
 		
-		parseVariableDeclaration(env, parser);
+		parseVariableDeclaration(env, analyzer);
 	}
 	
 	private boolean parseVariableDeclaration(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> p) {
+			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> p) {
 		try {
+			ProblemHandler problemHandler = p.getEnvironment().getProblemHandler();
+			problemHandler.beginParse();
+			
 			p.parseVariableDeclarationCS(true);
+			
+			problemHandler.endParse();
+			OCLUtil.checkForErrors(problemHandler);
 			return true;
 		} catch (SemanticException e) {
 			// ignore:  this will happen when the variable has already

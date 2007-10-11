@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.2 2007/02/14 14:46:07 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
  */
 package org.eclipse.ocl.internal;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.ocl.Environment;
 import org.osgi.framework.BundleContext;
@@ -62,7 +62,8 @@ extends EMFPlugin {
 	}
 
 	// implements the inherited method
-	public ResourceLocator getPluginResourceLocator() {
+	@Override
+    public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
 
@@ -195,7 +196,7 @@ extends EMFPlugin {
 	 *  
 	 */
 	public static void error(int code, String message, Throwable throwable) {
-		log(IStatus.ERROR, code, message, throwable);
+		log(Diagnostic.ERROR, code, message, throwable);
 	}
 
 	/**
@@ -237,7 +238,7 @@ extends EMFPlugin {
 	 *  
 	 */
 	public static void info(int code, String message, Throwable throwable) {
-		log(IStatus.INFO, code, message, throwable);
+		log(Diagnostic.INFO, code, message, throwable);
 	}
 
 	/**
@@ -267,7 +268,7 @@ extends EMFPlugin {
 	 *  
 	 */
 	public static void warning(int code, String message, Throwable throwable) {
-		log(IStatus.WARNING, code, message, throwable);
+		log(Diagnostic.WARNING, code, message, throwable);
 	}
 
 	public static void log(int severity, int code, String message,
@@ -286,11 +287,11 @@ extends EMFPlugin {
 				// not in the Eclipse environment
 				if (shouldTrace(OCLDebugOptions.DEBUG)) {
 					switch (code) {
-					case IStatus.WARNING:
+					case Diagnostic.WARNING:
 						System.err.print("WARNING "); //$NON-NLS-1$
 						break;
-					case IStatus.ERROR:
-					case IStatus.CANCEL:
+					case Diagnostic.ERROR:
+					case Diagnostic.CANCEL:
 						System.err.print("ERROR "); //$NON-NLS-1$
 						break;
 					default:

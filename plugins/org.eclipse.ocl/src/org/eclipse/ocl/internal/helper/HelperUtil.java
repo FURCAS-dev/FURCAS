@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.2 2007/02/14 18:00:29 cdamus Exp $
+ * $Id: HelperUtil.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -24,14 +25,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLPlugin;
-import org.eclipse.ocl.internal.parser.OCLLexer;
-import org.eclipse.ocl.internal.parser.OCLParser;
-import org.eclipse.ocl.internal.parser.ValidationVisitor;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.ValidationVisitor;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
@@ -148,15 +149,18 @@ public class HelperUtil {
 	
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	OCLExpression<C> parseQuery(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "inv:", expression, trace); //$NON-NLS-1$
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
 		
-		CT constraint = parser.parseInvOrDefCS();
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "inv:", expression, trace); //$NON-NLS-1$
+		
+		CT constraint = analyzer.parseInvOrDefCS();
+		checkForErrors(helper);
 		
 		ExpressionInOCL<C, PM> spec = env.getUMLReflection().getSpecification(constraint);
 		OCLExpression<C> result = spec.getBodyExpression();
@@ -169,176 +173,229 @@ public class HelperUtil {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		// re-persist the "self" variable that we temporarily stole away from
 		//    the environment, in the ExpressionInOCL.  In a query expression,
 		//    there won't be other variables (result, parameters) to worry about
 		persist(env, spec.getContextVariable());
+		
 		return result;
 	}
 
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseInvariant(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "inv:", expression, trace); //$NON-NLS-1$
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
 		
-		CT result = parser.parseInvOrDefCS();
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "inv:", expression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parseInvOrDefCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parsePrecondition(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "pre:", expression, trace); //$NON-NLS-1$
-		CT result = parser.parsePrePostOrBodyDeclCS();
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
+		
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "pre:", expression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parsePrePostOrBodyDeclCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 	
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parsePostcondition(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "post:", expression, trace); //$NON-NLS-1$
-		CT result = parser.parsePrePostOrBodyDeclCS();
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
+		
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "post:", expression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parsePrePostOrBodyDeclCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 	
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseBodyCondition(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "body:", expression, trace); //$NON-NLS-1$
-		CT result = parser.parsePrePostOrBodyDeclCS();
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
+		
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "body:", expression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parsePrePostOrBodyDeclCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 	
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseInitialValueExpression(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "init:", expression, trace); //$NON-NLS-1$
-		CT result = parser.parseInitOrDerValueCS();
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
+		
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "init:", expression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parseInitOrDerValueCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 	
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseDerivedValueExpression(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String expression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "derive:", expression, trace); //$NON-NLS-1$
-		CT result = parser.parseInitOrDerValueCS();
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
+		
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "derive:", expression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parseInitOrDerValueCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 	
 	static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	CT parseDefExpression(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			String defExpression,
 			boolean validate,
             boolean trace) throws ParserException {
 		
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
-			createParser(env, "def:", defExpression, trace); //$NON-NLS-1$
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = helper.getEnvironment();
 		
-		CT result = parser.parseInvOrDefCS();
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
+			createAnalyzer(env, "def:", defExpression, trace); //$NON-NLS-1$
+		
+		CT result = analyzer.parseInvOrDefCS();
+		checkForErrors(helper);
 		
 		if (validate) {
 			validate(env, result);
 		}
 		
+		finishAnalyzing(helper);
+		
 		persist(env, result);
+		
 		return result;
 	}
 
 	/**
-	 * Initializes a parser on the specified <code>text</code> and environment
+	 * Initializes an analyzer on the specified <code>text</code> and environment
 	 * factory.
 	 * 
 	 * @param prefix the constraint prefix (e.g., <code>"inv:"</code> or
 	 *     <code>"pre:"</code>).  The prefix must not contain newlines
-	 * @param environmentFactory the parser's environment factory
+	 * @param environmentFactory the analyzer's environment factory
 	 * @param text the OCL constraint text
 	 * @param trace whether to trace the parsing
      * 
-	 * @return the parser
+	 * @return the analyzer
 	 */
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	createParser(
+	OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	createAnalyzer(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String prefix,	String text,
             boolean trace) {
 		
-		OCLLexer lexer = new OCLLexer((prefix + '\n' + text).toCharArray());
-		OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		result = new OCLParser<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				lexer, env);
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+		result = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				env, (prefix + '\n' + text));
 		
 		// we prefix the constraint with "inv:", "pre:", "def:", etc. which the
-		//    user cannot see, so we want error resporting to be relative
-		//    to line 0, not line 1
-		result.setErrorReportLineOffset(-1);
+		//    user cannot see, so we want error reporting to be relative
+		//    to line 0, not line 1.  Also, clear any old diagnostics
+		ProblemHandler ph = OCLUtil.getAdapter(env, ProblemHandler.class);
+		if (ph != null) {
+			ph.setErrorReportLineOffset(-1);
+			ph.beginParse();
+		}
 		
 		// offset the character position by the length of the extra text
 		result.setCharacterOffset(-(prefix.length() + 1)); // one for the newline
@@ -347,27 +404,39 @@ public class HelperUtil {
 		
 		return result;
 	}
-	
+
+	/**
+	 * Completes an environment's parsing session.
+	 * 
+	 * @param helper the helper implementation
+	 */
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	void validate(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			OCLExpression<C> expression) throws SemanticException {
-		try {
-			expression.accept(ValidationVisitor.getInstance(env));
-		} catch (Exception e) {
-			throw new SemanticException(e.getLocalizedMessage(), e);
+	void finishAnalyzing(OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper)
+	throws ParserException {
+		
+		ProblemHandler ph = OCLUtil.getAdapter(helper.getEnvironment(),
+			ProblemHandler.class);
+		if (ph != null) {
+			ph.endParse();
 		}
+		
+		checkForErrors(helper);
 	}
 	
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	void validate(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			CT constraint) throws SemanticException {
-		try {
-			ValidationVisitor.getInstance(env).visitConstraint(constraint);
-		} catch (Exception e) {
-			throw new SemanticException(e.getLocalizedMessage(), e);
-		}
+			OCLExpression<C> expression) throws ParserException {
+		
+		expression.accept(ValidationVisitor.getInstance(env));
+	}
+	
+	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	void validate(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			CT constraint) throws ParserException {
+		
+		ValidationVisitor.getInstance(env).visitConstraint(constraint);
 	}
 	
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
@@ -423,5 +492,18 @@ public class HelperUtil {
 		}
 		
 		return result;
+	}
+	
+	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	void checkForErrors(
+			OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper)
+		throws ParserException {
+		
+		try {
+			helper.setProblems(OCLUtil.checkForErrors(helper.getEnvironment()));
+		} catch (ParserException e) {
+			helper.setProblems(e.getDiagnostic());
+			throw e;
+		}
 	}
 }

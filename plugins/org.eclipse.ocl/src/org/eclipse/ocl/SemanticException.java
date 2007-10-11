@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: SemanticException.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: SemanticException.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;
+
+import org.eclipse.emf.common.util.Diagnostic;
 
 /**
  * Exception indicating a semantic error in parsing or validating OCL
@@ -47,5 +49,16 @@ public class SemanticException
      */
 	public SemanticException(String msg, Throwable cause) {
 		super(msg, cause);
+	}
+	
+	/**
+	 * Initializes me with a diagnostic obtained from a problem handler.
+	 * 
+	 * @param problem the diagnostic
+	 * 
+	 * @since 1.2
+	 */
+	public SemanticException(Diagnostic problem) {
+		super(problem);
 	}
 }

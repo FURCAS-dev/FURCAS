@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateOne.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: IterationTemplateOne.java,v 1.2 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -40,7 +40,8 @@ public class IterationTemplateOne<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return new IterationTemplateOne<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(v);
 	}
 
-	protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName,
+	@Override
+    protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName,
 		Object body) {
 		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();
 		// should be exactly one iterator

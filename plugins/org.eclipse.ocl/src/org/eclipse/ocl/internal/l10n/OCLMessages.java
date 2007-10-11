@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.2 2007/02/02 20:06:28 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.3 2007/10/11 23:05:06 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -110,6 +111,22 @@ public class OCLMessages {
 	public static String MissingInitIterateExp_ERROR_;
 	
 	public static String ErrorMessage_ERROR_;
+	public static String ProblemMessage_ERROR_;
+    public static String Severity_Cancel;
+	public static String Severity_Fatal_Error;
+	public static String Severity_Error;
+	public static String Severity_Warning;
+	public static String Severity_Info;
+	public static String Severity_OK;
+
+	public static String Phase_Parser;
+	public static String Phase_Unparser;
+	public static String Phase_Lexer;
+	public static String Phase_Analyzer;
+	public static String Phase_Validator;
+	public static String Phase_Utility;
+	
+	
 	public static String VariableUsed_ERROR_;
 	public static String VariableDeclaration_ERROR_;
 	public static String OperationNotFound_ERROR_;
@@ -134,6 +151,8 @@ public class OCLMessages {
 	public static String NullArgExpectEObj_ERROR_;
 	public static String NullArgExpectlist_ERROR_;
 	public static String BooleanQuery_ERROR_;
+	
+	public static String EvaluationFailed_ERROR_;
 	
 	public static String Noncomforming_ERROR_;
 	public static String SourceEClass_ERROR_;
@@ -189,6 +208,7 @@ public class OCLMessages {
     public static String MismatchedParameterVariables_ERROR_;
     public static String MismatchedResultVariable_ERROR_;
     public static String MissingResultVariable_ERROR_;
+    public static String MissingBodyExpression_ERROR_;
     
     public static String NonStaticAttribute_ERROR_;
     public static String NonStaticOperation_ERROR_;
@@ -210,6 +230,11 @@ public class OCLMessages {
 	public static String OCLParseErrorCodes_INVALID_TOKEN;
 	
 	public static String ErrorReport_RowColumn;
+	
+	public static String NonStd_DQuote_Escape_;
+	public static String NonStd_SQuote_Escape_;
+    public static String NonStd_Operation_;
+    public static String NonStd_Iterator_;
 	
 	private static IMessages messagesImpl;
 	

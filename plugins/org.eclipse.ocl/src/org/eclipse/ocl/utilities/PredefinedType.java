@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedType.java,v 1.2 2007/02/14 13:42:12 cdamus Exp $
+ * $Id: PredefinedType.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -216,27 +216,27 @@ public interface PredefinedType<O> extends EObject {
 	String SORTED_BY_NAME = "sortedBy"; //$NON-NLS-1$
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 * @generated
-	 */
+     * @model kind="operation" required="true"
+     * @generated
+     */
 	String getName();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operations</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @model type="java.lang.Object"
-	 * @generated
-	 */
+     * @model
+     * @generated
+     */
 	EList<O> oclOperations();
 
 } // PredefinedType

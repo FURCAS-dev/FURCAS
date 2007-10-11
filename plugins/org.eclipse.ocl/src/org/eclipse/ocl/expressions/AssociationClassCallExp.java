@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AssociationClassCallExp.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: AssociationClassCallExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface AssociationClassCallExp<C, P> extends NavigationCallExp<C, P> {
 	/**
-	 * Returns the value of the '<em><b>Referred Association Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Referred Association Class</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Association Class</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Association Class</em>' reference.
-	 * @see #setReferredAssociationClass(Object)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp_ReferredAssociationClass()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Referred Association Class</em>' reference.
+     * @see #setReferredAssociationClass(Object)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getAssociationClassCallExp_ReferredAssociationClass()
+     * @model kind="reference"
+     * @generated
+     */
 	C getReferredAssociationClass();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.AssociationClassCallExp#getReferredAssociationClass <em>Referred Association Class</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.AssociationClassCallExp#getReferredAssociationClass <em>Referred Association Class</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referred Association Class</em>' reference.
-	 * @see #getReferredAssociationClass()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Referred Association Class</em>' reference.
+     * @see #getReferredAssociationClass()
+     * @generated
+     */
 	void setReferredAssociationClass(C value);
 
 } // AssociationClassCallExp

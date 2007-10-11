@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.2 2007/05/03 13:06:51 cdamus Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -22,8 +22,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.internal.OCLPlugin;
@@ -186,7 +186,7 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
 			} catch (Exception e) {
 				OCLPlugin.catching(getClass(), "callOperation", e);//$NON-NLS-1$
 				OCLPlugin.log(
-					IStatus.ERROR,
+					Diagnostic.ERROR,
 					OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
 					OCLMessages.bind(
 						OCLMessages.ErrorMessage_ERROR_,

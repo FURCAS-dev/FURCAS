@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.2 2007/02/14 14:46:07 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -246,7 +246,8 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return evalEnv;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer result = new StringBuffer();
 		
 		result.append("Query["); //$NON-NLS-1$
