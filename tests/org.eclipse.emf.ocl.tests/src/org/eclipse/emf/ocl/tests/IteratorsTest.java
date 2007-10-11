@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.7 2007/06/15 18:40:55 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.8 2007/10/11 23:05:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -972,7 +972,8 @@ public class IteratorsTest
 	// Framework methods
 	//
 	
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
 		super.setUp();
 		
 		// need a metamodel that has a reflexive EReference.

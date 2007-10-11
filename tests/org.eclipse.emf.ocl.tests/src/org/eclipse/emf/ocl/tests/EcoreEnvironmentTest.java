@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.9 2007/06/06 18:56:54 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.10 2007/10/11 23:05:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ocl.helper.ConstraintType;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
+import org.eclipse.emf.ocl.parser.EnvironmentFactory;
 
 /**
  * Tests the {@link ExpressionsUtil} class.
@@ -51,7 +52,7 @@ public class EcoreEnvironmentTest
 	 * Tests the default EcoreEnvironment which uses the global package registry.
 	 */
 	public void test_globalEPackageRegistry_lookup() {
-		IOCLHelper helper = HelperUtil.createOCLHelper(EcoreEnvironmentFactory.ECORE_INSTANCE);
+		IOCLHelper helper = HelperUtil.createOCLHelper(EnvironmentFactory.ECORE_INSTANCE);
 		
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
@@ -106,7 +107,8 @@ public class EcoreEnvironmentTest
 	// Framework methods
 	//
 	
-	protected void tearDown() throws Exception {
+	@Override
+    protected void tearDown() throws Exception {
 		// deregister the fruit package so that it won't confuse the global registry
 		EPackage.Registry.INSTANCE.remove(fruitPackage.getNsURI());
 		

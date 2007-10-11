@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.3 2007/06/06 18:56:53 cdamus Exp $
+ * $Id: ValidationTest.java,v 1.4 2007/10/11 23:05:09 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -164,7 +164,8 @@ public class ValidationTest extends AbstractTestSuite {
 	/**
 	 * Sets up a common fixture for the association class tests.
 	 */
-	public void setUp() throws Exception {
+	@Override
+    public void setUp() throws Exception {
 		super.setUp();
 		
 		fruitPackage.getEClassifiers().remove(stem);
@@ -234,7 +235,8 @@ public class ValidationTest extends AbstractTestSuite {
 		UMLTypeUtil.addQualifier(forest_trees, q);
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		super.tearDown();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.5 2007/02/14 14:46:12 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.6 2007/10/11 23:05:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -510,7 +510,8 @@ public class MessagesTest
 	// Test framework
 	//
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 
 		// let the next test re-initialize the fruit package to eliminate the
@@ -522,21 +523,25 @@ public class MessagesTest
 	
 	public static class MessagingFruitEnvironmentFactory extends AbstractEnvironmentFactory {
 
-		protected Environment createEnvironment(EPackage packageContext) {
+		@Override
+        protected Environment createEnvironment(EPackage packageContext) {
 			MessagingFruitEnvironment result = new MessagingFruitEnvironment();
 			result.setFactory(this);
 			return result;
 		}
 
-		protected EClassifier asEClassifier(Object context) {
+		@Override
+        protected EClassifier asEClassifier(Object context) {
 			return (EClassifier) context;
 		}
 
-		protected EOperation asEOperation(Object operation) {
+		@Override
+        protected EOperation asEOperation(Object operation) {
 			return (EOperation) operation;
 		}
 		
-		protected EStructuralFeature asEStructuralFeature(Object property) {
+		@Override
+        protected EStructuralFeature asEStructuralFeature(Object property) {
 			return (EStructuralFeature) property;
 		}
 
@@ -587,7 +592,8 @@ public class MessagesTest
 			super.setFactory(factory);
 		}
 		
-		public EList getSignals(EClassifier owner) {
+		@Override
+        public EList getSignals(EClassifier owner) {
 			if (getParent() != null) {
 				return getParent().getSignals(owner);
 			} else if (owner == fruit || owner == apple) {

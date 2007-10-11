@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.3 2007/02/14 14:46:12 cdamus Exp $
+ * $Id: StatesTest.java,v 1.4 2007/10/11 23:05:08 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -196,21 +196,25 @@ public class StatesTest
 	
 	public static class StatefulFruitEnvironmentFactory extends AbstractEnvironmentFactory {
 
-		protected Environment createEnvironment(EPackage packageContext) {
+		@Override
+        protected Environment createEnvironment(EPackage packageContext) {
 			StatefulFruitEnvironment result = new StatefulFruitEnvironment();
 			result.setFactory(this);
 			return result;
 		}
 
-		protected EClassifier asEClassifier(Object context) {
+		@Override
+        protected EClassifier asEClassifier(Object context) {
 			return (EClassifier) context;
 		}
 
-		protected EOperation asEOperation(Object operation) {
+		@Override
+        protected EOperation asEOperation(Object operation) {
 			return (EOperation) operation;
 		}
 		
-		protected EStructuralFeature asEStructuralFeature(Object property) {
+		@Override
+        protected EStructuralFeature asEStructuralFeature(Object property) {
 			return (EStructuralFeature) property;
 		}
 
@@ -254,7 +258,8 @@ public class StatesTest
 			super.setFactory(factory);
 		}
 		
-		protected void collectStates(EClassifier owner, List pathPrefix, List states) {
+		@Override
+        protected void collectStates(EClassifier owner, List pathPrefix, List states) {
 			if (owner == fruit) {
 				if (pathPrefix.isEmpty()) {
 					states.add(fruitRipe);
@@ -270,7 +275,8 @@ public class StatesTest
 			}
 		}
 		
-		public String getStateName(EObject state) {
+		@Override
+        public String getStateName(EObject state) {
 			if (state == fruitRipe) {
 				return "Ripe"; //$NON-NLS-1$
 			} else if (state == fruitBad) {
