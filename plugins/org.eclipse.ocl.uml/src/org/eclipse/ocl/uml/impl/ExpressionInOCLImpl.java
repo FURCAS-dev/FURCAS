@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -56,213 +56,204 @@ import org.eclipse.uml2.uml.internal.impl.OpaqueExpressionImpl;
 @SuppressWarnings("restriction")
 public class ExpressionInOCLImpl extends OpaqueExpressionImpl implements ExpressionInOCL {
     /**
-	 * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBodyExpression() <em>Body Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getBodyExpression()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBodyExpression()
+     * @generated
+     * @ordered
+     */
     protected OCLExpression<Classifier> bodyExpression;
 
     /**
-	 * The cached value of the '{@link #getContextVariable() <em>Context Variable</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContextVariable() <em>Context Variable</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getContextVariable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContextVariable()
+     * @generated
+     * @ordered
+     */
     protected Variable<Classifier, Parameter> contextVariable;
 
     /**
-	 * The cached value of the '{@link #getResultVariable() <em>Result Variable</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getResultVariable() <em>Result Variable</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getResultVariable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getResultVariable()
+     * @generated
+     * @ordered
+     */
     protected Variable<Classifier, Parameter> resultVariable;
 
     /**
-	 * The cached value of the '{@link #getParameterVariable() <em>Parameter Variable</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getParameterVariable() <em>Parameter Variable</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getParameterVariable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getParameterVariable()
+     * @generated
+     * @ordered
+     */
     protected EList<Variable<Classifier, Parameter>> parameterVariable;
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ExpressionInOCLImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return UMLPackage.Literals.EXPRESSION_IN_OCL;
-	}
+        return UMLPackage.Literals.EXPRESSION_IN_OCL;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public OCLExpression<Classifier> getBodyExpression() {
-		return bodyExpression;
-	}
+        return bodyExpression;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetBodyExpression(OCLExpression<Classifier> newBodyExpression, NotificationChain msgs) {
-		OCLExpression<Classifier> oldBodyExpression = bodyExpression;
-		bodyExpression = newBodyExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, oldBodyExpression, newBodyExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        OCLExpression<Classifier> oldBodyExpression = bodyExpression;
+        bodyExpression = newBodyExpression;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, oldBodyExpression, newBodyExpression);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setBodyExpression(OCLExpression<Classifier> newBodyExpression) {
-
-		if (newBodyExpression != bodyExpression) {
-			NotificationChain msgs = null;
-			if (bodyExpression != null)
-				msgs = ((InternalEObject)bodyExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
-			if (newBodyExpression != null)
-				msgs = ((InternalEObject)newBodyExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
-			msgs = basicSetBodyExpression(newBodyExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, newBodyExpression, newBodyExpression));
-
-	}
+        if (newBodyExpression != bodyExpression) {
+            NotificationChain msgs = null;
+            if (bodyExpression != null)
+                msgs = ((InternalEObject)bodyExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
+            if (newBodyExpression != null)
+                msgs = ((InternalEObject)newBodyExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
+            msgs = basicSetBodyExpression(newBodyExpression, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, newBodyExpression, newBodyExpression));
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Variable<Classifier, Parameter> getContextVariable() {
-		return contextVariable;
-	}
+        return contextVariable;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetContextVariable(Variable<Classifier, Parameter> newContextVariable, NotificationChain msgs) {
-		Variable<Classifier, Parameter> oldContextVariable = contextVariable;
-		contextVariable = newContextVariable;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, oldContextVariable, newContextVariable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        Variable<Classifier, Parameter> oldContextVariable = contextVariable;
+        contextVariable = newContextVariable;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, oldContextVariable, newContextVariable);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setContextVariable(Variable<Classifier, Parameter> newContextVariable) {
-
-		if (newContextVariable != contextVariable) {
-			NotificationChain msgs = null;
-			if (contextVariable != null)
-				msgs = ((InternalEObject)contextVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
-			if (newContextVariable != null)
-				msgs = ((InternalEObject)newContextVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
-			msgs = basicSetContextVariable(newContextVariable, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, newContextVariable, newContextVariable));
-
-	}
+        if (newContextVariable != contextVariable) {
+            NotificationChain msgs = null;
+            if (contextVariable != null)
+                msgs = ((InternalEObject)contextVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
+            if (newContextVariable != null)
+                msgs = ((InternalEObject)newContextVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
+            msgs = basicSetContextVariable(newContextVariable, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, newContextVariable, newContextVariable));
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Variable<Classifier, Parameter> getResultVariable() {
-		return resultVariable;
-	}
+        return resultVariable;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetResultVariable(Variable<Classifier, Parameter> newResultVariable, NotificationChain msgs) {
-		Variable<Classifier, Parameter> oldResultVariable = resultVariable;
-		resultVariable = newResultVariable;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, oldResultVariable, newResultVariable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        Variable<Classifier, Parameter> oldResultVariable = resultVariable;
+        resultVariable = newResultVariable;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, oldResultVariable, newResultVariable);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setResultVariable(Variable<Classifier, Parameter> newResultVariable) {
-
-		if (newResultVariable != resultVariable) {
-			NotificationChain msgs = null;
-			if (resultVariable != null)
-				msgs = ((InternalEObject)resultVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
-			if (newResultVariable != null)
-				msgs = ((InternalEObject)newResultVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
-			msgs = basicSetResultVariable(newResultVariable, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, newResultVariable, newResultVariable));
-
-	}
+        if (newResultVariable != resultVariable) {
+            NotificationChain msgs = null;
+            if (resultVariable != null)
+                msgs = ((InternalEObject)resultVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
+            if (newResultVariable != null)
+                msgs = ((InternalEObject)newResultVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
+            msgs = basicSetResultVariable(newResultVariable, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, newResultVariable, newResultVariable));
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList<Variable<Classifier, Parameter>> getParameterVariable() {
-		if (parameterVariable == null) {
-			parameterVariable = new EObjectContainmentEList<Variable<Classifier, Parameter>>(Variable.class, this, UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
-		}
-		return parameterVariable;
-	}
+        if (parameterVariable == null) {
+            parameterVariable = new EObjectContainmentEList<Variable<Classifier, Parameter>>(Variable.class, this, UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
+        }
+        return parameterVariable;
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -274,161 +265,161 @@ public class ExpressionInOCLImpl extends OpaqueExpressionImpl implements Express
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				return basicSetBodyExpression(null, msgs);
-			case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				return basicSetContextVariable(null, msgs);
-			case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				return basicSetResultVariable(null, msgs);
-			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return ((InternalEList<?>)getParameterVariable()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
+                return basicSetBodyExpression(null, msgs);
+            case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
+                return basicSetContextVariable(null, msgs);
+            case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
+                return basicSetResultVariable(null, msgs);
+            case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
+                return ((InternalEList<?>)getParameterVariable()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				return getBodyExpression();
-			case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				return getContextVariable();
-			case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				return getResultVariable();
-			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return getParameterVariable();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
+                return getBodyExpression();
+            case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
+                return getContextVariable();
+            case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
+                return getResultVariable();
+            case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
+                return getParameterVariable();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				setBodyExpression((OCLExpression<Classifier>)newValue);
-				return;
-			case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				setContextVariable((Variable<Classifier, Parameter>)newValue);
-				return;
-			case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				setResultVariable((Variable<Classifier, Parameter>)newValue);
-				return;
-			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				getParameterVariable().clear();
-				getParameterVariable().addAll((Collection<? extends Variable<Classifier, Parameter>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
+                setBodyExpression((OCLExpression<Classifier>)newValue);
+                return;
+            case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
+                setContextVariable((Variable<Classifier, Parameter>)newValue);
+                return;
+            case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
+                setResultVariable((Variable<Classifier, Parameter>)newValue);
+                return;
+            case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
+                getParameterVariable().clear();
+                getParameterVariable().addAll((Collection<? extends Variable<Classifier, Parameter>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				setBodyExpression((OCLExpression<Classifier>)null);
-				return;
-			case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				setContextVariable((Variable<Classifier, Parameter>)null);
-				return;
-			case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				setResultVariable((Variable<Classifier, Parameter>)null);
-				return;
-			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				getParameterVariable().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
+                setBodyExpression((OCLExpression<Classifier>)null);
+                return;
+            case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
+                setContextVariable((Variable<Classifier, Parameter>)null);
+                return;
+            case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
+                setResultVariable((Variable<Classifier, Parameter>)null);
+                return;
+            case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
+                getParameterVariable().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				return bodyExpression != null;
-			case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				return contextVariable != null;
-			case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				return resultVariable != null;
-			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return parameterVariable != null && !parameterVariable.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
+                return bodyExpression != null;
+            case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
+                return contextVariable != null;
+            case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
+                return resultVariable != null;
+            case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
+                return parameterVariable != null && !parameterVariable.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.utilities.ExpressionInOCL.class) {
-			switch (derivedFeatureID) {
-				case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION: return UtilitiesPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION;
-				case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE: return UtilitiesPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE;
-				case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE: return UtilitiesPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE;
-				case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE: return UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == Visitable.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.utilities.ExpressionInOCL.class) {
+            switch (derivedFeatureID) {
+                case UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION: return UtilitiesPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION;
+                case UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE: return UtilitiesPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE;
+                case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE: return UtilitiesPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE;
+                case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE: return UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Visitable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == org.eclipse.ocl.utilities.ExpressionInOCL.class) {
-			switch (baseFeatureID) {
-				case UtilitiesPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION: return UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION;
-				case UtilitiesPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE: return UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE;
-				case UtilitiesPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE: return UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE;
-				case UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE: return UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == Visitable.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == org.eclipse.ocl.utilities.ExpressionInOCL.class) {
+            switch (baseFeatureID) {
+                case UtilitiesPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION: return UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION;
+                case UtilitiesPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE: return UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE;
+                case UtilitiesPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE: return UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE;
+                case UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE: return UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //ExpressionInOCLImpl

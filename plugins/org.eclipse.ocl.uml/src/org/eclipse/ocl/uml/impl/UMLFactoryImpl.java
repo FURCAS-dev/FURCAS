@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactoryImpl.java,v 1.5 2007/05/10 17:48:02 cdamus Exp $
+ * $Id: UMLFactoryImpl.java,v 1.6 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -74,505 +74,505 @@ import org.eclipse.ocl.uml.VoidType;
  */
 public class UMLFactoryImpl extends EFactoryImpl implements UMLFactory {
     /**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static UMLFactory init() {
-		try {
-			UMLFactory theUMLFactory = (UMLFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/UML"); //$NON-NLS-1$ 
-			if (theUMLFactory != null) {
-				return theUMLFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new UMLFactoryImpl();
-	}
+        try {
+            UMLFactory theUMLFactory = (UMLFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/UML"); //$NON-NLS-1$ 
+            if (theUMLFactory != null) {
+                return theUMLFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new UMLFactoryImpl();
+    }
 
     /**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public UMLFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case UMLPackage.ANY_TYPE: return createAnyType();
-			case UMLPackage.VOID_TYPE: return createVoidType();
-			case UMLPackage.INVALID_TYPE: return createInvalidType();
-			case UMLPackage.ELEMENT_TYPE: return createElementType();
-			case UMLPackage.TYPE_TYPE: return createTypeType();
-			case UMLPackage.MESSAGE_TYPE: return createMessageType();
-			case UMLPackage.PRIMITIVE_TYPE: return createPrimitiveType();
-			case UMLPackage.COLLECTION_TYPE: return createCollectionType();
-			case UMLPackage.TUPLE_TYPE: return createTupleType();
-			case UMLPackage.BAG_TYPE: return createBagType();
-			case UMLPackage.SET_TYPE: return createSetType();
-			case UMLPackage.ORDERED_SET_TYPE: return createOrderedSetType();
-			case UMLPackage.SEQUENCE_TYPE: return createSequenceType();
-			case UMLPackage.EXPRESSION_IN_OCL: return createExpressionInOCL();
-			case UMLPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
-			case UMLPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
-			case UMLPackage.COLLECTION_ITEM: return createCollectionItem();
-			case UMLPackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
-			case UMLPackage.COLLECTION_RANGE: return createCollectionRange();
-			case UMLPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
-			case UMLPackage.IF_EXP: return createIfExp();
-			case UMLPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
-			case UMLPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
-			case UMLPackage.ITERATE_EXP: return createIterateExp();
-			case UMLPackage.ITERATOR_EXP: return createIteratorExp();
-			case UMLPackage.LET_EXP: return createLetExp();
-			case UMLPackage.MESSAGE_EXP: return createMessageExp();
-			case UMLPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
-			case UMLPackage.OPERATION_CALL_EXP: return createOperationCallExp();
-			case UMLPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
-			case UMLPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
-			case UMLPackage.STATE_EXP: return createStateExp();
-			case UMLPackage.STRING_LITERAL_EXP: return createStringLiteralExp();
-			case UMLPackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
-			case UMLPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
-			case UMLPackage.TYPE_EXP: return createTypeExp();
-			case UMLPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
-			case UMLPackage.VARIABLE: return createVariable();
-			case UMLPackage.VARIABLE_EXP: return createVariableExp();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case UMLPackage.ANY_TYPE: return createAnyType();
+            case UMLPackage.VOID_TYPE: return createVoidType();
+            case UMLPackage.INVALID_TYPE: return createInvalidType();
+            case UMLPackage.ELEMENT_TYPE: return createElementType();
+            case UMLPackage.TYPE_TYPE: return createTypeType();
+            case UMLPackage.MESSAGE_TYPE: return createMessageType();
+            case UMLPackage.PRIMITIVE_TYPE: return createPrimitiveType();
+            case UMLPackage.COLLECTION_TYPE: return createCollectionType();
+            case UMLPackage.TUPLE_TYPE: return createTupleType();
+            case UMLPackage.BAG_TYPE: return createBagType();
+            case UMLPackage.SET_TYPE: return createSetType();
+            case UMLPackage.ORDERED_SET_TYPE: return createOrderedSetType();
+            case UMLPackage.SEQUENCE_TYPE: return createSequenceType();
+            case UMLPackage.EXPRESSION_IN_OCL: return createExpressionInOCL();
+            case UMLPackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
+            case UMLPackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
+            case UMLPackage.COLLECTION_ITEM: return createCollectionItem();
+            case UMLPackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
+            case UMLPackage.COLLECTION_RANGE: return createCollectionRange();
+            case UMLPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
+            case UMLPackage.IF_EXP: return createIfExp();
+            case UMLPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
+            case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
+            case UMLPackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
+            case UMLPackage.ITERATE_EXP: return createIterateExp();
+            case UMLPackage.ITERATOR_EXP: return createIteratorExp();
+            case UMLPackage.LET_EXP: return createLetExp();
+            case UMLPackage.MESSAGE_EXP: return createMessageExp();
+            case UMLPackage.NULL_LITERAL_EXP: return createNullLiteralExp();
+            case UMLPackage.OPERATION_CALL_EXP: return createOperationCallExp();
+            case UMLPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
+            case UMLPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
+            case UMLPackage.STATE_EXP: return createStateExp();
+            case UMLPackage.STRING_LITERAL_EXP: return createStringLiteralExp();
+            case UMLPackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
+            case UMLPackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
+            case UMLPackage.TYPE_EXP: return createTypeExp();
+            case UMLPackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
+            case UMLPackage.VARIABLE: return createVariable();
+            case UMLPackage.VARIABLE_EXP: return createVariableExp();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public AnyType createAnyType() {
-		AnyTypeImpl anyType = new AnyTypeImpl();
-		return anyType;
-	}
+        AnyTypeImpl anyType = new AnyTypeImpl();
+        return anyType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public VoidType createVoidType() {
-		VoidTypeImpl voidType = new VoidTypeImpl();
-		return voidType;
-	}
+        VoidTypeImpl voidType = new VoidTypeImpl();
+        return voidType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public InvalidType createInvalidType() {
-		InvalidTypeImpl invalidType = new InvalidTypeImpl();
-		return invalidType;
-	}
+        InvalidTypeImpl invalidType = new InvalidTypeImpl();
+        return invalidType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public ElementType createElementType() {
-		ElementTypeImpl elementType = new ElementTypeImpl();
-		return elementType;
-	}
+        ElementTypeImpl elementType = new ElementTypeImpl();
+        return elementType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public TypeType createTypeType() {
-		TypeTypeImpl typeType = new TypeTypeImpl();
-		return typeType;
-	}
+        TypeTypeImpl typeType = new TypeTypeImpl();
+        return typeType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public MessageType createMessageType() {
-		MessageTypeImpl messageType = new MessageTypeImpl();
-		return messageType;
-	}
+        MessageTypeImpl messageType = new MessageTypeImpl();
+        return messageType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public PrimitiveType createPrimitiveType() {
-		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
-		return primitiveType;
-	}
+        PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
+        return primitiveType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public CollectionType createCollectionType() {
-		CollectionTypeImpl collectionType = new CollectionTypeImpl();
-		return collectionType;
-	}
+        CollectionTypeImpl collectionType = new CollectionTypeImpl();
+        return collectionType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public TupleType createTupleType() {
-		TupleTypeImpl tupleType = new TupleTypeImpl();
-		return tupleType;
-	}
+        TupleTypeImpl tupleType = new TupleTypeImpl();
+        return tupleType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public BagType createBagType() {
-		BagTypeImpl bagType = new BagTypeImpl();
-		return bagType;
-	}
+        BagTypeImpl bagType = new BagTypeImpl();
+        return bagType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public SetType createSetType() {
-		SetTypeImpl setType = new SetTypeImpl();
-		return setType;
-	}
+        SetTypeImpl setType = new SetTypeImpl();
+        return setType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public OrderedSetType createOrderedSetType() {
-		OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
-		return orderedSetType;
-	}
+        OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
+        return orderedSetType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public SequenceType createSequenceType() {
-		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
-		return sequenceType;
-	}
+        SequenceTypeImpl sequenceType = new SequenceTypeImpl();
+        return sequenceType;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public ExpressionInOCL createExpressionInOCL() {
-		ExpressionInOCLImpl expressionInOCL = new ExpressionInOCLImpl();
-		return expressionInOCL;
-	}
+        ExpressionInOCLImpl expressionInOCL = new ExpressionInOCLImpl();
+        return expressionInOCL;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationClassCallExp createAssociationClassCallExp() {
-		AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
-		return associationClassCallExp;
-	}
+        AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
+        return associationClassCallExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BooleanLiteralExp createBooleanLiteralExp() {
-		BooleanLiteralExpImpl booleanLiteralExp = new BooleanLiteralExpImpl();
-		return booleanLiteralExp;
-	}
+        BooleanLiteralExpImpl booleanLiteralExp = new BooleanLiteralExpImpl();
+        return booleanLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionItem createCollectionItem() {
-		CollectionItemImpl collectionItem = new CollectionItemImpl();
-		return collectionItem;
-	}
+        CollectionItemImpl collectionItem = new CollectionItemImpl();
+        return collectionItem;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionLiteralExp createCollectionLiteralExp() {
-		CollectionLiteralExpImpl collectionLiteralExp = new CollectionLiteralExpImpl();
-		return collectionLiteralExp;
-	}
+        CollectionLiteralExpImpl collectionLiteralExp = new CollectionLiteralExpImpl();
+        return collectionLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionRange createCollectionRange() {
-		CollectionRangeImpl collectionRange = new CollectionRangeImpl();
-		return collectionRange;
-	}
+        CollectionRangeImpl collectionRange = new CollectionRangeImpl();
+        return collectionRange;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EnumLiteralExp createEnumLiteralExp() {
-		EnumLiteralExpImpl enumLiteralExp = new EnumLiteralExpImpl();
-		return enumLiteralExp;
-	}
+        EnumLiteralExpImpl enumLiteralExp = new EnumLiteralExpImpl();
+        return enumLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public IfExp createIfExp() {
-		IfExpImpl ifExp = new IfExpImpl();
-		return ifExp;
-	}
+        IfExpImpl ifExp = new IfExpImpl();
+        return ifExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public IntegerLiteralExp createIntegerLiteralExp() {
-		IntegerLiteralExpImpl integerLiteralExp = new IntegerLiteralExpImpl();
-		return integerLiteralExp;
-	}
+        IntegerLiteralExpImpl integerLiteralExp = new IntegerLiteralExpImpl();
+        return integerLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
-		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
-		return unlimitedNaturalLiteralExp;
-	}
+        UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
+        return unlimitedNaturalLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public InvalidLiteralExp createInvalidLiteralExp() {
-		InvalidLiteralExpImpl invalidLiteralExp = new InvalidLiteralExpImpl();
-		return invalidLiteralExp;
-	}
+        InvalidLiteralExpImpl invalidLiteralExp = new InvalidLiteralExpImpl();
+        return invalidLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public IterateExp createIterateExp() {
-		IterateExpImpl iterateExp = new IterateExpImpl();
-		return iterateExp;
-	}
+        IterateExpImpl iterateExp = new IterateExpImpl();
+        return iterateExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public IteratorExp createIteratorExp() {
-		IteratorExpImpl iteratorExp = new IteratorExpImpl();
-		return iteratorExp;
-	}
+        IteratorExpImpl iteratorExp = new IteratorExpImpl();
+        return iteratorExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public LetExp createLetExp() {
-		LetExpImpl letExp = new LetExpImpl();
-		return letExp;
-	}
+        LetExpImpl letExp = new LetExpImpl();
+        return letExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MessageExp createMessageExp() {
-		MessageExpImpl messageExp = new MessageExpImpl();
-		return messageExp;
-	}
+        MessageExpImpl messageExp = new MessageExpImpl();
+        return messageExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NullLiteralExp createNullLiteralExp() {
-		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
-		return nullLiteralExp;
-	}
+        NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
+        return nullLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OperationCallExp createOperationCallExp() {
-		OperationCallExpImpl operationCallExp = new OperationCallExpImpl();
-		return operationCallExp;
-	}
+        OperationCallExpImpl operationCallExp = new OperationCallExpImpl();
+        return operationCallExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PropertyCallExp createPropertyCallExp() {
-		PropertyCallExpImpl propertyCallExp = new PropertyCallExpImpl();
-		return propertyCallExp;
-	}
+        PropertyCallExpImpl propertyCallExp = new PropertyCallExpImpl();
+        return propertyCallExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RealLiteralExp createRealLiteralExp() {
-		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
-		return realLiteralExp;
-	}
+        RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
+        return realLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StateExp createStateExp() {
-		StateExpImpl stateExp = new StateExpImpl();
-		return stateExp;
-	}
+        StateExpImpl stateExp = new StateExpImpl();
+        return stateExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StringLiteralExp createStringLiteralExp() {
-		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
-		return stringLiteralExp;
-	}
+        StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
+        return stringLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TupleLiteralExp createTupleLiteralExp() {
-		TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
-		return tupleLiteralExp;
-	}
+        TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
+        return tupleLiteralExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TupleLiteralPart createTupleLiteralPart() {
-		TupleLiteralPartImpl tupleLiteralPart = new TupleLiteralPartImpl();
-		return tupleLiteralPart;
-	}
+        TupleLiteralPartImpl tupleLiteralPart = new TupleLiteralPartImpl();
+        return tupleLiteralPart;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TypeExp createTypeExp() {
-		TypeExpImpl typeExp = new TypeExpImpl();
-		return typeExp;
-	}
+        TypeExpImpl typeExp = new TypeExpImpl();
+        return typeExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UnspecifiedValueExp createUnspecifiedValueExp() {
-		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
-		return unspecifiedValueExp;
-	}
+        UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
+        return unspecifiedValueExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Variable createVariable() {
-		VariableImpl variable = new VariableImpl();
-		return variable;
-	}
+        VariableImpl variable = new VariableImpl();
+        return variable;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public VariableExp createVariableExp() {
-		VariableExpImpl variableExp = new VariableExpImpl();
-		return variableExp;
-	}
+        VariableExpImpl variableExp = new VariableExpImpl();
+        return variableExp;
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public UMLPackage getUMLPackage() {
-		return (UMLPackage)getEPackage();
-	}
+        return (UMLPackage)getEPackage();
+    }
 
 				/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static UMLPackage getPackage() {
-		return UMLPackage.eINSTANCE;
-	}
+        return UMLPackage.eINSTANCE;
+    }
 
 } //UMLFactoryImpl

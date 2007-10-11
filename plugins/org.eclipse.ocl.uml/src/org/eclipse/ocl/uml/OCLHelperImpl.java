@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.2 2007/03/27 15:05:18 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.3 2007/10/11 23:05:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ConstraintKind;
@@ -141,5 +142,9 @@ class OCLHelperImpl implements OCL.Helper {
     
     public void setValidating(boolean validating) {
         delegate.setValidating(validating);
+    }
+    
+    public Diagnostic getProblems() {
+    	return delegate.getProblems();
     }
 }

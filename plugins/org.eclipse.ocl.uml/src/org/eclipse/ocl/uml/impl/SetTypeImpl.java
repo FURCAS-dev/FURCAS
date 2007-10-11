@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.3 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.4 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -34,13 +34,13 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected SetTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
      * @generated NOT
@@ -50,18 +50,19 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return UMLPackage.Literals.SET_TYPE;
-	}
+        return UMLPackage.Literals.SET_TYPE;
+    }
 
     /**
      * @generated NOT
      */
+    @Override
     public CollectionKind getKind() {
         return CollectionKind.SET_LITERAL;
     }

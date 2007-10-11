@@ -9,16 +9,18 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *
  * </copyright>
  *
- * $Id: UMLForeignMethods.java,v 1.1 2007/04/20 22:42:59 cdamus Exp $
+ * $Id: UMLForeignMethods.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.internal.parser.OCLParser;
+import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -49,7 +51,7 @@ public class UMLForeignMethods {
      * @return whether the element has this name
      */
     public static boolean isNamed(String name, NamedElement element) {
-        return OCLParser.equalName(name, element.getName());
+        return AbstractOCLAnalyzer.equalName(name, element.getName());
     }
     
     /**
@@ -64,9 +66,9 @@ public class UMLForeignMethods {
     public static Package getNestedPackage(Package pkg, String name) {
         Package result = pkg.getNestedPackage(name);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
             // try the unescaped name
-            result = pkg.getNestedPackage(OCLParser.unescape(name));
+            result = pkg.getNestedPackage(AbstractOCLAnalyzer.unescape(name));
         }
         
         return result;
@@ -85,9 +87,9 @@ public class UMLForeignMethods {
     public static NamedElement getMember(Namespace ns, String name, EClass type) {
         NamedElement result = ns.getMember(name, false, type);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
             // try the unescaped name
-            result = (Namespace) ns.getMember(OCLParser.unescape(name), false, type);
+            result = ns.getMember(AbstractOCLAnalyzer.unescape(name), false, type);
         }
         
         return result;
@@ -105,9 +107,9 @@ public class UMLForeignMethods {
     public static Vertex getSubvertex(Region region, String name) {
         Vertex result = region.getSubvertex(name);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
             // try the unescaped name
-            result = region.getSubvertex(OCLParser.unescape(name));
+            result = region.getSubvertex(AbstractOCLAnalyzer.unescape(name));
         }
         
         return result;

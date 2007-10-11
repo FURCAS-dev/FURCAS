@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.1 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.2 2007/10/11 23:05:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.uml.UMLPackage;
  */
 public abstract class LiteralExpImpl extends OCLExpressionImpl implements LiteralExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.LITERAL_EXP;
-	}
+        return UMLPackage.Literals.LITERAL_EXP;
+    }
 
 } //LiteralExpImpl

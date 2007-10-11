@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.1 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.uml.UMLPackage;
  */
 public abstract class PrimitiveLiteralExpImpl extends LiteralExpImpl implements PrimitiveLiteralExp {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PrimitiveLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.PRIMITIVE_LITERAL_EXP;
-	}
+        return UMLPackage.Literals.PRIMITIVE_LITERAL_EXP;
+    }
 
 } //PrimitiveLiteralExpImpl

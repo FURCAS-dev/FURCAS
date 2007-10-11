@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.4 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -46,27 +46,28 @@ public class TupleTypeImpl extends DataTypeImpl implements TupleType {
     private EList<Property> properties;
     
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected TupleTypeImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     protected EClass eStaticClass() {
-		return UMLPackage.Literals.TUPLE_TYPE;
-	}
+        return UMLPackage.Literals.TUPLE_TYPE;
+    }
     
     /**
      * @generated NOT
      */
+    @Override
     public String getName() {
         if (name == null) {
             StringBuffer myName = new StringBuffer();

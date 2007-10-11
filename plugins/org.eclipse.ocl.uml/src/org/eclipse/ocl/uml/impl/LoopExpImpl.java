@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.1 2007/03/27 15:05:16 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -51,220 +51,217 @@ import org.eclipse.uml2.uml.Parameter;
 @SuppressWarnings("restriction")
 public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	/**
-	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBody()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBody()
+     * @generated
+     * @ordered
+     */
 	protected OCLExpression<Classifier> body;
 
 	/**
-	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIterator()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIterator()
+     * @generated
+     * @ordered
+     */
 	protected EList<Variable<Classifier, Parameter>> iterator;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LoopExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLPackage.Literals.LOOP_EXP;
-	}
+        return UMLPackage.Literals.LOOP_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OCLExpression<Classifier> getBody() {
-		return body;
-	}
+        return body;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBody(OCLExpression<Classifier> newBody, NotificationChain msgs) {
-		OCLExpression<Classifier> oldBody = body;
-		body = newBody;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.LOOP_EXP__BODY, oldBody, newBody);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-
-		return msgs;
-	}
+        OCLExpression<Classifier> oldBody = body;
+        body = newBody;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.LOOP_EXP__BODY, oldBody, newBody);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBody(OCLExpression<Classifier> newBody) {
-
-		if (newBody != body) {
-			NotificationChain msgs = null;
-			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null, msgs);
-			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null, msgs);
-			msgs = basicSetBody(newBody, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.LOOP_EXP__BODY, newBody, newBody));
-
-	}
+        if (newBody != body) {
+            NotificationChain msgs = null;
+            if (body != null)
+                msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null, msgs);
+            if (newBody != null)
+                msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null, msgs);
+            msgs = basicSetBody(newBody, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.LOOP_EXP__BODY, newBody, newBody));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Variable<Classifier, Parameter>> getIterator() {
-		if (iterator == null) {
-			iterator = new EObjectContainmentEList<Variable<Classifier, Parameter>>(Variable.class, this, UMLPackage.LOOP_EXP__ITERATOR);
-		}
-		return iterator;
-	}
+        if (iterator == null) {
+            iterator = new EObjectContainmentEList<Variable<Classifier, Parameter>>(Variable.class, this, UMLPackage.LOOP_EXP__ITERATOR);
+        }
+        return iterator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				return basicSetBody(null, msgs);
-			case UMLPackage.LOOP_EXP__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UMLPackage.LOOP_EXP__BODY:
+                return basicSetBody(null, msgs);
+            case UMLPackage.LOOP_EXP__ITERATOR:
+                return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				return getBody();
-			case UMLPackage.LOOP_EXP__ITERATOR:
-				return getIterator();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UMLPackage.LOOP_EXP__BODY:
+                return getBody();
+            case UMLPackage.LOOP_EXP__ITERATOR:
+                return getIterator();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<Classifier>)newValue);
-				return;
-			case UMLPackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				getIterator().addAll((Collection<? extends Variable<Classifier, Parameter>>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UMLPackage.LOOP_EXP__BODY:
+                setBody((OCLExpression<Classifier>)newValue);
+                return;
+            case UMLPackage.LOOP_EXP__ITERATOR:
+                getIterator().clear();
+                getIterator().addAll((Collection<? extends Variable<Classifier, Parameter>>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<Classifier>)null);
-				return;
-			case UMLPackage.LOOP_EXP__ITERATOR:
-				getIterator().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.LOOP_EXP__BODY:
+                setBody((OCLExpression<Classifier>)null);
+                return;
+            case UMLPackage.LOOP_EXP__ITERATOR:
+                getIterator().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				return body != null;
-			case UMLPackage.LOOP_EXP__ITERATOR:
-				return iterator != null && !iterator.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UMLPackage.LOOP_EXP__BODY:
+                return body != null;
+            case UMLPackage.LOOP_EXP__ITERATOR:
+                return iterator != null && !iterator.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
-			switch (derivedFeatureID) {
-				case UMLPackage.LOOP_EXP__BODY: return ExpressionsPackage.LOOP_EXP__BODY;
-				case UMLPackage.LOOP_EXP__ITERATOR: return ExpressionsPackage.LOOP_EXP__ITERATOR;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
+            switch (derivedFeatureID) {
+                case UMLPackage.LOOP_EXP__BODY: return ExpressionsPackage.LOOP_EXP__BODY;
+                case UMLPackage.LOOP_EXP__ITERATOR: return ExpressionsPackage.LOOP_EXP__ITERATOR;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.LOOP_EXP__BODY: return UMLPackage.LOOP_EXP__BODY;
-				case ExpressionsPackage.LOOP_EXP__ITERATOR: return UMLPackage.LOOP_EXP__ITERATOR;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.LOOP_EXP__BODY: return UMLPackage.LOOP_EXP__BODY;
+                case ExpressionsPackage.LOOP_EXP__ITERATOR: return UMLPackage.LOOP_EXP__ITERATOR;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //LoopExpImpl
