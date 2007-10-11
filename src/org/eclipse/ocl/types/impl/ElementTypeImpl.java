@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -32,22 +32,22 @@ import org.eclipse.ocl.types.TypesPackage;
  */
 public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ElementTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TypesPackage.Literals.ELEMENT_TYPE;
-	}
+        return TypesPackage.Literals.ELEMENT_TYPE;
+    }
 
 } //ElementTypeImpl

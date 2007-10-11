@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.2 2007/03/27 15:04:58 cdamus Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -23,6 +24,7 @@ import java.util.Set;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.internal.evaluation.TracingEvaluationVisitor;
+import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -58,7 +60,8 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	implements EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+	implements EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
+		Adaptable {
 
     private boolean traceEvaluation;
     
@@ -97,9 +100,7 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
     createPackageContext(
             Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent,
             List<String> pathname) {
-        
-        PK contextPackage = lookupPackage(pathname);
-        
+		PK contextPackage = lookupPackage(pathname);        
         return (contextPackage == null)? null : createPackageContext(parent, contextPackage);
     }
 	
@@ -253,4 +254,27 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
     protected void setEvaluationTracingEnabled(boolean b) {
         traceEvaluation = b;
     }
+
+	/**
+	 * The abstract environment factory implementation is adaptable.  The
+	 * default implementation adapts to and interface actually implemented by
+	 * the receiver.
+	 * <p>
+	 * Subclasses may override or extend this implementation.
+	 * </p>
+	 * 
+	 * @since 1.2
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T getAdapter(Class<T> adapterType) {
+		T result;
+		
+		if (adapterType.isAssignableFrom(getClass())) {
+			result = (T) this;
+		} else {
+			result = null;
+		}
+		
+		return result;
+	}
 }

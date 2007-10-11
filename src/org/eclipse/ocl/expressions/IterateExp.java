@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IterateExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
+ * $Id: IterateExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -35,29 +35,29 @@ package org.eclipse.ocl.expressions;
  */
 public interface IterateExp<C, PM> extends LoopExp<C, PM> {
 	/**
-	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Result</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result</em>' containment reference.
-	 * @see #setResult(Variable)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIterateExp_Result()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Result</em>' containment reference.
+     * @see #setResult(Variable)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIterateExp_Result()
+     * @model containment="true"
+     * @generated
+     */
 	Variable<C, PM> getResult();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.IterateExp#getResult <em>Result</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.IterateExp#getResult <em>Result</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result</em>' containment reference.
-	 * @see #getResult()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Result</em>' containment reference.
+     * @see #getResult()
+     * @generated
+     */
 	void setResult(Variable<C, PM> value);
 
 } // IterateExp

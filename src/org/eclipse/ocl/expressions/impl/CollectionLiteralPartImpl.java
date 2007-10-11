@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.4 2007/03/28 20:39:33 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.5 2007/10/11 23:04:55 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -36,23 +36,23 @@ public abstract class CollectionLiteralPartImpl<C> extends EObjectImpl implement
 	private C type;
 	
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CollectionLiteralPartImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.COLLECTION_LITERAL_PART;
-	}
+        return ExpressionsPackage.Literals.COLLECTION_LITERAL_PART;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

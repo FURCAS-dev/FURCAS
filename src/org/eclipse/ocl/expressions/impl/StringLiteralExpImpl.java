@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -38,122 +38,122 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class StringLiteralExpImpl<C> extends PrimitiveLiteralExpImpl<C> implements StringLiteralExp<C> {
 	/**
-	 * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStringSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStringSymbol()
+     * @generated
+     * @ordered
+     */
 	protected static final String STRING_SYMBOL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStringSymbol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStringSymbol()
+     * @generated
+     * @ordered
+     */
 	protected String stringSymbol = STRING_SYMBOL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StringLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.STRING_LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.STRING_LITERAL_EXP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getStringSymbol() {
-		return stringSymbol;
-	}
+        return stringSymbol;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setStringSymbol(String newStringSymbol) {
-		String oldStringSymbol = stringSymbol;
-		stringSymbol = newStringSymbol;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL, oldStringSymbol, stringSymbol));
-	}
+        String oldStringSymbol = stringSymbol;
+        stringSymbol = newStringSymbol;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL, oldStringSymbol, stringSymbol));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-				return getStringSymbol();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
+                return getStringSymbol();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-				setStringSymbol((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
+                setStringSymbol((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-				setStringSymbol(STRING_SYMBOL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
+                setStringSymbol(STRING_SYMBOL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-				return STRING_SYMBOL_EDEFAULT == null ? stringSymbol != null : !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
+                return STRING_SYMBOL_EDEFAULT == null ? stringSymbol != null : !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.2 2007/04/19 22:07:49 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
  */
 package org.eclipse.ocl;
 
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
@@ -50,9 +50,6 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	extends AbstractVisitor<Object, C, O, P, EL, PM, S, COA, SSA, CT>
 	implements EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
-    // FIXME: Localize this (too late for PII cut-off for Europa)
-    private static String EvaluationFailed_ERROR_ = "Evaluation failed with an exception"; //$NON-NLS-1$
-    
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
 	
@@ -226,8 +223,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
             if (msg == null) {
                 msg = OCLMessages.no_message;
             }
-            OCLPlugin.log(IStatus.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
-                /*OCLMessages.*/EvaluationFailed_ERROR_, e);
+            OCLPlugin.log(Diagnostic.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
+                OCLMessages.bind(OCLMessages.EvaluationFailed_ERROR_, msg), e);
             
             // failure to evaluate results in OclInvalid
             return getOclInvalid();
@@ -240,7 +237,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * constraint and returns the value of its body expression by delegation to
 	 * {@link #visitExpression(OCLExpression)}.
 	 */
-	public Object visitConstraint(CT constraint) {
+	@Override
+    public Object visitConstraint(CT constraint) {
 		OCLExpression<C> body = getSpecification(constraint).getBodyExpression();
 		boolean isBoolean = BOOLEAN_CONSTRAINTS.contains(
 				getEnvironment().getUMLReflection().getStereotype(constraint));
@@ -264,7 +262,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
         return getEnvironment().getUMLReflection().getSpecification(constraint);
     }
 	
-	public String toString() {
+	@Override
+    public String toString() {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (evaluation environment: ");//$NON-NLS-1$
 		result.append(getEvaluationEnvironment());

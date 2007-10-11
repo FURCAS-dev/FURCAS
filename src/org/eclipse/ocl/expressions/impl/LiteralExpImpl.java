@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: LiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: LiteralExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -31,22 +31,22 @@ import org.eclipse.ocl.expressions.LiteralExp;
  */
 public abstract class LiteralExpImpl<C> extends OCLExpressionImpl<C> implements LiteralExp<C> {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.LITERAL_EXP;
+    }
 
 } //LiteralExpImpl

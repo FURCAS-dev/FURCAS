@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.4 2007/04/20 22:42:57 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.5 2007/10/11 23:05:04 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -24,7 +25,9 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.internal.parser.OCLParser;
+import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
+import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -58,12 +61,11 @@ import org.eclipse.ocl.utilities.TypedElement;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	implements Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
-
+	extends AbstractBasicEnvironment
+	implements Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+{
 	/* Used to generate implicit iterator variables */
 	private static int generatorInt = 0;
-	
-	private AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent;
 	
 	private PK contextPackage;
 	private O contextOperation;
@@ -86,13 +88,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // map of attributes to derivation expressions
 	private Map<P, CT> propertyDerivations = new java.util.HashMap<P, CT>();
-	
-	
+
     /**
      * Initializes me without a parent environment.
      */
 	protected AbstractEnvironment() {
-		super();
+		super(null);
 	}
 	
     /**
@@ -104,7 +105,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected AbstractEnvironment(
 			AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent) {
 		
-		this.parent = parent;
+		super(parent);
 	}
 	
 	/**
@@ -118,8 +119,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
     // implements the interface method
+	@SuppressWarnings("unchecked") @Override
 	public AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getParent() {
-		return parent;
+		return (AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) super.getParent();
 	}
 
     /**
@@ -129,7 +131,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @param parent my new parent
      */
 	protected void setParent(AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent) {
-		this.parent = parent;
+		super.setParent(parent);
 	}
 	
     // implements the interface method
@@ -479,8 +481,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         // support operation parameters whose names need to be escaped in OCL
         Variable<C, PM> result = doLookupLocal(name);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
-            result = doLookupLocal(OCLParser.unescape(name));
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+            result = doLookupLocal(AbstractOCLAnalyzer.unescape(name));
         }
         
         return result;
@@ -506,16 +508,17 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		if (getParent() != null) {
 			return getParent().lookup(name);
-		} else
-			return null;
+		} else {
+            return null;
+        }
 	}
-    
+   
     // implements the interface method
     public O lookupOperation(C owner, String name, List<? extends TypedElement<C>> args) {
         O result = doLookupOperation(owner, name, args);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
-            result = doLookupOperation(owner, OCLParser.unescape(name), args);
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+            result = doLookupOperation(owner, AbstractOCLAnalyzer.unescape(name), args);
         }
         
         return result;
@@ -538,8 +541,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public P lookupProperty(C owner, String name) {
 	    P result = doLookupProperty(owner, name);
 	    
-	    if ((result == null) && OCLParser.isEscaped(name)) {
-            result = doLookupProperty(owner, OCLParser.unescape(name));
+	    if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+            result = doLookupProperty(owner, AbstractOCLAnalyzer.unescape(name));
         }
 	    
 	    return result;
@@ -570,8 +573,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     public C lookupAssociationClassReference(C owner, String name) {
         C result = doLookupAssociationClassReference(owner, name);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
-            result = doLookupAssociationClassReference(owner, OCLParser
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+            result = doLookupAssociationClassReference(owner, AbstractOCLAnalyzer
                 .unescape(name));
         }
         
@@ -610,8 +613,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     public C lookupSignal(C owner, String name, List<? extends TypedElement<C>> args) {
         C result = doLookupSignal(owner, name, args);
         
-        if ((result == null) && OCLParser.isEscaped(name)) {
-            result = doLookupSignal(owner, OCLParser.unescape(name), args);
+        if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+            result = doLookupSignal(owner, AbstractOCLAnalyzer.unescape(name), args);
         }
         
         return result;
@@ -632,7 +635,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 	
     // implements the interface method
-	public S lookupState(C owner, List<String> path) throws SemanticException {
+	public S lookupState(C owner, List<String> path) throws LookupException {
 		if (owner == null) {
 			Variable<C, PM> vdcl = lookupImplicitSourceForState(path);
 			
@@ -653,8 +656,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		    String nextName = getUMLReflection().getName(next);
 		    
 		    boolean matched = lastName.equals(nextName);
-		    if (!matched && OCLParser.isEscaped(lastName)) {
-		        matched = OCLParser.unescape(lastName).equals(nextName);
+		    if (!matched && AbstractOCLAnalyzer.isEscaped(lastName)) {
+		        matched = AbstractOCLAnalyzer.unescape(lastName).equals(nextName);
 		    }
 		    
 			if (matched) {
@@ -666,7 +669,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 							OCLMessages.AmbiguousState_ERROR_,
 							path,
                             getUMLReflection().getQualifiedName(owner));
-					throw new SemanticException(msg);
+					throw new LookupException(msg);
 				}
 			}
 		}
@@ -796,7 +799,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public Variable<C, PM> lookupImplicitSourceForState(List<String> path)
-			throws SemanticException {
+			throws LookupException {
 		Variable<C, PM> vdcl;
 		
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
@@ -866,6 +869,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			this.isExplicit = isExplicit;
 		}
 		
+		@Override
 		public String toString() {
 			return "VariableEntry[" + name + ", "  //$NON-NLS-1$//$NON-NLS-2$
 				+ (isExplicit? "explicit, " : "implicit, ") + variable + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$

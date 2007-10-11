@@ -29,7 +29,7 @@
   <foreignModel>OCLCST.uml</foreignModel>
   <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
       ecorePackage="OCLCST.ecore#/">
-    <nestedGenPackages prefix="CST" basePackage="org.eclipse.ocl.internal" disposableProviderFactory="true"
+    <nestedGenPackages prefix="CST" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
         ecorePackage="OCLCST.ecore#//cst">
       <genEnums ecoreEnum="OCLCST.ecore#//cst/SimpleTypeEnum">
         <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/identifier"/>

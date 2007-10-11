@@ -9,10 +9,11 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.4 2007/05/03 13:06:41 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.5 2007/10/11 23:04:53 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -29,7 +30,10 @@ import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.internal.parser.OCLParser;
+import org.eclipse.ocl.lpg.AbstractParser;
+import org.eclipse.ocl.lpg.BasicEnvironment;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.lpg.StringProblemHandler;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -317,33 +321,88 @@ public final class OCLStandardLibraryUtil {
      *     to the source type and/or expected parameter types of the operation
      * 
      * @see #getOperationCode(String)
+     * 
+     * @deprecated Use the {@link #getResultTypeOf(Object, Environment, Object, int, List)}
+     *    method, instead, which doesn't fail on the first problem
      */
-	public static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
+	@Deprecated
+    public static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
 	C getResultTypeOf(
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
 			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
 		
-		if (sourceType instanceof PrimitiveType) {
-			return getPrimitiveTypeResultTypeOf(env, sourceType, opcode, args);
-		} else if (sourceType instanceof CollectionType) {
-			if (sourceType instanceof BagType) {
-				return getBagTypeResultTypeOf(env, sourceType, opcode, args);
-			} else if (sourceType instanceof SetType) {
-				return getSetTypeResultTypeOf(env, sourceType, opcode, args);
-			} else if (sourceType instanceof OrderedSetType) {
-				return getOrderedSetTypeResultTypeOf(env, sourceType, opcode, args);
-			} else if (sourceType instanceof SequenceType) {
-				return getSequenceTypeResultTypeOf(env, sourceType, opcode, args);
-			}
+		StringProblemHandler handler = null;
+		ProblemHandler oldHandler = null;
+		BasicEnvironment benv = OCLUtil.getAdapter(env, BasicEnvironment.class);
+		
+		if (benv != null) {
+			AbstractParser parser = benv.getParser();
+			oldHandler = benv.getProblemHandler();
+			handler = new StringProblemHandler(parser);
 			
-			return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
-		} else if (sourceType instanceof TypeType) {
-			return getTypeTypeResultTypeOf(env, sourceType, opcode, args);
-		} else if (sourceType instanceof MessageType) {
-			return getMessageTypeResultTypeOf(env, sourceType, opcode, args);
+			benv.setProblemHandler(new ProblemHandlerWrapper.Tee(oldHandler, handler));
 		}
 		
-		return getAnyTypeResultTypeOf(env, sourceType, opcode, args);
+		try {
+			C result = getResultTypeOf(null, env, sourceType, opcode, args);
+			
+			if (result == null) {
+				String message = handler.getProblemString();
+				throw new SemanticException(message);
+			}
+			
+			return result;
+		} finally {
+			if (benv != null) {
+				benv.setProblemHandler(oldHandler);
+			}
+		}
+	}
+	
+    /**
+     * Obtains the result type of the specified operation from the OCL Standard
+     * Library.  Many of the OCL Standard Library operations are either generic
+     * themselves or defined by generic types, so the return results depend on
+     * the argument and source types.
+     * 
+     * @param env an OCL environment (indicating the metamodel binding)
+     * @param sourceType the type of the operation source (object on which
+     *     the operation is called)
+     * @param opcode the operation's code
+     * @param args the arguments of the operation call, as expressions or
+     *     variables
+     * @return the result type of the corresponding operation, or null
+     * 	   after reporting a problem to env if any of the argument types do not correspond
+     *     to the source type and/or expected parameter types of the operation
+     * 
+     * @see #getOperationCode(String)
+     */
+	public static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
+	C getResultTypeOf(Object problemObject,
+			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
+		
+		if (sourceType instanceof PrimitiveType) {
+			return getPrimitiveTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+		} else if (sourceType instanceof CollectionType) {
+			if (sourceType instanceof BagType) {
+				return getBagTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+			} else if (sourceType instanceof SetType) {
+				return getSetTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+			} else if (sourceType instanceof OrderedSetType) {
+				return getOrderedSetTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+			} else if (sourceType instanceof SequenceType) {
+				return getSequenceTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+			}
+			
+			return getCollectionTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+		} else if (sourceType instanceof TypeType) {
+			return getTypeTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+		} else if (sourceType instanceof MessageType) {
+			return getMessageTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
+		}
+		
+		return getAnyTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}
 	
     /**
@@ -351,9 +410,9 @@ public final class OCLStandardLibraryUtil {
      * dealing with the {@link AnyType}s.
      */
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getAnyTypeResultTypeOf(
+	C getAnyTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -377,9 +436,11 @@ public final class OCLStandardLibraryUtil {
 						&& sourceType != stdlib.getOclAny() && argType != stdlib.getOclAny()) {
 					// OclInvalid and null can be compared to anything, and everything is
 					//   a kind of OclAny
-					TypeUtil.checkMutuallyComparable(
-						env, sourceType, argType,
-						opcode);
+					if (!TypeUtil.checkMutuallyComparable(
+						problemObject, env, sourceType, argType,
+						opcode)) {
+                        return null;
+                    }
 				}
 				
 				return stdlib.getBoolean();
@@ -396,7 +457,7 @@ public final class OCLStandardLibraryUtil {
 				if (uml.isDataType(sourceType)) {
 					if (uml.isComparable(sourceType)) {
 						TypeUtil.checkMutuallyComparable(
-							env, sourceType, argType,
+							problemObject, env, sourceType, argType,
 							opcode);
 						return stdlib.getBoolean();
 					}
@@ -404,7 +465,8 @@ public final class OCLStandardLibraryUtil {
 					String message = OCLMessages.bind(
 							OCLMessages.SourceEClass_ERROR_,
 							getOperationName(opcode));
-					OCLParser.ERR(message);
+					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
 				}
 				
 				O oper = null;
@@ -425,12 +487,15 @@ public final class OCLStandardLibraryUtil {
 					String message = OCLMessages.bind(
 							OCLMessages.SourceOperationCompareTo_ERROR_,
 							getOperationName(opcode));
-					OCLParser.ERR(message);
+					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
 				}
 				
 				if ((oper != null) && "compareTo".equals(uml.getName(oper)) //$NON-NLS-1$
 						&& (uml.getOCLType(oper) != stdlib.getInteger())) {
-					OCLParser.ERR(OCLMessages.ResultCompareToInt_ERROR_);
+					String message = OCLMessages.ResultCompareToInt_ERROR_;
+					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
 				}
 			// NEED TO CHECK CONFORMANCE OF ARGS if ECLASS...
 
@@ -448,7 +513,8 @@ public final class OCLStandardLibraryUtil {
 							OCLMessages.Noncomforming_ERROR_,
 							uml.getName(sourceType),
 							getOperationName(opcode));
-					OCLParser.ERR(message);
+					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
+					return null;
 				}
 				// we can require neither a common supertype nor that type2
 				// and type1 have any conformance relationship whatsoever
@@ -470,9 +536,9 @@ public final class OCLStandardLibraryUtil {
      * dealing with the {@link PrimitiveType}s.
      */
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getPrimitiveTypeResultTypeOf(
+	C getPrimitiveTypeResultTypeOf(Object problemObject, 
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -485,12 +551,12 @@ public final class OCLStandardLibraryUtil {
 		case TIMES:
 			argType = args.get(0).getType();
 			
-			return TypeUtil.commonSuperType(env, argType, sourceType);
+			return TypeUtil.commonSuperType(problemObject, env, argType, sourceType);
 		case DIVIDE:
 			argType = args.get(0).getType();
 			
 			// assert the relationship between the types
-			TypeUtil.commonSuperType(env, argType, sourceType);
+			TypeUtil.commonSuperType(problemObject, env, argType, sourceType);
 			return stdlib.getReal();
 		case MINUS:
 			// unary minus
@@ -499,7 +565,7 @@ public final class OCLStandardLibraryUtil {
             }
 			
 			argType = args.get(0).getType();
-			return TypeUtil.commonSuperType(env, argType, sourceType);
+			return TypeUtil.commonSuperType(problemObject, env, argType, sourceType);
 		case GREATER_THAN:
 		case LESS_THAN:
 		case GREATER_THAN_EQUAL:
@@ -531,7 +597,7 @@ public final class OCLStandardLibraryUtil {
 		}
 		
 		// must be an operation defined for all types, then
-		return getAnyTypeResultTypeOf(env, sourceType, opcode, args);
+		return getAnyTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}		
 	
     /**
@@ -540,9 +606,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getBagTypeResultTypeOf(
+	C getBagTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -566,11 +632,11 @@ public final class OCLStandardLibraryUtil {
 			
 			argElementType = otherType.getElementType();
 			return getBagType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argElementType));	
+					TypeUtil.commonSuperType(problemObject, env, elemType, argElementType));	
 		case INCLUDING:
 			argType = args.get(0).getType();			 
 			return getBagType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argType));
+					TypeUtil.commonSuperType(problemObject, env, elemType, argType));
 		case INTERSECTION:
 			argType = args.get(0).getType(); 
 			otherType =	(CollectionType<C, O>) argType;
@@ -578,10 +644,10 @@ public final class OCLStandardLibraryUtil {
 			
 			if (otherType instanceof SetType) {
 				return getSetType(env, oclFactory,
-						TypeUtil.commonSuperType(env, elemType, argElementType));				
+						TypeUtil.commonSuperType(problemObject, env, elemType, argElementType));				
 			} else {
 				return getBagType(env, oclFactory,
-						TypeUtil.commonSuperType(env, elemType, argElementType));
+						TypeUtil.commonSuperType(problemObject, env, elemType, argElementType));
 			}
 		case EXCLUDING:
 			return sourceType;
@@ -611,7 +677,7 @@ public final class OCLStandardLibraryUtil {
         	return getBagType(env, oclFactory, stdlib.getT2());
 		}
 	
-		return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
+		return getCollectionTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}
 	
     /**
@@ -620,9 +686,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getSetTypeResultTypeOf(
+	C getSetTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -646,7 +712,7 @@ public final class OCLStandardLibraryUtil {
 			otherType =	(CollectionType<C, O>) argType;
 			argElementType = otherType.getElementType();
 			
-			C newElementType = TypeUtil.commonSuperType(env, elemType, argElementType);
+			C newElementType = TypeUtil.commonSuperType(problemObject, env, elemType, argElementType);
 			
 			C resultType;
 			if (argType instanceof BagType) {
@@ -664,13 +730,13 @@ public final class OCLStandardLibraryUtil {
 			argElementType = otherType.getElementType();
 			
 			resultType = getSetType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argElementType));
+					TypeUtil.commonSuperType(problemObject, env, elemType, argElementType));
 			return resultType;
 			
 		case INCLUDING:
 			argType = args.get(0).getType();
 			resultType = getSetType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argType));
+					TypeUtil.commonSuperType(problemObject, env, elemType, argType));
 			return resultType;	
 			
 		case INTERSECTION:
@@ -679,7 +745,7 @@ public final class OCLStandardLibraryUtil {
 			argElementType = otherType.getElementType();
 			
 			resultType = getSetType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argElementType));
+					TypeUtil.commonSuperType(problemObject, env, elemType, argElementType));
             
             // both variants in both set and bag return the source type
 			return sourceType;
@@ -714,7 +780,7 @@ public final class OCLStandardLibraryUtil {
         	return getBagType(env, oclFactory, stdlib.getT2());
 		}
 	
-		return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
+		return getCollectionTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}
 	
     /**
@@ -723,9 +789,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getOrderedSetTypeResultTypeOf(
+	C getOrderedSetTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -750,13 +816,13 @@ public final class OCLStandardLibraryUtil {
 			argType = args.get(0).getType(); 
 			
 			return getOrderedSetType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argType));
+					TypeUtil.commonSuperType(problemObject, env, elemType, argType));
 			
 		case INSERT_AT:
 			argType = args.get(1).getType(); // arg 0 is the index
 			
 			return getOrderedSetType(env, oclFactory,
-					TypeUtil.commonSuperType(env, elemType, argType));
+					TypeUtil.commonSuperType(problemObject, env, elemType, argType));
 			
 		case SUB_ORDERED_SET:
 			return sourceType;
@@ -774,7 +840,7 @@ public final class OCLStandardLibraryUtil {
 			return getSequenceType(env, oclFactory, elemType);				
 		}
 		
-		return getSetTypeResultTypeOf(
+		return getSetTypeResultTypeOf(problemObject,
 				env,
 				getSetType(env, oclFactory, elemType),
 				opcode,
@@ -787,9 +853,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getSequenceTypeResultTypeOf(
+	C getSequenceTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -816,19 +882,19 @@ public final class OCLStandardLibraryUtil {
 				argElementType = otherType.getElementType();
 				
 				return getSequenceType(env, oclFactory,
-						TypeUtil.commonSuperType(env, elemType, argElementType));
+						TypeUtil.commonSuperType(problemObject, env, elemType, argElementType));
 			case INCLUDING:
 			case APPEND:
 			case PREPEND:
 				argType = args.get(0).getType();
 				
 				return getSequenceType(env, oclFactory,
-						TypeUtil.commonSuperType(env, elemType, argType));
+						TypeUtil.commonSuperType(problemObject, env, elemType, argType));
 			case INSERT_AT:
 				argType = args.get(1).getType(); // arg 0 is the index
 				
 				return getSequenceType(env, oclFactory,
-						TypeUtil.commonSuperType(env, elemType, argType));
+						TypeUtil.commonSuperType(problemObject, env, elemType, argType));
 			case EXCLUDING:
 				return sourceType;
 			case FLATTEN:
@@ -859,7 +925,7 @@ public final class OCLStandardLibraryUtil {
 	        	return getSequenceType(env, oclFactory, stdlib.getT2());
 		}
 	
-		return getCollectionTypeResultTypeOf(env, sourceType, opcode, args);
+		return getCollectionTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}
 	
     /**
@@ -868,9 +934,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getCollectionTypeResultTypeOf(
+	C getCollectionTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -895,7 +961,8 @@ public final class OCLStandardLibraryUtil {
             C type = collType.getElementType();
             if (type != stdlib.getReal() && type != stdlib.getInteger()) {
                 String message = OCLMessages.SumOperator_ERROR_;
-                OCLParser.ERR(message);
+                error(env, message, "collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
+				return null;
             }
             return type;
         case PRODUCT:
@@ -928,7 +995,7 @@ public final class OCLStandardLibraryUtil {
         		OCLMessages.CollectionType_ERROR_,
                 collType.getName(),
                 getOperationName(opcode));
-        OCLParser.ERR(message);
+        error(env, message, "collectionTypeResultTypeOf", problemObject); //$NON-NLS-1$
         return null;
 	}
     
@@ -961,9 +1028,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getTypeTypeResultTypeOf(
+	C getTypeTypeResultTypeOf(Object problemObject, 
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		switch (opcode) {
 			case ALL_INSTANCES:
@@ -971,7 +1038,7 @@ public final class OCLStandardLibraryUtil {
 						((TypeType<C, O>) sourceType).getReferredType());
 		}
 		
-		return getAnyTypeResultTypeOf(env, sourceType, opcode, args);
+		return getAnyTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}		
 	
     /**
@@ -980,9 +1047,9 @@ public final class OCLStandardLibraryUtil {
      */
 	@SuppressWarnings("unchecked")
 	private static <PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E>
-	C getMessageTypeResultTypeOf(
+	C getMessageTypeResultTypeOf(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
-			C sourceType, int opcode, List<? extends TypedElement<C>> args) throws SemanticException {
+			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
 		OCLStandardLibrary<C> stdlib =
 			env.getOCLStandardLibrary();
@@ -1001,7 +1068,7 @@ public final class OCLStandardLibraryUtil {
 						(C) stdlib.getInvalid() : uml.getOCLType(mtype.getReferredOperation());
 			}
 		
-		return getAnyTypeResultTypeOf(env, sourceType, opcode, args);
+		return getAnyTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
 	}		
 
 	
@@ -1879,5 +1946,18 @@ public final class OCLStandardLibraryUtil {
 			OCLFactory factory,
 			List<? extends TypedElement<C>> parts) {
 		return TypeUtil.resolveType(env, (C) factory.createTupleType(parts)); 
+	}
+	
+	/**
+	 * Convenience method invoking <code>getProblemHandler().utilityProblem</code>
+	 * with a <code>ProblemHandler.errorSeverity</code>.
+	 * @param problemMessage message describing the problem
+	 * @param problemContext optional message describing the reporting context
+	 * @param problemObject optional object associated with the problem
+	 */
+	private static void error(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
+			String problemMessage, String problemContext, Object problemObject) {
+		OCLUtil.getAdapter(env, BasicEnvironment.class).utilityError(problemMessage,
+			problemContext, problemObject);
 	}
 }

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.2 2007/02/14 13:42:15 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.3 2007/10/11 23:04:55 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -32,23 +32,23 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class InvalidLiteralExpImpl<C> extends LiteralExpImpl<C> implements InvalidLiteralExp<C> {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected InvalidLiteralExpImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.INVALID_LITERAL_EXP;
-	}
+        return ExpressionsPackage.Literals.INVALID_LITERAL_EXP;
+    }
 
 	/**
 	 * @generated NOT

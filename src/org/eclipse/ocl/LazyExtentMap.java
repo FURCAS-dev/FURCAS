@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LazyExtentMap.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: LazyExtentMap.java,v 1.2 2007/10/11 23:05:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -137,10 +137,12 @@ public abstract class LazyExtentMap<CLS, E> implements Map<CLS, Set<E>> {
 	public Set<Map.Entry<CLS, Set<E>>> entrySet() {
 		return delegate.entrySet();
 	}
-	public boolean equals(Object obj) {
+	@Override
+    public boolean equals(Object obj) {
 		return delegate.equals(obj);
 	}
-	public int hashCode() {
+	@Override
+    public int hashCode() {
 		return delegate.hashCode();
 	}
 	public boolean isEmpty() {
@@ -161,7 +163,8 @@ public abstract class LazyExtentMap<CLS, E> implements Map<CLS, Set<E>> {
 	public int size() {
 		return delegate.size();
 	}
-	public String toString() {
+	@Override
+    public String toString() {
 		return delegate.toString();
 	}
 	public Collection<Set<E>> values() {

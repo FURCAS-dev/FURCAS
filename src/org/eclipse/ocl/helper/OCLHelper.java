@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.2 2007/05/03 22:04:29 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.3 2007/10/11 23:05:06 cdamus Exp $
  */
 
 package org.eclipse.ocl.helper;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
@@ -35,6 +36,10 @@ import org.eclipse.ocl.expressions.OCLExpression;
  * An OCL helper is created by the {@link OCL#createOCLHelper()} factory method
  * and inherits the current context {@link Environment} of the {@link OCL} that
  * created it.
+ * </p><p>
+ * Since 1.2, the helper supplies {@linkplain #getProblems() diagnostics}
+ * indicating any problems encountered while parsing.  The diagnostics pertain
+ * always to the most recently executed parse operation.
  * </p>
  * <p>
  * <b>Note</b> that this interface is not intended to be implemented
@@ -362,4 +367,14 @@ public interface OCLHelper<C, O, P, CT> {
      *      a choice
      */
     List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt);
+    
+    /**
+     * Obtains problems, if any, found in parsing the last OCL constraint or
+     * query expression.
+     * 
+     * @return parsing problems or <code>null</code> if all was OK
+     * 
+     * @since 1.2
+     */
+    Diagnostic getProblems();
 }

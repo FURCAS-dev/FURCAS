@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CallExp.java,v 1.3 2007/05/10 17:48:21 cdamus Exp $
+ * $Id: CallExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -36,29 +36,29 @@ import org.eclipse.ocl.utilities.CallingASTNode;
  */
 public interface CallExp<C> extends OCLExpression<C>, CallingASTNode {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Source</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(OCLExpression)
-	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCallExp_Source()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Source</em>' containment reference.
+     * @see #setSource(OCLExpression)
+     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCallExp_Source()
+     * @model containment="true"
+     * @generated
+     */
 	OCLExpression<C> getSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.expressions.CallExp#getSource <em>Source</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.ocl.expressions.CallExp#getSource <em>Source</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' containment reference.
-	 * @see #getSource()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Source</em>' containment reference.
+     * @see #getSource()
+     * @generated
+     */
 	void setSource(OCLExpression<C> value);
 
 } // CallExp

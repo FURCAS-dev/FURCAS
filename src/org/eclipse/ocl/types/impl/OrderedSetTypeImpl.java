@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.3 2007/05/10 17:48:22 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -32,34 +32,35 @@ import org.eclipse.ocl.types.TypesPackage;
  */
 public class OrderedSetTypeImpl<C, O> extends CollectionTypeImpl<C, O> implements OrderedSetType<C, O> {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OrderedSetTypeImpl() {
-		super();
-	}
+        super();
+    }
 	
 	protected OrderedSetTypeImpl(C elementType) {
 		super(elementType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TypesPackage.Literals.ORDERED_SET_TYPE;
-	}
+        return TypesPackage.Literals.ORDERED_SET_TYPE;
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public CollectionKind getKind() {
+	@Override
+    public CollectionKind getKind() {
 		return CollectionKind.ORDERED_SET_LITERAL;
 	}
 
