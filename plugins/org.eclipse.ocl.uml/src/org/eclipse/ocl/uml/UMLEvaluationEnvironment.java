@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.7 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.8 2007/10/12 14:33:58 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -26,14 +26,16 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -85,7 +87,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class UMLEvaluationEnvironment
     extends
-    AbstractEvaluationEnvironment<Classifier, Operation, Property, Class, EObject> {
+    AbstractEvaluationEnvironment<Classifier, Operation, Property, Class, EObject>
+	implements EvaluationEnvironment.Enumerations<EnumerationLiteral> {
 
     private static final EPackage CACHE_MISS = EcoreFactory.eINSTANCE
         .createEPackage();
@@ -320,11 +323,6 @@ public class UMLEvaluationEnvironment
 
             if (feature != null) {
                 Object result = esource.eGet(feature);
-
-                if (property.getType() instanceof Enumeration) {
-                    result = convertEnumerationValue((Enumeration) property
-                        .getType(), result);
-                }
 
                 return coerceValue(property, result, true);
             } else {
@@ -630,43 +628,6 @@ public class UMLEvaluationEnvironment
         }
 
         return property.isMultivalued();
-    }
-
-    /**
-     * Converts enumeration literal values in the Ecore definition of an
-     * enumeration to the corresponding UML literal specification.
-     * 
-     * @param enumType
-     *            the type of the expected enumeration literal(s)
-     * @param value
-     *            an enumeration literal or some collection of literals in the
-     *            case of a multivalued attribute, as the Ecore definition of
-     *            the enumeration literal(s)
-     * @return the corresponding UML definition of the enumeration literal(s)
-     */
-    private Object convertEnumerationValue(Enumeration enumType, Object value) {
-        Object result;
-
-        if (value instanceof Enumerator) {
-            result = enumType.getOwnedLiteral(((Enumerator) value).getName());
-        } else if (value instanceof Collection) {
-            @SuppressWarnings("unchecked")
-            Collection<Enumerator> coll = (Collection<Enumerator>) value;
-
-            // create a collection of the same kind
-            Collection<EnumerationLiteral> newColl = CollectionUtil
-                .createNewCollectionOfSameKind(coll);
-
-            for (Enumerator e : coll) {
-                newColl.add(enumType.getOwnedLiteral(e.getName()));
-            }
-
-            result = newColl;
-        } else {
-            result = value;
-        }
-
-        return result;
     }
 
     private ValueExtractor getValueExtractor() {
@@ -1076,6 +1037,37 @@ public class UMLEvaluationEnvironment
         }
 
         return result;
+    }
+    
+    /**
+     * Implements the interface by finding the corresponding <tt>Enumerator</tt>
+     * value in a generated (or dynamic) EMF implementation, else the same
+     * enumeration literal (supporting the instance-specification model case).
+     * 
+     * @since 1.2
+     */
+    public Object getValue(EnumerationLiteral enumerationLiteral) {
+        Object context = getValueOf(Environment.SELF_VARIABLE_NAME);
+
+        if (!(context instanceof InstanceSpecification)) {
+            // if we're in an instance-specification world (model of instances)
+            // then we use the models of enumeration literals (M1 level), not
+            // the run-time instances (M0 level)
+            Enumeration umlEnum = enumerationLiteral.getEnumeration();
+            EClassifier eType = OCLUMLUtil.getEClassifier(umlEnum, context,
+                getEPackageRegistry());
+
+            if (eType instanceof EEnum) {
+                EEnumLiteral eLiteral = ((EEnum) eType).getELiterals().get(
+                    umlEnum.getOwnedLiterals().indexOf(enumerationLiteral));
+
+                if (eLiteral != null) {
+                    return eLiteral.getInstance();
+                }
+            }
+        }
+
+        return enumerationLiteral;
     }
 
     /**
