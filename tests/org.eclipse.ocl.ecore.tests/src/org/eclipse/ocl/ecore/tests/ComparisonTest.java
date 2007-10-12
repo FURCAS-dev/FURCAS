@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.5 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.6 2007/10/12 18:04:49 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -502,6 +502,56 @@ public class ComparisonTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+	/**
+	 * Tests support for attributes of ELong type.
+	 */
+    public void test_supportForELongAttributes_198451() {
+        helper.setContext(thingType);
+        
+        long maxInt = Integer.MAX_VALUE;
+        long maxIntMinusOne = (long) Integer.MAX_VALUE - 1;
+        long maxIntSquared = ((long) Integer.MAX_VALUE) * ((long) Integer.MAX_VALUE);
+        double quotient = (double) maxIntSquared / (double) maxIntMinusOne;
+        
+        Numero maxIntN = new Numero(maxInt);
+        Numero maxIntMinusOneN = new Numero(maxIntMinusOne);
+        Numero maxIntSquaredN = new Numero(maxIntSquared);
+        
+        @SuppressWarnings("unchecked")
+        EList<Numero> list = (EList<Numero>) thing.eGet(numeros);
+        list.clear();
+        list.add(maxIntN);
+        list.add(maxIntMinusOneN);
+        list.add(maxIntSquaredN);
+        list.add(new Numero(1));
+        
+        try {
+            // this should be OK because both values can be represented as integers
+            assertEquals(1, evaluate(helper, thing, "numeros->at(1).asLong() - numeros->at(2).asLong()")); //$NON-NLS-1$
+            
+            // same number represented in different precision
+            assertTrue(check(helper, thing, "numeros->at(4).asLong() = 1")); //$NON-NLS-1$
+            
+            // different numbers represented in different precision
+            assertTrue(check(helper, thing, "numeros->at(4).asLong() <> 2")); //$NON-NLS-1$
+            
+            // this is also OK, because we compute in high precision and coerce
+            // the result to lower precision
+            assertEquals(quotient, evaluate(helper, thing, "numeros->at(3).asLong() / numeros->at(2).asLong()")); //$NON-NLS-1$
+            
+            // this is another case where the intermediate result is high-precision but
+            // the result is low
+            assertEquals((int) maxIntMinusOne, evaluate(helper, thing,
+                String.format("(%d + %d).div(2) - 1", maxInt, maxInt))); //$NON-NLS-1$
+            
+            // finally, a case where the result is in high precision (new capability)
+            assertEquals(maxIntSquared, evaluate(helper, thing,
+                String.format("%d * %d", maxInt, maxInt))); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Framework methods
@@ -612,6 +662,11 @@ public class ComparisonTest
 		oper.getEParameters().add(parm);
 		oper.setEType(EcorePackage.Literals.EBOOLEAN);
 		numeroType.getEOperations().add(oper);
+        
+        oper = EcoreFactory.eINSTANCE.createEOperation();
+        oper.setName("asLong"); //$NON-NLS-1$
+        oper.setEType(EcorePackage.Literals.ELONG);
+        numeroType.getEOperations().add(oper);
 		
 		numeros = EcoreFactory.eINSTANCE.createEReference();
 		numeros.setName("numeros"); //$NON-NLS-1$
@@ -649,30 +704,35 @@ public class ComparisonTest
 
 		@Override
         public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
+			if (this == obj) {
+                return true;
+            }
+			if (obj == null) {
+                return false;
+            }
+			if (getClass() != obj.getClass()) {
+                return false;
+            }
 			final Value other = (Value) obj;
 			if (value == null) {
-				if (other.value != null)
-					return false;
-			} else if (!value.equals(other.value))
-				return false;
+				if (other.value != null) {
+                    return false;
+                }
+			} else if (!value.equals(other.value)) {
+                return false;
+            }
 			return true;
 		}
 	}
 	
 	public static class Numero extends EObjectImpl {
-		private int value;
+		private long value;
 		
 		Numero() {
 			super();
 		}
 		
-		Numero(int value) {
+		Numero(long value) {
 			this.value = value;
 		}
 		
@@ -711,26 +771,34 @@ public class ComparisonTest
 		public boolean greaterThanEqual(Numero n) {
 			return value >= n.value;
 		}
+		
+		public long asLong() {
+		    return value;
+		}
 
 		@Override
         public int hashCode() {
 			final int PRIME = 31;
 			int result = 1;
-			result = PRIME * result + value;
+			result = PRIME * result + (int) (value & 0xFFFF);
 			return result;
 		}
 
 		@Override
         public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
+			if (this == obj) {
+                return true;
+            }
+			if (obj == null) {
+                return false;
+            }
+			if (getClass() != obj.getClass()) {
+                return false;
+            }
 			final Numero other = (Numero) obj;
-			if (value != other.value)
-				return false;
+			if (value != other.value) {
+                return false;
+            }
 			return true;
 		}
 		

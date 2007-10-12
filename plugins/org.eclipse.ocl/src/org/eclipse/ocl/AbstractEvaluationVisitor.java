@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.4 2007/10/12 18:04:51 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -447,4 +448,46 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 
 		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));
 	}
+	
+    /**
+     * <p>
+     * Tests whether a given number can be safely coerced to <tt>Double</tt> or
+     * <tt>Integer</tt> without changing the value of the number.  Safe means 
+     * that coercing a number to <tt>Double</tt> or <tt>Integer</tt> and then
+     * coercing it back to the original type will result in the same value (no
+     * loss of precision).  This is trivial for types, which have a smaller
+     * domain then <tt>Integer</tt> or <tt>Double</tt>, but for
+     * example a <tt>Long</tt> number may not be safely coerced to
+     * <tt>Integer</tt>.
+     * </p><p>
+     * If the coercion is safe, the number will be returned as either
+     * <tt>Double</tt> or <tt>Integer</tt>, as appropriate to the original
+     * precision.  Otherwise the original number is returned. 
+     * </p>
+     * 
+     * @param number a number to coerce to <tt>Integer</tt> or <tt>Double</tt>
+     * @return the coerced number, or the original number, if coercion was not safe
+     * 
+     * @since 1.2
+     */
+	protected Number coerceNumber(Number number) {
+	    return NumberUtil.coerceNumber(number);
+	}
+    
+    /**
+     * <p>
+     * Coerces the given number to <tt>Double</tt> or <tt>Long</tt> precision,
+     * if possible.  Note that this is only impossible for <tt>BigDecimal</tt>
+     * or <tt>BigInteger</tt> values, respectively, that are out of range of
+     * their primitive counterparts.
+     * </p>
+     * 
+     * @param number a number to coerce to <tt>Long</tt> or <tt>Double</tt>
+     * @return the coerced number, or the original number, in case of overflow
+     * 
+     * @since 1.2
+     */
+    protected Number higherPrecisionNumber(Number number) {
+        return NumberUtil.higherPrecisionNumber(number);
+    }
 } //EvaluationVisitorImpl
