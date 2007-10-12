@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.2 2007/05/03 12:59:25 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.3 2007/10/12 14:33:53 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
@@ -343,6 +345,21 @@ public class BasicOCLTest
             
             assertEquals("'", //$NON-NLS-1$
                 evaluate(helper, self, "''''")); //$NON-NLS-1$
+        } catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the value of an enumeration literal expression is the Java
+     * enumerated type instance, not the <tt>EEnumLiteral</tt> model element.
+     */
+    public void test_enumerationLiteralValue_198945() {
+    	helper.setContext(ExpressionsPackage.Literals.COLLECTION_KIND);
+        
+        try {
+            assertSame(CollectionKind.SEQUENCE_LITERAL,
+                evaluate(helper, CollectionKind.BAG_LITERAL, "CollectionKind::Sequence")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
