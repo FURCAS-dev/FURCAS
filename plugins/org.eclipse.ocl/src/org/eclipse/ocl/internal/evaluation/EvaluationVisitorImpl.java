@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.5 2007/10/12 14:32:16 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.6 2007/10/12 18:04:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -238,6 +238,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
 			Object argVal = arg.accept(getVisitor());
+	        
+	        if (sourceVal instanceof Number) {
+	            // coerce to Long or Double, if possible, for comparison
+	            sourceVal = higherPrecisionNumber((Number) sourceVal);
+	        }
+	        
+	        if (argVal instanceof Number) {
+	            // coerce to Long or Double, if possible, for comparison
+	            argVal = higherPrecisionNumber((Number) argVal);
+	        }
 
 			return Boolean.valueOf(ObjectUtil.equal(sourceVal, argVal));
 		}
@@ -248,6 +258,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
 			Object argVal = arg.accept(getVisitor());
+		       
+	        if (sourceVal instanceof Number) {
+	            // coerce to Long or Double, if possible, for comparison
+	            sourceVal = higherPrecisionNumber((Number) sourceVal);
+	        }
+           
+            if (argVal instanceof Number) {
+                // coerce to Long or Double, if possible, for comparison
+                argVal = higherPrecisionNumber((Number) argVal);
+            }
 
 			return Boolean.valueOf(!ObjectUtil.equal(sourceVal, argVal));
 		}
@@ -277,12 +297,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					case PredefinedType.MINUS:
 						// Integer::minus()
 						if (sourceVal instanceof Integer) {
-                            return new Integer(-((Integer) sourceVal)
-								.intValue());
+                            return - (Integer) sourceVal;
+                        } else if (sourceVal instanceof Long) {
+                            return - (Long) sourceVal;
                         }
 
 						// Double::minus()
-						return new Double(-((Double) sourceVal).doubleValue());
+						return - (Double) sourceVal;
 
 					case PredefinedType.ABS:
 						if (sourceVal instanceof Integer) {
@@ -297,22 +318,31 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             
 							// Integer::abs()
 							return Math.abs(sourceInt);
+                        } else if (sourceVal instanceof Long) {
+                            long sourceInt = (Long) sourceVal;
+                            
+                            if (sourceType == getUnlimitedNatural()) {
+                                // the unlimited value has no absolute
+                                if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
+                                    return getOclInvalid();
+                                }
+                            }
+                            
+                            // Integer::abs()
+                            return Math.abs(sourceInt);
                         }
                         
 						// Real::abs()
-						return new Double(Math.abs(((Double) sourceVal)
-							.doubleValue()));
+						return Math.abs((Double) sourceVal);
 
 					case PredefinedType.FLOOR:
 						if (sourceVal instanceof Double) {
 							// Real::floor()
-							Double sourceDoubleVal = (Double) sourceVal;
-							return new Integer((int) Math.floor(sourceDoubleVal
-								.doubleValue()));
+							return (int) Math.floor((Double) sourceVal);
 						}
 
                         if (sourceType == getUnlimitedNatural()) {
-                            int sourceInt = (Integer) sourceVal;
+                            long sourceInt = (Long) higherPrecisionNumber((Number) sourceVal);
                             
                             // the unlimited value has no floor
                             if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
@@ -326,13 +356,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					case PredefinedType.ROUND:
 						if (sourceVal instanceof Double) {
 							// Real::round()
-							Double sourceDoubleVal = (Double) sourceVal;
-							return new Integer((int) Math.round(sourceDoubleVal
-								.doubleValue()));
+							return (int) Math.round((Double) sourceVal);
 						}
 
                         if (sourceType == getUnlimitedNatural()) {
-                            int sourceInt = (Integer) sourceVal;
+                            long sourceInt = (Long) higherPrecisionNumber((Number) sourceVal);
                             
                             // the unlimited value can't be rounded
                             if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
@@ -504,13 +532,22 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					argVal = arg.accept(getVisitor());
 				}
 
-				if (sourceVal instanceof Integer && argVal instanceof Integer) {
+				if (sourceVal instanceof Number) {
+                    // we have a numeric operation.  Promote to high precision
+                    sourceVal = higherPrecisionNumber((Number) sourceVal);
+                    
+                    if (argVal instanceof Number) {
+                        argVal = higherPrecisionNumber((Number) argVal);
+                    }
+				}
+				
+				if (sourceVal instanceof Long && argVal instanceof Long) {
 					//
 					// source and single arg are both integers
 					//
 
-                    int sourceInt = (Integer) sourceVal;
-                    int argInt = (Integer) argVal;
+                    long sourceInt = (Long) sourceVal;
+                    long argInt = (Long) argVal;
                     
                     boolean sourceUnlimited =
                         sourceType == getUnlimitedNatural()
@@ -551,71 +588,57 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Integer::plus(Integer)
 						case PredefinedType.PLUS:
-							return new Integer(((Integer) sourceVal).intValue()
-								+ ((Integer) argVal).intValue());
+							return coerceNumber(sourceInt + argInt);
 
 						// Integer::minus(Integer)
 						case PredefinedType.MINUS:
-							return new Integer(((Integer) sourceVal).intValue()
-								- ((Integer) argVal).intValue());
+							return coerceNumber(sourceInt - argInt);
 
 						// Integer::times(Integer)
 						case PredefinedType.TIMES:
-							return new Integer(((Integer) sourceVal).intValue()
-								* ((Integer) argVal).intValue());
+							return coerceNumber(sourceInt * argInt);
 
 						// Integer::divide(Integer)
 						case PredefinedType.DIVIDE: {
 							// denominator of 0 means undefined
-							double num = ((Integer) sourceVal).doubleValue();
-							double denom = ((Integer) argVal).doubleValue();
-							return (denom == 0.0) ? null : new Double(num
-								/ denom);
+							double num = sourceInt;
+							double denom = argInt;
+							return (denom == 0.0) ? getOclInvalid() : num / denom;
 						}
 
 						// Integer::div(Integer)
-						case PredefinedType.DIV: {
-							int num = ((Integer) sourceVal).intValue();
-							int denom = ((Integer) argVal).intValue();
+						case PredefinedType.DIV:
 							// denominator of 0 means undefined
-							return (denom == 0) ? null : new Integer(num
-								/ denom);
-						}
+							return (argInt == 0) ? getOclInvalid() :
+							    coerceNumber(sourceInt / argInt);
 
 						// Integer::mod(Integer)
 						case PredefinedType.MOD:
-							return new Integer(((Integer) sourceVal).intValue()
-								% ((Integer) argVal).intValue());
+							return coerceNumber(sourceInt % argInt);
 
 						// Integer::max(Integer)
 						case PredefinedType.MAX:
-							return new Integer(Math.max(((Integer) sourceVal)
-								.intValue(), ((Integer) argVal).intValue()));
+							return coerceNumber(Math.max(sourceInt, argInt));
 
 						// Integer::min(Integer)
 						case PredefinedType.MIN:
-							return new Integer(Math.min(((Integer) sourceVal)
-								.intValue(), ((Integer) argVal).intValue()));
+							return coerceNumber(Math.min(sourceInt, argInt));
 
 						// Integer::lessThan(Integer)
 						case PredefinedType.LESS_THAN:
-							return ((Integer) sourceVal).intValue() < ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt < argInt;
 
 						// Integer::greaterThan(Integer)
 						case PredefinedType.GREATER_THAN:
-							return ((Integer) sourceVal).intValue() > ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt > argInt;
 
 						// Integer::lessThanEqual(Integer)
 						case PredefinedType.LESS_THAN_EQUAL:
-							return ((Integer) sourceVal).intValue() <= ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt <= argInt;
 
 						// Integer::greaterThanEqual(Integer)
 						case PredefinedType.GREATER_THAN_EQUAL:
-							return ((Integer) sourceVal).intValue() >= ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt >= argInt;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -627,15 +650,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (sourceVal instanceof Integer
+				} else if (sourceVal instanceof Long
 					&& argVal instanceof Double) {
+				    
 					//
 					// source is an integer and single arg is a real
 					//
 
+                    long sourceInt = (Long) sourceVal;
+                    double argReal = (Double) argVal;
+                    
                     if (sourceType == getUnlimitedNatural()) {
-                        int sourceInt = (Integer) sourceVal;
-                        
                         if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
                             switch (opCode) {
                             case PredefinedType.LESS_THAN:
@@ -658,53 +683,44 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Integer::plus(Real)
 						case PredefinedType.PLUS:
-							return new Double(((Integer) sourceVal).intValue()
-								+ ((Double) argVal).doubleValue());
+							return coerceNumber(sourceInt + argReal);
 
 						// Integer::minus(Real)
 						case PredefinedType.MINUS:
-							return new Double(((Integer) sourceVal).intValue()
-								- ((Double) argVal).doubleValue());
+							return coerceNumber(sourceInt - argReal);
 
 						// Integer::times(Real)
 						case PredefinedType.TIMES:
-							return new Double(((Integer) sourceVal).intValue()
-								* ((Double) argVal).doubleValue());
+							return coerceNumber(sourceInt * argReal);
 
 						// Integer::divide(Real)
-						case PredefinedType.DIVIDE:
-							return new Double(((Integer) sourceVal).intValue()
-								/ ((Double) argVal).doubleValue());
+                        case PredefinedType.DIVIDE:
+                            // denominator of 0 results in undefined
+                            return (argReal == 0.0) ? getOclInvalid() : sourceInt / argReal;
 
 						// Integer::max(Real)
 						case PredefinedType.MAX:
-							return new Double(Math.max(((Integer) sourceVal)
-								.intValue(), ((Double) argVal).doubleValue()));
+							return coerceNumber(Math.max(sourceInt, argReal));
 
 						// Integer::min(Real)
 						case PredefinedType.MIN:
-							return new Double(Math.min(((Integer) sourceVal)
-								.intValue(), ((Double) argVal).doubleValue()));
+							return coerceNumber(Math.min(sourceInt, argReal));
 
 						// Integer::lessThan(Real)
 						case PredefinedType.LESS_THAN:
-							return ((Integer) sourceVal).intValue() < ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt < argReal;
 
 						// Integer::greaterThan(Real)
 						case PredefinedType.GREATER_THAN:
-							return ((Integer) sourceVal).intValue() > ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt > argReal;
 
 						// Integer::lessThanEqual(Real)
 						case PredefinedType.LESS_THAN_EQUAL:
-							return ((Integer) sourceVal).intValue() <= ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt <= argReal;
 
 						// Integer::greaterThanEqual(Real)
 						case PredefinedType.GREATER_THAN_EQUAL:
-							return ((Integer) sourceVal).intValue() >= ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceInt >= argReal;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -719,14 +735,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				}
 
 				else if (sourceVal instanceof Double
-					&& argVal instanceof Integer) {
+					&& argVal instanceof Long) {
+				    
+				    double sourceReal = (Double) sourceVal;
+				    long argInt = (Long) argVal;
+				    
 					//
 					// source is a real and single arg is an integer
 					//	
 
                     if (argType == getUnlimitedNatural()) {
-                        int argInt = (Integer) argVal;
-                        
                         if (argInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
                             switch (opCode) {
                             case PredefinedType.LESS_THAN:
@@ -744,62 +762,52 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             }
                         }
                     }
-                    
+
+                    // for these arithmetic operations, don't need to coerce
+                    // the result to any other precision because OCL Reals are
+                    // represented as Doubles, anyway
 					switch (opCode) {
 
 						// Real::plus(Integer)
 						case PredefinedType.PLUS:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								+ ((Integer) argVal).intValue());
+							return sourceReal + argInt;
 
 						// Real::minus(Integer)
 						case PredefinedType.MINUS:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								- ((Integer) argVal).intValue());
+							return sourceReal - argInt;
 
 						// Real::times(Integer)
 						case PredefinedType.TIMES:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								* ((Integer) argVal).intValue());
+							return sourceReal * argInt;
 
 						// Real::divide(Integer)
-						case PredefinedType.DIVIDE:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								/ ((Integer) argVal).intValue());
+                        case PredefinedType.DIVIDE:
+                            // denominator of 0 results in undefined
+                            return (argInt == 0) ? getOclInvalid() : sourceReal / argInt;
 
 						// Real::max(Integer)
 						case PredefinedType.MAX:
-							return new Double(Math.max(((Double) sourceVal)
-								.doubleValue(), ((Integer) argVal).intValue()));
+							return Math.max(sourceReal, argInt);
 
 						// Real::min(Integer)
 						case PredefinedType.MIN:
-							return new Double(Math.min(((Double) sourceVal)
-								.doubleValue(), ((Integer) argVal).intValue()));
+							return Math.min(sourceReal, argInt);
 
 						// Real::lessThan(Integer)
 						case PredefinedType.LESS_THAN:
-							return ((Double) sourceVal).doubleValue() < ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal < argInt;
 
 						// Real::greaterThan(Integer)
 						case PredefinedType.GREATER_THAN:
-							return ((Double) sourceVal).doubleValue() > ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal > argInt;
 
 						// Real::lessThanEqual(Integer)
 						case PredefinedType.LESS_THAN_EQUAL:
-							return ((Double) sourceVal).doubleValue() <= ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal <= argInt;
 
 						// Real::greaterThanEqual(Integer)
 						case PredefinedType.GREATER_THAN_EQUAL:
-							return ((Double) sourceVal).doubleValue() >= ((Integer) argVal)
-								.intValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal >= argInt;
 
 						default: {
 							String message = OCLMessages.bind(
@@ -813,6 +821,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					}
 				} else if (sourceVal instanceof Double
 					&& argVal instanceof Double) {
+				    
+                    double sourceReal = (Double) sourceVal;
+                    double argReal = (Double) argVal;
+				    
 					//
 					// source is a real and single arg is a real
 					//	
@@ -821,59 +833,44 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Real::plus(Real)
 						case PredefinedType.PLUS:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								+ ((Double) argVal).doubleValue());
+							return sourceReal + argReal;
 
 						// Real::minus(Real)
 						case PredefinedType.MINUS:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								- ((Double) argVal).doubleValue());
+							return sourceReal - argReal;
 
 						// Real::times(Real)
 						case PredefinedType.TIMES:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								* ((Double) argVal).doubleValue());
+							return sourceReal * argReal;
 
 						// Real::divide(Real)
 						case PredefinedType.DIVIDE:
-							return new Double(((Double) sourceVal)
-								.doubleValue()
-								/ ((Double) argVal).doubleValue());
+                            // denominator of 0 results in undefined
+                            return (argReal == 0.0) ? getOclInvalid() : sourceReal / argReal;
 
 						// Real::max(Real)
 						case PredefinedType.MAX:
-							return new Double(Math
-								.max(((Double) sourceVal).doubleValue(),
-									((Double) argVal).doubleValue()));
+							return Math.max(sourceReal, argReal);
 
 						// Real::min(Real)
 						case PredefinedType.MIN:
-							return new Double(Math
-								.min(((Double) sourceVal).doubleValue(),
-									((Double) argVal).doubleValue()));
+							return Math.min(sourceReal, argReal);
 
 						// Real::lessThan(Real)
 						case PredefinedType.LESS_THAN:
-							return ((Double) sourceVal).doubleValue() < ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal < argReal;
 
 						// Real::greaterThan(Real)
 						case PredefinedType.GREATER_THAN:
-							return ((Double) sourceVal).doubleValue() > ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal > argReal;
 
 						// Real::lessThanEqual(Real)
 						case PredefinedType.LESS_THAN_EQUAL:
-							return ((Double) sourceVal).doubleValue() <= ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal <= argReal;
 
 						// Real::greaterThanEqual(Real)
 						case PredefinedType.GREATER_THAN_EQUAL:
-							return ((Double) sourceVal).doubleValue() >= ((Double) argVal)
-								.doubleValue() ? Boolean.TRUE : Boolean.FALSE;
+							return sourceReal >= argReal;
 
 						default: {
 							String message = OCLMessages.bind(
