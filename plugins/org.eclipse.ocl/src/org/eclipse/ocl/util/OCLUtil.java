@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.2 2007/10/12 14:33:54 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -23,6 +23,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.SyntaxException;
@@ -78,6 +79,8 @@ public final class OCLUtil {
 		
 		if (env instanceof Adaptable) {
 			result = ((Adaptable) env).getAdapter(adapterType);
+		} else if (adapterType.isInstance(env)) {
+			result = (T) env;
 		} else {
 			result = null;
 		}
@@ -193,6 +196,8 @@ public final class OCLUtil {
 		
 		if (factory instanceof Adaptable) {
 			result = ((Adaptable) factory).getAdapter(adapterType);
+		} else if (adapterType.isInstance(factory)) {
+			result = (T) factory;
 		} else {
 			result = null;
 		}
@@ -208,6 +213,36 @@ public final class OCLUtil {
 						return factory.createPackageContext(parent, pathname);
 					}};
 			}
+		}
+		
+		return result;
+	}
+
+	/**
+	 * Obtains an adapter for the specified interface type, if the evaluation
+	 * environment is {@link Adaptable} to it.
+	 * 
+	 * @param <T> the requested adapter interface
+	 * 
+	 * @param env an evaluation environment to adapt
+	 * @param adapterType the requested adapter interface
+	 * @return an instance of the requested interface, or <code>null</code>
+	 *     if this evaluation environment does not adapt to it
+	 *     
+	 * @since 1.2
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T, C, O, P, CLS, E>
+	T getAdapter(final EvaluationEnvironment<C, O, P, CLS, E> env,
+			Class<T> adapterType) {
+		T result;
+		
+		if (env instanceof Adaptable) {
+			result = ((Adaptable) env).getAdapter(adapterType);
+		} else if (adapterType.isInstance(env)) {
+			result = (T) env;
+		} else {
+			result = null;
 		}
 		
 		return result;
