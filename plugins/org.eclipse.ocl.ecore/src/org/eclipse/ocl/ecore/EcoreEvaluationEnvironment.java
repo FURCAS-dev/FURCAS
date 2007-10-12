@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.5 2007/09/20 18:08:38 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.6 2007/10/12 14:33:56 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -25,8 +25,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
@@ -55,7 +57,8 @@ import org.eclipse.ocl.utilities.PredefinedType;
  */
 public class EcoreEvaluationEnvironment
     extends
-    AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> {
+    AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
+	implements EvaluationEnvironment.Enumerations<EEnumLiteral> {
 
     /**
      * Initializes me.
@@ -368,5 +371,14 @@ public class EcoreEvaluationEnvironment
     // implements the inherited specification
     public EClassifier getType(Object object) {
         return EcoreEnvironmentFactory.oclType(object);
+    }
+    
+    /**
+     * Ecore implementation of the enumeration literal value.
+     * 
+     * @since 1.2
+     */
+    public Enumerator getValue(EEnumLiteral enumerationLiteral) {
+    	return enumerationLiteral.getInstance();
     }
 }
