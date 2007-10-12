@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.4 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.5 2007/10/12 14:32:16 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -76,6 +76,7 @@ import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -95,6 +96,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 	private static int tempCounter = 0;
 
+	private EvaluationEnvironment.Enumerations<EL> enumerations;
+	
 	/**
 	 * Constructor
 	 * 
@@ -103,11 +106,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @param extentMap
 	 *            a map of classes to their instance lists
 	 */
+	@SuppressWarnings("unchecked")
 	public EvaluationVisitorImpl(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			EvaluationEnvironment<C, O, P, CLS, E> evalEnv,
 			Map<? extends CLS, ? extends Set<? extends E>> extentMap) {
 		super(env, evalEnv, extentMap);
+		
+		enumerations = OCLUtil.getAdapter(evalEnv, EvaluationEnvironment.Enumerations.class);
 	}
 
 	/**
@@ -386,7 +392,22 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 					case PredefinedType.SUM:
 						// Collection::sum()
-						return CollectionUtil.sum((Collection<?>) sourceVal);
+						Number num = (Number) CollectionUtil.sum((Collection<?>) sourceVal);
+						
+						if (num == null) {
+							// empty collection
+							@SuppressWarnings("unchecked")
+							CollectionType<C, O> numCollType = (CollectionType<C, O>) sourceType;
+							C numType = numCollType.getElementType();
+							
+							if (numType == getReal()) {
+								num = new Double(0.0);
+							} else if (numType == getInteger()) {
+								num = new Integer(0);
+							}
+						}
+						
+						return num;
 
 					case PredefinedType.FLATTEN:
 						// Set, Bag, Sequence, OrderedSet::flatten()
@@ -1776,7 +1797,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	@Override
     public Object visitEnumLiteralExp(EnumLiteralExp<C, EL> el) {
-		return el.getReferredEnumLiteral();
+		return (enumerations == null) ? el.getReferredEnumLiteral()
+			: enumerations.getValue(el.getReferredEnumLiteral());
 	}
 
 	/**
