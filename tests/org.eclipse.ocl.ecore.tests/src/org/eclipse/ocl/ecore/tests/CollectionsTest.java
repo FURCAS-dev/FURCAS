@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.7 2007/09/20 18:08:40 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.8 2007/10/12 14:32:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -548,6 +548,58 @@ public class CollectionsTest
 
 			assertTrue(check(helper, "", //$NON-NLS-1$
 					"Bag{1, 2, 3, 3, 4, 5}->sum() = 18")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that the sum() iterator returns integer zero for an empty collection
+	 * of integers.
+	 */
+	public void test_sum_emptyIntegerCollection_204753() {
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		Integer zero = new Integer(0);
+		
+		try {
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : Sequence(Integer) = Sequence{} in s->sum()")); //$NON-NLS-1$
+
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : OrderedSet(Integer) = OrderedSet{} in s->sum()")); //$NON-NLS-1$
+
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : Set(Integer) = Set{} in s->sum()")); //$NON-NLS-1$
+
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : Bag(Integer) = Bag{} in s->sum()")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that the sum() iterator returns integer zero for an empty collection
+	 * of reals.
+	 */
+	public void test_sum_emptyRealCollection_204753() {
+		helper.setContext(EcorePackage.Literals.EINT);
+		
+		Double zero = new Double(0.0);
+		
+		try {
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : Sequence(Real) = Sequence{} in s->sum()")); //$NON-NLS-1$
+
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : OrderedSet(Real) = OrderedSet{} in s->sum()")); //$NON-NLS-1$
+
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : Set(Real) = Set{} in s->sum()")); //$NON-NLS-1$
+
+			assertEquals(zero, evaluate(helper, "", //$NON-NLS-1$
+					"let s : Bag(Real) = Bag{} in s->sum()")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
