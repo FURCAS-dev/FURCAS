@@ -12,15 +12,14 @@
  *
  * </copyright>
  *
- * $Id: LookupException.java,v 1.1 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: LookupException.java,v 1.2 2007/10/12 18:18:16 cdamus Exp $
  */
 
 package org.eclipse.ocl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.eclipse.emf.common.util.BasicEList;
 
 /**
  * Exception indicating a semantic error in looking up a definition, typically
@@ -29,7 +28,7 @@ import org.eclipse.emf.common.util.BasicEList;
 public class LookupException
 	extends SemanticException {
 
-    private final List<Object> matches;
+    private final List<?> matches;
     
     /**
 	 * 
@@ -47,6 +46,19 @@ public class LookupException
 		
 		matches = Collections.emptyList();
 	}
+
+	/**
+     * Initializes me with a user-friendly message describing the nature of
+     * the lookup failure.
+     * 
+     * @param msg the exception message
+     * @param matches the objects found by the lookup
+     */
+	public LookupException(String msg, List<?> matches) {
+		super(msg);
+		
+		this.matches = matches;
+	}
 	
     /**
      * Initializes me with a user-friendly message describing the nature of
@@ -54,18 +66,19 @@ public class LookupException
      * 
      * @param msg the exception message
      * @param firstMatch the first object found by the look-up
-     * @param otherMatches at least one additional object found that is
-     *    ambiguous with the first
+     * @param secondMatch the second object found by the look-up
+     * @param otherMatches any further objects found by the look-up
      */
-	public LookupException(String msg, Object firstMatch, Object... otherMatches) {
+	public LookupException(String msg, Object firstMatch, Object secondMatch, Object... otherMatches) {
 	    super(msg);
 	    
-	    matches = new BasicEList<Object>(2);
-	    matches.add(firstMatch);
-	    
+	    List<Object> objectMatches = new ArrayList<Object>(2);
+	    objectMatches.add(firstMatch);
+	    objectMatches.add(secondMatch);	    
 	    for (Object next : otherMatches) {
-	        matches.add(next);
+	    	objectMatches.add(next);
 	    }
+	    matches = objectMatches;
 	}
 	
 	/**
@@ -75,7 +88,7 @@ public class LookupException
 	 * @return the ambiguous matches, or an empty list if the look-up problem
 	 *    was not a matter of ambiguity
 	 */
-	public final List<?> getAmbiguousMatches() {
+	public List<?> getAmbiguousMatches() {
 	    return matches;
 	}
 }
