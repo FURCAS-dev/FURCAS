@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemHandler.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: ProblemHandler.java,v 1.2 2007/10/12 13:48:12 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -59,7 +59,7 @@ public interface ProblemHandler {
 	 * 
 	 * @since 1.2
 	 */
-	class Phase {
+	class Phase implements Comparable<Phase> {
 		/** Identifies problems found in the tokenizing (lexing) phase. */
 		public static Phase LEXER = new Phase(OCLMessages.Phase_Lexer);
 		/** Identifies problems found in the concrete syntax parsing phase. */
@@ -83,6 +83,13 @@ public interface ProblemHandler {
 		 */
 		protected Phase(String lname) {
 			localizedName = lname;
+		}
+
+		/**
+		 * Phases sort according to their names.
+		 */
+		public int compareTo(Phase o) {
+			return localizedName.compareTo(o.localizedName);
 		}
 		
 		@Override
