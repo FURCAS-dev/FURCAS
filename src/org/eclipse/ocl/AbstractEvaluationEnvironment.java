@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.4 2007/10/12 14:33:54 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.Adaptable;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,
@@ -38,12 +39,15 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
  * <p>
  * See the {@link Environment} class for a description of the
  * generic type parameters of this class. 
+ * </p><p>
+ * Since the 1.2 release, this interface is {@link Adaptable} to support the
+ * optional adapter protocols such as {@link EvaluationEnvironment.Enumerations}.
  * </p>
  * 
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
-		implements EvaluationEnvironment<C, O, P, CLS, E> {
+		implements EvaluationEnvironment<C, O, P, CLS, E>, Adaptable {
 	
     private final EvaluationEnvironment<C, O, P, CLS, E> parent;
     private final Map<String, Object> map = new HashMap<String, Object>();
@@ -217,4 +221,21 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
 	 * @return <tt>OclInvalid</tt>
 	 */
 	protected abstract Object getInvalidResult();
+	
+	/**
+	 * Implements the interface method by testing whether I am an instance of
+	 * the requested adapter type.
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T getAdapter(Class<T> adapterType) {
+		T result;
+		
+		if (adapterType.isInstance(this)) {
+			result = (T) this;
+		} else {
+			result = null;
+		}
+		
+		return result;
+	}
 }

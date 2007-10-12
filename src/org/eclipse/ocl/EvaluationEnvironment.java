@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.2 2007/03/22 21:59:20 cdamus Exp $
+ * $Id: EvaluationEnvironment.java,v 1.3 2007/10/12 14:33:54 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.util.Adaptable;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.Tuple;
 
 /**
@@ -215,4 +217,25 @@ public interface EvaluationEnvironment<C, O, P, CLS, E> {
      * @return the new tuple instance
      */
     Tuple<O, P> createTuple(C type, Map<P, Object> values);
+    
+    /**
+     * Optional {@linkplain Adaptable adapter interface} for evaluation
+     * environments that support additional enumeration evaluation capabilities. 
+     * 
+     * @author Christian W. Damus (cdamus)
+     * 
+     * @see OCLUtil#geta
+     * 
+     * @since 1.2
+     */
+    interface Enumerations<EL> {
+    	/**
+    	 * Obtains the Java-language value of the specified enumeration literal.
+    	 * Often, this is an instance of an EMF-generated enumeration type.
+    	 * 
+    	 * @param enumerationLiteral the enumeration literal model element
+    	 * @return the corresponding run-time instance
+    	 */
+    	Object getValue(EL enumerationLiteral);
+    }
 }
