@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.4 2007/07/16 17:07:31 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.5 2007/10/12 14:33:56 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -35,6 +36,7 @@ import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * Basic tests for OCL engine.
@@ -340,6 +342,21 @@ public class BasicOCLTest
             assertTrue(check(helper, stereo, "self.oclIsTypeOf(Stereotype)")); //$NON-NLS-1$
             assertFalse(check(helper, stereo, "self.oclIsTypeOf(Connector)")); //$NON-NLS-1$
         } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the value of an enumeration literal expression is the Java
+     * enumerated type instance, not the <tt>EnumerationLiteral</tt> model element.
+     */
+    public void test_enumerationLiteralValue_198945() {
+    	helper.setContext(getMetaclass("VisibilityKind")); //$NON-NLS-1$
+        
+        try {
+            assertSame(VisibilityKind.PROTECTED_LITERAL,
+                evaluate(helper, VisibilityKind.PUBLIC_LITERAL, "VisibilityKind::protected")); //$NON-NLS-1$
+        } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
