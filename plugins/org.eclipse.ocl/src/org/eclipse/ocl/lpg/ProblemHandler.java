@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemHandler.java,v 1.2 2007/10/12 13:48:12 cdamus Exp $
+ * $Id: ProblemHandler.java,v 1.3 2007/10/12 13:57:52 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -88,11 +88,49 @@ public interface ProblemHandler {
 		/**
 		 * Phases sort according to their names.
 		 */
-		public int compareTo(Phase o) {
+		public final int compareTo(Phase o) {
 			return localizedName.compareTo(o.localizedName);
 		}
 		
+		/**
+		 * My hash code is my localized name's hash code.
+		 */
 		@Override
+        public final int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + ((localizedName == null) ? 0
+                : localizedName.hashCode());
+            return result;
+        }
+
+		/**
+		 * I am equal to any <tt>Phase</tt> that has the same localized name
+		 * as I.
+		 */
+        @Override
+        public final boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (!(obj instanceof Phase)) {
+                return false;
+            }
+            Phase other = (Phase) obj;
+            if (localizedName == null) {
+                if (other.localizedName != null) {
+                    return false;
+                }
+            } else if (!localizedName.equals(other.localizedName)) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
 		public String toString() {
 			return localizedName;
 		}
