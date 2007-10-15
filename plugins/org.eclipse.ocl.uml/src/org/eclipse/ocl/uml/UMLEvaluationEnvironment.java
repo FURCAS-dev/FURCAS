@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.8 2007/10/12 14:33:58 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.9 2007/10/15 22:19:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -40,6 +40,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.uml.UMLEnvironmentFactory.EvaluationMode;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.CollectionUtil;
@@ -104,12 +105,16 @@ public class UMLEvaluationEnvironment
 
     private ValueExtractor valueExtractor;
 
+    private UMLEnvironmentFactory.EvaluationMode evaluationMode = UMLEnvironmentFactory.EvaluationMode.ADAPTIVE;
+    
     /**
      * Initializes me.
      */
     public UMLEvaluationEnvironment(UMLEnvironmentFactory factory) {
         this.factory = factory;
         this.registry = factory.getEPackageRegistry();
+        
+        evaluationMode = factory.getEvaluationMode();
     }
 
     /**
@@ -137,7 +142,64 @@ public class UMLEvaluationEnvironment
     protected final EPackage.Registry getEPackageRegistry() {
         return registry;
     }
-
+    
+    /**
+     * Queries my effective evaluation mode which is just my assigned mode,
+     * unless I am {@link EvaluationMode#ADAPTIVE}.  In that case, I derive an
+     * effective evaluation mode from my <tt>self</tt> context variable.
+     * <p>
+     * <b>Note</b> that my effective evaluation mode is inherited from my parent
+     * evaluation environment, if I have one.
+     * </p>
+     * 
+     * @return my effective evaluation mode
+     * 
+     * @see #getParent()
+     * @see #getEffectiveEvaluationMode(Object)
+     * 
+     * @since 1.2
+     */
+    protected UMLEnvironmentFactory.EvaluationMode getEffectiveEvaluationMode() {
+        return getEffectiveEvaluationMode(getValueOf(Environment.SELF_VARIABLE_NAME));
+    }
+    
+    /**
+     * Queries my effective evaluation mode which is just my assigned mode,
+     * unless I am {@link EvaluationMode#ADAPTIVE}.  In that case, I derive an
+     * effective evaluation mode from the specified <tt>context</tt> object.
+     * <p>
+     * <b>Note</b> that my effective evaluation mode is inherited from my parent
+     * evaluation environment, if I have one.
+     * </p>
+     * 
+     * @return a context object
+     * @return my effective evaluation mode
+     * 
+     * @see #getParent()
+     * 
+     * @since 1.2
+     */
+    protected UMLEnvironmentFactory.EvaluationMode getEffectiveEvaluationMode(Object context) {
+        UMLEnvironmentFactory.EvaluationMode result;
+        
+        if (getParent() instanceof UMLEvaluationEnvironment) {
+            result = ((UMLEvaluationEnvironment) getParent())
+                .getEffectiveEvaluationMode(context);
+        } else {
+            result = evaluationMode;
+            
+            if (result == UMLEnvironmentFactory.EvaluationMode.ADAPTIVE) {
+                if (context instanceof InstanceSpecification) {
+                    result = UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL;
+                } else {
+                    result = UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS;
+                }
+            }
+        }
+        
+        return result;
+    }
+    
     @Override
     public Object callOperation(Operation operation, int opcode, Object source,
             Object[] args)
@@ -256,6 +318,7 @@ public class UMLEvaluationEnvironment
         
         return result;
     }
+    
     private Stereotype getAppliedEcoreStereotype(Element element,
             String name) {
         return element.getAppliedStereotype("Ecore" //$NON-NLS-1$
@@ -273,7 +336,8 @@ public class UMLEvaluationEnvironment
             Object source)
         throws IllegalArgumentException {
 
-        if (source instanceof InstanceSpecification) {
+        switch (getEffectiveEvaluationMode()) {
+        case INSTANCE_MODEL:
             InstanceSpecification instance = (InstanceSpecification) source;
 
             Association association = property.getOwningAssociation();
@@ -313,7 +377,7 @@ public class UMLEvaluationEnvironment
             return isMultivaluedSlot(instance, property) ? CollectionUtil
                 .createNewCollection(getCollectionKind(property))
                 : null;
-        } else if (source instanceof EObject) {
+        case RUNTIME_OBJECTS:
             // TODO: In case the property is unset, look for an init constraint
             // and a default value, in that order
             EObject esource = (EObject) source;
@@ -334,18 +398,23 @@ public class UMLEvaluationEnvironment
 
                     if (eclass != null) {
                         EStructuralFeature eEnd = eclass
-                            .getEStructuralFeature(otherEnd.getName());
+                            .getEStructuralFeature(getEcoreAttributeName(otherEnd));
 
                         if (eEnd != null) {
                             Collection<Object> result = createCollection(property);
 
-                            for (EStructuralFeature.Setting setting : UML2Util
-                                .getNonNavigableInverseReferences(esource)) {
-                                if (setting.getEStructuralFeature() == eEnd) {
-                                    result.add(setting.getEObject());
+                            // maybe eEnd is a containment reference
+                            if (esource.eContainmentFeature() == eEnd) {
+                                result.add(esource.eContainer());
+                            } else {
+                                for (EStructuralFeature.Setting setting : UML2Util
+                                    .getNonNavigableInverseReferences(esource)) {
+                                    if (setting.getEStructuralFeature() == eEnd) {
+                                        result.add(setting.getEObject());
+                                    }
                                 }
                             }
-
+                            
                             return coerceValue(property, result, false);
                         }
                     }
@@ -369,8 +438,6 @@ public class UMLEvaluationEnvironment
         String result = featureNameMap.get(attribute);
         
         if (result == null) {
-            result = attribute.getName();
-            
             Stereotype stereo = getAppliedEcoreStereotype(attribute,
                 UMLUtil.STEREOTYPE__E_ATTRIBUTE);
             String aliasAttribute = UMLUtil.TAG_DEFINITION__ATTRIBUTE_NAME;
@@ -386,6 +453,10 @@ public class UMLEvaluationEnvironment
                 if ((alias != null) && (alias.length() > 0)) {
                     result = alias;
                 }
+            }
+            
+            if (result == null) {
+                result = UMLUtil.getValidJavaIdentifier(attribute.getName());
             }
             
             featureNameMap.put(attribute, result);
@@ -720,7 +791,8 @@ public class UMLEvaluationEnvironment
             Property navigationSource, Object source)
         throws IllegalArgumentException {
 
-        if (source instanceof InstanceSpecification) {
+        switch (getEffectiveEvaluationMode()) {
+        case INSTANCE_MODEL:
             InstanceSpecification sourceInstance = (InstanceSpecification) source;
 
             Collection<Property> ends;
@@ -764,8 +836,9 @@ public class UMLEvaluationEnvironment
             }
 
             return links;
-        } else if (source instanceof EObject) {
-            // UML-to-Ecore conversion does not support association classes
+        case RUNTIME_OBJECTS:
+            // UML-to-Ecore conversion does not support association classes.
+            // Fall through
         }
 
         throw new IllegalArgumentException(
@@ -843,112 +916,129 @@ public class UMLEvaluationEnvironment
 
     // implements the inherited specification
     public Map<Class, Set<EObject>> createExtentMap(Object object) {
-        if (object instanceof InstanceSpecification) {
-            return new LazyExtentMap<Class, EObject>((EObject) object) {
-
-                // implements the inherited specification
-                @Override
-                protected boolean isInstance(Class cls, EObject element) {
-                    boolean result = false;
-
-                    if (element instanceof InstanceSpecification) {
-                        EList<Classifier> classifiers = ((InstanceSpecification) element)
-                            .getClassifiers();
-
-                        for (Classifier c : classifiers) {
-                            if (c.conformsTo(cls)) {
-                                result = true;
-                                break;
+        if (object instanceof EObject) { // covers both run-time EObjects and model InstanceSpecifications
+            switch (getEffectiveEvaluationMode(object)) {
+            case INSTANCE_MODEL:
+                return new LazyExtentMap<Class, EObject>((EObject) object) {
+    
+                    // implements the inherited specification
+                    @Override
+                    protected boolean isInstance(Class cls, EObject element) {
+                        boolean result = false;
+    
+                        if (element instanceof InstanceSpecification) {
+                            EList<Classifier> classifiers = ((InstanceSpecification) element)
+                                .getClassifiers();
+    
+                            for (Classifier c : classifiers) {
+                                if (c.conformsTo(cls)) {
+                                    result = true;
+                                    break;
+                                }
                             }
                         }
+    
+                        return result;
                     }
-
-                    return result;
-                }
-            };
-        } else if (object instanceof EObject) {
-            return new LazyExtentMap<Class, EObject>((EObject) object) {
-
-                // implements the inherited specification
-                @Override
-                protected boolean isInstance(Class cls, EObject element) {
-                    EClassifier eclass = getEClassifier(cls, element);
-
-                    return (eclass != null) && eclass.isInstance(element);
-                }
-            };
+                };
+            case RUNTIME_OBJECTS:
+                return new LazyExtentMap<Class, EObject>((EObject) object) {
+    
+                    // implements the inherited specification
+                    @Override
+                    protected boolean isInstance(Class cls, EObject element) {
+                        EClassifier eclass = getEClassifier(cls, element);
+    
+                        return (eclass != null) && eclass.isInstance(element);
+                    }
+                };
+            }
         }
-
+        
         return Collections.emptyMap();
     }
 
     // implements the inherited specification
     public boolean isKindOf(Object object, Classifier classifier) {
-        if (object instanceof ValueSpecification) {
-            ValueSpecification value = (ValueSpecification) object;
-
-            if (value.getType() != null) {
-                Classifier type = (Classifier) value.getType();
-
+        switch (getEffectiveEvaluationMode()) {
+        case INSTANCE_MODEL:
+            if (object instanceof ValueSpecification) {
+                ValueSpecification value = (ValueSpecification) object;
+    
+                if (value.getType() != null) {
+                    Classifier type = (Classifier) value.getType();
+    
+                    // special case for Integer/UnlimitedNatural and Real
+                    // which are not related types in java but are in OCL
+                    if ((type == OCLStandardLibraryImpl.INSTANCE.getInteger())
+                        && (classifier == OCLStandardLibraryImpl.INSTANCE.getReal())) {
+                        return true;
+                    }
+    
+                    return type.conformsTo(classifier);
+                }
+            } else if (object instanceof InstanceSpecification) {
+                InstanceSpecification instance = (InstanceSpecification) object;
+    
+                for (Classifier c : instance.getClassifiers()) {
+                    if (c.conformsTo(classifier)) {
+                        return true;
+                    }
+                }
+            }
+            break;
+        case RUNTIME_OBJECTS:
+            if (object instanceof EObject) {
                 // special case for Integer/UnlimitedNatural and Real
                 // which are not related types in java but are in OCL
-                if ((type == OCLStandardLibraryImpl.INSTANCE.getInteger())
-                    && (classifier == OCLStandardLibraryImpl.INSTANCE.getReal())) {
-                    return true;
+                EClassifier eclassifier = getEClassifier(classifier, object);
+    
+                if (eclassifier == null) {
+                    return false;
                 }
-
-                return type.conformsTo(classifier);
-            }
-        } else if (object instanceof InstanceSpecification) {
-            InstanceSpecification instance = (InstanceSpecification) object;
-
-            for (Classifier c : instance.getClassifiers()) {
-                if (c.conformsTo(classifier)) {
-                    return true;
+    
+                if ((object.getClass() == Integer.class)
+                    && (eclassifier.getInstanceClass() == Double.class)) {
+                    return Boolean.TRUE;
                 }
+    
+                return eclassifier.isInstance(object);
             }
-        } else if (object instanceof EObject) {
-            // special case for Integer/UnlimitedNatural and Real
-            // which are not related types in java but are in OCL
-            EClassifier eclassifier = getEClassifier(classifier, object);
-
-            if (eclassifier == null) {
-                return false;
-            }
-
-            if ((object.getClass() == Integer.class)
-                && (eclassifier.getInstanceClass() == Double.class)) {
-                return Boolean.TRUE;
-            }
-
-            return eclassifier.isInstance(object);
+            break;
         }
-
+        
         return false;
     }
 
     // implements the inherited specification
     public boolean isTypeOf(Object object, Classifier classifier) {
-        if (object instanceof ValueSpecification) {
-            ValueSpecification value = (ValueSpecification) object;
-
-            return value.getType() == classifier;
-        } else if (object instanceof InstanceSpecification) {
-            return ((InstanceSpecification) object).getClassifiers().contains(
-                classifier);
-        } else if (object instanceof EObject) {
-            EClassifier eclassifier = getEClassifier(classifier, object);
-
-            if (eclassifier == null) {
-                return false;
+        switch (getEffectiveEvaluationMode()) {
+        case INSTANCE_MODEL:
+            if (object instanceof ValueSpecification) {
+                ValueSpecification value = (ValueSpecification) object;
+    
+                return value.getType() == classifier;
+            } else if (object instanceof InstanceSpecification) {
+                return ((InstanceSpecification) object).getClassifiers().contains(
+                    classifier);
             }
-
-            if ((eclassifier instanceof EClass) && (object instanceof EObject)) {
-                return ((EObject) object).eClass() == eclassifier;
-            } else if (!(object instanceof EObject)
-                && !(eclassifier instanceof EClass)) {
-                return object.getClass() == eclassifier.getInstanceClass();
+            break;
+        case RUNTIME_OBJECTS:
+            if (object instanceof EObject) {
+                EClassifier eclassifier = getEClassifier(classifier, object);
+    
+                if (eclassifier == null) {
+                    return false;
+                }
+    
+                if ((eclassifier instanceof EClass) && (object instanceof EObject)) {
+                    return ((EObject) object).eClass() == eclassifier;
+                } else if (!(object instanceof EObject)
+                    && !(eclassifier instanceof EClass)) {
+                    return object.getClass() == eclassifier.getInstanceClass();
+                }
             }
+            break;
         }
 
         return false;
@@ -1047,9 +1137,9 @@ public class UMLEvaluationEnvironment
      * @since 1.2
      */
     public Object getValue(EnumerationLiteral enumerationLiteral) {
-        Object context = getValueOf(Environment.SELF_VARIABLE_NAME);
-
-        if (!(context instanceof InstanceSpecification)) {
+        if (getEffectiveEvaluationMode() == UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS) {
+            Object context = getValueOf(Environment.SELF_VARIABLE_NAME);
+            
             // if we're in an instance-specification world (model of instances)
             // then we use the models of enumeration literals (M1 level), not
             // the run-time instances (M0 level)
