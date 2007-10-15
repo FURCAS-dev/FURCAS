@@ -12,10 +12,13 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.4 2007/04/20 22:42:58 cdamus Exp $
+ * $Id: KeywordsTest.java,v 1.5 2007/10/15 22:23:34 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -33,9 +36,6 @@ import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"

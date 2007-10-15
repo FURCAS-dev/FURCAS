@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.3 2007/07/16 17:07:31 cdamus Exp $
+ * $Id: TuplesTest.java,v 1.4 2007/10/15 22:23:34 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.TupleType;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 /**
  * Tests for tuple expressions.
