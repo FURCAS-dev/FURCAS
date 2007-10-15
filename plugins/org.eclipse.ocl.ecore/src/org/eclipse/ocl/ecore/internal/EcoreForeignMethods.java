@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreForeignMethods.java,v 1.2 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: EcoreForeignMethods.java,v 1.3 2007/10/15 22:23:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.parser.OCLAnalyzer;
 
 
 /**
