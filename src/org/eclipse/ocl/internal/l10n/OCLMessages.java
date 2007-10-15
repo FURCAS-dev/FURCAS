@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.3 2007/10/11 23:05:06 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.4 2007/10/15 22:10:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -235,6 +235,8 @@ public class OCLMessages {
 	public static String NonStd_SQuote_Escape_;
     public static String NonStd_Operation_;
     public static String NonStd_Iterator_;
+    
+    public static String Ambig_AssocEnd_;
 	
 	private static IMessages messagesImpl;
 	
