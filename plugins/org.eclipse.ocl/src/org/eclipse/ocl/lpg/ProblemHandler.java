@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemHandler.java,v 1.3 2007/10/12 13:57:52 cdamus Exp $
+ * $Id: ProblemHandler.java,v 1.4 2007/10/15 22:10:08 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -144,7 +144,11 @@ public interface ProblemHandler {
 	 * @since 1.2
 	 */
 	enum Severity {
-		OK(OCLMessages.Severity_OK, Diagnostic.OK),			// Problems that are no problem
+		OK(OCLMessages.Severity_OK, Diagnostic.OK) {                // Problems that are no problem
+		    @Override
+            public boolean isOK() {
+		        return true;
+		    }},
 		INFO(OCLMessages.Severity_Info, Diagnostic.INFO),			// Problems that are no problem
 		WARNING(OCLMessages.Severity_Warning, Diagnostic.WARNING),	// Problems that may allow subsequent phases to succeed
 		ERROR(OCLMessages.Severity_Error, Diagnostic.ERROR),		// Problems that may invalidate a subsequent phase
@@ -162,6 +166,17 @@ public interface ProblemHandler {
 		public int getDiagnosticSeverity() {
 			return diagnosticSeverity;
 		}
+        
+        /**
+         * Am I the "OK" severity?
+         * 
+         * @return whether I am OK
+         * 
+         * @see #OK
+         */
+        public boolean isOK() {
+            return false;
+        }
 		
 		@Override
 		public String toString() {

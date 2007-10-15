@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.5 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.6 2007/10/15 22:10:08 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -22,12 +22,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
+import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.util.ProblemOption;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -62,8 +64,9 @@ import org.eclipse.ocl.utilities.TypedElement;
  */
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
-	implements Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-{
+	implements Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
+	    Environment.Lookup<PK, C, O, P> {
+    
 	/* Used to generate implicit iterator variables */
 	private static int generatorInt = 0;
 	
@@ -716,7 +719,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
 			if (!element.isExplicit) {
-				P property = lookupProperty(vdcl.getType(), name);
+				P property = safeTryLookupProperty(vdcl.getType(), name);
 				if (property != null) {
 					return vdcl;
 				}
@@ -727,7 +730,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			P property = lookupProperty(vdcl.getType(), name);
+			P property = safeTryLookupProperty(vdcl.getType(), name);
 			if (property != null) {
 				return vdcl;
 			}
@@ -735,6 +738,25 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		return null;
 
+	}
+	
+	/**
+	 * Wrapper for the "try" operation that doesn't throw, but just returns the
+	 * first ambiguous match in case of ambiguity.
+	 */
+	@SuppressWarnings("unchecked")
+    private P safeTryLookupProperty(C owner, String name) {
+	    P result = null;
+	    
+	    try {
+	        result = tryLookupProperty(owner, name);
+        } catch (LookupException e) {
+            if (!e.getAmbiguousMatches().isEmpty()) {
+                result = (P) e.getAmbiguousMatches().get(0);
+            }
+	    }
+        
+        return result;
 	}
 
     // implements the interface method
@@ -851,8 +873,195 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return result.toString();
 	}
 	
-	
 	/**
+	 * This default implementation simply delegates to the
+	 * {@link Environment#lookupAssociationClassReference(Object, String)} method.
+	 * 
+	 * @since 1.2
+	 */
+	public C tryLookupAssociationClassReference(C owner, String name)
+        throws LookupException {
+        
+        return lookupAssociationClassReference(owner, name);
+    }
+
+    /**
+     * This default implementation simply delegates to the
+     * {@link Environment#lookupClassifier(List)} method.
+     * 
+     * @since 1.2
+     */
+    public C tryLookupClassifier(List<String> names)
+        throws LookupException {
+        
+        return lookupClassifier(names);
+    }
+
+    /**
+     * This default implementation simply delegates to the
+     * {@link Environment#lookupOperation(Object, String, List)} method.
+     * 
+     * @since 1.2
+     */
+    public O tryLookupOperation(C owner, String name,
+            List<? extends TypedElement<C>> args)
+        throws LookupException {
+        
+        return lookupOperation(owner, name, args);
+    }
+
+    /**
+     * This default implementation simply delegates to the
+     * {@link Environment#lookupSignal(Object, String, List)} method.
+     * 
+     * @since 1.2
+     */
+    public C tryLookupSignal(C owner, String name,
+            List<? extends TypedElement<C>> args)
+        throws LookupException {
+        
+        return lookupSignal(owner, name, args);
+    }
+
+    /**
+     * This default implementation simply delegates to the
+     * {@link Environment#lookupPackage(List)} method.
+     * 
+     * @since 1.2
+     */
+    public PK tryLookupPackage(List<String> names)
+        throws LookupException {
+        
+        return lookupPackage(names);
+    }
+
+    /**
+     * This default implementation simply delegates to the
+     * {@link Environment#lookupProperty(Object, String)} method.
+     * 
+     * @since 1.2
+     */
+    public P tryLookupProperty(C owner, String name)
+        throws LookupException {
+        
+        P result = lookupProperty(owner, name);
+        
+        if (result == null) {
+            // looks up non-navigable named ends as well as unnamed ends.  Hence
+            // the possibility of ambiguity
+            result = lookupNonNavigableEnd(owner, name);
+            
+            if ((result == null) && AbstractOCLAnalyzer.isEscaped(name)) {
+                result = lookupNonNavigableEnd(owner, AbstractOCLAnalyzer.unescape(name));
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Looks up a non-navigable association end on behalf of
+     * the specified <code>owner</code> classifier (which is at that end).
+     * 
+     * @param owner
+     *            a classifier in the context of which the property is used
+     * @param name
+     *            the end name to look up
+     * 
+     * @return the non-navigable end, or <code>null</code> if it cannot
+     *         be found
+     *         
+     * @throws LookupException in case that multiple non-navigable properties
+     *     are found that have the same name and the problem option is ERROR
+     *     or worse
+     */
+    private P lookupNonNavigableEnd(C owner, String name) throws LookupException {
+        if (owner == null) {
+            Variable<C, PM> vdcl = lookupImplicitSourceForProperty(name);
+
+            if (vdcl == null) {
+                return null;
+            }
+
+            owner = vdcl.getType();
+        }
+
+        List<P> matches = new java.util.ArrayList<P>(2);
+        findNonNavigableAssociationEnds(owner, name, matches);
+
+        if (matches.isEmpty()) {
+            // search for unnamed ends (named but non-navigable ends take priority)
+            findUnnamedAssociationEnds(owner, name, matches);
+        }
+        
+        if (matches.isEmpty()) {
+            return null;
+        } else if (matches.size() > 1) {
+            // ambiguous matches.  What to do?
+            if (notOK(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS)) {
+                ProblemHandler.Severity sev = getValue(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS);
+
+                // will have to report the problem
+                String message = OCLMessages.bind(OCLMessages.Ambig_AssocEnd_,
+                    name, getUMLReflection().getName(owner));
+
+                if (sev.getDiagnosticSeverity() >= Diagnostic.ERROR) {
+                    throw new LookupException(message, matches);
+                } else {
+                    getProblemHandler().analyzerProblem(sev, message,
+                        "lookupNonNavigableProperty", -1, -1); //$NON-NLS-1$
+                }
+            }
+        }
+        
+        return matches.get(0);
+    }
+    
+    /**
+     * Searches for non-navigable association ends with the specified
+     * <tt>name</tt> at the given <tt>classifier</tt>'s end of an association.
+     * Subclasses should reimplement this method if they support non-navigable
+     * association ends.
+     * 
+     * @param classifier a classifier at an association end
+     * @param name the non-navigable end name to look for
+     * @param ends collects the ends found by the subclass implementation
+     */
+    protected void findNonNavigableAssociationEnds(C classifier, String name, List<P> ends) {
+        // no default implementation
+    }
+    
+    /**
+     * Searches for unnamed association ends using the specified <tt>name</tt>
+     * at the given <tt>classifier</tt>'s end of an association.
+     * Subclasses should reimplement this method if they support non-navigable
+     * association ends.  It is expected, in OCL, that the supplied <tt>name</tt>
+     * is the {@linkplain #initialLower(Object) initial-lower-case name} of the
+     * type of the unnamed end.
+     * 
+     * @param classifier a classifier at an association end
+     * @param name the initial-lower classifier name to look for
+     * @param ends collects the ends found by the subclass implementation
+     */
+    protected void findUnnamedAssociationEnds(C classifier, String name, List<P> ends) {
+        // no default implementation
+    }
+    
+    /**
+     * Queries whether I have a non-OK setting for the specified problem option.
+     * In such cases, I will need to be concerned with reporting the problem.
+     * 
+     * @param option the problem option
+     * @return whether I have a setting for it that is not OK
+     * 
+     * @see ProblemHandler.Severity#OK
+     */
+    public boolean notOK(ProblemOption option) {
+        ProblemHandler.Severity sev = getValue(option);
+        return (sev != null) && !sev.isOK();
+    }
+
+    /**
      * Wrapper for OCL variable declarations that additionally tracks whether
      * they are explicit or implicit variables.
      * 

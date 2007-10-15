@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ProblemOption.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: ProblemOption.java,v 1.2 2007/10/15 22:10:08 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
 import org.eclipse.ocl.lpg.Option;
-import org.eclipse.ocl.lpg.ProblemHandler.Severity;;
+import org.eclipse.ocl.lpg.ProblemHandler.Severity;
 
 
 /**
@@ -53,7 +53,14 @@ public enum ProblemOption implements Option<Severity> {
 	 * element names consisting of multiple OCL tokens.
 	 * The default severity is <tt>WARNING</tt>.
 	 */
-	ELEMENT_NAME_QUOTE_ESCAPE("string.escapes.element", Severity.WARNING); //$NON-NLS-1$
+	ELEMENT_NAME_QUOTE_ESCAPE("string.escapes.element", Severity.WARNING), //$NON-NLS-1$
+    
+    /**
+     * Severity of the ambiguity when an unnavigable but named associend has the
+     * same name as the implicit name of an unnamed association end.
+     * The default severity is <tt>ERROR</tt>.
+     */
+    AMBIGUOUS_ASSOCIATION_ENDS("ambiguous.association.ends", Severity.ERROR); //$NON-NLS-1$
 	
 	private final String key;
 	private final Severity defaultValue;
