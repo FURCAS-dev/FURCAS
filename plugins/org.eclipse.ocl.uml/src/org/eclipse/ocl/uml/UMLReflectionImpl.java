@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.5 2007/05/03 13:05:01 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.6 2007/10/15 22:23:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -89,13 +89,17 @@ class UMLReflectionImpl
      */
     public String getDescription(Object namedElement) {
         if (namedElement instanceof TypedElement) {
-            return ((TypedElement) namedElement).getType().getName();
+            Type type = ((TypedElement) namedElement).getType();
+            return (type == null) ? OCLStandardLibraryImpl.INSTANCE
+                .getOclVoid().getName()
+                : type.getName();
         } else if (namedElement instanceof EnumerationLiteral) {
-            return ((EnumerationLiteral) namedElement).getEnumeration().getName();
+            return ((EnumerationLiteral) namedElement).getEnumeration()
+                .getName();
         } else if (namedElement == null) {
             return null;
         }
-        
+
         return ((EObject) namedElement).eClass().getName();
     }
     
