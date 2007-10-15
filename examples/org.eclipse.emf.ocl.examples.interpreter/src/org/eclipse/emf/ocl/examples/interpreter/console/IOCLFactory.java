@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLFactory.java,v 1.1 2007/04/30 12:39:31 cdamus Exp $
+ * $Id: IOCLFactory.java,v 1.2 2007/10/15 22:19:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -38,21 +38,26 @@ public interface IOCLFactory<C> {
     /**
      * Creates a new OCL instance for my target metamodel.
      * 
+     * @param modeling level the active modeling level
+     * 
      * @return an OCL facade
      */
     <PK, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-    OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL();
+    OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(ModelingLevel level);
     
     /**
      * Creates a new OCL instance for my target metamodel, persisted in the
      * specified resource.
+     * 
+     * @param modeling level the active modeling level
      * 
      * @param res a resource in which to persist the OCL environment
      * 
      * @return an OCL facade
      */
     <PK, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-    OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(Resource res);
+    OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(ModelingLevel level,
+        Resource res);
     
     /**
      * Obtains the metamodel-specific representation of the context classifier

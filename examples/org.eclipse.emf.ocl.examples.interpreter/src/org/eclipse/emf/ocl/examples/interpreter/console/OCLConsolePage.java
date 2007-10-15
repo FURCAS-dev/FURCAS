@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.15 2007/05/01 15:22:13 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.16 2007/10/15 22:19:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -389,7 +389,8 @@ public class OCLConsolePage
 			error(OCLInterpreterMessages.console_noContext);
 		} else {
 			// create an OCL helper to do our parsing and evaluating
-            OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl = oclFactory.createOCL();
+            OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl = oclFactory.createOCL(
+                   modelingLevel);
             OCLHelper<Object, ?, ?, ?> helper = ocl.createOCLHelper();
 			
 			// set our helper's context classifier to parse against it
@@ -788,7 +789,7 @@ public class OCLConsolePage
         }
         
 	    @SuppressWarnings("unchecked")
-	    public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL() {
+	    public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(ModelingLevel level) {
             return OCL.newInstance(
                 new EcoreEnvironmentFactory(
                     new DelegatingPackageRegistry(
@@ -797,7 +798,9 @@ public class OCLConsolePage
 	    }
 	    
         @SuppressWarnings("unchecked")
-        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(Resource res) {
+        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(ModelingLevel level,
+                Resource res) {
+            
             return OCL.newInstance(
                 new EcoreEnvironmentFactory(
                     new DelegatingPackageRegistry(
@@ -850,24 +853,45 @@ public class OCLConsolePage
         }
         
         @SuppressWarnings("unchecked")
-        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL() {
-            return OCL.newInstance(
-                new UMLEnvironmentFactory(
-                    new DelegatingPackageRegistry(
-                            context.eResource().getResourceSet().getPackageRegistry(),
-                            EPackage.Registry.INSTANCE),
-                    context.eResource().getResourceSet()));
+        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(ModelingLevel level) {
+            UMLEnvironmentFactory factory = new UMLEnvironmentFactory(
+                new DelegatingPackageRegistry(
+                    context.eResource().getResourceSet().getPackageRegistry(),
+                    EPackage.Registry.INSTANCE),
+                    context.eResource().getResourceSet());
+            
+            switch (level) {
+            case M2:
+                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS);
+                break;
+            default:
+                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL);
+                break;
+            }
+            
+            return OCL.newInstance(factory);
         }
         
         @SuppressWarnings("unchecked")
-        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(Resource res) {
-            return OCL.newInstance(
-                new UMLEnvironmentFactory(
+        public OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> createOCL(ModelingLevel level,
+                Resource res) {
+            
+            UMLEnvironmentFactory factory = new UMLEnvironmentFactory(
                     new DelegatingPackageRegistry(
                             context.eResource().getResourceSet().getPackageRegistry(),
                             EPackage.Registry.INSTANCE),
-                    context.eResource().getResourceSet()),
-                res);
+                    context.eResource().getResourceSet());
+            
+            switch (level) {
+            case M2:
+                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS);
+                break;
+            default:
+                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL);
+                break;
+            }
+            
+            return OCL.newInstance(factory, res);
         }
         
         public Object getContextClassifier(EObject object) {
