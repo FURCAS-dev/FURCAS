@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.1 2007/01/25 18:41:55 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.2 2007/10/15 22:23:34 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -35,8 +35,8 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.ExpressionInOCL;
+import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
