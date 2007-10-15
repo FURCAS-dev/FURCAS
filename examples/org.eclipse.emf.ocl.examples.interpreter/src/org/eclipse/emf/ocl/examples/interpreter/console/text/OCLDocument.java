@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocument.java,v 1.1 2007/04/30 12:39:31 cdamus Exp $
+ * $Id: OCLDocument.java,v 1.2 2007/10/15 22:19:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console.text;
@@ -89,7 +89,8 @@ public class OCLDocument
         try {
             String text = get(0, offset);
             
-            OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl = oclFactory.createOCL();
+            OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl = oclFactory.createOCL(
+                getModelingLevel());
             OCLHelper<Object, ?, ?, ?> helper = ocl.createOCLHelper();
             
             return helper.getSyntaxHelp(

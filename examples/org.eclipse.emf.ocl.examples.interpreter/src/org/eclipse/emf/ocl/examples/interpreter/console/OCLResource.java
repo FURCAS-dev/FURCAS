@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.13 2007/04/30 12:39:31 cdamus Exp $
+ * $Id: OCLResource.java,v 1.14 2007/10/15 22:19:22 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -111,7 +111,7 @@ public class OCLResource
 		
 		// create an OCL helper to do our parsing
         OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, Object, ?, ?> ocl =
-            document.getOCLFactory().createOCL(res);
+            document.getOCLFactory().createOCL(document.getModelingLevel(), res);
         OCLHelper<Object, ?, ?, Object> helper = ocl.createOCLHelper();
         
         // set our helper's context classifier to parse against it
