@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.1 2007/05/10 13:16:27 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.2 2007/10/15 22:19:24 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -36,8 +36,10 @@ import org.eclipse.ocl.uml.UMLEvaluationEnvironment;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
@@ -45,6 +47,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Tests the {@link UMLEnvironment} class.
@@ -83,6 +86,55 @@ public class UMLEnvironmentTest
         assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
         assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
         assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
+    }
+    
+    /**
+     * Tests the adaptive evaluation mode.
+     */
+    public void test_evaluationMode_adaptive_194390() {
+        UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
+        factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.ADAPTIVE);
+        
+        OCL ocl = OCL.newInstance(factory);
+
+        OCL.Helper helper = ocl.createOCLHelper();
+        helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
+
+        Constraint constraint = null;
+        
+        try {
+            constraint = helper.createInvariant(
+                    "self.oclIsKindOf(InstanceSpecification) or self.owner.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        InstanceSpecification instance1 = (InstanceSpecification) fruitPackage.createPackagedElement(
+            null, UMLPackage.Literals.INSTANCE_SPECIFICATION);
+        instance1.getClassifiers().add(apple);
+        Comment comment = instance1.createOwnedComment();
+        InstanceSpecification instance2 = (InstanceSpecification) fruitPackage.createPackagedElement(
+            null, UMLPackage.Literals.INSTANCE_SPECIFICATION);
+        instance2.getClassifiers().add(getMetaclass("InstanceSpecification")); //$NON-NLS-1$
+        
+        try {
+            // adaptive mode handles instance specification (M1 level) when it
+            //   happens to be classified by the "InstanceSpecification" metaclass
+            assertTrue(ocl.check(instance2, constraint));
+            
+            // adaptive mode handles Java instance (M0 level) based on context
+            //   being a non-instance-like element
+            assertTrue(ocl.check(comment, constraint));
+            
+            // adaptive mode does not handle Java instance when it is a
+            //  value- or instance-specification (M0 level)
+            assertFalse(ocl.check(instance1, constraint));
+        } finally {
+            // clean up
+            instance2.destroy();
+            comment.destroy();
+            instance1.destroy();
+        }
     }
     
     //
