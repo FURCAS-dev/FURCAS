@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ocl.examples"
       label="%featureName"
-      version="1.1.0.qualifier"
+      version="1.2.0.qualifier"
       provider-name="%providerName"
       image="modeling32.png">
 
@@ -41,6 +41,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ocl.ecore" version="1.1.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.edit" version="2.3.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.edit.ui" version="2.3.0" match="compatible"/>
    </requires>
 
    <plugin
