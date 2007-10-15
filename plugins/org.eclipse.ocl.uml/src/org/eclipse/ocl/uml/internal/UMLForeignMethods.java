@@ -13,14 +13,19 @@
  *
  * </copyright>
  *
- * $Id: UMLForeignMethods.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: UMLForeignMethods.java,v 1.3 2007/10/15 22:10:02 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
 
+import java.util.Set;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -113,5 +118,26 @@ public class UMLForeignMethods {
         }
         
         return result;
+    }
+    
+    /**
+     * Foreign method for the missing <tt>Classifier::getAllAssociations()</tt>
+     * method that gets inherited associations as well as those defined by the
+     * specified <tt>classifier</tt>.
+     * 
+     * @param classifier a classifier
+     * @return all of its associations, including those that it inherits
+     * 
+     * @since 1.2
+     */
+    public static EList<Association> getAllAssociations(Classifier classifier) {
+        Set<Association> result = new java.util.HashSet<Association>();
+        
+        result.addAll(classifier.getAssociations());
+        for (Classifier parent : classifier.allParents()) {
+            result.addAll(parent.getAssociations());
+        }
+        
+        return new UniqueEList.FastCompare<Association>(result);
     }
 }

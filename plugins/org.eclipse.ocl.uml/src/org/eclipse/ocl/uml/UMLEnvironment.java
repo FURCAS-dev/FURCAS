@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.6 2007/04/23 21:13:54 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.7 2007/10/15 22:10:02 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -61,6 +61,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
@@ -413,52 +414,50 @@ public class UMLEnvironment
     }
 
     @Override
-    public Property lookupProperty(Classifier owner, String name) {
-        Property result = super.lookupProperty(owner, name);
+    protected void findNonNavigableAssociationEnds(Classifier classifier,
+            String name, List<Property> ends) {
+        
+        EList<Association> associations = UMLForeignMethods.getAllAssociations(classifier);
 
-        if (result == null) {
-            result = lookupNonNavigableProperty(owner, name);
-        }
+        // search for non-navigable, named ends
+        for (Association next : associations) {
+            if (next.isBinary()) {
+                Property end = next.getMemberEnd(name, null);
 
-        return result;
-    }
-
-    /**
-     * Looks up a non-navigable property owned by an association on behalf of
-     * the specified <code>owner</code> classifier (which is at that end).
-     * 
-     * @param owner
-     *            a classifier in the context of which the property is used
-     * @param name
-     *            the property name to look up
-     * 
-     * @return the non-navigable property, or <code>null</code> if it cannot
-     *         be found
-     */
-    private Property lookupNonNavigableProperty(Classifier owner, String name) {
-        Property result = null;
-
-        if (owner == null) {
-            Variable<Classifier, Parameter> vdcl = lookupImplicitSourceForProperty(name);
-
-            if (vdcl == null) {
-                return null;
+                // only match the end if the other end is a not property of
+                // 'classifier'
+                if ((end != null)
+                    && !classifier.getAllAttributes()
+                        .contains(end.getOtherEnd())) {
+                    ends.add(end);
+                }
             }
-
-            owner = vdcl.getType();
         }
-
-        EList<Association> associations = owner.getAssociations();
+    }
+    
+    @Override
+    protected void findUnnamedAssociationEnds(Classifier classifier, String name,
+            List<Property> ends) {
+        
+        EList<Association> associations = UMLForeignMethods.getAllAssociations(classifier);
 
         for (Association next : associations) {
-            result = next.getMemberEnd(name, null);
-
-            if (result != null) {
-                break;
+            if (next.isBinary()) {
+                for (Property end : next.getMemberEnds()) {
+                    if (end.getName() == null) {
+                        Type type = end.getType();
+                        if ((type != null) && initialLower(type).equals(name)) {
+                            // only match the end if the other end is not a
+                            // property of 'classifier'
+                            if (!classifier.getAllAttributes().contains(
+                                end.getOtherEnd())) {
+                                ends.add(end);
+                            }
+                        }
+                    }
+                }
             }
         }
-
-        return result;
     }
 
     // implements the inherited specification
