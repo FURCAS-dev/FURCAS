@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.3 2007/05/17 17:06:22 cdamus Exp $
+ * $Id: UMLReflection.java,v 1.4 2007/10/15 22:23:12 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -622,8 +622,10 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
     
     /**
      * Obtains the user-presentable description of an element.
-     * For example, this might be the type name of a typed element
-     * or the localized name of the metaclass of the element.
+     * For typed elements, this should be the type name and for enumeration
+     * literals, the enumeration name.  For other elements,
+     * it should be the name (optionally localized) of the metaclass of the
+     * element.
      * This description is used in the presentation of content-assist
      * {@link Choice}s.
      * 
