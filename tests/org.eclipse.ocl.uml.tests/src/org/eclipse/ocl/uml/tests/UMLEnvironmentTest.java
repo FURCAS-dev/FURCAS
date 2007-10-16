@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.2 2007/10/15 22:19:24 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.3 2007/10/16 20:30:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -86,6 +86,87 @@ public class UMLEnvironmentTest
         assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
         assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
         assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
+    }
+    
+    /**
+     * Tests the instance-model evaluation mode.
+     */
+    public void test_evaluationMode_instanceModel_194390() {
+        UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
+        factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL);
+        
+        OCL ocl = OCL.newInstance(factory);
+
+        OCL.Helper helper = ocl.createOCLHelper();
+        helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
+
+        Constraint constraint = null;
+        
+        try {
+            constraint = helper.createInvariant(
+                    "self.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        InstanceSpecification instance1 = (InstanceSpecification) fruitPackage.createPackagedElement(
+            null, UMLPackage.Literals.INSTANCE_SPECIFICATION);
+        instance1.getClassifiers().add(apple);
+        
+        try {
+            // if we had treated this as an EObject (not an InstanceSpecification)
+            // then this would have checked true
+            assertFalse(ocl.check(instance1, constraint));
+            
+            instance1.getClassifiers().add(getMetaclass("InstanceSpecification")); //$NON-NLS-1$
+            
+            // now we really are an instance of InstanceSpecification
+            assertTrue(ocl.check(instance1, constraint));
+        } finally {
+            // clean up
+            instance1.destroy();
+        }
+    }
+    
+    /**
+     * Tests the Java-EObjects evaluation mode.
+     */
+    public void test_evaluationMode_runtimeObjects_194390() {
+        UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
+        factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS);
+        
+        OCL ocl = OCL.newInstance(factory);
+
+        OCL.Helper helper = ocl.createOCLHelper();
+        helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
+
+        Constraint constraint1 = null;
+        Constraint constraint2 = null;
+        
+        try {
+            constraint1 = helper.createInvariant(
+                    "self.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+            constraint2 = helper.createInvariant(
+                    "self.oclIsKindOf(ocltest::Apple)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+        
+        InstanceSpecification instance1 = (InstanceSpecification) fruitPackage.createPackagedElement(
+            null, UMLPackage.Literals.INSTANCE_SPECIFICATION);
+        instance1.getClassifiers().add(apple);
+        
+        try {
+            // now we really are an instance of InstanceSpecification
+            assertTrue(ocl.check(instance1, constraint1));
+            
+            // if we had treated this as an InstanceSpecification (not an EObject)
+            // then this would have checked true
+            assertFalse(ocl.check(instance1, constraint2));
+        } finally {
+            // clean up
+            instance1.destroy();
+        }
     }
     
     /**
