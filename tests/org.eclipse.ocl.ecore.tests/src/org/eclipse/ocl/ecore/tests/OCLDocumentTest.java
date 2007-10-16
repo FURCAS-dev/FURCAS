@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.4 2007/05/07 12:28:46 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.5 2007/10/16 16:58:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.utilities.UMLReflection;

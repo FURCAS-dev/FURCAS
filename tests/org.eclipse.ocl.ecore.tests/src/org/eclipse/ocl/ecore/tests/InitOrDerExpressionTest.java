@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerExpressionTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: InitOrDerExpressionTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.utilities.UMLReflection;
 

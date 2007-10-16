@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: AllTests.java,v 1.3 2007/10/16 16:58:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.Arrays;
 
-import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
+
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 
 /**
  * Tests for the OCL engine plug-in.

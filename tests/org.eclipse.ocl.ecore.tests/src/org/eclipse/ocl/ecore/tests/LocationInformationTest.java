@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.3 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: LocationInformationTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EnvironmentFactory;
-import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;

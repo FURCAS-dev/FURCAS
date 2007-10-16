@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.4 2007/05/10 13:16:25 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.5 2007/10/16 16:58:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -41,11 +41,11 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
