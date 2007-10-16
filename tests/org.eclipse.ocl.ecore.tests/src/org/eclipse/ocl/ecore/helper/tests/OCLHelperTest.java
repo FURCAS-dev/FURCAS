@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: OCLHelperTest.java,v 1.3 2007/10/16 16:58:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -23,9 +23,9 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.helper.OCLHelper;
 
 /**
