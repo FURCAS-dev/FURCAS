@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocument.java,v 1.2 2007/10/15 22:19:22 cdamus Exp $
+ * $Id: OCLDocument.java,v 1.3 2007/10/25 03:11:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console.text;
@@ -23,7 +23,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory;
 import org.eclipse.emf.ocl.examples.interpreter.console.ModelingLevel;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.rules.FastPartitioner;
@@ -96,7 +95,7 @@ public class OCLDocument
             return helper.getSyntaxHelp(
                 level.setContext(helper, context, oclFactory),
                 text);
-        } catch (BadLocationException e) {
+        } catch (Exception e) {
             // just don't provide proposals
             return Collections.emptyList();
         }

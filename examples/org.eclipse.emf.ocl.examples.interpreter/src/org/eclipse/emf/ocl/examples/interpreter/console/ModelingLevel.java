@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ModelingLevel.java,v 1.1 2007/04/30 12:39:30 cdamus Exp $
+ * $Id: ModelingLevel.java,v 1.2 2007/10/25 03:11:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ocl.examples.interpreter.internal.l10n.OCLInterpreterMessages;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -41,11 +43,19 @@ public enum ModelingLevel {
      * @param element the selected context element
      * 
      * @return the kind of constraint to parse or to complete
+     * 
+     * @throws ParserException if the specified context is not valid for this
+     *    modeling level
      */
-    public <C, O, P> ConstraintKind setContext(OCLHelper<C, O, P, ?> helper, EObject element, IOCLFactory<C> factory) {
+    public <C, O, P> ConstraintKind setContext(OCLHelper<C, O, P, ?> helper, EObject element, IOCLFactory<C> factory)
+    		throws ParserException {
         switch (this) {
             case M2:
-                helper.setContext(factory.getContextClassifier(element));
+            	C contextClassifier = factory.getContextClassifier(element);
+            	if (contextClassifier == null) {
+            		throw new ParserException(OCLInterpreterMessages.console_badContextForQuery);
+            	}
+                helper.setContext(contextClassifier);
                 return ConstraintKind.INVARIANT;
             case M1:
                 UMLReflection<?, C, O, P, ?, ?, ?, ?, ?, ?> uml =
@@ -68,8 +78,9 @@ public enum ModelingLevel {
                     C classifier = uml.getOwningClassifier(property);
                     helper.setAttributeContext(classifier, property);
                     return ConstraintKind.DERIVATION;
+                } else {
+                	throw new ParserException(OCLInterpreterMessages.console_badContextForConstraint);
                 }
-                break;
         }
         
         return null;
