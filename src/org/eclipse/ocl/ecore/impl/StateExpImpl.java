@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.4 2007/10/25 16:00:18 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -76,9 +76,9 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
      */
 	@SuppressWarnings("unchecked")
 	public EObject getReferredState() {
-        if (referredState != null && (referredState).eIsProxy()) {
+        if (referredState != null && ((EObject)referredState).eIsProxy()) {
             InternalEObject oldReferredState = (InternalEObject)referredState;
-            referredState = eResolveProxy(oldReferredState);
+            referredState = (EObject)eResolveProxy(oldReferredState);
             if (referredState != oldReferredState) {
                 if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
