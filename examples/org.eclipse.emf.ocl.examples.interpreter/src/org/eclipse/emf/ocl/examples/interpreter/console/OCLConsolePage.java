@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.17 2007/10/25 03:11:50 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.18 2007/10/25 03:22:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -493,9 +493,9 @@ public class OCLConsolePage
 	 */
 	String toString(Object object) {
 		if (ocl.isInvalid(object)) {
-			return "OclInvalid";
+			return "OclInvalid"; //$NON-NLS-1$
 		} else if (object instanceof String) {
-			return "'" + object + "'";
+			return "'" + object + "'";  //$NON-NLS-1$//$NON-NLS-2$
 		} else if (object instanceof Tuple) {
 			return tupleTypeLabelProvider.getText(object);
 		} else if (object instanceof EObject) {
