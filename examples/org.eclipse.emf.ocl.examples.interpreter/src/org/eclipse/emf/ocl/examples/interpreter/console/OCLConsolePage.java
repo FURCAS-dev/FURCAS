@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.16 2007/10/15 22:19:22 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.17 2007/10/25 03:11:50 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -124,6 +123,7 @@ public class OCLConsolePage
 	private ISelectionListener selectionListener;
 	
 	private IOCLFactory<Object> oclFactory = new EcoreOCLFactory();
+	private OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl;
 	private ModelingLevel modelingLevel = ModelingLevel.M2;
 	
 	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -131,6 +131,9 @@ public class OCLConsolePage
 	
 	private static final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
+
+	private static final AdapterFactory defaultAdapterFactory =
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	public IItemLabelProvider tupleTypeLabelProvider = new IItemLabelProvider() {
 	
@@ -389,14 +392,13 @@ public class OCLConsolePage
 			error(OCLInterpreterMessages.console_noContext);
 		} else {
 			// create an OCL helper to do our parsing and evaluating
-            OCL<?, Object, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ocl = oclFactory.createOCL(
-                   modelingLevel);
+            ocl = oclFactory.createOCL(modelingLevel);
             OCLHelper<Object, ?, ?, ?> helper = ocl.createOCLHelper();
 			
-			// set our helper's context classifier to parse against it
-            ConstraintKind kind = modelingLevel.setContext(helper, context, oclFactory);
-			
 			try {
+				// set our helper's context classifier to parse against it
+	            ConstraintKind kind = modelingLevel.setContext(helper, context, oclFactory);
+				
 				IDocument doc = getDocument();
 				Color outputDefault = colorManager.getColor(ColorManager.DEFAULT);
                 Color outputResults = colorManager.getColor(ColorManager.OUTPUT_RESULTS);
@@ -406,9 +408,9 @@ public class OCLConsolePage
 					append("", outputDefault, false); //$NON-NLS-1$
 				}
 				
-				print(OCLInterpreterMessages.console_evaluating, outputDefault, true);
-				print(expression, outputDefault, false);
-				print(OCLInterpreterMessages.console_results, outputDefault, true);
+				append(OCLInterpreterMessages.console_evaluating, outputDefault, true);
+				append(expression, outputDefault, false);
+				append(OCLInterpreterMessages.console_results, outputDefault, true);
                 
                 switch (modelingLevel) {
                     case M2:
@@ -431,7 +433,8 @@ public class OCLConsolePage
 				lastOCLExpression = expression;
 			} catch (Exception e) {
 				result = false;
-				error(e.getLocalizedMessage());
+				error((e.getLocalizedMessage() == null) ? e.getClass().getName()
+						: e.getLocalizedMessage());
 			}
 		}
 		
@@ -489,22 +492,24 @@ public class OCLConsolePage
 	 * @see #print(Object, Color, boolean)
 	 */
 	String toString(Object object) {
-		if (object instanceof EObject) {
+		if (ocl.isInvalid(object)) {
+			return "OclInvalid";
+		} else if (object instanceof String) {
+			return "'" + object + "'";
+		} else if (object instanceof Tuple) {
+			return tupleTypeLabelProvider.getText(object);
+		} else if (object instanceof EObject) {
 			EObject eObject = (EObject) object;
 			
 			IItemLabelProvider labeler =
-				(IItemLabelProvider) EcoreUtil.getRegisteredAdapter(
+				(IItemLabelProvider) defaultAdapterFactory.adapt(
 					eObject,
 					IItemLabelProvider.class);
 			
 			if (labeler == null) {
-				if (eObject.eClass() instanceof TupleType) {
-					labeler = tupleTypeLabelProvider;
-				} else {
-					labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(
-						eObject,
-						IItemLabelProvider.class);
-				}
+				labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(
+					eObject,
+					IItemLabelProvider.class);
 			}
 			
 			if (labeler != null) {

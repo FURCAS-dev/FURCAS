@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInterpreterMessages.java,v 1.4 2007/06/06 18:56:55 cdamus Exp $
+ * $Id: OCLInterpreterMessages.java,v 1.5 2007/10/25 03:11:49 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.internal.l10n;
@@ -30,6 +30,8 @@ public class OCLInterpreterMessages extends NLS {
 
 	public static String console_title;
 	public static String console_noContext;
+	public static String console_badContextForQuery;
+	public static String console_badContextForConstraint;
 	public static String console_outputExc;
 	public static String console_closeAction_label;
 	public static String console_closeAction_tip;
