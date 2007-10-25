@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidType.java,v 1.4 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: InvalidType.java,v 1.5 2007/10/25 16:00:31 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -42,6 +42,12 @@ public interface InvalidType extends Classifier, org.eclipse.ocl.types.InvalidTy
     /**
      * Returns the value of the '<em><b>Owned Operation</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.uml2.uml.Operation}.
+* <p>
+* This feature subsets the following features:
+* <ul>
+*   <li>'{@link org.eclipse.uml2.uml.Classifier#getFeatures() <em>Feature</em>}'</li>
+* </ul>
+* </p>
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Owned Operations</em>' containment reference list isn't clear,
