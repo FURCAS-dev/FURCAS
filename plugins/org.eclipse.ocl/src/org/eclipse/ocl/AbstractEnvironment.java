@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.6 2007/10/15 22:10:08 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.7 2007/11/02 19:53:51 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
+import org.eclipse.ocl.lpg.Option;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.util.ProblemOption;
@@ -1056,7 +1057,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * 
      * @see ProblemHandler.Severity#OK
      */
-    public boolean notOK(ProblemOption option) {
+    public boolean notOK(Option<ProblemHandler.Severity> option) {
         ProblemHandler.Severity sev = getValue(option);
         return (sev != null) && !sev.isOK();
     }
