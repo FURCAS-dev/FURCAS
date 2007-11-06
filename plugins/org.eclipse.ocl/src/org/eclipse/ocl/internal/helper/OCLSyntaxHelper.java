@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.7 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.8 2007/11/06 19:47:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -502,19 +502,22 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			// handle association class ends
 			C assocClass = uml.getAssociationClass(property);
 			if (assocClass != null) {
-				String name = initialLower(uml.getName(assocClass));
-				
-				Choice choice = new ChoiceImpl(
-					name,
-					uml.getName(assocClass),
-					ChoiceKind.ASSOCIATION_CLASS,
-					assocClass);
-				
-				// don't repeat in case we have multiple ends of this
-				//    association class
-				if (!result.contains(choice)) {
-					result.add(choice);
-				}
+			    String name = uml.getName(assocClass);
+			    if (name != null) {
+    				name = initialLower(name);
+    				
+    				Choice choice = new ChoiceImpl(
+    					name,
+    					uml.getName(assocClass),
+    					ChoiceKind.ASSOCIATION_CLASS,
+    					assocClass);
+    				
+    				// don't repeat in case we have multiple ends of this
+    				//    association class
+    				if (!result.contains(choice)) {
+    					result.add(choice);
+    				}
+			    }
 			}
 		}
 		
