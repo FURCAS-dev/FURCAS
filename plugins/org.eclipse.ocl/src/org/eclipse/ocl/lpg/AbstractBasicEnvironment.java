@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.2 2007/11/06 19:47:11 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.ProblemHandler.Phase;
 import org.eclipse.ocl.lpg.ProblemHandler.Severity;
+import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.parser.OCLProblemHandler;
 
 /**
@@ -45,7 +46,8 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	private Map<Object, CSTNode> astNodeToCSTNodeMap = null; // map of AST nodes to their originating CST nodes
 	private AbstractParser parser = null;					// parser providing source character context
 	
-	private final Map<Option<?>, Object> options = new java.util.HashMap<Option<?>, Object>();
+	private final Map<Option<?>, Object> options =
+	    new java.util.HashMap<Option<?>, Object>();
 	
     /**
      * Initializes me with the specified parent environment, which should be
@@ -295,16 +297,26 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 		}
 	}
 	
+	protected Map<Option<?>, Object> basicGetOptions() {
+	    return options;
+	}
+	
 	public Map<Option<?>, Object> getOptions() {
-		return (getParent() != null)? getParent().getOptions() : options;
+		Map<Option<?>, Object> result = (getParent() != null)
+			? new java.util.HashMap<Option<?>, Object>(getParent().getOptions())
+		    : new java.util.HashMap<Option<?>, Object>();
+		
+		result.putAll(basicGetOptions());
+		
+		return result;
 	}
 	
 	public <T> void setOption(Option<T> option, T value) {
-		getOptions().put(option, value);
+		basicGetOptions().put(option, value);
 	}
 	
 	public <T> void putOptions(Map<? extends Option<T>, ? extends T> options) {
-		Map<Option<?>, Object> myOptions = getOptions();
+		Map<Option<?>, Object> myOptions = basicGetOptions();
 		
 		myOptions.clear();
 		myOptions.putAll(options);
@@ -313,7 +325,7 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	public <T> T removeOption(Option<T> option) {
 		T result = getValue(option);
 		
-		getOptions().remove(option);
+		basicGetOptions().remove(option);
 		
 		return result;
 	}
@@ -321,7 +333,7 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	public <T> Map<Option<T>, T> removeOptions(Collection<Option<T>> options) {
 		Map<Option<T>, T> result = new java.util.HashMap<Option<T>, T>();
 		
-		Map<Option<?>, Object> myOptions = getOptions();
+		Map<Option<?>, Object> myOptions = basicGetOptions();
 		
 		for (Option<T> next : options) {
 			result.put(next, getValue(next));
@@ -331,8 +343,8 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 		return result;
 	}
 	
-	public Map<Option<?>, ?> clearOptions() {
-		Map<Option<?>, Object> myOptions = getOptions();
+	public Map<Option<?>, Object> clearOptions() {
+		Map<Option<?>, Object> myOptions = basicGetOptions();
 		
 		Map<Option<?>, Object> result = new java.util.HashMap<Option<?>, Object>(
 				myOptions);
@@ -350,6 +362,12 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	public <T> T getValue(Option<T> option) {
 		@SuppressWarnings("unchecked")
 		T result = (T) getOptions().get(option);
-		return (result == null)? option.getDefaultValue() : result;
+		
+		if (result == null) {
+		    result = (getParent() != null)? getParent().getValue(option)
+		        : option.getDefaultValue();
+		}
+		
+		return result;
 	}
 }

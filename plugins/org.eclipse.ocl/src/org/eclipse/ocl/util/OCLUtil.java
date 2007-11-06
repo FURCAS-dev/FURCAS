@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.2 2007/10/12 14:33:54 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.3 2007/11/06 19:47:11 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.ocl.utilities.TypedElement;
 
@@ -57,7 +58,13 @@ public final class OCLUtil {
 	 * environments that do not adapt to the following interfaces, this method
 	 * will provide a default implementation for convenience:
 	 * <ul>
-	 * <li>{@link BasicEnvironment}</li>
+	 * <li>{@link BasicEnvironment}.  In the case that the environment is not
+	 *     intrinsically adaptable to this interface and an extrinsic adapter
+	 *     is provided, multiple adaptations of the same environment will
+	 *     always return the same adapter instance</li>
+     * <li>{@link Customizable}.  In the case that the environment is not
+     *     intrinsically adaptable to this interface it is forcibly adapted to
+     *     the {@link BasicEnvironment} protocol</li>
 	 * <li>{@link ProblemHandler}</li>
 	 * <li>{@link Environment.Lookup}</li>
 	 * </ul>
@@ -68,8 +75,6 @@ public final class OCLUtil {
 	 * @param adapterType the requested adapter interface
 	 * @return an instance of the requested interface, or <code>null</code>
 	 *     if this environment does not adapt to it
-	 *     
-	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T, PK, C, O, P>
@@ -185,8 +190,6 @@ public final class OCLUtil {
 	 * @param adapterType the requested adapter interface
 	 * @return an instance of the requested interface, or <code>null</code>
 	 *     if this environment factory does not adapt to it
-	 *     
-	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T, PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
@@ -228,8 +231,6 @@ public final class OCLUtil {
 	 * @param adapterType the requested adapter interface
 	 * @return an instance of the requested interface, or <code>null</code>
 	 *     if this evaluation environment does not adapt to it
-	 *     
-	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T, C, O, P, CLS, E>
@@ -247,8 +248,8 @@ public final class OCLUtil {
 		
 		return result;
 	}
-
-	/**
+    
+    /**
 	 * Checks whether the specified environment's problem handler has any
 	 * diagnostics of error severity or worse and, if so, throws a semantic
 	 * exception encapsulating these diagnostics.
