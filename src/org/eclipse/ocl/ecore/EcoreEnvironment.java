@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.4 2007/04/20 22:42:55 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.5 2007/11/06 20:02:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -164,8 +164,8 @@ public class EcoreEnvironment
 			return factory;
 		}
 		
-		if (getParent() != null) {
-			factory = getParent().getFactory();
+		if (getInternalParent() != null) {
+			factory = getInternalParent().getFactory();
 			if (factory != null) {
 				return factory;
 			}
@@ -437,7 +437,7 @@ public class EcoreEnvironment
 			ann.getContents().add(constraint);
 		}
 		
-		addProperty(owner, result);
+		addHelperProperty(owner, result);
 		
 		return result;
 	}
@@ -478,7 +478,7 @@ public class EcoreEnvironment
 			ann.getContents().add(constraint);
 		}
 		
-		addOperation(owner, result);
+		addHelperOperation(owner, result);
 		
 		return result;
 	}
