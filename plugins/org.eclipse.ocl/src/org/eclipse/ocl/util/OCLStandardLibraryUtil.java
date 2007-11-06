@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.5 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.6 2007/11/06 19:46:50 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -430,18 +430,6 @@ public final class OCLStandardLibraryUtil {
 				 */
 				arg = args.get(0);
 				argType = arg.getType();
-				
-				if (sourceType != stdlib.getInvalid() && argType != stdlib.getInvalid()
-						&& sourceType != stdlib.getOclVoid() && argType != stdlib.getOclVoid()
-						&& sourceType != stdlib.getOclAny() && argType != stdlib.getOclAny()) {
-					// OclInvalid and null can be compared to anything, and everything is
-					//   a kind of OclAny
-					if (!TypeUtil.checkMutuallyComparable(
-						problemObject, env, sourceType, argType,
-						opcode)) {
-                        return null;
-                    }
-				}
 				
 				return stdlib.getBoolean();
 			case LESS_THAN:
