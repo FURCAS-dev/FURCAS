@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractFormattingHelper.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: AbstractFormattingHelper.java,v 1.2 2007/11/06 20:02:10 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -65,6 +65,27 @@ public class AbstractFormattingHelper implements FormattingHelper
             return object.getClass().getName();
         }
 	}
+	
+	/**
+	 * Obtains the name of the separator between namespaces in a qualified name.
+	 * The default separator is <tt>"::"</tt>.
+	 * 
+	 * @return the namespace separator
+	 */
+	protected String getSeparator() {
+	    return "::"; //$NON-NLS-1$
+	}
+	
+    public String formatQualifiedName(Object object) {
+        if (object instanceof EObject) {
+            Object container = ((EObject)object).eContainer();
+            if (container != null) {
+                return formatQualifiedName(container) + getSeparator() + formatName(object);
+            }
+        }
+        
+        return formatName(object);
+    }
 
 	public String formatPath(List<String> pathName) {
 		StringBuffer s = new StringBuffer();
@@ -86,7 +107,7 @@ public class AbstractFormattingHelper implements FormattingHelper
 			int iMax = pathName.size();
 			for (int i = 0; i < iMax; i++) {
 				s.append(formatString(pathName.get(i)));
-				s.append((i+1) < iMax ? "::" : "."); //$NON-NLS-1$ //$NON-NLS-2$
+				s.append((i+1) < iMax ? getSeparator() : "."); //$NON-NLS-1$
 			}
 		}
 		s.append(formatString(name));
