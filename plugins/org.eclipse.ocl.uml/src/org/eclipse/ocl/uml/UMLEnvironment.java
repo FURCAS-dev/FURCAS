@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.8 2007/11/06 19:47:23 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.9 2007/11/06 20:02:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -164,8 +164,8 @@ public class UMLEnvironment
             return factory;
         }
 
-        if (getParent() != null) {
-            factory = getParent().getFactory();
+        if (getInternalParent() != null) {
+            factory = getInternalParent().getFactory();
             if (factory != null) {
                 return factory;
             }
@@ -601,7 +601,7 @@ public class UMLEnvironment
 
         owner.getOwnedRules().add(constraint);
 
-        addProperty(owner, result);
+        addHelperProperty(owner, result);
 
         return result;
     }
@@ -634,7 +634,7 @@ public class UMLEnvironment
 
         owner.getOwnedRules().add(constraint);
 
-        addOperation(owner, result);
+        addHelperOperation(owner, result);
 
         return result;
     }

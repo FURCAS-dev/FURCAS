@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.2 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.3 2007/11/06 20:02:10 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -40,7 +40,7 @@ import org.eclipse.ocl.parser.OCLProblemHandler;
  * @since 1.2
  */
 public abstract class AbstractBasicEnvironment implements BasicEnvironment {
-	private AbstractBasicEnvironment parent;					// parent in environment hierarchy
+	private BasicEnvironment parent;					// parent in environment hierarchy
 	private ProblemHandler problemHandler = null;			// handler for problem reports
 	private FormattingHelper formatter = null;				// message formatting helper
 	private Map<Object, CSTNode> astNodeToCSTNodeMap = null; // map of AST nodes to their originating CST nodes
@@ -55,7 +55,7 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
      * 
      * @param parent an environment of the same type as me (or <code>null</code>)
      */
-	protected AbstractBasicEnvironment(AbstractBasicEnvironment parent) {	
+	protected AbstractBasicEnvironment(BasicEnvironment parent) {	
 		this.parent = parent;
 	}
 
@@ -125,7 +125,7 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	}
 
     // implements the interface method
-	public AbstractBasicEnvironment getParent() {
+	public BasicEnvironment getParent() {
 		return parent;
 	}
 	
@@ -246,7 +246,7 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
      * 
      * @param parent my new parent
      */
-	protected void setParent(AbstractBasicEnvironment parent) {
+	protected void setParent(BasicEnvironment parent) {
 		this.parent = parent;
 	}
 	
