@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.4 2007/10/12 18:04:51 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.5 2007/11/06 19:47:11 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -407,7 +407,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// regardless of the source value, if the type is undefined, then so
 		//    is oclIsTypeOf
 		if (type == null) {
-			return null;
+		    return null;
 		}
 		
 		// the type of null is OclVoid
@@ -441,9 +441,11 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 			return null;
 		}
 		
-		// OclVoid and Invalid conform to all classifiers
+		// OclVoid and Invalid conform to all classifiers but their instances
+		// aren't actually useful as any type but their own.  So, check for
+		// exact type match in these cases
 		if (isUndefined(value)) {
-			return Boolean.TRUE;
+	        return oclIsTypeOf(value, typeArg);
 		}
 
 		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));

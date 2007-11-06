@@ -13,15 +13,14 @@
  *
  * </copyright>
  *
- * $Id: BasicEnvironment.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: BasicEnvironment.java,v 1.2 2007/11/06 19:47:11 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.ocl.cst.CSTNode;
+import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.util.Adaptable;
 
 /**
@@ -30,7 +29,7 @@ import org.eclipse.ocl.util.Adaptable;
  * <code>AbstractParser</code> for syntactic analysis
  * (parsing), and an <code>AbstractLexer</code> for lexical analysis.
  */
-public interface BasicEnvironment extends Adaptable
+public interface BasicEnvironment extends Adaptable, Customizable
 {	
 	/**
 	 * Return the mapping of an astNode to its originating cstNode, so that
@@ -170,71 +169,4 @@ public interface BasicEnvironment extends Adaptable
 	 * @param problemObject optional object associated with the problem
 	 */
 	void validatorError(String problemMessage, String problemContext, Object problemObject);
-	
-	/**
-	 * Obtains a read-only map of options applied to the reporting of problems.
-	 * 
-	 * @return the map of options
-	 */
-	Map<Option<?>, ?> getOptions();
-	
-	/**
-	 * Add an option to apply to the reporting of problems.
-	 * 
-	 * @param option the option
-	 * @param value the option's value
-	 */
-	<T> void setOption(Option<T> option, T value);
-	
-	/**
-	 * Adds options to apply to the reporting of problems.
-	 * 
-	 * @param options the options
-	 */
-	<T> void putOptions(Map<? extends Option<T>, ? extends T> options);
-	
-	/**
-	 * Removes the specified option.
-	 * 
-	 * @param option the option to remove
-	 * 
-	 * @return the former value of the option
-	 */
-	<T> T removeOption(Option<T> option);
-	
-	/**
-	 * Removes the specified options.
-	 * 
-	 * @param options the options to remove
-	 * 
-	 * @return the former values of the options
-	 */
-	<T> Map<Option<T>, T> removeOptions(Collection<Option<T>> options);
-	
-	/**
-	 * Clears all options.
-	 * 
-	 * @return the former values of the options
-	 */
-	Map<Option<?>, ?> clearOptions();
-	
-	/**
-	 * Queries whether the specified boolean-valued option is enabled.
-	 * 
-	 * @param option an option
-	 * 
-	 * @return whether the option is enabled
-	 */
-	boolean isEnabled(Option<Boolean> option);
-	
-	/**
-	 * Obtains the value of the specified option's setting in the my
-	 * options map.  If not specified, return the option's
-	 * {@linkplain #getDefaultValue() default value}.
-	 * 
-	 * @param options applied options
-	 * 
-	 * @return value of the option
-	 */
-	<T> T getValue(Option<T> option);
 }

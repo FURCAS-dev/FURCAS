@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.4 2007/10/12 14:33:54 cdamus Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.5 2007/11/06 19:47:11 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -29,7 +29,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.Customizable;
+import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.util.Adaptable;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,
@@ -41,17 +44,21 @@ import org.eclipse.ocl.util.Adaptable;
  * generic type parameters of this class. 
  * </p><p>
  * Since the 1.2 release, this interface is {@link Adaptable} to support the
- * optional adapter protocols such as {@link EvaluationEnvironment.Enumerations}.
+ * optional adapter protocols such as {@link EvaluationEnvironment.Enumerations}
+ * and {@link Customizable}.
  * </p>
  * 
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
-		implements EvaluationEnvironment<C, O, P, CLS, E>, Adaptable {
+		implements EvaluationEnvironment<C, O, P, CLS, E>, Adaptable, Customizable {
 	
     private final EvaluationEnvironment<C, O, P, CLS, E> parent;
     private final Map<String, Object> map = new HashMap<String, Object>();
 
+    private final Map<Option<?>, Object> options =
+        new java.util.HashMap<Option<?>, Object>();
+    
     protected AbstractEvaluationEnvironment() {
     	this(null);
     }
@@ -238,4 +245,84 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
 		
 		return result;
 	}
+    
+    protected Map<Option<?>, Object> basicGetOptions() {
+        return options;
+    }
+    
+    public Map<Option<?>, Object> getOptions() {
+        Customizable parent = (getParent() != null)?
+            OCLUtil.getAdapter(getParent(), Customizable.class) : null;
+            
+        Map<Option<?>, Object> result = (parent != null)
+        	? new java.util.HashMap<Option<?>, Object>(parent.getOptions())
+            : new java.util.HashMap<Option<?>, Object>();
+        
+        result.putAll(basicGetOptions());
+        
+        return result;
+    }
+    
+    public <T> void setOption(Option<T> option, T value) {
+        basicGetOptions().put(option, value);
+    }
+    
+    public <T> void putOptions(Map<? extends Option<T>, ? extends T> options) {
+        Map<Option<?>, Object> myOptions = basicGetOptions();
+        
+        myOptions.clear();
+        myOptions.putAll(options);
+    }
+    
+    public <T> T removeOption(Option<T> option) {
+        T result = getValue(option);
+        
+        basicGetOptions().remove(option);
+        
+        return result;
+    }
+    
+    public <T> Map<Option<T>, T> removeOptions(Collection<Option<T>> options) {
+        Map<Option<T>, T> result = new java.util.HashMap<Option<T>, T>();
+        
+        Map<Option<?>, Object> myOptions = basicGetOptions();
+        
+        for (Option<T> next : options) {
+            result.put(next, getValue(next));
+            myOptions.remove(next);
+        }
+        
+        return result;
+    }
+    
+    public Map<Option<?>, Object> clearOptions() {
+        Map<Option<?>, Object> myOptions = basicGetOptions();
+        
+        Map<Option<?>, Object> result = new java.util.HashMap<Option<?>, Object>(
+                myOptions);
+        
+        myOptions.clear();
+        
+        return result;
+    }
+    
+    public boolean isEnabled(Option<Boolean> option) {
+        Boolean result = getValue(option);
+        return (result == null)? false : result.booleanValue();
+    }
+    
+    public <T> T getValue(Option<T> option) {
+        @SuppressWarnings("unchecked")
+        T result = (T) getOptions().get(option);
+        
+        if (result == null) {
+            Customizable parent = (getParent() != null)?
+                OCLUtil.getAdapter(getParent(), Customizable.class) : null;
+                
+            result = (parent != null)? parent.getValue(option)
+                : option.getDefaultValue();
+        }
+        
+        return result;
+    }
 }

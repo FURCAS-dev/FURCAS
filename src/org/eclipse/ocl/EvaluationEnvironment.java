@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.3 2007/10/12 14:33:54 cdamus Exp $
+ * $Id: EvaluationEnvironment.java,v 1.4 2007/11/06 19:47:11 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLUtil;
@@ -34,6 +35,13 @@ import org.eclipse.ocl.util.Tuple;
  * <p>
  * See the {@link Environment} class for a description of the
  * generic type parameters of this class. 
+ * </p><p>
+ * As of the 1.2 release, evaluation environments are encouraged to implement
+ * the {@link Adaptable} interface to provide optional interfaces such as
+ * {@link Customizable} for specifying evaluation options.  Moreover, the
+ * ({@link AbstractEvaluationEnvironment}) class implements the <tt>Adaptable</tt>
+ * protocol.  Use the {@link OCLUtil#getAdapter(EvaluationEnvironment, Class)}
+ * method to obtain adapters for any evaluation environment instance.
  * </p>
  * 
  * @author Tim Klinger (tklinger)
@@ -224,9 +232,9 @@ public interface EvaluationEnvironment<C, O, P, CLS, E> {
      * 
      * @author Christian W. Damus (cdamus)
      * 
-     * @see OCLUtil#geta
-     * 
      * @since 1.2
+     * 
+     * @see OCLUtil#getAdapter(EvaluationEnvironment, Class)
      */
     interface Enumerations<EL> {
     	/**

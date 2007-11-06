@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: AbstractParser.java,v 1.2 2007/11/06 19:49:00 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -24,7 +24,7 @@ import lpg.lpgjavaruntime.PrsStream;
 
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.util.ProblemOption;
+import org.eclipse.ocl.options.ProblemOption;
 
 /**
  * The <code>AbstractParser</code> supports syntactic analysis of a tokens produced by
