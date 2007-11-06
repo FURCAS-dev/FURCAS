@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.6 2007/10/15 22:23:11 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.7 2007/11/06 19:47:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -25,7 +25,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OrderedSetType;
@@ -34,12 +33,13 @@ import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.uml.options.UMLParsingOptions;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
-import org.eclipse.uml2.uml.AssociationClass;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
@@ -76,10 +76,14 @@ class UMLReflectionImpl
     implements
     UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> {
 
-    private final EPackage.Registry registry;
+    private final UMLEnvironment env;
     
-    UMLReflectionImpl(EPackage.Registry registry) {
-        this.registry = registry;
+    UMLReflectionImpl(UMLEnvironment env) {
+        this.env = env;
+    }
+    
+    final java.lang.Class<? extends Association> getAssociationClassType() {
+        return env.getValue(UMLParsingOptions.ASSOCIATION_CLASS_TYPE);
     }
     
     /**
@@ -317,17 +321,17 @@ class UMLReflectionImpl
     }
 
     public boolean isAssociationClass(Classifier classifier) {
-        return classifier instanceof AssociationClass;
+        return getAssociationClassType().isInstance(classifier);
     }
     
     public Classifier getAssociationClass(Property property) {
-        return (property.getAssociation() instanceof AssociationClass)?
+        return getAssociationClassType().isInstance(property.getAssociation())?
                 property.getAssociation() : null;
     }
     
     public List<Property> getMemberEnds(Classifier associationClass) {
-        if (associationClass instanceof AssociationClass) {
-            return ((AssociationClass) associationClass).getMemberEnds();
+        if (getAssociationClassType().isInstance(associationClass)) {
+            return ((Association) associationClass).getMemberEnds();
         }
         
         return Collections.emptyList();
@@ -397,7 +401,8 @@ class UMLReflectionImpl
             return true;
         }
         
-        EClassifier eclassifier = OCLUMLUtil.getEClassifier(type, null, registry);
+        EClassifier eclassifier = OCLUMLUtil.getEClassifier(type, null,
+            env.getEPackageRegistry());
         
         return (eclassifier != null)
             && Comparable.class.isAssignableFrom(eclassifier.getInstanceClass());

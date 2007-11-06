@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.7 2007/10/15 22:10:02 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.8 2007/11/06 19:47:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -79,7 +79,7 @@ import org.eclipse.uml2.uml.Vertex;
 public class UMLEnvironment
     extends
     AbstractEnvironment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> {
-
+    
     private static OCLStandardLibraryImpl standardLibrary;
 
     private UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> reflection;
@@ -188,6 +188,17 @@ public class UMLEnvironment
             EnvironmentFactory<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> factory) {
         this.factory = factory;
     }
+    
+    /**
+     * Obtains my EPackage registry, for looking up the Ecore correspondents
+     * of UML metamodel elements when working with instances of generated Java
+     * types.
+     * 
+     * @return my EPackage registry
+     */
+    EPackage.Registry getEPackageRegistry() {
+        return registry;
+    }
 
     // implements the inherited specification
     public void setParent(
@@ -249,11 +260,7 @@ public class UMLEnvironment
     // implements the inherited specification
     public UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> getUMLReflection() {
         if (reflection == null) {
-            if (getParent() != null) {
-                reflection = getParent().getUMLReflection();
-            } else {
-                reflection = new UMLReflectionImpl(registry);
-            }
+            reflection = new UMLReflectionImpl(this);
         }
 
         return reflection;
@@ -444,7 +451,7 @@ public class UMLEnvironment
         for (Association next : associations) {
             if (next.isBinary()) {
                 for (Property end : next.getMemberEnds()) {
-                    if (end.getName() == null) {
+                    if (isUnnamed(end)) {
                         Type type = end.getType();
                         if ((type != null) && initialLower(type).equals(name)) {
                             // only match the end if the other end is not a
@@ -458,6 +465,17 @@ public class UMLEnvironment
                 }
             }
         }
+    }
+    
+    /**
+     * Queries whether the specified association end has no name.
+     * 
+     * @param associationEnd an association end
+     * 
+     * @return whether it is unnamed
+     */
+    protected boolean isUnnamed(Property associationEnd) {
+        return associationEnd.getName() == null;
     }
 
     // implements the inherited specification

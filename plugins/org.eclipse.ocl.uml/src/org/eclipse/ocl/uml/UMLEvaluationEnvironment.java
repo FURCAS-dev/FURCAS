@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.9 2007/10/15 22:19:25 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.10 2007/11/06 19:47:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -40,8 +40,9 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.TupleType;
-import org.eclipse.ocl.uml.UMLEnvironmentFactory.EvaluationMode;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.uml.options.EvaluationMode;
+import org.eclipse.ocl.uml.options.UMLEvaluationOptions;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -90,7 +91,7 @@ public class UMLEvaluationEnvironment
     extends
     AbstractEvaluationEnvironment<Classifier, Operation, Property, Class, EObject>
 	implements EvaluationEnvironment.Enumerations<EnumerationLiteral> {
-
+    
     private static final EPackage CACHE_MISS = EcoreFactory.eINSTANCE
         .createEPackage();
 
@@ -104,8 +105,6 @@ public class UMLEvaluationEnvironment
     private final UMLEnvironmentFactory factory;
 
     private ValueExtractor valueExtractor;
-
-    private UMLEnvironmentFactory.EvaluationMode evaluationMode = UMLEnvironmentFactory.EvaluationMode.ADAPTIVE;
     
     /**
      * Initializes me.
@@ -113,8 +112,6 @@ public class UMLEvaluationEnvironment
     public UMLEvaluationEnvironment(UMLEnvironmentFactory factory) {
         this.factory = factory;
         this.registry = factory.getEPackageRegistry();
-        
-        evaluationMode = factory.getEvaluationMode();
     }
 
     /**
@@ -159,7 +156,7 @@ public class UMLEvaluationEnvironment
      * 
      * @since 1.2
      */
-    protected UMLEnvironmentFactory.EvaluationMode getEffectiveEvaluationMode() {
+    protected EvaluationMode getEffectiveEvaluationMode() {
         return getEffectiveEvaluationMode(getValueOf(Environment.SELF_VARIABLE_NAME));
     }
     
@@ -179,21 +176,14 @@ public class UMLEvaluationEnvironment
      * 
      * @since 1.2
      */
-    protected UMLEnvironmentFactory.EvaluationMode getEffectiveEvaluationMode(Object context) {
-        UMLEnvironmentFactory.EvaluationMode result;
+    protected EvaluationMode getEffectiveEvaluationMode(Object context) {
+        EvaluationMode result = getValue(UMLEvaluationOptions.EVALUATION_MODE);
         
-        if (getParent() instanceof UMLEvaluationEnvironment) {
-            result = ((UMLEvaluationEnvironment) getParent())
-                .getEffectiveEvaluationMode(context);
-        } else {
-            result = evaluationMode;
-            
-            if (result == UMLEnvironmentFactory.EvaluationMode.ADAPTIVE) {
-                if (context instanceof InstanceSpecification) {
-                    result = UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL;
-                } else {
-                    result = UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS;
-                }
+        if (result == EvaluationMode.ADAPTIVE) {
+            if (context instanceof InstanceSpecification) {
+                result = EvaluationMode.INSTANCE_MODEL;
+            } else {
+                result = EvaluationMode.RUNTIME_OBJECTS;
             }
         }
         
@@ -340,8 +330,12 @@ public class UMLEvaluationEnvironment
         case INSTANCE_MODEL:
             InstanceSpecification instance = (InstanceSpecification) source;
 
+            // in the case that the association owns the property and the
+            // source is an instance of that association, then we are navigating
+            // an end from the association, itself, so this is not a
+            // non-navigable property scenario
             Association association = property.getOwningAssociation();
-            if (association != null) {
+            if ((association != null) && !isInstance(association, instance)) {
                 // non-navigable property. Qualifiers don't apply
                 return navigateNonNavigableProperty(property, association,
                     instance);
@@ -393,8 +387,13 @@ public class UMLEvaluationEnvironment
                 // must be a non-navigable property?
                 Property otherEnd = property.getOtherEnd();
                 if (otherEnd != null) {
-                    EClass eclass = (EClass) OCLUMLUtil.getEClassifier(otherEnd
-                        .getClass_(), source, registry);
+                    EClass eclass = null;
+                    
+                    Element owner = otherEnd.getOwner();
+                    if ((owner instanceof Classifier) && (owner != otherEnd.getAssociation())) {
+                        eclass = (EClass) OCLUMLUtil.getEClassifier(
+                            (Classifier) owner, source, registry);
+                    }
 
                     if (eclass != null) {
                         EStructuralFeature eEnd = eclass
@@ -1137,7 +1136,7 @@ public class UMLEvaluationEnvironment
      * @since 1.2
      */
     public Object getValue(EnumerationLiteral enumerationLiteral) {
-        if (getEffectiveEvaluationMode() == UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS) {
+        if (getEffectiveEvaluationMode() == EvaluationMode.RUNTIME_OBJECTS) {
             Object context = getValueOf(Environment.SELF_VARIABLE_NAME);
             
             // if we're in an instance-specification world (model of instances)
