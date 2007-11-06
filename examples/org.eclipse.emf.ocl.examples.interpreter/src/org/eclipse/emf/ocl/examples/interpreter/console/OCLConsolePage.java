@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.18 2007/10/25 03:22:50 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.19 2007/11/06 19:47:00 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -70,8 +70,11 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
+import org.eclipse.ocl.uml.options.EvaluationMode;
+import org.eclipse.ocl.uml.options.UMLEvaluationOptions;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.swt.SWT;
@@ -865,16 +868,23 @@ public class OCLConsolePage
                     EPackage.Registry.INSTANCE),
                     context.eResource().getResourceSet());
             
+            
+            OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> result = OCL.newInstance(factory);
+            
             switch (level) {
             case M2:
-                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS);
+                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                    UMLEvaluationOptions.EVALUATION_MODE,
+                    EvaluationMode.RUNTIME_OBJECTS);
                 break;
             default:
-                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL);
+                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                    UMLEvaluationOptions.EVALUATION_MODE,
+                    EvaluationMode.INSTANCE_MODEL);
                 break;
             }
             
-            return OCL.newInstance(factory);
+            return result;
         }
         
         @SuppressWarnings("unchecked")
@@ -887,16 +897,22 @@ public class OCLConsolePage
                             EPackage.Registry.INSTANCE),
                     context.eResource().getResourceSet());
             
+            OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> result = OCL.newInstance(factory, res);
+            
             switch (level) {
             case M2:
-                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS);
+                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                    UMLEvaluationOptions.EVALUATION_MODE,
+                    EvaluationMode.RUNTIME_OBJECTS);
                 break;
             default:
-                factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL);
+                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                    UMLEvaluationOptions.EVALUATION_MODE,
+                    EvaluationMode.INSTANCE_MODEL);
                 break;
             }
             
-            return OCL.newInstance(factory, res);
+            return result;
         }
         
         public Object getContextClassifier(EObject object) {
