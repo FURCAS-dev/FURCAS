@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.4 2007/05/10 13:16:27 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.5 2007/11/06 19:47:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -138,6 +138,7 @@ public abstract class AbstractTestSuite
 	protected static Property forest_trees;
 	protected static Property forest_trees_zoneQualifier;
 	protected static Property forest_trees_indexQualifier;
+    protected static Property forest_area;
 	
 	protected static Association a_forest_tree;
 	protected static Property a_forest_tree_forest;
@@ -949,6 +950,7 @@ public abstract class AbstractTestSuite
 		forest_trees = forest.getOwnedAttribute("trees", null); //$NON-NLS-1$
 		forest_trees_zoneQualifier = forest_trees.getQualifier("zone", null); //$NON-NLS-1$
 		forest_trees_indexQualifier = forest_trees.getQualifier("index", null); //$NON-NLS-1$
+        forest_area = forest.getOwnedAttribute("area", null); //$NON-NLS-1$
 		
 		a_forest_tree = (Association) fruitPackage.getOwnedType("A_Forest_Tree"); //$NON-NLS-1$
 		a_forest_tree_forest = a_forest_tree.getOwnedEnd("forest", null); //$NON-NLS-1$

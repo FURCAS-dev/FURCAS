@@ -186,6 +186,9 @@
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </qualifier>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_3EBqgIpTEdyNSeNejJrajg" name="area">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_hZEWUJalEdunUqiNpqprXQ" name="A_Forest_Tree" memberEnd="_UXyRUJalEdunUqiNpqprXQ _sY79MJalEdunUqiNpqprXQ">
       <ownedEnd xmi:id="_sY79MJalEdunUqiNpqprXQ" name="forest" type="_M5BZsJalEdunUqiNpqprXQ" association="_hZEWUJalEdunUqiNpqprXQ">
