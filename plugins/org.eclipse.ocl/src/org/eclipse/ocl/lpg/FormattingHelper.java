@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FormattingHelper.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: FormattingHelper.java,v 1.2 2007/11/06 20:02:10 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -48,6 +48,13 @@ public interface FormattingHelper
 	 */
 	public String formatName(Object object);
 
+    /**
+     * Return the qualified name of an object. e.g. "A::B::name".
+     * @param object to be formatted
+     * @return non-null string describing the qualified name of the object
+     */
+	public String formatQualifiedName(Object object);
+	
 	/**
 	 * Return a hierarchical path name. e.g. "A::B::C"
 	 * @param pathName to be formatted

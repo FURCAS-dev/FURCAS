@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.8 2007/11/06 19:47:25 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.9 2007/11/06 20:02:10 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -65,7 +65,7 @@ import org.eclipse.ocl.utilities.TypedElement;
  */
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
-	implements Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
+	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
 	    Environment.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
@@ -99,6 +99,17 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected AbstractEnvironment() {
 		super(null);
 	}
+    
+    /**
+     * Initializes me with the specified parent environment.
+     * 
+     * @param parent an environment (or <code>null</code>)
+     */
+    protected AbstractEnvironment(
+            Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent) {
+        
+        super(parent);
+    }
 	
     /**
      * Initializes me with the specified parent environment, which should be
@@ -123,10 +134,31 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
     // implements the interface method
-	@SuppressWarnings("unchecked") @Override
+    @SuppressWarnings("unchecked")
+    public Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getInternalParent() {
+        return (Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) super.getParent();
+    }
+
+    // implements the interface method
+    /**
+     * @deprecated Since 1.2, use the {@link #getInternalParent()} method, instead.
+     */
+	@SuppressWarnings("unchecked")
+	@Override
+	@Deprecated
 	public AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getParent() {
 		return (AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) super.getParent();
 	}
+
+    /**
+     * Assigns me a parent environment after construction.  It is not advisable
+     * to set the parent to <code>null</code> if I previously had one.
+     * 
+     * @param parent my new parent
+     */
+    public void setInternalParent(Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent) {
+        super.setParent(parent);
+    }
 
     /**
      * Assigns me a parent environment after construction.  It is not advisable
@@ -142,8 +174,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public PK getContextPackage() {
 		if (contextPackage != null) {
 			return contextPackage;
-		} else if (getParent() != null) {
-			return getParent().getContextPackage();
+		} else if (getInternalParent() != null) {
+			return getInternalParent().getContextPackage();
 		}
 		
 		return null;
@@ -167,8 +199,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public O getContextOperation() {
 		if (contextOperation != null) {
 			return contextOperation;
-		} else if (getParent() != null) {
-			return getParent().getContextOperation();
+		} else if (getInternalParent() != null) {
+			return getInternalParent().getContextOperation();
 		}
 		
 		return null;
@@ -188,8 +220,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public P getContextProperty() {
 		if (contextProperty != null) {
 			return contextProperty;
-		} else if (getParent() != null) {
-			return getParent().getContextProperty();
+		} else if (getInternalParent() != null) {
+			return getInternalParent().getContextProperty();
 		}
 		
 		return null;
@@ -232,9 +264,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 		}
 		
-		if (getParent() != null) {
+		if (getInternalParent() != null) {
 			// add all non-shadowed parent variables
-			for (Variable<C, PM> parentVar : getParent().getVariables()) {
+			for (Variable<C, PM> parentVar : getInternalParent().getVariables()) {
 				if (lookupLocal(parentVar.getName()) == null) {
 					result.add(parentVar);
 				}
@@ -323,12 +355,17 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	public Variable<C, PM> getSelfVariable() {
 		Variable<C, PM> result = selfVariable;
 		
-		if ((result == null) && (getParent() != null)) {
-			result = getParent().getSelfVariable();
+		if ((result == null) && (getInternalParent() != null)) {
+			result = getInternalParent().getSelfVariable();
 		}
 		
 		return result;
 	}
+    
+	@SuppressWarnings("deprecation")
+    public void addHelperProperty(C owner, P property) {
+        addProperty(owner, property);
+    }
 	
     /**
      * Allows subclasses to add a newly OCL-defined additional property to
@@ -337,20 +374,25 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * 
      * @param owner the classifier in which context the attribute is defined
      * @param property the additional attribute
+     * 
+     * @deprecated Since 1.2, use the
+     *    {@link Environment.Internal#addHelperProperty(Object, Object)}
+     *    API, instead
      */
+    @Deprecated
 	protected void addProperty(C owner, P property) {
-		if (getParent() != null) {
+		if (getInternalParent() != null) {
 			// propagate additional properties as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getParent().addProperty(owner, property);
+		    getInternalParent().addHelperProperty(owner, property);
 		} else {
 			getTypeResolver().resolveAdditionalAttribute(owner, property);
 		}
 	}
 	
 	public List<P> getAdditionalAttributes(C classifier) {
-		if (getParent() != null) {
-			return getParent().getAdditionalAttributes(classifier);
+		if (getInternalParent() != null) {
+			return getInternalParent().getAdditionalAttributes(classifier);
 		}
 		
 		List<P> result = null;
@@ -375,6 +417,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return result;
 	}
 	
+	@SuppressWarnings("deprecation")
+	public void addHelperOperation(C owner, O operation) {
+		addOperation(owner, operation);
+	}
+    
     /**
      * Allows subclasses to add a newly OCL-defined additional operation to
      * the environment.  This should be called by the subclass's implementation
@@ -382,20 +429,25 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * 
      * @param owner the classifier in which context the attribute is defined
      * @param operation the additional operation
+     * 
+     * @deprecated Since 1.2, use the
+     *    {@link Environment.Internal#addHelperProperty(Object, Object)}
+     *    API, instead
      */
-	protected void addOperation(C owner, O operation) {
-		if (getParent() != null) {
-			// propagate additional operations as high as possible so that they
-			//    will be accessible to all child environments of the root
-			getParent().addOperation(owner, operation);
-		} else {
-			getTypeResolver().resolveAdditionalOperation(owner, operation);
-		}
-	}
+    @Deprecated
+    protected void addOperation(C owner, O operation) {
+        if (getInternalParent() != null) {
+            // propagate additional operations as high as possible so that they
+            //    will be accessible to all child environments of the root
+            getInternalParent().addHelperOperation(owner, operation);
+        } else {
+            getTypeResolver().resolveAdditionalOperation(owner, operation);
+        }
+    }
 	
 	public List<O> getAdditionalOperations(C classifier) {
-		if (getParent() != null) {
-			return getParent().getAdditionalOperations(classifier);
+		if (getInternalParent() != null) {
+			return getInternalParent().getAdditionalOperations(classifier);
 		}
 		
 		List<O> result = null;
@@ -422,10 +474,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public void setInitConstraint(P property, CT constraint) {
-		if (getParent() != null) {
+		if (getInternalParent() != null) {
 			// propagate initializers as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getParent().setInitConstraint(property, constraint);
+			getInternalParent().setInitConstraint(property, constraint);
 		} else {
 			propertyInitializers.put(property, constraint);
 		}
@@ -433,8 +485,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
     // implements the interface method
 	public CT getInitConstraint(P property) {
-		if (getParent() != null) {
-			return getParent().getInitConstraint(property);
+		if (getInternalParent() != null) {
+			return getInternalParent().getInitConstraint(property);
 		}
 		
     	return propertyInitializers.get(property);
@@ -442,10 +494,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public void setDeriveConstraint(P property, CT constraint) {
-		if (getParent() != null) {
+		if (getInternalParent() != null) {
 			// propagate derivations as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getParent().setDeriveConstraint(property, constraint);
+			getInternalParent().setDeriveConstraint(property, constraint);
 		} else {
 			propertyDerivations.put(property, constraint);
 		}
@@ -453,8 +505,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public CT getDeriveConstraint(P property) {
-		if (getParent() != null) {
-			return getParent().getDeriveConstraint(property);
+		if (getInternalParent() != null) {
+			return getInternalParent().getDeriveConstraint(property);
 		}
 		
     	return propertyDerivations.get(property);
@@ -462,10 +514,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public void setBodyCondition(O operation, CT constraint) {
-		if (getParent() != null) {
+		if (getInternalParent() != null) {
 			// propagate bodies as high as possible so that they
 			//    will be accessible to all child environments of the root
-			getParent().setBodyCondition(operation, constraint);
+			getInternalParent().setBodyCondition(operation, constraint);
 		} else {
 			operationBodies.put(operation, constraint);
 		}
@@ -473,8 +525,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // implements the interface method
 	public CT getBodyCondition(O operation) {
-		if (getParent() != null) {
-			return getParent().getBodyCondition(operation);
+		if (getInternalParent() != null) {
+			return getInternalParent().getBodyCondition(operation);
 		}
 		
     	return operationBodies.get(operation);
@@ -510,8 +562,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			return elem;
 		}
 
-		if (getParent() != null) {
-			return getParent().lookup(name);
+		if (getInternalParent() != null) {
+			return getInternalParent().lookup(name);
 		} else {
             return null;
         }

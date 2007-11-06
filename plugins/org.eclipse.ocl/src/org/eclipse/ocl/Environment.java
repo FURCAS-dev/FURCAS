@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.4 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: Environment.java,v 1.5 2007/11/06 20:02:10 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -24,6 +24,7 @@ import java.util.List;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.EnvironmentRegistryImpl;
+import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLUtil;
@@ -732,4 +733,68 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	     */     
 	    C tryLookupSignal(C owner, String name, List<? extends TypedElement<C>> args) throws LookupException;
 	}
+	
+	/**
+	 * <p>
+	 * An interface that merges the {@link Environment} and
+	 * {@link BasicEnviroment} interfaces that define the
+	 * behaviour realised in abstract form by {@link AbstractEnviroment}.
+	 * The purpose of this interface is primarily for internal use by the
+	 * parser and/or the particular environment implementation and its
+	 * corresponding factory.  Client applications will not usually need to
+	 * use this interface.
+	 * </p><p>
+	 * This interface is not expected to be implemented by clients.  It may
+	 * be implemented by custom {@link Environment} classes, but it is
+	 * recommended to extend the {@link AbstractEnvironment} class.
+	 * </p>
+	 * 
+	 * @author Christian W. Damus (cdamus)
+	 * 
+	 * @since 1.2
+	 */
+	interface Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+        extends
+            BasicEnvironment,
+            Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+    
+        /**
+         * Obtains my parent environment after construction.
+         * 
+         * @return my parent
+         */
+        Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+        getInternalParent();
+    
+        /**
+         * Assigns me a parent environment after construction.  It is not advisable
+         * to set the parent to <code>null</code> if I previously had one.
+         * 
+         * @param parent my new parent
+         */
+        void setInternalParent(
+                Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent);
+    
+        /**
+         * Adds an OCL-defined additional ("helper") operation to
+         * the environment.  This is primarily intended for internal use by the
+         * OCL environment implementation and should only be used for properties
+         * defined via OCL (such as by the {@link Environment#defineOperation} method).
+         * 
+         * @param owner the classifier in which context the attribute is defined
+         * @param operation the additional operation
+         */
+        void addHelperOperation(C owner, O operation);  
+    
+        /**
+         * Adds an OCL-defined additional ("helper") attribute to
+         * the environment.  This is primarily intended for internal use by the
+         * OCL environment implementation and should only be used for properties
+         * defined via OCL (such as by the {@link Environment#defineAttribute} method).
+         * 
+         * @param owner the classifier in which context the attribute is defined
+         * @param property the additional attribute
+         */
+        void addHelperProperty(C owner, P property);
+    }
 }
