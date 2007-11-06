@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.3 2007/10/11 23:04:36 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.4 2007/11/06 19:46:48 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -510,6 +510,44 @@ public class ComparisonTest
 		}
 	}
 	
+	/**
+	 * Tests that the <tt>OclAny::=</tt> operation does not require the source
+	 * and argument types to be related.
+	 */
+	public void test_OclAny_equals_unrelatedArgumentTypes() {
+        helper.setContext(fruit);
+        
+        try {
+            // this should be OK anyways
+            helper.createInvariant(
+                "not Apple.allInstances()->exists(a | a = self)"); //$NON-NLS-1$
+            
+            helper.createInvariant(
+                "not uml::Class.allInstances()->exists(c | c = self)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+	}
+    
+    /**
+     * Tests that the <tt>OclAny::&lt;&gt;</tt> operation does not require the
+     * source and argument types to be related.
+     */
+    public void test_OclAny_notEquals_unrelatedArgumentTypes() {
+        helper.setContext(fruit);
+        
+        try {
+            // this should be OK anyways
+            helper.createInvariant(
+                "Apple.allInstances()->forAll(a | a <> self)"); //$NON-NLS-1$
+            
+            helper.createInvariant(
+                "uml::Class.allInstances()->forAll(c | c <> self)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+	
 	//
 	// Framework methods
 	//
@@ -631,18 +669,23 @@ public class ComparisonTest
 
 		@Override
         public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
+			if (this == obj) {
+                return true;
+            }
+			if (obj == null) {
+                return false;
+            }
+			if (getClass() != obj.getClass()) {
+                return false;
+            }
 			final Value other = (Value) obj;
 			if (value == null) {
-				if (other.value != null)
-					return false;
-			} else if (!value.equals(other.value))
-				return false;
+				if (other.value != null) {
+                    return false;
+                }
+			} else if (!value.equals(other.value)) {
+                return false;
+            }
 			return true;
 		}
 	}
@@ -704,15 +747,19 @@ public class ComparisonTest
 
 		@Override
         public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
+			if (this == obj) {
+                return true;
+            }
+			if (obj == null) {
+                return false;
+            }
+			if (getClass() != obj.getClass()) {
+                return false;
+            }
 			final Numero other = (Numero) obj;
-			if (value != other.value)
-				return false;
+			if (value != other.value) {
+                return false;
+            }
 			return true;
 		}
 		
