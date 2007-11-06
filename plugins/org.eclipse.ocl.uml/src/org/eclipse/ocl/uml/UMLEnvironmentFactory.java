@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentFactory.java,v 1.5 2007/10/15 22:19:25 cdamus Exp $
+ * $Id: UMLEnvironmentFactory.java,v 1.6 2007/11/06 19:47:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -75,34 +75,6 @@ public class UMLEnvironmentFactory
 		EnumerationLiteral, Parameter,
 		State, CallOperationAction, SendSignalAction, Constraint,
 		Class, EObject> {
-	
-	/**
-     * Enumeration of evaluation modes, indicating how the UML evaluation
-     * environment implementation is to interpret instances:  as instance
-     * specifications in a UML model (M1 level, {@link #INSTANCE_MODEL}) or
-     * as objects in the modeled system (M0 level, {@link #RUNTIME_OBJECTS}).
-     * The special {@link #ADAPTIVE} value attempts to determine this mode
-     * automatically from the evaluation context object (<tt>self</tt>).
-     * 
-     * @author Christian W. Damus (cdamus)
-     * 
-     * @since 1.2
-     */
-    public static enum EvaluationMode {
-        /** Instances are modeled at the M1 level (in the user model). */
-        INSTANCE_MODEL,
-        /** Instances are run-time objects at the M0 (in the modeled system). */
-        RUNTIME_OBJECTS,
-        /**
-         * Automatically determine the effective modeling level from the
-         * context element.  This has problems when the context element is an
-         * {@link InstanceSpecification} of some kind in the user model, because it
-         * will be assumed to mean M1 level ({@link #INSTANCE_MODEL}) rather
-         * than M0 level ({@link #RUNTIME_OBJECTS}) despite the fact that the
-         * latter is more appropriate for expressions on the UML metamodel. 
-         */
-        ADAPTIVE;
-    }
 
     private final EPackage.Registry registry;
 	private final ResourceSet resourceSet;
@@ -114,8 +86,6 @@ public class UMLEnvironmentFactory
         new java.util.HashMap<EClass, Classifier>();
     private Map<List<String>, Package> packageCache =
         new java.util.HashMap<List<String>, Package>();
-
-    private EvaluationMode evaluationMode = EvaluationMode.ADAPTIVE;
     
     /**
      * Initializes me.  Environments that I create will use a private resource
@@ -299,28 +269,4 @@ public class UMLEnvironmentFactory
 			EvaluationEnvironment<Classifier, Operation, Property, Class, EObject> parent) {
 		return new UMLEvaluationEnvironment(parent);
 	}
-    
-    /**
-     * Sets the evaluation mode.  A <code>null</code> value is interpreted as
-     * meaning {@link EvaluationMode#ADAPTIVE}.
-     * 
-     * @param lemodevel the new evaluation mode
-     * 
-     * @since 1.2
-     */
-    public void setEvaluationMode(EvaluationMode mode) {
-        evaluationMode = (mode == null)? EvaluationMode.ADAPTIVE : mode;
-    }
-
-    /**
-     * Queries my current evaluation mode.  The default value is
-     * {@link EvaluationMode#ADAPTIVE}.
-     * 
-     * @return my evaluation mode
-     * 
-     * @since 1.2
-     */
-    public EvaluationMode getEvaluationMode() {
-        return evaluationMode;
-    }
 }
