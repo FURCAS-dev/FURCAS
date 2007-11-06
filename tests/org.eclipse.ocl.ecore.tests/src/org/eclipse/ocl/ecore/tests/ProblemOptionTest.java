@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemOptionTest.java,v 1.1 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: ProblemOptionTest.java,v 1.2 2007/11/06 19:48:59 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.ProblemOption;
 
 /**
  * Tests for problem-reporting options.
