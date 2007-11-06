@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.7 2007/11/02 19:53:51 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.8 2007/11/06 19:47:25 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -27,10 +27,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
-import org.eclipse.ocl.lpg.Option;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.Option;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.util.ProblemOption;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -862,7 +862,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @return the element's name, with an initial lower case letter
 	 */
 	protected String initialLower(Object element) {
-		StringBuffer result = new StringBuffer(getUMLReflection().getName(element));
+	    String name = getUMLReflection().getName(element);
+	    if (name == null) {
+	        return null;
+	    }
+	    
+		StringBuffer result = new StringBuffer(name);
 		
 		if (result.length() > 0) {
 			UnicodeSupport.setCodePointAt(
