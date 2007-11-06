@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.6 2007/10/15 22:10:00 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.7 2007/11/06 19:46:58 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -47,10 +47,13 @@ import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.uml.CollectionType;
+import org.eclipse.ocl.uml.options.UMLParsingOptions;
 import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.ProblemOption;
 import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -502,7 +505,7 @@ public class AssociationTest
 	/**
 	 * Tests that content-assist suggests association class navigation.
 	 */
-	public void test_associationClass_contextAssist_RATLC00538077() {
+	public void test_associationClass_contentAssist_RATLC00538077() {
 		helper.setContext(tree);
 		
 		try {
@@ -942,6 +945,57 @@ public class AssociationTest
         
         instance.getClassifiers().add(b);  // violate the constraint
         assertFalse(check(expr, a));
+    }
+    
+    /**
+     * Tests support for navigation from association to its ends.
+     */
+    public void test_navigateFromAssociation() {
+        // set the option to consider all Assocations as OCL association-classes
+        ParsingOptions.setOption(ocl.getEnvironment(), UMLParsingOptions.ASSOCIATION_CLASS_TYPE,
+            Association.class);
+        
+        InstanceSpecification aForest = instantiate(instancePackage, forest);
+        setValue(aForest, forest_area, 1000);
+        
+        InstanceSpecification aTree = instantiate(instancePackage, tree);
+        setValue(aTree, tree_height, 2);
+        
+        InstanceSpecification anotherTree = instantiate(instancePackage, tree);
+        setValue(anotherTree, tree_height, 0);
+        
+        InstanceSpecification aLink = link(instancePackage,
+                aForest, forest_trees,
+                aTree, forest_trees.getOtherEnd(),
+                forest_trees.getAssociation());
+        
+        InstanceSpecification anotherLink = link(instancePackage,
+            aForest, forest_trees,
+            anotherTree, forest_trees.getOtherEnd(),
+            forest_trees.getAssociation());
+        
+        // navigate the association end.  This end is multiplicity 1..1 by
+        //    definition
+        OCLExpression<Classifier> expr = parse(
+            "package ocltest context A_Forest_Tree " + //$NON-NLS-1$
+            "inv: self.trees.height > 0" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        assertTrue(check(expr, aLink));
+        assertFalse(check(expr, anotherLink));
+        
+        // this end, too, is 1..1
+        expr = parse(
+            "package ocltest context A_Forest_Tree " + //$NON-NLS-1$
+            "inv: self.forest.area > 1000" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+        
+        assertFalse(check(expr, aLink));
+        assertFalse(check(expr, anotherLink));
+        
+        setValue(aForest, forest_area, 1050);
+        assertTrue(check(expr, aLink));
+        assertTrue(check(expr, anotherLink));
     }
 
 	//

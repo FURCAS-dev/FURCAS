@@ -12,19 +12,21 @@
  *
  * </copyright>
  *
- * $Id: Option.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: Option.java,v 1.1 2007/11/06 19:47:11 cdamus Exp $
  */
-package org.eclipse.ocl.lpg;
+package org.eclipse.ocl.options;
 
 /**
- * Interface implemented by the enumerations of the parsing options
- * available for a particular parser implementation.
+ * Interface implemented by the options that can be applied to {@link Customizable}
+ * entities such as OCL environments.
  * 
  * @param <T> the type of the option's value
  * 
  * @author Christian W. Damus (cdamus)
  * 
  * @since 1.2
+ * 
+ * @see Customizable
  */
 public interface Option<T> {
 	/**

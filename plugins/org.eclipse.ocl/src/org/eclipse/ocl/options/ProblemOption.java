@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ProblemOption.java,v 1.2 2007/10/15 22:10:08 cdamus Exp $
+ * $Id: ProblemOption.java,v 1.1 2007/11/06 19:47:11 cdamus Exp $
  */
-package org.eclipse.ocl.util;
+package org.eclipse.ocl.options;
 
-import org.eclipse.ocl.lpg.Option;
 import org.eclipse.ocl.lpg.ProblemHandler.Severity;
 
 

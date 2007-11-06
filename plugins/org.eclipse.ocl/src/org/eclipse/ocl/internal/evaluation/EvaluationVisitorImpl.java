@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.6 2007/10/12 18:04:51 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.7 2007/11/06 19:47:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -66,6 +66,7 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.InvalidType;
@@ -477,6 +478,21 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// get argument type
 				C argType = arg.getType();
+				
+	            if (isUndefined(sourceVal)) {
+	                switch (opCode) {
+	                case PredefinedType.OCL_IS_TYPE_OF:
+	                case PredefinedType.OCL_IS_KIND_OF:
+	                case PredefinedType.OCL_AS_TYPE:
+	                    if (isLaxNullHandling()) {
+	                        break;
+	                    } else {
+	                        return getOclInvalid();
+	                    }
+	                default:
+	                    return getOclInvalid();
+	                }
+	            }
 
 				// AnyType::oclIsTypeOf(OclType)
 				if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
@@ -520,10 +536,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     }
                     
 					return sourceVal;
-				}
-
-				if (isUndefined(sourceVal)) {
-					return getOclInvalid();
 				}
 				
 				// evaluate arg, unless we have a boolean operation
@@ -1168,28 +1180,25 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				}
 			}
 		} else {
-
-			// evaluate source expression
-			Object context = source.accept(getVisitor());
 			
 			// Handle allInstances
 			if (opCode == PredefinedType.ALL_INSTANCES) {
 				// can assume classifier type, otherwise the expression would
 				//    not have parsed (or validated)
 				@SuppressWarnings("unchecked")
-				C classifier = (C) context; 
+				C classifier = (C) sourceVal; 
 				
 				if (getUMLReflection().isEnumeration(classifier)) {
 					// the instances are the literals
 					return new java.util.HashSet<EL>(
                             getUMLReflection().getEnumerationLiterals(classifier));
-				} else if (context instanceof VoidType) {
+				} else if (sourceVal instanceof VoidType) {
 					// OclVoid has a single instance: null
 					Set<Object> result = new java.util.HashSet<Object>();
 					result.add(null);
 					return result;
 				} else if (getUMLReflection().isClass(classifier)) {
-					return getExtentMap().get(context);
+					return getExtentMap().get(sourceVal);
 				} else {
 					// other types do not have numerable instances
 					return Collections.EMPTY_SET;
@@ -1197,18 +1206,29 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			if (opCode == PredefinedType.OCL_IS_UNDEFINED) {
-				return isUndefined(context)?
+				return isUndefined(sourceVal)?
 						Boolean.TRUE : Boolean.FALSE;
 			}
 
 			if (opCode == PredefinedType.OCL_IS_INVALID) {
-				return (context == getOclInvalid())?
+				return (sourceVal == getOclInvalid())?
 						Boolean.TRUE : Boolean.FALSE;
 			}
 
 			// result is invalid if source is undefined
-			if (isUndefined(context)) {
-				return getOclInvalid();
+			if (isUndefined(sourceVal)) {
+			    switch (opCode) {
+                case PredefinedType.OCL_IS_TYPE_OF:
+                case PredefinedType.OCL_IS_KIND_OF:
+                case PredefinedType.OCL_AS_TYPE:
+                    if (isLaxNullHandling()) {
+                        break;
+                    } else {
+                        return getOclInvalid();
+                    }
+                default:
+                    return getOclInvalid();
+			    }
 			}
 
 			// Handle type check and conversion:
@@ -1216,13 +1236,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// AnyType::oclIsTypeOf(OclType)
 			if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
 				OCLExpression<C> arg = args.get(0);
-				return oclIsTypeOf(context, arg.accept(getVisitor()));
+				return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
 			}
 
 			// AnyType::oclIsKindOf(OclType)
 			else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
 				OCLExpression<C> arg = args.get(0);
-				return oclIsKindOf(context, arg.accept(getVisitor()));
+				return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
 			}
 
 			// AnyType::oclAsType(OclType)
@@ -1247,17 +1267,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				
 				@SuppressWarnings("unchecked")
 				C type = (C) arg.accept(getVisitor());
-				if (oclIsKindOf(context, type) == Boolean.TRUE) {
-					return context;
+				if (oclIsKindOf(sourceVal, type) == Boolean.TRUE) {
+					return sourceVal;
 				} else {
 					return getOclInvalid();
 				}
 			}
 
 			// Handle < (lessThan)
-			else if ((opCode == PredefinedType.LESS_THAN) && (context instanceof Comparable)) {
+			else if ((opCode == PredefinedType.LESS_THAN) && (sourceVal instanceof Comparable)) {
 				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) context;
+				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
 				
 				@SuppressWarnings("unchecked")
@@ -1266,9 +1286,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			//	Handle <= (lessThanEqual)
-			else if ((opCode == PredefinedType.LESS_THAN_EQUAL) && (context instanceof Comparable)) {
+			else if ((opCode == PredefinedType.LESS_THAN_EQUAL) && (sourceVal instanceof Comparable)) {
 				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) context;
+				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
 				
 				@SuppressWarnings("unchecked")
@@ -1277,9 +1297,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			// Handle > (greaterThan)
-			else if ((opCode == PredefinedType.GREATER_THAN) && (context instanceof Comparable)) {
+			else if ((opCode == PredefinedType.GREATER_THAN) && (sourceVal instanceof Comparable)) {
 				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) context;
+				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
 				
 				@SuppressWarnings("unchecked")
@@ -1288,9 +1308,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			// Handle > (greaterThanEqual)
-			else if ((opCode == PredefinedType.GREATER_THAN_EQUAL) && (context instanceof Comparable)) {
+			else if ((opCode == PredefinedType.GREATER_THAN_EQUAL) && (sourceVal instanceof Comparable)) {
 				@SuppressWarnings("unchecked")
-				Comparable<Object> compContext = (Comparable<Object>) context;
+				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
 				
 				@SuppressWarnings("unchecked")
@@ -2236,5 +2256,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 		return tp.getValue().accept(getVisitor());
+	}
+	
+	/**
+	 * Queries whether our evaluation environment has the option for
+	 * {@linkplain EvaluationOptions#LAX_NULL_HANDLING lax null handling}
+	 * enabled.
+	 * 
+	 * @since 1.2
+	 * @return whether lax null handling is enabled
+	 */
+	protected boolean isLaxNullHandling() {
+	    return EvaluationOptions.getValue(getEvaluationEnvironment(),
+	        EvaluationOptions.LAX_NULL_HANDLING);
 	}
 } //EvaluationVisitorImpl

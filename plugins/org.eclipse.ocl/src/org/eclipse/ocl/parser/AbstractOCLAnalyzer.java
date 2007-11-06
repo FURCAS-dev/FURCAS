@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.2 2007/11/06 19:49:00 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -124,6 +124,7 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractAnalyzer;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
@@ -135,7 +136,6 @@ import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.util.ProblemOption;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;

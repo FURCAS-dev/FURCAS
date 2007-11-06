@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: BasicOption.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: BasicOption.java,v 1.1 2007/11/06 19:47:11 cdamus Exp $
  */
-package org.eclipse.ocl.util;
+package org.eclipse.ocl.options;
 
-import org.eclipse.ocl.lpg.Option;
+
 
 
 /**
- * Abstract implementation of the {@link Option} interface for parsing options.
+ * Useful implementation of the {@link Option} interface for OCL parsing options.
  * 
  * @author Christian W. Damus (cdamus)
  */
@@ -28,6 +28,12 @@ public class BasicOption<T> implements Option<T> {
 	private final String key;
 	private final T defaultValue;
 	
+	/**
+	 * Initializes me with my key and default value.
+	 * 
+	 * @param key identifies me
+	 * @param defaultValue my default value
+	 */
 	public BasicOption(String key, T defaultValue) {
 		this.key = key;
 		this.defaultValue = defaultValue;
