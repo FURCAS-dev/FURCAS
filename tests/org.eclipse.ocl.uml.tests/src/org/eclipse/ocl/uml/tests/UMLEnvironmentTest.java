@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.3 2007/10/16 20:30:32 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.4 2007/11/06 19:46:58 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,10 +30,19 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.Customizable;
+import org.eclipse.ocl.options.EvaluationOptions;
+import org.eclipse.ocl.options.Option;
+import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLEvaluationEnvironment;
+import org.eclipse.ocl.uml.options.EvaluationMode;
+import org.eclipse.ocl.uml.options.UMLEvaluationOptions;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -93,9 +103,11 @@ public class UMLEnvironmentTest
      */
     public void test_evaluationMode_instanceModel_194390() {
         UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
-        factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.INSTANCE_MODEL);
         
         OCL ocl = OCL.newInstance(factory);
+        EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+            UMLEvaluationOptions.EVALUATION_MODE,
+            EvaluationMode.INSTANCE_MODEL);
 
         OCL.Helper helper = ocl.createOCLHelper();
         helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
@@ -133,9 +145,11 @@ public class UMLEnvironmentTest
      */
     public void test_evaluationMode_runtimeObjects_194390() {
         UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
-        factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.RUNTIME_OBJECTS);
         
         OCL ocl = OCL.newInstance(factory);
+        EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+            UMLEvaluationOptions.EVALUATION_MODE,
+            EvaluationMode.RUNTIME_OBJECTS);
 
         OCL.Helper helper = ocl.createOCLHelper();
         helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
@@ -174,9 +188,11 @@ public class UMLEnvironmentTest
      */
     public void test_evaluationMode_adaptive_194390() {
         UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
-        factory.setEvaluationMode(UMLEnvironmentFactory.EvaluationMode.ADAPTIVE);
         
         OCL ocl = OCL.newInstance(factory);
+        EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+            UMLEvaluationOptions.EVALUATION_MODE,
+            EvaluationMode.ADAPTIVE);
 
         OCL.Helper helper = ocl.createOCLHelper();
         helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
@@ -216,6 +232,49 @@ public class UMLEnvironmentTest
             comment.destroy();
             instance1.destroy();
         }
+    }
+    
+    /**
+     * Tests that nested environments correctly copy their parent options when
+     * inheriting the entire options map ({@link Customizable#getOptions()}).
+     */
+    public void test_optionInheritance() {
+        Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject>
+        parent = ocl.getEnvironment();
+        
+        // set option in parent environment
+        ParsingOptions.setOption(parent, ProblemOption.CLOSURE_ITERATOR,
+            ProblemHandler.Severity.INFO);
+        
+        Map<Option<?>, Object> parentOptions =
+            OCLUtil.getAdapter(parent, Customizable.class).getOptions();
+        
+        // check that the map has the option
+        assertSame(ProblemHandler.Severity.INFO, parentOptions.get(ProblemOption.CLOSURE_ITERATOR));
+        
+        Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject>
+        child = parent.getFactory().createEnvironment(parent);
+        
+        Map<Option<?>, Object> childOptions =
+            OCLUtil.getAdapter(child, Customizable.class).getOptions();
+        
+        // check that the child's map has the option
+        assertSame(ProblemHandler.Severity.INFO, parentOptions.get(ProblemOption.CLOSURE_ITERATOR));
+        
+        // all of the options should be the same
+        assertEquals(parentOptions, childOptions);
+        
+        // but different maps
+        assertNotSame(parentOptions, childOptions);
+        
+        // change option in child
+        ParsingOptions.setOption(child, ProblemOption.CLOSURE_ITERATOR,
+            ProblemHandler.Severity.ERROR);
+        childOptions = OCLUtil.getAdapter(child, Customizable.class).getOptions();
+        
+        assertFalse(parentOptions.equals(childOptions));
+        
+        assertSame(ProblemHandler.Severity.ERROR, childOptions.get(ProblemOption.CLOSURE_ITERATOR));
     }
     
     //
