@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.6 2007/10/12 18:04:49 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.7 2007/11/06 19:46:49 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -548,6 +548,44 @@ public class ComparisonTest
             // finally, a case where the result is in high precision (new capability)
             assertEquals(maxIntSquared, evaluate(helper, thing,
                 String.format("%d * %d", maxInt, maxInt))); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the <tt>OclAny::=</tt> operation does not require the source
+     * and argument types to be related.
+     */
+    public void test_OclAny_equals_unrelatedArgumentTypes() {
+        helper.setContext(fruit);
+        
+        try {
+            // this should be OK anyways
+            helper.createInvariant(
+                "not Apple.allInstances()->exists(a | a = self)"); //$NON-NLS-1$
+            
+            helper.createInvariant(
+                "not ecore::EClass.allInstances()->exists(c | c = self)"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the <tt>OclAny::&lt;&gt;</tt> operation does not require the
+     * source and argument types to be related.
+     */
+    public void test_OclAny_notEquals_unrelatedArgumentTypes() {
+        helper.setContext(fruit);
+        
+        try {
+            // this should be OK anyways
+            helper.createInvariant(
+                "Apple.allInstances()->forAll(a | a <> self)"); //$NON-NLS-1$
+            
+            helper.createInvariant(
+                "ecore::EClass.allInstances()->forAll(c | c <> self)"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
