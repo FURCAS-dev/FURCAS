@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesAdapterFactory.java,v 1.5 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: UtilitiesAdapterFactory.java,v 1.6 2007/11/07 18:08:22 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.util;
 
@@ -81,7 +81,7 @@ public class UtilitiesAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
-     * The switch the delegates to the <code>createXXX</code> methods.
+     * The switch that delegates to the <code>createXXX</code> methods.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

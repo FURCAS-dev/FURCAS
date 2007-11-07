@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.2 2007/10/25 16:00:24 cdamus Exp $
+ * $Id: CSTAdapterFactory.java,v 1.3 2007/11/07 18:08:22 cdamus Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -123,7 +123,7 @@ public class CSTAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
-     * The switch the delegates to the <code>createXXX</code> methods.
+     * The switch that delegates to the <code>createXXX</code> methods.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
