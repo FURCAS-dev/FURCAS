@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,12 +24,11 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
@@ -114,8 +113,9 @@ public abstract class AbstractExampleWizard extends Wizard
 		}
 	}
 
+	@Override
 	public boolean performFinish() {
-		final Collection projectDescriptors = getProjectDescriptors();
+		final Collection<ProjectDescriptor> projectDescriptors = getProjectDescriptors();
 		
 		try {
 			getContainer().run(true, false, new IRunnableWithProgress() {
@@ -123,13 +123,14 @@ public abstract class AbstractExampleWizard extends Wizard
 					throws InvocationTargetException, InterruptedException {
 					
 					WorkspaceModifyOperation op = new WorkspaceModifyOperation() {
+						@Override
 						protected void execute(IProgressMonitor m)
 						
 							throws CoreException, InvocationTargetException, InterruptedException {
-							m.beginTask("Unzipping Projects", projectDescriptors.size());
+							m.beginTask("Unzipping Projects", projectDescriptors.size()); //$NON-NLS-1$
 							
-							for (Iterator i = projectDescriptors.iterator(); i.hasNext();) {
-								unzipProject((ProjectDescriptor)i.next(), m);
+							for (ProjectDescriptor desc : projectDescriptors) {
+								unzipProject(desc, m);
 								m.worked(1);
 							}
 						}
@@ -157,7 +158,7 @@ public abstract class AbstractExampleWizard extends Wizard
 	 * @return The collection of project descriptors that should be
 	 *  unzipped into the workspace.
 	 */
-	protected abstract Collection getProjectDescriptors();
+	protected abstract Collection<ProjectDescriptor> getProjectDescriptors();
 	
 	private void unzipProject(ProjectDescriptor descriptor, IProgressMonitor monitor) {
 		String bundleName = descriptor.getBundleName();
@@ -247,7 +248,7 @@ public abstract class AbstractExampleWizard extends Wizard
 			}
 			
 			project.open(monitor);
-			project.refreshLocal(IFile.DEPTH_INFINITE, monitor);
+			project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			
 			// Close and re-open the project to force eclipse to re-evaluate
 			//  any natures that this project has.

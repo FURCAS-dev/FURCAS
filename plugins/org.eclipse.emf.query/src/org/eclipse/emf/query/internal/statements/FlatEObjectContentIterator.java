@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,7 @@ public final class FlatEObjectContentIterator
 	
 	private static final long serialVersionUID = 964764750547412881L;
 	
-	private Iterator it;
+	private Iterator<? extends EObject> it;
 
 	/**
 	 * Initializes me with a single <code>eObject</code> to iterate.
@@ -61,7 +61,7 @@ public final class FlatEObjectContentIterator
 	 * 
 	 * @param eObjects the eobjects to iterate
 	 */
-	public FlatEObjectContentIterator(Collection eObjects) {
+	public FlatEObjectContentIterator(Collection<? extends EObject> eObjects) {
 		this(eObjects, null);
 	}
 
@@ -72,7 +72,7 @@ public final class FlatEObjectContentIterator
 	 * @param eObjectStructuralFeatureValueGetter the value getter to apply
 	 *     to them
 	 */
-	public FlatEObjectContentIterator(Collection eObjects,
+	public FlatEObjectContentIterator(Collection<? extends EObject> eObjects,
 		IEStructuralFeatureValueGetter eObjectStructuralFeatureValueGetter) {
 		super(eObjects, null, eObjectStructuralFeatureValueGetter);
 	}
@@ -80,6 +80,7 @@ public final class FlatEObjectContentIterator
 	/**
 	 * @see org.eclipse.emf.common.util.TreeIterator#prune()
 	 */
+	@Override
 	public void prune() {
 		//disable parent's
 	}
@@ -87,6 +88,7 @@ public final class FlatEObjectContentIterator
 	/**
 	 * @see java.util.Iterator#hasNext()
 	 */
+	@Override
 	public boolean hasNext() {
 		return getIterator().hasNext();
 	}
@@ -94,24 +96,27 @@ public final class FlatEObjectContentIterator
 	/**
 	 * @see java.util.Iterator#next()
 	 */
-	public Object next() {
+	@Override
+	public EObject next() {
 		return getIterator().next();
 	}
 
 	/**
 	 * @see java.util.Iterator#remove()
 	 */
+	@Override
 	public void remove() {
 		getIterator().remove();
 	}
 
-	private Iterator getIterator() {
+	private Iterator<? extends EObject> getIterator() {
 		if (it == null) {
 			it = getChildren();
 		}
 		return it;
 	}
 
+	@Override
 	public boolean canPrune() {
 		return false;
 	}
@@ -121,6 +126,7 @@ public final class FlatEObjectContentIterator
 	 * 
 	 * @return my iterator kind ({@link IteratorKind#FLAT_LITERAL})
 	 */
+	@Override
 	public IteratorKind getIteratorKind() {
 		return IteratorKind.FLAT_LITERAL;
 	}

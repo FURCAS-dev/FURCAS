@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -61,22 +61,12 @@ public class EObjectConditionAdapter
 	}
 
 	/**
-	 * Overrides the parent's implementation by simply forwarding the actual
-	 * evaluation to the adapted <code>Condition</code> regardless whether or
-	 * not the argument object conforms to <code>EObject</code>.
-	 * 
-	 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
-	 */
-	public boolean isSatisfied(Object object) {
-		return condition.isSatisfied(object);
-	}
-
-	/**
 	 * The implementation of this function simply forwards the actual evaluation
 	 * to the adapted <code>Condition</code>.
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObject) {
 		return condition.isSatisfied(eObject);
 	}

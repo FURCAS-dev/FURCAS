@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ package org.eclipse.emf.query.statements;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query.conditions.eobjects.IEObjectSource;
 
 
@@ -38,7 +39,7 @@ import org.eclipse.emf.query.conditions.eobjects.IEObjectSource;
  * @author Chris McGee (cmcgee)
  */
 public interface IQueryResult
-	extends Collection, IEObjectSource {
+	extends Collection<EObject>, IEObjectSource {
 
 	/**
 	 * Retrieve the exception (if any) that occurred during the execute

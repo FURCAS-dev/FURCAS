@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,6 +20,7 @@ package org.eclipse.emf.query.internal.statements;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query.conditions.eobjects.IEObjectSource;
 import org.eclipse.emf.query.internal.EMFQueryPlugin;
 import org.eclipse.emf.query.internal.EMFQueryStatusCodes;
@@ -40,7 +41,7 @@ public abstract class QueryStatement implements IEObjectSource {
     /**
      * Initializes me.
      * 
-     * @param cancellable whether I can be cancelled
+     * @param cancellable whether I can be canceled
      * @param progressMonitor a monitor to track progress
      */
     public QueryStatement(
@@ -130,7 +131,7 @@ public abstract class QueryStatement implements IEObjectSource {
         return resultSet;
     }
 
-    public Set getEObjects() {
+    public Set<? extends EObject> getEObjects() {
         return execute().getEObjects();
     }
 

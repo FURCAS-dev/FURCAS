@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,16 +35,17 @@ import org.eclipse.emf.query.statements.IteratorKind;
  * 
  * @author Yasser Lulu 
  */
-public class EObjectContentIterator extends AbstractTreeIterator {
+public class EObjectContentIterator extends AbstractTreeIterator<EObject> {
 
 	private static final long serialVersionUID = 4310034547053143619L;
 
 	private static class EObjectAdapter extends EObjectImpl {
-        private EList list;
-        EObjectAdapter(Collection collection) {
-            list = new BasicEList(collection);
+        private EList<EObject> list;
+        EObjectAdapter(Collection<? extends EObject> collection) {
+            list = new BasicEList<EObject>(collection);
         }
-        public final EList eContents() {
+        @Override
+		public final EList<EObject> eContents() {
             return list;
         }
     }
@@ -99,7 +100,7 @@ public class EObjectContentIterator extends AbstractTreeIterator {
      * 
      * @param eObjects the collection to iterate
      */
-    public EObjectContentIterator(Collection eObjects) {
+    public EObjectContentIterator(Collection<? extends EObject> eObjects) {
         this(eObjects, null);
     }
 
@@ -112,7 +113,7 @@ public class EObjectContentIterator extends AbstractTreeIterator {
      *     from the collection from consideration by the query
      */
     public EObjectContentIterator(
-        Collection eObjects,
+        Collection<? extends EObject> eObjects,
         EObjectCondition filterCondition) {
         this(eObjects, filterCondition, EStructuralFeatureValueGetter.getInstance());
     }
@@ -128,7 +129,7 @@ public class EObjectContentIterator extends AbstractTreeIterator {
      *     the filter condition
      */
     public EObjectContentIterator(
-        Collection eObjects,
+        Collection<? extends EObject> eObjects,
         EObjectCondition filterCondition,
         IEStructuralFeatureValueGetter eStructuralFeatureValueGetter) {
         this(
@@ -142,11 +143,12 @@ public class EObjectContentIterator extends AbstractTreeIterator {
      * 
      * @return the iterator
      */
-    protected final Iterator getChildren() {
+    protected final Iterator<? extends EObject> getChildren() {
         return getChildren(rootEObject);
     }
 
-    protected final Iterator getChildren(Object obj) {
+    @Override
+	protected final Iterator<? extends EObject> getChildren(Object obj) {
         return (obj == rootEObject)
             ? (obj instanceof EObjectAdapter)
             ? ((EObject)obj).eContents().iterator()

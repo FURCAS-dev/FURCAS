@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,8 @@
 
 package org.eclipse.emf.query.conditions.strings;
 
+import org.eclipse.emf.query.conditions.IDataTypeAdapter;
+
 /**
  * An Adapter class to be used to extract from -adapt- the argument object to
  * some
@@ -26,7 +28,7 @@ package org.eclipse.emf.query.conditions.strings;
  *  
  * @see StringCondition
  */
-public abstract class StringAdapter {
+public abstract class StringAdapter implements IDataTypeAdapter<String> {
 
 	/**
 	 * The simplest <code>StringAdapter</code> implementation that represents
@@ -35,8 +37,14 @@ public abstract class StringAdapter {
 	 */
 	public static final StringAdapter DEFAULT = new StringAdapter() {
 
+		@Override
 		public String getString(Object object) {
 			return (String) object;
+		}
+		
+		@Override
+		public String adapt(Object value) {
+			return (String) value;
 		}
 	};
 
@@ -47,5 +55,9 @@ public abstract class StringAdapter {
 	 * @return String the <code>String<code> object representation of the argument object
 	 */
 	public abstract String getString(Object object);
+	
+	public String adapt(Object value) {
+		return getString(value);
+	}
 
 }

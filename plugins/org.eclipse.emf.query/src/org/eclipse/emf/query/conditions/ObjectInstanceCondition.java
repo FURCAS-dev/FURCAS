@@ -41,7 +41,8 @@ public class ObjectInstanceCondition
     public static final ObjectInstanceCondition IS_NULL =
         new ObjectInstanceCondition(null) {
 
-        public boolean isSatisfied(Object obj) {
+        @Override
+		public boolean isSatisfied(Object obj) {
             return obj == null;
         }};
 
@@ -65,6 +66,7 @@ public class ObjectInstanceCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 	 */
+	@Override
 	public boolean isSatisfied(Object obj) {
 		return getObject().equals(obj);
 	}

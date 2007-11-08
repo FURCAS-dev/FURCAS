@@ -41,10 +41,10 @@ public class EObjectInstanceCondition
      * 
      * @since 1.1
      */
-    public static final EObjectInstanceCondition IS_NULL =
-        new EObjectInstanceCondition(null) {
+    public static final EObjectInstanceCondition IS_NULL = new EObjectInstanceCondition(null) {
         
-        public boolean isSatisfied(Object object) {
+        @Override
+		public boolean isSatisfied(Object object) {
             return object == null;
         }};
 
@@ -85,6 +85,7 @@ public class EObjectInstanceCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObj) {
 		return getEObject().equals(eObj);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLQueryDelegate.java,v 1.3 2007/03/30 19:23:40 cdamus Exp $
+ * $Id: OCLQueryDelegate.java,v 1.4 2007/11/08 23:00:35 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl.actions;
@@ -55,6 +55,7 @@ public class OCLQueryDelegate
 		super();
 	}
 
+	@Override
 	public void run(IAction action) {
 		Collection<EObject> selection = getSelectedObjects();
 		

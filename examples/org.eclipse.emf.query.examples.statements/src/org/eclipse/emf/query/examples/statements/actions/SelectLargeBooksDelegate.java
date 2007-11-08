@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,8 +18,8 @@
 package org.eclipse.emf.query.examples.statements.actions;
 
 import java.util.Collection;
-import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectAttributeValueCondition;
@@ -48,13 +48,15 @@ public class SelectLargeBooksDelegate extends AbstractQueryDelegate {
 	/* (non-Javadoc)
 	 * @see org.eclipse.emf.query.examples.statements.actions.AbstractQueryDelegate#performQuery(java.lang.Object)
 	 */
-	protected Collection performQuery(Object value)
+	@Override
+	protected Collection<EObject> performQuery(Object value)
 		throws Exception {
 		
 		SELECT select = new SELECT(
 			new FROM(selectedEObjects),
-			new WHERE(new EObjectAttributeValueCondition(EXTLibraryPackage.eINSTANCE.getBook_Pages(),
-					new NumberCondition.IntegerValue(new Integer(500),new Integer(Integer.MAX_VALUE))
+			new WHERE(new EObjectAttributeValueCondition(
+					EXTLibraryPackage.eINSTANCE.getBook_Pages(),
+					NumberCondition.between(500, Integer.MAX_VALUE)
 				)
 			)
 		);
@@ -67,7 +69,7 @@ public class SelectLargeBooksDelegate extends AbstractQueryDelegate {
 	 */
 	public void run(IAction action) {
 		try {
-			Collection result = performQuery(null);
+			Collection<EObject> result = performQuery(null);
 			if (result.isEmpty()) {
 				MessageDialog
 					.openInformation(shell, title, notFoundMessage);
@@ -85,13 +87,13 @@ public class SelectLargeBooksDelegate extends AbstractQueryDelegate {
 	/* (non-Javadoc)
 	 * @see org.eclipse.emf.query.examples.statements.actions.AbstractQueryDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
 	 */
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		super.selectionChanged(action, selection);
 		
 		if (action.isEnabled()) {
 			// Ensure that the selection is a selection of library(ies).
-			for (Iterator i = selectedEObjects.iterator(); i.hasNext();) {
-				Object o = i.next();
+			for (EObject o : selectedEObjects) {
 				if (!(o instanceof Library)) {
 					action.setEnabled(false);
 					return;

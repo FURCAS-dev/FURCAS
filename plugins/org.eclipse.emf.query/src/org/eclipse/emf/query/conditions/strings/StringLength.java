@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,8 @@
  */
 
 package org.eclipse.emf.query.conditions.strings;
+
+import org.eclipse.emf.query.conditions.IDataTypeAdapter;
 
 /**
  * A Condition object that tests for
@@ -53,10 +55,26 @@ public class StringLength
 	 * for adapting the evaluated object to string before getting their length.
 	 * 
 	 * @param length The int value that the evaluated string length must match
-	 * @param adpater The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
+	 * @param adapter The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
 	 */
-	public StringLength(int length, StringAdapter adpater) {
-		this(length, length, adpater);
+	public StringLength(int length, StringAdapter adapter) {
+		this(length, length, adapter);
+	}
+
+	/**
+	 * A constructor that takes one int argument to test strings' length against
+	 * and a <code>StringAdapter</code>. It evaluates to <code>true</code>
+	 * when the evaluated <code>String<code> length equals the length 
+	 * initialization argument. It uses the argument <code>StringAdapter</code> 
+	 * for adapting the evaluated object to string before getting their length.
+	 * 
+	 * @param length The int value that the evaluated string length must match
+	 * @param adapter a generic string adapter to use to get a <code>String<code> out of evaluated Objects
+	 * 
+	 * @since 1.2
+	 */
+	public StringLength(int length, IDataTypeAdapter<String> adapter) {
+		this(length, length, adapter);
 	}
 
 	/**
@@ -83,10 +101,27 @@ public class StringLength
 	 * 
 	 * @param lowerBound the int value representing the lower-bound in range testing
 	 * @param upperBound the int value representing the upper-bound in range testing
-	 * @param adpater The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
+	 * @param adapter The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
 	 */
-	public StringLength(int lowerBound, int upperBound, StringAdapter adpater) {
-		super(adpater);
+	public StringLength(int lowerBound, int upperBound, StringAdapter adapter) {
+		super(adapter);
+		this.lowerBound = lowerBound;
+		this.upperBound = upperBound;
+	}
+
+	/**
+	 * A constructor that takes two int arguments representing a range to test
+	 * strings' length against. It evaluates to <code>true</code> when the
+	 * evaluated <code>String<code> length is equal to any 
+	 * these two int values passed or fall in between. It uses the argument <code>StringAdapter</code> 
+	 * for adapting the evaluated object to string before getting their length.
+	 * 
+	 * @param lowerBound the int value representing the lower-bound in range testing
+	 * @param upperBound the int value representing the upper-bound in range testing
+	 * @param adapter a generic string adapter to use to get a <code>String<code> out of evaluated Objects
+	 */
+	public StringLength(int lowerBound, int upperBound, IDataTypeAdapter<String> adapter) {
+		super(null, adapter);
 		this.lowerBound = lowerBound;
 		this.upperBound = upperBound;
 	}
@@ -96,6 +131,7 @@ public class StringLength
 	 * 
 	 * @see org.eclipse.emf.query.conditions.strings.StringCondition#isSatisfied(java.lang.String)
 	 */
+	@Override
 	public boolean isSatisfied(String str) {
 		return ((str.length() >= lowerBound) && (str.length() <= upperBound));
 	}

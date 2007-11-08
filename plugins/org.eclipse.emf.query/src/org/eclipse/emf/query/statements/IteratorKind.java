@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,62 +17,71 @@
 
 package org.eclipse.emf.query.statements;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * An enumeration of iteration methodologies for EObjects.
  * 
  * @author Yasser Lulu 
  */
-public final class IteratorKind extends AbstractEnumerator {
-    private static int value;
-    private static final List values = new ArrayList();
-
+public enum IteratorKind implements Enumerator {
     /**
      * Iterate in a &quot;flat&quot; fashion without traversing the contents
      *  of the EObjects.
      */
-    public static final IteratorKind FLAT_LITERAL = new IteratorKind("FLAT"); //$NON-NLS-1$
+    FLAT_LITERAL("FLAT"), //$NON-NLS-1$
 
     /**
      * Iterate in a &quot;hierarchical&quot; fashion traversing the containment
      *  subtree of each EObject.
      */
-    public static final IteratorKind HIERARCHICAL_LITERAL = new IteratorKind("HIERARCHICAL"); //$NON-NLS-1$
+    HIERARCHICAL_LITERAL("HIERARCHICAL"); //$NON-NLS-1$
 
     public static final int FLAT = FLAT_LITERAL.getValue();
     public static final int HIERARCHICAL = HIERARCHICAL_LITERAL.getValue();
 
-    public static final List VALUES = Collections.unmodifiableList(values);
-    private static final IteratorKind[] VALUES_ARRAY =
-        (IteratorKind[]) VALUES.toArray(new IteratorKind[VALUES.size()]);
+    private static final List<IteratorKind> values = java.util.Arrays.asList(values());
 
+    public static final List<IteratorKind> VALUES = Collections.unmodifiableList(values);
+
+    private final String name;
+    
     private IteratorKind(String name) {
-        super(value++, name);
-        values.add(this);
+        this.name = name;
     }
 
     public static IteratorKind get(int val) {
-        if (val >= VALUES_ARRAY.length || val < 0) {
+        if (val >= values.size() || val < 0) {
             return null;
         }
-        return VALUES_ARRAY[val];
+        return values.get(val);
     }
 
     public static IteratorKind get(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            if (VALUES_ARRAY[i].getName().equals(name)) {
-                return VALUES_ARRAY[i];
+        for (IteratorKind next : values()) {
+            if (next.getName().equals(name)) {
+                return next;
             }
         }
         return null;
     }
 
     public static int getTotalCount() {
-        return VALUES_ARRAY.length;
+        return values.size();
+    }
+    
+    public String getLiteral() {
+    	return getName();
+    }
+    
+    public String getName() {
+    	return name;
+    }
+    
+    public int getValue() {
+    	return ordinal();
     }
 }

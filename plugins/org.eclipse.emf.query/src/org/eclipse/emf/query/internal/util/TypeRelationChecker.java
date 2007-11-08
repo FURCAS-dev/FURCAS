@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,26 +31,30 @@ import org.eclipse.emf.query.internal.EMFQueryPlugin;
  */
 public abstract class TypeRelationChecker {	
 
-	private static final Map typesRelationsMaps = new WeakHashMap();	
+	private static final Map<EClass, Map<TypeRelation, Map<EClass, Boolean>>>
+	typesRelationsMaps = new WeakHashMap<EClass, Map<TypeRelation,Map<EClass,Boolean>>>();	
 
-	private static Map getTypeRelationsCacheMap(EClass type,
+	private static Map<EClass, Boolean> getTypeRelationsCacheMap(EClass type,
 		TypeRelation relationKind) {
 		return getTypeMap(typesRelationsMaps, type, relationKind);
 	}
 
-	private static Map getTypeMap(Map typesMaps, EClass type,
+	private static Map<EClass, Boolean> getTypeMap(
+		Map<EClass, Map<TypeRelation, Map<EClass, Boolean>>> typesMaps,
+		EClass type,
 		TypeRelation relationKind) {
-		Map map = null;
-		Map maps = (Map) typesMaps.get(type);
+		
+		Map<EClass, Boolean> map = null;
+		Map<TypeRelation, Map<EClass, Boolean>> maps = typesMaps.get(type);
 		if (maps == null) {
-			maps = new WeakHashMap();
+			maps = new WeakHashMap<TypeRelation, Map<EClass,Boolean>>();
 			typesMaps.put(type, maps);
-			map = new WeakHashMap();
+			map = new WeakHashMap<EClass, Boolean>();
 			maps.put(relationKind, map);
 		} else {
-			map = (Map) maps.get(relationKind);
+			map = maps.get(relationKind);
 			if (map == null) {
-				map = new WeakHashMap();
+				map = new WeakHashMap<EClass, Boolean>();
 				maps.put(relationKind, map);
 			}
 		}
@@ -61,7 +65,7 @@ public abstract class TypeRelationChecker {
 	private EClass type;
 
 	private TypeRelation relationKind;
-	private Map typeRelationsCache;
+	private Map<EClass, Boolean> typeRelationsCache;
 
 	private TypeRelationChecker(EClass type, TypeRelation relationKind) {
 		if (type == null || relationKind == null) {
@@ -81,7 +85,7 @@ public abstract class TypeRelationChecker {
 	 * 
 	 * @return the cache
 	 */
-	protected final Map getRelationsCache() {
+	protected final Map<EClass, Boolean> getRelationsCache() {
 		return typeRelationsCache;
 	}
 
@@ -111,11 +115,10 @@ public abstract class TypeRelationChecker {
 	 * @return whether it relates as required to the checker's type
 	 */
 	public boolean isTypeRelationOK(EClass eClass) {
-		Boolean checked = (Boolean) getRelationsCache().get(eClass);
+		Boolean checked = getRelationsCache().get(eClass);
 		if (checked == null) {
 			boolean result = checkRelation(eClass);
-			getRelationsCache().put(eClass,
-				(result) ? Boolean.TRUE : Boolean.FALSE);
+			getRelationsCache().put(eClass, result);
 			return result;
 		}
 		return checked.booleanValue();
@@ -182,13 +185,14 @@ public abstract class TypeRelationChecker {
 	private static class BaseTypeRelationChecker
 		extends TypeRelationChecker {
 
-		private List allSuperTypes;
+		private List<EClass> allSuperTypes;
 
 		BaseTypeRelationChecker(EClass type) {
 			super(type, TypeRelation.BASETYPE_LITERAL);
 			allSuperTypes = type.getEAllSuperTypes();
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			return allSuperTypes.contains(type);
 		}
@@ -198,13 +202,14 @@ public abstract class TypeRelationChecker {
 	private static class DirectBaseTypeRelationChecker
 		extends TypeRelationChecker {
 
-		private List directSuperTypes;
+		private List<EClass> directSuperTypes;
 
 		DirectBaseTypeRelationChecker(EClass type) {
 			super(type, TypeRelation.DIRECT_BASETYPE_LITERAL);
 			directSuperTypes = type.getESuperTypes();
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			return directSuperTypes.contains(type);
 		}
@@ -218,6 +223,7 @@ public abstract class TypeRelationChecker {
 			super(type, TypeRelation.DIRECT_SUBTYPE_LITERAL);
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			return type.getESuperTypes().contains(getType());
 		}
@@ -231,6 +237,7 @@ public abstract class TypeRelationChecker {
 			super(type, TypeRelation.SAMETYPE_LITERAL);
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			return getType().equals(type);
 		}
@@ -244,6 +251,7 @@ public abstract class TypeRelationChecker {
 			super(type, TypeRelation.SUBTYPE_LITERAL);
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			return type.getEAllSuperTypes().contains(getType());
 		}
@@ -261,6 +269,7 @@ public abstract class TypeRelationChecker {
 			this.typeRelationCheckers = typeRelationCheckers;
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			for (int i = 0; i < typeRelationCheckers.length; ++i) {
 				if (typeRelationCheckers[i].isTypeRelationOK(type)) {
@@ -294,6 +303,7 @@ public abstract class TypeRelationChecker {
 			checker = new RelatedTypeRelationChecker(type);
 		}
 
+		@Override
 		protected boolean checkRelation(EClass type) {
 			return !checker.checkRelation(type);
 		}

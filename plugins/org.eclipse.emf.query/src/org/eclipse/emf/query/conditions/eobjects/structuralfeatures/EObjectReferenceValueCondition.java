@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.query.conditions.ConditionPolicy;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.handlers.PruneHandler;
@@ -307,7 +306,8 @@ public class EObjectReferenceValueCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectStructuralFeatureCondition#getFeatures(org.eclipse.emf.ecore.EClass)
 	 */
-	protected final List getFeatures(EClass eClass) {
+	@Override
+	protected final List<EReference> getFeatures(EClass eClass) {
 		return eClass.getEAllReferences();
 	}
 

@@ -115,6 +115,7 @@ class ContextFreeQueryWizardPage
 	/* (non-Javadoc)
 	 * Redefines/Implements/Extends the inherited method.
 	 */
+	@Override
 	public void dispose() {
 		super.dispose();
 	}

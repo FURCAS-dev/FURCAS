@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -62,6 +62,7 @@ public abstract class EObjectStructuralFeatureCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObject) {
 		return getFeatures(eObject.eClass()).contains(feature);
 	}
@@ -90,7 +91,7 @@ public abstract class EObjectStructuralFeatureCondition
 	 *         EClass and are consequently to be used for testing and evaluation
 	 *         of this condition object
 	 */
-	protected List getFeatures(EClass eClass) {
+	protected List<? extends EStructuralFeature> getFeatures(EClass eClass) {
 		return eClass.getEAllStructuralFeatures();
 	}
 

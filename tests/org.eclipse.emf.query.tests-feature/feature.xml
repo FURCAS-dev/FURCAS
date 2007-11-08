@@ -18,7 +18,7 @@
 <feature
       id="org.eclipse.emf.query.tests"
       label="%featureName"
-      version="1.1.0.qualifier"
+      version="1.2.0.qualifier"
       provider-name="%providerName"
       image="modeling32.png">
 
@@ -46,10 +46,11 @@ http://www.eclipse.org/legal/epl-v10.html
    <requires>
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
       <import plugin="org.junit" version="3.8.1" match="compatible"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.query" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.examples.library" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.query.ocl" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.query" version="1.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.examples.library" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.query.ocl" version="1.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ocl.ecore" version="1.1.0" match="compatible"/>
    </requires>
 
    <plugin

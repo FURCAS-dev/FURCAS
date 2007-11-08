@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,7 @@ import org.eclipse.emf.query.handlers.PruneHandler;
 import org.eclipse.emf.query.internal.util.TypeRelationChecker;
 
 /**
- * An <code>EObjectCondition</code> specilaization to be used for evaluating
+ * An <code>EObjectCondition</code> specialization to be used for evaluating
  * the inheritance/type relationship of an <code>EObject</code> to another
  * using the EObjects' EClasses. For example it could be used to find if a given
  * <code>EObject</code> is a subtype/supertype of another <code>EObject</code>.
@@ -36,11 +36,13 @@ public class EObjectTypeRelationCondition
 
 	/**
 	 * A constant <code>EObjectTypeRelationCondition</code> object used to
-	 * indicate that the type relatioship is undefined and hence it is always
+	 * indicate that the type relationship is undefined and hence it is always
 	 * satisfied.
 	 */
-	public static final EObjectTypeRelationCondition UNDEFINED = new EObjectTypeRelationCondition() {
+	public static final EObjectTypeRelationCondition UNDEFINED =
+		new EObjectTypeRelationCondition() {
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			return true;
 		}
@@ -130,6 +132,7 @@ public class EObjectTypeRelationCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObject) {
 		return typeRelationChecker.isTypeRelationOK(eObject.eClass());
 	}

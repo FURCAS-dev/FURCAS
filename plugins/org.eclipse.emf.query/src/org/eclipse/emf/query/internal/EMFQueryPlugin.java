@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -128,7 +128,8 @@ public final class EMFQueryPlugin extends EMFPlugin {
         super(new ResourceLocator[] {});
     }
 
-    public ResourceLocator getPluginResourceLocator() {
+    @Override
+	public ResourceLocator getPluginResourceLocator() {
         return plugin;
     }
 
@@ -160,7 +161,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	/**
     	 * The cached debug options (for optimization).
     	 */
-    	private static final Map cachedOptions = new HashMap();
+    	private static final Map<String, Boolean> cachedOptions = new HashMap<String, Boolean>();
 
     	/**
     	 * Retrieves a Boolean value indicating whether tracing is enabled.
@@ -185,7 +186,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     			Boolean value = null;
     			
     			synchronized (cachedOptions) {
-    				value = (Boolean) cachedOptions.get(option);
+    				value = cachedOptions.get(option);
     	
     				if (null == value) {
     					value =
@@ -302,7 +303,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void changing(
             String option,
-            Class clazz,
+            Class<?> clazz,
             String methodName,
             String valueDescription,
             Object oldValue,
@@ -341,7 +342,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void catching(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Throwable throwable) {
 
@@ -374,7 +375,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void throwing(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Throwable throwable) {
 
@@ -404,7 +405,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void entering(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName) {
 
     		if (shouldTrace(option)) {
@@ -429,7 +430,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void entering(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Object parameter) {
 
@@ -458,7 +459,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void entering(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Object[] parameters) {
 
@@ -485,7 +486,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void exiting(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName) {
 
     		if (shouldTrace(option)) {
@@ -510,7 +511,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	 */
     	public static void exiting(
     		String option,
-    		Class clazz,
+    		Class<?> clazz,
     		String methodName,
     		Object returnValue) {
 
@@ -527,11 +528,11 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	}
     }
 
-	public static void catching(Class class1, String functionName, Throwable exception) {
+	public static void catching(Class<?> class1, String functionName, Throwable exception) {
 		Tracing.catching(EMFQueryDebugOptions.EXCEPTIONS_CATCHING, class1, functionName, exception);
 	}
 	
-	public static void throwing(Class class1, String functionName, Throwable exception) {
+	public static void throwing(Class<?> class1, String functionName, Throwable exception) {
 		Tracing.throwing(EMFQueryDebugOptions.EXCEPTIONS_THROWING, class1, functionName, exception);
 	}
 

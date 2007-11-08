@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,8 @@
  */
 
 package org.eclipse.emf.query.conditions.strings;
+
+import org.eclipse.emf.query.conditions.IDataTypeAdapter;
 
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
@@ -59,10 +61,25 @@ public class SubStringValue
 	 * It defaults to being case-sensitive.
 	 *    
 	 * @param subString The initialization <code>String<code> to see if it is a sub-string of those being evaluated
-	 * @param adpater The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
+	 * @param adapter The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
 	 */
-	public SubStringValue(String subString, StringAdapter adpater) {
-		this(subString, true, adpater);
+	public SubStringValue(String subString, StringAdapter adapter) {
+		this(subString, true, adapter);
+	}
+
+	/**
+	 * A constructor that takes an initialization <code>String<code> to 
+	 * see if it is a sub-string of those being evaluated and a <code>StringAdapter</code> for  
+	 * adapting the evaluated object to string before checking them.	 
+	 * It defaults to being case-sensitive.
+	 *    
+	 * @param subString The initialization <code>String<code> to see if it is a sub-string of those being evaluated
+	 * @param adapter a generic string adapter to use to get a <code>String<code> out of evaluated Objects
+	 * 
+	 * @since 1.2
+	 */
+	public SubStringValue(String subString, IDataTypeAdapter<String> adapter) {
+		this(subString, true, adapter);
 	}
 
 	/**
@@ -87,11 +104,28 @@ public class SubStringValue
 	 *    
 	 * @param subString The initialization <code>String<code> to see if it is a sub-string of those being evaluated
 	 * @param caseSensitive A boolean value specifying whether to use case in matching strings
-	 * @param adpater The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
+	 * @param adapter The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
 	 */
 	public SubStringValue(String subString, boolean caseSensitive,
-		StringAdapter adpater) {
-		super(subString, caseSensitive, adpater);
+		StringAdapter adapter) {
+		super(subString, caseSensitive, adapter);
+	}
+
+	/**
+	 * A constructor that takes an initialization <code>String<code> to 
+	 * see if it is a sub-string of those being evaluated, a boolean  
+	 * flag indicating whether the matching should be case-sensitive or not and
+	 * and a <code>StringAdapter</code> for adapting the evaluated object to string before checking them.
+	 *    
+	 * @param subString The initialization <code>String<code> to see if it is a sub-string of those being evaluated
+	 * @param caseSensitive A boolean value specifying whether to use case in matching strings
+	 * @param adapter a generic string adapter to use to get a <code>String<code> out of evaluated Objects
+	 * 
+	 * @since 1.2
+	 */
+	public SubStringValue(String subString, boolean caseSensitive,
+		IDataTypeAdapter<String> adapter) {
+		super(subString, caseSensitive, adapter);
 	}
 
 	/**
@@ -101,6 +135,7 @@ public class SubStringValue
 	 * 
 	 * @see org.eclipse.emf.query.conditions.strings.StringCondition#isSatisfied(java.lang.String)
 	 */
+	@Override
 	public boolean isSatisfied(String str) {
 		StringSearch search = new StringSearch(getString(), str);
 		

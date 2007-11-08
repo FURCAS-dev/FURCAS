@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,8 @@
 
 package org.eclipse.emf.query.conditions.strings;
 
+import org.eclipse.emf.query.conditions.IDataTypeAdapter;
+
 import com.ibm.icu.text.Normalizer;
 
 /**
@@ -28,8 +30,6 @@ import com.ibm.icu.text.Normalizer;
  */
 public class StringValue
 	extends StringCondition {
-
-	private String string;
 
 	private boolean caseSensitive;
 
@@ -67,12 +67,30 @@ public class StringValue
 	 *    
 	 * @param string the initialization <code>String<code> to use for equality testing
 	 * @param caseSensitive a boolean value specifying whether to use case in matching strings
-	 * @param adpater The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
+	 * @param adapter The <code>StringAdapter</code> to use to get a <code>String<code> out of evaluated Objects
 	 */
 	public StringValue(String string, boolean caseSensitive,
-		StringAdapter adpater) {
-		super(adpater);
-		this.string = string;
+		StringAdapter adapter) {
+		super(string, adapter);
+		this.caseSensitive = caseSensitive;
+	}
+
+	/**
+	 * A simple constructor that takes an initialization
+	 * <code>String<code> to match against,
+	 * a <code>StringAdapter</code> for adapting the evaluated object to string before matching 
+	 * them and a boolean flag indicating whether the pattern matching 
+	 * should be case-sensitive or not.	 
+	 *    
+	 * @param string the initialization <code>String<code> to use for equality testing
+	 * @param caseSensitive a boolean value specifying whether to use case in matching strings
+	 * @param adapter a generic string adapter to use to get a <code>String<code> out of evaluated Objects
+	 * 
+	 * @since 1.2
+	 */
+	public StringValue(String string, boolean caseSensitive,
+		IDataTypeAdapter<String> adapter) {
+		super(string, adapter);
 		this.caseSensitive = caseSensitive;
 	}
 
@@ -81,6 +99,7 @@ public class StringValue
 	 * <code>String<code>. 
 	 * @see org.eclipse.emf.query.conditions.strings.StringCondition#isSatisfied(java.lang.String)
 	 */
+	@Override
 	public boolean isSatisfied(String str) {
 		return Normalizer.compare(
 				getString(), str,
@@ -106,7 +125,7 @@ public class StringValue
 	 * @return The initialization <code>String<code> that this <code>StringValue</code> condition uses for testing
 	 */
 	protected final String getString() {
-		return string;
+		return value;
 	}
 
 }

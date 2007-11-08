@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IPlatformRunnable;
  * @author Yasser Lulu
  * 
  */
+@SuppressWarnings("deprecation")
 public class AllTests extends TestCase implements IPlatformRunnable {
 
     public static void main(String[] args) {
@@ -40,6 +41,7 @@ public class AllTests extends TestCase implements IPlatformRunnable {
         TestSuite suite = new TestSuite();
         suite.addTest(EMFQueryTest.suite());
         suite.addTestSuite(StringConditionsTest.class);
+        suite.addTestSuite(NumberConditionsTest.class);
         suite.addTest(EObjectStructuralFeatureValueConditionTest.suite());
         return suite;
     }
@@ -52,5 +54,4 @@ public class AllTests extends TestCase implements IPlatformRunnable {
         TestRunner.run(suite());
 		return Arrays.asList(new String[] { "Please see raw test suite output for details." }); //$NON-NLS-1$
     }
-
 }

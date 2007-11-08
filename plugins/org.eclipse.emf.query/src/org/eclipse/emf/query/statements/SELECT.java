@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -54,7 +54,7 @@ public class SELECT
 
 	private int maximumResultSize;
 
-	private TreeIterator it;
+	private TreeIterator<EObject> it;
 
 	public SELECT(FROM from, WHERE where) {
 		this(true, from, where);
@@ -89,16 +89,19 @@ public class SELECT
 	 * 
 	 * @see QueryStatement#execute()
 	 */
+	@Override
 	protected void doExecute() {
 		it = getFromClause().iterator();
 		doResume();
 	}
 
+	@Override
 	protected void handleException(Exception exception, String functionName) {
 		it = null;
 		super.handleException(exception, functionName);
 	}
 
+	@Override
 	public boolean canBeResumed() {
 		try {
 			return ((it != null) && (it.hasNext()));
@@ -116,6 +119,7 @@ public class SELECT
 	/**
 	 * @see org.eclipse.emf.query.internal.statements.QueryStatement#doResume()
 	 */
+	@Override
 	protected void doResume() {
 		EObject eObject = null;
 		//must set the newly created result-set
@@ -123,7 +127,7 @@ public class SELECT
 		boolean canPrune = getFromClause().canBePruned();
 		WHERE whereClause = getWhereClause();
 		while (it.hasNext() && (isCancelled() == false)) {
-			eObject = (EObject) it.next();
+			eObject = it.next();
 			if (whereClause.matches(eObject)) {
 				addEObject(eObject);
 				if (getResultSet().size() == maximumResultSize) {
@@ -163,14 +167,17 @@ public class SELECT
 		return where;
 	}
 
+	@Override
 	public final IQueryResult execute() {		
 		return super.execute();
 	}
 
-	public final Set getEObjects() {
+	@Override
+	public final Set<? extends EObject> getEObjects() {
 		return super.getEObjects();
 	}
 
+	@Override
 	public final IQueryResult resume(IProgressMonitor progressMon) {
 		return super.resume(progressMon);
 	}

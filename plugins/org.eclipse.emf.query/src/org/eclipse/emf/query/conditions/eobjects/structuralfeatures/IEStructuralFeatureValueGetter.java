@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -53,7 +53,7 @@ public interface IEStructuralFeatureValueGetter {
 	 * 
 	 * @return List The list of children of the argument eObject.
 	 */
-	List eContents(EObject eObject, EObjectCondition filterCondition);
+	List<EObject> eContents(EObject eObject, EObjectCondition filterCondition);
 
 	/**
 	 * An <code>EStructuralFeature</code>'s value getter.

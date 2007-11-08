@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ public class IN
 	 *            The set of EObjects to check if they contain amongst them some
 	 *            other <code>EObject</code>
 	 */
-	public IN(Set eObjects) {
+	public IN(Set<? extends EObject> eObjects) {
 		this(new EObjectSource(eObjects));
 	}
 
@@ -72,6 +72,7 @@ public class IN
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObject) {
 		return eObjectSource.getEObjects().contains(eObject);
 	}

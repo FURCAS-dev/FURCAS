@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,6 +35,7 @@ public abstract class Condition {
 	 */
 	public static final Condition TRUE = new Condition() {
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return true;
 		}
@@ -46,6 +47,7 @@ public abstract class Condition {
 	 */
 	public static final Condition FALSE = new Condition() {
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return false;
 		}
@@ -75,6 +77,7 @@ public abstract class Condition {
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return Condition.this.isSatisfied(object)
 				|| condition.isSatisfied(object);
@@ -88,6 +91,7 @@ public abstract class Condition {
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return Condition.this.isSatisfied(object)
 				&& condition.isSatisfied(object);
@@ -101,6 +105,7 @@ public abstract class Condition {
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return Condition.this.isSatisfied(object)
 				^ condition.isSatisfied(object);
@@ -114,6 +119,7 @@ public abstract class Condition {
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return (!(Condition.this.isSatisfied(object)))
 				|| condition.isSatisfied(object);
@@ -127,6 +133,7 @@ public abstract class Condition {
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(Object object) {
 			return Condition.this.isSatisfied(object) == condition
 				.isSatisfied(object);

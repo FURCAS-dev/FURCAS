@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,8 @@
 
 package org.eclipse.emf.query.conditions.booleans;
 
+import org.eclipse.emf.query.conditions.IDataTypeAdapter;
+
 /**
  * An Adapter class to be used to extract from -adapt- the argument object some
  * Boolean object (value) that would later be used in <code>Condition</code>
@@ -24,7 +26,7 @@ package org.eclipse.emf.query.conditions.booleans;
  * 
  * @see BooleanCondition
  */
-public abstract class BooleanAdapter {
+public abstract class BooleanAdapter implements IDataTypeAdapter<Boolean> {
 
 	/**
 	 * The simplest <code>BooleanAdapter</code> implementation that represents
@@ -33,8 +35,14 @@ public abstract class BooleanAdapter {
 	 */
 	public static final BooleanAdapter DEFAULT = new BooleanAdapter() {
 
+		@Override
 		public Boolean getBoolean(Object object) {
 			return (Boolean) object;
+		}
+		
+		@Override
+		public Boolean adapt(Object value) {
+			return (Boolean) value;
 		}
 	};
 
@@ -47,4 +55,8 @@ public abstract class BooleanAdapter {
 	 * @return Boolean the <code>Boolean</code> object representation of the argument object
 	 */
 	public abstract Boolean getBoolean(Object object);
+	
+	public Boolean adapt(Object value) {
+		return getBoolean(value);
+	}
 }

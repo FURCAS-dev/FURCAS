@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,8 @@
 package org.eclipse.emf.query.conditions.strings;
 
 import java.util.regex.Pattern;
+
+import org.eclipse.emf.query.conditions.IDataTypeAdapter;
 
 /**
  * A <code>StringValue</code> condition subclass that tests for
@@ -56,12 +58,31 @@ public class StringRegularExpressionValue
 	 *            The regular expression pattern to use for matching strings
 	 *            when evaluating this <code>StringRegularExpressionValue</code>
 	 *            condition.
-	 * @param adpater
+	 * @param adapter
 	 *            The <code>StringAdapter</code> to use to get a
 	 *            <code>String<code> out of evaluated Objects
 	 */
-	public StringRegularExpressionValue(String patternStr, StringAdapter adpater) {
-		this(patternStr, true, adpater);
+	public StringRegularExpressionValue(String patternStr, StringAdapter adapter) {
+		this(patternStr, true, adapter);
+	}
+
+	/**
+	 * A constructor that takes the regular expression to use for matching, and
+	 * a <code>StringAdapter</code> for adapting the evaluated object to
+	 * string before matching them. It defaults to being case-sensitive.
+	 * 
+	 * @param patternStr
+	 *            The regular expression pattern to use for matching strings
+	 *            when evaluating this <code>StringRegularExpressionValue</code>
+	 *            condition.
+	 * @param adapter
+	 *            A generic string adapter to use to get a
+	 *            <code>String<code> out of evaluated Objects
+	 *            
+	 * @since 1.2
+	 */
+	public StringRegularExpressionValue(String patternStr, IDataTypeAdapter<String> adapter) {
+		this(patternStr, true, adapter);
 	}
 
 	/**
@@ -77,13 +98,40 @@ public class StringRegularExpressionValue
 	 * @param caseSensitive
 	 *            a boolean value specifying whether to use case in matching
 	 *            strings
-	 * @param adpater
+	 * @param adapter
 	 *            The <code>StringAdapter</code> to use to get a
 	 *            <code>String<code> out of evaluated Objects
 	 */
 	public StringRegularExpressionValue(String patternStr,
-		boolean caseSensitive, StringAdapter adpater) {
-		super(patternStr, caseSensitive, adpater);
+		boolean caseSensitive, StringAdapter adapter) {
+		super(patternStr, caseSensitive, adapter);
+		pattern = (caseSensitive) ? Pattern.compile(patternStr) : Pattern
+			.compile(patternStr, Pattern.CASE_INSENSITIVE
+				| Pattern.UNICODE_CASE);
+	}
+
+	/**
+	 * A constructor that takes the regular expression to use for matching, a
+	 * <code>StringAdapter</code> for adapting the evaluated object to string
+	 * before matching them and a boolean flag indicating whether the pattern
+	 * matching should be case-sensitive or not.
+	 * 
+	 * @param patternStr
+	 *            The regular expression pattern to use for matching strings
+	 *            when evaluating this <code>StringRegularExpressionValue</code>
+	 *            condition.
+	 * @param caseSensitive
+	 *            a boolean value specifying whether to use case in matching
+	 *            strings
+	 * @param adapter
+	 *            A generic string adapter to use to get a
+	 *            <code>String<code> out of evaluated Objects
+	 *            
+	 * @since 1.2
+	 */
+	public StringRegularExpressionValue(String patternStr,
+		boolean caseSensitive, IDataTypeAdapter<String> adapter) {
+		super(patternStr, caseSensitive, adapter);
 		pattern = (caseSensitive) ? Pattern.compile(patternStr) : Pattern
 			.compile(patternStr, Pattern.CASE_INSENSITIVE
 				| Pattern.UNICODE_CASE);
@@ -95,6 +143,7 @@ public class StringRegularExpressionValue
 	 * 
 	 * @see org.eclipse.emf.query.conditions.strings.StringCondition#isSatisfied(java.lang.String)
 	 */
+	@Override
 	public boolean isSatisfied(String str) {
 		return getPattern().matcher(str).find();
 	}

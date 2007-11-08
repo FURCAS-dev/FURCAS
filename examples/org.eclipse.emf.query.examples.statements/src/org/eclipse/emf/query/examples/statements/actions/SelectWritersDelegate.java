@@ -20,10 +20,10 @@ package org.eclipse.emf.query.examples.statements.actions;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.examples.extlibrary.BookCategory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
@@ -42,6 +42,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.ui.dialogs.ListDialog;
 
 /**
@@ -65,7 +66,8 @@ public class SelectWritersDelegate
 			QueryStatementsMessages.selectWriters_message_notFound);
 	}
 
-	protected Collection performQuery(Object value)
+	@Override
+	protected Collection<EObject> performQuery(Object value)
 		throws Exception {
 		if (null == selectedEObjects) {
 			throw new NullPointerException("Argument 'context' is null"); //$NON-NLS-1$
@@ -103,7 +105,7 @@ public class SelectWritersDelegate
 	 * @see org.eclipse.emf.query.examples.statements.actions.AbstractQueryDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
-		final List contents = BookCategory.VALUES;
+		final List<BookCategory> contents = BookCategory.VALUES;
 		
 		ListDialog dialog = new ListDialog(shell);
 		dialog.setTitle(title);
@@ -126,6 +128,7 @@ public class SelectWritersDelegate
 			}
 		});
 		dialog.setLabelProvider(new LabelProvider() {
+			@Override
 			public String getText(Object element) {
 				if (element instanceof Enumerator) {
 					return ((Enumerator)element).getName();
@@ -137,9 +140,9 @@ public class SelectWritersDelegate
 		dialog.setBlockOnOpen(true);
 		
 		
-		if (ListDialog.OK == dialog.open()) {
+		if (Window.OK == dialog.open()) {
 			try {
-				Collection result = performQuery(dialog.getResult()[0]);
+				Collection<EObject> result = performQuery(dialog.getResult()[0]);
 				if (result.isEmpty()) {
 					MessageDialog
 						.openInformation(shell, title, notFoundMessage);
@@ -155,13 +158,13 @@ public class SelectWritersDelegate
 	}
 	
 
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		super.selectionChanged(action, selection);
 		
 		if (action.isEnabled()) {
 			// Ensure that the selection is a selection of library(ies).
-			for (Iterator i = selectedEObjects.iterator(); i.hasNext();) {
-				Object o = i.next();
+			for (EObject o : selectedEObjects) {
 				if (!(o instanceof Library)) {
 					action.setEnabled(false);
 					return;

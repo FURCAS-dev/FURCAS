@@ -18,7 +18,7 @@
 <feature
       id="org.eclipse.emf.query.examples"
       label="%featureName"
-      version="1.1.100.qualifier"
+      version="1.2.0.qualifier"
       provider-name="%providerName"
       image="modeling32.png">
 
@@ -52,12 +52,13 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ui" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.core.resources" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ui.ide" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.query.ocl" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.examples.library.editor" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.query" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.examples.library" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.examples.library.edit" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf" version="2.2.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.query.ocl" version="1.1.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.ecore" version="1.1.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.query" version="1.2.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.examples.library" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.examples.library.edit" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.examples.library.editor" version="2.3.0" match="compatible"/>
+      <import plugin="org.eclipse.emf" version="2.3.0" match="compatible"/>
    </requires>
 
    <plugin

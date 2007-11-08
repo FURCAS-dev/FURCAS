@@ -19,6 +19,7 @@ package org.eclipse.emf.query.examples.statements.actions;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
@@ -50,7 +51,8 @@ public class SelectBooksDelegate
 			QueryStatementsMessages.selectBooks_message_notFound);
 	}
 
-	protected Collection performQuery(Object value)
+	@Override
+	protected Collection<EObject> performQuery(Object value)
 		throws Exception {
 		
 		if (null == selectedEObjects) {
@@ -87,7 +89,7 @@ public class SelectBooksDelegate
 	 */
 	public void run(IAction action) {
 		try {
-			Collection result = performQuery(selectedEObjects.iterator().next());
+			Collection<EObject> result = performQuery(selectedEObjects.iterator().next());
 			if (result.isEmpty()) {
 				MessageDialog
 					.openInformation(shell, title, notFoundMessage);
@@ -105,6 +107,7 @@ public class SelectBooksDelegate
 	/* (non-Javadoc)
 	 * @see org.eclipse.emf.query.examples.statements.actions.AbstractQueryDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
 	 */
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		super.selectionChanged(action, selection);
 		

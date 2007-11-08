@@ -19,6 +19,7 @@ package org.eclipse.emf.query.examples.statements.actions;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.examples.extlibrary.presentation.EXTLibraryEditor;
 import org.eclipse.emf.query.examples.statements.internal.l10n.QueryStatementsMessages;
 import org.eclipse.jface.action.IAction;
@@ -41,7 +42,7 @@ public abstract class AbstractQueryDelegate
 	implements IEditorActionDelegate, IActionDelegate2 {
 
 	/**
-	 * Error message to display when an exception occured
+	 * Error message to display when an exception occurred
 	 */
 	protected static final String MESSAGE_EXCEPTION = QueryStatementsMessages.message_exception;
 
@@ -58,7 +59,7 @@ public abstract class AbstractQueryDelegate
 	/**
 	 * Selected EObjects
 	 */
-	protected Collection selectedEObjects = null;
+	protected Collection<EObject> selectedEObjects = null;
 
 	/**
 	 * The InputDialog title
@@ -91,7 +92,7 @@ public abstract class AbstractQueryDelegate
 	 *            The value used to drive the query
 	 * @return The set of objects returned by the query
 	 */
-	protected abstract Collection performQuery(Object value)
+	protected abstract Collection<EObject> performQuery(Object value)
 		throws Exception;
 
 	/*
@@ -103,7 +104,12 @@ public abstract class AbstractQueryDelegate
 		try {
 			if (selection instanceof IStructuredSelection) {
 				IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-				this.selectedEObjects = structuredSelection.toList();
+				this.selectedEObjects = new java.util.ArrayList<EObject>();
+				for (Object next : structuredSelection.toList()) {
+					if (next instanceof EObject) {
+						selectedEObjects.add((EObject) next);
+					}
+				}
 			}
 		} catch (Exception e) {
 			// Exceptions are not expected

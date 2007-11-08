@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -101,11 +101,12 @@ public class FROM extends QueryClause {
             eStructuralFeatureValueGetter);
     }
 
-    public FROM(Collection eObjects) {
+    public FROM(Collection<? extends EObject> eObjects) {
         this(eObjects, IteratorKind.HIERARCHICAL_LITERAL);
     }
 
-    public FROM(Collection eObjects, EObjectCondition filterCondition) {
+    public FROM(Collection<? extends EObject> eObjects,
+    		EObjectCondition filterCondition) {
         this(
             eObjects,
             filterCondition,
@@ -113,12 +114,12 @@ public class FROM extends QueryClause {
             null);
     }
 
-    public FROM(Collection eObjects, IteratorKind iteratorKind) {
+    public FROM(Collection<? extends EObject> eObjects, IteratorKind iteratorKind) {
         this(eObjects, null, iteratorKind, null);
     }
 
     public FROM(
-        Collection eObjects,
+        Collection<? extends EObject> eObjects,
         EObjectCondition filterCondition,
         IteratorKind iteratorKind,
         IEStructuralFeatureValueGetter eStructuralFeatureValueGetter) {
@@ -133,16 +134,16 @@ public class FROM extends QueryClause {
         return canPrune;
     }
 
-    public TreeIterator iterator() {
+    public TreeIterator<EObject> iterator() {
         return (iteratorKind == IteratorKind.HIERARCHICAL_LITERAL)
-            ? (TreeIterator) (new EObjectContentIterator(getEObjects(),
+            ? new EObjectContentIterator(getEObjects(),
                 filterCondition,
-                getEStructuralFeatureValueGetter()))
-            : (TreeIterator) (new FlatEObjectContentIterator(getEObjects(),
-                getEStructuralFeatureValueGetter()));
+                getEStructuralFeatureValueGetter())
+            : new FlatEObjectContentIterator(getEObjects(),
+                getEStructuralFeatureValueGetter());
     }
 
-    private Set getEObjects() {
+    private Set<? extends EObject> getEObjects() {
         return eObjectSource.getEObjects();
     }
 

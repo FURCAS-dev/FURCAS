@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,10 +27,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query.statements.IQueryResult;
 
 /**
+ * 
+ * @param <E> the kind of element provided by the result set
+ * 
  * @author Yasser Lulu 
  */
-public class QueryResultSet implements Set, IQueryResult {
-    private Set eObjects;
+public class QueryResultSet implements Set<EObject>, IQueryResult {
+    private Set<EObject> eObjects;
     private Exception exception;
     private boolean cancelled;
 
@@ -38,7 +41,7 @@ public class QueryResultSet implements Set, IQueryResult {
      * Initializes me.
      */
     public QueryResultSet() {
-        this(new HashSet());
+        this(new HashSet<EObject>());
     }
 
     /**
@@ -46,7 +49,7 @@ public class QueryResultSet implements Set, IQueryResult {
      * 
      * @param eObjects my objects
      */
-    public QueryResultSet(Set eObjects) {
+    public QueryResultSet(Set<? extends EObject> eObjects) {
         this(eObjects, null);
     }
 
@@ -57,12 +60,12 @@ public class QueryResultSet implements Set, IQueryResult {
      * @param eObjects my objects
      * @param exception the exception that was thrown
      */
-    public QueryResultSet(Set eObjects, Exception exception) {
-        this.eObjects = eObjects;
+    public QueryResultSet(Set<? extends EObject> eObjects, Exception exception) {
+        this.eObjects = new HashSet<EObject>(eObjects);
         this.exception = exception;
     }
 
-    public Set getEObjects() {
+    public Set<EObject> getEObjects() {
         return eObjects;
     }
 
@@ -75,7 +78,7 @@ public class QueryResultSet implements Set, IQueryResult {
     }
 
     public void clear() {
-        eObjects = new HashSet();
+        eObjects = new HashSet<EObject>();
         exception = null;
     }
 
@@ -93,28 +96,28 @@ public class QueryResultSet implements Set, IQueryResult {
         return eObjects.size();
     }
 
-    public Iterator iterator() {
+    public Iterator<EObject> iterator() {
         return eObjects.iterator();
     }
 
     /**
      * @see java.util.Collection#removeAll(java.util.Collection)
      */
-    public boolean removeAll(Collection c) {
+    public boolean removeAll(Collection<?> c) {
         return eObjects.removeAll(c);
     }
 
     /**
      * @see java.util.Collection#add(java.lang.Object)
      */
-    public boolean add(Object o) {
+    public boolean add(EObject o) {
         return eObjects.add(o);
     }
-
+    
     /**
      * @see java.util.Collection#addAll(java.util.Collection)
      */
-    public boolean addAll(Collection c) {
+    public boolean addAll(Collection<? extends EObject> c) {
         return eObjects.addAll(c);
     }
 
@@ -128,7 +131,7 @@ public class QueryResultSet implements Set, IQueryResult {
     /**
      * @see java.util.Collection#containsAll(java.util.Collection)
      */
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(Collection<?> c) {
         return eObjects.containsAll(c);
     }
 
@@ -149,7 +152,7 @@ public class QueryResultSet implements Set, IQueryResult {
     /**
      * @see java.util.Collection#retainAll(java.util.Collection)
      */
-    public boolean retainAll(Collection c) {
+    public boolean retainAll(Collection<?> c) {
         return eObjects.retainAll(c);
     }
 
@@ -163,14 +166,14 @@ public class QueryResultSet implements Set, IQueryResult {
     /**
      * @see java.util.Collection#toArray(java.lang.Object[])
      */
-    public Object[] toArray(Object[] a) {
+    public <S> S[] toArray(S[] a) {
         return eObjects.toArray(a);
     }
 
     /**
-     * Asks whether the query was cancelled.
+     * Asks whether the query was canceled.
      * 
-     * @return whether the query was cancelled
+     * @return whether the query was canceled
      */
     public boolean isCancelled() {
         return cancelled;

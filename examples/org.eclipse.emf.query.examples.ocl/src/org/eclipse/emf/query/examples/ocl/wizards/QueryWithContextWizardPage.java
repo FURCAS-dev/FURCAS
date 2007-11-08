@@ -129,10 +129,12 @@ class QueryWithContextWizardPage
 	private void fillContextCombo() {
 		contextCombo.setContentProvider(new ArrayContentProvider());
 		contextCombo.setLabelProvider(new LabelProvider() {
+			@Override
 			public String getText(Object element) {
 				return ((EClassifier) element).getName();
 			}});
 		contextCombo.setSorter(new ViewerSorter() {
+			@Override
 			public int compare(Viewer viewer, Object e1, Object e2) {
 				return ((EClassifier) e1).getName().compareTo(
 					((EClassifier) e2).getName());
@@ -201,6 +203,7 @@ class QueryWithContextWizardPage
 	/* (non-Javadoc)
 	 * Redefines/Implements/Extends the inherited method.
 	 */
+	@Override
 	public void dispose() {
 		super.dispose();
 	}

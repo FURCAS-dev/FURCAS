@@ -48,7 +48,7 @@ public class EObjectConditionDelegator
 	private EObjectCondition eObjectCondition;
 
 	/**
-	 * A simple constructor, initlaizes the wrapped
+	 * A simple constructor, initializes the wrapped
 	 * <code>EObjectCondition</code> to <code>null</code>. The supplier of
 	 * this <code>EObjectConditionDelegator</code> must ensure that a valid
 	 * <code>EObjectCondition</code> is passed to this
@@ -78,6 +78,7 @@ public class EObjectConditionDelegator
 	 * 
 	 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 	 */
+	@Override
 	public boolean isSatisfied(Object object) {
 		return eObjectCondition.isSatisfied(object);
 	}
@@ -88,6 +89,7 @@ public class EObjectConditionDelegator
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObject) {
 		return eObjectCondition.isSatisfied(eObject);
 	}
@@ -98,6 +100,7 @@ public class EObjectConditionDelegator
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#shouldPrune(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean shouldPrune(EObject eObject) {
 		return eObjectCondition.shouldPrune(eObject);
 	}

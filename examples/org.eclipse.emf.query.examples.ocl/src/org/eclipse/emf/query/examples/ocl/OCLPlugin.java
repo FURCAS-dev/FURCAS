@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.2 2007/06/06 22:28:12 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.3 2007/11/08 23:00:35 cdamus Exp $
  */
 
 package org.eclipse.emf.query.examples.ocl;
@@ -39,6 +39,7 @@ public class OCLPlugin extends AbstractUIPlugin {
 	/**
 	 * This method is called upon plug-in activation
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 	}
@@ -46,6 +47,7 @@ public class OCLPlugin extends AbstractUIPlugin {
 	/**
 	 * This method is called when the plug-in is stopped
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		super.stop(context);
 	}

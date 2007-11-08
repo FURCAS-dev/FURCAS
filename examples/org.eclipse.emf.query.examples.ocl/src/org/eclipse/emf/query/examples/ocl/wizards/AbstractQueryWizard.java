@@ -40,6 +40,7 @@ abstract class AbstractQueryWizard
 		super();
 	}
 
+	@Override
 	public void addPages() {
 		super.addPages();
 		
@@ -47,6 +48,7 @@ abstract class AbstractQueryWizard
 		addPage(page);
 	}
 	
+	@Override
 	public boolean performFinish() {
 		condition = page.getCondition();
 		

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <p>
- * This class represnts a simple implementation of {@link org.eclipse.emf.query.conditions.eobjects.IEObjectSource}
+ * This class represents a simple implementation of {@link org.eclipse.emf.query.conditions.eobjects.IEObjectSource}
  *  that is constructed with one EObject or a collection of EObjects.
  * </p>
  * <p>
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class EObjectSource implements IEObjectSource {
     private EObject eObject;
-    private Set set;
+    private Set<EObject> set;
 
     /**
      * Initializes me with a single sub-tree from which to get objects.
@@ -54,18 +54,19 @@ public class EObjectSource implements IEObjectSource {
      * 
      * @param eObjects the roots (zero or more) of sub-trees to query
      */
-    public EObjectSource(Collection eObjects) {
+    public EObjectSource(Collection<? extends EObject> eObjects) {
         if (eObjects instanceof Set) {
-            set = (Set) eObjects;
+        	@SuppressWarnings("unchecked") // nobody should be adding to this set
+        	Set<EObject> eObjectSet = (Set<EObject>) eObjects;
+        	set = eObjectSet;
         } else {
-            set = new HashSet();
-            set.addAll(eObjects);
+            set = new HashSet<EObject>(eObjects);
         }
     }
 
-    public Set getEObjects() {
+    public Set<? extends EObject> getEObjects() {
         if (set == null) {
-            set = new HashSet();
+            set = new HashSet<EObject>();
             set.add(eObject);
         }
         return set;

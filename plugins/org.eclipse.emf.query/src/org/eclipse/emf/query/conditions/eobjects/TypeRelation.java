@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,31 +17,25 @@
 
 package org.eclipse.emf.query.conditions.eobjects;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * An enumerator for the kinds of relatioships between EClasses/types. It is
+ * An enumerator for the kinds of relationships between EClasses/types. It is
  * primarily used by <code>EObjectTypeRelationCondition</code> to check for
  * relations between EObjects
  */
-public final class TypeRelation
-	extends AbstractEnumerator {
-
-	private static int valueCounter;
-
-	private static final List values = new ArrayList();
+public enum TypeRelation
+	implements Enumerator {
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote an
 	 * undefined relationship between two types which means the two types could
 	 * or could not be related at all.
 	 */
-	public static final TypeRelation UNDEFINED_LITERAL = new TypeRelation(
-		"UNDEFINED"); //$NON-NLS-1$
+	UNDEFINED_LITERAL("UNDEFINED"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote the
@@ -49,8 +43,7 @@ public final class TypeRelation
 	 * this relationship, in other words, either type could be a parent of
 	 * another, or they could be the same.
 	 */
-	public static final TypeRelation RELATED_TYPE_LITERAL = new TypeRelation(
-		"RELATED_TYPE"); //$NON-NLS-1$
+	RELATED_TYPE_LITERAL("RELATED_TYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote the
@@ -58,71 +51,61 @@ public final class TypeRelation
 	 * this relationship, in other words, either type should not be a parent of
 	 * the other, nor they should be the same.
 	 */
-	public static final TypeRelation UNRELATED_TYPE_LITERAL = new TypeRelation(
-		"UNRELATED_TYPE"); //$NON-NLS-1$
+	UNRELATED_TYPE_LITERAL("UNRELATED_TYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that two
 	 * types are exactly the same.
 	 */
-	public static final TypeRelation SAMETYPE_LITERAL = new TypeRelation(
-		"SAMETYPE"); //$NON-NLS-1$
+	SAMETYPE_LITERAL("SAMETYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is a base type of another.
 	 */
-	public static final TypeRelation BASETYPE_LITERAL = new TypeRelation(
-		"BASETYPE"); //$NON-NLS-1$
+	BASETYPE_LITERAL("BASETYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is a sub type of another.
 	 */
-	public static final TypeRelation SUBTYPE_LITERAL = new TypeRelation(
-		"SUBTYPE"); //$NON-NLS-1$
+	SUBTYPE_LITERAL("SUBTYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is a direct super type of another.
 	 */
-	public static final TypeRelation DIRECT_BASETYPE_LITERAL = new TypeRelation(
-		"DIRECT_BASETYPE"); //$NON-NLS-1$
+	DIRECT_BASETYPE_LITERAL("DIRECT_BASETYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is a direct sub type of another.
 	 */
-	public static final TypeRelation DIRECT_SUBTYPE_LITERAL = new TypeRelation(
-		"DIRECT_SUBTYPE"); //$NON-NLS-1$
+	DIRECT_SUBTYPE_LITERAL("DIRECT_SUBTYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is either the same or a direct sub type of another.
 	 */
-	public static final TypeRelation SAMETYPE_OR_DIRECT_SUBTYPE_LITERAL = new TypeRelation(
-		"SAMETYPE_OR_DIRECT_SUBTYPE"); //$NON-NLS-1$
+	SAMETYPE_OR_DIRECT_SUBTYPE_LITERAL("SAMETYPE_OR_DIRECT_SUBTYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is either the same or a direct base type of another.
 	 */
-	public static final TypeRelation SAMETYPE_OR_DIRECT_BASETYPE_LITERAL = new TypeRelation(
-		"SAMETYPE_OR_DIRECT_BASETYPE"); //$NON-NLS-1$
+	SAMETYPE_OR_DIRECT_BASETYPE_LITERAL("SAMETYPE_OR_DIRECT_BASETYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is either the same or a sub type of another.
 	 */
-	public static final TypeRelation SAMETYPE_OR_SUBTYPE_LITERAL = new TypeRelation(
-		"SAMETYPE_OR_SUBTYPE"); //$NON-NLS-1$
+	SAMETYPE_OR_SUBTYPE_LITERAL("SAMETYPE_OR_SUBTYPE"), //$NON-NLS-1$
 
 	/**
 	 * A <code>TypeRelation</code> enumeration literal used to denote that one
 	 * type is either the same or a super type of another.
 	 */
-	public static final TypeRelation SAMETYPE_OR_BASETYPE_LITERAL = new TypeRelation(
-		"SAMETYPE_OR_BASETYPE"); //$NON-NLS-1$
+	SAMETYPE_OR_BASETYPE_LITERAL("SAMETYPE_OR_BASETYPE"); //$NON-NLS-1$
 
 	/**
 	 * The integer value of the UNDEFINED_LITERAL <code>TypeRelation</code>
@@ -201,17 +184,17 @@ public final class TypeRelation
 	public static final int SAMETYPE_OR_BASETYPE = SAMETYPE_OR_BASETYPE_LITERAL
 		.getValue();
 
+	private static final List<TypeRelation> values = java.util.Arrays.asList(values());
+
 	/**
 	 * An immutable list of the enumeration literals declared by this enumerator
 	 */
-	public static final List VALUES = Collections.unmodifiableList(values);
+	public static final List<TypeRelation> VALUES = Collections.unmodifiableList(values);
 
-	private static final TypeRelation[] VALUES_ARRAY = (TypeRelation[]) VALUES
-		.toArray(new TypeRelation[VALUES.size()]);
-
+	private final String name;
+	
 	private TypeRelation(String name) {
-		super(valueCounter++, name);
-		values.add(this);
+		this.name = name;
 	}
 
 	/**
@@ -221,14 +204,14 @@ public final class TypeRelation
 	 * @param value
 	 *            An integer representing the value of a
 	 *            <code>TypeRelation</code> enumeration literal
-	 * @return TypeRelation the <code>TypeRelation</code> having this name or
-	 *         null if the name is not recognised
+	 * @return the <code>TypeRelation</code> having this name or
+	 *         null if the name is not recognized
 	 */
 	public static TypeRelation get(int value) {
-		if (value >= VALUES_ARRAY.length || value < 0) {
+		if (value >= VALUES.size() || value < 0) {
 			return null;
 		}
-		return VALUES_ARRAY[value];
+		return VALUES.get(value);
 	}
 
 	/**
@@ -238,13 +221,13 @@ public final class TypeRelation
 	 * @param name
 	 *            A string representing the name of a <code>TypeRelation</code>
 	 *            enumeration literal
-	 * @return TypeRelation the <code>TypeRelation</code> having this name or
-	 *         <code>null</code> if the name is not recognised
+	 * @return the <code>TypeRelation</code> having this name or
+	 *         <code>null</code> if the name is not recognized
 	 */
 	public static TypeRelation get(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			if (VALUES_ARRAY[i].getName().equals(name)) {
-				return VALUES_ARRAY[i];
+		for (TypeRelation next : VALUES) {
+			if (next.getName().equals(name)) {
+				return next;
 			}
 		}
 		return null;
@@ -253,12 +236,23 @@ public final class TypeRelation
 	/**
 	 * Answers how many enumeration literals declared by this enumerator.
 	 * 
-	 * @return int The total count of all enumeration literals declared by this
+	 * @return The total count of all enumeration literals declared by this
 	 *         enumerator
 	 */
 	public static int getTotalCount() {
-		return VALUES_ARRAY.length;
+		return VALUES.size();
 	}
 
+	public String getLiteral() {
+		return getName();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getValue() {
+		return ordinal();
+	}
 }
 

@@ -55,6 +55,7 @@ public abstract class EObjectCondition
 	 */
 	public static final EObjectCondition E_TRUE = new EObjectCondition() {
 
+		@Override
 		public boolean isSatisfied(EObject object) {
 			return true;
 		}
@@ -67,6 +68,7 @@ public abstract class EObjectCondition
 	public static final EObjectCondition E_FALSE = new EObjectCondition(
 		PruneHandler.ALWAYS) {
 
+		@Override
 		public boolean isSatisfied(EObject object) {
 			return false;
 		}
@@ -75,17 +77,19 @@ public abstract class EObjectCondition
 	private PruneHandler pruneHandler;
 
 	/**
-	 * A simple constructor. It defaults to using the PruneHandler.NEVER
+	 * A simple constructor. It defaults to using the PruneHandler.NEVER and
+	 * matches any {@link EObject}.
 	 * 
 	 * @see org.eclipse.emf.query.handlers.PruneHandler
 	 */
-	protected EObjectCondition() {
+	public EObjectCondition() {
 		this(PruneHandler.NEVER);
 	}
 
 	/**
-	 * A constructor that takes in a <code>PruneHandler</code> instaince to
-	 * use for pruning
+	 * A constructor that takes in a <code>PruneHandler</code> instance to
+	 * use for pruning.  This constructor will match any kind of {@link EObject},
+	 * so it is only safe for conditions with <tt>E == EObject</tt>.
 	 * 
 	 * @param pruneHandler
 	 *            The <code>PruneHandler</code> to use for pruning
@@ -125,6 +129,7 @@ public abstract class EObjectCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 	 */
+	@Override
 	public boolean isSatisfied(Object object) {
 		if (object instanceof EObject) {
 			return isSatisfied((EObject) object);
@@ -160,6 +165,7 @@ public abstract class EObjectCondition
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			return EObjectCondition.this.isSatisfied(eObject)
 				&& condition.isSatisfied(eObject);
@@ -169,6 +175,7 @@ public abstract class EObjectCondition
 		 * Prunes if and only if either of the <code>and</code>ed conditions
 		 * would prune.
 		 */
+		@Override
 		public boolean shouldPrune(EObject eObject) {
 			return EObjectCondition.this.shouldPrune(eObject)
 				|| condition.shouldPrune(eObject);
@@ -182,6 +189,7 @@ public abstract class EObjectCondition
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			return EObjectCondition.this.isSatisfied(eObject)
 				|| condition.isSatisfied(eObject);
@@ -191,6 +199,7 @@ public abstract class EObjectCondition
 		 * Prunes if and only if both of the <code>or</code>ed conditions
 		 * would prune.
 		 */
+		@Override
 		public boolean shouldPrune(EObject eObject) {
 			return EObjectCondition.this.shouldPrune(eObject)
 				&& condition.shouldPrune(eObject);
@@ -204,6 +213,7 @@ public abstract class EObjectCondition
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			return EObjectCondition.this.isSatisfied(eObject)
 				^ condition.isSatisfied(eObject);
@@ -214,6 +224,7 @@ public abstract class EObjectCondition
 		 * Prunes if and only if both of the <code>xor</code>ed conditions
 		 * would prune.
 		 */
+		@Override
 		public boolean shouldPrune(EObject eObject) {
 			return EObjectCondition.this.shouldPrune(eObject)
 				&& condition.shouldPrune(eObject);
@@ -227,6 +238,7 @@ public abstract class EObjectCondition
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			return (!(EObjectCondition.this.isSatisfied(eObject)))
 				|| condition.isSatisfied(eObject);
@@ -235,6 +247,7 @@ public abstract class EObjectCondition
 		/**
 		 * Never prunes.
 		 */
+		@Override
 		public boolean shouldPrune(EObject eObject) {
 			return false;
 		}
@@ -247,6 +260,7 @@ public abstract class EObjectCondition
 			super(condition);
 		}
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			return EObjectCondition.this.isSatisfied(eObject) == condition
 				.isSatisfied(eObject);
@@ -255,6 +269,7 @@ public abstract class EObjectCondition
 		/**
 		 * Never prunes.
 		 */
+		@Override
 		public boolean shouldPrune(EObject eObject) {
 			return false;
 		}
@@ -290,7 +305,7 @@ public abstract class EObjectCondition
 	 * <code>EObjectCondition</code> and the argument
 	 * <code>EObjectCondition</code>. The returned
 	 * <code>EObjectCondition</code> is a newly created
-	 * <code>EObjectCondition</code> which is satisified if either of its
+	 * <code>EObjectCondition</code> which is satisfied if either of its
 	 * constituent <code>EObjectCondition</code> is. Please note that the
 	 * newly compounded <code>EObjectCondition</code> will evaluate this
 	 * <code>EObjectCondition</code> first, and if the result is
@@ -320,7 +335,7 @@ public abstract class EObjectCondition
 	 * <code>EObjectCondition</code> and the argument
 	 * <code>EObjectCondition</code>. The returned
 	 * <code>EObjectCondition</code> is a newly created
-	 * <code>EObjectCondition</code> which is satisified if XORing its
+	 * <code>EObjectCondition</code> which is satisfied if XORing its
 	 * constituent <code>EObjectCondition</code> is.
 	 * 
 	 * @param condition

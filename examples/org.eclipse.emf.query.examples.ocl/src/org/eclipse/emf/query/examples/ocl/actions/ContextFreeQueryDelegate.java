@@ -55,6 +55,7 @@ public class ContextFreeQueryDelegate
 		super();
 	}
 
+	@Override
 	public void run(IAction action) {
 		Collection<EObject> selection = getSelectedObjects();
 		

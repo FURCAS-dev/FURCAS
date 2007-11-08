@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,7 +17,7 @@
 
 package org.eclipse.emf.query.conditions.numbers;
 
-import org.eclipse.emf.query.conditions.Condition;
+import org.eclipse.emf.query.conditions.DataTypeCondition;
 
 /**
  * A <code>Condition</code> object that tests for numeric arguments. The
@@ -25,29 +25,116 @@ import org.eclipse.emf.query.conditions.Condition;
  * a <code>NumberAdapter</code> and then compared to the initialization value
  * of this <code>NumberCondition</code>. It evaluates to <code>true</code>
  * when the values are equal or if the value is within the range of supplied
- * lower-bound and upper-bound
+ * lower-bound and upper-bound.
+ * <p>
+ * Since the 1.2 release, this class is no longer abstract, serving as a generic
+ * number condition, applicable to any number type.  Indeed, the nested
+ * subclasses specific to different precisions are obsolete (though not
+ * deprecated).
+ * </p>
+ * 
+ * @see 
  */
-
-public abstract class NumberCondition
-	extends Condition {
+public class NumberCondition<N extends Number & Comparable<? super N>>
+	extends DataTypeCondition<N> {
 
 	/** The upper bound of a range condition. */
-	protected Number upperBound;
+	protected N upperBound;
 
 	/** The lower bound of a range condition. */
-	protected Number lowerBound;
+	protected N lowerBound;
 
 	/**
-	 * Adapts elements to numbers (usually according to some numeric
-	 * {@link org.eclipse.emf.ecore.EAttribute}.
+	 * Initializes me with a single number against which to test input
+	 * values, assuming that they will be numbers of the appropriate kind.
+	 * 
+	 * @param number the number to match against input values
+	 * 
+	 * @since 1.2
 	 */
-	protected NumberAdapter adapter;
+	public NumberCondition(N number) {
+		super(number, NumberAdapter.<N>getDefault());
+		
+		this.lowerBound = number;
+		this.upperBound = number;
+	}
 
-	private NumberCondition(Number lowerBound, Number upperBound,
-		NumberAdapter adapter) {
+	/**
+	 * Initializes me with upper and lower bounds against which to test input
+	 * values, assuming that they will be numbers of the appropriate kind.
+	 * 
+	 * @param lowerBound the lower bound to test
+	 * @param upperBound the upper bound to test
+	 * 
+	 * @since 1.2
+	 */
+	public NumberCondition(N lowerBound, N upperBound) {
+		super(lowerBound, NumberAdapter.<N>getDefault());
+		
 		this.lowerBound = lowerBound;
 		this.upperBound = upperBound;
-		this.adapter = adapter;
+	}
+
+	/**
+	 * Initializes me with a single number against which to test input
+	 * values, and an adapter to convert those inputs to numbers.
+	 * 
+	 * @param number the number to match against input values
+	 * @param adapter to convert input values to the appropriate number kind
+	 * 
+	 * @since 1.2
+	 */
+	public NumberCondition(N number, NumberAdapter<? extends N> adapter) {
+		super(number, adapter);
+		
+		this.lowerBound = number;
+		this.upperBound = number;
+	}
+
+	/**
+	 * Initializes me with upper and lower bounds against which to test input
+	 * values, and an adapter to convert those inputs to numbers.
+	 * 
+	 * @param lowerBound the lower bound to test
+	 * @param upperBound the upper bound to test
+	 * @param adapter to convert input values to the appropriate number kind
+	 * 
+	 * @since 1.2
+	 */
+	public NumberCondition(N lowerBound, N upperBound, NumberAdapter<? extends N> adapter) {
+		super(lowerBound, adapter);
+		
+		this.lowerBound = lowerBound;
+		this.upperBound = upperBound;
+	}
+	
+	/**
+	 * Obtains a condition checking for values equal to the specified
+	 * <tt>number</tt>.
+	 * 
+	 * @param number a number to check for
+	 * @return a condition that does the checking
+	 * 
+	 * @since 1.2
+	 */
+	public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+	equals(N number) {
+		return new NumberCondition<N>(number, number);
+	}
+	
+	/**
+	 * Obtains a condition checking for values in the range to the specified
+	 * <tt>lowerBound</tt> and <tt>upperBound</tt> (inclusive).
+	 * 
+	 * @param lowerBound the lower bound of numbers to check for
+	 * @param upperBound the upper bound of numbers to check for
+	 * @return a condition that does the checking
+	 * 
+	 * @since 1.2
+	 */
+	public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+	between(N lowerBound, N upperBound) {
+		return new NumberCondition<N>(lowerBound, upperBound);
 	}
 
 	/**
@@ -56,7 +143,7 @@ public abstract class NumberCondition
 	 * or have their own.
 	 */
 	public static class IntegerValue
-		extends NumberCondition {
+		extends NumberCondition<Integer> {
 
 		/**
 		 * A simple constructor, it takes only one <code>Integer</code>
@@ -135,6 +222,7 @@ public abstract class NumberCondition
 		 * 
 		 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 		 */
+		@Override
 		public boolean isSatisfied(Object object) {
 			return isSatisfied(((NumberAdapter.IntegerAdapter) adapter)
 				.intValue(object));
@@ -148,7 +236,7 @@ public abstract class NumberCondition
 	 * their own.
 	 */
 	public static class ByteValue
-		extends NumberCondition {
+		extends NumberCondition<Byte> {
 
 		/**
 		 * A simple constructor, it takes only one <code>Byte</code> argument
@@ -225,6 +313,7 @@ public abstract class NumberCondition
 		 * 
 		 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 		 */
+		@Override
 		public boolean isSatisfied(Object object) {
 			return isSatisfied(((NumberAdapter.ByteAdapter) adapter)
 				.byteValue(object));
@@ -237,7 +326,7 @@ public abstract class NumberCondition
 	 * or have their own.
 	 */
 	public static class DoubleValue
-		extends NumberCondition {
+		extends NumberCondition<Double> {
 
 		/**
 		 * A simple constructor, it takes only one <code>Double</code>
@@ -316,6 +405,7 @@ public abstract class NumberCondition
 		 * 
 		 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 		 */
+		@Override
 		public boolean isSatisfied(Object object) {
 			return isSatisfied(((NumberAdapter.DoubleAdapter) adapter)
 				.doubleValue(object));
@@ -328,7 +418,7 @@ public abstract class NumberCondition
 	 * their own.
 	 */
 	public static class FloatValue
-		extends NumberCondition {
+		extends NumberCondition<Float> {
 
 		/**
 		 * A simple constructor, it takes only one Float argument which means in
@@ -407,6 +497,7 @@ public abstract class NumberCondition
 		 * 
 		 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 		 */
+		@Override
 		public boolean isSatisfied(Object object) {
 			return isSatisfied(((NumberAdapter.FloatAdapter) adapter)
 				.floatValue(object));
@@ -419,7 +510,7 @@ public abstract class NumberCondition
 	 * their own.
 	 */
 	public static class LongValue
-		extends NumberCondition {
+		extends NumberCondition<Long> {
 
 		/**
 		 * A simple constructor, it takes only one Long argument which means in
@@ -496,6 +587,7 @@ public abstract class NumberCondition
 		 * 
 		 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 		 */
+		@Override
 		public boolean isSatisfied(Object object) {
 			return isSatisfied(((NumberAdapter.LongAdapter) adapter)
 				.longValue(object));
@@ -508,7 +600,7 @@ public abstract class NumberCondition
 	 * their own.
 	 */
 	public static class ShortValue
-		extends NumberCondition {
+		extends NumberCondition<Short> {
 
 		/**
 		 * A simple constructor, it takes only one Short argument which means in
@@ -586,6 +678,7 @@ public abstract class NumberCondition
 		 * 
 		 * @see org.eclipse.emf.query.conditions.Condition#isSatisfied(java.lang.Object)
 		 */
+		@Override
 		public boolean isSatisfied(Object object) {
 			return isSatisfied(((NumberAdapter.ShortAdapter) adapter)
 				.shortValue(object));
@@ -746,5 +839,12 @@ public abstract class NumberCondition
 	public boolean isSatisfied(short shortValue) {
 		return (shortValue >= lowerBound.shortValue())
 			&& (shortValue <= upperBound.shortValue());
+	}
+	
+	@Override
+	public boolean isSatisfied(Object object) {
+		N number = adapter.adapt(object);
+		return (lowerBound.compareTo(number) <= 0)
+			&& (upperBound.compareTo(number) >= 0);
 	}
 }

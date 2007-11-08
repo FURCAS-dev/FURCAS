@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -30,10 +30,11 @@ import org.eclipse.emf.query.examples.internal.QueryExamplesPlugin;
 public class StatementsExampleWizard
 	extends AbstractExampleWizard {
 	
-	protected Collection getProjectDescriptors() {
+	@Override
+	protected Collection<ProjectDescriptor> getProjectDescriptors() {
 		// We need the statements example to be unzipped along with the
 		// EMF library example model, edit and editor examples
-		List projects = new ArrayList(4);
+		List<ProjectDescriptor> projects = new ArrayList<ProjectDescriptor>(4);
 		projects.add(new ProjectDescriptor("org.eclipse.emf.query.examples", "zips/library.zip", "org.eclipse.emf.examples.library"));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		projects.add(new ProjectDescriptor("org.eclipse.emf.query.examples", "zips/libraryEdit.zip", "org.eclipse.emf.examples.library.edit")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		projects.add(new ProjectDescriptor("org.eclipse.emf.query.examples", "zips/libraryEditor.zip", "org.eclipse.emf.examples.library.editor"));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
@@ -42,6 +43,7 @@ public class StatementsExampleWizard
 		return projects;
 	}
 	
+	@Override
 	protected void log(Exception e) {
 		if (e instanceof CoreException) {
 			QueryExamplesPlugin.getDefault().getLog().log(((CoreException)e).getStatus());

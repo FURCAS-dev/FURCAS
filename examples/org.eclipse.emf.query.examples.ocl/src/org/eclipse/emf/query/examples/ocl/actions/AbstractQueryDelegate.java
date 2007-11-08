@@ -111,6 +111,7 @@ abstract class AbstractQueryDelegate
 	/**
 	 * Gets all of the {@link EObject}s in the current selection, if any.
 	 */
+	@Override
 	public void selectionChanged(IAction action, final ISelection selection) {
 		selectedEObjects = Collections.emptySet();
 		

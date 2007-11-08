@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,6 @@
 package org.eclipse.emf.query.conditions;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * An abstract base class for <code>ConditionPolicy</code> objects.
@@ -53,7 +52,7 @@ public abstract class ConditionPolicy {
 	 *         objects -in accordance to this <code>ConditionPolicy</code>,
 	 *         <code>false</code> otherwise
 	 */
-	public abstract boolean isSatisfied(Condition condition, Collection objects);
+	public abstract boolean isSatisfied(Condition condition, Collection<?> objects);
 
 	/**
 	 * Answers whether the argument conditions evaluate -collectively- to
@@ -103,19 +102,20 @@ public abstract class ConditionPolicy {
 	 */
 	public static final ConditionPolicy ALL = new ConditionPolicy() {
 
-		public boolean isSatisfied(Condition condition, Collection objects) {
-			Iterator it = objects.iterator();
-			while (it.hasNext()) {
-				if (condition.isSatisfied(it.next()) == false) {
+		@Override
+		public boolean isSatisfied(Condition condition, Collection<?> objects) {
+			for (Object o : objects) {
+				if (condition.isSatisfied(o) == false) {
 					return false;
 				}
 			}
 			return true;
 		}
 
+		@Override
 		public boolean isSatisfied(Condition[] conditions, Object object) {
-			for (int i = 0; i < conditions.length; ++i) {
-				if (conditions[i].isSatisfied(object) == false) {
+			for (Condition c : conditions) {
+				if (c.isSatisfied(object) == false) {
 					return false;
 				}
 			}
@@ -133,19 +133,20 @@ public abstract class ConditionPolicy {
 	 */
 	public static final ConditionPolicy ANY = new ConditionPolicy() {
 
-		public boolean isSatisfied(Condition condition, Collection objects) {
-			Iterator it = objects.iterator();
-			while (it.hasNext()) {
-				if (condition.isSatisfied(it.next())) {
+		@Override
+		public boolean isSatisfied(Condition condition, Collection<?> objects) {
+			for (Object o : objects) {
+				if (condition.isSatisfied(o)) {
 					return true;
 				}
 			}
 			return false;
 		}
 
+		@Override
 		public boolean isSatisfied(Condition[] conditions, Object object) {
-			for (int i = 0; i < conditions.length; ++i) {
-				if (conditions[i].isSatisfied(object)) {
+			for (Condition c : conditions) {
+				if (c.isSatisfied(object)) {
 					return true;
 				}
 			}

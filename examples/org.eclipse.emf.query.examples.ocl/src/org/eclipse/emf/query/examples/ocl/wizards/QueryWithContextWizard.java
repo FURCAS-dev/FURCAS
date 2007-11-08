@@ -31,6 +31,7 @@ public class QueryWithContextWizard
 		super();
 	}
 
+	@Override
 	protected IOCLQueryWizardPage createOclQueryPage() {
 		return new QueryWithContextWizardPage();
 	}

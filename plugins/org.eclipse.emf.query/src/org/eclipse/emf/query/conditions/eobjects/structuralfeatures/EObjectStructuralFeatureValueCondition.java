@@ -60,7 +60,7 @@ import org.eclipse.emf.query.handlers.PruneHandler;
  * <code>EStructuralFeature</code> and the resultant evaluation of this
  * condition will be <code>false</code></li>
  * 
- * <li>If the collection resturned as a value of a multiple-valued
+ * <li>If the collection returned as a value of a multiple-valued
  * <code>EStructuralFeature</code> is empty, then no further evaluation is
  * done on the <code>EStructuralFeature</code> and the resultant evaluation of
  * this condition will be <code>false</code></li>
@@ -146,6 +146,7 @@ public abstract class EObjectStructuralFeatureValueCondition
 	 * 
 	 * @see org.eclipse.emf.query.conditions.eobjects.EObjectCondition#isSatisfied(org.eclipse.emf.ecore.EObject)
 	 */
+	@Override
 	public boolean isSatisfied(EObject eObject) {
 		if (super.isSatisfied(eObject)) {
 			return featureCondition.isSatisfied(eObject);
@@ -210,7 +211,8 @@ public abstract class EObjectStructuralFeatureValueCondition
 			this.resolve = resolve;
 		}
 
-        public boolean isSatisfied(EObject eObject) {
+        @Override
+		public boolean isSatisfied(EObject eObject) {
             Object featureValue = null;
             if (eObject.eIsSet(feature)) {
                 featureValue = eStructuralFeatureValueGetter.eGet(eObject,
@@ -248,13 +250,14 @@ public abstract class EObjectStructuralFeatureValueCondition
 				eStructuralFeatureValueGetter, resolve);
 		}
 
+		@Override
 		public boolean isSatisfied(EObject eObject) {
-			List list = null;
+			List<?> list = null;
 			if (eObject.eIsSet(feature)) {
-				list = (List) eStructuralFeatureValueGetter.eGet(eObject,
+				list = (List<?>) eStructuralFeatureValueGetter.eGet(eObject,
 					feature, resolve);
 			} else if (feature.getDefaultValue() != null) {
-				list = (List)feature.getDefaultValue();
+				list = (List<?>) feature.getDefaultValue();
 			}
 			
 			return (list == null || list.isEmpty()) ? false : policy.isSatisfied(
@@ -282,6 +285,7 @@ public abstract class EObjectStructuralFeatureValueCondition
 				policy, feature, eStructuralFeatureValueGetter, resolve);
 		}
 		
+		@Override
 		public boolean isSatisfied(EObject eObject) {
 			if (FeatureMapUtil.isMany(eObject, feature)) {
 				return multipleEvaluator.isSatisfied(eObject);

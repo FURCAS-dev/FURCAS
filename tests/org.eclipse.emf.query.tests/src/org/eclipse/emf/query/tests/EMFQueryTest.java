@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2006 IBM Corporation and others.
+ * Copyright (c) 2002, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,7 +47,6 @@ import org.eclipse.emf.query.conditions.Not;
 import org.eclipse.emf.query.conditions.ObjectInstanceCondition;
 import org.eclipse.emf.query.conditions.booleans.BooleanCondition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
-import org.eclipse.emf.query.conditions.eobjects.EObjectSource;
 import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectAttributeValueCondition;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectReferenceValueCondition;
@@ -74,7 +73,7 @@ public class EMFQueryTest
 		return new TestSuite(EMFQueryTest.class);
 	}
 
-	private Collection modelElements;
+	private Collection<EObject> modelElements;
 
 	private Library library;
 
@@ -106,10 +105,11 @@ public class EMFQueryTest
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		modelElements = new ArrayList();
+		modelElements = new ArrayList<EObject>();
 		modelElements.add(getLibrary());
 
 		book_EClass = EXTLibraryPackage.Literals.BOOK;
@@ -121,6 +121,7 @@ public class EMFQueryTest
 	/**
 	 * @see junit.framework.TestCase#tearDown()
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		resource = null;
 		super.tearDown();
@@ -129,12 +130,14 @@ public class EMFQueryTest
 	private void logicalOperatorsTesting() {
 		Condition FALSE = new BooleanCondition(false) {
 
+			@Override
 			public boolean isSatisfied(Object object) {
 				return false;
 			}
 		};
 		Condition TRUE = new BooleanCondition(true) {
 
+			@Override
 			public boolean isSatisfied(Object object) {
 				return true;
 			}
@@ -189,15 +192,19 @@ public class EMFQueryTest
 	public void test_QueryStatementExceptionHandling() {
 		final RuntimeException exception = new RuntimeException();
 		
-		QueryStatement statement = new QueryStatement(false, new NullProgressMonitor()) {
+		QueryStatement statement = new QueryStatement(false,
+				new NullProgressMonitor()) {
+			@Override
 			public boolean canBeResumed() {
 				return false;
 			}
 
+			@Override
 			protected void doExecute() {
 				throw exception;
 			}
 
+			@Override
 			protected void doResume() {
 				doExecute();
 			}
@@ -226,7 +233,7 @@ public class EMFQueryTest
 		EAttribute categoryAttribute = EXTLibraryPackage.eINSTANCE.getBook_Category();
 		
 		SELECT s = new SELECT(
-				new FROM(new EObjectSource(b)),
+				new FROM(b),
 				new WHERE(new EObjectAttributeValueCondition(categoryAttribute,
 							new ObjectInstanceCondition(categoryAttribute.getDefaultValue()),
 							EStructuralFeatureValueGetter.getInstance())));
@@ -276,12 +283,14 @@ public class EMFQueryTest
 
 				private boolean shouldPrune;
 
+				@Override
 				public boolean shouldPrune(EObject object) {
 					return shouldPrune;
 				}
 
+				@Override
 				public boolean isSatisfied(EObject element) {
-					if (element.eClass() == book_EClass) {
+					if (element instanceof Book) {
 						if (((Book) element).getTitle().equals(title)) {
 							shouldPrune = true;
 							return true;
@@ -290,9 +299,9 @@ public class EMFQueryTest
 					return false;
 				}
 			}));
-		Collection resultSet = statement.execute();
-		instance_Book1 = (Book) ((resultSet.isEmpty()) ? null
-			: (EObject) resultSet.toArray()[0]);
+		Collection<EObject> resultSet = statement.execute();
+		instance_Book1 = ((resultSet.isEmpty()) ? null
+			: resultSet.toArray(new Book[resultSet.size()])[0]);
 		return instance_Book1;
 	}
 
@@ -300,7 +309,7 @@ public class EMFQueryTest
 		if (resource == null) {
 			resource = new ResourceImpl(URI.createURI("foo:///foo.xml")); //$NON-NLS-1$
 			
-			List contents = resource.getContents();
+			List<EObject> contents = resource.getContents();
 			
 			Library l = EXTLibraryFactory.eINSTANCE.createLibrary();
 			l.setName("New Library"); //$NON-NLS-1$
@@ -336,7 +345,7 @@ public class EMFQueryTest
 		return library;
 	}
 
-	private Collection getQueryObjects() {
+	private Collection<EObject> getQueryObjects() {
 		return modelElements;
 	}
 }

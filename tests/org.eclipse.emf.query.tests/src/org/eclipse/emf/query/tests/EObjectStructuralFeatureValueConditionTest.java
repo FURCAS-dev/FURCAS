@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EObjectStructuralFeatureValueConditionTest.java,v 1.1 2007/04/26 17:13:30 cdamus Exp $
+ * $Id: EObjectStructuralFeatureValueConditionTest.java,v 1.2 2007/11/08 23:00:27 cdamus Exp $
  */
 
 package org.eclipse.emf.query.tests;
@@ -25,6 +25,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
@@ -60,7 +61,7 @@ public class EObjectStructuralFeatureValueConditionTest
     }
 
     public void test_searchForNullValue_184011() {
-        Collection objects = new java.util.HashSet();
+        Collection<EObject> objects = new java.util.HashSet<EObject>();
 
         Library a = EXTLibraryFactory.eINSTANCE.createLibrary();
         objects.add(a);
@@ -80,7 +81,7 @@ public class EObjectStructuralFeatureValueConditionTest
             EXTLibraryPackage.Literals.LIBRARY__NAME,
             ObjectInstanceCondition.IS_NULL);
 
-        Collection results = query(objects, cond);
+        Collection<EObject> results = query(objects, cond);
         assertEquals(Collections.singleton(b), results);
 
         cond = new EObjectReferenceValueCondition(
@@ -95,8 +96,8 @@ public class EObjectStructuralFeatureValueConditionTest
     // Framework methods
     //
 
-    Collection query(Collection source, EObjectCondition cond) {
-        return new SELECT(new FROM(source), new WHERE(cond)).execute()
-            .getEObjects();
+    Collection<EObject> query(Collection<? extends EObject> source,
+    		EObjectCondition cond) {
+        return new SELECT(new FROM(source), new WHERE(cond)).execute();
     }
 }
