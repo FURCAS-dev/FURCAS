@@ -13,7 +13,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.6 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.7 2007/11/08 22:23:43 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1020,6 +1020,8 @@ public class TypeUtil {
 	 * @param type2 another type
 	 * @return their common supertype, if any, null if the two types have no common supertype
      * 
+     * @throws SemanticException if the two types have no common supertype
+     * 
      * @deprecated Use the {@link #commonSuperType(Object, Environment, Object, Object)}
      *     method, instead.
 	 */
@@ -1027,7 +1029,7 @@ public class TypeUtil {
     public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	C commonSuperType(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			C type1, C type2) {
+			C type1, C type2) throws SemanticException {
 		
 		return commonSuperType(null, env, type1, type2);
 	}
