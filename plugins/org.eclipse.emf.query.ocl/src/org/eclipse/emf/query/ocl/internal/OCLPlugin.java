@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.4 2007/06/06 22:28:19 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.5 2007/11/12 14:39:36 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.internal;
@@ -129,6 +129,7 @@ public class OCLPlugin
         super(new ResourceLocator[] {});
     }
 
+    @Override
     public ResourceLocator getPluginResourceLocator() {
         return plugin;
     }
@@ -190,9 +191,8 @@ public class OCLPlugin
     	
     				if (null == value) {
     					value =
-    						new Boolean(
-    							Boolean.TRUE.toString().equalsIgnoreCase(
-    								org.eclipse.core.runtime.Platform.getDebugOption(option)));
+    						Boolean.TRUE.toString().equalsIgnoreCase(
+    								org.eclipse.core.runtime.Platform.getDebugOption(option));
     	
     					cachedOptions.put(option, value);
     				}
@@ -396,58 +396,6 @@ public class OCLPlugin
     	}
 
     	/**
-    	 * Traces the entering into the specified method of the specified class.
-    	 * 
-    	 * @param option The debug option for which to trace.
-    	 * @param clazz The class whose method is being entered.
-    	 * @param methodName The name of method that is being entered.
-    	 * 
-    	 */
-    	public static void entering(
-    		String option,
-    		Class<?> clazz,
-    		String methodName) {
-
-    		if (shouldTrace(option)) {
-
-    			trace(
-    				PREFIX_ENTERING
-    					+ clazz.getName()
-    					+ SEPARATOR_METHOD
-    					+ methodName);
-    		}
-    	}
-
-    	/**
-    	 * Traces the entering into the specified method of the specified class,
-    	 * with the specified parameter.
-    	 * 
-    	 * @param option The debug option for which to trace.
-    	 * @param clazz The class whose method is being entered.
-    	 * @param methodName The name of method that is being entered.
-    	 * @param parameter The parameter to the method being entered.
-    	 * 
-    	 */
-    	public static void entering(
-    		String option,
-    		Class<?> clazz,
-    		String methodName,
-    		Object parameter) {
-
-    		if (shouldTrace(option)) {
-
-    			trace(
-    				PREFIX_ENTERING
-    					+ clazz.getName()
-    					+ SEPARATOR_METHOD
-    					+ methodName
-    					+ PARENTHESIS_OPEN
-    					+ getArgumentString(parameter)
-    					+ PARENTHESIS_CLOSE);
-    		}
-    	}
-
-    	/**
     	 * Traces the entering into the specified method of the specified class,
     	 * with the specified parameters.
     	 * 
@@ -461,7 +409,7 @@ public class OCLPlugin
     		String option,
     		Class<?> clazz,
     		String methodName,
-    		Object[] parameters) {
+    		Object... parameters) {
 
     		if (shouldTrace(option)) {
 

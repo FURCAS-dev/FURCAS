@@ -190,9 +190,8 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	
     				if (null == value) {
     					value =
-    						new Boolean(
-    							Boolean.TRUE.toString().equalsIgnoreCase(
-    								org.eclipse.core.runtime.Platform.getDebugOption(option)));
+    						Boolean.TRUE.toString().equalsIgnoreCase(
+    								org.eclipse.core.runtime.Platform.getDebugOption(option));
     	
     					cachedOptions.put(option, value);
     				}
@@ -396,58 +395,6 @@ public final class EMFQueryPlugin extends EMFPlugin {
     	}
 
     	/**
-    	 * Traces the entering into the specified method of the specified class.
-    	 * 
-    	 * @param option The debug option for which to trace.
-    	 * @param clazz The class whose method is being entered.
-    	 * @param methodName The name of method that is being entered.
-    	 * 
-    	 */
-    	public static void entering(
-    		String option,
-    		Class<?> clazz,
-    		String methodName) {
-
-    		if (shouldTrace(option)) {
-
-    			trace(
-    				PREFIX_ENTERING
-    					+ clazz.getName()
-    					+ SEPARATOR_METHOD
-    					+ methodName);
-    		}
-    	}
-
-    	/**
-    	 * Traces the entering into the specified method of the specified class,
-    	 * with the specified parameter.
-    	 * 
-    	 * @param option The debug option for which to trace.
-    	 * @param clazz The class whose method is being entered.
-    	 * @param methodName The name of method that is being entered.
-    	 * @param parameter The parameter to the method being entered.
-    	 * 
-    	 */
-    	public static void entering(
-    		String option,
-    		Class<?> clazz,
-    		String methodName,
-    		Object parameter) {
-
-    		if (shouldTrace(option)) {
-
-    			trace(
-    				PREFIX_ENTERING
-    					+ clazz.getName()
-    					+ SEPARATOR_METHOD
-    					+ methodName
-    					+ PARENTHESIS_OPEN
-    					+ getArgumentString(parameter)
-    					+ PARENTHESIS_CLOSE);
-    		}
-    	}
-
-    	/**
     	 * Traces the entering into the specified method of the specified class,
     	 * with the specified parameters.
     	 * 
@@ -461,7 +408,7 @@ public final class EMFQueryPlugin extends EMFPlugin {
     		String option,
     		Class<?> clazz,
     		String methodName,
-    		Object[] parameters) {
+    		Object... parameters) {
 
     		if (shouldTrace(option)) {
 
