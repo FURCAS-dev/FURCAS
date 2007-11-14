@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryOCLTest.java,v 1.2 2007/06/06 22:28:20 cdamus Exp $
+ * $Id: QueryOCLTest.java,v 1.3 2007/11/14 18:21:55 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;
@@ -43,7 +43,8 @@ public class QueryOCLTest
 		return new TestSuite(QueryOCLTest.class);
 	}
 
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		super.setUp();
 		
@@ -104,7 +105,8 @@ public class QueryOCLTest
 		assertEquals(1, result.size());
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		library = null;

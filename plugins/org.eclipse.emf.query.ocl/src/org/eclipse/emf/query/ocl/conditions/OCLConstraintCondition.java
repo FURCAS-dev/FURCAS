@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConstraintCondition.java,v 1.3 2007/03/22 22:20:38 cdamus Exp $
+ * $Id: OCLConstraintCondition.java,v 1.4 2007/11/14 18:21:54 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -36,6 +36,7 @@ import org.eclipse.emf.query.handlers.PruneHandler;
  *     customization of the OCL parsing environment as well as other metamodels
  *     than Ecore
  */
+@Deprecated
 public class OCLConstraintCondition
 	extends OCLCondition {
 
@@ -47,11 +48,13 @@ public class OCLConstraintCondition
 	public static final OCLConstraintCondition NULL_CONDITION = new OCLConstraintCondition(
 		null, null, (EStructuralFeatureValueGetter)null) {
 
-		public Object evaluate(EObject eObject) {
+		@Override
+        public Object evaluate(EObject eObject) {
 			return null;
 		}
 
-		public boolean isSatisfied(EObject eObject) {
+		@Override
+        public boolean isSatisfied(EObject eObject) {
 			return true;
 		}
 	};
@@ -227,7 +230,8 @@ public class OCLConstraintCondition
 	 * Computes the boolean value resulting from evaluating the constraint
 	 * condition on the specified <code>eObject</code>.
 	 */
-	public boolean isSatisfied(EObject eObject) {
+	@Override
+    public boolean isSatisfied(EObject eObject) {
 		if (super.isSatisfied(eObject)) {
 			return getOclQuery().check(
 				getEStructuralFeatureValueGetter().resolve(eObject));

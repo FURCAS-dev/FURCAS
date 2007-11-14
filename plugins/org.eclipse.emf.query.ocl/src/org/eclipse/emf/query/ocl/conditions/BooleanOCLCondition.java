@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanOCLCondition.java,v 1.2 2007/03/23 13:08:44 cdamus Exp $
+ * $Id: BooleanOCLCondition.java,v 1.3 2007/11/14 18:21:54 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -225,7 +225,8 @@ public class BooleanOCLCondition<C, CLS, E>
 	 * Computes the boolean value resulting from evaluating the constraint
 	 * condition on the specified <code>eObject</code>.
 	 */
-	public boolean isSatisfied(EObject eObject) {
+	@Override
+    public boolean isSatisfied(EObject eObject) {
 		if (super.isSatisfied(eObject)) {
 			return getOCLQuery().check(
 				getEStructuralFeatureValueGetter().resolve(eObject));

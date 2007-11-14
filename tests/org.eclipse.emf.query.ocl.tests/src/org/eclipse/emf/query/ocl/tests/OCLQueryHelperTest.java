@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLQueryHelperTest.java,v 1.3 2007/06/06 22:28:20 cdamus Exp $
+ * $Id: OCLQueryHelperTest.java,v 1.4 2007/11/14 18:21:55 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;
@@ -249,7 +249,8 @@ public class OCLQueryHelperTest
 	// Fixture methods.
 	//
 	
-	protected void setUp()
+	@Override
+    protected void setUp()
 		throws Exception {
 		
 		super.setUp();
@@ -289,7 +290,8 @@ public class OCLQueryHelperTest
 		library.getBooks().add(book);
 	}
 	
-	protected void tearDown()
+	@Override
+    protected void tearDown()
 		throws Exception {
 		
 		writer1 = null;

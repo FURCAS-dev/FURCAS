@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLCondition.java,v 1.5 2007/03/30 19:23:37 cdamus Exp $
+ * $Id: OCLCondition.java,v 1.6 2007/11/14 18:21:54 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -55,6 +55,7 @@ import org.eclipse.emf.query.ocl.internal.OCLPlugin;
  *     customization of the OCL parsing environment as well as other metamodels
  *     than Ecore
  */
+@Deprecated
 public abstract class OCLCondition
 	extends EObjectCondition {
 
@@ -260,7 +261,8 @@ public abstract class OCLCondition
 	 * @see #getContextEObjectType()
 	 * @see #isContextFree()
 	 */
-	public boolean isSatisfied(EObject eObject) {
+	@Override
+    public boolean isSatisfied(EObject eObject) {
 		if (isContextFree() == false) {
 			return getContextEObjectType().isInstance(eObject);
 		} else {

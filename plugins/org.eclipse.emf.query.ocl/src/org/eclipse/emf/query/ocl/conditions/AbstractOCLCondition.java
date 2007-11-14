@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLCondition.java,v 1.1 2007/03/22 22:20:38 cdamus Exp $
+ * $Id: AbstractOCLCondition.java,v 1.2 2007/11/14 18:21:54 cdamus Exp $
  */
 
 package org.eclipse.emf.query.ocl.conditions;
@@ -281,7 +281,8 @@ public abstract class AbstractOCLCondition<C, CLS, E>
 	 * @see #getContextClassifier()
 	 * @see #isContextFree()
 	 */
-	public boolean isSatisfied(EObject eObject) {
+	@Override
+    public boolean isSatisfied(EObject eObject) {
 		if (isContextFree() == false) {
             return evalEnv.isKindOf(eObject, getContextClassifier());
 		} else {
