@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.3 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.4 2007/11/20 13:19:58 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -77,9 +77,10 @@ public final class OCLUtil {
 	 *     if this environment does not adapt to it
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T, PK, C, O, P>
-	T getAdapter(final Environment<PK, C, O, P, ?, ?, ?, ?, ?, ?, ?, ?> env,
+	public static <T> T getAdapter(
+	        Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
 			Class<T> adapterType) {
+	    
 		T result;
 		
 		if (env instanceof Adaptable) {
@@ -96,44 +97,47 @@ public final class OCLUtil {
 			} else if (adapterType == ProblemHandler.class) {
 				result = (T) getAdapter(env, BasicEnvironment.class).getProblemHandler();
 			} else if (adapterType == Environment.Lookup.class) {
-				result = (T) new Environment.Lookup<PK, C, O, P>() {
-				    public PK tryLookupPackage(List<String> names)
+			    final Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> _env =
+			        (Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>) env;
+			    
+				result = (T) new Environment.Lookup<Object, Object, Object, Object>() {
+				    public Object tryLookupPackage(List<String> names)
                         throws LookupException {
                         
-                        return env.lookupPackage(names);
+                        return _env.lookupPackage(names);
                     }
     
-                    public C tryLookupClassifier(List<String> names)
+                    public Object tryLookupClassifier(List<String> names)
 						throws LookupException {
 						
-						return env.lookupClassifier(names);
+						return _env.lookupClassifier(names);
 					}
 
-                    public O tryLookupOperation(C owner, String name,
-                            List<? extends TypedElement<C>> args)
+                    public Object tryLookupOperation(Object owner, String name,
+                            List<? extends TypedElement<Object>> args)
                         throws LookupException {
                         
-                        return env.lookupOperation(owner, name, args);
+                        return _env.lookupOperation(owner, name, args);
                     }
 
-                    public P tryLookupProperty(C owner, String name)
+                    public Object tryLookupProperty(Object owner, String name)
                         throws LookupException {
                         
-                        return env.lookupProperty(owner, name);
+                        return _env.lookupProperty(owner, name);
                     }
 
-                    public C tryLookupAssociationClassReference(C owner,
+                    public Object tryLookupAssociationClassReference(Object owner,
                             String name)
                         throws LookupException {
                         
-                        return env.lookupAssociationClassReference(owner, name);
+                        return _env.lookupAssociationClassReference(owner, name);
                     }
 
-                    public C tryLookupSignal(C owner, String name,
-                            List<? extends TypedElement<C>> args)
+                    public Object tryLookupSignal(Object owner, String name,
+                            List<? extends TypedElement<Object>> args)
                         throws LookupException {
                         
-                        return env.lookupSignal(owner, name, args);
+                        return _env.lookupSignal(owner, name, args);
                     }};
 			}
 		}
@@ -149,7 +153,9 @@ public final class OCLUtil {
 	 * @param env the environment for which to define an external adapter
 	 * @return the external adapter
 	 */
-	private static BasicEnvironment getBasicEnvironment(final Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
+	private static BasicEnvironment getBasicEnvironment(
+	        final Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
+	    
 	    BasicEnvironment result = null;
 	    Reference<BasicEnvironment> ref = environments.get(env);
 	    
@@ -192,8 +198,8 @@ public final class OCLUtil {
 	 *     if this environment factory does not adapt to it
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T, PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	T getAdapter(final EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> factory,
+	public static <T> T getAdapter(
+	        EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> factory,
 			Class<T> adapterType) {
 		T result;
 		
@@ -207,13 +213,16 @@ public final class OCLUtil {
 		
 		if (result == null) {
 			if (adapterType == EnvironmentFactory.Lookup.class) {
-				result = (T) new EnvironmentFactory.Lookup<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>() {
-					public Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> tryCreatePackageContext(
-							Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parent,
+			    final EnvironmentFactory<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> _factory =
+			        (EnvironmentFactory<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>) factory;
+			    
+				result = (T) new EnvironmentFactory.Lookup<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>() {
+					public Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> tryCreatePackageContext(
+							Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object> parent,
 							List<String> pathname)
 						throws LookupException {
 						
-						return factory.createPackageContext(parent, pathname);
+						return _factory.createPackageContext(parent, pathname);
 					}};
 			}
 		}
@@ -233,9 +242,9 @@ public final class OCLUtil {
 	 *     if this evaluation environment does not adapt to it
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T, C, O, P, CLS, E>
-	T getAdapter(final EvaluationEnvironment<C, O, P, CLS, E> env,
-			Class<T> adapterType) {
+	public static <T> T getAdapter(EvaluationEnvironment<?, ?, ?, ?, ?> env,
+	        Class<T> adapterType) {
+	    
 		T result;
 		
 		if (env instanceof Adaptable) {
