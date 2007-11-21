@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.3 2007/05/17 17:06:22 cdamus Exp $
+ * $Id: AbstractVisitor.java,v 1.4 2007/11/21 20:35:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
@@ -686,7 +686,9 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      */
     public T visitExpressionInOCL(ExpressionInOCL<C, PM> expression) {
         T contextResult = expression.getContextVariable().accept(this);
-        T resultResult = expression.getResultVariable().accept(this);
+        
+        Variable<C, PM> resultVar = expression.getResultVariable();
+        T resultResult = (resultVar == null)? null : resultVar.accept(this);
         
         List<T> parameterResults;
         List<Variable<C, PM>> parameters = expression.getParameterVariable();
