@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitorTest.java,v 1.1 2007/05/01 15:25:06 cdamus Exp $
+ * $Id: AbstractVisitorTest.java,v 1.2 2007/11/21 20:35:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -34,6 +34,7 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.utilities.AbstractVisitor;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
  * Tests the {@link AbstractVisitor} class.
@@ -77,6 +78,24 @@ public class AbstractVisitorTest
         
         assertEquals((Integer) 3, expression.accept(visitor));
     }
+    
+    /**
+     * Tests that we don't NPE on visiting invariant constraints, which
+     * specifications do not have result variables.
+     */
+    public void test_visitInvariantConstraint_210580() {
+        helper.setContext(apple);
+        
+        try {
+            Constraint constraint = helper.createInvariant(
+                "Apple.allInstances()->select(label->notEmpty())->forAll(" + //$NON-NLS-1$
+                "a1, a2 | a1 <> a2 implies a1.label <> a2.label)"); //$NON-NLS-1$
+            
+            assertEquals(this, new TestVisitor<AbstractVisitorTest>(this).visitConstraint(constraint));
+        } catch (Exception e) {
+            fail("Should not have thrown: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 
     //
     // Framework methods
@@ -92,6 +111,12 @@ public class AbstractVisitorTest
         
         public TestVisitor(T initialValue) {
             super(initialValue);
+        }
+        
+        @Override
+        protected ExpressionInOCL<EClassifier, EParameter> getSpecification(
+                Constraint constraint) {
+            return constraint.getSpecification();
         }
     }
 }
