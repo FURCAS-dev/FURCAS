@@ -137,7 +137,18 @@ public class SubStringValue
 	 */
 	@Override
 	public boolean isSatisfied(String str) {
-		StringSearch search = new StringSearch(getString(), str);
+		String theString = getString();
+		if (str == null) {
+			return theString == null;
+		}
+		if (theString.length() == 0) {
+			return true;
+		} else if (str.length() == 0) {
+			return false;
+		}
+
+		// StringSearch can only handle non-empty strings as pattern and target
+		StringSearch search = new StringSearch(theString, str);
 		
 		if (!isCaseSensitive()) {
 			search.setCollator(CASE_INSENSITIVE_COLLATOR);
