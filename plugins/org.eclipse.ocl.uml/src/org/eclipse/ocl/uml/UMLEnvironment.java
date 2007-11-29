@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.9 2007/11/06 20:02:09 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.10 2007/11/29 23:55:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -113,6 +113,8 @@ public class UMLEnvironment
     protected UMLEnvironment(EPackage.Registry registry, ResourceSet rset) {
         this.registry = registry;
         resourceSet = rset;
+
+        typeResolver = createTypeResolver();
     }
 
     /**
@@ -129,9 +131,10 @@ public class UMLEnvironment
      */
     protected UMLEnvironment(EPackage.Registry registry, ResourceSet rset,
             Resource resource) {
-        this(registry, rset);
+        this.registry = registry;
+        resourceSet = rset;
 
-        typeResolver = new TypeResolverImpl(this, resource);
+        typeResolver = createTypeResolver(resource);
     }
 
     /**
@@ -155,6 +158,7 @@ public class UMLEnvironment
         } else {
             this.registry = (EPackage.Registry.INSTANCE);
             resourceSet = new ResourceSetImpl();
+            typeResolver = createTypeResolver();
         }
     }
 
@@ -245,10 +249,6 @@ public class UMLEnvironment
 
     // implements the inherited specification
     public TypeResolver<Classifier, Operation, Property> getTypeResolver() {
-        if (typeResolver == null) {
-            typeResolver = createTypeResolver();
-        }
-
         return typeResolver;
     }
 
@@ -267,12 +267,33 @@ public class UMLEnvironment
     }
 
     /**
-     * Creates a new type resolver for use with this environment.
+     * Creates a new type resolver for use with this environment, persisted
+     * in a default resource. 
      * 
      * @return a new type resolver
+     * 
+     * @deprecated Override the {@link #createTypeResolver(Resource)} method,
+     *     instead, handling the case where the resource is <code>null</code>
      */
+    @Deprecated
     protected TypeResolver<Classifier, Operation, Property> createTypeResolver() {
-        return new TypeResolverImpl(this);
+        return createTypeResolver(null);
+    }
+    
+    /**
+     * <p>
+     * Creates a new type resolver for use with this environment.
+     * </p><p>
+     * Subclasses may override.
+     * </p>
+     * 
+     * @param resource the resource for the type resolver's persistence
+     * @return a new type resolver
+     * 
+     * @since 1.2
+     */
+    protected TypeResolver<Classifier, Operation, Property> createTypeResolver(Resource resource) {
+        return new TypeResolverImpl(this, resource);
     }
 
     /**

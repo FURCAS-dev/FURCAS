@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.5 2007/11/06 20:02:08 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.6 2007/11/29 23:55:33 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -117,6 +117,7 @@ public class EcoreEnvironment
 	 */
 	protected EcoreEnvironment(EPackage.Registry reg) {
 		registry = reg;
+		typeResolver = createTypeResolver();
 	}
 	
     /**
@@ -127,9 +128,8 @@ public class EcoreEnvironment
      * @param resource a resource, which may or may not already have content
      */
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
-		this(reg);
-		
-		typeResolver = new TypeResolverImpl(this, resource);
+		registry = reg;
+		typeResolver = createTypeResolver(resource);
 	}
 
     /**
@@ -150,6 +150,7 @@ public class EcoreEnvironment
 			typeResolver = eparent.getTypeResolver();
 		} else {
 			registry = EPackage.Registry.INSTANCE;
+			typeResolver = createTypeResolver();
 		}
 	}
 
@@ -211,10 +212,6 @@ public class EcoreEnvironment
 
     // implements the inherited specification
 	public TypeResolver<EClassifier, EOperation, EStructuralFeature> getTypeResolver() {
-		if (typeResolver == null) {
-			typeResolver = createTypeResolver();
-		}
-		
 		return typeResolver;
 	}
 
@@ -229,13 +226,33 @@ public class EcoreEnvironment
     }
 	
 	/**
-	 * Creates a new type resolver for use with this environment.  Used in
-     * lazily initializing my resolver.
+	 * Creates a new type resolver for use with this environment, persisted
+	 * in a default resource.
 	 * 
 	 * @return a new type resolver
+	 * 
+	 * @deprecated Override the {@link #createTypeResolver(Resource)} method,
+	 *     instead, handling the case where the resource is <code>null</code>
 	 */
-	protected TypeResolver<EClassifier, EOperation, EStructuralFeature> createTypeResolver() {
-		return new TypeResolverImpl(this);
+	@Deprecated
+    protected TypeResolver<EClassifier, EOperation, EStructuralFeature> createTypeResolver() {
+		return createTypeResolver(null);
+	}
+		
+    /**
+     * <p>
+     * Creates a new type resolver for use with this environment.
+     * </p><p>
+     * Subclasses may override.
+     * </p>
+     * 
+	 * @param resource the resource for the type resolver's persistence
+	 * @return a new type resolver
+     * 
+     * @since 1.2
+	 */
+	protected TypeResolver<EClassifier, EOperation, EStructuralFeature> createTypeResolver(Resource resource) {
+		return new TypeResolverImpl(this, resource);
 	}
 
     /**
