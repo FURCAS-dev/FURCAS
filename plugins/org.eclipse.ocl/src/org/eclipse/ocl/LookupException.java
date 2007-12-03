@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LookupException.java,v 1.4 2007/12/03 13:26:21 cdamus Exp $
+ * $Id: LookupException.java,v 1.5 2007/12/03 13:28:20 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -55,7 +55,7 @@ public class LookupException
 
 	/**
      * Initializes me with a user-friendly message describing the nature of
-     * the lookup that resulted in multiple ambiguous matches.
+     * the lookup that resulted in these zero or more matches.
      * 
      * @param msg the exception message
      * @param matches the objects found by the lookup
