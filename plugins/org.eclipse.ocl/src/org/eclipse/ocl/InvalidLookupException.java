@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: InvalidLookupException.java,v 1.1 2007/12/03 13:19:51 cdamus Exp $
+ * $Id: InvalidLookupException.java,v 1.2 2007/12/03 13:27:29 cdamus Exp $
  */
 
 package org.eclipse.ocl;
+
+import java.util.Collections;
 
 
 
@@ -43,7 +45,7 @@ public class InvalidLookupException
      * @param match the invalid object found by the lookup
      */
     public InvalidLookupException(String msg, Object match) {
-        super(msg);
+        super(msg, Collections.singletonList(match));
         this.match = match;
     }
     
