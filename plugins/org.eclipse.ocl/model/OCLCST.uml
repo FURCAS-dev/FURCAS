@@ -125,7 +125,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx8__8fEduhWtVvKtiQ7w" name="InitOrDerValueCS" isAbstract="true">
         <generalization xmi:id="_qdx9AP8fEduhWtVvKtiQ7w" general="_qdx8sf8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_qdx9Af8fEduhWtVvKtiQ7w" name="initOrDerValueCS" type="_qdx8__8fEduhWtVvKtiQ7w" isOrdered="true" association="_qdx9Bf8fEduhWtVvKtiQ7w">
+        <ownedAttribute xmi:id="_qdx9Af8fEduhWtVvKtiQ7w" name="initOrDerValueCS" type="_qdx8__8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx9Bf8fEduhWtVvKtiQ7w">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx9Av8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_qdx9A_8fEduhWtVvKtiQ7w" name="expressionCS" type="_qdx8xv8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx9B_8fEduhWtVvKtiQ7w">

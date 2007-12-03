@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: InitOrDerValueCS.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -36,26 +36,26 @@ package org.eclipse.ocl.cst;
  */
 public interface InitOrDerValueCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Init Or Der Value CS</b></em>' reference.
+     * Returns the value of the '<em><b>Init Or Der Value CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Or Der Value CS</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Init Or Der Value CS</em>' reference.
+     * @return the value of the '<em>Init Or Der Value CS</em>' containment reference.
      * @see #setInitOrDerValueCS(InitOrDerValueCS)
      * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS_InitOrDerValueCS()
-     * @model
+     * @model containment="true"
      * @generated
      */
 	InitOrDerValueCS getInitOrDerValueCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Init Or Der Value CS</em>' reference.
+     * @param value the new value of the '<em>Init Or Der Value CS</em>' containment reference.
      * @see #getInitOrDerValueCS()
      * @generated
      */

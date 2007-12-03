@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractAnalyzer.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: AbstractAnalyzer.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -80,6 +80,10 @@ public abstract class AbstractAnalyzer
 		return getFormatter().formatName(object);
 	}
 
+    public String formatQualifiedName(Object object) {
+        return getFormatter().formatQualifiedName(object);
+    }
+
 	public String formatPath(List<String> pathName) {
 		return getFormatter().formatPath(pathName);
 	}
@@ -114,10 +118,12 @@ public abstract class AbstractAnalyzer
 	public FormattingHelper getFormatter() {
 		if (formatter == null) {
 			BasicEnvironment environment = getEnvironment();
-			if (environment != null)
-				formatter = environment.getFormatter();
-			if (formatter == null)
-				formatter = AbstractFormattingHelper.INSTANCE;
+			if (environment != null) {
+                formatter = environment.getFormatter();
+            }
+			if (formatter == null) {
+                formatter = AbstractFormattingHelper.INSTANCE;
+            }
 		}
 		return formatter;
 	}

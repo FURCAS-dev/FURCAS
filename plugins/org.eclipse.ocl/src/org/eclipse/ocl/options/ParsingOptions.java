@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.1 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: ParsingOptions.java,v 1.2 2007/12/03 18:44:40 cdamus Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -32,6 +32,25 @@ import org.eclipse.ocl.util.OCLUtil;
  * @since 1.2
  */
 public class ParsingOptions {
+
+    /**
+     * <p>
+     * Parsing option indicating whether to reference the defined property or
+     * operation in a <tt>def:</tt> expression as a constrained element of the
+     * constraint, in addition to the context classifier.  The well-formedness
+     * rules for definition constraints in the OCL 2.0 Specification require
+     * that a definition constraint reference only its context classifier as
+     * a constrained element.
+     * </p><p>
+     * The default value of this option is <tt>false</tt>.  For compatibility
+     * with the 1.1 release behaviour, set this option <tt>false</tt>.  Note
+     * that this is not necessary for loading and processing constraints
+     * created by the 1.1 release, only for persisting constraints that will be
+     * consumed by the 1.1 release.
+     * </p>
+     */
+    public static final Option<Boolean> DEFINITION_CONSTRAINS_FEATURE =
+        new BasicOption<Boolean>("definition.constraints.feature", false); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

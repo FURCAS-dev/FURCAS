@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.4 2007/12/03 18:44:40 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -32,6 +32,7 @@ import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLPlugin;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
@@ -48,8 +49,8 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	
 	private final EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	environmentFactory;
-    private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml;
-    private OCLFactory oclFactory;
+    private final UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml;
+    private final OCLFactory oclFactory;
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env;
 
 	private OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> syntaxHelper;
@@ -330,7 +331,15 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CT constraint = HelperUtil.parseDefExpression(
             this, defExpression, validating, ocl.isParseTracingEnabled());
 		
-		return uml.getConstrainedElements(constraint).get(1);
+		List<EObject> constrainedElement = uml.getConstrainedElements(constraint);
+		EObject result = constrainedElement.get(1);
+		
+		if (!ParsingOptions.getValue(getEnvironment(), ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {
+		    // remove it for good measure
+		    constrainedElement.remove(result);
+		}
+		
+		return result;
 	}
 
 	/**
