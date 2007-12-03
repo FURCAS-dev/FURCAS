@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LookupException.java,v 1.3 2007/12/03 13:19:51 cdamus Exp $
+ * $Id: LookupException.java,v 1.4 2007/12/03 13:26:21 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -86,6 +86,20 @@ public class LookupException
 	    }
 	    matches = objectMatches;
 	}
+    
+    /**
+     * Obtains all matches, in the order in which they were found.  The number
+     * of results (0, 1, or more) depends on the specific kind of look-up
+     * problem that I represent.
+     * 
+     * @return the matches found by the look-up
+     *    
+     * @see #getAmbiguousMatches()
+     * @see InvalidLookupException#getInvalidMatch()
+     */
+    public List<?> getMatches() {
+        return matches;
+    }
 	
 	/**
 	 * Obtains the list of ambiguous matches, if the problem was one of
@@ -95,6 +109,7 @@ public class LookupException
 	 *    was not a matter of ambiguity
 	 *    
 	 * @see InvalidLookupException#getInvalidMatch()
+	 * @see #getMatches()
 	 */
 	public List<?> getAmbiguousMatches() {
 	    return (matches.size() > 1)? matches : Collections.EMPTY_LIST;
