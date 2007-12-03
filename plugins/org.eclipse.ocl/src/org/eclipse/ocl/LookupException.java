@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LookupException.java,v 1.2 2007/10/12 18:18:16 cdamus Exp $
+ * $Id: LookupException.java,v 1.3 2007/12/03 13:19:51 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -24,16 +24,22 @@ import java.util.List;
 /**
  * Exception indicating a semantic error in looking up a definition, typically
  * resulting from an ambiguity.
+ * <p>
+ * Actual instances of this exception are usually more specific, being either
+ * {@link AmbiguousLookupException}s or {@link InvalidLookupException}s.
+ * </p>
+ * 
+ * @see AmbiguousLookupException
+ * @see InvalidLookupException
+ * 
+ * @since 1.2
  */
 public class LookupException
 	extends SemanticException {
+    
+    private static final long serialVersionUID = -2420776905241571992L;
 
     private final List<?> matches;
-    
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -2420776905241571992L;
 
 	/**
      * Initializes me with a user-friendly message describing the nature of
@@ -44,12 +50,12 @@ public class LookupException
 	public LookupException(String msg) {
 		super(msg);
 		
-		matches = Collections.emptyList();
+		matches = Collections.EMPTY_LIST;
 	}
 
 	/**
      * Initializes me with a user-friendly message describing the nature of
-     * the lookup failure.
+     * the lookup that resulted in multiple ambiguous matches.
      * 
      * @param msg the exception message
      * @param matches the objects found by the lookup
@@ -57,7 +63,7 @@ public class LookupException
 	public LookupException(String msg, List<?> matches) {
 		super(msg);
 		
-		this.matches = matches;
+		this.matches = new ArrayList<Object>(matches);
 	}
 	
     /**
@@ -87,8 +93,10 @@ public class LookupException
 	 * 
 	 * @return the ambiguous matches, or an empty list if the look-up problem
 	 *    was not a matter of ambiguity
+	 *    
+	 * @see InvalidLookupException#getInvalidMatch()
 	 */
 	public List<?> getAmbiguousMatches() {
-	    return matches;
+	    return (matches.size() > 1)? matches : Collections.EMPTY_LIST;
 	}
 }
