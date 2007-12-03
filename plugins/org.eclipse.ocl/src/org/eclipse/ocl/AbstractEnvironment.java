@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.9 2007/11/06 20:02:10 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.10 2007/12/03 13:19:51 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -1064,7 +1064,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                     name, getUMLReflection().getName(owner));
 
                 if (sev.getDiagnosticSeverity() >= Diagnostic.ERROR) {
-                    throw new LookupException(message, matches);
+                    throw new AmbiguousLookupException(message, matches);
                 } else {
                     getProblemHandler().analyzerProblem(sev, message,
                         "lookupNonNavigableProperty", -1, -1); //$NON-NLS-1$
