@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.2 2007/11/06 19:49:00 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.3 2007/12/03 18:44:40 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -124,6 +124,7 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractAnalyzer;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -839,11 +840,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		O operation = env.getContextOperation();
 		
+		OperationContextDeclCS operationContext =
+		    (OperationContextDeclCS) prePostOrBodyDeclCS.eContainer();
+		
 		// create a disposable child operation context for this environment
-		env = createOperationContext(
-				env,
-				(OperationContextDeclCS) prePostOrBodyDeclCS.eContainer(),
-				operation);
+		env = createOperationContext(env, operationContext, operation);
 		
 		C operationType = uml.getOCLType(operation);
         if (operationType instanceof VoidType) {
@@ -904,6 +905,28 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			
 			List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
 			constrainedElement.add((EObject) operation);
+			
+			C owner = uml.getOwningClassifier(operation);
+			if (owner != env.getSelfVariable().getType()) {
+				// implicitly redefining the operation in a specializing classifier
+				constrainedElement.add((EObject) env.getSelfVariable().getType());
+				
+				if (operationContext != null) {
+    	            // check settings for using inherited feature context in
+				    // concrete syntax (note that the OLCHelper brings us in
+				    // here, too, which is why we check for the context CST)
+	                ProblemHandler.Severity sev = getEnvironment().getValue(
+	                    ProblemOption.INHERITED_FEATURE_CONTEXT);
+    	            if (!sev.isOK()) {
+    	                getEnvironment().problem(sev, ProblemHandler.Phase.ANALYZER,
+    	                    OCLMessages.bind(OCLMessages.NonStd_InheritedFeatureContext_,
+    	                        formatQualifiedName(owner),
+    	                        formatName(operation)),
+    	                    "prePostOrBodyDeclCS", //$NON-NLS-1$
+    	                    null);
+    	            }
+				}
+			}
 			
 			ExpressionInOCL<C, PM> spec = uml.createExpressionInOCL();
 			initASTMapping(env, spec, prePostOrBodyDeclCS);
@@ -1056,11 +1079,17 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		P property = env.getContextProperty();
 		
+		PropertyContextCS propertyContext = null;
+		for (EObject container = initOrDerValueCS.eContainer(); container != null;
+		        container = container.eContainer()) {
+		    if (container instanceof PropertyContextCS) {
+		        propertyContext = (PropertyContextCS) container;
+		        break;
+		    }
+		}
+		
 		// create a disposable property context for this environment
-		env = createPropertyContext(
-				env,
-				(PropertyContextCS) initOrDerValueCS.eContainer(),
-				property);
+		env = createPropertyContext(env, propertyContext, property);
 		
 		String stereotype = null;
 				
@@ -1082,6 +1111,29 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
 		constrainedElement.add((EObject) property);
+		
+		C owner = uml.getOwningClassifier(property);
+		if (owner != env.getSelfVariable().getType()) {
+			// implicitly redefining the property in a specializing classifier
+			constrainedElement.add((EObject) env.getSelfVariable().getType());
+            
+            if (propertyContext != null) {
+                // check settings for using inherited feature context in
+                // concrete syntax (note that the OLCHelper brings us in
+                // here, too, which is why we check for the context CST)
+                
+                ProblemHandler.Severity sev = getEnvironment().getValue(
+                    ProblemOption.INHERITED_FEATURE_CONTEXT);
+                if (!sev.isOK()) {
+                    getEnvironment().problem(sev, ProblemHandler.Phase.ANALYZER,
+                        OCLMessages.bind(OCLMessages.NonStd_InheritedFeatureContext_,
+                            formatQualifiedName(owner),
+                            formatName(property)),
+                        "initOrDerValueCS", //$NON-NLS-1$
+                        null);
+                }
+            }
+		}
 		
 		ExpressionInOCL<C, PM> spec = uml.createExpressionInOCL();
 		initASTMapping(env, spec, initOrDerValueCS);
@@ -1317,8 +1369,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 						contextClassifier,
 						variable,
 						astNode);
-				constrainedElement.add(feature);
 				
+                if (getEnvironment().getValue(ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {
+                    constrainedElement.add(feature);
+                }
+                
 				expression = oclExpressionCS(defExpr.getExpressionCS(), contextEnv);
 			} else if (defExpr.getOperationCS() != null) {
 				// context of the expression is the new operation
@@ -1350,7 +1405,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 						operType,
 						params,
 						astNode);
-				constrainedElement.add(feature);
+                if (getEnvironment().getValue(ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {
+                    constrainedElement.add(feature);
+                }
 				
 				expression = oclExpressionCS(defExpr.getExpressionCS(), contextEnv);
 			}
@@ -2511,15 +2568,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		if (!result.equals(stringLiteral)) {
 			// check settings for using non-standard closure iterator
-			ProblemHandler.Severity sev = ProblemHandler.Severity.OK;
-			BasicEnvironment benv = getEnvironment();
-			
-			if (benv != null) {
-				sev = benv.getValue(ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
-			}
+            ProblemHandler.Severity sev = getEnvironment().getValue(
+                ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
 			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-                benv.problem(sev, ProblemHandler.Phase.ANALYZER, OCLMessages
-                    .bind(OCLMessages.NonStd_SQuote_Escape_, stringLiteral),
+                getEnvironment().problem(sev, ProblemHandler.Phase.ANALYZER,
+                    OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_, stringLiteral),
                     "stringLiteralExpCS", //$NON-NLS-1$
                     null);
             }

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.2 2007/11/06 19:49:00 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.3 2007/12/03 18:44:40 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -1391,20 +1391,29 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
             return validatorError(expression, message, "visitExpressionInOCL");//$NON-NLS-1$
         }
         
+        OCLExpression<C> body = expression.getBodyExpression();
+        if (body == null) {
+        	// won't be able to do anything else useful with this expression
+        	String message = OCLMessages.MissingBodyExpression_ERROR_;
+            return validatorError(expression, message, "visitExpressionInOCL");//$NON-NLS-1$        
+        }
+        
         CT constraint = uml.getConstraint(expression);
         if (constraint != null) {
-            O operation = getConstrainedOperation(constraint);
+            O operation = getConstrainedOperation(uml.getConstrainedElements(constraint));
              
             if (operation == null) {
-                if (!expression.getParameterVariable().isEmpty()) {
-                	String message = OCLMessages.ExtraneousParameterVariables_ERROR_;
-                    return validatorError(constraint, message, "visitExpressionInOCL");//$NON-NLS-1$
-                }
-                
-                if (expression.getResultVariable() != null) {
-                	String message = OCLMessages.ExtraneousResultVariable_ERROR_;
-                    return validatorError(constraint, message, "visitExpressionInOCL");//$NON-NLS-1$
-                }
+            	if (!UMLReflection.DEFINITION.equals(uml.getStereotype(constraint))) {
+	                if (!expression.getParameterVariable().isEmpty()) {
+	                	String message = OCLMessages.ExtraneousParameterVariables_ERROR_;
+	                    return validatorError(constraint, message, "visitExpressionInOCL");//$NON-NLS-1$
+	                }
+	                
+	                if (expression.getResultVariable() != null) {
+	                	String message = OCLMessages.ExtraneousResultVariable_ERROR_;
+	                    return validatorError(constraint, message, "visitExpressionInOCL");//$NON-NLS-1$
+	                }
+            	}
             } else {
                 List<PM> parameters = uml.getParameters(operation);
                 List<Variable<C, PM>> variables = expression.getParameterVariable();
@@ -1463,135 +1472,137 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 }
             }
         }
-        OCLExpression<C> bodyExpression = expression.getBodyExpression();
-        if (bodyExpression == null) {
-        	String message = OCLMessages.MissingBodyExpression_ERROR_;
-            return validatorError(constraint, message, "visitExpressionInOCL");//$NON-NLS-1$        
-        }
-        return bodyExpression.accept(this);
+        
+        Boolean wellFormed = checkExpressionInOCL(expression, constraint, body);
+        
+        return Boolean.TRUE.equals(body.accept(this)) && Boolean.TRUE.equals(wellFormed);
     }
     
-	/**
-	 * Applies well-formedness rules to constraints.
-	 * 
-	 * @param constraint the constraint to validate
-	 */
-	public Boolean visitConstraint(CT constraint) {
-		String stereo = uml.getStereotype(constraint);
-
-        ExpressionInOCL<C, PM> specification = uml.getSpecification(constraint);
-        OCLExpression<C> bodyExpression = specification.getBodyExpression();
-        if (bodyExpression == null) {
-        	String message = OCLMessages.MissingBodyExpression_ERROR_;
-            return validatorError(constraint, message, "visitExpressionInOCL");//$NON-NLS-1$        
-        }
-        specification.accept(this);
-        
-		C bodyType = bodyExpression.getType();
-		C oclBoolean = getStandardLibrary().getBoolean();
-		
-		C operationType = null;
-		C propertyType = null;
-		String operationName = null;
-		String propertyName = null;
-		String classifierName = null;
-		
-		if (!uml.getConstrainedElements(constraint).isEmpty()) {
-			EObject constrained = uml.getConstrainedElements(constraint).get(0);
-			
-			if (uml.isOperation(constrained)) {
-				operationName = getName(constrained);
-				
-				classifierName = getName(uml.getOwningClassifier(constrained));
-				operationType = uml.getOCLType(constrained);
-			} else if (uml.isProperty(constrained)) {
-				propertyName = getName(constrained);
-				
-				classifierName = getName(uml.getOwningClassifier(constrained));
-				
-				propertyType = uml.getOCLType(constrained);
-			} else if (uml.isClassifier(constrained)) {
-				classifierName = getName(constrained);
+    /**
+     * Checks the well-formedness of an ExpressionInOCL, according to the
+     * constraints defined in Chapter 12 of the OCL Specification.
+     * 
+     * @param expression an expression
+     * @param constraint the constraint that owns it (not <code>null</code>)
+     * @param body its body expression (not <code>null</code>)
+     * 
+     * @return whether it is well-formed
+     */
+    Boolean checkExpressionInOCL(ExpressionInOCL<C, PM> expression, CT constraint,
+    		OCLExpression<C> body) {
+    	String stereotype = uml.getStereotype(constraint);
+    	List<EObject> constrainedElement = uml.getConstrainedElements(constraint);
+    	
+    	C bodyType = body.getType();
+    	C oclBoolean = getStandardLibrary().getBoolean();
+    	
+    	if (UMLReflection.INVARIANT.equals(stereotype)) {
+    		// if expression has one constrained element that is a classifier
+    		// then the constrained classifier is the context classifier and
+    		// the body expression is boolean-valued
+			C constrainedClassifier = getConstrainedClassifier(constrainedElement);
+    		if (!Boolean.TRUE.equals(checkContextClassifier(expression, 
+    				constrainedClassifier, constrainedElement))) {
+				return Boolean.FALSE;
 			}
-		}
-		
-		if (operationType == null) {
-			operationType = env.getOCLStandardLibrary().getOclVoid();
-		}
-		
-		if (propertyType == null) {
-			propertyType = env.getOCLStandardLibrary().getOclVoid();
-		}
-		
-		if (UMLReflection.POSTCONDITION.equals(stereo)
-				|| UMLReflection.PRECONDITION.equals(stereo)) {
-			// pre/post-condition constraints must be boolean-valued
-			if (bodyType != oclBoolean) {
-				String message = OCLMessages.bind(
-						OCLMessages.OperationConstraintBoolean_ERROR_,
-					operationName);
-				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
-			}
-		} else if (UMLReflection.INVARIANT.equals(stereo)) {
+    		
+			// we should always check this type conformance
 			if (bodyType != oclBoolean) {
 				// so must invariants, but they have a different kind of context
 				String message = OCLMessages.bind(
 						OCLMessages.InvariantConstraintBoolean_ERROR_,
-						classifierName);
-				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+						getName(constrainedClassifier));
+				return validatorError(constraint, message, "checkExpressionInOCL"); //$NON-NLS-1$
 			}
-		} else if (UMLReflection.DEFINITION.equals(stereo)) {
-			// expression type must conform to feature type
-			EObject feature = null;
-			if (uml.getConstrainedElements(constraint).size() >= 2) {
-				EObject constrained = uml.getConstrainedElements(constraint).get(1);
-				if (uml.isOperation(constrained) || uml.isProperty(constrained)) {
-					feature = constrained;
-				}
-			}
-			
-			if (feature == null) {
+    	} else if (UMLReflection.POSTCONDITION.equals(stereotype) || UMLReflection.PRECONDITION.equals(stereotype)) {
+    		// if the expression has one constrained element that is an operation
+    		// then the constrained element's owner is the contextual classifier
+    		// and the body expression is boolean-valued.
+    		// Note that this specifically allows an inheriting classifier to
+    		// redefine a pre- or post-condition by listing the classifier
+    		// that inherits the operation as well as the operation in the
+    		// constrainedElement reference
+			O constrainedOperation = getConstrainedOperation(constrainedElement);
+    		if (!Boolean.TRUE.equals(checkContextFeatureClassifier(expression,
+    				constrainedOperation, constrainedElement))) {
+    			return Boolean.FALSE;
+    		}
+    		
+			// we should always check this type conformance
+			if (bodyType != oclBoolean) {
 				String message = OCLMessages.bind(
-						OCLMessages.DefinitionConstraintFeature_ERROR_,
-						classifierName);
-				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+						OCLMessages.OperationConstraintBoolean_ERROR_,
+					getName(constrainedOperation));
+				return validatorError(constraint, message, "checkExpressionInOCL"); //$NON-NLS-1$
 			}
-			
-			C featureType = uml.getOCLType(feature);
-			
-			if ((featureType == null)
-					|| !TypeUtil.compatibleTypeMatch(env, bodyType, featureType)) {
-				
-				String message = OCLMessages.bind(
-						OCLMessages.DefinitionConstraintConformance_ERROR_,
-						getName(bodyType),
-						getName(featureType));
-				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+    		
+    	} else if (UMLReflection.DEFINITION.equals(stereotype)) {
+    		// if expression has one constrained element that is a classifier
+    		// then the constrained element is the context classifier
+			C constrainedClassifier = getConstrainedClassifier(constrainedElement);
+    		if (!Boolean.TRUE.equals(checkContextClassifier(expression, 
+					constrainedClassifier, constrainedElement))) {
+				return Boolean.FALSE;
 			}
-		} else if (UMLReflection.INITIAL.equals(stereo) || UMLReflection.DERIVATION.equals(stereo)) {
-			// expression type must conform to property type
+    	} else if (UMLReflection.INITIAL.equals(stereotype) || UMLReflection.DERIVATION.equals(stereotype)) {
+    		// if the expression has one constrained element that is a property
+    		// then the constrained element's owner is the contextual classifier
+    		// and the body expression type conforms to the property type.
+    		// Note that this specifically allows an inheriting classifier to
+    		// redefine an initial or derived value by listing the classifier
+    		// that inherits the attribute as well as the attribute in the
+    		// constrainedElement reference
+			P constrainedProperty = getConstrainedProperty(constrainedElement);
+    		if (!Boolean.TRUE.equals(checkContextFeatureClassifier(expression,
+					constrainedProperty, constrainedElement))) {
+				return Boolean.FALSE;
+			}
+
+    		C propertyType = (constrainedProperty != null) ? uml.getOCLType(constrainedProperty)
+				: getStandardLibrary().getOclVoid();
+    		
+    		// we should always check this type conformance
 			if (!TypeUtil.compatibleTypeMatch(env, bodyType, propertyType)) {
 				
 				String message = OCLMessages.bind(
 						OCLMessages.InitOrDerConstraintConformance_ERROR_,
 						new Object[] {
 								getName(bodyType),
-								propertyName,
+								getName(constrainedProperty),
 								getName(propertyType)});
-				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+				return validatorError(constraint, message, "checkExpressionInOCL"); //$NON-NLS-1$
 			}
-		}
-		
-		if (UMLReflection.BODY.equals(uml.getStereotype(constraint))) {
+    	} else if (UMLReflection.BODY.equals(stereotype)) {
+    		// if the expression has one constrained element that is an operation
+    		// then the constrained element's owner is the contextual classifier
+    		// and the body expression type conforms to the operation type.
+    		// Note that this specifically allows an inheriting classifier to
+    		// redefine an operation body by listing the classifier
+    		// that inherits the operation as well as the operation in the
+    		// constrainedElement reference
+			O constrainedOperation = getConstrainedOperation(constrainedElement);
+    		if (!Boolean.TRUE.equals(checkContextFeatureClassifier(expression,
+					constrainedOperation, constrainedElement))) {
+				return Boolean.FALSE;
+			}
+
+    		C operationType = (constrainedOperation != null) ? uml.getOCLType(constrainedOperation)
+				: getStandardLibrary().getOclVoid();
+    		String operationName = getName(constrainedOperation);
+    		
+    		// void operations may not have body constraints
 			if (operationType instanceof VoidType) {
 				String message = OCLMessages.bind(
 						OCLMessages.BodyConditionNotAllowed_ERROR_,
 					operationName);
-				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+				return validatorError(constraint, message, "checkExpressionInOCL"); //$NON-NLS-1$
 			}
 			
+    		// we should always check this type conformance
 			if ((bodyType == oclBoolean) && (operationType != oclBoolean)) {
-			    // this is a UML-style body condition constraint
+				
+			    // this is a UML-style body condition constraint (the UML and
+				// OCL specifications are contradictory)
 			    if (visitBodyConditionConstraint(constraint, operationType,
                     operationName)) {
                     return Boolean.TRUE;
@@ -1606,24 +1617,160 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     	                    operationName,
     	                    getName(bodyType),
     	                    getName(operationType)});
-	                return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+	                return validatorError(constraint, message, "checkExpressionInOCL"); //$NON-NLS-1$
 	            }
                 
                 // check that the body doesn't reference the result variable
-                if (findResultVariable(specification.getBodyExpression(),
-                        operationType)) {
-                    
+                if (findResultVariable(expression.getBodyExpression(), operationType)) {
                     String message = OCLMessages.bind(
                             OCLMessages.BodyConditionForm_ERROR_,
                         operationName);
-                    return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+                    return validatorError(constraint, message, "checkExpressionInOCL"); //$NON-NLS-1$
                 }
+			}
+    	}
+    	
+    	return Boolean.TRUE;
+    }
+
+    /**
+     * Checks that the contextual classifier of the specified <tt>expression</tt>
+     * is correct for a classifier-context constraint.
+     * 
+     * @param expression an expression being validated
+     * @param constrainedClassifier the feature context of the constraint
+     * @param constrainedElement the constrained elements
+     * 
+     * @return whether the context classifier is correct
+     */
+    private Boolean checkContextClassifier(ExpressionInOCL<C, PM> expression,
+    		C constrainedClassifier, List<EObject> constrainedElement) {
+    	
+    	C contextualClassifier = getContextualClassifier(expression);
+    	
+		if (constrainedElement.size() == 1) {
+			if (constrainedClassifier != contextualClassifier) {
+				String message = OCLMessages.bind(
+					OCLMessages.WrongContextClassifier_ERROR_,
+					getName(contextualClassifier),
+					getName(constrainedClassifier));
+				return validatorError(expression, message, "checkExpressionInOCL"); //$NON-NLS-1$
 			}
 		}
 		
-		// FIXME ?? surely this was already done by specification.accept(this);
-		// check the body condition, itself, for well-formedness
-		return uml.getSpecification(constraint).getBodyExpression().accept(this);
+		return Boolean.TRUE;
+    }
+
+    /**
+     * Checks that the contextual classifier of the specified <tt>expression</tt>
+     * is correct for a constraint in a feature context.
+     * MDT OCL provides an extension in which a constraint in a
+     * feature context may be specified in the context of a classifier that
+     * inherits (thus does not own) the feature.  In this case, the
+     * <tt>constrainedElement</tt> list additionally includes the specializing
+     * classifier.
+     * 
+     * @param expression an expression being validated
+     * @param constrainedFeature the feature context of the constraint
+     * @param constrainedElement the constrained elements
+     * 
+     * @return whether the context classifier is correct
+     */
+    private Boolean checkContextFeatureClassifier(ExpressionInOCL<C, PM> expression,
+    		Object constrainedFeature, List<EObject> constrainedElement) {
+    	
+    	C contextualClassifier = getContextualClassifier(expression);
+    	
+		if ((constrainedElement.size() == 1) && (constrainedFeature != null)) {
+			C owner = uml.getOwningClassifier(constrainedFeature);
+			if (owner != contextualClassifier) {
+				String message = OCLMessages.bind(
+					OCLMessages.WrongContextClassifier_ERROR_,
+					getName(contextualClassifier),
+					getName(owner));
+				return validatorError(expression, message, "checkExpressionInOCL"); //$NON-NLS-1$
+			}
+		} else if (constrainedElement.size() > 1) {
+			// MDT OCL extension for applying constraints in the context of
+			// a classifier that inherits the operation
+			C constrainedClassifier = getConstrainedClassifier(constrainedElement);
+			if ((constrainedClassifier != null) && (constrainedFeature != null)) {
+				C owner = uml.getOwningClassifier(constrainedFeature);
+				if (!TypeUtil.compatibleTypeMatch(env, constrainedClassifier, owner)) {
+					String message = OCLMessages.bind(
+						OCLMessages.WrongContextClassifier_ERROR_,
+						getName(contextualClassifier),
+						getName(owner));
+					return validatorError(expression, message, "checkExpressionInOCL"); //$NON-NLS-1$
+				}
+			}
+		}
+		
+		return Boolean.TRUE;
+    }
+    
+	/**
+	 * Applies well-formedness rules to constraints.
+	 * 
+	 * @param constraint the constraint to validate
+	 */
+	public Boolean visitConstraint(CT constraint) {
+        ExpressionInOCL<C, PM> specification = uml.getSpecification(constraint);
+        Boolean specificationResult = specification.accept(this);
+        if (!Boolean.TRUE.equals(specificationResult)) {
+        	return specificationResult;
+        }
+//        
+//		String stereo = uml.getStereotype(constraint);
+//
+//		C bodyType = specification.getBodyExpression().getType();
+//		C oclBoolean = getStandardLibrary().getBoolean();
+//		
+//		String classifierName = null;
+//		
+//		if (!uml.getConstrainedElements(constraint).isEmpty()) {
+//			EObject constrained = uml.getConstrainedElements(constraint).get(0);
+//			
+//			if (uml.isOperation(constrained)) {
+//				classifierName = getName(uml.getOwningClassifier(constrained));
+//			} else if (uml.isProperty(constrained)) {
+//				classifierName = getName(uml.getOwningClassifier(constrained));
+//			} else if (uml.isClassifier(constrained)) {
+//				classifierName = getName(constrained);
+//			}
+//		}
+//		
+//		if (UMLReflection.DEFINITION.equals(stereo)) {
+//			// expression type must conform to feature type
+//			EObject feature = null;
+//			if (uml.getConstrainedElements(constraint).size() >= 2) {
+//				EObject constrained = uml.getConstrainedElements(constraint).get(1);
+//				if (uml.isOperation(constrained) || uml.isProperty(constrained)) {
+//					feature = constrained;
+//				}
+//			}
+//			
+//			if (feature == null) {
+//				String message = OCLMessages.bind(
+//						OCLMessages.DefinitionConstraintFeature_ERROR_,
+//						classifierName);
+//				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+//			}
+//			
+//			C featureType = uml.getOCLType(feature);
+//			
+//			if ((featureType == null)
+//					|| !TypeUtil.compatibleTypeMatch(env, bodyType, featureType)) {
+//				
+//				String message = OCLMessages.bind(
+//						OCLMessages.DefinitionConstraintConformance_ERROR_,
+//						getName(bodyType),
+//						getName(featureType));
+//				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
+//			}
+//		}
+		
+		return Boolean.TRUE;
 	}
 
     /**
@@ -1696,22 +1843,65 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     }
     
     /**
-     * Obtains the operation that is constrained by the specified constraint,
-     * either as context (for pre/post condition etc.) or as a definition of
-     * the operation.
+     * Obtains the constrained element that is a classifier.
      * 
-     * @param constraint a constraint
+     * @param constrainedElement a list of constrained elements
      * @return the constrained operation, if any
      */
     @SuppressWarnings("unchecked")
-    private O getConstrainedOperation(CT constraint) {
-        for (EObject constrained : uml.getConstrainedElements(constraint)) {
+    private O getConstrainedOperation(List<?> constrainedElement) {
+        for (Object constrained : constrainedElement) {
             if (uml.isOperation(constrained)) {
                 return (O) constrained;
             }
         }
         
         return null;
+    }
+    
+    /**
+     * Obtains the constrained element that is a classifier.
+     * 
+     * @param constrainedElement a list of constrained elements
+     * @return the constrained property, if any
+     */
+    @SuppressWarnings("unchecked")
+    private P getConstrainedProperty(List<?> constrainedElement) {
+        for (Object constrained : constrainedElement) {
+            if (uml.isProperty(constrained)) {
+                return (P) constrained;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Obtains the constrained element that is a classifier.
+     * 
+     * @param constrainedElement a list of constrained elements
+     * @return the constrained classifier, if any
+     */
+    @SuppressWarnings("unchecked")
+    private C getConstrainedClassifier(List<?> constrainedElement) {
+        for (Object constrained : constrainedElement) {
+            if (uml.isClassifier(constrained)) {
+                return (C) constrained;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Obtains the contextual classifier of an expression.
+     * 
+     * @param expression the expression
+     * @return its contextual classifier, or <code>null</code> if none
+     */
+    private C getContextualClassifier(ExpressionInOCL<C, PM> expression) {
+    	Variable<C, PM> selfVar = expression.getContextVariable();
+    	return (selfVar == null)? null : selfVar.getType();
     }
 	
 	/**
