@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironment.java,v 1.6 2007/09/12 19:52:08 cdamus Exp $
+ * $Id: CompatibilityEnvironment.java,v 1.7 2007/12/03 18:44:35 cdamus Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -322,6 +322,9 @@ public class CompatibilityEnvironment extends EcoreEnvironment {
 
 	private void setDefinition(ETypedElement feature, Constraint constraint) {
 		annotate(feature, constraint, Environment.ANNOTATION_URI_DEFINE);
+		
+		// Ecore environment no longer does this
+		constraint.getConstrainedElements().add(feature);
 	}
 	
 	private void annotate(ETypedElement feature, Constraint constraint, String annotation) {
