@@ -57,7 +57,8 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InitOrDerValueCS" abstract="true"
         eSuperTypes="#//cst/CSTNode">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="initOrDerValueCS" eType="#//cst/InitOrDerValueCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initOrDerValueCS" eType="#//cst/InitOrDerValueCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="expressionCS" eType="#//cst/OCLExpressionCS"
           containment="true">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

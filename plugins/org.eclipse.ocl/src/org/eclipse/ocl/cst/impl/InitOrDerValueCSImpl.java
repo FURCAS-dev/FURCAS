@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCSImpl.java,v 1.1 2007/10/11 23:05:01 cdamus Exp $
+ * $Id: InitOrDerValueCSImpl.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -41,7 +41,7 @@ import org.eclipse.ocl.cst.OCLExpressionCS;
  */
 public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOrDerValueCS {
 	/**
-     * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' reference.
+     * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getInitOrDerValueCS()
@@ -85,36 +85,41 @@ public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOr
      * @generated
      */
 	public InitOrDerValueCS getInitOrDerValueCS() {
-        if (initOrDerValueCS != null && initOrDerValueCS.eIsProxy()) {
-            InternalEObject oldInitOrDerValueCS = (InternalEObject)initOrDerValueCS;
-            initOrDerValueCS = (InitOrDerValueCS)eResolveProxy(oldInitOrDerValueCS);
-            if (initOrDerValueCS != oldInitOrDerValueCS) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, initOrDerValueCS));
-            }
-        }
         return initOrDerValueCS;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public InitOrDerValueCS basicGetInitOrDerValueCS() {
-        return initOrDerValueCS;
+    public NotificationChain basicSetInitOrDerValueCS(InitOrDerValueCS newInitOrDerValueCS, NotificationChain msgs) {
+        InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
+        initOrDerValueCS = newInitOrDerValueCS;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, newInitOrDerValueCS);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setInitOrDerValueCS(InitOrDerValueCS newInitOrDerValueCS) {
-        InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
-        initOrDerValueCS = newInitOrDerValueCS;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, initOrDerValueCS));
+        if (newInitOrDerValueCS != initOrDerValueCS) {
+            NotificationChain msgs = null;
+            if (initOrDerValueCS != null)
+                msgs = ((InternalEObject)initOrDerValueCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, null, msgs);
+            if (newInitOrDerValueCS != null)
+                msgs = ((InternalEObject)newInitOrDerValueCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, null, msgs);
+            msgs = basicSetInitOrDerValueCS(newInitOrDerValueCS, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS, newInitOrDerValueCS, newInitOrDerValueCS));
     }
 
 	/**
@@ -168,6 +173,8 @@ public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOr
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
+                return basicSetInitOrDerValueCS(null, msgs);
             case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
                 return basicSetExpressionCS(null, msgs);
         }
@@ -183,8 +190,7 @@ public abstract class InitOrDerValueCSImpl extends CSTNodeImpl implements InitOr
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS:
-                if (resolve) return getInitOrDerValueCS();
-                return basicGetInitOrDerValueCS();
+                return getInitOrDerValueCS();
             case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS:
                 return getExpressionCS();
         }

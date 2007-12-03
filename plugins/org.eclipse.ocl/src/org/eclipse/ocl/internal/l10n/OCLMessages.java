@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.4 2007/10/15 22:10:08 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.5 2007/12/03 18:44:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -199,6 +199,7 @@ public class OCLMessages {
 	public static String AssociationClassQualifierType_ERROR_;
 	public static String AssociationClassAmbiguous_ERROR_;
 	
+	public static String WrongContextClassifier_ERROR_;
 	public static String BodyConditionForm_ERROR_;
 	public static String OperationConstraintBoolean_ERROR_;
 	public static String InvariantConstraintBoolean_ERROR_;
@@ -235,6 +236,7 @@ public class OCLMessages {
 	public static String NonStd_SQuote_Escape_;
     public static String NonStd_Operation_;
     public static String NonStd_Iterator_;
+    public static String NonStd_InheritedFeatureContext_;
     
     public static String Ambig_AssocEnd_;
 	

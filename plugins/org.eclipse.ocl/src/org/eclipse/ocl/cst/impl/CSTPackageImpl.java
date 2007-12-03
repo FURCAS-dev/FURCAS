@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.1 2007/10/11 23:05:02 cdamus Exp $
+ * $Id: CSTPackageImpl.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -2049,7 +2049,7 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         initEAttribute(getSimpleNameCS_Type(), this.getSimpleTypeEnum(), "type", null, 0, 1, SimpleNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(initOrDerValueCSEClass, InitOrDerValueCS.class, "InitOrDerValueCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getInitOrDerValueCS_InitOrDerValueCS(), this.getInitOrDerValueCS(), null, "initOrDerValueCS", null, 0, 1, InitOrDerValueCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInitOrDerValueCS_InitOrDerValueCS(), this.getInitOrDerValueCS(), null, "initOrDerValueCS", null, 0, 1, InitOrDerValueCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getInitOrDerValueCS_ExpressionCS(), this.getOCLExpressionCS(), null, "expressionCS", null, 0, 1, InitOrDerValueCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(classifierContextDeclCSEClass, ClassifierContextDeclCS.class, "ClassifierContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: HelperUtil.java,v 1.4 2007/12/03 18:44:41 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -30,6 +30,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.util.OCLUtil;
@@ -350,6 +351,11 @@ public class HelperUtil {
 		
 		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
 			createAnalyzer(env, "def:", defExpression, trace); //$NON-NLS-1$
+		
+		// we want to make the defined feature available.  This is OK, since
+		// the constraint will be discarded anyway
+		analyzer.getEnvironment().setOption(
+		    ParsingOptions.DEFINITION_CONSTRAINS_FEATURE, true);
 		
 		CT result = analyzer.parseInvOrDefCS();
 		checkForErrors(helper);

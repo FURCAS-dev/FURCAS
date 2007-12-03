@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.10 2007/11/29 23:55:32 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.11 2007/12/03 18:44:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -23,6 +23,8 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -34,6 +36,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.lpg.FormattingHelper;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
@@ -79,6 +82,8 @@ import org.eclipse.uml2.uml.Vertex;
 public class UMLEnvironment
     extends
     AbstractEnvironment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> {
+    
+    static final String ANNOTATION_SOURCE = org.eclipse.ocl.uml.UMLPackage.eNS_URI;
     
     private static OCLStandardLibraryImpl standardLibrary;
 
@@ -621,6 +626,7 @@ public class UMLEnvironment
         result.setType(type);
 
         owner.getOwnedRules().add(constraint);
+        annotate(result, constraint);
 
         addHelperProperty(owner, result);
 
@@ -654,10 +660,21 @@ public class UMLEnvironment
         }
 
         owner.getOwnedRules().add(constraint);
+        annotate(result, constraint);
 
         addHelperOperation(owner, result);
 
         return result;
+    }
+    
+    private void annotate(Feature feature, Constraint definition) {
+        EAnnotation annotation = feature.getEAnnotation(ANNOTATION_SOURCE);
+        
+        if (annotation == null) {
+            annotation = feature.createEAnnotation(ANNOTATION_SOURCE);
+        }
+        
+        annotation.getReferences().add(definition);
     }
 
     // implements the inherited specification
@@ -692,11 +709,24 @@ public class UMLEnvironment
         }
 
         if (owner != null) {
-            for (Constraint ct : owner.getOwnedRules()) {
-                if (ct.getKeywords().contains(UMLReflection.DEFINITION)
-                    && ct.getConstrainedElements().contains(umlFeature)) {
-                    result = ct;
-                    break;
+            if (feature instanceof EModelElement) {
+                EAnnotation annotation = ((EModelElement) feature).getEAnnotation(
+                    ANNOTATION_SOURCE);
+                if (annotation != null) {
+                    result = (Constraint) EcoreUtil.getObjectByType(
+                        annotation.getReferences(),
+                        UMLPackage.Literals.CONSTRAINT);
+                }
+            }
+            
+            if (result == null) {
+                // backward compatibility for existing serializations
+                for (Constraint ct : owner.getOwnedRules()) {
+                    if (ct.getKeywords().contains(UMLReflection.DEFINITION)
+                        && ct.getConstrainedElements().contains(umlFeature)) {
+                        result = ct;
+                        break;
+                    }
                 }
             }
         }
@@ -723,5 +753,15 @@ public class UMLEnvironment
             && (!constraint.getKeywords().isEmpty())
             && UMLReflection.POSTCONDITION.equals(constraint.getKeywords().get(
                 0));
+    }
+    
+    /**
+     * I provide a custom formatting helper for UML metamodel.
+     * 
+     * @since 1.2
+     */
+    @Override
+    public FormattingHelper getFormatter() {
+        return UMLFormattingHelper.INSTANCE;
     }
 }

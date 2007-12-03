@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -485,7 +485,7 @@ public interface CSTPackage extends EPackage {
 	int INIT_OR_DER_VALUE_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Init Or Der Value CS</b></em>' reference.
+     * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -906,7 +906,7 @@ public interface CSTPackage extends EPackage {
 	int DER_VALUE_CS__END_OFFSET = INIT_OR_DER_VALUE_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Init Or Der Value CS</b></em>' reference.
+     * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -961,7 +961,7 @@ public interface CSTPackage extends EPackage {
 	int INIT_VALUE_CS__END_OFFSET = INIT_OR_DER_VALUE_CS__END_OFFSET;
 
 	/**
-     * The feature id for the '<em><b>Init Or Der Value CS</b></em>' reference.
+     * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -3220,10 +3220,10 @@ public interface CSTPackage extends EPackage {
 	EClass getInitOrDerValueCS();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Init Or Der Value CS</em>'.
+     * @return the meta object for the containment reference '<em>Init Or Der Value CS</em>'.
      * @see org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS()
      * @see #getInitOrDerValueCS()
      * @generated
@@ -4603,7 +4603,7 @@ public interface CSTPackage extends EPackage {
 		EClass INIT_OR_DER_VALUE_CS = eINSTANCE.getInitOrDerValueCS();
 
 		/**
-         * The meta object literal for the '<em><b>Init Or Der Value CS</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Init Or Der Value CS</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
