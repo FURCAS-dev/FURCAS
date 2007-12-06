@@ -37,47 +37,63 @@ import org.eclipse.emf.query.conditions.DataTypeCondition;
  */
 public class NumberCondition<N extends Number & Comparable<? super N>>
 	extends DataTypeCondition<N> {
-
+    
+    /** The numeric {@literal =} operator. */
+    public static RelationalOperator EQUAL_TO = RelationalOperator.EQUAL_TO;
+    
+    /** The numeric {@literal !=} operator. */
+    public static RelationalOperator NOT_EQUAL_TO = RelationalOperator.NOT_EQUAL_TO;
+    
+    /** The numeric {@literal <} operator. */
+    public static RelationalOperator LESS_THAN = RelationalOperator.LESS_THAN;
+    
+    /** The numeric {@literal <=} operator. */
+    public static RelationalOperator LESS_THAN_OR_EQUAL_TO = RelationalOperator.LESS_THAN_OR_EQUAL_TO;
+    
+    /** The numeric {@literal >} operator. */
+    public static RelationalOperator GREATER_THAN = RelationalOperator.GREATER_THAN;
+    
+    /** The numeric {@literal >=} operator. */
+    public static RelationalOperator GREATER_THAN_OR_EQUAL_TO = RelationalOperator.GREATER_THAN_OR_EQUAL_TO;
+    
+    /** The numeric "between" operator. */
+    public static RelationalOperator BETWEEN = RelationalOperator.BETWEEN;
+    
+    
 	/** The upper bound of a range condition. */
 	protected N upperBound;
 
-	/** The lower bound of a range condition. */
-	protected N lowerBound;
+    /** Whether the upper bound is inclusive. */
+    protected boolean upperInclusive;
 
+    /** The lower bound of a range condition. */
+    protected N lowerBound;
+
+    /** Whether the lower bound is inclusive. */
+    protected boolean lowerInclusive;
+
+	/** The operator of a relational condition. */
+	protected RelationalOperator operator;
+	
 	/**
 	 * Initializes me with a single number against which to test input
 	 * values, assuming that they will be numbers of the appropriate kind.
+	 * I am, by default, an {@linkplain #EQUAL_TO equality}
+	 * test.
 	 * 
 	 * @param number the number to match against input values
 	 * 
 	 * @since 1.2
 	 */
 	public NumberCondition(N number) {
-		super(number, NumberAdapter.<N>getDefault());
-		
-		this.lowerBound = number;
-		this.upperBound = number;
-	}
-
-	/**
-	 * Initializes me with upper and lower bounds against which to test input
-	 * values, assuming that they will be numbers of the appropriate kind.
-	 * 
-	 * @param lowerBound the lower bound to test
-	 * @param upperBound the upper bound to test
-	 * 
-	 * @since 1.2
-	 */
-	public NumberCondition(N lowerBound, N upperBound) {
-		super(lowerBound, NumberAdapter.<N>getDefault());
-		
-		this.lowerBound = lowerBound;
-		this.upperBound = upperBound;
+		this(number, EQUAL_TO, NumberAdapter.<N>getDefault());
 	}
 
 	/**
 	 * Initializes me with a single number against which to test input
 	 * values, and an adapter to convert those inputs to numbers.
+     * I am, by default, an {@linkplain #EQUAL_TO equality}
+     * test.
 	 * 
 	 * @param number the number to match against input values
 	 * @param adapter to convert input values to the appropriate number kind
@@ -85,11 +101,86 @@ public class NumberCondition<N extends Number & Comparable<? super N>>
 	 * @since 1.2
 	 */
 	public NumberCondition(N number, NumberAdapter<? extends N> adapter) {
-		super(number, adapter);
-		
-		this.lowerBound = number;
-		this.upperBound = number;
+		this(number, BETWEEN, adapter);
 	}
+    
+    /**
+     * Initializes me with a number against which to test input values
+     * and a relational operator to apply in comparisons.  I assume that inputs
+     * are numbers of the appropriate kind.
+     * 
+     * @param number the number to match against input values
+     * @param operator the relational operator to test
+     * 
+     * @since 1.2
+     */
+    public NumberCondition(N number, RelationalOperator operator) {
+        this(number, operator, NumberAdapter.<N>getDefault());
+    }
+	
+    /**
+     * Initializes me with a number against which to test input values,
+     * a relational operator to apply in comparisons, and an adapter to
+     * convert those inputs to numbers.
+     * 
+     * @param number the number to match against input values
+     * @param operator the relational operator to test
+     * @param adapter to convert input values to the appropriate number kind
+     * 
+     * @since 1.2
+     */
+	public NumberCondition(N number, RelationalOperator operator,
+	        NumberAdapter<? extends N> adapter) {
+	    super(number, adapter);
+	    
+	    switch (operator) {
+            case EQUAL_TO:
+                this.lowerBound = number;
+                this.lowerInclusive = true;
+                this.upperBound = number;
+                this.upperInclusive = true;
+                break;
+            case NOT_EQUAL_TO:
+                this.lowerBound = number;
+                this.lowerInclusive = false;
+                this.upperBound = number;
+                this.upperInclusive = false;
+                break;
+            case LESS_THAN:
+                this.upperBound = number;
+                this.upperInclusive = false;
+                break;
+            case LESS_THAN_OR_EQUAL_TO:
+                this.upperBound = number;
+                this.upperInclusive = true;
+                break;
+            case GREATER_THAN:
+                this.lowerBound = number;
+                this.lowerInclusive = false;
+                break;
+            case GREATER_THAN_OR_EQUAL_TO:
+                this.lowerBound = number;
+                this.lowerInclusive = true;
+                break;
+	    }
+	    
+	    this.operator = operator;
+	}
+
+    /**
+     * Initializes me with upper and lower bounds against which to test input
+     * values, assuming that they will be numbers of the appropriate kind.
+     * I am, by default, a {@linkplain #BETWEEN between}
+     * test.
+     * 
+     * @param lowerBound the lower bound to test
+     * @param upperBound the upper bound to test
+     * 
+     * @since 1.2
+     */
+    public NumberCondition(N lowerBound, N upperBound) {
+        this(lowerBound, true, upperBound, true, NumberAdapter.<N>getDefault());
+    }
 
 	/**
 	 * Initializes me with upper and lower bounds against which to test input
@@ -102,11 +193,51 @@ public class NumberCondition<N extends Number & Comparable<? super N>>
 	 * @since 1.2
 	 */
 	public NumberCondition(N lowerBound, N upperBound, NumberAdapter<? extends N> adapter) {
-		super(lowerBound, adapter);
-		
-		this.lowerBound = lowerBound;
-		this.upperBound = upperBound;
+		this(lowerBound, true, upperBound, true, adapter);
 	}
+
+    /**
+     * Initializes me with upper and lower bounds against which to test input
+     * values, assuming that they will be numbers of the appropriate kind.
+     * I am, by default, a {@linkplain #BETWEEN between}
+     * test.
+     * 
+     * @param lowerBound the lower bound to test
+     * @param lowerInclusive whether the lower bound is inclusive
+     * @param upperBound the upper bound to test
+     * @param upperInclusive whether the upper bound is inclusive
+     * 
+     * @since 1.2
+     */
+    public NumberCondition(N lowerBound, boolean lowerInclusive,
+            N upperBound, boolean upperInclusive) {
+        this(lowerBound, lowerInclusive, upperBound, upperInclusive,
+            NumberAdapter.<N>getDefault());
+    }
+
+    /**
+     * Initializes me with upper and lower bounds against which to test input
+     * values, and an adapter to convert those inputs to numbers.
+     * 
+     * @param lowerBound the lower bound to test
+     * @param lowerInclusive whether the lower bound is inclusive
+     * @param upperBound the upper bound to test
+     * @param upperInclusive whether the upper bound is inclusive
+     * @param adapter to convert input values to the appropriate number kind
+     * 
+     * @since 1.2
+     */
+    public NumberCondition(N lowerBound, boolean lowerInclusive,
+            N upperBound, boolean upperInclusive,
+            NumberAdapter<? extends N> adapter) {
+        super(lowerBound, adapter);
+        
+        this.lowerBound = lowerBound;
+        this.lowerInclusive = lowerInclusive;
+        this.upperBound = upperBound;
+        this.upperInclusive = upperInclusive;
+        this.operator = BETWEEN;
+    }
 	
 	/**
 	 * Obtains a condition checking for values equal to the specified
@@ -119,23 +250,111 @@ public class NumberCondition<N extends Number & Comparable<? super N>>
 	 */
 	public static <N extends Number & Comparable<? super N>> NumberCondition<N>
 	equals(N number) {
-		return new NumberCondition<N>(number, number);
+		return new NumberCondition<N>(number, EQUAL_TO);
 	}
+    
+    /**
+     * Obtains a condition checking for values not equal equal to the specified
+     * <tt>number</tt>.
+     * 
+     * @param number a number to check for
+     * @return a condition that does the checking
+     * 
+     * @since 1.2
+     */
+    public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+    notEquals(N number) {
+        return new NumberCondition<N>(number, NOT_EQUAL_TO);
+    }
+    
+    /**
+     * Obtains a condition checking for values less than the specified
+     * <tt>number</tt>.
+     * 
+     * @param number a number to check for
+     * @return a condition that does the checking
+     * 
+     * @since 1.2
+     */
+    public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+    lessThan(N number) {
+        return new NumberCondition<N>(number, LESS_THAN);
+    }
+    
+    /**
+     * Obtains a condition checking for values less than or equal to the specified
+     * <tt>number</tt>.
+     * 
+     * @param number a number to check for
+     * @return a condition that does the checking
+     * 
+     * @since 1.2
+     */
+    public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+    lessThanOrEquals(N number) {
+        return new NumberCondition<N>(number, LESS_THAN_OR_EQUAL_TO);
+    }
+    
+    /**
+     * Obtains a condition checking for values greater than the specified
+     * <tt>number</tt>.
+     * 
+     * @param number a number to check for
+     * @return a condition that does the checking
+     * 
+     * @since 1.2
+     */
+    public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+    greaterThan(N number) {
+        return new NumberCondition<N>(number, GREATER_THAN);
+    }
+    
+    /**
+     * Obtains a condition checking for values greater than or equal to the specified
+     * <tt>number</tt>.
+     * 
+     * @param number a number to check for
+     * @return a condition that does the checking
+     * 
+     * @since 1.2
+     */
+    public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+    greaterThanOrEquals(N number) {
+        return new NumberCondition<N>(number, GREATER_THAN_OR_EQUAL_TO);
+    }
 	
 	/**
 	 * Obtains a condition checking for values in the range to the specified
 	 * <tt>lowerBound</tt> and <tt>upperBound</tt> (inclusive).
 	 * 
-	 * @param lowerBound the lower bound of numbers to check for
-	 * @param upperBound the upper bound of numbers to check for
+	 * @param lowerBound the lower bound of numbers to check for (inclusive)
+	 * @param upperBound the upper bound of numbers to check for (inclusive)
 	 * @return a condition that does the checking
 	 * 
 	 * @since 1.2
 	 */
 	public static <N extends Number & Comparable<? super N>> NumberCondition<N>
 	between(N lowerBound, N upperBound) {
-		return new NumberCondition<N>(lowerBound, upperBound);
+		return between(lowerBound, true, upperBound, true);
 	}
+    
+    /**
+     * Obtains a condition checking for values in the range to the specified
+     * <tt>lowerBound</tt> and <tt>upperBound</tt>.
+     * 
+     * @param lowerBound the lower bound of numbers to check for
+     * @param lowerInclusive whether the lower bound is inclusive
+     * @param upperBound the upper bound of numbers to check for
+     * @param upperInclusive whether the upper bound is inclusive
+     * @return a condition that does the checking
+     * 
+     * @since 1.2
+     */
+    public static <N extends Number & Comparable<? super N>> NumberCondition<N>
+    between(N lowerBound, boolean lowerInclusive, N upperBound, boolean upperInclusive) {
+        return new NumberCondition<N>(lowerBound, lowerInclusive,
+                upperBound, upperInclusive);
+    }
 
 	/**
 	 * A subclass of <code>NumberCondition</code> to be used to test for
@@ -843,8 +1062,76 @@ public class NumberCondition<N extends Number & Comparable<? super N>>
 	
 	@Override
 	public boolean isSatisfied(Object object) {
-		N number = adapter.adapt(object);
-		return (lowerBound.compareTo(number) <= 0)
-			&& (upperBound.compareTo(number) >= 0);
+		return operator.isSatisfied(this, adapter.adapt(object));
 	}
+
+    /**
+     * The relational operator that a {@link NumberCondition} applies to test
+     * input values against its own value or, in the case of {@link #BETWEEN},
+     * its upper and lower bounds.
+     * 
+     * @author Christian W. Damus (cdamus)
+     * 
+     * @since 1.2
+     */
+    public static enum RelationalOperator {
+        EQUAL_TO {
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.value.compareTo(number) == 0);
+            };
+        },
+        NOT_EQUAL_TO{
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.value.compareTo(number) != 0);
+            };
+        },
+        LESS_THAN{
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.value.compareTo(number) > 0);
+            };
+        },
+        LESS_THAN_OR_EQUAL_TO{
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.value.compareTo(number) >= 0);
+            };
+        },
+        GREATER_THAN{
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.value.compareTo(number) < 0);
+            };
+        },
+        GREATER_THAN_OR_EQUAL_TO{
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.value.compareTo(number) <= 0);
+            };
+        },
+        BETWEEN{
+            @Override
+            <N extends Number & Comparable<? super N>> boolean isSatisfied(NumberCondition<N> cond, N number) {
+                return (cond.lowerInclusive?
+                    (cond.lowerBound.compareTo(number) <= 0) :
+                        (cond.lowerBound.compareTo(number) < 0))
+                    && (cond.upperInclusive?
+                        (cond.upperBound.compareTo(number) >= 0) :
+                            (cond.upperBound.compareTo(number) > 0));
+            };
+        };
+        
+        /**
+         * Tests the specified condition against an input value.
+         * 
+         * @param cond the number condition to test
+         * @param number the input value
+         * 
+         * @return the result of my specific test
+         */
+        abstract <N extends Number & Comparable<? super N>> boolean isSatisfied(
+                NumberCondition<N> cond, N number);
+    }
 }
