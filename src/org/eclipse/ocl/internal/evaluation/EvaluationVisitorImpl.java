@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.7 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.8 2007/12/12 22:08:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -177,9 +177,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					
 					result = call(oper, body, sourceVal, evalArgs);
 				} else {
+				    // handle <, <=, >, and >= operators
+				    if (opCode <= 0) {
+				        opCode = inferOperationCode(oper, opCode);
+				    }
 					result = getEvaluationEnvironment().callOperation(
 							oper, opCode, sourceVal, evalArgs);
 				}
+				
 				return result;
 			} catch (UnsupportedOperationException ignore) {
 				// let the EvaluationVisitor do its thing
@@ -1328,6 +1333,34 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		return null;
 	}
+	
+	/**
+	 * Infers a standard operation code from the name of a user-defined
+	 * operation.  This applies for cases where a standard operation is not
+	 * defined by the OCL Standard Library, but is implemented nonetheless by
+	 * the interpreter.
+	 * 
+	 * @param operation the operation
+     * @param opcode the original operation code from the AST
+	 * @return the appropriate operation code, or the original <tt>opcode</tt>
+     *     if there is no matching standard operation
+	 */
+	private int inferOperationCode(O operation, int opcode) {
+	    int result = opcode;
+	    String opName = getName(operation);
+	    
+        if (PredefinedType.LESS_THAN_NAME.equals(opName)) {
+            result = PredefinedType.LESS_THAN;
+        } else if (PredefinedType.GREATER_THAN_NAME.equals(opName)) {
+            result = PredefinedType.GREATER_THAN;
+        } else if (PredefinedType.LESS_THAN_EQUAL_NAME.equals(opName)) {
+            result = PredefinedType.LESS_THAN_EQUAL;
+        } else if (PredefinedType.GREATER_THAN_EQUAL_NAME.equals(opName)) {
+            result = PredefinedType.GREATER_THAN_EQUAL;
+        }
+        
+        return result;
+    }
 
 	/**
 	 * Callback for an IterateExp visit.

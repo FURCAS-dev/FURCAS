@@ -13,7 +13,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.7 2007/11/08 22:23:43 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.8 2007/12/12 22:08:04 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -41,6 +42,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.BasicEnvironment;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
@@ -63,6 +65,15 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 public class TypeUtil {
+	private static final Set<String> RELATIONAL_OPERATORS;
+	
+	static {
+	    RELATIONAL_OPERATORS = new java.util.HashSet<String>();
+        RELATIONAL_OPERATORS.add(PredefinedType.LESS_THAN_NAME);
+        RELATIONAL_OPERATORS.add(PredefinedType.LESS_THAN_EQUAL_NAME);
+        RELATIONAL_OPERATORS.add(PredefinedType.GREATER_THAN_NAME);
+        RELATIONAL_OPERATORS.add(PredefinedType.GREATER_THAN_EQUAL_NAME);
+	}
 	
 	/**
 	 * Not instantiable
@@ -191,6 +202,17 @@ public class TypeUtil {
     			@SuppressWarnings("unchecked")
     			PredefinedType<O> source = (PredefinedType<O>) owner;
     			result = new ArrayList<O>(source.oclOperations());
+    			
+    			if ((source instanceof AnyType) && !ParsingOptions.getValue(env,
+    			        ParsingOptions.USE_COMPARE_TO_OPERATION)) {
+        			// exclude the OclAny operations for <, <=, >, >= which should
+        			// not be defined for OclAny
+    			    for (Iterator<O> iter = result.iterator(); iter.hasNext();) {
+    			        if (RELATIONAL_OPERATORS.contains(uml.getName(iter.next()))) {
+    			            iter.remove();
+    			        }
+    			    }
+    			}
     		} else {
     			// it's a user type.  Try to convert it to an OCL standard type
     			owner = uml.asOCLType(owner);

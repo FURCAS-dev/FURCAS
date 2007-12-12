@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.5 2007/12/03 18:44:41 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.6 2007/12/12 22:08:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -237,6 +237,7 @@ public class OCLMessages {
     public static String NonStd_Operation_;
     public static String NonStd_Iterator_;
     public static String NonStd_InheritedFeatureContext_;
+    public static String NonStd_CompareTo_;
     
     public static String Ambig_AssocEnd_;
 	

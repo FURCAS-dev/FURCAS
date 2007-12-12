@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.2 2007/12/03 18:44:40 cdamus Exp $
+ * $Id: ParsingOptions.java,v 1.3 2007/12/12 22:08:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -43,7 +43,7 @@ public class ParsingOptions {
      * a constrained element.
      * </p><p>
      * The default value of this option is <tt>false</tt>.  For compatibility
-     * with the 1.1 release behaviour, set this option <tt>false</tt>.  Note
+     * with the 1.1 release behaviour, set this option <tt>true</tt>.  Note
      * that this is not necessary for loading and processing constraints
      * created by the 1.1 release, only for persisting constraints that will be
      * consumed by the 1.1 release.
@@ -51,6 +51,19 @@ public class ParsingOptions {
      */
     public static final Option<Boolean> DEFINITION_CONSTRAINS_FEATURE =
         new BasicOption<Boolean>("definition.constraints.feature", false); //$NON-NLS-1$
+
+    /**
+     * <p>
+     * Parsing option indicating whether to interpolate {@literal <},
+     * {@literal <=}, {@literal >}, and {@literal >=} operations when a model
+     * type defines a Java-style <tt>compareTo(...)</tt> operation.
+     * </p><p>
+     * The default value of this option is <tt>false</tt>.  For compatibility
+     * with the 1.1 release behaviour, set this option <tt>true</tt>.
+     * </p>
+     */
+    public static final Option<Boolean> USE_COMPARE_TO_OPERATION =
+        new BasicOption<Boolean>("use.compare.to.operation", false); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.
