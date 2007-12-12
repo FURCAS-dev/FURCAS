@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.7 2007/11/06 19:46:49 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.8 2007/12/12 22:08:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -38,9 +38,11 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.CollectionType;
 
 /**
@@ -57,6 +59,9 @@ public class ComparisonTest
 	private EDataType valueType;
 	private EClass numeroType;
 	private EReference numeros;
+	
+	private EClass comparable;
+    private EDataType myDataType;
 	
 	private EObject thing;
 	
@@ -93,6 +98,9 @@ public class ComparisonTest
 			valuesList.add(new Value("a")); //$NON-NLS-1$
 			valuesList.add(new Value("b")); //$NON-NLS-1$
 			
+	        ParsingOptions.setOption(helper.getOCL().getEnvironment(),
+	            ParsingOptions.USE_COMPARE_TO_OPERATION, true);
+	        
 			assertTrue(check(helper, thing,
 				"values->at(1) < values->at(2)")); //$NON-NLS-1$
 
@@ -133,6 +141,9 @@ public class ComparisonTest
 			valuesList.add(new Value("a")); //$NON-NLS-1$
 			valuesList.add(new Value("b")); //$NON-NLS-1$
 			
+	        ParsingOptions.setOption(helper.getOCL().getEnvironment(),
+	            ParsingOptions.USE_COMPARE_TO_OPERATION, true);
+	        
 			assertTrue(check(helper, thing,
 				"values->at(1) <= values->at(2)")); //$NON-NLS-1$
 
@@ -171,6 +182,9 @@ public class ComparisonTest
 			valuesList.add(new Value("b")); //$NON-NLS-1$
 			valuesList.add(new Value("a")); //$NON-NLS-1$
 			
+	        ParsingOptions.setOption(helper.getOCL().getEnvironment(),
+	            ParsingOptions.USE_COMPARE_TO_OPERATION, true);
+	        
 			assertTrue(check(helper, thing,
 				"values->at(1) > values->at(2)")); //$NON-NLS-1$
 
@@ -211,6 +225,9 @@ public class ComparisonTest
 			valuesList.add(new Value("b")); //$NON-NLS-1$
 			valuesList.add(new Value("a")); //$NON-NLS-1$
 			
+	        ParsingOptions.setOption(helper.getOCL().getEnvironment(),
+	            ParsingOptions.USE_COMPARE_TO_OPERATION, true);
+	        
 			assertTrue(check(helper, thing,
 				"values->at(1) >= values->at(2)")); //$NON-NLS-1$
 
@@ -590,6 +607,48 @@ public class ComparisonTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
+    
+    /**
+     * The compareTo() method is a Java-ism that should not be supported by
+     * OCL as a definition of the relational comparison operations.
+     */
+    public void test_compareToOnlyUsedByJavaImplementation_212804() {
+        helper.setContext(comparable);
+        
+        try {
+            // this should not parse because the >= operation is not defined
+            helper.createInvariant(
+                "Comparable.allInstances()->forAll(c | self >= c)"); //$NON-NLS-1$
+            
+            fail("Should not have parsed"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Unexpected exception during parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * The compareTo() method is a Java-ism that should not be supported by
+     * OCL as a definition of the relational comparison operations.
+     */
+    public void test_comparableDataTypes_212804() {
+        helper.setContext(myDataType);
+        
+        try {
+            // this should not parse because the >= operation is not defined
+            helper.createInvariant(
+                "MyDataType.allInstances()->forAll(d | self >= d)"); //$NON-NLS-1$
+            
+            fail("Should not have parsed"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Unexpected exception during parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Framework methods
@@ -623,6 +682,7 @@ public class ComparisonTest
 		numeroType = EcoreFactory.eINSTANCE.createEClass();
 		numeroType.setName("Numero"); //$NON-NLS-1$
 		numeroType.setInstanceClass(Numero.class);
+        pkg.getEClassifiers().add(numeroType);
 		
 		EOperation oper = EcoreFactory.eINSTANCE.createEOperation();
 		oper.setName("+"); //$NON-NLS-1$
@@ -714,7 +774,26 @@ public class ComparisonTest
 		thingType.getEStructuralFeatures().add(numeros);
 		
 		thing = factory.create(thingType);
+
+        comparable = EcoreFactory.eINSTANCE.createEClass();
+        comparable.setName("Comparable"); //$NON-NLS-1$
+        comparable.setAbstract(true);
+        pkg.getEClassifiers().add(comparable);
+        
+        oper = EcoreFactory.eINSTANCE.createEOperation();
+        oper.setName("compareTo"); //$NON-NLS-1$
+        parm = EcoreFactory.eINSTANCE.createEParameter();
+        parm.setName("c"); //$NON-NLS-1$
+        parm.setEType(comparable);
+        oper.getEParameters().add(parm);
+        oper.setEType(EcorePackage.Literals.EINT);
+        comparable.getEOperations().add(oper);
 		
+        myDataType = EcoreFactory.eINSTANCE.createEDataType();
+        myDataType.setName("MyDataType"); //$NON-NLS-1$
+        myDataType.setInstanceClass(Thread.State.class); // enums are comparable
+        pkg.getEClassifiers().add(myDataType);
+        
 		@SuppressWarnings("unchecked")
 		EList<Numero> list = (EList<Numero>) thing.eGet(numeros);
 		list.add(new Numero(6));

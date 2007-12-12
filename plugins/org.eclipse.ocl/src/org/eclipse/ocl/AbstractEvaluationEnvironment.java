@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.5 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.6 2007/12/12 22:08:04 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -33,6 +33,7 @@ import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.util.Adaptable;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,
@@ -206,6 +207,32 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
 					e);
 				return getInvalidResult();
 			}
+    	}
+    	
+    	// maybe it's a comparison operation that is implemented implicitly
+    	// via the Comparable interface?
+    	switch (opcode) {
+    	    case PredefinedType.LESS_THAN:
+    	    case PredefinedType.GREATER_THAN:
+    	    case PredefinedType.LESS_THAN_EQUAL:
+    	    case PredefinedType.GREATER_THAN_EQUAL:
+            if ((source instanceof Comparable) && (args.length == 1)) {
+                @SuppressWarnings("unchecked")
+                Comparable<Object> comparable = (Comparable<Object>) source;
+                Object other = args[0];
+                
+            	switch (opcode) {
+                    case PredefinedType.LESS_THAN:
+                        return comparable.compareTo(other) < 0;
+                    case PredefinedType.GREATER_THAN:
+                        return comparable.compareTo(other) > 0;
+                    case PredefinedType.LESS_THAN_EQUAL:
+                        return comparable.compareTo(other) <= 0;
+                    case PredefinedType.GREATER_THAN_EQUAL:
+                        return comparable.compareTo(other) >= 0;
+            	}
+            }
+            break;
     	}
     	
     	throw new IllegalArgumentException();
