@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.6 2007/11/06 19:46:50 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.7 2007/12/12 22:08:04 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.lpg.StringProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -439,24 +441,6 @@ public final class OCLStandardLibraryUtil {
 				arg = args.get(0);
 				argType = arg.getType();
 				
-				// source must either be an EDataType that is Comparable, or
-				//    else be an EClass, with a method: int compareTo(object)
-				//    or <(), <=(), etc.
-				if (uml.isDataType(sourceType)) {
-					if (uml.isComparable(sourceType)) {
-						TypeUtil.checkMutuallyComparable(
-							problemObject, env, sourceType, argType,
-							opcode);
-						return stdlib.getBoolean();
-					}
-					
-					String message = OCLMessages.bind(
-							OCLMessages.SourceEClass_ERROR_,
-							getOperationName(opcode));
-					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
-					return null;
-				}
-				
 				O oper = null;
 				try {
 					oper = TypeUtil.findOperationMatching(
@@ -464,12 +448,42 @@ public final class OCLStandardLibraryUtil {
 						getOperationName(opcode),
 						args);
 					
-					if (oper == null) {
+					if ((oper == null) && ParsingOptions.getValue(env,
+					            ParsingOptions.USE_COMPARE_TO_OPERATION)) {
+		                // source must either be a DataType that is Comparable, or
+		                //    else be a Elass, with an operation:
+					    //    int compareTo(object)
+		                if (uml.isDataType(sourceType)) {
+		                    if (uml.isComparable(sourceType)) {
+		                        TypeUtil.checkMutuallyComparable(
+		                            problemObject, env, sourceType, argType,
+		                            opcode);
+		                        
+	                            // warn about non-standard Java-ism
+	                            warning(env, OCLMessages.NonStd_CompareTo_,
+	                                "getAnyTypeResultOf", problemObject); //$NON-NLS-1$
+	                            
+		                        return stdlib.getBoolean();
+		                    }
+		                    
+		                    String message = OCLMessages.bind(
+		                            OCLMessages.SourceEClass_ERROR_,
+		                            getOperationName(opcode));
+		                    error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
+		                    return null;
+		                }
+		                
 						// Check that the type has a method named "compareTo"
 						oper = TypeUtil.findOperationMatching(
 							env, sourceType,
 							"compareTo", //$NON-NLS-1$
 							args);
+						
+						if (oper != null) {
+						    // warn about non-standard Java-ism
+						    warning(env, OCLMessages.NonStd_CompareTo_,
+						        "getAnyTypeResultOf", problemObject); //$NON-NLS-1$
+						}
 					}
 				} catch (Exception e) {
 					String message = OCLMessages.bind(
@@ -485,7 +499,8 @@ public final class OCLStandardLibraryUtil {
 					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
 					return null;
 				}
-			// NEED TO CHECK CONFORMANCE OF ARGS if ECLASS...
+			
+				return stdlib.getBoolean();
 
 			case OCL_IS_KIND_OF:
 			case OCL_IS_TYPE_OF:
@@ -1938,7 +1953,7 @@ public final class OCLStandardLibraryUtil {
 	
 	/**
 	 * Convenience method invoking <code>getProblemHandler().utilityProblem</code>
-	 * with a <code>ProblemHandler.errorSeverity</code>.
+	 * with an error severity.
 	 * @param problemMessage message describing the problem
 	 * @param problemContext optional message describing the reporting context
 	 * @param problemObject optional object associated with the problem
@@ -1948,4 +1963,24 @@ public final class OCLStandardLibraryUtil {
 		OCLUtil.getAdapter(env, BasicEnvironment.class).utilityError(problemMessage,
 			problemContext, problemObject);
 	}
+    
+    /**
+     * Convenience method invoking <code>getProblemHandler().utilityProblem</code>
+     * with a warning severity.
+     * @param problemMessage message describing the problem
+     * @param problemContext optional message describing the reporting context
+     * @param problemObject optional object associated with the problem
+     */
+    private static void warning(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
+            String problemMessage, String problemContext, Object problemObject) {
+        BasicEnvironment benv = OCLUtil.getAdapter(env, BasicEnvironment.class);
+        if (benv != null) {
+            CSTNode cstNode = benv.getASTMapping(problemObject);
+            int startOffset = (cstNode != null)? cstNode.getStartOffset() : -1;
+            int endOffset = (cstNode != null)? cstNode.getEndOffset() : -1;
+            benv.getProblemHandler().utilityProblem(
+                ProblemHandler.Severity.WARNING, problemMessage,
+                problemContext, startOffset, endOffset);
+        }
+    }
 }
