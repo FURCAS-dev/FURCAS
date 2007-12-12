@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.4 2007/11/06 19:46:48 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.5 2007/12/12 22:08:00 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.uml2.uml.Class;
@@ -70,6 +71,8 @@ public class ComparisonTest
 	private EDataType evalueType;
 	private EClass enumeroType;
 	private EReference enumeros;
+	
+	private Class comparable;
 	
 	private EObject thing;
 	
@@ -547,6 +550,27 @@ public class ComparisonTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
+    
+    /**
+     * The compareTo() method is a Java-ism that should not be supported by
+     * OCL as a definition of the relational comparison operations.
+     */
+    public void test_compareToOnlyUsedByJavaImplementation_212804() {
+        helper.setContext(comparable);
+        
+        try {
+            // this should not parse because the >= operation is not defined
+            helper.createInvariant(
+                "Comparable.allInstances()->forAll(c | self >= c)"); //$NON-NLS-1$
+            
+            fail("Should not have parsed"); //$NON-NLS-1$
+        } catch (ParserException e) {
+            // success
+            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Unexpected exception during parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Framework methods
@@ -560,6 +584,26 @@ public class ComparisonTest
 		pkg.setName("pkg"); //$NON-NLS-1$
 		
 		valueType = pkg.createOwnedPrimitiveType("Value"); //$NON-NLS-1$
+        valueType.createOwnedOperation(
+            "<", //$NON-NLS-1$
+            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            new BasicEList<Type>(Collections.singleton(valueType)),
+            getUMLBoolean()).setIsQuery(true);
+        valueType.createOwnedOperation(
+            "<=", //$NON-NLS-1$
+            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            new BasicEList<Type>(Collections.singleton(valueType)),
+            getUMLBoolean()).setIsQuery(true);
+        valueType.createOwnedOperation(
+            ">", //$NON-NLS-1$
+            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            new BasicEList<Type>(Collections.singleton(valueType)),
+            getUMLBoolean()).setIsQuery(true);
+        valueType.createOwnedOperation(
+            ">=", //$NON-NLS-1$
+            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            new BasicEList<Type>(Collections.singleton(valueType)),
+            getUMLBoolean()).setIsQuery(true);
 		
 		thingType = pkg.createOwnedClass("Thing", false); //$NON-NLS-1$
 		
@@ -622,6 +666,13 @@ public class ComparisonTest
 		numeros.setUpper(LiteralUnlimitedNatural.UNLIMITED);
 		numeros.setIsOrdered(true);
 		numeros.setIsUnique(true);
+		
+		comparable = pkg.createOwnedClass("Comparable", true); //$NON-NLS-1$
+		comparable.createOwnedOperation(
+            "compareTo", //$NON-NLS-1$
+            new BasicEList<String>(Collections.singleton("c")), //$NON-NLS-1$
+            new BasicEList<Type>(Collections.singleton(comparable)),
+            getUMLInteger()).setIsQuery(true);
 		
 		// the Ecore counterpart
 		
