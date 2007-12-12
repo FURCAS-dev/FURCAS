@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2006, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.9 2007/10/11 23:05:09 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.10 2007/12/12 22:07:54 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -44,6 +44,7 @@ import org.eclipse.emf.ocl.expressions.ExpressionsFactory;
 import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.helper.HelperUtil;
 import org.eclipse.emf.ocl.helper.IOCLHelper;
+import org.eclipse.emf.ocl.helper.OCLParsingException;
 import org.eclipse.emf.ocl.types.CollectionType;
 import org.eclipse.emf.ocl.types.util.Types;
 
@@ -52,6 +53,7 @@ import org.eclipse.emf.ocl.types.util.Types;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("deprecation")
 public class ComparisonTest
 	extends AbstractTestSuite {
 
@@ -61,6 +63,8 @@ public class ComparisonTest
 	private EDataType valueType;
 	private EClass numeroType;
 	private EReference numeros;
+	
+	private EClass comparable;
 	
 	private EObject thing;
 	
@@ -508,6 +512,26 @@ public class ComparisonTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+    
+    /**
+     * The compareTo() method is a Java-ism that should not be supported by
+     * OCL as a definition of the relational comparison operations.  However,
+     * we do want to support it in the 1.1 compatibility API.
+     */
+    public void test_compareToCompatibilitySupport_212804() {
+        IOCLHelper helper = HelperUtil.createOCLHelper();
+        helper.setContext(comparable);
+        
+        try {
+            // this should not parse because the >= operation is not defined
+            helper.createInvariant(
+                "Comparable.allInstances()->forAll(c | self >= c)"); //$NON-NLS-1$
+        } catch (OCLParsingException e) {
+            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Unexpected exception during parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
 	
 	//
 	// Framework methods
@@ -629,6 +653,20 @@ public class ComparisonTest
 		thing = factory.create(thingType);
 		((EList) thing.eGet(numeros)).add(new Numero(6));
 		((EList) thing.eGet(numeros)).add(new Numero(2));
+
+        comparable = EcoreFactory.eINSTANCE.createEClass();
+        comparable.setName("Comparable"); //$NON-NLS-1$
+        comparable.setAbstract(true);
+        pkg.getEClassifiers().add(comparable);
+        
+        oper = EcoreFactory.eINSTANCE.createEOperation();
+        oper.setName("compareTo"); //$NON-NLS-1$
+        parm = EcoreFactory.eINSTANCE.createEParameter();
+        parm.setName("c"); //$NON-NLS-1$
+        parm.setEType(comparable);
+        oper.getEParameters().add(parm);
+        oper.setEType(EcorePackage.Literals.EINT);
+        comparable.getEOperations().add(oper);
 	}
 	
 	private static class Value implements Comparable {
@@ -652,18 +690,23 @@ public class ComparisonTest
 
 		@Override
         public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
+			if (this == obj) {
+                return true;
+            }
+			if (obj == null) {
+                return false;
+            }
+			if (getClass() != obj.getClass()) {
+                return false;
+            }
 			final Value other = (Value) obj;
 			if (value == null) {
-				if (other.value != null)
-					return false;
-			} else if (!value.equals(other.value))
-				return false;
+				if (other.value != null) {
+                    return false;
+                }
+			} else if (!value.equals(other.value)) {
+                return false;
+            }
 			return true;
 		}
 	}
@@ -725,15 +768,19 @@ public class ComparisonTest
 
 		@Override
         public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
+			if (this == obj) {
+                return true;
+            }
+			if (obj == null) {
+                return false;
+            }
+			if (getClass() != obj.getClass()) {
+                return false;
+            }
 			final Numero other = (Numero) obj;
-			if (value != other.value)
-				return false;
+			if (value != other.value) {
+                return false;
+            }
 			return true;
 		}
 		
