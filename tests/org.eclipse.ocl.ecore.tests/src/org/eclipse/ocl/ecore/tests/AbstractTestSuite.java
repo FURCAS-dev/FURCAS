@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.7 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.8 2007/12/14 17:09:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -201,6 +201,8 @@ public abstract class AbstractTestSuite
     protected void tearDown()
 		throws Exception {
 		
+	    ocl.dispose();
+	    
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
 	}
 	
