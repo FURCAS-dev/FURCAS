@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.10 2007/12/03 13:19:51 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.11 2007/12/14 17:09:29 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -431,7 +431,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @param operation the additional operation
      * 
      * @deprecated Since 1.2, use the
-     *    {@link Environment.Internal#addHelperProperty(Object, Object)}
+     *    {@link Environment.Internal#addHelperOperation(Object, Object)}
      *    API, instead
      */
     @Deprecated
@@ -1118,6 +1118,19 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         ProblemHandler.Severity sev = getValue(option);
         return (sev != null) && !sev.isOK();
     }
+    
+    /**
+     * I dispose my type resolver, if it is an {@link AbstractTypeResolver}.
+     * 
+     * @since 1.2
+     */
+    public void dispose() {
+        if (getTypeResolver() instanceof AbstractTypeResolver) {
+            ((AbstractTypeResolver<?, ?, ?, ?, ?>) getTypeResolver()).dispose();
+        }
+    }
+    
+    
 
     /**
      * Wrapper for OCL variable declarations that additionally tracks whether

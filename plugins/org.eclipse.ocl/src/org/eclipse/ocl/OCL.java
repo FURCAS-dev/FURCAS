@@ -13,10 +13,11 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: OCL.java,v 1.4 2007/12/14 17:09:29 cdamus Exp $
  */
 package org.eclipse.ocl;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +25,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLDebugOptions;
@@ -617,5 +619,38 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
      */
     public Diagnostic getProblems() {
     	return problems;
+    }
+    
+    /**
+     * Disposes any objects that I have created while I have been in use.
+     * This includes disposing of any {@link #getConstraints() constraints} that
+     * I have parsed and {@linkplain Environment.Internal#dispose() disposing}
+     * of my environment.
+     * 
+     * @since 1.2
+     */
+    public void dispose() {
+        // dispose of constraints by clearing their adapters
+        for (CT constraint : getConstraints()) {
+            EObject eObject = (EObject) constraint;
+
+            if (eObject.eResource() == null) {
+                eObject.eAdapters().clear();
+                for (Iterator<EObject> iter = EcoreUtil.getAllContents(eObject,
+                    false); iter.hasNext();) {
+                    iter.next().eAdapters().clear();
+                }
+            }
+        }
+        
+        // forget the constraints
+        getConstraints().clear();
+        
+        // dispose of my environment
+        if (getEnvironment() instanceof Environment.Internal) {
+            Environment.Internal<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
+                (Environment.Internal<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) getEnvironment();
+            env.dispose();
+        }
     }
 }
