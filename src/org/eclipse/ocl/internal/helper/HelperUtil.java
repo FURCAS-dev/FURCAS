@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.4 2007/12/03 18:44:41 cdamus Exp $
+ * $Id: HelperUtil.java,v 1.5 2007/12/14 17:09:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -205,7 +205,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -231,7 +231,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -257,7 +257,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -283,7 +283,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -309,7 +309,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -335,7 +335,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -366,7 +366,7 @@ public class HelperUtil {
 		
 		finishAnalyzing(helper);
 		
-		persist(env, result);
+		persist(helper, result);
 		
 		return result;
 	}
@@ -447,14 +447,17 @@ public class HelperUtil {
 	
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	void persist(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+	        OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> helper,
 			CT constraint) {
 		
 		EObject constraintEObject = (EObject) constraint;
 		
 		if (constraintEObject.eResource() == null) {
-			env.getTypeResolver().getResource().getContents().add(constraintEObject);
+			helper.getEnvironment().getTypeResolver().getResource().getContents().add(
+			    constraintEObject);
 		}
+		
+		helper.getOCL().getConstraints().add(constraint);
 	}
 	
 	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>

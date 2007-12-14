@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.5 2007/11/06 20:02:10 cdamus Exp $
+ * $Id: Environment.java,v 1.6 2007/12/14 17:09:29 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -796,5 +796,13 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
          * @param property the additional attribute
          */
         void addHelperProperty(C owner, P property);
+        
+        /**
+         * Disposes of any objects that I have created that should be cleaned
+         * up.
+         * 
+         * @since 1.2
+         */
+        void dispose();
     }
 }
