@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.6 2007/07/16 17:07:32 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.7 2007/12/14 17:09:29 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -70,6 +70,10 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
     private final UMLReflection<PK, C, O, P, ?, PM, ?, ?, ?, ?> uml;
     
 	private Resource resource;
+	
+	// whether I should dispose my resource because I created it
+	private boolean shouldDisposeResource;
+	
 	private PK collectionPackage;
 	private PK tuplePackage;
 	private PK typePackage;
@@ -121,6 +125,8 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	// Documentation copied from the inherited specification
 	public Resource getResource() {
 		if (resource == null) {
+		    // because we are creating the resource, we should dispose it
+		    shouldDisposeResource = true;
 			resource = createResource();
 		}
 		
@@ -917,4 +923,25 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 			return result;
 		}
 	}
+    
+    /**
+     * Disposes me by unloading my resource, if and only if I created it in
+     * the first place.  If I was loaded from an existing resource, then it is
+     * the client's responsibility to manage it.
+     * 
+     * @since 1.2
+     */
+    public void dispose() {
+        if (shouldDisposeResource && (resource != null)) {
+            if (resource.isLoaded()) {
+                resource.unload();
+            }
+            
+            if (resource.getResourceSet() != null) {
+                resource.getResourceSet().getResources().remove(resource);
+            }
+            
+            resource = null;
+        }
+    }
 }

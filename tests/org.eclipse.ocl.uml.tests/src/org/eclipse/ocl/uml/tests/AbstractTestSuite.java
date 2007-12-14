@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.5 2007/11/06 19:47:21 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.6 2007/12/14 17:09:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -236,6 +236,8 @@ public abstract class AbstractTestSuite
     protected void tearDown()
 		throws Exception {
 		
+	    ocl.dispose();
+	    
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
 	}
     
@@ -908,6 +910,13 @@ public abstract class AbstractTestSuite
 			} catch (MalformedURLException e) {
 				fail(e.getLocalizedMessage());
 			}
+		}
+		
+		if (resourceSet != null) {
+		    for (Resource res : resourceSet.getResources()) {
+		        res.unload();
+		    }
+		    resourceSet.getResources().clear();
 		}
 		
 		resourceSet = new ResourceSetImpl();

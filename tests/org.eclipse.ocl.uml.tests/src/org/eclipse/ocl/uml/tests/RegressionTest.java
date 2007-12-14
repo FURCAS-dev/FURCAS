@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2005, 2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.4 2007/09/20 17:45:20 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.5 2007/12/14 17:09:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -26,22 +26,30 @@ import junit.framework.AssertionFailedError;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.uml.BagType;
 import org.eclipse.ocl.uml.CollectionType;
+import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.OrderedSetType;
 import org.eclipse.ocl.uml.SequenceType;
 import org.eclipse.ocl.uml.SetType;
 import org.eclipse.ocl.uml.TupleType;
+import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLFactory;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -51,6 +59,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * Regression tests for specific RATLC defects.
@@ -1366,5 +1375,71 @@ public class RegressionTest
                 CollectionKind.BAG_LITERAL, null);
         
         collType.getName();
+    }
+    
+    /**
+     * Tests that disposing an OCL instance correctly disposes the resource
+     * created by the type resolver.  This is crucial for cleaning up the
+     * CacheAdapter in UML.
+     */
+    public void test_dispose_resourceOwnedByOCL_213045() {
+        helper.setContext(getMetaclass("Action")); //$NON-NLS-1$
+        
+        try {
+            Constraint constraint = helper.createInvariant("self.owner <> null"); //$NON-NLS-1$
+            
+            Resource res = constraint.eResource();
+            assertSame(ocl.getEnvironment().getTypeResolver().getResource(), res);
+            
+            Adapter adapter = new AdapterImpl();
+            constraint.getSpecification().eAdapters().add(adapter);
+            
+            assertSame(constraint.getSpecification(), adapter.getTarget());
+            
+            ocl.dispose();
+            
+            assertFalse(res.isLoaded());
+            assertNull(constraint.eResource());
+            assertNull(adapter.getTarget());
+        } catch (ParserException e) {
+            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that disposing an OCL instance does not dispose the resource
+     * created by a user.  This is crucial for cleaning up the
+     * CacheAdapter in UML.
+     */
+    public void test_dispose_resourceOwnedByClient_213045() {
+        UMLEnvironmentFactory factory = (UMLEnvironmentFactory) ocl.getEnvironment().getFactory();
+        ocl.dispose();
+        
+        Resource res = UMLResource.Factory.INSTANCE.createResource(
+            URI.createURI("foo://foo")); //$NON-NLS-1$
+        
+        ocl = OCL.newInstance(factory.loadEnvironment(res));
+        helper = ocl.createOCLHelper();
+        
+        helper.setContext(getMetaclass("Action")); //$NON-NLS-1$
+        
+        try {
+            Constraint constraint = helper.createInvariant("self.owner <> null"); //$NON-NLS-1$
+            
+            assertSame(res, constraint.eResource());
+            
+            Adapter adapter = new AdapterImpl();
+            constraint.getSpecification().eAdapters().add(adapter);
+            
+            assertSame(constraint.getSpecification(), adapter.getTarget());
+            
+            ocl.dispose();
+            
+            assertTrue(res.isLoaded());
+            assertSame(res, constraint.eResource());
+            assertSame(constraint.getSpecification(), adapter.getTarget());
+        } catch (ParserException e) {
+            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
     }
 }
