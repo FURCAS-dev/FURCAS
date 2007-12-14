@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.4 2007/05/05 00:47:10 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.5 2007/12/14 17:09:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -336,8 +336,6 @@ public class SerializationTest
 	@Override
     protected void tearDown()
 		throws Exception {
-		
-		resourceSet.getResources().remove(ocl.getEnvironment().getTypeResolver().getResource());
 		
 		res.unload();
 		resourceSet.getResources().remove(res);
