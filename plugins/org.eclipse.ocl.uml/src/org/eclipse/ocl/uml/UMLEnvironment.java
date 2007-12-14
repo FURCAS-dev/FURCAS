@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.11 2007/12/03 18:44:36 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.12 2007/12/14 17:09:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -625,7 +625,6 @@ public class UMLEnvironment
         result.setName(name);
         result.setType(type);
 
-        owner.getOwnedRules().add(constraint);
         annotate(result, constraint);
 
         addHelperProperty(owner, result);
@@ -659,7 +658,6 @@ public class UMLEnvironment
             result.getOwnedParameters().add(param);
         }
 
-        owner.getOwnedRules().add(constraint);
         annotate(result, constraint);
 
         addHelperOperation(owner, result);
