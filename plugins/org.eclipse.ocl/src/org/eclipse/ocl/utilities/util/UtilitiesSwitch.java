@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesSwitch.java,v 1.5 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: UtilitiesSwitch.java,v 1.6 2008/01/02 20:12:59 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.util;
 
@@ -133,26 +133,26 @@ public class UtilitiesSwitch<T1> {
                 return result;
             }
             case UtilitiesPackage.VISITOR: {
-                @SuppressWarnings("unchecked") Visitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor = (Visitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>)theEObject;
+                Visitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> visitor = (Visitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?>)theEObject;
                 T1 result = caseVisitor(visitor);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UtilitiesPackage.TYPED_ELEMENT: {
-                @SuppressWarnings("unchecked") TypedElement<?> typedElement = (TypedElement<?>)theEObject;
+                TypedElement<?> typedElement = (TypedElement<?>)theEObject;
                 T1 result = caseTypedElement(typedElement);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UtilitiesPackage.EXPRESSION_IN_OCL: {
-                @SuppressWarnings("unchecked") ExpressionInOCL<?, ?> expressionInOCL = (ExpressionInOCL<?, ?>)theEObject;
+                ExpressionInOCL<?, ?> expressionInOCL = (ExpressionInOCL<?, ?>)theEObject;
                 T1 result = caseExpressionInOCL(expressionInOCL);
                 if (result == null) result = caseVisitable(expressionInOCL);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UtilitiesPackage.PREDEFINED_TYPE: {
-                @SuppressWarnings("unchecked") PredefinedType<?> predefinedType = (PredefinedType<?>)theEObject;
+                PredefinedType<?> predefinedType = (PredefinedType<?>)theEObject;
                 T1 result = casePredefinedType(predefinedType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesSwitch.java,v 1.4 2007/10/11 23:05:06 cdamus Exp $
+ * $Id: TypesSwitch.java,v 1.5 2008/01/02 20:12:59 cdamus Exp $
  */
 package org.eclipse.ocl.types.util;
 
@@ -135,14 +135,14 @@ public class TypesSwitch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
             case TypesPackage.ANY_TYPE: {
-                @SuppressWarnings("unchecked") AnyType<?> anyType = (AnyType<?>)theEObject;
+                AnyType<?> anyType = (AnyType<?>)theEObject;
                 T result = caseAnyType(anyType);
                 if (result == null) result = casePredefinedType(anyType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case TypesPackage.BAG_TYPE: {
-                @SuppressWarnings("unchecked") BagType<?, ?> bagType = (BagType<?, ?>)theEObject;
+                BagType<?, ?> bagType = (BagType<?, ?>)theEObject;
                 T result = caseBagType(bagType);
                 if (result == null) result = caseCollectionType(bagType);
                 if (result == null) result = casePredefinedType(bagType);
@@ -152,7 +152,7 @@ public class TypesSwitch<T> {
                 return result;
             }
             case TypesPackage.COLLECTION_TYPE: {
-                @SuppressWarnings("unchecked") CollectionType<?, ?> collectionType = (CollectionType<?, ?>)theEObject;
+                CollectionType<?, ?> collectionType = (CollectionType<?, ?>)theEObject;
                 T result = caseCollectionType(collectionType);
                 if (result == null) result = casePredefinedType(collectionType);
                 if (result == null) result = caseTypedASTNode(collectionType);
@@ -167,21 +167,21 @@ public class TypesSwitch<T> {
                 return result;
             }
             case TypesPackage.INVALID_TYPE: {
-                @SuppressWarnings("unchecked") InvalidType<?> invalidType = (InvalidType<?>)theEObject;
+                InvalidType<?> invalidType = (InvalidType<?>)theEObject;
                 T result = caseInvalidType(invalidType);
                 if (result == null) result = casePredefinedType(invalidType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case TypesPackage.MESSAGE_TYPE: {
-                @SuppressWarnings("unchecked") MessageType<?, ?, ?> messageType = (MessageType<?, ?, ?>)theEObject;
+                MessageType<?, ?, ?> messageType = (MessageType<?, ?, ?>)theEObject;
                 T result = caseMessageType(messageType);
                 if (result == null) result = casePredefinedType(messageType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case TypesPackage.ORDERED_SET_TYPE: {
-                @SuppressWarnings("unchecked") OrderedSetType<?, ?> orderedSetType = (OrderedSetType<?, ?>)theEObject;
+                OrderedSetType<?, ?> orderedSetType = (OrderedSetType<?, ?>)theEObject;
                 T result = caseOrderedSetType(orderedSetType);
                 if (result == null) result = caseCollectionType(orderedSetType);
                 if (result == null) result = casePredefinedType(orderedSetType);
@@ -191,14 +191,14 @@ public class TypesSwitch<T> {
                 return result;
             }
             case TypesPackage.PRIMITIVE_TYPE: {
-                @SuppressWarnings("unchecked") PrimitiveType<?> primitiveType = (PrimitiveType<?>)theEObject;
+                PrimitiveType<?> primitiveType = (PrimitiveType<?>)theEObject;
                 T result = casePrimitiveType(primitiveType);
                 if (result == null) result = casePredefinedType(primitiveType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case TypesPackage.SEQUENCE_TYPE: {
-                @SuppressWarnings("unchecked") SequenceType<?, ?> sequenceType = (SequenceType<?, ?>)theEObject;
+                SequenceType<?, ?> sequenceType = (SequenceType<?, ?>)theEObject;
                 T result = caseSequenceType(sequenceType);
                 if (result == null) result = caseCollectionType(sequenceType);
                 if (result == null) result = casePredefinedType(sequenceType);
@@ -208,7 +208,7 @@ public class TypesSwitch<T> {
                 return result;
             }
             case TypesPackage.SET_TYPE: {
-                @SuppressWarnings("unchecked") SetType<?, ?> setType = (SetType<?, ?>)theEObject;
+                SetType<?, ?> setType = (SetType<?, ?>)theEObject;
                 T result = caseSetType(setType);
                 if (result == null) result = caseCollectionType(setType);
                 if (result == null) result = casePredefinedType(setType);
@@ -218,21 +218,21 @@ public class TypesSwitch<T> {
                 return result;
             }
             case TypesPackage.TUPLE_TYPE: {
-                @SuppressWarnings("unchecked") TupleType<?, ?> tupleType = (TupleType<?, ?>)theEObject;
+                TupleType<?, ?> tupleType = (TupleType<?, ?>)theEObject;
                 T result = caseTupleType(tupleType);
                 if (result == null) result = casePredefinedType(tupleType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case TypesPackage.TYPE_TYPE: {
-                @SuppressWarnings("unchecked") TypeType<?, ?> typeType = (TypeType<?, ?>)theEObject;
+                TypeType<?, ?> typeType = (TypeType<?, ?>)theEObject;
                 T result = caseTypeType(typeType);
                 if (result == null) result = casePredefinedType(typeType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case TypesPackage.VOID_TYPE: {
-                @SuppressWarnings("unchecked") VoidType<?> voidType = (VoidType<?>)theEObject;
+                VoidType<?> voidType = (VoidType<?>)theEObject;
                 T result = caseVoidType(voidType);
                 if (result == null) result = casePredefinedType(voidType);
                 if (result == null) result = defaultCase(theEObject);

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.8 2007/11/06 19:47:25 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.9 2008/01/02 20:12:59 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -1308,7 +1308,6 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void parseIterators(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String variables) throws ParserException {
@@ -1347,7 +1346,6 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void parseVariable(
 			Environment <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			String variables) throws ParserException {

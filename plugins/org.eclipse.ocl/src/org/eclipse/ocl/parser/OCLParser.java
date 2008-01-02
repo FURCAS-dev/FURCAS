@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2007 IBM Corporation and others.
+* Copyright (c) 2005, 2008 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
+*   E.D.Willink - Remove unnecessary warning suppression
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+* $Id: OCLParser.java,v 1.2 2008/01/02 20:12:59 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -72,7 +73,6 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 		return getLexer().getOCLEnvironment();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override 
 	public OCLLexer getLexer() {
 		return (OCLLexer)super.getLexer();

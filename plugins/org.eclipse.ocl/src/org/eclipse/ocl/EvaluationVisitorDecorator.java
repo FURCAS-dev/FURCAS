@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.1 2007/01/25 18:24:37 cdamus Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.2 2008/01/02 20:12:59 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -97,7 +97,6 @@ public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CL
         if (decorated instanceof AbstractEvaluationVisitor) {
             // tell the visitor to recursively invoke the head decorator so
             //   that it may intercept the recursion
-            @SuppressWarnings("unchecked")
             AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 abstractVisitor = (AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) decorated;
             
@@ -105,7 +104,6 @@ public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CL
         } else if (decorated instanceof EvaluationVisitorDecorator) {
             // propagate the head decorator down the chain to the tail
             //   (which, hopefully, is an AbstractEvaluationVisitor)
-            @SuppressWarnings("unchecked")
             EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 nestedDecorator = (EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) decorated;
             

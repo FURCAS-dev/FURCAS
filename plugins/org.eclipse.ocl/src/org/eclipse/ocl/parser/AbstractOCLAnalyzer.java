@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.3 2007/12/03 18:44:40 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.4 2008/01/02 20:12:59 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -3438,9 +3438,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return astNode;
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected OCLExpression<C> getLoopBody(OCLExpression<C> expr) {
-		return ((LoopExp<C, PM>) expr).getBody();
+		return ((LoopExp<C, ?>) expr).getBody();
 	}
 
 	/**
@@ -3759,21 +3758,18 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return TypeUtil.resolveTupleType(env, parts);
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected C getTypeType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type) {
 		return TypeUtil.resolveTypeType(env, type);
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected C getOperationMessageType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			O operation) {
 		return TypeUtil.resolveOperationMessageType(env, operation);
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected C getSignalMessageType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C signal) {
