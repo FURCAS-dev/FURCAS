@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D. Willink - Fix NPE in visiting operation call with null source
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.5 2008/01/02 17:05:46 cdamus Exp $
+ * $Id: AbstractVisitor.java,v 1.6 2008/01/02 17:10:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
