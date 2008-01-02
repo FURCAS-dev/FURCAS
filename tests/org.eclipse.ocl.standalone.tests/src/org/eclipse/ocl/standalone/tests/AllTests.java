@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.2 2007/05/24 02:10:31 cdamus Exp $
+ * $Id: AllTests.java,v 1.3 2008/01/02 20:13:01 cdamus Exp $
  */
 package org.eclipse.ocl.standalone.tests;
 
@@ -71,7 +71,7 @@ public class AllTests extends TestCase {
         // configure URI mappings
         //
         
-        Map uriMap = URIConverter.URI_MAP;
+        Map<URI, URI> uriMap = URIConverter.URI_MAP;
         
         uriMap.put(URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.ecore.tests/"), //$NON-NLS-1$
             URI.createURI("file:" + WORKSPACE_LOCATION + "org.eclipse.ocl.ecore.tests/")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -87,12 +87,12 @@ public class AllTests extends TestCase {
         // configure resource factories
         //
         
-        Map extMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+        Map<String, Object> extMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
         extMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
         extMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
         extMap.put("uml", UMLResource.Factory.INSTANCE); //$NON-NLS-1$
 
-        Map protMap = Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap();
+        Map<String, Object> protMap = Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap();
         
         try {
             protMap.put("oclenv", Class.forName("org.eclipse.emf.ocl.parser.EnvironmentResource$Factory").newInstance()); //$NON-NLS-1$ //$NON-NLS-2$
@@ -104,7 +104,7 @@ public class AllTests extends TestCase {
         // configure EPackages
         //
         
-        Map pkgReg = EPackage.Registry.INSTANCE;
+        Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
         pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
     }
     
@@ -137,6 +137,7 @@ public class AllTests extends TestCase {
                 super(url);
             }
             
+            @Override
             public void connect()
                 throws IOException {
                 
@@ -156,6 +157,7 @@ public class AllTests extends TestCase {
                 }
             }
             
+            @Override
             public InputStream getInputStream()
                 throws IOException {
                 
@@ -173,6 +175,7 @@ public class AllTests extends TestCase {
                 if ("platform".equalsIgnoreCase(protocol)) { //$NON-NLS-1$
                     return new URLStreamHandler() {
                     
+                        @Override
                         protected URLConnection openConnection(URL u)
                             throws IOException {
                             
