@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.4 2007/11/21 20:35:08 cdamus Exp $
+ * $Id: AbstractVisitor.java,v 1.5 2008/01/02 17:05:46 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
@@ -94,7 +94,8 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleOperationCallExp(OperationCallExp, Object, List)}.
      */
 	public T visitOperationCallExp(OperationCallExp<C, O> callExp) {
-        T sourceResult = callExp.getSource().accept(this);
+        OCLExpression<C> source = callExp.getSource();
+		T sourceResult = (source != null)? source.accept(this) : null;
         
         List<T> argumentResults;
         List<OCLExpression<C>> arguments = callExp.getArgument();
