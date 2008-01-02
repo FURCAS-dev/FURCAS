@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2007 IBM Corporation and others.
+-- * Copyright (c) 2005, 2008 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
 -- * Contributors:
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Elimination of some shift-reduce conflicts
+-- *   E.D.Willink - Remove unnecessary warning suppression
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.2 2008/01/02 20:12:59 cdamus Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -120,7 +121,6 @@ $Define
 			return getLexer().getOCLEnvironment();
 		}
 		
-		@SuppressWarnings("unchecked")
 		@Override 
 		public $lex_stream_class getLexer() {
 			return ($lex_stream_class)super.getLexer();
@@ -166,7 +166,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -175,10 +175,11 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
+ *   E.D.Willink - Remove unnecessary warning suppression
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.2 2008/01/02 20:12:59 cdamus Exp $
  */
 	./
 $End
