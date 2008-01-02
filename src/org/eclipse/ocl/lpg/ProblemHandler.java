@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemHandler.java,v 1.4 2007/10/15 22:10:08 cdamus Exp $
+ * $Id: ProblemHandler.java,v 1.5 2008/01/02 16:56:11 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -137,23 +137,67 @@ public interface ProblemHandler {
 	}
 	
 	/**
-	 * Standard problem severities.
+	 * Standard problem severities.  The values are defined in increasing
+	 * order of their severity.
 	 * 
 	 * @author Christian W. Damus
 	 * 
 	 * @since 1.2
 	 */
 	enum Severity {
-		OK(OCLMessages.Severity_OK, Diagnostic.OK) {                // Problems that are no problem
+		/**
+		 * Severity constant indicating absence of any problem.
+		 * Corresponds to the EMF {@link Diagnostic} severity
+		 * {@link Diagnostic#OK} and Eclipse <tt>IStatus.OK</tt>.
+		 */
+		OK(OCLMessages.Severity_OK, Diagnostic.OK) {
 		    @Override
             public boolean isOK() {
 		        return true;
 		    }},
-		INFO(OCLMessages.Severity_Info, Diagnostic.INFO),			// Problems that are no problem
-		WARNING(OCLMessages.Severity_Warning, Diagnostic.WARNING),	// Problems that may allow subsequent phases to succeed
-		ERROR(OCLMessages.Severity_Error, Diagnostic.ERROR),		// Problems that may invalidate a subsequent phase
-		FATAL(OCLMessages.Severity_Fatal_Error, Diagnostic.ERROR),	// Problems that may require abrupt termination
-        CANCEL(OCLMessages.Severity_Cancel, Diagnostic.CANCEL);  // Problems that indicate use cancellation (not a problem)
+		/**
+		 * Severity constant indicating an informational message
+		 * that, really, is not a problem but a hint or suggestion.
+		 * Corresponds to the EMF {@link Diagnostic} severity
+		 * {@link Diagnostic#INFO} and Eclipse <tt>IStatus.INFO</tt>.
+		 */
+		INFO(OCLMessages.Severity_Info, Diagnostic.INFO),
+		/**
+		 * Severity constant indicating a warning problem.
+		 * Corresponds to the EMF {@link Diagnostic} severity
+		 * {@link Diagnostic#WARNING} and Eclipse <tt>IStatus.WARNING</tt>.
+		 */
+		WARNING(OCLMessages.Severity_Warning, Diagnostic.WARNING),
+		/**
+		 * Severity constant indicating an error problem that does not
+		 * prevent the parser from proceeding, but which does indicate
+		 * an ill-formed construct.
+		 * Corresponds to the EMF {@link Diagnostic} severity
+		 * {@link Diagnostic#ERROR} and Eclipse <tt>IStatus.ERROR</tt>.
+		 */
+		ERROR(OCLMessages.Severity_Error, Diagnostic.ERROR),
+		/**
+		 * Severity constant indicating an error problem that prevents
+		 * the parser from continuing to process the remainder of the
+		 * input.
+		 * Corresponds to the EMF {@link Diagnostic} severity
+		 * {@link Diagnostic#ERROR} and Eclipse <tt>IStatus.ERROR</tt>,
+		 * because these frameworks do not distinguish between fatal
+		 * and non-fatal conditions.
+		 */
+		FATAL(OCLMessages.Severity_Fatal_Error, Diagnostic.ERROR),
+		/**
+		 * Severity constant indicating a deliberate cancellation of the
+		 * parsing operation by the user.
+		 * Corresponds to the EMF {@link Diagnostic} severity
+		 * {@link Diagnostic#CANCEL} and Eclipse <tt>IStatus.CANCEL</tt>.
+		 * Cancellation in both of these frameworks, and in OCL, does
+		 * not actually indicate an error condition despite its having
+		 * the highest value.  However, an operation that was canceled
+		 * is incomplete and any results produced are necessarily invalid
+		 * as in the case of {@link #FATAL} errors.
+		 */
+        CANCEL(OCLMessages.Severity_Cancel, Diagnostic.CANCEL);
 		
 		private final int diagnosticSeverity;
 		private final String localizedName;
