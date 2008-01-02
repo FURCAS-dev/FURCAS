@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.2 2008/01/02 20:12:59 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -101,7 +101,6 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * @param constraintType the kind of constraint to parse
      * @return the OCL expression, if it successfully parsed
      */
-    @SuppressWarnings("unused")
 	public OCLExpression<C> parseAST(OCLExpressionCS cst, ConstraintKind constraintType) {
         OCLParser parser = getParser();   
         OCLExpression<C> result = null;

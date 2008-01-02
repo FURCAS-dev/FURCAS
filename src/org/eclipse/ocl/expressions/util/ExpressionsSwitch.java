@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsSwitch.java,v 1.5 2007/10/11 23:05:06 cdamus Exp $
+ * $Id: ExpressionsSwitch.java,v 1.6 2008/01/02 20:12:59 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.util;
 
@@ -140,7 +140,7 @@ public class ExpressionsSwitch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
             case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP: {
-                @SuppressWarnings("unchecked") AssociationClassCallExp<?, ?> associationClassCallExp = (AssociationClassCallExp<?, ?>)theEObject;
+                AssociationClassCallExp<?, ?> associationClassCallExp = (AssociationClassCallExp<?, ?>)theEObject;
                 T result = caseAssociationClassCallExp(associationClassCallExp);
                 if (result == null) result = caseNavigationCallExp(associationClassCallExp);
                 if (result == null) result = caseFeatureCallExp(associationClassCallExp);
@@ -154,7 +154,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.NAVIGATION_CALL_EXP: {
-                @SuppressWarnings("unchecked") NavigationCallExp<?, ?> navigationCallExp = (NavigationCallExp<?, ?>)theEObject;
+                NavigationCallExp<?, ?> navigationCallExp = (NavigationCallExp<?, ?>)theEObject;
                 T result = caseNavigationCallExp(navigationCallExp);
                 if (result == null) result = caseFeatureCallExp(navigationCallExp);
                 if (result == null) result = caseCallExp(navigationCallExp);
@@ -167,7 +167,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.FEATURE_CALL_EXP: {
-                @SuppressWarnings("unchecked") FeatureCallExp<?> featureCallExp = (FeatureCallExp<?>)theEObject;
+                FeatureCallExp<?> featureCallExp = (FeatureCallExp<?>)theEObject;
                 T result = caseFeatureCallExp(featureCallExp);
                 if (result == null) result = caseCallExp(featureCallExp);
                 if (result == null) result = caseOCLExpression(featureCallExp);
@@ -179,7 +179,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.CALL_EXP: {
-                @SuppressWarnings("unchecked") CallExp<?> callExp = (CallExp<?>)theEObject;
+                CallExp<?> callExp = (CallExp<?>)theEObject;
                 T result = caseCallExp(callExp);
                 if (result == null) result = caseOCLExpression(callExp);
                 if (result == null) result = caseCallingASTNode(callExp);
@@ -190,7 +190,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.OCL_EXPRESSION: {
-                @SuppressWarnings("unchecked") OCLExpression<?> oclExpression = (OCLExpression<?>)theEObject;
+                OCLExpression<?> oclExpression = (OCLExpression<?>)theEObject;
                 T result = caseOCLExpression(oclExpression);
                 if (result == null) result = caseTypedElement(oclExpression);
                 if (result == null) result = caseVisitable(oclExpression);
@@ -199,7 +199,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.BOOLEAN_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") BooleanLiteralExp<?> booleanLiteralExp = (BooleanLiteralExp<?>)theEObject;
+                BooleanLiteralExp<?> booleanLiteralExp = (BooleanLiteralExp<?>)theEObject;
                 T result = caseBooleanLiteralExp(booleanLiteralExp);
                 if (result == null) result = casePrimitiveLiteralExp(booleanLiteralExp);
                 if (result == null) result = caseLiteralExp(booleanLiteralExp);
@@ -211,7 +211,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.PRIMITIVE_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") PrimitiveLiteralExp<?> primitiveLiteralExp = (PrimitiveLiteralExp<?>)theEObject;
+                PrimitiveLiteralExp<?> primitiveLiteralExp = (PrimitiveLiteralExp<?>)theEObject;
                 T result = casePrimitiveLiteralExp(primitiveLiteralExp);
                 if (result == null) result = caseLiteralExp(primitiveLiteralExp);
                 if (result == null) result = caseOCLExpression(primitiveLiteralExp);
@@ -222,7 +222,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.LITERAL_EXP: {
-                @SuppressWarnings("unchecked") LiteralExp<?> literalExp = (LiteralExp<?>)theEObject;
+                LiteralExp<?> literalExp = (LiteralExp<?>)theEObject;
                 T result = caseLiteralExp(literalExp);
                 if (result == null) result = caseOCLExpression(literalExp);
                 if (result == null) result = caseTypedElement(literalExp);
@@ -232,7 +232,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.COLLECTION_ITEM: {
-                @SuppressWarnings("unchecked") CollectionItem<?> collectionItem = (CollectionItem<?>)theEObject;
+                CollectionItem<?> collectionItem = (CollectionItem<?>)theEObject;
                 T result = caseCollectionItem(collectionItem);
                 if (result == null) result = caseCollectionLiteralPart(collectionItem);
                 if (result == null) result = caseTypedElement(collectionItem);
@@ -241,7 +241,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.COLLECTION_LITERAL_PART: {
-                @SuppressWarnings("unchecked") CollectionLiteralPart<?> collectionLiteralPart = (CollectionLiteralPart<?>)theEObject;
+                CollectionLiteralPart<?> collectionLiteralPart = (CollectionLiteralPart<?>)theEObject;
                 T result = caseCollectionLiteralPart(collectionLiteralPart);
                 if (result == null) result = caseTypedElement(collectionLiteralPart);
                 if (result == null) result = caseVisitable(collectionLiteralPart);
@@ -249,7 +249,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.COLLECTION_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") CollectionLiteralExp<?> collectionLiteralExp = (CollectionLiteralExp<?>)theEObject;
+                CollectionLiteralExp<?> collectionLiteralExp = (CollectionLiteralExp<?>)theEObject;
                 T result = caseCollectionLiteralExp(collectionLiteralExp);
                 if (result == null) result = caseLiteralExp(collectionLiteralExp);
                 if (result == null) result = caseOCLExpression(collectionLiteralExp);
@@ -260,7 +260,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.COLLECTION_RANGE: {
-                @SuppressWarnings("unchecked") CollectionRange<?> collectionRange = (CollectionRange<?>)theEObject;
+                CollectionRange<?> collectionRange = (CollectionRange<?>)theEObject;
                 T result = caseCollectionRange(collectionRange);
                 if (result == null) result = caseCollectionLiteralPart(collectionRange);
                 if (result == null) result = caseTypedElement(collectionRange);
@@ -269,7 +269,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.ENUM_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") EnumLiteralExp<?, ?> enumLiteralExp = (EnumLiteralExp<?, ?>)theEObject;
+                EnumLiteralExp<?, ?> enumLiteralExp = (EnumLiteralExp<?, ?>)theEObject;
                 T result = caseEnumLiteralExp(enumLiteralExp);
                 if (result == null) result = caseLiteralExp(enumLiteralExp);
                 if (result == null) result = caseOCLExpression(enumLiteralExp);
@@ -280,7 +280,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.IF_EXP: {
-                @SuppressWarnings("unchecked") IfExp<?> ifExp = (IfExp<?>)theEObject;
+                IfExp<?> ifExp = (IfExp<?>)theEObject;
                 T result = caseIfExp(ifExp);
                 if (result == null) result = caseOCLExpression(ifExp);
                 if (result == null) result = caseTypedElement(ifExp);
@@ -290,7 +290,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.INTEGER_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") IntegerLiteralExp<?> integerLiteralExp = (IntegerLiteralExp<?>)theEObject;
+                IntegerLiteralExp<?> integerLiteralExp = (IntegerLiteralExp<?>)theEObject;
                 T result = caseIntegerLiteralExp(integerLiteralExp);
                 if (result == null) result = caseNumericLiteralExp(integerLiteralExp);
                 if (result == null) result = casePrimitiveLiteralExp(integerLiteralExp);
@@ -303,7 +303,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.NUMERIC_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") NumericLiteralExp<?> numericLiteralExp = (NumericLiteralExp<?>)theEObject;
+                NumericLiteralExp<?> numericLiteralExp = (NumericLiteralExp<?>)theEObject;
                 T result = caseNumericLiteralExp(numericLiteralExp);
                 if (result == null) result = casePrimitiveLiteralExp(numericLiteralExp);
                 if (result == null) result = caseLiteralExp(numericLiteralExp);
@@ -315,7 +315,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") UnlimitedNaturalLiteralExp<?> unlimitedNaturalLiteralExp = (UnlimitedNaturalLiteralExp<?>)theEObject;
+                UnlimitedNaturalLiteralExp<?> unlimitedNaturalLiteralExp = (UnlimitedNaturalLiteralExp<?>)theEObject;
                 T result = caseUnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
                 if (result == null) result = caseNumericLiteralExp(unlimitedNaturalLiteralExp);
                 if (result == null) result = casePrimitiveLiteralExp(unlimitedNaturalLiteralExp);
@@ -328,7 +328,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.INVALID_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") InvalidLiteralExp<?> invalidLiteralExp = (InvalidLiteralExp<?>)theEObject;
+                InvalidLiteralExp<?> invalidLiteralExp = (InvalidLiteralExp<?>)theEObject;
                 T result = caseInvalidLiteralExp(invalidLiteralExp);
                 if (result == null) result = caseLiteralExp(invalidLiteralExp);
                 if (result == null) result = caseOCLExpression(invalidLiteralExp);
@@ -339,7 +339,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.ITERATE_EXP: {
-                @SuppressWarnings("unchecked") IterateExp<?, ?> iterateExp = (IterateExp<?, ?>)theEObject;
+                IterateExp<?, ?> iterateExp = (IterateExp<?, ?>)theEObject;
                 T result = caseIterateExp(iterateExp);
                 if (result == null) result = caseLoopExp(iterateExp);
                 if (result == null) result = caseCallExp(iterateExp);
@@ -352,7 +352,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.LOOP_EXP: {
-                @SuppressWarnings("unchecked") LoopExp<?, ?> loopExp = (LoopExp<?, ?>)theEObject;
+                LoopExp<?, ?> loopExp = (LoopExp<?, ?>)theEObject;
                 T result = caseLoopExp(loopExp);
                 if (result == null) result = caseCallExp(loopExp);
                 if (result == null) result = caseOCLExpression(loopExp);
@@ -364,7 +364,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.VARIABLE: {
-                @SuppressWarnings("unchecked") Variable<?, ?> variable = (Variable<?, ?>)theEObject;
+                Variable<?, ?> variable = (Variable<?, ?>)theEObject;
                 T result = caseVariable(variable);
                 if (result == null) result = caseTypedElement(variable);
                 if (result == null) result = caseVisitable(variable);
@@ -374,7 +374,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.ITERATOR_EXP: {
-                @SuppressWarnings("unchecked") IteratorExp<?, ?> iteratorExp = (IteratorExp<?, ?>)theEObject;
+                IteratorExp<?, ?> iteratorExp = (IteratorExp<?, ?>)theEObject;
                 T result = caseIteratorExp(iteratorExp);
                 if (result == null) result = caseLoopExp(iteratorExp);
                 if (result == null) result = caseCallExp(iteratorExp);
@@ -387,7 +387,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.LET_EXP: {
-                @SuppressWarnings("unchecked") LetExp<?, ?> letExp = (LetExp<?, ?>)theEObject;
+                LetExp<?, ?> letExp = (LetExp<?, ?>)theEObject;
                 T result = caseLetExp(letExp);
                 if (result == null) result = caseOCLExpression(letExp);
                 if (result == null) result = caseTypedElement(letExp);
@@ -397,7 +397,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.MESSAGE_EXP: {
-                @SuppressWarnings("unchecked") MessageExp<?, ?, ?> messageExp = (MessageExp<?, ?, ?>)theEObject;
+                MessageExp<?, ?, ?> messageExp = (MessageExp<?, ?, ?>)theEObject;
                 T result = caseMessageExp(messageExp);
                 if (result == null) result = caseOCLExpression(messageExp);
                 if (result == null) result = caseCallingASTNode(messageExp);
@@ -408,7 +408,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.NULL_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") NullLiteralExp<?> nullLiteralExp = (NullLiteralExp<?>)theEObject;
+                NullLiteralExp<?> nullLiteralExp = (NullLiteralExp<?>)theEObject;
                 T result = caseNullLiteralExp(nullLiteralExp);
                 if (result == null) result = caseLiteralExp(nullLiteralExp);
                 if (result == null) result = caseOCLExpression(nullLiteralExp);
@@ -419,7 +419,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.OPERATION_CALL_EXP: {
-                @SuppressWarnings("unchecked") OperationCallExp<?, ?> operationCallExp = (OperationCallExp<?, ?>)theEObject;
+                OperationCallExp<?, ?> operationCallExp = (OperationCallExp<?, ?>)theEObject;
                 T result = caseOperationCallExp(operationCallExp);
                 if (result == null) result = caseFeatureCallExp(operationCallExp);
                 if (result == null) result = caseCallExp(operationCallExp);
@@ -432,7 +432,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.PROPERTY_CALL_EXP: {
-                @SuppressWarnings("unchecked") PropertyCallExp<?, ?> propertyCallExp = (PropertyCallExp<?, ?>)theEObject;
+                PropertyCallExp<?, ?> propertyCallExp = (PropertyCallExp<?, ?>)theEObject;
                 T result = casePropertyCallExp(propertyCallExp);
                 if (result == null) result = caseNavigationCallExp(propertyCallExp);
                 if (result == null) result = caseFeatureCallExp(propertyCallExp);
@@ -446,7 +446,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.REAL_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") RealLiteralExp<?> realLiteralExp = (RealLiteralExp<?>)theEObject;
+                RealLiteralExp<?> realLiteralExp = (RealLiteralExp<?>)theEObject;
                 T result = caseRealLiteralExp(realLiteralExp);
                 if (result == null) result = caseNumericLiteralExp(realLiteralExp);
                 if (result == null) result = casePrimitiveLiteralExp(realLiteralExp);
@@ -459,7 +459,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.STATE_EXP: {
-                @SuppressWarnings("unchecked") StateExp<?, ?> stateExp = (StateExp<?, ?>)theEObject;
+                StateExp<?, ?> stateExp = (StateExp<?, ?>)theEObject;
                 T result = caseStateExp(stateExp);
                 if (result == null) result = caseOCLExpression(stateExp);
                 if (result == null) result = caseTypedElement(stateExp);
@@ -469,7 +469,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.STRING_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") StringLiteralExp<?> stringLiteralExp = (StringLiteralExp<?>)theEObject;
+                StringLiteralExp<?> stringLiteralExp = (StringLiteralExp<?>)theEObject;
                 T result = caseStringLiteralExp(stringLiteralExp);
                 if (result == null) result = casePrimitiveLiteralExp(stringLiteralExp);
                 if (result == null) result = caseLiteralExp(stringLiteralExp);
@@ -481,7 +481,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.TUPLE_LITERAL_EXP: {
-                @SuppressWarnings("unchecked") TupleLiteralExp<?, ?> tupleLiteralExp = (TupleLiteralExp<?, ?>)theEObject;
+                TupleLiteralExp<?, ?> tupleLiteralExp = (TupleLiteralExp<?, ?>)theEObject;
                 T result = caseTupleLiteralExp(tupleLiteralExp);
                 if (result == null) result = caseLiteralExp(tupleLiteralExp);
                 if (result == null) result = caseOCLExpression(tupleLiteralExp);
@@ -492,7 +492,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.TUPLE_LITERAL_PART: {
-                @SuppressWarnings("unchecked") TupleLiteralPart<?, ?> tupleLiteralPart = (TupleLiteralPart<?, ?>)theEObject;
+                TupleLiteralPart<?, ?> tupleLiteralPart = (TupleLiteralPart<?, ?>)theEObject;
                 T result = caseTupleLiteralPart(tupleLiteralPart);
                 if (result == null) result = caseTypedElement(tupleLiteralPart);
                 if (result == null) result = caseVisitable(tupleLiteralPart);
@@ -502,7 +502,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.TYPE_EXP: {
-                @SuppressWarnings("unchecked") TypeExp<?> typeExp = (TypeExp<?>)theEObject;
+                TypeExp<?> typeExp = (TypeExp<?>)theEObject;
                 T result = caseTypeExp(typeExp);
                 if (result == null) result = caseOCLExpression(typeExp);
                 if (result == null) result = caseTypedElement(typeExp);
@@ -512,7 +512,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.UNSPECIFIED_VALUE_EXP: {
-                @SuppressWarnings("unchecked") UnspecifiedValueExp<?> unspecifiedValueExp = (UnspecifiedValueExp<?>)theEObject;
+                UnspecifiedValueExp<?> unspecifiedValueExp = (UnspecifiedValueExp<?>)theEObject;
                 T result = caseUnspecifiedValueExp(unspecifiedValueExp);
                 if (result == null) result = caseOCLExpression(unspecifiedValueExp);
                 if (result == null) result = caseTypedASTNode(unspecifiedValueExp);
@@ -523,7 +523,7 @@ public class ExpressionsSwitch<T> {
                 return result;
             }
             case ExpressionsPackage.VARIABLE_EXP: {
-                @SuppressWarnings("unchecked") VariableExp<?, ?> variableExp = (VariableExp<?, ?>)theEObject;
+                VariableExp<?, ?> variableExp = (VariableExp<?, ?>)theEObject;
                 T result = caseVariableExp(variableExp);
                 if (result == null) result = caseOCLExpression(variableExp);
                 if (result == null) result = caseTypedElement(variableExp);
