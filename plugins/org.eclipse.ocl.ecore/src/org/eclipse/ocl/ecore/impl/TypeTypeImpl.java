@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.8 2008/01/03 14:06:11 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.9 2008/01/03 14:39:27 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -145,7 +145,9 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
     public String getName() {
         if (name == null) {
             EClassifier ref = getReferredType();
-            if (ref != null) {
+            if (this == OCLStandardLibraryImpl.INSTANCE.getOclType()) {
+                name = SINGLETON_NAME;
+            } else if (ref != null) {
                 name = ref.getName();
             }
         }
