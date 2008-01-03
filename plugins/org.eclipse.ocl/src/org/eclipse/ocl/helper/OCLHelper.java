@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2004, 2007 IBM Corporation and others.
+ * Copyright (c) 2004, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.3 2007/10/11 23:05:06 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.4 2008/01/03 15:17:55 cdamus Exp $
  */
 
 package org.eclipse.ocl.helper;
@@ -359,7 +359,8 @@ public interface OCLHelper<C, O, P, CT> {
      * appending to the end of the specified text in the context of this kind
      * of constraint.
      *
-     * @param constraintType the kind of constraint that is being composed
+     * @param constraintType the kind of constraint that is being composed,
+     *      or <code>null</code> to indicate completions for a query expression
      * @param txt a partial OCL expression for which to seek choices that
      *      could be appended to it
      * @return a list of {@link Choice}s, possibly empty.  The ordering of the
