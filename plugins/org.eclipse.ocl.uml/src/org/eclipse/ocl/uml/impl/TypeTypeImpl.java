@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.8 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.9 2008/01/03 14:06:13 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -158,7 +158,10 @@ public class TypeTypeImpl extends ClassifierImpl implements TypeType {
     @Override
     public String getName() {
         if (name == null) {
-            name = SINGLETON_NAME;
+            Classifier ref = getReferredType();
+            if (ref != null) {
+                name = ref.getName();
+            }
         }
         
         return name;

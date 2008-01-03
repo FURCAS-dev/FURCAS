@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.7 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.8 2008/01/03 14:06:11 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -144,7 +144,10 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
     @Override
     public String getName() {
         if (name == null) {
-            name = SINGLETON_NAME;
+            EClassifier ref = getReferredType();
+            if (ref != null) {
+                name = ref.getName();
+            }
         }
         
         return name;
