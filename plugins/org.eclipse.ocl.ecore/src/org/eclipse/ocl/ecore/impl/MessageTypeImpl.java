@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.5 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.6 2008/01/03 17:13:19 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -101,7 +101,6 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public EOperation getReferredOperation() {
         if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
             InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
@@ -140,7 +139,6 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public EClassifier getReferredSignal() {
         if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
             InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
@@ -274,7 +272,6 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
