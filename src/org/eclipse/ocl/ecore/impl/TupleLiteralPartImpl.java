@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.5 2008/01/03 17:13:19 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -307,7 +307,6 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	public EStructuralFeature getAttribute() {
         if (attribute != null && ((EObject)attribute).eIsProxy()) {
             InternalEObject oldAttribute = (InternalEObject)attribute;

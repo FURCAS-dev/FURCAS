@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.7 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.8 2008/01/03 17:13:19 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -282,7 +282,6 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public EClassifier getElementType() {
         if (elementType != null && ((EObject)elementType).eIsProxy()) {
             InternalEObject oldElementType = (InternalEObject)elementType;
@@ -331,7 +330,6 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      * @generated NOT
      */
     @Override
-    @SuppressWarnings("unchecked")
     public String getName() {
         if (name == null) {
             StringBuffer myName = new StringBuffer();
@@ -487,7 +485,6 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {

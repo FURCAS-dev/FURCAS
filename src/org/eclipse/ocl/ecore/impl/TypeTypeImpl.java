@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.9 2008/01/03 14:39:27 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.10 2008/01/03 17:13:19 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -102,7 +102,6 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public EClassifier getReferredType() {
         if (referredType != null && ((EObject)referredType).eIsProxy()) {
             InternalEObject oldReferredType = (InternalEObject)referredType;
@@ -197,7 +196,6 @@ public class TypeTypeImpl extends EClassifierImpl implements TypeType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
