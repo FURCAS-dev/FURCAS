@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.3 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: TupleFactory.java,v 1.4 2008/01/03 15:07:07 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.Tuple;
 
@@ -111,5 +113,40 @@ class TupleFactory extends EFactoryImpl {
 		public Object getValue(EStructuralFeature part) {
 			return eGet(part);
 		}
+        
+        @Override
+        public String toString() {
+            StringBuilder result = new StringBuilder();
+            result.append("Tuple{"); //$NON-NLS-1$
+            
+            for (Iterator<EStructuralFeature> iter =  getTupleType().oclProperties().iterator();
+                    iter.hasNext();) {
+                
+                EStructuralFeature p = iter.next();
+                
+                result.append(p.getName());
+                result.append(" = "); //$NON-NLS-1$
+                result.append(toString(getValue(p)));
+                
+                if (iter.hasNext()) {
+                    result.append(", "); //$NON-NLS-1$
+                }
+            }
+            
+            result.append("}"); //$NON-NLS-1$
+            return result.toString();
+        }
+        
+        private String toString(Object o) {
+            if (o instanceof String) {
+                return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
+            } else if (o instanceof Collection) {
+                return CollectionUtil.toString((Collection<?>) o);
+            } else if (o == null) {
+                return "null"; //$NON-NLS-1$
+            } else {
+                return o.toString();
+            }
+        }
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.10 2007/11/06 19:47:23 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.11 2008/01/03 15:07:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.uml;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1222,6 +1223,41 @@ public class UMLEvaluationEnvironment
         @Override
         public int hashCode() {
             return 37 * type.hashCode() + 17 * parts.hashCode();
+        }
+        
+        @Override
+        public String toString() {
+            StringBuilder result = new StringBuilder();
+            result.append("Tuple{"); //$NON-NLS-1$
+            
+            for (Iterator<Property> iter =  getTupleType().oclProperties().iterator();
+                    iter.hasNext();) {
+                
+                Property p = iter.next();
+                
+                result.append(p.getName());
+                result.append(" = "); //$NON-NLS-1$
+                result.append(toString(getValue(p)));
+                
+                if (iter.hasNext()) {
+                    result.append(", "); //$NON-NLS-1$
+                }
+            }
+            
+            result.append("}"); //$NON-NLS-1$
+            return result.toString();
+        }
+        
+        private String toString(Object o) {
+            if (o instanceof String) {
+                return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
+            } else if (o instanceof Collection) {
+                return CollectionUtil.toString((Collection<?>) o);
+            } else if (o == null) {
+                return "null"; //$NON-NLS-1$
+            } else {
+                return o.toString();
+            }
         }
     }
 

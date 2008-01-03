@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.3 2007/07/16 17:07:32 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.4 2008/01/03 15:07:00 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1050,4 +1050,74 @@ public class CollectionUtil {
 			}
 		}
 	}
-} //CollectionTypeImpl
+	
+	/**
+	 * Infers the OCL kind of a collection.
+	 * 
+	 * @param c a collection (not <code>null</code>)
+	 * 
+	 * @return its kind (likewise, not <code>null</code>)
+	 */
+	private static CollectionKind kindOf(Collection<?> c) {
+	    CollectionKind result;
+	    
+        if (c instanceof List){
+            result = CollectionKind.SEQUENCE_LITERAL;
+        } else if (c instanceof LinkedHashSet) {
+            result = CollectionKind.ORDERED_SET_LITERAL;
+        } else if (c instanceof Set) {
+            result = CollectionKind.SET_LITERAL;
+        } else if (c instanceof Bag) {
+            result = CollectionKind.BAG_LITERAL;
+        } else {
+            result = CollectionKind.COLLECTION_LITERAL;
+        }
+        
+        return result;
+	}
+	
+	/**
+	 * Computes the string representation of a collection value using syntax
+	 * like OCL's collection literals (e.g., <tt>OrderedSet{...}</tt>) instead
+	 * of Java's default (i.e., <tt>[...]</tt>).
+	 * 
+	 * @param c a collection (not <code>null</code>)
+	 * @return the string representation of the specified collection
+	 * 
+	 * @since 1.2
+	 */
+	public static String toString(Collection<?> c) {
+	    StringBuilder result = new StringBuilder();
+	    
+        result.append(kindOf(c).getName());
+        result.append('{');
+        
+        boolean notFirst = false;
+        for (Iterator<?> iter = c.iterator();;) {
+            if (iter.hasNext()) {
+                if (notFirst) {
+                    result.append(", ");
+                } else {
+                    notFirst = true;
+                }
+                
+                Object next = iter.next();
+                if (next instanceof Collection) {
+                    // nested collection
+                    result.append(toString((Collection<?>) next));
+                } else if (next instanceof String) {
+                    // string literal
+                    result.append('\'').append(next).append('\'');
+                } else {
+                    result.append(next);
+                }
+            } else {
+                break;
+            }
+        }
+        
+        result.append('}');
+        
+	    return result.toString();
+	}
+}
