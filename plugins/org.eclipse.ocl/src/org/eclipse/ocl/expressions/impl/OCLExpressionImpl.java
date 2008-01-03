@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.5 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.6 2008/01/03 17:13:17 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -214,7 +214,6 @@ public abstract class OCLExpressionImpl<C> extends EObjectImpl implements OCLExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
