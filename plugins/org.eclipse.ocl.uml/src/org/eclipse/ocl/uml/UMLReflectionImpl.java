@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.7 2007/11/06 19:47:23 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.8 2008/01/03 15:28:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -290,7 +290,7 @@ class UMLReflectionImpl
     }
     
     public List<Operation> getOperations(Classifier classifier) {
-        return classifier.getAllOperations();
+        return OCLUMLUtil.getAllOperations(classifier);
     }
     
     public Property createProperty(String name, Classifier resultType) {
@@ -303,7 +303,7 @@ class UMLReflectionImpl
     }
     
     public List<Property> getAttributes(Classifier classifier) {
-        return classifier.getAllAttributes();
+        return OCLUMLUtil.getAllAttributes(classifier);
     }
     
     public Collection<? extends Classifier> getAllSupertypes(
