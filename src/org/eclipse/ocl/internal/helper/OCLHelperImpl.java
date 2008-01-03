@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2007 IBM Corporation and others.
+ * Copyright (c) 2002, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.4 2007/12/03 18:44:40 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.5 2008/01/03 15:17:55 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -157,6 +157,12 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	public List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
+	    if (constraintType == null) {
+	        // query expressions cannot use post-condition constructs such
+	        // as @pre or oclIsNew(), so pretend an invariant constraint
+	        constraintType = ConstraintKind.INVARIANT;
+	    }
+	    
 		return createSyntaxHelper().getSyntaxHelp(constraintType, txt);
 	}
 
