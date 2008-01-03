@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.3 2007/05/03 13:06:50 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.4 2008/01/03 20:20:57 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -37,7 +37,6 @@ import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.PrimitiveType;
-import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
@@ -214,7 +213,9 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
             OCL_T = (Classifier) stdlibPackage.getOwnedType("T"); //$NON-NLS-1$
             OCL_T2 = (Classifier) stdlibPackage.getOwnedType("T2"); //$NON-NLS-1$
             
-            OCL_TYPE = (Classifier) stdlibPackage.getOwnedType(TypeType.SINGLETON_NAME);
+            OCL_TYPE = (Classifier) EcoreUtil.getObjectByType(
+                    stdlibPackage.getOwnedTypes(),
+                    UMLPackage.Literals.TYPE_TYPE);
             
             OCL_SET = (Classifier) EcoreUtil.getObjectByType(
                 stdlibPackage.getOwnedTypes(),
@@ -399,7 +400,6 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         }
     }
 	
-	@SuppressWarnings("unchecked")
 	private static List<Operation> register(Classifier stdType) {
         List<Operation> result = null;
         
