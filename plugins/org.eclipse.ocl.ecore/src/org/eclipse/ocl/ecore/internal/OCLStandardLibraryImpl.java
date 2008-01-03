@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.4 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.5 2008/01/03 20:20:56 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -46,7 +46,6 @@ import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.PrimitiveType;
-import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -217,7 +216,9 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
             OCL_T = stdlibPackage.getEClassifier("T"); //$NON-NLS-1$
             OCL_T2 = stdlibPackage.getEClassifier("T2"); //$NON-NLS-1$
             
-            OCL_TYPE = stdlibPackage.getEClassifier(TypeType.SINGLETON_NAME);
+            OCL_TYPE = (EClassifier) EcoreUtil.getObjectByType(
+                    stdlibPackage.getEClassifiers(),
+                    EcorePackage.Literals.TYPE_TYPE);
             
             OCL_SET = (EClassifier) EcoreUtil.getObjectByType(
                 stdlibPackage.getEClassifiers(),
