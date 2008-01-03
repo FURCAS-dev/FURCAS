@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.5 2007/05/30 13:54:56 cdamus Exp $
+ * $Id: UMLTest.java,v 1.6 2008/01/03 15:28:30 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -370,6 +371,93 @@ public class UMLTest
             fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         } finally {
             resourceSet.getPackageRegistry().remove(epkg.getNsURI());
+        }
+    }
+
+    /**
+     * Test accessing private attributes in general classifiers.
+     */
+    public void test_privateAttributeInheritance_214224() {
+        fruit_color.setVisibility(VisibilityKind.PRIVATE_LITERAL);
+        
+        EPackage epkg = UMLUtil.convertToEcore(fruitPackage, null).iterator().next();
+        
+        try {
+            resourceSet.getPackageRegistry().put(epkg.getNsURI(), epkg);
+            
+            OCLExpression<Classifier> expr = parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv:  self.color <> Color::brown" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // create an instance
+            EObject instance = epkg.getEFactoryInstance().create(
+                (EClass) epkg.getEClassifier("Apple")); //$NON-NLS-1$
+            
+            assertEquals(Boolean.TRUE, evaluate(expr, instance));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            resourceSet.getPackageRegistry().remove(epkg.getNsURI());
+            
+            // reset the test model
+            fruitPackage = null;
+        }
+    }
+
+    /**
+     * Test accessing private operations in general classifiers.
+     */
+    public void test_privateOperationInheritance_214224() {
+        fruit_preferredColor.setVisibility(VisibilityKind.PRIVATE_LITERAL);
+        
+        EPackage epkg = UMLUtil.convertToEcore(fruitPackage, null).iterator().next();
+        
+        try {
+            resourceSet.getPackageRegistry().put(epkg.getNsURI(), epkg);
+            
+            OCLExpression<Classifier> expr = parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv:  self.preferredColor() <> Color::brown" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // provide a body for the private operation 
+            parseConstraint(
+                "package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
+                "body: Color::red" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            // create an instance
+            EObject instance = epkg.getEFactoryInstance().create(
+                (EClass) epkg.getEClassifier("Apple")); //$NON-NLS-1$
+            
+            assertEquals(Boolean.TRUE, evaluate(expr, instance));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            resourceSet.getPackageRegistry().remove(epkg.getNsURI());
+            
+            // reset the test model
+            fruitPackage = null;
+        }
+    }
+
+    /**
+     * Test accessing private signal receptions in general classifiers.
+     */
+    public void test_privateReceptionInheritance_214224() {
+        fruit.getOwnedReceptions().get(0).setVisibility(VisibilityKind.PRIVATE_LITERAL);
+        
+        try {
+            parseConstraint(
+                "package ocltest context Apple " + //$NON-NLS-1$
+                "inv:  not self^Drop(?, ?)" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+            // reset the test model
+            fruitPackage = null;
         }
     }
 
