@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.6 2008/01/03 15:28:31 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.uml.MessageType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -46,7 +47,6 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 
@@ -412,7 +412,7 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
                 if (getReferredOperation() != null) {
                     typedElements = getReferredOperation().getOwnedParameters();
                 } else if (getReferredSignal() != null) {
-                    typedElements = ((Signal) getReferredSignal()).getAllAttributes();
+                    typedElements = OCLUMLUtil.getAllAttributes(getReferredSignal());
                 } else {
                     typedElements = ECollections.emptyEList();
                 }

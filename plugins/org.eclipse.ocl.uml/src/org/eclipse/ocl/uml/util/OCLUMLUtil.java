@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.6 2008/01/03 15:28:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -21,7 +21,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -34,12 +36,13 @@ import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -70,9 +73,9 @@ public class OCLUMLUtil extends UMLUtil {
 	public static List<Reception> getAllReceptions(Class clazz) {
 		List<Reception> result = new BasicEList.FastCompare<Reception>();
 		
-		for (Feature f : clazz.allFeatures()) {
-			if (f instanceof Reception) {
-				result.add((Reception) f);
+		for (NamedElement m : getInheritedMembers(clazz)) {
+			if (m instanceof Reception) {
+				result.add((Reception) m);
 			}
 		}
 		
@@ -507,6 +510,80 @@ public class OCLUMLUtil extends UMLUtil {
             result = (Package) EcoreUtil.getObjectByType(
                     res.getContents(),
                     UMLPackage.Literals.PACKAGE);
+        }
+        
+        return result;
+    }
+    
+    /**
+     * A foreign method for the {@link Classifier} that obtains all members,
+     * inherited or not, regardless of visibility, for OCL purposes.
+     * 
+     * @param classifier a classifier
+     * @return all of its members, including inheritable and non-inheritable
+     *     members (private members of general types) except for those
+     *     that are redefined
+     * 
+     * @since 1.2
+     */
+    private static EList<NamedElement> getInheritedMembers(Classifier classifier) {
+        EList<NamedElement> result = new UniqueEList.FastCompare<NamedElement>(
+                classifier.getMembers());
+        for (Classifier parent : classifier.allParents()) {
+            if (parent != classifier) {
+                result.addAll(parent.getMembers());
+            }
+        }
+        
+        // filter out redefined members
+        result = classifier.inherit(result);
+
+        return result;
+    }
+    
+    /**
+     * A foreign method for the {@link Classifier} that obtains all attributes
+     * regardless of visibility, for OCL purposes.
+     * 
+     * @param classifier a classifier
+     * @return all of its attributes, including inheritable and non-inheritable
+     *     attributes (private attributes of general types) except for those
+     *     that are redefined
+     * 
+     * @since 1.2
+     */
+    public static EList<Property> getAllAttributes(Classifier classifier) {
+        EList<NamedElement> members = getInheritedMembers(classifier);
+        
+        EList<Property> result = new BasicEList<Property>(members.size());
+        for (NamedElement next : members) {
+            if (next instanceof Property) {
+                result.add((Property) next);
+            }
+        }
+        
+        return result;
+    }
+    
+    /**
+     * A foreign method for the {@link Classifier} that obtains all operations
+     * regardless of visibility, for OCL purposes.
+     * 
+     * @param classifier a classifier
+     * @return all of its operations, including inheritable and non-inheritable
+     *     operations (private operations of general types) except for those
+     *     that are redefined
+     * 
+     * @since 1.2
+     */
+    public static EList<Operation> getAllOperations(Classifier classifier) {
+        EList<NamedElement> members = getInheritedMembers(classifier);
+        
+        EList<Operation> result = new BasicEList<Operation>(members.size());
+        for (NamedElement next : members) {
+            if (next instanceof Operation) {
+                result.add((Operation) next);
+            }
         }
         
         return result;
