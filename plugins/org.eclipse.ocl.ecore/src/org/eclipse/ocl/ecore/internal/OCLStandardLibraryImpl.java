@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.3 2007/05/03 13:05:13 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.4 2008/01/03 17:13:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -385,7 +385,6 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		return stdlibPackage;
 	}
 	
-	@SuppressWarnings("unchecked")
 	private static EClass register(EClassifier stdType) {
         EClass result = (stdType instanceof EClass)? (EClass) stdType : null;
         
