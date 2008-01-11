@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.6 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: UMLPackageImpl.java,v 1.7 2008/01/11 14:32:10 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -441,12 +441,10 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
      * @see org.eclipse.emf.ecore.EPackage.Registry
      * @see org.eclipse.ocl.uml.UMLPackage#eNS_URI
      * @see #init()
-     * @generated NOT
+     * @generated
      */
     private UMLPackageImpl() {
         super(eNS_URI, UMLFactory.eINSTANCE);
-        
-        ExpressionsPackageImpl.OCL_ROOT_PACKAGE.getESubpackages().add(this);
     }
 
     /**
@@ -1143,11 +1141,30 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
     /**
      * Complete the initialization of the package and its meta-model.  This
      * method is guarded to have no affect on any invocation but its first.
+     * <p>
+     * The generated implementation is extended by adding me as a child of
+     * the empty root <tt>OCL</tt> package.
+     * </p>
+     */
+    public void initializePackageContents() {
+        if (!isInitialized) {
+            // create my own resource first, before adding me to my parent
+            // package.  Otherwise, I will already be in a resource when
+            // createResource() is called, and it will not create a new one
+            initializePackageContentsGen();
+            
+            ExpressionsPackageImpl.OCL_ROOT_PACKAGE.getESubpackages().add(this);
+        }
+    }
+    
+    /**
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void initializePackageContents() {
+    public void initializePackageContentsGen() {
         if (isInitialized) return;
         isInitialized = true;
 

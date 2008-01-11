@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.5 2007/12/14 17:09:23 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.6 2008/01/11 14:32:12 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -26,14 +26,20 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.OperationCallExp;
 import org.eclipse.ocl.uml.TypeType;
+import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Operation;
@@ -302,6 +308,38 @@ public class SerializationTest
         TypeType typeType = (TypeType) expr.getType();
         assertSame(getMetaclass("Package"), typeType.getReferredType()); //$NON-NLS-1$
     }
+    
+    public void test_referenceToOCLEcoreMetamodel_214878() {
+        EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+        epackage.setName("foo"); //$NON-NLS-1$
+        
+        EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+        eclass.setName("Foo"); //$NON-NLS-1$
+        epackage.getEClassifiers().add(eclass);
+        
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setName("expr"); //$NON-NLS-1$
+        ref.setEType(UMLPackage.Literals.OCL_EXPRESSION);
+        eclass.getEStructuralFeatures().add(ref);
+        
+        String serialForm = serialize(epackage);
+        
+        epackage = load(serialForm, EPackage.class);
+        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        assertNotNull(eclass);
+        assertFalse(eclass.eIsProxy());
+        
+        ref = (EReference) eclass.getEStructuralFeature("expr"); //$NON-NLS-1$
+        assertNotNull(ref);
+        assertFalse(ref.eIsProxy());
+        
+        assertSame(UMLPackage.Literals.OCL_EXPRESSION, ref.getEType());
+        
+        // correct loading is one thing.  but the reference must look
+        // correct in the serial form, also
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//uml/OCLExpression")); //$NON-NLS-1$
+        assertTrue(serialForm.contains(UMLPackage.eNS_URI + "#//OCLExpression")); //$NON-NLS-1$
+    }
 	
 	//
 	// Framework methods
@@ -399,19 +437,22 @@ public class SerializationTest
 		return result;
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected OCLExpression<Classifier> loadExpression(String serial) {
-		EObject result = deserialize(serial);
-		assertTrue(result instanceof OCLExpression);
-		return (OCLExpression<Classifier>) result;
-	}
-	
-	protected Constraint loadConstraint(String serial) {
-		EObject result = deserialize(serial);
-		assertTrue(result instanceof Constraint);
-		return (Constraint) result;
-	}
-	
+    @SuppressWarnings("unchecked")
+    protected OCLExpression<Classifier> loadExpression(String serial) {
+        return (OCLExpression<Classifier>) load(serial, OCLExpression.class);
+    }
+    
+    protected Constraint loadConstraint(String serial) {
+        return load(serial, Constraint.class);
+    }
+    
+    @SuppressWarnings("unchecked")
+    protected <T extends EObject> T load(String serial, Class<T> expectedType) {
+        EObject result = deserialize(serial);
+        assertTrue(expectedType.isInstance(result));
+        return (T) result;
+    }
+    
 	protected void assertNoProxies(Resource res) {
 		for (Iterator<EObject> iter = res.getAllContents(); iter.hasNext();) {
 			for (EObject xref : iter.next().eCrossReferences()) {
