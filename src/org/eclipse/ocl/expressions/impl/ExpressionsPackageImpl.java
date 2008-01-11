@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackageImpl.java,v 1.6 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: ExpressionsPackageImpl.java,v 1.7 2008/01/11 14:32:14 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CallExp;
@@ -348,7 +349,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
         OCLPackageImpl oclPackage = new OCLPackageImpl();
         oclPackage.setName("ocl"); //$NON-NLS-1$
         oclPackage.setNsPrefix("ocl"); //$NON-NLS-1$
-        oclPackage.setNsURI("http://www.eclipse.org/OCL/1.1.0/OCL"); //$NON-NLS-1$
+        oclPackage.setNsURI(Environment.OCL_NAMESPACE_URI);
 		oclPackage.createResource(oclPackage.getNsURI());
 		
         OCL_ROOT_PACKAGE = oclPackage;
@@ -368,12 +369,10 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#eNS_URI
 	 * @see #init()
-	 * @generated NOT
+	 * @generated
 	 */
 	private ExpressionsPackageImpl() {
 		super(eNS_URI, ExpressionsFactory.eINSTANCE);
-		
-		OCL_ROOT_PACKAGE.getESubpackages().add(this);
 	}
 
 	/**
@@ -1286,14 +1285,33 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
      */
 	private boolean isInitialized = false;
 
-	/**
+    /**
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <p>
+     * The generated implementation is extended by adding me as a child of
+     * the empty root <tt>OCL</tt> package.
+     * </p>
+     */
+    public void initializePackageContents() {
+        if (!isInitialized) {
+            // create my own resource first, before adding me to my parent
+            // package.  Otherwise, I will already be in a resource when
+            // createResource() is called, and it will not create a new one
+            initializePackageContentsGen();
+            
+            OCL_ROOT_PACKAGE.getESubpackages().add(this);
+        }
+    }
+    
+    /**
      * Complete the initialization of the package and its meta-model.  This
      * method is guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void initializePackageContents() {
+    public void initializePackageContentsGen() {
         if (isInitialized) return;
         isInitialized = true;
 
