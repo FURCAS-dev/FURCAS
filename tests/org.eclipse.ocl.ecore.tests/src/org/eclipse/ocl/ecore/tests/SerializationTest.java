@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.4 2007/05/05 00:47:13 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.5 2008/01/11 14:32:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -26,22 +26,30 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeType;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 /**
  * Tests for serialization of OCL constraints and expressions.
@@ -312,6 +320,134 @@ public class SerializationTest
         TypeType typeType = (TypeType) expr.getType();
         assertSame(EcorePackage.Literals.EPACKAGE, typeType.getReferredType());
     }
+    
+    public void test_referenceToGenericOCLExpressionsPackage_214878() {
+        EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+        epackage.setName("foo"); //$NON-NLS-1$
+        
+        EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+        eclass.setName("Foo"); //$NON-NLS-1$
+        epackage.getEClassifiers().add(eclass);
+        
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setName("expr"); //$NON-NLS-1$
+        ref.setEType(ExpressionsPackage.Literals.OCL_EXPRESSION);
+        eclass.getEStructuralFeatures().add(ref);
+        
+        String serialForm = serialize(epackage);
+        
+        epackage = load(serialForm, EPackage.class);
+        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        assertNotNull(eclass);
+        assertFalse(eclass.eIsProxy());
+        
+        ref = (EReference) eclass.getEStructuralFeature("expr"); //$NON-NLS-1$
+        assertNotNull(ref);
+        assertFalse(ref.eIsProxy());
+        
+        assertSame(ExpressionsPackage.Literals.OCL_EXPRESSION, ref.getEType());
+        
+        // correct loading is one thing.  but the reference must look
+        // correct in the serial form, also
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//expressions/OCLExpression")); //$NON-NLS-1$
+        assertTrue(serialForm.contains(ExpressionsPackage.eNS_URI + "#//OCLExpression")); //$NON-NLS-1$
+    }
+    
+    public void test_referenceToGenericOCLTypesPackage_214878() {
+        EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+        epackage.setName("foo"); //$NON-NLS-1$
+        
+        EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+        eclass.setName("Foo"); //$NON-NLS-1$
+        epackage.getEClassifiers().add(eclass);
+        
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setName("any"); //$NON-NLS-1$
+        ref.setEType(TypesPackage.Literals.ANY_TYPE);
+        eclass.getEStructuralFeatures().add(ref);
+        
+        String serialForm = serialize(epackage);
+        
+        epackage = load(serialForm, EPackage.class);
+        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        assertNotNull(eclass);
+        assertFalse(eclass.eIsProxy());
+        
+        ref = (EReference) eclass.getEStructuralFeature("any"); //$NON-NLS-1$
+        assertNotNull(ref);
+        assertFalse(ref.eIsProxy());
+        
+        assertSame(TypesPackage.Literals.ANY_TYPE, ref.getEType());
+        
+        // correct loading is one thing.  but the reference must look
+        // correct in the serial form, also
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//types/AnyType")); //$NON-NLS-1$
+        assertTrue(serialForm.contains(TypesPackage.eNS_URI + "#//AnyType")); //$NON-NLS-1$
+    }
+    
+    public void test_referenceToGenericOCLUtilitiesPackage_214878() {
+        EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+        epackage.setName("foo"); //$NON-NLS-1$
+        
+        EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+        eclass.setName("Foo"); //$NON-NLS-1$
+        epackage.getEClassifiers().add(eclass);
+        
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setName("ast"); //$NON-NLS-1$
+        ref.setEType(UtilitiesPackage.Literals.AST_NODE);
+        eclass.getEStructuralFeatures().add(ref);
+        
+        String serialForm = serialize(epackage);
+        
+        epackage = load(serialForm, EPackage.class);
+        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        assertNotNull(eclass);
+        assertFalse(eclass.eIsProxy());
+        
+        ref = (EReference) eclass.getEStructuralFeature("ast"); //$NON-NLS-1$
+        assertNotNull(ref);
+        assertFalse(ref.eIsProxy());
+        
+        assertSame(UtilitiesPackage.Literals.AST_NODE, ref.getEType());
+        
+        // correct loading is one thing.  but the reference must look
+        // correct in the serial form, also
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//utilities/ASTNode")); //$NON-NLS-1$
+        assertTrue(serialForm.contains(UtilitiesPackage.eNS_URI + "#//ASTNode")); //$NON-NLS-1$
+    }
+    
+    public void test_referenceToOCLEcoreMetamodel_214878() {
+        EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+        epackage.setName("foo"); //$NON-NLS-1$
+        
+        EClass eclass = EcoreFactory.eINSTANCE.createEClass();
+        eclass.setName("Foo"); //$NON-NLS-1$
+        epackage.getEClassifiers().add(eclass);
+        
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setName("expr"); //$NON-NLS-1$
+        ref.setEType(org.eclipse.ocl.ecore.EcorePackage.Literals.OCL_EXPRESSION);
+        eclass.getEStructuralFeatures().add(ref);
+        
+        String serialForm = serialize(epackage);
+        
+        epackage = load(serialForm, EPackage.class);
+        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        assertNotNull(eclass);
+        assertFalse(eclass.eIsProxy());
+        
+        ref = (EReference) eclass.getEStructuralFeature("expr"); //$NON-NLS-1$
+        assertNotNull(ref);
+        assertFalse(ref.eIsProxy());
+        
+        assertSame(org.eclipse.ocl.ecore.EcorePackage.Literals.OCL_EXPRESSION, ref.getEType());
+        
+        // correct loading is one thing.  but the reference must look
+        // correct in the serial form, also
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//ecore/OCLExpression")); //$NON-NLS-1$
+        assertTrue(serialForm.contains(org.eclipse.ocl.ecore.EcorePackage.eNS_URI + "#//OCLExpression")); //$NON-NLS-1$
+    }
 	
 	//
 	// Framework methods
@@ -409,15 +545,18 @@ public class SerializationTest
 	
 	@SuppressWarnings("unchecked")
 	protected OCLExpression<EClassifier> loadExpression(String serial) {
-		EObject result = deserialize(serial);
-		assertTrue(result instanceof OCLExpression);
-		return (OCLExpression<EClassifier>) result;
+		return (OCLExpression<EClassifier>) load(serial, OCLExpression.class);
 	}
 	
 	protected Constraint loadConstraint(String serial) {
-		EObject result = deserialize(serial);
-		assertTrue(result instanceof Constraint);
-		return (Constraint) result;
+		return load(serial, Constraint.class);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T extends EObject> T load(String serial, Class<T> expectedType) {
+	    EObject result = deserialize(serial);
+	    assertTrue(expectedType.isInstance(result));
+	    return (T) result;
 	}
 	
 	protected void assertNoProxies(Resource res) {
