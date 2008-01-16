@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.11 2007/12/14 17:09:29 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.12 2008/01/16 13:36:32 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -1120,12 +1120,14 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     }
     
     /**
-     * I dispose my type resolver, if it is an {@link AbstractTypeResolver}.
+     * I dispose my type resolver, if it is an {@link AbstractTypeResolver}
+     * and I am the root environment (which owns the resolver).
      * 
      * @since 1.2
      */
     public void dispose() {
-        if (getTypeResolver() instanceof AbstractTypeResolver) {
+        if ((getInternalParent() == null)
+                && (getTypeResolver() instanceof AbstractTypeResolver)) {
             ((AbstractTypeResolver<?, ?, ?, ?, ?>) getTypeResolver()).dispose();
         }
     }
