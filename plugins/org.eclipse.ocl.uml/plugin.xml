@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2007/01/25 18:39:27 cdamus Exp $
+ $Id: plugin.xml,v 1.2 2008/01/16 16:04:54 cdamus Exp $
 -->
 
 <plugin>
@@ -20,7 +20,7 @@
   <extension point="org.eclipse.ocl.environments">
     <environmentFactory
         class="org.eclipse.ocl.uml.UMLEnvironmentFactory">
-      <package nsURI="http://www.eclipse.org/uml2/2.0.0/UML"/>
+      <package nsURI="http://www.eclipse.org/uml2/2.1.0/UML"/>
       <package nsURI="http://www.eclipse.org/ocl/1.1.0/UML"/>
     </environmentFactory>
   </extension>
