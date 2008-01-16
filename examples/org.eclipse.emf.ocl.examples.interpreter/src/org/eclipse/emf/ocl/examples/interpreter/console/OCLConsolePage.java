@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.19 2007/11/06 19:47:00 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.20 2008/01/16 13:58:58 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -873,12 +873,12 @@ public class OCLConsolePage
             
             switch (level) {
             case M2:
-                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                EvaluationOptions.setOption(result.getEvaluationEnvironment(),
                     UMLEvaluationOptions.EVALUATION_MODE,
                     EvaluationMode.RUNTIME_OBJECTS);
                 break;
             default:
-                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                EvaluationOptions.setOption(result.getEvaluationEnvironment(),
                     UMLEvaluationOptions.EVALUATION_MODE,
                     EvaluationMode.INSTANCE_MODEL);
                 break;
@@ -901,12 +901,12 @@ public class OCLConsolePage
             
             switch (level) {
             case M2:
-                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                EvaluationOptions.setOption(result.getEvaluationEnvironment(),
                     UMLEvaluationOptions.EVALUATION_MODE,
                     EvaluationMode.RUNTIME_OBJECTS);
                 break;
             default:
-                EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                EvaluationOptions.setOption(result.getEvaluationEnvironment(),
                     UMLEvaluationOptions.EVALUATION_MODE,
                     EvaluationMode.INSTANCE_MODEL);
                 break;
