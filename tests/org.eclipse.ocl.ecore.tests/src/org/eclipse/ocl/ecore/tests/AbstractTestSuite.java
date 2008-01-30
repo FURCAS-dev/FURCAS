@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.8 2007/12/14 17:09:25 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.9 2008/01/30 12:46:14 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -155,6 +155,7 @@ public abstract class AbstractTestSuite
         result.addTest(ExtensibilityTest.suite());
 		result.addTest(ValidationTest.suite());
 		result.addTest(ProblemOptionTest.suite());
+		result.addTest(ParsingOptionsTest.suite());
 		result.addTest(SerializationTest.suite());
 		
 		return result;
