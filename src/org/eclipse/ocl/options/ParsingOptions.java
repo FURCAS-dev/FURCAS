@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.3 2007/12/12 22:08:05 cdamus Exp $
+ * $Id: ParsingOptions.java,v 1.4 2008/01/30 12:46:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -64,6 +64,44 @@ public class ParsingOptions {
      */
     public static final Option<Boolean> USE_COMPARE_TO_OPERATION =
         new BasicOption<Boolean>("use.compare.to.operation", false); //$NON-NLS-1$
+
+    /**
+     * <p>
+     * Static instance for the implicit-root-class option token.  It is returned
+     * via an unchecked cast by the {@link #implicitRootClass()} method.
+     * </p>
+     */
+    public static final Option<?> IMPLICIT_ROOT_CLASS =
+        new BasicOption<Object>("implict.root.class", null); //$NON-NLS-1$
+
+    /**
+     * <p>
+     * A parsing option specifying a class that's assumed to be the implicit
+     * root of the subject model's class hierarchy.  Note that this excludes
+     * datatypes defined by OCL such as the collections and tuples, and also those
+     * defined by the subject model.  This option is only used in accessing operations
+     * and attributes; for other characteristics of a classifier, a specialized
+     * environment implementation is required.
+     * </p><p>
+     * This option is commonly used to provide access to operations and attributes
+     * defined by an implicit root extends class in Ecore-based models, for example,
+     * such as <tt>EObject</tt>, that is not explicitly referenced in the subject model.
+     * </p><p>
+     * The default value of this option is <tt>null</tt>.
+     * </p>
+     * 
+     * @param <C> the type representing classes in the target metamodel, consistent with
+     *    the current {@link Environment} implementation
+     * 
+     * @param env the environment to which this option is to be applied
+     * 
+     * @return the option token
+     */
+    @SuppressWarnings("unchecked")
+    public static <C> Option<C> implicitRootClass(
+            Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
+        return (Option<C>) IMPLICIT_ROOT_CLASS;
+    }
 
     /**
      * Not instantiable by clients.

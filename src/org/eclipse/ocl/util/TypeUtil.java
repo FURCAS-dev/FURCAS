@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.8 2007/12/12 22:08:04 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.9 2008/01/30 12:46:15 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -230,6 +230,11 @@ public class TypeUtil {
     				C oclAny = env.getOCLStandardLibrary().getOclAny();
     				
     				result.addAll(uml.getOperations(owner));
+    				
+    				C implictBaseClassifier = getImplicitRootClass(env);
+    				if ((implictBaseClassifier != null) && (implictBaseClassifier != owner)) {
+     					result.addAll(uml.getOperations(implictBaseClassifier));
+    				}
                     
     				result.addAll(getOperations(env, oclAny));
     			}
@@ -244,6 +249,24 @@ public class TypeUtil {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Obtains the implicit root class specified as an option in the environment, if
+	 * it is specified and it is a class.
+	 * 
+	 * @param env the current environment
+	 * @return the implicit root class, if any
+	 */
+	private static <C> C getImplicitRootClass(Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
+	    C result = ParsingOptions.getValue(env, ParsingOptions.implicitRootClass(env));
+	    
+	    // check that, if there is a value for this option, it is a class
+	    if ((result != null) && !env.getUMLReflection().isClass(result)) {
+	        result = null;
+	    }
+	    
+	    return result;
 	}
 	
     /**
@@ -296,6 +319,11 @@ public class TypeUtil {
                     C oclAny = env.getOCLStandardLibrary().getOclAny();
                     
                     result.addAll(uml.getAttributes(owner));
+                    
+                    C implictBaseClassifier = getImplicitRootClass(env);
+                    if ((implictBaseClassifier != null) && (implictBaseClassifier != owner)) {
+                        result.addAll(uml.getAttributes(implictBaseClassifier));
+                    }
                     
                     result.addAll(getAttributes(env, oclAny));
                 }
@@ -798,8 +826,9 @@ public class TypeUtil {
      * @param env the OCL environment
      * @param type1 a type
      * @param type2 another type
-     * @return the nature of their hierarchical relationship, as enumerated in
-     *     the {@link UMLReflection} interface
+     * @return the nature of their hierarchical relationship of
+     *     <tt>type1</tt> to <tt>type2</tt>, as enumerated in the
+     *     {@link UMLReflection} interface
      * 
      * @see UMLReflection#getRelationship(Object, Object)
      */
@@ -975,7 +1004,21 @@ public class TypeUtil {
 		// remaining case is pure model element types.  The environment must
 		//    handle this
 		
-		return uml.getRelationship(type1, type2);
+		int result = uml.getRelationship(type1, type2);
+		
+		if (result == UNRELATED_TYPE) {
+		    // try the implicit root class
+            C implictBaseClassifier = getImplicitRootClass(env);
+            if ((implictBaseClassifier != null) && uml.isClass(type1) && uml.isClass(type2)) {
+                if (type1 == implictBaseClassifier) {
+                    result = STRICT_SUPERTYPE;
+                } else if (type2 == implictBaseClassifier) {
+                    result = STRICT_SUBTYPE;
+                }
+            }
+		}
+		
+		return result;
 	}
     
     /**
@@ -1208,6 +1251,13 @@ public class TypeUtil {
 		
 		C result = uml.getCommonSuperType(type1, type2);
 	
+		if (result == null) {
+            C implictBaseClassifier = getImplicitRootClass(env);
+            if ((implictBaseClassifier != null) && uml.isClass(type1) && uml.isClass(type2)) {
+                result = implictBaseClassifier;
+            }
+		}
+		
 		if (result == null) {
 			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 					getName(env, type1),
