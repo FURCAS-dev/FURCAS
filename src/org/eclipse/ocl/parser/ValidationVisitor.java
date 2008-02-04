@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.3 2007/12/03 18:44:40 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.4 2008/02/04 17:17:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -112,11 +112,13 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	/**
-	 * Default constructor.
+	 * Initializes me to validate expressions in the specified environment.
 	 * 
 	 * @param environment the environment
+	 * 
+	 * @since 1.2
 	 */
-	private ValidationVisitor(
+	protected ValidationVisitor(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment) {
 		
 		super();
