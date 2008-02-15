@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.7 2007/12/14 17:09:29 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.8 2008/02/15 05:20:03 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.util.TypesSwitch;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
@@ -110,7 +111,14 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	
 	// Documentation copied from the inherited specification
 	public C resolve(C type) {
-		return (type == null)? type : resolveSwitch.doSwitch((EObject) type);
+		C result = (type == null)? type : resolveSwitch.doSwitch((EObject) type);
+		
+		if ((result != null) && (result != type)) {
+		    // dispose the old type; it won't be used
+		    ObjectUtil.dispose(type);
+		}
+		
+		return result;
 	}
 	
     /**
