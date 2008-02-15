@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.4 2008/02/04 17:17:31 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.5 2008/02/15 05:20:03 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -228,7 +228,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			if (resultType == null) {
 				// maybe this operation was an "extra" contribution by a
 				//    custom environment implementation
-				resultType = uml.getOCLType(oper);
+				resultType = getOCLType(oper);
 			}
 		} else if (TypeUtil.isOclAnyOperation(env, oper)) {
 			// source is an EClass, an enumeration, or a user data type and
@@ -244,11 +244,11 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				oc, env, sourceType, opcode, args);
 			
 			if (resultType == null) {
-				resultType = uml.getOCLType(oper);
+				resultType = getOCLType(oper);
 			}
 		} else {
 			// user-defined operation
-			resultType = uml.getOCLType(oper);
+			resultType = getOCLType(oper);
 		}
 		
 		if (!TypeUtil.exactTypeMatch(env, resultType, oc.getType())) {
@@ -378,7 +378,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				Iterator<OCLExpression<C>> qiter = qualifiers.iterator();
 				
 				while (eiter.hasNext()) {
-					C expectedType = uml.getOCLType(eiter.next());
+					C expectedType = getOCLType(eiter.next());
 					OCLExpression<C> qualifier = qiter.next();
 					
 					C qualifierType = qualifier.getType();
@@ -623,7 +623,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			Object param = paramsIter.next();
 			OCLExpression<C> arg = argsIter.next();
 			
-			if (!TypeUtil.compatibleTypeMatch(env, arg.getType(), uml.getOCLType(param))) {
+			if (!TypeUtil.compatibleTypeMatch(env, arg.getType(), getOCLType(param))) {
 				String message = OCLMessages.bind(OCLMessages.MessageArgConformance_ERROR_,
 							getName(param), arg.toString());
 				return validatorError(m, message, "visitMessageExp");//$NON-NLS-1$
@@ -1274,7 +1274,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		// convert property type to OCL type because it may be an Ecore primitive
 		//    such as EIntegerObject
-		if (!TypeUtil.exactTypeMatch(env, uml.getOCLType(property), type)) {
+		if (!TypeUtil.exactTypeMatch(env, getOCLType(property), type)) {
 			String message = OCLMessages.bind(
 							OCLMessages.TuplePartType_ERROR_,
 							tp.getName(),
@@ -1430,7 +1430,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     PM param = iter.next();
                     var.accept(this);
                     
-                    C paramType = uml.getOCLType(param);
+                    C paramType = getOCLType(param);
                     if (paramType != null) {
                         if (!TypeUtil.exactTypeMatch(env, paramType, var.getType())) {
                         	String message = OCLMessages.MismatchedParameterVariables_ERROR_;
@@ -1448,7 +1448,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 String stereotype = uml.getStereotype(constraint);
                 if (UMLReflection.BODY.equals(stereotype)
                         || UMLReflection.POSTCONDITION.equals(stereotype)) {
-                    operType = uml.getOCLType(operation);
+                    operType = getOCLType(operation);
                     
                     if (operType instanceof VoidType) {
                         operType = null;
@@ -1560,7 +1560,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				return Boolean.FALSE;
 			}
 
-    		C propertyType = (constrainedProperty != null) ? uml.getOCLType(constrainedProperty)
+    		C propertyType = (constrainedProperty != null) ? getOCLType(constrainedProperty)
 				: getStandardLibrary().getOclVoid();
     		
     		// we should always check this type conformance
@@ -1588,7 +1588,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				return Boolean.FALSE;
 			}
 
-    		C operationType = (constrainedOperation != null) ? uml.getOCLType(constrainedOperation)
+    		C operationType = (constrainedOperation != null) ? getOCLType(constrainedOperation)
 				: getStandardLibrary().getOclVoid();
     		String operationName = getName(constrainedOperation);
     		
@@ -1759,7 +1759,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 //				return validatorError(constraint, message, "visitConstraint"); //$NON-NLS-1$
 //			}
 //			
-//			C featureType = uml.getOCLType(feature);
+//			C featureType = getOCLType(feature);
 //			
 //			if ((featureType == null)
 //					|| !TypeUtil.compatibleTypeMatch(env, bodyType, featureType)) {
@@ -1914,6 +1914,23 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 */
 	String getName(Object element) {
 		return (element == null)? null : uml.getName(element);
+	}
+	
+	/**
+	 * Obtains the type of a meta-element, ensuring that the result is
+	 * canonicalized with respect to the current environment (via its type
+	 * resolver).
+	 * 
+	 * @param metaElement a typed meta-element
+	 * 
+	 * @return the OCL type corresponding to the element's type
+	 * 
+	 * @see UMLReflection#getOCLType(Object)
+	 * 
+	 * @since 1.2
+	 */
+	protected C getOCLType(Object metaElement) {
+	    return env.getTypeResolver().resolve(uml.getOCLType(metaElement));
 	}
 	
     private OCLStandardLibrary<C> getStandardLibrary() {

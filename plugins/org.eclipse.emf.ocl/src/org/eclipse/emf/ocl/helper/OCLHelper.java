@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2002, 2007 IBM Corporation and others.
+ * Copyright (c) 2002, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.11 2007/10/11 23:05:17 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.12 2008/02/15 05:20:15 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -176,6 +176,9 @@ class OCLHelper
 		
 		List<org.eclipse.ocl.helper.Choice> choices = helper.getSyntaxHelp(
 				convertConstraintType(constraintType), txt);
+		
+		helper.getOCL().dispose();  // dispose any temporary elements
+		
 		return convertChoices(choices);
 	}
 

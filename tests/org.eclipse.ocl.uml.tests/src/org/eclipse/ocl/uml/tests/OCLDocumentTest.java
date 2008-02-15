@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.2 2007/10/15 22:23:34 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.3 2008/02/15 05:20:16 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -251,6 +251,17 @@ public class OCLDocumentTest extends AbstractTestSuite {
             validate(ct);
 			constraints.put(ct.getName(), ct);
 		}
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+	    unload(instancePackage);
+	    instancePackage = null;
+	    
+	    unload(constraints.values());
+	    constraints = null;
+	    
+	    super.tearDown();
 	}
 	
 	Constraint getConstraint(String name) {

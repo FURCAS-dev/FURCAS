@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.6 2007/12/14 17:09:23 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.7 2008/02/15 05:20:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.Test;
@@ -237,6 +238,10 @@ public abstract class AbstractTestSuite
 		throws Exception {
 		
 	    ocl.dispose();
+        helper = null;
+	    ocl = null;
+	    
+	    disposeResourceSet();
 	    
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
 	}
@@ -882,6 +887,35 @@ public abstract class AbstractTestSuite
 		return result;
 	}
 	
+	protected static void unload(EObject eObject) {
+	    eObject.eAdapters().clear();
+	    for (Iterator<EObject> iter = eObject.eAllContents(); iter.hasNext();) {
+	        iter.next().eAdapters().clear();
+	    }
+	}
+	
+	protected static void unload(Collection<? extends EObject> eObjects) {
+	    for (EObject eObject : eObjects) {
+	        unload(eObject);
+	    }
+	}
+	
+	private static void disposeResourceSet() {
+        if (resourceSet != null) {
+            for (Resource res : resourceSet.getResources()) {
+                res.unload();
+                res.eAdapters().clear();
+            }
+            resourceSet.getResources().clear();
+            resourceSet.eAdapters().clear();
+            resourceSet = null;
+        }
+        
+        fruitPackage = null;
+        umlMetamodel = null;
+        umlPrimitiveTypes = null;
+	}
+	
 	private static void initFruitPackage() {
 		URL url = null;
 
@@ -912,12 +946,7 @@ public abstract class AbstractTestSuite
 			}
 		}
 		
-		if (resourceSet != null) {
-		    for (Resource res : resourceSet.getResources()) {
-		        res.unload();
-		    }
-		    resourceSet.getResources().clear();
-		}
+		disposeResourceSet();
 		
 		resourceSet = new ResourceSetImpl();
 		Resource res = resourceSet.getResource(URI.createURI(url.toString()), true);
