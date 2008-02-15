@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,11 +13,10 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.4 2007/12/14 17:09:29 cdamus Exp $
+ * $Id: OCL.java,v 1.5 2008/02/15 05:20:03 cdamus Exp $
  */
 package org.eclipse.ocl;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -25,7 +24,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.internal.OCLDebugOptions;
@@ -37,6 +35,7 @@ import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 /**
@@ -635,11 +634,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             EObject eObject = (EObject) constraint;
 
             if (eObject.eResource() == null) {
-                eObject.eAdapters().clear();
-                for (Iterator<EObject> iter = EcoreUtil.getAllContents(eObject,
-                    false); iter.hasNext();) {
-                    iter.next().eAdapters().clear();
-                }
+                ObjectUtil.dispose(constraint);
             }
         }
         

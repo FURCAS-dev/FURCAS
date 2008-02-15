@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.2 2008/01/02 20:12:59 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.3 2008/02/15 05:20:03 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -35,6 +35,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
+import org.eclipse.ocl.utilities.OCLFactory;
 
 /**
  * The <code>OCLAnalyzer</code> performs semantic analysis on a CST produced by
@@ -46,6 +48,8 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	
+    private OCLFactoryWithHistory history;
+    
 	/**
 	 * Construct an OCL semantic analyzer that will use a given parser to perform syntactic
 	 * and lexical analysis.
@@ -82,6 +86,19 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
 	public OCLParser getParser() {
 		return (OCLParser) super.getParser();
+	}
+	
+	@Override
+	protected OCLFactory createOCLFactory(
+	        Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+	    
+	    history = new OCLFactoryWithHistory(super.createOCLFactory(env));
+	    return history;
+	}
+	
+	private <T> T sanitize(T parseResult) {
+	    history.clear();
+	    return parseResult;
 	}
 	
 	/**
@@ -129,7 +146,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
             break;
         }
         
-        return result;
+        return sanitize(result);
     }
 
 	/**
@@ -146,7 +163,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 							"PackageDeclarationCS",//$NON-NLS-1$
 							cstNode.eClass().getName()));
-			return constraints;
+			return sanitize(constraints);
 		}
 		
 		List<PackageDeclarationCS> packageDecls =
@@ -164,7 +181,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		    packageDeclarationCS(packageDeclCS, constraints);
 		}
 		
-		return constraints;
+		return sanitize(constraints);
 	}
 
 	/**
@@ -178,7 +195,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof InvOrDefCS) {
-				return invOrDefCS((InvOrDefCS)cstNode, getOCLEnvironment());
+				return sanitize(invOrDefCS((InvOrDefCS)cstNode, getOCLEnvironment()));
 			}
 
 			ERROR(cstNode, "parseInvOrDefCS",//$NON-NLS-1$
@@ -186,7 +203,8 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							"InvOrDefCS",//$NON-NLS-1$
 							cstNode.eClass().getName()));
 		}
-		return null;
+		
+		return sanitize(null);
 	}
 
 	/**
@@ -200,9 +218,9 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof PrePostOrBodyDeclCS) {
-				return prePostOrBodyDeclCS(
+				return sanitize(prePostOrBodyDeclCS(
 						getOCLEnvironment(),
-						(PrePostOrBodyDeclCS)cstNode);
+						(PrePostOrBodyDeclCS)cstNode));
 			}
 		}
 
@@ -210,7 +228,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 						"PrePostOrBodyDeclCS",//$NON-NLS-1$
 						formatEClassName(cstNode)));
-		return null;
+		return sanitize(null);
 	}
 
 	/**
@@ -224,9 +242,9 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof InitOrDerValueCS) {
-				return initOrDerValueCS(
+				return sanitize(initOrDerValueCS(
 						getOCLEnvironment(),
-						(InitOrDerValueCS)cstNode);
+						(InitOrDerValueCS)cstNode));
 			}
 		}
 
@@ -234,7 +252,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
 						"InitOrDerValueCS",//$NON-NLS-1$
 						formatEClassName(cstNode)));
-		return null;
+		return sanitize(null);
 	}
 
 	/**
@@ -251,7 +269,8 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CSTNode cstNode = parseConcreteSyntax();
 		if (cstNode != null) {
 			if (cstNode instanceof VariableCS) {
-				return variableDeclarationCS((VariableCS)cstNode, getOCLEnvironment(), true);
+				return sanitize(variableDeclarationCS(
+				        (VariableCS)cstNode, getOCLEnvironment(), true));
 			}
 
 			ERROR(cstNode, "parseVariableDeclarationCS",//$NON-NLS-1$
@@ -259,6 +278,34 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							"VariableDeclarationCS",//$NON-NLS-1$
 							cstNode.eClass().getName()));
 		}
-		return null;
+		return sanitize(null);
+	}
+	
+	@Override
+	public void ERROR(List<?> problemObjects, String rule, String problemMessage) {
+	    history.setDisposable();
+	    super.ERROR(problemObjects, rule, problemMessage);
+	}
+	
+	@Override
+	public void ERROR(Object problemObject, String rule, String problemMessage) {
+	    history.setDisposable();
+	    super.ERROR(problemObject, rule, problemMessage);
+	}
+	
+	@Override
+	public void ERROR(String problemMessage) {
+	    history.setDisposable();
+	    super.ERROR(problemMessage);
+	}
+	
+	@Override
+	protected CT createConstraint() {
+	    return history.record(super.createConstraint());
+	}
+	
+	@Override
+	protected ExpressionInOCL<C, PM> createExpressionInOCL() {
+	    return history.record(super.createExpressionInOCL());
 	}
 }

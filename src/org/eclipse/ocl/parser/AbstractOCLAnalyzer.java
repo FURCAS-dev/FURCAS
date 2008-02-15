@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.5 2008/01/02 20:51:50 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.6 2008/02/15 05:20:03 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -153,6 +153,8 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * 
  * Derived classes should extend the abstract support for EssentialOCL to full support
  * for whatever language in which EssentialOCL is embedded.
+ * 
+ * @since 1.2
  */
 public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends AbstractAnalyzer
@@ -177,8 +179,21 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = getOCLEnvironment();
 		
 		this.environmentFactory = env.getFactory();
-		oclFactory = env.getOCLFactory();
+		oclFactory = createOCLFactory(env);
         uml = env.getUMLReflection();
+	}
+	
+	/**
+	 * Creates/obtains the {@link OCLFactory} that I use to create OCL AST
+	 * elements.
+	 * 
+	 * @param env my OCL environment
+	 * 
+	 * @return an appropriate factory
+	 */
+	protected OCLFactory createOCLFactory(
+	        Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+	    return env.getOCLFactory();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -895,7 +910,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			/* create a constraint astNode  -- must reference the type of self...
 			   also, can have a name n.  type of constraint is pre/post/body...
 			*/
-			astNode = uml.createConstraint();
+			astNode = createConstraint();
 			initASTMapping(env, astNode, prePostOrBodyDeclCS);
 			
 			SimpleNameCS simpleNameCS = prePostOrBodyDeclCS.getSimpleNameCS();
@@ -928,7 +943,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				}
 			}
 			
-			ExpressionInOCL<C, PM> spec = uml.createExpressionInOCL();
+			ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 			initASTMapping(env, spec, prePostOrBodyDeclCS);
 			spec.setBodyExpression(oclExpression);
 			
@@ -1106,7 +1121,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		OCLExpression<C> oclExpression =
 			oclExpressionCS(initOrDerValueCS.getExpressionCS(), env);
 		
-		CT astNode = uml.createConstraint();
+		CT astNode = createConstraint();
 		initASTMapping(env, astNode, initOrDerValueCS);
 
 		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
@@ -1135,7 +1150,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
             }
 		}
 		
-		ExpressionInOCL<C, PM> spec = uml.createExpressionInOCL();
+		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 		initASTMapping(env, spec, initOrDerValueCS);
 		spec.setBodyExpression(oclExpression);
 		
@@ -1279,7 +1294,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		OCLExpression<C> oclExpression =
 			oclExpressionCS(invCS.getExpressionCS(), env);
 
-		CT astNode = uml.createConstraint();
+		CT astNode = createConstraint();
 		initASTMapping(env, astNode, invCS);
 		
 		SimpleNameCS simpleNameCS = invCS.getSimpleNameCS();
@@ -1292,7 +1307,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
 		constrainedElement.add((EObject) type);
 		
-		ExpressionInOCL<C, PM> spec = uml.createExpressionInOCL();
+		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 		initASTMapping(env, spec, invCS);
 		spec.setBodyExpression(oclExpression);
 		
@@ -1322,7 +1337,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		EObject feature = null;
 		OCLExpression<C> expression = null;
 		
-		CT astNode = uml.createConstraint();
+		CT astNode = createConstraint();
 		initASTMapping(env, astNode, defCS);
 		
 		Variable<C, PM> variable = null;
@@ -1338,7 +1353,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
 		constrainedElement.add((EObject) contextClassifier);
 		
-		ExpressionInOCL<C, PM> spec = uml.createExpressionInOCL();
+		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
 		initASTMapping(env, spec, defCS);
         uml.setSpecification(astNode, spec);
         uml.setStereotype(astNode, UMLReflection.DEFINITION);
@@ -3908,6 +3923,24 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			return null;
 		}
 	}
+    
+    /**
+     * Creates an <tt>ExpressionInOcl</tt> instance.  Subclasses may override.
+     * 
+     * @return an new expression-in-OCL
+     */
+    protected ExpressionInOCL<C, PM> createExpressionInOCL() {
+        return uml.createExpressionInOCL();
+    }
+    
+    /**
+     * Creates an <tt>Constraint</tt> instance.  Subclasses may override.
+     * 
+     * @return an new constraint
+     */
+    protected CT createConstraint() {
+        return uml.createConstraint();
+    }
 	
 	/**
 	 * Initialize the mapping of an object (typically an astNode) to its originating cstNode,

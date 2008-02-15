@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,16 @@
  *
  * </copyright>
  *
- * $Id: ObjectUtil.java,v 1.2 2007/10/12 18:04:51 cdamus Exp $
+ * $Id: ObjectUtil.java,v 1.3 2008/02/15 05:20:03 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 
 /**
@@ -132,4 +136,24 @@ public class ObjectUtil {
 			|| o instanceof Boolean || o instanceof Double;
 	}
 
+	/**
+	 * Disposes of the specified <tt>object</tt>.  If, in particular, it is
+	 * an {@link EObject}, then it and all of its contents will have their
+	 * adapter-lists cleared.
+	 * 
+	 * @param object an object to dispose
+	 * 
+	 * @since 1.2
+	 */
+	public static void dispose(Object object) {
+	    if (object instanceof EObject) {
+	        EObject eObject = (EObject) object;
+	        
+            eObject.eAdapters().clear();
+            for (Iterator<EObject> iter = EcoreUtil.getAllContents(eObject,
+                false); iter.hasNext();) {
+                iter.next().eAdapters().clear();
+            }
+	    }
+	}
 }
