@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.3 2007/04/25 21:12:21 cdamus Exp $
+ * $Id: ProfilesTest.java,v 1.4 2008/02/15 05:20:16 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -159,6 +159,15 @@ public class ProfilesTest
         throws Exception {
         fruitPackage.unapplyProfile(testProfile);
 
+        testProfile = null;
+        testStereotype = null;
+        stereoEnum = null;
+        stereoX = null;
+        testEnumeration = null;
+        maybe = null;
+        no = null;
+        yes = null;
+        
         super.tearDown();
     }
 
