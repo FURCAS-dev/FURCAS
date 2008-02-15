@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUtil.java,v 1.4 2007/10/11 23:05:17 cdamus Exp $
+ * $Id: CompatibilityUtil.java,v 1.5 2008/02/15 05:20:14 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
 
+import java.lang.ref.Reference;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -317,7 +319,7 @@ public class CompatibilityUtil {
 	private static class AbstractSyntaxBridge extends AdapterImpl {
 		private EObject oldAS;
 		private EObject newAS;
-		private Environment env;
+		private Reference<Environment> env;
 		
 		@Override
 		public boolean isAdapterForType(Object type) {
@@ -344,7 +346,7 @@ public class CompatibilityUtil {
 			this.oldAS = oldAS;
 			this.newAS = newAS;
 			
-			this.env = env;
+			this.env = new java.lang.ref.WeakReference<Environment>(env);
 		}
 		
 		EObject getOldAS() {
@@ -356,9 +358,39 @@ public class CompatibilityUtil {
 		}
 		
 		@Override
+		public void unsetTarget(Notifier oldTarget) {
+		    super.unsetTarget(oldTarget);
+		    
+		    if (oldTarget == oldAS) {
+		        oldAS = null;
+		        
+		        if (newAS != null) {
+		            newAS.eAdapters().remove(this); // calls unsetTarget() again
+		        }
+		    } else if (oldTarget == newAS) {
+                newAS = null;
+                
+                if (oldAS != null) {
+                    oldAS.eAdapters().remove(this); // calls unsetTarget() again
+                }
+            }
+		    
+		    env = null;
+		}
+		
+		@Override
 		public void notifyChanged(Notification msg) {
 			if (msg.isTouch()) {
 				return;
+			}
+			
+			Environment env = this.env.get();
+			if (env == null) {
+			    // dispose me
+			    if (oldAS != null) {
+			        oldAS.eAdapters().remove(this);
+			    }
+			    return;
 			}
 			
 			Object feature = msg.getFeature();
