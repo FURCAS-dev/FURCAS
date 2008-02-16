@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.8 2008/02/15 05:20:03 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.9 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -347,7 +347,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
     					if ((property == null) ||
     							(TypeUtil.getRelationship(
     									env,
-    									uml.getOCLType(property),
+    									resolve(uml.getOCLType(property)),
     									part.getType()) != UMLReflection.SAME_TYPE)) {
     						// this isn't the tuple type we're looking for
     					    match = false;
@@ -683,8 +683,8 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 				if (!uml.getName(aparm).equals(uml.getName(bparm))
 						|| TypeUtil.getRelationship(
 								env,
-								uml.getOCLType(aparm),
-                                uml.getOCLType(bparm))
+								resolve(uml.getOCLType(aparm)),
+								resolve(uml.getOCLType(bparm)))
 							!= UMLReflection.SAME_TYPE) {
 					
 					return false;
@@ -888,6 +888,11 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		
 		@Override
 		public <C1, O1> C caseTypeType(TypeType<C1, O1> object) {
+		    if (object.getReferredType() == null) {
+		        // this is the canonical OclType instance
+		        return (C) object;
+		    }
+		    
 			return (C) resolveTypeType(resolve((C) object.getReferredType()));
 		}
 		

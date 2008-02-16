@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.6 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.7 2008/02/16 00:07:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -71,6 +71,7 @@ import org.eclipse.ocl.utilities.Visitable;
 public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	extends AbstractVisitor<String, C, O, P, EL, PM, S, COA, SSA, CT> {
 
+    private final Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?> env;
     private final UMLReflection<?, C, O, P, EL, PM, S, COA, SSA, CT> uml;
 
 	
@@ -88,6 +89,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * @param env my environment
 	 */
 	protected ToStringVisitor(Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?> env) {
+	    this.env = env;
 		this.uml = (env == null)? null : env.getUMLReflection();
 	}
 	
@@ -749,7 +751,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	}
 	
 	protected C getType(Object typedElement) {
-		return (uml == null)? null : uml.getOCLType(typedElement);
+		return (uml == null)? null : TypeUtil.resolveType(env, uml.getOCLType(typedElement));
 	}
 	
 	protected List<PM> getParameters(O operation) {

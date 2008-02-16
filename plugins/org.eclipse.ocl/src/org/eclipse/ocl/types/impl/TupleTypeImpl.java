@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.5 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -69,10 +70,10 @@ public class TupleTypeImpl<O, P> extends EObjectImpl implements TupleType<O, P> 
 	 */
 	public String getName() {
 		if (name == null) {
-			Environment<?, ?, O, P, ?, ?, ?, ?, ?, ?, ?, ?> env =
+			Environment<?, Object, O, P, ?, ?, ?, ?, ?, ?, ?, ?> env =
 				Environment.Registry.INSTANCE.getEnvironmentFor(this);
 			
-            UMLReflection<?, ?, O, P, ?, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
+            UMLReflection<?, Object, O, P, ?, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
 
 			StringBuffer myName = new StringBuffer();
 			
@@ -83,7 +84,7 @@ public class TupleTypeImpl<O, P> extends EObjectImpl implements TupleType<O, P> 
 				
 				myName.append(uml.getName(next));
 				
-				Object type = uml.getOCLType(next);
+				Object type = TypeUtil.resolveType(env, uml.getOCLType(next));
 				if (type != null) {
 					myName.append(" : "); //$NON-NLS-1$
 					myName.append(uml.getName(type));
