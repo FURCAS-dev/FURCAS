@@ -13,7 +13,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.9 2008/01/30 12:46:15 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.10 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -375,7 +375,7 @@ public class TypeUtil {
 		for (Object paramOrProperty : paramsOrProperties) {
 			TypedElement<C> arg = args.get(i++);
 			C argType = arg.getType();
-			C popType = uml.getOCLType(paramOrProperty);
+			C popType = resolveType(env, uml.getOCLType(paramOrProperty));
 			
 			// handle parameters of type OclType
 			if (popType instanceof TypeType) {
@@ -506,7 +506,7 @@ public class TypeUtil {
 		for (PM param : uml.getParameters(oper)) {
 			paramNames.add(uml.getName(param));
 			paramTypes.add(resolveGenericType(env,
-				owner, uml.getOCLType(param), env.getOCLStandardLibrary().getT()));
+				owner, resolveType(env, uml.getOCLType(param)), env.getOCLStandardLibrary().getT()));
 		}
 		
 		C resultType = getResultType(oper, env, owner, oper);
@@ -536,7 +536,7 @@ public class TypeUtil {
 			P property) {
         UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = env.getUMLReflection();
 
-		C result = TypeUtil.resolveType(env, uml.getOCLType(property));
+		C result = resolveType(env, uml.getOCLType(property));
 		
 		if (uml.isAssociationClass(owner)
 				&& uml.getMemberEnds(owner).contains(property)) {
@@ -599,7 +599,7 @@ public class TypeUtil {
 					parameters.size());
 			
 			for (PM param : parameters) {
-				C paramType = uml.getOCLType(param);
+				C paramType = resolveType(env, uml.getOCLType(param));
 				
 				if (paramType instanceof TypeType) {
 					// need a TypeExp
@@ -634,10 +634,13 @@ public class TypeUtil {
 					problemObject, env, owner, opcode, args);
 			} catch (Exception e) {
 				// doesn't matter.  Just return the default
+			} finally {
+			    // dispose arguments created for the parameters
+			    ObjectUtil.dispose(args);
 			}
 		}
 		
-		return uml.getOCLType(oper);
+		return resolveType(env, uml.getOCLType(oper));
 	}
 	
     /**
@@ -976,8 +979,8 @@ public class TypeUtil {
 						 */
 						int propResult = TypeUtil.getRelationship(
 								env,
-								uml.getOCLType(prop1),
-								uml.getOCLType(prop2));
+								resolveType(env, uml.getOCLType(prop1)),
+								resolveType(env, uml.getOCLType(prop2)));
 						
 						if (result == SAME_TYPE) {
                             result = propResult;
@@ -1210,7 +1213,9 @@ public class TypeUtil {
 				for (P prop2 : props2) {
 					if (uml.getName(prop1).equals(uml.getName(prop2))) {
 						C resultElementType = commonSuperType(
-							problemObject, env, uml.getOCLType(prop1), uml.getOCLType(prop2));
+							problemObject, env,
+							resolveType(env, uml.getOCLType(prop1)),
+							resolveType(env, uml.getOCLType(prop2)));
 						
 						found = true;
 						
@@ -1334,7 +1339,7 @@ public class TypeUtil {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type) {
 		
-		return env.getTypeResolver().resolve(type);
+	    return (type != null)? env.getTypeResolver().resolve(type) : type;
 	}
 	
     /**

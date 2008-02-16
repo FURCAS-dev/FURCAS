@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.5 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
@@ -217,7 +218,8 @@ public class MessageTypeImpl<C, O, P> extends EObjectImpl implements MessageType
 			}
 			
 			for (Object next : typedElements) {
-				properties.add(uml.createProperty(uml.getName(next), uml.getOCLType(next)));
+				properties.add(uml.createProperty(uml.getName(next),
+				        TypeUtil.resolveType(env, uml.getOCLType(next))));
 			}
 		}
 		

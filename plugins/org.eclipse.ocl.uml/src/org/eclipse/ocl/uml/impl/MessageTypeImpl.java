@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.6 2008/01/03 15:28:31 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.7 2008/02/16 00:07:23 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.uml.MessageType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -419,7 +420,8 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
                 
                 for (TypedElement next : typedElements) {
                     features.add(reflection.createProperty(
-                            next.getName(), reflection.getOCLType(next)));
+                            next.getName(),
+                            TypeUtil.resolveType(env, reflection.getOCLType(next))));
                 }
             }
         }

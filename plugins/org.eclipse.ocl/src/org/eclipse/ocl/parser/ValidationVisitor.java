@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.5 2008/02/15 05:20:03 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.6 2008/02/16 00:07:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -1930,7 +1930,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @since 1.2
 	 */
 	protected C getOCLType(Object metaElement) {
-	    return env.getTypeResolver().resolve(uml.getOCLType(metaElement));
+	    return TypeUtil.resolveType(env, uml.getOCLType(metaElement));
 	}
 	
     private OCLStandardLibrary<C> getStandardLibrary() {

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.3 2008/02/15 05:20:03 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.4 2008/02/16 00:07:21 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -113,9 +113,13 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     
     /**
      * Parses the specified concrete syntax model to an abstract syntax model.
+     * The result is contained by an <tt>Constraint</tt>, so care must be taken
+     * when the result is no longer needed to dispose of the entire tree rooted
+     * in the <tt>Constraint</tt>.
      * 
      * @param cst the OCL concrete syntax model
      * @param constraintType the kind of constraint to parse
+     * 
      * @return the OCL expression, if it successfully parsed
      */
 	public OCLExpression<C> parseAST(OCLExpressionCS cst, ConstraintKind constraintType) {

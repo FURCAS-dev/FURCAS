@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.6 2008/02/15 05:20:03 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.7 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -364,7 +364,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					for (int iQualifier = 0; iQualifier < iQualifierMax; iQualifier++) {
 						P expectedQualifier = expectedQualifiers.get(iQualifier);
 						OCLExpression<C> qualifier = qualifiers.get(iQualifier);
-						C expectedType = uml.getOCLType(expectedQualifier);
+						C expectedType = getOCLType(env, expectedQualifier);
 						C qualifierType = qualifier.getType();
 						if (!TypeUtil.compatibleTypeMatch(env, expectedType, qualifierType)) {
 							ERROR(qualifier, rule, OCLMessages.bind(
@@ -427,7 +427,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 								&& (refAssocClass == assocClass)) {
 							acc.setNavigationSource(property);
 							
-							CollectionKind kind = getCollectionKind(uml.getOCLType(property));
+							CollectionKind kind = getCollectionKind(
+							        getOCLType(env, property));
 							if (kind != null) {
 								acc.setType(getCollectionType(env, kind, assocClass));
 							} else {
@@ -603,7 +604,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	   		resultType = OCLStandardLibraryUtil.getResultTypeOf(
 	   					operationCallExpCS, env, ownerType, opcode, args);
 		   	if (resultType == null) {
-		   		resultType = uml.getOCLType(oper);	   		
+		   		resultType = getOCLType(env, oper);	   		
 		   	}
 		   	
 			// resolve collection or tuple type against the cache in the environment
@@ -861,7 +862,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// create a disposable child operation context for this environment
 		env = createOperationContext(env, operationContext, operation);
 		
-		C operationType = uml.getOCLType(operation);
+		C operationType = getOCLType(env, operation);
         if (operationType instanceof VoidType) {
             operationType = null;  // a void operation has no result
         }
@@ -1428,7 +1429,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 			
 			if ((feature != null) && (expression != null)) {
-				C featureType = uml.getOCLType(feature);
+				C featureType = getOCLType(env, feature);
 				C bodyType = expression.getType();
 				
 				if ((featureType == null)
@@ -2227,7 +2228,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					// this is the navigation source
 					acref.setNavigationSource(end);
 					
-					CollectionKind kind = getCollectionKind(uml.getOCLType(end));
+					CollectionKind kind = getCollectionKind(getOCLType(env, end));
 					if (kind != null) {
 						acrefType = getCollectionType(env, kind, assocClass);
 					} else {
@@ -3730,6 +3731,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		return commonType;
+	}
+	
+	protected C getOCLType(
+	        Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+            Object metaElement) {
+	    return TypeUtil.resolveType(env, uml.getOCLType(metaElement));
 	}
 	
 	protected C getSetType(CSTNode cstNode,

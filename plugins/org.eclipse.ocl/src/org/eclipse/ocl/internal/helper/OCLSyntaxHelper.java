@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.10 2008/01/02 20:51:50 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.11 2008/02/16 00:07:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -28,6 +28,8 @@ import java.util.Set;
 
 import lpg.lpgjavaruntime.IToken;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
@@ -73,6 +75,7 @@ import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -199,6 +202,8 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 						ChoiceKind.OPERATION,
 						operation);
 				
+				ObjectUtil.dispose(operation);
+				
 				result.add(choice);
 			}
 		}
@@ -253,7 +258,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			
 			result.append(uml.getName(next));
 			
-			if (uml.getOCLType(next) != null) {
+			if (TypeUtil.resolveType(environment, uml.getOCLType(next)) != null) {
 				result.append(": "); //$NON-NLS-1$
 				result.append(getDescription(next));
 			}
@@ -263,11 +268,12 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			}
 		}
 		
-		if (uml.getOCLType(operation) == null) {
+		C operType = TypeUtil.resolveType(environment, uml.getOCLType(operation));
+		if (operType == null) {
 			result.append(')');
 		} else {
 			result.append(") : "); //$NON-NLS-1$
-			result.append(uml.getName(uml.getOCLType(operation)));
+			result.append(uml.getName(operType));
 		}
 		
 		return result.toString();
@@ -296,7 +302,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			
 			result.append(uml.getName(next));
 			
-			if (uml.getOCLType(next) != null) {
+			if (TypeUtil.resolveType(environment, uml.getOCLType(next)) != null) {
 				result.append(": "); //$NON-NLS-1$
 				result.append(getDescription(next));
 			}
@@ -897,20 +903,25 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 *     for the user; could be empty
 	 */
 	List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
+	    OCLExpression<C> expression;
+	    List<Choice> result;
+	    
 		try {
 			txt = txt.trim();//just to be sure
 			if (txt.endsWith(HelperUtil.DOT)) {
 				syntaxHelpStringSuffix = DOT;
 				int position = txt.lastIndexOf(HelperUtil.DOT); // known BMP code point
 				
-				return getOCLExpression(environment, position, txt, constraintType).accept(
-							new ASTVisitor(txt, position, constraintType));
+				expression = getOCLExpression(environment, position, txt, constraintType);
+				result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.ARROW)) {
 				syntaxHelpStringSuffix = ARROW;
 				int position = txt.lastIndexOf(HelperUtil.ARROW); // known BMP code points
 				
-				return getOCLExpression(environment, position, txt, constraintType).accept(
-							new ASTVisitor(txt, position, constraintType));
+				expression = getOCLExpression(environment, position, txt, constraintType);
+                result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.CARET)) { // known BMP code points
 				syntaxHelpStringSuffix = CARET;
 				int position;
@@ -920,8 +931,9 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					position = txt.length() - 1;
 				}
 				
-				return getOCLExpression(environment, position, txt, constraintType).accept(
-							new ASTVisitor(txt, position, constraintType));
+				expression = getOCLExpression(environment, position, txt, constraintType);
+                result = expression.accept(new ASTVisitor(txt, position, constraintType));
+                disposeAll(expression);
 			} else if (txt.endsWith(HelperUtil.DOUBLE_COLON)) {
 				syntaxHelpStringSuffix = NONE;
 				int position = txt.length() - 2;
@@ -968,29 +980,31 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				}
 				
 				if (syntaxHelpStringSuffix == OCL_IS_IN_STATE) {
-					C sourceType = getOCLExpression(
+					expression = getOCLExpression(
 							environment,
 							txt.lastIndexOf(HelperUtil.DOT, position), // known BMP code point
-							txt, constraintType).getType();
+							txt, constraintType);
 					
-					return getStateChoices(sourceType, pathName);
+					result = getStateChoices(expression.getType(), pathName);
+					disposeAll(expression);
 				} else {
 					// path choices are not affected by the variables in the operation
 					//   namespace (e.g., parameters)
-					return getPathChoices(pathName);
+					result = getPathChoices(pathName);
 				}
 			} else if (txt.endsWith("(") // known BMP code point //$NON-NLS-1$
 					&& (tokenAt(txt, -2) == OCLParsersym.TK_oclIsInState)) {
 
 				syntaxHelpStringSuffix = OCL_IS_IN_STATE;
 				
-				C sourceType = getOCLExpression(
+				expression = getOCLExpression(
 						environment,
 						txt.lastIndexOf(HelperUtil.DOT), // known BMP code point
-						txt, constraintType).getType();
+						txt, constraintType);
 				
 				List<String> empty = Collections.emptyList();
-				return getStateChoices(sourceType, empty);
+				result = getStateChoices(expression.getType(), empty);
+				disposeAll(expression);
 			} else {
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> parser =
 					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
@@ -1044,14 +1058,28 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				//     disrupting the caller's environment
 				Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> copy =
 					copyEnvironment(environment);
-				return getVariableChoices(copy, txt, constraintType);
+				result = getVariableChoices(copy, txt, constraintType);
 			}
 		} catch (Exception e) {
 			// didn't work?  Just try some simple variable choices, then
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> copy =
 				copyEnvironment(environment);
-			return getVariableChoices(copy, txt, constraintType);
+			result = getVariableChoices(copy, txt, constraintType);
 		}
+		
+		return result;
+	}
+	
+	/**
+	 * Disposes not only the specified <tt>object</tt> but all of the objects
+	 * in the content tree that contains it, from the root down.
+	 * 
+	 * @param object an object to dispose utterly
+	 * 
+	 * @since 1.2
+	 */
+	static void disposeAll(EObject object) {
+	    ObjectUtil.dispose(EcoreUtil.getRootContainer(object));
 	}
 
 	/**
