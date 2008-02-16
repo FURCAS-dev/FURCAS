@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.6 2007/10/12 14:33:56 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.7 2008/02/16 00:07:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -44,6 +44,7 @@ import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -191,9 +192,14 @@ public class EcoreEvaluationEnvironment
     private static CollectionKind getCollectionKind(ETypedElement element) {
         EClassifier oclType = UMLReflectionImpl.INSTANCE.getOCLType(element);
         
-        return (oclType instanceof CollectionType) ? ((CollectionType<?, ?>) oclType)
-            .getKind()
-            : null;
+        CollectionKind result = null;
+        
+        if (oclType instanceof CollectionType) {
+            result = ((CollectionType<?, ?>) oclType).getKind();
+            ObjectUtil.dispose(oclType);  // we created this object
+        }
+        
+        return result;
     }
 
     /**
