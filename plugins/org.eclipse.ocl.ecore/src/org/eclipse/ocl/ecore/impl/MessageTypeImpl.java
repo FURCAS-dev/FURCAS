@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.6 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.7 2008/02/16 00:07:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.MessageType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -241,7 +242,8 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
                 
                 for (ETypedElement next : typedElements) {
                     features.add(uml.createProperty(
-                            next.getName(), uml.getOCLType(next)));
+                            next.getName(),
+                            TypeUtil.resolveType(env, uml.getOCLType(next))));
                 }
             }
         }
