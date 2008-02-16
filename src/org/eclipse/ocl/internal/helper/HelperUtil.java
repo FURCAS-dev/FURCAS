@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2007 IBM Corporation and others.
+ * Copyright (c) 2002, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.5 2007/12/14 17:09:29 cdamus Exp $
+ * $Id: HelperUtil.java,v 1.6 2008/02/16 00:07:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -34,6 +34,7 @@ import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.ObjectUtil;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
@@ -180,6 +181,12 @@ public class HelperUtil {
 		//    the environment, in the ExpressionInOCL.  In a query expression,
 		//    there won't be other variables (result, parameters) to worry about
 		persist(env, spec.getContextVariable());
+		
+		// persist the expression
+		persist(env, result);
+		
+		// dispose the remainder of the constraint
+		ObjectUtil.dispose(constraint);
 		
 		return result;
 	}

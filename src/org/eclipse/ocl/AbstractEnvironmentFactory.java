@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.3 2007/10/11 23:05:04 cdamus Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.4 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.util.Adaptable;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -166,7 +167,7 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
 			// ensure that we use the OCL primitive types wherever possible
 			Variable<C, PM> var = oclFactory.createVariable();
 			uml.setName(var, uml.getName(next));
-			uml.setType(var, uml.getOCLType(next));
+			uml.setType(var, TypeUtil.resolveType(result, uml.getOCLType(next)));
 			var.setRepresentedParameter(next);
 			
 			result.addElement(var.getName(), var, true);

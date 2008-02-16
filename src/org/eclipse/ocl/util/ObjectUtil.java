@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ObjectUtil.java,v 1.3 2008/02/15 05:20:03 cdamus Exp $
+ * $Id: ObjectUtil.java,v 1.4 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.emf.common.util.Enumerator;
@@ -154,6 +155,10 @@ public class ObjectUtil {
                 false); iter.hasNext();) {
                 iter.next().eAdapters().clear();
             }
+	    } else if (object instanceof Collection) {
+	        for (Object next : ((Collection<?>) object)) {
+	            dispose(next);
+	        }
 	    }
 	}
 }

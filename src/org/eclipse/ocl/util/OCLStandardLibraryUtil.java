@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.7 2007/12/12 22:08:04 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.8 2008/02/16 00:07:21 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -494,7 +494,7 @@ public final class OCLStandardLibraryUtil {
 				}
 				
 				if ((oper != null) && "compareTo".equals(uml.getName(oper)) //$NON-NLS-1$
-						&& (uml.getOCLType(oper) != stdlib.getInteger())) {
+						&& (TypeUtil.resolveType(env, uml.getOCLType(oper)) != stdlib.getInteger())) {
 					String message = OCLMessages.ResultCompareToInt_ERROR_;
 					error(env, message, "anyTypeResultTypeOf", problemObject); //$NON-NLS-1$
 					return null;
@@ -1067,8 +1067,9 @@ public final class OCLStandardLibraryUtil {
 				MessageType<C, O, P> mtype =
 					(MessageType<C, O, P>) sourceType;
 				
-				return (mtype.getReferredOperation() == null)?
-						(C) stdlib.getInvalid() : uml.getOCLType(mtype.getReferredOperation());
+				return (mtype.getReferredOperation() == null) ? (C) stdlib
+                    .getInvalid() : TypeUtil.resolveType(env, uml
+                    .getOCLType(mtype.getReferredOperation()));
 			}
 		
 		return getAnyTypeResultTypeOf(problemObject, env, sourceType, opcode, args);
