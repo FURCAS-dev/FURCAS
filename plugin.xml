@@ -5,11 +5,11 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2007/02/23 22:06:00 cdamus Exp $
+ $Id: plugin.xml,v 1.3 2008/02/21 14:43:00 cdamus Exp $
 -->
 
 <plugin>
-   <extension-point id="environments" name="Registered OCL Environments" schema="schema/environments.exsd"/>
+   <extension-point id="environments" name="%oclenv.point.name" schema="schema/environments.exsd"/>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
