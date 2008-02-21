@@ -4,7 +4,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.ecore/src"
     modelPluginID="org.eclipse.ocl.ecore" modelName="OCLEcore" nonNLSMarkers="true"
     booleanFlagsReservedBits="8" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl/model/OCL.genmodel#//ocl">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.ocl/model/OCL.genmodel#//ocl">
   <foreignModel>OCLEcore.ecore</foreignModel>
   <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
       ecorePackage="OCLEcore.ecore#/">
@@ -17,12 +17,7 @@
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/InvalidType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/MessageType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/OrderedSetType"/>
-      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveBoolean"/>
-      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveInteger"/>
-      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveUnlimitedNatural"/>
-      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveReal"/>
-      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveString"/>
-      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/PrimitiveType"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/SequenceType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/SetType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/TupleType"/>
@@ -43,6 +38,41 @@
             ecoreFeature="ecore:EReference OCLEcore.ecore#//ecore/SendSignalAction/signal"/>
       </genClasses>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/ExpressionInOCL"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/AssociationClassCallExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/BooleanLiteralExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/CallExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/CollectionItem"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/CollectionLiteralExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/CollectionLiteralPart"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/CollectionRange"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/EnumLiteralExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/FeatureCallExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/IfExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/IntegerLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/UnlimitedNaturalLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/InvalidLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/IterateExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/IteratorExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/LetExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/LiteralExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/LoopExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/MessageExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/NavigationCallExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/NullLiteralExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/NumericLiteralExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/OCLExpression"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/OperationCallExp"/>
+      <genClasses image="false" ecoreClass="OCLEcore.ecore#//ecore/PrimitiveLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/PropertyCallExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/RealLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/StateExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/StringLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/TupleLiteralExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/TupleLiteralPart"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/TypeExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/UnspecifiedValueExp"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/Variable"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/VariableExp"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
