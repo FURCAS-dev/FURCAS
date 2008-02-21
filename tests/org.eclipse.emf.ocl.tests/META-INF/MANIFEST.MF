@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
-Bundle-SymbolicName: org.eclipse.emf.ocl.tests
+Bundle-SymbolicName: org.eclipse.emf.ocl.tests;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %Plugin.providerName
