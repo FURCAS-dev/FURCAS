@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.7 2008/01/11 14:32:10 cdamus Exp $
+ * $Id: UMLPackageImpl.java,v 1.8 2008/02/29 17:47:14 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
@@ -485,10 +484,9 @@ public class UMLPackageImpl extends EPackageImpl implements UMLPackage {
         isInited = true;
 
         // Initialize simple dependencies
-        EcorePackage.eINSTANCE.eClass();
         TypesPackage.eINSTANCE.eClass();
-        ExpressionsPackage.eINSTANCE.eClass();
         UtilitiesPackage.eINSTANCE.eClass();
+        ExpressionsPackage.eINSTANCE.eClass();
         org.eclipse.uml2.uml.UMLPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
