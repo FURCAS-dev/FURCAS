@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl/src"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/1.1.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
     editDirectory="/org.eclipse.ocl.edit/src" editorDirectory="/org.eclipse.ocl.editor/src"
     modelPluginID="org.eclipse.ocl" templateDirectory="" redirection="" modelName="OCL"
     modelPluginClass="" editPluginClass="org.eclipse.ocl.edit.internal.OCLEditPlugin"
@@ -11,16 +11,16 @@
     booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
     complianceLevel="5.0">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
-    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
-    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>
     <details key="DERIVED_FEATURES" value="PROCESS"/>
-    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
-    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="SUBSETTING_PROPERTIES" value="PROCESS"/>
+    <details key="REDEFINING_OPERATIONS" value="PROCESS"/>
     <details key="ANNOTATION_DETAILS" value="PROCESS"/>
-    <details key="UNION_PROPERTIES" value="REPORT"/>
-    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
-    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
-    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="UNION_PROPERTIES" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURES" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="PROCESS"/>
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="COMMENTS" value="PROCESS"/>
     <details key="OPERATION_BODIES" value="IGNORE"/>
@@ -28,87 +28,91 @@
     <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
   </genAnnotations>
   <foreignModel>OCL.uml</foreignModel>
-  <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
-      ecorePackage="OCL.ecore#/">
-    <nestedGenPackages prefix="Types" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
-        ecorePackage="OCL.ecore#//types">
-      <genClasses ecoreClass="OCL.ecore#//types/AnyType">
+  <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
+      disposableProviderFactory="true" ecorePackage="OCL.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Types" basePackage="org.eclipse.ocl"
+        disposableProviderFactory="true" ecorePackage="OCL.ecore#//types">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/AnyType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/AnyType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/BagType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/BagType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/BagType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/BagType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/CollectionType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/CollectionType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/CollectionType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/CollectionType/O"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/CollectionType/elementType"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//types/CollectionType/kind"/>
-        <genOperations ecoreOperation="OCL.ecore#//types/CollectionType/oclIterators"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//types/CollectionType/elementType"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
+            ecoreFeature="ecore:EAttribute OCL.ecore#//types/CollectionType/kind"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/CollectionType/oclIterators"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/ElementType"/>
-      <genClasses ecoreClass="OCL.ecore#//types/InvalidType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/ElementType"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/InvalidType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/InvalidType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/MessageType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/MessageType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/MessageType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/MessageType/O"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/MessageType/P"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/MessageType/referredOperation"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/MessageType/referredSignal"/>
-        <genOperations ecoreOperation="OCL.ecore#//types/MessageType/oclProperties"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//types/MessageType/referredOperation"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/MessageType/referredSignal"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/MessageType/oclProperties"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/OrderedSetType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/OrderedSetType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/OrderedSetType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/OrderedSetType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/PrimitiveType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/PrimitiveType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/PrimitiveType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/SequenceType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/SequenceType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/SequenceType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/SequenceType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/SetType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/SetType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/SetType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/SetType/O"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/TupleType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/TupleType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TupleType/O"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TupleType/P"/>
-        <genOperations ecoreOperation="OCL.ecore#//types/TupleType/oclProperties"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/TupleType/oclProperties"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/TypeType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/TypeType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TypeType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TypeType/O"/>
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/TypeType/referredType"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/TypeType/referredType"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//types/VoidType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/VoidType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/VoidType/O"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Utilities" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
-        ecorePackage="OCL.ecore#//utilities">
-      <genClasses ecoreClass="OCL.ecore#//utilities/ASTNode">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/ASTNode/startPosition"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/ASTNode/endPosition"/>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Utilities" basePackage="org.eclipse.ocl"
+        disposableProviderFactory="true" ecorePackage="OCL.ecore#//utilities">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/ASTNode">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/ASTNode/startPosition"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/ASTNode/endPosition"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//utilities/CallingASTNode">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/CallingASTNode/propertyStartPosition"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/CallingASTNode/propertyEndPosition"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/CallingASTNode">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/CallingASTNode/propertyStartPosition"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/CallingASTNode/propertyEndPosition"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//utilities/TypedASTNode">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/TypedASTNode/typeStartPosition"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/TypedASTNode/typeEndPosition"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/TypedASTNode">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/TypedASTNode/typeStartPosition"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/TypedASTNode/typeEndPosition"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//utilities/Visitable">
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitable/accept">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitable/accept/v"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/Visitable">
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitable/accept">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitable/accept/v"/>
           <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitable/accept/T"/>
           <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitable/accept/U"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//utilities/Visitor">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/Visitor">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitor/T"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitor/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitor/O"/>
@@ -119,287 +123,324 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitor/COA"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitor/SSA"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/Visitor/CT"/>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitVariableExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitVariableExp/variableExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitVariableExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitVariableExp/variableExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitLetExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitLetExp/letExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitLetExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitLetExp/letExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitIfExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitIfExp/ifExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitIfExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitIfExp/ifExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitTypeExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitTypeExp/typeExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitTypeExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitTypeExp/typeExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitPropertyCallExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitPropertyCallExp/callExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitPropertyCallExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitPropertyCallExp/callExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitOperationCallExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitOperationCallExp/callExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitOperationCallExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitOperationCallExp/callExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitAssociationClassCallExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitAssociationClassCallExp/callExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitAssociationClassCallExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitAssociationClassCallExp/callExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitIteratorExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitIteratorExp/callExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitIteratorExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitIteratorExp/callExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitIterateExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitIterateExp/callExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitIterateExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitIterateExp/callExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitUnspecifiedValueExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitUnspecifiedValueExp/unspecExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitUnspecifiedValueExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitUnspecifiedValueExp/unspecExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitIntegerLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitIntegerLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitIntegerLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitIntegerLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitUnlimitedNaturalLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitUnlimitedNaturalLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitUnlimitedNaturalLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitUnlimitedNaturalLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitRealLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitRealLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitRealLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitRealLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitStringLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitStringLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitStringLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitStringLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitBooleanLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitBooleanLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitBooleanLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitBooleanLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitEnumLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitEnumLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitEnumLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitEnumLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitCollectionLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitCollectionLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitCollectionLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitCollectionLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitCollectionItem">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitCollectionItem/item"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitCollectionItem">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitCollectionItem/item"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitCollectionRange">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitCollectionRange/range"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitCollectionRange">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitCollectionRange/range"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitTupleLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitTupleLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitTupleLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitTupleLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitTupleLiteralPart">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitTupleLiteralPart/part"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitTupleLiteralPart">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitTupleLiteralPart/part"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitInvalidLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitInvalidLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitInvalidLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitInvalidLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitNullLiteralExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitNullLiteralExp/literalExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitNullLiteralExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitNullLiteralExp/literalExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitStateExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitStateExp/stateExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitStateExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitStateExp/stateExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitMessageExp">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitMessageExp/messageExp"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitMessageExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitMessageExp/messageExp"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitVariable">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitVariable/variable"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitVariable">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitVariable/variable"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitExpressionInOCL">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitExpressionInOCL/expression"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitExpressionInOCL">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitExpressionInOCL/expression"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/Visitor/visitConstraint">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/Visitor/visitConstraint/constraint"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitConstraint">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitConstraint/constraint"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//utilities/TypedElement">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/TypedElement">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/TypedElement/C"/>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/TypedElement/getName"/>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/TypedElement/getType"/>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/TypedElement/setName">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/TypedElement/setName/name"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/TypedElement/getName"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/TypedElement/getType"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/TypedElement/setName">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/TypedElement/setName/name"/>
         </genOperations>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/TypedElement/setType">
-          <genParameters ecoreParameter="OCL.ecore#//utilities/TypedElement/setType/type"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/TypedElement/setType">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/TypedElement/setType/type"/>
         </genOperations>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCL.ecore#//utilities/ExpressionInOCL">
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCL.ecore#//utilities/ExpressionInOCL">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/ExpressionInOCL/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/ExpressionInOCL/PM"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/bodyExpression"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/contextVariable"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/resultVariable"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/parameterVariable"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/bodyExpression"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/contextVariable"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/resultVariable"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/parameterVariable"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//utilities/PredefinedType">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/PredefinedType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/PredefinedType/O"/>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/PredefinedType/getName"/>
-        <genOperations ecoreOperation="OCL.ecore#//utilities/PredefinedType/oclOperations"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/PredefinedType/getName"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/PredefinedType/oclOperations"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Expressions" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
-        ecorePackage="OCL.ecore#//expressions">
-      <genEnums ecoreEnum="OCL.ecore#//expressions/CollectionKind">
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Set"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/OrderedSet"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Bag"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Sequence"/>
-        <genEnumLiterals ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Collection"/>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Expressions" basePackage="org.eclipse.ocl"
+        disposableProviderFactory="true" ecorePackage="OCL.ecore#//expressions">
+      <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCL.ecore#//expressions/CollectionKind">
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Set"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/OrderedSet"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Bag"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Sequence"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Collection"/>
       </genEnums>
-      <genClasses ecoreClass="OCL.ecore#//expressions/AssociationClassCallExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/AssociationClassCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/AssociationClassCallExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/AssociationClassCallExp/P"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/AssociationClassCallExp/referredAssociationClass"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/AssociationClassCallExp/referredAssociationClass"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/NavigationCallExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/NavigationCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/NavigationCallExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/NavigationCallExp/P"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/NavigationCallExp/qualifier"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/NavigationCallExp/navigationSource"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/NavigationCallExp/qualifier"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/NavigationCallExp/navigationSource"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCL.ecore#//expressions/FeatureCallExp">
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCL.ecore#//expressions/FeatureCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/FeatureCallExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/FeatureCallExp/markedPre"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/FeatureCallExp/markedPre"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCL.ecore#//expressions/CallExp">
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCL.ecore#//expressions/CallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CallExp/C"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CallExp/source"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CallExp/source"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCL.ecore#//expressions/OCLExpression">
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCL.ecore#//expressions/OCLExpression">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/OCLExpression/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/BooleanLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/BooleanLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/BooleanLiteralExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/BooleanLiteralExp/booleanSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/BooleanLiteralExp/booleanSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/PrimitiveLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/PrimitiveLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/PrimitiveLiteralExp/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/LiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/LiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LiteralExp/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/CollectionItem">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/CollectionItem">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionItem/C"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionItem/item"/>
+        <genFeatures xsi:type="genmodel:GenFeature" children="true" createChild="true"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionItem/item"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/CollectionLiteralPart">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/CollectionLiteralPart">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionLiteralPart/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/CollectionLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/CollectionLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionLiteralExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/CollectionLiteralExp/kind"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionLiteralExp/part"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/CollectionLiteralExp/simpleRange"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/CollectionLiteralExp/kind"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionLiteralExp/part"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/CollectionLiteralExp/simpleRange"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/CollectionRange">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/CollectionRange">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionRange/C"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionRange/first"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionRange/last"/>
+        <genFeatures xsi:type="genmodel:GenFeature" children="true" createChild="true"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionRange/first"/>
+        <genFeatures xsi:type="genmodel:GenFeature" children="true" createChild="true"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionRange/last"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/EnumLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/EnumLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/EnumLiteralExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/EnumLiteralExp/EL"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/EnumLiteralExp/referredEnumLiteral"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/EnumLiteralExp/referredEnumLiteral"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/IfExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IfExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IfExp/C"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/condition"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/thenExpression"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/elseExpression"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/condition"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/thenExpression"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/elseExpression"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/IntegerLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IntegerLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IntegerLiteralExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/IntegerLiteralExp/integerSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/IntegerLiteralExp/integerSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/NumericLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/NumericLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/NumericLiteralExp/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/integerSymbol"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/unlimited"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/integerSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
+            ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/unlimited"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/InvalidLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/InvalidLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/InvalidLiteralExp/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/IterateExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IterateExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IterateExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IterateExp/PM"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IterateExp/result"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IterateExp/result"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/LoopExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/LoopExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LoopExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LoopExp/PM"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LoopExp/body"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LoopExp/iterator"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LoopExp/body"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LoopExp/iterator"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/Variable">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/Variable">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/Variable/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/Variable/PM"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/Variable/initExpression"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/Variable/representedParameter"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/Variable/initExpression"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/Variable/representedParameter"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/IteratorExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IteratorExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IteratorExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IteratorExp/PM"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/LetExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/LetExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LetExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LetExp/PM"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LetExp/in"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LetExp/variable"/>
+        <genFeatures xsi:type="genmodel:GenFeature" children="true" createChild="true"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/LetExp/in"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LetExp/variable"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/MessageExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/MessageExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/MessageExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/MessageExp/COA"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/MessageExp/SSA"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/target"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/argument"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/calledOperation"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/sentSignal"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/target"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/argument"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/calledOperation"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/sentSignal"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/NullLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/NullLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/NullLiteralExp/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/OperationCallExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/OperationCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/OperationCallExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/OperationCallExp/O"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/OperationCallExp/argument"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/OperationCallExp/referredOperation"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/OperationCallExp/operationCode"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/OperationCallExp/argument"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/OperationCallExp/referredOperation"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/OperationCallExp/operationCode"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/PropertyCallExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/PropertyCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/PropertyCallExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/PropertyCallExp/P"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/PropertyCallExp/referredProperty"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/PropertyCallExp/referredProperty"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/RealLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/RealLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/RealLiteralExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/RealLiteralExp/realSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/RealLiteralExp/realSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/StateExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/StateExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/StateExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/StateExp/S"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/StateExp/referredState"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/StateExp/referredState"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/StringLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/StringLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/StringLiteralExp/C"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/StringLiteralExp/stringSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/StringLiteralExp/stringSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/TupleLiteralExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/TupleLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralExp/P"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralExp/part"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralExp/part"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/TupleLiteralPart">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/TupleLiteralPart">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralPart/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralPart/P"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralPart/value"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralPart/attribute"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralPart/value"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralPart/attribute"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/TypeExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/TypeExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TypeExp/C"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TypeExp/referredType"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/TypeExp/referredType"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/UnspecifiedValueExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/UnspecifiedValueExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/UnspecifiedValueExp/C"/>
       </genClasses>
-      <genClasses ecoreClass="OCL.ecore#//expressions/VariableExp">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/VariableExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/PM"/>
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//expressions/VariableExp/referredVariable"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            ecoreFeature="ecore:EReference OCL.ecore#//expressions/VariableExp/referredVariable"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

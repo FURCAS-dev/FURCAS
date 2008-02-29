@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.6 2008/01/11 14:32:15 cdamus Exp $
+ * $Id: TypesPackageImpl.java,v 1.7 2008/02/29 17:47:13 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -143,23 +143,23 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	private EClass voidTypeEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.ocl.types.TypesPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see org.eclipse.ocl.types.TypesPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
 	private TypesPackageImpl() {
-		super(eNS_URI, TypesFactory.eINSTANCE);
-	}
+        super(eNS_URI, TypesFactory.eINSTANCE);
+    }
 
 	/**
      * <!-- begin-user-doc -->
@@ -199,18 +199,18 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         isInited = true;
 
         // Obtain or create and register interdependencies
-        ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
         UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
+        ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
 
         // Create package meta-data objects
         theTypesPackage.createPackageContents();
-        theExpressionsPackage.createPackageContents();
         theUtilitiesPackage.createPackageContents();
+        theExpressionsPackage.createPackageContents();
 
         // Initialize created meta-data
         theTypesPackage.initializePackageContents();
-        theExpressionsPackage.initializePackageContents();
         theUtilitiesPackage.initializePackageContents();
+        theExpressionsPackage.initializePackageContents();
 
         // Mark meta-data to indicate it can't be changed
         theTypesPackage.freeze();
