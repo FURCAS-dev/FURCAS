@@ -119,6 +119,359 @@
       </eGenericSuperTypes>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="utilities" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"
+      nsPrefix="ocl.util">
+    <eClassifiers xsi:type="ecore:EClass" name="ASTNode" abstract="true" interface="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          transient="true" defaultValueLiteral="-1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          transient="true" defaultValueLiteral="-1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CallingASTNode" abstract="true" interface="true"
+        eSuperTypes="#//utilities/ASTNode">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyStartPosition"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" transient="true"
+          defaultValueLiteral="-1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyEndPosition"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" transient="true"
+          defaultValueLiteral="-1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypedASTNode" abstract="true" interface="true"
+        eSuperTypes="#//utilities/ASTNode">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeStartPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          transient="true" defaultValueLiteral="-1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeEndPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          transient="true" defaultValueLiteral="-1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Visitable" abstract="true" interface="true">
+      <eOperations name="accept">
+        <eGenericType eTypeParameter="#//utilities/Visitable/accept/T"/>
+        <eTypeParameters name="T"/>
+        <eTypeParameters name="U">
+          <eBounds eClassifier="#//utilities/Visitor">
+            <eTypeArguments eTypeParameter="#//utilities/Visitable/accept/T"/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eBounds>
+        </eTypeParameters>
+        <eParameters name="v">
+          <eGenericType eTypeParameter="#//utilities/Visitable/accept/U"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Visitor" abstract="true" interface="true">
+      <eTypeParameters name="T"/>
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="O"/>
+      <eTypeParameters name="P"/>
+      <eTypeParameters name="EL"/>
+      <eTypeParameters name="PM"/>
+      <eTypeParameters name="S"/>
+      <eTypeParameters name="COA"/>
+      <eTypeParameters name="SSA"/>
+      <eTypeParameters name="CT"/>
+      <eOperations name="visitVariableExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="variableExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/VariableExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitLetExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="letExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/LetExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitIfExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="ifExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/IfExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitTypeExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="typeExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/TypeExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitPropertyCallExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/PropertyCallExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitOperationCallExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/OperationCallExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/O"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitAssociationClassCallExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/AssociationClassCallExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitIteratorExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/IteratorExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitIterateExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/IterateExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitUnspecifiedValueExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="unspecExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/UnspecifiedValueExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitIntegerLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/IntegerLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitUnlimitedNaturalLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/UnlimitedNaturalLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitRealLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/RealLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitStringLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/StringLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitBooleanLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/BooleanLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitEnumLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/EnumLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/EL"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitCollectionLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/CollectionLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitCollectionItem">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="item" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/CollectionItem">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitCollectionRange">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="range" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/CollectionRange">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitTupleLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/TupleLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitTupleLiteralPart">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="part" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/TupleLiteralPart">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitInvalidLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/InvalidLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitNullLiteralExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="literalExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/NullLiteralExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitStateExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="stateExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/StateExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/S"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitMessageExp">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="messageExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/MessageExp">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/COA"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/SSA"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitVariable">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="variable" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/Variable">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitExpressionInOCL">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="expression" lowerBound="1">
+          <eGenericType eClassifier="#//utilities/ExpressionInOCL">
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="visitConstraint">
+        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
+        <eParameters name="constraint" lowerBound="1">
+          <eGenericType eTypeParameter="#//utilities/Visitor/CT"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
+      <eTypeParameters name="C"/>
+      <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eOperations name="getType">
+        <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
+      </eOperations>
+      <eOperations name="setName" ordered="false" lowerBound="1">
+        <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eOperations>
+      <eOperations name="setType" ordered="false" lowerBound="1">
+        <eParameters name="type" ordered="false" lowerBound="1">
+          <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" abstract="true" interface="true"
+        eSuperTypes="#//utilities/Visitable">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="ExpressionInOcl"/>
+      </eAnnotations>
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="PM"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" lowerBound="1"
+          containment="true">
+        <eGenericType eClassifier="#//expressions/OCLExpression">
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextVariable" lowerBound="1"
+          containment="true">
+        <eGenericType eClassifier="#//expressions/Variable">
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resultVariable" containment="true">
+        <eGenericType eClassifier="#//expressions/Variable">
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
+        </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
+          containment="true">
+        <eGenericType eClassifier="#//expressions/Variable">
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
+          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
+        </eGenericType>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">
+      <eTypeParameters name="O"/>
+      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eOperations name="oclOperations" upperBound="-1">
+        <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
+      </eOperations>
+    </eClassifiers>
+  </eSubpackages>
   <eSubpackages name="expressions" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"
       nsPrefix="ocl.expr">
     <eClassifiers xsi:type="ecore:EClass" name="AssociationClassCallExp">
@@ -536,359 +889,6 @@
       <eGenericSuperTypes eClassifier="#//expressions/OCLExpression">
         <eTypeArguments eTypeParameter="#//expressions/VariableExp/C"/>
       </eGenericSuperTypes>
-    </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="utilities" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"
-      nsPrefix="ocl.util">
-    <eClassifiers xsi:type="ecore:EClass" name="ASTNode" abstract="true" interface="true">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          transient="true" defaultValueLiteral="-1"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          transient="true" defaultValueLiteral="-1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CallingASTNode" abstract="true" interface="true"
-        eSuperTypes="#//utilities/ASTNode">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyStartPosition"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" transient="true"
-          defaultValueLiteral="-1"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyEndPosition"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" transient="true"
-          defaultValueLiteral="-1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TypedASTNode" abstract="true" interface="true"
-        eSuperTypes="#//utilities/ASTNode">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeStartPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          transient="true" defaultValueLiteral="-1"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeEndPosition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          transient="true" defaultValueLiteral="-1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Visitable" abstract="true" interface="true">
-      <eOperations name="accept">
-        <eGenericType eTypeParameter="#//utilities/Visitable/accept/T"/>
-        <eTypeParameters name="T"/>
-        <eTypeParameters name="U">
-          <eBounds eClassifier="#//utilities/Visitor">
-            <eTypeArguments eTypeParameter="#//utilities/Visitable/accept/T"/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eBounds>
-        </eTypeParameters>
-        <eParameters name="v">
-          <eGenericType eTypeParameter="#//utilities/Visitable/accept/U"/>
-        </eParameters>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Visitor" abstract="true" interface="true">
-      <eTypeParameters name="T"/>
-      <eTypeParameters name="C"/>
-      <eTypeParameters name="O"/>
-      <eTypeParameters name="P"/>
-      <eTypeParameters name="EL"/>
-      <eTypeParameters name="PM"/>
-      <eTypeParameters name="S"/>
-      <eTypeParameters name="COA"/>
-      <eTypeParameters name="SSA"/>
-      <eTypeParameters name="CT"/>
-      <eOperations name="visitVariableExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="variableExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/VariableExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitLetExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="letExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/LetExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitIfExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="ifExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/IfExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitTypeExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="typeExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/TypeExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitPropertyCallExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="callExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/PropertyCallExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitOperationCallExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="callExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/OperationCallExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/O"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitAssociationClassCallExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="callExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/AssociationClassCallExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitIteratorExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="callExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/IteratorExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitIterateExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="callExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/IterateExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitUnspecifiedValueExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="unspecExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/UnspecifiedValueExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitIntegerLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/IntegerLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitUnlimitedNaturalLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/UnlimitedNaturalLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitRealLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/RealLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitStringLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/StringLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitBooleanLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/BooleanLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitEnumLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/EnumLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/EL"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitCollectionLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/CollectionLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitCollectionItem">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="item" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/CollectionItem">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitCollectionRange">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="range" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/CollectionRange">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitTupleLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/TupleLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitTupleLiteralPart">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="part" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/TupleLiteralPart">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitInvalidLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/InvalidLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitNullLiteralExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="literalExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/NullLiteralExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitStateExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="stateExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/StateExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/S"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitMessageExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="messageExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/MessageExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/COA"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/SSA"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitVariable">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="variable" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/Variable">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitExpressionInOCL">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="expression" lowerBound="1">
-          <eGenericType eClassifier="#//utilities/ExpressionInOCL">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/PM"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="visitConstraint">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="constraint" lowerBound="1">
-          <eGenericType eTypeParameter="#//utilities/Visitor/CT"/>
-        </eParameters>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
-      <eTypeParameters name="C"/>
-      <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eOperations name="getType">
-        <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
-      </eOperations>
-      <eOperations name="setName" ordered="false" lowerBound="1">
-        <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
-      <eOperations name="setType" ordered="false" lowerBound="1">
-        <eParameters name="type" ordered="false" lowerBound="1">
-          <eGenericType eTypeParameter="#//utilities/TypedElement/C"/>
-        </eParameters>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" abstract="true" interface="true"
-        eSuperTypes="#//utilities/Visitable">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="name" value="ExpressionInOcl"/>
-      </eAnnotations>
-      <eTypeParameters name="C"/>
-      <eTypeParameters name="PM"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" lowerBound="1"
-          containment="true">
-        <eGenericType eClassifier="#//expressions/OCLExpression">
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="contextVariable" lowerBound="1"
-          containment="true">
-        <eGenericType eClassifier="#//expressions/Variable">
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="resultVariable" containment="true">
-        <eGenericType eClassifier="#//expressions/Variable">
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
-          containment="true">
-        <eGenericType eClassifier="#//expressions/Variable">
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
-          <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
-        </eGenericType>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">
-      <eTypeParameters name="O"/>
-      <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eOperations name="oclOperations" upperBound="-1">
-        <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
-      </eOperations>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

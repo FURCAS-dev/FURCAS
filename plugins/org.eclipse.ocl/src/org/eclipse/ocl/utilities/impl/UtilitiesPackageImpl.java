@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.7 2008/01/11 14:32:14 cdamus Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.8 2008/02/29 17:47:13 cdamus Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -103,23 +103,23 @@ public class UtilitiesPackageImpl extends EPackageImpl implements UtilitiesPacka
 	private EClass expressionInOCLEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.ocl.utilities.UtilitiesPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see org.eclipse.ocl.utilities.UtilitiesPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
 	private UtilitiesPackageImpl() {
-		super(eNS_URI, UtilitiesFactory.eINSTANCE);
-	}
+        super(eNS_URI, UtilitiesFactory.eINSTANCE);
+    }
 
 	/**
      * <!-- begin-user-doc -->
