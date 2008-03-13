@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.8 2007/10/12 14:32:51 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.9 2008/03/13 18:02:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -34,6 +34,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
@@ -41,6 +43,7 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.TypeUtil;
 
@@ -1017,5 +1020,45 @@ public class CollectionsTest
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
+    }
+    
+    /**
+     * Tests that generic collection types (those whose element type is <tt>T</tt>)
+     * resolve correctly to the OCL Standard Library types.
+     */
+    public void test_resolutionOfGenericCollectionTypes_222581() {
+        TypeResolver<EClassifier, EOperation, EStructuralFeature> resolver =
+            ocl.getEnvironment().getTypeResolver();
+        Resource resource = resolver.getResource();
+        
+        OCLStandardLibrary<EClassifier> stdlib = ocl.getEnvironment().getOCLStandardLibrary();
+        EClassifier t = stdlib.getT();
+        
+        CollectionType<EClassifier, EOperation> collectionType;
+        
+        collectionType = resolver.resolveCollectionType(
+                CollectionKind.SET_LITERAL, t);
+        assertNotSame(resource, collectionType.eResource());
+        assertSame(stdlib.getSet(), collectionType);
+        
+        collectionType = resolver.resolveCollectionType(
+                CollectionKind.ORDERED_SET_LITERAL, t);
+        assertNotSame(resource, collectionType.eResource());
+        assertSame(stdlib.getOrderedSet(), collectionType);
+        
+        collectionType = resolver.resolveCollectionType(
+                CollectionKind.SEQUENCE_LITERAL, t);
+        assertNotSame(resource, collectionType.eResource());
+        assertSame(stdlib.getSequence(), collectionType);
+        
+        collectionType = resolver.resolveCollectionType(
+                CollectionKind.BAG_LITERAL, t);
+        assertNotSame(resource, collectionType.eResource());
+        assertSame(stdlib.getBag(), collectionType);
+        
+        collectionType = resolver.resolveCollectionType(
+                CollectionKind.COLLECTION_LITERAL, t);
+        assertNotSame(resource, collectionType.eResource());
+        assertSame(stdlib.getCollection(), collectionType);
     }
 }
