@@ -9,10 +9,11 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
+ *   Adolfo Sánchez-Barbudo Herrera - 222581 generic collection type resolution
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.9 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.10 2008/03/13 18:02:09 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -30,6 +31,7 @@ import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.util.TypesSwitch;
@@ -191,11 +193,35 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	}
 	
 	// Documentation copied from the inherited specification
+	@SuppressWarnings("unchecked")
 	public CollectionType<C, O> resolveCollectionType(
 			CollectionKind kind,
 			C elementType) {
 		
-		CollectionType<C, O> result = findCollectionType(kind, elementType);
+	    CollectionType<C, O> result;
+	    
+		OCLStandardLibrary<C> stdlib = getEnvironment().getOCLStandardLibrary();
+		if (elementType == stdlib.getT()) {
+			switch (kind) {
+				case SET_LITERAL :
+				    result = (CollectionType<C, O>) stdlib.getSet();
+				    break;
+				case ORDERED_SET_LITERAL:
+				    result = (CollectionType<C, O>) stdlib.getOrderedSet();
+                    break;
+				case SEQUENCE_LITERAL:
+				    result = (CollectionType<C, O>) stdlib.getSequence();
+                    break;
+				case BAG_LITERAL:
+				    result = (CollectionType<C, O>) stdlib.getBag();
+                    break;
+				default:
+				    result = (CollectionType<C, O>) stdlib.getCollection();
+				    break;
+			}
+		} else {
+    		result = findCollectionType(kind, elementType);
+		}
 		
 		if (result == null) {
 			result = createCollectionType(kind, elementType);
