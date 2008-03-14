@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.4 2007/11/06 19:47:08 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.5 2008/03/14 19:59:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -36,6 +38,7 @@ import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.options.EvaluationOptions;
+import org.eclipse.ocl.types.CollectionType;
 
 /**
  * Basic tests for OCL engine.
@@ -67,6 +70,26 @@ public class BasicOCLTest
             // restore the correct URI
             res.setURI(oldURI);
         }
+    }
+    
+    /**
+     * Tests that the results of the <tt>oclOperations()</tt> and <tt>oclIterators()</tt>
+     * methods are the same regardless of which is invoked first.
+     */
+    public void test_collectionsAndIteratorsAccess_222747() {
+        CollectionType<EClassifier, EOperation> type = ocl.getEnvironment().getOCLFactory().createSetType(
+                (EClassifier) EcorePackage.Literals.ERESOURCE);
+        
+        Set<EOperation> iterators = new java.util.HashSet<EOperation>(type.oclIterators());
+        Set<EOperation> operations = new java.util.HashSet<EOperation>(type.oclOperations());
+        
+        // compute the set difference
+        Set<EOperation> difference = new java.util.HashSet<EOperation>(operations);
+        difference.removeAll(iterators);
+        
+        assertEquals(difference.size(), operations.size());
+        assertTrue(operations.size() > 0);
+        assertTrue(iterators.size() > 0);
     }
 	
 	public void testTrivialExpressions() {
