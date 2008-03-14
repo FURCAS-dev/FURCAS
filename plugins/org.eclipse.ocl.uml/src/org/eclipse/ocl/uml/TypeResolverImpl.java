@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.2 2007/05/17 17:06:27 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.3 2008/03/14 19:59:29 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -22,9 +24,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.AbstractTypeResolver;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.TypeResolver;
+import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
@@ -135,4 +140,31 @@ public class TypeResolverImpl
         
         return null;
 	}
+    
+    @Override
+    public CollectionType<Classifier, Operation> resolveCollectionType(
+            CollectionKind kind, Classifier elementType) {
+        
+        CollectionType<Classifier, Operation> result = super.resolveCollectionType(
+                kind, elementType);
+        
+        // ensure that the collection type's operations are correctly defined
+        DataType umlResult = (DataType) result;
+        Collection<Operation> ownedOperations = umlResult.getOwnedOperations();
+        if (ownedOperations.isEmpty()) {
+            // first, add a token operation to ensure that the list is not
+            // empty, avoiding unbounded recursion
+            Operation token = UMLFactory.eINSTANCE.createOperation();
+            ownedOperations.add(token);
+            
+            try {
+                ownedOperations.addAll(OCLStandardLibraryImpl.createCollectionTypeOperations(
+                        getEnvironment(), kind));
+            } finally {            
+                ownedOperations.remove(token);  // remove the token
+            }
+        }
+        
+        return result;
+    }
 }

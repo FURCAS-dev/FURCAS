@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.6 2008/01/11 14:32:12 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.7 2008/03/14 19:59:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -21,6 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -39,6 +40,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.OperationCallExp;
 import org.eclipse.ocl.uml.TypeType;
+import org.eclipse.ocl.uml.UMLEnvironment;
+import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
@@ -237,9 +240,9 @@ public class SerializationTest
 				ocl.getEnvironment().getFactory(),
 				ocl.getEnvironment().getTypeResolver().getResource());
 		
-		assertSame(oper,
-				newOCL.getEnvironment().getTypeResolver().resolveAdditionalOperation(
-						getMetaclass("Package"), oper)); //$NON-NLS-1$
+		Operation newOper = newOCL.getEnvironment().getTypeResolver().resolveAdditionalOperation(
+                getMetaclass("Package"), oper); //$NON-NLS-1$
+		assertNotSame(oper, newOper);
 	}
 	
 	/**
@@ -279,9 +282,9 @@ public class SerializationTest
 				ocl.getEnvironment().getFactory(),
 				ocl.getEnvironment().getTypeResolver().getResource());
 		
-		assertSame(prop,
-				newOCL.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
-						getMetaclass("Package"), prop)); //$NON-NLS-1$
+		Property newProp = newOCL.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
+                getMetaclass("Package"), prop); //$NON-NLS-1$
+		assertNotSame(prop, newProp);
 	}
     
     /**
@@ -349,8 +352,6 @@ public class SerializationTest
     protected void setUp()
 		throws Exception {
 		
-		super.setUp();
-		
 		//FIXME:  Need to use extrinsic IDs because lookup fails on hierarchical
 		//    name-based fragments
 		res = new XMIResourceImpl() {
@@ -366,9 +367,17 @@ public class SerializationTest
 		res.setURI(URI.createFileURI("/tmp/ocltest.xmi")); //$NON-NLS-1$
 		((XMLResource) res).setEncoding("UTF-8"); //$NON-NLS-1$
 		
-		resourceSet.getResources().add(res);
-		
-		resourceSet.getResources().add(ocl.getEnvironment().getTypeResolver().getResource());
+        super.setUp();  // among other things, creates our resource set
+        
+        resourceSet.getResources().add(res);
+	}
+	
+	@Override
+	protected OCL createOCL() {
+	    UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
+	    UMLEnvironment environment = (UMLEnvironment) factory.loadEnvironment(res);
+	    
+	    return OCL.newInstance(environment);
 	}
 	
 	@Override
@@ -412,24 +421,30 @@ public class SerializationTest
 		}
 		
 		assertNotNull(result);
+		assertFalse(result.contains("ocl://")); //$NON-NLS-1$
 		
 		return result;
 	}
 	
-	protected EObject deserialize(String serial) {
-		EObject result = null;
+	protected List<EObject> deserialize(String serial) {
+	    List<EObject> result;
 		
 		try {
 			ByteArrayInputStream input = new ByteArrayInputStream(serial.getBytes());
 			res.unload();
 			res.load(input, Collections.EMPTY_MAP);
 			
+			// reload the environment
+			ocl = createOCL();
+			helper = createHelper();
+			
 			assertFalse("No contents in serial data", res.getContents().isEmpty()); //$NON-NLS-1$
 			assertNoProxies(res);
 			
-			result = res.getContents().get(0);
+			result = res.getContents();
 		} catch (Exception e) {
-			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Exception deserializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			result = Collections.emptyList();  // fail will throw
 		}
 		
 		assertNotNull(result);
@@ -448,9 +463,19 @@ public class SerializationTest
     
     @SuppressWarnings("unchecked")
     protected <T extends EObject> T load(String serial, Class<T> expectedType) {
-        EObject result = deserialize(serial);
-        assertTrue(expectedType.isInstance(result));
-        return (T) result;
+        T result = null;
+        List<EObject> objects = deserialize(serial);
+        
+        for (Object next : objects) {
+            if (expectedType.isInstance(next)) {
+                result = (T) next;
+                break;
+            }
+        }
+        
+        assertNotNull("Did not deserialize a " + expectedType.getSimpleName(), result); //$NON-NLS-1$
+        
+        return result;
     }
     
 	protected void assertNoProxies(Resource res) {

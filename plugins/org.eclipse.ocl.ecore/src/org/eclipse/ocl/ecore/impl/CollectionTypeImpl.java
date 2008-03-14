@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.8 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.9 2008/03/14 19:59:33 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -445,7 +445,7 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
                 // I *am* the standard library type!
                 iterators = new BasicEList.FastCompare<EOperation>(
                         OCLStandardLibraryImpl.getExistingOperations(this));
-                iterators = OCLStandardLibraryImpl.selectIterators(operations);
+                iterators = OCLStandardLibraryImpl.selectIterators(iterators);
             } else {
                 // the prototype defines my iterators for me
                 iterators = prototype.oclIterators();

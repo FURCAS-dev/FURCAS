@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.4 2008/01/03 20:20:57 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.5 2008/03/14 19:59:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.ElementType;
 import org.eclipse.ocl.types.InvalidType;
@@ -49,6 +50,7 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -61,6 +63,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifier> {
     private static final String NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
+	private static final String ITERATOR_KEYWORD = "iterator"; //$NON-NLS-1$
 	
 	private static Classifier OCL_ANY;
 	private static Classifier OCL_ELEMENT;
@@ -474,10 +477,53 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         EList<Operation> result = new BasicEList.FastCompare<Operation>();
         
         for (Operation oper : operations) {
-            if (oper.hasKeyword("iterator")) { //$NON-NLS-1$
+            if (oper.hasKeyword(ITERATOR_KEYWORD)) {
                 result.add(oper);
             }
         }
+        
+        return result;
+    }
+    
+    public static Collection<Operation> createCollectionTypeOperations(
+            Environment<?, Classifier, Operation, ?, ?, Parameter, ?, ?, ?, ?, ?, ?> env,
+            CollectionKind kind) {
+        
+        Collection<Operation> operations;
+        Collection<Operation> iterators;
+        
+        switch (kind) {
+        case BAG_LITERAL:
+            operations = OCLStandardLibraryUtil.createBagOperations(env);
+            iterators = OCLStandardLibraryUtil.createBagIterators(env);
+            break;
+        case SET_LITERAL:
+            operations = OCLStandardLibraryUtil.createSetOperations(env);
+            iterators = OCLStandardLibraryUtil.createSetIterators(env);
+            break;
+        case ORDERED_SET_LITERAL:
+            operations = OCLStandardLibraryUtil.createOrderedSetOperations(env);
+            iterators = OCLStandardLibraryUtil.createOrderedSetIterators(env);
+            break;
+        case SEQUENCE_LITERAL:
+            operations = OCLStandardLibraryUtil.createSequenceOperations(env);
+            iterators = OCLStandardLibraryUtil.createSequenceIterators(env);
+            break;
+        default:
+            operations = OCLStandardLibraryUtil.createCollectionOperations(env);
+            iterators = OCLStandardLibraryUtil.createCollectionIterators(env);
+            break;
+        }
+
+        for (Operation next : iterators) {
+            next.addKeyword(ITERATOR_KEYWORD);
+        }
+        
+        Collection<Operation> result = new java.util.ArrayList<Operation>(
+                operations.size() + iterators.size());
+        
+        result.addAll(operations);
+        result.addAll(iterators);
         
         return result;
     }
