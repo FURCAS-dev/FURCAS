@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.5 2007/10/12 14:33:56 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.6 2008/03/14 19:59:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
@@ -68,6 +70,26 @@ public class BasicOCLTest
             // restore the correct URI
             res.setURI(oldURI);
         }
+    }
+    
+    /**
+     * Tests that the results of the <tt>oclOperations()</tt> and <tt>oclIterators()</tt>
+     * methods are the same regardless of which is invoked first.
+     */
+    public void test_collectionsAndIteratorsAccess_222747() {
+        CollectionType<Classifier, Operation> type = ocl.getEnvironment().getOCLFactory().createSetType(
+                ocl.getEnvironment().getOCLStandardLibrary().getInvalid());
+        
+        Set<Operation> iterators = new java.util.HashSet<Operation>(type.oclIterators());
+        Set<Operation> operations = new java.util.HashSet<Operation>(type.oclOperations());
+        
+        // compute the set difference
+        Set<Operation> difference = new java.util.HashSet<Operation>(operations);
+        difference.removeAll(iterators);
+        
+        assertEquals(difference.size(), operations.size());
+        assertTrue(operations.size() > 0);
+        assertTrue(iterators.size() > 0);
     }
 	
 	public void testTrivialExpressions() {

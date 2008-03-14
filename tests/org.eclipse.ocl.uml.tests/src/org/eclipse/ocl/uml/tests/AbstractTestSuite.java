@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.7 2008/02/15 05:20:15 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.8 2008/03/14 19:59:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -89,6 +90,9 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public abstract class AbstractTestSuite
 	extends TestCase {
 
+    // set this variable true when testing for memory leaks
+    private static boolean DISPOSE_UML_METAMODEL = false;
+    
 	protected static ResourceSet resourceSet;
 	
 	protected static org.eclipse.ocl.uml.UMLPackage ocltypes =
@@ -902,18 +906,37 @@ public abstract class AbstractTestSuite
 	
 	private static void disposeResourceSet() {
         if (resourceSet != null) {
-            for (Resource res : resourceSet.getResources()) {
-                res.unload();
-                res.eAdapters().clear();
+            if (DISPOSE_UML_METAMODEL) {
+                for (Resource res : resourceSet.getResources()) {
+                    res.unload();
+                    res.eAdapters().clear();
+                }
+                resourceSet.getResources().clear();
+                resourceSet.eAdapters().clear();
+                resourceSet = null;
+                
+                umlMetamodel = null;
+                umlPrimitiveTypes = null;
+            } else {
+                // unload and remove all resources but the UML Metamodel.
+                // Don't clear the resource set's adapter-list
+                
+                Set<Resource> toPreserve = new java.util.HashSet<Resource>();
+                toPreserve.add(umlMetamodel.eResource());
+                toPreserve.add(umlPrimitiveTypes.eResource());
+                
+                for (Resource res : resourceSet.getResources()) {
+                    if (!toPreserve.contains(res)) {
+                        res.unload();
+                        res.eAdapters().clear();
+                    }
+                }
+                
+                resourceSet.getResources().retainAll(toPreserve);
             }
-            resourceSet.getResources().clear();
-            resourceSet.eAdapters().clear();
-            resourceSet = null;
         }
         
         fruitPackage = null;
-        umlMetamodel = null;
-        umlPrimitiveTypes = null;
 	}
 	
 	private static void initFruitPackage() {
@@ -948,7 +971,10 @@ public abstract class AbstractTestSuite
 		
 		disposeResourceSet();
 		
-		resourceSet = new ResourceSetImpl();
+		if (resourceSet == null) {
+		    resourceSet = new ResourceSetImpl();
+		}
+		
 		Resource res = resourceSet.getResource(URI.createURI(url.toString()), true);
 		
 		fruitPackage = (Package) res.getContents().get(0);
