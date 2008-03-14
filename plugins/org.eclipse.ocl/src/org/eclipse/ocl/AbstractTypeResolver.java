@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.10 2008/03/13 18:02:09 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.11 2008/03/14 19:59:28 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -764,7 +764,10 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
      * @return whether I have any additional features 
      */
     protected boolean hasAdditionalFeatures() {
-        return additionalFeaturesPackage != null;
+        // if I was loaded from an existing resource, I may not yet have looked
+        // for my additional-features package
+        return (additionalFeaturesPackage != null)
+            || (findAdditionalFeaturesPackage() != null);
     }
     
 	public List<P> getAdditionalAttributes(C owner) {
