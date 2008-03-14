@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.6 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.7 2008/03/14 19:59:29 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -36,13 +33,14 @@ import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.uml.CollectionType;
 import org.eclipse.ocl.uml.UMLPackage;
-import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
 
 /**
@@ -379,87 +377,44 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
     }
 
     /**
+     * Initializes my owned operations, if necessary, by creating them based on
+     * the default registered UML environment.
+     * 
      * @generated NOT
      */
-    public EList<Operation> oclIterators() {
-        if (iterators == null) {
-            Environment<?, ?, Operation, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
+    private void maybeInitializeOwnedOperations() {
+        if (getOwnedOperations().isEmpty()) {
+            // initialize my owned operations
+            Environment<?, Classifier, Operation, ?, ?, Parameter, ?, ?, ?, ?, ?, ?> env =
                 Environment.Registry.INSTANCE.getEnvironmentFor(this);
             
-            List<Operation> myIterators;
+            getOwnedOperations().addAll(OCLStandardLibraryImpl.createCollectionTypeOperations(
+                    env, getKind()));
             
-            switch (getKind()) {
-            case SET_LITERAL:
-                myIterators = OCLStandardLibraryUtil.createSetIterators(env);
-                break;
-            case ORDERED_SET_LITERAL:
-                myIterators = OCLStandardLibraryUtil.createOrderedSetIterators(env);
-                break;
-            case BAG_LITERAL:
-                myIterators = OCLStandardLibraryUtil.createBagIterators(env);
-                break;
-            case SEQUENCE_LITERAL:
-                myIterators = OCLStandardLibraryUtil.createSequenceIterators(env);
-                break;
-            default:
-                myIterators = OCLStandardLibraryUtil.createCollectionIterators(env);
-                break;
-            }
-            
-            iterators = new BasicEList<Operation>(myIterators);
         }
-        
-        return iterators;
     }
 
     /**
      * @generated NOT
      */
+    public EList<Operation> oclIterators() {
+        if (iterators == null) {
+            maybeInitializeOwnedOperations();
+            iterators = new BasicEList.FastCompare<Operation>(getOwnedOperations());
+            iterators = OCLStandardLibraryImpl.selectIterators(iterators);
+        }
+        
+        return iterators;
+    }
+    
+    /**
+     * @generated NOT
+     */
     public EList<Operation> oclOperations() {
         if (operations == null) {
-            operations = new DelegatingEList<Operation>() {
-                private static final long serialVersionUID = -4735888938397681302L;
-
-                @Override
-                protected List<Operation> delegateList() {
-                    return getOwnedOperations();
-                }
-            };
-            
-            EList<Operation> features = getOwnedOperations();
-            
-            if (features.isEmpty()) {
-                // don't do this computation if we already have operations
-                //   which would be the case if we were deserialized from some
-                //   resource
-                
-                Environment<?, ?, Operation, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
-                    Environment.Registry.INSTANCE.getEnvironmentFor(this);
-                
-                List<Operation> myOperations;
-                
-                switch (getKind()) {
-                case SET_LITERAL:
-                    myOperations = OCLStandardLibraryUtil.createSetOperations(env);
-                    break;
-                case ORDERED_SET_LITERAL:
-                    myOperations = OCLStandardLibraryUtil.createOrderedSetOperations(env);
-                    break;
-                case BAG_LITERAL:
-                    myOperations = OCLStandardLibraryUtil.createBagOperations(env);
-                    break;
-                case SEQUENCE_LITERAL:
-                    myOperations = OCLStandardLibraryUtil.createSequenceOperations(env);
-                    break;
-                default:
-                    myOperations = OCLStandardLibraryUtil.createCollectionOperations(env);
-                    break;
-                }
-                
-                features.addAll(myOperations);
-            }
-            
-            operations = new BasicEList<Operation>(getOperations());
+            maybeInitializeOwnedOperations();
+            operations = new BasicEList.FastCompare<Operation>(getOwnedOperations());
+            operations.removeAll(oclIterators());
         }
         
         return operations;
