@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.9 2008/03/13 18:02:08 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.10 2008/03/26 21:17:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -395,8 +395,7 @@ public class CollectionsTest
 	}
 	
 	/**
-	 * Test the flatten() operation.  In particular, that it is not
-	 * recursive (only flattens one level).
+	 * Test the flatten() operation on a single level of collection nesting.
 	 */
 	public void test_flatten() {
 		helper.setContext(EcorePackage.Literals.ESTRING);
@@ -498,6 +497,61 @@ public class CollectionsTest
 
             assertTrue(check(helper, "", //$NON-NLS-1$
                     "Bag{Bag{}, Bag{}}->flatten()" + //$NON-NLS-1$
+                    " = Bag{}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Test that the flatten() operation is recursive.
+     */
+    public void test_flatten_recursive_217461() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Set{Sequence{Set{'a'}, Set{'b'}}, Sequence{Set{'b', 'c'}, Set{'d'}}}->flatten()" + //$NON-NLS-1$
+                    " = Set{'b', 'c', 'a', 'd'}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "OrderedSet{Sequence{Set{'a'}, Set{'b'}}, Sequence{Set{'b', 'c'}, Set{'d'}}}->flatten()" + //$NON-NLS-1$
+                    " = Set{'b', 'c', 'a', 'd'}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{OrderedSet{Sequence{'a', 'b'}, Sequence{'d'}}, OrderedSet{Sequence{'b', 'c'}, Sequence{'d'}}}->flatten()" + //$NON-NLS-1$
+                    " = Sequence{'a', 'b', 'd', 'b', 'c', 'd'}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Bag{Bag{Set{'b', 'a'}, Set{'b'}}, Bag{Set{'b', 'a'}, Set{'c', 'd'}}}->flatten()" + //$NON-NLS-1$
+                    " = Bag{'a', 'a', 'b', 'b', 'b', 'c', 'd'}")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests the flatten() operation on a source collection that contains
+     * empty collections at a greater level of nesting than the first.
+     */
+    public void test_flatten_emptyChildrenRecursive_217461() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Set{Set{Sequence{}}, Set{Sequence{}, Sequence{}}}->flatten()" + //$NON-NLS-1$
+                    " = Set{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "OrderedSet{OrderedSet{Sequence{}, Sequence{}}, OrderedSet{Sequence{}, Sequence{}}}->flatten()" + //$NON-NLS-1$
+                    " = Set{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{Sequence{Sequence{}, Sequence{}}, Sequence{Sequence{}, Sequence{}}}->flatten()" + //$NON-NLS-1$
+                    " = Sequence{}")); //$NON-NLS-1$
+
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Bag{Bag{Sequence{}, Sequence{}}, Bag{Sequence{}, Sequence{}}}->flatten()" + //$NON-NLS-1$
                     " = Bag{}")); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
