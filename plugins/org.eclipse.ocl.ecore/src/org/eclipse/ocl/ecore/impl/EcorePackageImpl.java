@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.7 2008/01/11 14:32:08 cdamus Exp $
+ * $Id: EcorePackageImpl.java,v 1.8 2008/03/26 21:17:50 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -511,8 +511,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
         // Initialize simple dependencies
         org.eclipse.emf.ecore.EcorePackage.eINSTANCE.eClass();
         TypesPackage.eINSTANCE.eClass();
-        ExpressionsPackage.eINSTANCE.eClass();
         UtilitiesPackage.eINSTANCE.eClass();
+        ExpressionsPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
         theEcorePackage.createPackageContents();
@@ -1301,6 +1301,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
         g1.getETypeArguments().add(g2);
         setTypeEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theEcorePackage_1.getEClass());
+        tupleTypeEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theEcorePackage_1.getEDataType());
         tupleTypeEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTypesPackage.getTupleType());
         g2 = createEGenericType(theEcorePackage_1.getEOperation());

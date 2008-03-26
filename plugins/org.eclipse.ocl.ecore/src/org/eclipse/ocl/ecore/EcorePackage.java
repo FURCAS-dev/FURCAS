@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: EcorePackage.java,v 1.5 2008/03/26 21:17:50 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -1838,13 +1838,22 @@ public interface EcorePackage extends EPackage {
     int TUPLE_TYPE__EALL_GENERIC_SUPER_TYPES = org.eclipse.emf.ecore.EcorePackage.ECLASS__EALL_GENERIC_SUPER_TYPES;
 
     /**
+     * The feature id for the '<em><b>Serializable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TUPLE_TYPE__SERIALIZABLE = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Tuple Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TUPLE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 0;
+    int TUPLE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TypeTypeImpl <em>Type Type</em>}' class.
