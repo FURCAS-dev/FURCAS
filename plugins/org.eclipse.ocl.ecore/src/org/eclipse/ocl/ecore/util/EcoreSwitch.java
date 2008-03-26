@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreSwitch.java,v 1.5 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: EcoreSwitch.java,v 1.6 2008/03/26 21:17:50 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -248,6 +248,7 @@ public class EcoreSwitch<T> {
                 TupleType tupleType = (TupleType)theEObject;
                 T result = caseTupleType(tupleType);
                 if (result == null) result = caseEClass(tupleType);
+                if (result == null) result = caseEDataType(tupleType);
                 if (result == null) result = caseTupleType_1(tupleType);
                 if (result == null) result = caseEClassifier(tupleType);
                 if (result == null) result = casePredefinedType(tupleType);

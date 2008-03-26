@@ -68,6 +68,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TupleType">
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/TupleType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
