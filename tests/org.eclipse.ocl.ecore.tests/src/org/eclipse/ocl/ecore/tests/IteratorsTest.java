@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.4 2007/06/15 18:40:56 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.5 2008/03/26 21:17:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -303,6 +303,43 @@ public class IteratorsTest
 
             assertEquals(expected, evaluate(helper, pkg1,
                 "eSubpackages.eSubpackages")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Tests that the collect() iterator correctly flattens its result.
+     */
+    public void test_collect_flattens_217461() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        String self = "foo"; //$NON-NLS-1$
+        
+        try {
+            List<String> expected = new java.util.ArrayList<String>(3);
+            expected.add("THIS AND"); //$NON-NLS-1$
+            expected.add("THAT"); //$NON-NLS-1$
+            expected.add("THE OTHER"); //$NON-NLS-1$
+
+            assertEquals(expected, evaluate(helper, self,
+                "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpper())")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Tests that the collect() iterator correctly deals with empty collections.
+     */
+    public void test_collect_empty_217461() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        String self = "foo"; //$NON-NLS-1$
+        
+        try {
+            List<String> expected = Collections.emptyList();
+
+            assertEquals(expected, evaluate(helper, self,
+                "let c : Sequence(OrderedSet(String)) = Sequence{} in c->collect(s : OrderedSet(String) | s.toUpper())")); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
