@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.8 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.9 2008/03/26 21:17:25 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -662,7 +662,7 @@ public final class OCLStandardLibraryUtil {
 			}
 			
 			return getBagType(env, oclFactory,
-					((CollectionType<C, O>) elemType).getElementType());
+			        CollectionUtil.getFlattenedElementType(bagType));
 		case AS_BAG:
 			return sourceType;
 		case AS_SEQUENCE:
@@ -763,7 +763,7 @@ public final class OCLStandardLibraryUtil {
 			}
 			
 			resultType = getSetType(env, oclFactory,
-					((CollectionType<C, O>) elemType).getElementType());
+			        CollectionUtil.getFlattenedElementType(setType));
 			
 			return resultType;
 		case AS_BAG:
@@ -906,7 +906,7 @@ public final class OCLStandardLibraryUtil {
 				}
 				
 				return getSequenceType(env, oclFactory,
-						((CollectionType<C, O>) elemType).getElementType());
+				        CollectionUtil.getFlattenedElementType(seqType));
 			case AT:
 			case FIRST:
 			case LAST:

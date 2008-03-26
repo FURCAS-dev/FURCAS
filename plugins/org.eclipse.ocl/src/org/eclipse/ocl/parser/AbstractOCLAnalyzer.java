@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.7 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.8 2008/03/26 21:17:25 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -135,6 +135,7 @@ import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.TypeUtil;
@@ -2324,15 +2325,15 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		result.setSource(source);
 		
-		// the result of a collect() is flattened, so if the property
+		// the result of a collect() is flattened, so if the value
 		//   that we are collecting is a Collection type, the resulting
-		//   type must be flattened by taking its element type
+		//   type must be flattened by taking its element type (recursively)
 		C bodyType = propertyCall.getType();
 		if (bodyType instanceof CollectionType) {
 			@SuppressWarnings("unchecked")
 			CollectionType<C, O> ct = (CollectionType<C, O>) bodyType;
 			
-			bodyType = ct.getElementType();
+			bodyType = CollectionUtil.getFlattenedElementType(ct);
 		}
 		
 		if (source.getType() instanceof SequenceType ||
@@ -3236,10 +3237,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		} else if (name.equals("collect")) {//$NON-NLS-1$
 			// The result type for collect must be flattened
 			C elementType = expr.getType();
-			while (elementType instanceof CollectionType) {
+			if (elementType instanceof CollectionType) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) elementType;
-				elementType = ct.getElementType();
+				elementType = CollectionUtil.getFlattenedElementType(ct);
 			}
 			if (source.getType() instanceof SequenceType || 
 							source.getType() instanceof OrderedSetType) {

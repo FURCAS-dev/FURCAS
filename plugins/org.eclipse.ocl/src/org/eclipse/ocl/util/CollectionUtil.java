@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.4 2008/01/03 15:07:00 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.5 2008/03/26 21:17:25 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.CollectionType;
 
 /**
  * Utility methods for working with OCL collection values.
@@ -376,32 +377,62 @@ public class CollectionUtil {
      * @return the flattened collection
      */
     public static Collection<?> flatten(Collection<?> self) {
-        if (self.isEmpty()) {
-            return self;
+        Collection<?> result = self;
+        
+        for (;;) {
+            if (result.isEmpty()) {
+                break;
+            }
+            
+            Iterator<?> it = result.iterator();
+            Object object = it.next();
+    
+            // if the element type is not a collection type, the result is the
+            // current collection.
+            if (!(object instanceof Collection)) {
+                break;
+            }
+    
+            Collection<Object> newResult = null;
+            if (result instanceof Bag) {
+                newResult = createNewBag();
+            } else if (result instanceof Set) {
+                newResult = createNewSet();
+            } else {
+                // Sequence
+                newResult = createNewSequence();
+            }
+            
+            // the element type is a collection type -- flatten one level
+            newResult.addAll((Collection<?>) object);
+            while (it.hasNext()) {
+                newResult.addAll((Collection<?>) it.next());
+            }
+            
+            result = newResult;
+            // loop until the result is empty or the first element is not a
+            // collection
         }
         
-        Iterator<?> it = self.iterator();
-        Object object = it.next();
+        return result;
+    }
 
-        // if the element type is not a collection type, the result is the
-        // supplied collection.
-        if (!(object instanceof Collection)) {
-            return self;
-        }
-
-        Collection<Object> result = null;
-        if (self instanceof Bag) {
-            result = createNewBag();
-        } else if (self instanceof Set) {
-            result = createNewSet();
-        } else {
-            // Sequence
-            result = createNewSequence();
-        }
+    /**
+     * Obtains the type of the flattened form of the specified collection type.
+     * 
+     * @param type a collection type
+     * @return the flattened collection type
+     * 
+     * @since 1.2
+     */
+    @SuppressWarnings("unchecked")
+    public static <C> C getFlattenedElementType(
+            CollectionType<C, ?> type) {
         
-        // the element type is a collection type -- flatten
-        for (it = self.iterator(); it.hasNext();) {
-            result.addAll((Collection<?>) it.next());
+        C result = type.getElementType();
+        
+        while (result instanceof CollectionType) {
+            result = ((CollectionType<C, ?>) result).getElementType();
         }
         
         return result;
