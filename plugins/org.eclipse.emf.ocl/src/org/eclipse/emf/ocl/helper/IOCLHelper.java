@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2004, 2007 IBM Corporation and others.
+ * Copyright (c) 2004, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IOCLHelper.java,v 1.11 2007/10/11 23:05:17 cdamus Exp $
+ * $Id: IOCLHelper.java,v 1.12 2008/03/26 21:20:15 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.helper;
@@ -27,7 +27,6 @@ import org.eclipse.emf.ocl.expressions.OCLExpression;
 import org.eclipse.emf.ocl.parser.EcoreEnvironmentFactory;
 import org.eclipse.emf.ocl.parser.Environment;
 import org.eclipse.emf.ocl.parser.EnvironmentFactory;
-import org.eclipse.ocl.helper.OCLHelper;
 
 /**
  * A utility object that provides OCL syntax completion suggestions for OCL
@@ -44,7 +43,7 @@ import org.eclipse.ocl.helper.OCLHelper;
  * by clients.
  * </p>
  * 
- * @deprecated Use the {@link OCLHelper} interface, instead.
+ * @deprecated Use the {@link org.eclipse.ocl.helper.OCLHelper} interface, instead.
  * 
  * @see HelperUtil#createOCLHelper(EnvironmentFactory)
  * 
