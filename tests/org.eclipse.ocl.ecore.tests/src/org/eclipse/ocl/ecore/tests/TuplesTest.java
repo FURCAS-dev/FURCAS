@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.3 2007/07/16 17:07:36 cdamus Exp $
+ * $Id: TuplesTest.java,v 1.4 2008/03/26 21:17:48 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -20,8 +20,11 @@ package org.eclipse.ocl.ecore.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -174,5 +177,22 @@ public class TuplesTest
 	    } catch (Exception e) {
 	        fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 	    }
+	}
+
+	/**
+	 * Tests that TupleTypes are Ecore EDataTypes as well as EClasses.
+	 */
+	public void test_tupleTypesAreEDataTypes_222287() {
+        OCLExpression<EClassifier> expr = parse(
+                "package ocltest context Fruit " + //$NON-NLS-1$
+                "inv: Tuple{a = 1, b = 'foo', c = Color::red} " + //$NON-NLS-1$
+                "endpackage"); //$NON-NLS-1$
+        
+        assertTrue(EcorePackage.Literals.ECLASS.isSuperTypeOf(
+                expr.getType().eClass()));
+        assertTrue(expr.getType() instanceof EClass);
+        assertTrue(EcorePackage.Literals.EDATA_TYPE.isSuperTypeOf(
+                expr.getType().eClass()));
+        assertTrue(expr.getType() instanceof EDataType);
 	}
 }
