@@ -13,7 +13,7 @@
  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.10 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.11 2008/03/27 14:43:20 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -130,8 +130,51 @@ public class TypeUtil {
 
 		}
 		
+		// special handling for null and invalid values, whose types conform
+		// to all others
+		OCLStandardLibrary<C> lib = env.getOCLStandardLibrary();
+		if ((owner == lib.getOclVoid()) || (owner == lib.getInvalid())) {
+		    return findOperationForVoidOrInvalid(env, owner, name, args);
+		}
+		
 		return null;
 	}
+	
+	/**
+	 * The <tt>OclVoid</tt> and <tt>OclInvalid</tt> types are defined as
+	 * conforming to all other types.  Therefore, we can try a little harder
+	 * to match certain operations that it is useful to support, such as
+	 * <tt>{@literal =}</tt> and <tt>{@literal <>}</tt>.
+	 * 
+     * @param env the OCL environment
+     * @param owner the classifier to search (void or invalid)
+     * @param name the name of the operation
+     * @param args a list of arguments to match against the operation signature,
+     *     as either expressions or variables
+     * 
+     * @return the matching operation, or <code>null</code> if not found
+	 */
+    private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+    O findOperationForVoidOrInvalid(
+            Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+            C owner, String name,
+            List<? extends TypedElement<C>> args) {
+        
+        O result = null;
+        
+        if (args.size() == 1) {
+            C argType = args.get(0).getType();
+            
+            if (argType != owner) {
+                // let us search the type of the argument to determine whether
+                // we can find this operation
+                result = findOperationMatching(env, argType, name, args);
+            }
+        }
+        
+        return result;
+    }
+
 
 	/**
 	 * Find a matching signal in the specified list.
