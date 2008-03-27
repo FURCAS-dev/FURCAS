@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.5 2008/03/14 19:59:27 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.6 2008/03/27 14:43:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -517,6 +517,64 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)")); //$NON-NLS-1$
             assertEquals(getOclInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)")); //$NON-NLS-1$
+        } catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the null type conforms to all others, and supports
+     * equality comparison with all other types.
+     */
+    public void test_null_typeConformance_191041() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "null <> Set{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "null = Set{'foo'}")); //$NON-NLS-1$
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "null <> Sequence{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "null = Sequence{'foo'}")); //$NON-NLS-1$
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "null <> OrderedSet{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "null = OrderedSet{'foo'}")); //$NON-NLS-1$
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "null <> Bag{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "null = Bag{'foo'}")); //$NON-NLS-1$
+        } catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that the OclInvalid type conforms to all others, and supports
+     * equality comparison with all other types.
+     */
+    public void test_OclInvalid_typeConformance_191041() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid <> Set{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid = Set{'foo'}")); //$NON-NLS-1$
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid <> Sequence{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid = Sequence{'foo'}")); //$NON-NLS-1$
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid <> OrderedSet{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid = OrderedSet{'foo'}")); //$NON-NLS-1$
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid <> Bag{'foo'}")); //$NON-NLS-1$
+            assertFalse(
+                check(helper, EcorePackage.eNS_URI, "OclInvalid = Bag{'foo'}")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
