@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.3 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.4 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -30,6 +32,7 @@ import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.ocl.expressions.CollectionRange;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.CollectionLiteralExpOperations;
 import org.eclipse.ocl.uml.CollectionLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -163,6 +166,51 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkNoCollectionInstances(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionLiteralExpOperations.checkNoCollectionInstances(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSetKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionLiteralExpOperations.checkSetKind(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSequenceKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionLiteralExpOperations.checkSequenceKind(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBagKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionLiteralExpOperations.checkBagKind(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkElementType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionLiteralExpOperations.checkElementType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

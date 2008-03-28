@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,19 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.EnumLiteralExpOperations;
 import org.eclipse.ocl.uml.EnumLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -76,7 +79,6 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	public EnumerationLiteral getReferredEnumLiteral() {
         if (referredEnumLiteral != null && ((EObject)referredEnumLiteral).eIsProxy()) {
             InternalEObject oldReferredEnumLiteral = (InternalEObject)referredEnumLiteral;
@@ -113,6 +115,15 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkEnumType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return EnumLiteralExpOperations.checkEnumType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -131,7 +142,6 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {

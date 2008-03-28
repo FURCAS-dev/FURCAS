@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.5 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.6 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 
+import org.eclipse.ocl.expressions.operations.TupleLiteralPartOperations;
 import org.eclipse.ocl.uml.TupleLiteralPart;
 import org.eclipse.ocl.uml.UMLPackage;
 
@@ -315,7 +318,6 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	public Property getAttribute() {
         if (attribute != null && ((EObject)attribute).eIsProxy()) {
             InternalEObject oldAttribute = (InternalEObject)attribute;
@@ -360,6 +362,15 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkValueType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return TupleLiteralPartOperations.checkValueType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

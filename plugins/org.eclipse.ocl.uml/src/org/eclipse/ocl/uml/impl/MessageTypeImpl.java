@@ -12,15 +12,17 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.7 2008/02/16 00:07:23 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.8 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.operations.MessageTypeOperations;
 import org.eclipse.ocl.uml.MessageType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
@@ -138,7 +141,6 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public Operation getReferredOperation() {
         if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
             InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
@@ -178,7 +180,6 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public Classifier getReferredSignal() {
         if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
             InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
@@ -446,6 +447,33 @@ public class MessageTypeImpl extends ClassifierImpl implements MessageType {
         }
         
         return operations;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkExclusiveSignature(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkExclusiveSignature(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkOperationParameters(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkOperationParameters(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSignalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkSignalAttributes(this, diagnostics, context);
     }
 
     /**

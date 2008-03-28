@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -76,7 +76,6 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	public Classifier getReferredAssociationClass() {
         if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy()) {
             InternalEObject oldReferredAssociationClass = (InternalEObject)referredAssociationClass;
@@ -131,7 +130,6 @@ public class AssociationClassCallExpImpl extends NavigationCallExpImpl implement
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {

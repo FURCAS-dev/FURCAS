@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.OperationCallExpOperations;
 import org.eclipse.ocl.uml.OperationCallExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -124,7 +127,6 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	public Operation getReferredOperation() {
         if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
             InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
@@ -201,6 +203,24 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkArgumentsConform(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return OperationCallExpOperations.checkArgumentsConform(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkArgumentCount(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return OperationCallExpOperations.checkArgumentCount(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

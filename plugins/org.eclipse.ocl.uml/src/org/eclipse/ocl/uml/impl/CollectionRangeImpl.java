@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.2 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: CollectionRangeImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.CollectionRangeOperations;
 import org.eclipse.ocl.uml.CollectionRange;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -170,6 +173,15 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkRangeType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionRangeOperations.checkRangeType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

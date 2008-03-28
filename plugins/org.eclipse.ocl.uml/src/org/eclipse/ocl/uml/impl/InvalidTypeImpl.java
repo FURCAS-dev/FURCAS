@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.5 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.6 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -187,7 +187,6 @@ public class InvalidTypeImpl extends ClassifierImpl implements InvalidType {
      * @generated
      * @ordered
      */
-    @SuppressWarnings("hiding")
     protected static final int[] FEATURE_ESUBSETS = new int[] {UMLPackage.INVALID_TYPE__ATTRIBUTE, UMLPackage.INVALID_TYPE__OWNED_OPERATION};
 
     /**
