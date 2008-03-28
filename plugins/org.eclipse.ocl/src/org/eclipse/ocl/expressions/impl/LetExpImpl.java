@@ -12,12 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: LetExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: LetExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -25,6 +27,7 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.operations.LetExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -168,6 +171,15 @@ public class LetExpImpl<C, PM> extends OCLExpressionImpl<C> implements LetExp<C,
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkLetType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return LetExpOperations.checkLetType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

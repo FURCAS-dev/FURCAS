@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionType.java,v 1.2 2007/02/14 13:42:02 cdamus Exp $
+ * $Id: CollectionType.java,v 1.3 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EOperation;
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getCollectionType()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface CollectionType extends EDataType, org.eclipse.ocl.types.CollectionType<EClassifier, EOperation> {

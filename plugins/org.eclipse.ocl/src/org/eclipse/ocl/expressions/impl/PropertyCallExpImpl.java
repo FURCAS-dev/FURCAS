@@ -12,17 +12,20 @@
  * 
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.4 2007/10/11 23:04:55 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.5 2008/03/28 20:33:32 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.operations.PropertyCallExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -108,6 +111,15 @@ public class PropertyCallExpImpl<C, P> extends NavigationCallExpImpl<C, P> imple
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkPropertyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return PropertyCallExpOperations.checkPropertyType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

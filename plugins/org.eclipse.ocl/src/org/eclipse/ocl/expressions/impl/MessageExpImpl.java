@@ -12,14 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.MessageExpOperations;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -336,6 +339,51 @@ public class MessageExpImpl<C, COA, SSA> extends OCLExpressionImpl<C> implements
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkOperationArguments(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkOperationArguments(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSignalArguments(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkSignalArguments(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkTargetDefinesOperation(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkTargetDefinesOperation(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkHasOperationOrSignal(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkHasOperationOrSignal(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkTargetNotCollection(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkTargetNotCollection(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

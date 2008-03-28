@@ -12,15 +12,18 @@
  * 
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.4 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.RealLiteralExp;
+import org.eclipse.ocl.expressions.operations.RealLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -98,6 +101,15 @@ public class RealLiteralExpImpl<C> extends NumericLiteralExpImpl<C> implements R
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkRealType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return RealLiteralExpOperations.checkRealType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

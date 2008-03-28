@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,20 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.3 2007/10/11 23:04:40 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.4 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.UnlimitedNaturalLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -119,6 +123,15 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkNaturalType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

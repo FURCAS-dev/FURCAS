@@ -12,15 +12,18 @@
  * 
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.4 2008/03/28 20:33:32 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.ocl.expressions.operations.IntegerLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -98,6 +101,15 @@ public class IntegerLiteralExpImpl<C> extends NumericLiteralExpImpl<C> implement
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkIntegerType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IntegerLiteralExpOperations.checkIntegerType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

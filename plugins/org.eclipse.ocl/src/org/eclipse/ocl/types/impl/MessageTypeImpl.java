@@ -12,11 +12,13 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.5 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.6 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.operations.MessageTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -116,6 +119,33 @@ public class MessageTypeImpl<C, O, P> extends EObjectImpl implements MessageType
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkExclusiveSignature(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkExclusiveSignature(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkOperationParameters(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkOperationParameters(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSignalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkSignalAttributes(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

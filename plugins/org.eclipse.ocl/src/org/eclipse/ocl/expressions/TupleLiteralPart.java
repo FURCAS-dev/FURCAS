@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPart.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: TupleLiteralPart.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.Visitable;
@@ -89,5 +91,18 @@ public interface TupleLiteralPart<C, P> extends TypedElement<C>, Visitable, Type
      * @generated
      */
 	void setAttribute(P value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * attribute.type = value.type
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkValueType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // TupleLiteralPart

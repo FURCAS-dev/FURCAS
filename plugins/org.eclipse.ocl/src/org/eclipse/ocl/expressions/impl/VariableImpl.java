@@ -12,12 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.6 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.7 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -26,6 +28,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.operations.VariableOperations;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;
@@ -387,6 +390,15 @@ public class VariableImpl<C, PM> extends EObjectImpl implements Variable<C, PM> 
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkInitType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return VariableOperations.checkInitType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

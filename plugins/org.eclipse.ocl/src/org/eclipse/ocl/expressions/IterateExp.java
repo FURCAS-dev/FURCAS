@@ -12,9 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: IterateExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: IterateExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
+
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 
 /**
@@ -59,5 +62,44 @@ public interface IterateExp<C, PM> extends LoopExp<C, PM> {
      * @generated
      */
 	void setResult(Variable<C, PM> value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * type = result.type
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkIterateType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * body.type.conformsTo(result.type)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkBodyType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.result.initExpression->size() = 1
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkResultInit(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // IterateExp

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidType.java,v 1.2 2007/02/14 13:42:03 cdamus Exp $
+ * $Id: InvalidType.java,v 1.3 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EOperation;
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getInvalidType()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface InvalidType extends EClassifier, org.eclipse.ocl.types.InvalidType<EOperation> {

@@ -16,6 +16,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTKtppEdu-d8Dv4wLx9Q" name="BagType">
+        <ownedRule xmi:id="_ygRMEPy9EdynbPPIlCogHA" name="collection_type_name">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ygRMEfy9EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.name = 'Bag(' + self.elementType.name + ')'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTK9ppEdu-d8Dv4wLx9Q" parameter="_unvTLNppEdu-d8Dv4wLx9Q _unvTLtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTLNppEdu-d8Dv4wLx9Q" parameteredElement="_unvTLdppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTLdppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvTLNppEdu-d8Dv4wLx9Q"/>
@@ -33,6 +39,18 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTNdppEdu-d8Dv4wLx9Q" name="CollectionType" clientDependency="_unvTP9ppEdu-d8Dv4wLx9Q">
+        <ownedRule xmi:id="_BEbZEPy-EdynbPPIlCogHA" name="collection_type_name">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_BEbZEfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.name = 'Collection(' + self.elementType.name + ')'</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_JjVfEPy-EdynbPPIlCogHA" name="no_invalid_values">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_JjVfEfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self->forAll(not oclIsInvalid())</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTNtppEdu-d8Dv4wLx9Q" parameter="_unvTN9ppEdu-d8Dv4wLx9Q _unvTOdppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTN9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvTONppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTONppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvTN9ppEdu-d8Dv4wLx9Q"/>
@@ -77,6 +95,24 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTUtppEdu-d8Dv4wLx9Q" name="MessageType">
+        <ownedRule xmi:id="_zJmngPy-EdynbPPIlCogHA" name="exclusive_signature">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_zJmngfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>referredOperation->size() + referredSignal->size() = 1</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_7uTzgPy-EdynbPPIlCogHA" name="operation_parameters">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_7uTzgfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>referredOperation->size()=1 implies&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.at(i).cmpSlots(&#xA;referredOperation.ownedParameter.asProperty()->at(i))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_8FWagPy-EdynbPPIlCogHA" name="signal_attributes">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_8FWagfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>referredSignal->size() = 1 implies&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.asOrderedSet().at(i).cmpSlots(&#xA;referredSignal.ownedAttribute.asOrderedSet()->at(i))</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTU9ppEdu-d8Dv4wLx9Q" parameter="_unvTVNppEdu-d8Dv4wLx9Q _unvTVtppEdu-d8Dv4wLx9Q _unvTWNppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTVNppEdu-d8Dv4wLx9Q" parameteredElement="_unvTVdppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTVdppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvTVNppEdu-d8Dv4wLx9Q"/>
@@ -114,6 +150,12 @@
         <ownedEnd xmi:id="_unvTadppEdu-d8Dv4wLx9Q" type="_unvTUtppEdu-d8Dv4wLx9Q" association="_unvTaNppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTatppEdu-d8Dv4wLx9Q" name="OrderedSetType">
+        <ownedRule xmi:id="_olfIgPy-EdynbPPIlCogHA" name="collection_type_name">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_olfIgfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.name = 'OrderedSet(' + self.elementType.name + ')'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTa9ppEdu-d8Dv4wLx9Q" parameter="_unvTbNppEdu-d8Dv4wLx9Q _unvTbtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTbNppEdu-d8Dv4wLx9Q" parameteredElement="_unvTbdppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTbdppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvTbNppEdu-d8Dv4wLx9Q"/>
@@ -144,6 +186,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTfdppEdu-d8Dv4wLx9Q" name="SequenceType">
+        <ownedRule xmi:id="_Yf-dgPy-EdynbPPIlCogHA" name="collection_type_name">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_Yf-dgfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.name = 'Sequence(' + self.elementType.name + ')'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTftppEdu-d8Dv4wLx9Q" parameter="_unvTf9ppEdu-d8Dv4wLx9Q _unvTgdppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTf9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvTgNppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTgNppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvTf9ppEdu-d8Dv4wLx9Q"/>
@@ -161,6 +209,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTiNppEdu-d8Dv4wLx9Q" name="SetType">
+        <ownedRule xmi:id="_lwXVgPy-EdynbPPIlCogHA" name="collection_type_name">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_lwXVgfy-EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.name = 'Set(' + self.elementType.name + ')'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTidppEdu-d8Dv4wLx9Q" parameter="_unvTitppEdu-d8Dv4wLx9Q _unvTjNppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTitppEdu-d8Dv4wLx9Q" parameteredElement="_unvTi9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTi9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvTitppEdu-d8Dv4wLx9Q"/>
@@ -178,6 +232,24 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTk9ppEdu-d8Dv4wLx9Q" name="TupleType">
+        <ownedRule xmi:id="_OTfl8Py_EdynbPPIlCogHA" name="tuple_type_name">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_OTfl8fy_EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>name =&#xA;'Tuple('.concat (&#xA;Sequence{1..allProperties()->size()}->iterate (pn; s: String = '' |&#xA;let p: Property = allProperties()->at (pn) in (&#xA;s.concat (&#xA;(if (pn>1) then ',' else '' endif)&#xA;.concat (p.name).concat (': ')&#xA;.concat (p.type.name)&#xA;)&#xA;)&#xA;)&#xA;).concat (')')</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_Pbg98Py_EdynbPPIlCogHA" name="part_names_unique">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_Pbg98fy_EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>true</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_S0JtsPy_EdynbPPIlCogHA" name="features_only_properties">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_S0Jtsfy_EdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>feature->forAll (f | f.oclIsTypeOf(Property))</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvTlNppEdu-d8Dv4wLx9Q" parameter="_unvTldppEdu-d8Dv4wLx9Q _unvTl9ppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvTldppEdu-d8Dv4wLx9Q" parameteredElement="_unvTltppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvTltppEdu-d8Dv4wLx9Q" name="O" templateParameter="_unvTldppEdu-d8Dv4wLx9Q"/>
@@ -348,6 +420,12 @@
         <ownedEnd xmi:id="_unvVRdppEdu-d8Dv4wLx9Q" type="_unvVANppEdu-d8Dv4wLx9Q" association="_unvVRNppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVRtppEdu-d8Dv4wLx9Q" name="BooleanLiteralExp">
+        <ownedRule xmi:id="_t-JkYPzAEdynbPPIlCogHA" name="boolean_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_t-JkYfzAEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type.name = 'Boolean'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVR9ppEdu-d8Dv4wLx9Q" parameter="_unvVSNppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVSNppEdu-d8Dv4wLx9Q" parameteredElement="_unvVSdppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVSdppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVSNppEdu-d8Dv4wLx9Q"/>
@@ -391,6 +469,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVYNppEdu-d8Dv4wLx9Q" name="CollectionItem">
+        <ownedRule xmi:id="_rMXj0PzBEdynbPPIlCogHA" name="item_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_rMXj0fzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type = item.type</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVYdppEdu-d8Dv4wLx9Q" parameter="_unvVYtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVYtppEdu-d8Dv4wLx9Q" parameteredElement="_unvVY9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVY9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVYtppEdu-d8Dv4wLx9Q"/>
@@ -434,6 +518,36 @@
         <ownedLiteral xmi:id="_unvVfNppEdu-d8Dv4wLx9Q" name="Collection"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVfdppEdu-d8Dv4wLx9Q" name="CollectionLiteralExp">
+        <ownedRule xmi:id="_3uxJ4PzAEdynbPPIlCogHA" name="no_collection_instances">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_3uxJ4fzAEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>kind &lt;> CollectionKind::Collection</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_FNfY0PzBEdynbPPIlCogHA" name="set_kind">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_FNfY0fzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>kind = CollectionKind::Set implies type.oclIsKindOf(SetType)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_Fgt20PzBEdynbPPIlCogHA" name="sequence_kind">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_Fgt20fzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_FpG90PzBEdynbPPIlCogHA" name="bag_kind">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_FpG90fzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_Fxk9UPzBEdynbPPIlCogHA" name="element_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_Fxk9UfzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type.oclAsType(CollectionType).elementType = part->iterate(p; c : Classifier = OclVoid | c.commonSuperType(p.type))</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVftppEdu-d8Dv4wLx9Q" parameter="_unvVf9ppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVf9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvVgNppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVgNppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVf9ppEdu-d8Dv4wLx9Q"/>
@@ -466,6 +580,12 @@
         <ownedEnd xmi:id="_unvVkNppEdu-d8Dv4wLx9Q" type="_unvVfdppEdu-d8Dv4wLx9Q" association="_unvVj9ppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVkdppEdu-d8Dv4wLx9Q" name="CollectionRange">
+        <ownedRule xmi:id="_0w7qUPzBEdynbPPIlCogHA" name="range_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_0w7qUfzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type = first.type.commonSuperType(last.type)</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVktppEdu-d8Dv4wLx9Q" parameter="_unvVk9ppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVk9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvVlNppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVlNppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVk9ppEdu-d8Dv4wLx9Q"/>
@@ -492,6 +612,12 @@
         <ownedEnd xmi:id="_unvVodppEdu-d8Dv4wLx9Q" type="_unvVkdppEdu-d8Dv4wLx9Q" association="_unvVoNppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVotppEdu-d8Dv4wLx9Q" name="EnumLiteralExp">
+        <ownedRule xmi:id="_9E65wPzBEdynbPPIlCogHA" name="enum_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_9E65wfzBEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type = referredEnumLiteral.enumeration</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVo9ppEdu-d8Dv4wLx9Q" parameter="_unvVpNppEdu-d8Dv4wLx9Q _unvVptppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVpNppEdu-d8Dv4wLx9Q" parameteredElement="_unvVpdppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVpdppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVpNppEdu-d8Dv4wLx9Q"/>
@@ -514,6 +640,18 @@
         <ownedEnd xmi:id="_unvVr9ppEdu-d8Dv4wLx9Q" type="_unvVotppEdu-d8Dv4wLx9Q" association="_unvVrtppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVsNppEdu-d8Dv4wLx9Q" name="IfExp">
+        <ownedRule xmi:id="_EAMCwPzCEdynbPPIlCogHA" name="boolean_condition">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_EAMCwfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.condition.type.oclIsKindOf(PrimitiveType) and self.condition.type.name = 'Boolean'</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_E6yCwPzCEdynbPPIlCogHA" name="if_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_E6yCwfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type = thenExpression.type.commonSuperType(elseExpression.type)</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVsdppEdu-d8Dv4wLx9Q" parameter="_unvVstppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVstppEdu-d8Dv4wLx9Q" parameteredElement="_unvVs9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVs9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVstppEdu-d8Dv4wLx9Q"/>
@@ -545,6 +683,12 @@
         <ownedEnd xmi:id="_unvVw9ppEdu-d8Dv4wLx9Q" type="_unvVsNppEdu-d8Dv4wLx9Q" association="_unvVwtppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVxNppEdu-d8Dv4wLx9Q" name="IntegerLiteralExp">
+        <ownedRule xmi:id="_ReT0wPzCEdynbPPIlCogHA" name="integer_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ReT0wfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type.name = 'Integer'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVxdppEdu-d8Dv4wLx9Q" parameter="_unvVxtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVxtppEdu-d8Dv4wLx9Q" parameteredElement="_unvVx9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVx9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVxtppEdu-d8Dv4wLx9Q"/>
@@ -575,6 +719,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvV1tppEdu-d8Dv4wLx9Q" name="UnlimitedNaturalLiteralExp">
+        <ownedRule xmi:id="_C3bjkPzFEdynbPPIlCogHA" name="natural_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_C3bjkfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type.name = 'UnlimitedNatural'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvV19ppEdu-d8Dv4wLx9Q" parameter="_unvV2NppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvV2NppEdu-d8Dv4wLx9Q" parameteredElement="_unvV2dppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvV2dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvV2NppEdu-d8Dv4wLx9Q"/>
@@ -608,6 +758,24 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvV6dppEdu-d8Dv4wLx9Q" name="IterateExp">
+        <ownedRule xmi:id="_KnwXMPzDEdynbPPIlCogHA" name="iterate_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_KnwXMfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type = result.type</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_LfEZsPzDEdynbPPIlCogHA" name="body_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_LfEZsfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>body.type.conformsTo(result.type)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_LnANsPzDEdynbPPIlCogHA" name="result_init">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_LnANsfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.result.initExpression->size() = 1</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvV6tppEdu-d8Dv4wLx9Q" parameter="_unvV69ppEdu-d8Dv4wLx9Q _unvV7dppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvV69ppEdu-d8Dv4wLx9Q" parameteredElement="_unvV7NppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvV7NppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvV69ppEdu-d8Dv4wLx9Q"/>
@@ -634,6 +802,24 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvV-tppEdu-d8Dv4wLx9Q" name="LoopExp" isAbstract="true">
+        <ownedRule xmi:id="_oqgZIPzDEdynbPPIlCogHA" name="source_collection">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_oqgZIfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>source.type.oclIsKindOf(CollectionType)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_qkRXIPzDEdynbPPIlCogHA" name="loop_variable_init">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_qkRXIfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.iterator->forAll(initExpression->isEmpty())</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_quV5IPzDEdynbPPIlCogHA" name="loop_variable_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_quV5IfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.iterator->forAll(type = source.type.oclAsType(CollectionType).elementType)</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvV-9ppEdu-d8Dv4wLx9Q" parameter="_unvV_NppEdu-d8Dv4wLx9Q _unvV_tppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvV_NppEdu-d8Dv4wLx9Q" parameteredElement="_unvV_dppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvV_dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvV_NppEdu-d8Dv4wLx9Q"/>
@@ -671,6 +857,12 @@
         <ownedEnd xmi:id="_un1Z0tppEdu-d8Dv4wLx9Q" type="_unvV-tppEdu-d8Dv4wLx9Q" association="_un1Z0dppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1Z09ppEdu-d8Dv4wLx9Q" name="Variable" clientDependency="_un1Z3tppEdu-d8Dv4wLx9Q _un1Z39ppEdu-d8Dv4wLx9Q">
+        <ownedRule xmi:id="_hgjpAPzFEdynbPPIlCogHA" name="init_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_hgjpAfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>initExpression->notEmpty() implies initExpression.type.conformsTo (type)</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1Z1NppEdu-d8Dv4wLx9Q" parameter="_un1Z1dppEdu-d8Dv4wLx9Q _un1Z19ppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1Z1dppEdu-d8Dv4wLx9Q" parameteredElement="_un1Z1tppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1Z1tppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1Z1dppEdu-d8Dv4wLx9Q"/>
@@ -712,6 +904,30 @@
         <ownedEnd xmi:id="_un1Z7dppEdu-d8Dv4wLx9Q" type="_unvV6dppEdu-d8Dv4wLx9Q" association="_un1Z7NppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1Z7tppEdu-d8Dv4wLx9Q" name="IteratorExp">
+        <ownedRule xmi:id="_fHV2QPzCEdynbPPIlCogHA" name="boolean_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_fHV2QfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>name = 'exists' or name = 'forAll' or name = 'isUnique'&#xA;implies type.oclIsKindOf(PrimitiveType) and type.name = 'Boolean'</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_iBMYQPzCEdynbPPIlCogHA" name="collect_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_iBMYQfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>name = 'collect' implies&#xA;if source.type.oclIsKindOf(SequenceType) then&#xA;type = expression.type.collectionType->select(oclIsTypeOf(SequenceType))->first()&#xA;else&#xA;type = expression.type.collectionType->select(oclIsTypeOf(BagType))->first()&#xA;endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_i68qwPzCEdynbPPIlCogHA" name="select_reject_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_i68qwfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>name = 'select' or name = 'reject' implies type = source.type</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_kC-CwPzCEdynbPPIlCogHA" name="boolean_body_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_kC-CwfzCEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>name = 'exists' or name = 'forAll' or name = 'select' or name = 'reject'&#xA;implies body.type.name = 'Boolean'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1Z79ppEdu-d8Dv4wLx9Q" parameter="_un1Z8NppEdu-d8Dv4wLx9Q _un1Z8tppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1Z8NppEdu-d8Dv4wLx9Q" parameteredElement="_un1Z8dppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1Z8dppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1Z8NppEdu-d8Dv4wLx9Q"/>
@@ -729,6 +945,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1Z-dppEdu-d8Dv4wLx9Q" name="LetExp">
+        <ownedRule xmi:id="_YZtrMPzDEdynbPPIlCogHA" name="let_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_YZtrMfzDEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type = in.type</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1Z-tppEdu-d8Dv4wLx9Q" parameter="_un1Z-9ppEdu-d8Dv4wLx9Q _un1Z_dppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1Z-9ppEdu-d8Dv4wLx9Q" parameteredElement="_un1Z_NppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1Z_NppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1Z-9ppEdu-d8Dv4wLx9Q"/>
@@ -763,6 +985,36 @@
         <ownedEnd xmi:id="_un1aDtppEdu-d8Dv4wLx9Q" type="_un1Z-dppEdu-d8Dv4wLx9Q" association="_un1aDdppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aD9ppEdu-d8Dv4wLx9Q" name="MessageExp" clientDependency="_un1aIdppEdu-d8Dv4wLx9Q">
+        <ownedRule xmi:id="_TTFTIPzEEdynbPPIlCogHA" name="operation_arguments">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_TTFTIfzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>calledOperation->notEmpty() implies&#xA;argument->forall (a | a.type.conformsTo&#xA;(self.calledOperation.operation.ownedParameter->&#xA;select( kind = ParameterDirectionKind::in )&#xA;->at (argument->indexOf (a)).type))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_TaosoPzEEdynbPPIlCogHA" name="signal_arguments">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_TaosofzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>sentSignal->notEmpty() implies&#xA;argument->forall (a | a.type.conformsTo&#xA;(self.sentSignal.signal.ownedAttribute&#xA;->at (argument->indexOf (a)).type))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ThMnoPzEEdynbPPIlCogHA" name="target_defines_operation">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ThMnofzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>calledOperation->notEmpty() implies&#xA;target.type.allOperations()->includes(calledOperation.operation)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_ToEEoPzEEdynbPPIlCogHA" name="has_operation_or_signal">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_ToEEofzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>calledOperation->size() + sentSignal->size() = 1</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_TvKLIPzEEdynbPPIlCogHA" name="target_not_collection">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_TvKLIfzEEdynbPPIlCogHA" name="">
+            <language>OCL</language>
+            <body>not target.type.oclIsKindOf(CollectionType)</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1aENppEdu-d8Dv4wLx9Q" parameter="_un1aEdppEdu-d8Dv4wLx9Q _un1aE9ppEdu-d8Dv4wLx9Q _un1aFdppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1aEdppEdu-d8Dv4wLx9Q" parameteredElement="_un1aEtppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1aEtppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1aEdppEdu-d8Dv4wLx9Q"/>
@@ -821,6 +1073,18 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aNdppEdu-d8Dv4wLx9Q" name="OperationCallExp">
+        <ownedRule xmi:id="_smVgEPzEEdynbPPIlCogHA" name="arguments_conform">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_smVgEfzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>arguments->forall (a | a.type.conformsTo&#xA;(self.refParams->at (arguments->indexOf (a)).type))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_stIEkPzEEdynbPPIlCogHA" name="argument_count">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_stIEkfzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>arguments->size() = refParams->size()</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1aNtppEdu-d8Dv4wLx9Q" parameter="_un1aN9ppEdu-d8Dv4wLx9Q _un1aOdppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1aN9ppEdu-d8Dv4wLx9Q" parameteredElement="_un1aONppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1aONppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1aN9ppEdu-d8Dv4wLx9Q"/>
@@ -859,6 +1123,12 @@
         <ownedEnd xmi:id="_un1aTNppEdu-d8Dv4wLx9Q" type="_un1aNdppEdu-d8Dv4wLx9Q" association="_un1aS9ppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aTdppEdu-d8Dv4wLx9Q" name="PropertyCallExp">
+        <ownedRule xmi:id="_iEz-4PzAEdynbPPIlCogHA" name="property_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_iEz-4fzAEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type = referredProperty.type</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1aTtppEdu-d8Dv4wLx9Q" parameter="_un1aT9ppEdu-d8Dv4wLx9Q _un1aUdppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1aT9ppEdu-d8Dv4wLx9Q" parameteredElement="_un1aUNppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1aUNppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1aT9ppEdu-d8Dv4wLx9Q"/>
@@ -882,6 +1152,12 @@
         <ownedEnd xmi:id="_un1aW9ppEdu-d8Dv4wLx9Q" type="_un1aTdppEdu-d8Dv4wLx9Q" association="_un1aWtppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aXNppEdu-d8Dv4wLx9Q" name="RealLiteralExp">
+        <ownedRule xmi:id="_8LkvkPzEEdynbPPIlCogHA" name="real_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_8LkvkfzEEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type.name = 'Real'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1aXdppEdu-d8Dv4wLx9Q" parameter="_un1aXtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1aXtppEdu-d8Dv4wLx9Q" parameteredElement="_un1aX9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1aX9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1aXtppEdu-d8Dv4wLx9Q"/>
@@ -921,6 +1197,12 @@
         <ownedEnd xmi:id="_un1ac9ppEdu-d8Dv4wLx9Q" type="_un1aZtppEdu-d8Dv4wLx9Q" association="_un1actppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1adNppEdu-d8Dv4wLx9Q" name="StringLiteralExp">
+        <ownedRule xmi:id="_J-S4kPzFEdynbPPIlCogHA" name="string_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_J-S4kfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>self.type.name = 'String'</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1addppEdu-d8Dv4wLx9Q" parameter="_un1adtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1adtppEdu-d8Dv4wLx9Q" parameteredElement="_un1ad9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1ad9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1adtppEdu-d8Dv4wLx9Q"/>
@@ -938,6 +1220,18 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aftppEdu-d8Dv4wLx9Q" name="TupleLiteralExp">
+        <ownedRule xmi:id="_OloQEPzFEdynbPPIlCogHA" name="tuple_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_OloQEfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type.oclIsKindOf (TupleType)&#xA;and&#xA;part->forAll (tlep |&#xA;type.oclAsType (TupleType).allProperties()->exists (tp | tlep.attribute = tp))&#xA;and&#xA;part->size() = type.oclAsType (TupleType).allProperties()->size()</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="_Ou3EkPzFEdynbPPIlCogHA" name="parts_unique">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_Ou3EkfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>part->isUnique (attribute.name)</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1af9ppEdu-d8Dv4wLx9Q" parameter="_un1agNppEdu-d8Dv4wLx9Q _un1agtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1agNppEdu-d8Dv4wLx9Q" parameteredElement="_un1agdppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1agdppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1agNppEdu-d8Dv4wLx9Q"/>
@@ -964,6 +1258,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1aj9ppEdu-d8Dv4wLx9Q" name="TupleLiteralPart" clientDependency="_un1amtppEdu-d8Dv4wLx9Q _un1am9ppEdu-d8Dv4wLx9Q">
+        <ownedRule xmi:id="_alcRAPzFEdynbPPIlCogHA" name="value_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_alcRAfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>attribute.type = value.type</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1akNppEdu-d8Dv4wLx9Q" parameter="_un1akdppEdu-d8Dv4wLx9Q _un1ak9ppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1akdppEdu-d8Dv4wLx9Q" parameteredElement="_un1aktppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1aktppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1akdppEdu-d8Dv4wLx9Q"/>
@@ -1035,6 +1335,12 @@
         </nestedClassifier>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_un1avdppEdu-d8Dv4wLx9Q" name="VariableExp">
+        <ownedRule xmi:id="_o1w8APzFEdynbPPIlCogHA" name="var_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_o1w8AfzFEdynbPPIlCogHA">
+            <language>OCL</language>
+            <body>type = referredVariable.type</body>
+          </specification>
+        </ownedRule>
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1avtppEdu-d8Dv4wLx9Q" parameter="_un1av9ppEdu-d8Dv4wLx9Q _un1awdppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1av9ppEdu-d8Dv4wLx9Q" parameteredElement="_un1awNppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1awNppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1av9ppEdu-d8Dv4wLx9Q"/>

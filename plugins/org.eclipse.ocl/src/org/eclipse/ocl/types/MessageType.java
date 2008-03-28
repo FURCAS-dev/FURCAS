@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: MessageType.java,v 1.4 2007/10/11 23:04:57 cdamus Exp $
+ * $Id: MessageType.java,v 1.5 2008/03/28 20:33:34 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.utilities.PredefinedType;
 
@@ -92,6 +94,49 @@ public interface MessageType<C, O, P> extends PredefinedType<O> {
 	void setReferredSignal(C value);
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * referredOperation->size() + referredSignal->size() = 1
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkExclusiveSignature(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * referredOperation->size()=1 implies
+     * Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.at(i).cmpSlots(
+     * referredOperation.ownedParameter.asProperty()->at(i))
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkOperationParameters(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * referredSignal->size() = 1 implies
+     * Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.asOrderedSet().at(i).cmpSlots(
+     * referredSignal.ownedAttribute.asOrderedSet()->at(i))
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkSignalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' reference list isn't clear,

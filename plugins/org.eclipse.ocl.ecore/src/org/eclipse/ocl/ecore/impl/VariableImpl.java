@@ -12,12 +12,15 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.5 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.6 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -29,6 +32,7 @@ import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.VariableOperations;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;
@@ -341,6 +345,15 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkInitType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return VariableOperations.checkInitType(this, diagnostics, context);
+    }
+
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT

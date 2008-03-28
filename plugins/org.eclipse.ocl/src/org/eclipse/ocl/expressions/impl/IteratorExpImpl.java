@@ -12,13 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.3 2007/10/11 23:04:55 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.4 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.operations.IteratorExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -51,6 +54,42 @@ public class IteratorExpImpl<C, PM> extends LoopExpImpl<C, PM> implements Iterat
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkBooleanType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkCollectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkCollectType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSelectRejectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkSelectRejectType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBooleanBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkBooleanBodyType(this, diagnostics, context);
+    }
+
+    /**
 	 * @generated NOT
 	 */
 	@Override

@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: CollectionType.java,v 1.4 2007/10/11 23:04:57 cdamus Exp $
+ * $Id: CollectionType.java,v 1.5 2008/03/28 20:33:34 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -86,6 +88,32 @@ public interface CollectionType<C, O> extends PredefinedType<O>, TypedASTNode {
 	CollectionKind getKind();
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.name = 'Collection(' + self.elementType.name + ')'
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self->forAll(not oclIsInvalid())
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkNoInvalidValues(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iterators</em>' reference list isn't clear,
