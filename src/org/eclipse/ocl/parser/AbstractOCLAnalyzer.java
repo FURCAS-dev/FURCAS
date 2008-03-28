@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.8 2008/03/26 21:17:25 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.9 2008/03/28 20:25:09 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -131,7 +131,6 @@ import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.OrderedSetType;
-import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.VoidType;
@@ -1844,15 +1843,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		if (!qualifiers.isEmpty()) {
 			if (astNode instanceof NavigationCallExp) {
-				setQualifiers(env, "variableExpCS", //$NON-NLS-1$
-					(NavigationCallExp<C, P>) astNode,
-					qualifiers);
+			    @SuppressWarnings("unchecked")
+			    NavigationCallExp<C, P> callNode = (NavigationCallExp<C, P>) astNode;
+				setQualifiers(env, "variableExpCS", callNode, qualifiers); //$NON-NLS-1$
 			} else if ((astNode instanceof LoopExp)
-					&& ((LoopExp<C, PM>) astNode).getBody() instanceof NavigationCallExp) {
+					&& ((LoopExp<?, ?>) astNode).getBody() instanceof NavigationCallExp) {
 				// might have parsed an implicit collect expression
-				setQualifiers(env, "variableExpCS",//$NON-NLS-1$
-					(NavigationCallExp<C, P>)
-						((LoopExp<C, PM>) astNode).getBody(), qualifiers);
+                @SuppressWarnings("unchecked")
+                NavigationCallExp<C, P> callNode = (NavigationCallExp<C, P>) ((LoopExp<C, ?>) astNode)
+                        .getBody();
+				setQualifiers(env, "variableExpCS", callNode, qualifiers);//$NON-NLS-1$
 			} else {
 				ERROR(variableExpCS, "variableExpCS", //$NON-NLS-1$
 						OCLMessages.bind(
@@ -1860,8 +1860,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 								computeInputString(variableExpCS)));
 			}
 		} else if (astNode instanceof AssociationClassCallExp) {
-			checkNotReflexive(env, "variableExpCS", //$NON-NLS-1$
-				(AssociationClassCallExp<C, P>) astNode);
+            @SuppressWarnings("unchecked")
+            AssociationClassCallExp<C, P> callNode = (AssociationClassCallExp<C, P>) astNode;
+			checkNotReflexive(env, "variableExpCS", callNode);//$NON-NLS-1$
 		}
 		
 		return astNode;
@@ -1889,10 +1890,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			new java.util.ArrayList<OCLExpression<C>>();
 
 		if (navigation instanceof LoopExp) {
-			navigation = ((LoopExp<C, PM>) navigation).getBody();
+		    @SuppressWarnings("unchecked")
+		    LoopExp<C, ?> loopNode = (LoopExp<C, ?>) navigation;
+			navigation = loopNode.getBody();
 		}
 		
 		if (navigation instanceof AssociationClassCallExp) {
+            @SuppressWarnings("unchecked")
 			AssociationClassCallExp<C, P> acc =
 				(AssociationClassCallExp<C, P>) navigation;
 			OCLExpression<C> source = acc.getSource();
@@ -1929,7 +1933,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 						Variable<C, PM> implicitSource = env.lookupImplicitSourceForProperty(simpleName);
 						src.setType(implicitSource.getType());
 						src.setReferredVariable(implicitSource);
-						src.setName(implicitSource.getName());
 					}
 		
 					initStartEndPositions(ref, qualifier);
@@ -2005,6 +2008,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @return the parsed <code>LetExpCS</code>
 	 * @throws TerminateException 
 	 */
+	@SuppressWarnings("unchecked")
 	protected LetExp<C, PM> letExpCS(
 			LetExpCS letExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
@@ -2170,7 +2174,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			VariableExp<C, PM> vexp = oclFactory.createVariableExp();	
 			initASTMapping(env, vexp, simpleNameCS);
 			vexp.setReferredVariable(vdcl);
-			vexp.setName(vdcl.getName());
+			
 			vexp.setType(vdcl.getType());
 			astNode = vexp;
 		} else if ((property = lookupProperty(simpleNameCS, env, sourceElementType, simpleName)) != null) {
@@ -2190,7 +2194,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					env.lookupImplicitSourceForProperty(simpleName);
 				src.setType(implicitSource.getType());
 				src.setReferredVariable(implicitSource);
-				src.setName(implicitSource.getName());
+				
 				propertyCall.setSource(src);
 			}
 
@@ -2212,7 +2216,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					env.lookupImplicitSourceForAssociationClass(simpleName);
 				src.setType(implicitSource.getType());
 				src.setReferredVariable(implicitSource);
-				src.setName(implicitSource.getName());
+				
 				acref.setSource(src);
 			}
 			
@@ -2451,7 +2455,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		initASTMapping(env, astNode, integerLiteralExpCS);
 		astNode.setIntegerSymbol(integerLiteralExpCS.getIntegerSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getInteger());
-		astNode.setName(PrimitiveType.INTEGER_NAME);
+		
 		TRACE("integerLiteralExpCS", "Integer: " + integerLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
 		return astNode;
@@ -2472,7 +2476,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         initASTMapping(env, astNode, unlimitedNaturalLiteralExpCS);
         astNode.setIntegerSymbol(unlimitedNaturalLiteralExpCS.getIntegerSymbol());
         astNode.setType(env.getOCLStandardLibrary().getUnlimitedNatural());
-        astNode.setName(PrimitiveType.UNLIMITED_NATURAL_NAME);
         TRACE("unlimitedNaturalLiteralExpCS", "UnlimitedNatural: " + unlimitedNaturalLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
             
         return astNode;
@@ -2493,7 +2496,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		initASTMapping(env, astNode, realLiteralExpCS);
 		astNode.setRealSymbol(realLiteralExpCS.getRealSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getReal());
-		astNode.setName(PrimitiveType.REAL_NAME);
+		
 		TRACE("realLiteralExpCS", "Real: " + realLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
 		return astNode;
@@ -2520,7 +2523,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                 stringLiteral.substring(1, stringLiteral.length()-1)));
 		}
 		astNode.setType(env.getOCLStandardLibrary().getString());
-		astNode.setName(PrimitiveType.STRING_NAME);
+		
 		TRACE("stringLiteralExpCS", "String: " + stringLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
 		return astNode;
@@ -2613,7 +2616,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		initASTMapping(env, astNode, booleanLiteralExpCS);
 		astNode.setBooleanSymbol(booleanLiteralExpCS.getBooleanSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getBoolean());
-		astNode.setName(PrimitiveType.BOOLEAN_NAME);
 		TRACE("booleanLiteralExpCS", "Boolean: " + booleanLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 			
 		return astNode;
@@ -2633,7 +2635,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		NullLiteralExp<C> astNode = oclFactory.createNullLiteralExp(); 
 		initASTMapping(env, astNode, nullLiteralExpCS);
 		astNode.setType(env.getOCLStandardLibrary().getOclVoid());
-		astNode.setName("OclVoid");//$NON-NLS-1$
+		
 		TRACE("nullLiteralExpCS", "OclVoid: null");//$NON-NLS-2$//$NON-NLS-1$
 			
 		return astNode;
@@ -2653,7 +2655,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		InvalidLiteralExp<C> astNode = oclFactory.createInvalidLiteralExp(); 
 		initASTMapping(env, astNode, invalidLiteralExpCS);
 		astNode.setType(env.getOCLStandardLibrary().getInvalid());
-		astNode.setName("Invalid");//$NON-NLS-1$
+		
 		TRACE("invalidLiteralExpCS", "Invalid: OclInvalid");//$NON-NLS-2$//$NON-NLS-1$
 			
 		return astNode;
@@ -2887,6 +2889,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
             if (literal != null) {
     			astNode = oclFactory.createEnumLiteralExp();
     			initASTMapping(env, astNode, enumLiteralExpCS);
+    			
+    			@SuppressWarnings("unchecked")
     			EnumLiteralExp<C, EL> litExp = (EnumLiteralExp<C, EL>) astNode;
     			litExp.setReferredEnumLiteral(literal);
     			astNode = litExp;
@@ -2909,7 +2913,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                 pcExp.setSource(typeExp);
                 pcExp.setReferredProperty(attribute);
                 pcExp.setType(TypeUtil.getPropertyType(env, enumType, attribute));
-                pcExp.setName(lastToken);
                 
                 initPropertyPositions(pcExp, enumLiteralExpCS.getSimpleNameCS());
             } else {
@@ -3427,9 +3430,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 			if (!qualifiers.isEmpty()) {
 				if (astNode instanceof NavigationCallExp) {
+	                @SuppressWarnings("unchecked")
+	                NavigationCallExp<C, P> callNode = (NavigationCallExp<C, P>) astNode;
 					setQualifiers(env, "modelPropertyCallExpCS",//$NON-NLS-1$
-						(NavigationCallExp<C, P>) astNode,
-						qualifiers);
+						callNode, qualifiers);
 				} else if ((astNode instanceof LoopExp)
 						&& (getLoopBody(astNode) instanceof NavigationCallExp)) {
 					// might have parsed an implicit collect expression
@@ -3447,14 +3451,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 									computeInputString(modelPropertyCallExpCS)));
 				}
 			} else if (astNode instanceof AssociationClassCallExp) {
-				checkNotReflexive(env, "modelPropertyCallExpCS",//$NON-NLS-1$
-					(AssociationClassCallExp<C, P>) astNode);
+	            @SuppressWarnings("unchecked")
+	            AssociationClassCallExp<C, P> callNode = (AssociationClassCallExp<C, P>) astNode;
+				checkNotReflexive(env, "modelPropertyCallExpCS", callNode);//$NON-NLS-1$
 			}
 		}
 
 		return astNode;
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected OCLExpression<C> getLoopBody(OCLExpression<C> expr) {
 		return ((LoopExp<C, ?>) expr).getBody();
 	}
@@ -3566,7 +3572,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			if (implicitSource != null) {
 				vexp.setType(implicitSource.getType());
 				vexp.setReferredVariable(implicitSource);
-				vexp.setName(implicitSource.getName());
 			} else {
 				vexp.setType(getOclVoid());
 			}
