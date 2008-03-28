@@ -12,11 +12,14 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.4 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.5 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.PropertyCallExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -109,6 +113,15 @@ public class PropertyCallExpImpl extends NavigationCallExpImpl implements Proper
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkPropertyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return PropertyCallExpOperations.checkPropertyType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

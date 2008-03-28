@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,15 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.3 2007/10/11 23:04:40 cdamus Exp $
+ * $Id: IfExpImpl.java,v 1.4 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -26,6 +29,7 @@ import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.IfExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -223,6 +227,24 @@ public class IfExpImpl extends OCLExpressionImpl implements IfExp {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkBooleanCondition(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IfExpOperations.checkBooleanCondition(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkIfType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IfExpOperations.checkIfType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

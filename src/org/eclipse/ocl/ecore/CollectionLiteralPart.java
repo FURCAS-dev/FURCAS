@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPart.java,v 1.1 2007/03/27 15:05:29 cdamus Exp $
+ * $Id: CollectionLiteralPart.java,v 1.2 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.ETypedElement;
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getCollectionLiteralPart()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface CollectionLiteralPart extends ETypedElement, org.eclipse.ocl.expressions.CollectionLiteralPart<EClassifier> {

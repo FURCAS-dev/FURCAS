@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.8 2008/03/26 21:17:50 cdamus Exp $
+ * $Id: EcorePackageImpl.java,v 1.9 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
@@ -76,6 +77,7 @@ import org.eclipse.ocl.ecore.UnspecifiedValueExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.VoidType;
+import org.eclipse.ocl.ecore.util.EcoreValidator;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.types.TypesPackage;
@@ -519,6 +521,15 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 
         // Initialize created meta-data
         theEcorePackage.initializePackageContents();
+
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theEcorePackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return EcoreValidator.INSTANCE;
+                 }
+             });
 
         // Mark meta-data to indicate it can't be changed
         theEcorePackage.freeze();
@@ -1693,8 +1704,104 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
         createResource(eNS_URI);
 
         // Create annotations
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
         // http:///org/eclipse/emf/ecore/util/ExtendedMetaData
         createExtendedMetaDataAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEcoreAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+        addAnnotation
+          (anyTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (collectionTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (elementTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (invalidTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (messageTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (primitiveTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (tupleTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (typeTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (voidTypeEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (constraintEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });			
+        addAnnotation
+          (collectionLiteralPartEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });			
+        addAnnotation
+          (oclExpressionEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (tupleLiteralPartEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });		
+        addAnnotation
+          (variableEClass, 
+           source, 
+           new String[] {
+             "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+           });
     }
 
     /**
@@ -1704,19 +1811,19 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
      * @generated
      */
     protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$												
         addAnnotation
           (expressionInOCLEClass, 
            source, 
            new String[] {
              "name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });			
         addAnnotation
           (oclExpressionEClass, 
            source, 
            new String[] {
              "name", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
-           });
+           });			
     }
 
 } //EcorePackageImpl
