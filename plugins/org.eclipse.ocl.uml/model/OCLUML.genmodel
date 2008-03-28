@@ -2,8 +2,8 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/1.1.0/GenModel" modelDirectory="/org.eclipse.ocl.uml/src"
-    modelPluginID="org.eclipse.ocl.uml" modelName="OCLUML" nonNLSMarkers="true" booleanFlagsField="eFlags"
-    booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
+    modelPluginID="org.eclipse.ocl.uml" modelName="OCLUML" modelPluginClass="org.eclipse.ocl.uml.internal.OCLUMLPlugin"
+    nonNLSMarkers="true" booleanFlagsField="eFlags" booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
     complianceLevel="5.0" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     pluralizedGetters="true" cacheAdapterSupport="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
@@ -27,7 +27,7 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
       disposableProviderFactory="true" ecorePackage="OCLUML.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="UML" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCLUML.ecore#//uml">
+        disposableProviderFactory="true" ecorePackage="OCLUML.ecore#//uml" operationsPackage="org.eclipse.ocl.uml.operations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/AnyType">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/AnyType/ownedOperation"/>
