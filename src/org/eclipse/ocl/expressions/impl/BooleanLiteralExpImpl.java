@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,18 @@
  * 
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.4 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.BooleanLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -98,6 +101,15 @@ public class BooleanLiteralExpImpl<C> extends PrimitiveLiteralExpImpl<C> impleme
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return BooleanLiteralExpOperations.checkBooleanType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

@@ -4,12 +4,12 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/1.1.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
     editDirectory="/org.eclipse.ocl.edit/src" editorDirectory="/org.eclipse.ocl.editor/src"
     modelPluginID="org.eclipse.ocl" templateDirectory="" redirection="" modelName="OCL"
-    modelPluginClass="" editPluginClass="org.eclipse.ocl.edit.internal.OCLEditPlugin"
+    modelPluginClass="org.eclipse.ocl.internal.OCLPlugin" editPluginClass="org.eclipse.ocl.edit.internal.OCLEditPlugin"
     editorPluginClass="org.eclipse.ocl.editor.internal.OCLEditorPlugin" nonNLSMarkers="true"
     rootImplementsInterface="" featureMapWrapperInterface="" featureMapWrapperInternalInterface=""
     featureMapWrapperClass="" testSuiteClass="org.eclipse.ocl.tests.AllTests" booleanFlagsField="eFlags"
     booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="5.0">
+    complianceLevel="5.0" invariantPrefix="check">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
     <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>
@@ -31,7 +31,7 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
       disposableProviderFactory="true" ecorePackage="OCL.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Types" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCL.ecore#//types">
+        disposableProviderFactory="true" ecorePackage="OCL.ecore#//types" operationsPackage="org.eclipse.ocl.types.operations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/AnyType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/AnyType/O"/>
       </genClasses>
@@ -46,6 +46,14 @@
             ecoreFeature="ecore:EReference OCL.ecore#//types/CollectionType/elementType"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
             ecoreFeature="ecore:EAttribute OCL.ecore#//types/CollectionType/kind"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/CollectionType/collection_type_name">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/CollectionType/collection_type_name/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/CollectionType/collection_type_name/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/CollectionType/no_invalid_values">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/CollectionType/no_invalid_values/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/CollectionType/no_invalid_values/context"/>
+        </genOperations>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/CollectionType/oclIterators"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/ElementType"/>
@@ -59,6 +67,18 @@
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             ecoreFeature="ecore:EReference OCL.ecore#//types/MessageType/referredOperation"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EReference OCL.ecore#//types/MessageType/referredSignal"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/MessageType/exclusive_signature">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/MessageType/exclusive_signature/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/MessageType/exclusive_signature/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/MessageType/operation_parameters">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/MessageType/operation_parameters/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/MessageType/operation_parameters/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/MessageType/signal_attributes">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/MessageType/signal_attributes/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/MessageType/signal_attributes/context"/>
+        </genOperations>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/MessageType/oclProperties"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/OrderedSetType">
@@ -79,6 +99,18 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/TupleType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TupleType/O"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TupleType/P"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/TupleType/tuple_type_name">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/TupleType/tuple_type_name/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/TupleType/tuple_type_name/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/TupleType/part_names_unique">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/TupleType/part_names_unique/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/TupleType/part_names_unique/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/TupleType/features_only_properties">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/TupleType/features_only_properties/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//types/TupleType/features_only_properties/context"/>
+        </genOperations>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//types/TupleType/oclProperties"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/TypeType">
@@ -238,7 +270,7 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Expressions" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCL.ecore#//expressions">
+        disposableProviderFactory="true" ecorePackage="OCL.ecore#//expressions" operationsPackage="org.eclipse.ocl.expressions.operations">
       <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCL.ecore#//expressions/CollectionKind">
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Set"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/OrderedSet"/>
@@ -275,6 +307,10 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/BooleanLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/BooleanLiteralExp/C"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/BooleanLiteralExp/booleanSymbol"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/BooleanLiteralExp/boolean_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/BooleanLiteralExp/boolean_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/BooleanLiteralExp/boolean_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/PrimitiveLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/PrimitiveLiteralExp/C"/>
@@ -286,6 +322,10 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionItem/C"/>
         <genFeatures xsi:type="genmodel:GenFeature" children="true" createChild="true"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionItem/item"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionItem/item_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionItem/item_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionItem/item_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/CollectionLiteralPart">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionLiteralPart/C"/>
@@ -296,6 +336,26 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionLiteralExp/part"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/CollectionLiteralExp/simpleRange"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionLiteralExp/no_collection_instances">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/no_collection_instances/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/no_collection_instances/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionLiteralExp/set_kind">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/set_kind/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/set_kind/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionLiteralExp/sequence_kind">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/sequence_kind/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/sequence_kind/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionLiteralExp/bag_kind">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/bag_kind/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/bag_kind/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionLiteralExp/element_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/element_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionLiteralExp/element_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/CollectionRange">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/CollectionRange/C"/>
@@ -303,12 +363,20 @@
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionRange/first"/>
         <genFeatures xsi:type="genmodel:GenFeature" children="true" createChild="true"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/CollectionRange/last"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/CollectionRange/range_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionRange/range_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/CollectionRange/range_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/EnumLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/EnumLiteralExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/EnumLiteralExp/EL"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/EnumLiteralExp/referredEnumLiteral"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/EnumLiteralExp/enum_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/EnumLiteralExp/enum_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/EnumLiteralExp/enum_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IfExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IfExp/C"/>
@@ -318,10 +386,22 @@
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/thenExpression"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IfExp/elseExpression"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IfExp/boolean_condition">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IfExp/boolean_condition/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IfExp/boolean_condition/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IfExp/if_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IfExp/if_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IfExp/if_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IntegerLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IntegerLiteralExp/C"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/IntegerLiteralExp/integerSymbol"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IntegerLiteralExp/integer_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IntegerLiteralExp/integer_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IntegerLiteralExp/integer_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/NumericLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/NumericLiteralExp/C"/>
@@ -331,6 +411,10 @@
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/integerSymbol"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
             ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/unlimited"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/natural_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/natural_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/UnlimitedNaturalLiteralExp/natural_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/InvalidLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/InvalidLiteralExp/C"/>
@@ -340,6 +424,18 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IterateExp/PM"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/IterateExp/result"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IterateExp/iterate_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IterateExp/iterate_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IterateExp/iterate_type/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IterateExp/body_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IterateExp/body_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IterateExp/body_type/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IterateExp/result_init">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IterateExp/result_init/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IterateExp/result_init/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/LoopExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LoopExp/C"/>
@@ -348,6 +444,18 @@
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LoopExp/body"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LoopExp/iterator"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/LoopExp/source_collection">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LoopExp/source_collection/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LoopExp/source_collection/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/LoopExp/loop_variable_init">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LoopExp/loop_variable_init/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LoopExp/loop_variable_init/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/LoopExp/loop_variable_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LoopExp/loop_variable_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LoopExp/loop_variable_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/Variable">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/Variable/C"/>
@@ -356,10 +464,30 @@
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/Variable/initExpression"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/Variable/representedParameter"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/Variable/init_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/Variable/init_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/Variable/init_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/IteratorExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IteratorExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/IteratorExp/PM"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IteratorExp/boolean_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/boolean_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/boolean_type/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IteratorExp/collect_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/collect_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/collect_type/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IteratorExp/select_reject_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/select_reject_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/select_reject_type/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/IteratorExp/boolean_body_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/boolean_body_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/IteratorExp/boolean_body_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/LetExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/LetExp/C"/>
@@ -368,6 +496,10 @@
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/LetExp/in"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/LetExp/variable"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/LetExp/let_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LetExp/let_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/LetExp/let_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/MessageExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/MessageExp/C"/>
@@ -381,6 +513,26 @@
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/calledOperation"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/MessageExp/sentSignal"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/MessageExp/operation_arguments">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/operation_arguments/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/operation_arguments/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/MessageExp/signal_arguments">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/signal_arguments/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/signal_arguments/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/MessageExp/target_defines_operation">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/target_defines_operation/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/target_defines_operation/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/MessageExp/has_operation_or_signal">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/has_operation_or_signal/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/has_operation_or_signal/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/MessageExp/target_not_collection">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/target_not_collection/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/MessageExp/target_not_collection/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/NullLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/NullLiteralExp/C"/>
@@ -393,16 +545,32 @@
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/OperationCallExp/referredOperation"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/OperationCallExp/operationCode"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/OperationCallExp/arguments_conform">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OperationCallExp/arguments_conform/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OperationCallExp/arguments_conform/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/OperationCallExp/argument_count">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OperationCallExp/argument_count/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/OperationCallExp/argument_count/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/PropertyCallExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/PropertyCallExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/PropertyCallExp/P"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/PropertyCallExp/referredProperty"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/PropertyCallExp/property_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/PropertyCallExp/property_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/PropertyCallExp/property_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/RealLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/RealLiteralExp/C"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/RealLiteralExp/realSymbol"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/RealLiteralExp/real_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/RealLiteralExp/real_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/RealLiteralExp/real_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/StateExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/StateExp/C"/>
@@ -413,12 +581,24 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/StringLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/StringLiteralExp/C"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//expressions/StringLiteralExp/stringSymbol"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/StringLiteralExp/string_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/StringLiteralExp/string_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/StringLiteralExp/string_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/TupleLiteralExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralExp/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralExp/P"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralExp/part"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/TupleLiteralExp/tuple_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/TupleLiteralExp/tuple_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/TupleLiteralExp/tuple_type/context"/>
+        </genOperations>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/TupleLiteralExp/parts_unique">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/TupleLiteralExp/parts_unique/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/TupleLiteralExp/parts_unique/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/TupleLiteralPart">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TupleLiteralPart/C"/>
@@ -427,6 +607,10 @@
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralPart/value"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//expressions/TupleLiteralPart/attribute"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/TupleLiteralPart/value_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/TupleLiteralPart/value_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/TupleLiteralPart/value_type/context"/>
+        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//expressions/TypeExp">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/TypeExp/C"/>
@@ -441,6 +625,10 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//expressions/VariableExp/PM"/>
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
             ecoreFeature="ecore:EReference OCL.ecore#//expressions/VariableExp/referredVariable"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//expressions/VariableExp/var_type">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/VariableExp/var_type/diagnostics"/>
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//expressions/VariableExp/var_type/context"/>
+        </genOperations>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

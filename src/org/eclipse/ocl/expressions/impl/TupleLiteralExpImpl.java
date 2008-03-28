@@ -12,13 +12,15 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.5 2008/03/28 20:33:32 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -27,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.operations.TupleLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -85,6 +88,24 @@ public class TupleLiteralExpImpl<C, P> extends LiteralExpImpl<C> implements Tupl
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkTupleType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return TupleLiteralExpOperations.checkTupleType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkPartsUnique(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return TupleLiteralExpOperations.checkPartsUnique(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

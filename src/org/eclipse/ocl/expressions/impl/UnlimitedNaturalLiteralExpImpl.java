@@ -12,18 +12,21 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.expressions.operations.UnlimitedNaturalLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -118,6 +121,15 @@ public class UnlimitedNaturalLiteralExpImpl<C> extends NumericLiteralExpImpl<C> 
      */
     public boolean isUnlimited() {
         return getIntegerSymbol() == UNLIMITED;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkNaturalType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this, diagnostics, context);
     }
 
     /**

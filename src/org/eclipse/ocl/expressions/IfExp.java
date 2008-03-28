@@ -12,9 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: IfExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: IfExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
+
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 
 /**
@@ -113,5 +116,31 @@ public interface IfExp<C> extends OCLExpression<C> {
      * @generated
      */
 	void setElseExpression(OCLExpression<C> value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.condition.type.oclIsKindOf(PrimitiveType) and self.condition.type.name = 'Boolean'
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkBooleanCondition(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.type = thenExpression.type.commonSuperType(elseExpression.type)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkIfType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // IfExp

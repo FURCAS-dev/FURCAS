@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.5 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: LoopExp.java,v 1.6 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -77,5 +79,44 @@ public interface LoopExp<C, PM> extends CallExp<C> {
      * @generated
      */
 	EList<Variable<C, PM>> getIterator();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * source.type.oclIsKindOf(CollectionType)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkSourceCollection(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.iterator->forAll(initExpression->isEmpty())
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkLoopVariableInit(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.iterator->forAll(type = source.type.oclAsType(CollectionType).elementType)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkLoopVariableType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LoopExp

@@ -12,14 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +33,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.operations.OperationCallExpOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -196,6 +199,24 @@ public class OperationCallExpImpl<C, O> extends FeatureCallExpImpl<C> implements
 	}
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkArgumentsConform(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return OperationCallExpOperations.checkArgumentsConform(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkArgumentCount(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return OperationCallExpOperations.checkArgumentCount(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

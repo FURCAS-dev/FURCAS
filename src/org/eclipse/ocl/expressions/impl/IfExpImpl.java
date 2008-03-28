@@ -12,18 +12,21 @@
  * 
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.4 2007/10/11 23:04:55 cdamus Exp $
+ * $Id: IfExpImpl.java,v 1.5 2008/03/28 20:33:32 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.IfExp;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.IfExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -221,6 +224,24 @@ public class IfExpImpl<C> extends OCLExpressionImpl<C> implements IfExp<C> {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBooleanCondition(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IfExpOperations.checkBooleanCondition(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkIfType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IfExpOperations.checkIfType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

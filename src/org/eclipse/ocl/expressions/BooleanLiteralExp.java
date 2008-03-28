@@ -12,9 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: BooleanLiteralExp.java,v 1.3 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: BooleanLiteralExp.java,v 1.4 2008/03/28 20:33:34 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
+
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 
 /**
@@ -59,5 +62,18 @@ public interface BooleanLiteralExp<C> extends PrimitiveLiteralExp<C> {
      * @generated
      */
 	void setBooleanSymbol(Boolean value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * self.type.name = 'Boolean'
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // BooleanLiteralExp

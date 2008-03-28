@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: TupleLiteralExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -50,5 +52,36 @@ public interface TupleLiteralExp<C, P> extends LiteralExp<C> {
      * @generated
      */
 	EList<TupleLiteralPart<C, P>> getPart();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * type.oclIsKindOf (TupleType)
+     * and
+     * part->forAll (tlep |
+     * type.oclAsType (TupleType).allProperties()->exists (tp | tlep.attribute = tp))
+     * and
+     * part->size() = type.oclAsType (TupleType).allProperties()->size()
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkTupleType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * part->isUnique (attribute.name)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkPartsUnique(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // TupleLiteralExp

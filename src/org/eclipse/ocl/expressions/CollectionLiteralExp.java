@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: CollectionLiteralExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -96,5 +98,70 @@ public interface CollectionLiteralExp<C> extends LiteralExp<C> {
      * @generated
      */
 	boolean isSimpleRange();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * kind <> CollectionKind::Collection
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkNoCollectionInstances(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * kind = CollectionKind::Set implies type.oclIsKindOf(SetType)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkSetKind(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkSequenceKind(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkBagKind(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * type.oclAsType(CollectionType).elementType = part->iterate(p; c : Classifier = OclVoid | c.commonSuperType(p.type))
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkElementType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // CollectionLiteralExp

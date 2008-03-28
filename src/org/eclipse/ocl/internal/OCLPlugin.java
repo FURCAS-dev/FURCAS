@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.4 2008/03/28 20:33:31 cdamus Exp $
  */
 package org.eclipse.ocl.internal;
 
@@ -45,7 +45,7 @@ extends EMFPlugin {
 	private static final String PREFIX_CATCHING = "CAUGHT "; //$NON-NLS-1$
 	
 	//The shared instance.
-	private static OCLPlugin INSTANCE = new OCLPlugin();
+	public static OCLPlugin INSTANCE = new OCLPlugin();
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;

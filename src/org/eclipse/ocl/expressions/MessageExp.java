@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: MessageExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.utilities.CallingASTNode;
 
@@ -132,5 +134,78 @@ public interface MessageExp<C, COA, SSA> extends OCLExpression<C>, CallingASTNod
      * @generated
      */
 	void setSentSignal(SSA value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * calledOperation->notEmpty() implies
+     * argument->forall (a | a.type.conformsTo
+     * (self.calledOperation.operation.ownedParameter->
+     * select( kind = ParameterDirectionKind::in )
+     * ->at (argument->indexOf (a)).type))
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkOperationArguments(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * sentSignal->notEmpty() implies
+     * argument->forall (a | a.type.conformsTo
+     * (self.sentSignal.signal.ownedAttribute
+     * ->at (argument->indexOf (a)).type))
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkSignalArguments(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * calledOperation->notEmpty() implies
+     * target.type.allOperations()->includes(calledOperation.operation)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkTargetDefinesOperation(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * calledOperation->size() + sentSignal->size() = 1
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkHasOperationOrSignal(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * not target.type.oclIsKindOf(CollectionType)
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkTargetNotCollection(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // MessageExp
