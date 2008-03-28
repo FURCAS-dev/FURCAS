@@ -355,7 +355,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		VariableExp var = (VariableExp) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertEquals("self", var.getName()); //$NON-NLS-1$
+		assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 		
 		// now check the resolution of implicit iterator variables as sources
 		expr = parseConstraint(
@@ -374,7 +374,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		var = (VariableExp) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+		assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -397,7 +397,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			VariableExp var = (VariableExp) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertEquals("self", var.getName()); //$NON-NLS-1$
+			assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 			
 			// now check the resolution of implicit iterator variables as sources
 			expr = helper.createPrecondition(
@@ -414,7 +414,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			var = (VariableExp) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+			assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 		} catch (OCLParsingException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -440,7 +440,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		VariableExp var = (VariableExp) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertEquals("self", var.getName()); //$NON-NLS-1$
+		assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 		
 		// now check the resolution of implicit iterator variables as sources
 		expr = parseConstraint(
@@ -459,7 +459,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		var = (VariableExp) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+		assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -483,7 +483,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			VariableExp var = (VariableExp) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertEquals("self", var.getName()); //$NON-NLS-1$
+			assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 			
 			// now check the resolution of implicit iterator variables as sources
 			expr = helper.createPrecondition(
@@ -500,7 +500,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			var = (VariableExp) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+			assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 		} catch (OCLParsingException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
