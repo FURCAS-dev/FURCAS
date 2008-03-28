@@ -12,14 +12,17 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.3 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.4 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.BooleanLiteralExpOperations;
 import org.eclipse.ocl.uml.BooleanLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -100,6 +103,15 @@ public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements Bo
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return BooleanLiteralExpOperations.checkBooleanType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

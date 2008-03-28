@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.operations.LoopExpOperations;
 import org.eclipse.ocl.uml.LoopExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.uml2.uml.Classifier;
@@ -145,6 +148,33 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkSourceCollection(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return LoopExpOperations.checkSourceCollection(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkLoopVariableInit(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return LoopExpOperations.checkLoopVariableInit(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkLoopVariableType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return LoopExpOperations.checkLoopVariableType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

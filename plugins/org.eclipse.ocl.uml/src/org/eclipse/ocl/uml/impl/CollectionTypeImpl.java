@@ -12,11 +12,13 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.7 2008/03/14 19:59:29 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.8 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +32,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.operations.CollectionTypeOperations;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.uml.CollectionType;
 import org.eclipse.ocl.uml.UMLPackage;
@@ -285,7 +288,6 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public Classifier getElementType() {
         if (elementType != null && ((EObject)elementType).eIsProxy()) {
             InternalEObject oldElementType = (InternalEObject)elementType;
@@ -331,7 +333,6 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
      * @generated NOT
      */
     @Override
-    @SuppressWarnings("unchecked")
     public String getName() {
         if (name == null) {
             StringBuffer myName = new StringBuffer();
@@ -356,7 +357,6 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
             
             myName.append('(');
             
-            @SuppressWarnings("hiding")
             Classifier elementType = getElementType();
             String elementTypeName;
             if (elementType instanceof VoidType) {
@@ -425,6 +425,24 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkNoInvalidValues(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionTypeOperations.checkNoInvalidValues(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -450,7 +468,6 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {

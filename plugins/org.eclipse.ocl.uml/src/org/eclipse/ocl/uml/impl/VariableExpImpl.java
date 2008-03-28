@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: VariableExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -26,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 
+import org.eclipse.ocl.expressions.operations.VariableExpOperations;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.VariableExp;
 import org.eclipse.ocl.utilities.Visitor;
@@ -116,6 +119,15 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkVarType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return VariableExpOperations.checkVarType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

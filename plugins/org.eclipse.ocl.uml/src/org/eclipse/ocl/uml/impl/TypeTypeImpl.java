@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.10 2008/01/03 14:39:29 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.11 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -117,7 +117,6 @@ public class TypeTypeImpl extends ClassifierImpl implements TypeType {
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public Classifier getReferredType() {
         if (referredType != null && ((EObject)referredType).eIsProxy()) {
             InternalEObject oldReferredType = (InternalEObject)referredType;
@@ -261,7 +260,6 @@ public class TypeTypeImpl extends ClassifierImpl implements TypeType {
      * @generated
      * @ordered
      */
-    @SuppressWarnings("hiding")
     protected static final int[] FEATURE_ESUBSETS = new int[] {UMLPackage.TYPE_TYPE__ATTRIBUTE, UMLPackage.TYPE_TYPE__OWNED_OPERATION};
 
     /**

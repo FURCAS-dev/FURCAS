@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -79,7 +79,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	public State getReferredState() {
         if (referredState != null && ((EObject)referredState).eIsProxy()) {
             InternalEObject oldReferredState = (InternalEObject)referredState;
@@ -134,7 +133,6 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {

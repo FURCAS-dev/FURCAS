@@ -12,12 +12,15 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.4 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.5 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.ocl.types.operations.BagTypeOperations;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.uml.BagType;
 import org.eclipse.ocl.uml.UMLPackage;
@@ -59,6 +62,16 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
         return UMLPackage.Literals.BAG_TYPE;
     }
     
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return BagTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+    }
+
     /**
      * @generated NOT
      */

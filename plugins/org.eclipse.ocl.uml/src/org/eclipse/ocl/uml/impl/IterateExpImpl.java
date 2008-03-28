@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: IterateExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.operations.IterateExpOperations;
 import org.eclipse.ocl.uml.IterateExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -117,6 +120,33 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkIterateType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IterateExpOperations.checkIterateType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IterateExpOperations.checkBodyType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean checkResultInit(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IterateExpOperations.checkResultInit(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
