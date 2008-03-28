@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ElementType.java,v 1.2 2007/02/14 13:42:02 cdamus Exp $
+ * $Id: ElementType.java,v 1.3 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getElementType()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface ElementType extends EClass, org.eclipse.ocl.types.ElementType {

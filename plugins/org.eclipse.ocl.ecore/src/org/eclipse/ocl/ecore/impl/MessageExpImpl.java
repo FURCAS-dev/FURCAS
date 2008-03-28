@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.3 2007/10/11 23:04:40 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.4 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -33,6 +35,7 @@ import org.eclipse.ocl.ecore.MessageExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.operations.MessageExpOperations;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
@@ -339,6 +342,51 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkOperationArguments(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkOperationArguments(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkSignalArguments(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkSignalArguments(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkTargetDefinesOperation(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkTargetDefinesOperation(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkHasOperationOrSignal(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkHasOperationOrSignal(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkTargetNotCollection(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageExpOperations.checkTargetNotCollection(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

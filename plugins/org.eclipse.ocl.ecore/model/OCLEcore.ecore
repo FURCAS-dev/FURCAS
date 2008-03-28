@@ -5,6 +5,9 @@
     nsURI="http://www.eclipse.org/ocl/1.1.0/OCLEcore" nsPrefix="ocl">
   <eSubpackages name="ecore" nsURI="http://www.eclipse.org/ocl/1.1.0/Ecore" nsPrefix="ocl.ecore">
     <eClassifiers xsi:type="ecore:EClass" name="AnyType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/AnyType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
@@ -18,20 +21,33 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/CollectionType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ElementType" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/ElementType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ElementType" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/ElementType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InvalidType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/InvalidType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MessageType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/MessageType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
@@ -47,6 +63,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/PrimitiveType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
@@ -67,6 +86,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TupleType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/TupleType">
@@ -75,6 +97,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypeType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/TypeType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
@@ -82,6 +107,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VoidType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/VoidType">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
@@ -92,6 +120,9 @@
           eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EOperation"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ENamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="specification" lowerBound="1"
           containment="true">
         <eGenericType eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//utilities/ExpressionInOCL">
@@ -148,6 +179,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralPart" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ETypedElement"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//expressions/CollectionLiteralPart">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
@@ -261,6 +295,9 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="name" value="OclExpression"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ETypedElement"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//expressions/OCLExpression">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
@@ -313,6 +350,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralPart">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ETypedElement"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//expressions/TupleLiteralPart">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
@@ -332,6 +372,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Variable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ETypedElement"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//expressions/Variable">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>

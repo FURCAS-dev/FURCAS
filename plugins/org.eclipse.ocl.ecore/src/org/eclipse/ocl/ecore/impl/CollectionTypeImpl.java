@@ -12,12 +12,15 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.9 2008/03/14 19:59:33 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.10 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -36,6 +39,7 @@ import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.types.operations.CollectionTypeOperations;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedASTNode;
@@ -322,6 +326,24 @@ public class CollectionTypeImpl extends EDataTypeImpl implements CollectionType 
      */
     public CollectionKind getKind() {
         return CollectionKind.COLLECTION_LITERAL;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkNoInvalidValues(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return CollectionTypeOperations.checkNoInvalidValues(this, diagnostics, context);
     }
 
     /**

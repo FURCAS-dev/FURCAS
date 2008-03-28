@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: Constraint.java,v 1.5 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: Constraint.java,v 1.6 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * </p>
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getConstraint()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface Constraint extends ENamedElement {

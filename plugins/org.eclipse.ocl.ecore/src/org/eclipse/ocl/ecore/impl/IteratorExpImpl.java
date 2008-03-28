@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,17 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.2 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.3 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.expressions.operations.IteratorExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -52,6 +55,42 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkBooleanType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkCollectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkCollectType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkSelectRejectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkSelectRejectType(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkBooleanBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return IteratorExpOperations.checkBooleanBodyType(this, diagnostics, context);
+    }
+
+    /**
 	 * @generated NOT
 	 */
 	@Override

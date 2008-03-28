@@ -12,32 +12,32 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.5 2008/03/26 21:17:50 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.6 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DelegatingEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.EClassImpl;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.types.operations.TupleTypeOperations;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.utilities.PredefinedType;
-import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
-import org.eclipse.ocl.ecore.AnyType;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,6 +116,33 @@ public class TupleTypeImpl extends EClassImpl implements TupleType {
         serializable = newSerializable;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_TYPE__SERIALIZABLE, oldSerializable, serializable));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkTupleTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return TupleTypeOperations.checkTupleTypeName(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkPartNamesUnique(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return TupleTypeOperations.checkPartNamesUnique(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkFeaturesOnlyProperties(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return TupleTypeOperations.checkFeaturesOnlyProperties(this, diagnostics, context);
     }
 
     /**

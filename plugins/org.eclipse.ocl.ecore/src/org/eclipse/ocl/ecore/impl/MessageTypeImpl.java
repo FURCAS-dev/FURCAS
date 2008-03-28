@@ -12,14 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.7 2008/02/16 00:07:23 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.8 2008/03/28 20:33:40 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.DelegatingEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -36,6 +38,7 @@ import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.MessageType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.operations.MessageTypeOperations;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -173,7 +176,34 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
             eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
     }
 
-				/**
+	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkExclusiveSignature(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkExclusiveSignature(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkOperationParameters(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkOperationParameters(this, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkSignalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return MessageTypeOperations.checkSignalAttributes(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated NOT

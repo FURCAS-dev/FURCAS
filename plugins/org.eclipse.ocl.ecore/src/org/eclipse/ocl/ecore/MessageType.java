@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageType.java,v 1.2 2007/02/14 13:42:03 cdamus Exp $
+ * $Id: MessageType.java,v 1.3 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getMessageType()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface MessageType extends EClass, org.eclipse.ocl.types.MessageType<EClassifier, EOperation, EStructuralFeature> {

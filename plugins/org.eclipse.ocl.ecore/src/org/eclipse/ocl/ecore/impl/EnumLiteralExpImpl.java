@@ -12,23 +12,23 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.4 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.5 2008/03/28 20:33:41 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.EnumLiteralExp;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.operations.EnumLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**
@@ -113,6 +113,15 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean checkEnumType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return EnumLiteralExpOperations.checkEnumType(this, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
