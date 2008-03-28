@@ -12,9 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: LetExp.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: LetExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
+
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 
 /**
@@ -86,5 +89,18 @@ public interface LetExp<C, PM> extends OCLExpression<C> {
      * @generated
      */
 	void setVariable(Variable<C, PM> value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * type = in.type
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkLetType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LetExp

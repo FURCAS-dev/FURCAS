@@ -12,9 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: CollectionItem.java,v 1.4 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: CollectionItem.java,v 1.5 2008/03/28 20:33:34 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
+
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 
 /**
@@ -59,5 +62,18 @@ public interface CollectionItem<C> extends CollectionLiteralPart<C> {
      * @generated
      */
 	void setItem(OCLExpression<C> value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * type = item.type
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkItemType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // CollectionItem

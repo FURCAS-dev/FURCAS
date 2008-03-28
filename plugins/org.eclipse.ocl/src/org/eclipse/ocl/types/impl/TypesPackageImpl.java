@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.7 2008/02/29 17:47:13 cdamus Exp $
+ * $Id: TypesPackageImpl.java,v 1.8 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
@@ -41,6 +42,7 @@ import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesFactory;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.types.util.TypesValidator;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl;
 
@@ -211,6 +213,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         theTypesPackage.initializePackageContents();
         theUtilitiesPackage.initializePackageContents();
         theExpressionsPackage.initializePackageContents();
+
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theTypesPackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return TypesValidator.INSTANCE;
+                 }
+             });
 
         // Mark meta-data to indicate it can't be changed
         theTypesPackage.freeze();
@@ -581,7 +592,25 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         initEReference(getCollectionType_ElementType(), g1, null, "elementType", null, 0, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getCollectionType_Kind(), theExpressionsPackage.getCollectionKind(), "kind", null, 1, 1, CollectionType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        EOperation op = addEOperation(collectionTypeEClass, null, "oclIterators", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        EOperation op = addEOperation(collectionTypeEClass, ecorePackage.getEBoolean(), "checkCollectionTypeName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(collectionTypeEClass, ecorePackage.getEBoolean(), "checkNoInvalidValues", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(collectionTypeEClass, null, "oclIterators", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(collectionTypeEClass_O);
         initEOperation(op, g1);
 
@@ -594,6 +623,33 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         initEReference(getMessageType_ReferredOperation(), g1, null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(messageTypeEClass_C);
         initEReference(getMessageType_ReferredSignal(), g1, null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(messageTypeEClass, ecorePackage.getEBoolean(), "checkExclusiveSignature", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(messageTypeEClass, ecorePackage.getEBoolean(), "checkOperationParameters", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(messageTypeEClass, ecorePackage.getEBoolean(), "checkSignalAttributes", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(messageTypeEClass, null, "oclProperties", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(messageTypeEClass_P);
@@ -609,6 +665,33 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
         initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+        op = addEOperation(tupleTypeEClass, ecorePackage.getEBoolean(), "checkTupleTypeName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(tupleTypeEClass, ecorePackage.getEBoolean(), "checkPartNamesUnique", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(tupleTypeEClass, ecorePackage.getEBoolean(), "checkFeaturesOnlyProperties", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
         op = addEOperation(tupleTypeEClass, null, "oclProperties", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(tupleTypeEClass_P);
         initEOperation(op, g1);
@@ -621,6 +704,40 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
         // Create resource
         createResource(eNS_URI);
+
+        // Create annotations
+        // duplicates
+        createDuplicatesAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>duplicates</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createDuplicatesAnnotations() {
+        String source = "duplicates"; //$NON-NLS-1$		
+        addAnnotation
+          (bagTypeEClass, 
+           source, 
+           new String[] {
+           });																	
+        addAnnotation
+          (orderedSetTypeEClass, 
+           source, 
+           new String[] {
+           });		
+        addAnnotation
+          (sequenceTypeEClass, 
+           source, 
+           new String[] {
+           });		
+        addAnnotation
+          (setTypeEClass, 
+           source, 
+           new String[] {
+           });										
     }
 
 } //TypesPackageImpl

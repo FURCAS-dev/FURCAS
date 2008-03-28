@@ -12,10 +12,12 @@
  * 
  * </copyright>
  *
- * $Id: TupleType.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: TupleType.java,v 1.5 2008/03/28 20:33:34 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.utilities.PredefinedType;
 
@@ -30,7 +32,57 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @generated
  */
 public interface TupleType<O, P> extends PredefinedType<O> {
-	String SINGLETON_NAME = "Tuple"; //$NON-NLS-1$
+	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * name =
+     * 'Tuple('.concat (
+     * Sequence{1..allProperties()->size()}->iterate (pn; s: String = '' |
+     * let p: Property = allProperties()->at (pn) in (
+     * s.concat (
+     * (if (pn>1) then ',' else '' endif)
+     * .concat (p.name).concat (': ')
+     * .concat (p.type.name)
+     * )
+     * )
+     * )
+     * ).concat (')')
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkTupleTypeName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * true
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkPartNamesUnique(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * feature->forAll (f | f.oclIsTypeOf(Property))
+     * @param diagnostics The chain of diagnostics to which problems are to be appended.
+     * @param context The cache of context-specific information.
+     * <!-- end-model-doc -->
+     * @model
+     * @generated
+     */
+    boolean checkFeaturesOnlyProperties(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+    String SINGLETON_NAME = "Tuple"; //$NON-NLS-1$
 
 	/**
      * <!-- begin-user-doc -->

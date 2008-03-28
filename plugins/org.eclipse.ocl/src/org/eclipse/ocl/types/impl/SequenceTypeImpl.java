@@ -12,14 +12,17 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.operations.SequenceTypeOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,6 +58,16 @@ public class SequenceTypeImpl<C, O> extends CollectionTypeImpl<C, O> implements 
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return SequenceTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+    }
+
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
