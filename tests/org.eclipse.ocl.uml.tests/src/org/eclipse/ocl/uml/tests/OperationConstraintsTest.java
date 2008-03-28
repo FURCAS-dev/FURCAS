@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.2 2007/02/14 14:46:15 cdamus Exp $
+ * $Id: OperationConstraintsTest.java,v 1.3 2008/03/28 20:25:36 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -356,7 +356,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			(VariableExp<Classifier, Parameter>) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertEquals("self", var.getName()); //$NON-NLS-1$
+		assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 		
 		// now check the resolution of implicit iterator variables as sources
 		expr = parseConstraint(
@@ -376,7 +376,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		var = (VariableExp<Classifier, Parameter>) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+		assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -402,7 +402,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 				(VariableExp<Classifier, Parameter>) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertEquals("self", var.getName()); //$NON-NLS-1$
+			assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 			
 			// now check the resolution of implicit iterator variables as sources
 			expr = getBodyExpression(helper.createPrecondition(
@@ -419,7 +419,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			var = (VariableExp<Classifier, Parameter>) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+			assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 		} catch (ParserException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
@@ -447,7 +447,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		VariableExp<Classifier, Parameter> var = (VariableExp<Classifier, Parameter>) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertEquals("self", var.getName()); //$NON-NLS-1$
+		assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 		
 		// now check the resolution of implicit iterator variables as sources
 		expr = parseConstraint(
@@ -466,7 +466,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		var = (VariableExp<Classifier, Parameter>) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+		assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 	}
 	
 	/**
@@ -492,7 +492,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 				(VariableExp<Classifier, Parameter>) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertEquals("self", var.getName()); //$NON-NLS-1$
+			assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
 			
 			// now check the resolution of implicit iterator variables as sources
 			expr = getBodyExpression(helper.createPrecondition(
@@ -509,7 +509,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			var = (VariableExp<Classifier, Parameter>) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertTrue(var.getName().startsWith("temp")); //$NON-NLS-1$
+			assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
 		} catch (ParserException e) {
 			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
