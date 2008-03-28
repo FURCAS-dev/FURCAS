@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.6 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.7 2008/03/28 20:37:26 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -1792,11 +1792,15 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         //    convenience
         OCLExpression<C> exp = uml.getSpecification(constraint).getBodyExpression();
         while (exp instanceof LetExp) {
-        	exp = ((LetExp<C, PM>) exp).getIn();
+            @SuppressWarnings("unchecked")
+            LetExp<C, ?> letExp = (LetExp<C, ?>) exp;
+        	exp = letExp.getIn();
         }
         OperationCallExp<C, O> body = null;
         if (exp instanceof OperationCallExp) {
-        	body = (OperationCallExp<C, O>) exp;
+            @SuppressWarnings("unchecked")
+            OperationCallExp<C, O> callExp = (OperationCallExp<C, O>) exp;
+        	body = callExp;
         }
         
         if ((body == null)
@@ -1959,6 +1963,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         }
 		
 		if (result) {
+		    @SuppressWarnings("unchecked")
 			Variable<C, PM> var = ((VariableExp<C, PM>) expr).getReferredVariable();
 			
 			// the result variable is a context variable, contained in the
