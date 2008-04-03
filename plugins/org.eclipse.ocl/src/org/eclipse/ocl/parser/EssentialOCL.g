@@ -11,10 +11,11 @@
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Elimination of some shift-reduce conflicts
 -- *   E.D.Willink - Remove unnecessary warning suppression
+-- *   E.D.Willink - 225493 Need ability to set CSTNode offsets
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.2 2008/01/02 20:12:59 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.3 2008/04/03 13:00:10 cdamus Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -158,7 +159,20 @@ $Define
 
 			return null;
 		}
-
+	
+        /**
+         * Initializes a concrete-syntax node's start and end offsets from the
+         * current token in the parser stream.
+         * 
+         * @param cstNode a concrete-syntax node
+         * 
+         * @since 1.2
+         */
+		protected void setOffsets(CSTNode cstNode) {
+			IToken firstToken = getIToken($getToken(1));
+			cstNode.setStartOffset(firstToken.getStartOffset());
+			cstNode.setEndOffset(firstToken.getEndOffset()-1);
+		}
 	./
 $End
 
@@ -176,10 +190,11 @@ $Notice
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
  *   E.D.Willink - Remove unnecessary warning suppression
+ *   E.D.Willink - 225493 Need ability to set CSTNode offsets
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.2 2008/01/02 20:12:59 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.3 2008/04/03 13:00:10 cdamus Exp $
  */
 	./
 $End
