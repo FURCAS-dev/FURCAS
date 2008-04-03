@@ -3,7 +3,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: runtests.xml,v 1.1 2007/05/23 15:05:16 cdamus Exp $
+ * $Id: runtests.xml,v 1.2 2008/04/03 13:06:43 cdamus Exp $
  */
 -->
 <project name="project" default="default">
@@ -29,13 +29,13 @@
         	<sysproperty key="org.eclipse.ocl.uml.tests.testmodel" value="file:${workspace.location}/org.eclipse.ocl.uml.tests/model/OCLTest.uml"/>
         	
         	<classpath>
-        		<fileset dir="${target.location}/plugins">
-        			<include name="org.junit_3*/junit.jar"/>
-        			<include name="org.eclipse.emf.common_*.jar"/>
-        			<include name="org.eclipse.emf.ecore_*.jar"/>
-        			<include name="org.eclipse.emf.ecore.xmi_*.jar"/>
-        			<include name="org.eclipse.uml2.common_*.jar"/>
-        			<include name="org.eclipse.uml2.uml_*.jar"/>
+        		<fileset dir="${target.location}">
+        			<include name="**/plugins/org.junit_3*/junit.jar"/>
+        			<include name="**/plugins/org.eclipse.emf.common_*.jar"/>
+        			<include name="**/plugins/org.eclipse.emf.ecore_*.jar"/>
+        			<include name="**/plugins/org.eclipse.emf.ecore.xmi_*.jar"/>
+        			<include name="**/plugins/org.eclipse.uml2.common_*.jar"/>
+        			<include name="**/plugins/org.eclipse.uml2.uml_*.jar"/>
         		</fileset>
         		<dirset dir="${workspace.location}">
         			<include name="net.sourceforge.lpg*"/>
