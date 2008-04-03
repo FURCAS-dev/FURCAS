@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.3 2008/01/02 20:13:01 cdamus Exp $
+ * $Id: AllTests.java,v 1.4 2008/04/03 13:06:43 cdamus Exp $
  */
 package org.eclipse.ocl.standalone.tests;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -109,17 +110,40 @@ public class AllTests extends TestCase {
     }
     
     private static String getUMLResourcesJar() {
-        File pluginsDir = new File(System.getProperty("target.location") //$NON-NLS-1$
-            + "plugins"); //$NON-NLS-1$
-        File[] contents = pluginsDir.listFiles(new FilenameFilter() {
+        File targetDir = new File(System.getProperty("target.location")); //$NON-NLS-1$
+        File result = findFile(targetDir, new FilenameFilter() {
         
             public boolean accept(File dir, String name) {
                 return name.startsWith("org.eclipse.uml2.uml.resources_") //$NON-NLS-1$
                     && name.endsWith(".jar"); //$NON-NLS-1$
             }});
         
-        assertTrue(contents != null && contents.length > 0);
-        return contents[0].getAbsolutePath();
+        assertNotNull(result);
+        return result.getAbsolutePath();
+    }
+    
+    private static File findFile(File dir, FilenameFilter filter) {
+        File[] contents = dir.listFiles(filter);
+        if ((contents != null) && (contents.length > 0)) {
+            return contents[0];
+        }
+        
+        File[] subdirs = dir.listFiles(new FileFilter() {
+        
+            public boolean accept(File pathname) {
+                return pathname.isDirectory();
+            }});
+        
+        if (subdirs != null) {
+            for (File sub : subdirs) {
+                File result = findFile(sub, filter);
+                if (result != null) {
+                    return result;
+                }
+            }
+        }
+        
+        return null;
     }
     
     private static void configureOCL() {
