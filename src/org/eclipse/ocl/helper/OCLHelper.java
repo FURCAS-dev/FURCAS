@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.4 2008/01/03 15:17:55 cdamus Exp $
+ * $Id: OCLHelper.java,v 1.5 2008/04/17 19:38:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.helper;
@@ -174,6 +174,25 @@ public interface OCLHelper<C, O, P, CT> {
      * @return the OCL instance that created me
      */
     OCL<?, C, O, P, ?, ?, ?, ?, ?, CT, ?, ?> getOCL();
+    
+    /**
+     * Obtains the environment defining my current
+     * {@linkplain #getContextClassifier() classifier},
+     * {@linkplain #getContextOperation() operation}, or
+     * {@linkplain #getContextAttribute() attribute} context.  Accessing the
+     * environment is convenient for, e.g., adding variable definitions to
+     * insert global objects into the OCL context.
+     * 
+     * @return my current context environment, or <code>null</code> if I have
+     *    not yet been assigned a context
+     * 
+     * @see #setContext(Object)
+     * @see #setOperationContext(Object, Object)
+     * @see #setAttributeContext(Object, Object)
+     * 
+     * @since 1.2
+     */
+    Environment<?, C, O, P, ?, ?, ?, ?, ?, CT, ?, ?> getEnvironment();
     
 	/**
 	 * Queries whether I validate the expressions that I parse.  Validation
