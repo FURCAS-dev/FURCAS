@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.3 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.4 2008/04/17 19:38:13 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.uml;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ConstraintKind;
@@ -44,6 +45,10 @@ class OCLHelperImpl implements OCL.Helper {
 
     public OCL getOCL() {
         return (OCL) delegate.getOCL();
+    }
+    
+    public Environment<?, Classifier, Operation, Property, ?, ?, ?, ?, ?, Constraint, ?, ?> getEnvironment() {
+        return delegate.getEnvironment();
     }
     
     public Constraint createConstraint(ConstraintKind kind, String expression)
