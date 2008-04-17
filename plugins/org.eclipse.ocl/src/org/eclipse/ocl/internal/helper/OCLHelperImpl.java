@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.5 2008/01/03 15:17:55 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.6 2008/04/17 19:38:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -73,7 +73,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		environmentFactory = ocl.getEnvironment().getFactory();
 	}
 	
-	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	public Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	getEnvironment() {
 		return env == null? ocl.getEnvironment() : env;
 	}
