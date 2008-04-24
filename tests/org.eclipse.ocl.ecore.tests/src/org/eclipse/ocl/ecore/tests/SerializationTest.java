@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.6 2008/03/14 19:59:27 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.7 2008/04/24 23:37:20 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
@@ -322,6 +323,44 @@ public class SerializationTest
         
         TypeType typeType = (TypeType) expr.getType();
         assertSame(EcorePackage.Literals.EPACKAGE, typeType.getReferredType());
+    }
+    
+    /**
+     * Tests that the OclType constant is not serialized.
+     */
+    public void test_OclType_serialization_226455() {
+        TypeResolver<EClassifier, EOperation, EStructuralFeature> resolver = ocl
+				.getEnvironment().getTypeResolver();
+        
+        EClassifier oclType = resolver.resolve(getOCLStandardLibrary().getOclType());
+        assertSame(getOCLStandardLibrary().getOclType(), oclType);
+        assertTrue(resolver.getResource().getContents().isEmpty());
+    }
+    
+    /**
+     * Tests for appropriate resolution of 'typespec' as in oclIsKindOf() operation.
+     */
+    public void test_typespec_resolution_226455() {
+        parseExpression(
+                EcorePackage.Literals.EPACKAGE,
+                "self.eClassifiers->any(oclIsKindOf(EClass))"); //$NON-NLS-1$
+
+        Resource res = ocl.getEnvironment().getTypeResolver().getResource();
+        EPackage typesPackage = null;
+        for (EObject next : res.getContents()) {
+        	if ((next instanceof EPackage)
+        			&& "types".equals(((EPackage) next).getName())) { //$NON-NLS-1$
+        		typesPackage = (EPackage) next;
+        		break;
+        	}
+        }
+        assertNotNull(typesPackage);
+        
+        assertEquals(1, typesPackage.getEClassifiers().size());
+        
+        EClassifier first = typesPackage.getEClassifiers().get(0);
+        assertTrue(first instanceof TypeType);
+        assertSame(EcorePackage.Literals.ECLASS, ((TypeType) first).getReferredType());
     }
     
     public void test_referenceToGenericOCLExpressionsPackage_214878() {

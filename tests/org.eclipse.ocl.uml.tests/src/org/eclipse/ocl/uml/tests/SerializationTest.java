@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.7 2008/03/14 19:59:31 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.8 2008/04/24 23:37:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.OperationCallExp;
@@ -46,6 +47,7 @@ import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -310,6 +312,44 @@ public class SerializationTest
         
         TypeType typeType = (TypeType) expr.getType();
         assertSame(getMetaclass("Package"), typeType.getReferredType()); //$NON-NLS-1$
+    }
+    
+    /**
+     * Tests that the OclType constant is not serialized.
+     */
+    public void test_OclType_serialization_226455() {
+        TypeResolver<Classifier, Operation, Property> resolver = ocl
+				.getEnvironment().getTypeResolver();
+        
+        Classifier oclType = resolver.resolve(getOCLStandardLibrary().getOclType());
+        assertSame(getOCLStandardLibrary().getOclType(), oclType);
+        assertTrue(resolver.getResource().getContents().isEmpty());
+    }
+    
+    /**
+     * Tests for appropriate resolution of 'typespec' as in oclIsKindOf() operation.
+     */
+    public void test_typespec_resolution_226455() {
+        parseExpression(
+                getMetaclass("Package"), //$NON-NLS-1$
+                "self.ownedType->any(oclIsKindOf(Class))"); //$NON-NLS-1$
+
+        Resource res = ocl.getEnvironment().getTypeResolver().getResource();
+        Package typesPackage = null;
+        for (EObject next : res.getContents()) {
+        	if ((next instanceof Package)
+        			&& "types".equals(((Package) next).getName())) { //$NON-NLS-1$
+        		typesPackage = (Package) next;
+        		break;
+        	}
+        }
+        assertNotNull(typesPackage);
+        
+        assertEquals(1, typesPackage.getOwnedTypes().size());
+        
+        Classifier first = (Classifier) typesPackage.getOwnedTypes().get(0);
+        assertTrue(first instanceof TypeType);
+        assertSame(getMetaclass("Class"), ((TypeType) first).getReferredType()); //$NON-NLS-1$
     }
     
     public void test_referenceToOCLEcoreMetamodel_214878() {

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.11 2008/03/14 19:59:28 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.12 2008/04/24 23:37:20 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -29,9 +29,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
-import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.types.OrderedSetType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.util.TypesSwitch;
@@ -83,6 +86,14 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	private PK messagePackage;
 	private PK additionalFeaturesPackage;
 	
+	private CollectionType<C, O> collection;
+	private SetType<C, O> set;
+	private OrderedSetType<C, O> orderedSet;
+	private BagType<C, O> bag;
+	private SequenceType<C, O> sequence;
+	private TypeType<C, O> oclType;
+	private MessageType<C, O, P> oclMessage;
+
 	/**
 	 * Initializes me with an environment.  I create my own resource for
      * persistence of model-based types.
@@ -193,30 +204,28 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	}
 	
 	// Documentation copied from the inherited specification
-	@SuppressWarnings("unchecked")
 	public CollectionType<C, O> resolveCollectionType(
 			CollectionKind kind,
 			C elementType) {
 		
 	    CollectionType<C, O> result;
 	    
-		OCLStandardLibrary<C> stdlib = getEnvironment().getOCLStandardLibrary();
-		if (elementType == stdlib.getT()) {
+		if (elementType == getCollection().getElementType()) {
 			switch (kind) {
 				case SET_LITERAL :
-				    result = (CollectionType<C, O>) stdlib.getSet();
+				    result = getSet();
 				    break;
 				case ORDERED_SET_LITERAL:
-				    result = (CollectionType<C, O>) stdlib.getOrderedSet();
+				    result = getOrderedSet();
                     break;
 				case SEQUENCE_LITERAL:
-				    result = (CollectionType<C, O>) stdlib.getSequence();
+				    result = getSequence();
                     break;
 				case BAG_LITERAL:
-				    result = (CollectionType<C, O>) stdlib.getBag();
+				    result = getBag();
                     break;
 				default:
-				    result = (CollectionType<C, O>) stdlib.getCollection();
+				    result = getCollection();
 				    break;
 			}
 		} else {
@@ -228,6 +237,56 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		}
 		
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private CollectionType<C, O> getCollection() {
+		if (collection == null) {
+			collection = (CollectionType<C, O>) getEnvironment().getOCLStandardLibrary()
+					.getCollection();
+		}
+		
+		return collection;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private SetType<C, O> getSet() {
+		if (set == null) {
+			set = (SetType<C, O>) getEnvironment().getOCLStandardLibrary()
+					.getSet();
+		}
+		
+		return set;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private OrderedSetType<C, O> getOrderedSet() {
+		if (orderedSet == null) {
+			orderedSet = (OrderedSetType<C, O>) getEnvironment().getOCLStandardLibrary()
+					.getOrderedSet();
+		}
+		
+		return orderedSet;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private SequenceType<C, O> getSequence() {
+		if (sequence == null) {
+			sequence = (SequenceType<C, O>) getEnvironment().getOCLStandardLibrary()
+					.getSequence();
+		}
+		
+		return sequence;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private BagType<C, O> getBag() {
+		if (bag == null) {
+			bag = (BagType<C, O>) getEnvironment().getOCLStandardLibrary()
+					.getBag();
+		}
+		
+		return bag;
 	}
 	
 	/**
@@ -430,6 +489,11 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	
 	// Documentation copied from the inherited specification
 	public TypeType<C, O> resolveTypeType(C type) {
+		if (type == getOclType().getReferredType()) {
+			// this is the canonical OclType instance
+			return getOclType();
+		}
+		
 		TypeType<C, O> result = findTypeType(type);
 		
 		if (result == null) {
@@ -437,6 +501,16 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		}
 		
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private TypeType<C, O> getOclType() {
+		if (oclType == null) {
+			oclType = (TypeType<C, O>) getEnvironment().getOCLStandardLibrary()
+					.getOclType();
+		}
+		
+		return oclType;
 	}
 	
 	/**
@@ -522,6 +596,11 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	
 	// Documentation copied from the inherited specification
 	public MessageType<C, O, P> resolveOperationMessageType(O operation) {
+		if (operation == getOclMessage().getReferredOperation()) {
+			// this is the canonical OclMessage type
+			return getOclMessage();
+		}
+		
 		MessageType<C, O, P> result = findMessageType(operation);
 		
 		if (result == null) {
@@ -533,6 +612,11 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	
 	// Documentation copied from the inherited specification
 	public MessageType<C, O, P> resolveSignalMessageType(C signal) {
+		if (signal == getOclMessage().getReferredSignal()) {
+			// this is the canonical OclMessage type
+			return getOclMessage();
+		}
+		
 		MessageType<C, O, P> result = findMessageType(signal);
 		
 		if (result == null) {
@@ -540,6 +624,16 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		}
 		
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private MessageType<C, O, P> getOclMessage() {
+		if (oclMessage == null) {
+			oclMessage = (MessageType<C, O, P>) getEnvironment().getOCLStandardLibrary()
+					.getOclMessage();
+		}
+		
+		return oclMessage;
 	}
 	
 	/**
@@ -917,11 +1011,6 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 		
 		@Override
 		public <C1, O1> C caseTypeType(TypeType<C1, O1> object) {
-		    if (object.getReferredType() == null) {
-		        // this is the canonical OclType instance
-		        return (C) object;
-		    }
-		    
 			return (C) resolveTypeType(resolve((C) object.getReferredType()));
 		}
 		
