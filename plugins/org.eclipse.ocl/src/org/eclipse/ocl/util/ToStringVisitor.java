@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D. Willink - Robustness enhancements (null-proofing)
+ *   Adolfo Sanchez- Barbudo Herrera - 228841 Fix NPE in VariableExp
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.7 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.8 2008/04/26 16:24:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -200,7 +201,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	@Override
     public String visitVariableExp(VariableExp<C, PM> v) {
 		Variable<C, PM> vd = v.getReferredVariable();
-		String result = vd.getName();
+		String result = (vd == null) ? null : vd.getName();
 		
 		if (result == null) {
 			result = NULL_PLACEHOLDER;
