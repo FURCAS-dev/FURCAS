@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeOperations.java,v 1.1 2008/03/28 20:33:34 cdamus Exp $
+ * $Id: MessageTypeOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.types.operations;
 
@@ -63,15 +63,18 @@ public class MessageTypeOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, O, P> boolean checkExclusiveSignature(MessageType<C, O, P> messageType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+        O oper = messageType.getReferredOperation();
+        C sig = messageType.getReferredSignal();
+        
+    	boolean result = ((oper != null) && (sig == null))
+				|| ((oper == null) && (sig != null));
+    	
+    	if (!result) {
             if (diagnostics != null) {
+            	// Specific message
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
@@ -80,9 +83,8 @@ public class MessageTypeOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkExclusiveSignature", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(messageType, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { messageType }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IteratorExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: IteratorExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,20 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.BagType;
+import org.eclipse.ocl.types.OrderedSetType;
+import org.eclipse.ocl.types.PrimitiveType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,26 +74,47 @@ public class IteratorExpOperations extends LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkBooleanType(IteratorExp<C, PM> iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(iteratorExp, context);
+		C type = iteratorExp.getType();
+
+    	if (env != null) {
+    		String name = iteratorExp.getName();
+			int opcode = OCLStandardLibraryUtil.getOperationCode(name);
+			
+    		switch (opcode) {
+    		case PredefinedType.FOR_ALL:
+    		case PredefinedType.EXISTS:
+    		case PredefinedType.IS_UNIQUE:
+    			if (!(type instanceof PrimitiveType)
+						|| !"Boolean".equals(env.getUMLReflection() //$NON-NLS-1$
+								.getName(type))) {
+    				result = false;
+    				message = OCLMessages.bind(
+    						OCLMessages.TypeConformanceIteratorResult_ERROR_,
+    						iteratorExp.toString());
+    			}
+    		}
+    	}
+    	
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.ITERATOR_EXP__BOOLEAN_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkBooleanType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(iteratorExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { iteratorExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -99,26 +131,53 @@ public class IteratorExpOperations extends LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkCollectType(IteratorExp<C, PM> iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(iteratorExp, context);
+		C type = iteratorExp.getType();
+
+    	OCLExpression<C> source = iteratorExp.getSource();
+    	if ((env != null) && (source != null) && (source.getType() != null)) {
+    		String name = iteratorExp.getName();
+			int opcode = OCLStandardLibraryUtil.getOperationCode(name);
+			
+    		switch (opcode) {
+    		case PredefinedType.COLLECT:
+				if ((source.getType() instanceof SequenceType)
+						|| (source.getType() instanceof OrderedSetType)) {
+					if (!(type instanceof SequenceType)) {
+						result = false;
+						message = OCLMessages.bind(
+								OCLMessages.TypeConformanceCollectSequence_ERROR_,
+								iteratorExp.toString());
+					}
+				} else if (!(type instanceof BagType)) {
+					result = false;
+					message = OCLMessages.bind(
+							OCLMessages.TypeConformanceCollectBag_ERROR_,
+							iteratorExp.toString());
+				}
+				break;
+    		}
+    	}
+    	
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.ITERATOR_EXP__COLLECT_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkCollectType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(iteratorExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { iteratorExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -130,26 +189,46 @@ public class IteratorExpOperations extends LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkSelectRejectType(IteratorExp<C, PM> iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(iteratorExp, context);
+		C type = iteratorExp.getType();
+
+    	OCLExpression<C> source = iteratorExp.getSource();
+    	if ((env != null) && (source != null) && (source.getType() != null)) {
+    		String name = iteratorExp.getName();
+			int opcode = OCLStandardLibraryUtil.getOperationCode(name);
+			
+    		switch (opcode) {
+    		case PredefinedType.SELECT:
+    		case PredefinedType.REJECT:
+    			if (!TypeUtil.exactTypeMatch(env, type, source.getType())) {
+    				result = false;
+    				message = OCLMessages.bind(
+    						OCLMessages.TypeConformanceSelectReject_ERROR_,
+    						iteratorExp.toString());
+    			}
+    			break;
+    		}
+    	}
+    	
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.ITERATOR_EXP__SELECT_REJECT_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkSelectRejectType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(iteratorExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { iteratorExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -162,26 +241,53 @@ public class IteratorExpOperations extends LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkBooleanBodyType(IteratorExp<C, PM> iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(iteratorExp, context);
+    	OCLExpression<C> body = iteratorExp.getBody();
+
+    	if ((env != null) && (body != null)) {
+    		C type = body.getType();
+    		
+    		String name = iteratorExp.getName();
+			int opcode = OCLStandardLibraryUtil.getOperationCode(name);
+			
+    		switch (opcode) {
+    		case PredefinedType.SELECT:
+    		case PredefinedType.REJECT:
+    		case PredefinedType.FOR_ALL:
+    		case PredefinedType.ANY:
+    		case PredefinedType.EXISTS:
+    		case PredefinedType.ONE:
+    			if (!(type instanceof PrimitiveType)
+						|| !"Boolean".equals(env.getUMLReflection() //$NON-NLS-1$
+								.getName(type))) {
+    				result = false;
+    				message = OCLMessages.bind(
+    						OCLMessages.TypeConformanceIteratorBodyBoolean_ERROR_,
+    						iteratorExp.toString());
+    			}
+    			break;
+    		}
+    	}
+    	
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.ITERATOR_EXP__BOOLEAN_BODY_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkBooleanBodyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(iteratorExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { iteratorExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // IteratorExpOperations

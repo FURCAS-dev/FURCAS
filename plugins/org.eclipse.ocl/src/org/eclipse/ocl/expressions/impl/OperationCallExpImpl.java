@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.6 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -169,17 +169,19 @@ public class OperationCallExpImpl<C, O> extends FeatureCallExpImpl<C> implements
 					Environment.Registry.INSTANCE.getEnvironmentFor(getSource());
 				C type = getSource().getType();
 
-				String operName = env.getUMLReflection().getName(getReferredOperation());
-				
-				if (type instanceof PredefinedType) {
-					operationCode = OCLStandardLibraryUtil.getOperationCode(
-							operName);
-			   	} else if (TypeUtil.isOclAnyOperation(env, getReferredOperation())) {
-					// not a predefined type?  Model types have the AnyType
-					//    operations (except in the case that a model type
-			   		//    defines the corresponding operation)
-					operationCode = OCLStandardLibraryUtil.getOclAnyOperationCode(
-							operName);
+				if (env != null) {
+					String operName = env.getUMLReflection().getName(getReferredOperation());
+					
+					if (type instanceof PredefinedType) {
+						operationCode = OCLStandardLibraryUtil.getOperationCode(
+								operName);
+				   	} else if (TypeUtil.isOclAnyOperation(env, getReferredOperation())) {
+						// not a predefined type?  Model types have the AnyType
+						//    operations (except in the case that a model type
+				   		//    defines the corresponding operation)
+						operationCode = OCLStandardLibraryUtil.getOclAnyOperationCode(
+								operName);
+					}
 				}
 			} else {
 				operationCode = 0;

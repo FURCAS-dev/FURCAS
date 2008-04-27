@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.4 2007/11/20 13:19:58 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.5 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -308,6 +308,39 @@ public final class OCLUtil {
 				} else {
 					throw new SemanticException(result);
 				}
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Attempts to get an environment instance that is appropriate for introspection
+	 * of the specified validation <tt>target</tt>.  If an environment is specified
+	 * in the validation <tt>context</tt>, then it is used.  Otherwise, an
+	 * environment is obtained from the registry.
+	 * 
+	 * @param target an object to be validated in an appropriate environment
+	 * @param context the current validation context
+	 * 
+	 * @return the environment, or <code>null</code> if none can be found
+	 * 
+	 * @see Environment.Registry
+	 */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> getValidationEnvironment(
+			Object target, Map<Object, Object> context) {
+		
+		@SuppressWarnings("unchecked")
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result = (Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) context
+				.get(Environment.class);
+		
+		if (result == null) {
+			// try the extension point
+			result = Environment.Registry.INSTANCE.getEnvironmentFor(target);
+			
+			if (result != null) {
+				context.put(Environment.class, result);
 			}
 		}
 		

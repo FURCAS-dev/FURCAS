@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitor.java,v 1.6 2008/01/02 17:10:09 cdamus Exp $
+ * $Id: AbstractVisitor.java,v 1.7 2008/04/27 23:16:03 cdamus Exp $
  */
 
 package org.eclipse.ocl.utilities;
@@ -89,6 +89,19 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
 	protected AbstractVisitor(T initialValue) {
 	    this.result = initialValue;
 	}
+	
+	/**
+	 * A null-safe visitation of the specified visitable.
+	 * 
+	 * @param v a visitable, or <code>null</code>
+	 * @return <code>null</code> if the visitable is <code>null</code>;
+	 *     otherwise, the result of visiting it
+	 * 
+	 * @since 1.2
+	 */
+	protected T safeVisit(Visitable v) {
+		return (v == null)? null : v.accept(this);
+	}
 
     /**
      * Visits the operation-call source and then its arguments.
@@ -96,7 +109,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      */
 	public T visitOperationCallExp(OperationCallExp<C, O> callExp) {
         OCLExpression<C> source = callExp.getSource();
-		T sourceResult = (source != null)? source.accept(this) : null;
+		T sourceResult = safeVisit(source);
         
         List<T> argumentResults;
         List<OCLExpression<C>> arguments = callExp.getArgument();
@@ -106,7 +119,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             argumentResults = new java.util.ArrayList<T>(arguments.size());
             for (OCLExpression<C> qual : arguments) {
-                argumentResults.add(qual.accept(this));
+                argumentResults.add(safeVisit(qual));
             }
         }
         
@@ -143,12 +156,9 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handlePropertyCallExp(PropertyCallExp, Object, List)}.
      */
 	public T visitPropertyCallExp(PropertyCallExp<C, P> callExp) {
-        T sourceResult = null;
-        if (callExp.getSource() != null) {
-            // source is null when the property call expression is an
-            //    association class navigation qualifier
-            sourceResult = callExp.getSource().accept(this);
-        }
+        // source is null when the property call expression is an
+        //    association class navigation qualifier
+        T sourceResult = safeVisit(callExp.getSource());
         
         List<T> qualifierResults;
         List<OCLExpression<C>> qualifiers = callExp.getQualifier();
@@ -158,7 +168,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             qualifierResults = new java.util.ArrayList<T>(qualifiers.size());
             for (OCLExpression<C> qual : qualifiers) {
-                qualifierResults.add(qual.accept(this));
+                qualifierResults.add(safeVisit(qual));
             }
         }
         
@@ -191,7 +201,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleAssociationClassCallExp(AssociationClassCallExp, Object, List)}.
      */
 	public T visitAssociationClassCallExp(AssociationClassCallExp<C, P> callExp) {
-		T sourceResult = callExp.getSource().accept(this);
+		T sourceResult = safeVisit(callExp.getSource());
 		
         List<T> qualifierResults;
         List<OCLExpression<C>> qualifiers = callExp.getQualifier();
@@ -201,7 +211,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             qualifierResults = new java.util.ArrayList<T>(qualifiers.size());
     		for (OCLExpression<C> qual : qualifiers) {
-    			qualifierResults.add(qual.accept(this));
+    			qualifierResults.add(safeVisit(qual));
     		}
         }
         
@@ -231,11 +241,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleVariable(Variable, Object)}.
      */
 	public T visitVariable(Variable<C, PM> variable) {
-        T initResult = null;
-        
-		if (variable.getInitExpression() != null) {
-			initResult = variable.getInitExpression().accept(this);
-		}
+        T initResult = safeVisit(variable.getInitExpression());
 		
 		return handleVariable(variable, initResult);
 	}
@@ -263,9 +269,9 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      */
 	public T visitIfExp(IfExp<C> ifExp) {
 		return handleIfExp(ifExp,
-            ifExp.getCondition().accept(this),
-            ifExp.getThenExpression().accept(this),
-            ifExp.getElseExpression().accept(this));
+				safeVisit(ifExp.getCondition()),
+				safeVisit(ifExp.getThenExpression()),
+				safeVisit(ifExp.getElseExpression()));
 	}
     
     /**
@@ -298,7 +304,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleMessageExp(MessageExp, Object, List)}.
      */
 	public T visitMessageExp(MessageExp<C, COA, SSA> messageExp) {
-        T targetResult = messageExp.getTarget().accept(this);
+        T targetResult = safeVisit(messageExp.getTarget());
         
         List<T> argumentResults;
         List<OCLExpression<C>> arguments = messageExp.getArgument();
@@ -308,7 +314,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             argumentResults = new java.util.ArrayList<T>(arguments.size());
             for (OCLExpression<C> qual : arguments) {
-                argumentResults.add(qual.accept(this));
+                argumentResults.add(safeVisit(qual));
             }
         }
         
@@ -409,7 +415,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             partResults = new java.util.ArrayList<T>(parts.size());
             for (TupleLiteralPart<C, P> part : parts) {
-                partResults.add(part.accept(this));
+                partResults.add(safeVisit(part));
             }
         }
 		
@@ -438,11 +444,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleTupleLiteralPart(TupleLiteralPart, Object)}.
      */
 	public T visitTupleLiteralPart(TupleLiteralPart<C, P> part) {
-        T valueResult = null;
-        
-		if (part.getValue() != null) {
-			valueResult = part.getValue().accept(this);
-		}
+        T valueResult = safeVisit(part.getValue());
 		
 		return handleTupleLiteralPart(part, valueResult);
 	}
@@ -470,8 +472,8 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      */
 	public T visitLetExp(LetExp<C, PM> letExp) {
 		return handleLetExp(letExp,
-            letExp.getVariable().accept(this),
-            letExp.getIn().accept(this));
+				safeVisit(letExp.getVariable()),
+				safeVisit(letExp.getIn()));
 	}
     
     /**
@@ -511,7 +513,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             partResults = new java.util.ArrayList<T>(parts.size());
             for (CollectionLiteralPart<C> part : parts) {
-                partResults.add(part.accept(this));
+                partResults.add(safeVisit(part));
             }
         }
         
@@ -541,7 +543,9 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleCollectionItem(CollectionItem, Object)}
      */
     public T visitCollectionItem(CollectionItem<C> item) {
-        return handleCollectionItem(item, item.getItem().accept(this));
+    	T itemResult = safeVisit(item.getItem());
+    	
+        return handleCollectionItem(item, itemResult);
     }
     
     /**
@@ -566,8 +570,8 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      */
     public T visitCollectionRange(CollectionRange<C> range) {
         return handleCollectionRange(range,
-            range.getFirst().accept(this),
-            range.getLast().accept(this));
+        		safeVisit(range.getFirst()),
+        		safeVisit(range.getLast()));
     }
     
     /**
@@ -593,7 +597,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleIteratorExp(IteratorExp, Object, List, Object)}.
      */
 	public T visitIteratorExp(IteratorExp<C, PM> callExp) {
-        T sourceResult = callExp.getSource().accept(this);
+        T sourceResult = safeVisit(callExp.getSource());
         
         List<T> variableResults;
         List<Variable<C, PM>> variables = callExp.getIterator();
@@ -603,11 +607,11 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             variableResults = new java.util.ArrayList<T>(variables.size());
             for (Variable<C, PM> iterVar : variables) {
-                variableResults.add(iterVar.accept(this));
+                variableResults.add(safeVisit(iterVar));
             }
         }
         
-        T bodyResult = callExp.getBody().accept(this);
+        T bodyResult = safeVisit(callExp.getBody());
         
         return handleIteratorExp(callExp, sourceResult, variableResults, bodyResult);
 	}
@@ -637,7 +641,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * Returns the result of {@link #handleIterateExp(IterateExp, Object, List, Object, Object)}.
      */
 	public T visitIterateExp(IterateExp<C, PM> callExp) {
-        T sourceResult = callExp.getSource().accept(this);
+        T sourceResult = safeVisit(callExp.getSource());
         
         List<T> variableResults;
         List<Variable<C, PM>> variables = callExp.getIterator();
@@ -647,12 +651,12 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             variableResults = new java.util.ArrayList<T>(variables.size());
             for (Variable<C, PM> iterVar : variables) {
-                variableResults.add(iterVar.accept(this));
+                variableResults.add(safeVisit(iterVar));
             }
         }
         
-        T resultResult = callExp.getResult().accept(this);
-        T bodyResult = callExp.getBody().accept(this);
+        T resultResult = safeVisit(callExp.getResult());
+        T bodyResult = safeVisit(callExp.getBody());
         
         return handleIterateExp(callExp, sourceResult, variableResults,
             resultResult, bodyResult);
@@ -687,10 +691,10 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * {@link #handleExpressionInOCL(ExpressionInOCL, Object, Object, List, Object)}.
      */
     public T visitExpressionInOCL(ExpressionInOCL<C, PM> expression) {
-        T contextResult = expression.getContextVariable().accept(this);
+        T contextResult = safeVisit(expression.getContextVariable());
         
         Variable<C, PM> resultVar = expression.getResultVariable();
-        T resultResult = (resultVar == null)? null : resultVar.accept(this);
+        T resultResult = safeVisit(resultVar);
         
         List<T> parameterResults;
         List<Variable<C, PM>> parameters = expression.getParameterVariable();
@@ -700,11 +704,11 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
         } else {
             parameterResults = new java.util.ArrayList<T>(parameters.size());
             for (Variable<C, PM> iterVar : parameters) {
-                parameterResults.add(iterVar.accept(this));
+                parameterResults.add(safeVisit(iterVar));
             }
         }
         
-        T bodyResult = expression.getBodyExpression().accept(this);
+        T bodyResult = safeVisit(expression.getBodyExpression());
         
         return handleExpressionInOCL(expression, contextResult, resultResult,
             parameterResults, bodyResult);
@@ -741,11 +745,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @see #getSpecification(Object)
      */
 	public T visitConstraint(CT constraint) {
-        T specificationResult = null;
-        
-		if (getSpecification(constraint) != null) {
-            specificationResult = getSpecification(constraint).accept(this);
-		}
+        T specificationResult = safeVisit(getSpecification(constraint));
 		
 		return handleConstraint(constraint, specificationResult);
 	}

@@ -12,19 +12,27 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: TupleLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.TupleLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.TupleType;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,26 +73,62 @@ public class TupleLiteralExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, P> boolean checkTupleType(TupleLiteralExp<C, P> tupleLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+    	Environment<?, C, ?, P, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(tupleLiteralExp, context);
+		
+		if (env != null) {
+			UMLReflection<?, C, ?, P, ?, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
+			C type = tupleLiteralExp.getType();
+			if (!(type instanceof TupleType)) {
+				result = false;
+				message = OCLMessages.bind(
+								OCLMessages.TypeConformanceTupleLiteralExp_ERROR_,
+								tupleLiteralExp.toString());
+			} else {
+				// The fields of the tuple are the properties of the EClass.
+	
+				List<TupleLiteralPart<C, P>> tp = tupleLiteralExp.getPart();
+				List<P> attributes = uml.getAttributes(type);
+				
+				if (tp.size() != attributes.size()) {
+					result = false;
+					message = OCLMessages.bind(
+									OCLMessages.TypeConformanceTupleLiteralExpParts_ERROR_,
+									tupleLiteralExp.toString());
+				} else {
+					// Match each property with a tuple part
+					for (TupleLiteralPart<C, P> part : tp) {
+						if ((part.getAttribute() == null)
+								|| (uml.getOwningClassifier(part.getAttribute()) != type)) {
+							result = false;
+							message = OCLMessages.bind(
+									OCLMessages.TupleLiteralExpressionPart_ERROR_,
+									part.getName(),
+									tupleLiteralExp.toString());
+							break;
+						}
+					}
+				}
+			}
+		}
+		
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.TUPLE_LITERAL_EXP__TUPLE_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkTupleType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(tupleLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { tupleLiteralExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -96,26 +140,37 @@ public class TupleLiteralExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, P> boolean checkPartsUnique(TupleLiteralExp<C, P> tupleLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+
+		Set<String> names = new java.util.HashSet<String>();
+		
+		// Match each property with a tuple part
+		for (TupleLiteralPart<C, P> part : tupleLiteralExp.getPart()) {
+			String name = part.getName();
+			if (!names.add(name)) {
+				result = false;
+				message = OCLMessages.bind(
+						OCLMessages.TupleDuplicateName_ERROR_,
+						name, tupleLiteralExp.toString());
+			}
+		}
+		
+        if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.TUPLE_LITERAL_EXP__PARTS_UNIQUE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkPartsUnique", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(tupleLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { tupleLiteralExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // TupleLiteralExpOperations

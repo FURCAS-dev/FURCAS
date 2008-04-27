@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: IfExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: IfExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,15 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.IfExp;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,26 +66,44 @@ public class IfExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C> boolean checkBooleanCondition(IfExp<C> ifExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(ifExp, context);
+		
+		if (env != null) {
+			UMLReflection<?, C, ?, ?, ?, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
+			
+			OCLExpression<C> cond = ifExp.getCondition();
+			if (cond != null) {
+				C type = cond.getType();
+			
+				if ((type == null) || !uml.isDataType(type)
+						|| !("Boolean".equals(uml.getName(type)))) { //$NON-NLS-1$) {
+					result = false;
+					message = OCLMessages.bind(
+							OCLMessages.NonBooleanIfExp_ERROR_,
+							cond.toString());
+				}
+			}
+		}
+		
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.IF_EXP__BOOLEAN_CONDITION,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkBooleanCondition", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(ifExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { ifExp }));
             }
-            return false;
         }
-        return true;
+		
+        return result;
     }
 
     /**
@@ -91,26 +115,53 @@ public class IfExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C> boolean checkIfType(IfExp<C> ifExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+      	boolean result = true;
+    	String message = null;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(ifExp, context);
+		
+		if (env != null) {
+			OCLExpression<C> thenExp = ifExp.getThenExpression();
+			OCLExpression<C> elseExp = ifExp.getElseExpression();
+			C type = ifExp.getType();
+			
+			if ((type != null) && (thenExp != null) && (elseExp != null)) {
+				C thenType = thenExp.getType();
+				C elseType = elseExp.getType();
+				
+				if ((thenType != null) && (elseType != null)) {
+					C thenelsetype = TypeUtil.commonSuperType(
+								null,
+								env,
+								thenType,
+								elseType);
+					
+					if ((thenelsetype == null) || !TypeUtil.exactTypeMatch(env, type, thenelsetype)) {
+						result = false;
+						message = OCLMessages.bind(
+								OCLMessages.TypeConformanceIfExp_ERROR_,
+								ifExp.toString());
+					}
+				}
+			}
+		}
+		
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.IF_EXP__IF_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkIfType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(ifExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { ifExp }));
             }
-            return false;
         }
-        return true;
+		
+        return result;
     }
 
 } // IfExpOperations
