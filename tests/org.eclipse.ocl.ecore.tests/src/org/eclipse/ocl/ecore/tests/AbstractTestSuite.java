@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.9 2008/01/30 12:46:14 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.10 2008/04/27 23:16:00 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -156,6 +156,7 @@ public abstract class AbstractTestSuite
 		result.addTest(ValidationTest.suite());
 		result.addTest(ProblemOptionTest.suite());
 		result.addTest(ParsingOptionsTest.suite());
+		result.addTest(ExpressionsValidatorTest.suite());
 		result.addTest(SerializationTest.suite());
 		
 		return result;
