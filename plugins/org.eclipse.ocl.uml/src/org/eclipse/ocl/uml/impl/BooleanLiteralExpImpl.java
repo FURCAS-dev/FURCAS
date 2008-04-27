@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.4 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -43,163 +43,163 @@ import org.eclipse.ocl.utilities.Visitor;
 @SuppressWarnings("restriction")
 public class BooleanLiteralExpImpl extends PrimitiveLiteralExpImpl implements BooleanLiteralExp {
 	/**
-     * The default value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getBooleanSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBooleanSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final Boolean BOOLEAN_SYMBOL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getBooleanSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBooleanSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected Boolean booleanSymbol = BOOLEAN_SYMBOL_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected BooleanLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.BOOLEAN_LITERAL_EXP;
-    }
+		return UMLPackage.Literals.BOOLEAN_LITERAL_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Boolean getBooleanSymbol() {
-        return booleanSymbol;
-    }
+		return booleanSymbol;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setBooleanSymbol(Boolean newBooleanSymbol) {
-        Boolean oldBooleanSymbol = booleanSymbol;
-        booleanSymbol = newBooleanSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, booleanSymbol));
-    }
+		Boolean oldBooleanSymbol = booleanSymbol;
+		booleanSymbol = newBooleanSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, oldBooleanSymbol, booleanSymbol));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return BooleanLiteralExpOperations.checkBooleanType(this, diagnostics, context);
-    }
+		return BooleanLiteralExpOperations.checkBooleanType(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-                return getBooleanSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+				return getBooleanSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-                setBooleanSymbol((Boolean)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+				setBooleanSymbol((Boolean)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-                setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+				setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
-                return BOOLEAN_SYMBOL_EDEFAULT == null ? booleanSymbol != null : !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL:
+				return BOOLEAN_SYMBOL_EDEFAULT == null ? booleanSymbol != null : !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL: return UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

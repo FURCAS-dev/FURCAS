@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -43,163 +43,163 @@ import org.eclipse.uml2.uml.Classifier;
 @SuppressWarnings("restriction")
 public class AssociationClassCallExpImpl extends NavigationCallExpImpl implements AssociationClassCallExp {
 	/**
-     * The cached value of the '{@link #getReferredAssociationClass() <em>Referred Association Class</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredAssociationClass() <em>Referred Association Class</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredAssociationClass()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredAssociationClass()
+	 * @generated
+	 * @ordered
+	 */
 	protected Classifier referredAssociationClass;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected AssociationClassCallExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.ASSOCIATION_CLASS_CALL_EXP;
-    }
+		return UMLPackage.Literals.ASSOCIATION_CLASS_CALL_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Classifier getReferredAssociationClass() {
-        if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy()) {
-            InternalEObject oldReferredAssociationClass = (InternalEObject)referredAssociationClass;
-            referredAssociationClass = (Classifier)eResolveProxy(oldReferredAssociationClass);
-            if (referredAssociationClass != oldReferredAssociationClass) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
-            }
-        }
-        return referredAssociationClass;
-    }
+		if (referredAssociationClass != null && ((EObject)referredAssociationClass).eIsProxy()) {
+			InternalEObject oldReferredAssociationClass = (InternalEObject)referredAssociationClass;
+			referredAssociationClass = (Classifier)eResolveProxy(oldReferredAssociationClass);
+			if (referredAssociationClass != oldReferredAssociationClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
+			}
+		}
+		return referredAssociationClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Classifier basicGetReferredAssociationClass() {
-        return referredAssociationClass;
-    }
+		return referredAssociationClass;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
 	public void setReferredAssociationClass(Classifier newReferredAssociationClass) {
-        Classifier oldReferredAssociationClass = referredAssociationClass;
-        referredAssociationClass = newReferredAssociationClass;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
-    }
+		Classifier oldReferredAssociationClass = referredAssociationClass;
+		referredAssociationClass = newReferredAssociationClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS, oldReferredAssociationClass, referredAssociationClass));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-                if (resolve) return getReferredAssociationClass();
-                return basicGetReferredAssociationClass();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+				if (resolve) return getReferredAssociationClass();
+				return basicGetReferredAssociationClass();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-                setReferredAssociationClass((Classifier)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+				setReferredAssociationClass((Classifier)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-                setReferredAssociationClass((Classifier)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+				setReferredAssociationClass((Classifier)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
-                return referredAssociationClass != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS:
+				return referredAssociationClass != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.AssociationClassCallExp.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS: return ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.AssociationClassCallExp.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS: return ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.AssociationClassCallExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS: return UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.AssociationClassCallExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS: return UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

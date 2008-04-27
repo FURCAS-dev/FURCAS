@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.8 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.9 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypesPackage;
-import org.eclipse.ocl.types.operations.CollectionTypeOperations;
 import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.uml.CollectionType;
 import org.eclipse.ocl.uml.UMLPackage;
@@ -67,116 +66,116 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
 @SuppressWarnings("restriction")
 public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
     /**
-     * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStartPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStartPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int START_POSITION_EDEFAULT = -1;
 
     /**
-     * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStartPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStartPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected int startPosition = START_POSITION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEndPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEndPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int END_POSITION_EDEFAULT = -1;
 
     /**
-     * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEndPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getEndPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected int endPosition = END_POSITION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypeStartPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeStartPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int TYPE_START_POSITION_EDEFAULT = -1;
 
     /**
-     * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypeStartPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeStartPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected int typeStartPosition = TYPE_START_POSITION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypeEndPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeEndPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int TYPE_END_POSITION_EDEFAULT = -1;
 
     /**
-     * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTypeEndPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeEndPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getElementType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getElementType()
+	 * @generated
+	 * @ordered
+	 */
     protected Classifier elementType;
 
     /**
-     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
     protected static final CollectionKind KIND_EDEFAULT = CollectionKind.SET_LITERAL;
 
     private EList<Operation> operations;
     private EList<Operation> iterators;
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CollectionTypeImpl() {
-        super();
-    }
+		super();
+	}
     
     /**
      * <!-- begin-user-doc -->
@@ -190,137 +189,137 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
     }
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.COLLECTION_TYPE;
-    }
+		return UMLPackage.Literals.COLLECTION_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getStartPosition() {
-        return startPosition;
-    }
+		return startPosition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setStartPosition(int newStartPosition) {
-        int oldStartPosition = startPosition;
-        startPosition = newStartPosition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__START_POSITION, oldStartPosition, startPosition));
-    }
+		int oldStartPosition = startPosition;
+		startPosition = newStartPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__START_POSITION, oldStartPosition, startPosition));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getEndPosition() {
-        return endPosition;
-    }
+		return endPosition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setEndPosition(int newEndPosition) {
-        int oldEndPosition = endPosition;
-        endPosition = newEndPosition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__END_POSITION, oldEndPosition, endPosition));
-    }
+		int oldEndPosition = endPosition;
+		endPosition = newEndPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__END_POSITION, oldEndPosition, endPosition));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getTypeStartPosition() {
-        return typeStartPosition;
-    }
+		return typeStartPosition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setTypeStartPosition(int newTypeStartPosition) {
-        int oldTypeStartPosition = typeStartPosition;
-        typeStartPosition = newTypeStartPosition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
-    }
+		int oldTypeStartPosition = typeStartPosition;
+		typeStartPosition = newTypeStartPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getTypeEndPosition() {
-        return typeEndPosition;
-    }
+		return typeEndPosition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setTypeEndPosition(int newTypeEndPosition) {
-        int oldTypeEndPosition = typeEndPosition;
-        typeEndPosition = newTypeEndPosition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
-    }
+		int oldTypeEndPosition = typeEndPosition;
+		typeEndPosition = newTypeEndPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Classifier getElementType() {
-        if (elementType != null && ((EObject)elementType).eIsProxy()) {
-            InternalEObject oldElementType = (InternalEObject)elementType;
-            elementType = (Classifier)eResolveProxy(oldElementType);
-            if (elementType != oldElementType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
-            }
-        }
-        return elementType;
-    }
+		if (elementType != null && ((EObject)elementType).eIsProxy()) {
+			InternalEObject oldElementType = (InternalEObject)elementType;
+			elementType = (Classifier)eResolveProxy(oldElementType);
+			if (elementType != oldElementType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+			}
+		}
+		return elementType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Classifier basicGetElementType() {
-        return elementType;
-    }
+		return elementType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
 	public void setElementType(Classifier newElementType) {
-        Classifier oldElementType = elementType;
-        elementType = newElementType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
-    }
+		Classifier oldElementType = elementType;
+		elementType = newElementType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+	}
 
 				/**
      * @generated NOT
@@ -421,218 +420,218 @@ public class CollectionTypeImpl extends DataTypeImpl implements CollectionType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+		return org.eclipse.ocl.types.operations.CollectionTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkNoInvalidValues(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionTypeOperations.checkNoInvalidValues(this, diagnostics, context);
-    }
+		return org.eclipse.ocl.types.operations.CollectionTypeOperations.checkNoInvalidValues(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_TYPE__START_POSITION:
-                return new Integer(getStartPosition());
-            case UMLPackage.COLLECTION_TYPE__END_POSITION:
-                return new Integer(getEndPosition());
-            case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
-                return new Integer(getTypeStartPosition());
-            case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
-                return new Integer(getTypeEndPosition());
-            case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
-                if (resolve) return getElementType();
-                return basicGetElementType();
-            case UMLPackage.COLLECTION_TYPE__KIND:
-                return getKind();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_TYPE__START_POSITION:
+				return new Integer(getStartPosition());
+			case UMLPackage.COLLECTION_TYPE__END_POSITION:
+				return new Integer(getEndPosition());
+			case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
+				return new Integer(getTypeStartPosition());
+			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
+				return new Integer(getTypeEndPosition());
+			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
+				if (resolve) return getElementType();
+				return basicGetElementType();
+			case UMLPackage.COLLECTION_TYPE__KIND:
+				return getKind();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_TYPE__START_POSITION:
-                setStartPosition(((Integer)newValue).intValue());
-                return;
-            case UMLPackage.COLLECTION_TYPE__END_POSITION:
-                setEndPosition(((Integer)newValue).intValue());
-                return;
-            case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
-                setTypeStartPosition(((Integer)newValue).intValue());
-                return;
-            case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
-                setTypeEndPosition(((Integer)newValue).intValue());
-                return;
-            case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
-                setElementType((Classifier)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_TYPE__START_POSITION:
+				setStartPosition(((Integer)newValue).intValue());
+				return;
+			case UMLPackage.COLLECTION_TYPE__END_POSITION:
+				setEndPosition(((Integer)newValue).intValue());
+				return;
+			case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
+				setTypeStartPosition(((Integer)newValue).intValue());
+				return;
+			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
+				setTypeEndPosition(((Integer)newValue).intValue());
+				return;
+			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
+				setElementType((Classifier)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_TYPE__START_POSITION:
-                setStartPosition(START_POSITION_EDEFAULT);
-                return;
-            case UMLPackage.COLLECTION_TYPE__END_POSITION:
-                setEndPosition(END_POSITION_EDEFAULT);
-                return;
-            case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
-                setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
-                return;
-            case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
-                setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
-                return;
-            case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
-                setElementType((Classifier)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_TYPE__START_POSITION:
+				setStartPosition(START_POSITION_EDEFAULT);
+				return;
+			case UMLPackage.COLLECTION_TYPE__END_POSITION:
+				setEndPosition(END_POSITION_EDEFAULT);
+				return;
+			case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
+				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
+				return;
+			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
+				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
+				return;
+			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
+				setElementType((Classifier)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_TYPE__START_POSITION:
-                return startPosition != START_POSITION_EDEFAULT;
-            case UMLPackage.COLLECTION_TYPE__END_POSITION:
-                return endPosition != END_POSITION_EDEFAULT;
-            case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
-                return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-            case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
-                return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-            case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
-                return elementType != null;
-            case UMLPackage.COLLECTION_TYPE__KIND:
-                return getKind() != KIND_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_TYPE__START_POSITION:
+				return startPosition != START_POSITION_EDEFAULT;
+			case UMLPackage.COLLECTION_TYPE__END_POSITION:
+				return endPosition != END_POSITION_EDEFAULT;
+			case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION:
+				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
+			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION:
+				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
+			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE:
+				return elementType != null;
+			case UMLPackage.COLLECTION_TYPE__KIND:
+				return getKind() != KIND_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == PredefinedType.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == ASTNode.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.COLLECTION_TYPE__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-                case UMLPackage.COLLECTION_TYPE__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-                default: return -1;
-            }
-        }
-        if (baseClass == TypedASTNode.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-                case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-                default: return -1;
-            }
-        }
-        if (baseClass == org.eclipse.ocl.types.CollectionType.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE: return TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE;
-                case UMLPackage.COLLECTION_TYPE__KIND: return TypesPackage.COLLECTION_TYPE__KIND;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == PredefinedType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ASTNode.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.COLLECTION_TYPE__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
+				case UMLPackage.COLLECTION_TYPE__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedASTNode.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == org.eclipse.ocl.types.CollectionType.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE: return TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE;
+				case UMLPackage.COLLECTION_TYPE__KIND: return TypesPackage.COLLECTION_TYPE__KIND;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == PredefinedType.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == ASTNode.class) {
-            switch (baseFeatureID) {
-                case UtilitiesPackage.AST_NODE__START_POSITION: return UMLPackage.COLLECTION_TYPE__START_POSITION;
-                case UtilitiesPackage.AST_NODE__END_POSITION: return UMLPackage.COLLECTION_TYPE__END_POSITION;
-                default: return -1;
-            }
-        }
-        if (baseClass == TypedASTNode.class) {
-            switch (baseFeatureID) {
-                case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION;
-                case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION;
-                default: return -1;
-            }
-        }
-        if (baseClass == org.eclipse.ocl.types.CollectionType.class) {
-            switch (baseFeatureID) {
-                case TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE: return UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE;
-                case TypesPackage.COLLECTION_TYPE__KIND: return UMLPackage.COLLECTION_TYPE__KIND;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == PredefinedType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ASTNode.class) {
+			switch (baseFeatureID) {
+				case UtilitiesPackage.AST_NODE__START_POSITION: return UMLPackage.COLLECTION_TYPE__START_POSITION;
+				case UtilitiesPackage.AST_NODE__END_POSITION: return UMLPackage.COLLECTION_TYPE__END_POSITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedASTNode.class) {
+			switch (baseFeatureID) {
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == org.eclipse.ocl.types.CollectionType.class) {
+			switch (baseFeatureID) {
+				case TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE: return UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE;
+				case TypesPackage.COLLECTION_TYPE__KIND: return UMLPackage.COLLECTION_TYPE__KIND;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (startPosition: "); //$NON-NLS-1$
-        result.append(startPosition);
-        result.append(", endPosition: "); //$NON-NLS-1$
-        result.append(endPosition);
-        result.append(", typeStartPosition: "); //$NON-NLS-1$
-        result.append(typeStartPosition);
-        result.append(", typeEndPosition: "); //$NON-NLS-1$
-        result.append(typeEndPosition);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (startPosition: "); //$NON-NLS-1$
+		result.append(startPosition);
+		result.append(", endPosition: "); //$NON-NLS-1$
+		result.append(endPosition);
+		result.append(", typeStartPosition: "); //$NON-NLS-1$
+		result.append(typeStartPosition);
+		result.append(", typeEndPosition: "); //$NON-NLS-1$
+		result.append(typeEndPosition);
+		result.append(')');
+		return result.toString();
+	}
 
 } //CollectionTypeImpl

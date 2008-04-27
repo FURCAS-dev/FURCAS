@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.5 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -37,13 +37,13 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSetType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected OrderedSetTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * @generated NOT
@@ -53,24 +53,24 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.ORDERED_SET_TYPE;
-    }
+		return UMLPackage.Literals.ORDERED_SET_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return OrderedSetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+		return OrderedSetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+	}
 
     /**
      * @generated NOT

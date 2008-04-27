@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.4 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -43,163 +43,163 @@ import org.eclipse.ocl.utilities.Visitor;
 @SuppressWarnings("restriction")
 public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements IntegerLiteralExp {
 	/**
-     * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IntegerLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.INTEGER_LITERAL_EXP;
-    }
+		return UMLPackage.Literals.INTEGER_LITERAL_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Integer getIntegerSymbol() {
-        return integerSymbol;
-    }
+		return integerSymbol;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setIntegerSymbol(Integer newIntegerSymbol) {
-        Integer oldIntegerSymbol = integerSymbol;
-        integerSymbol = newIntegerSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
-    }
+		Integer oldIntegerSymbol = integerSymbol;
+		integerSymbol = newIntegerSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkIntegerType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IntegerLiteralExpOperations.checkIntegerType(this, diagnostics, context);
-    }
+		return IntegerLiteralExpOperations.checkIntegerType(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                return getIntegerSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				return getIntegerSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                setIntegerSymbol((Integer)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				setIntegerSymbol((Integer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

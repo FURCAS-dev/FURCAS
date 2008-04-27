@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.4 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -56,96 +56,96 @@ import org.eclipse.uml2.uml.Classifier;
 @SuppressWarnings("restriction")
 public class CollectionLiteralExpImpl extends LiteralExpImpl implements CollectionLiteralExp {
 	/**
-     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final CollectionKind KIND_EDEFAULT = CollectionKind.SET_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
 	protected CollectionKind kind = KIND_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPart()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPart()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<CollectionLiteralPart<Classifier>> part;
 
 	/**
-     * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSimpleRange()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSimpleRange()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean SIMPLE_RANGE_EDEFAULT = false;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CollectionLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.COLLECTION_LITERAL_EXP;
-    }
+		return UMLPackage.Literals.COLLECTION_LITERAL_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public CollectionKind getKind() {
-        return kind;
-    }
+		return kind;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setKind(CollectionKind newKind) {
-        CollectionKind oldKind = kind;
-        kind = newKind == null ? KIND_EDEFAULT : newKind;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
-    }
+		CollectionKind oldKind = kind;
+		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList<CollectionLiteralPart<Classifier>> getPart() {
-        if (part == null) {
-            part = new EObjectContainmentEList<CollectionLiteralPart<Classifier>>(CollectionLiteralPart.class, this, UMLPackage.COLLECTION_LITERAL_EXP__PART);
-        }
-        return part;
-    }
+		if (part == null) {
+			part = new EObjectContainmentEList<CollectionLiteralPart<Classifier>>(CollectionLiteralPart.class, this, UMLPackage.COLLECTION_LITERAL_EXP__PART);
+		}
+		return part;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,173 +166,173 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkNoCollectionInstances(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkNoCollectionInstances(this, diagnostics, context);
-    }
+		return CollectionLiteralExpOperations.checkNoCollectionInstances(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkSetKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkSetKind(this, diagnostics, context);
-    }
+		return CollectionLiteralExpOperations.checkSetKind(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkSequenceKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkSequenceKind(this, diagnostics, context);
-    }
+		return CollectionLiteralExpOperations.checkSequenceKind(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkBagKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkBagKind(this, diagnostics, context);
-    }
+		return CollectionLiteralExpOperations.checkBagKind(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkElementType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkElementType(this, diagnostics, context);
-    }
+		return CollectionLiteralExpOperations.checkElementType(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_LITERAL_EXP__PART:
-                return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_LITERAL_EXP__PART:
+				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
-                return getKind();
-            case UMLPackage.COLLECTION_LITERAL_EXP__PART:
-                return getPart();
-            case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-                return isSimpleRange() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
+				return getKind();
+			case UMLPackage.COLLECTION_LITERAL_EXP__PART:
+				return getPart();
+			case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
+				return isSimpleRange() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
-                setKind((CollectionKind)newValue);
-                return;
-            case UMLPackage.COLLECTION_LITERAL_EXP__PART:
-                getPart().clear();
-                getPart().addAll((Collection<? extends CollectionLiteralPart<Classifier>>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
+				setKind((CollectionKind)newValue);
+				return;
+			case UMLPackage.COLLECTION_LITERAL_EXP__PART:
+				getPart().clear();
+				getPart().addAll((Collection<? extends CollectionLiteralPart<Classifier>>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
-                setKind(KIND_EDEFAULT);
-                return;
-            case UMLPackage.COLLECTION_LITERAL_EXP__PART:
-                getPart().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
+			case UMLPackage.COLLECTION_LITERAL_EXP__PART:
+				getPart().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
-                return kind != KIND_EDEFAULT;
-            case UMLPackage.COLLECTION_LITERAL_EXP__PART:
-                return part != null && !part.isEmpty();
-            case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-                return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
+				return kind != KIND_EDEFAULT;
+			case UMLPackage.COLLECTION_LITERAL_EXP__PART:
+				return part != null && !part.isEmpty();
+			case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
+				return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.COLLECTION_LITERAL_EXP__KIND: return ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND;
-                case UMLPackage.COLLECTION_LITERAL_EXP__PART: return ExpressionsPackage.COLLECTION_LITERAL_EXP__PART;
-                case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.COLLECTION_LITERAL_EXP__KIND: return ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND;
+				case UMLPackage.COLLECTION_LITERAL_EXP__PART: return ExpressionsPackage.COLLECTION_LITERAL_EXP__PART;
+				case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND: return UMLPackage.COLLECTION_LITERAL_EXP__KIND;
-                case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART: return UMLPackage.COLLECTION_LITERAL_EXP__PART;
-                case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND: return UMLPackage.COLLECTION_LITERAL_EXP__KIND;
+				case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART: return UMLPackage.COLLECTION_LITERAL_EXP__PART;
+				case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.7 2007/10/11 23:05:21 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.8 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -38,23 +38,23 @@ org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl implements PrimitiveType {
     protected EList<Operation> operations;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PrimitiveTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.PRIMITIVE_TYPE;
-    }
+		return UMLPackage.Literals.PRIMITIVE_TYPE;
+	}
 
 				/**
      * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.5 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -55,63 +55,63 @@ public class AnyTypeImpl extends ClassifierImpl implements AnyType {
     private EList<Operation> operations;
     
     /**
-     * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOwnedOperations()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOwnedOperations()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Operation> ownedOperations;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected AnyTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.ANY_TYPE;
-    }
+		return UMLPackage.Literals.ANY_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
 	@Override
 	public EList<Feature> getFeatures() {
-        CacheAdapter cache = getCacheAdapter();
-        if (cache != null) {
-            Resource eResource = eResource();
-            @SuppressWarnings("unchecked")
-            EList<Feature> features = (EList<Feature>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
-            if (features == null) {
-                cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE, features = new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.ANY_TYPE__FEATURE, FEATURE_ESUBSETS));
-            }
-            return features;
-        }
-        return new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.ANY_TYPE__FEATURE, FEATURE_ESUBSETS);
-    }
+		CacheAdapter cache = getCacheAdapter();
+		if (cache != null) {
+			Resource eResource = eResource();
+			@SuppressWarnings("unchecked")
+			EList<Feature> features = (EList<Feature>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
+			if (features == null) {
+				cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE, features = new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.ANY_TYPE__FEATURE, FEATURE_ESUBSETS));
+			}
+			return features;
+		}
+		return new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.ANY_TYPE__FEATURE, FEATURE_ESUBSETS);
+	}
 
 				/**
-     * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getFeatures()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFeatures()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int[] FEATURE_ESUBSETS = new int[] {UMLPackage.ANY_TYPE__ATTRIBUTE, UMLPackage.ANY_TYPE__OWNED_OPERATION};
 
 				/**
@@ -145,135 +145,135 @@ public class AnyTypeImpl extends ClassifierImpl implements AnyType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Operation> getOwnedOperations() {
-        if (ownedOperations == null) {
-            ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.ANY_TYPE__OWNED_OPERATION);
-        }
-        return ownedOperations;
-    }
+		if (ownedOperations == null) {
+			ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.ANY_TYPE__OWNED_OPERATION);
+		}
+		return ownedOperations;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
-        return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes, false);
-    }
+		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes, false);
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes, boolean ignoreCase) {
-        ownedOperationLoop: for (Operation ownedOperation : getOwnedOperations()) {
-            if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedOperation.getName()) : name.equals(ownedOperation.getName())))
-                continue ownedOperationLoop;
-            EList<Parameter> ownedParameterList = ownedOperation.getOwnedParameters();
-            int ownedParameterListSize = ownedParameterList.size();
-            if (ownedParameterNames != null && ownedParameterNames.size() != ownedParameterListSize || (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
-                continue  ownedOperationLoop;
-            for (int j = 0; j < ownedParameterListSize; j++) {
-                Parameter ownedParameter = ownedParameterList.get(j);
-                if (ownedParameterNames != null && !(ignoreCase ? (ownedParameterNames.get(j)).equalsIgnoreCase(ownedParameter.getName()) : ownedParameterNames.get(j).equals(ownedParameter.getName())))
-                    continue ownedOperationLoop;
-                if (ownedParameterTypes != null && !ownedParameterTypes.get(j).equals(ownedParameter.getType()))
-                    continue ownedOperationLoop;
-            }
-            return ownedOperation;
-        }
-        return null;
-    }
+		ownedOperationLoop: for (Operation ownedOperation : getOwnedOperations()) {
+			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedOperation.getName()) : name.equals(ownedOperation.getName())))
+				continue ownedOperationLoop;
+			EList<Parameter> ownedParameterList = ownedOperation.getOwnedParameters();
+			int ownedParameterListSize = ownedParameterList.size();
+			if (ownedParameterNames != null && ownedParameterNames.size() != ownedParameterListSize || (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+				continue  ownedOperationLoop;
+			for (int j = 0; j < ownedParameterListSize; j++) {
+				Parameter ownedParameter = ownedParameterList.get(j);
+				if (ownedParameterNames != null && !(ignoreCase ? (ownedParameterNames.get(j)).equalsIgnoreCase(ownedParameter.getName()) : ownedParameterNames.get(j).equals(ownedParameter.getName())))
+					continue ownedOperationLoop;
+				if (ownedParameterTypes != null && !ownedParameterTypes.get(j).equals(ownedParameter.getType()))
+					continue ownedOperationLoop;
+			}
+			return ownedOperation;
+		}
+		return null;
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case UMLPackage.ANY_TYPE__OWNED_OPERATION:
-                return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case UMLPackage.ANY_TYPE__OWNED_OPERATION:
+				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.ANY_TYPE__OWNED_OPERATION:
-                return getOwnedOperations();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.ANY_TYPE__OWNED_OPERATION:
+				return getOwnedOperations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.ANY_TYPE__OWNED_OPERATION:
-                getOwnedOperations().clear();
-                getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.ANY_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.ANY_TYPE__OWNED_OPERATION:
-                getOwnedOperations().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.ANY_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.ANY_TYPE__OWNED_OPERATION:
-                return ownedOperations != null && !ownedOperations.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.ANY_TYPE__OWNED_OPERATION:
+				return ownedOperations != null && !ownedOperations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
 	@Override
 	public boolean isSetFeatures() {
-        return super.isSetFeatures()
-            || eIsSet(UMLPackage.ANY_TYPE__OWNED_OPERATION);
-    }
+		return super.isSetFeatures()
+			|| eIsSet(UMLPackage.ANY_TYPE__OWNED_OPERATION);
+	}
 
 } //AnyTypeImpl

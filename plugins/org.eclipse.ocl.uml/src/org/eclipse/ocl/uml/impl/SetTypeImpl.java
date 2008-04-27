@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.5 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -37,13 +37,13 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SetTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * @generated NOT
@@ -53,24 +53,24 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.SET_TYPE;
-    }
+		return UMLPackage.Literals.SET_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return SetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+		return SetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+	}
 
     /**
      * @generated NOT
