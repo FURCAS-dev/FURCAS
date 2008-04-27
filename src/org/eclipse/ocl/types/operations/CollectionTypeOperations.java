@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeOperations.java,v 1.1 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: CollectionTypeOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.types.operations;
 
@@ -23,9 +23,11 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.CollectionType;
 
 import org.eclipse.ocl.types.util.TypesValidator;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,15 +64,27 @@ public class CollectionTypeOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, O> boolean checkCollectionTypeName(CollectionType<C, O> collectionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(collectionType, context);
+    	
+    	if (env != null) {
+    		String name = collectionType.getName();
+    		C elementType = collectionType.getElementType();
+    		
+    		if (elementType != null) {
+    			String elementTypeName = env.getUMLReflection().getName(elementType);
+    			
+    			result = ("Collection(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
+    		}
+    	}
+    	
+        if (!result) {
             if (diagnostics != null) {
+            	// TODO: Specific message
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
@@ -79,9 +93,8 @@ public class CollectionTypeOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkCollectionTypeName", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionType, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { collectionType }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -93,13 +106,11 @@ public class CollectionTypeOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, O> boolean checkNoInvalidValues(CollectionType<C, O> collectionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
+        // This constraint is not implementable in this context.  It is an M1
+    	// constraint defined (in error) on an M2 class
         if (false) {
             if (diagnostics != null) {
                 diagnostics.add
@@ -110,7 +121,6 @@ public class CollectionTypeOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkNoInvalidValues", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionType, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { collectionType }));
             }
-            return false;
         }
         return true;
     }
@@ -118,12 +128,10 @@ public class CollectionTypeOperations {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
-    public static <C, O> EList<Object> oclIterators(CollectionType<C, O> collectionType) {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+    public static <C, O> EList<O> oclIterators(CollectionType<C, O> collectionType) {
+        return collectionType.oclIterators();
     }
 
 } // CollectionTypeOperations

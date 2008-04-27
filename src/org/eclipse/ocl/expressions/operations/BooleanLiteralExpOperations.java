@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: BooleanLiteralExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: BooleanLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,12 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,26 +62,32 @@ public class BooleanLiteralExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C> boolean checkBooleanType(BooleanLiteralExp<C> booleanLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(booleanLiteralExp, context);
+    	
+    	if (env != null) {
+	    	C type = booleanLiteralExp.getType();
+	    	
+			result = (type != null) && ("Boolean".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
+    	}
+    	
+        if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.BOOLEAN_LITERAL_EXP__BOOLEAN_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkBooleanType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(booleanLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         OCLMessages.TypeConformanceBooleanLiteral_ERROR_,
                          new Object [] { booleanLiteralExp }));
             }
-            return false;
         }
-        return true;
+        
+        return result;
     }
 
 } // BooleanLiteralExpOperations

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: LoopExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,16 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.LoopExp;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.Variable;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,26 +68,36 @@ public class LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkSourceCollection(LoopExp<C, PM> loopExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+		OCLExpression<C> source = loopExp.getSource();
+
+		if (source != null) {
+			C sourceType = source.getType();
+			if (!(sourceType instanceof CollectionType)) {
+				result = false;
+				message = OCLMessages.bind(
+						OCLMessages.IteratorSource_ERROR_,
+						loopExp.toString());
+			}
+		}
+		
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.LOOP_EXP__SOURCE_COLLECTION,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkSourceCollection", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(loopExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { loopExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -92,26 +109,34 @@ public class LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkLoopVariableInit(LoopExp<C, PM> loopExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+		for (Variable<C, PM> loopiter : loopExp.getIterator()) {
+			if (loopiter.getInitExpression() != null) {
+				result = false;
+				message = OCLMessages.bind(
+						OCLMessages.IterateExpLoopVarInit_ERROR_,
+						loopExp.toString());
+				break;
+			}
+		}
+		
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.LOOP_EXP__LOOP_VARIABLE_INIT,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkLoopVariableInit", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(loopExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { loopExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -123,26 +148,48 @@ public class LoopExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkLoopVariableType(LoopExp<C, PM> loopExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+		
+    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(loopExp, context);
+
+    	if ((env != null) && (loopExp.getSource() != null)
+				&& (loopExp.getSource().getType() instanceof CollectionType)) {
+			@SuppressWarnings("unchecked")
+			CollectionType<C, ?> ct = (CollectionType<C, ?>) loopExp.getSource().getType();
+			C elementType = ct.getElementType();
+			
+			if (elementType != null) {
+				for (Variable<C, PM> loopiter : loopExp.getIterator()) {
+					if ((loopiter.getType() != null)
+							&& !TypeUtil.exactTypeMatch(env, loopiter.getType(),
+									elementType)) {
+						result = false;
+						message = OCLMessages.bind(
+							OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
+							loopExp.toString());
+						break;
+					}
+				}
+			}
+    	}
+    	
+		if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.LOOP_EXP__LOOP_VARIABLE_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkLoopVariableType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(loopExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { loopExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // LoopExpOperations

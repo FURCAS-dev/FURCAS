@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: LetExpOperations.java,v 1.1 2008/03/28 20:33:31 cdamus Exp $
+ * $Id: LetExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,14 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.LetExp;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,26 +64,37 @@ public class LetExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, PM> boolean checkLetType(LetExp<C, PM> letExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    		.getValidationEnvironment(letExp, context);
+    	
+    	C type = letExp.getType();
+    	OCLExpression<C> in = letExp.getIn();
+    	
+    	if ((env != null) && (type != null) && (in != null)) {
+	    	C inType = in.getType();
+	    	
+	    	if (inType != null) {
+	    		result = TypeUtil.exactTypeMatch(env, type, inType);
+	    	}
+    	}
+    	
+        if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.LET_EXP__LET_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkLetType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(letExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         OCLMessages.TypeConformanceLetExp_ERROR_,
                          new Object [] { letExp }));
             }
-            return false;
         }
-        return true;
+        
+        return result;
     }
 
 } // LetExpOperations

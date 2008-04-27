@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeOperations.java,v 1.1 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: SetTypeOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.types.operations;
 
@@ -22,9 +22,11 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.SetType;
 
 import org.eclipse.ocl.types.util.TypesValidator;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,15 +61,27 @@ public class SetTypeOperations extends CollectionTypeOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, O> boolean checkCollectionTypeName(SetType<C, O> setType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+    			.getValidationEnvironment(setType, context);
+    	
+    	if (env != null) {
+    		String name = setType.getName();
+    		C elementType = setType.getElementType();
+    		
+    		if (elementType != null) {
+    			String elementTypeName = env.getUMLReflection().getName(elementType);
+    			
+    			result = ("Set(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
+    		}
+    	}
+    	
+        if (!result) {
             if (diagnostics != null) {
+            	// TODO: Specific message
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
@@ -76,9 +90,8 @@ public class SetTypeOperations extends CollectionTypeOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkCollectionTypeName", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(setType, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { setType }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // SetTypeOperations
