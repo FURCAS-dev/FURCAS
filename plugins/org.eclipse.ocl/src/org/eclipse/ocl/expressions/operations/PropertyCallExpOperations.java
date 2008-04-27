@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PropertyCallExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: PropertyCallExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,13 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,15 +63,30 @@ public class PropertyCallExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, P> boolean checkPropertyType(PropertyCallExp<C, P> propertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, P, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(propertyCallExp, context);
+		
+		if (env != null) {
+			P property = propertyCallExp.getReferredProperty();
+			OCLExpression<C> source = propertyCallExp.getSource();
+			C type = propertyCallExp.getType();
+			
+			if ((property != null) && (source != null)) {
+				C refType = TypeUtil.getPropertyType(env, source.getType(), property);
+			
+				if (!TypeUtil.exactTypeMatch(env, refType, type)) {
+					result = false;
+				}
+			}
+		}
+		
+		if (!result) {
             if (diagnostics != null) {
+            	// TODO: Specific message
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
@@ -76,9 +95,8 @@ public class PropertyCallExpOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkPropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(propertyCallExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { propertyCallExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // PropertyCallExpOperations

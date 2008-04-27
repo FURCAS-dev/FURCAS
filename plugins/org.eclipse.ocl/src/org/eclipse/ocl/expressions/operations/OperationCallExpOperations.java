@@ -12,19 +12,24 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: OperationCallExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,26 +66,46 @@ public class OperationCallExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, O> boolean checkArgumentsConform(OperationCallExp<C, O> operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	String message = null;
+    	Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(operationCallExp, context);
+		
+		if (env != null) {
+			OCLExpression<C> source = operationCallExp.getSource();
+			O oper = operationCallExp.getReferredOperation();
+			List<OCLExpression<C>> args = operationCallExp.getArgument();
+	
+			if ((oper != null) && (source != null)) {
+				C sourceType = source.getType();
+				String operName = env.getUMLReflection().getName(oper);
+		
+				// Check argument conformance.
+				O oper1 = env.lookupOperation(sourceType, operName, args);
+				if (oper1 != oper) {
+					result = false;
+					message = OCLMessages.bind(
+							OCLMessages.IllegalOperation_ERROR_,
+							operationCallExp.toString());
+				}
+			}
+		}
+		
+        if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkArgumentsConform", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(operationCallExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         message,
                          new Object [] { operationCallExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -92,15 +117,24 @@ public class OperationCallExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C, O> boolean checkArgumentCount(OperationCallExp<C, O> operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(operationCallExp, context);
+		
+		if (env != null) {
+			O oper = operationCallExp.getReferredOperation();
+			List<OCLExpression<C>> args = operationCallExp.getArgument();
+			List<?> parms = env.getUMLReflection().getParameters(oper);
+			
+			result = args.size() == parms.size();
+		}
+		
+        if (!result) {
             if (diagnostics != null) {
+            	// TODO: Specific message
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
@@ -109,9 +143,8 @@ public class OperationCallExpOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkArgumentCount", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(operationCallExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { operationCallExp }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // OperationCallExpOperations

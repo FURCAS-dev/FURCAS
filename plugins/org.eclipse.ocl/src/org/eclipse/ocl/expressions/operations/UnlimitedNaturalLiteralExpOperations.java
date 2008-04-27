@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -22,9 +22,12 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +41,7 @@ import org.eclipse.ocl.expressions.util.ExpressionsValidator;
  * </ul>
  * </p>
  *
- * @generated
+ * @generated NOT
  */
 public class UnlimitedNaturalLiteralExpOperations {
     /**
@@ -62,23 +65,29 @@ public class UnlimitedNaturalLiteralExpOperations {
      * @generated
      */
     public static <C> boolean checkNaturalType(UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(unlimitedNaturalLiteralExp, context);
+    	
+    	if (env != null) {
+	    	C type = unlimitedNaturalLiteralExp.getType();
+	    	
+			result = (type != null) && ("UnlimitedNatural".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
+    	}
+    	
+        if (!result) {
             if (diagnostics != null) {
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
                          ExpressionsValidator.DIAGNOSTIC_SOURCE,
                          ExpressionsValidator.UNLIMITED_NATURAL_LITERAL_EXP__NATURAL_TYPE,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkNaturalType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(unlimitedNaturalLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+                         OCLMessages.TypeConformanceUnlimitedNaturalLiteral_ERROR_,
                          new Object [] { unlimitedNaturalLiteralExp }));
             }
-            return false;
         }
-        return true;
+        
+        return result;
     }
 
 } // UnlimitedNaturalLiteralExpOperations

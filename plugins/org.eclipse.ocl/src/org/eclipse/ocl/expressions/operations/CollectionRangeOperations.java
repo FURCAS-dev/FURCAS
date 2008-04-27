@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionRangeOperations.java,v 1.1 2008/03/28 20:33:32 cdamus Exp $
+ * $Id: CollectionRangeOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -21,10 +21,12 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.CollectionRange;
-
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,15 +61,31 @@ public class CollectionRangeOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C> boolean checkRangeType(CollectionRange<C> collectionRange, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO: implement this method
-        // -> specify the condition that violates the invariant
-        // -> verify the details of the diagnostic, including severity and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
+    	boolean result = true;
+    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+				.getValidationEnvironment(collectionRange, context);
+		
+		if (env != null) {
+			C type = collectionRange.getType();
+			OCLExpression<C> first = collectionRange.getFirst();
+			OCLExpression<C> last = collectionRange.getLast();
+
+			if ((type != null) && (first.getType() != null)
+					&& (last.getType() != null)) {
+				C partsType = TypeUtil.commonSuperType(null, env, first
+						.getType(), last.getType());
+
+				result = (partsType != null)
+						&& TypeUtil.exactTypeMatch(env, partsType, type);
+			}
+		}
+		
+        if (!result) {
             if (diagnostics != null) {
+            	// TODO: Specific message
                 diagnostics.add
                     (new BasicDiagnostic
                         (Diagnostic.ERROR,
@@ -76,9 +94,8 @@ public class CollectionRangeOperations {
                          org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkRangeType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionRange, context) }), //$NON-NLS-1$ //$NON-NLS-2$
                          new Object [] { collectionRange }));
             }
-            return false;
         }
-        return true;
+        return result;
     }
 
 } // CollectionRangeOperations
