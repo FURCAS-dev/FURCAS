@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.4 2008/04/27 23:48:05 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -36,59 +36,59 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IteratorExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.ITERATOR_EXP;
-    }
+		return UMLPackage.Literals.ITERATOR_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkBooleanType(this, diagnostics, context);
-    }
+		return IteratorExpOperations.checkBooleanType(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkCollectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkCollectType(this, diagnostics, context);
-    }
+		return IteratorExpOperations.checkCollectType(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkSelectRejectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkSelectRejectType(this, diagnostics, context);
-    }
+		return IteratorExpOperations.checkSelectRejectType(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkBooleanBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkBooleanBodyType(this, diagnostics, context);
-    }
+		return IteratorExpOperations.checkBooleanBodyType(this, diagnostics, context);
+	}
 
     /**
 	 * <!-- begin-user-doc -->

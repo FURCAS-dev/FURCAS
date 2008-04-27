@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.6 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.7 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -24,7 +24,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.types.operations.TupleTypeOperations;
 import org.eclipse.ocl.uml.TupleType;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
@@ -49,23 +48,23 @@ public class TupleTypeImpl extends DataTypeImpl implements TupleType {
     private EList<Property> properties;
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected TupleTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.TUPLE_TYPE;
-    }
+		return UMLPackage.Literals.TUPLE_TYPE;
+	}
     
     /**
      * @generated NOT
@@ -119,31 +118,31 @@ public class TupleTypeImpl extends DataTypeImpl implements TupleType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkTupleTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return TupleTypeOperations.checkTupleTypeName(this, diagnostics, context);
-    }
+		return org.eclipse.ocl.types.operations.TupleTypeOperations.checkTupleTypeName(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkPartNamesUnique(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return TupleTypeOperations.checkPartNamesUnique(this, diagnostics, context);
-    }
+		return org.eclipse.ocl.types.operations.TupleTypeOperations.checkPartNamesUnique(this, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean checkFeaturesOnlyProperties(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return TupleTypeOperations.checkFeaturesOnlyProperties(this, diagnostics, context);
-    }
+		return org.eclipse.ocl.types.operations.TupleTypeOperations.checkFeaturesOnlyProperties(this, diagnostics, context);
+	}
 
     /**
      * @generated NOT

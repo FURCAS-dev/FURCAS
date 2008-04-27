@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -47,163 +47,163 @@ import org.eclipse.uml2.uml.Classifier;
 @SuppressWarnings("restriction")
 public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	/**
-     * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredType()
+	 * @generated
+	 * @ordered
+	 */
 	protected Classifier referredType;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TypeExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.TYPE_EXP;
-    }
+		return UMLPackage.Literals.TYPE_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Classifier getReferredType() {
-        if (referredType != null && ((EObject)referredType).eIsProxy()) {
-            InternalEObject oldReferredType = (InternalEObject)referredType;
-            referredType = (Classifier)eResolveProxy(oldReferredType);
-            if (referredType != oldReferredType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
-            }
-        }
-        return referredType;
-    }
+		if (referredType != null && ((EObject)referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject)referredType;
+			referredType = (Classifier)eResolveProxy(oldReferredType);
+			if (referredType != oldReferredType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+			}
+		}
+		return referredType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Classifier basicGetReferredType() {
-        return referredType;
-    }
+		return referredType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
 	public void setReferredType(Classifier newReferredType) {
-        Classifier oldReferredType = referredType;
-        referredType = newReferredType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
-    }
+		Classifier oldReferredType = referredType;
+		referredType = newReferredType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-                if (resolve) return getReferredType();
-                return basicGetReferredType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
+				if (resolve) return getReferredType();
+				return basicGetReferredType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-                setReferredType((Classifier)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
+				setReferredType((Classifier)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-                setReferredType((Classifier)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
+				setReferredType((Classifier)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-                return referredType != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
+				return referredType != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.TYPE_EXP__REFERRED_TYPE: return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.TYPE_EXP__REFERRED_TYPE: return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE: return UMLPackage.TYPE_EXP__REFERRED_TYPE;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE: return UMLPackage.TYPE_EXP__REFERRED_TYPE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.3 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -46,163 +46,163 @@ import org.eclipse.uml2.uml.State;
 @SuppressWarnings("restriction")
 public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	/**
-     * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredState()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredState()
+	 * @generated
+	 * @ordered
+	 */
 	protected State referredState;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StateExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.STATE_EXP;
-    }
+		return UMLPackage.Literals.STATE_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public State getReferredState() {
-        if (referredState != null && ((EObject)referredState).eIsProxy()) {
-            InternalEObject oldReferredState = (InternalEObject)referredState;
-            referredState = (State)eResolveProxy(oldReferredState);
-            if (referredState != oldReferredState) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-            }
-        }
-        return referredState;
-    }
+		if (referredState != null && ((EObject)referredState).eIsProxy()) {
+			InternalEObject oldReferredState = (InternalEObject)referredState;
+			referredState = (State)eResolveProxy(oldReferredState);
+			if (referredState != oldReferredState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+			}
+		}
+		return referredState;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public State basicGetReferredState() {
-        return referredState;
-    }
+		return referredState;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 
 	public void setReferredState(State newReferredState) {
-        State oldReferredState = referredState;
-        referredState = newReferredState;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-    }
+		State oldReferredState = referredState;
+		referredState = newReferredState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case UMLPackage.STATE_EXP__REFERRED_STATE:
-                if (resolve) return getReferredState();
-                return basicGetReferredState();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case UMLPackage.STATE_EXP__REFERRED_STATE:
+				if (resolve) return getReferredState();
+				return basicGetReferredState();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case UMLPackage.STATE_EXP__REFERRED_STATE:
-                setReferredState((State)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case UMLPackage.STATE_EXP__REFERRED_STATE:
+				setReferredState((State)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case UMLPackage.STATE_EXP__REFERRED_STATE:
-                setReferredState((State)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.STATE_EXP__REFERRED_STATE:
+				setReferredState((State)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case UMLPackage.STATE_EXP__REFERRED_STATE:
-                return referredState != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case UMLPackage.STATE_EXP__REFERRED_STATE:
+				return referredState != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
-            switch (derivedFeatureID) {
-                case UMLPackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
+			switch (derivedFeatureID) {
+				case UMLPackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return UMLPackage.STATE_EXP__REFERRED_STATE;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return UMLPackage.STATE_EXP__REFERRED_STATE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

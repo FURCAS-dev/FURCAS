@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.5 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -37,13 +37,13 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SequenceTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * @generated NOT
@@ -53,24 +53,24 @@ public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.SEQUENCE_TYPE;
-    }
+		return UMLPackage.Literals.SEQUENCE_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return SequenceTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+		return SequenceTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+	}
 
     /**
      * @generated NOT

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.2 2007/10/11 23:05:22 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.3 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -33,23 +33,23 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLiteralExp {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected InvalidLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return UMLPackage.Literals.INVALID_LITERAL_EXP;
-    }
+		return UMLPackage.Literals.INVALID_LITERAL_EXP;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

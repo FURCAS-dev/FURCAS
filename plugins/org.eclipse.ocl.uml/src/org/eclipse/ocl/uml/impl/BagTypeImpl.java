@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.5 2008/03/28 20:26:21 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -37,13 +37,13 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class BagTypeImpl extends CollectionTypeImpl implements BagType {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected BagTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * @generated NOT
@@ -53,24 +53,24 @@ public class BagTypeImpl extends CollectionTypeImpl implements BagType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return UMLPackage.Literals.BAG_TYPE;
-    }
+		return UMLPackage.Literals.BAG_TYPE;
+	}
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return BagTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+		return BagTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+	}
 
     /**
      * @generated NOT
