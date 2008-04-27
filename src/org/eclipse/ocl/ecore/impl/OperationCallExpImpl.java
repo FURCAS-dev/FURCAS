@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.5 2008/03/28 20:33:41 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.6 2008/04/27 23:15:59 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -171,17 +171,19 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 					Environment.Registry.INSTANCE.getEnvironmentFor(getSource());
 				EClassifier type = getSource().getType();
 
-				String operName = env.getUMLReflection().getName(getReferredOperation());
-				
-				if (type instanceof PredefinedType) {
-					operationCode = OCLStandardLibraryUtil.getOperationCode(
-							operName);
-			   	} else if (TypeUtil.isOclAnyOperation(env, getReferredOperation())) {
-					// not a predefined type?  Model types have the AnyType
-					//    operations (except in the case that a model type
-			   		//    defines the corresponding operation)
-					operationCode = OCLStandardLibraryUtil.getOclAnyOperationCode(
-							operName);
+				if (env != null) {
+					String operName = getReferredOperation().getName();
+					
+					if (type instanceof PredefinedType) {
+						operationCode = OCLStandardLibraryUtil.getOperationCode(
+								operName);
+				   	} else if (TypeUtil.isOclAnyOperation(env, getReferredOperation())) {
+						// not a predefined type?  Model types have the AnyType
+						//    operations (except in the case that a model type
+				   		//    defines the corresponding operation)
+						operationCode = OCLStandardLibraryUtil.getOclAnyOperationCode(
+								operName);
+					}
 				}
 			} else {
 				operationCode = 0;
