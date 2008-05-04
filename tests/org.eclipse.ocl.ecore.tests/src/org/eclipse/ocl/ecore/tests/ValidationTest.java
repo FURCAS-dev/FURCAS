@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: ValidationTest.java,v 1.5 2008/05/04 01:13:47 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.ecore.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
@@ -73,6 +75,66 @@ public class ValidationTest extends AbstractTestSuite {
 		} catch (SemanticException e) {
 			// success
 			System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that only one problem is reported for a sequence of call
+	 * expressions on an unrecognized variable (<tt>simpleNameCS</tt>).
+	 */
+	public void test_callExpOnUnrecognizedVariable_226083() {
+		helper.setContext(apple);
+		
+		try {
+			helper.createInvariant(
+				"noSuchVariable.noSuchProperty->includes(self.noSuchOperation())"); //$NON-NLS-1$
+			fail("Should not have successfully parsed"); //$NON-NLS-1$
+		} catch (SemanticException e) {
+			// success: semantic parse failed (not concrete parse)
+			Diagnostic diagnostic = e.getDiagnostic();
+			assertNotNull(diagnostic);
+			assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
+			
+			// the problem reported is the unrecognized 'noSuchVariable'
+			assertTrue(diagnostic.getMessage().contains("noSuchVariable")); //$NON-NLS-1$
+			
+			// there is no complaint about the 'noSuchProperty' but there
+			// is a complaint about 'noSuchOperation'
+			boolean found = false;
+			for (Diagnostic child : diagnostic.getChildren()) {
+				assertFalse(child.getMessage().contains("noSuchProperty")); //$NON-NLS-1$
+				found = found || child.getMessage().contains("noSuchOperation"); //$NON-NLS-1$
+			}
+		} catch (ParserException e) {
+			fail("Wrong kind of parse failure: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests that only one problem is reported for an iterator expression
+	 * on an unparseable source expression.
+	 */
+	public void test_bodyOfUnrcognizableIteratorSource_226083() {
+		helper.setContext(apple);
+		
+		try {
+			helper.createInvariant(
+				"Set{noSuchVariable}->forAll(e | e.noSuchOperation())"); //$NON-NLS-1$
+			fail("Should not have successfully parsed"); //$NON-NLS-1$
+		} catch (SemanticException e) {
+			// success: semantic parse failed (not concrete parse)
+			Diagnostic diagnostic = e.getDiagnostic();
+			assertNotNull(diagnostic);
+			assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
+			
+			// the problem reported is the unrecognized 'noSuchVariable'
+			assertTrue(diagnostic.getMessage().contains("noSuchVariable")); //$NON-NLS-1$
+			
+			// only one problem was reported, not two (the noSuchOperation
+			// operation was not attempted)
+			assertEquals(0, diagnostic.getChildren().size());
+		} catch (ParserException e) {
+			fail("Wrong kind of parse failure: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
 
