@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.10 2008/05/04 01:13:45 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.11 2008/05/04 01:17:02 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1976,7 +1976,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
 		IfExp<C> astNode = oclFactory.createIfExp();
 		
-		if (isErrorPlaceholder(condition)) {
+		if (isErrorNode(condition)) {
 			// don't validate the condition type
 		} else if (condition.getType() != getBoolean()) {
 			ERROR(ifExpCS.getCondition(), "ifExpCS", OCLMessages.bind( //$NON-NLS-1$
@@ -1995,13 +1995,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					elseExpression.getType());
 			astNode.setType(commonType);
 			
-			if (isErrorPlaceholder(thenExpression)) {
+			if (isErrorNode(thenExpression)) {
 				// propagate error stigma to the if expression
-				markAsErrorPlaceholder(astNode);
+				markAsErrorNode(astNode);
 			}
-			if (isErrorPlaceholder(elseExpression)) {
+			if (isErrorNode(elseExpression)) {
 				// propagate error stigma to the if expression
-				markAsErrorPlaceholder(astNode);
+				markAsErrorNode(astNode);
 			}
 		} else {
 			astNode.setType(getOclVoid());
@@ -2101,7 +2101,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source) {
 
-		if ((source != null) && isErrorPlaceholder(source)) {
+		if ((source != null) && isErrorNode(source)) {
 			// don't attempt to parse navigation from an unparseable source
 			return source; // return the same unparseable token
 		}
@@ -2848,9 +2848,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			initTypePositions(astNode, variableDeclarationCS.getTypeCS());
 		}
 		
-		if ((expr != null) && isErrorPlaceholder(expr)) {
+		if ((expr != null) && isErrorNode(expr)) {
 			// propagate error stigma to the tuple literal
-			markAsErrorPlaceholder(astNode);
+			markAsErrorNode(astNode);
 		}
 
 		return astNode;
@@ -3018,9 +3018,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			collectionParts.add(collectionLiteralPartExp);				
 			type = collectionLiteralPartExp.getType();
 			
-			if (isErrorPlaceholder(collectionLiteralPartExp)) {
+			if (isErrorNode(collectionLiteralPartExp)) {
 				// propagate error stigma to the collection literal
-				markAsErrorPlaceholder(astNode);
+				markAsErrorNode(astNode);
 			}
 	
 			while (i.hasNext()) {
@@ -3031,9 +3031,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					type = getCommonSuperType(colPart, "collectionLiteralExpCS", env, type, type1); //$NON-NLS-1$
 					collectionParts.add(collectionLiteralPartExp);
 					
-					if (isErrorPlaceholder(collectionLiteralPartExp)) {
+					if (isErrorNode(collectionLiteralPartExp)) {
 						// propagate error stigma to the collection literal
-						markAsErrorPlaceholder(astNode);
+						markAsErrorNode(astNode);
 					}
 			}
 		}
@@ -3092,9 +3092,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 			astNode = collRange;
 			
-			if (isErrorPlaceholder(expr1) || isErrorPlaceholder(expr2)) {
+			if (isErrorNode(expr1) || isErrorNode(expr2)) {
 				// propagate error stigma to the collection literal part
-				markAsErrorPlaceholder(astNode);
+				markAsErrorNode(astNode);
 			}
 			
 			TRACE("collectionLiteralPartCS", "collection range");//$NON-NLS-2$//$NON-NLS-1$
@@ -3106,9 +3106,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			collItem.setItem(expr1);
 			astNode = collItem;
 			
-			if (isErrorPlaceholder(expr1)) {
+			if (isErrorNode(expr1)) {
 				// propagate error stigma to the collection literal part
-				markAsErrorPlaceholder(astNode);
+				markAsErrorNode(astNode);
 			}
 			
 			TRACE("collectionLiteralPartCS", "collection item");//$NON-NLS-2$//$NON-NLS-1$
@@ -3198,9 +3198,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			
 			astNode1.setType(type);
 			
-			if (isErrorPlaceholder(astNode)) {
+			if (isErrorNode(astNode)) {
 				// propagate error mark to the collection literal
-				markAsErrorPlaceholder(astNode1);
+				markAsErrorNode(astNode1);
 			}
 			
 			astNode = astNode1;
@@ -3283,11 +3283,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		OCLExpressionCS exprCS = iteratorExpCS.getBody();
 
-		if ((source != null) && isErrorPlaceholder(source)) {
+		if ((source != null) && isErrorNode(source)) {
 			// don't attempt to parse iterator body for an unparseable source
 			expr = createDummyInvalidLiteralExp();
 			// don't parse call expressions sourced on this result
-			markAsErrorPlaceholder(astNode);
+			markAsErrorNode(astNode);
 		} else {
 			expr = oclExpressionCS(exprCS, env);
 		}
@@ -3420,11 +3420,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		initASTMapping(env, astNode, iterateExpCS);
 		astNode.setName("iterate");			//$NON-NLS-1$
 
-		if ((source != null) && isErrorPlaceholder(source)) {
+		if ((source != null) && isErrorNode(source)) {
 			// don't attempt to parse iterate body for an unparseable source
 			expr = createDummyInvalidLiteralExp();
 			// don't parse call expressions sourced on this result
-			markAsErrorPlaceholder(astNode);
+			markAsErrorNode(astNode);
 		} else {
 			expr = oclExpressionCS(iterateExpCS.getBody(), env);
 		}
@@ -3695,9 +3695,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			result = createImplicitCollect(source, astNode, env, operationCallExpCS);			
 	   	}
 
-		if ((source != null) && isErrorPlaceholder(source)) {
+		if ((source != null) && isErrorNode(source)) {
 			// don't attempt to parse navigation from an unparseable source
-			markAsErrorPlaceholder(result);
+			markAsErrorNode(result);
 		}
 			
 		return result;
@@ -3898,18 +3898,18 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * Creates a dummy expression of invalid-literal type to be a placeholder
 	 * for a (sub)expression that could not be parsed.  The resulting
-	 * expression is {@linkplain #markAsErrorPlaceholder(OCLExpression) marked}
+	 * expression is {@linkplain #markAsErrorNode(OCLExpression) marked}
 	 * as an error place-holder expression.
 	 * 
 	 * @return the dummy invalid-literal expression
 	 * 
-	 * @see #markAsErrorPlaceholder(OCLExpression)
+	 * @see #markAsErrorNode(OCLExpression)
 	 */
 	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp() {
 		InvalidLiteralExp<C> result = oclFactory.createInvalidLiteralExp();
 		result.setType(getStandardLibrary().getInvalid());
 		
-		markAsErrorPlaceholder(result);
+		markAsErrorNode(result);
 		
 		return result;
 	}
@@ -3922,7 +3922,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * </p><p>
 	 * The default implementation simply returns <code>false</code>;
 	 * subclasses should override if necessary, in conjunction with the
-	 * {@link #markAsErrorPlaceholder(TypedElement)} method.
+	 * {@link #markAsErrorNode(TypedElement)} method.
 	 * </p>
 	 * 
 	 * @param expr
@@ -3930,11 +3930,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @return whether the <tt>expr</tt> is a placeholder for an unparseable
 	 *         (sub)expression
 	 * 
-	 * @see #markAsErrorPlaceholder(TypedElement)
+	 * @see #markAsErrorNode(TypedElement)
 	 * 
 	 * @since 1.2
 	 */
-	protected boolean isErrorPlaceholder(TypedElement<C> expr) {
+	protected boolean isErrorNode(TypedElement<C> expr) {
 		return false;
 	}
 	
@@ -3942,7 +3942,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * <p>
 	 * Marks the specified (sub)expression as a placeholder for an expression
 	 * that could not be parsed. A subsequent invocation of the
-	 * {@link #isErrorPlaceholder(TypedElement)} method should recognize an
+	 * {@link #isErrorNode(TypedElement)} method should recognize an
 	 * expression thus marked.  Subsequent attempts to mark an expression
 	 * that is already marked have no effect.
 	 * </p><p>
@@ -3955,11 +3955,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            an expression that takes the place of a (sub)expression that
 	 *            could not be parsed
 	 * 
-	 * @see #isErrorPlaceholder(TypedElement)
+	 * @see #isErrorNode(TypedElement)
 	 * 
 	 * @since 1.2
 	 */
-	protected void markAsErrorPlaceholder(TypedElement<C> expr) {
+	protected void markAsErrorNode(TypedElement<C> expr) {
 		// implemented by subclasses
 	}
 
