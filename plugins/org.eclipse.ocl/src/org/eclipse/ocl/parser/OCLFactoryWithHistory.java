@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLFactoryWithHistory.java,v 1.2 2008/05/04 01:13:45 cdamus Exp $
+ * $Id: OCLFactoryWithHistory.java,v 1.3 2008/05/04 01:17:02 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -72,7 +72,7 @@ class OCLFactoryWithHistory implements OCLFactory {
 
     private final OCLFactory delegate;
     private List<Object> history = new java.util.ArrayList<Object>();
-    private Set<TypedElement<?>> errorPlaceholders = new java.util.HashSet<TypedElement<?>>();
+    private Set<TypedElement<?>> errorNodes = new java.util.HashSet<TypedElement<?>>();
     
     private boolean disposable;
     
@@ -88,7 +88,7 @@ class OCLFactoryWithHistory implements OCLFactory {
         }
         
         history.clear();
-        errorPlaceholders.clear();
+        errorNodes.clear();
     }
     
     boolean isDisposable() {
@@ -104,12 +104,12 @@ class OCLFactoryWithHistory implements OCLFactory {
         return object;
     }
     
-    void markAsErrorPlaceholder(TypedElement<?> expr) {
-    	errorPlaceholders.add(expr);
+    void markAsErrorNode(TypedElement<?> expr) {
+    	errorNodes.add(expr);
     }
     
-    boolean isErrorPlaceholder(TypedElement<?> expr) {
-    	return errorPlaceholders.contains(expr);
+    boolean isErrorNode(TypedElement<?> expr) {
+    	return errorNodes.contains(expr);
     }
     
     public <C, P> AssociationClassCallExp<C, P> createAssociationClassCallExp() {

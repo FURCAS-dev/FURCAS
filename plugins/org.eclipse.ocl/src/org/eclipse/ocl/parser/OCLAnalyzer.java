@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.5 2008/05/04 01:13:45 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.6 2008/05/04 01:17:02 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -315,12 +315,12 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 	
 	@Override
-	protected boolean isErrorPlaceholder(TypedElement<C> expr) {
-		return history.isErrorPlaceholder(expr);
+	protected boolean isErrorNode(TypedElement<C> expr) {
+		return history.isErrorNode(expr);
 	}
 	
 	@Override
-	protected void markAsErrorPlaceholder(TypedElement<C> expr) {
-		history.markAsErrorPlaceholder(expr);
+	protected void markAsErrorNode(TypedElement<C> expr) {
+		history.markAsErrorNode(expr);
 	}
 }
