@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.4 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.5 2008/05/04 01:13:45 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -37,6 +37,7 @@ import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.OCLFactory;
+import org.eclipse.ocl.utilities.TypedElement;
 
 /**
  * The <code>OCLAnalyzer</code> performs semantic analysis on a CST produced by
@@ -311,5 +312,15 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
 	protected ExpressionInOCL<C, PM> createExpressionInOCL() {
 	    return history.record(super.createExpressionInOCL());
+	}
+	
+	@Override
+	protected boolean isErrorPlaceholder(TypedElement<C> expr) {
+		return history.isErrorPlaceholder(expr);
+	}
+	
+	@Override
+	protected void markAsErrorPlaceholder(TypedElement<C> expr) {
+		history.markAsErrorPlaceholder(expr);
 	}
 }

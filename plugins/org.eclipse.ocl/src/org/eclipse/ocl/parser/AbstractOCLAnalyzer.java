@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.9 2008/03/28 20:25:09 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.10 2008/05/04 01:13:45 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1974,13 +1974,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		TRACE("ifExpCS", " "); //$NON-NLS-2$//$NON-NLS-1$
 	
-        if (condition.getType() != getBoolean()) {
+		IfExp<C> astNode = oclFactory.createIfExp();
+		
+		if (isErrorPlaceholder(condition)) {
+			// don't validate the condition type
+		} else if (condition.getType() != getBoolean()) {
 			ERROR(ifExpCS.getCondition(), "ifExpCS", OCLMessages.bind( //$NON-NLS-1$
 					OCLMessages.BooleanForIf_ERROR_,
 					computeInputString(ifExpCS.getCondition())));
 		}
 				
-		IfExp<C> astNode = oclFactory.createIfExp();
 		initASTMapping(env, astNode, ifExpCS);
 		astNode.setCondition(condition);
 		astNode.setThenExpression(thenExpression);
@@ -1991,6 +1994,15 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					thenExpression.getType(),
 					elseExpression.getType());
 			astNode.setType(commonType);
+			
+			if (isErrorPlaceholder(thenExpression)) {
+				// propagate error stigma to the if expression
+				markAsErrorPlaceholder(astNode);
+			}
+			if (isErrorPlaceholder(elseExpression)) {
+				// propagate error stigma to the if expression
+				markAsErrorPlaceholder(astNode);
+			}
 		} else {
 			astNode.setType(getOclVoid());
 		}
@@ -2089,6 +2101,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source) {
 
+		if ((source != null) && isErrorPlaceholder(source)) {
+			// don't attempt to parse navigation from an unparseable source
+			return source; // return the same unparseable token
+		}
+		
 		OCLExpression<C> astNode;
 
 		String simpleName = null;
@@ -2830,6 +2847,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (variableDeclarationCS.getTypeCS() != null) {
 			initTypePositions(astNode, variableDeclarationCS.getTypeCS());
 		}
+		
+		if ((expr != null) && isErrorPlaceholder(expr)) {
+			// propagate error stigma to the tuple literal
+			markAsErrorPlaceholder(astNode);
+		}
 
 		return astNode;
 	}
@@ -2995,13 +3017,24 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			collectionLiteralPartExp = collectionLiteralPartCS(colPart, env);
 			collectionParts.add(collectionLiteralPartExp);				
 			type = collectionLiteralPartExp.getType();
+			
+			if (isErrorPlaceholder(collectionLiteralPartExp)) {
+				// propagate error stigma to the collection literal
+				markAsErrorPlaceholder(astNode);
+			}
 	
 			while (i.hasNext()) {
 					collectionLiteralPartExp = collectionLiteralPartCS(
 						i.next(), env);
+					
 					C type1 = collectionLiteralPartExp.getType();					
 					type = getCommonSuperType(colPart, "collectionLiteralExpCS", env, type, type1); //$NON-NLS-1$
 					collectionParts.add(collectionLiteralPartExp);
+					
+					if (isErrorPlaceholder(collectionLiteralPartExp)) {
+						// propagate error stigma to the collection literal
+						markAsErrorPlaceholder(astNode);
+					}
 			}
 		}
 		
@@ -3045,6 +3078,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			expr2 = oclExpressionCS(collectionRangeCS.getLastExpressionCS(), env);
 			
 			collRange = oclFactory.createCollectionRange();
+			
 			initASTMapping(env, collRange, collectionLiteralPartCS);
 			collRange.setFirst(expr1);
 			collRange.setLast(expr2);
@@ -3057,13 +3091,26 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 							computeInputString(collectionLiteralPartCS)));
 			}
 			astNode = collRange;
+			
+			if (isErrorPlaceholder(expr1) || isErrorPlaceholder(expr2)) {
+				// propagate error stigma to the collection literal part
+				markAsErrorPlaceholder(astNode);
+			}
+			
 			TRACE("collectionLiteralPartCS", "collection range");//$NON-NLS-2$//$NON-NLS-1$
 		} else {
 			collItem = oclFactory.createCollectionItem();
+			
 			initASTMapping(env, collItem, collectionLiteralPartCS);
 			collItem.setType(expr1.getType());
 			collItem.setItem(expr1);
 			astNode = collItem;
+			
+			if (isErrorPlaceholder(expr1)) {
+				// propagate error stigma to the collection literal part
+				markAsErrorPlaceholder(astNode);
+			}
+			
 			TRACE("collectionLiteralPartCS", "collection item");//$NON-NLS-2$//$NON-NLS-1$
 		}
 			
@@ -3150,6 +3197,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			C type = getCollectionType(env, astNode1.getKind(), astNode.getType());
 			
 			astNode1.setType(type);
+			
+			if (isErrorPlaceholder(astNode)) {
+				// propagate error mark to the collection literal
+				markAsErrorPlaceholder(astNode1);
+			}
+			
 			astNode = astNode1;
 		}
 
@@ -3229,7 +3282,15 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		OCLExpressionCS exprCS = iteratorExpCS.getBody();
-		expr = oclExpressionCS(exprCS, env);
+
+		if ((source != null) && isErrorPlaceholder(source)) {
+			// don't attempt to parse iterator body for an unparseable source
+			expr = createDummyInvalidLiteralExp();
+			// don't parse call expressions sourced on this result
+			markAsErrorPlaceholder(astNode);
+		} else {
+			expr = oclExpressionCS(exprCS, env);
+		}
 	
 		TRACE("oclIteratorExpCS: ", name);//$NON-NLS-1$
 		
@@ -3353,14 +3414,21 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			
 			vdcl.setType(ct.getElementType());
 		}
-
-		expr = oclExpressionCS(iterateExpCS.getBody(), env);
-
 	
 		TRACE("iterateExpCS", "iterate");//$NON-NLS-2$//$NON-NLS-1$
 		astNode = oclFactory.createIterateExp();
 		initASTMapping(env, astNode, iterateExpCS);
 		astNode.setName("iterate");			//$NON-NLS-1$
+
+		if ((source != null) && isErrorPlaceholder(source)) {
+			// don't attempt to parse iterate body for an unparseable source
+			expr = createDummyInvalidLiteralExp();
+			// don't parse call expressions sourced on this result
+			markAsErrorPlaceholder(astNode);
+		} else {
+			expr = oclExpressionCS(iterateExpCS.getBody(), env);
+		}
+		
 		List<Variable<C, PM>> iterator = astNode.getIterator();
 		iterator.add(vdcl);
 		astNode.setSource(source);
@@ -3626,6 +3694,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (isImplicitCollect) {
 			result = createImplicitCollect(source, astNode, env, operationCallExpCS);			
 	   	}
+
+		if ((source != null) && isErrorPlaceholder(source)) {
+			// don't attempt to parse navigation from an unparseable source
+			markAsErrorPlaceholder(result);
+		}
 			
 		return result;
 	}
@@ -3822,10 +3895,72 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		return null;
 	}
 	
+	/**
+	 * Creates a dummy expression of invalid-literal type to be a placeholder
+	 * for a (sub)expression that could not be parsed.  The resulting
+	 * expression is {@linkplain #markAsErrorPlaceholder(OCLExpression) marked}
+	 * as an error place-holder expression.
+	 * 
+	 * @return the dummy invalid-literal expression
+	 * 
+	 * @see #markAsErrorPlaceholder(OCLExpression)
+	 */
 	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp() {
 		InvalidLiteralExp<C> result = oclFactory.createInvalidLiteralExp();
 		result.setType(getStandardLibrary().getInvalid());
+		
+		markAsErrorPlaceholder(result);
+		
 		return result;
+	}
+	
+	/**
+	 * <p>
+	 * Queries whether the specified expression is a placeholder that was
+	 * created for an expression that failed to parse. An example is the
+	 * expression returned by {@link #createDummyInvalidLiteralExp()}.
+	 * </p><p>
+	 * The default implementation simply returns <code>false</code>;
+	 * subclasses should override if necessary, in conjunction with the
+	 * {@link #markAsErrorPlaceholder(TypedElement)} method.
+	 * </p>
+	 * 
+	 * @param expr
+	 *            a (sub)expression
+	 * @return whether the <tt>expr</tt> is a placeholder for an unparseable
+	 *         (sub)expression
+	 * 
+	 * @see #markAsErrorPlaceholder(TypedElement)
+	 * 
+	 * @since 1.2
+	 */
+	protected boolean isErrorPlaceholder(TypedElement<C> expr) {
+		return false;
+	}
+	
+	/**
+	 * <p>
+	 * Marks the specified (sub)expression as a placeholder for an expression
+	 * that could not be parsed. A subsequent invocation of the
+	 * {@link #isErrorPlaceholder(TypedElement)} method should recognize an
+	 * expression thus marked.  Subsequent attempts to mark an expression
+	 * that is already marked have no effect.
+	 * </p><p>
+	 * The default implementation does nothing; subclasses should override
+	 * if necessary, in conjunction with the <tt>isErrorPlaceholder</tt>
+	 * method.
+	 * </p>
+	 * 
+	 * @param expr
+	 *            an expression that takes the place of a (sub)expression that
+	 *            could not be parsed
+	 * 
+	 * @see #isErrorPlaceholder(TypedElement)
+	 * 
+	 * @since 1.2
+	 */
+	protected void markAsErrorPlaceholder(TypedElement<C> expr) {
+		// implemented by subclasses
 	}
 
 	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
