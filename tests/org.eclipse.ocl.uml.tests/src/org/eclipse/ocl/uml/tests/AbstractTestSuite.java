@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.9 2008/04/27 23:50:47 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.10 2008/05/05 16:47:39 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -197,6 +197,7 @@ public abstract class AbstractTestSuite
 		result.addTest(org.eclipse.ocl.uml.helper.tests.AbstractTestSuite.suite());
 		result.addTest(RegressionTest.suite());
 		result.addTest(ValidationTest.suite());
+		result.addTest(TypesValidatorTest.suite());
 		result.addTest(ExpressionsValidatorTest.suite());
 		result.addTest(SerializationTest.suite());
 		
