@@ -3,9 +3,18 @@
 	<target name="init">
 	</target>
 
+	<patternset id="zip.excludes"
+		excludes="src.zip,javaCompiler*,temp.folder/**,@dot/**"/>
+	
 	<target name="zip.examples" depends="init">
-		<zip destfile="zips/statements.zip" basedir="../org.eclipse.emf.query.examples.statements"/>
-		<zip destfile="zips/ocl.zip" basedir="../org.eclipse.emf.query.examples.ocl"/>
+		<!-- These examples may have been compiled already in the Master feature -->
+		<zip destfile="zips/statements.zip" basedir="../org.eclipse.emf.query.examples.statements">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		<zip destfile="zips/ocl.zip" basedir="../org.eclipse.emf.query.examples.ocl">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		
 		<zip destfile="zips/library.zip" basedir="../org.eclipse.emf.examples.library"/>
 		<zip destfile="zips/libraryEdit.zip" basedir="../org.eclipse.emf.examples.library.edit"/>
 		<zip destfile="zips/libraryEditor.zip" basedir="../org.eclipse.emf.examples.library.editor"/>
