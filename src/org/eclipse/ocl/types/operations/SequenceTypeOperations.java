@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: SequenceTypeOperations.java,v 1.3 2008/05/05 16:47:41 cdamus Exp $
  */
 package org.eclipse.ocl.types.operations;
 
@@ -75,7 +75,7 @@ public class SequenceTypeOperations extends CollectionTypeOperations {
     		if (elementType != null) {
     			String elementTypeName = env.getUMLReflection().getName(elementType);
     			
-    			result = ("Bag(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
+    			result = ("Sequence(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
     		}
     	}
     	
