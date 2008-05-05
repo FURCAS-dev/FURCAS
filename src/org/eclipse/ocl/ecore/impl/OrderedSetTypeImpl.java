@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,17 +12,20 @@
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.6 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.7 2008/05/05 16:47:32 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.LinkedHashSet;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OrderedSetType;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.types.operations.OrderedSetTypeOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,6 +75,16 @@ public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSet
     @Override
     public CollectionKind getKind() {
         return CollectionKind.ORDERED_SET_LITERAL;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return OrderedSetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
     }
 
 } //OrderedSetTypeImpl
