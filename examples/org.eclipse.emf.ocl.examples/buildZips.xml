@@ -3,8 +3,15 @@
 	<target name="init">
 	</target>
 
+	<patternset id="zip.excludes"
+		excludes="src.zip,javaCompiler*,temp.folder/**,@dot/**"/>
+	
 	<target name="zip.examples" depends="init">
-		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter"/>
+		<!-- This example may have been compiled already in the Master feature -->
+		<zip destfile="zips/interpreter.zip" basedir="../org.eclipse.emf.ocl.examples.interpreter">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		
 		<zip destfile="zips/library.zip" basedir="../org.eclipse.emf.examples.library"/>
 		<zip destfile="zips/libraryEdit.zip" basedir="../org.eclipse.emf.examples.library.edit"/>
 		<zip destfile="zips/libraryEditor.zip" basedir="../org.eclipse.emf.examples.library.editor"/>
