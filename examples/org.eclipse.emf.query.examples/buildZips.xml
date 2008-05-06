@@ -4,7 +4,7 @@
 	</target>
 
 	<patternset id="zip.excludes"
-		excludes="src.zip,javaCompiler*,temp.folder/**,@dot/**"/>
+		excludes="src.zip,build.xml,javaCompiler*,temp.folder/**,@dot/**"/>
 	
 	<target name="zip.examples" depends="init">
 		<!-- These examples may have been compiled already in the Master feature -->
