@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.1 2008/05/05 16:47:29 cdamus Exp $
+ * $Id: TypesValidatorTest.java,v 1.2 2008/05/10 16:27:51 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -62,6 +62,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		type.setName("Sequence(Fruit)"); //$NON-NLS-1$
 		
 		assertProblem(type, TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME);
+		
+		assertOK(getOCLStandardLibrary().getCollection(), TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME);
 	}
 	
 	public void test_BagType_checkCollectionTypeName() {
@@ -77,6 +79,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		type.setName("Collection(Fruit)"); //$NON-NLS-1$
 		
 		assertProblem(type, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
+		
+		assertOK(getOCLStandardLibrary().getBag(), TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
 	}
 	
 	public void test_SetType_checkCollectionTypeName() {
@@ -92,6 +96,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		type.setName("Collection(Fruit)"); //$NON-NLS-1$
 		
 		assertProblem(type, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
+		
+		assertOK(getOCLStandardLibrary().getSet(), TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
 	}
 	
 	public void test_SequenceType_checkCollectionTypeName() {
@@ -107,6 +113,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		type.setName("Collection(Fruit)"); //$NON-NLS-1$
 		
 		assertProblem(type, TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
+		
+		assertOK(getOCLStandardLibrary().getSequence(), TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
 	}
 	
 	public void test_OrderedSetType_checkCollectionTypeName() {
@@ -122,6 +130,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		type.setName("Collection(Fruit)"); //$NON-NLS-1$
 		
 		assertProblem(type, TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
+		
+		assertOK(getOCLStandardLibrary().getOrderedSet(), TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
 	}
 
 	//
