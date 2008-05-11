@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.2 2008/05/10 16:27:51 cdamus Exp $
+ * $Id: TypesValidatorTest.java,v 1.3 2008/05/11 05:37:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -23,7 +23,12 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CollectionType;
@@ -132,6 +137,48 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		assertProblem(type, TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
 		
 		assertOK(getOCLStandardLibrary().getOrderedSet(), TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
+	}
+	
+	/**
+	 * Test that the default name of the collection type of an empty collection
+	 * shows <tt>OclVoid</tt> as the element type.
+	 */
+	public void test_emptyCollectionType_196972() {
+		// load our test resource
+		ResourceSet rset = new ResourceSetImpl();
+		Resource res = rset
+			.getResource(
+				URI
+					.createPlatformPluginURI(
+						"/org.eclipse.ocl.ecore.tests/model/VoidCollectionTypes.ecore", true), true); //$NON-NLS-1$
+		EPackage epackage = (EPackage) res.getContents().get(0);
+		
+		// this one is ill-named
+		CollectionType setType = (CollectionType) epackage.getEClassifier("Set(T)"); //$NON-NLS-1$
+		assertSame(getOCLStandardLibrary().getOclVoid(), setType.getElementType());
+		assertProblem(setType, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
+		
+		// this one is well-named
+		CollectionType bagType = (CollectionType) epackage.getEClassifier("Bag(OclVoid)"); //$NON-NLS-1$
+		assertSame(getOCLStandardLibrary().getOclVoid(), bagType.getElementType());
+		assertOK(setType, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
+		
+		// create a new void collection type
+		CollectionType collectionType = factory.createCollectionType();
+		collectionType.setElementType(getOCLStandardLibrary().getOclVoid());
+		assertOK(collectionType, TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME);
+		setType = factory.createSetType();
+		setType.setElementType(getOCLStandardLibrary().getOclVoid());
+		assertOK(setType, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
+		CollectionType orderedSetType = factory.createOrderedSetType();
+		orderedSetType.setElementType(getOCLStandardLibrary().getOclVoid());
+		assertOK(orderedSetType, TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
+		bagType = factory.createBagType();
+		bagType.setElementType(getOCLStandardLibrary().getOclVoid());
+		assertOK(bagType, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
+		CollectionType sequenceType = factory.createSequenceType();
+		sequenceType.setElementType(getOCLStandardLibrary().getOclVoid());
+		assertOK(sequenceType, TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
 	}
 
 	//
