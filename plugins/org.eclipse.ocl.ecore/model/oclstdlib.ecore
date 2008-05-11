@@ -539,7 +539,8 @@
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" elementType="#/0/T"/>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" instanceClassName="java.util.Set"
+        elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Set(T)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Set(T)"/>
       <eOperations name="count" eType="#/0/Integer">
@@ -666,7 +667,8 @@
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(T)" elementType="#/0/T"/>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(T)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="OrderedSet(T)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/OrderedSet(T)"/>
       <eOperations name="count" eType="#/0/Integer">
@@ -821,7 +823,8 @@
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T)" elementType="#/0/T"/>
+    <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T)" instanceClassName="org.eclipse.ocl.util.Bag"
+        elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Bag(T)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Bag(T)"/>
       <eOperations name="count" eType="#/0/Integer">
@@ -942,7 +945,8 @@
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T)" elementType="#/0/T"/>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T)" instanceClassName="java.util.List"
+        elementType="#/0/T"/>
     <eClassifiers xsi:type="ecore:EClass" name="Sequence(T)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/Sequence(T)"/>
       <eOperations name="count" eType="#/0/Integer">
@@ -1086,17 +1090,21 @@
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="tuples">
-    <eClassifiers xsi:type="ocl.ecore:TupleType" name="Tuple(first : T, second : T2)">
+    <eClassifiers xsi:type="ocl.ecore:TupleType" name="Tuple(first : T, second : T2)"
+        instanceClassName="org.eclipse.ocl.util.Tuple">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="first" eType="#/0/T"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="second" eType="#/0/T2"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="collections">
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Tuple(first : T, second : T2))"
-        elementType="#/1/Tuple(first%20%3A%20T%2C%20second%20%3A%20T2)"/>
+        instanceClassName="java.util.Set" elementType="#/1/Tuple(first%20%3A%20T%2C%20second%20%3A%20T2)"/>
     <eClassifiers xsi:type="ocl.ecore:CollectionType" name="Collection(T2)" elementType="#/0/T2"/>
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T2)" elementType="#/0/T2"/>
-    <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T2)" elementType="#/0/T2"/>
-    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T2)" elementType="#/0/T2"/>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T2)" instanceClassName="java.util.Set"
+        elementType="#/0/T2"/>
+    <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(T2)" instanceClassName="org.eclipse.ocl.util.Bag"
+        elementType="#/0/T2"/>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(T2)" instanceClassName="java.util.List"
+        elementType="#/0/T2"/>
   </ecore:EPackage>
 </xmi:XMI>

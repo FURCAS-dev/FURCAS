@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.6 2008/05/11 05:37:15 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -37,7 +37,6 @@ import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.operations.CollectionTypeOperations;
-import org.eclipse.ocl.types.VoidType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -225,9 +224,7 @@ public class CollectionTypeImpl<C, O> extends EObjectImpl implements CollectionT
             
 			C elementType = getElementType();
 			String elementTypeName;
-			if (elementType instanceof VoidType) {
-				elementTypeName = "T"; //$NON-NLS-1$
-			} else if (elementType instanceof PredefinedType) {
+			if (elementType instanceof PredefinedType) {
 				elementTypeName = ((PredefinedType<C>) elementType).getName();
 			} else {
 				elementTypeName = env.getUMLReflection().getName(elementType);

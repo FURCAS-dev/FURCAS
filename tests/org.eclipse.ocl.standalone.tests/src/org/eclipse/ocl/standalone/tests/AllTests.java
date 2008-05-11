@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.4 2008/04/03 13:06:43 cdamus Exp $
+ * $Id: AllTests.java,v 1.5 2008/05/11 05:37:17 cdamus Exp $
  */
 package org.eclipse.ocl.standalone.tests;
 
@@ -39,7 +39,9 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -52,9 +54,9 @@ public class AllTests extends TestCase {
         System.getProperty("workspace.location"); //$NON-NLS-1$
     
     static {
+        configurePlatformProtocol();
         configureEMF();
         configureOCL();
-        configurePlatformProtocol();
     }
     
     public static Test suite() {
@@ -69,22 +71,6 @@ public class AllTests extends TestCase {
     
     private static void configureEMF() {
         //
-        // configure URI mappings
-        //
-        
-        Map<URI, URI> uriMap = URIConverter.URI_MAP;
-        
-        uriMap.put(URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.ecore.tests/"), //$NON-NLS-1$
-            URI.createURI("file:" + WORKSPACE_LOCATION + "org.eclipse.ocl.ecore.tests/")); //$NON-NLS-1$ //$NON-NLS-2$
-        String umlResources = "jar:file:" + getUMLResourcesJar() + "!"; //$NON-NLS-1$ //$NON-NLS-2$
-        uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP),
-            URI.createURI(umlResources + "/libraries/")); //$NON-NLS-1$
-        uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP),
-            URI.createURI(umlResources + "/metamodels/")); //$NON-NLS-1$
-        uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP),
-            URI.createURI(umlResources + "/profiles/")); //$NON-NLS-1$
-
-        //
         // configure resource factories
         //
         
@@ -93,6 +79,40 @@ public class AllTests extends TestCase {
         extMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
         extMap.put("uml", UMLResource.Factory.INSTANCE); //$NON-NLS-1$
 
+        //
+        // configure EPackages
+        //
+        
+        Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
+        // extra mapping for UML backward compatibility
+        pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
+        // force initialization and registration of various EPackages
+        org.eclipse.ocl.uml.UMLPackage.eINSTANCE.eClass();
+        org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.eClass();
+        
+        //
+        // configure URI mappings
+        //
+        
+        Map<URI, URI> uriMap = URIConverter.URI_MAP;
+        
+        uriMap.put(URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.ecore.tests/"), //$NON-NLS-1$
+            URI.createURI("file:" + WORKSPACE_LOCATION + "org.eclipse.ocl.ecore.tests/")); //$NON-NLS-1$ //$NON-NLS-2$
+        uriMap.put(URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.uml.tests/"), //$NON-NLS-1$
+            URI.createURI("file:" + WORKSPACE_LOCATION + "org.eclipse.ocl.uml.tests/")); //$NON-NLS-1$ //$NON-NLS-2$
+        uriMap.put(URI.createURI("http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"), //$NON-NLS-1$
+        	URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.ecore/model/oclstdlib.ecore")); //$NON-NLS-1$
+        uriMap.put(URI.createURI("http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"), //$NON-NLS-1$
+        	URI.createURI(PLATFORM_PLUGIN + "org.eclipse.ocl.uml/model/oclstdlib.uml")); //$NON-NLS-1$
+        String umlResources = "jar:file:" + getUMLResourcesJar() + "!"; //$NON-NLS-1$ //$NON-NLS-2$
+        uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP),
+            URI.createURI(umlResources + "/libraries/")); //$NON-NLS-1$
+        uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP),
+            URI.createURI(umlResources + "/metamodels/")); //$NON-NLS-1$
+        uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP),
+            URI.createURI(umlResources + "/profiles/")); //$NON-NLS-1$
+
+        // configure the fake "oclenv:" resource factory
         Map<String, Object> protMap = Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap();
         
         try {
@@ -100,13 +120,6 @@ public class AllTests extends TestCase {
         } catch (Exception e) {
             fail("Failed to load compatibility environment resource: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
-        
-        //
-        // configure EPackages
-        //
-        
-        Map<String, Object> pkgReg = EPackage.Registry.INSTANCE;
-        pkgReg.put("http://www.eclipse.org/uml2/2.0.0/UML", UMLPackage.eINSTANCE); //$NON-NLS-1$
     }
     
     private static String getUMLResourcesJar() {
@@ -149,8 +162,17 @@ public class AllTests extends TestCase {
     private static void configureOCL() {
         Environment.Registry reg = Environment.Registry.INSTANCE;
         
-        reg.registerEnvironment(EcoreEnvironmentFactory.INSTANCE.createEnvironment());
-        reg.registerEnvironment(new UMLEnvironmentFactory().createEnvironment());
+        // register prototype environments
+        EcoreEnvironment ecoreEnv = (EcoreEnvironment) EcoreEnvironmentFactory.INSTANCE
+			.createEnvironment();
+		reg.registerEnvironment(ecoreEnv);
+		UMLEnvironment umlEnv = (UMLEnvironment) new UMLEnvironmentFactory()
+			.createEnvironment();
+		reg.registerEnvironment(umlEnv);
+        
+        // register their standard library packages
+		ecoreEnv.getOCLStandardLibrary();
+		umlEnv.getOCLStandardLibrary();
     }
     
     private static void configurePlatformProtocol() {
