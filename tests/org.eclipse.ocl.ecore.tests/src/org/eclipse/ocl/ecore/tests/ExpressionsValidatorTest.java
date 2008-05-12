@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.1 2008/04/27 23:16:00 cdamus Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.2 2008/05/12 14:30:52 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -706,6 +706,31 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		o.getArgument().clear();
 		
 		assertProblem(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT);
+	}
+	
+	/**
+	 * Tests the case of a null operation (that it doesn't throw an NPE).
+	 */
+	public void test_OperationCallExp_checkArgumentCount_nullOperation_231515() {
+		OperationCallExp o = factory.createOperationCallExp();
+		
+		o.setReferredOperation(null);  // be explicit on the purpose of the test
+		
+		OCLExpression arg = factory.createUnspecifiedValueExp();
+		o.getArgument().add(arg);
+		CollectionType ctype = factory.createOrderedSetType();
+		ctype.setElementType(color);
+		arg.setType(ctype);
+		
+		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT);
+
+		o.getArgument().add(factory.createCollectionLiteralExp());
+		
+		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT);
+
+		o.getArgument().clear();
+		
+		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT);
 	}
 	
 	public void test_PropertyCallExp_checkPropertyType() {
