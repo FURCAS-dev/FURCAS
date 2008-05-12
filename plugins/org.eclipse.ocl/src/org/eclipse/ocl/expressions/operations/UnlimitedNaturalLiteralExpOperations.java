@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.3 2008/05/12 14:30:50 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -41,7 +41,7 @@ import org.eclipse.ocl.util.OCLUtil;
  * </ul>
  * </p>
  *
- * @generated NOT
+ * @generated
  */
 public class UnlimitedNaturalLiteralExpOperations {
     /**
@@ -62,7 +62,7 @@ public class UnlimitedNaturalLiteralExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C> boolean checkNaturalType(UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
     	boolean result = true;
