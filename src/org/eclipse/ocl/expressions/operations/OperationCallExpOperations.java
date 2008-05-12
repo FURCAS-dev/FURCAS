@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Adolfo Sanchez-Barbudo Herrera - 231515 Fix NPE in checkArgumentCount
  * 
  * </copyright>
  *
- * $Id: OperationCallExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: OperationCallExpOperations.java,v 1.3 2008/05/12 14:30:50 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -126,10 +127,11 @@ public class OperationCallExpOperations {
 		
 		if (env != null) {
 			O oper = operationCallExp.getReferredOperation();
-			List<OCLExpression<C>> args = operationCallExp.getArgument();
-			List<?> parms = env.getUMLReflection().getParameters(oper);
-			
-			result = args.size() == parms.size();
+			if (oper != null) {
+				List<OCLExpression<C>> args = operationCallExp.getArgument();
+				List<?> parms = env.getUMLReflection().getParameters(oper);			
+				result = args.size() == parms.size();
+			}
 		}
 		
         if (!result) {
