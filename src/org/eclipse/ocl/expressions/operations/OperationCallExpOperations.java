@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpOperations.java,v 1.3 2008/05/12 14:30:50 cdamus Exp $
+ * $Id: OperationCallExpOperations.java,v 1.4 2008/05/17 00:53:05 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,10 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,16 +85,34 @@ public class OperationCallExpOperations {
 			List<OCLExpression<C>> args = operationCallExp.getArgument();
 	
 			if ((oper != null) && (source != null)) {
-				C sourceType = source.getType();
-				String operName = env.getUMLReflection().getName(oper);
+				UMLReflection<?, C, O, ?, ?, ?, ?, ?, ?, ?> uml = env
+					.getUMLReflection();
 		
 				// Check argument conformance.
-				O oper1 = env.lookupOperation(sourceType, operName, args);
-				if (oper1 != oper) {
-					result = false;
-					message = OCLMessages.bind(
-							OCLMessages.IllegalOperation_ERROR_,
-							operationCallExp.toString());
+				List<?> parms = uml.getParameters(oper);
+				
+				// if the wrong number of parameters, the other constraint
+				// on argument count will complain
+				if (parms.size() == args.size()) {
+					Iterator<OCLExpression<C>> argIter = args.iterator();
+					Iterator<?> parmIter = parms.iterator();
+					OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
+					
+					while (result && parmIter.hasNext()) {
+						C parmType = uml.getOCLType(parmIter.next());
+						C argType = argIter.next().getType();
+						
+						if ((argType == null)
+							|| (parmType == null)
+							|| ((parmType != stdlib.getT())
+								&& (parmType != stdlib.getT2()) && !TypeUtil
+								.compatibleTypeMatch(env, argType, parmType))) {
+							result = false;
+							message = OCLMessages.bind(
+								OCLMessages.IllegalOperation_ERROR_,
+								operationCallExp.toString());
+						}
+					}
 				}
 			}
 		}
