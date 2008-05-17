@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.1 2008/04/27 23:50:47 cdamus Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.2 2008/05/17 00:53:07 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -672,6 +672,32 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		assertProblem(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM);
 		
 		ctype.setElementType(fruit);
+		
+		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM);
+	}
+	
+	/**
+	 * Tests that operation call expressions involving generic arguments
+	 * pass the constraint.  These are the generic <tt>T</tt> and <tt>T2</tt>
+	 * parameters from collection operations in the standard library.
+	 */
+	public void test_OperationCallExp_checkArgumentsConform_generic_232028() {
+		OperationCallExp o = (OperationCallExp) parseUnvalidated(
+			"context uml::String inv: Set{}->including('foo')"); //$NON-NLS-1$
+		
+		OCLExpression arg = factory.createUnspecifiedValueExp();
+		arg.setType(getOCLStandardLibrary().getInteger());
+		o.getArgument().add(arg);
+		
+		// wrong number of arguments does not trigger this constraint
+		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM);
+		
+		o.getArgument().remove(arg);
+		
+		// this is a well-formed expression
+		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM);
+		
+		o.getArgument().set(0, arg);
 		
 		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM);
 	}
