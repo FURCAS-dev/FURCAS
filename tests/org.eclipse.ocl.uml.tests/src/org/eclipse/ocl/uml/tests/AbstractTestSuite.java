@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.10 2008/05/05 16:47:39 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.11 2008/05/17 20:41:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -31,6 +31,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
@@ -48,10 +49,13 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.ExpressionInOCL;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
@@ -660,6 +664,45 @@ public abstract class AbstractTestSuite
 		assertNull("Choice found: " + name + ", " + kind, //$NON-NLS-1$ //$NON-NLS-2$
 			findChoice(choices, kind, name));
 	}
+
+	/**
+	 * Asserts that a exception of the specified kind is not signalled by
+	 * the a given diagnostic or (recursively) its children.
+	 * 
+	 * @param diagnostic a diagnostic
+	 * @param excType an exception that must not be indicated by the diagnostic
+	 * 
+	 * @since 1.2
+	 */
+    protected void assertNoException(Diagnostic diagnostic, java.lang.Class<? extends Throwable> excType) {
+    	if (excType.isInstance(diagnostic.getException())) {
+    		fail("Diagnostic signals a(n) " + excType.getSimpleName()); //$NON-NLS-1$
+    	}
+    	
+    	for (Diagnostic nested : diagnostic.getChildren()) {
+    		assertNoException(nested, excType);
+    	}
+    }
+    
+    /**
+     * Obtains the diagnostic describing the problem in the last failed parse,
+     * asserting that it is not <code>null</code>.
+     * 
+     * @return the diagnostic
+     */
+    protected Diagnostic getDiagnostic() {
+    	OCLProblemHandler handler = (OCLProblemHandler) OCLUtil.getAdapter(
+    		ocl.getEnvironment(), ProblemHandler.class);
+    	
+    	Diagnostic result = handler.getDiagnostic();
+    	if (result == null) {
+    		result = helper.getProblems();
+    	}
+    	
+    	assertNotNull("No diagnostic", result); //$NON-NLS-1$
+    	
+    	return result;
+    }
 	
 	protected OCLStandardLibrary<Classifier> getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();

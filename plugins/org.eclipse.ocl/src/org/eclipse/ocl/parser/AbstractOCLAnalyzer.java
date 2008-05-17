@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.11 2008/05/04 01:17:02 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.12 2008/05/17 20:41:35 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2285,9 +2285,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		/*
 		 * If the source type is a collection, then need there is an implicit COLLECT operator.
-		 * Note that this rule is not called after "->".
+		 * Note that this rule is not called after "->".  Check for FeatureCallExp
+		 * in case we created a dummy InvalidLiteralExp.
 		 */
-		if ((source != null) && source.getType() instanceof CollectionType) {
+		if ((source != null) && (source.getType() instanceof CollectionType)
+			&& (astNode instanceof FeatureCallExp)) {
 			astNode = createImplicitCollect(
 				source,
 				(FeatureCallExp<C>) astNode,
