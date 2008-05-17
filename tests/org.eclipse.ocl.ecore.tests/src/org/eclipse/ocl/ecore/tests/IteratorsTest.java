@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.5 2008/03/26 21:17:23 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.6 2008/05/17 20:41:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -307,6 +307,46 @@ public class IteratorsTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
+
+    /**
+     * Tests that parsing fails, in the case of an unknown property in a
+     * collection navigation, with an appropriate parse failure, not a
+     * <code>ClassCastException</code>.
+     */
+    public void test_implicitCollect_unknownAttribute_232669() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+
+        try {
+            // this shouldn't parse, anyway
+            helper.createInvariant("eSubpackages.unknownAttribute"); //$NON-NLS-1$
+
+            fail("Should not have parsed"); //$NON-NLS-1$
+        } catch (ParserException e) {
+        	// should have a diagnostic describing the problem if it is a
+        	// "normal" parse failure
+        	assertNoException(getDiagnostic(), ClassCastException.class);
+        }
+   }
+
+    /**
+     * Tests that parsing fails, in the case of an unknown operation in a
+     * collection navigation, with an appropriate parse failure, not a
+     * <code>ClassCastException</code>.
+     */
+    public void test_implicitCollect_unknownOperation_232669() {
+        helper.setContext(EcorePackage.Literals.EPACKAGE);
+
+        try {
+            // this shouldn't parse, anyway
+        	helper.createInvariant("eSubpackages.unknownOperation(self)"); //$NON-NLS-1$
+
+            fail("Should not have parsed"); //$NON-NLS-1$
+        } catch (ParserException e) {
+        	// should have a diagnostic describing the problem if it is a
+        	// "normal" parse failure
+        	assertNoException(getDiagnostic(), ClassCastException.class);
+        }
+   }
 
     /**
      * Tests that the collect() iterator correctly flattens its result.
