@@ -12,19 +12,24 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.4 2008/03/28 20:33:41 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.IntegerLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -43,64 +48,64 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements IntegerLiteralExp {
 	/**
-     * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IntegerLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EcorePackage.Literals.INTEGER_LITERAL_EXP;
-    }
+		return EcorePackage.Literals.INTEGER_LITERAL_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Integer getIntegerSymbol() {
-        return integerSymbol;
-    }
+		return integerSymbol;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setIntegerSymbol(Integer newIntegerSymbol) {
-        Integer oldIntegerSymbol = integerSymbol;
-        integerSymbol = newIntegerSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
-    }
+		Integer oldIntegerSymbol = integerSymbol;
+		integerSymbol = newIntegerSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+	}
 
 	/**
      * <!-- begin-user-doc -->
@@ -112,94 +117,94 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                return getIntegerSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				return getIntegerSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                setIntegerSymbol((Integer)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				setIntegerSymbol((Integer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-                return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
-            switch (derivedFeatureID) {
-                case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
+			switch (derivedFeatureID) {
+				case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

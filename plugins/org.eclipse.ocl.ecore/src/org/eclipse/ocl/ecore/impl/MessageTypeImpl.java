@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.8 2008/03/28 20:33:40 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.9 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ECollections;
@@ -33,11 +35,14 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.MessageType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.types.TypesPackage;
+import org.eclipse.ocl.types.util.TypesValidator;
 import org.eclipse.ocl.types.operations.MessageTypeOperations;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -59,122 +64,122 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class MessageTypeImpl extends EClassImpl implements MessageType {
     /**
-     * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReferredOperation()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredOperation()
+	 * @generated
+	 * @ordered
+	 */
     protected EOperation referredOperation;
 
     /**
-     * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredSignal() <em>Referred Signal</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReferredSignal()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredSignal()
+	 * @generated
+	 * @ordered
+	 */
     protected EClassifier referredSignal;
 
     private EList<EOperation> operations;
     private EList<EStructuralFeature> properties;
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MessageTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.MESSAGE_TYPE;
-    }
+		return EcorePackage.Literals.MESSAGE_TYPE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EOperation getReferredOperation() {
-        if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
-            InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
-            referredOperation = (EOperation)eResolveProxy(oldReferredOperation);
-            if (referredOperation != oldReferredOperation) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-            }
-        }
-        return referredOperation;
-    }
+		if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
+			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
+			referredOperation = (EOperation)eResolveProxy(oldReferredOperation);
+			if (referredOperation != oldReferredOperation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+			}
+		}
+		return referredOperation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EOperation basicGetReferredOperation() {
-        return referredOperation;
-    }
+		return referredOperation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setReferredOperation(EOperation newReferredOperation) {
-        EOperation oldReferredOperation = referredOperation;
-        referredOperation = newReferredOperation;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
-    }
+		EOperation oldReferredOperation = referredOperation;
+		referredOperation = newReferredOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EClassifier getReferredSignal() {
-        if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
-            InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
-            referredSignal = (EClassifier)eResolveProxy(oldReferredSignal);
-            if (referredSignal != oldReferredSignal) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
-            }
-        }
-        return referredSignal;
-    }
+		if (referredSignal != null && ((EObject)referredSignal).eIsProxy()) {
+			InternalEObject oldReferredSignal = (InternalEObject)referredSignal;
+			referredSignal = (EClassifier)eResolveProxy(oldReferredSignal);
+			if (referredSignal != oldReferredSignal) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
+			}
+		}
+		return referredSignal;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EClassifier basicGetReferredSignal() {
-        return referredSignal;
-    }
+		return referredSignal;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setReferredSignal(EClassifier newReferredSignal) {
-        EClassifier oldReferredSignal = referredSignal;
-        referredSignal = newReferredSignal;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
-    }
+		EClassifier oldReferredSignal = referredSignal;
+		referredSignal = newReferredSignal;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL, oldReferredSignal, referredSignal));
+	}
 
 	/**
      * <!-- begin-user-doc -->
@@ -282,117 +287,117 @@ public class MessageTypeImpl extends EClassImpl implements MessageType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                if (resolve) return getReferredOperation();
-                return basicGetReferredOperation();
-            case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                if (resolve) return getReferredSignal();
-                return basicGetReferredSignal();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				if (resolve) return getReferredOperation();
+				return basicGetReferredOperation();
+			case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				if (resolve) return getReferredSignal();
+				return basicGetReferredSignal();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                setReferredOperation((EOperation)newValue);
-                return;
-            case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                setReferredSignal((EClassifier)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				setReferredOperation((EOperation)newValue);
+				return;
+			case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				setReferredSignal((EClassifier)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                setReferredOperation((EOperation)null);
-                return;
-            case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                setReferredSignal((EClassifier)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				setReferredOperation((EOperation)null);
+				return;
+			case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				setReferredSignal((EClassifier)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
-                return referredOperation != null;
-            case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-                return referredSignal != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION:
+				return referredOperation != null;
+			case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL:
+				return referredSignal != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == PredefinedType.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == org.eclipse.ocl.types.MessageType.class) {
-            switch (derivedFeatureID) {
-                case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION: return TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION;
-                case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL: return TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == PredefinedType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == org.eclipse.ocl.types.MessageType.class) {
+			switch (derivedFeatureID) {
+				case EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION: return TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION;
+				case EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL: return TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == PredefinedType.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == org.eclipse.ocl.types.MessageType.class) {
-            switch (baseFeatureID) {
-                case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION: return EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION;
-                case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL: return EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == PredefinedType.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == org.eclipse.ocl.types.MessageType.class) {
+			switch (baseFeatureID) {
+				case TypesPackage.MESSAGE_TYPE__REFERRED_OPERATION: return EcorePackage.MESSAGE_TYPE__REFERRED_OPERATION;
+				case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL: return EcorePackage.MESSAGE_TYPE__REFERRED_SIGNAL;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 } //MessageTypeImpl
