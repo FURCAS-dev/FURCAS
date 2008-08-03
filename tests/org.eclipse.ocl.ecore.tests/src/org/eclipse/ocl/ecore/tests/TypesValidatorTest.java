@@ -9,14 +9,16 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 241426
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.3 2008/05/11 05:37:23 cdamus Exp $
+ * $Id: TypesValidatorTest.java,v 1.4 2008/08/03 23:02:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
+import java.util.Collections;
 import java.util.Map;
 
 import junit.framework.Test;
@@ -24,15 +26,19 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EcoreValidator;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcoreFactory;
+import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.util.TypesValidator;
 
 
@@ -180,6 +186,59 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		sequenceType.setElementType(getOCLStandardLibrary().getOclVoid());
 		assertOK(sequenceType, TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
 	}
+	
+	/**
+	 * Tests that the well-formed name constraint from Ecore is
+	 * disinherited for OCL types.
+	 */
+	public void test_wellFormedName() {
+		// collection types don't have Ecore-ish names
+		assertWellFormedName(oclFactory.createCollectionType(fruit));
+		assertWellFormedName(oclFactory.createSetType(fruit));
+		assertWellFormedName(oclFactory.createOrderedSetType(fruit));
+		assertWellFormedName(oclFactory.createBagType(fruit));
+		assertWellFormedName(oclFactory.createSequenceType(fruit));
+
+		// neither do some other demand-created types
+		Variable<EClassifier, EParameter> v = oclFactory.createVariable();
+		v.setName("a"); //$NON-NLS-1$
+		v.setType(fruit);
+		assertWellFormedName(oclFactory.createTupleType(Collections
+			.singletonList(v)));
+		assertWellFormedName(oclFactory.createOperationMessageType(fruit_ripen));
+		assertWellFormedName(oclFactory.createTypeType(fruit));
+	}
+	
+	private void assertWellFormedName(EObject type) {
+		assertOK(type, EcoreValidator.WELL_FORMED_NAME,
+			EcoreValidator.DIAGNOSTIC_SOURCE);
+	}
+	
+	/**
+	 * Tests that the well-formed instance type name constraint from Ecore is
+	 * disinherited for OCL types.
+	 */
+	public void test_wellFormedInstanceTypeName_241426() {
+		assertWellFormedInstanceTypeName(oclFactory.createCollectionType(fruit));
+		assertWellFormedInstanceTypeName(oclFactory.createSetType(fruit));
+		assertWellFormedInstanceTypeName(oclFactory.createOrderedSetType(fruit));
+		assertWellFormedInstanceTypeName(oclFactory.createBagType(fruit));
+		assertWellFormedInstanceTypeName(oclFactory.createSequenceType(fruit));
+
+		// neither do some other demand-created types
+		Variable<EClassifier, EParameter> v = oclFactory.createVariable();
+		v.setName("a"); //$NON-NLS-1$
+		v.setType(fruit);
+		assertWellFormedInstanceTypeName(oclFactory.createTupleType(Collections
+			.singletonList(v)));
+		assertWellFormedInstanceTypeName(oclFactory.createOperationMessageType(fruit_ripen));
+		assertWellFormedInstanceTypeName(oclFactory.createTypeType(fruit));
+	}
+	
+	private void assertWellFormedInstanceTypeName(EObject type) {
+		assertOK(type, EcoreValidator.WELL_FORMED_INSTANCE_TYPE_NAME,
+			EcoreValidator.DIAGNOSTIC_SOURCE);
+	}
 
 	//
 	// Fixture methods
@@ -201,8 +260,10 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		System.out.println("Found expected problem: " + problem.getMessage()); //$NON-NLS-1$
 	}
 	
-	protected Diagnostic findProblem(Diagnostic diagnostic, EObject target, int code) {
-		if (TypesValidator.DIAGNOSTIC_SOURCE.equals(diagnostic
+	protected Diagnostic findProblem(Diagnostic diagnostic, EObject target,
+			int code, String source) {
+		
+		if (source.equals(diagnostic
 				.getSource())
 				&& (diagnostic.getSeverity() != Diagnostic.OK)
 				&& diagnostic.getData().contains(target)
@@ -211,7 +272,7 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		}
 		
 		for (Diagnostic child : diagnostic.getChildren()) {
-			Diagnostic result = findProblem(child, target, code);
+			Diagnostic result = findProblem(child, target, code, source);
 			
 			if (result != null) {
 				return result;
@@ -219,6 +280,10 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		}
 		
 		return null;
+	}
+	
+	protected Diagnostic findProblem(Diagnostic diagnostic, EObject target, int code) {
+		return findProblem(diagnostic, target, code, TypesValidator.DIAGNOSTIC_SOURCE);
 	}
 	
 	protected Diagnostic findProblem(Diagnostic diagnostic, EObject target) {
@@ -244,8 +309,19 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		assertOK(validate(target), target, code);
 	}
 	
+	protected void assertOK(EObject target, int code, String source) {
+		assertOK(validate(target), target, code, source);
+	}
+	
 	protected void assertOK(Diagnostic diagnostic, EObject target, int code) {
 		assertNull("Problem found", findProblem(diagnostic, target, code)); //$NON-NLS-1$
+	}
+	
+	protected void assertOK(Diagnostic diagnostic, EObject target, int code,
+			String source) {
+		
+		assertNull(
+			"Problem found", findProblem(diagnostic, target, code, source)); //$NON-NLS-1$
 	}
 	
 	protected void assertOK(EObject target) {

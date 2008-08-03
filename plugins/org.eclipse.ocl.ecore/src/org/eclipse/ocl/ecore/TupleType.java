@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleType.java,v 1.4 2008/03/28 20:33:41 cdamus Exp $
+ * $Id: TupleType.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getTupleType()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName WellFormedInstanceTypeName'"
  * @generated
  */
 public interface TupleType extends EClass, EDataType, org.eclipse.ocl.types.TupleType<EOperation, EStructuralFeature> {

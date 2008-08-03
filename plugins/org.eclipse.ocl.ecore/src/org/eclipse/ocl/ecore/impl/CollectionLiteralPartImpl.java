@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -35,23 +35,23 @@ import org.eclipse.ocl.util.ToStringVisitor;
  */
 public abstract class CollectionLiteralPartImpl extends ETypedElementImpl implements CollectionLiteralPart {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CollectionLiteralPartImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EcorePackage.Literals.COLLECTION_LITERAL_PART;
-    }
+		return EcorePackage.Literals.COLLECTION_LITERAL_PART;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

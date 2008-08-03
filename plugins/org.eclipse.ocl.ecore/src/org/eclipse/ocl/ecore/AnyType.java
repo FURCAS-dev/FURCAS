@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyType.java,v 1.3 2008/03/28 20:33:41 cdamus Exp $
+ * $Id: AnyType.java,v 1.4 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EOperation;
  *
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getAnyType()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName WellFormedInstanceTypeName'"
  * @generated
  */
 public interface AnyType extends EClassifier, org.eclipse.ocl.types.AnyType<EOperation> {

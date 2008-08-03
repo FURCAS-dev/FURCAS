@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NullLiteralExpImpl.java,v 1.2 2007/10/11 23:04:40 cdamus Exp $
+ * $Id: NullLiteralExpImpl.java,v 1.3 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -33,23 +33,23 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class NullLiteralExpImpl extends LiteralExpImpl implements NullLiteralExp {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected NullLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EcorePackage.Literals.NULL_LITERAL_EXP;
-    }
+		return EcorePackage.Literals.NULL_LITERAL_EXP;
+	}
 
 	/**
 	 * @generated NOT

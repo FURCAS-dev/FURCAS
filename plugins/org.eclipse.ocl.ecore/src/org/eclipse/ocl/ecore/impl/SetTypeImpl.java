@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 241426
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.7 2008/05/05 16:47:32 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.8 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -58,14 +59,14 @@ public class SetTypeImpl extends CollectionTypeImpl implements SetType {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.SET_TYPE;
-    }
+		return EcorePackage.Literals.SET_TYPE;
+	}
 
     /**
      * <!-- begin-user-doc -->

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 241426
  * 
  * </copyright>
  *
- * $Id: PrimitiveTypeImpl.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: PrimitiveTypeImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -37,23 +38,23 @@ public class PrimitiveTypeImpl extends EDataTypeImpl implements PrimitiveType {
     protected EList<EOperation> operations;
     
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PrimitiveTypeImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return EcorePackage.Literals.PRIMITIVE_TYPE;
-    }
+		return EcorePackage.Literals.PRIMITIVE_TYPE;
+	}
 
     /**
      * <!-- begin-user-doc -->

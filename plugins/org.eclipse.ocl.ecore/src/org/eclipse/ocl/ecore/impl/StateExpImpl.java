@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 241426
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.5 2008/01/03 17:13:19 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.6 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -41,162 +42,162 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	/**
-     * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredState()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredState()
+	 * @generated
+	 * @ordered
+	 */
 	protected EObject referredState;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StateExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EcorePackage.Literals.STATE_EXP;
-    }
+		return EcorePackage.Literals.STATE_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EObject getReferredState() {
-        if (referredState != null && ((EObject)referredState).eIsProxy()) {
-            InternalEObject oldReferredState = (InternalEObject)referredState;
-            referredState = (EObject)eResolveProxy(oldReferredState);
-            if (referredState != oldReferredState) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-            }
-        }
-        return referredState;
-    }
+		if (referredState != null && ((EObject)referredState).eIsProxy()) {
+			InternalEObject oldReferredState = (InternalEObject)referredState;
+			referredState = (EObject)eResolveProxy(oldReferredState);
+			if (referredState != oldReferredState) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+			}
+		}
+		return referredState;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EObject basicGetReferredState() {
-        return referredState;
-    }
+		return referredState;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setReferredState(EObject newReferredState) {
-        EObject oldReferredState = referredState;
-        referredState = newReferredState;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
-    }
+		EObject oldReferredState = referredState;
+		referredState = newReferredState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case EcorePackage.STATE_EXP__REFERRED_STATE:
-                if (resolve) return getReferredState();
-                return basicGetReferredState();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case EcorePackage.STATE_EXP__REFERRED_STATE:
+				if (resolve) return getReferredState();
+				return basicGetReferredState();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case EcorePackage.STATE_EXP__REFERRED_STATE:
-                setReferredState((EObject)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case EcorePackage.STATE_EXP__REFERRED_STATE:
+				setReferredState((EObject)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case EcorePackage.STATE_EXP__REFERRED_STATE:
-                setReferredState((EObject)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.STATE_EXP__REFERRED_STATE:
+				setReferredState((EObject)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case EcorePackage.STATE_EXP__REFERRED_STATE:
-                return referredState != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case EcorePackage.STATE_EXP__REFERRED_STATE:
+				return referredState != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
-            switch (derivedFeatureID) {
-                case EcorePackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
+			switch (derivedFeatureID) {
+				case EcorePackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
-            switch (baseFeatureID) {
-                case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return EcorePackage.STATE_EXP__REFERRED_STATE;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
+			switch (baseFeatureID) {
+				case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return EcorePackage.STATE_EXP__REFERRED_STATE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

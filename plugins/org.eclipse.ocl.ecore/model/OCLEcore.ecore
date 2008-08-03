@@ -6,7 +6,7 @@
   <eSubpackages name="ecore" nsURI="http://www.eclipse.org/ocl/1.1.0/Ecore" nsPrefix="ocl.ecore">
     <eClassifiers xsi:type="ecore:EClass" name="AnyType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/AnyType">
@@ -22,7 +22,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/CollectionType">
@@ -32,12 +32,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ElementType" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/ElementType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InvalidType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/InvalidType">
@@ -46,7 +46,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MessageType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/MessageType">
@@ -64,7 +64,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/PrimitiveType">
@@ -87,7 +87,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TupleType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDataType"/>
@@ -98,7 +98,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypeType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/TypeType">
@@ -108,7 +108,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VoidType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="WellFormedName"/>
+        <details key="constraints" value="WellFormedName WellFormedInstanceTypeName"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
       <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.ocl/model/OCL.ecore#//types/VoidType">

@@ -12,16 +12,21 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.3 2008/03/28 20:33:40 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.4 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.IteratorExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -36,23 +41,23 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IteratorExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EcorePackage.Literals.ITERATOR_EXP;
-    }
+		return EcorePackage.Literals.ITERATOR_EXP;
+	}
 
 	/**
      * <!-- begin-user-doc -->

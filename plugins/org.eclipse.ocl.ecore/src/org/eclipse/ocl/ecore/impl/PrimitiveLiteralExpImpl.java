@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 241426
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.2 2007/10/11 23:04:40 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.3 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -32,22 +33,22 @@ import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
  */
 public abstract class PrimitiveLiteralExpImpl extends LiteralExpImpl implements PrimitiveLiteralExp {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected PrimitiveLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return EcorePackage.Literals.PRIMITIVE_LITERAL_EXP;
-    }
+		return EcorePackage.Literals.PRIMITIVE_LITERAL_EXP;
+	}
 
 } //PrimitiveLiteralExpImpl
