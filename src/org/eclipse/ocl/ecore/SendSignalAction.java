@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: SendSignalAction.java,v 1.4 2007/10/11 23:04:41 cdamus Exp $
+ * $Id: SendSignalAction.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -37,29 +37,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SendSignalAction extends EObject {
     /**
-     * Returns the value of the '<em><b>Signal</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Signal</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Signal</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Signal</em>' reference.
-     * @see #setSignal(EClass)
-     * @see org.eclipse.ocl.ecore.EcorePackage#getSendSignalAction_Signal()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Signal</em>' reference.
+	 * @see #setSignal(EClass)
+	 * @see org.eclipse.ocl.ecore.EcorePackage#getSendSignalAction_Signal()
+	 * @model required="true"
+	 * @generated
+	 */
     EClass getSignal();
 
     /**
-     * Sets the value of the '{@link org.eclipse.ocl.ecore.SendSignalAction#getSignal <em>Signal</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.ecore.SendSignalAction#getSignal <em>Signal</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Signal</em>' reference.
-     * @see #getSignal()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Signal</em>' reference.
+	 * @see #getSignal()
+	 * @generated
+	 */
     void setSignal(EClass value);
 
 } // SendSignalAction
