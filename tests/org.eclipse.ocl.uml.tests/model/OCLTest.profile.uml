@@ -6,17 +6,24 @@
         <eAnnotations xmi:id="_OKrFNJw_Edu3G72hG9l7lw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_UXYxAJw9Edu3G72hG9l7lw"/>
         <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_OKrFNZw_Edu3G72hG9l7lw" name="yesno" ordered="false" lowerBound="1" eType="_OKrFO5w_Edu3G72hG9l7lw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_OKrFN5w_Edu3G72hG9l7lw" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
         </eStructuralFeatures>
         <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_OKrFOZw_Edu3G72hG9l7lw" name="x" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
         </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WPrW-WFoEd2KF7b32sxqwA" name="tag" ordered="false" upperBound="-1" eType="_WPrXAGFoEd2KF7b32sxqwA" containment="true"/>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EEnum" xmi:id="_OKrFO5w_Edu3G72hG9l7lw" name="YesNo">
         <eAnnotations xmi:id="_OKrFPJw_Edu3G72hG9l7lw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_YyviAJw9Edu3G72hG9l7lw"/>
         <eLiterals xmi:id="_OKrFPZw_Edu3G72hG9l7lw" name="maybe"/>
         <eLiterals xmi:id="_OKrFPpw_Edu3G72hG9l7lw" name="no" value="1"/>
         <eLiterals xmi:id="_OKrFP5w_Edu3G72hG9l7lw" name="yes" value="2"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WPrXAGFoEd2KF7b32sxqwA" name="Tag">
+        <eAnnotations xmi:id="_WPrXAWFoEd2KF7b32sxqwA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0hjPcGFnEd2KF7b32sxqwA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_WPrXAmFoEd2KF7b32sxqwA" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
       </eClassifiers>
     </contents>
   </eAnnotations>
@@ -31,6 +38,10 @@
     <ownedAttribute xmi:id="_IEWAIJw_Edu3G72hG9l7lw" name="x">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_APs4oGFoEd2KF7b32sxqwA" name="tag" type="_0hjPcGFnEd2KF7b32sxqwA" aggregation="composite" association="_JOYq4GFoEd2KF7b32sxqwA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DD10MGFoEd2KF7b32sxqwA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CdBEwGFoEd2KF7b32sxqwA"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_YyviAJw9Edu3G72hG9l7lw" name="YesNo">
     <ownedLiteral xmi:id="_aTlpsJw9Edu3G72hG9l7lw" name="maybe"/>
@@ -39,5 +50,13 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_xkm5IJw9Edu3G72hG9l7lw" name="Classifier_Stereo1" memberEnd="_xkm5IZw9Edu3G72hG9l7lw _xkm5Ipw9Edu3G72hG9l7lw">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_xkm5IZw9Edu3G72hG9l7lw" name="extension_Stereo1" type="_UXYxAJw9Edu3G72hG9l7lw" aggregation="composite" association="_xkm5IJw9Edu3G72hG9l7lw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0hjPcGFnEd2KF7b32sxqwA" name="Tag">
+    <ownedAttribute xmi:id="_5Aop4GFnEd2KF7b32sxqwA" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_JOYq4GFoEd2KF7b32sxqwA" memberEnd="_APs4oGFoEd2KF7b32sxqwA _QktYMGFoEd2KF7b32sxqwA">
+    <ownedEnd xmi:id="_QktYMGFoEd2KF7b32sxqwA" type="_UXYxAJw9Edu3G72hG9l7lw" association="_JOYq4GFoEd2KF7b32sxqwA"/>
   </packagedElement>
 </uml:Profile>

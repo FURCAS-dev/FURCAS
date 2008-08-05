@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 238050
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.5 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.6 2008/08/05 00:35:31 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -312,7 +313,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
     	if (args.length > 0) {
     		int i = 0;
     		for (PM param : myEnv.getUMLReflection().getParameters(operation)) {
-    			nested.add(myEnv.getUMLReflection().getName(param), args[i]);
+    			nested.add(myEnv.getUMLReflection().getName(param), args[i++]);
     		}
     	}
     	

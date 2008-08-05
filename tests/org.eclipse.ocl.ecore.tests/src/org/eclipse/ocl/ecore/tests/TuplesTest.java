@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - bug 238049
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.4 2008/03/26 21:17:48 cdamus Exp $
+ * $Id: TuplesTest.java,v 1.5 2008/08/05 00:33:46 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class TuplesTest
 	extends AbstractTestSuite {
 	
@@ -194,5 +196,17 @@ public class TuplesTest
         assertTrue(EcorePackage.Literals.EDATA_TYPE.isSuperTypeOf(
                 expr.getType().eClass()));
         assertTrue(expr.getType() instanceof EDataType);
+	}
+	
+	/**
+	 * Tests access to tuple parts by name when all parts have the same type.
+	 */
+	public void test_tuplePartAccess_238049() {
+        OCLExpression<EClassifier> expr = parse(
+            "package ocltest context Fruit " +
+            "inv: Tuple{first : String = 'Roger', last : String = 'Bacon'}.first " +
+            "endpackage");
+    
+		assertEquals("Roger", evaluate(expr));
 	}
 }
