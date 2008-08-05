@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.1 2007/01/25 18:32:34 cdamus Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.2 2008/08/05 00:33:46 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -20,7 +20,13 @@ package org.eclipse.ocl.ecore.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
@@ -173,5 +179,38 @@ public class PrimitiveTypesTest
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
+    }
+    
+    public void test_listOfEDataType_noInstanceClass() {
+    	EPackage testpkg = EcoreFactory.eINSTANCE.createEPackage();
+    	testpkg.setNsURI("http://www.eclipse.org/ocl/test/2008/testpkg"); //$NON-NLS-1$
+    	testpkg.setName("testpkg"); //$NON-NLS-1$
+    	testpkg.setNsPrefix("t"); //$NON-NLS-1$
+    	
+    	EClass testclass = EcoreFactory.eINSTANCE.createEClass();
+    	testclass.setName("Test"); //$NON-NLS-1$
+    	testpkg.getEClassifiers().add(testclass);
+    	
+    	EDataType testdatatype = EcoreFactory.eINSTANCE.createEDataType();
+    	testdatatype.setName("Data"); //$NON-NLS-1$
+    	testpkg.getEClassifiers().add(testdatatype);
+    	
+    	EAttribute testattr = EcoreFactory.eINSTANCE.createEAttribute();
+    	testattr.setName("data"); //$NON-NLS-1$
+    	testclass.getEStructuralFeatures().add(testattr);
+    	testattr.setLowerBound(0);
+    	testattr.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
+    	testattr.setEType(testdatatype);
+    	
+    	try {
+    		EPackage.Registry.INSTANCE.put(testpkg.getNsURI(), testpkg);
+    		
+    		helper.setContext(testclass);
+    		helper.createInvariant("self.data->size() > 1"); //$NON-NLS-1$
+    	} catch (ParserException e) {
+			fail("Should not have failed to parse: " + e.getLocalizedMessage());
+		} finally {
+    		EPackage.Registry.INSTANCE.remove(testpkg.getNsURI());
+    	}
     }
 }
