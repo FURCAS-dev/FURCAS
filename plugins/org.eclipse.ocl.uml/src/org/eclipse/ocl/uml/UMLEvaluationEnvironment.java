@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.11 2008/01/03 15:07:09 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.12 2008/08/05 00:33:33 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -373,53 +373,62 @@ public class UMLEvaluationEnvironment
                 .createNewCollection(getCollectionKind(property))
                 : null;
         case RUNTIME_OBJECTS:
-            // TODO: In case the property is unset, look for an init constraint
-            // and a default value, in that order
-            EObject esource = (EObject) source;
-
-            EStructuralFeature feature = esource.eClass()
-                .getEStructuralFeature(getEcoreAttributeName(property));
-
-            if (feature != null) {
-                Object result = esource.eGet(feature);
-
-                return coerceValue(property, result, true);
-            } else {
-                // must be a non-navigable property?
-                Property otherEnd = property.getOtherEnd();
-                if (otherEnd != null) {
-                    EClass eclass = null;
-                    
-                    Element owner = otherEnd.getOwner();
-                    if ((owner instanceof Classifier) && (owner != otherEnd.getAssociation())) {
-                        eclass = (EClass) OCLUMLUtil.getEClassifier(
-                            (Classifier) owner, source, registry);
-                    }
-
-                    if (eclass != null) {
-                        EStructuralFeature eEnd = eclass
-                            .getEStructuralFeature(getEcoreAttributeName(otherEnd));
-
-                        if (eEnd != null) {
-                            Collection<Object> result = createCollection(property);
-
-                            // maybe eEnd is a containment reference
-                            if (esource.eContainmentFeature() == eEnd) {
-                                result.add(esource.eContainer());
-                            } else {
-                                for (EStructuralFeature.Setting setting : UML2Util
-                                    .getNonNavigableInverseReferences(esource)) {
-                                    if (setting.getEStructuralFeature() == eEnd) {
-                                        result.add(setting.getEObject());
-                                    }
-                                }
-                            }
-                            
-                            return coerceValue(property, result, false);
-                        }
-                    }
-                }
-            }
+        	if (source instanceof EObject) {
+	            // TODO: In case the property is unset, look for an init constraint
+	            // and a default value, in that order
+	            EObject esource = (EObject) source;
+	
+	            EStructuralFeature feature = esource.eClass()
+	                .getEStructuralFeature(getEcoreAttributeName(property));
+	
+	            if (feature != null) {
+	                Object result = esource.eGet(feature);
+	
+	                return coerceValue(property, result, true);
+	            } else {
+	                // must be a non-navigable property?
+	                Property otherEnd = property.getOtherEnd();
+	                if (otherEnd != null) {
+	                    EClass eclass = null;
+	                    
+	                    Element owner = otherEnd.getOwner();
+	                    if ((owner instanceof Classifier) && (owner != otherEnd.getAssociation())) {
+	                        eclass = (EClass) OCLUMLUtil.getEClassifier(
+	                            (Classifier) owner, source, registry);
+	                    }
+	
+	                    if (eclass != null) {
+	                        EStructuralFeature eEnd = eclass
+	                            .getEStructuralFeature(getEcoreAttributeName(otherEnd));
+	
+	                        if (eEnd != null) {
+	                            Collection<Object> result = createCollection(property);
+	
+	                            // maybe eEnd is a containment reference
+	                            if (esource.eContainmentFeature() == eEnd) {
+	                                result.add(esource.eContainer());
+	                            } else {
+	                                for (EStructuralFeature.Setting setting : UML2Util
+	                                    .getNonNavigableInverseReferences(esource)) {
+	                                    if (setting.getEStructuralFeature() == eEnd) {
+	                                        result.add(setting.getEObject());
+	                                    }
+	                                }
+	                            }
+	                            
+	                            return coerceValue(property, result, false);
+	                        }
+	                    }
+	                }
+	            }
+        	} else if (source instanceof Tuple<?, ?>) {
+        		@SuppressWarnings("unchecked")
+        		Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) source;
+        		
+        		if (tuple.getTupleType().oclProperties().contains(property)) {
+        			return tuple.getValue(property);
+        		}
+        	}
         }
 
         throw new IllegalArgumentException(
