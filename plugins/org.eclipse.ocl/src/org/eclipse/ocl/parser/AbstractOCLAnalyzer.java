@@ -10,10 +10,12 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
+ *               - Bug 237126
+ *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.12 2008/05/17 20:41:35 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.13 2008/08/05 00:35:31 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2280,7 +2282,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
 			}
 			
-			astNode = createDummyInvalidLiteralExp();
+			astNode = createDummyInvalidLiteralExp(env, simpleNameCS);
 		}
 		
 		/*
@@ -2924,7 +2926,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                     String message = OCLMessages.bind(
                         OCLMessages.NonStaticAttribute_ERROR_,
                         lastToken);
-                    ERROR(attribute, "enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+                    ERROR(enumLiteralExpCS.getSimpleNameCS(),
+						"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
                 }
                 
                 PropertyCallExp<C, P> pcExp = oclFactory.createPropertyCallExp();
@@ -2956,7 +2959,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		if (astNode == null) {
-			astNode = createDummyInvalidLiteralExp();
+			astNode = createDummyInvalidLiteralExp(env, enumLiteralExpCS);
 		}
 		
 		String traceText = new String();
@@ -3180,7 +3183,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
 		OCLExpression<C> astNode = oclExpressionCS(oclExpressionCS, env);
 		if (astNode == null) {
-			astNode = createDummyInvalidLiteralExp();
+			astNode = createDummyInvalidLiteralExp(env, oclExpressionCS);
 		}
 		
 		/* The source must be a collection type.
@@ -3287,7 +3290,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		if ((source != null) && isErrorNode(source)) {
 			// don't attempt to parse iterator body for an unparseable source
-			expr = createDummyInvalidLiteralExp();
+			expr = createDummyInvalidLiteralExp(env, iteratorExpCS);
 			// don't parse call expressions sourced on this result
 			markAsErrorNode(astNode);
 		} else {
@@ -3424,7 +3427,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		if ((source != null) && isErrorNode(source)) {
 			// don't attempt to parse iterate body for an unparseable source
-			expr = createDummyInvalidLiteralExp();
+			expr = createDummyInvalidLiteralExp(env, iterateExpCS);
 			// don't parse call expressions sourced on this result
 			markAsErrorNode(astNode);
 		} else {
@@ -3611,7 +3614,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			for (OCLExpressionCS arg : operationCallExpCS.getArguments()) {
 				OCLExpression<C> argExpr = oclExpressionCS(arg, env);
 				if (argExpr == null) {
-					argExpr = createDummyInvalidLiteralExp();
+					argExpr = createDummyInvalidLiteralExp(env, arg);
 					initASTMapping(env, argExpr, arg);
 				}
 				args.add(argExpr);
@@ -3912,6 +3915,30 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		result.setType(getStandardLibrary().getInvalid());
 		
 		markAsErrorNode(result);
+		
+		return result;
+	}
+	
+	/**
+	 * Creates a dummy expression of invalid-literal type to be a placeholder
+	 * for a (sub)expression that could not be parsed.  The resulting
+	 * expression is {@linkplain #markAsErrorNode(OCLExpression) marked}
+	 * as an error place-holder expression.
+	 * 
+	 * @param env the contextual parsing environment
+	 * @param cstNode the concrete-syntax node that could not be analyzed
+	 * 
+	 * @return the dummy invalid-literal expression
+	 * 
+	 * @see #markAsErrorNode(OCLExpression)
+	 * @see #createDummyInvalidLiteralExp()
+	 */
+	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			CSTNode cstNode) {
+		
+		InvalidLiteralExp<C> result = createDummyInvalidLiteralExp();
+		initASTMapping(env, result, cstNode);
 		
 		return result;
 	}
