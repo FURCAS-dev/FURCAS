@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,19 +9,32 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 241148
+ *   
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.4 2008/02/15 05:20:16 cdamus Exp $
+ * $Id: ProfilesTest.java,v 1.5 2008/08/05 00:36:50 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
+
+import java.util.List;
+import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.util.Bag;
+import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
@@ -44,6 +57,8 @@ public class ProfilesTest
     private static Property stereoEnum;
 
     private static Property stereoX;
+    
+    private static Property stereoTag;
 
     private static Enumeration testEnumeration;
 
@@ -52,6 +67,14 @@ public class ProfilesTest
     private static EnumerationLiteral no;
 
     private static EnumerationLiteral yes;
+    
+    private static Class tag;
+    
+    private static EClass eTag;
+    
+    private static Property tagName;
+    
+    private static EAttribute eTagName;
 
     public ProfilesTest(String name) {
         super(name);
@@ -137,6 +160,74 @@ public class ProfilesTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
+    
+    /**
+	 * Tests the <tt>allInstances()</tt> query on stereotypes.
+	 */
+	public void test_allInstances_stereotype_241148() {
+		helper.setContext(testStereotype);
+
+		try {
+			OCLExpression<Classifier> expr = helper
+				.createQuery("Stereo1.allInstances().base_Classifier.name"); //$NON-NLS-1$
+
+			// set up a couple of stereotyped classes to test the query on
+			fruit.applyStereotype(testStereotype);
+
+			tree.applyStereotype(testStereotype);
+
+			Bag<String> expectedValue = CollectionUtil.createNewBag();
+			expectedValue.add("Fruit"); //$NON-NLS-1$
+			expectedValue.add("Tree"); //$NON-NLS-1$
+
+			assertEquals(expectedValue, evaluate(expr, fruit));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * Tests the <tt>allInstances()</tt> query on classes defined in profiles.
+	 */
+	@SuppressWarnings("unchecked")
+	public void test_allInstances_profileClass_241148() {
+		helper.setContext(testStereotype);
+
+		try {
+			OCLExpression<Classifier> expr = helper
+				.createQuery("Tag.allInstances()"); //$NON-NLS-1$
+
+			// set up a couple of stereotyped classes to test the query on
+			fruit.applyStereotype(testStereotype);
+			EObject tag1 = EcoreUtil.create(eTag);
+			List<EObject> tags = (List<EObject>) fruit.getValue(testStereotype,
+				stereoTag.getName());
+			tags.add(tag1);
+			tag1.eSet(eTagName, "myTag"); //$NON-NLS-1$
+
+			tree.applyStereotype(testStereotype);
+			EObject tag2 = EcoreUtil.create(eTag);
+			tags = (List<EObject>) tree.getValue(testStereotype, stereoTag
+				.getName());
+			tags.add(tag2);
+			tag2.eSet(eTagName, "anotherTag"); //$NON-NLS-1$
+
+			Set<EObject> expectedInstances = new java.util.HashSet<EObject>();
+			expectedInstances.add(tag1);
+			expectedInstances.add(tag2);
+			assertEquals(expectedInstances, evaluate(expr, fruit));
+
+			expr = helper.createQuery("Tag.allInstances().name"); //$NON-NLS-1$
+
+			Bag<String> expectedValue = CollectionUtil.createNewBag();
+			expectedValue.add("myTag"); //$NON-NLS-1$
+			expectedValue.add("anotherTag"); //$NON-NLS-1$
+
+			assertEquals(expectedValue, evaluate(expr, fruit));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
 
     //
     // Test Framework
@@ -163,10 +254,13 @@ public class ProfilesTest
         testStereotype = null;
         stereoEnum = null;
         stereoX = null;
+        stereoTag = null;
         testEnumeration = null;
         maybe = null;
         no = null;
         yes = null;
+        tag = null;
+        tagName = null;
         
         super.tearDown();
     }
@@ -186,6 +280,8 @@ public class ProfilesTest
         assertNotNull(stereoEnum);
         stereoX = testStereotype.getOwnedAttribute("x", null); //$NON-NLS-1$
         assertNotNull(stereoX);
+        stereoTag = testStereotype.getOwnedAttribute("tag", null); //$NON-NLS-1$
+        assertNotNull(stereoTag);
 
         testEnumeration = (Enumeration) testProfile.getOwnedType("YesNo"); //$NON-NLS-1$
         assertNotNull(testEnumeration);
@@ -195,5 +291,14 @@ public class ProfilesTest
         assertNotNull(no);
         yes = testEnumeration.getOwnedLiteral("yes"); //$NON-NLS-1$
         assertNotNull(yes);
+        
+        tag = (Class) testProfile.getOwnedType("Tag"); //$NON-NLS-1$
+        assertNotNull(tag);
+        eTag = (EClass) testProfile.getDefinition(tag);
+        assertNotNull(eTag);
+        tagName = tag.getOwnedAttribute("name", null);  //$NON-NLS-1$
+        assertNotNull(tagName);
+        eTagName = (EAttribute) eTag.getEStructuralFeature(tagName.getName());
+        assertNotNull(eTagName);
     }
 }
