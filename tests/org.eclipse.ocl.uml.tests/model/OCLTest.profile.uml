@@ -25,6 +25,9 @@
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eStructuralFeatures>
       </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_VBXSZHRDEd2qT-Nll5Ef6w" name="SubStereo1" eSuperTypes="_OKrFM5w_Edu3G72hG9l7lw">
+        <eAnnotations xmi:id="_VBXSZXRDEd2qT-Nll5Ef6w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_HwnN8HRDEd2qT-Nll5Ef6w"/>
+      </eClassifiers>
     </contents>
   </eAnnotations>
   <packageImport xmi:id="_MKZhcJw9Edu3G72hG9l7lw">
@@ -58,5 +61,8 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_JOYq4GFoEd2KF7b32sxqwA" memberEnd="_APs4oGFoEd2KF7b32sxqwA _QktYMGFoEd2KF7b32sxqwA">
     <ownedEnd xmi:id="_QktYMGFoEd2KF7b32sxqwA" type="_UXYxAJw9Edu3G72hG9l7lw" association="_JOYq4GFoEd2KF7b32sxqwA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_HwnN8HRDEd2qT-Nll5Ef6w" name="SubStereo1">
+    <generalization xmi:id="_QiG4wHRDEd2qT-Nll5Ef6w" general="_UXYxAJw9Edu3G72hG9l7lw"/>
   </packagedElement>
 </uml:Profile>
