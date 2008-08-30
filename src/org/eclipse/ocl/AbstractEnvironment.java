@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
- *   Zeligsoft - Bug 243079
+ *   Zeligsoft - Bugs 243079, 244948
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.13 2008/08/30 17:04:01 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.14 2008/08/30 20:18:33 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -33,8 +33,10 @@ import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
+import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.TypedElement;
 
 /**
@@ -405,7 +407,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			result = new java.util.ArrayList<P>(additionals);
 		}
 		
-		for (C general : getUMLReflection().getAllSupertypes(classifier)) {
+		Collection<? extends C> allParents = (classifier instanceof PredefinedType)
+			? OCLStandardLibraryUtil.getAllSupertypes(this,
+				(PredefinedType<?>) classifier)
+			: getUMLReflection().getAllSupertypes(classifier);
+			
+		for (C general : allParents) {
 			additionals = res.getAdditionalAttributes(general);
 			if (!additionals.isEmpty()) {
 				if (result == null) {
@@ -464,7 +471,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			result = new java.util.ArrayList<O>(additionals);
 		}
 		
-		for (C general : getUMLReflection().getAllSupertypes(classifier)) {
+		Collection<? extends C> allParents = (classifier instanceof PredefinedType)
+			? OCLStandardLibraryUtil.getAllSupertypes(this,
+				(PredefinedType<?>) classifier)
+			: getUMLReflection().getAllSupertypes(classifier);
+			
+		for (C general : allParents) {
 			additionals = res.getAdditionalOperations(general);
 			if (!additionals.isEmpty()) {
 				if (result == null) {
