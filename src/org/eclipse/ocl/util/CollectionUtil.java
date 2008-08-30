@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 244946
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.5 2008/03/26 21:17:25 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.6 2008/08/30 18:35:19 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -720,12 +721,16 @@ public class CollectionUtil {
      * @param index the 1-based (in OCL fashion) index
      * @param object an object
      * @return the source collection with the object inserted at the index
+     * 
+     * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     public static <E> Collection<E> insertAt(Collection<E> self, int index, E object) {
         index = index - 1;
         
-        if (index - 1 < 0 || index > self.size()) {
-            return null; // undefined
+        if (index < 0 || index > self.size()) {
+			throw new IndexOutOfBoundsException(
+				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
+					+ self.size());
         }
         
         Collection<E> result;
@@ -734,6 +739,7 @@ public class CollectionUtil {
         } else {
             result = createNewSequence();
         }
+        
         int curr = 0;
         for (Iterator<E> it = self.iterator(); it.hasNext();) {
             if (curr == index) {
@@ -742,6 +748,12 @@ public class CollectionUtil {
             result.add(it.next());
             curr++;
         }
+        
+        if (index == self.size()) {
+        	// the loop finished before we could add the object
+        	result.add(object);
+        }
+        
         return result;
     }
 
@@ -754,14 +766,25 @@ public class CollectionUtil {
      * @param lower the 1-based (in OCL fashion) inclusive lower bound
      * @param upper the 1-based (in OCL fashion) inclusive upper bound
      * @return the slice of the source set
+     * 
+     * @throws IndexOutOfBoundsException if an index is out of bounds
+     * @throws IllegalArgumentException if the lower bound is greater than the upper
      */
     public static <E> Collection<E> subOrderedSet(Collection<E> self, int lower,
             int upper) {
         lower = lower - 1;
         upper = upper - 1;
         
-        if (lower < 0 || upper >= self.size() || upper < lower) {
-            return null; // undefined
+        if (lower < 0) {
+			throw new IndexOutOfBoundsException("lower: " + (lower + 1)); //$NON-NLS-1$
+        } else if (upper >= self.size()) {
+			throw new IndexOutOfBoundsException(
+				"upper: " + (upper + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
+					+ self.size());
+        } else if (upper < lower) {
+			throw new IllegalArgumentException(
+				"lower: " + (lower + 1) + ", upper: " //$NON-NLS-1$ //$NON-NLS-2$
+					+ (upper + 1));
         }
         
         Collection<E> result;
@@ -790,14 +813,25 @@ public class CollectionUtil {
      * @param lower the 1-based (in OCL fashion) inclusive lower bound
      * @param upper the 1-based (in OCL fashion) inclusive upper bound
      * @return the source collection with the object inserted at the index
+     * 
+     * @throws IndexOutOfBoundsException if an index is out of bounds
+     * @throws IllegalArgumentException if the lower bound is greater than the upper
      */
     public static <E> Collection<E> subSequence(Collection<E> self, int lower,
             int upper) {
         lower = lower - 1;
         upper = upper - 1;
         
-        if (lower < 0 || upper >= self.size() || upper < lower) {
-            return null; // undefined
+        if (lower < 0) {
+			throw new IndexOutOfBoundsException("lower: " + (lower + 1)); //$NON-NLS-1$
+        } else if (upper >= self.size()) {
+			throw new IndexOutOfBoundsException(
+				"upper: " + (upper + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
+					+ self.size());
+        } else if (upper < lower) {
+			throw new IllegalArgumentException(
+				"lower: " + (lower + 1) + ", upper: " //$NON-NLS-1$ //$NON-NLS-2$
+					+ (upper + 1));
         }
         
         Collection<E> result = createNewSequence();
@@ -823,13 +857,17 @@ public class CollectionUtil {
      * @param self the source collection
      * @param index the 1-based (in OCL fashion) index
      * @return the object at the specified index of the source collection
+     * 
+     * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     public static <E> E at(Collection<E> self, int index) {
         index = index - 1;
         
         if (index < 0 || index >= self.size()) {
-            return null; // undefined
-        }
+			throw new IndexOutOfBoundsException(
+				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
+					+ self.size());
+		}
         
         int curr = 0;
         for (Iterator<E> it = self.iterator(); it.hasNext();) {
