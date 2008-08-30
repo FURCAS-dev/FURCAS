@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.11 2008/05/17 20:41:31 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.12 2008/08/30 23:33:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -192,6 +192,7 @@ public abstract class AbstractTestSuite
 		result.addTest(InvariantConstraintsTest.suite());
 		result.addTest(OperationConstraintsTest.suite());
 		result.addTest(LocationInformationTest.suite());
+		result.addTest(FeatureRedefinitionTest.suite());
 		result.addTest(DefExpressionTest.suite());
 		result.addTest(InitOrDerExpressionTest.suite());
         result.addTest(UMLTest.suite());

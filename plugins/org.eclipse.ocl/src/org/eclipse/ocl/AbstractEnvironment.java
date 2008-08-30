@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
- *   Zeligsoft - Bugs 243079, 244948
+ *   Zeligsoft - Bugs 243079, 244948, 244886
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.14 2008/08/30 20:18:33 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.15 2008/08/30 23:33:09 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -636,15 +636,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
             owner = vdcl.getType();
         }
 
-        List<P> properties = TypeUtil.getAttributes(this, owner);
-        
-        for (P property : properties) {
-            if (name.equals(getUMLReflection().getName(property))) {
-                return property;
-            }
-        }
-        
-        return null;
+        return TypeUtil.findAttribute(this, owner, name);
 	}
 
     // implements the interface method
