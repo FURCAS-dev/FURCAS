@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.8 2008/01/03 15:28:31 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.9 2008/08/30 17:03:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -372,7 +372,17 @@ class UMLReflectionImpl
             if (element.isStereotypeApplied(stereo)) {
                 result = element.getStereotypeApplication(stereo);
             }
-        }
+ 
+    		if (result == null) {
+    			// maybe some specializing stereotype is applied?
+
+				List<Stereotype> applied = element
+					.getAppliedSubstereotypes(stereo);
+				if (!applied.isEmpty()) {
+					return element.getStereotypeApplication(applied.get(0));
+				}
+    		}
+       }
         
         return result;
     }
