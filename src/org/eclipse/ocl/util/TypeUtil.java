@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
- *
+ *   Zeligsoft - Bug 244886
+ * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.11 2008/03/27 14:43:20 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.12 2008/08/30 23:33:09 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -99,7 +101,8 @@ public class TypeUtil {
 	}
 
 	/**
-	 * Finds an operation by signature in the specified classifier.
+	 * Finds the most specific (e)definition of an operation by signature in the
+	 * specified classifier.
 	 * 
      * @param env the OCL environment
 	 * @param owner the classifier to search
@@ -121,13 +124,31 @@ public class TypeUtil {
 
         UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = env.getUMLReflection();
 		List<O> operations = getOperations(env, owner);
+		List<O> matches = null;
 		
 		for (O oper : operations) {
-			if (uml.getName(oper).equals(name) &&
+			if (name.equals(uml.getName(oper)) &&
 					matchArgs(env, owner, uml.getParameters(oper), args)) {
-                return oper;
+				
+				if (uml.getOwningClassifier(oper) == owner) {
+					return oper;  // obviously the most specific definition
+				}
+				
+				if (matches == null) {
+					// assume a small number of redefinitions
+					matches = new java.util.ArrayList<O>(3);
+				}
+				
+                matches.add(oper);
             }
-
+		}
+		
+		if (matches != null) {
+			if (matches.size() == 1) {
+				return matches.get(0);
+			} else if (!matches.isEmpty()) {
+				return mostSpecificRedefinition(matches, uml);
+			}
 		}
 		
 		// special handling for null and invalid values, whose types conform
@@ -138,6 +159,49 @@ public class TypeUtil {
 		}
 		
 		return null;
+	}
+
+	/**
+	 * Finds the most specific redefinition in a given list of features from a
+	 * classifier hierarchy.
+	 * 
+	 * @param features
+	 *            the definitions of a feature; must have at least one element
+	 * @param uml
+	 *            the UML introspector to use in determining the classifiers
+	 *            that define the various feature definitions
+	 * 
+	 * @return the most specfic redifinition of the list of features
+	 * 
+	 * @throws IndexOutOfBoundsException
+	 *             if there is not at least one feature in the list
+	 */
+	private static <C, F> F mostSpecificRedefinition(
+			List<? extends F> features,
+			UMLReflection<?, C, ?, ?, ?, ?, ?, ?, ?, ?> uml) {
+		
+		Map<C, F> redefinitions = new java.util.HashMap<C, F>();
+
+		for (F next : features) {
+			redefinitions.put(uml.getOwningClassifier(next), next);
+		}
+
+		List<C> classifiers = new java.util.ArrayList<C>(redefinitions.keySet());
+
+		// remove all classifiers that are ancestors of another classifier
+		// in the map
+		outer : for (;;) {
+			for (C next : classifiers) {
+				if (classifiers.removeAll(uml.getAllSupertypes(next))) {
+					continue outer; // don't want a concurrent modification
+				}
+			}
+
+			break outer;
+		}
+
+		// there will at least be one remaining
+		return redefinitions.get(classifiers.get(0));
 	}
 	
 	/**
@@ -310,6 +374,55 @@ public class TypeUtil {
 	    }
 	    
 	    return result;
+	}
+
+	/**
+	 * Finds the most specific (re)definition of an attribute in the specified
+	 * classifier.
+	 * 
+     * @param env the OCL environment
+	 * @param owner the classifier to search
+	 * @param name the name of the operation
+	 * @param args a list of arguments to match against the operation signature,
+     *     as either expressions or variables
+	 * 
+	 * @return the matching operation, or <code>null</code> if not found
+	 * 
+	 * @since 1.3
+	 */
+	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	P findAttribute(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner, String name) {
+
+		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = env.getUMLReflection();
+		List<P> attributes = getAttributes(env, owner);
+		List<P> matches = null;
+		
+		for (P attr : attributes) {
+			if (name.equals(uml.getName(attr))) {
+				if (uml.getOwningClassifier(attr) == owner) {
+					return attr;  // obviously the most specific definition
+				}
+				
+				if (matches == null) {
+					// assume a small number of redefinitions
+					matches = new java.util.ArrayList<P>(3);
+				}
+				
+                matches.add(attr);
+            }
+		}
+		
+		if (matches != null) {
+			if (matches.size() == 1) {
+				return matches.get(0);
+			} else if (!matches.isEmpty()) {
+				return mostSpecificRedefinition(matches, uml);
+			}
+		}
+		
+		return null;
 	}
 	
     /**
