@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243079
+ *   Zeligsoft - Bugs 243079, 244948
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.13 2008/08/30 17:03:27 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.14 2008/08/30 20:18:10 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -141,6 +141,7 @@ public abstract class AbstractTestSuite
 		result.addTest(KeywordsTest.suite());
 		result.addTest(ComparisonTest.suite());
         result.addTest(PrimitiveTypesTest.suite());
+        result.addTest(PredefinedSuperTypeInheritedOperationTest.suite());
 		result.addTest(CollectionsTest.suite());
 		result.addTest(IteratorsTest.suite());
 		result.addTest(TuplesTest.suite());
