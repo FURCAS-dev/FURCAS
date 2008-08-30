@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,15 +10,18 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
- *
+ *   Zeligsoft - Bug 244948
+ *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.9 2008/03/26 21:17:25 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.10 2008/08/30 20:18:33 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
 import static org.eclipse.ocl.utilities.PredefinedType.*;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -1984,4 +1987,57 @@ public final class OCLStandardLibraryUtil {
                 problemContext, startOffset, endOffset);
         }
     }
+
+	/**
+	 * Queries all of the supertypes of a pre-defined type. Note that this is
+	 * only useful for operations on the OCL standard library types themselves,
+	 * especially in the case of generic types such as the collection types,
+	 * <tt>OclMessage</tt>, and the like. Thus, it helps to find inherited
+	 * operations and attributes, etc., but not actual type conformance. For
+	 * example, <tt>{@literal Set<Fruit>}</tt> is not returned as a supertype of
+	 * <tt>{@literal Set<Apple>}</tt>. Rather, only
+	 * <tt>{@literal Collection<T>}</tt> is.  This method also does not handle
+	 * the void and invalid types.
+	 * 
+	 * @param env
+	 *            the contextual environment
+	 * @param type
+	 *            an OCL re-defined type
+	 * @return an unmodifiable collection of the supertypes, which may be empty
+	 *         in some cases
+	 * 
+	 * @since 1.3
+	 */
+	@SuppressWarnings("unchecked")
+	public static <C> Collection<C> getAllSupertypes(
+			Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
+			PredefinedType<?> type) {
+
+		Collection<C> result;
+		OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
+		
+		if (type instanceof CollectionType) {
+			CollectionType<?, ?> collType = (CollectionType<?, ?>) type;
+			
+			switch (collType.getKind()) {
+				case ORDERED_SET_LITERAL:
+					result = Arrays.asList(stdlib.getSet(), stdlib.getCollection());
+					break;
+				case COLLECTION_LITERAL:
+					result = Collections.emptySet();
+					break;
+				default:
+					result = Collections.singleton(stdlib.getCollection());
+					break;
+			}
+		} else if (type == stdlib.getInteger()) {
+			result = Arrays.asList(stdlib.getReal(), stdlib.getOclAny());
+		} else if (type instanceof AnyType) {
+			result = Collections.emptySet();
+		} else {
+			result = Collections.singleton(stdlib.getOclAny());
+		}
+		
+		return result;
+	}
 }
