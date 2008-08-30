@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling 
- *
+ *   Zeligsoft - Bug 245760
+ *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.3 2007/11/06 20:02:10 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.4 2008/08/30 17:11:21 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -152,9 +153,22 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 
 	public FormattingHelper getFormatter() {
 		if (formatter == null) {
-            formatter = AbstractFormattingHelper.INSTANCE;
+            formatter = createFormattingHelper();
         }
 		return formatter;
+	}
+	
+	/**
+	 * Obtains the new or existing formatting-helper for this environment
+	 * to use.  This default implementation returns the shared
+	 * {@link AbstractFormattingHelper}; subclasses may override.
+	 * 
+	 * @return a new formatting helper
+	 * 
+	 * @since 1.3
+	 */
+	protected FormattingHelper createFormattingHelper() {
+		return AbstractFormattingHelper.INSTANCE;
 	}
 
 	public ProblemHandler getProblemHandler() {
