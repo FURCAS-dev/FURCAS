@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
+ *   Zeligsoft - Bug 243079
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.7 2008/03/28 20:37:26 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.8 2008/08/30 17:04:01 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -214,7 +215,9 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		C resultType;
 
-		if (sourceType instanceof PredefinedType) {
+		if ((sourceType instanceof PredefinedType)
+			&& !env.getAdditionalOperations(sourceType).contains(oper)) {
+			
 			if (opcode != OCLStandardLibraryUtil.getOperationCode(operName)) {
 				String message = OCLMessages.bind(
 						OCLMessages.IllegalOpcode_ERROR_,

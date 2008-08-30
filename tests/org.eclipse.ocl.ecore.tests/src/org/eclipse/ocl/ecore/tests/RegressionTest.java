@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,15 +9,17 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243526
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.7 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.8 2008/08/30 17:03:27 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1793,5 +1795,26 @@ public class RegressionTest
             CollectionKind.BAG_LITERAL, null);
         
         collType.getName();
+    }
+    
+    /**
+     * Ensure that variable expressions' names are set as they were in the
+     * 1.1 release.
+     */
+    public void test_variableExpName_243526() {
+		OCLExpression<EClassifier> constraint = parseConstraintUnvalidated(
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
+			"pre: c.oclIsUndefined() implies Fruit.allInstances()->forAll(color <> self.color) " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
+		
+		for (Iterator<EObject> iter = constraint.eAllContents(); iter.hasNext();) {
+			EObject next = iter.next();
+			
+			if (next instanceof VariableExp) {
+				VariableExp<?, ?> ve = (VariableExp<?, ?>) next;
+				assertNotNull(ve.getReferredVariable());
+				assertEquals(ve.getReferredVariable().getName(), ve.getName());
+			}
+		}
     }
 }

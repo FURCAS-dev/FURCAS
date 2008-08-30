@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 241148
+ *   Zeligsoft - Bugs 241148, 243098
  *   
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.5 2008/08/05 00:36:50 cdamus Exp $
+ * $Id: ProfilesTest.java,v 1.6 2008/08/30 17:04:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -53,6 +53,8 @@ public class ProfilesTest
     private static Profile testProfile;
 
     private static Stereotype testStereotype;
+
+    private static Stereotype testSubStereotype;
 
     private static Property stereoEnum;
 
@@ -117,6 +119,49 @@ public class ProfilesTest
             // or, fix it by changing 'yesno'
             fruit.setValue(testStereotype, stereoX.getName(), 0);
             fruit.setValue(testStereotype, stereoEnum.getName(), yes);
+            assertTrue(ocl.check(fruit, constraint));
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+
+    /**
+     * Tests the parsing of the constraints on stereotypes, in the context of
+     * elements that have a sub-stereotype applied (very different from a UML2
+     * API perspective).
+     */
+    public void test_parseStereotypeConstraint_substereotype_243098() {
+    	// do define the constraint on the general stereotype, so that it will
+    	// be inherited
+        helper.setContext(testStereotype);
+
+        try {
+            Constraint constraint = helper
+                .createInvariant("base_Classifier.name = 'Fruit' implies" + //$NON-NLS-1$
+                    " (x > 0 or yesno = YesNo::yes)"); //$NON-NLS-1$
+
+            // set up a couple of stereotyped classes to test the constraint on
+            fruit.applyStereotype(testSubStereotype);
+            fruit.setValue(testSubStereotype, stereoX.getName(), 0);
+            fruit.setValue(testSubStereotype, stereoEnum.getName(), no);
+
+            tree.applyStereotype(testSubStereotype);
+            tree.setValue(testSubStereotype, stereoX.getName(), 0);
+            tree.setValue(testSubStereotype, stereoEnum.getName(), no);
+
+            // the 'Fruit' class violates the 'x' and 'yesno' conditions
+            assertFalse(ocl.check(fruit, constraint));
+
+            // the 'Tree' class's name is not 'Fruit'
+            assertTrue(ocl.check(tree, constraint));
+
+            // fix the Fruit class by changing 'x'
+            fruit.setValue(testSubStereotype, stereoX.getName(), 1);
+            assertTrue(ocl.check(fruit, constraint));
+
+            // or, fix it by changing 'yesno'
+            fruit.setValue(testSubStereotype, stereoX.getName(), 0);
+            fruit.setValue(testSubStereotype, stereoEnum.getName(), yes);
             assertTrue(ocl.check(fruit, constraint));
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -282,6 +327,9 @@ public class ProfilesTest
         assertNotNull(stereoX);
         stereoTag = testStereotype.getOwnedAttribute("tag", null); //$NON-NLS-1$
         assertNotNull(stereoTag);
+
+        testSubStereotype = testProfile.getOwnedStereotype("SubStereo1"); //$NON-NLS-1$
+        assertNotNull(testSubStereotype);
 
         testEnumeration = (Enumeration) testProfile.getOwnedType("YesNo"); //$NON-NLS-1$
         assertNotNull(testEnumeration);
