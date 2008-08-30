@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 244946
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.10 2008/03/26 21:17:23 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.11 2008/08/30 18:35:03 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1114,5 +1115,127 @@ public class CollectionsTest
                 CollectionKind.COLLECTION_LITERAL, t);
         assertNotSame(resource, collectionType.eResource());
         assertSame(stdlib.getCollection(), collectionType);
+    }
+    
+    /**
+     * Tests that an invalid "at" index results in OclInvalid, not null.
+     */
+    public void test_invalidAtIndex_orderedSet_244946() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "OrderedSet{1, 2, 3}->at(0)")); //$NON-NLS-1$
+
+            assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "OrderedSet{1, 2, 3}->at(4)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that an invalid "at" index results in OclInvalid, not null.
+     */
+    public void test_invalidAtIndex_sequence_244946() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3}->at(0)")); //$NON-NLS-1$
+
+            assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3}->at(4)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that an invalid "insertAt" index results in OclInvalid, not null.
+     */
+    public void test_invalidInsertAtIndex_orderedSet_244946() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+        	// this is OK, as it effectively appends
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "OrderedSet{1, 2, 3}->insertAt(4, 4) = OrderedSet{1, 2, 3, 4}")); //$NON-NLS-1$
+        	// and this prepends
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "OrderedSet{1, 2, 3}->insertAt(1, 0) = OrderedSet{0, 1, 2, 3}")); //$NON-NLS-1$
+
+            // this is not
+            assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+            		"OrderedSet{1, 2, 3}->insertAt(5, 5)")); //$NON-NLS-1$
+            assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+            		"OrderedSet{1, 2, 3}->insertAt(0, 0)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that an invalid "insertAt" index results in OclInvalid, not null.
+     */
+    public void test_invalidInsertAtIndex_sequence_244946() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+        	// this is OK, as it effectively appends
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3}->insertAt(4, 4) = Sequence{1, 2, 3, 4}")); //$NON-NLS-1$
+        	// and this prepends
+            assertTrue(check(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3}->insertAt(1, 0) = Sequence{0, 1, 2, 3}")); //$NON-NLS-1$
+
+            // this is not
+            assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3}->insertAt(5, 5)")); //$NON-NLS-1$
+            assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+            		"Sequence{1, 2, 3}->insertAt(0, 0)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that an invalid "subOrderedSet" range results in OclInvalid, not null.
+     */
+    public void test_invalidSubOrderedSetRange_244946() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "OrderedSet{1, 2, 3}->subOrderedSet(0, 2)")); //$NON-NLS-1$
+
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+            		"OrderedSet{1, 2, 3}->subOrderedSet(2, 4)")); //$NON-NLS-1$
+
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+        			"OrderedSet{1, 2, 3}->subOrderedSet(2, 1)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that an invalid "subSequence" range results in OclInvalid, not null.
+     */
+    public void test_invalidSubSequenceRange_244946() {
+        helper.setContext(EcorePackage.Literals.ESTRING);
+        
+        try {
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+                    "Sequence{1, 2, 3}->subSequence(0, 2)")); //$NON-NLS-1$
+
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+            		"Sequence{1, 2, 3}->subSequence(2, 4)")); //$NON-NLS-1$
+
+        	assertInvalid(evaluate(helper, "", //$NON-NLS-1$
+        			"Sequence{1, 2, 3}->subSequence(2, 1)")); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
     }
 }
