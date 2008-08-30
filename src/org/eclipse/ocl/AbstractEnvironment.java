@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,14 +10,16 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
+ *   Zeligsoft - Bug 243079
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.12 2008/01/16 13:36:32 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.13 2008/08/30 17:04:01 cdamus Exp $
  */
 package org.eclipse.ocl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -414,6 +416,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 		}
 		
+		if (result == null) {
+			result = Collections.emptyList();
+		}
+		
 		return result;
 	}
 	
@@ -467,6 +473,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					result.addAll(additionals);
 				}
 			}
+		}
+		
+		if (result == null) {
+			result = Collections.emptyList();
 		}
 		
 		return result;
