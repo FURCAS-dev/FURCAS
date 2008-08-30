@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 243079
+  *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.17 2007/10/11 23:05:17 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.18 2008/08/30 17:04:16 cdamus Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -1030,6 +1031,10 @@ public class TypeUtil {
 					}
 				}
 			}
+		}
+		
+		if (result == null) {
+			result = ECollections.EMPTY_ELIST;
 		}
 		
 		return result;
