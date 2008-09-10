@@ -10,14 +10,17 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 240230
+ *   Achim Demelt - Bug 245897
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.7 2008/08/05 00:37:24 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.8 2008/09/10 18:44:25 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -547,16 +550,18 @@ public class UMLReflectionImpl
 	            || instanceClass == boolean.class) {
 	            return OCLStandardLibraryImpl.INSTANCE.getBoolean();
 	        } else if (instanceClass == Double.class
-	            || instanceClass == double.class
-	            || instanceClass == Float.class || instanceClass == float.class) {
-	            return OCLStandardLibraryImpl.INSTANCE.getReal();
-	        } else if (instanceClass == String.class) {
-	            return OCLStandardLibraryImpl.INSTANCE.getString();
-	        } else if (instanceClass == Integer.class
-	            || instanceClass == int.class || instanceClass == Long.class
-	            || instanceClass == long.class || instanceClass == Short.class
-	            || instanceClass == short.class) {
-	            return OCLStandardLibraryImpl.INSTANCE.getInteger();
+				|| instanceClass == BigDecimal.class
+				|| instanceClass == double.class
+				|| instanceClass == Float.class || instanceClass == float.class) {
+				return OCLStandardLibraryImpl.INSTANCE.getReal();
+			} else if (instanceClass == String.class) {
+				return OCLStandardLibraryImpl.INSTANCE.getString();
+			} else if (instanceClass == Integer.class
+				|| instanceClass == int.class || instanceClass == Long.class
+				|| instanceClass == long.class || instanceClass == Short.class
+				|| instanceClass == short.class
+				|| instanceClass == BigInteger.class) {
+				return OCLStandardLibraryImpl.INSTANCE.getInteger();
 	        } else if (List.class.isAssignableFrom(instanceClass)) {
 	            return OCLStandardLibraryImpl.INSTANCE.getSequence();
 	        } else if (Set.class.isAssignableFrom(instanceClass)) {
