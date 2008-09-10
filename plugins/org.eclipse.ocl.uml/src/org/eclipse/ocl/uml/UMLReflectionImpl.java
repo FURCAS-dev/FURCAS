@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,22 +9,26 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 245897
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.9 2008/08/30 17:03:32 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.10 2008/09/10 18:44:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OrderedSetType;
@@ -76,6 +80,26 @@ class UMLReflectionImpl
     implements
     UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> {
 
+	private static Set<String> ECORE_INTEGER_TYPES = new java.util.HashSet<String>(
+		Arrays.asList(EcorePackage.Literals.EINT.getName(),
+			EcorePackage.Literals.EINTEGER_OBJECT.getName(),
+			EcorePackage.Literals.ELONG.getName(),
+			EcorePackage.Literals.ELONG_OBJECT.getName(),
+			EcorePackage.Literals.ESHORT.getName(),
+			EcorePackage.Literals.ESHORT_OBJECT.getName(),
+			EcorePackage.Literals.EBIG_INTEGER.getName()));
+
+	private static Set<String> ECORE_REAL_TYPES = new java.util.HashSet<String>(
+		Arrays.asList(EcorePackage.Literals.EFLOAT.getName(),
+			EcorePackage.Literals.EFLOAT_OBJECT.getName(),
+			EcorePackage.Literals.EDOUBLE.getName(),
+			EcorePackage.Literals.EDOUBLE_OBJECT.getName(),
+			EcorePackage.Literals.EBIG_DECIMAL.getName()));
+
+	private static Set<String> ECORE_BOOLEAN_TYPES = new java.util.HashSet<String>(
+		Arrays.asList(EcorePackage.Literals.EBOOLEAN.getName(),
+			EcorePackage.Literals.EBOOLEAN_OBJECT.getName()));
+	
     private final UMLEnvironment env;
     
     UMLReflectionImpl(UMLEnvironment env) {
@@ -584,6 +608,14 @@ class UMLReflectionImpl
                 return OCLStandardLibraryImpl.INSTANCE.getCollection();
             } else if ("Object".equals(dataType.getName())) { //$NON-NLS-1$
                 return OCLStandardLibraryImpl.INSTANCE.getOclAny();
+            } else if (ECORE_INTEGER_TYPES.contains(dataType.getName())) {
+                return OCLStandardLibraryImpl.INSTANCE.getInteger();
+            } else if (ECORE_REAL_TYPES.contains(dataType.getName())) {
+                return OCLStandardLibraryImpl.INSTANCE.getReal();
+            } else if (ECORE_BOOLEAN_TYPES.contains(dataType.getName())) {
+                return OCLStandardLibraryImpl.INSTANCE.getBoolean();
+            } else if ("EString".equals(dataType.getName())) { //$NON-NLS-1$
+                return OCLStandardLibraryImpl.INSTANCE.getString();
             }
         }
         
