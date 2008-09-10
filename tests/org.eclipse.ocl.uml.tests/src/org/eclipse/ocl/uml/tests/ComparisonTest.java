@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,18 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Achim Demelt - Bug 245897
+ *   Zeligsoft - Bug 245897
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.5 2007/12/12 22:08:00 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.6 2008/09/10 18:44:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -54,6 +58,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ComparisonTest
 	extends AbstractTestSuite {
 
@@ -63,6 +68,8 @@ public class ComparisonTest
 	private DataType valueType;
 	private Class numeroType;
 	private Property numeros;
+	private Property bdValue;
+	private Property biValue;
 	
 	private EPackage epkg;
 	private EFactory efactory;
@@ -71,6 +78,8 @@ public class ComparisonTest
 	private EDataType evalueType;
 	private EClass enumeroType;
 	private EReference enumeros;
+	private EAttribute ebdValue;
+	private EAttribute ebiValue;
 	
 	private Class comparable;
 	
@@ -102,6 +111,25 @@ public class ComparisonTest
 			assertFalse(check(helper, thing, "21.0 < 2.0")); //$NON-NLS-1$
 			assertTrue(check(helper, thing, "'a' < 'b'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'ba' < 'b'")); //$NON-NLS-1$
+
+			// BigDecimal tests
+			thing.eSet(ebdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue < 1.1"));
+			assertTrue(check(helper, thing, "bdValue < 2"));
+			assertTrue(check(helper, thing, "bdValue < 2.0"));
+			thing.eSet(ebdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue < 1.1"));
+			assertTrue(check(helper, thing, "bdValue < 2"));
+			assertTrue(check(helper, thing, "bdValue < 2.0"));
+			thing.eSet(ebdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue < 1.2"));
+			assertTrue(check(helper, thing, "bdValue < 2"));
+			assertTrue(check(helper, thing, "bdValue < 2.0"));
+
+			// BigInteger tests
+			thing.eSet(ebiValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue < 2"));
+			assertTrue(check(helper, thing, "biValue < 2.1"));
 
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
@@ -143,6 +171,26 @@ public class ComparisonTest
 			assertTrue(check(helper, thing, "'a' <= 'a'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'ba' <= 'b'")); //$NON-NLS-1$
 
+			// BigDecimal tests
+			thing.eSet(ebdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue <= 1"));
+			assertTrue(check(helper, thing, "bdValue <= 1.0"));
+			assertTrue(check(helper, thing, "bdValue <= 1.1"));
+			thing.eSet(ebdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue <= 1"));
+			assertTrue(check(helper, thing, "bdValue <= 1.0"));
+			assertTrue(check(helper, thing, "bdValue <= 1.1"));
+			thing.eSet(ebdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue <= 1.1"));
+			assertTrue(check(helper, thing, "bdValue <= 2.0"));
+			assertTrue(check(helper, thing, "bdValue <= 2"));
+			
+			// BigInteger tests
+			thing.eSet(ebiValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue <= 1"));
+			assertTrue(check(helper, thing, "biValue <= 1.0"));
+			assertTrue(check(helper, thing, "biValue <= 1.1"));
+
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
 			
@@ -180,6 +228,25 @@ public class ComparisonTest
 			assertFalse(check(helper, thing, "2.0 > 21.0")); //$NON-NLS-1$
 			assertTrue(check(helper, thing, "'b' > 'a'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'a' > 'b'")); //$NON-NLS-1$
+
+			// BigDecimal tests
+			thing.eSet(ebdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue > 0"));
+			assertTrue(check(helper, thing, "bdValue > 0.0"));
+			assertTrue(check(helper, thing, "bdValue > 0.1"));
+			thing.eSet(ebdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue > 0"));
+			assertTrue(check(helper, thing, "bdValue > 0.0"));
+			assertTrue(check(helper, thing, "bdValue > 0.1"));
+			thing.eSet(ebdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue > 1"));
+			assertTrue(check(helper, thing, "bdValue > 1.0"));
+			assertTrue(check(helper, thing, "bdValue > 1.09"));
+
+			// BigInteger tests
+			thing.eSet(ebiValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue > 0"));
+			assertTrue(check(helper, thing, "biValue > 0.1"));
 
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
@@ -220,6 +287,26 @@ public class ComparisonTest
 			assertTrue(check(helper, thing, "'b' >= 'a'")); //$NON-NLS-1$
 			assertTrue(check(helper, thing, "'b' >= 'b'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'a' >= 'b'")); //$NON-NLS-1$
+
+			// BigDecimal tests
+			thing.eSet(ebdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue >= 1"));
+			assertTrue(check(helper, thing, "bdValue >= 1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 0.9"));
+			thing.eSet(ebdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 1"));
+			assertTrue(check(helper, thing, "bdValue >= 1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 0.9"));
+			thing.eSet(ebdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue >= 1"));
+			assertTrue(check(helper, thing, "bdValue >= 1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 1.1"));
+
+			// BigInteger tests
+			thing.eSet(ebiValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue >= 0.9"));
+			assertTrue(check(helper, thing, "biValue >= 1"));
+			assertTrue(check(helper, thing, "biValue >= 1.0"));
 
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
@@ -514,6 +601,56 @@ public class ComparisonTest
 	}
 	
 	/**
+	 * Tests support for attributes of ELong type.
+	 */
+    public void test_supportForELongAttributes_198451() {
+        helper.setContext(thingType);
+        
+        long maxInt = Integer.MAX_VALUE;
+        long maxIntMinusOne = (long) Integer.MAX_VALUE - 1;
+        long maxIntSquared = ((long) Integer.MAX_VALUE) * ((long) Integer.MAX_VALUE);
+        double quotient = (double) maxIntSquared / (double) maxIntMinusOne;
+        
+        Numero maxIntN = new Numero(maxInt);
+        Numero maxIntMinusOneN = new Numero(maxIntMinusOne);
+        Numero maxIntSquaredN = new Numero(maxIntSquared);
+        
+        @SuppressWarnings("unchecked")
+        EList<Numero> list = (EList<Numero>) thing.eGet(enumeros);
+        list.clear();
+        list.add(maxIntN);
+        list.add(maxIntMinusOneN);
+        list.add(maxIntSquaredN);
+        list.add(new Numero(1));
+        
+        try {
+            // this should be OK because both values can be represented as integers
+            assertEquals(1, evaluate(helper, thing, "numeros->at(1).asLong() - numeros->at(2).asLong()")); //$NON-NLS-1$
+            
+            // same number represented in different precision
+            assertTrue(check(helper, thing, "numeros->at(4).asLong() = 1")); //$NON-NLS-1$
+            
+            // different numbers represented in different precision
+            assertTrue(check(helper, thing, "numeros->at(4).asLong() <> 2")); //$NON-NLS-1$
+            
+            // this is also OK, because we compute in high precision and coerce
+            // the result to lower precision
+            assertEquals(quotient, evaluate(helper, thing, "numeros->at(3).asLong() / numeros->at(2).asLong()")); //$NON-NLS-1$
+            
+            // this is another case where the intermediate result is high-precision but
+            // the result is low
+            assertEquals((int) maxIntMinusOne, evaluate(helper, thing,
+                String.format("(%d + %d).div(2) - 1", maxInt, maxInt))); //$NON-NLS-1$
+            
+            // finally, a case where the result is in high precision (new capability)
+            assertEquals(maxIntSquared, evaluate(helper, thing,
+                String.format("%d * %d", maxInt, maxInt))); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
 	 * Tests that the <tt>OclAny::=</tt> operation does not require the source
 	 * and argument types to be related.
 	 */
@@ -612,6 +749,9 @@ public class ComparisonTest
 		values.setIsOrdered(true);
 		values.setIsUnique(true);
 		
+		bdValue = thingType.createOwnedAttribute("bdValue", getEcoreBigDecimal()); //$NON-NLS-1$
+		biValue = thingType.createOwnedAttribute("biValue", getEcoreBigInteger()); //$NON-NLS-1$
+		
 		numeroType = pkg.createOwnedClass("Numero", false); //$NON-NLS-1$
 		
 		numeroType.createOwnedOperation(
@@ -661,6 +801,11 @@ public class ComparisonTest
 				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
 				new BasicEList<Type>(Collections.singleton(numeroType)),
 				getUMLBoolean()).setIsQuery(true);
+		numeroType.createOwnedOperation(
+				"asLong", //$NON-NLS-1$
+				ECollections.<String> emptyEList(),
+				ECollections.<Type> emptyEList(),
+				getEcoreLong()).setIsQuery(true);
 		
 		numeros = thingType.createOwnedAttribute("numeros", numeroType); //$NON-NLS-1$
 		numeros.setUpper(LiteralUnlimitedNatural.UNLIMITED);
@@ -681,6 +826,8 @@ public class ComparisonTest
 		ethingType = (EClass) epkg.getEClassifier(thingType.getName());
 		enumeros = (EReference) ethingType.getEStructuralFeature(numeros.getName());
 		evalues = (EAttribute) ethingType.getEStructuralFeature(values.getName());
+		ebdValue = (EAttribute) ethingType.getEStructuralFeature(bdValue.getName());
+		ebiValue = (EAttribute) ethingType.getEStructuralFeature(biValue.getName());
 		
 		enumeroType = (EClass) epkg.getEClassifier(numeroType.getName());
 		enumeroType.setInstanceClass(Numero.class);
@@ -742,13 +889,13 @@ public class ComparisonTest
 	}
 	
 	public static class Numero extends EObjectImpl {
-		private int value;
+		private long value;
 		
 		Numero() {
 			super();
 		}
 		
-		Numero(int value) {
+		Numero(long value) {
 			this.value = value;
 		}
 		
@@ -787,12 +934,16 @@ public class ComparisonTest
 		public boolean greaterThanEqual(Numero n) {
 			return value >= n.value;
 		}
+		
+		public long asLong() {
+		    return value;
+		}
 
 		@Override
         public int hashCode() {
 			final int PRIME = 31;
 			int result = 1;
-			result = PRIME * result + value;
+			result = PRIME * result + (int) value;
 			return result;
 		}
 

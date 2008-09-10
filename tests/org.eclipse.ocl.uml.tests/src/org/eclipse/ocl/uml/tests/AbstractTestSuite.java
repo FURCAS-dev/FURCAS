@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 245897
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.12 2008/08/30 23:33:11 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.13 2008/09/10 18:44:05 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -107,6 +108,7 @@ public abstract class AbstractTestSuite
 	
 	protected static Package umlMetamodel;
 	protected static Package umlPrimitiveTypes;
+	protected static Package ecorePrimitiveTypes;
 	
 	protected static Package fruitPackage;
 	protected static EPackage fruitEPackage;
@@ -733,6 +735,18 @@ public abstract class AbstractTestSuite
 		return (PrimitiveType) umlPrimitiveTypes.getOwnedType("UnlimitedNatural"); //$NON-NLS-1$
 	}
 	
+	protected PrimitiveType getEcoreLong() {
+		return (PrimitiveType) ecorePrimitiveTypes.getOwnedType("ELong"); //$NON-NLS-1$
+	}
+	
+	protected PrimitiveType getEcoreBigDecimal() {
+		return (PrimitiveType) ecorePrimitiveTypes.getOwnedType("EBigDecimal"); //$NON-NLS-1$
+	}
+	
+	protected PrimitiveType getEcoreBigInteger() {
+		return (PrimitiveType) ecorePrimitiveTypes.getOwnedType("EBigInteger"); //$NON-NLS-1$
+	}
+	
 	protected InstanceSpecification instantiate(Package pkg, Classifier classifier) {
 		InstanceSpecification result = (InstanceSpecification) pkg.createPackagedElement(
 				null, uml.getInstanceSpecification());
@@ -963,6 +977,7 @@ public abstract class AbstractTestSuite
                 
                 umlMetamodel = null;
                 umlPrimitiveTypes = null;
+                ecorePrimitiveTypes = null;
             } else {
                 // unload and remove all resources but the UML Metamodel.
                 // Don't clear the resource set's adapter-list
@@ -970,6 +985,7 @@ public abstract class AbstractTestSuite
                 Set<Resource> toPreserve = new java.util.HashSet<Resource>();
                 toPreserve.add(umlMetamodel.eResource());
                 toPreserve.add(umlPrimitiveTypes.eResource());
+                toPreserve.add(ecorePrimitiveTypes.eResource());
                 
                 for (Resource res : resourceSet.getResources()) {
                     if (!toPreserve.contains(res)) {
@@ -1083,6 +1099,9 @@ public abstract class AbstractTestSuite
 				true).getContents().get(0);
 		umlPrimitiveTypes = (Package) resourceSet.getResource(
 				URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI),
+				true).getContents().get(0);
+		ecorePrimitiveTypes = (Package) resourceSet.getResource(
+				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
 				true).getContents().get(0);
 		
 		// convert the Package to Ecore for evaluation on instances
