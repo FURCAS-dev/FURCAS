@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   Andreas Werner - Initial API and implementation
+ *   Achim Demelt - Bug 245897
  *
  * </copyright>
  *
- * $Id: NumberUtil.java,v 1.1 2007/10/12 18:04:51 cdamus Exp $
+ * $Id: NumberUtil.java,v 1.2 2008/09/10 18:44:18 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -107,10 +108,9 @@ public class NumberUtil {
     }
 
     private static boolean isDouble(BigDecimal number) {
-        double d = number.doubleValue();
-        BigDecimal b = new BigDecimal(d);
-        
-        return number.equals(b);
+    	double doubleValue = number.doubleValue();
+		return (doubleValue != Double.NEGATIVE_INFINITY)
+			&& (doubleValue != Double.POSITIVE_INFINITY);
     }
     
     /**

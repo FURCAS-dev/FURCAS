@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,18 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Achim Demelt - Bug 245897
+ *   Zeligsoft - Bug 245897
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.8 2007/12/12 22:08:01 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.9 2008/09/10 18:43:57 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -50,12 +54,15 @@ import org.eclipse.ocl.types.CollectionType;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ComparisonTest
 	extends AbstractTestSuite {
 
 	private EPackage pkg;
 	private EClass thingType;
 	private EAttribute values;
+	private EAttribute bdValue;
+	private EAttribute biValue;
 	private EDataType valueType;
 	private EClass numeroType;
 	private EReference numeros;
@@ -91,6 +98,25 @@ public class ComparisonTest
 			assertFalse(check(helper, thing, "21.0 < 2.0")); //$NON-NLS-1$
 			assertTrue(check(helper, thing, "'a' < 'b'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'ba' < 'b'")); //$NON-NLS-1$
+
+			// BigDecimal tests
+			thing.eSet(bdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue < 1.1"));
+			assertTrue(check(helper, thing, "bdValue < 2"));
+			assertTrue(check(helper, thing, "bdValue < 2.0"));
+			thing.eSet(bdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue < 1.1"));
+			assertTrue(check(helper, thing, "bdValue < 2"));
+			assertTrue(check(helper, thing, "bdValue < 2.0"));
+			thing.eSet(bdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue < 1.2"));
+			assertTrue(check(helper, thing, "bdValue < 2"));
+			assertTrue(check(helper, thing, "bdValue < 2.0"));
+
+			// BigInteger tests
+			thing.eSet(biValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue < 2"));
+			assertTrue(check(helper, thing, "biValue < 2.1"));
 
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(values);
@@ -135,6 +161,26 @@ public class ComparisonTest
 			assertTrue(check(helper, thing, "'a' <= 'a'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'ba' <= 'b'")); //$NON-NLS-1$
 
+			// BigDecimal tests
+			thing.eSet(bdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue <= 1"));
+			assertTrue(check(helper, thing, "bdValue <= 1.0"));
+			assertTrue(check(helper, thing, "bdValue <= 1.1"));
+			thing.eSet(bdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue <= 1"));
+			assertTrue(check(helper, thing, "bdValue <= 1.0"));
+			assertTrue(check(helper, thing, "bdValue <= 1.1"));
+			thing.eSet(bdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue <= 1.1"));
+			assertTrue(check(helper, thing, "bdValue <= 2.0"));
+			assertTrue(check(helper, thing, "bdValue <= 2"));
+			
+			// BigInteger tests
+			thing.eSet(biValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue <= 1"));
+			assertTrue(check(helper, thing, "biValue <= 1.0"));
+			assertTrue(check(helper, thing, "biValue <= 1.1"));
+
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(values);
 			
@@ -175,6 +221,25 @@ public class ComparisonTest
 			assertFalse(check(helper, thing, "2.0 > 21.0")); //$NON-NLS-1$
 			assertTrue(check(helper, thing, "'b' > 'a'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'a' > 'b'")); //$NON-NLS-1$
+
+			// BigDecimal tests
+			thing.eSet(bdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue > 0"));
+			assertTrue(check(helper, thing, "bdValue > 0.0"));
+			assertTrue(check(helper, thing, "bdValue > 0.1"));
+			thing.eSet(bdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue > 0"));
+			assertTrue(check(helper, thing, "bdValue > 0.0"));
+			assertTrue(check(helper, thing, "bdValue > 0.1"));
+			thing.eSet(bdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue > 1"));
+			assertTrue(check(helper, thing, "bdValue > 1.0"));
+			assertTrue(check(helper, thing, "bdValue > 1.09"));
+
+			// BigInteger tests
+			thing.eSet(biValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue > 0"));
+			assertTrue(check(helper, thing, "biValue > 0.1"));
 
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(values);
@@ -218,6 +283,26 @@ public class ComparisonTest
 			assertTrue(check(helper, thing, "'b' >= 'a'")); //$NON-NLS-1$
 			assertTrue(check(helper, thing, "'b' >= 'b'")); //$NON-NLS-1$
 			assertFalse(check(helper, thing, "'a' >= 'b'")); //$NON-NLS-1$
+
+			// BigDecimal tests
+			thing.eSet(bdValue, new BigDecimal("1"));
+			assertTrue(check(helper, thing, "bdValue >= 1"));
+			assertTrue(check(helper, thing, "bdValue >= 1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 0.9"));
+			thing.eSet(bdValue, new BigDecimal("1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 1"));
+			assertTrue(check(helper, thing, "bdValue >= 1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 0.9"));
+			thing.eSet(bdValue, new BigDecimal("1.1"));
+			assertTrue(check(helper, thing, "bdValue >= 1"));
+			assertTrue(check(helper, thing, "bdValue >= 1.0"));
+			assertTrue(check(helper, thing, "bdValue >= 1.1"));
+
+			// BigInteger tests
+			thing.eSet(biValue, new BigInteger("1"));
+			assertTrue(check(helper, thing, "biValue >= 0.9"));
+			assertTrue(check(helper, thing, "biValue >= 1"));
+			assertTrue(check(helper, thing, "biValue >= 1.0"));
 
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(values);
@@ -672,7 +757,19 @@ public class ComparisonTest
 		thingType = EcoreFactory.eINSTANCE.createEClass();
 		thingType.setName("Thing"); //$NON-NLS-1$
 		pkg.getEClassifiers().add(thingType);
-		
+
+		bdValue = EcoreFactory.eINSTANCE.createEAttribute();
+		bdValue.setName("bdValue"); //$NON-NLS-1$
+		bdValue.setEType(EcorePackage.Literals.EBIG_DECIMAL);
+		bdValue.setUpperBound(1);
+		thingType.getEStructuralFeatures().add(bdValue);
+
+		biValue = EcoreFactory.eINSTANCE.createEAttribute();
+		biValue.setName("biValue"); //$NON-NLS-1$
+		biValue.setEType(EcorePackage.Literals.EBIG_INTEGER);
+		biValue.setUpperBound(1);
+		thingType.getEStructuralFeatures().add(biValue);
+
 		values = EcoreFactory.eINSTANCE.createEAttribute();
 		values.setName("values"); //$NON-NLS-1$
 		values.setEType(valueType);
