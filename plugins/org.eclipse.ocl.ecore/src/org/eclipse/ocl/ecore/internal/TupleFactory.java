@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,14 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 182994
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.4 2008/01/03 15:07:07 cdamus Exp $
+ * $Id: TupleFactory.java,v 1.1 2008/09/10 19:21:04 cdamus Exp $
  */
 
-package org.eclipse.ocl.ecore;
+package org.eclipse.ocl.ecore.internal;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ import org.eclipse.ocl.util.Tuple;
  * 
  * @author Christian W. Damus (cdamus)
  */
-class TupleFactory extends EFactoryImpl {
+public class TupleFactory extends EFactoryImpl {
 	@Override
     protected EObject basicCreate(EClass eClass) {
 		TupleInstance result = new TupleInstance();
