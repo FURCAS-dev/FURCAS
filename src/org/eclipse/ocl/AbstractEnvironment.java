@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
- *   Zeligsoft - Bugs 243079, 244948, 244886
+ *   Zeligsoft - Bugs 243079, 244948, 244886, 246469
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.15 2008/08/30 23:33:09 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.16 2008/09/10 13:03:41 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -73,7 +73,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	    Environment.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
-	private static int generatorInt = 0;
+	private int generatorInt = 0;
 	
 	private PK contextPackage;
 	private O contextOperation;
@@ -132,7 +132,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * 
      * @return the new name
 	 */
-	private synchronized String generateName() {
+	private String generateName() {
 		generatorInt++;
 		return "temp" + generatorInt;//$NON-NLS-1$
 	}
