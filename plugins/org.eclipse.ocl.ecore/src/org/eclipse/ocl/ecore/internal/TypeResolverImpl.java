@@ -1,20 +1,21 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 182994
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.1 2007/01/25 18:29:10 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.1 2008/09/10 19:21:04 cdamus Exp $
  */
-package org.eclipse.ocl.ecore;
+package org.eclipse.ocl.ecore.internal;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -29,8 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.AbstractTypeResolver;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.TypeResolver;
-import org.eclipse.ocl.ecore.internal.OCLEcorePlugin;
-import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 
 
 /**
@@ -38,7 +38,7 @@ import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
  * 
  * @author Christian W. Damus (cdamus)
  */
-class TypeResolverImpl
+public class TypeResolverImpl
 	extends AbstractTypeResolver<EPackage, EClassifier, EOperation, EStructuralFeature, EParameter> {
 	
     /**

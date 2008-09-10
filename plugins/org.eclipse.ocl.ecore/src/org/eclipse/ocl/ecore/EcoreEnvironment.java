@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 182994
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.6 2007/11/29 23:55:33 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.7 2008/09/10 19:21:04 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -43,6 +44,7 @@ import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.ecore.internal.TypeResolverImpl;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
