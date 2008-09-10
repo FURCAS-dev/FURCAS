@@ -10,13 +10,13 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *               - Bug 237126
+ *               - Bug 237126, 245586
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
- *   Zeligsoft - Bugs 243526, 243079
+ *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs)
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.14 2008/08/30 17:04:01 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.15 2008/09/10 14:59:20 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2118,13 +2118,20 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
 	/**
-	 * SimpleNameCS
+	 * Parses a <tt>simpleNameCS</tt> token.  This method is largely a
+	 * <i>template</i>, delegating to helpers that may be separately overridden
+	 * to resolve simple names to various kinds of expression.
 	 * 
-	 * @param simpleNameCS the <code>SimpleNameCS</code> <code>CSTNode</code>
+	 * @param simpleNameCS the <code>simpleNameCS</code> <code>CSTNode</code>
 	 * @param env the OCL environment
-	 * @param source the source of the <code>SimpleNameCS</code>
+	 * @param source the source of the <code>simpleNameCS</code>
 	 * @return the parsed <code>OCLExpression</code>
-	 * @throws TerminateException 
+	 * 
+	 * @see #simpleAssociationClassName(SimpleNameCS, Environment, OCLExpression, Object, String)
+	 * @see #simplePropertyName(SimpleNameCS, Environment, OCLExpression, Object, String)
+	 * @see #simpleTypeName(SimpleNameCS, Environment, OCLExpression, Object, String)
+	 * @see #simpleVariableName(SimpleNameCS, Environment, OCLExpression, String)
+	 * @see #simpleUndefinedName(SimpleNameCS, Environment, OCLExpression, String)
 	 */
 	protected OCLExpression<C> simpleNameCS(
 			SimpleNameCS simpleNameCS,
@@ -2136,17 +2143,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			return source; // return the same unparseable token
 		}
 		
-		OCLExpression<C> astNode;
-
-		String simpleName = null;
-		
-		astNode = null;
-		P property = null;
+		String simpleName = null;		
 		C classifier = null;
-		PropertyCallExp<C, P> propertyCall = null;
-		C assocClass = null;
-		AssociationClassCallExp<C, P> acref = null;
-		Variable<C, PM> vdcl = null;
 
 		/* A name can be a variable defined by a Variable declaration, the special
 		  variable "self", an attribute or a reference to another object.
@@ -2198,110 +2196,22 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			} 
 		}
 		
-		List<String> names = new java.util.ArrayList<String>();
-		names.add(simpleName);
-		
-		// if we have a source, then this is a feature call
-		if ((classifier == null) && (source == null)) {
-			classifier = lookupClassifier(simpleNameCS, env, names);
+		// cascaded alternatives for a simpleNameCS
+		OCLExpression<C> astNode = simpleTypeName(simpleNameCS, env, source,
+			classifier, simpleName);
+		if (astNode == null) {
+			astNode = simpleVariableName(simpleNameCS, env, source, simpleName);
 		}
-		
-		if (classifier != null) {
-			/* Variable is a classifier. Classifiers are used in
-			 * allInstances, isKindOf, isTypeOf, asTypeOf operations
-			 */
-			
-			TypeExp<C> texp = typeCS(simpleNameCS, env, classifier);
-			astNode = texp;	 		
-		} else if (source == null && (vdcl = env.lookup(simpleName)) != null)  { 
-			// Either a use of a declared variable or self
-
-			TRACE("variableExpCS", "Variable Expression: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-			
-			astNode = createVariableExp(env, simpleNameCS, vdcl);	
-		} else if ((property = lookupProperty(simpleNameCS, env, sourceElementType, simpleName)) != null) {
-			
-			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-			propertyCall = oclFactory.createPropertyCallExp();
-			initASTMapping(env, propertyCall, simpleNameCS);
-			propertyCall.setReferredProperty(property);
-			propertyCall.setType(
-					TypeUtil.getPropertyType(env, sourceElementType, property));
-			if (source != null) {
-				propertyCall.setSource(source);
-			} else {
-				Variable<C, PM> implicitSource =
-					env.lookupImplicitSourceForProperty(simpleName);
-				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
-					implicitSource);
-				
-				propertyCall.setSource(src);
-			}
-
-			initPropertyPositions(propertyCall, simpleNameCS);
-			astNode = propertyCall;
-						
-		} else if ((assocClass = lookupAssociationClassReference(simpleNameCS, env, sourceElementType, simpleName)) != null) {
-			TRACE("variableExpCS", "Association class: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
-			acref = oclFactory.createAssociationClassCallExp();
-			initASTMapping(env, acref, simpleNameCS);
-			acref.setReferredAssociationClass(assocClass);
-			
-			if (source != null) {
-				acref.setSource(source);
-			} else {
-				Variable<C, PM> implicitSource =
-					env.lookupImplicitSourceForAssociationClass(simpleName);
-				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
-					implicitSource);
-				
-				acref.setSource(src);
-			}
-			
-			// infer the navigation source and type of the association class
-			//   call expression from the association class end that is
-			//   implicitly navigated (in case it is not explicit as a qualifier)
-			C acrefType = null;
-			C sourceType = getElementType(acref.getSource().getType());
-			List<P> ends = uml.getMemberEnds(assocClass);
-			List<P> available = uml.getAttributes(sourceType);
-			
-			for (P end : ends) {
-				if (available.contains(end)) {
-					// this is the navigation source
-					acref.setNavigationSource(end);
-					
-					CollectionKind kind = getCollectionKind(getOCLType(env, end));
-					if (kind != null) {
-						acrefType = getCollectionType(env, kind, assocClass);
-					} else {
-						acrefType = assocClass;
-					}
-				}
-			}
-			
-			if (acrefType == null) {
-				// for non-navigable association classes, assume set type
-				acrefType = getSetType(simpleNameCS, env, assocClass);
-			}
-			acref.setType(acrefType);
-
-			initPropertyPositions(acref, simpleNameCS);
-			astNode = acref;
-		} else {
-			if ((source != null) && (vdcl = env.lookup(simpleName)) != null) {
-				String message = OCLMessages.bind(
-						OCLMessages.VarInNavExp_ERROR_,
-						simpleName);
-					ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
-			} else {
-				String message = OCLMessages.bind(
-						OCLMessages.UnrecognizedVar_ERROR_,
-						simpleName);
-					ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
-			}
-			
-			astNode = createDummyInvalidLiteralExp(env, simpleNameCS);
+		if (astNode == null) {
+			astNode = simplePropertyName(simpleNameCS, env, source,
+				sourceElementType, simpleName);
+		}
+		if (astNode == null) {
+			astNode = simpleAssociationClassName(simpleNameCS, env, source,
+				sourceElementType, simpleName);
+		}
+		if (astNode == null) {
+			astNode = simpleUndefinedName(simpleNameCS, env, source, simpleName);
 		}
 		
 		/*
@@ -2319,6 +2229,278 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		return astNode;
+	}
+	
+	/**
+	 * Attempts to parse a <tt>simpleNameCS</tt> as an association-class call
+	 * expression.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, or <code>null</code> if the
+	 *            source is implicit
+	 * @param owner
+	 *            the owner of the association-class end to be navigated, or
+	 *            <code>null</code> if the source is implicit
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the parsed association-class call, or <code>null</code> if the
+	 *         simple name does not resolve to a related association class
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 * 
+	 * @since 1.3
+	 */
+	protected AssociationClassCallExp<C, P> simpleAssociationClassName(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName) {
+
+		AssociationClassCallExp<C, P> result = null;
+
+		C assocClass = lookupAssociationClassReference(simpleNameCS, env,
+			owner, simpleName);
+		if (assocClass != null) {
+			TRACE("variableExpCS", "Association class: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+			result = oclFactory.createAssociationClassCallExp();
+			initASTMapping(env, result, simpleNameCS);
+			result.setReferredAssociationClass(assocClass);
+
+			if (source != null) {
+				result.setSource(source);
+			} else {
+				Variable<C, PM> implicitSource = env
+					.lookupImplicitSourceForAssociationClass(simpleName);
+				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+					implicitSource);
+
+				result.setSource(src);
+			}
+
+			// infer the navigation source and type of the association class
+			// call expression from the association class end that is
+			// implicitly navigated (in case it is not explicit as a qualifier)
+			C acrefType = null;
+			C sourceType = getElementType(result.getSource().getType());
+			List<P> ends = uml.getMemberEnds(assocClass);
+			List<P> available = uml.getAttributes(sourceType);
+
+			for (P end : ends) {
+				if (available.contains(end)) {
+					// this is the navigation source
+					result.setNavigationSource(end);
+
+					CollectionKind kind = getCollectionKind(getOCLType(env, end));
+					if (kind != null) {
+						acrefType = getCollectionType(env, kind, assocClass);
+					} else {
+						acrefType = assocClass;
+					}
+				}
+			}
+
+			if (acrefType == null) {
+				// for non-navigable association classes, assume set type
+				acrefType = getSetType(simpleNameCS, env, assocClass);
+			}
+
+			result.setType(acrefType);
+			initPropertyPositions(result, simpleNameCS);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Attempts to parse a <tt>simpleNameCS</tt> as a property call expression.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, or <code>null</code> if the
+	 *            source is implicit
+	 * @param owner
+	 *            the owner of the property to be navigated, or
+	 *            <code>null</code> if the source is implicit
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the parsed property call, or <code>null</code> if the simple name
+	 *         does not resolve to an available property
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 * 
+	 * @since 1.3
+	 */
+	protected PropertyCallExp<C, P> simplePropertyName(
+			SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C owner, String simpleName) {
+
+		PropertyCallExp<C, P> result = null;
+
+		P property = lookupProperty(simpleNameCS, env, owner, simpleName);
+		if (property != null) {
+			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+			result = oclFactory.createPropertyCallExp();
+			initASTMapping(env, result, simpleNameCS);
+			result.setReferredProperty(property);
+			result.setType(TypeUtil.getPropertyType(env, owner, property));
+
+			if (source != null) {
+				result.setSource(source);
+			} else {
+				Variable<C, PM> implicitSource = env
+					.lookupImplicitSourceForProperty(simpleName);
+				VariableExp<C, PM> src = createVariableExp(env, simpleNameCS,
+					implicitSource);
+				result.setSource(src);
+			}
+
+			initPropertyPositions(result, simpleNameCS);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Attempts to parse a <tt>simpleNameCS</tt> as a type expression. For the
+	 * sake of completeness and generality, information about a navigation
+	 * <code>source</code> is provided, if any. In such cases, it is usually
+	 * inappropriate to attempt to resolve the simple name as a type expression.
+	 * Also, the referenced <code>classifier</code> may already be determined to
+	 * be a member of the OCL Standard Library.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, if any, in which case this
+	 *            would not be a type expression in OCL
+	 * @param classifier
+	 *            the referenced classifier, if it is already known to be one of
+	 *            the OCL Standard Library types
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the parsed type expression, or <code>null</code> if the simple
+	 *         name does not resolve to an accessible type
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 * 
+	 * @since 1.3
+	 */
+	protected TypeExp<C> simpleTypeName(SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, C classifier, String simpleName) {
+
+		TypeExp<C> result = null;
+
+		// if we have a source, then this is a feature call
+		if ((classifier == null) && (source == null)) {
+			List<String> names = new java.util.ArrayList<String>(1);
+			names.add(simpleName);
+
+			classifier = lookupClassifier(simpleNameCS, env, names);
+		}
+
+		if (classifier != null) {
+			/*
+			 * Variable is a classifier. Classifiers are used in allInstances,
+			 * isKindOf, isTypeOf, asTypeOf operations
+			 */
+
+			result = typeCS(simpleNameCS, env, classifier);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Attempts to parse a <tt>simpleNameCS</tt> as a variable expression.  The
+	 * navigation <code>source</code>, if any, is provided for completeness and
+	 * generality.  If there is a navigation source, then it is not usually
+	 * appropriate to attempt to resolve the simple name as a variable.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, if any, in which case this
+	 *            would not be a variable expression in OCL
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the parsed variable call, or <code>null</code> if the simple name
+	 *         does not resolve to an accessible variable
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 * 
+	 * @since 1.3
+	 */
+	protected VariableExp<C, PM> simpleVariableName(SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, String simpleName) {
+
+		VariableExp<C, PM> result = null;
+
+		if (source == null) {
+			Variable<C, PM> vdcl = env.lookup(simpleName);
+
+			if (vdcl != null) {
+				// Either a use of a declared variable or self
+				TRACE("variableExpCS", "Variable Expression: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
+
+				result = createVariableExp(env, simpleNameCS, vdcl);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * The error case for <tt>simpleNameCS</tt>, which is called when the name
+	 * cannot be resolved to any suitable expression. The result is a
+	 * {@linkplain #createDummyInvalidLiteralExp(Environment, CSTNode) dummy}
+	 * expression.
+	 * 
+	 * @param simpleNameCS
+	 *            the simple name
+	 * @param env
+	 *            the current environment
+	 * @param source
+	 *            the navigation source expression, or <code>null</code> if the
+	 *            source is implicit
+	 * @param simpleName
+	 *            the simple name, as a string
+	 * @return the dummy expression that is a placeholder for the unresolved
+	 *         reference
+	 * 
+	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 * 
+	 * @since 1.3
+	 */
+	protected OCLExpression<C> simpleUndefinedName(SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			OCLExpression<C> source, String simpleName) {
+
+		if ((source != null) && (env.lookup(simpleName)) != null) {
+			String message = OCLMessages.bind(OCLMessages.VarInNavExp_ERROR_,
+				simpleName);
+			ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
+		} else {
+			String message = OCLMessages.bind(
+				OCLMessages.UnrecognizedVar_ERROR_, simpleName);
+			ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
+		}
+
+		return createDummyInvalidLiteralExp();
 	}
 
 	/**
