@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 247079
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.6 2008/01/03 15:28:31 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.7 2008/09/12 19:55:32 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -340,7 +341,9 @@ public class OCLUMLUtil extends UMLUtil {
 						break;
 					}
 					
-					nesting = nesting.getNearestPackage();
+					nesting = (nesting.getOwner() == null)
+						? null
+						: nesting.getOwner().getNearestPackage();
 				}
 			}
 			

@@ -9,17 +9,22 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 241148, 243098
+ *   Zeligsoft - Bugs 241148, 243098, 247079
  *   
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.6 2008/08/30 17:04:05 cdamus Exp $
+ * $Id: ProfilesTest.java,v 1.7 2008/09/12 19:55:31 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -38,6 +43,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -273,6 +279,65 @@ public class ProfilesTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 	}
+
+    /**
+     * Tests the reverse-navigation of metaclass extensions where the profile is
+     * applied to a nesting package.
+     */
+    public void test_navigateToStereotypeApplication_247079() {
+        // this is metamodel-level OCL that we're dealing with where
+        // stereotypes are concerned
+        helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+
+        // move the Fruit class into a nested package
+        final Package nested = fruitPackage.createNestedPackage("nested"); //$NON-NLS-1$
+        nested.getPackagedElements().add(fruit);
+        
+    	ExecutorService exec = Executors.newSingleThreadExecutor();
+
+    	try {
+        	Callable<Void> call = new Callable<Void>() {
+			
+				public Void call()
+						throws Exception {
+		            Constraint constraint = helper
+		                .createInvariant("let st : TestProfile::Stereo1 = self.extension_Stereo1 in " + //$NON-NLS-1$
+		                    "st <> null implies st.x > 0 or st.yesno = TestProfile::YesNo::yes"); //$NON-NLS-1$
+	
+		            // constraint passes because the implication is trivially true
+		            assertTrue(ocl.check(fruit, constraint));
+	
+		            // set up a couple of stereotyped classes to test the constraint on
+		            fruit.applyStereotype(testStereotype);
+		            fruit.setValue(testStereotype, stereoX.getName(), 0);
+		            fruit.setValue(testStereotype, stereoEnum.getName(), no);
+	
+		            // the 'Fruit' class violates the 'x' and 'yesno' conditions
+		            assertFalse(ocl.check(fruit, constraint));
+	
+		            // fix the Fruit class by changing 'x'
+		            fruit.setValue(testStereotype, stereoX.getName(), 1);
+		            assertTrue(ocl.check(fruit, constraint));
+	
+		            // or, fix it by changing 'yesno'
+		            fruit.setValue(testStereotype, stereoX.getName(), 0);
+		            fruit.setValue(testStereotype, stereoEnum.getName(), yes);
+		            assertTrue(ocl.check(fruit, constraint));
+					return null;
+				}};
+        	
+        	exec.submit(call).get(60l, TimeUnit.SECONDS);
+        } catch (TimeoutException e) {
+            fail("Timed out waiting for evaluation"); //$NON-NLS-1$
+         } catch (Exception e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } finally {
+        	// re-initialize the Fruit model for the next test
+        	fruitPackage.getPackagedElements().add(fruit);
+        	nested.destroy();
+        	exec.shutdown();
+        }
+    }
 
     //
     // Test Framework
