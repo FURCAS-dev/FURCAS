@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bugs 243079, 244948, 244886, 246469
+ *   Adolfo Sánchez-Barbudo Herrera - Bug 234354
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.16 2008/09/10 13:03:41 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.17 2008/09/21 12:34:02 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -757,9 +758,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
+			C owner = vdcl.getType();
 			
-			if (!element.isExplicit) {
-				O eop = lookupOperation(vdcl.getType(), name, args);
+			if (!element.isExplicit && (owner != null)) {
+				O eop = lookupOperation(owner, name, args);
 				if (eop != null) {
 					return vdcl;
 				}
@@ -769,9 +771,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			O eop = lookupOperation(vdcl.getType(), name, args);
-			if (eop != null) {
-				return vdcl;
+			C owner = vdcl.getType();
+			if (owner != null) {
+				O eop = lookupOperation(owner, name, args);
+				if (eop != null) {
+					return vdcl;
+				}
 			}
 		}
 		
@@ -785,8 +790,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
-			if (!element.isExplicit) {
-				P property = safeTryLookupProperty(vdcl.getType(), name);
+			C owner = vdcl.getType();
+			
+			if (!element.isExplicit && (owner != null)) {
+				P property = safeTryLookupProperty(owner, name);
 				if (property != null) {
 					return vdcl;
 				}
@@ -797,9 +804,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			P property = safeTryLookupProperty(vdcl.getType(), name);
-			if (property != null) {
-				return vdcl;
+			C owner = vdcl.getType();
+			if (owner != null) {
+				P property = safeTryLookupProperty(owner, name);
+				if (property != null) {
+					return vdcl;
+				}
 			}
 		}
 		
@@ -832,8 +842,10 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		for (int i = namedElements.size() - 1; i >= 0; i--) {
 			VariableEntry element = namedElements.get(i);
 			vdcl = element.variable;
-			if (!element.isExplicit) {
-				C ac = lookupAssociationClassReference(vdcl.getType(), name);
+			C owner = vdcl.getType();
+			
+			if (!element.isExplicit && (owner != null)) {
+				C ac = lookupAssociationClassReference(owner, name);
 				if (ac != null) {
 					return vdcl;
 				}
@@ -844,9 +856,12 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// try the "self" variable, last
 		vdcl = getSelfVariable();
 		if (vdcl != null) {
-			C ac = lookupAssociationClassReference(vdcl.getType(), name);
-			if (ac != null) {
-				return vdcl;
+			C owner = vdcl.getType();
+			if (owner != null) {
+				C ac = lookupAssociationClassReference(owner, name);
+				if (ac != null) {
+					return vdcl;
+				}
 			}
 		}
 		return null;
@@ -864,7 +879,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			vdcl = element.variable;
 			C owner = vdcl.getType();
 			
-			if (!element.isExplicit) {
+			if (!element.isExplicit && (owner != null)) {
 				C sig = lookupSignal(owner, name, args);
 				if (sig != null) {
 					return vdcl;
@@ -877,9 +892,11 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (vdcl != null) {
 			C owner = vdcl.getType();
 			
-			C sig = lookupSignal(owner, name, args);
-			if (sig != null) {
-				return vdcl;
+			if (owner != null) {
+				C sig = lookupSignal(owner, name, args);
+				if (sig != null) {
+					return vdcl;
+				}
 			}
 		}
 		
