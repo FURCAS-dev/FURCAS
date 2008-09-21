@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/1.1.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
     editDirectory="/org.eclipse.ocl.edit/src" editorDirectory="/org.eclipse.ocl.editor/src"
     modelPluginID="org.eclipse.ocl" templateDirectory="" redirection="" modelName="OCL"
     modelPluginClass="org.eclipse.ocl.internal.OCLPlugin" editPluginClass="org.eclipse.ocl.edit.internal.OCLEditPlugin"
@@ -31,7 +31,8 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
       disposableProviderFactory="true" ecorePackage="OCL.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Types" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCL.ecore#//types" operationsPackage="org.eclipse.ocl.types.operations">
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl"
+        ecorePackage="OCL.ecore#//types" operationsPackage="org.eclipse.ocl.types.operations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/AnyType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/AnyType/O"/>
       </genClasses>
@@ -124,7 +125,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Utilities" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCL.ecore#//utilities">
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl"
+        ecorePackage="OCL.ecore#//utilities">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/ASTNode">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/ASTNode/startPosition"/>
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//utilities/ASTNode/endPosition"/>
@@ -270,7 +272,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Expressions" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCL.ecore#//expressions" operationsPackage="org.eclipse.ocl.expressions.operations">
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl"
+        ecorePackage="OCL.ecore#//expressions" operationsPackage="org.eclipse.ocl.expressions.operations">
       <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCL.ecore#//expressions/CollectionKind">
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/Set"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCL.ecore#//expressions/CollectionKind/OrderedSet"/>

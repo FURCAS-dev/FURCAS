@@ -2,10 +2,17 @@
 <?eclipse version="3.0"?>
 
 <!--
- <copyright>
- </copyright>
+ Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ All rights reserved.   This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
 
- $Id: plugin.xml,v 1.1 2007/01/25 18:29:10 cdamus Exp $
+ Contributors:
+   IBM - initial API and implementation
+   Zeligsoft - Bug 231435
+
+ $Id: plugin.xml,v 1.2 2008/09/21 12:19:58 cdamus Exp $
 -->
 
 <plugin>
@@ -31,5 +38,32 @@
            source="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"
            target="platform:/plugin/org.eclipse.ocl.ecore/model/oclstdlib.ecore">
      </mapping>
+  </extension>
+
+  <extension
+        point="org.eclipse.emf.ecore.content_parser">
+     <parser
+           contentTypeIdentifier="org.eclipse.ocl.ecore"
+           class="org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl" />
+  </extension>
+
+  <extension
+        point="org.eclipse.core.runtime.contentTypes">
+     <content-type
+           base-type="org.eclipse.emf.ecore.xmi"
+           file-extensions="ecore,ocl"
+           id="org.eclipse.ocl.ecore"
+           name="%contentType"
+           priority="normal">
+        <describer
+              class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+           <parameter
+                 name="namespacePattern"
+                 value="http://www\.eclipse\.org/ocl/1\.1\.0/Ecore" />
+           <parameter
+                 name="kind"
+                 value="xmi" />
+        </describer>
+     </content-type>
   </extension>
 </plugin>

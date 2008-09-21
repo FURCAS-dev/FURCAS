@@ -30,7 +30,7 @@
   <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
       ecorePackage="OCLCST.ecore#/">
     <nestedGenPackages prefix="CST" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
-        ecorePackage="OCLCST.ecore#//cst">
+        multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.cst" ecorePackage="OCLCST.ecore#//cst">
       <genEnums ecoreEnum="OCLCST.ecore#//cst/SimpleTypeEnum">
         <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/identifier"/>
         <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/self"/>
