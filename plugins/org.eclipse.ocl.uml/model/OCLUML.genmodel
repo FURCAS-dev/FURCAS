@@ -28,7 +28,8 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
       disposableProviderFactory="true" ecorePackage="OCLUML.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="UML" basePackage="org.eclipse.ocl"
-        disposableProviderFactory="true" ecorePackage="OCLUML.ecore#//uml" operationsPackage="org.eclipse.ocl.uml.operations">
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.uml"
+        ecorePackage="OCLUML.ecore#//uml" operationsPackage="org.eclipse.ocl.uml.operations">
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/AnyType">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/AnyType/ownedOperation"/>
