@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.ocl.uml.tests;singleton:=true
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
@@ -11,5 +11,5 @@ Export-Package: org.eclipse.ocl.uml.helper.tests,
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.junit;bundle-version="[3.8.0,4.0.0)",
  org.eclipse.emf.ecore.xmi;bundle-version="[2.2.0,3.0.0)",
- org.eclipse.ocl.uml;bundle-version="1.2.100"
+ org.eclipse.ocl.uml;bundle-version="1.3.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
