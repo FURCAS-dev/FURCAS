@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 231435
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.3 2008/09/21 12:21:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -61,6 +62,14 @@ public interface CSTPackage extends EPackage {
      * @generated
      */
 	String eNS_PREFIX = "ocl.cst"; //$NON-NLS-1$
+
+    /**
+	 * The package content type ID.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eCONTENT_TYPE = "org.eclipse.ocl.cst"; //$NON-NLS-1$
 
 	/**
      * The singleton instance of the package.
