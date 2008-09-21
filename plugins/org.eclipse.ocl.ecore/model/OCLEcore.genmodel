@@ -9,7 +9,7 @@
   <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
       ecorePackage="OCLEcore.ecore#/">
     <nestedGenPackages prefix="Ecore" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
-        ecorePackage="OCLEcore.ecore#//ecore">
+        contentTypeIdentifier="org.eclipse.ocl.ecore" ecorePackage="OCLEcore.ecore#//ecore">
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/AnyType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/BagType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/CollectionType"/>
