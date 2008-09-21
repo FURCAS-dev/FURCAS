@@ -10,13 +10,13 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *               - Bug 237126, 245586
+ *               - Bug 237126, 245586, 213886
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
- *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs)
+ *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.15 2008/09/10 14:59:20 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.16 2008/09/21 21:35:58 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -567,6 +567,11 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		// Performs method signature checking		
 		O oper = lookupOperation(operationCallExpCS, env, ownerType, operName, args);
+		
+		// sometimes we use the resolved name in case the environment's look-up
+		// supports aliasing
+		String resolvedName = operName;
+		
 		if (oper == null) { 
 			String message = OCLMessages.bind(OCLMessages.OperationNotFound_ERROR_,
 					operationString(env, operName, args),
@@ -574,7 +579,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			ERROR(operationCallExpCS, rule, message);
 			result.setType(env.getOCLStandardLibrary().getOclVoid());
 		} else {
-		  	TRACE(rule, uml.getName(oper));
+			resolvedName = uml.getName(oper);
+		  	TRACE(rule, resolvedName);
 			result.setReferredOperation(oper);
 		}
 							
@@ -600,11 +606,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		   		
 		   		// the operations defined intrinsically by the standard library
 		   		// are the only ones that may have opcodes
-		   		opcode = OCLStandardLibraryUtil.getOperationCode(operName);
+				opcode = OCLStandardLibraryUtil.getOperationCode(resolvedName);
 		   	} else if (TypeUtil.isOclAnyOperation(env, oper)) {
 		   		// source is a user class, enumeration, or data type and the
 		   		//    operation is defined by OclAny, not the source type
-		   		opcode = OCLStandardLibraryUtil.getOclAnyOperationCode(operName);
+				opcode = OCLStandardLibraryUtil
+					.getOclAnyOperationCode(resolvedName);
 		   	}
 		   	
 	   		result.setOperationCode(opcode);
