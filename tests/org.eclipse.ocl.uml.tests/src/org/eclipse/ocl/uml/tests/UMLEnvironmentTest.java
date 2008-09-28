@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.4 2007/11/06 19:46:58 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.5 2008/09/28 17:32:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -319,7 +320,7 @@ public class UMLEnvironmentTest
             regexMatch.addKeyword("MyEnvironment"); //$NON-NLS-1$
             
             // define it as an additional operation on OCL String
-            addOperation(getOCLStandardLibrary().getString(), regexMatch);
+            addHelperOperation(getOCLStandardLibrary().getString(), regexMatch);
         }
     }
 
