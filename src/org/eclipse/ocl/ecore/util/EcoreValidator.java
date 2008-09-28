@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 241426
+ *   Zeligsoft - Bug 241426, 248869
  * 
  * </copyright>
  *
- * $Id: EcoreValidator.java,v 1.2 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: EcoreValidator.java,v 1.3 2008/09/28 17:33:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -276,6 +276,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateAnyType_WellFormedInstanceTypeName(AnyType anyType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -340,6 +341,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateCollectionType_WellFormedInstanceTypeName(CollectionType collectionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -389,6 +391,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateElementType_WellFormedInstanceTypeName(ElementType elementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -430,6 +433,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateInvalidType_WellFormedInstanceTypeName(InvalidType invalidType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -482,6 +486,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateMessageType_WellFormedInstanceTypeName(MessageType messageType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -544,6 +549,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validatePrimitiveType_WellFormedInstanceTypeName(PrimitiveType primitiveType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -638,6 +644,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateTupleType_WellFormedInstanceTypeName(TupleType tupleType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -679,6 +686,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateTypeType_WellFormedInstanceTypeName(TypeType typeType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
@@ -720,6 +728,7 @@ public class EcoreValidator extends EObjectValidator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+     * @since 1.3
 	 */
 	public boolean validateVoidType_WellFormedInstanceTypeName(VoidType voidType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         // The Ecore constraint is not applicable to OCL
