@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackage.java,v 1.6 2008/09/21 12:21:50 cdamus Exp $
+ * $Id: UMLPackage.java,v 1.7 2008/09/28 17:34:52 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.ocl.uml.UMLFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface UMLPackage extends EPackage {
     /**
@@ -66,6 +67,7 @@ public interface UMLPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+     * @since 1.3
 	 */
 	String eCONTENT_TYPE = "org.eclipse.ocl.uml"; //$NON-NLS-1$
 

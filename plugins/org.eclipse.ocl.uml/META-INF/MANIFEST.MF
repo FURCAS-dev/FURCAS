@@ -12,7 +12,7 @@ Export-Package: org.eclipse.ocl.uml,
  org.eclipse.ocl.uml.internal;x-friends:="org.eclipse.ocl.uml.tests",
  org.eclipse.ocl.uml.util
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.emf.ecore;bundle-version="[2.3.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="[2.2.0,2.3.0)";visibility:=reexport,
  org.eclipse.ocl;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
 Eclipse-LazyStart: true
