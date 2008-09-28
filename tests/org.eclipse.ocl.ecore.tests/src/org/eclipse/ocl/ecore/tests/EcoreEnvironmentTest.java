@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.5 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.6 2008/09/28 17:34:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -214,7 +215,7 @@ public class EcoreEnvironmentTest
 	        regexMatch.getEAnnotations().add(annotation);
 	        
 	        // define it as an additional operation on OCL String
-	        addOperation(getOCLStandardLibrary().getString(), regexMatch);
+	        addHelperOperation(getOCLStandardLibrary().getString(), regexMatch);
 	    }
 	}
 
