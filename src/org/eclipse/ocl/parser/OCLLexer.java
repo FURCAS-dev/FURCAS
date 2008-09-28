@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2007 IBM Corporation and others.
+* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*   Zeligsoft - Bug 248869
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+* $Id: OCLLexer.java,v 1.2 2008/09/28 17:33:00 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -49,7 +50,6 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
         oclEnvironment = environment;
     }
     
-    @SuppressWarnings("nls")
 	public OCLLexer(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, char[] chars) {
 		this(environment, chars, "OCL", ECLIPSE_TAB_VALUE);
 		kwLexer = new OCLKWLexer(getInputChars(), TK_IDENTIFIER);

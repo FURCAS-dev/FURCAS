@@ -154,7 +154,6 @@ $Headers
             oclEnvironment = environment;
         }
         
-        @SuppressWarnings("nls")
 		public $action_class($environment_class environment, char[] chars) {
 			this(environment, chars, "OCL", ECLIPSE_TAB_VALUE);
 			kwLexer = new $kw_lexer_class(getInputChars(), $_IDENTIFIER);
