@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 244946
+ *   Zeligsoft - Bugs 244946, 248869
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.6 2008/08/30 18:35:19 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.7 2008/09/28 17:33:00 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1165,7 +1165,7 @@ public class CollectionUtil {
         for (Iterator<?> iter = c.iterator();;) {
             if (iter.hasNext()) {
                 if (notFirst) {
-                    result.append(", ");
+                    result.append(", "); //$NON-NLS-1$
                 } else {
                     notFirst = true;
                 }
