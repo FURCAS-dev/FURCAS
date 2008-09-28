@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.7 2008/04/24 23:37:20 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.8 2008/09/28 17:34:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -253,7 +254,7 @@ public class SerializationTest
 				env.getTypeResolver().getResource());
         
         EOperation newOper = newOCL.getEnvironment().getTypeResolver().resolveAdditionalOperation(
-                EcorePackage.Literals.EPACKAGE, eoper); //$NON-NLS-1$
+                EcorePackage.Literals.EPACKAGE, eoper);
         assertNotSame(eoper, newOper);
 	}
 	
@@ -296,7 +297,7 @@ public class SerializationTest
 				env.getTypeResolver().getResource());
 		
         EStructuralFeature newSF = newOCL.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
-                EcorePackage.Literals.EPACKAGE, esf); //$NON-NLS-1$
+                EcorePackage.Literals.EPACKAGE, esf);
         assertNotSame(esf, newSF);
 	}
     

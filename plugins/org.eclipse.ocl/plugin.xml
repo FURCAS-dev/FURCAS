@@ -10,9 +10,9 @@
 
  Contributors:
    IBM - initial API and implementation
-   Zeligsoft - Bug 231435
+   Zeligsoft - Bugs 231435, 248869
 
- $Id: plugin.xml,v 1.4 2008/09/21 12:21:09 cdamus Exp $
+ $Id: plugin.xml,v 1.5 2008/09/28 17:33:00 cdamus Exp $
 -->
 
 <plugin>
@@ -63,7 +63,7 @@
   </extension>
 
   <extension
-        point="org.eclipse.core.runtime.contentTypes">
+        point="org.eclipse.core.contenttype.contentTypes">
      <content-type
            base-type="org.eclipse.emf.ecore.xmi"
            file-extensions="ocl"

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="org.eclipse.ocl.uml" version="2">
+<resource path="src/org/eclipse/ocl/uml/impl/AnyTypeImpl.java" type="org.eclipse.ocl.uml.impl.AnyTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierImpl"/>
+<message_argument value="AnyTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/MessageTypeImpl.java" type="org.eclipse.ocl.uml.impl.MessageTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierImpl"/>
+<message_argument value="MessageTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/TupleTypeImpl.java" type="org.eclipse.ocl.uml.impl.TupleTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="DataTypeImpl"/>
+<message_argument value="TupleTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/ElementTypeImpl.java" type="org.eclipse.ocl.uml.impl.ElementTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierImpl"/>
+<message_argument value="ElementTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/CollectionTypeImpl.java" type="org.eclipse.ocl.uml.impl.CollectionTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="DataTypeImpl"/>
+<message_argument value="CollectionTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/PrimitiveTypeImpl.java" type="org.eclipse.ocl.uml.impl.PrimitiveTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="PrimitiveTypeImpl"/>
+<message_argument value="PrimitiveTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/VariableImpl.java" type="org.eclipse.ocl.uml.impl.VariableImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="TypedElementImpl"/>
+<message_argument value="VariableImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/VoidTypeImpl.java" type="org.eclipse.ocl.uml.impl.VoidTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierImpl"/>
+<message_argument value="VoidTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/OCLExpressionImpl.java" type="org.eclipse.ocl.uml.impl.OCLExpressionImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="TypedElementImpl"/>
+<message_argument value="OCLExpressionImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/TypeTypeImpl.java" type="org.eclipse.ocl.uml.impl.TypeTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierImpl"/>
+<message_argument value="TypeTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/InvalidTypeImpl.java" type="org.eclipse.ocl.uml.impl.InvalidTypeImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierImpl"/>
+<message_argument value="InvalidTypeImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/CollectionLiteralPartImpl.java" type="org.eclipse.ocl.uml.impl.CollectionLiteralPartImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="TypedElementImpl"/>
+<message_argument value="CollectionLiteralPartImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/ExpressionInOCLImpl.java" type="org.eclipse.ocl.uml.impl.ExpressionInOCLImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="OpaqueExpressionImpl"/>
+<message_argument value="ExpressionInOCLImpl"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/impl/TupleLiteralPartImpl.java" type="org.eclipse.ocl.uml.impl.TupleLiteralPartImpl">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="TypedElementImpl"/>
+<message_argument value="TupleLiteralPartImpl"/>
+</message_arguments>
+</filter>
+</resource>
+</component>

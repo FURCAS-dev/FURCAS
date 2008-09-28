@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: LocationInformationTest.java,v 1.5 2008/09/28 17:34:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -621,6 +622,7 @@ public class LocationInformationTest
 			extends AbstractVisitor<Object, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
 		static LocationVerifier INSTANCE = new LocationVerifier();
 
+		@SuppressWarnings("unchecked")
 		private boolean isExempt(OCLExpression<EClassifier> expr) {
 			if (expr instanceof VariableExp) {
 				return isImplicit(((VariableExp<EClassifier, EParameter>) expr).getReferredVariable());

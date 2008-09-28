@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.2 2008/08/05 00:33:46 cdamus Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.3 2008/09/28 17:34:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -208,7 +209,7 @@ public class PrimitiveTypesTest
     		helper.setContext(testclass);
     		helper.createInvariant("self.data->size() > 1"); //$NON-NLS-1$
     	} catch (ParserException e) {
-			fail("Should not have failed to parse: " + e.getLocalizedMessage());
+			fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		} finally {
     		EPackage.Registry.INSTANCE.remove(testpkg.getNsURI());
     	}

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.4 2007/04/13 17:26:23 cdamus Exp $
+ * $Id: PrecedenceTest.java,v 1.5 2008/09/28 17:32:44 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -94,7 +95,8 @@ public class PrecedenceTest
      * not as
      * <blockquote><code>(let a = ... in a).b</code></blockquote>
      */
-    public void test_let_inExpression_182201() {
+    @SuppressWarnings("unchecked")
+	public void test_let_inExpression_182201() {
         helper.setContext(getMetaclass("NamedElement")); //$NON-NLS-1$
 
         OCLExpression<Classifier> expr = null;
@@ -124,7 +126,6 @@ public class PrecedenceTest
         letExp = (LetExp<Classifier, ?>) expr;
         assertTrue(letExp.getIn() instanceof OperationCallExp);
         
-        @SuppressWarnings("unchecked")
         OperationCallExp<Classifier, Operation> opCall =
             (OperationCallExp<Classifier, Operation>) letExp.getIn();
         
@@ -153,7 +154,6 @@ public class PrecedenceTest
         letExp = (LetExp<Classifier, ?>) letExp.getIn();
         assertTrue(letExp.getIn() instanceof OperationCallExp);
         
-        @SuppressWarnings("unchecked")
         OperationCallExp<Classifier, Operation> opCall2 =
             (OperationCallExp<Classifier, Operation>) letExp.getIn();
         

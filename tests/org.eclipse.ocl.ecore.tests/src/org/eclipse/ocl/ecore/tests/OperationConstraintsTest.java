@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 248869
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.5 2008/03/28 20:25:37 cdamus Exp $
+ * $Id: OperationConstraintsTest.java,v 1.6 2008/09/28 17:34:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -349,6 +350,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 * correctly when the environment has additional variable names such as
 	 * parameters that define the same property.  This test parses raw OCL.
 	 */
+	@SuppressWarnings("unchecked")
 	public void test_implicitPropertySourceLookup_raw_151234() {
 		OCLExpression<EClassifier> expr = parseConstraint(
 			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
@@ -395,6 +397,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 * correctly when the environment has additional variable names such as
 	 * parameters that define the same property.  This test uses a helper.
 	 */
+	@SuppressWarnings("unchecked")
 	public void test_implicitPropertySourceLookup_helper_151234() {
 		try {
 			helper.setOperationContext(fruit, fruit_setColor);
@@ -441,6 +444,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 * correctly when the environment has additional variable names such as
 	 * parameters that define the same property.  This test parses raw OCL.
 	 */
+	@SuppressWarnings("unchecked")
 	public void test_implicitOperationSourceLookup_raw_151234() {
 		OCLExpression<EClassifier> expr = parseConstraint(
 			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
@@ -486,6 +490,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 * correctly when the environment has additional variable names such as
 	 * parameters that define the same property.  This test uses a helper.
 	 */
+	@SuppressWarnings("unchecked")
 	public void test_implicitOperationSourceLookup_helper_151234() {
 		try {
 			helper.setOperationContext(fruit, fruit_setColor);

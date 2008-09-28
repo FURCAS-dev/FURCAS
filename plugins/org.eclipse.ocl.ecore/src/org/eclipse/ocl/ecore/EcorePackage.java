@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 231435
+ *   Zeligsoft - Bugs 231435, 248869
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.7 2008/09/21 12:19:58 cdamus Exp $
+ * $Id: EcorePackage.java,v 1.8 2008/09/28 17:33:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -38,6 +38,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * @see org.eclipse.ocl.ecore.EcoreFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface EcorePackage extends EPackage {
     /**
@@ -69,6 +70,7 @@ public interface EcorePackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+     * @since 1.3
 	 */
 	String eCONTENT_TYPE = "org.eclipse.ocl.ecore"; //$NON-NLS-1$
 

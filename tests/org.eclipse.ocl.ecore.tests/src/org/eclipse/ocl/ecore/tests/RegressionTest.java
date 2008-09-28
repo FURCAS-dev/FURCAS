@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243526
+ *   Zeligsoft - Bugs 243526, 248869
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.8 2008/08/30 17:03:27 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.9 2008/09/28 17:34:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1288,6 +1288,7 @@ public class RegressionTest
 	 * Tests that matching operations finds the first match, but that
 	 * casting via oclAsType() can direct the parser to the best match.
 	 */
+	@SuppressWarnings("unchecked")
 	public void test_operationSignatureMatching() {
 		EPackage pkg = EcoreFactory.eINSTANCE.createEPackage();
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
@@ -1647,7 +1648,8 @@ public class RegressionTest
      * Regression test for the case of Let expression declaring multiple
      * variables that is well-formed.
      */
-    public void test_letWithMultipleVariables_bug164503() {
+    @SuppressWarnings("unchecked")
+	public void test_letWithMultipleVariables_bug164503() {
         OCLExpression<EClassifier> expr = parse(
             "package ocltest context Fruit " + //$NON-NLS-1$
             " inv: let s : String = '', i : Set(Integer) = Set{1}, n : UnlimitedNatural = * in true" + //$NON-NLS-1$
