@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCSImpl.java,v 1.1 2007/10/11 23:05:01 cdamus Exp $
+ * $Id: StringLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -37,137 +38,137 @@ import org.eclipse.ocl.cst.StringLiteralExpCS;
  */
 public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements StringLiteralExpCS {
 	/**
-     * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getStringSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStringSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String STRING_SYMBOL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getStringSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStringSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected String stringSymbol = STRING_SYMBOL_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StringLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.STRING_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.STRING_LITERAL_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getStringSymbol() {
-        return stringSymbol;
-    }
+		return stringSymbol;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setStringSymbol(String newStringSymbol) {
-        String oldStringSymbol = stringSymbol;
-        stringSymbol = newStringSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL, oldStringSymbol, stringSymbol));
-    }
+		String oldStringSymbol = stringSymbol;
+		stringSymbol = newStringSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL, oldStringSymbol, stringSymbol));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-                return getStringSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
+				return getStringSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-                setStringSymbol((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
+				setStringSymbol((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-                setStringSymbol(STRING_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
+				setStringSymbol(STRING_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-                return STRING_SYMBOL_EDEFAULT == null ? stringSymbol != null : !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
+				return STRING_SYMBOL_EDEFAULT == null ? stringSymbol != null : !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (stringSymbol: "); //$NON-NLS-1$
-        result.append(stringSymbol);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (stringSymbol: "); //$NON-NLS-1$
+		result.append(stringSymbol);
+		result.append(')');
+		return result.toString();
+	}
 
 } //StringLiteralExpCSImpl

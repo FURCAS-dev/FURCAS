@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,15 +9,18 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
+ * $Id: CSTPackageImpl.java,v 1.3 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
+import lpg.lpgjavaruntime.IToken;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -470,6 +473,13 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
+	private EDataType iTokenEDataType = null;
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
 	private EEnum messageExpKindEEnum = null;
 
 	/**
@@ -568,6 +578,36 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 
 	/**
      * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getCSTNode_StartToken() {
+        return (EAttribute)cstNodeEClass.getEStructuralFeatures().get(2);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getCSTNode_EndToken() {
+        return (EAttribute)cstNodeEClass.getEStructuralFeatures().get(3);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getCSTNode_Ast() {
+        return (EAttribute)cstNodeEClass.getEStructuralFeatures().get(4);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -636,6 +676,16 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
      */
 	public EReference getClassifierContextDeclCS_InvOrDefCS() {
         return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(1);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getClassifierContextDeclCS_Constraints() {
+        return (EReference)classifierContextDeclCSEClass.getEStructuralFeatures().get(2);
     }
 
 	/**
@@ -1720,6 +1770,16 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 
 	/**
      * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EDataType getIToken() {
+        return iTokenEDataType;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1758,6 +1818,9 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         cstNodeEClass = createEClass(CST_NODE);
         createEAttribute(cstNodeEClass, CST_NODE__START_OFFSET);
         createEAttribute(cstNodeEClass, CST_NODE__END_OFFSET);
+        createEAttribute(cstNodeEClass, CST_NODE__START_TOKEN);
+        createEAttribute(cstNodeEClass, CST_NODE__END_TOKEN);
+        createEAttribute(cstNodeEClass, CST_NODE__AST);
 
         packageDeclarationCSEClass = createEClass(PACKAGE_DECLARATION_CS);
         createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__PATH_NAME_CS);
@@ -1790,6 +1853,7 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         classifierContextDeclCSEClass = createEClass(CLASSIFIER_CONTEXT_DECL_CS);
         createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS);
         createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS);
+        createEReference(classifierContextDeclCSEClass, CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS);
 
         invOrDefCSEClass = createEClass(INV_OR_DEF_CS);
         createEReference(invOrDefCSEClass, INV_OR_DEF_CS__SIMPLE_NAME_CS);
@@ -1938,6 +2002,9 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         collectionTypeIdentifierEnumEEnum = createEEnum(COLLECTION_TYPE_IDENTIFIER_ENUM);
         messageExpKindEEnum = createEEnum(MESSAGE_EXP_KIND);
         dotOrArrowEnumEEnum = createEEnum(DOT_OR_ARROW_ENUM);
+
+        // Create data types
+        iTokenEDataType = createEDataType(ITOKEN);
     }
 
 	/**
@@ -2023,6 +2090,9 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         initEClass(cstNodeEClass, CSTNode.class, "CSTNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEAttribute(getCSTNode_StartOffset(), ecorePackage.getEInt(), "startOffset", null, 0, 1, CSTNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getCSTNode_EndOffset(), ecorePackage.getEInt(), "endOffset", null, 0, 1, CSTNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getCSTNode_StartToken(), this.getIToken(), "startToken", null, 0, 1, CSTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getCSTNode_EndToken(), this.getIToken(), "endToken", null, 0, 1, CSTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getCSTNode_Ast(), ecorePackage.getEJavaObject(), "ast", null, 0, 1, CSTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
         initEClass(packageDeclarationCSEClass, PackageDeclarationCS.class, "PackageDeclarationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPackageDeclarationCS_PathNameCS(), this.getPathNameCS(), null, "pathNameCS", null, 0, 1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2054,7 +2124,8 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
 
         initEClass(classifierContextDeclCSEClass, ClassifierContextDeclCS.class, "ClassifierContextDeclCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getClassifierContextDeclCS_PathNameCS(), this.getPathNameCS(), null, "pathNameCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getClassifierContextDeclCS_InvOrDefCS(), this.getInvOrDefCS(), null, "invOrDefCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getClassifierContextDeclCS_InvOrDefCS(), this.getInvOrDefCS(), null, "invOrDefCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getClassifierContextDeclCS_Constraints(), this.getInvOrDefCS(), null, "constraints", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
         initEClass(invOrDefCSEClass, InvOrDefCS.class, "InvOrDefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getInvOrDefCS_SimpleNameCS(), this.getSimpleNameCS(), null, "simpleNameCS", null, 0, 1, InvOrDefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2233,6 +2304,9 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
         addEEnumLiteral(dotOrArrowEnumEEnum, DotOrArrowEnum.DOT_LITERAL);
         addEEnumLiteral(dotOrArrowEnumEEnum, DotOrArrowEnum.ARROW_LITERAL);
 
+        // Initialize data types
+        initEDataType(iTokenEDataType, IToken.class, "IToken", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
         // Create resource
         createResource(eNS_URI);
 
@@ -2248,55 +2322,55 @@ public class CSTPackageImpl extends EPackageImpl implements CSTPackage {
      * @generated
      */
 	protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$      
         addAnnotation
           (oclExpressionCSEClass, 
            source, 
            new String[] {
              "name", "OclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getInitOrDerValueCS_ExpressionCS(), 
            source, 
            new String[] {
              "name", "oclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getPrePostOrBodyDeclCS_ExpressionCS(), 
            source, 
            new String[] {
              "name", "oclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getInvCS_ExpressionCS(), 
            source, 
            new String[] {
              "name", "oclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getDefExpressionCS_ExpressionCS(), 
            source, 
            new String[] {
              "name", "oclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (oclMessageArgCSEClass, 
            source, 
            new String[] {
              "name", "OclMessageArgCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getOCLMessageArgCS_Expression(), 
            source, 
            new String[] {
              "name", "oclExpression" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getCollectionLiteralPartCS_ExpressionCS(), 
            source, 
            new String[] {
              "name", "oclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
-           });		
+           });      
         addAnnotation
           (getCollectionRangeCS_LastExpressionCS(), 
            source, 

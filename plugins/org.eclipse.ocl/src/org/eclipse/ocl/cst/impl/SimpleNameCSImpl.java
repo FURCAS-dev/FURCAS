@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: SimpleNameCSImpl.java,v 1.1 2007/10/11 23:05:02 cdamus Exp $
+ * $Id: SimpleNameCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -39,190 +40,190 @@ import org.eclipse.ocl.cst.SimpleTypeEnum;
  */
 public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameCS {
 	/**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String VALUE_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
 	protected String value = VALUE_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final SimpleTypeEnum TYPE_EDEFAULT = SimpleTypeEnum.IDENTIFIER_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
 	protected SimpleTypeEnum type = TYPE_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SimpleNameCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.SIMPLE_NAME_CS;
-    }
+		return CSTPackage.Literals.SIMPLE_NAME_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getValue() {
-        return value;
-    }
+		return value;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setValue(String newValue) {
-        String oldValue = value;
-        value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.SIMPLE_NAME_CS__VALUE, oldValue, value));
-    }
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.SIMPLE_NAME_CS__VALUE, oldValue, value));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SimpleTypeEnum getType() {
-        return type;
-    }
+		return type;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setType(SimpleTypeEnum newType) {
-        SimpleTypeEnum oldType = type;
-        type = newType == null ? TYPE_EDEFAULT : newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.SIMPLE_NAME_CS__TYPE, oldType, type));
-    }
+		SimpleTypeEnum oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.SIMPLE_NAME_CS__TYPE, oldType, type));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.SIMPLE_NAME_CS__VALUE:
-                return getValue();
-            case CSTPackage.SIMPLE_NAME_CS__TYPE:
-                return getType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.SIMPLE_NAME_CS__VALUE:
+				return getValue();
+			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+				return getType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.SIMPLE_NAME_CS__VALUE:
-                setValue((String)newValue);
-                return;
-            case CSTPackage.SIMPLE_NAME_CS__TYPE:
-                setType((SimpleTypeEnum)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.SIMPLE_NAME_CS__VALUE:
+				setValue((String)newValue);
+				return;
+			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+				setType((SimpleTypeEnum)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.SIMPLE_NAME_CS__VALUE:
-                setValue(VALUE_EDEFAULT);
-                return;
-            case CSTPackage.SIMPLE_NAME_CS__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.SIMPLE_NAME_CS__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.SIMPLE_NAME_CS__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-            case CSTPackage.SIMPLE_NAME_CS__TYPE:
-                return type != TYPE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.SIMPLE_NAME_CS__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+				return type != TYPE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: "); //$NON-NLS-1$
-        result.append(value);
-        result.append(", type: "); //$NON-NLS-1$
-        result.append(type);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: "); //$NON-NLS-1$
+		result.append(value);
+		result.append(", type: "); //$NON-NLS-1$
+		result.append(type);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SimpleNameCSImpl

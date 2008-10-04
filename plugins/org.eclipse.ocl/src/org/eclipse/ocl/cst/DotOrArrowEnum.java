@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: DotOrArrowEnum.java,v 1.1 2007/10/11 23:04:55 cdamus Exp $
+ * $Id: DotOrArrowEnum.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -33,217 +34,217 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum DotOrArrowEnum implements Enumerator {
 	/**
-     * The '<em><b>None</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>None</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #NONE
-     * @generated
-     * @ordered
-     */
+	 * @see #NONE
+	 * @generated
+	 * @ordered
+	 */
 	NONE_LITERAL(1, "none", "none"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-     * The '<em><b>Dot</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Dot</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #DOT
-     * @generated
-     * @ordered
-     */
+	 * @see #DOT
+	 * @generated
+	 * @ordered
+	 */
 	DOT_LITERAL(2, "dot", "dot"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-     * The '<em><b>Arrow</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Arrow</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #ARROW
-     * @generated
-     * @ordered
-     */
+	 * @see #ARROW
+	 * @generated
+	 * @ordered
+	 */
 	ARROW_LITERAL(3, "arrow", "arrow"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-     * The '<em><b>None</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>None</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #NONE_LITERAL
-     * @model name="none"
-     * @generated
-     * @ordered
-     */
+	 * @see #NONE_LITERAL
+	 * @model name="none"
+	 * @generated
+	 * @ordered
+	 */
 	public static final int NONE = 1;
 
 	/**
-     * The '<em><b>Dot</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Dot</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Dot</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #DOT_LITERAL
-     * @model name="dot"
-     * @generated
-     * @ordered
-     */
+	 * @see #DOT_LITERAL
+	 * @model name="dot"
+	 * @generated
+	 * @ordered
+	 */
 	public static final int DOT = 2;
 
 	/**
-     * The '<em><b>Arrow</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Arrow</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Arrow</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #ARROW_LITERAL
-     * @model name="arrow"
-     * @generated
-     * @ordered
-     */
+	 * @see #ARROW_LITERAL
+	 * @model name="arrow"
+	 * @generated
+	 * @ordered
+	 */
 	public static final int ARROW = 3;
 
 	/**
-     * An array of all the '<em><b>Dot Or Arrow Enum</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Dot Or Arrow Enum</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private static final DotOrArrowEnum[] VALUES_ARRAY =
 		new DotOrArrowEnum[] {
-            NONE_LITERAL,
-            DOT_LITERAL,
-            ARROW_LITERAL,
-        };
+			NONE_LITERAL,
+			DOT_LITERAL,
+			ARROW_LITERAL,
+		};
 
 	/**
-     * A public read-only list of all the '<em><b>Dot Or Arrow Enum</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Dot Or Arrow Enum</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static final List<DotOrArrowEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-     * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static DotOrArrowEnum get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            DotOrArrowEnum result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			DotOrArrowEnum result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
 	/**
-     * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static DotOrArrowEnum getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            DotOrArrowEnum result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			DotOrArrowEnum result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
 	/**
-     * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static DotOrArrowEnum get(int value) {
-        switch (value) {
-            case NONE: return NONE_LITERAL;
-            case DOT: return DOT_LITERAL;
-            case ARROW: return ARROW_LITERAL;
-        }
-        return null;
-    }
+		switch (value) {
+			case NONE: return NONE_LITERAL;
+			case DOT: return DOT_LITERAL;
+			case ARROW: return ARROW_LITERAL;
+		}
+		return null;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private final int value;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private final String name;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private final String literal;
 
 	/**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private DotOrArrowEnum(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public int getValue() {
-      return value;
-    }
+	  return value;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getName() {
-      return name;
-    }
+	  return name;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getLiteral() {
-      return literal;
-    }
+	  return literal;
+	}
 
 	/**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        return literal;
-    }
+		return literal;
+	}
 	
 } //DotOrArrowEnum

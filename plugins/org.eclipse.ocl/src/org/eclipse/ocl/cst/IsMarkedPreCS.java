@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: IsMarkedPreCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: IsMarkedPreCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -32,32 +32,33 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getIsMarkedPreCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface IsMarkedPreCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Pre</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pre</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Pre</em>' attribute.
-     * @see #setPre(boolean)
-     * @see org.eclipse.ocl.cst.CSTPackage#getIsMarkedPreCS_Pre()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Pre</em>' attribute.
+	 * @see #setPre(boolean)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getIsMarkedPreCS_Pre()
+	 * @model
+	 * @generated
+	 */
 	boolean isPre();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.IsMarkedPreCS#isPre <em>Pre</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.IsMarkedPreCS#isPre <em>Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Pre</em>' attribute.
-     * @see #isPre()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Pre</em>' attribute.
+	 * @see #isPre()
+	 * @generated
+	 */
 	void setPre(boolean value);
 
 } // IsMarkedPreCS

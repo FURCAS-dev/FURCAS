@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2008 IBM Corporation and others.
+-- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -11,11 +11,12 @@
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Elimination of some shift-reduce conflicts
 -- *   E.D.Willink - Remove unnecessary warning suppression
--- *   E.D.Willink - 225493 Need ability to set CSTNode offsets
+-- *   E.D.Willink - Bugs 225493, 243976
+-- *   Zeligsoft - Bug 243976
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.3 2008/04/03 13:00:10 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.4 2008/10/04 00:54:10 cdamus Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -170,6 +171,8 @@ $Define
          */
 		protected void setOffsets(CSTNode cstNode) {
 			IToken firstToken = getIToken($getToken(1));
+			cstNode.setStartToken(firstToken);
+			cstNode.setEndToken(firstToken);
 			cstNode.setStartOffset(firstToken.getStartOffset());
 			cstNode.setEndOffset(firstToken.getEndOffset()-1);
 		}
@@ -180,7 +183,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -190,11 +193,12 @@ $Notice
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
  *   E.D.Willink - Remove unnecessary warning suppression
- *   E.D.Willink - 225493 Need ability to set CSTNode offsets
+ *   E.D.Willink - Bugs 225493, 243976
+ *   Zeligsoft - Bug 243976
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.3 2008/04/03 13:00:10 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.4 2008/10/04 00:54:10 cdamus Exp $
  */
 	./
 $End
@@ -798,12 +802,15 @@ $Rules
 					String simpleName = text.substring(index + 1);
 
 					// create the IntegerLiteralExpCS
-					int startOffset = getIToken($getToken(1)).getStartOffset();
+					IToken numericToken = getIToken($getToken(1));
+					int startOffset = numericToken.getStartOffset();
 					int endOffset = startOffset + integer.length() - 1; // inclusive
 
 					IntegerLiteralExpCS integerLiteralExpCS = createIntegerLiteralExpCS(integer);
 					integerLiteralExpCS.setStartOffset(startOffset);
 					integerLiteralExpCS.setEndOffset(endOffset);
+					integerLiteralExpCS.setStartToken(numericToken);
+					integerLiteralExpCS.setEndToken(numericToken);
 
 					startOffset = endOffset + 2; // end of integerLiteral + 1('.') + 1(start of simpleName)
 					endOffset = getIToken($getToken(1)).getEndOffset();
@@ -815,6 +822,8 @@ $Rules
 							);
 					simpleNameCS.setStartOffset(startOffset);
 					simpleNameCS.setEndOffset(endOffset);
+					simpleNameCS.setStartToken(numericToken);
+					simpleNameCS.setEndToken(numericToken);
 
 					// create the OperationCallExpCS
 					CSTNode result = createOperationCallExpCS(

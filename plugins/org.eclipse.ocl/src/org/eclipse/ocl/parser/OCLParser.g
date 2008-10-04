@@ -13,7 +13,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+-- * $Id: OCLParser.g,v 1.2 2008/10/04 00:54:10 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -186,49 +186,50 @@ $Rules
 		/.$NullAction./
 	initOrDerValueCSopt -> initOrDerValueCS
 
-	classifierContextDeclCS ::= context pathNameCS invOrDefCS
+	classifierContextDeclCS ::= context pathNameCS invOrDefCSm
 		/.$BeginJava
+					EList<InvOrDefCS> list = (EList<InvOrDefCS>)$getSym(3);
 					CSTNode result = createClassifierContextDeclCS(
 							(PathNameCS)$getSym(2),
-							(InvOrDefCS)$getSym(3)
+							list
 						);
-					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
+					setOffsets(result, getIToken($getToken(1)), list.get(list.size()-1));
 					$setResult(result);
 		  $EndJava
 		./
 
-	invOrDefCSopt ::= $empty
-		/.$NullAction./
-	invOrDefCSopt -> invOrDefCS
-
-	invOrDefCS ::= invOrDefCSopt inv simpleNameCSopt ':' oclExpressionCS
+	invOrDefCSm ::= invOrDefCS
+		/.$BeginJava
+					EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
+					result.add((InvOrDefCS)$getSym(1));
+					$setResult(result);
+		  $EndJava
+		./
+	invOrDefCSm ::= invOrDefCSm invOrDefCS
+		/.$BeginJava
+					EList<InvOrDefCS> result = (EList<InvOrDefCS>)$getSym(1);
+					result.add((InvOrDefCS)$getSym(2));
+					$setResult(result);
+		  $EndJava
+		./
+	invOrDefCS ::= inv simpleNameCSopt ':' oclExpressionCS
 		/.$BeginJava
 					CSTNode result = createInvCS(
-							(InvOrDefCS)$getSym(1),
-							(SimpleNameCS)$getSym(3),
-							(OCLExpressionCS)$getSym(5)
+							(SimpleNameCS)$getSym(2),
+							(OCLExpressionCS)$getSym(4)
 						);
-					if ($getSym(1) != null) {
-						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
-					} else {
-						setOffsets(result, getIToken($getToken(2)), (CSTNode)$getSym(5));
-					}
+					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
 					$setResult(result);
 		  $EndJava
 		./
 	
-	invOrDefCS ::= invOrDefCSopt def simpleNameCSopt ':' defExpressionCS
+	invOrDefCS ::= def simpleNameCSopt ':' defExpressionCS
 		/.$BeginJava
 					CSTNode result = createDefCS(
-							(InvOrDefCS)$getSym(1),
-							(SimpleNameCS)$getSym(3),
-							(DefExpressionCS)$getSym(5)
+							(SimpleNameCS)$getSym(2),
+							(DefExpressionCS)$getSym(4)
 						);
-					if ($getSym(1) != null) {
-						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
-					} else {
-						setOffsets(result, getIToken($getToken(2)), (CSTNode)$getSym(5));
-					}
+					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
 					$setResult(result);
 		  $EndJava
 		./

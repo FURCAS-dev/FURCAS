@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.16 2008/09/21 21:35:58 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.17 2008/10/04 00:54:10 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1225,17 +1225,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         
 		TRACE("classifierContextDeclCS", "context", pathName);  //$NON-NLS-2$//$NON-NLS-1$
 		
-        // reverse the chain of constraint declarations to process them in the
-        // forward order
-		List<InvOrDefCS> constraintDecls = new BasicEList.FastCompare<InvOrDefCS>(4);
-        InvOrDefCS invOrDefCS = classifierContextDeclCS.getInvOrDefCS();
-        while (invOrDefCS != null) {
-            constraintDecls.add(0, invOrDefCS);
-            invOrDefCS = invOrDefCS.getInvOrDefCS();
-        }
-        
-        // now, parse them
-		for (InvOrDefCS decl : constraintDecls) {
+		for (InvOrDefCS decl : classifierContextDeclCS.getConstraints()) {
 			CT constraint = invOrDefCS(decl, result);
 			if (constraint != null) {
 				constraints.add(constraint);

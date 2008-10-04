@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2007 IBM Corporation and others.
+* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,16 +10,27 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
+*   E.D.Willink - Remove unnecessary warning suppression
+*   E.D.Willink - Bugs 225493, 243976
+*   Zeligsoft - Bug 243976
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+* $Id: OCLParsersym.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
 
+/**
+ * @noimplement This interface is not intended to be implemented by clients.
+ */
 @SuppressWarnings("nls")
 public interface OCLParsersym {
+	/**
+	 * Token kind codes.
+	 * 
+	 * @noreference These constants are not intended to be referenced by clients.
+	 */
     public final static int
       TK_NUMERIC_OPERATION = 60,
       TK_STRING_LITERAL = 61,
@@ -40,7 +51,7 @@ public interface OCLParsersym {
       TK_LBRACE = 69,
       TK_RBRACE = 80,
       TK_LBRACKET = 81,
-      TK_RBRACKET = 75,
+      TK_RBRACKET = 74,
       TK_ARROW = 83,
       TK_BAR = 71,
       TK_COMMA = 36,
@@ -54,13 +65,13 @@ public interface OCLParsersym {
       TK_CARETCARET = 88,
       TK_QUESTIONMARK = 89,
       TK_self = 25,
-      TK_inv = 76,
-      TK_pre = 77,
-      TK_post = 78,
+      TK_inv = 75,
+      TK_pre = 76,
+      TK_post = 77,
       TK_context = 73,
       TK_package = 90,
       TK_endpackage = 91,
-      TK_def = 79,
+      TK_def = 78,
       TK_if = 70,
       TK_then = 92,
       TK_else = 93,
@@ -116,7 +127,7 @@ public interface OCLParsersym {
       TK_Invalid = 14,
       TK_OclMessage = 15,
       TK_OclInvalid = 66,
-      TK_EOF_TOKEN = 74,
+      TK_EOF_TOKEN = 79,
       TK_IDENTIFIER = 3,
       TK_INTEGER_RANGE_START = 82,
       TK_ERROR_TOKEN = 99;
@@ -196,12 +207,12 @@ public interface OCLParsersym {
                  "BAR",
                  "ATPRE",
                  "context",
-                 "EOF_TOKEN",
                  "RBRACKET",
                  "inv",
                  "pre",
                  "post",
                  "def",
+                 "EOF_TOKEN",
                  "RBRACE",
                  "LBRACKET",
                  "INTEGER_RANGE_START",

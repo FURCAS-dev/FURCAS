@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCS.java,v 1.2 2007/12/03 18:44:41 cdamus Exp $
+ * $Id: InitOrDerValueCS.java,v 1.3 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -33,59 +33,60 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS()
  * @model abstract="true"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface InitOrDerValueCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Init Or Der Value CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Init Or Der Value CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Init Or Der Value CS</em>' reference isn't clear,
+	 * If the meaning of the '<em>Init Or Der Value CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Init Or Der Value CS</em>' containment reference.
-     * @see #setInitOrDerValueCS(InitOrDerValueCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS_InitOrDerValueCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Init Or Der Value CS</em>' containment reference.
+	 * @see #setInitOrDerValueCS(InitOrDerValueCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS_InitOrDerValueCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	InitOrDerValueCS getInitOrDerValueCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Init Or Der Value CS</em>' containment reference.
-     * @see #getInitOrDerValueCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Init Or Der Value CS</em>' containment reference.
+	 * @see #getInitOrDerValueCS()
+	 * @generated
+	 */
 	void setInitOrDerValueCS(InitOrDerValueCS value);
 
 	/**
-     * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Expression CS</em>' containment reference.
-     * @see #setExpressionCS(OCLExpressionCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS_ExpressionCS()
-     * @model containment="true"
-     *        extendedMetaData="name='oclExpressionCS'"
-     * @generated
-     */
+	 * @return the value of the '<em>Expression CS</em>' containment reference.
+	 * @see #setExpressionCS(OCLExpressionCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS_ExpressionCS()
+	 * @model containment="true"
+	 *        extendedMetaData="name='oclExpressionCS'"
+	 * @generated
+	 */
 	OCLExpressionCS getExpressionCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getExpressionCS <em>Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getExpressionCS <em>Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Expression CS</em>' containment reference.
-     * @see #getExpressionCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Expression CS</em>' containment reference.
+	 * @see #getExpressionCS()
+	 * @generated
+	 */
 	void setExpressionCS(OCLExpressionCS value);
 
 } // InitOrDerValueCS

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: LiteralExpCSImpl.java,v 1.1 2007/10/11 23:05:02 cdamus Exp $
+ * $Id: LiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -31,22 +32,22 @@ import org.eclipse.ocl.cst.LiteralExpCS;
  */
 public abstract class LiteralExpCSImpl extends OCLExpressionCSImpl implements LiteralExpCS {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected LiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.LITERAL_EXP_CS;
+	}
 
 } //LiteralExpCSImpl

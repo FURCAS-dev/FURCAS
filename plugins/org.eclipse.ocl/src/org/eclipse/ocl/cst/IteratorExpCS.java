@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: IteratorExpCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: IteratorExpCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +26,7 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getIteratorExpCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface IteratorExpCS extends LoopExpCS {
 } // IteratorExpCS

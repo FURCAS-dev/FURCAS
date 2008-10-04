@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,12 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLLPGParser
+ *             - Bug 243976
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.2 2007/11/06 19:49:00 cdamus Exp $
+ * $Id: AbstractParser.java,v 1.3 2008/10/04 00:54:10 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -127,6 +129,8 @@ public abstract class AbstractParser extends PrsStream
 	 * @param startEnd <code>IToken</code> to retrieve offsets from
 	 */
 	protected void setOffsets(CSTNode cstNode, IToken startEnd) {
+		cstNode.setStartToken(startEnd);
+		cstNode.setEndToken(startEnd);
 		cstNode.setStartOffset(startEnd.getStartOffset());
 		cstNode.setEndOffset(startEnd.getEndOffset());
 	}
@@ -139,6 +143,8 @@ public abstract class AbstractParser extends PrsStream
 	 * @param startEnd <code>CSTNode</code> to retrieve offsets from
 	 */
 	protected void setOffsets(CSTNode cstNode, CSTNode startEnd) {
+		cstNode.setStartToken(startEnd.getStartToken());
+		cstNode.setEndToken(startEnd.getEndToken());
 		cstNode.setStartOffset(startEnd.getStartOffset());
 		cstNode.setEndOffset(startEnd.getEndOffset());
 	}
@@ -153,6 +159,8 @@ public abstract class AbstractParser extends PrsStream
 	 * @param end <code>CSTNode</code> to retrieve end offset from
 	 */
 	protected void setOffsets(CSTNode cstNode, CSTNode start, CSTNode end) {
+		cstNode.setStartToken(start.getStartToken());
+		cstNode.setEndToken(end.getEndToken());
 		cstNode.setStartOffset(start.getStartOffset());
 		cstNode.setEndOffset(end.getEndOffset());
 	}
@@ -167,6 +175,8 @@ public abstract class AbstractParser extends PrsStream
 	 * @param end <code>IToken</code> to retrieve end offset from
 	 */
 	protected void setOffsets(CSTNode cstNode, CSTNode start, IToken end) {
+		cstNode.setStartToken(start.getStartToken());
+		cstNode.setEndToken(end);
 		cstNode.setStartOffset(start.getStartOffset());
 		cstNode.setEndOffset(end.getEndOffset());
 	}
@@ -181,6 +191,8 @@ public abstract class AbstractParser extends PrsStream
 	 * @param end <code>CSTNode</code> to retrieve end offset from
 	 */
 	protected void setOffsets(CSTNode cstNode, IToken start, CSTNode end) {
+		cstNode.setStartToken(start);
+		cstNode.setEndToken(end.getEndToken());
 		cstNode.setStartOffset(start.getStartOffset());
 		cstNode.setEndOffset(end.getEndOffset());
 	}
@@ -195,6 +207,8 @@ public abstract class AbstractParser extends PrsStream
 	 * @param end <code>IToken</code> to retrieve end offset from
 	 */
 	protected void setOffsets(CSTNode cstNode, IToken start, IToken end) {
+		cstNode.setStartToken(start);
+		cstNode.setEndToken(end);
 		cstNode.setStartOffset(start.getStartOffset());
 		cstNode.setEndOffset(end.getEndOffset());
 	}

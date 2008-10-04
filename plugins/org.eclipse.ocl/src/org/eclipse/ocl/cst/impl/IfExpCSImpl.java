@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: IfExpCSImpl.java,v 1.1 2007/10/11 23:05:01 cdamus Exp $
+ * $Id: IfExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -42,277 +43,277 @@ import org.eclipse.ocl.cst.OCLExpressionCS;
  */
 public class IfExpCSImpl extends OCLExpressionCSImpl implements IfExpCS {
 	/**
-     * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getThenExpression() <em>Then Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getThenExpression()
-     * @generated
-     * @ordered
-     */
+	 * @see #getThenExpression()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS thenExpression;
 
 	/**
-     * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getElseExpression() <em>Else Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getElseExpression()
-     * @generated
-     * @ordered
-     */
+	 * @see #getElseExpression()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS elseExpression;
 
 	/**
-     * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getCondition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCondition()
+	 * @generated
+	 * @ordered
+	 */
 	protected OCLExpressionCS condition;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IfExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.IF_EXP_CS;
-    }
+		return CSTPackage.Literals.IF_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getThenExpression() {
-        return thenExpression;
-    }
+		return thenExpression;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetThenExpression(OCLExpressionCS newThenExpression, NotificationChain msgs) {
-        OCLExpressionCS oldThenExpression = thenExpression;
-        thenExpression = newThenExpression;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__THEN_EXPRESSION, oldThenExpression, newThenExpression);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldThenExpression = thenExpression;
+		thenExpression = newThenExpression;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__THEN_EXPRESSION, oldThenExpression, newThenExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setThenExpression(OCLExpressionCS newThenExpression) {
-        if (newThenExpression != thenExpression) {
-            NotificationChain msgs = null;
-            if (thenExpression != null)
-                msgs = ((InternalEObject)thenExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__THEN_EXPRESSION, null, msgs);
-            if (newThenExpression != null)
-                msgs = ((InternalEObject)newThenExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__THEN_EXPRESSION, null, msgs);
-            msgs = basicSetThenExpression(newThenExpression, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__THEN_EXPRESSION, newThenExpression, newThenExpression));
-    }
+		if (newThenExpression != thenExpression) {
+			NotificationChain msgs = null;
+			if (thenExpression != null)
+				msgs = ((InternalEObject)thenExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__THEN_EXPRESSION, null, msgs);
+			if (newThenExpression != null)
+				msgs = ((InternalEObject)newThenExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__THEN_EXPRESSION, null, msgs);
+			msgs = basicSetThenExpression(newThenExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__THEN_EXPRESSION, newThenExpression, newThenExpression));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getElseExpression() {
-        return elseExpression;
-    }
+		return elseExpression;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetElseExpression(OCLExpressionCS newElseExpression, NotificationChain msgs) {
-        OCLExpressionCS oldElseExpression = elseExpression;
-        elseExpression = newElseExpression;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, oldElseExpression, newElseExpression);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldElseExpression = elseExpression;
+		elseExpression = newElseExpression;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, oldElseExpression, newElseExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setElseExpression(OCLExpressionCS newElseExpression) {
-        if (newElseExpression != elseExpression) {
-            NotificationChain msgs = null;
-            if (elseExpression != null)
-                msgs = ((InternalEObject)elseExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, null, msgs);
-            if (newElseExpression != null)
-                msgs = ((InternalEObject)newElseExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, null, msgs);
-            msgs = basicSetElseExpression(newElseExpression, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, newElseExpression, newElseExpression));
-    }
+		if (newElseExpression != elseExpression) {
+			NotificationChain msgs = null;
+			if (elseExpression != null)
+				msgs = ((InternalEObject)elseExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, null, msgs);
+			if (newElseExpression != null)
+				msgs = ((InternalEObject)newElseExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, null, msgs);
+			msgs = basicSetElseExpression(newElseExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__ELSE_EXPRESSION, newElseExpression, newElseExpression));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OCLExpressionCS getCondition() {
-        return condition;
-    }
+		return condition;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain basicSetCondition(OCLExpressionCS newCondition, NotificationChain msgs) {
-        OCLExpressionCS oldCondition = condition;
-        condition = newCondition;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__CONDITION, oldCondition, newCondition);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		OCLExpressionCS oldCondition = condition;
+		condition = newCondition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__CONDITION, oldCondition, newCondition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setCondition(OCLExpressionCS newCondition) {
-        if (newCondition != condition) {
-            NotificationChain msgs = null;
-            if (condition != null)
-                msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__CONDITION, null, msgs);
-            if (newCondition != null)
-                msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__CONDITION, null, msgs);
-            msgs = basicSetCondition(newCondition, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__CONDITION, newCondition, newCondition));
-    }
+		if (newCondition != condition) {
+			NotificationChain msgs = null;
+			if (condition != null)
+				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__CONDITION, null, msgs);
+			if (newCondition != null)
+				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.IF_EXP_CS__CONDITION, null, msgs);
+			msgs = basicSetCondition(newCondition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IF_EXP_CS__CONDITION, newCondition, newCondition));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-                return basicSetThenExpression(null, msgs);
-            case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-                return basicSetElseExpression(null, msgs);
-            case CSTPackage.IF_EXP_CS__CONDITION:
-                return basicSetCondition(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
+				return basicSetThenExpression(null, msgs);
+			case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
+				return basicSetElseExpression(null, msgs);
+			case CSTPackage.IF_EXP_CS__CONDITION:
+				return basicSetCondition(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-                return getThenExpression();
-            case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-                return getElseExpression();
-            case CSTPackage.IF_EXP_CS__CONDITION:
-                return getCondition();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
+				return getThenExpression();
+			case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
+				return getElseExpression();
+			case CSTPackage.IF_EXP_CS__CONDITION:
+				return getCondition();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-                setThenExpression((OCLExpressionCS)newValue);
-                return;
-            case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-                setElseExpression((OCLExpressionCS)newValue);
-                return;
-            case CSTPackage.IF_EXP_CS__CONDITION:
-                setCondition((OCLExpressionCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
+				setThenExpression((OCLExpressionCS)newValue);
+				return;
+			case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
+				setElseExpression((OCLExpressionCS)newValue);
+				return;
+			case CSTPackage.IF_EXP_CS__CONDITION:
+				setCondition((OCLExpressionCS)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-                setThenExpression((OCLExpressionCS)null);
-                return;
-            case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-                setElseExpression((OCLExpressionCS)null);
-                return;
-            case CSTPackage.IF_EXP_CS__CONDITION:
-                setCondition((OCLExpressionCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
+				setThenExpression((OCLExpressionCS)null);
+				return;
+			case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
+				setElseExpression((OCLExpressionCS)null);
+				return;
+			case CSTPackage.IF_EXP_CS__CONDITION:
+				setCondition((OCLExpressionCS)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
-                return thenExpression != null;
-            case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
-                return elseExpression != null;
-            case CSTPackage.IF_EXP_CS__CONDITION:
-                return condition != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.IF_EXP_CS__THEN_EXPRESSION:
+				return thenExpression != null;
+			case CSTPackage.IF_EXP_CS__ELSE_EXPRESSION:
+				return elseExpression != null;
+			case CSTPackage.IF_EXP_CS__CONDITION:
+				return condition != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //IfExpCSImpl
