@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: RealLiteralExpCSImpl.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: RealLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -37,137 +38,137 @@ import org.eclipse.ocl.cst.RealLiteralExpCS;
  */
 public class RealLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements RealLiteralExpCS {
 	/**
-     * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getRealSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRealSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final Double REAL_SYMBOL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getRealSymbol()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRealSymbol()
+	 * @generated
+	 * @ordered
+	 */
 	protected Double realSymbol = REAL_SYMBOL_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected RealLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.REAL_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.REAL_LITERAL_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Double getRealSymbol() {
-        return realSymbol;
-    }
+		return realSymbol;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setRealSymbol(Double newRealSymbol) {
-        Double oldRealSymbol = realSymbol;
-        realSymbol = newRealSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL, oldRealSymbol, realSymbol));
-    }
+		Double oldRealSymbol = realSymbol;
+		realSymbol = newRealSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL, oldRealSymbol, realSymbol));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
-                return getRealSymbol();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
+				return getRealSymbol();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
-                setRealSymbol((Double)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
+				setRealSymbol((Double)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
-                setRealSymbol(REAL_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
+				setRealSymbol(REAL_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
-                return REAL_SYMBOL_EDEFAULT == null ? realSymbol != null : !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.REAL_LITERAL_EXP_CS__REAL_SYMBOL:
+				return REAL_SYMBOL_EDEFAULT == null ? realSymbol != null : !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (realSymbol: "); //$NON-NLS-1$
-        result.append(realSymbol);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (realSymbol: "); //$NON-NLS-1$
+		result.append(realSymbol);
+		result.append(')');
+		return result.toString();
+	}
 
 } //RealLiteralExpCSImpl

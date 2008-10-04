@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: DefCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -32,32 +32,33 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getDefCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface DefCS extends InvOrDefCS {
 	/**
-     * Returns the value of the '<em><b>Def Expression CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Def Expression CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Def Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Def Expression CS</em>' containment reference.
-     * @see #setDefExpressionCS(DefExpressionCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getDefCS_DefExpressionCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Def Expression CS</em>' containment reference.
+	 * @see #setDefExpressionCS(DefExpressionCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getDefCS_DefExpressionCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	DefExpressionCS getDefExpressionCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Def Expression CS</em>' containment reference.
-     * @see #getDefExpressionCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Def Expression CS</em>' containment reference.
+	 * @see #getDefExpressionCS()
+	 * @generated
+	 */
 	void setDefExpressionCS(DefExpressionCS value);
 
 } // DefCS

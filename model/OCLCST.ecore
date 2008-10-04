@@ -7,7 +7,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="CSTNode" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="endOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startToken" ordered="false"
+          eType="#//cst/IToken" transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endToken" ordered="false"
+          eType="#//cst/IToken" transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ast" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+          transient="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="IToken" instanceClassName="lpg.lpgjavaruntime.IToken"/>
     <eClassifiers xsi:type="ecore:EClass" name="PackageDeclarationCS" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
           containment="true"/>
@@ -69,8 +77,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="ClassifierContextDeclCS" eSuperTypes="#//cst/ContextDeclCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="invOrDefCS" eType="#//cst/InvOrDefCS"
-          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="invOrDefCS" eType="#//cst/InvOrDefCS"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" ordered="false"
+          upperBound="-1" eType="#//cst/InvOrDefCS" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InvOrDefCS" abstract="true" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"

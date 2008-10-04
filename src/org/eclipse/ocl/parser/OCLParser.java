@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2008 IBM Corporation and others.
+* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,11 +11,12 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
-*   E.D.Willink - 225493 Need ability to set CSTNode offsets
+*   E.D.Willink - Bugs 225493, 243976
+*   Zeligsoft - Bug 243976
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.3 2008/04/03 13:00:10 cdamus Exp $
+* $Id: OCLParser.java,v 1.4 2008/10/04 00:54:10 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -111,21 +112,22 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 
 		return null;
 	}
-    
-	/**
-	 * Initializes a concrete-syntax node's start and end offsets from the
-	 * current token in the parser stream.
-	 * 
-	 * @param cstNode a concrete-syntax node
-	 * 
-	 * @since 1.2
-	 */
-    protected void setOffsets(CSTNode cstNode) {
-        IToken firstToken = getIToken(dtParser.getToken(1));
-        cstNode.setStartOffset(firstToken.getStartOffset());
-        cstNode.setEndOffset(firstToken.getEndOffset()-1);
-    }
 
+    /**
+     * Initializes a concrete-syntax node's start and end offsets from the
+     * current token in the parser stream.
+     * 
+     * @param cstNode a concrete-syntax node
+     * 
+     * @since 1.2
+     */
+	protected void setOffsets(CSTNode cstNode) {
+		IToken firstToken = getIToken(dtParser.getToken(1));
+		cstNode.setStartToken(firstToken);
+		cstNode.setEndToken(firstToken);
+		cstNode.setStartOffset(firstToken.getStartOffset());
+		cstNode.setEndOffset(firstToken.getEndOffset()-1);
+	}
 
 
 
@@ -613,12 +615,15 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 				String simpleName = text.substring(index + 1);
 
 				// create the IntegerLiteralExpCS
-				int startOffset = getIToken(dtParser.getToken(1)).getStartOffset();
+				IToken numericToken = getIToken(dtParser.getToken(1));
+				int startOffset = numericToken.getStartOffset();
 				int endOffset = startOffset + integer.length() - 1; // inclusive
 
 				IntegerLiteralExpCS integerLiteralExpCS = createIntegerLiteralExpCS(integer);
 				integerLiteralExpCS.setStartOffset(startOffset);
 				integerLiteralExpCS.setEndOffset(endOffset);
+				integerLiteralExpCS.setStartToken(numericToken);
+				integerLiteralExpCS.setEndToken(numericToken);
 
 				startOffset = endOffset + 2; // end of integerLiteral + 1('.') + 1(start of simpleName)
 				endOffset = getIToken(dtParser.getToken(1)).getEndOffset();
@@ -630,6 +635,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 						);
 				simpleNameCS.setStartOffset(startOffset);
 				simpleNameCS.setEndOffset(endOffset);
+				simpleNameCS.setStartToken(numericToken);
+				simpleNameCS.setEndToken(numericToken);
 
 				// create the OperationCallExpCS
 				CSTNode result = createOperationCallExpCS(
@@ -2130,60 +2137,66 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 				break;
  
 			//
-			// Rule 263:  classifierContextDeclCS ::= context pathNameCS invOrDefCS
+			// Rule 263:  classifierContextDeclCS ::= context pathNameCS invOrDefCSm
 			//
 			case 263: {
 				
+				EList<InvOrDefCS> list = (EList<InvOrDefCS>)dtParser.getSym(3);
 				CSTNode result = createClassifierContextDeclCS(
 						(PathNameCS)dtParser.getSym(2),
-						(InvOrDefCS)dtParser.getSym(3)
+						list
 					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(3));
+				setOffsets(result, getIToken(dtParser.getToken(1)), list.get(list.size()-1));
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 264:  invOrDefCSopt ::= $Empty
+			// Rule 264:  invOrDefCSm ::= invOrDefCS
 			//
-			case 264:
-				dtParser.setSym1(null);
-				break;
- 
+			case 264: {
+				
+				EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
+				result.add((InvOrDefCS)dtParser.getSym(1));
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
 			//
-			// Rule 266:  invOrDefCS ::= invOrDefCSopt inv simpleNameCSopt : oclExpressionCS
+			// Rule 265:  invOrDefCSm ::= invOrDefCSm invOrDefCS
+			//
+			case 265: {
+				
+				EList<InvOrDefCS> result = (EList<InvOrDefCS>)dtParser.getSym(1);
+				result.add((InvOrDefCS)dtParser.getSym(2));
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
+			//
+			// Rule 266:  invOrDefCS ::= inv simpleNameCSopt : oclExpressionCS
 			//
 			case 266: {
 				
 				CSTNode result = createInvCS(
-						(InvOrDefCS)dtParser.getSym(1),
-						(SimpleNameCS)dtParser.getSym(3),
-						(OCLExpressionCS)dtParser.getSym(5)
+						(SimpleNameCS)dtParser.getSym(2),
+						(OCLExpressionCS)dtParser.getSym(4)
 					);
-				if (dtParser.getSym(1) != null) {
-					setOffsets(result, (CSTNode)dtParser.getSym(1), (CSTNode)dtParser.getSym(5));
-				} else {
-					setOffsets(result, getIToken(dtParser.getToken(2)), (CSTNode)dtParser.getSym(5));
-				}
+				setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(4));
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 267:  invOrDefCS ::= invOrDefCSopt def simpleNameCSopt : defExpressionCS
+			// Rule 267:  invOrDefCS ::= def simpleNameCSopt : defExpressionCS
 			//
 			case 267: {
 				
 				CSTNode result = createDefCS(
-						(InvOrDefCS)dtParser.getSym(1),
-						(SimpleNameCS)dtParser.getSym(3),
-						(DefExpressionCS)dtParser.getSym(5)
+						(SimpleNameCS)dtParser.getSym(2),
+						(DefExpressionCS)dtParser.getSym(4)
 					);
-				if (dtParser.getSym(1) != null) {
-					setOffsets(result, (CSTNode)dtParser.getSym(1), (CSTNode)dtParser.getSym(5));
-				} else {
-					setOffsets(result, getIToken(dtParser.getToken(2)), (CSTNode)dtParser.getSym(5));
-				}
+				setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(4));
 				dtParser.setSym1(result);
 	  		  break;
 			}

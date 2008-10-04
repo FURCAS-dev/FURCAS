@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,18 +9,23 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCSImpl.java,v 1.1 2007/10/11 23:05:02 cdamus Exp $
+ * $Id: ClassifierContextDeclCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.cst.CSTPackage;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
@@ -35,6 +40,7 @@ import org.eclipse.ocl.cst.PathNameCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getPathNameCS <em>Path Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getInvOrDefCS <em>Inv Or Def CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,212 +48,245 @@ import org.eclipse.ocl.cst.PathNameCS;
  */
 public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements ClassifierContextDeclCS {
 	/**
-     * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPathNameCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPathNameCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected PathNameCS pathNameCS;
 
 	/**
-     * The cached value of the '{@link #getInvOrDefCS() <em>Inv Or Def CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getInvOrDefCS() <em>Inv Or Def CS</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getInvOrDefCS()
-     * @generated
-     * @ordered
-     */
+	 * @see #getInvOrDefCS()
+	 * @generated
+	 * @ordered
+	 */
 	protected InvOrDefCS invOrDefCS;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected ClassifierContextDeclCSImpl() {
-        super();
-    }
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InvOrDefCS> constraints;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	protected ClassifierContextDeclCSImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS;
-    }
+		return CSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public PathNameCS getPathNameCS() {
-        return pathNameCS;
-    }
+		return pathNameCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
-        PathNameCS oldPathNameCS = pathNameCS;
-        pathNameCS = newPathNameCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+		PathNameCS oldPathNameCS = pathNameCS;
+		pathNameCS = newPathNameCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void setPathNameCS(PathNameCS newPathNameCS) {
-        if (newPathNameCS != pathNameCS) {
-            NotificationChain msgs = null;
-            if (pathNameCS != null)
-                msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
-            if (newPathNameCS != null)
-                msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
-            msgs = basicSetPathNameCS(newPathNameCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
-    }
+		if (newPathNameCS != pathNameCS) {
+			NotificationChain msgs = null;
+			if (pathNameCS != null)
+				msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
+			if (newPathNameCS != null)
+				msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
+			msgs = basicSetPathNameCS(newPathNameCS, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public InvOrDefCS getInvOrDefCS() {
-        return invOrDefCS;
-    }
+		if (invOrDefCS != null && invOrDefCS.eIsProxy()) {
+			InternalEObject oldInvOrDefCS = (InternalEObject)invOrDefCS;
+			invOrDefCS = (InvOrDefCS)eResolveProxy(oldInvOrDefCS);
+			if (invOrDefCS != oldInvOrDefCS) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+			}
+		}
+		return invOrDefCS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetInvOrDefCS(InvOrDefCS newInvOrDefCS, NotificationChain msgs) {
-        InvOrDefCS oldInvOrDefCS = invOrDefCS;
-        invOrDefCS = newInvOrDefCS;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, newInvOrDefCS);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	public InvOrDefCS basicGetInvOrDefCS() {
+		return invOrDefCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void setInvOrDefCS(InvOrDefCS newInvOrDefCS) {
-        if (newInvOrDefCS != invOrDefCS) {
-            NotificationChain msgs = null;
-            if (invOrDefCS != null)
-                msgs = ((InternalEObject)invOrDefCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, null, msgs);
-            if (newInvOrDefCS != null)
-                msgs = ((InternalEObject)newInvOrDefCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, null, msgs);
-            msgs = basicSetInvOrDefCS(newInvOrDefCS, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, newInvOrDefCS, newInvOrDefCS));
-    }
+		InvOrDefCS oldInvOrDefCS = invOrDefCS;
+		invOrDefCS = newInvOrDefCS;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-                return basicSetPathNameCS(null, msgs);
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-                return basicSetInvOrDefCS(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	public EList<InvOrDefCS> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<InvOrDefCS>(InvOrDefCS.class, this, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+				return basicSetPathNameCS(null, msgs);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-                return getPathNameCS();
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-                return getInvOrDefCS();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+				return getPathNameCS();
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
+				if (resolve) return getInvOrDefCS();
+				return basicGetInvOrDefCS();
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+				return getConstraints();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-                setPathNameCS((PathNameCS)newValue);
-                return;
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-                setInvOrDefCS((InvOrDefCS)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+				setPathNameCS((PathNameCS)newValue);
+				return;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
+				setInvOrDefCS((InvOrDefCS)newValue);
+				return;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends InvOrDefCS>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-                setPathNameCS((PathNameCS)null);
-                return;
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-                setInvOrDefCS((InvOrDefCS)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+				setPathNameCS((PathNameCS)null);
+				return;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
+				setInvOrDefCS((InvOrDefCS)null);
+				return;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+				getConstraints().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-                return pathNameCS != null;
-            case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-                return invOrDefCS != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+				return pathNameCS != null;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
+				return invOrDefCS != null;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ClassifierContextDeclCSImpl

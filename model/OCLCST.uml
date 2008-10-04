@@ -2,6 +2,9 @@
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
   <uml:Model xmi:id="_qdx8sQ8fEduhWtVvKtiQ7w" name="ocl">
     <packagedElement xmi:type="uml:Package" xmi:id="_qdx8sP8fEduhWtVvKtiQ7w" name="cst">
+      <packageImport xmi:id="_CSYeEI2GEd2mlKUM3HGxZg">
+        <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#_0"/>
+      </packageImport>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx8sf8fEduhWtVvKtiQ7w" name="CSTNode" isAbstract="true">
         <ownedAttribute xmi:id="_qdx8sv8fEduhWtVvKtiQ7w" name="startOffset" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
@@ -10,6 +13,16 @@
         <ownedAttribute xmi:id="_qdx8tP8fEduhWtVvKtiQ7w" name="endOffset" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx8tf8fEduhWtVvKtiQ7w"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_PkTnII2GEd2mlKUM3HGxZg" name="startToken" type="_tvVQwI2FEd2mlKUM3HGxZg" association="_LtMWMI2HEd2mlKUM3HGxZg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4dfnII2GEd2mlKUM3HGxZg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kTt1cI2GEd2mlKUM3HGxZg" name="endToken" type="_tvVQwI2FEd2mlKUM3HGxZg" association="_W6NoQI2HEd2mlKUM3HGxZg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5KqPII2GEd2mlKUM3HGxZg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xJpmEI2GEd2mlKUM3HGxZg" name="ast" association="_l8iX8I2HEd2mlKUM3HGxZg">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6BDEkI2GEd2mlKUM3HGxZg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx8tv8fEduhWtVvKtiQ7w" name="PackageDeclarationCS">
@@ -146,8 +159,12 @@
         <ownedAttribute xmi:id="_qdx9Df8fEduhWtVvKtiQ7w" name="pathNameCS" type="_qdx8v_8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx9Ef8fEduhWtVvKtiQ7w">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx9Dv8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_qdx9D_8fEduhWtVvKtiQ7w" name="invOrDefCS" type="_qdx9E_8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx9Hf8fEduhWtVvKtiQ7w">
+        <ownedAttribute xmi:id="_qdx9D_8fEduhWtVvKtiQ7w" name="invOrDefCS" type="_qdx9E_8fEduhWtVvKtiQ7w" isOrdered="true" association="_qdx9Hf8fEduhWtVvKtiQ7w">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx9EP8fEduhWtVvKtiQ7w"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_bgLRUI2IEd2mlKUM3HGxZg" name="constraints" type="_qdx9E_8fEduhWtVvKtiQ7w" aggregation="composite" association="_vKb1cI2IEd2mlKUM3HGxZg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hce3sI2IEd2mlKUM3HGxZg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hCecQI2IEd2mlKUM3HGxZg"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_qdx9Ef8fEduhWtVvKtiQ7w" memberEnd="_qdx9Df8fEduhWtVvKtiQ7w _qdx9Ev8fEduhWtVvKtiQ7w">
@@ -654,6 +671,28 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-W_8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
       </packagedElement>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_tvVQwI2FEd2mlKUM3HGxZg" name="IToken"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_LtMWMI2HEd2mlKUM3HGxZg" memberEnd="_PkTnII2GEd2mlKUM3HGxZg _Q_QFsI2HEd2mlKUM3HGxZg">
+        <ownedEnd xmi:id="_Q_QFsI2HEd2mlKUM3HGxZg" name="cst" type="_qdx8sf8fEduhWtVvKtiQ7w" association="_LtMWMI2HEd2mlKUM3HGxZg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_P5TfYI2JEd2mlKUM3HGxZg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QeOKUI2JEd2mlKUM3HGxZg"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_W6NoQI2HEd2mlKUM3HGxZg" memberEnd="_kTt1cI2GEd2mlKUM3HGxZg _cMQJoI2HEd2mlKUM3HGxZg">
+        <ownedEnd xmi:id="_cMQJoI2HEd2mlKUM3HGxZg" name="cst" type="_qdx8sf8fEduhWtVvKtiQ7w" association="_W6NoQI2HEd2mlKUM3HGxZg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O7DucI2JEd2mlKUM3HGxZg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ObA8cI2JEd2mlKUM3HGxZg"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_l8iX8I2HEd2mlKUM3HGxZg" memberEnd="_xJpmEI2GEd2mlKUM3HGxZg _4Yof0I2HEd2mlKUM3HGxZg">
+        <ownedEnd xmi:id="_4Yof0I2HEd2mlKUM3HGxZg" name="cst" type="_qdx8sf8fEduhWtVvKtiQ7w" association="_l8iX8I2HEd2mlKUM3HGxZg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Lc0F8I2JEd2mlKUM3HGxZg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KBpvgI2JEd2mlKUM3HGxZg"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_vKb1cI2IEd2mlKUM3HGxZg" memberEnd="_bgLRUI2IEd2mlKUM3HGxZg _Bd6z4I2JEd2mlKUM3HGxZg">
+        <ownedEnd xmi:id="_Bd6z4I2JEd2mlKUM3HGxZg" name="context" type="_qdx9C_8fEduhWtVvKtiQ7w" association="_vKb1cI2IEd2mlKUM3HGxZg"/>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_qdx-XP8fEduhWtVvKtiQ7w">
       <eAnnotations xmi:id="_qdx-Xf8fEduhWtVvKtiQ7w" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -821,4 +860,9 @@
   <Ecore:EClass xmi:id="_qf-8J_8fEduhWtVvKtiQ7w" base_Class="_qdx-Vf8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qf-8KP8fEduhWtVvKtiQ7w" base_Class="_qdx-V_8fEduhWtVvKtiQ7w"/>
   <Ecore:EAttribute xmi:id="_qf-8Kf8fEduhWtVvKtiQ7w" base_Property="_qdx-Wf8fEduhWtVvKtiQ7w"/>
+  <Ecore:EDataType xmi:id="_wn-44I2FEd2mlKUM3HGxZg" instanceClassName="lpg.lpgjavaruntime.IToken" base_PrimitiveType="_tvVQwI2FEd2mlKUM3HGxZg"/>
+  <Ecore:EAttribute xmi:id="_qkehgI2JEd2mlKUM3HGxZg" isTransient="true" base_Property="_PkTnII2GEd2mlKUM3HGxZg"/>
+  <Ecore:EAttribute xmi:id="_na5BwI2GEd2mlKUM3HGxZg" isTransient="true" base_Property="_kTt1cI2GEd2mlKUM3HGxZg"/>
+  <Ecore:EAttribute xmi:id="_CoEkwI2HEd2mlKUM3HGxZg" isTransient="true" base_Property="_xJpmEI2GEd2mlKUM3HGxZg"/>
+  <Ecore:EReference xmi:id="_j10GkI2IEd2mlKUM3HGxZg" base_Property="_bgLRUI2IEd2mlKUM3HGxZg"/>
 </xmi:XMI>

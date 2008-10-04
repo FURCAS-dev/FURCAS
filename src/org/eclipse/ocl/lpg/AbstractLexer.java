@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2007 IBM Corporation and others.
+* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -9,11 +9,13 @@
 *
 * Contributors:
 *   IBM - Initial API and implementation
-*   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling 
+*   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*             - Bug 243976
+*   Zeligsoft - Bug 243976 
 *
 * </copyright>
 *
-* $Id: AbstractLexer.java,v 1.1 2007/10/11 23:04:53 cdamus Exp $
+* $Id: AbstractLexer.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
 */
 
 package org.eclipse.ocl.lpg;
@@ -99,6 +101,18 @@ public abstract class AbstractLexer extends LpgLexStream implements RuleAction
 	public BasicEnvironment getEnvironment() {
 		return environment;
 	}
+	
+	/**
+	 * Queries the token kinds, as defined by my keyword lexer, of tokens that
+	 * are keywords in by grammar.
+	 * 
+	 * @return my keyword lexer's token kinds
+	 * 
+	 * @since 1.3
+	 */
+    public int [] getKeywordKinds() {
+    	return new int[0];
+    }
 
 	public void lexToTokens(AbstractParser parser) {
 		lexToTokens(null, parser);

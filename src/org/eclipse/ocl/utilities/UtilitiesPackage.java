@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 231435
+ *   Zeligsoft - Bugs 231435, 243976
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.6 2008/09/21 12:21:09 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.7 2008/10/04 00:54:10 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.ocl.utilities.UtilitiesFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface UtilitiesPackage extends EPackage {
 	/**
@@ -65,6 +66,7 @@ public interface UtilitiesPackage extends EPackage {
     /**
 	 * The package content type ID.
 	 * <!-- begin-user-doc -->
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

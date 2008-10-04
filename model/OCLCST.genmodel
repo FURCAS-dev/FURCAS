@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl/src"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
     editDirectory="/org.eclipse.ocl.edit/src" editorDirectory="/org.eclipse.ocl.editor/src"
-    modelPluginID="org.eclipse.ocl" modelName="OCLCST" editPluginClass="internal.provider.OCLEditPlugin"
+    modelPluginID="org.eclipse.ocl" templateDirectory="/org.eclipse.ocl/templates"
+    dynamicTemplates="true" modelName="OCLCST" editPluginClass="internal.provider.OCLEditPlugin"
     editorPluginClass="internal.presentation.OCLEditorPlugin" nonNLSMarkers="true"
     rootImplementsInterface="" featureMapWrapperInterface="" featureMapWrapperInternalInterface=""
     featureMapWrapperClass="" testSuiteClass="org.eclipse.ocl.tests.OCLAllTests" booleanFlagsField="eFlags"
     booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="5.0">
+    complianceLevel="5.0" copyrightFields="false" binaryCompatibleReflectiveMethods="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
     <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
@@ -25,216 +26,277 @@
     <details key="OPERATION_BODIES" value="IGNORE"/>
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
     <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>OCLCST.uml</foreignModel>
-  <genPackages prefix="OCL" basePackage="org.eclipse" disposableProviderFactory="true"
-      ecorePackage="OCLCST.ecore#/">
-    <nestedGenPackages prefix="CST" basePackage="org.eclipse.ocl" disposableProviderFactory="true"
-        multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.cst" ecorePackage="OCLCST.ecore#//cst">
-      <genEnums ecoreEnum="OCLCST.ecore#//cst/SimpleTypeEnum">
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/identifier"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/self"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Integer"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/String"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Real"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Boolean"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclAny"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclVoid"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Invalid"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclMessage"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/keyword"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/UnlimitedNatural"/>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="OCL" basePackage="org.eclipse"
+      disposableProviderFactory="true" ecorePackage="OCLCST.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="CST" basePackage="org.eclipse.ocl"
+        disposableProviderFactory="true" multipleEditorPages="false" contentTypeIdentifier="org.eclipse.ocl.cst"
+        ecorePackage="OCLCST.ecore#//cst">
+      <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCLCST.ecore#//cst/SimpleTypeEnum">
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/identifier"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/self"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Integer"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/String"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Real"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Boolean"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclAny"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclVoid"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Invalid"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclMessage"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/keyword"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/UnlimitedNatural"/>
       </genEnums>
-      <genEnums ecoreEnum="OCLCST.ecore#//cst/PrePostOrBodyEnum">
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/PrePostOrBodyEnum/pre"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/PrePostOrBodyEnum/post"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/PrePostOrBodyEnum/body"/>
+      <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCLCST.ecore#//cst/PrePostOrBodyEnum">
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/PrePostOrBodyEnum/pre"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/PrePostOrBodyEnum/post"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/PrePostOrBodyEnum/body"/>
       </genEnums>
-      <genEnums ecoreEnum="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum">
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Set"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Bag"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Sequence"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Collection"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/OrderedSet"/>
+      <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum">
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Set"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Bag"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Sequence"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/Collection"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/CollectionTypeIdentifierEnum/OrderedSet"/>
       </genEnums>
-      <genEnums ecoreEnum="OCLCST.ecore#//cst/MessageExpKind">
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/MessageExpKind/hasSent"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/MessageExpKind/sent"/>
+      <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCLCST.ecore#//cst/MessageExpKind">
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/MessageExpKind/hasSent"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/MessageExpKind/sent"/>
       </genEnums>
-      <genEnums ecoreEnum="OCLCST.ecore#//cst/DotOrArrowEnum">
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/DotOrArrowEnum/none"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/DotOrArrowEnum/dot"/>
-        <genEnumLiterals ecoreEnumLiteral="OCLCST.ecore#//cst/DotOrArrowEnum/arrow"/>
+      <genEnums xsi:type="genmodel:GenEnum" ecoreEnum="OCLCST.ecore#//cst/DotOrArrowEnum">
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/DotOrArrowEnum/none"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/DotOrArrowEnum/dot"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/DotOrArrowEnum/arrow"/>
       </genEnums>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/CSTNode">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/startOffset"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/endOffset"/>
+      <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="OCLCST.ecore#//cst/IToken"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/CSTNode">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/startOffset"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/endOffset"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/startToken"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/endToken"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CSTNode/ast"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/PackageDeclarationCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/pathNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/contextDecls"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/packageDeclarationCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PackageDeclarationCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/pathNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/contextDecls"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/packageDeclarationCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/PathNameCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PathNameCS/sequenceOfNames"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PathNameCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PathNameCS/sequenceOfNames"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/TypeCS"/>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/OCLExpressionCS"/>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/ContextDeclCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/PropertyContextCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/pathNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/simpleNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/typeCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/initOrDerValueCS"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/TypeCS"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/OCLExpressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/ContextDeclCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PropertyContextCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/pathNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/simpleNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/typeCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/initOrDerValueCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/SimpleNameCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/value"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/type"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/SimpleNameCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/value"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/type"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/InitOrDerValueCS">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InitOrDerValueCS/initOrDerValueCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InitOrDerValueCS/expressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/InitOrDerValueCS">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InitOrDerValueCS/initOrDerValueCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InitOrDerValueCS/expressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/ClassifierContextDeclCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/pathNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/invOrDefCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/ClassifierContextDeclCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/pathNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/invOrDefCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/constraints"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/InvOrDefCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvOrDefCS/simpleNameCS"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvOrDefCS/invOrDefCS"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/InvOrDefCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvOrDefCS/simpleNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvOrDefCS/invOrDefCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/OperationContextDeclCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationContextDeclCS/operationCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationContextDeclCS/prePostOrBodyDecls"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationContextDeclCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationContextDeclCS/operationCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationContextDeclCS/prePostOrBodyDecls"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/OperationCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/pathNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/simpleNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/parameters"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/typeCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/pathNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/simpleNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/parameters"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OperationCS/typeCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/VariableCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/VariableCS/name"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableCS/typeCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableCS/initExpression"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/VariableCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/VariableCS/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableCS/typeCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableCS/initExpression"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/PrePostOrBodyDeclCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PrePostOrBodyDeclCS/kind"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PrePostOrBodyDeclCS/simpleNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PrePostOrBodyDeclCS/expressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PrePostOrBodyDeclCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PrePostOrBodyDeclCS/kind"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PrePostOrBodyDeclCS/simpleNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PrePostOrBodyDeclCS/expressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/DerValueCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/InitValueCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/InvCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvCS/expressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/DerValueCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/InitValueCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/InvCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvCS/expressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/DefCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefCS/defExpressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/DefCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefCS/defExpressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/DefExpressionCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefExpressionCS/operationCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefExpressionCS/variableCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefExpressionCS/expressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/DefExpressionCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefExpressionCS/operationCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefExpressionCS/variableCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefExpressionCS/expressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/VariableExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/arguments"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/simpleNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/isMarkedPreCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/VariableExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/arguments"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/simpleNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/isMarkedPreCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/IsMarkedPreCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/IsMarkedPreCS/pre"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IsMarkedPreCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/IsMarkedPreCS/pre"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/PrimitiveTypeCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/TupleTypeCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/TupleTypeCS/variables"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PrimitiveTypeCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/TupleTypeCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/TupleTypeCS/variables"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/CollectionTypeCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CollectionTypeCS/collectionTypeIdentifier"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionTypeCS/typeCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/CollectionTypeCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CollectionTypeCS/collectionTypeIdentifier"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionTypeCS/typeCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/LetExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LetExpCS/variables"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LetExpCS/inExpression"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/LetExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LetExpCS/variables"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LetExpCS/inExpression"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/IfExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/IfExpCS/thenExpression"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/IfExpCS/elseExpression"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/IfExpCS/condition"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IfExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/IfExpCS/thenExpression"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/IfExpCS/elseExpression"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/IfExpCS/condition"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/MessageExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/MessageExpCS/target"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/MessageExpCS/kind"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/MessageExpCS/simpleNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/MessageExpCS/arguments"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/MessageExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/MessageExpCS/target"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/MessageExpCS/kind"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/MessageExpCS/simpleNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/MessageExpCS/arguments"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/OCLMessageArgCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OCLMessageArgCS/typeCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OCLMessageArgCS/expression"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OCLMessageArgCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OCLMessageArgCS/typeCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OCLMessageArgCS/expression"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="OCLCST.ecore#//cst/LiteralExpCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/EnumLiteralExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/EnumLiteralExpCS/pathNameCS"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/EnumLiteralExpCS/simpleNameCS"/>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/LiteralExpCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/EnumLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/EnumLiteralExpCS/pathNameCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/EnumLiteralExpCS/simpleNameCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/CollectionLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CollectionLiteralExpCS/collectionType"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionLiteralExpCS/collectionLiteralParts"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/CollectionLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CollectionLiteralExpCS/collectionType"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionLiteralExpCS/collectionLiteralParts"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/CollectionLiteralPartCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionLiteralPartCS/expressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/CollectionLiteralPartCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionLiteralPartCS/expressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/TupleLiteralExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/TupleLiteralExpCS/variables"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/TupleLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/TupleLiteralExpCS/variables"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/PrimitiveLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PrimitiveLiteralExpCS/symbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PrimitiveLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PrimitiveLiteralExpCS/symbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/IntegerLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/IntegerLiteralExpCS/integerSymbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IntegerLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/IntegerLiteralExpCS/integerSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS/integerSymbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/UnlimitedNaturalLiteralExpCS/integerSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/RealLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/RealLiteralExpCS/realSymbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/RealLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/RealLiteralExpCS/realSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/StringLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StringLiteralExpCS/stringSymbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/StringLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StringLiteralExpCS/stringSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/BooleanLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/BooleanLiteralExpCS/booleanSymbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/BooleanLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/BooleanLiteralExpCS/booleanSymbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/NullLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/NullLiteralExpCS/symbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/NullLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/NullLiteralExpCS/symbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/InvalidLiteralExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/InvalidLiteralExpCS/symbol"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/InvalidLiteralExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/InvalidLiteralExpCS/symbol"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/CollectionRangeCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionRangeCS/lastExpressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/CollectionRangeCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CollectionRangeCS/lastExpressionCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/CallExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CallExpCS/source"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CallExpCS/accessor"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CallExpCS/simpleNameCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/CallExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CallExpCS/source"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/CallExpCS/accessor"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/CallExpCS/simpleNameCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/LoopExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LoopExpCS/variable1"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LoopExpCS/variable2"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LoopExpCS/body"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/LoopExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LoopExpCS/variable1"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LoopExpCS/variable2"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/LoopExpCS/body"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/IteratorExpCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/IterateExpCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/FeatureCallExpCS">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/FeatureCallExpCS/arguments"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/FeatureCallExpCS/isMarkedPreCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IteratorExpCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IterateExpCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/FeatureCallExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/FeatureCallExpCS/arguments"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/FeatureCallExpCS/isMarkedPreCS"/>
       </genClasses>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/OperationCallExpCS"/>
-      <genClasses ecoreClass="OCLCST.ecore#//cst/StateExpCS">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StateExpCS/sequenceOfNames"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationCallExpCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/StateExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StateExpCS/sequenceOfNames"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

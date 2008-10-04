@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 231435
+ *   Zeligsoft - Bugs 231435, 243976
  * 
  * </copyright>
  *
- * $Id: TypesPackage.java,v 1.5 2008/09/21 12:21:09 cdamus Exp $
+ * $Id: TypesPackage.java,v 1.6 2008/10/04 00:54:10 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * @see org.eclipse.ocl.types.TypesFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface TypesPackage extends EPackage {
 	/**
@@ -66,6 +67,7 @@ public interface TypesPackage extends EPackage {
     /**
 	 * The package content type ID.
 	 * <!-- begin-user-doc -->
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

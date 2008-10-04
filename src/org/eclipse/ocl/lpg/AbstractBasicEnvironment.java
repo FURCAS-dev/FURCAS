@@ -9,12 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling 
- *   Zeligsoft - Bug 245760
+ *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+ *             - Bug 243976 
+ *   Zeligsoft - Bugs 245760, 243976
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.4 2008/08/30 17:11:21 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.5 2008/10/04 00:54:10 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -186,6 +187,7 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	public void initASTMapping(Object astNode, CSTNode cstNode) {
 		if ((astNode != null) && (cstNode != null)) {
 			CSTNode oldCSTNode = getASTNodeToCSTNodeMap().put(astNode, cstNode);
+			cstNode.setAst(astNode);
 			if (oldCSTNode != null && OCLPlugin.shouldTrace(OCLDebugOptions.PARSING)) {
 				OCLPlugin.trace("Displaced " + oldCSTNode); //$NON-NLS-1$
 			}

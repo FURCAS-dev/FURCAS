@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: TupleTypeCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: TupleTypeCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -33,22 +34,23 @@ import org.eclipse.emf.common.util.EList;
  * @see org.eclipse.ocl.cst.CSTPackage#getTupleTypeCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface TupleTypeCS extends TypeCS {
 	/**
-     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.ocl.cst.VariableCS}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.cst.VariableCS}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variables</em>' containment reference list.
-     * @see org.eclipse.ocl.cst.CSTPackage#getTupleTypeCS_Variables()
-     * @model containment="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Variables</em>' containment reference list.
+	 * @see org.eclipse.ocl.cst.CSTPackage#getTupleTypeCS_Variables()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
 	EList<VariableCS> getVariables();
 
 } // TupleTypeCS

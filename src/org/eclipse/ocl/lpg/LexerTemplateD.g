@@ -168,13 +168,17 @@ $Headers
         	return oclEnvironment;
         }
 
+        @Override
         public int [] getKeywordKinds() { return kwLexer.getKeywordKinds(); }
+
         public int getLeftSpan() { return lexParser.getFirstToken(); }
         public $prs_stream_class getParser() { return parser; }
         public int getRhsFirstTokenIndex(int i) { return lexParser.getFirstToken(i); }
         public int getRhsLastTokenIndex(int i) { return lexParser.getLastToken(i); }
         public int getRightSpan() { return lexParser.getLastToken(); }
-        @Override public int getToken(int i) { return lexParser.getToken(i); }
+
+        @Override
+        public int getToken(int i) { return lexParser.getToken(i); }
 
         @Override
         public void initialize(char [] content, String filename)
