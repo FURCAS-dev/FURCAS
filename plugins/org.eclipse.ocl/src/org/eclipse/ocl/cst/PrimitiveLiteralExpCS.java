@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: PrimitiveLiteralExpCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -32,32 +32,33 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getPrimitiveLiteralExpCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface PrimitiveLiteralExpCS extends LiteralExpCS {
 	/**
-     * Returns the value of the '<em><b>Symbol</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Symbol</em>' attribute.
-     * @see #setSymbol(String)
-     * @see org.eclipse.ocl.cst.CSTPackage#getPrimitiveLiteralExpCS_Symbol()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Symbol</em>' attribute.
+	 * @see #setSymbol(String)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getPrimitiveLiteralExpCS_Symbol()
+	 * @model
+	 * @generated
+	 */
 	String getSymbol();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.PrimitiveLiteralExpCS#getSymbol <em>Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.PrimitiveLiteralExpCS#getSymbol <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Symbol</em>' attribute.
-     * @see #getSymbol()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Symbol</em>' attribute.
+	 * @see #getSymbol()
+	 * @generated
+	 */
 	void setSymbol(String value);
 
 } // PrimitiveLiteralExpCS

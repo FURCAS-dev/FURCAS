@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,12 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
+ *             - Bug 243976
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: AbstractOCLParser.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -154,15 +156,63 @@ public abstract class AbstractOCLParser extends AbstractParser
 		return result;
 	}
 	
+	/**
+	 * @deprecated As of 1.3, the
+	 *             {@link #createClassifierContextDeclCS(PathNameCS, EList)}
+	 *             method should be used, instead.
+	 */
+	@Deprecated
 	protected ClassifierContextDeclCS createClassifierContextDeclCS(
 			PathNameCS pathNameCS,
 			InvOrDefCS invOrDefCS) {
 		ClassifierContextDeclCS result = CSTFactory.eINSTANCE.createClassifierContextDeclCS();
 		result.setPathNameCS(pathNameCS);
 		result.setInvOrDefCS(invOrDefCS);
+		
+		// fill in the owned constraints list
+		for (InvOrDefCS next = invOrDefCS; next != null; next = next.getInvOrDefCS()) {
+			result.getConstraints().add(0, next);
+		}
+		
 		return result;
 	}
 	
+	/**
+	 * Creates a classifier context declaration.
+	 * 
+	 * @param pathNameCS
+	 *            the concrete syntax of the classifier's qualified name
+	 * @param constraints
+	 *            the concrete syntax of the invariant and/or definition
+	 *            constraints in the classifier context
+	 * @return the classifier context declaration
+	 * 
+	 * @since 1.3
+	 */
+	protected ClassifierContextDeclCS createClassifierContextDeclCS(
+			PathNameCS pathNameCS,
+			EList<InvOrDefCS> constraints) {
+		
+		ClassifierContextDeclCS result = CSTFactory.eINSTANCE.createClassifierContextDeclCS();
+		result.setPathNameCS(pathNameCS);
+		result.getConstraints().addAll(constraints);
+		
+		// Create the reversed linked list for 1.2.0 API compatibility
+		InvOrDefCS tail = null;
+		for (InvOrDefCS next : constraints) {
+			next.setInvOrDefCS(tail);
+			tail = next;
+		}
+		result.setInvOrDefCS(tail);
+		return result;
+	}
+	
+	/**
+	 * @deprecated As of 1.3, the
+	 *             {@link #createInvCS(SimpleNameCS, OCLExpressionCS)} method
+	 *             should be used, instead.
+	 */
+	@Deprecated
 	protected InvCS createInvCS(
 			InvOrDefCS invOrDefCS,
 			SimpleNameCS simpleNameCS,
@@ -174,6 +224,34 @@ public abstract class AbstractOCLParser extends AbstractParser
 		return result;
 	}
 	
+	/**
+	 * Creates an invariant constraint.
+	 * 
+	 * @param simpleNameCS
+	 *            the concrete syntax of the constraint name, or
+	 *            <code>null</code> if none
+	 * @param oclExpressionCS
+	 *            the concrete syntax of the constraint expression
+	 * 
+	 * @return the concrete syntax of the invariant constraint
+	 * 
+	 * @since 1.3
+	 */
+	protected InvCS createInvCS(
+			SimpleNameCS simpleNameCS,
+			OCLExpressionCS oclExpressionCS) {
+		InvCS result = CSTFactory.eINSTANCE.createInvCS();
+		result.setSimpleNameCS(simpleNameCS);
+		result.setExpressionCS(oclExpressionCS);
+		return result;
+	}
+	
+	/**
+	 * @deprecated As of 1.3, the
+	 *             {@link #createDefCS(SimpleNameCS, OCLExpressionCS)} method
+	 *             should be used, instead.
+	 */
+	@Deprecated
 	protected DefCS createDefCS(
 			InvOrDefCS invOrDefCS,
 			SimpleNameCS simpleNameCS,
@@ -182,6 +260,27 @@ public abstract class AbstractOCLParser extends AbstractParser
 		result.setSimpleNameCS(simpleNameCS);
 		result.setDefExpressionCS(defExpressionCS);
 		result.setInvOrDefCS(invOrDefCS);
+		return result;
+	}
+	
+	/**
+	 * Creates a definition constraint.
+	 * 
+	 * @param simpleNameCS
+	 *            the concrete syntax of the constraint name
+	 * @param oclExpressionCS
+	 *            the concrete syntax of the constraint expression
+	 * 
+	 * @return the concrete syntax of the definition constraint
+	 * 
+	 * @since 1.3
+	 */
+	protected DefCS createDefCS(
+			SimpleNameCS simpleNameCS,
+			DefExpressionCS defExpressionCS) {
+		DefCS result = CSTFactory.eINSTANCE.createDefCS();
+		result.setSimpleNameCS(simpleNameCS);
+		result.setDefExpressionCS(defExpressionCS);
 		return result;
 	}
 	

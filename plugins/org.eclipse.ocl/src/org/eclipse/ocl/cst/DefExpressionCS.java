@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: DefExpressionCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: DefExpressionCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -34,85 +34,86 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface DefExpressionCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Operation CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Operation CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operation CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Operation CS</em>' containment reference.
-     * @see #setOperationCS(OperationCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS_OperationCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Operation CS</em>' containment reference.
+	 * @see #setOperationCS(OperationCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS_OperationCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	OperationCS getOperationCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.DefExpressionCS#getOperationCS <em>Operation CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.DefExpressionCS#getOperationCS <em>Operation CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Operation CS</em>' containment reference.
-     * @see #getOperationCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Operation CS</em>' containment reference.
+	 * @see #getOperationCS()
+	 * @generated
+	 */
 	void setOperationCS(OperationCS value);
 
 	/**
-     * Returns the value of the '<em><b>Variable CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Variable CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variable CS</em>' containment reference.
-     * @see #setVariableCS(VariableCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS_VariableCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Variable CS</em>' containment reference.
+	 * @see #setVariableCS(VariableCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS_VariableCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	VariableCS getVariableCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.DefExpressionCS#getVariableCS <em>Variable CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.DefExpressionCS#getVariableCS <em>Variable CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Variable CS</em>' containment reference.
-     * @see #getVariableCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Variable CS</em>' containment reference.
+	 * @see #getVariableCS()
+	 * @generated
+	 */
 	void setVariableCS(VariableCS value);
 
 	/**
-     * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Expression CS</em>' containment reference.
-     * @see #setExpressionCS(OCLExpressionCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS_ExpressionCS()
-     * @model containment="true"
-     *        extendedMetaData="name='oclExpressionCS'"
-     * @generated
-     */
+	 * @return the value of the '<em>Expression CS</em>' containment reference.
+	 * @see #setExpressionCS(OCLExpressionCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getDefExpressionCS_ExpressionCS()
+	 * @model containment="true"
+	 *        extendedMetaData="name='oclExpressionCS'"
+	 * @generated
+	 */
 	OCLExpressionCS getExpressionCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.DefExpressionCS#getExpressionCS <em>Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.DefExpressionCS#getExpressionCS <em>Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Expression CS</em>' containment reference.
-     * @see #getExpressionCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Expression CS</em>' containment reference.
+	 * @see #getExpressionCS()
+	 * @generated
+	 */
 	void setExpressionCS(OCLExpressionCS value);
 
 } // DefExpressionCS

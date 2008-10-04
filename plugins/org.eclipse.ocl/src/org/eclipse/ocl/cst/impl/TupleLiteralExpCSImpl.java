@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSImpl.java,v 1.1 2007/10/11 23:05:01 cdamus Exp $
+ * $Id: TupleLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -43,118 +44,118 @@ import org.eclipse.ocl.cst.VariableCS;
  */
 public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLiteralExpCS {
 	/**
-     * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getVariables()
-     * @generated
-     * @ordered
-     */
+	 * @see #getVariables()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<VariableCS> variables;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TupleLiteralExpCSImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CSTPackage.Literals.TUPLE_LITERAL_EXP_CS;
-    }
+		return CSTPackage.Literals.TUPLE_LITERAL_EXP_CS;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList<VariableCS> getVariables() {
-        if (variables == null) {
-            variables = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES);
-        }
-        return variables;
-    }
+		if (variables == null) {
+			variables = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES);
+		}
+		return variables;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
-                return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
-                return getVariables();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+				return getVariables();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
-		@Override
+	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
-                getVariables().clear();
-                getVariables().addAll((Collection<? extends VariableCS>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+				getVariables().clear();
+				getVariables().addAll((Collection<? extends VariableCS>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
-                getVariables().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+				getVariables().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
-                return variables != null && !variables.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+				return variables != null && !variables.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //TupleLiteralExpCSImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.6 2008/05/04 01:17:02 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.7 2008/10/04 00:54:10 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -146,7 +147,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
             	getOCLEnvironment(), post)).getBodyExpression();
             break;
         default:
-            InvCS inv = parser.createInvCS(null, null, cst);
+            InvCS inv = parser.createInvCS(null, cst);
             result = uml.getSpecification(invCS(inv, getOCLEnvironment())).getBodyExpression();
             break;
         }

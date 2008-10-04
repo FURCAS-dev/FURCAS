@@ -9,16 +9,17 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 231435
+ *   Zeligsoft - Bugs 231435, 243976
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.3 2008/09/21 12:21:09 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.4 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.ocl.cst.CSTFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface CSTPackage extends EPackage {
 	/**
@@ -64,11 +66,12 @@ public interface CSTPackage extends EPackage {
 	String eNS_PREFIX = "ocl.cst"; //$NON-NLS-1$
 
     /**
-	 * The package content type ID.
-	 * <!-- begin-user-doc -->
+     * The package content type ID.
+     * <!-- begin-user-doc -->
+     * @since 1.3
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eCONTENT_TYPE = "org.eclipse.ocl.cst"; //$NON-NLS-1$
 
 	/**
@@ -86,6 +89,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.CSTNodeImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCSTNode()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CST_NODE = 0;
 
@@ -95,6 +99,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CST_NODE__START_OFFSET = 0;
 
@@ -104,8 +109,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CST_NODE__END_OFFSET = 1;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CST_NODE__START_TOKEN = 2;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CST_NODE__END_TOKEN = 3;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CST_NODE__AST = 4;
 
 	/**
      * The number of structural features of the '<em>Node</em>' class.
@@ -113,8 +149,9 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
-	int CST_NODE_FEATURE_COUNT = 2;
+	int CST_NODE_FEATURE_COUNT = 5;
 
 	/**
      * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
@@ -123,6 +160,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.PackageDeclarationCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPackageDeclarationCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS = 1;
 
@@ -132,6 +170,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -141,8 +180,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PACKAGE_DECLARATION_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PACKAGE_DECLARATION_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PACKAGE_DECLARATION_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
@@ -150,6 +220,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS__PATH_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -159,6 +230,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS__CONTEXT_DECLS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -168,6 +240,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS = CST_NODE_FEATURE_COUNT + 2;
 
@@ -177,6 +250,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -187,6 +261,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.OCLExpressionCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLExpressionCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_EXPRESSION_CS = 4;
 
@@ -196,6 +271,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_EXPRESSION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -205,8 +281,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_EXPRESSION_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OCL_EXPRESSION_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OCL_EXPRESSION_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OCL_EXPRESSION_CS__AST = CST_NODE__AST;
 
 	/**
      * The number of structural features of the '<em>OCL Expression CS</em>' class.
@@ -214,6 +321,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
@@ -224,6 +332,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.TypeCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTypeCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TYPE_CS = 3;
 
@@ -233,6 +342,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TYPE_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -242,8 +352,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TYPE_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TYPE_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TYPE_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TYPE_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The number of structural features of the '<em>Type CS</em>' class.
@@ -251,6 +392,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TYPE_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -261,6 +403,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.PathNameCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPathNameCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PATH_NAME_CS = 2;
 
@@ -270,6 +413,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PATH_NAME_CS__START_OFFSET = TYPE_CS__START_OFFSET;
 
@@ -279,8 +423,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PATH_NAME_CS__END_OFFSET = TYPE_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PATH_NAME_CS__START_TOKEN = TYPE_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PATH_NAME_CS__END_TOKEN = TYPE_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PATH_NAME_CS__AST = TYPE_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Sequence Of Names</b></em>' attribute list.
@@ -288,6 +463,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PATH_NAME_CS__SEQUENCE_OF_NAMES = TYPE_CS_FEATURE_COUNT + 0;
 
@@ -297,6 +473,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PATH_NAME_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
@@ -307,6 +484,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.ContextDeclCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getContextDeclCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CONTEXT_DECL_CS = 5;
 
@@ -316,6 +494,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CONTEXT_DECL_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -325,8 +504,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CONTEXT_DECL_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CONTEXT_DECL_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CONTEXT_DECL_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CONTEXT_DECL_CS__AST = CST_NODE__AST;
 
 	/**
      * The number of structural features of the '<em>Context Decl CS</em>' class.
@@ -334,6 +544,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CONTEXT_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
@@ -344,6 +555,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.PropertyContextCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPropertyContextCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS = 6;
 
@@ -353,6 +565,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
 
@@ -362,8 +575,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PROPERTY_CONTEXT_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PROPERTY_CONTEXT_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PROPERTY_CONTEXT_CS__AST = CONTEXT_DECL_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
@@ -371,6 +615,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
@@ -380,6 +625,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
@@ -389,6 +635,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS__TYPE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
@@ -398,6 +645,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
@@ -407,6 +655,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PROPERTY_CONTEXT_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
@@ -417,6 +666,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.SimpleNameCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getSimpleNameCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_NAME_CS = 7;
 
@@ -426,6 +676,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_NAME_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -435,8 +686,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_NAME_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int SIMPLE_NAME_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int SIMPLE_NAME_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int SIMPLE_NAME_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -444,6 +726,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_NAME_CS__VALUE = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -453,6 +736,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_NAME_CS__TYPE = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
@@ -462,6 +746,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_NAME_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -472,6 +757,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.InitOrDerValueCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInitOrDerValueCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_OR_DER_VALUE_CS = 8;
 
@@ -481,6 +767,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_OR_DER_VALUE_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -490,8 +777,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_OR_DER_VALUE_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INIT_OR_DER_VALUE_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INIT_OR_DER_VALUE_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INIT_OR_DER_VALUE_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
@@ -499,6 +817,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -508,6 +827,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_OR_DER_VALUE_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -517,6 +837,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_OR_DER_VALUE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
 
@@ -527,6 +848,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getClassifierContextDeclCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CLASSIFIER_CONTEXT_DECL_CS = 9;
 
@@ -536,6 +858,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CLASSIFIER_CONTEXT_DECL_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
 
@@ -545,8 +868,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CLASSIFIER_CONTEXT_DECL_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CLASSIFIER_CONTEXT_DECL_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CLASSIFIER_CONTEXT_DECL_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CLASSIFIER_CONTEXT_DECL_CS__AST = CONTEXT_DECL_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
@@ -554,17 +908,29 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Inv Or Def CS</b></em>' containment reference.
+     * The feature id for the '<em><b>Inv Or Def CS</b></em>' reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+
+	/**
+     * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
      * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
@@ -572,8 +938,9 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
-	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
@@ -582,6 +949,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.InvOrDefCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInvOrDefCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_OR_DEF_CS = 10;
 
@@ -591,6 +959,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_OR_DEF_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -600,8 +969,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_OR_DEF_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INV_OR_DEF_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INV_OR_DEF_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INV_OR_DEF_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
@@ -609,6 +1009,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_OR_DEF_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -618,6 +1019,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_OR_DEF_CS__INV_OR_DEF_CS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -627,6 +1029,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_OR_DEF_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
 
@@ -637,6 +1040,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.OperationContextDeclCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOperationContextDeclCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CONTEXT_DECL_CS = 11;
 
@@ -646,6 +1050,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CONTEXT_DECL_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
 
@@ -655,8 +1060,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CONTEXT_DECL_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CONTEXT_DECL_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CONTEXT_DECL_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CONTEXT_DECL_CS__AST = CONTEXT_DECL_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Operation CS</b></em>' containment reference.
@@ -664,6 +1100,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CONTEXT_DECL_CS__OPERATION_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
@@ -673,6 +1110,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
@@ -682,6 +1120,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
@@ -692,6 +1131,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.OperationCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOperationCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS = 12;
 
@@ -701,6 +1141,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -710,8 +1151,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
@@ -719,6 +1191,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS__PATH_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -728,6 +1201,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -737,6 +1211,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS__PARAMETERS = CST_NODE_FEATURE_COUNT + 2;
 
@@ -746,6 +1221,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 3;
 
@@ -755,6 +1231,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 4;
 
@@ -765,6 +1242,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.VariableCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getVariableCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS = 13;
 
@@ -774,6 +1252,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -783,8 +1262,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int VARIABLE_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int VARIABLE_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int VARIABLE_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -792,6 +1302,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS__NAME = CST_NODE_FEATURE_COUNT + 0;
 
@@ -801,6 +1312,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -810,6 +1322,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS__INIT_EXPRESSION = CST_NODE_FEATURE_COUNT + 2;
 
@@ -819,6 +1332,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -829,6 +1343,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.PrePostOrBodyDeclCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrePostOrBodyDeclCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS = 14;
 
@@ -838,6 +1353,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -847,8 +1363,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRE_POST_OR_BODY_DECL_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRE_POST_OR_BODY_DECL_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRE_POST_OR_BODY_DECL_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -856,6 +1403,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS__KIND = CST_NODE_FEATURE_COUNT + 0;
 
@@ -865,6 +1413,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -874,6 +1423,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 2;
 
@@ -883,6 +1433,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -893,6 +1444,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.DerValueCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDerValueCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DER_VALUE_CS = 15;
 
@@ -902,6 +1454,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DER_VALUE_CS__START_OFFSET = INIT_OR_DER_VALUE_CS__START_OFFSET;
 
@@ -911,8 +1464,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DER_VALUE_CS__END_OFFSET = INIT_OR_DER_VALUE_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DER_VALUE_CS__START_TOKEN = INIT_OR_DER_VALUE_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DER_VALUE_CS__END_TOKEN = INIT_OR_DER_VALUE_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DER_VALUE_CS__AST = INIT_OR_DER_VALUE_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
@@ -920,6 +1504,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DER_VALUE_CS__INIT_OR_DER_VALUE_CS = INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS;
 
@@ -929,6 +1514,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DER_VALUE_CS__EXPRESSION_CS = INIT_OR_DER_VALUE_CS__EXPRESSION_CS;
 
@@ -938,6 +1524,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DER_VALUE_CS_FEATURE_COUNT = INIT_OR_DER_VALUE_CS_FEATURE_COUNT + 0;
 
@@ -948,6 +1535,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.InitValueCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInitValueCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_VALUE_CS = 16;
 
@@ -957,6 +1545,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_VALUE_CS__START_OFFSET = INIT_OR_DER_VALUE_CS__START_OFFSET;
 
@@ -966,8 +1555,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_VALUE_CS__END_OFFSET = INIT_OR_DER_VALUE_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INIT_VALUE_CS__START_TOKEN = INIT_OR_DER_VALUE_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INIT_VALUE_CS__END_TOKEN = INIT_OR_DER_VALUE_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INIT_VALUE_CS__AST = INIT_OR_DER_VALUE_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
@@ -975,6 +1595,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_VALUE_CS__INIT_OR_DER_VALUE_CS = INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS;
 
@@ -984,6 +1605,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_VALUE_CS__EXPRESSION_CS = INIT_OR_DER_VALUE_CS__EXPRESSION_CS;
 
@@ -993,6 +1615,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INIT_VALUE_CS_FEATURE_COUNT = INIT_OR_DER_VALUE_CS_FEATURE_COUNT + 0;
 
@@ -1003,6 +1626,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.InvCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInvCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS = 17;
 
@@ -1012,6 +1636,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS__START_OFFSET = INV_OR_DEF_CS__START_OFFSET;
 
@@ -1021,8 +1646,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS__END_OFFSET = INV_OR_DEF_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INV_CS__START_TOKEN = INV_OR_DEF_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INV_CS__END_TOKEN = INV_OR_DEF_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INV_CS__AST = INV_OR_DEF_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
@@ -1030,6 +1686,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS__SIMPLE_NAME_CS = INV_OR_DEF_CS__SIMPLE_NAME_CS;
 
@@ -1039,6 +1696,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS__INV_OR_DEF_CS = INV_OR_DEF_CS__INV_OR_DEF_CS;
 
@@ -1048,6 +1706,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS__EXPRESSION_CS = INV_OR_DEF_CS_FEATURE_COUNT + 0;
 
@@ -1057,6 +1716,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INV_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 1;
 
@@ -1067,6 +1727,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.DefCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDefCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS = 18;
 
@@ -1076,6 +1737,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS__START_OFFSET = INV_OR_DEF_CS__START_OFFSET;
 
@@ -1085,8 +1747,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS__END_OFFSET = INV_OR_DEF_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DEF_CS__START_TOKEN = INV_OR_DEF_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DEF_CS__END_TOKEN = INV_OR_DEF_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DEF_CS__AST = INV_OR_DEF_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
@@ -1094,6 +1787,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS__SIMPLE_NAME_CS = INV_OR_DEF_CS__SIMPLE_NAME_CS;
 
@@ -1103,6 +1797,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS__INV_OR_DEF_CS = INV_OR_DEF_CS__INV_OR_DEF_CS;
 
@@ -1112,6 +1807,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS__DEF_EXPRESSION_CS = INV_OR_DEF_CS_FEATURE_COUNT + 0;
 
@@ -1121,6 +1817,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 1;
 
@@ -1131,6 +1828,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.DefExpressionCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDefExpressionCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS = 19;
 
@@ -1140,6 +1838,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -1149,8 +1848,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DEF_EXPRESSION_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DEF_EXPRESSION_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int DEF_EXPRESSION_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Operation CS</b></em>' containment reference.
@@ -1158,6 +1888,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS__OPERATION_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -1167,6 +1898,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS__VARIABLE_CS = CST_NODE_FEATURE_COUNT + 1;
 
@@ -1176,6 +1908,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 2;
 
@@ -1185,6 +1918,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DEF_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -1195,6 +1929,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.VariableExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getVariableExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS = 20;
 
@@ -1204,6 +1939,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -1213,8 +1949,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int VARIABLE_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int VARIABLE_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int VARIABLE_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1222,6 +1989,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS__ARGUMENTS = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -1231,6 +1999,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
@@ -1240,6 +2009,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS__IS_MARKED_PRE_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -1249,6 +2019,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int VARIABLE_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -1259,6 +2030,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.IsMarkedPreCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIsMarkedPreCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IS_MARKED_PRE_CS = 21;
 
@@ -1268,6 +2040,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IS_MARKED_PRE_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -1277,8 +2050,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IS_MARKED_PRE_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int IS_MARKED_PRE_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int IS_MARKED_PRE_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int IS_MARKED_PRE_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Pre</b></em>' attribute.
@@ -1286,6 +2090,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IS_MARKED_PRE_CS__PRE = CST_NODE_FEATURE_COUNT + 0;
 
@@ -1295,6 +2100,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IS_MARKED_PRE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
@@ -1305,6 +2111,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.PrimitiveTypeCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrimitiveTypeCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_TYPE_CS = 22;
 
@@ -1314,6 +2121,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_TYPE_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
@@ -1323,8 +2131,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_TYPE_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRIMITIVE_TYPE_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRIMITIVE_TYPE_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRIMITIVE_TYPE_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1332,6 +2171,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_TYPE_CS__VALUE = SIMPLE_NAME_CS__VALUE;
 
@@ -1341,6 +2181,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_TYPE_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
@@ -1350,6 +2191,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_TYPE_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
@@ -1360,6 +2202,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.TupleTypeCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTupleTypeCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_TYPE_CS = 23;
 
@@ -1369,6 +2212,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_TYPE_CS__START_OFFSET = TYPE_CS__START_OFFSET;
 
@@ -1378,8 +2222,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_TYPE_CS__END_OFFSET = TYPE_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TUPLE_TYPE_CS__START_TOKEN = TYPE_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TUPLE_TYPE_CS__END_TOKEN = TYPE_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TUPLE_TYPE_CS__AST = TYPE_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -1387,6 +2262,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_TYPE_CS__VARIABLES = TYPE_CS_FEATURE_COUNT + 0;
 
@@ -1396,6 +2272,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
@@ -1406,6 +2283,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.CollectionTypeCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionTypeCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_CS = 24;
 
@@ -1415,6 +2293,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_CS__START_OFFSET = TYPE_CS__START_OFFSET;
 
@@ -1424,8 +2303,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_CS__END_OFFSET = TYPE_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_TYPE_CS__START_TOKEN = TYPE_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_TYPE_CS__END_TOKEN = TYPE_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_TYPE_CS__AST = TYPE_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Collection Type Identifier</b></em>' attribute.
@@ -1433,6 +2343,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER = TYPE_CS_FEATURE_COUNT + 0;
 
@@ -1442,6 +2353,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_CS__TYPE_CS = TYPE_CS_FEATURE_COUNT + 1;
 
@@ -1451,6 +2363,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 2;
 
@@ -1461,6 +2374,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.LetExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getLetExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LET_EXP_CS = 25;
 
@@ -1470,6 +2384,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LET_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -1479,8 +2394,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LET_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LET_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LET_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LET_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -1488,6 +2434,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LET_EXP_CS__VARIABLES = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -1497,6 +2444,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LET_EXP_CS__IN_EXPRESSION = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
@@ -1506,6 +2454,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LET_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -1516,6 +2465,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.IfExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIfExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS = 26;
 
@@ -1525,6 +2475,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -1534,8 +2485,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int IF_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int IF_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int IF_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Then Expression</b></em>' containment reference.
@@ -1543,6 +2525,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS__THEN_EXPRESSION = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -1552,6 +2535,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS__ELSE_EXPRESSION = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
@@ -1561,6 +2545,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS__CONDITION = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -1570,6 +2555,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int IF_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -1580,6 +2566,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.MessageExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getMessageExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS = 27;
 
@@ -1589,6 +2576,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -1598,8 +2586,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int MESSAGE_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int MESSAGE_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int MESSAGE_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1607,6 +2626,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS__TARGET = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -1616,6 +2636,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS__KIND = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
@@ -1625,6 +2646,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -1634,6 +2656,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS__ARGUMENTS = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -1643,6 +2666,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 4;
 
@@ -1653,6 +2677,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.OCLMessageArgCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLMessageArgCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_MESSAGE_ARG_CS = 28;
 
@@ -1662,6 +2687,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_MESSAGE_ARG_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -1671,8 +2697,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_MESSAGE_ARG_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OCL_MESSAGE_ARG_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OCL_MESSAGE_ARG_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OCL_MESSAGE_ARG_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Type CS</b></em>' containment reference.
@@ -1680,6 +2737,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_MESSAGE_ARG_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -1689,6 +2747,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_MESSAGE_ARG_CS__EXPRESSION = CST_NODE_FEATURE_COUNT + 1;
 
@@ -1698,6 +2757,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
 
@@ -1708,6 +2768,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.LiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LITERAL_EXP_CS = 29;
 
@@ -1717,6 +2778,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LITERAL_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -1726,8 +2788,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LITERAL_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LITERAL_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LITERAL_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LITERAL_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The number of structural features of the '<em>Literal Exp CS</em>' class.
@@ -1735,6 +2828,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LITERAL_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -1745,6 +2839,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.EnumLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getEnumLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ENUM_LITERAL_EXP_CS = 30;
 
@@ -1754,6 +2849,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ENUM_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
@@ -1763,8 +2859,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ENUM_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ENUM_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ENUM_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ENUM_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
@@ -1772,6 +2899,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ENUM_LITERAL_EXP_CS__PATH_NAME_CS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -1781,6 +2909,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -1790,6 +2919,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ENUM_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
@@ -1800,6 +2930,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.CollectionLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_EXP_CS = 31;
 
@@ -1809,6 +2940,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
@@ -1818,8 +2950,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Collection Type</b></em>' attribute.
@@ -1827,6 +2990,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -1836,6 +3000,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -1845,6 +3010,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
@@ -1855,6 +3021,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.CollectionLiteralPartCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionLiteralPartCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_PART_CS = 32;
 
@@ -1864,6 +3031,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_PART_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
@@ -1873,8 +3041,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_PART_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_LITERAL_PART_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_LITERAL_PART_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_LITERAL_PART_CS__AST = CST_NODE__AST;
 
 	/**
      * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
@@ -1882,6 +3081,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_PART_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 0;
 
@@ -1891,6 +3091,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_LITERAL_PART_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
@@ -1901,6 +3102,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.TupleLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTupleLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_LITERAL_EXP_CS = 33;
 
@@ -1910,6 +3112,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
@@ -1919,8 +3122,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TUPLE_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TUPLE_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int TUPLE_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -1928,6 +3162,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_LITERAL_EXP_CS__VARIABLES = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -1937,6 +3172,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int TUPLE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -1947,6 +3183,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.PrimitiveLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrimitiveLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_LITERAL_EXP_CS = 34;
 
@@ -1956,6 +3193,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
@@ -1965,8 +3203,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRIMITIVE_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRIMITIVE_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int PRIMITIVE_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -1974,6 +3243,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_LITERAL_EXP_CS__SYMBOL = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -1983,6 +3253,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -1993,6 +3264,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.IntegerLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIntegerLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INTEGER_LITERAL_EXP_CS = 35;
 
@@ -2002,6 +3274,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INTEGER_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
@@ -2011,8 +3284,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INTEGER_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INTEGER_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INTEGER_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INTEGER_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2020,6 +3324,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INTEGER_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
@@ -2029,6 +3334,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INTEGER_LITERAL_EXP_CS__INTEGER_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2038,6 +3344,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INTEGER_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2048,6 +3355,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.UnlimitedNaturalLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getUnlimitedNaturalLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 36;
 
@@ -2057,6 +3365,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
@@ -2066,8 +3375,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2075,6 +3415,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
@@ -2084,6 +3425,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2093,6 +3435,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2103,6 +3446,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.RealLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getRealLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int REAL_LITERAL_EXP_CS = 37;
 
@@ -2112,6 +3456,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int REAL_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
@@ -2121,8 +3466,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int REAL_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int REAL_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int REAL_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int REAL_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2130,6 +3506,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int REAL_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
@@ -2139,6 +3516,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int REAL_LITERAL_EXP_CS__REAL_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2148,6 +3526,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int REAL_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2158,6 +3537,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.StringLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getStringLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STRING_LITERAL_EXP_CS = 38;
 
@@ -2167,6 +3547,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STRING_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
@@ -2176,8 +3557,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STRING_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int STRING_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int STRING_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int STRING_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2185,6 +3597,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STRING_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
@@ -2194,6 +3607,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STRING_LITERAL_EXP_CS__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2203,6 +3617,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STRING_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2213,6 +3628,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.BooleanLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getBooleanLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int BOOLEAN_LITERAL_EXP_CS = 39;
 
@@ -2222,6 +3638,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int BOOLEAN_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
@@ -2231,8 +3648,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int BOOLEAN_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int BOOLEAN_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int BOOLEAN_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int BOOLEAN_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2240,6 +3688,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int BOOLEAN_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
@@ -2249,6 +3698,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2258,6 +3708,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2268,6 +3719,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.NullLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getNullLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int NULL_LITERAL_EXP_CS = 40;
 
@@ -2277,6 +3729,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int NULL_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
@@ -2286,8 +3739,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int NULL_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int NULL_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int NULL_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int NULL_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2295,6 +3779,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int NULL_LITERAL_EXP_CS__SYMBOL = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2304,6 +3789,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2314,6 +3800,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.InvalidLiteralExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInvalidLiteralExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INVALID_LITERAL_EXP_CS = 41;
 
@@ -2323,6 +3810,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INVALID_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
@@ -2332,8 +3820,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INVALID_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INVALID_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INVALID_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int INVALID_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -2341,6 +3860,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INVALID_LITERAL_EXP_CS__SYMBOL = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2350,6 +3870,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int INVALID_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2360,6 +3881,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.CollectionRangeCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionRangeCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_RANGE_CS = 42;
 
@@ -2369,6 +3891,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_RANGE_CS__START_OFFSET = COLLECTION_LITERAL_PART_CS__START_OFFSET;
 
@@ -2378,8 +3901,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_RANGE_CS__END_OFFSET = COLLECTION_LITERAL_PART_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_RANGE_CS__START_TOKEN = COLLECTION_LITERAL_PART_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_RANGE_CS__END_TOKEN = COLLECTION_LITERAL_PART_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int COLLECTION_RANGE_CS__AST = COLLECTION_LITERAL_PART_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
@@ -2387,6 +3941,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_RANGE_CS__EXPRESSION_CS = COLLECTION_LITERAL_PART_CS__EXPRESSION_CS;
 
@@ -2396,6 +3951,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_RANGE_CS__LAST_EXPRESSION_CS = COLLECTION_LITERAL_PART_CS_FEATURE_COUNT + 0;
 
@@ -2405,6 +3961,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_RANGE_CS_FEATURE_COUNT = COLLECTION_LITERAL_PART_CS_FEATURE_COUNT + 1;
 
@@ -2415,6 +3972,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.CallExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCallExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS = 43;
 
@@ -2424,6 +3982,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
@@ -2433,8 +3992,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CALL_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CALL_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int CALL_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2442,6 +4032,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS__SOURCE = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -2451,6 +4042,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS__ACCESSOR = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
@@ -2460,6 +4052,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -2469,6 +4062,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int CALL_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -2479,6 +4073,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.LoopExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getLoopExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS = 44;
 
@@ -2488,6 +4083,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__START_OFFSET = CALL_EXP_CS__START_OFFSET;
 
@@ -2497,8 +4093,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__END_OFFSET = CALL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LOOP_EXP_CS__START_TOKEN = CALL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LOOP_EXP_CS__END_TOKEN = CALL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int LOOP_EXP_CS__AST = CALL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2506,6 +4133,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
@@ -2515,6 +4143,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__ACCESSOR = CALL_EXP_CS__ACCESSOR;
 
@@ -2524,6 +4153,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
@@ -2533,6 +4163,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__VARIABLE1 = CALL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2542,6 +4173,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__VARIABLE2 = CALL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2551,6 +4183,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS__BODY = CALL_EXP_CS_FEATURE_COUNT + 2;
 
@@ -2560,6 +4193,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int LOOP_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 3;
 
@@ -2570,6 +4204,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.IteratorExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIteratorExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS = 45;
 
@@ -2579,6 +4214,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__START_OFFSET = LOOP_EXP_CS__START_OFFSET;
 
@@ -2588,8 +4224,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__END_OFFSET = LOOP_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITERATOR_EXP_CS__START_TOKEN = LOOP_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITERATOR_EXP_CS__END_TOKEN = LOOP_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITERATOR_EXP_CS__AST = LOOP_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2597,6 +4264,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__SOURCE = LOOP_EXP_CS__SOURCE;
 
@@ -2606,6 +4274,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__ACCESSOR = LOOP_EXP_CS__ACCESSOR;
 
@@ -2615,6 +4284,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__SIMPLE_NAME_CS = LOOP_EXP_CS__SIMPLE_NAME_CS;
 
@@ -2624,6 +4294,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__VARIABLE1 = LOOP_EXP_CS__VARIABLE1;
 
@@ -2633,6 +4304,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__VARIABLE2 = LOOP_EXP_CS__VARIABLE2;
 
@@ -2642,6 +4314,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS__BODY = LOOP_EXP_CS__BODY;
 
@@ -2651,6 +4324,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATOR_EXP_CS_FEATURE_COUNT = LOOP_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2661,6 +4335,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.IterateExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIterateExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS = 46;
 
@@ -2670,6 +4345,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__START_OFFSET = LOOP_EXP_CS__START_OFFSET;
 
@@ -2679,8 +4355,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__END_OFFSET = LOOP_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITERATE_EXP_CS__START_TOKEN = LOOP_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITERATE_EXP_CS__END_TOKEN = LOOP_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITERATE_EXP_CS__AST = LOOP_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2688,6 +4395,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__SOURCE = LOOP_EXP_CS__SOURCE;
 
@@ -2697,6 +4405,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__ACCESSOR = LOOP_EXP_CS__ACCESSOR;
 
@@ -2706,6 +4415,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__SIMPLE_NAME_CS = LOOP_EXP_CS__SIMPLE_NAME_CS;
 
@@ -2715,6 +4425,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__VARIABLE1 = LOOP_EXP_CS__VARIABLE1;
 
@@ -2724,6 +4435,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__VARIABLE2 = LOOP_EXP_CS__VARIABLE2;
 
@@ -2733,6 +4445,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS__BODY = LOOP_EXP_CS__BODY;
 
@@ -2742,6 +4455,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int ITERATE_EXP_CS_FEATURE_COUNT = LOOP_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2752,6 +4466,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.FeatureCallExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getFeatureCallExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS = 47;
 
@@ -2761,6 +4476,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__START_OFFSET = CALL_EXP_CS__START_OFFSET;
 
@@ -2770,8 +4486,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__END_OFFSET = CALL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int FEATURE_CALL_EXP_CS__START_TOKEN = CALL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int FEATURE_CALL_EXP_CS__END_TOKEN = CALL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int FEATURE_CALL_EXP_CS__AST = CALL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2779,6 +4526,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
@@ -2788,6 +4536,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__ACCESSOR = CALL_EXP_CS__ACCESSOR;
 
@@ -2797,6 +4546,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
@@ -2806,6 +4556,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2815,6 +4566,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS = CALL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -2824,6 +4576,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int FEATURE_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 2;
 
@@ -2834,6 +4587,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.OperationCallExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOperationCallExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS = 48;
 
@@ -2843,6 +4597,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__START_OFFSET = FEATURE_CALL_EXP_CS__START_OFFSET;
 
@@ -2852,8 +4607,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__END_OFFSET = FEATURE_CALL_EXP_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CALL_EXP_CS__START_TOKEN = FEATURE_CALL_EXP_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CALL_EXP_CS__END_TOKEN = FEATURE_CALL_EXP_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int OPERATION_CALL_EXP_CS__AST = FEATURE_CALL_EXP_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -2861,6 +4647,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__SOURCE = FEATURE_CALL_EXP_CS__SOURCE;
 
@@ -2870,6 +4657,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__ACCESSOR = FEATURE_CALL_EXP_CS__ACCESSOR;
 
@@ -2879,6 +4667,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__SIMPLE_NAME_CS = FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS;
 
@@ -2888,6 +4677,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__ARGUMENTS = FEATURE_CALL_EXP_CS__ARGUMENTS;
 
@@ -2897,6 +4687,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS__IS_MARKED_PRE_CS = FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS;
 
@@ -2906,6 +4697,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -2916,6 +4708,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.impl.StateExpCSImpl
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getStateExpCS()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STATE_EXP_CS = 49;
 
@@ -2925,6 +4718,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STATE_EXP_CS__START_OFFSET = TYPE_CS__START_OFFSET;
 
@@ -2934,8 +4728,39 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STATE_EXP_CS__END_OFFSET = TYPE_CS__END_OFFSET;
+
+	/**
+     * The feature id for the '<em><b>Start Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int STATE_EXP_CS__START_TOKEN = TYPE_CS__START_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int STATE_EXP_CS__END_TOKEN = TYPE_CS__END_TOKEN;
+
+	/**
+     * The feature id for the '<em><b>Ast</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int STATE_EXP_CS__AST = TYPE_CS__AST;
 
 	/**
      * The feature id for the '<em><b>Sequence Of Names</b></em>' attribute list.
@@ -2943,6 +4768,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STATE_EXP_CS__SEQUENCE_OF_NAMES = TYPE_CS_FEATURE_COUNT + 0;
 
@@ -2952,6 +4778,7 @@ public interface CSTPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int STATE_EXP_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
@@ -2962,6 +4789,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.SimpleTypeEnum
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getSimpleTypeEnum()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int SIMPLE_TYPE_ENUM = 50;
 
@@ -2972,6 +4800,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.PrePostOrBodyEnum
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrePostOrBodyEnum()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int PRE_POST_OR_BODY_ENUM = 51;
 
@@ -2982,6 +4811,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.CollectionTypeIdentifierEnum
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionTypeIdentifierEnum()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int COLLECTION_TYPE_IDENTIFIER_ENUM = 52;
 
@@ -2992,6 +4822,7 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.MessageExpKind
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getMessageExpKind()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int MESSAGE_EXP_KIND = 53;
 
@@ -3002,8 +4833,21 @@ public interface CSTPackage extends EPackage {
      * @see org.eclipse.ocl.cst.DotOrArrowEnum
      * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDotOrArrowEnum()
      * @generated
+     * @noreference This field is not intended to be referenced by clients.
      */
 	int DOT_OR_ARROW_ENUM = 54;
+
+
+	/**
+     * The meta object id for the '<em>IToken</em>' data type.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see lpg.lpgjavaruntime.IToken
+     * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIToken()
+     * @generated
+     * @noreference This field is not intended to be referenced by clients.
+     */
+	int ITOKEN = 55;
 
 
 	/**
@@ -3037,6 +4881,42 @@ public interface CSTPackage extends EPackage {
      * @generated
      */
 	EAttribute getCSTNode_EndOffset();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.CSTNode#getStartToken <em>Start Token</em>}'.
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Start Token</em>'.
+     * @see org.eclipse.ocl.cst.CSTNode#getStartToken()
+     * @see #getCSTNode()
+     * @generated
+     */
+	EAttribute getCSTNode_StartToken();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.CSTNode#getEndToken <em>End Token</em>}'.
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>End Token</em>'.
+     * @see org.eclipse.ocl.cst.CSTNode#getEndToken()
+     * @see #getCSTNode()
+     * @generated
+     */
+	EAttribute getCSTNode_EndToken();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.CSTNode#getAst <em>Ast</em>}'.
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Ast</em>'.
+     * @see org.eclipse.ocl.cst.CSTNode#getAst()
+     * @see #getCSTNode()
+     * @generated
+     */
+	EAttribute getCSTNode_Ast();
 
 	/**
      * Returns the meta object for class '{@link org.eclipse.ocl.cst.PackageDeclarationCS <em>Package Declaration CS</em>}'.
@@ -3272,15 +5152,27 @@ public interface CSTPackage extends EPackage {
 	EReference getClassifierContextDeclCS_PathNameCS();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Inv Or Def CS</em>'.
+     * @return the meta object for the reference '<em>Inv Or Def CS</em>'.
      * @see org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS()
      * @see #getClassifierContextDeclCS()
      * @generated
      */
 	EReference getClassifierContextDeclCS_InvOrDefCS();
+
+	/**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getConstraints <em>Constraints</em>}'.
+     * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Constraints</em>'.
+     * @see org.eclipse.ocl.cst.ClassifierContextDeclCS#getConstraints()
+     * @see #getClassifierContextDeclCS()
+     * @generated
+     */
+	EReference getClassifierContextDeclCS_Constraints();
 
 	/**
      * Returns the meta object for class '{@link org.eclipse.ocl.cst.InvOrDefCS <em>Inv Or Def CS</em>}'.
@@ -4404,6 +6296,18 @@ public interface CSTPackage extends EPackage {
 	EEnum getDotOrArrowEnum();
 
 	/**
+     * Returns the meta object for data type '{@link lpg.lpgjavaruntime.IToken <em>IToken</em>}'.
+     * <!-- begin-user-doc -->
+     * @since 1.3
+	 * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>IToken</em>'.
+     * @see lpg.lpgjavaruntime.IToken
+     * @model instanceClass="lpg.lpgjavaruntime.IToken"
+     * @generated
+     */
+	EDataType getIToken();
+
+	/**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4423,6 +6327,7 @@ public interface CSTPackage extends EPackage {
 	 * </ul>
 	 * <!-- end-user-doc -->
      * @generated
+     * @noimplement This interface is not intended to be implemented by clients.
      */
 	interface Literals {
 		/**
@@ -4450,6 +6355,33 @@ public interface CSTPackage extends EPackage {
          * @generated
          */
 		EAttribute CST_NODE__END_OFFSET = eINSTANCE.getCSTNode_EndOffset();
+
+		/**
+         * The meta object literal for the '<em><b>Start Token</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * @since 1.3
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute CST_NODE__START_TOKEN = eINSTANCE.getCSTNode_StartToken();
+
+		/**
+         * The meta object literal for the '<em><b>End Token</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * @since 1.3
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute CST_NODE__END_TOKEN = eINSTANCE.getCSTNode_EndToken();
+
+		/**
+         * The meta object literal for the '<em><b>Ast</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * @since 1.3
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute CST_NODE__AST = eINSTANCE.getCSTNode_Ast();
 
 		/**
          * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
@@ -4646,12 +6578,21 @@ public interface CSTPackage extends EPackage {
 		EReference CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS = eINSTANCE.getClassifierContextDeclCS_PathNameCS();
 
 		/**
-         * The meta object literal for the '<em><b>Inv Or Def CS</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Inv Or Def CS</b></em>' reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
          */
 		EReference CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS = eINSTANCE.getClassifierContextDeclCS_InvOrDefCS();
+
+		/**
+         * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * @since 1.3
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EReference CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS = eINSTANCE.getClassifierContextDeclCS_Constraints();
 
 		/**
          * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
@@ -5590,6 +7531,17 @@ public interface CSTPackage extends EPackage {
          * @generated
          */
 		EEnum DOT_OR_ARROW_ENUM = eINSTANCE.getDotOrArrowEnum();
+
+		/**
+         * The meta object literal for the '<em>IToken</em>' data type.
+         * <!-- begin-user-doc -->
+         * @since 1.3
+		 * <!-- end-user-doc -->
+         * @see lpg.lpgjavaruntime.IToken
+         * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIToken()
+         * @generated
+         */
+		EDataType ITOKEN = eINSTANCE.getIToken();
 
 	}
 

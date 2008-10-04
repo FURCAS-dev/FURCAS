@@ -10,9 +10,9 @@
 
  Contributors:
    IBM - initial API and implementation
-   Zeligsoft - Bugs 231435, 248869
+   Zeligsoft - Bugs 231435, 248869, 243976
 
- $Id: plugin.xml,v 1.5 2008/09/28 17:33:00 cdamus Exp $
+ $Id: plugin.xml,v 1.6 2008/10/04 00:54:09 cdamus Exp $
 -->
 
 <plugin>
@@ -49,13 +49,7 @@
   <extension
         point="org.eclipse.emf.ecore.content_parser">
      <parser
-           contentTypeIdentifier="org.eclipse.ocl.types"
-           class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl" />
-     <parser
-           contentTypeIdentifier="org.eclipse.ocl.expressions"
-           class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl" />
-     <parser
-           contentTypeIdentifier="org.eclipse.ocl.utilities"
+           contentTypeIdentifier="org.eclipse.ocl"
            class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl" />
      <parser
            contentTypeIdentifier="org.eclipse.ocl.cst"
@@ -68,7 +62,7 @@
            base-type="org.eclipse.emf.ecore.xmi"
            file-extensions="ocl"
            id="org.eclipse.ocl"
-           name="%oclContentType"
+           name="%_UI_OCL_content_type"
            priority="normal">
         <describer
               class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
@@ -84,7 +78,7 @@
            base-type="org.eclipse.emf.ecore.xmi"
            file-extensions="ocl"
            id="org.eclipse.ocl.cst"
-           name="%cstContentType"
+           name="%_UI_CST_content_type"
            priority="normal">
         <describer
               class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">

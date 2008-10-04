@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component id="org.eclipse.ocl" version="2">
+<resource path="src/org/eclipse/ocl/cst/impl/ClassifierContextDeclCSImpl.java" type="org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl">
+<filter id="338792546">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl"/>
+<message_argument value="basicSetInvOrDefCS(InvOrDefCS, NotificationChain)"/>
+</message_arguments>
+</filter>
+</resource>
+</component>

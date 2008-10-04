@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 243976
  *
  * </copyright>
  *
- * $Id: PrePostOrBodyDeclCS.java,v 1.1 2007/10/11 23:04:54 cdamus Exp $
+ * $Id: PrePostOrBodyDeclCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -34,88 +34,89 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface PrePostOrBodyDeclCS extends CSTNode {
 	/**
-     * Returns the value of the '<em><b>Kind</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.ocl.cst.PrePostOrBodyEnum}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.cst.PrePostOrBodyEnum}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Kind</em>' attribute.
-     * @see org.eclipse.ocl.cst.PrePostOrBodyEnum
-     * @see #setKind(PrePostOrBodyEnum)
-     * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS_Kind()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Kind</em>' attribute.
+	 * @see org.eclipse.ocl.cst.PrePostOrBodyEnum
+	 * @see #setKind(PrePostOrBodyEnum)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS_Kind()
+	 * @model
+	 * @generated
+	 */
 	PrePostOrBodyEnum getKind();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.PrePostOrBodyDeclCS#getKind <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.PrePostOrBodyDeclCS#getKind <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Kind</em>' attribute.
-     * @see org.eclipse.ocl.cst.PrePostOrBodyEnum
-     * @see #getKind()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Kind</em>' attribute.
+	 * @see org.eclipse.ocl.cst.PrePostOrBodyEnum
+	 * @see #getKind()
+	 * @generated
+	 */
 	void setKind(PrePostOrBodyEnum value);
 
 	/**
-     * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simple Name CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Simple Name CS</em>' containment reference.
-     * @see #setSimpleNameCS(SimpleNameCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS_SimpleNameCS()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Simple Name CS</em>' containment reference.
+	 * @see #setSimpleNameCS(SimpleNameCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS_SimpleNameCS()
+	 * @model containment="true"
+	 * @generated
+	 */
 	SimpleNameCS getSimpleNameCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.PrePostOrBodyDeclCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.PrePostOrBodyDeclCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
-     * @see #getSimpleNameCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
+	 * @see #getSimpleNameCS()
+	 * @generated
+	 */
 	void setSimpleNameCS(SimpleNameCS value);
 
 	/**
-     * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression CS</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Expression CS</em>' containment reference.
-     * @see #setExpressionCS(OCLExpressionCS)
-     * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS_ExpressionCS()
-     * @model containment="true"
-     *        extendedMetaData="name='oclExpressionCS'"
-     * @generated
-     */
+	 * @return the value of the '<em>Expression CS</em>' containment reference.
+	 * @see #setExpressionCS(OCLExpressionCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getPrePostOrBodyDeclCS_ExpressionCS()
+	 * @model containment="true"
+	 *        extendedMetaData="name='oclExpressionCS'"
+	 * @generated
+	 */
 	OCLExpressionCS getExpressionCS();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.cst.PrePostOrBodyDeclCS#getExpressionCS <em>Expression CS</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.PrePostOrBodyDeclCS#getExpressionCS <em>Expression CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Expression CS</em>' containment reference.
-     * @see #getExpressionCS()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Expression CS</em>' containment reference.
+	 * @see #getExpressionCS()
+	 * @generated
+	 */
 	void setExpressionCS(OCLExpressionCS value);
 
 } // PrePostOrBodyDeclCS
