@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 237205
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.20 2008/01/16 13:58:58 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.21 2008/10/05 14:35:44 cdamus Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
@@ -65,7 +66,6 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.OCL;
-import org.eclipse.ocl.Query;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.ConstraintKind;
@@ -420,8 +420,7 @@ public class OCLConsolePage
                         OCLExpression<Object> parsed = helper.createQuery(expression);
                         
                         // evaluate the query
-                        Query<Object, ?, ?> query = ocl.createQuery(parsed);
-                        print(query.evaluate(context), outputResults, false);
+                        print(ocl.evaluate(context, parsed), outputResults, false);
                         break;
                     case M1:
                         helper.createConstraint(kind, expression);
