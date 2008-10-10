@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 243079, 244948, 244886
+ *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.15 2008/08/30 23:33:06 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.16 2008/10/10 15:23:39 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -157,6 +157,7 @@ public abstract class AbstractTestSuite
 		result.addTest(InitOrDerExpressionTest.suite());
 		result.addTest(OCLDocumentTest.suite());
 		result.addTest(AbstractVisitorTest.suite());
+		result.addTest(TypeConformanceTests.suite());
 		result.addTest(org.eclipse.ocl.ecore.helper.tests.AbstractTestSuite.suite());
 		result.addTest(RegressionTest.suite());
 		result.addTest(EcoreEnvironmentTest.suite());
