@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: FeatureCallExp.java,v 1.3 2007/10/11 23:05:03 cdamus Exp $
+ * $Id: FeatureCallExp.java,v 1.4 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -32,32 +32,35 @@ package org.eclipse.ocl.expressions;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getFeatureCallExp()
  * @model abstract="true"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface FeatureCallExp<C> extends CallExp<C> {
+public interface FeatureCallExp<C>
+		extends CallExp<C> {
+
 	/**
-     * Returns the value of the '<em><b>Marked Pre</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Marked Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Marked Pre</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Marked Pre</em>' attribute.
-     * @see #setMarkedPre(boolean)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getFeatureCallExp_MarkedPre()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Marked Pre</em>' attribute.
+	 * @see #setMarkedPre(boolean)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getFeatureCallExp_MarkedPre()
+	 * @model
+	 * @generated
+	 */
 	boolean isMarkedPre();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.FeatureCallExp#isMarkedPre <em>Marked Pre</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.FeatureCallExp#isMarkedPre <em>Marked Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Marked Pre</em>' attribute.
-     * @see #isMarkedPre()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Marked Pre</em>' attribute.
+	 * @see #isMarkedPre()
+	 * @generated
+	 */
 	void setMarkedPre(boolean value);
 
 } // FeatureCallExp

@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Adolfo Sanchez-Barbudo Herrera - 231515 Fix NPE in checkArgumentCount
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: OperationCallExpOperations.java,v 1.5 2008/06/09 14:25:52 cdamus Exp $
+ * $Id: OperationCallExpOperations.java,v 1.6 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -47,107 +48,114 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * @generated
  */
-public class OperationCallExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected OperationCallExpOperations() {
-        super();
-    }
+public class OperationCallExpOperations
+		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * arguments->forall (a | a.type.conformsTo
-     * (self.refParams->at (arguments->indexOf (a)).type))
-     * @param operationCallExp The receiving '<em><b>Operation Call Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, O> boolean checkArgumentsConform(OperationCallExp<C, O> operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-    	Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(operationCallExp, context);
-		
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationCallExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * arguments->forall (a | a.type.conformsTo
+	 * (self.refParams->at (arguments->indexOf (a)).type))
+	 * @param operationCallExp The receiving '<em><b>Operation Call Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, O> boolean checkArgumentsConform(
+			OperationCallExp<C, O> operationCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+		Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(operationCallExp, context);
+
 		if (env != null) {
 			OCLExpression<C> source = operationCallExp.getSource();
 			O oper = operationCallExp.getReferredOperation();
 			List<OCLExpression<C>> args = operationCallExp.getArgument();
-			
-			if ((oper != null) && (source != null)
-					&& (env.getUMLReflection().getParameters(oper).size() == args.size())) {
+
+			if ((oper != null)
+				&& (source != null)
+				&& (env.getUMLReflection().getParameters(oper).size() == args
+					.size())) {
 				C sourceType = source.getType();
 				String operName = env.getUMLReflection().getName(oper);
-		
+
 				// Check argument conformance.
 				O oper1 = env.lookupOperation(sourceType, operName, args);
 				if (oper1 != oper) {
 					result = false;
 					message = OCLMessages.bind(
-							OCLMessages.IllegalOperation_ERROR_,
-							operationCallExp.toString());
+						OCLMessages.IllegalOperation_ERROR_, operationCallExp
+							.toString());
 				}
 			}
 		}
-		
-        if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM,
-                         message,
-                         new Object [] { operationCallExp }));
-            }
-        }
-        return result;
-    }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * arguments->size() = refParams->size()
-     * @param operationCallExp The receiving '<em><b>Operation Call Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, O> boolean checkArgumentCount(OperationCallExp<C, O> operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(operationCallExp, context);
-		
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM,
+					message, new Object[]{operationCallExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * arguments->size() = refParams->size()
+	 * @param operationCallExp The receiving '<em><b>Operation Call Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, O> boolean checkArgumentCount(
+			OperationCallExp<C, O> operationCallExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		Environment<?, C, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(operationCallExp, context);
+
 		if (env != null) {
 			O oper = operationCallExp.getReferredOperation();
 			if (oper != null) {
 				List<OCLExpression<C>> args = operationCallExp.getArgument();
-				List<?> parms = env.getUMLReflection().getParameters(oper);			
+				List<?> parms = env.getUMLReflection().getParameters(oper);
 				result = args.size() == parms.size();
 			}
 		}
-		
-        if (!result) {
-            if (diagnostics != null) {
-            	// TODO: Specific message
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkArgumentCount", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(operationCallExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-                         new Object [] { operationCallExp }));
-            }
-        }
-        return result;
-    }
+
+		if (!result) {
+			if (diagnostics != null) {
+				// TODO: Specific message
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkArgumentCount", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(operationCallExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{operationCallExp}));
+			}
+		}
+		return result;
+	}
 
 } // OperationCallExpOperations

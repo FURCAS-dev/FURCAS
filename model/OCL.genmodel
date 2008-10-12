@@ -3,13 +3,13 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.ocl/src"
     editDirectory="/org.eclipse.ocl.edit/src" editorDirectory="/org.eclipse.ocl.editor/src"
-    modelPluginID="org.eclipse.ocl" templateDirectory="" redirection="" modelName="OCL"
-    modelPluginClass="org.eclipse.ocl.internal.OCLPlugin" editPluginClass="org.eclipse.ocl.edit.internal.OCLEditPlugin"
-    editorPluginClass="org.eclipse.ocl.editor.internal.OCLEditorPlugin" nonNLSMarkers="true"
-    rootImplementsInterface="" featureMapWrapperInterface="" featureMapWrapperInternalInterface=""
-    featureMapWrapperClass="" testSuiteClass="org.eclipse.ocl.tests.AllTests" booleanFlagsField="eFlags"
-    booleanFlagsReservedBits="8" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="5.0" invariantPrefix="check">
+    modelPluginID="org.eclipse.ocl" templateDirectory="/org.eclipse.ocl/templates"
+    dynamicTemplates="true" redirection="" modelName="OCL" modelPluginClass="org.eclipse.ocl.internal.OCLPlugin"
+    editPluginClass="org.eclipse.ocl.edit.internal.OCLEditPlugin" editorPluginClass="org.eclipse.ocl.editor.internal.OCLEditorPlugin"
+    nonNLSMarkers="true" rootImplementsInterface="" featureMapWrapperInterface=""
+    featureMapWrapperInternalInterface="" featureMapWrapperClass="" codeFormatting="true"
+    testSuiteClass="org.eclipse.ocl.tests.AllTests" booleanFlagsField="eFlags" booleanFlagsReservedBits="8"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" invariantPrefix="check">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
     <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>

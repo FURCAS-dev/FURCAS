@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.5 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.6 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -42,42 +43,46 @@ import org.eclipse.ocl.util.OCLStandardLibraryUtil;
  *
  * @generated
  */
-public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
+public class TypeTypeImpl<C, O>
+		extends EObjectImpl
+		implements TypeType<C, O> {
+
 	/**
-     * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredType()
+	 * @generated
+	 * @ordered
+	 */
 	protected C referredType;
 
 	private String name;
+
 	private EList<O> operations;
-	
+
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TypeTypeImpl() {
-        super();
-    }
+		super();
+	}
 
 	protected TypeTypeImpl(C type) {
 		this.referredType = type;
 	}
-	
+
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.TYPE_TYPE;
-    }
+		return TypesPackage.Literals.TYPE_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -86,12 +91,12 @@ public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
 	 */
 	public String getName() {
 		if (name == null) {
-			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
-				Environment.Registry.INSTANCE.getEnvironmentFor(this);
-			
+			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
+				.getEnvironmentFor(this);
+
 			name = env.getUMLReflection().getName(getReferredType());
 		}
-		
+
 		return name;
 	}
 
@@ -102,113 +107,118 @@ public class TypeTypeImpl<C, O> extends EObjectImpl implements TypeType<C, O> {
 	 */
 	public EList<O> oclOperations() {
 		if (operations == null) {
-			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
-				Environment.Registry.INSTANCE.getEnvironmentFor(this);
-			
-			operations = new BasicEList<O>(
-					OCLStandardLibraryUtil.createTypeTypeOperations(env));
+			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
+				.getEnvironmentFor(this);
+
+			operations = new BasicEList<O>(OCLStandardLibraryUtil
+				.createTypeTypeOperations(env));
 		}
-		
+
 		return operations;
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public C getReferredType() {
-        if (referredType != null && ((EObject)referredType).eIsProxy()) {
-            InternalEObject oldReferredType = (InternalEObject)referredType;
-            referredType = (C)eResolveProxy(oldReferredType);
-            if (referredType != oldReferredType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
-            }
-        }
-        return referredType;
-    }
+		if (referredType != null && ((EObject) referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject) referredType;
+			referredType = (C) eResolveProxy(oldReferredType);
+			if (referredType != oldReferredType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType,
+						referredType));
+			}
+		}
+		return referredType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public C basicGetReferredType() {
-        return referredType;
-    }
+		return referredType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setReferredType(C newReferredType) {
-        C oldReferredType = referredType;
-        referredType = newReferredType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	public void setReferredType(C newReferredType) {
+		C oldReferredType = referredType;
+		referredType = newReferredType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				TypesPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType,
+				referredType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-                if (resolve) return getReferredType();
-                return basicGetReferredType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case TypesPackage.TYPE_TYPE__REFERRED_TYPE :
+				if (resolve)
+					return getReferredType();
+				return basicGetReferredType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-                setReferredType((C)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-                setReferredType((C)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case TypesPackage.TYPE_TYPE__REFERRED_TYPE :
+				setReferredType((C) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case TypesPackage.TYPE_TYPE__REFERRED_TYPE :
+				setReferredType((C) null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case TypesPackage.TYPE_TYPE__REFERRED_TYPE:
-                return referredType != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case TypesPackage.TYPE_TYPE__REFERRED_TYPE :
+				return referredType != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //TypeTypeImpl

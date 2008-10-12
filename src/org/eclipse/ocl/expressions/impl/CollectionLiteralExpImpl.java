@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -51,98 +52,106 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class CollectionLiteralExpImpl<C> extends LiteralExpImpl<C> implements CollectionLiteralExp<C> {
+public class CollectionLiteralExpImpl<C>
+		extends LiteralExpImpl<C>
+		implements CollectionLiteralExp<C> {
+
 	/**
-     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final CollectionKind KIND_EDEFAULT = CollectionKind.SET_LITERAL;
 
 	/**
-     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getKind()
-     * @generated
-     * @ordered
-     */
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
 	protected CollectionKind kind = KIND_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getPart()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPart()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList<CollectionLiteralPart<C>> part;
 
 	/**
-     * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSimpleRange() <em>Simple Range</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isSimpleRange()
-     * @generated
-     * @ordered
-     */
+	 * @see #isSimpleRange()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean SIMPLE_RANGE_EDEFAULT = false;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected CollectionLiteralExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP;
-    }
+		return ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public CollectionKind getKind() {
-        return kind;
-    }
+		return kind;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setKind(CollectionKind newKind) {
-        CollectionKind oldKind = kind;
-        kind = newKind == null ? KIND_EDEFAULT : newKind;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
-    }
+		CollectionKind oldKind = kind;
+		kind = newKind == null
+			? KIND_EDEFAULT
+			: newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList<CollectionLiteralPart<C>> getPart() {
-        if (part == null) {
-            part = new EObjectContainmentEList<CollectionLiteralPart<C>>(CollectionLiteralPart.class, this, ExpressionsPackage.COLLECTION_LITERAL_EXP__PART);
-        }
-        return part;
-    }
+		if (part == null) {
+			part = new EObjectContainmentEList<CollectionLiteralPart<C>>(
+				CollectionLiteralPart.class, this,
+				ExpressionsPackage.COLLECTION_LITERAL_EXP__PART);
+		}
+		return part;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,149 +160,164 @@ public class CollectionLiteralExpImpl<C> extends LiteralExpImpl<C> implements Co
 	 */
 	public boolean isSimpleRange() {
 		EList<CollectionLiteralPart<C>> partsList = getPart();
-		
+
 		int size = partsList.size();
 		if (size == 1) {
 			CollectionLiteralPart<C> part = partsList.get(0);
-			
+
 			return part instanceof CollectionRange;
 		}
-		
+
 		return false;
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean checkNoCollectionInstances(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkNoCollectionInstances(this, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean checkSetKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkSetKind(this, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean checkSequenceKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkSequenceKind(this, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean checkBagKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkBagKind(this, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean checkElementType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkElementType(this, diagnostics, context);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-                return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	 * @generated
+	 */
+	public boolean checkNoCollectionInstances(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkNoCollectionInstances(this,
+			diagnostics, context);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	public boolean checkSetKind(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkSetKind(this, diagnostics,
+			context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean checkSequenceKind(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkSequenceKind(this,
+			diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean checkBagKind(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkBagKind(this, diagnostics,
+			context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean checkElementType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkElementType(this,
+			diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART :
+				return ((InternalEList<?>) getPart()).basicRemove(otherEnd,
+					msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-                return getKind();
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-                return getPart();
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-                return isSimpleRange() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND :
+				return getKind();
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART :
+				return getPart();
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
+				return isSimpleRange()
+					? Boolean.TRUE
+					: Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-                setKind((CollectionKind)newValue);
-                return;
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-                getPart().clear();
-                getPart().addAll((Collection<? extends CollectionLiteralPart<C>>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND :
+				setKind((CollectionKind) newValue);
+				return;
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART :
+				getPart().clear();
+				getPart().addAll(
+					(Collection<? extends CollectionLiteralPart<C>>) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-                setKind(KIND_EDEFAULT);
-                return;
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-                getPart().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND :
+				setKind(KIND_EDEFAULT);
+				return;
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART :
+				getPart().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND:
-                return kind != KIND_EDEFAULT;
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART:
-                return part != null && !part.isEmpty();
-            case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-                return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND :
+				return kind != KIND_EDEFAULT;
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART :
+				return part != null && !part.isEmpty();
+			case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
+				return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

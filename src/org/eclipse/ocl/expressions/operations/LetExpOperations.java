@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: LetExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: LetExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -45,56 +46,57 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * @generated
  */
-public class LetExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected LetExpOperations() {
-        super();
-    }
+public class LetExpOperations
+		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * type = in.type
-     * @param letExp The receiving '<em><b>Let Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkLetType(LetExp<C, PM> letExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-    		.getValidationEnvironment(letExp, context);
-    	
-    	C type = letExp.getType();
-    	OCLExpression<C> in = letExp.getIn();
-    	
-    	if ((env != null) && (type != null) && (in != null)) {
-	    	C inType = in.getType();
-	    	
-	    	if (inType != null) {
-	    		result = TypeUtil.exactTypeMatch(env, type, inType);
-	    	}
-    	}
-    	
-        if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.LET_EXP__LET_TYPE,
-                         OCLMessages.TypeConformanceLetExp_ERROR_,
-                         new Object [] { letExp }));
-            }
-        }
-        
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LetExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * type = in.type
+	 * @param letExp The receiving '<em><b>Let Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkLetType(LetExp<C, PM> letExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(letExp, context);
+
+		C type = letExp.getType();
+		OCLExpression<C> in = letExp.getIn();
+
+		if ((env != null) && (type != null) && (in != null)) {
+			C inType = in.getType();
+
+			if (inType != null) {
+				result = TypeUtil.exactTypeMatch(env, type, inType);
+			}
+		}
+
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.LET_EXP__LET_TYPE,
+					OCLMessages.TypeConformanceLetExp_ERROR_,
+					new Object[]{letExp}));
+			}
+		}
+
+		return result;
+	}
 
 } // LetExpOperations

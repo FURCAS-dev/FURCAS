@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.6 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -33,47 +34,52 @@ import org.eclipse.ocl.types.operations.SequenceTypeOperations;
  *
  * @generated
  */
-public class SequenceTypeImpl<C, O> extends CollectionTypeImpl<C, O> implements SequenceType<C, O> {
+public class SequenceTypeImpl<C, O>
+		extends CollectionTypeImpl<C, O>
+		implements SequenceType<C, O> {
+
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SequenceTypeImpl() {
-        super();
-    }
-	
+		super();
+	}
+
 	protected SequenceTypeImpl(C elementType) {
 		super(elementType);
 	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.SEQUENCE_TYPE;
-    }
+		return TypesPackage.Literals.SEQUENCE_TYPE;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return SequenceTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean checkCollectionTypeName(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return SequenceTypeOperations.checkCollectionTypeName(this,
+			diagnostics, context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-    public CollectionKind getKind() {
+	public CollectionKind getKind() {
 		return CollectionKind.SEQUENCE_LITERAL;
 	}
 

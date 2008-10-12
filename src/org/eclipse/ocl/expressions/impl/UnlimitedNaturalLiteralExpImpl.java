@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.5 2008/03/28 20:33:33 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.6 2008/10/12 01:09:50 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -43,173 +44,186 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class UnlimitedNaturalLiteralExpImpl<C> extends NumericLiteralExpImpl<C> implements UnlimitedNaturalLiteralExp<C> {
-    /**
-     * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
-    protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
+public class UnlimitedNaturalLiteralExpImpl<C>
+		extends NumericLiteralExpImpl<C>
+		implements UnlimitedNaturalLiteralExp<C> {
 
-    /**
-     * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getIntegerSymbol()
-     * @generated
-     * @ordered
-     */
-    protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Integer INTEGER_SYMBOL_EDEFAULT = null;
 
-    /**
-     * The default value of the '{@link #isUnlimited() <em>Unlimited</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isUnlimited()
-     * @generated
-     * @ordered
-     */
-    protected static final boolean UNLIMITED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIntegerSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected Integer integerSymbol = INTEGER_SYMBOL_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected UnlimitedNaturalLiteralExpImpl() {
-        super();
-    }
+	/**
+	 * The default value of the '{@link #isUnlimited() <em>Unlimited</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnlimited()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UNLIMITED_EDEFAULT = false;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UnlimitedNaturalLiteralExpImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Integer getIntegerSymbol() {
-        return integerSymbol;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setIntegerSymbol(Integer newIntegerSymbol) {
-        Integer oldIntegerSymbol = integerSymbol;
-        integerSymbol = newIntegerSymbol;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Integer getIntegerSymbol() {
+		return integerSymbol;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean isUnlimited() {
-        return getIntegerSymbol() == UNLIMITED;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIntegerSymbol(Integer newIntegerSymbol) {
+		Integer oldIntegerSymbol = integerSymbol;
+		integerSymbol = newIntegerSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(
+				this,
+				Notification.SET,
+				ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean checkNaturalType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isUnlimited() {
+		return getIntegerSymbol() == UNLIMITED;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-                return getIntegerSymbol();
-            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-                return isUnlimited() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean checkNaturalType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this,
+			diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-                setIntegerSymbol((Integer)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				return getIntegerSymbol();
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+				return isUnlimited()
+					? Boolean.TRUE
+					: Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-                setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				setIntegerSymbol((Integer) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-                return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-            case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-                return isUnlimited() != UNLIMITED_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * @generated NOT
-     */
-    @Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-        return v.visitUnlimitedNaturalLiteralExp(this);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				return INTEGER_SYMBOL_EDEFAULT == null
+					? integerSymbol != null
+					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+				return isUnlimited() != UNLIMITED_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+		return v.visitUnlimitedNaturalLiteralExp(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 
 } //UnlimitedNaturalLiteralExpImpl
