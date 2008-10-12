@@ -1,18 +1,19 @@
 /**
  * <copyright>
- *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * 
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.4 2008/03/28 20:33:31 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.5 2008/10/12 01:09:50 cdamus Exp $
  */
 package org.eclipse.ocl.internal;
 
@@ -28,7 +29,7 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 public class OCLPlugin
-extends EMFPlugin {
+		extends EMFPlugin {
 
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
@@ -43,12 +44,13 @@ extends EMFPlugin {
 	private static final String SEPARATOR_METHOD = "#"; //$NON-NLS-1$
 
 	private static final String PREFIX_CATCHING = "CAUGHT "; //$NON-NLS-1$
-	
+
 	//The shared instance.
 	public static OCLPlugin INSTANCE = new OCLPlugin();
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
+
 	/**
 	 * The constructor.
 	 */
@@ -57,13 +59,14 @@ extends EMFPlugin {
 	}
 
 	public static String getPluginId() {
-		return (getPlugin() != null)? getPlugin().getBundle().getSymbolicName()
-				: "org.eclipse.ocl"; // last known bundle ID //$NON-NLS-1$
+		return (getPlugin() != null)
+			? getPlugin().getBundle().getSymbolicName()
+			: "org.eclipse.ocl"; // last known bundle ID //$NON-NLS-1$
 	}
 
 	// implements the inherited method
 	@Override
-    public ResourceLocator getPluginResourceLocator() {
+	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
 
@@ -83,13 +86,14 @@ extends EMFPlugin {
 		return INSTANCE;
 	}
 
-
 	/**
 	 * The definition of the Eclipse plug-in flavour of this EMF plug-in.
 	 * 
 	 * @author Christian W. Damus (cdamus)
 	 */
-	public static class Implementation extends EMFPlugin.EclipsePlugin {
+	public static class Implementation
+			extends EMFPlugin.EclipsePlugin {
+
 		/**
 		 * Initializes me with my Eclipse plug-in descriptor.
 		 */
@@ -100,17 +104,17 @@ extends EMFPlugin {
 			//
 			OCLPlugin.plugin = this;
 		}
-		
+
 		@Override
-		public void start(BundleContext context) throws Exception {
+		public void start(BundleContext context)
+				throws Exception {
 			super.start(context);
-			
-			EnvironmentRegistryImpl envreg =
-				((EnvironmentRegistryImpl) Environment.Registry.INSTANCE);
+
+			EnvironmentRegistryImpl envreg = ((EnvironmentRegistryImpl) Environment.Registry.INSTANCE);
 			envreg.new RegistryReader(getInstance()).readRegistry();
 		}
 	}
-	
+
 	/**
 	 * Traces the catching of the specified throwable in the specified method of
 	 * the specified class.
@@ -124,21 +128,21 @@ extends EMFPlugin {
 	 *  
 	 */
 	public static void catching(Class<?> clazz, String methodName,
-		Throwable throwable) {
+			Throwable throwable) {
 		if (shouldTrace(OCLDebugOptions.EXCEPTIONS_CATCHING)) {
-			trace(PREFIX_CATCHING + throwable.getMessage()
-				+ SEPARATOR_SPACE + PARENTHESIS_OPEN + clazz.getName()
-				+ SEPARATOR_METHOD + methodName + PARENTHESIS_CLOSE);
+			trace(PREFIX_CATCHING + throwable.getMessage() + SEPARATOR_SPACE
+				+ PARENTHESIS_OPEN + clazz.getName() + SEPARATOR_METHOD
+				+ methodName + PARENTHESIS_CLOSE);
 			throwable.printStackTrace(System.err);
 		}
 	}
 
 	public static void throwing(Class<?> clazz, String methodName,
-		Throwable throwable) {
+			Throwable throwable) {
 		if (shouldTrace(OCLDebugOptions.EXCEPTIONS_THROWING)) {
-			trace(PREFIX_THROWING + throwable.getMessage()
-				+ SEPARATOR_SPACE + PARENTHESIS_OPEN + clazz.getName()
-				+ SEPARATOR_METHOD + methodName + PARENTHESIS_CLOSE);
+			trace(PREFIX_THROWING + throwable.getMessage() + SEPARATOR_SPACE
+				+ PARENTHESIS_OPEN + clazz.getName() + SEPARATOR_METHOD
+				+ methodName + PARENTHESIS_CLOSE);
 			throwable.printStackTrace(System.err);
 		}
 	}
@@ -147,28 +151,28 @@ extends EMFPlugin {
 		if (getPlugin() != null) {
 			if (getPlugin().isDebugging()) {
 				return Boolean.TRUE.toString().equalsIgnoreCase(
-						Platform.getDebugOption(option));
+					Platform.getDebugOption(option));
 			}
-			
+
 			return false;
 		}
-		
+
 		return Boolean.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$
 	}
-    
-    /**
-     * Emits the specified message to the trace log.  It is the caller's
-     * responsibility to ensure that the appropriate tracing option
-     * is enabled.
-     * 
-     * @param message a message
-     * 
-     * @see #shouldTrace(String)
-     */
-    public static void trace(String message) {
-        System.out.println("[OCL] " + message); //$NON-NLS-1$
-    }
-    
+
+	/**
+	 * Emits the specified message to the trace log.  It is the caller's
+	 * responsibility to ensure that the appropriate tracing option
+	 * is enabled.
+	 * 
+	 * @param message a message
+	 * 
+	 * @see #shouldTrace(String)
+	 */
+	public static void trace(String message) {
+		System.out.println("[OCL] " + message); //$NON-NLS-1$
+	}
+
 	/**
 	 * Generates an error log for the specified plug-in, with the specified
 	 * status code, message.
@@ -272,10 +276,11 @@ extends EMFPlugin {
 	}
 
 	public static void log(int severity, int code, String message,
-		Throwable throwable) {
+			Throwable throwable) {
 		//
 		// Status ctor requires a non-null message
-		String msg = message == null ? "" //$NON-NLS-1$
+		String msg = message == null
+			? "" //$NON-NLS-1$
 			: message;
 
 		try {
@@ -287,22 +292,22 @@ extends EMFPlugin {
 				// not in the Eclipse environment
 				if (shouldTrace(OCLDebugOptions.DEBUG)) {
 					switch (code) {
-					case Diagnostic.WARNING:
-						System.err.print("WARNING "); //$NON-NLS-1$
-						break;
-					case Diagnostic.ERROR:
-					case Diagnostic.CANCEL:
-						System.err.print("ERROR "); //$NON-NLS-1$
-						break;
-					default:
-						// don't output INFO or OK messages
-						return;
+						case Diagnostic.WARNING :
+							System.err.print("WARNING "); //$NON-NLS-1$
+							break;
+						case Diagnostic.ERROR :
+						case Diagnostic.CANCEL :
+							System.err.print("ERROR "); //$NON-NLS-1$
+							break;
+						default :
+							// don't output INFO or OK messages
+							return;
 					}
-					
+
 					System.err.print(code);
 					System.err.print(": "); //$NON-NLS-1$
 					System.err.println(message);
-					
+
 					if (throwable != null) {
 						throwable.printStackTrace(System.err);
 					}

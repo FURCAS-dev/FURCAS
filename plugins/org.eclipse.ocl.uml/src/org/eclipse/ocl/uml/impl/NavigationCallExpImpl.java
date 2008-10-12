@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: NavigationCallExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: NavigationCallExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -49,7 +50,10 @@ import org.eclipse.uml2.uml.Property;
  * @generated
  */
 @SuppressWarnings("restriction")
-public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implements NavigationCallExp {
+public abstract class NavigationCallExpImpl
+		extends FeatureCallExpImpl
+		implements NavigationCallExp {
+
 	/**
 	 * The cached value of the '{@link #getQualifier() <em>Qualifier</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -96,7 +100,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	 */
 	public EList<OCLExpression<Classifier>> getQualifier() {
 		if (qualifier == null) {
-			qualifier = new EObjectContainmentEList<OCLExpression<Classifier>>(OCLExpression.class, this, UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER);
+			qualifier = new EObjectContainmentEList<OCLExpression<Classifier>>(
+				OCLExpression.class, this,
+				UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER);
 		}
 		return qualifier;
 	}
@@ -107,12 +113,14 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	 * @generated
 	 */
 	public Property getNavigationSource() {
-		if (navigationSource != null && ((EObject)navigationSource).eIsProxy()) {
-			InternalEObject oldNavigationSource = (InternalEObject)navigationSource;
-			navigationSource = (Property)eResolveProxy(oldNavigationSource);
+		if (navigationSource != null && ((EObject) navigationSource).eIsProxy()) {
+			InternalEObject oldNavigationSource = (InternalEObject) navigationSource;
+			navigationSource = (Property) eResolveProxy(oldNavigationSource);
 			if (navigationSource != oldNavigationSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
+						oldNavigationSource, navigationSource));
 			}
 		}
 		return navigationSource;
@@ -137,7 +145,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		Property oldNavigationSource = navigationSource;
 		navigationSource = newNavigationSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
+				oldNavigationSource, navigationSource));
 	}
 
 	/**
@@ -146,10 +156,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return ((InternalEList<?>)getQualifier()).basicRemove(otherEnd, msgs);
+			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
+				return ((InternalEList<?>) getQualifier()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -162,10 +174,11 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				return getQualifier();
-			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				if (resolve) return getNavigationSource();
+			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+				if (resolve)
+					return getNavigationSource();
 				return basicGetNavigationSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -180,12 +193,13 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				getQualifier().clear();
-				getQualifier().addAll((Collection<? extends OCLExpression<Classifier>>)newValue);
+				getQualifier().addAll(
+					(Collection<? extends OCLExpression<Classifier>>) newValue);
 				return;
-			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				setNavigationSource((Property)newValue);
+			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+				setNavigationSource((Property) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,11 +213,11 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				getQualifier().clear();
 				return;
-			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				setNavigationSource((Property)null);
+			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+				setNavigationSource((Property) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -217,9 +231,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				return qualifier != null && !qualifier.isEmpty();
-			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
+			case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
 				return navigationSource != null;
 		}
 		return super.eIsSet(featureID);
@@ -234,9 +248,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.NavigationCallExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER: return ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER;
-				case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE: return ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
-				default: return -1;
+				case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
+					return ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER;
+				case UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+					return ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -251,9 +268,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.NavigationCallExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER: return UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER;
-				case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE: return UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
-				default: return -1;
+				case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER :
+					return UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER;
+				case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+					return UMLPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

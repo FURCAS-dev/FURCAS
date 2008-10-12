@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -58,7 +59,10 @@ import org.eclipse.uml2.uml.Operation;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class OperationCallExpImpl extends FeatureCallExpImpl implements OperationCallExp {
+public class OperationCallExpImpl
+		extends FeatureCallExpImpl
+		implements OperationCallExp {
+
 	/**
 	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -117,7 +121,9 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 */
 	public EList<OCLExpression<Classifier>> getArgument() {
 		if (argument == null) {
-			argument = new EObjectContainmentEList<OCLExpression<Classifier>>(OCLExpression.class, this, UMLPackage.OPERATION_CALL_EXP__ARGUMENT);
+			argument = new EObjectContainmentEList<OCLExpression<Classifier>>(
+				OCLExpression.class, this,
+				UMLPackage.OPERATION_CALL_EXP__ARGUMENT);
 		}
 		return argument;
 	}
@@ -128,12 +134,15 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * @generated
 	 */
 	public Operation getReferredOperation() {
-		if (referredOperation != null && ((EObject)referredOperation).eIsProxy()) {
-			InternalEObject oldReferredOperation = (InternalEObject)referredOperation;
-			referredOperation = (Operation)eResolveProxy(oldReferredOperation);
+		if (referredOperation != null
+			&& ((EObject) referredOperation).eIsProxy()) {
+			InternalEObject oldReferredOperation = (InternalEObject) referredOperation;
+			referredOperation = (Operation) eResolveProxy(oldReferredOperation);
 			if (referredOperation != oldReferredOperation) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION,
+						oldReferredOperation, referredOperation));
 			}
 		}
 		return referredOperation;
@@ -158,7 +167,9 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 		Operation oldReferredOperation = referredOperation;
 		referredOperation = newReferredOperation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION, oldReferredOperation, referredOperation));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION,
+				oldReferredOperation, referredOperation));
 	}
 
 	/**
@@ -169,29 +180,30 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	public int getOperationCode() {
 		if (operationCode < 0) {
 			if ((getSource() != null) && (getReferredOperation() != null)) {
-				Environment<?, Classifier, Operation, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
-					Environment.Registry.INSTANCE.getEnvironmentFor(getSource());
+				Environment<?, Classifier, Operation, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
+					.getEnvironmentFor(getSource());
 				Classifier type = getSource().getType();
 
 				if (env != null) {
 					String operName = getReferredOperation().getName();
-					
+
 					if (type instanceof PredefinedType) {
-						operationCode = OCLStandardLibraryUtil.getOperationCode(
-								operName);
-				   	} else if (TypeUtil.isOclAnyOperation(env, getReferredOperation())) {
+						operationCode = OCLStandardLibraryUtil
+							.getOperationCode(operName);
+					} else if (TypeUtil.isOclAnyOperation(env,
+						getReferredOperation())) {
 						// not a predefined type?  Model types have the AnyType
 						//    operations (except in the case that a model type
-				   		//    defines the corresponding operation)
-						operationCode = OCLStandardLibraryUtil.getOclAnyOperationCode(
-								operName);
+						//    defines the corresponding operation)
+						operationCode = OCLStandardLibraryUtil
+							.getOclAnyOperationCode(operName);
 					}
 				}
 			} else {
 				operationCode = 0;
 			}
 		}
-		
+
 		return operationCode;
 	}
 
@@ -206,32 +218,38 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkArgumentsConform(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return OperationCallExpOperations.checkArgumentsConform(this, diagnostics, context);
+	public boolean checkArgumentsConform(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return OperationCallExpOperations.checkArgumentsConform(this,
+			diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkArgumentCount(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return OperationCallExpOperations.checkArgumentCount(this, diagnostics, context);
+	public boolean checkArgumentCount(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return OperationCallExpOperations.checkArgumentCount(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
+			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
+				return ((InternalEList<?>) getArgument()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -244,12 +262,13 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
 				return getArgument();
-			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
-				if (resolve) return getReferredOperation();
+			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
+				if (resolve)
+					return getReferredOperation();
 				return basicGetReferredOperation();
-			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE:
+			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				return new Integer(getOperationCode());
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -264,15 +283,16 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
 				getArgument().clear();
-				getArgument().addAll((Collection<? extends OCLExpression<Classifier>>)newValue);
+				getArgument().addAll(
+					(Collection<? extends OCLExpression<Classifier>>) newValue);
 				return;
-			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
-				setReferredOperation((Operation)newValue);
+			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
+				setReferredOperation((Operation) newValue);
 				return;
-			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE:
-				setOperationCode(((Integer)newValue).intValue());
+			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE :
+				setOperationCode(((Integer) newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -286,13 +306,13 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
 				getArgument().clear();
 				return;
-			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
-				setReferredOperation((Operation)null);
+			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
+				setReferredOperation((Operation) null);
 				return;
-			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE:
+			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				setOperationCode(OPERATION_CODE_EDEFAULT);
 				return;
 		}
@@ -307,11 +327,11 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
 				return argument != null && !argument.isEmpty();
-			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
+			case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
 				return referredOperation != null;
-			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE:
+			case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE :
 				return getOperationCode() != OPERATION_CODE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -326,10 +346,14 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.OperationCallExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.OPERATION_CALL_EXP__ARGUMENT: return ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT;
-				case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION: return ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION;
-				case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE: return ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE;
-				default: return -1;
+				case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
+					return ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT;
+				case UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
+					return ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION;
+				case UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE :
+					return ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -344,10 +368,14 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.OperationCallExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT: return UMLPackage.OPERATION_CALL_EXP__ARGUMENT;
-				case ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION: return UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION;
-				case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE: return UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE;
-				default: return -1;
+				case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT :
+					return UMLPackage.OPERATION_CALL_EXP__ARGUMENT;
+				case ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
+					return UMLPackage.OPERATION_CALL_EXP__REFERRED_OPERATION;
+				case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
+					return UMLPackage.OPERATION_CALL_EXP__OPERATION_CODE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -359,7 +387,7 @@ public class OperationCallExpImpl extends FeatureCallExpImpl implements Operatio
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitOperationCallExp(this);
 	}
 

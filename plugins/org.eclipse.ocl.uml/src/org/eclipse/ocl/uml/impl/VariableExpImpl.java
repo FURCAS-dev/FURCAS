@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: VariableExpImpl.java,v 1.4 2008/04/27 23:48:05 cdamus Exp $
+ * $Id: VariableExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -49,7 +50,10 @@ import org.eclipse.uml2.uml.Parameter;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
+public class VariableExpImpl
+		extends OCLExpressionImpl
+		implements VariableExp {
+
 	/**
 	 * The cached value of the '{@link #getReferredVariable() <em>Referred Variable</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -87,11 +91,13 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@SuppressWarnings("unchecked")
 	public Variable<Classifier, Parameter> getReferredVariable() {
 		if (referredVariable != null && referredVariable.eIsProxy()) {
-			InternalEObject oldReferredVariable = (InternalEObject)referredVariable;
-			referredVariable = (Variable<Classifier, Parameter>)eResolveProxy(oldReferredVariable);
+			InternalEObject oldReferredVariable = (InternalEObject) referredVariable;
+			referredVariable = (Variable<Classifier, Parameter>) eResolveProxy(oldReferredVariable);
 			if (referredVariable != oldReferredVariable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE,
+						oldReferredVariable, referredVariable));
 			}
 		}
 		return referredVariable;
@@ -111,23 +117,27 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferredVariable(Variable<Classifier, Parameter> newReferredVariable) {
+	public void setReferredVariable(
+			Variable<Classifier, Parameter> newReferredVariable) {
 		Variable<Classifier, Parameter> oldReferredVariable = referredVariable;
 		referredVariable = newReferredVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable, referredVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE,
+				oldReferredVariable, referredVariable));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkVarType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean checkVarType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return VariableExpOperations.checkVarType(this, diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -135,8 +145,9 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				if (resolve) return getReferredVariable();
+			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE :
+				if (resolve)
+					return getReferredVariable();
 				return basicGetReferredVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,8 +162,8 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				setReferredVariable((Variable<Classifier, Parameter>)newValue);
+			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE :
+				setReferredVariable((Variable<Classifier, Parameter>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -166,8 +177,8 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE:
-				setReferredVariable((Variable<Classifier, Parameter>)null);
+			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE :
+				setReferredVariable((Variable<Classifier, Parameter>) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -181,7 +192,7 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE:
+			case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE :
 				return referredVariable != null;
 		}
 		return super.eIsSet(featureID);
@@ -196,8 +207,10 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE: return ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE;
-				default: return -1;
+				case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE :
+					return ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -212,8 +225,10 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE: return UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE;
-				default: return -1;
+				case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE :
+					return UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -225,7 +240,7 @@ public class VariableExpImpl extends OCLExpressionImpl implements VariableExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitVariableExp(this);
 	}
 

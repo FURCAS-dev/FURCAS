@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -44,7 +45,10 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp {
+public class EnumLiteralExpImpl
+		extends LiteralExpImpl
+		implements EnumLiteralExp {
+
 	/**
 	 * The cached value of the '{@link #getReferredEnumLiteral() <em>Referred Enum Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -80,12 +84,15 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * @generated
 	 */
 	public EnumerationLiteral getReferredEnumLiteral() {
-		if (referredEnumLiteral != null && ((EObject)referredEnumLiteral).eIsProxy()) {
-			InternalEObject oldReferredEnumLiteral = (InternalEObject)referredEnumLiteral;
-			referredEnumLiteral = (EnumerationLiteral)eResolveProxy(oldReferredEnumLiteral);
+		if (referredEnumLiteral != null
+			&& ((EObject) referredEnumLiteral).eIsProxy()) {
+			InternalEObject oldReferredEnumLiteral = (InternalEObject) referredEnumLiteral;
+			referredEnumLiteral = (EnumerationLiteral) eResolveProxy(oldReferredEnumLiteral);
 			if (referredEnumLiteral != oldReferredEnumLiteral) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
+						oldReferredEnumLiteral, referredEnumLiteral));
 			}
 		}
 		return referredEnumLiteral;
@@ -110,19 +117,23 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		EnumerationLiteral oldReferredEnumLiteral = referredEnumLiteral;
 		referredEnumLiteral = newReferredEnumLiteral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
+				oldReferredEnumLiteral, referredEnumLiteral));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkEnumType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return EnumLiteralExpOperations.checkEnumType(this, diagnostics, context);
+	public boolean checkEnumType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return EnumLiteralExpOperations.checkEnumType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,8 +141,9 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				if (resolve) return getReferredEnumLiteral();
+			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+				if (resolve)
+					return getReferredEnumLiteral();
 				return basicGetReferredEnumLiteral();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -145,8 +157,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				setReferredEnumLiteral((EnumerationLiteral)newValue);
+			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+				setReferredEnumLiteral((EnumerationLiteral) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -160,8 +172,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				setReferredEnumLiteral((EnumerationLiteral)null);
+			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+				setReferredEnumLiteral((EnumerationLiteral) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -175,7 +187,7 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
+			case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
 				return referredEnumLiteral != null;
 		}
 		return super.eIsSet(featureID);
@@ -190,8 +202,10 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL: return ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
-				default: return -1;
+				case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+					return ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -206,8 +220,10 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL: return UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
-				default: return -1;
+				case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+					return UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -219,7 +235,7 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitEnumLiteralExp(this);
 	}
 

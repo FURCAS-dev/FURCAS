@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.3 2008/05/12 14:30:50 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpOperations.java,v 1.4 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -43,51 +44,56 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * @generated
  */
-public class UnlimitedNaturalLiteralExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected UnlimitedNaturalLiteralExpOperations() {
-        super();
-    }
+public class UnlimitedNaturalLiteralExpOperations
+		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.type.name = 'UnlimitedNatural'
-     * @param unlimitedNaturalLiteralExp The receiving '<em><b>Unlimited Natural Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkNaturalType(UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(unlimitedNaturalLiteralExp, context);
-    	
-    	if (env != null) {
-	    	C type = unlimitedNaturalLiteralExp.getType();
-	    	
-			result = (type != null) && ("UnlimitedNatural".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
-    	}
-    	
-        if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.UNLIMITED_NATURAL_LITERAL_EXP__NATURAL_TYPE,
-                         OCLMessages.TypeConformanceUnlimitedNaturalLiteral_ERROR_,
-                         new Object [] { unlimitedNaturalLiteralExp }));
-            }
-        }
-        
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UnlimitedNaturalLiteralExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.type.name = 'UnlimitedNatural'
+	 * @param unlimitedNaturalLiteralExp The receiving '<em><b>Unlimited Natural Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkNaturalType(
+			UnlimitedNaturalLiteralExp<C> unlimitedNaturalLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(unlimitedNaturalLiteralExp, context);
+
+		if (env != null) {
+			C type = unlimitedNaturalLiteralExp.getType();
+
+			result = (type != null)
+				&& ("UnlimitedNatural".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
+		}
+
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.UNLIMITED_NATURAL_LITERAL_EXP__NATURAL_TYPE,
+						OCLMessages.TypeConformanceUnlimitedNaturalLiteral_ERROR_,
+						new Object[]{unlimitedNaturalLiteralExp}));
+			}
+		}
+
+		return result;
+	}
 
 } // UnlimitedNaturalLiteralExpOperations

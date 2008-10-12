@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: IterateExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -46,7 +47,10 @@ import org.eclipse.uml2.uml.Parameter;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class IterateExpImpl extends LoopExpImpl implements IterateExp {
+public class IterateExpImpl
+		extends LoopExpImpl
+		implements IterateExp {
+
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -90,12 +94,18 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(Variable<Classifier, Parameter> newResult, NotificationChain msgs) {
+	public NotificationChain basicSetResult(
+			Variable<Classifier, Parameter> newResult, NotificationChain msgs) {
 		Variable<Classifier, Parameter> oldResult = result;
 		result = newResult;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.ITERATE_EXP__RESULT, oldResult, newResult);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.ITERATE_EXP__RESULT, oldResult,
+				newResult);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -109,52 +119,62 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 		if (newResult != result) {
 			NotificationChain msgs = null;
 			if (result != null)
-				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.ITERATE_EXP__RESULT, null, msgs);
+				msgs = ((InternalEObject) result).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.ITERATE_EXP__RESULT,
+					null, msgs);
 			if (newResult != null)
-				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.ITERATE_EXP__RESULT, null, msgs);
+				msgs = ((InternalEObject) newResult).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.ITERATE_EXP__RESULT,
+					null, msgs);
 			msgs = basicSetResult(newResult, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.ITERATE_EXP__RESULT, newResult, newResult));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.ITERATE_EXP__RESULT, newResult, newResult));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkIterateType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return IterateExpOperations.checkIterateType(this, diagnostics, context);
+	public boolean checkIterateType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IterateExpOperations
+			.checkIterateType(this, diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean checkBodyType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return IterateExpOperations.checkBodyType(this, diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkResultInit(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean checkResultInit(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return IterateExpOperations.checkResultInit(this, diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.ITERATE_EXP__RESULT:
+			case UMLPackage.ITERATE_EXP__RESULT :
 				return basicSetResult(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -168,7 +188,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.ITERATE_EXP__RESULT:
+			case UMLPackage.ITERATE_EXP__RESULT :
 				return getResult();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -183,8 +203,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.ITERATE_EXP__RESULT:
-				setResult((Variable<Classifier, Parameter>)newValue);
+			case UMLPackage.ITERATE_EXP__RESULT :
+				setResult((Variable<Classifier, Parameter>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -198,8 +218,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.ITERATE_EXP__RESULT:
-				setResult((Variable<Classifier, Parameter>)null);
+			case UMLPackage.ITERATE_EXP__RESULT :
+				setResult((Variable<Classifier, Parameter>) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -213,7 +233,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.ITERATE_EXP__RESULT:
+			case UMLPackage.ITERATE_EXP__RESULT :
 				return result != null;
 		}
 		return super.eIsSet(featureID);
@@ -228,8 +248,10 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.ITERATE_EXP__RESULT: return ExpressionsPackage.ITERATE_EXP__RESULT;
-				default: return -1;
+				case UMLPackage.ITERATE_EXP__RESULT :
+					return ExpressionsPackage.ITERATE_EXP__RESULT;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -244,8 +266,10 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.ITERATE_EXP__RESULT: return UMLPackage.ITERATE_EXP__RESULT;
-				default: return -1;
+				case ExpressionsPackage.ITERATE_EXP__RESULT :
+					return UMLPackage.ITERATE_EXP__RESULT;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -257,7 +281,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitIterateExp(this);
 	}
 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: Variable.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
+ * $Id: Variable.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -38,71 +39,75 @@ import org.eclipse.ocl.utilities.Visitable;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface Variable<C, PM> extends TypedElement<C>, Visitable, TypedASTNode {
+public interface Variable<C, PM>
+		extends TypedElement<C>, Visitable, TypedASTNode {
+
 	/**
-     * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Init Expression</em>' containment reference.
-     * @see #setInitExpression(OCLExpression)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_InitExpression()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Init Expression</em>' containment reference.
+	 * @see #setInitExpression(OCLExpression)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_InitExpression()
+	 * @model containment="true"
+	 * @generated
+	 */
 	OCLExpression<C> getInitExpression();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.Variable#getInitExpression <em>Init Expression</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.Variable#getInitExpression <em>Init Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Init Expression</em>' containment reference.
-     * @see #getInitExpression()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
+	 * @see #getInitExpression()
+	 * @generated
+	 */
 	void setInitExpression(OCLExpression<C> value);
 
 	/**
-     * Returns the value of the '<em><b>Represented Parameter</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Represented Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Represented Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Represented Parameter</em>' reference.
-     * @see #setRepresentedParameter(Object)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_RepresentedParameter()
-     * @model kind="reference"
-     * @generated
-     */
+	 * @return the value of the '<em>Represented Parameter</em>' reference.
+	 * @see #setRepresentedParameter(Object)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable_RepresentedParameter()
+	 * @model kind="reference"
+	 * @generated
+	 */
 	PM getRepresentedParameter();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.Variable#getRepresentedParameter <em>Represented Parameter</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.Variable#getRepresentedParameter <em>Represented Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Represented Parameter</em>' reference.
-     * @see #getRepresentedParameter()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Represented Parameter</em>' reference.
+	 * @see #getRepresentedParameter()
+	 * @generated
+	 */
 	void setRepresentedParameter(PM value);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * initExpression->notEmpty() implies initExpression.type.conformsTo (type)
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkInitType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * initExpression->notEmpty() implies initExpression.type.conformsTo (type)
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkInitType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // Variable

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: OrderedSetTypeImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: OrderedSetTypeImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -35,49 +36,54 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @generated
  */
-public class OrderedSetTypeImpl extends CollectionTypeImpl implements OrderedSetType {
-    /**
+public class OrderedSetTypeImpl
+		extends CollectionTypeImpl
+		implements OrderedSetType {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected OrderedSetTypeImpl() {
+	protected OrderedSetTypeImpl() {
 		super();
 	}
 
-    /**
-     * @generated NOT
-     */
-    protected OrderedSetTypeImpl(Classifier elementType) {
-        super(elementType);
-    }
+	/**
+	 * @generated NOT
+	 */
+	protected OrderedSetTypeImpl(Classifier elementType) {
+		super(elementType);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return UMLPackage.Literals.ORDERED_SET_TYPE;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return OrderedSetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
+	@Override
+	public boolean checkCollectionTypeName(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return OrderedSetTypeOperations.checkCollectionTypeName(this,
+			diagnostics, context);
 	}
 
-    /**
-     * @generated NOT
-     */
-    @Override
-    public CollectionKind getKind() {
-        return CollectionKind.ORDERED_SET_LITERAL;
-    }
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public CollectionKind getKind() {
+		return CollectionKind.ORDERED_SET_LITERAL;
+	}
 
 } //OrderedSetTypeImpl

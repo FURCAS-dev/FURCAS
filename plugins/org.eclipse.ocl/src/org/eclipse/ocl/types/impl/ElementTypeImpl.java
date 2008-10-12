@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -30,24 +31,27 @@ import org.eclipse.ocl.types.TypesPackage;
  *
  * @generated
  */
-public class ElementTypeImpl extends EObjectImpl implements ElementType {
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected ElementTypeImpl() {
-        super();
-    }
+public class ElementTypeImpl
+		extends EObjectImpl
+		implements ElementType {
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	protected ElementTypeImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.ELEMENT_TYPE;
-    }
+		return TypesPackage.Literals.ELEMENT_TYPE;
+	}
 
 } //ElementTypeImpl

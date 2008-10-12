@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: InvalidType.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: InvalidType.java,v 1.3 2008/10/12 01:09:50 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -27,8 +28,11 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @see org.eclipse.ocl.types.TypesPackage#getInvalidType()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface InvalidType<O> extends PredefinedType<O> {
+public interface InvalidType<O>
+		extends PredefinedType<O> {
+
 	String SINGLETON_NAME = "Invalid"; //$NON-NLS-1$
 
 } // InvalidType

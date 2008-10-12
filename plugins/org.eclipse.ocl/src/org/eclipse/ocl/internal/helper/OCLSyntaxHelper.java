@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2008 IBM Corporation and others.
+ * Copyright (c) 2002, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
+ *   Zeligsoft - Bug 207365
  *
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.11 2008/02/16 00:07:22 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.12 2008/10/12 01:09:50 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -809,7 +810,10 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		for (Iterator<Choice> iter = result.iterator(); iter.hasNext();) {
 			Choice next = iter.next();
 			
-			if (!next.getName().regionMatches(true, 0, partial, 0, length)) {
+			String name = next.getName();
+			if ((name == null)
+				|| !name.regionMatches(true, 0, partial, 0, length)) {
+				
 				iter.remove();
 			}
 		}

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: LoopExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: LoopExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -49,147 +50,144 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * @generated
  */
-public class LoopExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected LoopExpOperations() {
-        super();
-    }
+public class LoopExpOperations
+		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * source.type.oclIsKindOf(CollectionType)
-     * @param loopExp The receiving '<em><b>Loop Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkSourceCollection(LoopExp<C, PM> loopExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-		
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LoopExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * source.type.oclIsKindOf(CollectionType)
+	 * @param loopExp The receiving '<em><b>Loop Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkSourceCollection(LoopExp<C, PM> loopExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+
 		OCLExpression<C> source = loopExp.getSource();
 
 		if (source != null) {
 			C sourceType = source.getType();
 			if (!(sourceType instanceof CollectionType)) {
 				result = false;
-				message = OCLMessages.bind(
-						OCLMessages.IteratorSource_ERROR_,
-						loopExp.toString());
+				message = OCLMessages.bind(OCLMessages.IteratorSource_ERROR_,
+					loopExp.toString());
 			}
 		}
-		
-		if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.LOOP_EXP__SOURCE_COLLECTION,
-                         message,
-                         new Object [] { loopExp }));
-            }
-        }
-        return result;
-    }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.iterator->forAll(initExpression->isEmpty())
-     * @param loopExp The receiving '<em><b>Loop Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkLoopVariableInit(LoopExp<C, PM> loopExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-		
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.LOOP_EXP__SOURCE_COLLECTION, message,
+					new Object[]{loopExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.iterator->forAll(initExpression->isEmpty())
+	 * @param loopExp The receiving '<em><b>Loop Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkLoopVariableInit(LoopExp<C, PM> loopExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+
 		for (Variable<C, PM> loopiter : loopExp.getIterator()) {
 			if (loopiter.getInitExpression() != null) {
 				result = false;
 				message = OCLMessages.bind(
-						OCLMessages.IterateExpLoopVarInit_ERROR_,
-						loopExp.toString());
+					OCLMessages.IterateExpLoopVarInit_ERROR_, loopExp
+						.toString());
 				break;
 			}
 		}
-		
+
 		if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.LOOP_EXP__LOOP_VARIABLE_INIT,
-                         message,
-                         new Object [] { loopExp }));
-            }
-        }
-        return result;
-    }
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.LOOP_EXP__LOOP_VARIABLE_INIT, message,
+					new Object[]{loopExp}));
+			}
+		}
+		return result;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.iterator->forAll(type = source.type.oclAsType(CollectionType).elementType)
-     * @param loopExp The receiving '<em><b>Loop Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkLoopVariableType(LoopExp<C, PM> loopExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-		
-    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-    			.getValidationEnvironment(loopExp, context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.iterator->forAll(type = source.type.oclAsType(CollectionType).elementType)
+	 * @param loopExp The receiving '<em><b>Loop Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkLoopVariableType(LoopExp<C, PM> loopExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
 
-    	if ((env != null) && (loopExp.getSource() != null)
-				&& (loopExp.getSource().getType() instanceof CollectionType)) {
+		Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(loopExp, context);
+
+		if ((env != null) && (loopExp.getSource() != null)
+			&& (loopExp.getSource().getType() instanceof CollectionType)) {
 			@SuppressWarnings("unchecked")
-			CollectionType<C, ?> ct = (CollectionType<C, ?>) loopExp.getSource().getType();
+			CollectionType<C, ?> ct = (CollectionType<C, ?>) loopExp
+				.getSource().getType();
 			C elementType = ct.getElementType();
-			
+
 			if (elementType != null) {
 				for (Variable<C, PM> loopiter : loopExp.getIterator()) {
 					if ((loopiter.getType() != null)
-							&& !TypeUtil.exactTypeMatch(env, loopiter.getType(),
-									elementType)) {
+						&& !TypeUtil.exactTypeMatch(env, loopiter.getType(),
+							elementType)) {
 						result = false;
-						message = OCLMessages.bind(
-							OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
-							loopExp.toString());
+						message = OCLMessages
+							.bind(
+								OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
+								loopExp.toString());
 						break;
 					}
 				}
 			}
-    	}
-    	
+		}
+
 		if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.LOOP_EXP__LOOP_VARIABLE_TYPE,
-                         message,
-                         new Object [] { loopExp }));
-            }
-        }
-        return result;
-    }
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.LOOP_EXP__LOOP_VARIABLE_TYPE, message,
+					new Object[]{loopExp}));
+			}
+		}
+		return result;
+	}
 
 } // LoopExpOperations

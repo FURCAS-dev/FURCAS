@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPart.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
+ * $Id: TupleLiteralPart.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -38,71 +39,75 @@ import org.eclipse.ocl.utilities.Visitable;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface TupleLiteralPart<C, P> extends TypedElement<C>, Visitable, TypedASTNode {
+public interface TupleLiteralPart<C, P>
+		extends TypedElement<C>, Visitable, TypedASTNode {
+
 	/**
-     * Returns the value of the '<em><b>Value</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Value</em>' containment reference.
-     * @see #setValue(OCLExpression)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart_Value()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(OCLExpression)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart_Value()
+	 * @model containment="true"
+	 * @generated
+	 */
 	OCLExpression<C> getValue();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.TupleLiteralPart#getValue <em>Value</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.TupleLiteralPart#getValue <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Value</em>' containment reference.
-     * @see #getValue()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #getValue()
+	 * @generated
+	 */
 	void setValue(OCLExpression<C> value);
 
 	/**
-     * Returns the value of the '<em><b>Attribute</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attribute</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Attribute</em>' reference.
-     * @see #setAttribute(Object)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart_Attribute()
-     * @model kind="reference"
-     * @generated
-     */
+	 * @return the value of the '<em>Attribute</em>' reference.
+	 * @see #setAttribute(Object)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralPart_Attribute()
+	 * @model kind="reference"
+	 * @generated
+	 */
 	P getAttribute();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.TupleLiteralPart#getAttribute <em>Attribute</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.TupleLiteralPart#getAttribute <em>Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Attribute</em>' reference.
-     * @see #getAttribute()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Attribute</em>' reference.
+	 * @see #getAttribute()
+	 * @generated
+	 */
 	void setAttribute(P value);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * attribute.type = value.type
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkValueType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * attribute.type = value.type
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkValueType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // TupleLiteralPart

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.5 2007/10/11 23:04:55 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -31,28 +32,32 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public abstract class CollectionLiteralPartImpl<C> extends EObjectImpl implements CollectionLiteralPart<C> {
+public abstract class CollectionLiteralPartImpl<C>
+		extends EObjectImpl
+		implements CollectionLiteralPart<C> {
+
 	private String name;
+
 	private C type;
-	
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected CollectionLiteralPartImpl() {
-        super();
-    }
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	protected CollectionLiteralPartImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.COLLECTION_LITERAL_PART;
-    }
+		return ExpressionsPackage.Literals.COLLECTION_LITERAL_PART;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,12 +96,12 @@ public abstract class CollectionLiteralPartImpl<C> extends EObjectImpl implement
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-        throw new UnsupportedOperationException();
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+		throw new UnsupportedOperationException();
+	}
 
 } //CollectionLiteralPartImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.6 2008/04/27 23:48:05 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -33,36 +34,39 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class ElementTypeImpl extends ClassifierImpl implements ElementType {
-    /**
+public class ElementTypeImpl
+		extends ClassifierImpl
+		implements ElementType {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected ElementTypeImpl() {
+	protected ElementTypeImpl() {
 		super();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return UMLPackage.Literals.ELEMENT_TYPE;
 	}
-    
-    /**
-     * @generated NOT
-     */
-    @Override
-    public String getName() {
-        if (name == null) {
-            name = SINGLETON_NAME;
-        }
-        
-        return name;
-    }
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		if (name == null) {
+			name = SINGLETON_NAME;
+		}
+
+		return name;
+	}
 
 } //ElementTypeImpl

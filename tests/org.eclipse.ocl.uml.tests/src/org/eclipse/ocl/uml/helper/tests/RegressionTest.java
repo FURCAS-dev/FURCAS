@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.3 2008/10/12 01:10:17 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
@@ -301,7 +302,7 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_type_RATLC00535552() {
-		helper.setContext(getMetaclass("Classfier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
 				"if self.oclIsKindOf(uml::Cl"); //$NON-NLS-1$

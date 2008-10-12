@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.4 2007/10/11 23:04:55 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.5 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -38,134 +39,142 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class TypeExpImpl<C> extends OCLExpressionImpl<C> implements TypeExp<C> {
+public class TypeExpImpl<C>
+		extends OCLExpressionImpl<C>
+		implements TypeExp<C> {
+
 	/**
-     * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getReferredType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReferredType()
+	 * @generated
+	 * @ordered
+	 */
 	protected C referredType;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TypeExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.TYPE_EXP;
-    }
+		return ExpressionsPackage.Literals.TYPE_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public C getReferredType() {
-        if (referredType != null && ((EObject)referredType).eIsProxy()) {
-            InternalEObject oldReferredType = (InternalEObject)referredType;
-            referredType = (C)eResolveProxy(oldReferredType);
-            if (referredType != oldReferredType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
-            }
-        }
-        return referredType;
-    }
+		if (referredType != null && ((EObject) referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject) referredType;
+			referredType = (C) eResolveProxy(oldReferredType);
+			if (referredType != oldReferredType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						ExpressionsPackage.TYPE_EXP__REFERRED_TYPE,
+						oldReferredType, referredType));
+			}
+		}
+		return referredType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public C basicGetReferredType() {
-        return referredType;
-    }
+		return referredType;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setReferredType(C newReferredType) {
-        C oldReferredType = referredType;
-        referredType = newReferredType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
-    }
+		C oldReferredType = referredType;
+		referredType = newReferredType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType,
+				referredType));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-                if (resolve) return getReferredType();
-                return basicGetReferredType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :
+				if (resolve)
+					return getReferredType();
+				return basicGetReferredType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-                setReferredType((C)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :
+				setReferredType((C) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-                setReferredType((C)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :
+				setReferredType((C) null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE:
-                return referredType != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :
+				return referredType != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
 	 * @generated NOT

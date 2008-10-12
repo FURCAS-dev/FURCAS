@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.12 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.13 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -58,155 +59,179 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class TypeTypeImpl extends ClassifierImpl implements TypeType {
-    private EList<Operation> operations;
+public class TypeTypeImpl
+		extends ClassifierImpl
+		implements TypeType {
 
-    /**
+	private EList<Operation> operations;
+
+	/**
 	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredType()
 	 * @generated
 	 * @ordered
 	 */
-    protected Classifier referredType;
+	protected Classifier referredType;
 
-    /**
+	/**
 	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getOwnedOperations()
 	 * @generated
 	 * @ordered
 	 */
-    protected EList<Operation> ownedOperations;
+	protected EList<Operation> ownedOperations;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected TypeTypeImpl() {
+	protected TypeTypeImpl() {
 		super();
 	}
-    
-    /**
-     * @param type
-     * @generated NOT
-     */
-    protected TypeTypeImpl(Classifier type) {
-        referredType = type;
-    }
-    
-    public static TypeType createTypeType(Classifier type) {
-        return new TypeTypeImpl(type);
-    }
 
-    /**
+	/**
+	 * @param type
+	 * @generated NOT
+	 */
+	protected TypeTypeImpl(Classifier type) {
+		referredType = type;
+	}
+
+	public static TypeType createTypeType(Classifier type) {
+		return new TypeTypeImpl(type);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return UMLPackage.Literals.TYPE_TYPE;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Classifier getReferredType() {
-		if (referredType != null && ((EObject)referredType).eIsProxy()) {
-			InternalEObject oldReferredType = (InternalEObject)referredType;
-			referredType = (Classifier)eResolveProxy(oldReferredType);
+	public Classifier getReferredType() {
+		if (referredType != null && ((EObject) referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject) referredType;
+			referredType = (Classifier) eResolveProxy(oldReferredType);
 			if (referredType != oldReferredType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType,
+						referredType));
 			}
 		}
 		return referredType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Classifier basicGetReferredType() {
+	public Classifier basicGetReferredType() {
 		return referredType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 
-    public void setReferredType(Classifier newReferredType) {
+	public void setReferredType(Classifier newReferredType) {
 		Classifier oldReferredType = referredType;
 		referredType = newReferredType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType,
+				referredType));
 	}
 
-    /**
-     * @generated NOT
-     */
-    @Override
-    public String getName() {
-        if (name == null) {
-            Classifier ref = getReferredType();
-            if (this == OCLStandardLibraryImpl.INSTANCE.getOclType()) {
-                name = SINGLETON_NAME;
-            } else if (ref != null) {
-                name = ref.getName();
-            }
-        }
-        
-        return name;
-    }
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		if (name == null) {
+			Classifier ref = getReferredType();
+			if (this == OCLStandardLibraryImpl.INSTANCE.getOclType()) {
+				name = SINGLETON_NAME;
+			} else if (ref != null) {
+				name = ref.getName();
+			}
+		}
 
-    /**
+		return name;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EList<Operation> getOwnedOperations() {
+	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null) {
-			ownedOperations = new EObjectContainmentEList<Operation>(Operation.class, this, UMLPackage.TYPE_TYPE__OWNED_OPERATION);
+			ownedOperations = new EObjectContainmentEList<Operation>(
+				Operation.class, this, UMLPackage.TYPE_TYPE__OWNED_OPERATION);
 		}
 		return ownedOperations;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
-		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes, false);
+	public Operation getOwnedOperation(String name,
+			EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
+		return getOwnedOperation(name, ownedParameterNames,
+			ownedParameterTypes, false);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes, boolean ignoreCase) {
-		ownedOperationLoop: for (Operation ownedOperation : getOwnedOperations()) {
-			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(ownedOperation.getName()) : name.equals(ownedOperation.getName())))
+	public Operation getOwnedOperation(String name,
+			EList<String> ownedParameterNames, EList<Type> ownedParameterTypes,
+			boolean ignoreCase) {
+		ownedOperationLoop : for (Operation ownedOperation : getOwnedOperations()) {
+			if (name != null && !(ignoreCase
+				? name.equalsIgnoreCase(ownedOperation.getName())
+				: name.equals(ownedOperation.getName())))
 				continue ownedOperationLoop;
-			EList<Parameter> ownedParameterList = ownedOperation.getOwnedParameters();
+			EList<Parameter> ownedParameterList = ownedOperation
+				.getOwnedParameters();
 			int ownedParameterListSize = ownedParameterList.size();
-			if (ownedParameterNames != null && ownedParameterNames.size() != ownedParameterListSize || (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
-				continue  ownedOperationLoop;
+			if (ownedParameterNames != null
+				&& ownedParameterNames.size() != ownedParameterListSize
+				|| (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+				continue ownedOperationLoop;
 			for (int j = 0; j < ownedParameterListSize; j++) {
 				Parameter ownedParameter = ownedParameterList.get(j);
-				if (ownedParameterNames != null && !(ignoreCase ? (ownedParameterNames.get(j)).equalsIgnoreCase(ownedParameter.getName()) : ownedParameterNames.get(j).equals(ownedParameter.getName())))
+				if (ownedParameterNames != null
+					&& !(ignoreCase
+						? (ownedParameterNames.get(j))
+							.equalsIgnoreCase(ownedParameter.getName())
+						: ownedParameterNames.get(j).equals(
+							ownedParameter.getName())))
 					continue ownedOperationLoop;
-				if (ownedParameterTypes != null && !ownedParameterTypes.get(j).equals(ownedParameter.getType()))
+				if (ownedParameterTypes != null
+					&& !ownedParameterTypes.get(j).equals(
+						ownedParameter.getType()))
 					continue ownedOperationLoop;
 			}
 			return ownedOperation;
@@ -214,182 +239,204 @@ public class TypeTypeImpl extends ClassifierImpl implements TypeType {
 		return null;
 	}
 
-				/**
-     * @generated NOT
-     */
-    public EList<Operation> oclOperations() {
-        if (operations == null) {
-            TypeType prototype = (TypeType) OCLStandardLibraryImpl.INSTANCE.getOclType();
-            
-            if (prototype == this) {
-                // I *am* the standard library type!
-                operations = getOperations();
-            } else {
-                // the prototype defines my operations for me
-                operations = prototype.oclOperations();
-            }
-        }
-        return operations;
-    }
+	/**
+	 * @generated NOT
+	 */
+	public EList<Operation> oclOperations() {
+		if (operations == null) {
+			TypeType prototype = (TypeType) OCLStandardLibraryImpl.INSTANCE
+				.getOclType();
 
-    /**
+			if (prototype == this) {
+				// I *am* the standard library type!
+				operations = getOperations();
+			} else {
+				// the prototype defines my operations for me
+				operations = prototype.oclOperations();
+			}
+		}
+		return operations;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-				public EList<Feature> getFeatures() {
+	@Override
+	public EList<Feature> getFeatures() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Resource eResource = eResource();
 			@SuppressWarnings("unchecked")
-			EList<Feature> features = (EList<Feature>) cache.get(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
+			EList<Feature> features = (EList<Feature>) cache.get(eResource,
+				this,
+				org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
 			if (features == null) {
-				cache.put(eResource, this, org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE, features = new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.TYPE_TYPE__FEATURE, FEATURE_ESUBSETS));
+				cache
+					.put(
+						eResource,
+						this,
+						org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
+						features = new DerivedUnionEObjectEList<Feature>(
+							Feature.class, this, UMLPackage.TYPE_TYPE__FEATURE,
+							FEATURE_ESUBSETS));
 			}
 			return features;
 		}
-		return new DerivedUnionEObjectEList<Feature>(Feature.class, this, UMLPackage.TYPE_TYPE__FEATURE, FEATURE_ESUBSETS);
+		return new DerivedUnionEObjectEList<Feature>(Feature.class, this,
+			UMLPackage.TYPE_TYPE__FEATURE, FEATURE_ESUBSETS);
 	}
 
-    /**
+	/**
 	 * The array of subset feature identifiers for the '{@link #getFeatures() <em>Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
 	 */
-    protected static final int[] FEATURE_ESUBSETS = new int[] {UMLPackage.TYPE_TYPE__ATTRIBUTE, UMLPackage.TYPE_TYPE__OWNED_OPERATION};
+	protected static final int[] FEATURE_ESUBSETS = new int[]{
+		UMLPackage.TYPE_TYPE__ATTRIBUTE, UMLPackage.TYPE_TYPE__OWNED_OPERATION};
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.TYPE_TYPE__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
+				return ((InternalEList<?>) getOwnedOperations()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.TYPE_TYPE__REFERRED_TYPE:
-				if (resolve) return getReferredType();
+			case UMLPackage.TYPE_TYPE__REFERRED_TYPE :
+				if (resolve)
+					return getReferredType();
 				return basicGetReferredType();
-			case UMLPackage.TYPE_TYPE__OWNED_OPERATION:
+			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
 				return getOwnedOperations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.TYPE_TYPE__REFERRED_TYPE:
-				setReferredType((Classifier)newValue);
+			case UMLPackage.TYPE_TYPE__REFERRED_TYPE :
+				setReferredType((Classifier) newValue);
 				return;
-			case UMLPackage.TYPE_TYPE__OWNED_OPERATION:
+			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
 				getOwnedOperations().clear();
-				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				getOwnedOperations().addAll(
+					(Collection<? extends Operation>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TYPE_TYPE__REFERRED_TYPE:
-				setReferredType((Classifier)null);
+			case UMLPackage.TYPE_TYPE__REFERRED_TYPE :
+				setReferredType((Classifier) null);
 				return;
-			case UMLPackage.TYPE_TYPE__OWNED_OPERATION:
+			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
 				getOwnedOperations().clear();
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TYPE_TYPE__REFERRED_TYPE:
+			case UMLPackage.TYPE_TYPE__REFERRED_TYPE :
 				return referredType != null;
-			case UMLPackage.TYPE_TYPE__OWNED_OPERATION:
+			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
 				return ownedOperations != null && !ownedOperations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.types.TypeType.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.TYPE_TYPE__REFERRED_TYPE: return TypesPackage.TYPE_TYPE__REFERRED_TYPE;
-				default: return -1;
+				case UMLPackage.TYPE_TYPE__REFERRED_TYPE :
+					return TypesPackage.TYPE_TYPE__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.types.TypeType.class) {
 			switch (baseFeatureID) {
-				case TypesPackage.TYPE_TYPE__REFERRED_TYPE: return UMLPackage.TYPE_TYPE__REFERRED_TYPE;
-				default: return -1;
+				case TypesPackage.TYPE_TYPE__REFERRED_TYPE :
+					return UMLPackage.TYPE_TYPE__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

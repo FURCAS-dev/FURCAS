@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: IterateExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: IterateExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -48,33 +49,37 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * @generated
  */
-public class IterateExpOperations extends LoopExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected IterateExpOperations() {
-        super();
-    }
+public class IterateExpOperations
+		extends LoopExpOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * type = result.type
-     * @param iterateExp The receiving '<em><b>Iterate Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkIterateType(IterateExp<C, PM> iterateExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(iterateExp, context);
-		
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IterateExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * type = result.type
+	 * @param iterateExp The receiving '<em><b>Iterate Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkIterateType(
+			IterateExp<C, PM> iterateExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+		Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(iterateExp, context);
+
 		Variable<C, PM> vd = iterateExp.getResult();
 		C type = iterateExp.getType();
 
@@ -82,104 +87,99 @@ public class IterateExpOperations extends LoopExpOperations {
 			if (!TypeUtil.exactTypeMatch(env, type, vd.getType())) {
 				result = false;
 				message = OCLMessages.bind(
-						OCLMessages.TypeConformanceIterateExp_ERROR_,
-						iterateExp.toString());
+					OCLMessages.TypeConformanceIterateExp_ERROR_, iterateExp
+						.toString());
 			}
 		}
-		
-		if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.ITERATE_EXP__ITERATE_TYPE,
-                         message,
-                         new Object [] { iterateExp }));
-            }
-        }
-        return result;
-    }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * body.type.conformsTo(result.type)
-     * @param iterateExp The receiving '<em><b>Iterate Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkBodyType(IterateExp<C, PM> iterateExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-    	Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(iterateExp, context);
-		
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.ITERATE_EXP__ITERATE_TYPE, message,
+					new Object[]{iterateExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * body.type.conformsTo(result.type)
+	 * @param iterateExp The receiving '<em><b>Iterate Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkBodyType(IterateExp<C, PM> iterateExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+		Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(iterateExp, context);
+
 		Variable<C, PM> vd = iterateExp.getResult();
 		OCLExpression<C> body = iterateExp.getBody();
 
-		if ((vd != null) && (body != null) && (vd.getType() != null) && (body.getType() != null)) {
-			if (!TypeUtil.compatibleTypeMatch(env, body.getType(), vd.getType())) {
+		if ((vd != null) && (body != null) && (vd.getType() != null)
+			&& (body.getType() != null)) {
+			if (!TypeUtil
+				.compatibleTypeMatch(env, body.getType(), vd.getType())) {
 				result = false;
 				message = OCLMessages.bind(
-						OCLMessages.TypeConformanceIterateExpBody_ERROR_,
-						iterateExp.toString());
+					OCLMessages.TypeConformanceIterateExpBody_ERROR_,
+					iterateExp.toString());
 			}
 		}
-		
-		if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.ITERATE_EXP__BODY_TYPE,
-                         message,
-                         new Object [] { iterateExp }));
-            }
-        }
-        return result;
-    }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.result.initExpression->size() = 1
-     * @param iterateExp The receiving '<em><b>Iterate Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, PM> boolean checkResultInit(IterateExp<C, PM> iterateExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-		
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.ITERATE_EXP__BODY_TYPE, message,
+					new Object[]{iterateExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.result.initExpression->size() = 1
+	 * @param iterateExp The receiving '<em><b>Iterate Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, PM> boolean checkResultInit(IterateExp<C, PM> iterateExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+
 		Variable<C, PM> vd = iterateExp.getResult();
 
 		if ((vd != null) && (vd.getInitExpression() == null)) {
 			result = false;
-			message = OCLMessages.bind(
-					OCLMessages.MissingInitIterateExp_ERROR_,
-					iterateExp.toString());
+			message = OCLMessages
+				.bind(OCLMessages.MissingInitIterateExp_ERROR_, iterateExp
+					.toString());
 		}
-		
+
 		if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.ITERATE_EXP__RESULT_INIT,
-                         message,
-                         new Object [] { iterateExp }));
-            }
-        }
-        return result;
-    }
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.ITERATE_EXP__RESULT_INIT, message,
+					new Object[]{iterateExp}));
+			}
+		}
+		return result;
+	}
 
 } // IterateExpOperations

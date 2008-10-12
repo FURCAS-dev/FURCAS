@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: AnyType.java,v 1.7 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: AnyType.java,v 1.8 2008/10/12 01:12:33 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -37,9 +38,12 @@ import org.eclipse.uml2.uml.Type;
  * @see org.eclipse.ocl.uml.UMLPackage#getAnyType()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface AnyType extends Classifier, org.eclipse.ocl.types.AnyType<Operation> {
-    /**
+public interface AnyType
+		extends Classifier, org.eclipse.ocl.types.AnyType<Operation> {
+
+	/**
 	 * Returns the value of the '<em><b>Owned Operation</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.uml2.uml.Operation}.
 	 * <p>
@@ -49,19 +53,19 @@ public interface AnyType extends Classifier, org.eclipse.ocl.types.AnyType<Opera
 	 * </ul>
 	 * </p>
 	 * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Owned Operations</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Operations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Operation</em>' containment reference list.
 	 * @see org.eclipse.ocl.uml.UMLPackage#getAnyType_OwnedOperation()
 	 * @model containment="true"
 	 * @generated
 	 */
-    EList<Operation> getOwnedOperations();
+	EList<Operation> getOwnedOperations();
 
-				/**
+	/**
 	 * Retrieves the first {@link org.eclipse.uml2.uml.Operation} with the specified '<em><b>Name</b></em>', '<em><b>Owned Parameter Names</b></em>', and '<em><b>Owned Parameter Types</b></em>' from the '<em><b>Owned Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,9 +76,10 @@ public interface AnyType extends Classifier, org.eclipse.ocl.types.AnyType<Opera
 	 * @see #getOwnedOperations()
 	 * @generated
 	 */
-	Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes);
+	Operation getOwnedOperation(String name, EList<String> ownedParameterNames,
+			EList<Type> ownedParameterTypes);
 
-				/**
+	/**
 	 * Retrieves the first {@link org.eclipse.uml2.uml.Operation} with the specified '<em><b>Name</b></em>', '<em><b>Owned Parameter Names</b></em>', and '<em><b>Owned Parameter Types</b></em>' from the '<em><b>Owned Operation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,6 +91,7 @@ public interface AnyType extends Classifier, org.eclipse.ocl.types.AnyType<Opera
 	 * @see #getOwnedOperations()
 	 * @generated
 	 */
-	Operation getOwnedOperation(String name, EList<String> ownedParameterNames, EList<Type> ownedParameterTypes, boolean ignoreCase);
+	Operation getOwnedOperation(String name, EList<String> ownedParameterNames,
+			EList<Type> ownedParameterTypes, boolean ignoreCase);
 
 } // AnyType

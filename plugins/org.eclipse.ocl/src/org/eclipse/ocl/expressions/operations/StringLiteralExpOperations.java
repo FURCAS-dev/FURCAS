@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: StringLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: StringLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -21,10 +22,8 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.StringLiteralExp;
-
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.OCLUtil;
@@ -43,15 +42,8 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * @generated
  */
-public class StringLiteralExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected StringLiteralExpOperations() {
-        super();
-    }
+public class StringLiteralExpOperations
+		extends OCLExpressionOperations {
 
     /**
      * <!-- begin-user-doc -->
@@ -62,7 +54,7 @@ public class StringLiteralExpOperations {
      * @param diagnostics The chain of diagnostics to which problems are to be appended.
      * @param context The cache of context-specific information.
      * <!-- end-model-doc -->
-     * @generated
+     * @generated NOT
      */
     public static <C> boolean checkStringType(StringLiteralExp<C> stringLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
     	boolean result = true;

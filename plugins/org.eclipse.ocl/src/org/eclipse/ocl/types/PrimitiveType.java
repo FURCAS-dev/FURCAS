@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.2 2007/02/14 13:42:16 cdamus Exp $
+ * $Id: PrimitiveType.java,v 1.3 2008/10/12 01:09:50 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -27,11 +28,18 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @see org.eclipse.ocl.types.TypesPackage#getPrimitiveType()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface PrimitiveType<O> extends PredefinedType<O> {
-    String BOOLEAN_NAME = "Boolean"; //$NON-NLS-1$
-    String STRING_NAME = "String"; //$NON-NLS-1$
-    String INTEGER_NAME = "Integer"; //$NON-NLS-1$
-    String UNLIMITED_NATURAL_NAME = "UnlimitedNatural"; //$NON-NLS-1$
-    String REAL_NAME = "Real"; //$NON-NLS-1$
+public interface PrimitiveType<O>
+		extends PredefinedType<O> {
+
+	String BOOLEAN_NAME = "Boolean"; //$NON-NLS-1$
+
+	String STRING_NAME = "String"; //$NON-NLS-1$
+
+	String INTEGER_NAME = "Integer"; //$NON-NLS-1$
+
+	String UNLIMITED_NATURAL_NAME = "UnlimitedNatural"; //$NON-NLS-1$
+
+	String REAL_NAME = "Real"; //$NON-NLS-1$
 } // PrimitiveType

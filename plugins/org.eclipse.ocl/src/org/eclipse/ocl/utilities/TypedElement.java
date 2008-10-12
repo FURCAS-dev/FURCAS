@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypedElement.java,v 1.6 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: TypedElement.java,v 1.7 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -27,42 +27,45 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getTypedElement()
  * @model interface="true" abstract="true"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface TypedElement<C> extends EObject {
+public interface TypedElement<C>
+		extends EObject {
+
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @model kind="operation"
-     * @generated
-     */
+	 * @model kind="operation"
+	 * @generated
+	 */
 	String getName();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model kind="operation"
-     * @generated
-     */
+	 * @model kind="operation"
+	 * @generated
+	 */
 	C getType();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model nameRequired="true" nameOrdered="false"
-     * @generated
-     */
+	 * @model nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
 	void setName(String name);
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model typeRequired="true" typeOrdered="false"
-     * @generated
-     */
+	 * @model typeRequired="true" typeOrdered="false"
+	 * @generated
+	 */
 	void setType(C type);
 
 } // TypedElement
