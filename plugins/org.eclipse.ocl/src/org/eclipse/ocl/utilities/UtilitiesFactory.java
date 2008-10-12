@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesFactory.java,v 1.4 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: UtilitiesFactory.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -26,22 +26,25 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.ocl.utilities.UtilitiesPackage
  * @generated
  */
-public interface UtilitiesFactory extends EFactory {
-	/**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	UtilitiesFactory eINSTANCE = org.eclipse.ocl.utilities.impl.UtilitiesFactoryImpl.init();
+public interface UtilitiesFactory
+		extends EFactory {
 
 	/**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @generated
+	 */
+	UtilitiesFactory eINSTANCE = org.eclipse.ocl.utilities.impl.UtilitiesFactoryImpl
+		.init();
+
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
 	UtilitiesPackage getUtilitiesPackage();
 
 } //UtilitiesFactory

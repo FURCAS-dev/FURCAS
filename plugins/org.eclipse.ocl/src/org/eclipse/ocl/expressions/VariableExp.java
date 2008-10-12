@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,16 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: VariableExp.java,v 1.5 2008/03/28 20:33:34 cdamus Exp $
+ * $Id: VariableExp.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -35,45 +35,49 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariableExp()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface VariableExp<C, PM> extends OCLExpression<C> {
+public interface VariableExp<C, PM>
+		extends OCLExpression<C> {
+
 	/**
-     * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referred Variable</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Referred Variable</em>' reference.
-     * @see #setReferredVariable(Variable)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariableExp_ReferredVariable()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Referred Variable</em>' reference.
+	 * @see #setReferredVariable(Variable)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariableExp_ReferredVariable()
+	 * @model
+	 * @generated
+	 */
 	Variable<C, PM> getReferredVariable();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.VariableExp#getReferredVariable <em>Referred Variable</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.VariableExp#getReferredVariable <em>Referred Variable</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Referred Variable</em>' reference.
-     * @see #getReferredVariable()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Referred Variable</em>' reference.
+	 * @see #getReferredVariable()
+	 * @generated
+	 */
 	void setReferredVariable(Variable<C, PM> value);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * type = referredVariable.type
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkVarType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * type = referredVariable.type
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkVarType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // VariableExp

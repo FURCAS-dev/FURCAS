@@ -12,10 +12,9 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveLiteralExp.java,v 1.2 2007/02/14 13:42:13 cdamus Exp $
+ * $Id: PrimitiveLiteralExp.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,9 @@ package org.eclipse.ocl.expressions;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getPrimitiveLiteralExp()
  * @model abstract="true"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface PrimitiveLiteralExp<C> extends LiteralExp<C> {
-    // no additional features
+public interface PrimitiveLiteralExp<C>
+		extends LiteralExp<C> {
+	// no additional features
 } // PrimitiveLiteralExp

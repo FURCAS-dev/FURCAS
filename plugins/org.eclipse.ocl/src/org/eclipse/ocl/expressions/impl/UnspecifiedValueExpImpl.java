@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.3 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.4 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -24,7 +25,6 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.utilities.TypedASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -40,227 +40,241 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class UnspecifiedValueExpImpl<C> extends OCLExpressionImpl<C> implements UnspecifiedValueExp<C> {
+public class UnspecifiedValueExpImpl<C>
+		extends OCLExpressionImpl<C>
+		implements UnspecifiedValueExp<C> {
+
 	/**
-     * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeStartPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeStartPosition()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int TYPE_START_POSITION_EDEFAULT = -1;
 
 	/**
-     * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeStartPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeStartPosition()
+	 * @generated
+	 * @ordered
+	 */
 	protected int typeStartPosition = TYPE_START_POSITION_EDEFAULT;
 
 	/**
-     * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeEndPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeEndPosition()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final int TYPE_END_POSITION_EDEFAULT = -1;
 
 	/**
-     * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeEndPosition() <em>Type End Position</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeEndPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeEndPosition()
+	 * @generated
+	 * @ordered
+	 */
 	protected int typeEndPosition = TYPE_END_POSITION_EDEFAULT;
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected UnspecifiedValueExpImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.UNSPECIFIED_VALUE_EXP;
-    }
+		return ExpressionsPackage.Literals.UNSPECIFIED_VALUE_EXP;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public int getTypeStartPosition() {
-        return typeStartPosition;
-    }
+		return typeStartPosition;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTypeStartPosition(int newTypeStartPosition) {
-        int oldTypeStartPosition = typeStartPosition;
-        typeStartPosition = newTypeStartPosition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
-    }
+		int oldTypeStartPosition = typeStartPosition;
+		typeStartPosition = newTypeStartPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION,
+				oldTypeStartPosition, typeStartPosition));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public int getTypeEndPosition() {
-        return typeEndPosition;
-    }
+		return typeEndPosition;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTypeEndPosition(int newTypeEndPosition) {
-        int oldTypeEndPosition = typeEndPosition;
-        typeEndPosition = newTypeEndPosition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
-    }
+		int oldTypeEndPosition = typeEndPosition;
+		typeEndPosition = newTypeEndPosition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION,
+				oldTypeEndPosition, typeEndPosition));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-                return new Integer(getTypeStartPosition());
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-                return new Integer(getTypeEndPosition());
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+				return new Integer(getTypeStartPosition());
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+				return new Integer(getTypeEndPosition());
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-                setTypeStartPosition(((Integer)newValue).intValue());
-                return;
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-                setTypeEndPosition(((Integer)newValue).intValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+				setTypeStartPosition(((Integer) newValue).intValue());
+				return;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+				setTypeEndPosition(((Integer) newValue).intValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public void eUnset(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-                setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
-                return;
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-                setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
+				return;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-                return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-            case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-                return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == TypedASTNode.class) {
-            switch (derivedFeatureID) {
-                case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-                case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == TypedASTNode.class) {
+			switch (derivedFeatureID) {
+				case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default :
+					return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == TypedASTNode.class) {
-            switch (baseFeatureID) {
-                case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
-                case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == TypedASTNode.class) {
+			switch (baseFeatureID) {
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION :
+					return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION :
+					return ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
+				default :
+					return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (typeStartPosition: "); //$NON-NLS-1$
-        result.append(typeStartPosition);
-        result.append(", typeEndPosition: "); //$NON-NLS-1$
-        result.append(typeEndPosition);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (typeStartPosition: "); //$NON-NLS-1$
+		result.append(typeStartPosition);
+		result.append(", typeEndPosition: "); //$NON-NLS-1$
+		result.append(typeEndPosition);
+		result.append(')');
+		return result.toString();
+	}
 
 	/**
 	 * @generated NOT

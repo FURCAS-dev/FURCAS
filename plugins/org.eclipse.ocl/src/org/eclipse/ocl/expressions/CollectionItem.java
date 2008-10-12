@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,16 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: CollectionItem.java,v 1.5 2008/03/28 20:33:34 cdamus Exp $
+ * $Id: CollectionItem.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -35,45 +35,49 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionItem()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface CollectionItem<C> extends CollectionLiteralPart<C> {
+public interface CollectionItem<C>
+		extends CollectionLiteralPart<C> {
+
 	/**
-     * Returns the value of the '<em><b>Item</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Item</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Item</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Item</em>' containment reference.
-     * @see #setItem(OCLExpression)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionItem_Item()
-     * @model containment="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Item</em>' containment reference.
+	 * @see #setItem(OCLExpression)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCollectionItem_Item()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
 	OCLExpression<C> getItem();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.CollectionItem#getItem <em>Item</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.CollectionItem#getItem <em>Item</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Item</em>' containment reference.
-     * @see #getItem()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Item</em>' containment reference.
+	 * @see #getItem()
+	 * @generated
+	 */
 	void setItem(OCLExpression<C> value);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * type = item.type
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkItemType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * type = item.type
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkItemType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // CollectionItem

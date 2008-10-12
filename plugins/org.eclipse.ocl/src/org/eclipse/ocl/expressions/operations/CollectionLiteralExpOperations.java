@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: CollectionLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -54,202 +55,224 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * @generated
  */
-public class CollectionLiteralExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected CollectionLiteralExpOperations() {
-        super();
-    }
+public class CollectionLiteralExpOperations
+		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * kind <> CollectionKind::Collection
-     * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkNoCollectionInstances(CollectionLiteralExp<C> collectionLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = collectionLiteralExp.getKind() != CollectionKind.COLLECTION_LITERAL;
-    	
-        if (!result) {
-            if (diagnostics != null) {
-            	// TODO: Specific message
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.COLLECTION_LITERAL_EXP__NO_COLLECTION_INSTANCES,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkNoCollectionInstances", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-                         new Object [] { collectionLiteralExp }));
-            }
-        }
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CollectionLiteralExpOperations() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * kind = CollectionKind::Set implies type.oclIsKindOf(SetType)
-     * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkSetKind(CollectionLiteralExp<C> collectionLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	CollectionKind kind = collectionLiteralExp.getKind();
-    	boolean result = (kind != CollectionKind.SET_LITERAL)
-    			|| TypesPackage.Literals.SET_TYPE.isInstance(collectionLiteralExp.getType());
-    	
-        if (!result) {
-            if (diagnostics != null) {
-            	// TODO: Specific message
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.COLLECTION_LITERAL_EXP__SET_KIND,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkSetKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-                         new Object [] { collectionLiteralExp }));
-            }
-        }
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * kind <> CollectionKind::Collection
+	 * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkNoCollectionInstances(
+			CollectionLiteralExp<C> collectionLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = collectionLiteralExp.getKind() != CollectionKind.COLLECTION_LITERAL;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)
-     * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkSequenceKind(CollectionLiteralExp<C> collectionLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	CollectionKind kind = collectionLiteralExp.getKind();
-    	boolean result = (kind != CollectionKind.SEQUENCE_LITERAL)
-    			|| TypesPackage.Literals.SEQUENCE_TYPE.isInstance(collectionLiteralExp.getType());
-    	
-        if (!result) {
-            if (diagnostics != null) {
-            	// TODO: Specific message
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.COLLECTION_LITERAL_EXP__SEQUENCE_KIND,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkSequenceKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-                         new Object [] { collectionLiteralExp }));
-            }
-        }
-        return result;
-    }
+		if (!result) {
+			if (diagnostics != null) {
+				// TODO: Specific message
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.COLLECTION_LITERAL_EXP__NO_COLLECTION_INSTANCES,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkNoCollectionInstances", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{collectionLiteralExp}));
+			}
+		}
+		return result;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
-     * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkBagKind(CollectionLiteralExp<C> collectionLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	CollectionKind kind = collectionLiteralExp.getKind();
-    	boolean result = (kind != CollectionKind.BAG_LITERAL)
-    			|| TypesPackage.Literals.BAG_TYPE.isInstance(collectionLiteralExp.getType());
-    	
-        if (!result) {
-            if (diagnostics != null) {
-            	// TODO: Specific message
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.COLLECTION_LITERAL_EXP__BAG_KIND,
-                         org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "checkBagKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context) }), //$NON-NLS-1$ //$NON-NLS-2$
-                         new Object [] { collectionLiteralExp }));
-            }
-        }
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * kind = CollectionKind::Set implies type.oclIsKindOf(SetType)
+	 * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkSetKind(
+			CollectionLiteralExp<C> collectionLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		CollectionKind kind = collectionLiteralExp.getKind();
+		boolean result = (kind != CollectionKind.SET_LITERAL)
+			|| TypesPackage.Literals.SET_TYPE.isInstance(collectionLiteralExp
+				.getType());
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * type.oclAsType(CollectionType).elementType = part->iterate(p; c : Classifier = OclVoid | c.commonSuperType(p.type))
-     * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkElementType(CollectionLiteralExp<C> collectionLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	String message = null;
-    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(collectionLiteralExp, context);
-		
+		if (!result) {
+			if (diagnostics != null) {
+				// TODO: Specific message
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.COLLECTION_LITERAL_EXP__SET_KIND,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkSetKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{collectionLiteralExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)
+	 * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkSequenceKind(
+			CollectionLiteralExp<C> collectionLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		CollectionKind kind = collectionLiteralExp.getKind();
+		boolean result = (kind != CollectionKind.SEQUENCE_LITERAL)
+			|| TypesPackage.Literals.SEQUENCE_TYPE
+				.isInstance(collectionLiteralExp.getType());
+
+		if (!result) {
+			if (diagnostics != null) {
+				// TODO: Specific message
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.COLLECTION_LITERAL_EXP__SEQUENCE_KIND,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkSequenceKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{collectionLiteralExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
+	 * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkBagKind(
+			CollectionLiteralExp<C> collectionLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		CollectionKind kind = collectionLiteralExp.getKind();
+		boolean result = (kind != CollectionKind.BAG_LITERAL)
+			|| TypesPackage.Literals.BAG_TYPE.isInstance(collectionLiteralExp
+				.getType());
+
+		if (!result) {
+			if (diagnostics != null) {
+				// TODO: Specific message
+				diagnostics
+					.add(new BasicDiagnostic(
+						Diagnostic.ERROR,
+						ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						ExpressionsValidator.COLLECTION_LITERAL_EXP__BAG_KIND,
+						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
+							.getString(
+								"_UI_GenericInvariant_diagnostic", new Object[]{"checkBagKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
+						new Object[]{collectionLiteralExp}));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * type.oclAsType(CollectionType).elementType = part->iterate(p; c : Classifier = OclVoid | c.commonSuperType(p.type))
+	 * @param collectionLiteralExp The receiving '<em><b>Collection Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkElementType(
+			CollectionLiteralExp<C> collectionLiteralExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		String message = null;
+		Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(collectionLiteralExp, context);
+
 		if (env != null) {
 			C type = collectionLiteralExp.getType();
-			
+
 			if (type instanceof CollectionType) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, ?> ctype = (CollectionType<C, ?>) type;
-				List<CollectionLiteralPart<C>> parts = collectionLiteralExp.getPart();
-				
+				List<CollectionLiteralPart<C>> parts = collectionLiteralExp
+					.getPart();
+
 				if (parts.isEmpty()) {
 					if (!(ctype.getElementType() instanceof VoidType)) {
 						result = false;
 						message = OCLMessages.bind(
-								OCLMessages.TypeConformanceEmptyCollection_ERROR_,
-								collectionLiteralExp.toString());
-		            }
+							OCLMessages.TypeConformanceEmptyCollection_ERROR_,
+							collectionLiteralExp.toString());
+					}
 				} else {
 					C partsType = parts.get(0).getType();
-	
+
 					for (CollectionLiteralPart<C> part : parts) {
-			            partsType = TypeUtil.commonSuperType(null, env, partsType, part.getType());
+						partsType = TypeUtil.commonSuperType(null, env,
+							partsType, part.getType());
 					}
-			        
+
 					if ((partsType == null)
-							|| !TypeUtil.exactTypeMatch(env, partsType, ctype
-									.getElementType())) {
+						|| !TypeUtil.exactTypeMatch(env, partsType, ctype
+							.getElementType())) {
 						result = false;
 						message = OCLMessages
-								.bind(
-										OCLMessages.TypeConformanceCollectionElementType_ERROR_,
-										collectionLiteralExp.toString());
+							.bind(
+								OCLMessages.TypeConformanceCollectionElementType_ERROR_,
+								collectionLiteralExp.toString());
 					}
 				}
 			}
 		}
 
-        if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.COLLECTION_LITERAL_EXP__ELEMENT_TYPE,
-                         message,
-                         new Object [] { collectionLiteralExp }));
-            }
-        }
-        return result;
-    }
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_LITERAL_EXP__ELEMENT_TYPE,
+					message, new Object[]{collectionLiteralExp}));
+			}
+		}
+		return result;
+	}
 
 } // CollectionLiteralExpOperations

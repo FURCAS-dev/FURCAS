@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,16 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: IterateExp.java,v 1.5 2008/03/28 20:33:35 cdamus Exp $
+ * $Id: IterateExp.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -35,71 +35,77 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIterateExp()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface IterateExp<C, PM> extends LoopExp<C, PM> {
+public interface IterateExp<C, PM>
+		extends LoopExp<C, PM> {
+
 	/**
-     * Returns the value of the '<em><b>Result</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Result</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Result</em>' containment reference.
-     * @see #setResult(Variable)
-     * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIterateExp_Result()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Result</em>' containment reference.
+	 * @see #setResult(Variable)
+	 * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIterateExp_Result()
+	 * @model containment="true"
+	 * @generated
+	 */
 	Variable<C, PM> getResult();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.ocl.expressions.IterateExp#getResult <em>Result</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.ocl.expressions.IterateExp#getResult <em>Result</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Result</em>' containment reference.
-     * @see #getResult()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Result</em>' containment reference.
+	 * @see #getResult()
+	 * @generated
+	 */
 	void setResult(Variable<C, PM> value);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * type = result.type
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkIterateType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * type = result.type
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkIterateType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * body.type.conformsTo(result.type)
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkBodyType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * body.type.conformsTo(result.type)
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkBodyType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.result.initExpression->size() = 1
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @model
-     * @generated
-     */
-    boolean checkResultInit(DiagnosticChain diagnostics, Map<Object, Object> context);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.result.initExpression->size() = 1
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean checkResultInit(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // IterateExp

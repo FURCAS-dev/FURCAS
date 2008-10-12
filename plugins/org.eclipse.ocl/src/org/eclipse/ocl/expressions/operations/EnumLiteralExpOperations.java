@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: EnumLiteralExpOperations.java,v 1.2 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: EnumLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -45,62 +46,63 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * @generated
  */
-public class EnumLiteralExpOperations {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EnumLiteralExpOperations() {
-        super();
-    }
+public class EnumLiteralExpOperations
+		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.type = referredEnumLiteral.enumeration
-     * @param enumLiteralExp The receiving '<em><b>Enum Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C, EL> boolean checkEnumType(EnumLiteralExp<C, EL> enumLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EnumLiteralExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.type = referredEnumLiteral.enumeration
+	 * @param enumLiteralExp The receiving '<em><b>Enum Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C, EL> boolean checkEnumType(
+			EnumLiteralExp<C, EL> enumLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		EL l = enumLiteralExp.getReferredEnumLiteral();
 		C type = enumLiteralExp.getType();
 		boolean result = true;
 		String message = null;
-		
-    	Environment<?, C, ?, ?, EL, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(enumLiteralExp, context);
-		
+
+		Environment<?, C, ?, ?, EL, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(enumLiteralExp, context);
+
 		if ((env != null) && (type != null)) {
-			UMLReflection<?, C, ?, ?, EL, ?, ?, ?, ?, ?> uml = env.getUMLReflection();
-			
+			UMLReflection<?, C, ?, ?, EL, ?, ?, ?, ?, ?> uml = env
+				.getUMLReflection();
+
 			if (!uml.isEnumeration(type)
-					|| !TypeUtil.exactTypeMatch(env, uml.getEnumeration(l),
-							type)) {
+				|| !TypeUtil.exactTypeMatch(env, uml.getEnumeration(l), type)) {
 				result = false;
 				message = OCLMessages.bind(
-						OCLMessages.IllegalEnumLiteral_ERROR_,
-						enumLiteralExp.toString());
+					OCLMessages.IllegalEnumLiteral_ERROR_, enumLiteralExp
+						.toString());
 			}
 		}
-		
-        if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.ENUM_LITERAL_EXP__ENUM_TYPE,
-                         message,
-                         new Object [] { enumLiteralExp }));
-            }
-        }
-        
-        return result;
-    }
+
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.ENUM_LITERAL_EXP__ENUM_TYPE, message,
+					new Object[]{enumLiteralExp}));
+			}
+		}
+
+		return result;
+	}
 
 } // EnumLiteralExpOperations

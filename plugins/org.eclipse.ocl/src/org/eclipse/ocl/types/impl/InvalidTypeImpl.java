@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.4 2007/10/11 23:04:56 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -34,27 +35,30 @@ import org.eclipse.ocl.util.OCLStandardLibraryUtil;
  *
  * @generated
  */
-public class InvalidTypeImpl<O> extends EObjectImpl implements InvalidType<O> {
+public class InvalidTypeImpl<O>
+		extends EObjectImpl
+		implements InvalidType<O> {
+
 	private EList<O> operations;
-	
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected InvalidTypeImpl() {
-        super();
-    }
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
+	protected InvalidTypeImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TypesPackage.Literals.INVALID_TYPE;
-    }
+		return TypesPackage.Literals.INVALID_TYPE;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,13 +76,13 @@ public class InvalidTypeImpl<O> extends EObjectImpl implements InvalidType<O> {
 	 */
 	public EList<O> oclOperations() {
 		if (operations == null) {
-			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env =
-				Environment.Registry.INSTANCE.getEnvironmentFor(this);
-			
-			operations = new BasicEList<O>(
-					OCLStandardLibraryUtil.createAnyTypeOperations(env));
+			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
+				.getEnvironmentFor(this);
+
+			operations = new BasicEList<O>(OCLStandardLibraryUtil
+				.createAnyTypeOperations(env));
 		}
-		
+
 		return operations;
 	}
 
