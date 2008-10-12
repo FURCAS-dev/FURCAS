@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.6 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -46,7 +47,10 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  * @generated
  */
 @SuppressWarnings("restriction")
-public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLExpression {
+public abstract class OCLExpressionImpl
+		extends TypedElementImpl
+		implements OCLExpression {
+
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -124,7 +128,9 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.OCL_EXPRESSION__START_POSITION, oldStartPosition, startPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.OCL_EXPRESSION__START_POSITION, oldStartPosition,
+				startPosition));
 	}
 
 	/**
@@ -145,7 +151,9 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.OCL_EXPRESSION__END_POSITION, oldEndPosition, endPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.OCL_EXPRESSION__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -156,9 +164,9 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.OCL_EXPRESSION__START_POSITION:
+			case UMLPackage.OCL_EXPRESSION__START_POSITION :
 				return new Integer(getStartPosition());
-			case UMLPackage.OCL_EXPRESSION__END_POSITION:
+			case UMLPackage.OCL_EXPRESSION__END_POSITION :
 				return new Integer(getEndPosition());
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -172,11 +180,11 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.OCL_EXPRESSION__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
+			case UMLPackage.OCL_EXPRESSION__START_POSITION :
+				setStartPosition(((Integer) newValue).intValue());
 				return;
-			case UMLPackage.OCL_EXPRESSION__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
+			case UMLPackage.OCL_EXPRESSION__END_POSITION :
+				setEndPosition(((Integer) newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,10 +198,10 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.OCL_EXPRESSION__START_POSITION:
+			case UMLPackage.OCL_EXPRESSION__START_POSITION :
 				setStartPosition(START_POSITION_EDEFAULT);
 				return;
-			case UMLPackage.OCL_EXPRESSION__END_POSITION:
+			case UMLPackage.OCL_EXPRESSION__END_POSITION :
 				setEndPosition(END_POSITION_EDEFAULT);
 				return;
 		}
@@ -208,9 +216,9 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.OCL_EXPRESSION__START_POSITION:
+			case UMLPackage.OCL_EXPRESSION__START_POSITION :
 				return startPosition != START_POSITION_EDEFAULT;
-			case UMLPackage.OCL_EXPRESSION__END_POSITION:
+			case UMLPackage.OCL_EXPRESSION__END_POSITION :
 				return endPosition != END_POSITION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -225,24 +233,30 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.OCL_EXPRESSION__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case UMLPackage.OCL_EXPRESSION__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
+				case UMLPackage.OCL_EXPRESSION__START_POSITION :
+					return UtilitiesPackage.AST_NODE__START_POSITION;
+				case UMLPackage.OCL_EXPRESSION__END_POSITION :
+					return UtilitiesPackage.AST_NODE__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.OCLExpression.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -257,24 +271,30 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return UMLPackage.OCL_EXPRESSION__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return UMLPackage.OCL_EXPRESSION__END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.AST_NODE__START_POSITION :
+					return UMLPackage.OCL_EXPRESSION__START_POSITION;
+				case UtilitiesPackage.AST_NODE__END_POSITION :
+					return UMLPackage.OCL_EXPRESSION__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.OCLExpression.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -290,10 +310,10 @@ public abstract class OCLExpressionImpl extends TypedElementImpl implements OCLE
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
-	
+
 	/**
 	 * @generated NOT
 	 */

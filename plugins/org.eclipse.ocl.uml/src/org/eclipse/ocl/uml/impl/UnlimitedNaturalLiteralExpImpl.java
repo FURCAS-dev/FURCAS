@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.6 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -42,7 +43,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implements UnlimitedNaturalLiteralExp {
+public class UnlimitedNaturalLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements UnlimitedNaturalLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -110,7 +114,9 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 		Integer oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -124,14 +130,16 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkNaturalType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this, diagnostics, context);
+	public boolean checkNaturalType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this,
+			diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -139,10 +147,12 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				return getIntegerSymbol();
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-				return isUnlimited() ? Boolean.TRUE : Boolean.FALSE;
+			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+				return isUnlimited()
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,8 +165,8 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				setIntegerSymbol((Integer)newValue);
+			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				setIntegerSymbol((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,7 +180,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -185,9 +195,11 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
+			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				return INTEGER_SYMBOL_EDEFAULT == null
+					? integerSymbol != null
+					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
 				return isUnlimited() != UNLIMITED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -202,9 +214,12 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
-				case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED: return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
-				default: return -1;
+				case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+					return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
+				case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+					return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -219,9 +234,12 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL: return UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
-				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED: return UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
-				default: return -1;
+				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+					return UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
+				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+					return UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -243,7 +261,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitUnlimitedNaturalLiteralExp(this);
 	}
 

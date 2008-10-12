@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -45,7 +46,10 @@ import org.eclipse.uml2.uml.Classifier;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
+public class TypeExpImpl
+		extends OCLExpressionImpl
+		implements TypeExp {
+
 	/**
 	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -81,12 +85,14 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * @generated
 	 */
 	public Classifier getReferredType() {
-		if (referredType != null && ((EObject)referredType).eIsProxy()) {
-			InternalEObject oldReferredType = (InternalEObject)referredType;
-			referredType = (Classifier)eResolveProxy(oldReferredType);
+		if (referredType != null && ((EObject) referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject) referredType;
+			referredType = (Classifier) eResolveProxy(oldReferredType);
 			if (referredType != oldReferredType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType,
+						referredType));
 			}
 		}
 		return referredType;
@@ -111,7 +117,9 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 		Classifier oldReferredType = referredType;
 		referredType = newReferredType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TYPE_EXP__REFERRED_TYPE, oldReferredType,
+				referredType));
 	}
 
 	/**
@@ -122,8 +130,9 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-				if (resolve) return getReferredType();
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE :
+				if (resolve)
+					return getReferredType();
 				return basicGetReferredType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -137,8 +146,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-				setReferredType((Classifier)newValue);
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE :
+				setReferredType((Classifier) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,8 +161,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
-				setReferredType((Classifier)null);
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE :
+				setReferredType((Classifier) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,7 +176,7 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TYPE_EXP__REFERRED_TYPE:
+			case UMLPackage.TYPE_EXP__REFERRED_TYPE :
 				return referredType != null;
 		}
 		return super.eIsSet(featureID);
@@ -182,8 +191,10 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.TYPE_EXP__REFERRED_TYPE: return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
-				default: return -1;
+				case UMLPackage.TYPE_EXP__REFERRED_TYPE :
+					return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -198,8 +209,10 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE: return UMLPackage.TYPE_EXP__REFERRED_TYPE;
-				default: return -1;
+				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :
+					return UMLPackage.TYPE_EXP__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -211,7 +224,7 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitTypeExp(this);
 	}
 

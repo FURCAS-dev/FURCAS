@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.3 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.4 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -42,7 +43,10 @@ import org.eclipse.ocl.util.ToStringVisitor;
  * @generated
  */
 @SuppressWarnings("restriction")
-public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureCallExp {
+public abstract class FeatureCallExpImpl
+		extends CallExpImpl
+		implements FeatureCallExp {
+
 	/**
 	 * The default value of the '{@link #isMarkedPre() <em>Marked Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,7 +65,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MARKED_PRE_EFLAG = 1 << 10;
+	protected static final int MARKED_PRE_EFLAG = 1 << 12;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,9 +102,14 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	 */
 	public void setMarkedPre(boolean newMarkedPre) {
 		boolean oldMarkedPre = (eFlags & MARKED_PRE_EFLAG) != 0;
-		if (newMarkedPre) eFlags |= MARKED_PRE_EFLAG; else eFlags &= ~MARKED_PRE_EFLAG;
+		if (newMarkedPre)
+			eFlags |= MARKED_PRE_EFLAG;
+		else
+			eFlags &= ~MARKED_PRE_EFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.FEATURE_CALL_EXP__MARKED_PRE, oldMarkedPre, newMarkedPre));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.FEATURE_CALL_EXP__MARKED_PRE, oldMarkedPre,
+				newMarkedPre));
 	}
 
 	/**
@@ -111,8 +120,10 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE:
-				return isMarkedPre() ? Boolean.TRUE : Boolean.FALSE;
+			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
+				return isMarkedPre()
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,8 +136,8 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE:
-				setMarkedPre(((Boolean)newValue).booleanValue());
+			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
+				setMarkedPre(((Boolean) newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +151,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE:
+			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
 				setMarkedPre(MARKED_PRE_EDEFAULT);
 				return;
 		}
@@ -155,7 +166,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE:
+			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
 				return ((eFlags & MARKED_PRE_EFLAG) != 0) != MARKED_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -170,8 +181,10 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE: return ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE;
-				default: return -1;
+				case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
+					return ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -186,8 +199,10 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE: return UMLPackage.FEATURE_CALL_EXP__MARKED_PRE;
-				default: return -1;
+				case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :
+					return UMLPackage.FEATURE_CALL_EXP__MARKED_PRE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -203,7 +218,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
 

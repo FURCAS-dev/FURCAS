@@ -12,7 +12,7 @@
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869
 
- $Id: plugin.xml,v 1.4 2008/09/28 17:34:53 cdamus Exp $
+ $Id: plugin.xml,v 1.5 2008/10/12 01:12:33 cdamus Exp $
 -->
 
 <plugin>
@@ -27,7 +27,7 @@
   <extension point="org.eclipse.ocl.environments">
     <environmentFactory
         class="org.eclipse.ocl.uml.UMLEnvironmentFactory">
-      <package nsURI="http://www.eclipse.org/uml2/2.1.0/UML"/>
+      <package nsURI="http://www.eclipse.org/uml2/3.0.0/UML"/>
       <package nsURI="http://www.eclipse.org/ocl/1.1.0/UML"/>
     </environmentFactory>
   </extension>

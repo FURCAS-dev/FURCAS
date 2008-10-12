@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.3 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.4 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -31,7 +32,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLiteralExp {
+public class InvalidLiteralExpImpl
+		extends LiteralExpImpl
+		implements InvalidLiteralExp {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,7 +61,7 @@ public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLite
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitInvalidLiteralExp(this);
 	}
 

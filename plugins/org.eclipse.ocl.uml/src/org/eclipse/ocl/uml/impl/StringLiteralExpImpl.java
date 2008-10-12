@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.6 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -41,7 +42,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements StringLiteralExp {
+public class StringLiteralExpImpl
+		extends PrimitiveLiteralExpImpl
+		implements StringLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,19 +103,23 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 		String oldStringSymbol = stringSymbol;
 		stringSymbol = newStringSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL, oldStringSymbol, stringSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL, oldStringSymbol,
+				stringSymbol));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkStringType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return StringLiteralExpOperations.checkStringType(this, diagnostics, context);
+	public boolean checkStringType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return StringLiteralExpOperations.checkStringType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -119,7 +127,7 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
+			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
 				return getStringSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -133,8 +141,8 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-				setStringSymbol((String)newValue);
+			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
+				setStringSymbol((String) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,7 +156,7 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
+			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
 				setStringSymbol(STRING_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -163,8 +171,10 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-				return STRING_SYMBOL_EDEFAULT == null ? stringSymbol != null : !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
+			case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
+				return STRING_SYMBOL_EDEFAULT == null
+					? stringSymbol != null
+					: !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -178,8 +188,10 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StringLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL: return ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL;
-				default: return -1;
+				case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
+					return ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -194,8 +206,10 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StringLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL: return UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL;
-				default: return -1;
+				case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
+					return UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -217,7 +231,7 @@ public class StringLiteralExpImpl extends PrimitiveLiteralExpImpl implements Str
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitStringLiteralExp(this);
 	}
 

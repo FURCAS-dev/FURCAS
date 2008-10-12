@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: LetExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: LetExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -48,7 +49,10 @@ import org.eclipse.uml2.uml.Parameter;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class LetExpImpl extends OCLExpressionImpl implements LetExp {
+public class LetExpImpl
+		extends OCLExpressionImpl
+		implements LetExp {
+
 	/**
 	 * The cached value of the '{@link #getIn() <em>In</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -102,12 +106,17 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIn(OCLExpression<Classifier> newIn, NotificationChain msgs) {
+	public NotificationChain basicSetIn(OCLExpression<Classifier> newIn,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldIn = in;
 		in = newIn;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.LET_EXP__IN, oldIn, newIn);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.LET_EXP__IN, oldIn, newIn);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -121,14 +130,19 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 		if (newIn != in) {
 			NotificationChain msgs = null;
 			if (in != null)
-				msgs = ((InternalEObject)in).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__IN, null, msgs);
+				msgs = ((InternalEObject) in)
+					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- UMLPackage.LET_EXP__IN, null, msgs);
 			if (newIn != null)
-				msgs = ((InternalEObject)newIn).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__IN, null, msgs);
+				msgs = ((InternalEObject) newIn)
+					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- UMLPackage.LET_EXP__IN, null, msgs);
 			msgs = basicSetIn(newIn, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.LET_EXP__IN, newIn, newIn));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.LET_EXP__IN, newIn, newIn));
 	}
 
 	/**
@@ -145,12 +159,18 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVariable(Variable<Classifier, Parameter> newVariable, NotificationChain msgs) {
+	public NotificationChain basicSetVariable(
+			Variable<Classifier, Parameter> newVariable, NotificationChain msgs) {
 		Variable<Classifier, Parameter> oldVariable = variable;
 		variable = newVariable;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.LET_EXP__VARIABLE, oldVariable, newVariable);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.LET_EXP__VARIABLE, oldVariable,
+				newVariable);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -164,36 +184,43 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 		if (newVariable != variable) {
 			NotificationChain msgs = null;
 			if (variable != null)
-				msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE, null, msgs);
+				msgs = ((InternalEObject) variable).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE,
+					null, msgs);
 			if (newVariable != null)
-				msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE, null, msgs);
+				msgs = ((InternalEObject) newVariable).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE,
+					null, msgs);
 			msgs = basicSetVariable(newVariable, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.LET_EXP__VARIABLE, newVariable, newVariable));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.LET_EXP__VARIABLE, newVariable, newVariable));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkLetType(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean checkLetType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return LetExpOperations.checkLetType(this, diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.LET_EXP__IN:
+			case UMLPackage.LET_EXP__IN :
 				return basicSetIn(null, msgs);
-			case UMLPackage.LET_EXP__VARIABLE:
+			case UMLPackage.LET_EXP__VARIABLE :
 				return basicSetVariable(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -207,9 +234,9 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.LET_EXP__IN:
+			case UMLPackage.LET_EXP__IN :
 				return getIn();
-			case UMLPackage.LET_EXP__VARIABLE:
+			case UMLPackage.LET_EXP__VARIABLE :
 				return getVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -224,11 +251,11 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.LET_EXP__IN:
-				setIn((OCLExpression<Classifier>)newValue);
+			case UMLPackage.LET_EXP__IN :
+				setIn((OCLExpression<Classifier>) newValue);
 				return;
-			case UMLPackage.LET_EXP__VARIABLE:
-				setVariable((Variable<Classifier, Parameter>)newValue);
+			case UMLPackage.LET_EXP__VARIABLE :
+				setVariable((Variable<Classifier, Parameter>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -242,11 +269,11 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.LET_EXP__IN:
-				setIn((OCLExpression<Classifier>)null);
+			case UMLPackage.LET_EXP__IN :
+				setIn((OCLExpression<Classifier>) null);
 				return;
-			case UMLPackage.LET_EXP__VARIABLE:
-				setVariable((Variable<Classifier, Parameter>)null);
+			case UMLPackage.LET_EXP__VARIABLE :
+				setVariable((Variable<Classifier, Parameter>) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -260,9 +287,9 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.LET_EXP__IN:
+			case UMLPackage.LET_EXP__IN :
 				return in != null;
-			case UMLPackage.LET_EXP__VARIABLE:
+			case UMLPackage.LET_EXP__VARIABLE :
 				return variable != null;
 		}
 		return super.eIsSet(featureID);
@@ -277,9 +304,12 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LetExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.LET_EXP__IN: return ExpressionsPackage.LET_EXP__IN;
-				case UMLPackage.LET_EXP__VARIABLE: return ExpressionsPackage.LET_EXP__VARIABLE;
-				default: return -1;
+				case UMLPackage.LET_EXP__IN :
+					return ExpressionsPackage.LET_EXP__IN;
+				case UMLPackage.LET_EXP__VARIABLE :
+					return ExpressionsPackage.LET_EXP__VARIABLE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -294,9 +324,12 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LetExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.LET_EXP__IN: return UMLPackage.LET_EXP__IN;
-				case ExpressionsPackage.LET_EXP__VARIABLE: return UMLPackage.LET_EXP__VARIABLE;
-				default: return -1;
+				case ExpressionsPackage.LET_EXP__IN :
+					return UMLPackage.LET_EXP__IN;
+				case ExpressionsPackage.LET_EXP__VARIABLE :
+					return UMLPackage.LET_EXP__VARIABLE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -308,7 +341,7 @@ public class LetExpImpl extends OCLExpressionImpl implements LetExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitLetExp(this);
 	}
 

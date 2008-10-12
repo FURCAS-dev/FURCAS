@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExp.java,v 1.1 2007/03/27 15:05:17 cdamus Exp $
+ * $Id: TypeExp.java,v 1.2 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -27,6 +27,8 @@ import org.eclipse.uml2.uml.Classifier;
  * @see org.eclipse.ocl.uml.UMLPackage#getTypeExp()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface TypeExp extends OCLExpression, org.eclipse.ocl.expressions.TypeExp<Classifier> {
+public interface TypeExp
+		extends OCLExpression, org.eclipse.ocl.expressions.TypeExp<Classifier> {
 } // TypeExp

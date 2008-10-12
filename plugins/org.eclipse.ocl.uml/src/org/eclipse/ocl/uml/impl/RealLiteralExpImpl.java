@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.6 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -41,7 +42,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLiteralExp {
+public class RealLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements RealLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,19 +103,23 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 		Double oldRealSymbol = realSymbol;
 		realSymbol = newRealSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol, realSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol,
+				realSymbol));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkRealType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return RealLiteralExpOperations.checkRealType(this, diagnostics, context);
+	public boolean checkRealType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return RealLiteralExpOperations.checkRealType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -119,7 +127,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
 				return getRealSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -133,8 +141,8 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				setRealSymbol((Double)newValue);
+			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+				setRealSymbol((Double) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,7 +156,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
 				setRealSymbol(REAL_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -163,8 +171,10 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				return REAL_SYMBOL_EDEFAULT == null ? realSymbol != null : !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
+			case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+				return REAL_SYMBOL_EDEFAULT == null
+					? realSymbol != null
+					: !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -178,8 +188,10 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.RealLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL: return ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL;
-				default: return -1;
+				case UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+					return ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -194,8 +206,10 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.RealLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL: return UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL;
-				default: return -1;
+				case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+					return UMLPackage.REAL_LITERAL_EXP__REAL_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -217,7 +231,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitRealLiteralExp(this);
 	}
 

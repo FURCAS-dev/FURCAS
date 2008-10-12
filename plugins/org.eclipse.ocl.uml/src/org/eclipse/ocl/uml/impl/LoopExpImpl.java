@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -52,7 +53,10 @@ import org.eclipse.uml2.uml.Parameter;
  * @generated
  */
 @SuppressWarnings("restriction")
-public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
+public abstract class LoopExpImpl
+		extends CallExpImpl
+		implements LoopExp {
+
 	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -106,12 +110,17 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBody(OCLExpression<Classifier> newBody, NotificationChain msgs) {
+	public NotificationChain basicSetBody(OCLExpression<Classifier> newBody,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldBody = body;
 		body = newBody;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.LOOP_EXP__BODY, oldBody, newBody);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.LOOP_EXP__BODY, oldBody, newBody);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -125,14 +134,19 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 		if (newBody != body) {
 			NotificationChain msgs = null;
 			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null, msgs);
+				msgs = ((InternalEObject) body).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null,
+					msgs);
 			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null, msgs);
+				msgs = ((InternalEObject) newBody).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LOOP_EXP__BODY, null,
+					msgs);
 			msgs = basicSetBody(newBody, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.LOOP_EXP__BODY, newBody, newBody));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.LOOP_EXP__BODY, newBody, newBody));
 	}
 
 	/**
@@ -142,50 +156,59 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	 */
 	public EList<Variable<Classifier, Parameter>> getIterator() {
 		if (iterator == null) {
-			iterator = new EObjectContainmentEList<Variable<Classifier, Parameter>>(Variable.class, this, UMLPackage.LOOP_EXP__ITERATOR);
+			iterator = new EObjectContainmentEList<Variable<Classifier, Parameter>>(
+				Variable.class, this, UMLPackage.LOOP_EXP__ITERATOR);
 		}
 		return iterator;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkSourceCollection(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return LoopExpOperations.checkSourceCollection(this, diagnostics, context);
+	public boolean checkSourceCollection(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return LoopExpOperations.checkSourceCollection(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkLoopVariableInit(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return LoopExpOperations.checkLoopVariableInit(this, diagnostics, context);
+	public boolean checkLoopVariableInit(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return LoopExpOperations.checkLoopVariableInit(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkLoopVariableType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return LoopExpOperations.checkLoopVariableType(this, diagnostics, context);
+	public boolean checkLoopVariableType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return LoopExpOperations.checkLoopVariableType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
+			case UMLPackage.LOOP_EXP__BODY :
 				return basicSetBody(null, msgs);
-			case UMLPackage.LOOP_EXP__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+			case UMLPackage.LOOP_EXP__ITERATOR :
+				return ((InternalEList<?>) getIterator()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -198,9 +221,9 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
+			case UMLPackage.LOOP_EXP__BODY :
 				return getBody();
-			case UMLPackage.LOOP_EXP__ITERATOR:
+			case UMLPackage.LOOP_EXP__ITERATOR :
 				return getIterator();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -215,12 +238,14 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<Classifier>)newValue);
+			case UMLPackage.LOOP_EXP__BODY :
+				setBody((OCLExpression<Classifier>) newValue);
 				return;
-			case UMLPackage.LOOP_EXP__ITERATOR:
+			case UMLPackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
-				getIterator().addAll((Collection<? extends Variable<Classifier, Parameter>>)newValue);
+				getIterator()
+					.addAll(
+						(Collection<? extends Variable<Classifier, Parameter>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -234,10 +259,10 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<Classifier>)null);
+			case UMLPackage.LOOP_EXP__BODY :
+				setBody((OCLExpression<Classifier>) null);
 				return;
-			case UMLPackage.LOOP_EXP__ITERATOR:
+			case UMLPackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
 				return;
 		}
@@ -252,9 +277,9 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.LOOP_EXP__BODY:
+			case UMLPackage.LOOP_EXP__BODY :
 				return body != null;
-			case UMLPackage.LOOP_EXP__ITERATOR:
+			case UMLPackage.LOOP_EXP__ITERATOR :
 				return iterator != null && !iterator.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -269,9 +294,12 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.LOOP_EXP__BODY: return ExpressionsPackage.LOOP_EXP__BODY;
-				case UMLPackage.LOOP_EXP__ITERATOR: return ExpressionsPackage.LOOP_EXP__ITERATOR;
-				default: return -1;
+				case UMLPackage.LOOP_EXP__BODY :
+					return ExpressionsPackage.LOOP_EXP__BODY;
+				case UMLPackage.LOOP_EXP__ITERATOR :
+					return ExpressionsPackage.LOOP_EXP__ITERATOR;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -286,9 +314,12 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.LOOP_EXP__BODY: return UMLPackage.LOOP_EXP__BODY;
-				case ExpressionsPackage.LOOP_EXP__ITERATOR: return UMLPackage.LOOP_EXP__ITERATOR;
-				default: return -1;
+				case ExpressionsPackage.LOOP_EXP__BODY :
+					return UMLPackage.LOOP_EXP__BODY;
+				case ExpressionsPackage.LOOP_EXP__ITERATOR :
+					return UMLPackage.LOOP_EXP__ITERATOR;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

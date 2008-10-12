@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -54,7 +55,10 @@ import org.eclipse.uml2.uml.Property;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralExp {
+public class TupleLiteralExpImpl
+		extends LiteralExpImpl
+		implements TupleLiteralExp {
+
 	/**
 	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -91,39 +95,47 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 */
 	public EList<TupleLiteralPart<Classifier, Property>> getPart() {
 		if (part == null) {
-			part = new EObjectContainmentEList<TupleLiteralPart<Classifier, Property>>(TupleLiteralPart.class, this, UMLPackage.TUPLE_LITERAL_EXP__PART);
+			part = new EObjectContainmentEList<TupleLiteralPart<Classifier, Property>>(
+				TupleLiteralPart.class, this,
+				UMLPackage.TUPLE_LITERAL_EXP__PART);
 		}
 		return part;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkTupleType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return TupleLiteralExpOperations.checkTupleType(this, diagnostics, context);
+	public boolean checkTupleType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return TupleLiteralExpOperations.checkTupleType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkPartsUnique(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return TupleLiteralExpOperations.checkPartsUnique(this, diagnostics, context);
+	public boolean checkPartsUnique(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return TupleLiteralExpOperations.checkPartsUnique(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+			case UMLPackage.TUPLE_LITERAL_EXP__PART :
+				return ((InternalEList<?>) getPart()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -136,7 +148,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_EXP__PART:
+			case UMLPackage.TUPLE_LITERAL_EXP__PART :
 				return getPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,9 +163,11 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_EXP__PART:
+			case UMLPackage.TUPLE_LITERAL_EXP__PART :
 				getPart().clear();
-				getPart().addAll((Collection<? extends TupleLiteralPart<Classifier, Property>>)newValue);
+				getPart()
+					.addAll(
+						(Collection<? extends TupleLiteralPart<Classifier, Property>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,7 +181,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_EXP__PART:
+			case UMLPackage.TUPLE_LITERAL_EXP__PART :
 				getPart().clear();
 				return;
 		}
@@ -182,7 +196,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_EXP__PART:
+			case UMLPackage.TUPLE_LITERAL_EXP__PART :
 				return part != null && !part.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -197,8 +211,10 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.TUPLE_LITERAL_EXP__PART: return ExpressionsPackage.TUPLE_LITERAL_EXP__PART;
-				default: return -1;
+				case UMLPackage.TUPLE_LITERAL_EXP__PART :
+					return ExpressionsPackage.TUPLE_LITERAL_EXP__PART;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -213,8 +229,10 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.TUPLE_LITERAL_EXP__PART: return UMLPackage.TUPLE_LITERAL_EXP__PART;
-				default: return -1;
+				case ExpressionsPackage.TUPLE_LITERAL_EXP__PART :
+					return UMLPackage.TUPLE_LITERAL_EXP__PART;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -226,7 +244,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitTupleLiteralExp(this);
 	}
 

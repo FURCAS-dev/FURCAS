@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.5 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.6 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -41,7 +42,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements IntegerLiteralExp {
+public class IntegerLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements IntegerLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,19 +103,23 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 		Integer oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkIntegerType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return IntegerLiteralExpOperations.checkIntegerType(this, diagnostics, context);
+	public boolean checkIntegerType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IntegerLiteralExpOperations.checkIntegerType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -119,7 +127,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				return getIntegerSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -133,8 +141,8 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-				setIntegerSymbol((Integer)newValue);
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
+				setIntegerSymbol((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,7 +156,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -163,8 +171,10 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
+				return INTEGER_SYMBOL_EDEFAULT == null
+					? integerSymbol != null
+					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -178,8 +188,10 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
-				default: return -1;
+				case UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
+					return ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -194,8 +206,10 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IntegerLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL: return UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
-				default: return -1;
+				case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
+					return UMLPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -217,7 +231,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitIntegerLiteralExp(this);
 	}
 

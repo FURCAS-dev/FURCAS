@@ -1,38 +1,35 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.7 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.8 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
-
 import org.eclipse.ocl.uml.TupleLiteralPart;
 import org.eclipse.ocl.uml.UMLPackage;
-
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedASTNode;
@@ -40,7 +37,6 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;
-
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -65,7 +61,10 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiteralPart {
+public class TupleLiteralPartImpl
+		extends TypedElementImpl
+		implements TupleLiteralPart {
+
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -203,7 +202,9 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__START_POSITION, oldStartPosition, startPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TUPLE_LITERAL_PART__START_POSITION,
+				oldStartPosition, startPosition));
 	}
 
 	/**
@@ -224,7 +225,9 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__END_POSITION, oldEndPosition, endPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TUPLE_LITERAL_PART__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -245,7 +248,9 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION,
+				oldTypeStartPosition, typeStartPosition));
 	}
 
 	/**
@@ -266,7 +271,9 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION,
+				oldTypeEndPosition, typeEndPosition));
 	}
 
 	/**
@@ -283,12 +290,18 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(OCLExpression<Classifier> newValue, NotificationChain msgs) {
+	public NotificationChain basicSetValue(OCLExpression<Classifier> newValue,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.TUPLE_LITERAL_PART__VALUE,
+				oldValue, newValue);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -302,14 +315,19 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+				msgs = ((InternalEObject) value).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- UMLPackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+				msgs = ((InternalEObject) newValue).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- UMLPackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
 			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__VALUE, newValue, newValue));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TUPLE_LITERAL_PART__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -318,12 +336,14 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	 * @generated
 	 */
 	public Property getAttribute() {
-		if (attribute != null && ((EObject)attribute).eIsProxy()) {
-			InternalEObject oldAttribute = (InternalEObject)attribute;
-			attribute = (Property)eResolveProxy(oldAttribute);
+		if (attribute != null && ((EObject) attribute).eIsProxy()) {
+			InternalEObject oldAttribute = (InternalEObject) attribute;
+			attribute = (Property) eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute,
+						attribute));
 			}
 		}
 		return attribute;
@@ -348,7 +368,9 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		Property oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute,
+				attribute));
 	}
 
 	/**
@@ -362,22 +384,25 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkValueType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return org.eclipse.ocl.expressions.operations.TupleLiteralPartOperations.checkValueType(this, diagnostics, context);
+	public boolean checkValueType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return org.eclipse.ocl.expressions.operations.TupleLiteralPartOperations
+			.checkValueType(this, diagnostics, context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_PART__VALUE:
+			case UMLPackage.TUPLE_LITERAL_PART__VALUE :
 				return basicSetValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -391,18 +416,19 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION :
 				return new Integer(getStartPosition());
-			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION :
 				return new Integer(getEndPosition());
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
 				return new Integer(getTypeStartPosition());
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
 				return new Integer(getTypeEndPosition());
-			case UMLPackage.TUPLE_LITERAL_PART__VALUE:
+			case UMLPackage.TUPLE_LITERAL_PART__VALUE :
 				return getValue();
-			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				if (resolve) return getAttribute();
+			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+				if (resolve)
+					return getAttribute();
 				return basicGetAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -417,23 +443,23 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
+			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION :
+				setStartPosition(((Integer) newValue).intValue());
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
+			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION :
+				setEndPosition(((Integer) newValue).intValue());
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
-				setTypeStartPosition(((Integer)newValue).intValue());
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
+				setTypeStartPosition(((Integer) newValue).intValue());
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
-				setTypeEndPosition(((Integer)newValue).intValue());
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
+				setTypeEndPosition(((Integer) newValue).intValue());
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__VALUE:
-				setValue((OCLExpression<Classifier>)newValue);
+			case UMLPackage.TUPLE_LITERAL_PART__VALUE :
+				setValue((OCLExpression<Classifier>) newValue);
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				setAttribute((Property)newValue);
+			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+				setAttribute((Property) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -447,23 +473,23 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION :
 				setStartPosition(START_POSITION_EDEFAULT);
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION :
 				setEndPosition(END_POSITION_EDEFAULT);
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
 				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
 				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__VALUE:
-				setValue((OCLExpression<Classifier>)null);
+			case UMLPackage.TUPLE_LITERAL_PART__VALUE :
+				setValue((OCLExpression<Classifier>) null);
 				return;
-			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				setAttribute((Property)null);
+			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+				setAttribute((Property) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -477,17 +503,17 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__START_POSITION :
 				return startPosition != START_POSITION_EDEFAULT;
-			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__END_POSITION :
 				return endPosition != END_POSITION_EDEFAULT;
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
+			case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
 				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-			case UMLPackage.TUPLE_LITERAL_PART__VALUE:
+			case UMLPackage.TUPLE_LITERAL_PART__VALUE :
 				return value != null;
-			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+			case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
@@ -502,33 +528,44 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.TUPLE_LITERAL_PART__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case UMLPackage.TUPLE_LITERAL_PART__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
+				case UMLPackage.TUPLE_LITERAL_PART__START_POSITION :
+					return UtilitiesPackage.AST_NODE__START_POSITION;
+				case UMLPackage.TUPLE_LITERAL_PART__END_POSITION :
+					return UtilitiesPackage.AST_NODE__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-				case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-				default: return -1;
+				case UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralPart.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.TUPLE_LITERAL_PART__VALUE: return ExpressionsPackage.TUPLE_LITERAL_PART__VALUE;
-				case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE: return ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE;
-				default: return -1;
+				case UMLPackage.TUPLE_LITERAL_PART__VALUE :
+					return ExpressionsPackage.TUPLE_LITERAL_PART__VALUE;
+				case UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+					return ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -543,33 +580,44 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return UMLPackage.TUPLE_LITERAL_PART__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return UMLPackage.TUPLE_LITERAL_PART__END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.AST_NODE__START_POSITION :
+					return UMLPackage.TUPLE_LITERAL_PART__START_POSITION;
+				case UtilitiesPackage.AST_NODE__END_POSITION :
+					return UMLPackage.TUPLE_LITERAL_PART__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION;
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION :
+					return UMLPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION :
+					return UMLPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralPart.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE: return UMLPackage.TUPLE_LITERAL_PART__VALUE;
-				case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE: return UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE;
-				default: return -1;
+				case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE :
+					return UMLPackage.TUPLE_LITERAL_PART__VALUE;
+				case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+					return UMLPackage.TUPLE_LITERAL_PART__ATTRIBUTE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -585,10 +633,10 @@ public class TupleLiteralPartImpl extends TypedElementImpl implements TupleLiter
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
-	
+
 	/**
 	 * @generated NOT
 	 */

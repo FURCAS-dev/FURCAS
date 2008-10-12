@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: CollectionItemImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: CollectionItemImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -45,7 +46,10 @@ import org.eclipse.uml2.uml.Classifier;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class CollectionItemImpl extends CollectionLiteralPartImpl implements CollectionItem {
+public class CollectionItemImpl
+		extends CollectionLiteralPartImpl
+		implements CollectionItem {
+
 	/**
 	 * The cached value of the '{@link #getItem() <em>Item</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -89,12 +93,18 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetItem(OCLExpression<Classifier> newItem, NotificationChain msgs) {
+	public NotificationChain basicSetItem(OCLExpression<Classifier> newItem,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldItem = item;
 		item = newItem;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_ITEM__ITEM, oldItem, newItem);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.COLLECTION_ITEM__ITEM, oldItem,
+				newItem);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -108,34 +118,42 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 		if (newItem != item) {
 			NotificationChain msgs = null;
 			if (item != null)
-				msgs = ((InternalEObject)item).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_ITEM__ITEM, null, msgs);
+				msgs = ((InternalEObject) item).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_ITEM__ITEM,
+					null, msgs);
 			if (newItem != null)
-				msgs = ((InternalEObject)newItem).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_ITEM__ITEM, null, msgs);
+				msgs = ((InternalEObject) newItem).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_ITEM__ITEM,
+					null, msgs);
 			msgs = basicSetItem(newItem, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_ITEM__ITEM, newItem, newItem));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.COLLECTION_ITEM__ITEM, newItem, newItem));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkItemType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return CollectionItemOperations.checkItemType(this, diagnostics, context);
+	public boolean checkItemType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionItemOperations.checkItemType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_ITEM__ITEM:
+			case UMLPackage.COLLECTION_ITEM__ITEM :
 				return basicSetItem(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -149,7 +167,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_ITEM__ITEM:
+			case UMLPackage.COLLECTION_ITEM__ITEM :
 				return getItem();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -164,8 +182,8 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_ITEM__ITEM:
-				setItem((OCLExpression<Classifier>)newValue);
+			case UMLPackage.COLLECTION_ITEM__ITEM :
+				setItem((OCLExpression<Classifier>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,8 +197,8 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_ITEM__ITEM:
-				setItem((OCLExpression<Classifier>)null);
+			case UMLPackage.COLLECTION_ITEM__ITEM :
+				setItem((OCLExpression<Classifier>) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -194,7 +212,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_ITEM__ITEM:
+			case UMLPackage.COLLECTION_ITEM__ITEM :
 				return item != null;
 		}
 		return super.eIsSet(featureID);
@@ -209,8 +227,10 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionItem.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.COLLECTION_ITEM__ITEM: return ExpressionsPackage.COLLECTION_ITEM__ITEM;
-				default: return -1;
+				case UMLPackage.COLLECTION_ITEM__ITEM :
+					return ExpressionsPackage.COLLECTION_ITEM__ITEM;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -225,8 +245,10 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionItem.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.COLLECTION_ITEM__ITEM: return UMLPackage.COLLECTION_ITEM__ITEM;
-				default: return -1;
+				case ExpressionsPackage.COLLECTION_ITEM__ITEM :
+					return UMLPackage.COLLECTION_ITEM__ITEM;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -238,7 +260,7 @@ public class CollectionItemImpl extends CollectionLiteralPartImpl implements Col
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitCollectionItem(this);
 	}
 

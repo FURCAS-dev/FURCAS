@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ * 
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.4 2008/04/27 23:48:06 cdamus Exp $
+ * $Id: CollectionRangeImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -46,7 +47,10 @@ import org.eclipse.uml2.uml.Classifier;
  * @generated
  */
 @SuppressWarnings("restriction")
-public class CollectionRangeImpl extends CollectionLiteralPartImpl implements CollectionRange {
+public class CollectionRangeImpl
+		extends CollectionLiteralPartImpl
+		implements CollectionRange {
+
 	/**
 	 * The cached value of the '{@link #getFirst() <em>First</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -100,12 +104,18 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFirst(OCLExpression<Classifier> newFirst, NotificationChain msgs) {
+	public NotificationChain basicSetFirst(OCLExpression<Classifier> newFirst,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldFirst = first;
 		first = newFirst;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_RANGE__FIRST, oldFirst, newFirst);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.COLLECTION_RANGE__FIRST, oldFirst,
+				newFirst);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -119,14 +129,19 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		if (newFirst != first) {
 			NotificationChain msgs = null;
 			if (first != null)
-				msgs = ((InternalEObject)first).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__FIRST, null, msgs);
+				msgs = ((InternalEObject) first)
+					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- UMLPackage.COLLECTION_RANGE__FIRST, null, msgs);
 			if (newFirst != null)
-				msgs = ((InternalEObject)newFirst).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__FIRST, null, msgs);
+				msgs = ((InternalEObject) newFirst)
+					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- UMLPackage.COLLECTION_RANGE__FIRST, null, msgs);
 			msgs = basicSetFirst(newFirst, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
 	}
 
 	/**
@@ -143,12 +158,18 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLast(OCLExpression<Classifier> newLast, NotificationChain msgs) {
+	public NotificationChain basicSetLast(OCLExpression<Classifier> newLast,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldLast = last;
 		last = newLast;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_RANGE__LAST, oldLast, newLast);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, UMLPackage.COLLECTION_RANGE__LAST, oldLast,
+				newLast);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -162,36 +183,44 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 		if (newLast != last) {
 			NotificationChain msgs = null;
 			if (last != null)
-				msgs = ((InternalEObject)last).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__LAST, null, msgs);
+				msgs = ((InternalEObject) last).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__LAST,
+					null, msgs);
 			if (newLast != null)
-				msgs = ((InternalEObject)newLast).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__LAST, null, msgs);
+				msgs = ((InternalEObject) newLast).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__LAST,
+					null, msgs);
 			msgs = basicSetLast(newLast, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLPackage.COLLECTION_RANGE__LAST, newLast, newLast));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				UMLPackage.COLLECTION_RANGE__LAST, newLast, newLast));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean checkRangeType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return CollectionRangeOperations.checkRangeType(this, diagnostics, context);
+	public boolean checkRangeType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionRangeOperations.checkRangeType(this, diagnostics,
+			context);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_RANGE__FIRST:
+			case UMLPackage.COLLECTION_RANGE__FIRST :
 				return basicSetFirst(null, msgs);
-			case UMLPackage.COLLECTION_RANGE__LAST:
+			case UMLPackage.COLLECTION_RANGE__LAST :
 				return basicSetLast(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -205,9 +234,9 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_RANGE__FIRST:
+			case UMLPackage.COLLECTION_RANGE__FIRST :
 				return getFirst();
-			case UMLPackage.COLLECTION_RANGE__LAST:
+			case UMLPackage.COLLECTION_RANGE__LAST :
 				return getLast();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -222,11 +251,11 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_RANGE__FIRST:
-				setFirst((OCLExpression<Classifier>)newValue);
+			case UMLPackage.COLLECTION_RANGE__FIRST :
+				setFirst((OCLExpression<Classifier>) newValue);
 				return;
-			case UMLPackage.COLLECTION_RANGE__LAST:
-				setLast((OCLExpression<Classifier>)newValue);
+			case UMLPackage.COLLECTION_RANGE__LAST :
+				setLast((OCLExpression<Classifier>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,11 +269,11 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_RANGE__FIRST:
-				setFirst((OCLExpression<Classifier>)null);
+			case UMLPackage.COLLECTION_RANGE__FIRST :
+				setFirst((OCLExpression<Classifier>) null);
 				return;
-			case UMLPackage.COLLECTION_RANGE__LAST:
-				setLast((OCLExpression<Classifier>)null);
+			case UMLPackage.COLLECTION_RANGE__LAST :
+				setLast((OCLExpression<Classifier>) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -258,9 +287,9 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLPackage.COLLECTION_RANGE__FIRST:
+			case UMLPackage.COLLECTION_RANGE__FIRST :
 				return first != null;
-			case UMLPackage.COLLECTION_RANGE__LAST:
+			case UMLPackage.COLLECTION_RANGE__LAST :
 				return last != null;
 		}
 		return super.eIsSet(featureID);
@@ -275,9 +304,12 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionRange.class) {
 			switch (derivedFeatureID) {
-				case UMLPackage.COLLECTION_RANGE__FIRST: return ExpressionsPackage.COLLECTION_RANGE__FIRST;
-				case UMLPackage.COLLECTION_RANGE__LAST: return ExpressionsPackage.COLLECTION_RANGE__LAST;
-				default: return -1;
+				case UMLPackage.COLLECTION_RANGE__FIRST :
+					return ExpressionsPackage.COLLECTION_RANGE__FIRST;
+				case UMLPackage.COLLECTION_RANGE__LAST :
+					return ExpressionsPackage.COLLECTION_RANGE__LAST;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -292,9 +324,12 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionRange.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.COLLECTION_RANGE__FIRST: return UMLPackage.COLLECTION_RANGE__FIRST;
-				case ExpressionsPackage.COLLECTION_RANGE__LAST: return UMLPackage.COLLECTION_RANGE__LAST;
-				default: return -1;
+				case ExpressionsPackage.COLLECTION_RANGE__FIRST :
+					return UMLPackage.COLLECTION_RANGE__FIRST;
+				case ExpressionsPackage.COLLECTION_RANGE__LAST :
+					return UMLPackage.COLLECTION_RANGE__LAST;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -306,7 +341,7 @@ public class CollectionRangeImpl extends CollectionLiteralPartImpl implements Co
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitCollectionRange(this);
 	}
 
