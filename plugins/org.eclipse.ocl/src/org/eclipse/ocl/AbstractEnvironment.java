@@ -10,12 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
- *   Zeligsoft - Bugs 243079, 244948, 244886, 246469
- *   Adolfo Sánchez-Barbudo Herrera - Bug 234354
+ *   Zeligsoft - Bugs 243079, 244948, 244886, 246469, 233673
+ *   Adolfo Sánchez-Barbudo Herrera - Bug 234354, 233673
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.17 2008/09/21 12:34:02 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.18 2008/10/16 01:57:50 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -26,7 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
@@ -34,6 +36,8 @@ import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.util.UnicodeSupport;
@@ -97,6 +101,8 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	
     // map of attributes to derivation expressions
 	private Map<P, CT> propertyDerivations = new java.util.HashMap<P, CT>();
+	
+	private TypeChecker<C, O, P> typeChecker;
 
     /**
      * Initializes me without a parent environment.
@@ -1161,10 +1167,84 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                 && (getTypeResolver() instanceof AbstractTypeResolver)) {
             ((AbstractTypeResolver<?, ?, ?, ?, ?>) getTypeResolver()).dispose();
         }
+    }    
+
+    /**
+     * Obtains my extensible type checker utility.  If it has not already been
+     * initialized before, then it is lazily {@linkplain #createTypeChecker()}.
+     * 
+     * @return my type-checker
+     * 
+     * @since 1.3
+     * 
+     * @see #createTypeChecker()
+     */
+    protected TypeChecker<C, O, P> getTypeChecker() {
+    	if (typeChecker == null) {
+    		typeChecker = createTypeChecker();
+    	}
+    	
+    	return typeChecker;
     }
     
-    
+    /**
+     * Creates my extensible type checker utility when it is first needed.
+     * A default implementation is supplied, which subclasses may replace by
+     * overriding this method.
+     * 
+     * @return a new type-checker
+     * 
+     * @since 1.3
+     * 
+     * @see #getTypeChecker()
+     */
+   protected TypeChecker<C, O, P> createTypeChecker() {
+    	return new AbstractTypeChecker<C, O, P, PM>(this) {
 
+			@Override
+			protected C resolve(C type) {
+				return getTypeResolver().resolve(type);
+			}
+
+			@Override
+			protected CollectionType<C, O> resolveCollectionType(
+					CollectionKind kind, C elementType) {
+				
+				return getTypeResolver().resolveCollectionType(kind, elementType);
+			}
+
+			@Override
+			protected TupleType<O, P> resolveTupleType(
+					EList<? extends TypedElement<C>> parts) {
+				
+				return getTypeResolver().resolveTupleType(parts);
+			}
+		};
+    }
+    
+	/**
+	 * Since {@link AbstractTypeResolver} implements {@link TypeChecker},
+	 * AbstractEnvironment will try to adapt {@link TypeChecker}, via its
+	 * {@link TypeResolver}.
+	 * 
+	 * @since 1.3
+	 * 
+	 * @see org.eclipse.ocl.lpg.AbstractBasicEnvironment#getAdapter(java.lang.Class)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getAdapter(Class<T> adapterType) {
+		if (adapterType == TypeChecker.class) {
+			return (T) getTypeChecker();
+		}
+		
+		return super.getAdapter(adapterType);
+	}	
+
+	//
+	// Nested classes
+	//
+	
     /**
      * Wrapper for OCL variable declarations that additionally tracks whether
      * they are explicit or implicit variables.
