@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2007, 2008 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,12 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
+ *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
+ *   Zeligsoft - Bug 233673
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.5 2008/04/27 23:16:03 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.6 2008/10/16 01:57:50 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -27,6 +29,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.SyntaxException;
+import org.eclipse.ocl.TypeChecker;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
@@ -45,9 +48,11 @@ import org.eclipse.ocl.utilities.TypedElement;
  */
 public final class OCLUtil {
     /** Use weak references as the keys to avoid memory leaks. */
-    private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment>> environments =
-        new java.util.WeakHashMap<Environment<?,?,?,?,?,?,?,?,?,?,?,?>, Reference<BasicEnvironment>>();
-    
+	private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment>> environments = new java.util.WeakHashMap<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment>>();
+
+    /** Use weak references as the keys to avoid memory leaks. */
+	private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<TypeChecker<?, ?, ?>>> typesCheckerEnvironments = new java.util.WeakHashMap<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<TypeChecker<?, ?, ?>>>();
+   
 	// prevent instantiation
 	private OCLUtil() {
 		super();
@@ -92,7 +97,9 @@ public final class OCLUtil {
 		}
 		
 		if (result == null) {
-			if (adapterType == BasicEnvironment.class) {
+			if (adapterType == TypeChecker.class) {
+				result = (T) getTypeChecker(env);
+			} else if (adapterType == BasicEnvironment.class) {
 				result = (T) getBasicEnvironment(env);
 			} else if (adapterType == ProblemHandler.class) {
 				result = (T) getAdapter(env, BasicEnvironment.class).getProblemHandler();
@@ -180,6 +187,36 @@ public final class OCLUtil {
 	    }
 	    
 	    return result;
+	}
+	
+	/**
+	 * Creates and caches a suitable {@link TypeChecker} from an Environment .
+	 * This method will be called in case of the environment doesn't adapt to
+	 * {@link TypeChecker}.
+	 * 
+	 * @param env
+	 *            the Environment associated to the {@link TypeChecker}
+	 * @return the TypeChecker
+	 */
+	@SuppressWarnings("unchecked")
+	private static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> TypeChecker<C, O, P>
+	getTypeChecker(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+
+		TypeChecker<C, O, P> result = null;
+
+		Reference<TypeChecker<?, ?, ?>> ref = typesCheckerEnvironments.get(env);
+
+		if (ref != null) {
+			result = (TypeChecker<C, O, P>) ref.get();
+		}
+
+		if (result == null) {
+			result = new OCLTypeChecker<C, O, P, PM>(env);
+			typesCheckerEnvironments.put(env,
+				new java.lang.ref.WeakReference<TypeChecker<?, ?, ?>>(result));
+		}
+		return result;
 	}
 
 	/**
