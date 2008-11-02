@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 252600
+ *   Zeligsoft - Bugs 252600, 251808
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.14 2008/11/02 00:47:14 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.15 2008/11/02 17:52:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -465,13 +465,12 @@ public class UMLEnvironment
             if (next.isBinary()) {
                 Property end = next.getMemberEnd(name, null);
 
-                // only match the end if the other end is a not property of
-                // 'classifier'
-                if ((end != null)
-                    && !OCLUMLUtil.getAllAttributes(classifier)
-                        .contains(end.getOtherEnd())) {
-                    ends.add(end);
-                }
+				if ((end != null)
+					&& OCLUMLUtil
+						.isNonNavigableAssocationEndOf(end, classifier)) {
+					
+					ends.add(end);
+				}
             }
         }
     }
@@ -487,14 +486,13 @@ public class UMLEnvironment
                 for (Property end : next.getMemberEnds()) {
                     if (isUnnamed(end)) {
                         Type type = end.getType();
-                        if ((type != null) && initialLower(type).equals(name)) {
-                            // only match the end if the other end is not a
-                            // property of 'classifier'
-                            if (!OCLUMLUtil.getAllAttributes(classifier).contains(
-                                    end.getOtherEnd())) {
-                                ends.add(end);
-                            }
-                        }
+						if ((type != null)
+							&& initialLower(type).equals(name)
+							&& OCLUMLUtil.isNonNavigableAssocationEndOf(end,
+								classifier)) {
+							
+							ends.add(end);
+						}
                     }
                 }
             }
