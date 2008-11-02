@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 182994
+ *   Zeligsoft - Bugs 182994, 252600
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.7 2008/09/10 19:21:04 cdamus Exp $
+ * $Id: EcoreEnvironment.java,v 1.8 2008/11/02 00:46:58 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -70,6 +70,13 @@ public class EcoreEnvironment
 		EEnumLiteral, EParameter,
 		EObject, CallOperationAction, SendSignalAction, Constraint,
 		EClass, EObject> {
+	
+	/**
+	 * The namespace URI of the Ecore representation of the OCL Standard Library.
+	 * 
+	 * @since 1.3
+	 */
+	public static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"; //$NON-NLS-1$
 
     private static final Map<List<String>, EPackage> OCL_PACKAGES =
         new java.util.HashMap<List<String>, EPackage>();
