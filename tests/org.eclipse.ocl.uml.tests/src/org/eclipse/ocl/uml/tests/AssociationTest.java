@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 251808
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.7 2007/11/06 19:46:58 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.8 2008/11/02 17:52:11 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -35,6 +36,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.ocl.AmbiguousLookupException;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
@@ -996,6 +1000,31 @@ public class AssociationTest
         setValue(aForest, forest_area, 1050);
         assertTrue(check(expr, aLink));
         assertTrue(check(expr, anotherLink));
+    }
+
+    /**
+     * Tests that reference to uml::Class::general does not resolve to anything,
+     * not the Classifier::general attribute (because it is redefined as
+     * Class::superType) nor the bogus association end Generalization::general.
+     */
+	@SuppressWarnings("unchecked")
+    public void test_classGeneralResolvesToNothing_251808() {
+    	try {
+    		assertNull(
+				"Should not find redefined property Classifier::general", //$NON-NLS-1$
+				OCLUtil.getAdapter(ocl.getEnvironment(),
+					Environment.Lookup.class).tryLookupProperty(
+					getMetaclass("Class"), "general")); //$NON-NLS-1$//$NON-NLS-2$
+    	} catch (AmbiguousLookupException e) {
+    		fail("Should not be an ambiguous look-up"); //$NON-NLS-1$
+    	} catch (LookupException e) {
+    		fail("Should not be a look-up exception"); //$NON-NLS-1$
+    	}
+    	
+    	// this should parse OK, though
+        parseConstraint("package uml context Class " + //$NON-NLS-1$
+            "inv: self.oclAsType(Classifier).general->isEmpty()" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
     }
 
 	//
