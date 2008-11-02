@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 252600
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.5 2008/03/14 19:59:29 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.6 2008/11/02 00:47:14 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -62,7 +63,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * @author Christian W. Damus (cdamus)
  */
 public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifier> {
-    private static final String NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
+    private static final String NS_URI = UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI;
+    
 	private static final String ITERATOR_KEYWORD = "iterator"; //$NON-NLS-1$
 	
 	private static Classifier OCL_ANY;
