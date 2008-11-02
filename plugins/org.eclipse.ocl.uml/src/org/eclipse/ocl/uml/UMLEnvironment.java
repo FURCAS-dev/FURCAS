@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 252600
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.13 2008/01/03 15:28:31 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.14 2008/11/02 00:47:14 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -82,6 +83,13 @@ import org.eclipse.uml2.uml.Vertex;
 public class UMLEnvironment
     extends
     AbstractEnvironment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> {
+	
+	/**
+	 * The namespace URI of the UML representation of the OCL Standard Library.
+	 * 
+	 * @since 2.0
+	 */
+	public static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
     
     static final String ANNOTATION_SOURCE = org.eclipse.ocl.uml.UMLPackage.eNS_URI;
     
