@@ -9,11 +9,12 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 207365
+ *   Zeligsoft - Bugs 207365, 252000
+ *   E.D. Willink - Bug 252000
  * 
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.5 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.6 2008/11/02 00:00:49 cdamus Exp $
  */
 package org.eclipse.ocl.internal;
 
@@ -50,6 +51,13 @@ public class OCLPlugin
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
+	
+	/**
+	 * In stand-alone use, whether all tracing is turned on.
+	 * This is compatible with the usage of 1.2 and earlier.
+	 * @since 1.3
+	 */
+	private static boolean traceAll = Boolean.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$;
 
 	/**
 	 * The constructor.
@@ -157,7 +165,7 @@ public class OCLPlugin
 			return false;
 		}
 
-		return Boolean.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$
+		return traceAll || Boolean.getBoolean(option);
 	}
 
 	/**
