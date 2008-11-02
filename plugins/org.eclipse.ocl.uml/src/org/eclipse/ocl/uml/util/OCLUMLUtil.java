@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 247079
+ *   Zeligsoft - Bugs 247079, 251808
  *
  * </copyright>
  *
- * $Id: OCLUMLUtil.java,v 1.7 2008/09/12 19:55:32 cdamus Exp $
+ * $Id: OCLUMLUtil.java,v 1.8 2008/11/02 17:52:19 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.util;
@@ -567,6 +567,35 @@ public class OCLUMLUtil extends UMLUtil {
         
         return result;
     }
+    
+	/**
+	 * A foreign method for the {@link Property} that queries whether it is a
+	 * non-navigable association end of a given classifier. This means that the
+	 * end is association-owned and opposite to a classifier-owned end whose
+	 * type is a supertype of the specified classifier.
+	 * 
+	 * @param associationEnd
+	 *            the purported non-navigable association end
+	 * @param endClassifier
+	 *            a classifier from which we purport to navigate the association
+	 * @return <code>true</code> if the association-end is a non-navigable end
+	 *         of the classifier; <code>false</code>, otherwise
+	 * 
+	 * @since 2.0
+	 */
+	public static boolean isNonNavigableAssocationEndOf(
+			Property associationEnd, Classifier endClassifier) {
+		
+		boolean result = associationEnd.getOwningAssociation() != null;
+		if (result) {
+			Property otherEnd = associationEnd.getOtherEnd();
+			
+			result = (otherEnd != null) && (otherEnd.getType() != null)
+				&& endClassifier.conformsTo(otherEnd.getType());
+		}
+		
+		return result;
+	}
     
     /**
      * A foreign method for the {@link Classifier} that obtains all operations
