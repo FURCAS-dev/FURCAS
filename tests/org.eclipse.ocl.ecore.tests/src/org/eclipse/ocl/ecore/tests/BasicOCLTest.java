@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 253252
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.6 2008/03/27 14:43:19 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.7 2008/11/05 16:30:22 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -517,6 +518,30 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)")); //$NON-NLS-1$
             assertEquals(getOclInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)")); //$NON-NLS-1$
+        } catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
+    }
+    
+    /**
+     * Tests that lax null handling works with oclAsType in the EClass context,
+     * as well (in the Ecore metamodel).
+     */
+    public void test_lax_null_handling_on_EcoreModel_253252() {
+        helper.setContext(EcorePackage.Literals.ECLASSIFIER);
+        EClassifier eclassifier = null;
+        
+        try {
+            // lax null handling on for OclInvalid values in non-Invalid expressions)
+            assertEquals(null,
+                evaluate(helper, eclassifier, "self.oclAsType(EClass)")); //$NON-NLS-1$
+            
+            EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
+                EvaluationOptions.LAX_NULL_HANDLING, false);
+            
+            // strict null handling on for OclInvalid values in non-Invalid expressions)
+            assertEquals(getOclInvalid(),
+                evaluate(helper, eclassifier, "self.oclAsType(EClass)")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
