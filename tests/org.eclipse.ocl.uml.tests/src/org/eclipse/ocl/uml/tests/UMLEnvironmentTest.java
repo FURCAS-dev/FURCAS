@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 248869
+ *   Zeligsoft - Bugs 2488692, 253252
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.5 2008/09/28 17:32:44 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.6 2008/11/05 16:30:20 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -199,10 +199,13 @@ public class UMLEnvironmentTest
         helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
 
         Constraint constraint = null;
+        Constraint ownerConstraint = null;
         
         try {
             constraint = helper.createInvariant(
-                    "self.oclIsKindOf(InstanceSpecification) or self.owner.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+            	"self.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+            ownerConstraint = helper.createInvariant(
+            	"self.owner.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -222,7 +225,7 @@ public class UMLEnvironmentTest
             
             // adaptive mode handles Java instance (M0 level) based on context
             //   being a non-instance-like element
-            assertTrue(ocl.check(comment, constraint));
+            assertTrue(ocl.check(comment, ownerConstraint));
             
             // adaptive mode does not handle Java instance when it is a
             //  value- or instance-specification (M0 level)
