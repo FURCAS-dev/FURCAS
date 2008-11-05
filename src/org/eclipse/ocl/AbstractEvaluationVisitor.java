@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 238050
+ *   Zeligsoft - Bugs 238050, 253252
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.6 2008/08/05 00:35:31 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.7 2008/11/05 16:30:17 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.VoidType;
@@ -411,14 +412,20 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		    return null;
 		}
 		
-		// the type of null is OclVoid
+		// the type of null is OclVoid, except that we aren't even allowed to
+		// ask if not lax-null-handling
 		if (value == null) {
-			return Boolean.valueOf(type instanceof VoidType);
+			return isLaxNullHandling()
+				? Boolean.valueOf(type instanceof VoidType)
+				: null;
 		}
-		
-		// the type of OclInvalid is Invalid
+
+		// the type of OclInvalid is Invalid, except that we aren't even allowed
+		// to ask if not lax-null-handling
 		if (value == stdlib.getOclInvalid()) {
-			return Boolean.valueOf(type instanceof InvalidType);
+			return isLaxNullHandling()
+				? Boolean.valueOf(type instanceof InvalidType)
+				: null;
 		}
 
 		return Boolean.valueOf(getEvaluationEnvironment().isTypeOf(value, type));
@@ -443,10 +450,13 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		}
 		
 		// OclVoid and Invalid conform to all classifiers but their instances
-		// aren't actually useful as any type but their own.  So, check for
-		// exact type match in these cases
+		// aren't actually useful as any type but their own.  So, in case of lax
+		// null handling, return TRUE.  Otherwise, oclIsKindOf isn't even
+		// permitted, so return null to generate an OclInvalid down the line
 		if (isUndefined(value)) {
-	        return oclIsTypeOf(value, typeArg);
+			return isLaxNullHandling()
+				? Boolean.TRUE
+				: null;
 		}
 
 		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));
@@ -493,4 +503,17 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
     protected Number higherPrecisionNumber(Number number) {
         return NumberUtil.higherPrecisionNumber(number);
     }
+	
+	/**
+	 * Queries whether our evaluation environment has the option for
+	 * {@linkplain EvaluationOptions#LAX_NULL_HANDLING lax null handling}
+	 * enabled.
+	 * 
+	 * @since 1.3
+	 * @return whether lax null handling is enabled
+	 */
+	protected boolean isLaxNullHandling() {
+	    return EvaluationOptions.getValue(getEvaluationEnvironment(),
+	        EvaluationOptions.LAX_NULL_HANDLING);
+	}
 } //EvaluationVisitorImpl
