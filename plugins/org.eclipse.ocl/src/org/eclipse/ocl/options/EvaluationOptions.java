@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 253252
  *
  * </copyright>
  *
- * $Id: EvaluationOptions.java,v 1.1 2007/11/06 19:47:11 cdamus Exp $
+ * $Id: EvaluationOptions.java,v 1.2 2008/11/05 16:30:17 cdamus Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -35,9 +36,10 @@ public class EvaluationOptions {
      * <p>
      * Evaluation option indicating whether to implement lax handling of null
      * values in certain <tt>OclAny</tt>-defined operations.  When <tt>true</tt>,
-     * the <tt>null.oclIsKindOf(OclType)</tt> and <tt>null.oclIsTypeof(OclType)</tt>
-     * operations will return <tt>false</tt> for any OCL type instead of
-     * returning <tt>Oclinvalid</tt>.  Similarly, <tt>null.oclAsType(OclType)</tt>
+     * the <tt>null.oclIsKindOf(OclType)</tt> and <tt>null.oclIsTypeOf(OclType)</tt>
+     * operations will return <tt>true</tt> for any OCL type instead of
+     * returning <tt>OclInvalid</tt>, as <tt>OclVoid</tt> is defined as
+     * conforming to all other types.  Similarly, <tt>null.oclAsType(OclType)</tt>
      * will return <tt>null</tt> for any OCL type instead of <tt>OclInvalid</tt>
      * as prescribed by the OCL 2.0 Specification.
      * </p><p>

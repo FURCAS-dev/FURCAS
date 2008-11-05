@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 253252
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.8 2007/12/12 22:08:04 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.9 2008/11/05 16:30:17 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -66,7 +67,6 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
-import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.InvalidType;
@@ -1272,7 +1272,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				
 				@SuppressWarnings("unchecked")
 				C type = (C) arg.accept(getVisitor());
-				if (oclIsKindOf(sourceVal, type) == Boolean.TRUE) {
+				if (Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
 					return sourceVal;
 				} else {
 					return getOclInvalid();
@@ -2289,18 +2289,5 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 		return tp.getValue().accept(getVisitor());
-	}
-	
-	/**
-	 * Queries whether our evaluation environment has the option for
-	 * {@linkplain EvaluationOptions#LAX_NULL_HANDLING lax null handling}
-	 * enabled.
-	 * 
-	 * @since 1.2
-	 * @return whether lax null handling is enabled
-	 */
-	protected boolean isLaxNullHandling() {
-	    return EvaluationOptions.getValue(getEvaluationEnvironment(),
-	        EvaluationOptions.LAX_NULL_HANDLING);
 	}
 } //EvaluationVisitorImpl
