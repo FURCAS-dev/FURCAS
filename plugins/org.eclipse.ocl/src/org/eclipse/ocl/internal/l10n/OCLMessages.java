@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
- *   Zeligsoft - Bug 179990
+ *   Zeligsoft - Bug 253512
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.7 2008/11/12 15:31:07 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.8 2008/11/12 15:38:23 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -259,7 +259,8 @@ public class OCLMessages {
 	static {
 		try {
 			@SuppressWarnings("unchecked")
-			Class<IMessages> nlsClass = (Class<IMessages>) Class.forName("org.eclipse.ocl.internal.l10n.IMessages$NLS"); //$NON-NLS-1$
+			Class<IMessages> nlsClass = (Class<IMessages>) Class
+				.forName("org.eclipse.ocl.internal.l10n.IMessages$NLS"); //$NON-NLS-1$
 			messagesImpl = nlsClass.newInstance();
 		} catch (NoClassDefFoundError e) {
 			// expected in non-Eclipse environment
