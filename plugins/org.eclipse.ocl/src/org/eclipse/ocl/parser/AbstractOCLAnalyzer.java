@@ -12,11 +12,11 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *               - Bug 237126, 245586, 213886
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
- *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886
+ *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.17 2008/10/04 00:54:10 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.18 2008/11/12 15:25:50 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -601,9 +601,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			C resultType = null;
 			
 			int opcode = 0;
-		   	if ((ownerType instanceof PredefinedType)
-				&& !env.getAdditionalOperations(ownerType).contains(oper)) {
-		   		
+		   	if (TypeUtil.isStandardLibraryFeature(env, ownerType, oper)) {
 		   		// the operations defined intrinsically by the standard library
 		   		// are the only ones that may have opcodes
 				opcode = OCLStandardLibraryUtil.getOperationCode(resolvedName);
@@ -615,8 +613,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		   	}
 		   	
 	   		result.setOperationCode(opcode);
-	   		resultType = OCLStandardLibraryUtil.getResultTypeOf(
-	   					operationCallExpCS, env, ownerType, opcode, args);
+			resultType = TypeUtil.getResultType(operationCallExpCS, env,
+				ownerType, oper, args);
 		   	if (resultType == null) {
 		   		resultType = getOCLType(env, oper);	   		
 		   	}

@@ -10,11 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
- *   Zeligsoft - Bug 243079
+ *   Zeligsoft - Bugs 243079, 179990
+ *   Borland - Bug 179990
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.8 2008/08/30 17:04:01 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.9 2008/11/12 15:25:50 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -215,9 +216,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		C resultType;
 
-		if ((sourceType instanceof PredefinedType)
-			&& !env.getAdditionalOperations(sourceType).contains(oper)) {
-			
+		if (TypeUtil.isStandardLibraryFeature(env, sourceType, oper)) {
 			if (opcode != OCLStandardLibraryUtil.getOperationCode(operName)) {
 				String message = OCLMessages.bind(
 						OCLMessages.IllegalOpcode_ERROR_,
@@ -225,8 +224,8 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				return validatorError(oc, message, "visitOperationCallExp");//$NON-NLS-1$
 			}
 			
-			resultType = OCLStandardLibraryUtil.getResultTypeOf(
-				oc, env, sourceType, opcode, args);
+			resultType = TypeUtil
+				.getResultType(oc, env, sourceType, oper, args);
 			
 			if (resultType == null) {
 				// maybe this operation was an "extra" contribution by a
@@ -243,15 +242,16 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				return validatorError(oc, message, "visitOperationCallExp");//$NON-NLS-1$
 			}
 			
-			resultType = OCLStandardLibraryUtil.getResultTypeOf(
-				oc, env, sourceType, opcode, args);
+			resultType = TypeUtil
+				.getResultType(oc, env, sourceType, oper, args);
 			
 			if (resultType == null) {
 				resultType = getOCLType(oper);
 			}
 		} else {
 			// user-defined operation
-			resultType = getOCLType(oper);
+			resultType = TypeUtil
+				.getResultType(oc, env, sourceType, oper, args);
 		}
 		
 		if (!TypeUtil.exactTypeMatch(env, resultType, oc.getType())) {

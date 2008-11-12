@@ -10,13 +10,13 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
- *   Zeligsoft - Bugs 244886, 245619, 233673
+ *   Zeligsoft - Bugs 244886, 245619, 233673, 179990
  *   Stefan Schulze - Bug 245619
  *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.14 2008/10/16 01:57:49 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.15 2008/11/12 15:25:50 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -24,6 +24,7 @@ import static org.eclipse.ocl.utilities.UMLReflection.SAME_TYPE;
 import static org.eclipse.ocl.utilities.UMLReflection.STRICT_SUBTYPE;
 import static org.eclipse.ocl.utilities.UMLReflection.STRICT_SUPERTYPE;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -32,10 +33,14 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.TypeChecker;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.AnyType;
+import org.eclipse.ocl.types.CollectionType;
+import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.PrimitiveType;
+import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
@@ -279,14 +284,92 @@ public class TypeUtil {
      * @param oper the operation
      * 
      * @return the operation's effect result type
-     */
+	 * @deprecated Use the {@link #getResultTypeObject, Environment, Object, Object, List}
+	 *             method, instead, which resolves generic operation signatures
+	 *             against actual arguments
+	 */
+	@Deprecated
+	@SuppressWarnings("unchecked")
 	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	C getResultType(Object problemObject,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C owner, O oper) {
+
+		UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = env.getUMLReflection();
+		OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
 		
-        return getTypeCheckerAdapter(env).getResultType(problemObject, owner, oper);
+		List<PM> parameters = uml.getParameters(oper);
+		List<Variable<C, PM>> args = new ArrayList<Variable<C, PM>>(
+				parameters.size());
+
+		for (PM param : parameters) {
+			C paramType = resolveType(env, uml.getOCLType(param));
+
+			Variable<C, PM> var = env.getOCLFactory().createVariable();
+			if (paramType instanceof TypeType) {
+				// need the referred type
+				TypeType<C, O> typeType = (TypeType<C, O>) paramType;
+				if (typeType.getReferredType() == null) {
+					var.setType(stdlib.getT()); // case of oclAsType()
+				} else {
+					var.setType(typeType.getReferredType());
+				}
+			} else {
+				if (paramType instanceof CollectionType) {
+					CollectionType<C, O> ct = (CollectionType<C, O>) paramType;
+
+					if (ct.getElementType() == stdlib.getT2()) {
+						// special handling for the Collection(T2) parameter
+						// of the product collection operation
+						paramType = (C) resolveCollectionType(env, ct.getKind(),
+							stdlib.getT());
+					}
+				}
+
+				var.setType(paramType);
+			}
+			args.add(var);
+		}
+		
+        return getResultType(problemObject, env, owner, oper, args);
 	}
+	
+	/**
+	 * Obtains the effective result type of the specified operation, which may
+	 * or may not have parameters type by generic type variables. Many of the
+	 * OCL Standard Library operations are either generic themselves or defined
+	 * by generic types, so the return results depend on the argument and source
+	 * types.
+	 * 
+	 * @param problemObject
+	 *            the context object on which to report any problem that we may
+	 *            find in computing the result type. Usually this is some
+	 *            abstract or concrete syntax tree node
+     * @param env the OCL environment
+	 * @param owner
+	 *            the owner of the operation (type on which the operation is
+	 *            called)
+	 * @param operation
+	 *            the operation signature
+	 * @param args
+	 *            the arguments of the operation call, which are expressions or
+	 *            variables
+	 * @return the effective result type of the corresponding operation, or null
+	 *         after reporting a problem if any of the argument types do not
+	 *         correspond to the source type and/or expected parameter types of
+	 *         the operation
+	 * 
+	 * @since 1.3
+	 */
+    public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+	C getResultType(Object problemObject,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner, O operation,
+			List<? extends TypedElement<C>> args) {
+    	
+		return getTypeCheckerAdapter(env).getResultType(problemObject, owner,
+			operation, args);
+    }
 	
     /**
      * Casts a value of one type as another type, if compatible.
@@ -690,6 +773,28 @@ public class TypeUtil {
 		return (C) env.getTypeResolver().resolveSignalMessageType(signal);
 	}
 	
+	/**
+	 * Queries whether the specified feature (operation or attribute), as
+	 * applied to a particular <tt>owner</tt> classifier, is defined by the
+	 * standard library or not (in which case it would, presumably, be
+	 * user-defined).
+	 * 
+	 * @param owner
+	 *            a classifier on which a feature is to be accessed
+	 * @param feature
+	 *            the feature to be accessed
+	 * 
+	 * @return whether the feature is defined by the standard library
+	 * 
+	 * @since 1.3
+	 */
+	public static <C> boolean isStandardLibraryFeature(
+			Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env, C owner,
+			Object feature) {
+
+		return getTypeCheckerAdapter(env).isStandardLibraryFeature(owner,
+			feature);
+	}	
 		
 	@SuppressWarnings("unchecked")
 	private static  <C, O, P> TypeChecker<C, O, P> getTypeCheckerAdapter(Environment<?, C, O, P, ?, ?, ?, ?, ?, ?, ?, ?> env) {
