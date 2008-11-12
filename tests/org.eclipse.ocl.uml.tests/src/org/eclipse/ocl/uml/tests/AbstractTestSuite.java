@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 245897
+ *   Zeligsoft - Bug 245897, 179990
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.13 2008/09/10 18:44:05 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.14 2008/11/12 17:13:12 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -26,6 +26,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -98,6 +100,9 @@ public abstract class AbstractTestSuite
     // set this variable true when testing for memory leaks
     private static boolean DISPOSE_UML_METAMODEL = false;
     
+	protected static final ExecutorService exec = Executors
+		.newSingleThreadExecutor();
+
 	protected static ResourceSet resourceSet;
 	
 	protected static org.eclipse.ocl.uml.UMLPackage ocltypes =

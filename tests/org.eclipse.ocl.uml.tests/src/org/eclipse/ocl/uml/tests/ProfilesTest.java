@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 241148, 243098, 247079
+ *   Zeligsoft - Bugs 241148, 243098, 247079, 179990
  *   
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.7 2008/09/12 19:55:31 cdamus Exp $
+ * $Id: ProfilesTest.java,v 1.8 2008/11/12 17:13:12 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -21,8 +21,6 @@ package org.eclipse.ocl.uml.tests;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -293,8 +291,6 @@ public class ProfilesTest
         final Package nested = fruitPackage.createNestedPackage("nested"); //$NON-NLS-1$
         nested.getPackagedElements().add(fruit);
         
-    	ExecutorService exec = Executors.newSingleThreadExecutor();
-
     	try {
         	Callable<Void> call = new Callable<Void>() {
 			
@@ -335,7 +331,6 @@ public class ProfilesTest
         	// re-initialize the Fruit model for the next test
         	fruitPackage.getPackagedElements().add(fruit);
         	nested.destroy();
-        	exec.shutdown();
         }
     }
 
