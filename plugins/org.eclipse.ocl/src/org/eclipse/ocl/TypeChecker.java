@@ -8,8 +8,9 @@
  * Contributors:
  *     Open Canarias - Initial API and implementation
  *     Zeligsoft - Bug 233673 - Port other bug fixes to this new API
+ *     Zeligsoft - Bug 179990
  * 
- * $Id: TypeChecker.java,v 1.1 2008/10/16 01:57:50 cdamus Exp $
+ * $Id: TypeChecker.java,v 1.2 2008/11/12 15:25:50 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -22,8 +23,8 @@ import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * <p>
- * This optional interface is to be implemented by clients that want to add
- * type checking capabilities to their {@link Environment}.
+ * This optional interface is to be implemented by clients that want to add type
+ * checking capabilities to their {@link Environment}.
  * </p>
  * <p>
  * The {@link AbstractTypeChecker} provides the default implementation for the
@@ -64,20 +65,31 @@ public interface TypeChecker<C, O, P> {
 	int getRelationship(C type1, C type2);
 
 	/**
-	 * Obtains the result type of the specified operation, which in the case of
-	 * collection operations sometimes depends on the element type of the source
-	 * collection.
+	 * Obtains the effective result type of the specified operation, which may
+	 * or may not have parameters type by generic type variables. Many of the
+	 * OCL Standard Library operations are either generic themselves or defined
+	 * by generic types, so the return results depend on the argument and source
+	 * types.
 	 * 
 	 * @param problemObject
-	 *            the object which could have problems.
+	 *            the context object on which to report any problem that we may
+	 *            find in computing the result type. Usually this is some
+	 *            abstract or concrete syntax tree node
 	 * @param owner
-	 *            the type of the operation call source
-	 * @param oper
-	 *            the operation
-	 * 
-	 * @return the operation's effect result type
+	 *            the owner of the operation (type on which the operation is
+	 *            called)
+	 * @param operation
+	 *            the operation signature
+	 * @param args
+	 *            the arguments of the operation call, which are expressions or
+	 *            variables
+	 * @return the effective result type of the corresponding operation, or null
+	 *         after reporting a problem if any of the argument types do not
+	 *         correspond to the source type and/or expected parameter types of
+	 *         the operation
 	 */
-	C getResultType(Object problemObject, C owner, O oper);
+	C getResultType(Object problemObject, C owner, O operation,
+			List<? extends TypedElement<C>> args);
 
 	/**
 	 * Gets the type of a property, accounting for the fact that we may be
@@ -262,4 +274,19 @@ public interface TypeChecker<C, O, P> {
 	 * @return the matching operation, or <code>null</code> if not found
 	 */
 	P findAttribute(C owner, String name);
+
+	/**
+	 * Queries whether the specified feature (operation or attribute), as
+	 * applied to a particular <tt>owner</tt> classifier, is defined by the
+	 * standard library or not (in which case it would, presumably, be
+	 * user-defined).
+	 * 
+	 * @param owner
+	 *            a classifier on which a feature is to be accessed
+	 * @param feature
+	 *            the feature to be accessed
+	 * 
+	 * @return whether the feature is defined by the standard library
+	 */
+	boolean isStandardLibraryFeature(C owner, Object feature);
 }

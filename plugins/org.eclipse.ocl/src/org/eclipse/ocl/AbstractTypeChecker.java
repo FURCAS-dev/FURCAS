@@ -8,10 +8,10 @@
  * Contributors:
  * 	   IBM - Original org.eclipse.ocl.util.TypeUtil API and implementation
  *     Open Canarias - Bug 233673 Refactoring to support type checking extensibility 
- *     Zeligsoft - Bugs 244886, 245619, 233673
+ *     Zeligsoft - Bugs 244886, 245619, 233673, 179990
  *     Stefan Schulze - Bug 245619
  *     
- * $Id: AbstractTypeChecker.java,v 1.1 2008/10/16 01:57:50 cdamus Exp $
+ * $Id: AbstractTypeChecker.java,v 1.2 2008/11/12 15:25:50 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -33,9 +33,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.ocl.expressions.CollectionKind;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.TypeExp;
-import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.BasicEnvironment;
@@ -389,72 +387,32 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 	}
 
-	/**
-	 * Obtains the result type of the specified operation, which in the case of
-	 * collection operations sometimes depends on the element type of the source
-	 * collection.
-	 * 
-	 * @param env
-	 *            the OCL environment
-	 * @param owner
-	 *            the type of the operation call source
-	 * @param oper
-	 *            the operation
-	 * 
-	 * @return the operation's effect result type
-	 */
-	@SuppressWarnings("unchecked")
-	public C getResultType(Object problemObject, C owner, O oper) {
+	public C getResultType(Object problemObject, C owner, O operation,
+			List<? extends TypedElement<C>> args) {
 
-		if (owner instanceof PredefinedType) {
+		C actualOwner = uml.getOwningClassifier(operation);
+		if (isStandardLibraryFeature(actualOwner, operation)) {
 			int opcode = OCLStandardLibraryUtil.getOperationCode(uml
-				.getName(oper));
+				.getName(operation));
 
-			List<PM> parameters = uml.getParameters(oper);
-			List<OCLExpression<C>> args = new ArrayList<OCLExpression<C>>(
-				parameters.size());
+			if (opcode > 0) {
+				// OCL Standard Library operation. Not customizable
+				C result = OCLStandardLibraryUtil.getResultTypeOf(
+					problemObject, env, owner, opcode, args);
 
-			for (PM param : parameters) {
-				C paramType = resolve(uml.getOCLType(param));
-
-				if (paramType instanceof TypeType) {
-					// need a TypeExp
-					TypeExp<C> exp = oclFactory.createTypeExp();
-					exp.setReferredType(stdlib.getT());
-					uml.setType(exp, paramType);
-					args.add(exp);
-				} else {
-					if (paramType instanceof CollectionType) {
-						CollectionType<C, O> ct = (CollectionType<C, O>) paramType;
-
-						if (ct.getElementType() == stdlib.getT2()) {
-							// special handling for the Collection(T2) parameter
-							// of the product collection operation
-							paramType = (C) resolveCollectionType(ct.getKind(),
-								stdlib.getT());
-						}
-					}
-
-					// unspecified value expression will do
-					UnspecifiedValueExp<C> exp = oclFactory
-						.createUnspecifiedValueExp();
-					uml.setType(exp, paramType);
-					args.add(exp);
+				if ((result == null) && (owner != actualOwner)) {
+					// the actual owner s different from the declared owner.
+					// This happens when we re-interpret user-defined types as
+					// corresponding OCL-defined types
+					result = OCLStandardLibraryUtil.getResultTypeOf(
+						problemObject, env, actualOwner, opcode, args);
 				}
-			}
 
-			try {
-				return OCLStandardLibraryUtil.getResultTypeOf(problemObject,
-					env, owner, opcode, args);
-			} catch (Exception e) {
-				// doesn't matter. Just return the default
-			} finally {
-				// dispose arguments created for the parameters
-				ObjectUtil.dispose(args);
+				return result;
 			}
 		}
 
-		return resolve(uml.getOCLType(oper));
+		return resolve(uml.getOCLType(operation));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -897,19 +855,52 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	public O resolveGenericSignature(C owner, O oper) {
 
 		String name = uml.getName(oper);
-		List<String> paramNames = new java.util.ArrayList<String>();
-		List<C> paramTypes = new java.util.ArrayList<C>();
+		List<PM> parameters = uml.getParameters(oper);
+		List<String> paramNames = new java.util.ArrayList<String>(
+				parameters.size());
+		List<C> paramTypes = new java.util.ArrayList<C>(
+				parameters.size());
+		List<Variable<C, PM>> args = new ArrayList<Variable<C, PM>>(
+				parameters.size());
 
-		for (PM param : uml.getParameters(oper)) {
+		for (PM param : parameters) {
 			paramNames.add(uml.getName(param));
 			paramTypes.add(resolveGenericType(owner, resolve(uml
 				.getOCLType(param)), stdlib.getT()));
+			
+			C paramType = resolve(uml.getOCLType(param));
+
+			Variable<C, PM> var = oclFactory.createVariable();
+			if (paramType instanceof TypeType) {
+				// need the referred type
+				TypeType<C, O> typeType = (TypeType<C, O>) paramType;
+				if (typeType.getReferredType() == null) {
+					var.setType(stdlib.getT()); // case of oclAsType()
+				} else {
+					var.setType(typeType.getReferredType());
+				}
+			} else {
+				if (paramType instanceof CollectionType) {
+					CollectionType<C, O> ct = (CollectionType<C, O>) paramType;
+
+					if (ct.getElementType() == stdlib.getT2()) {
+						// special handling for the Collection(T2) parameter
+						// of the product collection operation
+						paramType = (C) resolveCollectionType(ct.getKind(),
+							stdlib.getT());
+					}
+				}
+
+				var.setType(paramType);
+			}
+			args.add(var);
 		}
 
-		C resultType = getResultType(oper, owner, oper);
+		C resultType = getResultType(oper, owner, oper, args);
 
 		return uml.createOperation(name, resultType, paramNames, paramTypes);
 	}
@@ -1108,6 +1099,18 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		return null;
+	}
+
+	public boolean isStandardLibraryFeature(C owner, Object feature) {
+		boolean result = owner instanceof PredefinedType;
+
+		if (result) {
+			result = env.getUMLReflection().isOperation(feature)
+				? !env.getAdditionalOperations(owner).contains(feature)
+				: !env.getAdditionalAttributes(owner).contains(feature);
+		}
+
+		return result;
 	}
 
 	/**

@@ -14,7 +14,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.10 2008/08/30 20:18:33 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.11 2008/11/12 15:25:50 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -511,8 +511,13 @@ public final class OCLStandardLibraryUtil {
 			case OCL_IS_IN_STATE:
 				return stdlib.getBoolean();
 			case OCL_AS_TYPE:
-				TypeExp<C> typeExp = (TypeExp<C>) args.get(0);
-				argType = typeExp.getReferredType();
+				arg = args.get(0);
+				if (arg instanceof TypeExp) {
+					TypeExp<C> typeExp = (TypeExp<C>) arg;
+					argType = typeExp.getReferredType();
+				} else {
+					argType = arg.getType();
+				}
 				
 				if (sourceType instanceof CollectionType) {
 					String message = OCLMessages.bind(
