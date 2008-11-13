@@ -10,13 +10,13 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
- *   Zeligsoft - Bugs 244886, 245619, 233673, 179990
+ *   Zeligsoft - Bugs 244886, 245619, 233673, 179990, 242236
  *   Stefan Schulze - Bug 245619
  *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.15 2008/11/12 15:25:50 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.16 2008/11/13 02:31:38 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -321,7 +321,7 @@ public class TypeUtil {
 					if (ct.getElementType() == stdlib.getT2()) {
 						// special handling for the Collection(T2) parameter
 						// of the product collection operation
-						paramType = (C) resolveCollectionType(env, ct.getKind(),
+						paramType = resolveCollectionType(env, ct.getKind(),
 							stdlib.getT());
 					}
 				}

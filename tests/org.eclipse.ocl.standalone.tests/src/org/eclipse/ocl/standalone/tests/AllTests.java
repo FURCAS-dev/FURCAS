@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 242236
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.5 2008/05/11 05:37:17 cdamus Exp $
+ * $Id: AllTests.java,v 1.6 2008/11/13 02:32:06 cdamus Exp $
  */
 package org.eclipse.ocl.standalone.tests;
 
@@ -166,8 +167,7 @@ public class AllTests extends TestCase {
         EcoreEnvironment ecoreEnv = (EcoreEnvironment) EcoreEnvironmentFactory.INSTANCE
 			.createEnvironment();
 		reg.registerEnvironment(ecoreEnv);
-		UMLEnvironment umlEnv = (UMLEnvironment) new UMLEnvironmentFactory()
-			.createEnvironment();
+		UMLEnvironment umlEnv = new UMLEnvironmentFactory().createEnvironment();
 		reg.registerEnvironment(umlEnv);
         
         // register their standard library packages
