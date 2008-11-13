@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 242236
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.8 2008/04/24 23:37:19 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.9 2008/11/13 02:31:45 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -494,7 +495,7 @@ public class SerializationTest
 	
     @SuppressWarnings("unchecked")
     protected OCLExpression<Classifier> loadExpression(String serial) {
-        return (OCLExpression<Classifier>) load(serial, OCLExpression.class);
+        return load(serial, OCLExpression.class);
     }
     
     protected Constraint loadConstraint(String serial) {
