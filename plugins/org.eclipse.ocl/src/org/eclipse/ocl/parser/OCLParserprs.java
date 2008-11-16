@@ -16,11 +16,14 @@
 *
 * </copyright>
 *
-* $Id: OCLParserprs.java,v 1.3 2008/11/16 14:10:57 cdamus Exp $
+* $Id: OCLParserprs.java,v 1.4 2008/11/16 14:20:09 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
 
+/**
+ * @noimplement This interface is not intended to be referenced by clients.
+ */
 @SuppressWarnings("nls")
 public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym {
 
@@ -1711,7 +1714,6 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     /**
      * @noreference These constants are not intended to be referenced by clients.
-     * @noimplement This interface is not intended to be implemented by clients.
      */
     public final static int
            NUM_STATES        = 319,
