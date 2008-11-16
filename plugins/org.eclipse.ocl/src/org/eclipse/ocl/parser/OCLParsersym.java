@@ -16,7 +16,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
+* $Id: OCLParsersym.java,v 1.3 2008/11/16 14:10:57 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -30,6 +30,7 @@ public interface OCLParsersym {
 	 * Token kind codes.
 	 * 
 	 * @noreference These constants are not intended to be referenced by clients.
+	 * @noimplement This interface is not intended to be implemented by clients.
 	 */
     public final static int
       TK_NUMERIC_OPERATION = 60,
