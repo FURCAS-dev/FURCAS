@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.6 2008/09/28 17:33:30 cdamus Exp $
+ * $Id: IterateExpImpl.java,v 1.7 2008/11/24 00:38:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,16 +21,24 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.IterateExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -47,7 +55,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class IterateExpImpl extends LoopExpImpl implements IterateExp {
+public class IterateExpImpl
+		extends LoopExpImpl
+		implements IterateExp {
+
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -91,12 +102,18 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(Variable<EClassifier, EParameter> newResult, NotificationChain msgs) {
+	public NotificationChain basicSetResult(
+			Variable<EClassifier, EParameter> newResult, NotificationChain msgs) {
 		Variable<EClassifier, EParameter> oldResult = result;
 		result = newResult;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.ITERATE_EXP__RESULT, oldResult, newResult);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.ITERATE_EXP__RESULT, oldResult,
+				newResult);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -110,52 +127,62 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 		if (newResult != result) {
 			NotificationChain msgs = null;
 			if (result != null)
-				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.ITERATE_EXP__RESULT, null, msgs);
+				msgs = ((InternalEObject) result).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.ITERATE_EXP__RESULT,
+					null, msgs);
 			if (newResult != null)
-				msgs = ((InternalEObject)newResult).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.ITERATE_EXP__RESULT, null, msgs);
+				msgs = ((InternalEObject) newResult).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.ITERATE_EXP__RESULT,
+					null, msgs);
 			msgs = basicSetResult(newResult, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ITERATE_EXP__RESULT, newResult, newResult));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.ITERATE_EXP__RESULT, newResult, newResult));
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkIterateType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IterateExpOperations.checkIterateType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkIterateType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IterateExpOperations
+			.checkIterateType(this, diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IterateExpOperations.checkBodyType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkBodyType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IterateExpOperations.checkBodyType(this, diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkResultInit(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IterateExpOperations.checkResultInit(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkResultInit(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IterateExpOperations.checkResultInit(this, diagnostics, context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.ITERATE_EXP__RESULT:
+			case EcorePackage.ITERATE_EXP__RESULT :
 				return basicSetResult(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -169,7 +196,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.ITERATE_EXP__RESULT:
+			case EcorePackage.ITERATE_EXP__RESULT :
 				return getResult();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -184,8 +211,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.ITERATE_EXP__RESULT:
-				setResult((Variable<EClassifier, EParameter>)newValue);
+			case EcorePackage.ITERATE_EXP__RESULT :
+				setResult((Variable<EClassifier, EParameter>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,8 +226,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.ITERATE_EXP__RESULT:
-				setResult((Variable<EClassifier, EParameter>)null);
+			case EcorePackage.ITERATE_EXP__RESULT :
+				setResult((Variable<EClassifier, EParameter>) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -214,7 +241,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.ITERATE_EXP__RESULT:
+			case EcorePackage.ITERATE_EXP__RESULT :
 				return result != null;
 		}
 		return super.eIsSet(featureID);
@@ -229,8 +256,10 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.ITERATE_EXP__RESULT: return ExpressionsPackage.ITERATE_EXP__RESULT;
-				default: return -1;
+				case EcorePackage.ITERATE_EXP__RESULT :
+					return ExpressionsPackage.ITERATE_EXP__RESULT;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -245,8 +274,10 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.ITERATE_EXP__RESULT: return EcorePackage.ITERATE_EXP__RESULT;
-				default: return -1;
+				case ExpressionsPackage.ITERATE_EXP__RESULT :
+					return EcorePackage.ITERATE_EXP__RESULT;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -256,7 +287,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitIterateExp(this);
 	}
 

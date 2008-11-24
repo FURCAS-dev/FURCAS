@@ -13,16 +13,23 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.5 2008/09/28 17:33:30 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.6 2008/11/24 00:38:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IteratorExp;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.IteratorExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -35,7 +42,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
+public class IteratorExpImpl
+		extends LoopExpImpl
+		implements IteratorExp {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,46 +66,54 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkBooleanType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkBooleanType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkBooleanType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IteratorExpOperations.checkBooleanType(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkCollectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkCollectType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkCollectType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IteratorExpOperations.checkCollectType(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkSelectRejectType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkSelectRejectType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkSelectRejectType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IteratorExpOperations.checkSelectRejectType(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkBooleanBodyType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return IteratorExpOperations.checkBooleanBodyType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkBooleanBodyType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return IteratorExpOperations.checkBooleanBodyType(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitIteratorExp(this);
 	}
 

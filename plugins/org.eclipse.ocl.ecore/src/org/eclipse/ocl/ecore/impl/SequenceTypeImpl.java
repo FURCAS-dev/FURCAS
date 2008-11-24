@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: SequenceTypeImpl.java,v 1.8 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: SequenceTypeImpl.java,v 1.9 2008/11/24 00:40:11 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -37,55 +37,60 @@ import org.eclipse.ocl.types.operations.SequenceTypeOperations;
  *
  * @generated
  */
-public class SequenceTypeImpl extends CollectionTypeImpl implements SequenceType {
-    /**
+public class SequenceTypeImpl
+		extends CollectionTypeImpl
+		implements SequenceType {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-    protected SequenceTypeImpl() {
+	protected SequenceTypeImpl() {
 		super();
-        setInstanceClass(List.class);
+		setInstanceClass(List.class);
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    protected SequenceTypeImpl(EClassifier elementType) {
-        super(elementType);
-        setInstanceClass(List.class);
-    }
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected SequenceTypeImpl(EClassifier elementType) {
+		super(elementType);
+		setInstanceClass(List.class);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.SEQUENCE_TYPE;
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public CollectionKind getKind() {
-        return CollectionKind.SEQUENCE_LITERAL;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public CollectionKind getKind() {
+		return CollectionKind.SEQUENCE_LITERAL;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return SequenceTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean checkCollectionTypeName(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return SequenceTypeOperations.checkCollectionTypeName(this,
+			diagnostics, context);
+	}
 
 } //SequenceTypeImpl

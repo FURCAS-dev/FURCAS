@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,9 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Zeligsoft - Bug 256040
  * 
- * $Id: OCLEcorePlugin.java,v 1.4 2008/03/28 20:33:41 cdamus Exp $
+ * $Id: OCLEcorePlugin.java,v 1.5 2008/11/24 00:40:47 cdamus Exp $
  * 
  *******************************************************************************/
 package org.eclipse.ocl.ecore.internal;
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
  * The activator class controls the plug-in life cycle
  */
 public class OCLEcorePlugin
-extends EMFPlugin {
+		extends EMFPlugin {
 
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
@@ -43,13 +44,13 @@ extends EMFPlugin {
 	private static final String SEPARATOR_METHOD = "#"; //$NON-NLS-1$
 
 	private static final String PREFIX_CATCHING = "CAUGHT "; //$NON-NLS-1$
-	
+
 	//The shared instance.
 	public static OCLEcorePlugin INSTANCE = new OCLEcorePlugin();
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
-	
+
 	/**
 	 * The constructor.
 	 */
@@ -58,13 +59,14 @@ extends EMFPlugin {
 	}
 
 	public static String getPluginId() {
-		return (getPlugin() != null)? getPlugin().getBundle().getSymbolicName()
-				: "org.eclipse.ocl.ecore"; // last known bundle ID //$NON-NLS-1$
+		return (getPlugin() != null)
+			? getPlugin().getBundle().getSymbolicName()
+			: "org.eclipse.ocl.ecore"; // last known bundle ID //$NON-NLS-1$
 	}
 
 	// implements the inherited method
 	@Override
-    public ResourceLocator getPluginResourceLocator() {
+	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
 
@@ -84,13 +86,14 @@ extends EMFPlugin {
 		return INSTANCE;
 	}
 
-
 	/**
 	 * The definition of the Eclipse plug-in flavour of this EMF plug-in.
 	 * 
 	 * @author Christian W. Damus (cdamus)
 	 */
-	public static class Implementation extends EMFPlugin.EclipsePlugin {
+	public static class Implementation
+			extends EMFPlugin.EclipsePlugin {
+
 		/**
 		 * Initializes me with my Eclipse plug-in descriptor.
 		 */
@@ -102,7 +105,7 @@ extends EMFPlugin {
 			OCLEcorePlugin.plugin = this;
 		}
 	}
-	
+
 	/**
 	 * Traces the catching of the specified throwable in the specified method of
 	 * the specified class.
@@ -116,7 +119,7 @@ extends EMFPlugin {
 	 *  
 	 */
 	public static void catching(Class<?> clazz, String methodName,
-		Throwable throwable) {
+			Throwable throwable) {
 		if (shouldTrace(OCLDebugOptions.EXCEPTIONS_CATCHING)) {
 			System.out.println(PREFIX_CATCHING + throwable.getMessage()
 				+ SEPARATOR_SPACE + PARENTHESIS_OPEN + clazz.getName()
@@ -126,7 +129,7 @@ extends EMFPlugin {
 	}
 
 	public static void throwing(Class<?> clazz, String methodName,
-		Throwable throwable) {
+			Throwable throwable) {
 		if (shouldTrace(OCLDebugOptions.EXCEPTIONS_THROWING)) {
 			System.out.println(PREFIX_THROWING + throwable.getMessage()
 				+ SEPARATOR_SPACE + PARENTHESIS_OPEN + clazz.getName()
@@ -139,12 +142,12 @@ extends EMFPlugin {
 		if (getPlugin() != null) {
 			if (getPlugin().isDebugging()) {
 				return Boolean.TRUE.toString().equalsIgnoreCase(
-						Platform.getDebugOption(option));
+					Platform.getDebugOption(option));
 			}
-			
+
 			return false;
 		}
-		
+
 		return Boolean.getBoolean("org.eclipse.ocl.ecore.debug"); //$NON-NLS-1$
 	}
 
@@ -251,10 +254,11 @@ extends EMFPlugin {
 	}
 
 	public static void log(int severity, int code, String message,
-		Throwable throwable) {
+			Throwable throwable) {
 		//
 		// Status ctor requires a non-null message
-		String msg = message == null ? "" //$NON-NLS-1$
+		String msg = message == null
+			? "" //$NON-NLS-1$
 			: message;
 
 		try {
@@ -266,22 +270,22 @@ extends EMFPlugin {
 				// not in the Eclipse environment
 				if (shouldTrace(OCLDebugOptions.DEBUG)) {
 					switch (code) {
-					case IStatus.WARNING:
-						System.err.print("WARNING "); //$NON-NLS-1$
-						break;
-					case IStatus.ERROR:
-					case IStatus.CANCEL:
-						System.err.print("ERROR "); //$NON-NLS-1$
-						break;
-					default:
-						// don't output INFO or OK messages
-						return;
+						case IStatus.WARNING :
+							System.err.print("WARNING "); //$NON-NLS-1$
+							break;
+						case IStatus.ERROR :
+						case IStatus.CANCEL :
+							System.err.print("ERROR "); //$NON-NLS-1$
+							break;
+						default :
+							// don't output INFO or OK messages
+							return;
 					}
-					
+
 					System.err.print(code);
 					System.err.print(": "); //$NON-NLS-1$
 					System.err.println(message);
-					
+
 					if (throwable != null) {
 						throwable.printStackTrace(System.err);
 					}
@@ -292,45 +296,47 @@ extends EMFPlugin {
 		}
 	}
 
-    /**
-     * Obtains the best available resource factory suitable for serializing
-     * Ecore models.
-     * 
-     * @return the best available Ecore resource factory
-     */
-    public static Resource.Factory getEcoreResourceFactory() {
-//        Resource.Factory result;
-//        Object maybeFactory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(
-//            "ecore"); //$NON-NLS-1$
-//        if (maybeFactory instanceof Resource.Factory.Descriptor) {
-//            result = ((Resource.Factory.Descriptor) maybeFactory).createFactory();
-//        } else if (maybeFactory instanceof Resource.Factory) {
-//            result = (Resource.Factory) maybeFactory;
-//        } else {
-//            maybeFactory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(
-//                Resource.Factory.Registry.DEFAULT_EXTENSION);
-//            
-//            if (maybeFactory instanceof Resource.Factory.Descriptor) {
-//                result = ((Resource.Factory.Descriptor) maybeFactory).createFactory();
-//            } else if (maybeFactory instanceof Resource.Factory) {
-//                result = (Resource.Factory) maybeFactory;
-//            } else {
-//                result = new ResourceFactoryImpl();
-//            }
-//        }
-//        
-//        return result;
-        // TODO: The EcoreResourceImpl should work!
-        return new ResourceFactoryImpl() {
-            @Override
-            public Resource createResource(URI uri) {
-                return new ResourceImpl(uri) {
-                    @Override
-                    public EObject getEObject(String uriFragment) {
-                        return super.getEObject(URI.decode(uriFragment));
-                    }
-                };
-            }
-        };
-    }
+	/**
+	 * Obtains the best available resource factory suitable for serializing
+	 * Ecore models.
+	 * 
+	 * @return the best available Ecore resource factory
+	 */
+	public static Resource.Factory getEcoreResourceFactory() {
+		//        Resource.Factory result;
+		//        Object maybeFactory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(
+		//            "ecore"); //$NON-NLS-1$
+		//        if (maybeFactory instanceof Resource.Factory.Descriptor) {
+		//            result = ((Resource.Factory.Descriptor) maybeFactory).createFactory();
+		//        } else if (maybeFactory instanceof Resource.Factory) {
+		//            result = (Resource.Factory) maybeFactory;
+		//        } else {
+		//            maybeFactory = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(
+		//                Resource.Factory.Registry.DEFAULT_EXTENSION);
+		//            
+		//            if (maybeFactory instanceof Resource.Factory.Descriptor) {
+		//                result = ((Resource.Factory.Descriptor) maybeFactory).createFactory();
+		//            } else if (maybeFactory instanceof Resource.Factory) {
+		//                result = (Resource.Factory) maybeFactory;
+		//            } else {
+		//                result = new ResourceFactoryImpl();
+		//            }
+		//        }
+		//        
+		//        return result;
+		// TODO: The EcoreResourceImpl should work!
+		return new ResourceFactoryImpl() {
+
+			@Override
+			public Resource createResource(URI uri) {
+				return new ResourceImpl(uri) {
+
+					@Override
+					public EObject getEObject(String uriFragment) {
+						return super.getEObject(URI.decode(uriFragment));
+					}
+				};
+			}
+		};
+	}
 }

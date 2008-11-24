@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.3 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.4 2008/11/24 00:38:25 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -31,7 +31,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLiteralExp {
+public class InvalidLiteralExpImpl
+		extends LiteralExpImpl
+		implements InvalidLiteralExp {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,7 +58,7 @@ public class InvalidLiteralExpImpl extends LiteralExpImpl implements InvalidLite
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitInvalidLiteralExp(this);
 	}
 

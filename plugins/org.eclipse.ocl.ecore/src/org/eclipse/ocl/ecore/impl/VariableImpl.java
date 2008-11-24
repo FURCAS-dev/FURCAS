@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.7 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.8 2008/11/24 00:39:39 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,6 +21,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -29,10 +32,15 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.VariableOperations;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
@@ -60,7 +68,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class VariableImpl extends ETypedElementImpl implements Variable {
+public class VariableImpl
+		extends ETypedElementImpl
+		implements Variable {
+
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -198,7 +209,9 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__START_POSITION, oldStartPosition, startPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.VARIABLE__START_POSITION, oldStartPosition,
+				startPosition));
 	}
 
 	/**
@@ -219,7 +232,9 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__END_POSITION, oldEndPosition, endPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.VARIABLE__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -240,7 +255,9 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.VARIABLE__TYPE_START_POSITION,
+				oldTypeStartPosition, typeStartPosition));
 	}
 
 	/**
@@ -261,7 +278,9 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.VARIABLE__TYPE_END_POSITION, oldTypeEndPosition,
+				typeEndPosition));
 	}
 
 	/**
@@ -278,12 +297,18 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(OCLExpression<EClassifier> newInitExpression, NotificationChain msgs) {
+	public NotificationChain basicSetInitExpression(
+			OCLExpression<EClassifier> newInitExpression, NotificationChain msgs) {
 		OCLExpression<EClassifier> oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__INIT_EXPRESSION, oldInitExpression, newInitExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.VARIABLE__INIT_EXPRESSION,
+				oldInitExpression, newInitExpression);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -297,14 +322,20 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		if (newInitExpression != initExpression) {
 			NotificationChain msgs = null;
 			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.VARIABLE__INIT_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) initExpression).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.VARIABLE__INIT_EXPRESSION, null, msgs);
 			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.VARIABLE__INIT_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newInitExpression).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.VARIABLE__INIT_EXPRESSION, null, msgs);
 			msgs = basicSetInitExpression(newInitExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.VARIABLE__INIT_EXPRESSION, newInitExpression,
+				newInitExpression));
 	}
 
 	/**
@@ -313,12 +344,15 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	 * @generated
 	 */
 	public EParameter getRepresentedParameter() {
-		if (representedParameter != null && ((EObject)representedParameter).eIsProxy()) {
-			InternalEObject oldRepresentedParameter = (InternalEObject)representedParameter;
-			representedParameter = (EParameter)eResolveProxy(oldRepresentedParameter);
+		if (representedParameter != null
+			&& ((EObject) representedParameter).eIsProxy()) {
+			InternalEObject oldRepresentedParameter = (InternalEObject) representedParameter;
+			representedParameter = (EParameter) eResolveProxy(oldRepresentedParameter);
 			if (representedParameter != oldRepresentedParameter) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.VARIABLE__REPRESENTED_PARAMETER, oldRepresentedParameter, representedParameter));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.VARIABLE__REPRESENTED_PARAMETER,
+						oldRepresentedParameter, representedParameter));
 			}
 		}
 		return representedParameter;
@@ -342,19 +376,22 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		EParameter oldRepresentedParameter = representedParameter;
 		representedParameter = newRepresentedParameter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.VARIABLE__REPRESENTED_PARAMETER, oldRepresentedParameter, representedParameter));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.VARIABLE__REPRESENTED_PARAMETER,
+				oldRepresentedParameter, representedParameter));
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkInitType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return VariableOperations.checkInitType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkInitType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return VariableOperations.checkInitType(this, diagnostics, context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -378,9 +415,10 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE__INIT_EXPRESSION:
+			case EcorePackage.VARIABLE__INIT_EXPRESSION :
 				return basicSetInitExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -394,18 +432,19 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE__START_POSITION:
+			case EcorePackage.VARIABLE__START_POSITION :
 				return new Integer(getStartPosition());
-			case EcorePackage.VARIABLE__END_POSITION:
+			case EcorePackage.VARIABLE__END_POSITION :
 				return new Integer(getEndPosition());
-			case EcorePackage.VARIABLE__TYPE_START_POSITION:
+			case EcorePackage.VARIABLE__TYPE_START_POSITION :
 				return new Integer(getTypeStartPosition());
-			case EcorePackage.VARIABLE__TYPE_END_POSITION:
+			case EcorePackage.VARIABLE__TYPE_END_POSITION :
 				return new Integer(getTypeEndPosition());
-			case EcorePackage.VARIABLE__INIT_EXPRESSION:
+			case EcorePackage.VARIABLE__INIT_EXPRESSION :
 				return getInitExpression();
-			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER:
-				if (resolve) return getRepresentedParameter();
+			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER :
+				if (resolve)
+					return getRepresentedParameter();
 				return basicGetRepresentedParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -420,23 +459,23 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.VARIABLE__START_POSITION :
+				setStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.VARIABLE__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.VARIABLE__END_POSITION :
+				setEndPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.VARIABLE__TYPE_START_POSITION:
-				setTypeStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.VARIABLE__TYPE_START_POSITION :
+				setTypeStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.VARIABLE__TYPE_END_POSITION:
-				setTypeEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.VARIABLE__TYPE_END_POSITION :
+				setTypeEndPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.VARIABLE__INIT_EXPRESSION:
-				setInitExpression((OCLExpression<EClassifier>)newValue);
+			case EcorePackage.VARIABLE__INIT_EXPRESSION :
+				setInitExpression((OCLExpression<EClassifier>) newValue);
 				return;
-			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER:
-				setRepresentedParameter((EParameter)newValue);
+			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER :
+				setRepresentedParameter((EParameter) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -450,23 +489,23 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE__START_POSITION:
+			case EcorePackage.VARIABLE__START_POSITION :
 				setStartPosition(START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.VARIABLE__END_POSITION:
+			case EcorePackage.VARIABLE__END_POSITION :
 				setEndPosition(END_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.VARIABLE__TYPE_START_POSITION:
+			case EcorePackage.VARIABLE__TYPE_START_POSITION :
 				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.VARIABLE__TYPE_END_POSITION:
+			case EcorePackage.VARIABLE__TYPE_END_POSITION :
 				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.VARIABLE__INIT_EXPRESSION:
-				setInitExpression((OCLExpression<EClassifier>)null);
+			case EcorePackage.VARIABLE__INIT_EXPRESSION :
+				setInitExpression((OCLExpression<EClassifier>) null);
 				return;
-			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER:
-				setRepresentedParameter((EParameter)null);
+			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER :
+				setRepresentedParameter((EParameter) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -480,17 +519,17 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.VARIABLE__START_POSITION:
+			case EcorePackage.VARIABLE__START_POSITION :
 				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.VARIABLE__END_POSITION:
+			case EcorePackage.VARIABLE__END_POSITION :
 				return endPosition != END_POSITION_EDEFAULT;
-			case EcorePackage.VARIABLE__TYPE_START_POSITION:
+			case EcorePackage.VARIABLE__TYPE_START_POSITION :
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-			case EcorePackage.VARIABLE__TYPE_END_POSITION:
+			case EcorePackage.VARIABLE__TYPE_END_POSITION :
 				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-			case EcorePackage.VARIABLE__INIT_EXPRESSION:
+			case EcorePackage.VARIABLE__INIT_EXPRESSION :
 				return initExpression != null;
-			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER:
+			case EcorePackage.VARIABLE__REPRESENTED_PARAMETER :
 				return representedParameter != null;
 		}
 		return super.eIsSet(featureID);
@@ -505,33 +544,44 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.VARIABLE__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.VARIABLE__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
+				case EcorePackage.VARIABLE__START_POSITION :
+					return UtilitiesPackage.AST_NODE__START_POSITION;
+				case EcorePackage.VARIABLE__END_POSITION :
+					return UtilitiesPackage.AST_NODE__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.VARIABLE__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-				case EcorePackage.VARIABLE__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-				default: return -1;
+				case EcorePackage.VARIABLE__TYPE_START_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case EcorePackage.VARIABLE__TYPE_END_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.Variable.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.VARIABLE__INIT_EXPRESSION: return ExpressionsPackage.VARIABLE__INIT_EXPRESSION;
-				case EcorePackage.VARIABLE__REPRESENTED_PARAMETER: return ExpressionsPackage.VARIABLE__REPRESENTED_PARAMETER;
-				default: return -1;
+				case EcorePackage.VARIABLE__INIT_EXPRESSION :
+					return ExpressionsPackage.VARIABLE__INIT_EXPRESSION;
+				case EcorePackage.VARIABLE__REPRESENTED_PARAMETER :
+					return ExpressionsPackage.VARIABLE__REPRESENTED_PARAMETER;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -546,33 +596,44 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.VARIABLE__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.VARIABLE__END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.AST_NODE__START_POSITION :
+					return EcorePackage.VARIABLE__START_POSITION;
+				case UtilitiesPackage.AST_NODE__END_POSITION :
+					return EcorePackage.VARIABLE__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return EcorePackage.VARIABLE__TYPE_START_POSITION;
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return EcorePackage.VARIABLE__TYPE_END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION :
+					return EcorePackage.VARIABLE__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION :
+					return EcorePackage.VARIABLE__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.Variable.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.VARIABLE__INIT_EXPRESSION: return EcorePackage.VARIABLE__INIT_EXPRESSION;
-				case ExpressionsPackage.VARIABLE__REPRESENTED_PARAMETER: return EcorePackage.VARIABLE__REPRESENTED_PARAMETER;
-				default: return -1;
+				case ExpressionsPackage.VARIABLE__INIT_EXPRESSION :
+					return EcorePackage.VARIABLE__INIT_EXPRESSION;
+				case ExpressionsPackage.VARIABLE__REPRESENTED_PARAMETER :
+					return EcorePackage.VARIABLE__REPRESENTED_PARAMETER;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -588,7 +649,7 @@ public class VariableImpl extends ETypedElementImpl implements Variable {
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
 

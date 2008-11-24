@@ -10,9 +10,9 @@
 
  Contributors:
    IBM - initial API and implementation
-   Zeligsoft - Bugs 231435, 248869
+   Zeligsoft - Bugs 231435, 248869, 256040
 
- $Id: plugin.xml,v 1.3 2008/09/28 17:33:30 cdamus Exp $
+ $Id: plugin.xml,v 1.4 2008/11/24 00:40:32 cdamus Exp $
 -->
 
 <plugin>
@@ -50,11 +50,11 @@
   <extension
         point="org.eclipse.core.contenttype.contentTypes">
      <content-type
-           base-type="org.eclipse.emf.ecore.xmi"
-           file-extensions="ecore,ocl"
+           base-type="org.eclipse.ocl"
+           file-extensions="oclecore,oclxmi"
            id="org.eclipse.ocl.ecore"
-           name="%contentType"
-           priority="normal">
+           name="%_UI_Ecore_content_type"
+           priority="high">
         <describer
               class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
            <parameter
@@ -66,4 +66,12 @@
         </describer>
      </content-type>
   </extension>
+  <extension
+        point="org.eclipse.team.core.fileTypes">
+     <fileTypes
+           extension="oclecore"
+           type="text">
+     </fileTypes>
+  </extension>
+  
 </plugin>

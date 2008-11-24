@@ -13,19 +13,27 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.6 2008/11/24 00:39:19 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.UnlimitedNaturalLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -43,7 +51,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implements UnlimitedNaturalLiteralExp {
+public class UnlimitedNaturalLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements UnlimitedNaturalLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,7 +122,9 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 		Integer oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -120,19 +133,21 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated NOT
 	 */
 	public boolean isUnlimited() {
-        return getIntegerSymbol() == UNLIMITED;
+		return getIntegerSymbol() == UNLIMITED;
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkNaturalType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkNaturalType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this,
+			diagnostics, context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,10 +155,12 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				return getIntegerSymbol();
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-				return isUnlimited() ? Boolean.TRUE : Boolean.FALSE;
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+				return isUnlimited()
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,8 +173,8 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				setIntegerSymbol((Integer)newValue);
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				setIntegerSymbol((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,7 +188,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -186,9 +203,11 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+				return INTEGER_SYMBOL_EDEFAULT == null
+					? integerSymbol != null
+					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
 				return isUnlimited() != UNLIMITED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -203,9 +222,12 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL: return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
-				case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED: return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
-				default: return -1;
+				case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+					return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
+				case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+					return ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -220,9 +242,12 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL: return EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
-				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED: return EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
-				default: return -1;
+				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+					return EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL;
+				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+					return EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -242,7 +267,7 @@ public class UnlimitedNaturalLiteralExpImpl extends NumericLiteralExpImpl implem
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitUnlimitedNaturalLiteralExp(this);
 	}
 

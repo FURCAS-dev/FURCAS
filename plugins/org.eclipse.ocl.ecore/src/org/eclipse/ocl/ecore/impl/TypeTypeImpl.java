@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.11 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.12 2008/11/24 00:38:51 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -51,228 +51,242 @@ import org.eclipse.ocl.utilities.PredefinedType;
  *
  * @generated
  */
-public class TypeTypeImpl extends EClassifierImpl implements TypeType {
-    private EList<EOperation> operations;
-    
-    /**
+public class TypeTypeImpl
+		extends EClassifierImpl
+		implements TypeType {
+
+	private EList<EOperation> operations;
+
+	/**
 	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getReferredType()
 	 * @generated
 	 * @ordered
 	 */
-    protected EClassifier referredType;
+	protected EClassifier referredType;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected TypeTypeImpl() {
+	protected TypeTypeImpl() {
 		super();
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    protected TypeTypeImpl(EClassifier referredType) {
-        this();
-        
-        this.referredType = referredType;
-    }
-    
-    public static TypeType createTypeType(EClassifier referredType) {
-        return new TypeTypeImpl(referredType);
-    }
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected TypeTypeImpl(EClassifier referredType) {
+		this();
+
+		this.referredType = referredType;
+	}
+
+	public static TypeType createTypeType(EClassifier referredType) {
+		return new TypeTypeImpl(referredType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.TYPE_TYPE;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClassifier getReferredType() {
-		if (referredType != null && ((EObject)referredType).eIsProxy()) {
-			InternalEObject oldReferredType = (InternalEObject)referredType;
-			referredType = (EClassifier)eResolveProxy(oldReferredType);
+	public EClassifier getReferredType() {
+		if (referredType != null && ((EObject) referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject) referredType;
+			referredType = (EClassifier) eResolveProxy(oldReferredType);
 			if (referredType != oldReferredType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType,
+						referredType));
 			}
 		}
 		return referredType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClassifier basicGetReferredType() {
+	public EClassifier basicGetReferredType() {
 		return referredType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setReferredType(EClassifier newReferredType) {
+	public void setReferredType(EClassifier newReferredType) {
 		EClassifier oldReferredType = referredType;
 		referredType = newReferredType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType, referredType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TYPE_TYPE__REFERRED_TYPE, oldReferredType,
+				referredType));
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public String getName() {
-        if (name == null) {
-            EClassifier ref = getReferredType();
-            if (this == OCLStandardLibraryImpl.INSTANCE.getOclType()) {
-                name = SINGLETON_NAME;
-            } else if (ref != null) {
-                name = ref.getName();
-            }
-        }
-        
-        return name;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public EList<EOperation> oclOperations() {
-        if (operations == null) {
-            TypeType prototype =
-                (TypeType) OCLStandardLibraryImpl.INSTANCE.getOclType();
-            
-            if (prototype == this) {
-                // I *am* the standard library type!
-                operations = OCLStandardLibraryImpl.getExistingOperations(this);
-            } else {
-                // the prototype defines my operations for me
-                operations = prototype.oclOperations();
-            }
-        }
-        
-        return operations;
-    }
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		if (name == null) {
+			EClassifier ref = getReferredType();
+			if (this == OCLStandardLibraryImpl.INSTANCE.getOclType()) {
+				name = SINGLETON_NAME;
+			} else if (ref != null) {
+				name = ref.getName();
+			}
+		}
+
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<EOperation> oclOperations() {
+		if (operations == null) {
+			TypeType prototype = (TypeType) OCLStandardLibraryImpl.INSTANCE
+				.getOclType();
+
+			if (prototype == this) {
+				// I *am* the standard library type!
+				operations = OCLStandardLibraryImpl.getExistingOperations(this);
+			} else {
+				// the prototype defines my operations for me
+				operations = prototype.oclOperations();
+			}
+		}
+
+		return operations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
-				if (resolve) return getReferredType();
+			case EcorePackage.TYPE_TYPE__REFERRED_TYPE :
+				if (resolve)
+					return getReferredType();
 				return basicGetReferredType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
-				setReferredType((EClassifier)newValue);
+			case EcorePackage.TYPE_TYPE__REFERRED_TYPE :
+				setReferredType((EClassifier) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
-				setReferredType((EClassifier)null);
+			case EcorePackage.TYPE_TYPE__REFERRED_TYPE :
+				setReferredType((EClassifier) null);
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TYPE_TYPE__REFERRED_TYPE:
+			case EcorePackage.TYPE_TYPE__REFERRED_TYPE :
 				return referredType != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.types.TypeType.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.TYPE_TYPE__REFERRED_TYPE: return TypesPackage.TYPE_TYPE__REFERRED_TYPE;
-				default: return -1;
+				case EcorePackage.TYPE_TYPE__REFERRED_TYPE :
+					return TypesPackage.TYPE_TYPE__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.types.TypeType.class) {
 			switch (baseFeatureID) {
-				case TypesPackage.TYPE_TYPE__REFERRED_TYPE: return EcorePackage.TYPE_TYPE__REFERRED_TYPE;
-				default: return -1;
+				case TypesPackage.TYPE_TYPE__REFERRED_TYPE :
+					return EcorePackage.TYPE_TYPE__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

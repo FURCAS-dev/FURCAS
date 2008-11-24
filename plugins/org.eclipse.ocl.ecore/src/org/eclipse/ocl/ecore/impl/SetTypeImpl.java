@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.8 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.9 2008/11/24 00:40:20 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -37,55 +37,60 @@ import org.eclipse.ocl.types.operations.SetTypeOperations;
  *
  * @generated
  */
-public class SetTypeImpl extends CollectionTypeImpl implements SetType {
-    /**
+public class SetTypeImpl
+		extends CollectionTypeImpl
+		implements SetType {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-    protected SetTypeImpl() {
+	protected SetTypeImpl() {
 		super();
-        setInstanceClass(Set.class);
+		setInstanceClass(Set.class);
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    protected SetTypeImpl(EClassifier elementType) {
-        super(elementType);
-        setInstanceClass(Set.class);
-    }
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected SetTypeImpl(EClassifier elementType) {
+		super(elementType);
+		setInstanceClass(Set.class);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.SET_TYPE;
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public CollectionKind getKind() {
-        return CollectionKind.SET_LITERAL;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public CollectionKind getKind() {
+		return CollectionKind.SET_LITERAL;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return SetTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean checkCollectionTypeName(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return SetTypeOperations.checkCollectionTypeName(this, diagnostics,
+			context);
+	}
 
 } //SetTypeImpl

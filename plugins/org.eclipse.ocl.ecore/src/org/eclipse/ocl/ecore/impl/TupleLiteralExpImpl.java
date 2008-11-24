@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.6 2008/11/24 00:39:32 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,18 +21,27 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.TupleLiteralPart;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.TupleLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -49,7 +58,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralExp {
+public class TupleLiteralExpImpl
+		extends LiteralExpImpl
+		implements TupleLiteralExp {
+
 	/**
 	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -86,39 +98,47 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 */
 	public EList<TupleLiteralPart<EClassifier, EStructuralFeature>> getPart() {
 		if (part == null) {
-			part = new EObjectContainmentEList<TupleLiteralPart<EClassifier, EStructuralFeature>>(TupleLiteralPart.class, this, EcorePackage.TUPLE_LITERAL_EXP__PART);
+			part = new EObjectContainmentEList<TupleLiteralPart<EClassifier, EStructuralFeature>>(
+				TupleLiteralPart.class, this,
+				EcorePackage.TUPLE_LITERAL_EXP__PART);
 		}
 		return part;
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkTupleType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return TupleLiteralExpOperations.checkTupleType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkTupleType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return TupleLiteralExpOperations.checkTupleType(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkPartsUnique(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return TupleLiteralExpOperations.checkPartsUnique(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkPartsUnique(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return TupleLiteralExpOperations.checkPartsUnique(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+			case EcorePackage.TUPLE_LITERAL_EXP__PART :
+				return ((InternalEList<?>) getPart()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -131,7 +151,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
+			case EcorePackage.TUPLE_LITERAL_EXP__PART :
 				return getPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -146,9 +166,11 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
+			case EcorePackage.TUPLE_LITERAL_EXP__PART :
 				getPart().clear();
-				getPart().addAll((Collection<? extends TupleLiteralPart<EClassifier, EStructuralFeature>>)newValue);
+				getPart()
+					.addAll(
+						(Collection<? extends TupleLiteralPart<EClassifier, EStructuralFeature>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -162,7 +184,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
+			case EcorePackage.TUPLE_LITERAL_EXP__PART :
 				getPart().clear();
 				return;
 		}
@@ -177,7 +199,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_EXP__PART:
+			case EcorePackage.TUPLE_LITERAL_EXP__PART :
 				return part != null && !part.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -192,8 +214,10 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.TUPLE_LITERAL_EXP__PART: return ExpressionsPackage.TUPLE_LITERAL_EXP__PART;
-				default: return -1;
+				case EcorePackage.TUPLE_LITERAL_EXP__PART :
+					return ExpressionsPackage.TUPLE_LITERAL_EXP__PART;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -208,8 +232,10 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.TUPLE_LITERAL_EXP__PART: return EcorePackage.TUPLE_LITERAL_EXP__PART;
-				default: return -1;
+				case ExpressionsPackage.TUPLE_LITERAL_EXP__PART :
+					return EcorePackage.TUPLE_LITERAL_EXP__PART;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -219,7 +245,7 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitTupleLiteralExp(this);
 	}
 

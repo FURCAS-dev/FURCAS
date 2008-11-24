@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericLiteralExpImpl.java,v 1.3 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: NumericLiteralExpImpl.java,v 1.4 2008/11/24 00:39:36 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -30,7 +30,10 @@ import org.eclipse.ocl.ecore.NumericLiteralExp;
  *
  * @generated
  */
-public abstract class NumericLiteralExpImpl extends PrimitiveLiteralExpImpl implements NumericLiteralExp {
+public abstract class NumericLiteralExpImpl
+		extends PrimitiveLiteralExpImpl
+		implements NumericLiteralExp {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
