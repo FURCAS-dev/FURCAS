@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 231435, 243976
+ *   Zeligsoft - Bugs 231435, 243976, 256040
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.8 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.9 2008/11/24 00:22:00 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -72,7 +72,7 @@ public interface UtilitiesPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eCONTENT_TYPE = "org.eclipse.ocl"; //$NON-NLS-1$
+	String eCONTENT_TYPE = "org.eclipse.ocl.ast"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLExpressionOperations.java,v 1.1 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: OCLExpressionOperations.java,v 1.2 2008/11/24 00:21:50 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -56,7 +56,7 @@ public class OCLExpressionOperations {
 	 * @generated NOT
 	 */
 	public static <C> String getName(OCLExpression<C> oclExpression) {
- 		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();
 	}
 
 	/**

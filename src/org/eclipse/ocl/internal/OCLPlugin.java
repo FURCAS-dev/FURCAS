@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLPlugin.java,v 1.6 2008/11/02 00:00:49 cdamus Exp $
+ * $Id: OCLPlugin.java,v 1.7 2008/11/24 00:22:39 cdamus Exp $
  */
 package org.eclipse.ocl.internal;
 
@@ -51,13 +51,14 @@ public class OCLPlugin
 
 	//The shared Eclipse plug-in instance
 	private static Implementation plugin;
-	
+
 	/**
 	 * In stand-alone use, whether all tracing is turned on.
 	 * This is compatible with the usage of 1.2 and earlier.
 	 * @since 1.3
 	 */
-	private static boolean traceAll = Boolean.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$;
+	private static boolean traceAll = Boolean
+		.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$;
 
 	/**
 	 * The constructor.
