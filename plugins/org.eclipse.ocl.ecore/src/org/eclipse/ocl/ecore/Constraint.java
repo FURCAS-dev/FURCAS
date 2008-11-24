@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 256040
  * 
  * </copyright>
  *
- * $Id: Constraint.java,v 1.7 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: Constraint.java,v 1.8 2008/11/24 00:45:05 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -40,73 +41,75 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
-public interface Constraint extends ENamedElement {
-    /**
+public interface Constraint
+		extends ENamedElement {
+
+	/**
 	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Specification</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Specification</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specification</em>' containment reference.
 	 * @see #setSpecification(ExpressionInOCL)
 	 * @see org.eclipse.ocl.ecore.EcorePackage#getConstraint_Specification()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-    ExpressionInOCL<EClassifier, EParameter> getSpecification();
+	ExpressionInOCL<EClassifier, EParameter> getSpecification();
 
-    /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.ecore.Constraint#getSpecification <em>Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Specification</em>' containment reference.
 	 * @see #getSpecification()
 	 * @generated
 	 */
-    void setSpecification(ExpressionInOCL<EClassifier, EParameter> value);
+	void setSpecification(ExpressionInOCL<EClassifier, EParameter> value);
 
-    /**
+	/**
 	 * Returns the value of the '<em><b>Constrained Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.ENamedElement}.
 	 * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Constrained Elements</em>' reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constrained Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constrained Elements</em>' reference list.
 	 * @see org.eclipse.ocl.ecore.EcorePackage#getConstraint_ConstrainedElements()
 	 * @model
 	 * @generated
 	 */
-    EList<ENamedElement> getConstrainedElements();
+	EList<ENamedElement> getConstrainedElements();
 
-    /**
+	/**
 	 * Returns the value of the '<em><b>Stereotype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Stereotype</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stereotype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Stereotype</em>' attribute.
 	 * @see #setStereotype(String)
 	 * @see org.eclipse.ocl.ecore.EcorePackage#getConstraint_Stereotype()
 	 * @model
 	 * @generated
 	 */
-    String getStereotype();
+	String getStereotype();
 
-    /**
+	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.ecore.Constraint#getStereotype <em>Stereotype</em>}' attribute.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stereotype</em>' attribute.
 	 * @see #getStereotype()
 	 * @generated
 	 */
-    void setStereotype(String value);
+	void setStereotype(String value);
 
 } // Constraint
