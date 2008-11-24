@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.6 2008/09/28 17:33:30 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.7 2008/11/24 00:39:57 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,13 +22,20 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.EcorePackage;
@@ -36,6 +43,8 @@ import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.ocl.expressions.CollectionRange;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.CollectionLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -54,7 +63,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class CollectionLiteralExpImpl extends LiteralExpImpl implements CollectionLiteralExp {
+public class CollectionLiteralExpImpl
+		extends LiteralExpImpl
+		implements CollectionLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -130,9 +142,12 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 */
 	public void setKind(CollectionKind newKind) {
 		CollectionKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		kind = newKind == null
+			? KIND_EDEFAULT
+			: newKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
 	}
 
 	/**
@@ -142,7 +157,9 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 */
 	public EList<CollectionLiteralPart<EClassifier>> getPart() {
 		if (part == null) {
-			part = new EObjectContainmentEList<CollectionLiteralPart<EClassifier>>(CollectionLiteralPart.class, this, EcorePackage.COLLECTION_LITERAL_EXP__PART);
+			part = new EObjectContainmentEList<CollectionLiteralPart<EClassifier>>(
+				CollectionLiteralPart.class, this,
+				EcorePackage.COLLECTION_LITERAL_EXP__PART);
 		}
 		return part;
 	}
@@ -154,72 +171,84 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 */
 	public boolean isSimpleRange() {
 		EList<CollectionLiteralPart<EClassifier>> partsList = getPart();
-		
+
 		int size = partsList.size();
 		if (size == 1) {
 			CollectionLiteralPart<EClassifier> part = partsList.get(0);
-			
+
 			return part instanceof CollectionRange;
 		}
-		
+
 		return false;
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkNoCollectionInstances(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkNoCollectionInstances(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkNoCollectionInstances(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkNoCollectionInstances(this,
+			diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkSetKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkSetKind(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkSetKind(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkSetKind(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkSequenceKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkSequenceKind(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkSequenceKind(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkSequenceKind(this,
+			diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkBagKind(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkBagKind(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkBagKind(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkBagKind(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkElementType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return CollectionLiteralExpOperations.checkElementType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkElementType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return CollectionLiteralExpOperations.checkElementType(this,
+			diagnostics, context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
+			case EcorePackage.COLLECTION_LITERAL_EXP__PART :
+				return ((InternalEList<?>) getPart()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -232,12 +261,14 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+			case EcorePackage.COLLECTION_LITERAL_EXP__KIND :
 				return getKind();
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+			case EcorePackage.COLLECTION_LITERAL_EXP__PART :
 				return getPart();
-			case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-				return isSimpleRange() ? Boolean.TRUE : Boolean.FALSE;
+			case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
+				return isSimpleRange()
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -251,12 +282,14 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
-				setKind((CollectionKind)newValue);
+			case EcorePackage.COLLECTION_LITERAL_EXP__KIND :
+				setKind((CollectionKind) newValue);
 				return;
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+			case EcorePackage.COLLECTION_LITERAL_EXP__PART :
 				getPart().clear();
-				getPart().addAll((Collection<? extends CollectionLiteralPart<EClassifier>>)newValue);
+				getPart()
+					.addAll(
+						(Collection<? extends CollectionLiteralPart<EClassifier>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -270,10 +303,10 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+			case EcorePackage.COLLECTION_LITERAL_EXP__KIND :
 				setKind(KIND_EDEFAULT);
 				return;
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+			case EcorePackage.COLLECTION_LITERAL_EXP__PART :
 				getPart().clear();
 				return;
 		}
@@ -288,11 +321,11 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.COLLECTION_LITERAL_EXP__KIND:
+			case EcorePackage.COLLECTION_LITERAL_EXP__KIND :
 				return kind != KIND_EDEFAULT;
-			case EcorePackage.COLLECTION_LITERAL_EXP__PART:
+			case EcorePackage.COLLECTION_LITERAL_EXP__PART :
 				return part != null && !part.isEmpty();
-			case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
+			case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
 				return isSimpleRange() != SIMPLE_RANGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -307,10 +340,14 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.COLLECTION_LITERAL_EXP__KIND: return ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND;
-				case EcorePackage.COLLECTION_LITERAL_EXP__PART: return ExpressionsPackage.COLLECTION_LITERAL_EXP__PART;
-				case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
-				default: return -1;
+				case EcorePackage.COLLECTION_LITERAL_EXP__KIND :
+					return ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND;
+				case EcorePackage.COLLECTION_LITERAL_EXP__PART :
+					return ExpressionsPackage.COLLECTION_LITERAL_EXP__PART;
+				case EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
+					return ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -325,10 +362,14 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND: return EcorePackage.COLLECTION_LITERAL_EXP__KIND;
-				case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART: return EcorePackage.COLLECTION_LITERAL_EXP__PART;
-				case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE: return EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
-				default: return -1;
+				case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND :
+					return EcorePackage.COLLECTION_LITERAL_EXP__KIND;
+				case ExpressionsPackage.COLLECTION_LITERAL_EXP__PART :
+					return EcorePackage.COLLECTION_LITERAL_EXP__PART;
+				case ExpressionsPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
+					return EcorePackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -348,7 +389,7 @@ public class CollectionLiteralExpImpl extends LiteralExpImpl implements Collecti
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitCollectionLiteralExp(this);
 	}
 

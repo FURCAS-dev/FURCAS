@@ -1,18 +1,19 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 256040
  *
  * </copyright>
  *
- * $Id: StateExp.java,v 1.1 2007/03/27 15:05:30 cdamus Exp $
+ * $Id: StateExp.java,v 1.2 2008/11/24 00:43:04 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -29,5 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface StateExp extends OCLExpression, org.eclipse.ocl.expressions.StateExp<EClassifier, EObject> {
+public interface StateExp
+		extends OCLExpression,
+		org.eclipse.ocl.expressions.StateExp<EClassifier, EObject> {
 } // StateExp

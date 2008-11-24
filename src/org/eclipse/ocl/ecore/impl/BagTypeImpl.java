@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.8 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.9 2008/11/24 00:40:18 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -38,55 +38,60 @@ import org.eclipse.ocl.util.Bag;
  *
  * @generated
  */
-public class BagTypeImpl extends CollectionTypeImpl implements BagType {
-    /**
+public class BagTypeImpl
+		extends CollectionTypeImpl
+		implements BagType {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-    protected BagTypeImpl() {
+	protected BagTypeImpl() {
 		super();
-        setInstanceClass(Bag.class);
+		setInstanceClass(Bag.class);
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    protected BagTypeImpl(EClassifier elementType) {
-        super(elementType);
-        setInstanceClass(Bag.class);
-    }
-
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected BagTypeImpl(EClassifier elementType) {
+		super(elementType);
+		setInstanceClass(Bag.class);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.BAG_TYPE;
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public CollectionKind getKind() {
-        return CollectionKind.BAG_LITERAL;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public CollectionKind getKind() {
+		return CollectionKind.BAG_LITERAL;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public boolean checkCollectionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return BagTypeOperations.checkCollectionTypeName(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean checkCollectionTypeName(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return BagTypeOperations.checkCollectionTypeName(this, diagnostics,
+			context);
+	}
 
 } //BagTypeImpl

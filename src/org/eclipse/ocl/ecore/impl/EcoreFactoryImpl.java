@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactoryImpl.java,v 1.7 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: EcoreFactoryImpl.java,v 1.8 2008/11/24 00:38:36 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -75,263 +75,310 @@ import org.eclipse.ocl.ecore.VoidType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
-    /**
+public class EcoreFactoryImpl
+		extends EFactoryImpl
+		implements EcoreFactory {
+
+	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static EcoreFactory init() {
+	public static EcoreFactory init() {
 		try {
-			EcoreFactory theEcoreFactory = (EcoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/Ecore"); //$NON-NLS-1$ 
+			EcoreFactory theEcoreFactory = (EcoreFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://www.eclipse.org/ocl/1.1.0/Ecore"); //$NON-NLS-1$ 
 			if (theEcoreFactory != null) {
 				return theEcoreFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new EcoreFactoryImpl();
 	}
 
-    /**
+	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EcoreFactoryImpl() {
+	public EcoreFactoryImpl() {
 		super();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public EObject create(EClass eClass) {
+	@Override
+	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case EcorePackage.ANY_TYPE: return createAnyType();
-			case EcorePackage.BAG_TYPE: return createBagType();
-			case EcorePackage.COLLECTION_TYPE: return createCollectionType();
-			case EcorePackage.ELEMENT_TYPE: return createElementType();
-			case EcorePackage.INVALID_TYPE: return createInvalidType();
-			case EcorePackage.MESSAGE_TYPE: return createMessageType();
-			case EcorePackage.ORDERED_SET_TYPE: return createOrderedSetType();
-			case EcorePackage.PRIMITIVE_TYPE: return createPrimitiveType();
-			case EcorePackage.SEQUENCE_TYPE: return createSequenceType();
-			case EcorePackage.SET_TYPE: return createSetType();
-			case EcorePackage.TUPLE_TYPE: return createTupleType();
-			case EcorePackage.TYPE_TYPE: return createTypeType();
-			case EcorePackage.VOID_TYPE: return createVoidType();
-			case EcorePackage.CALL_OPERATION_ACTION: return createCallOperationAction();
-			case EcorePackage.CONSTRAINT: return createConstraint();
-			case EcorePackage.SEND_SIGNAL_ACTION: return createSendSignalAction();
-			case EcorePackage.EXPRESSION_IN_OCL: return createExpressionInOCL();
-			case EcorePackage.ASSOCIATION_CLASS_CALL_EXP: return createAssociationClassCallExp();
-			case EcorePackage.BOOLEAN_LITERAL_EXP: return createBooleanLiteralExp();
-			case EcorePackage.COLLECTION_ITEM: return createCollectionItem();
-			case EcorePackage.COLLECTION_LITERAL_EXP: return createCollectionLiteralExp();
-			case EcorePackage.COLLECTION_RANGE: return createCollectionRange();
-			case EcorePackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
-			case EcorePackage.IF_EXP: return createIfExp();
-			case EcorePackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
-			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP: return createUnlimitedNaturalLiteralExp();
-			case EcorePackage.INVALID_LITERAL_EXP: return createInvalidLiteralExp();
-			case EcorePackage.ITERATE_EXP: return createIterateExp();
-			case EcorePackage.ITERATOR_EXP: return createIteratorExp();
-			case EcorePackage.LET_EXP: return createLetExp();
-			case EcorePackage.MESSAGE_EXP: return createMessageExp();
-			case EcorePackage.NULL_LITERAL_EXP: return createNullLiteralExp();
-			case EcorePackage.OPERATION_CALL_EXP: return createOperationCallExp();
-			case EcorePackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
-			case EcorePackage.REAL_LITERAL_EXP: return createRealLiteralExp();
-			case EcorePackage.STATE_EXP: return createStateExp();
-			case EcorePackage.STRING_LITERAL_EXP: return createStringLiteralExp();
-			case EcorePackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
-			case EcorePackage.TUPLE_LITERAL_PART: return createTupleLiteralPart();
-			case EcorePackage.TYPE_EXP: return createTypeExp();
-			case EcorePackage.UNSPECIFIED_VALUE_EXP: return createUnspecifiedValueExp();
-			case EcorePackage.VARIABLE: return createVariable();
-			case EcorePackage.VARIABLE_EXP: return createVariableExp();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case EcorePackage.ANY_TYPE :
+				return createAnyType();
+			case EcorePackage.BAG_TYPE :
+				return createBagType();
+			case EcorePackage.COLLECTION_TYPE :
+				return createCollectionType();
+			case EcorePackage.ELEMENT_TYPE :
+				return createElementType();
+			case EcorePackage.INVALID_TYPE :
+				return createInvalidType();
+			case EcorePackage.MESSAGE_TYPE :
+				return createMessageType();
+			case EcorePackage.ORDERED_SET_TYPE :
+				return createOrderedSetType();
+			case EcorePackage.PRIMITIVE_TYPE :
+				return createPrimitiveType();
+			case EcorePackage.SEQUENCE_TYPE :
+				return createSequenceType();
+			case EcorePackage.SET_TYPE :
+				return createSetType();
+			case EcorePackage.TUPLE_TYPE :
+				return createTupleType();
+			case EcorePackage.TYPE_TYPE :
+				return createTypeType();
+			case EcorePackage.VOID_TYPE :
+				return createVoidType();
+			case EcorePackage.CALL_OPERATION_ACTION :
+				return createCallOperationAction();
+			case EcorePackage.CONSTRAINT :
+				return createConstraint();
+			case EcorePackage.SEND_SIGNAL_ACTION :
+				return createSendSignalAction();
+			case EcorePackage.EXPRESSION_IN_OCL :
+				return createExpressionInOCL();
+			case EcorePackage.ASSOCIATION_CLASS_CALL_EXP :
+				return createAssociationClassCallExp();
+			case EcorePackage.BOOLEAN_LITERAL_EXP :
+				return createBooleanLiteralExp();
+			case EcorePackage.COLLECTION_ITEM :
+				return createCollectionItem();
+			case EcorePackage.COLLECTION_LITERAL_EXP :
+				return createCollectionLiteralExp();
+			case EcorePackage.COLLECTION_RANGE :
+				return createCollectionRange();
+			case EcorePackage.ENUM_LITERAL_EXP :
+				return createEnumLiteralExp();
+			case EcorePackage.IF_EXP :
+				return createIfExp();
+			case EcorePackage.INTEGER_LITERAL_EXP :
+				return createIntegerLiteralExp();
+			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP :
+				return createUnlimitedNaturalLiteralExp();
+			case EcorePackage.INVALID_LITERAL_EXP :
+				return createInvalidLiteralExp();
+			case EcorePackage.ITERATE_EXP :
+				return createIterateExp();
+			case EcorePackage.ITERATOR_EXP :
+				return createIteratorExp();
+			case EcorePackage.LET_EXP :
+				return createLetExp();
+			case EcorePackage.MESSAGE_EXP :
+				return createMessageExp();
+			case EcorePackage.NULL_LITERAL_EXP :
+				return createNullLiteralExp();
+			case EcorePackage.OPERATION_CALL_EXP :
+				return createOperationCallExp();
+			case EcorePackage.PROPERTY_CALL_EXP :
+				return createPropertyCallExp();
+			case EcorePackage.REAL_LITERAL_EXP :
+				return createRealLiteralExp();
+			case EcorePackage.STATE_EXP :
+				return createStateExp();
+			case EcorePackage.STRING_LITERAL_EXP :
+				return createStringLiteralExp();
+			case EcorePackage.TUPLE_LITERAL_EXP :
+				return createTupleLiteralExp();
+			case EcorePackage.TUPLE_LITERAL_PART :
+				return createTupleLiteralPart();
+			case EcorePackage.TYPE_EXP :
+				return createTypeExp();
+			case EcorePackage.UNSPECIFIED_VALUE_EXP :
+				return createUnspecifiedValueExp();
+			case EcorePackage.VARIABLE :
+				return createVariable();
+			case EcorePackage.VARIABLE_EXP :
+				return createVariableExp();
+			default :
+				throw new IllegalArgumentException(
+					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public AnyType createAnyType() {
+	public AnyType createAnyType() {
 		AnyTypeImpl anyType = new AnyTypeImpl();
 		return anyType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public BagType createBagType() {
+	public BagType createBagType() {
 		BagTypeImpl bagType = new BagTypeImpl();
 		return bagType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public CollectionType createCollectionType() {
+	public CollectionType createCollectionType() {
 		CollectionTypeImpl collectionType = new CollectionTypeImpl();
 		return collectionType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public ElementType createElementType() {
+	public ElementType createElementType() {
 		ElementTypeImpl elementType = new ElementTypeImpl();
 		return elementType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public InvalidType createInvalidType() {
+	public InvalidType createInvalidType() {
 		InvalidTypeImpl invalidType = new InvalidTypeImpl();
 		return invalidType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public MessageType createMessageType() {
+	public MessageType createMessageType() {
 		MessageTypeImpl messageType = new MessageTypeImpl();
 		return messageType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public OrderedSetType createOrderedSetType() {
+	public OrderedSetType createOrderedSetType() {
 		OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
 		return orderedSetType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public PrimitiveType createPrimitiveType() {
+	public PrimitiveType createPrimitiveType() {
 		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
 		return primitiveType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SequenceType createSequenceType() {
+	public SequenceType createSequenceType() {
 		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
 		return sequenceType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SetType createSetType() {
+	public SetType createSetType() {
 		SetTypeImpl setType = new SetTypeImpl();
 		return setType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public TupleType createTupleType() {
+	public TupleType createTupleType() {
 		TupleTypeImpl tupleType = new TupleTypeImpl();
 		return tupleType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public TypeType createTypeType() {
+	public TypeType createTypeType() {
 		TypeTypeImpl typeType = new TypeTypeImpl();
 		return typeType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public VoidType createVoidType() {
+	public VoidType createVoidType() {
 		VoidTypeImpl voidType = new VoidTypeImpl();
 		return voidType;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public CallOperationAction createCallOperationAction() {
+	public CallOperationAction createCallOperationAction() {
 		CallOperationActionImpl callOperationAction = new CallOperationActionImpl();
 		return callOperationAction;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Constraint createConstraint() {
+	public Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public SendSignalAction createSendSignalAction() {
+	public SendSignalAction createSendSignalAction() {
 		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
 		return sendSignalAction;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public ExpressionInOCL createExpressionInOCL() {
+	public ExpressionInOCL createExpressionInOCL() {
 		ExpressionInOCLImpl expressionInOCL = new ExpressionInOCLImpl();
 		return expressionInOCL;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -341,7 +388,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return associationClassCallExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -351,7 +398,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return booleanLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -361,7 +408,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return collectionItem;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -371,7 +418,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return collectionLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -381,7 +428,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return collectionRange;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -391,7 +438,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return enumLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -401,7 +448,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return ifExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -411,7 +458,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return integerLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -421,7 +468,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return unlimitedNaturalLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -431,7 +478,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return invalidLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -441,7 +488,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return iterateExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -451,7 +498,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return iteratorExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -461,7 +508,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return letExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -471,7 +518,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return messageExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -481,7 +528,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return nullLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -491,7 +538,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return operationCallExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -501,7 +548,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return propertyCallExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -511,7 +558,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return realLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -521,7 +568,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return stateExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -531,7 +578,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return stringLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -541,7 +588,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return tupleLiteralExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -551,7 +598,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return tupleLiteralPart;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -561,7 +608,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return typeExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -571,7 +618,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return unspecifiedValueExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -581,7 +628,7 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return variable;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -591,23 +638,23 @@ public class EcoreFactoryImpl extends EFactoryImpl implements EcoreFactory {
 		return variableExp;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EcorePackage getEcorePackage() {
-		return (EcorePackage)getEPackage();
+	public EcorePackage getEcorePackage() {
+		return (EcorePackage) getEPackage();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
-    @Deprecated
-    public static EcorePackage getPackage() {
+	@Deprecated
+	public static EcorePackage getPackage() {
 		return EcorePackage.eINSTANCE;
 	}
 

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ElementTypeImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: ElementTypeImpl.java,v 1.6 2008/11/24 00:38:46 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -32,38 +32,41 @@ import org.eclipse.ocl.ecore.ElementType;
  *
  * @generated
  */
-public class ElementTypeImpl extends EClassImpl implements ElementType {
-    /**
+public class ElementTypeImpl
+		extends EClassImpl
+		implements ElementType {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected ElementTypeImpl() {
+	protected ElementTypeImpl() {
 		super();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.ELEMENT_TYPE;
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public String getName() {
-        if (name == null) {
-            name = SINGLETON_NAME;
-        }
-        
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		if (name == null) {
+			name = SINGLETON_NAME;
+		}
+
+		return name;
+	}
 
 } //ElementTypeImpl

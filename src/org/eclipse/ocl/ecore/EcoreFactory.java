@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 256040
  * 
  * </copyright>
  *
- * $Id: EcoreFactory.java,v 1.6 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: EcoreFactory.java,v 1.7 2008/11/24 00:44:51 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -26,169 +27,171 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.ocl.ecore.EcorePackage
  * @generated
  */
-public interface EcoreFactory extends EFactory {
-    /**
+public interface EcoreFactory
+		extends EFactory {
+
+	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    EcoreFactory eINSTANCE = org.eclipse.ocl.ecore.impl.EcoreFactoryImpl.init();
+	EcoreFactory eINSTANCE = org.eclipse.ocl.ecore.impl.EcoreFactoryImpl.init();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Any Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Any Type</em>'.
 	 * @generated
 	 */
-    AnyType createAnyType();
+	AnyType createAnyType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Bag Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Bag Type</em>'.
 	 * @generated
 	 */
-    BagType createBagType();
+	BagType createBagType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Collection Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Collection Type</em>'.
 	 * @generated
 	 */
-    CollectionType createCollectionType();
+	CollectionType createCollectionType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Element Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Element Type</em>'.
 	 * @generated
 	 */
-    ElementType createElementType();
+	ElementType createElementType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Invalid Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Invalid Type</em>'.
 	 * @generated
 	 */
-    InvalidType createInvalidType();
+	InvalidType createInvalidType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Message Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Message Type</em>'.
 	 * @generated
 	 */
-    MessageType createMessageType();
+	MessageType createMessageType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Ordered Set Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Ordered Set Type</em>'.
 	 * @generated
 	 */
-    OrderedSetType createOrderedSetType();
+	OrderedSetType createOrderedSetType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Primitive Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Primitive Type</em>'.
 	 * @generated
 	 */
-    PrimitiveType createPrimitiveType();
+	PrimitiveType createPrimitiveType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Sequence Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Sequence Type</em>'.
 	 * @generated
 	 */
-    SequenceType createSequenceType();
+	SequenceType createSequenceType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Set Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Set Type</em>'.
 	 * @generated
 	 */
-    SetType createSetType();
+	SetType createSetType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Tuple Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Tuple Type</em>'.
 	 * @generated
 	 */
-    TupleType createTupleType();
+	TupleType createTupleType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Type Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Type Type</em>'.
 	 * @generated
 	 */
-    TypeType createTypeType();
+	TypeType createTypeType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Void Type</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Void Type</em>'.
 	 * @generated
 	 */
-    VoidType createVoidType();
+	VoidType createVoidType();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Call Operation Action</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Call Operation Action</em>'.
 	 * @generated
 	 */
-    CallOperationAction createCallOperationAction();
+	CallOperationAction createCallOperationAction();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Constraint</em>'.
 	 * @generated
 	 */
-    Constraint createConstraint();
+	Constraint createConstraint();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Send Signal Action</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Send Signal Action</em>'.
 	 * @generated
 	 */
-    SendSignalAction createSendSignalAction();
+	SendSignalAction createSendSignalAction();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Expression In OCL</em>'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Expression In OCL</em>'.
 	 * @generated
 	 */
-    ExpressionInOCL createExpressionInOCL();
+	ExpressionInOCL createExpressionInOCL();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Association Class Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,7 +263,7 @@ public interface EcoreFactory extends EFactory {
 	 */
 	IntegerLiteralExp createIntegerLiteralExp();
 
-    /**
+	/**
 	 * Returns a new object of class '<em>Unlimited Natural Literal Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -425,10 +428,10 @@ public interface EcoreFactory extends EFactory {
 	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-    EcorePackage getEcorePackage();
+	EcorePackage getEcorePackage();
 
 } //EcoreFactory

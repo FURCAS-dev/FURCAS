@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.6 2008/09/28 17:33:30 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.7 2008/11/24 00:39:32 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,13 +22,20 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.EcorePackage;
@@ -36,6 +43,8 @@ import org.eclipse.ocl.ecore.MessageExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.MessageExpOperations;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
@@ -59,7 +68,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
+public class MessageExpImpl
+		extends OCLExpressionImpl
+		implements MessageExp {
+
 	/**
 	 * The default value of the '{@link #getPropertyStartPosition() <em>Property Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -177,7 +189,9 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 		int oldPropertyStartPosition = propertyStartPosition;
 		propertyStartPosition = newPropertyStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION, oldPropertyStartPosition, propertyStartPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION,
+				oldPropertyStartPosition, propertyStartPosition));
 	}
 
 	/**
@@ -198,7 +212,9 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 		int oldPropertyEndPosition = propertyEndPosition;
 		propertyEndPosition = newPropertyEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION, oldPropertyEndPosition, propertyEndPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION,
+				oldPropertyEndPosition, propertyEndPosition));
 	}
 
 	/**
@@ -215,12 +231,18 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(OCLExpression<EClassifier> newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(
+			OCLExpression<EClassifier> newTarget, NotificationChain msgs) {
 		OCLExpression<EClassifier> oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.MESSAGE_EXP__TARGET, oldTarget,
+				newTarget);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -234,14 +256,19 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__TARGET, null, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__TARGET,
+					null, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__TARGET, null, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__TARGET,
+					null, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__TARGET, newTarget, newTarget));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.MESSAGE_EXP__TARGET, newTarget, newTarget));
 	}
 
 	/**
@@ -251,7 +278,8 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	 */
 	public EList<OCLExpression<EClassifier>> getArgument() {
 		if (argument == null) {
-			argument = new EObjectContainmentEList<OCLExpression<EClassifier>>(OCLExpression.class, this, EcorePackage.MESSAGE_EXP__ARGUMENT);
+			argument = new EObjectContainmentEList<OCLExpression<EClassifier>>(
+				OCLExpression.class, this, EcorePackage.MESSAGE_EXP__ARGUMENT);
 		}
 		return argument;
 	}
@@ -270,12 +298,18 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCalledOperation(CallOperationAction newCalledOperation, NotificationChain msgs) {
+	public NotificationChain basicSetCalledOperation(
+			CallOperationAction newCalledOperation, NotificationChain msgs) {
 		CallOperationAction oldCalledOperation = calledOperation;
 		calledOperation = newCalledOperation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__CALLED_OPERATION, oldCalledOperation, newCalledOperation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.MESSAGE_EXP__CALLED_OPERATION,
+				oldCalledOperation, newCalledOperation);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -289,14 +323,22 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 		if (newCalledOperation != calledOperation) {
 			NotificationChain msgs = null;
 			if (calledOperation != null)
-				msgs = ((InternalEObject)calledOperation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
+				msgs = ((InternalEObject) calledOperation).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.MESSAGE_EXP__CALLED_OPERATION, null,
+					msgs);
 			if (newCalledOperation != null)
-				msgs = ((InternalEObject)newCalledOperation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
+				msgs = ((InternalEObject) newCalledOperation).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.MESSAGE_EXP__CALLED_OPERATION, null,
+					msgs);
 			msgs = basicSetCalledOperation(newCalledOperation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__CALLED_OPERATION, newCalledOperation, newCalledOperation));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.MESSAGE_EXP__CALLED_OPERATION, newCalledOperation,
+				newCalledOperation));
 	}
 
 	/**
@@ -313,12 +355,18 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSentSignal(SendSignalAction newSentSignal, NotificationChain msgs) {
+	public NotificationChain basicSetSentSignal(SendSignalAction newSentSignal,
+			NotificationChain msgs) {
 		SendSignalAction oldSentSignal = sentSignal;
 		sentSignal = newSentSignal;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__SENT_SIGNAL, oldSentSignal, newSentSignal);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.MESSAGE_EXP__SENT_SIGNAL,
+				oldSentSignal, newSentSignal);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -332,76 +380,94 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 		if (newSentSignal != sentSignal) {
 			NotificationChain msgs = null;
 			if (sentSignal != null)
-				msgs = ((InternalEObject)sentSignal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
+				msgs = ((InternalEObject) sentSignal).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
 			if (newSentSignal != null)
-				msgs = ((InternalEObject)newSentSignal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
+				msgs = ((InternalEObject) newSentSignal).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
 			msgs = basicSetSentSignal(newSentSignal, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.MESSAGE_EXP__SENT_SIGNAL, newSentSignal, newSentSignal));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.MESSAGE_EXP__SENT_SIGNAL, newSentSignal,
+				newSentSignal));
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkOperationArguments(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return MessageExpOperations.checkOperationArguments(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkOperationArguments(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return MessageExpOperations.checkOperationArguments(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkSignalArguments(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return MessageExpOperations.checkSignalArguments(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkSignalArguments(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return MessageExpOperations.checkSignalArguments(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkTargetDefinesOperation(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return MessageExpOperations.checkTargetDefinesOperation(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkTargetDefinesOperation(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return MessageExpOperations.checkTargetDefinesOperation(this,
+			diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkHasOperationOrSignal(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return MessageExpOperations.checkHasOperationOrSignal(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkHasOperationOrSignal(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return MessageExpOperations.checkHasOperationOrSignal(this,
+			diagnostics, context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkTargetNotCollection(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return MessageExpOperations.checkTargetNotCollection(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkTargetNotCollection(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return MessageExpOperations.checkTargetNotCollection(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.MESSAGE_EXP__TARGET:
+			case EcorePackage.MESSAGE_EXP__TARGET :
 				return basicSetTarget(null, msgs);
-			case EcorePackage.MESSAGE_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
-			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION:
+			case EcorePackage.MESSAGE_EXP__ARGUMENT :
+				return ((InternalEList<?>) getArgument()).basicRemove(otherEnd,
+					msgs);
+			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION :
 				return basicSetCalledOperation(null, msgs);
-			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL:
+			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL :
 				return basicSetSentSignal(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -415,17 +481,17 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
 				return new Integer(getPropertyStartPosition());
-			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
 				return new Integer(getPropertyEndPosition());
-			case EcorePackage.MESSAGE_EXP__TARGET:
+			case EcorePackage.MESSAGE_EXP__TARGET :
 				return getTarget();
-			case EcorePackage.MESSAGE_EXP__ARGUMENT:
+			case EcorePackage.MESSAGE_EXP__ARGUMENT :
 				return getArgument();
-			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION:
+			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION :
 				return getCalledOperation();
-			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL:
+			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL :
 				return getSentSignal();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -440,24 +506,26 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION:
-				setPropertyStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
+				setPropertyStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-				setPropertyEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
+				setPropertyEndPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.MESSAGE_EXP__TARGET:
-				setTarget((OCLExpression<EClassifier>)newValue);
+			case EcorePackage.MESSAGE_EXP__TARGET :
+				setTarget((OCLExpression<EClassifier>) newValue);
 				return;
-			case EcorePackage.MESSAGE_EXP__ARGUMENT:
+			case EcorePackage.MESSAGE_EXP__ARGUMENT :
 				getArgument().clear();
-				getArgument().addAll((Collection<? extends OCLExpression<EClassifier>>)newValue);
+				getArgument()
+					.addAll(
+						(Collection<? extends OCLExpression<EClassifier>>) newValue);
 				return;
-			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION:
-				setCalledOperation((CallOperationAction)newValue);
+			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION :
+				setCalledOperation((CallOperationAction) newValue);
 				return;
-			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL:
-				setSentSignal((SendSignalAction)newValue);
+			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL :
+				setSentSignal((SendSignalAction) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -471,23 +539,23 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
 				setPropertyStartPosition(PROPERTY_START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
 				setPropertyEndPosition(PROPERTY_END_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.MESSAGE_EXP__TARGET:
-				setTarget((OCLExpression<EClassifier>)null);
+			case EcorePackage.MESSAGE_EXP__TARGET :
+				setTarget((OCLExpression<EClassifier>) null);
 				return;
-			case EcorePackage.MESSAGE_EXP__ARGUMENT:
+			case EcorePackage.MESSAGE_EXP__ARGUMENT :
 				getArgument().clear();
 				return;
-			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION:
-				setCalledOperation((CallOperationAction)null);
+			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION :
+				setCalledOperation((CallOperationAction) null);
 				return;
-			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL:
-				setSentSignal((SendSignalAction)null);
+			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL :
+				setSentSignal((SendSignalAction) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -501,17 +569,17 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION:
+			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
 				return propertyStartPosition != PROPERTY_START_POSITION_EDEFAULT;
-			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION:
+			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
 				return propertyEndPosition != PROPERTY_END_POSITION_EDEFAULT;
-			case EcorePackage.MESSAGE_EXP__TARGET:
+			case EcorePackage.MESSAGE_EXP__TARGET :
 				return target != null;
-			case EcorePackage.MESSAGE_EXP__ARGUMENT:
+			case EcorePackage.MESSAGE_EXP__ARGUMENT :
 				return argument != null && !argument.isEmpty();
-			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION:
+			case EcorePackage.MESSAGE_EXP__CALLED_OPERATION :
 				return calledOperation != null;
-			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL:
+			case EcorePackage.MESSAGE_EXP__SENT_SIGNAL :
 				return sentSignal != null;
 		}
 		return super.eIsSet(featureID);
@@ -526,18 +594,26 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION;
-				case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION: return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION;
-				default: return -1;
+				case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
+					return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION;
+				case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
+					return UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.MessageExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.MESSAGE_EXP__TARGET: return ExpressionsPackage.MESSAGE_EXP__TARGET;
-				case EcorePackage.MESSAGE_EXP__ARGUMENT: return ExpressionsPackage.MESSAGE_EXP__ARGUMENT;
-				case EcorePackage.MESSAGE_EXP__CALLED_OPERATION: return ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION;
-				case EcorePackage.MESSAGE_EXP__SENT_SIGNAL: return ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL;
-				default: return -1;
+				case EcorePackage.MESSAGE_EXP__TARGET :
+					return ExpressionsPackage.MESSAGE_EXP__TARGET;
+				case EcorePackage.MESSAGE_EXP__ARGUMENT :
+					return ExpressionsPackage.MESSAGE_EXP__ARGUMENT;
+				case EcorePackage.MESSAGE_EXP__CALLED_OPERATION :
+					return ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION;
+				case EcorePackage.MESSAGE_EXP__SENT_SIGNAL :
+					return ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -552,18 +628,26 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION: return EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION;
-				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION: return EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION :
+					return EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION;
+				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_END_POSITION :
+					return EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.MessageExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.MESSAGE_EXP__TARGET: return EcorePackage.MESSAGE_EXP__TARGET;
-				case ExpressionsPackage.MESSAGE_EXP__ARGUMENT: return EcorePackage.MESSAGE_EXP__ARGUMENT;
-				case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION: return EcorePackage.MESSAGE_EXP__CALLED_OPERATION;
-				case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL: return EcorePackage.MESSAGE_EXP__SENT_SIGNAL;
-				default: return -1;
+				case ExpressionsPackage.MESSAGE_EXP__TARGET :
+					return EcorePackage.MESSAGE_EXP__TARGET;
+				case ExpressionsPackage.MESSAGE_EXP__ARGUMENT :
+					return EcorePackage.MESSAGE_EXP__ARGUMENT;
+				case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION :
+					return EcorePackage.MESSAGE_EXP__CALLED_OPERATION;
+				case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL :
+					return EcorePackage.MESSAGE_EXP__SENT_SIGNAL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -583,7 +667,7 @@ public class MessageExpImpl extends OCLExpressionImpl implements MessageExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitMessageExp(this);
 	}
 

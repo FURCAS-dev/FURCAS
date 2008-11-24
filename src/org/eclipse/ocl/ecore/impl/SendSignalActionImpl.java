@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: SendSignalActionImpl.java,v 1.6 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: SendSignalActionImpl.java,v 1.7 2008/11/24 00:38:28 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -41,128 +41,135 @@ import org.eclipse.ocl.ecore.SendSignalAction;
  *
  * @generated
  */
-public class SendSignalActionImpl extends EObjectImpl implements SendSignalAction {
-    /**
+public class SendSignalActionImpl
+		extends EObjectImpl
+		implements SendSignalAction {
+
+	/**
 	 * The cached value of the '{@link #getSignal() <em>Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSignal()
 	 * @generated
 	 * @ordered
 	 */
-    protected EClass signal;
+	protected EClass signal;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected SendSignalActionImpl() {
+	protected SendSignalActionImpl() {
 		super();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.SEND_SIGNAL_ACTION;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSignal() {
+	public EClass getSignal() {
 		if (signal != null && signal.eIsProxy()) {
-			InternalEObject oldSignal = (InternalEObject)signal;
-			signal = (EClass)eResolveProxy(oldSignal);
+			InternalEObject oldSignal = (InternalEObject) signal;
+			signal = (EClass) eResolveProxy(oldSignal);
 			if (signal != oldSignal) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal,
+						signal));
 			}
 		}
 		return signal;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass basicGetSignal() {
+	public EClass basicGetSignal() {
 		return signal;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setSignal(EClass newSignal) {
+	public void setSignal(EClass newSignal) {
 		EClass oldSignal = signal;
 		signal = newSignal;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.SEND_SIGNAL_ACTION__SIGNAL, oldSignal, signal));
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL:
-				if (resolve) return getSignal();
+			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL :
+				if (resolve)
+					return getSignal();
 				return basicGetSignal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public void eSet(int featureID, Object newValue) {
+	@Override
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL:
-				setSignal((EClass)newValue);
+			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL :
+				setSignal((EClass) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public void eUnset(int featureID) {
+	@Override
+	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL:
-				setSignal((EClass)null);
+			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL :
+				setSignal((EClass) null);
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    public boolean eIsSet(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL:
+			case EcorePackage.SEND_SIGNAL_ACTION__SIGNAL :
 				return signal != null;
 		}
 		return super.eIsSet(featureID);

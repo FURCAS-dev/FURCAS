@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.6 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.7 2008/11/24 00:40:02 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -40,7 +40,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class StateExpImpl extends OCLExpressionImpl implements StateExp {
+public class StateExpImpl
+		extends OCLExpressionImpl
+		implements StateExp {
+
 	/**
 	 * The cached value of the '{@link #getReferredState() <em>Referred State</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,13 +78,16 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public EObject getReferredState() {
-		if (referredState != null && ((EObject)referredState).eIsProxy()) {
-			InternalEObject oldReferredState = (InternalEObject)referredState;
-			referredState = (EObject)eResolveProxy(oldReferredState);
+		if (referredState != null && ((EObject) referredState).eIsProxy()) {
+			InternalEObject oldReferredState = (InternalEObject) referredState;
+			referredState = (EObject) eResolveProxy(oldReferredState);
 			if (referredState != oldReferredState) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.STATE_EXP__REFERRED_STATE,
+						oldReferredState, referredState));
 			}
 		}
 		return referredState;
@@ -105,7 +111,9 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 		EObject oldReferredState = referredState;
 		referredState = newReferredState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState, referredState));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.STATE_EXP__REFERRED_STATE, oldReferredState,
+				referredState));
 	}
 
 	/**
@@ -116,8 +124,9 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				if (resolve) return getReferredState();
+			case EcorePackage.STATE_EXP__REFERRED_STATE :
+				if (resolve)
+					return getReferredState();
 				return basicGetReferredState();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -131,8 +140,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				setReferredState((EObject)newValue);
+			case EcorePackage.STATE_EXP__REFERRED_STATE :
+				setReferredState((EObject) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -146,8 +155,8 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
-				setReferredState((EObject)null);
+			case EcorePackage.STATE_EXP__REFERRED_STATE :
+				setReferredState((EObject) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -161,7 +170,7 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.STATE_EXP__REFERRED_STATE:
+			case EcorePackage.STATE_EXP__REFERRED_STATE :
 				return referredState != null;
 		}
 		return super.eIsSet(featureID);
@@ -176,8 +185,10 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.STATE_EXP__REFERRED_STATE: return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
-				default: return -1;
+				case EcorePackage.STATE_EXP__REFERRED_STATE :
+					return ExpressionsPackage.STATE_EXP__REFERRED_STATE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -192,8 +203,10 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.STATE_EXP__REFERRED_STATE: return EcorePackage.STATE_EXP__REFERRED_STATE;
-				default: return -1;
+				case ExpressionsPackage.STATE_EXP__REFERRED_STATE :
+					return EcorePackage.STATE_EXP__REFERRED_STATE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -213,7 +226,7 @@ public class StateExpImpl extends OCLExpressionImpl implements StateExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitStateExp(this);
 	}
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.6 2008/09/28 17:33:30 cdamus Exp $
+ * $Id: LoopExpImpl.java,v 1.7 2008/11/24 00:38:30 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,6 +22,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -29,13 +32,19 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.LoopExpOperations;
 
 /**
@@ -52,7 +61,10 @@ import org.eclipse.ocl.expressions.operations.LoopExpOperations;
  *
  * @generated
  */
-public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
+public abstract class LoopExpImpl
+		extends CallExpImpl
+		implements LoopExp {
+
 	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -106,12 +118,17 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBody(OCLExpression<EClassifier> newBody, NotificationChain msgs) {
+	public NotificationChain basicSetBody(OCLExpression<EClassifier> newBody,
+			NotificationChain msgs) {
 		OCLExpression<EClassifier> oldBody = body;
 		body = newBody;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.LOOP_EXP__BODY, oldBody, newBody);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.LOOP_EXP__BODY, oldBody, newBody);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -125,14 +142,19 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 		if (newBody != body) {
 			NotificationChain msgs = null;
 			if (body != null)
-				msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null, msgs);
+				msgs = ((InternalEObject) body).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null,
+					msgs);
 			if (newBody != null)
-				msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null, msgs);
+				msgs = ((InternalEObject) newBody).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.LOOP_EXP__BODY, null,
+					msgs);
 			msgs = basicSetBody(newBody, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.LOOP_EXP__BODY, newBody, newBody));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.LOOP_EXP__BODY, newBody, newBody));
 	}
 
 	/**
@@ -142,50 +164,59 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	 */
 	public EList<Variable<EClassifier, EParameter>> getIterator() {
 		if (iterator == null) {
-			iterator = new EObjectContainmentEList<Variable<EClassifier, EParameter>>(Variable.class, this, EcorePackage.LOOP_EXP__ITERATOR);
+			iterator = new EObjectContainmentEList<Variable<EClassifier, EParameter>>(
+				Variable.class, this, EcorePackage.LOOP_EXP__ITERATOR);
 		}
 		return iterator;
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkSourceCollection(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return LoopExpOperations.checkSourceCollection(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkSourceCollection(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return LoopExpOperations.checkSourceCollection(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkLoopVariableInit(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return LoopExpOperations.checkLoopVariableInit(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkLoopVariableInit(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return LoopExpOperations.checkLoopVariableInit(this, diagnostics,
+			context);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkLoopVariableType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return LoopExpOperations.checkLoopVariableType(this, diagnostics, context);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkLoopVariableType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return LoopExpOperations.checkLoopVariableType(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
+			case EcorePackage.LOOP_EXP__BODY :
 				return basicSetBody(null, msgs);
-			case EcorePackage.LOOP_EXP__ITERATOR:
-				return ((InternalEList<?>)getIterator()).basicRemove(otherEnd, msgs);
+			case EcorePackage.LOOP_EXP__ITERATOR :
+				return ((InternalEList<?>) getIterator()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -198,9 +229,9 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
+			case EcorePackage.LOOP_EXP__BODY :
 				return getBody();
-			case EcorePackage.LOOP_EXP__ITERATOR:
+			case EcorePackage.LOOP_EXP__ITERATOR :
 				return getIterator();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -215,12 +246,14 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<EClassifier>)newValue);
+			case EcorePackage.LOOP_EXP__BODY :
+				setBody((OCLExpression<EClassifier>) newValue);
 				return;
-			case EcorePackage.LOOP_EXP__ITERATOR:
+			case EcorePackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
-				getIterator().addAll((Collection<? extends Variable<EClassifier, EParameter>>)newValue);
+				getIterator()
+					.addAll(
+						(Collection<? extends Variable<EClassifier, EParameter>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -234,10 +267,10 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
-				setBody((OCLExpression<EClassifier>)null);
+			case EcorePackage.LOOP_EXP__BODY :
+				setBody((OCLExpression<EClassifier>) null);
 				return;
-			case EcorePackage.LOOP_EXP__ITERATOR:
+			case EcorePackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
 				return;
 		}
@@ -252,9 +285,9 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.LOOP_EXP__BODY:
+			case EcorePackage.LOOP_EXP__BODY :
 				return body != null;
-			case EcorePackage.LOOP_EXP__ITERATOR:
+			case EcorePackage.LOOP_EXP__ITERATOR :
 				return iterator != null && !iterator.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -269,9 +302,12 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.LOOP_EXP__BODY: return ExpressionsPackage.LOOP_EXP__BODY;
-				case EcorePackage.LOOP_EXP__ITERATOR: return ExpressionsPackage.LOOP_EXP__ITERATOR;
-				default: return -1;
+				case EcorePackage.LOOP_EXP__BODY :
+					return ExpressionsPackage.LOOP_EXP__BODY;
+				case EcorePackage.LOOP_EXP__ITERATOR :
+					return ExpressionsPackage.LOOP_EXP__ITERATOR;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -286,9 +322,12 @@ public abstract class LoopExpImpl extends CallExpImpl implements LoopExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.LOOP_EXP__BODY: return EcorePackage.LOOP_EXP__BODY;
-				case ExpressionsPackage.LOOP_EXP__ITERATOR: return EcorePackage.LOOP_EXP__ITERATOR;
-				default: return -1;
+				case ExpressionsPackage.LOOP_EXP__BODY :
+					return EcorePackage.LOOP_EXP__BODY;
+				case ExpressionsPackage.LOOP_EXP__ITERATOR :
+					return EcorePackage.LOOP_EXP__ITERATOR;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

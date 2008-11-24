@@ -13,19 +13,27 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.6 2008/11/24 00:40:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.RealLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.RealLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -42,7 +50,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLiteralExp {
+public class RealLiteralExpImpl
+		extends NumericLiteralExpImpl
+		implements RealLiteralExp {
+
 	/**
 	 * The default value of the '{@link #getRealSymbol() <em>Real Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,7 +97,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitRealLiteralExp(this);
 	}
 
@@ -108,19 +119,23 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 		Double oldRealSymbol = realSymbol;
 		realSymbol = newRealSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol, realSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol,
+				realSymbol));
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkRealType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return RealLiteralExpOperations.checkRealType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkRealType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return RealLiteralExpOperations.checkRealType(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,7 +143,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
 				return getRealSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -142,8 +157,8 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				setRealSymbol((Double)newValue);
+			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+				setRealSymbol((Double) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -157,7 +172,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL:
+			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
 				setRealSymbol(REAL_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -172,8 +187,10 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL:
-				return REAL_SYMBOL_EDEFAULT == null ? realSymbol != null : !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
+			case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+				return REAL_SYMBOL_EDEFAULT == null
+					? realSymbol != null
+					: !REAL_SYMBOL_EDEFAULT.equals(realSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -187,8 +204,10 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.RealLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL: return ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL;
-				default: return -1;
+				case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+					return ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -203,8 +222,10 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.RealLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL: return EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL;
-				default: return -1;
+				case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL :
+					return EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
