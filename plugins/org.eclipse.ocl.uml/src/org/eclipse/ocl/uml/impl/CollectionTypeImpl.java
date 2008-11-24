@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.11 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.12 2008/11/24 00:24:44 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -35,6 +35,8 @@ import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.uml.CollectionType;
 import org.eclipse.ocl.uml.UMLPackage;
+
+//import org.eclipse.ocl.uml.internal.operations.CollectionTypeOperations;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;

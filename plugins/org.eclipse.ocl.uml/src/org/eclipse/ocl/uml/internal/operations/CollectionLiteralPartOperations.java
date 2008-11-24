@@ -1,29 +1,33 @@
 /**
  * <copyright>
- * 
- * Copyright (c) 2008 Zeligsoft Inc., and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *   Zeligsoft - Initial API and implementation
- * 
+ *  
+ * Copyright (c) 2008 Zeligsoft Inc. and others.
+ *  All rights reserved.   This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *  
+ *  Contributors:
+ *    Zeligsoft - Initial API and implementation
+ *    
  * </copyright>
  *
- * $Id: OCLExpressionOperations.java,v 1.2 2008/11/24 00:21:50 cdamus Exp $
+ * $Id: CollectionLiteralPartOperations.java,v 1.1 2008/11/24 00:23:56 cdamus Exp $
  */
-package org.eclipse.ocl.expressions.operations;
+package org.eclipse.ocl.uml.internal.operations;
 
-import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.uml.CollectionLiteralPart;
 
 import org.eclipse.ocl.utilities.Visitor;
 
+import org.eclipse.uml2.uml.Classifier;
+
+import org.eclipse.uml2.uml.internal.operations.NamedElementOperations;
+
 /**
  * <!-- begin-user-doc -->
- * A static utility class that provides operations related to '<em><b>OCL Expression</b></em>' model objects.
- * @since 1.3
+ * A static utility class that provides operations related to '<em><b>Collection Literal Part</b></em>' model objects.
+ * @since 2.0
  * <!-- end-user-doc -->
  *
  * <p>
@@ -39,14 +43,16 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class OCLExpressionOperations {
+@SuppressWarnings("restriction")
+public class CollectionLiteralPartOperations
+		extends NamedElementOperations {
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLExpressionOperations() {
+	protected CollectionLiteralPartOperations() {
 		super();
 	}
 
@@ -55,7 +61,7 @@ public class OCLExpressionOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C> String getName(OCLExpression<C> oclExpression) {
+	public static String getName(CollectionLiteralPart collectionLiteralPart) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -64,7 +70,7 @@ public class OCLExpressionOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C> C getType(OCLExpression<C> oclExpression) {
+	public static Classifier getType(CollectionLiteralPart collectionLiteralPart) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -73,7 +79,8 @@ public class OCLExpressionOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C> void setName(OCLExpression<C> oclExpression, String name) {
+	public static void setName(CollectionLiteralPart collectionLiteralPart,
+			String name) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -82,7 +89,8 @@ public class OCLExpressionOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C> void setType(OCLExpression<C> oclExpression, C type) {
+	public static void setType(CollectionLiteralPart collectionLiteralPart,
+			Classifier type) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -91,9 +99,9 @@ public class OCLExpressionOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C, T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(
-			OCLExpression<C> oclExpression, U v) {
+	public static <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(
+			CollectionLiteralPart collectionLiteralPart, U v) {
 		throw new UnsupportedOperationException();
 	}
 
-} // OCLExpressionOperations
+} // CollectionLiteralPartOperations

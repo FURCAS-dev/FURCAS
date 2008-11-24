@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.8 2008/11/24 00:24:41 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.uml.OCLExpression;
 import org.eclipse.ocl.uml.UMLPackage;
+
+//import org.eclipse.ocl.uml.internal.operations.OCLExpressionOperations;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.TypedElement;

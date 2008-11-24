@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.8 2008/11/24 00:24:24 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.uml.AnyType;
 import org.eclipse.ocl.uml.UMLPackage;
+
+//import org.eclipse.ocl.uml.internal.operations.AnyTypeOperations;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
