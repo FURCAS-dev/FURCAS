@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 256040
  * 
  * </copyright>
  *
- * $Id: OrderedSetType.java,v 1.2 2007/02/14 13:42:03 cdamus Exp $
+ * $Id: OrderedSetType.java,v 1.3 2008/11/24 00:43:24 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -29,6 +30,8 @@ import org.eclipse.emf.ecore.EOperation;
  * @model
  * @generated
  */
-public interface OrderedSetType extends CollectionType, org.eclipse.ocl.types.OrderedSetType<EClassifier, EOperation> {
-    // no additional features
+public interface OrderedSetType
+		extends CollectionType,
+		org.eclipse.ocl.types.OrderedSetType<EClassifier, EOperation> {
+	// no additional features
 } // OrderedSetType
