@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.7 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.8 2008/11/24 00:25:01 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -31,6 +31,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.uml.ExpressionInOCL;
 import org.eclipse.ocl.uml.UMLPackage;
+
+//import org.eclipse.ocl.uml.internal.operations.ExpressionInOCLOperations;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.ocl.utilities.Visitor;

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.8 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.9 2008/11/24 00:24:39 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.uml.AnyType;
 import org.eclipse.ocl.uml.TupleType;
 import org.eclipse.ocl.uml.UMLPackage;
+
+//import org.eclipse.ocl.uml.internal.operations.TupleTypeOperations;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
