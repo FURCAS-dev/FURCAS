@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: VoidTypeImpl.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: VoidTypeImpl.java,v 1.6 2008/11/24 00:21:34 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.types.VoidType;
+
+//import org.eclipse.ocl.types.operations.VoidTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.7 2008/11/24 00:22:42 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+//import org.eclipse.ocl.expressions.operations.CollectionLiteralPartOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
 /**

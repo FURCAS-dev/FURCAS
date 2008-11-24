@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.6 2008/11/24 00:21:31 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.TypesPackage;
+
+//import org.eclipse.ocl.types.operations.InvalidTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**

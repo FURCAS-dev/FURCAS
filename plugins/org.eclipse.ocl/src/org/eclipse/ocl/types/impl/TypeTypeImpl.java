@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.6 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.7 2008/11/24 00:21:26 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesPackage;
+
+//import org.eclipse.ocl.types.operations.TypeTypeOperations;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 /**

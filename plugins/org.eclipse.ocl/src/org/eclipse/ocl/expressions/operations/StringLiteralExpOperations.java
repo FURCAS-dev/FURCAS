@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: StringLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: StringLiteralExpOperations.java,v 1.4 2008/11/24 00:21:51 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -45,41 +45,51 @@ import org.eclipse.ocl.util.OCLUtil;
 public class StringLiteralExpOperations
 		extends OCLExpressionOperations {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * self.type.name = 'String'
-     * @param stringLiteralExp The receiving '<em><b>String Literal Exp</b></em>' model object.
-     * @param diagnostics The chain of diagnostics to which problems are to be appended.
-     * @param context The cache of context-specific information.
-     * <!-- end-model-doc -->
-     * @generated NOT
-     */
-    public static <C> boolean checkStringType(StringLiteralExp<C> stringLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    	boolean result = true;
-    	Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-				.getValidationEnvironment(stringLiteralExp, context);
-    	
-    	if (env != null) {
-	    	C type = stringLiteralExp.getType();
-	    	
-			result = (type != null) && ("String".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
-    	}
-    	
-        if (!result) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (new BasicDiagnostic
-                        (Diagnostic.ERROR,
-                         ExpressionsValidator.DIAGNOSTIC_SOURCE,
-                         ExpressionsValidator.STRING_LITERAL_EXP__STRING_TYPE,
-                         OCLMessages.TypeConformanceStringLiteral_ERROR_,
-                         new Object [] { stringLiteralExp }));
-            }
-        }
-        
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringLiteralExpOperations() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * self.type.name = 'String'
+	 * @param stringLiteralExp The receiving '<em><b>String Literal Exp</b></em>' model object.
+	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
+	 * @param context The cache of context-specific information.
+	 * <!-- end-model-doc -->
+	 * @generated NOT
+	 */
+	public static <C> boolean checkStringType(
+			StringLiteralExp<C> stringLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		boolean result = true;
+		Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
+			.getValidationEnvironment(stringLiteralExp, context);
+
+		if (env != null) {
+			C type = stringLiteralExp.getType();
+
+			result = (type != null)
+				&& ("String".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
+		}
+
+		if (!result) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.STRING_LITERAL_EXP__STRING_TYPE,
+					OCLMessages.TypeConformanceStringLiteral_ERROR_,
+					new Object[]{stringLiteralExp}));
+			}
+		}
+
+		return result;
+	}
 
 } // StringLiteralExpOperations
