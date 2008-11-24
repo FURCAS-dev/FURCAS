@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 256040
  * 
  * </copyright>
  *
- * $Id: MessageType.java,v 1.4 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: MessageType.java,v 1.5 2008/11/24 00:28:27 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -31,6 +32,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName WellFormedInstanceTypeName'"
  * @generated
  */
-public interface MessageType extends EClass, org.eclipse.ocl.types.MessageType<EClassifier, EOperation, EStructuralFeature> {
-    // no additional features
+public interface MessageType
+		extends
+		EClass,
+		org.eclipse.ocl.types.MessageType<EClassifier, EOperation, EStructuralFeature> {
+	// no additional features
 } // MessageType
