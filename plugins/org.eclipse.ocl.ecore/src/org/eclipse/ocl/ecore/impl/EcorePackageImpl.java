@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.10 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: EcorePackageImpl.java,v 1.11 2008/11/24 00:38:54 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -89,372 +89,375 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
-    /**
+public class EcorePackageImpl
+		extends EPackageImpl
+		implements EcorePackage {
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass anyTypeEClass = null;
+	private EClass anyTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass bagTypeEClass = null;
+	private EClass bagTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass collectionTypeEClass = null;
+	private EClass collectionTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass elementTypeEClass = null;
+	private EClass elementTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass invalidTypeEClass = null;
+	private EClass invalidTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass messageTypeEClass = null;
+	private EClass messageTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass orderedSetTypeEClass = null;
+	private EClass orderedSetTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass primitiveTypeEClass = null;
+	private EClass primitiveTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass sequenceTypeEClass = null;
+	private EClass sequenceTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass setTypeEClass = null;
+	private EClass setTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass tupleTypeEClass = null;
+	private EClass tupleTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass typeTypeEClass = null;
+	private EClass typeTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass voidTypeEClass = null;
+	private EClass voidTypeEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass callOperationActionEClass = null;
+	private EClass callOperationActionEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass constraintEClass = null;
+	private EClass constraintEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass sendSignalActionEClass = null;
+	private EClass sendSignalActionEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private EClass expressionInOCLEClass = null;
+	private EClass expressionInOCLEClass = null;
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass associationClassCallExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass booleanLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass callExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass collectionItemEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass collectionLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass collectionLiteralPartEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass collectionRangeEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass enumLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass featureCallExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass ifExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass integerLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass unlimitedNaturalLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass invalidLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iterateExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass iteratorExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass letExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass literalExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass loopExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass messageExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass navigationCallExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass nullLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass numericLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass oclExpressionEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass operationCallExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass primitiveLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass propertyCallExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass realLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass stateExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass stringLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass tupleLiteralExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass tupleLiteralPartEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass typeExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass unspecifiedValueExpEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass variableEClass = null;
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass variableExpEClass = null;
 
-				/**
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -463,24 +466,24 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.ocl.ecore.EcorePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-    private EcorePackageImpl() {
+	private EcorePackageImpl() {
 		super(eNS_URI, EcoreFactory.eINSTANCE);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private static boolean isInited = false;
+	private static boolean isInited = false;
 
-    /**
+	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this
 	 * model, and for any others upon which it depends.  Simple
 	 * dependencies are satisfied by calling this method on all
@@ -496,17 +499,22 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 	 * <p>Invocation of this method will not affect any packages that have
 	 * already been initialized.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-    public static EcorePackage init() {
-		if (isInited) return (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+	public static EcorePackage init() {
+		if (isInited)
+			return (EcorePackage) EPackage.Registry.INSTANCE
+				.getEPackage(EcorePackage.eNS_URI);
 
 		// Obtain or create and register package
-		EcorePackageImpl theEcorePackage = (EcorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof EcorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new EcorePackageImpl());
+		EcorePackageImpl theEcorePackage = (EcorePackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI) instanceof EcorePackageImpl
+			? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			: new EcorePackageImpl());
 
 		isInited = true;
 
@@ -523,13 +531,13 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		theEcorePackage.initializePackageContents();
 
 		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theEcorePackage, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
-					 return EcoreValidator.INSTANCE;
-				 }
-			 });
+		EValidator.Registry.INSTANCE.put(theEcorePackage,
+			new EValidator.Descriptor() {
+
+				public EValidator getEValidator() {
+					return EcoreValidator.INSTANCE;
+				}
+			});
 
 		// Mark meta-data to indicate it can't be changed
 		theEcorePackage.freeze();
@@ -537,205 +545,207 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return theEcorePackage;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getAnyType() {
+	public EClass getAnyType() {
 		return anyTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getBagType() {
+	public EClass getBagType() {
 		return bagTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getCollectionType() {
+	public EClass getCollectionType() {
 		return collectionTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getElementType() {
+	public EClass getElementType() {
 		return elementTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getInvalidType() {
+	public EClass getInvalidType() {
 		return invalidTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getMessageType() {
+	public EClass getMessageType() {
 		return messageTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getOrderedSetType() {
+	public EClass getOrderedSetType() {
 		return orderedSetTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getPrimitiveType() {
+	public EClass getPrimitiveType() {
 		return primitiveTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSequenceType() {
+	public EClass getSequenceType() {
 		return sequenceTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSetType() {
+	public EClass getSetType() {
 		return setTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getTupleType() {
+	public EClass getTupleType() {
 		return tupleTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getTypeType() {
+	public EClass getTypeType() {
 		return typeTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getVoidType() {
+	public EClass getVoidType() {
 		return voidTypeEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getCallOperationAction() {
+	public EClass getCallOperationAction() {
 		return callOperationActionEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getCallOperationAction_Operation() {
-		return (EReference)callOperationActionEClass.getEStructuralFeatures().get(0);
+	public EReference getCallOperationAction_Operation() {
+		return (EReference) callOperationActionEClass.getEStructuralFeatures()
+			.get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getConstraint() {
+	public EClass getConstraint() {
 		return constraintEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getConstraint_Specification() {
-		return (EReference)constraintEClass.getEStructuralFeatures().get(0);
+	public EReference getConstraint_Specification() {
+		return (EReference) constraintEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getConstraint_ConstrainedElements() {
-		return (EReference)constraintEClass.getEStructuralFeatures().get(1);
+	public EReference getConstraint_ConstrainedElements() {
+		return (EReference) constraintEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EAttribute getConstraint_Stereotype() {
-		return (EAttribute)constraintEClass.getEStructuralFeatures().get(2);
+	public EAttribute getConstraint_Stereotype() {
+		return (EAttribute) constraintEClass.getEStructuralFeatures().get(2);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getSendSignalAction() {
+	public EClass getSendSignalAction() {
 		return sendSignalActionEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getSendSignalAction_Signal() {
-		return (EReference)sendSignalActionEClass.getEStructuralFeatures().get(0);
+	public EReference getSendSignalAction_Signal() {
+		return (EReference) sendSignalActionEClass.getEStructuralFeatures()
+			.get(0);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EClass getExpressionInOCL() {
+	public EClass getExpressionInOCL() {
 		return expressionInOCLEClass;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -744,7 +754,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return associationClassCallExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -753,7 +763,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return booleanLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -762,7 +772,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return callExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -771,7 +781,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return collectionItemEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -780,7 +790,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return collectionLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -789,7 +799,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return collectionLiteralPartEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -798,7 +808,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return collectionRangeEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -807,7 +817,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return enumLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -816,7 +826,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return featureCallExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -825,7 +835,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return ifExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -834,7 +844,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return integerLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -843,7 +853,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return unlimitedNaturalLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -852,7 +862,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return invalidLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -861,7 +871,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return iterateExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -870,7 +880,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return iteratorExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -879,7 +889,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return letExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -888,7 +898,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return literalExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -897,7 +907,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return loopExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -906,7 +916,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return messageExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -915,7 +925,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return navigationCallExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -924,7 +934,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return nullLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -933,7 +943,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return numericLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -942,7 +952,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return oclExpressionEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -951,7 +961,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return operationCallExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -960,7 +970,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return primitiveLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -969,7 +979,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return propertyCallExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -978,7 +988,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return realLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -987,7 +997,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return stateExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -996,7 +1006,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return stringLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1005,7 +1015,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return tupleLiteralExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1014,7 +1024,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return tupleLiteralPartEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1023,7 +1033,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return typeExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1032,7 +1042,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return unspecifiedValueExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1041,7 +1051,7 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return variableEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1050,31 +1060,32 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		return variableExpEClass;
 	}
 
-				/**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EcoreFactory getEcoreFactory() {
-		return (EcoreFactory)getEFactoryInstance();
+	public EcoreFactory getEcoreFactory() {
+		return (EcoreFactory) getEFactoryInstance();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private boolean isCreated = false;
+	private boolean isCreated = false;
 
-    /**
+	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void createPackageContents() {
-		if (isCreated) return;
+	public void createPackageContents() {
+		if (isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -1105,7 +1116,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		voidTypeEClass = createEClass(VOID_TYPE);
 
 		callOperationActionEClass = createEClass(CALL_OPERATION_ACTION);
-		createEReference(callOperationActionEClass, CALL_OPERATION_ACTION__OPERATION);
+		createEReference(callOperationActionEClass,
+			CALL_OPERATION_ACTION__OPERATION);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__SPECIFICATION);
@@ -1188,41 +1200,42 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		variableExpEClass = createEClass(VARIABLE_EXP);
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    private boolean isInitialized = false;
+	private boolean isInitialized = false;
 
-    /**
-     * Complete the initialization of the package and its meta-model.  This
-     * method is guarded to have no affect on any invocation but its first.
-     * <p>
-     * The generated implementation is extended by adding me as a child of
-     * the empty root <tt>OCL</tt> package.
-     * </p>
-     */
-    public void initializePackageContents() {
-        if (!isInitialized) {
-            // create my own resource first, before adding me to my parent
-            // package.  Otherwise, I will already be in a resource when
-            // createResource() is called, and it will not create a new one
-            initializePackageContentsGen();
-            
-            ExpressionsPackageImpl.OCL_ROOT_PACKAGE.getESubpackages().add(this);
-        }
-    }
-    
-    /**
+	/**
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <p>
+	 * The generated implementation is extended by adding me as a child of
+	 * the empty root <tt>OCL</tt> package.
+	 * </p>
+	 */
+	public void initializePackageContents() {
+		if (!isInitialized) {
+			// create my own resource first, before adding me to my parent
+			// package.  Otherwise, I will already be in a resource when
+			// createResource() is called, and it will not create a new one
+			initializePackageContentsGen();
+
+			ExpressionsPackageImpl.OCL_ROOT_PACKAGE.getESubpackages().add(this);
+		}
+	}
+
+	/**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void initializePackageContentsGen() {
-		if (isInitialized) return;
+	public void initializePackageContentsGen() {
+		if (isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -1231,10 +1244,14 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
-		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
-		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE
+			.getEPackage(TypesPackage.eNS_URI);
+		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage) EPackage.Registry.INSTANCE
+			.getEPackage(UtilitiesPackage.eNS_URI);
+		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage) EPackage.Registry.INSTANCE
+			.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1264,7 +1281,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		g1.getETypeArguments().add(g2);
 		collectionTypeEClass.getEGenericSuperTypes().add(g1);
 		elementTypeEClass.getESuperTypes().add(theEcorePackage_1.getEClass());
-		elementTypeEClass.getESuperTypes().add(theTypesPackage.getElementType());
+		elementTypeEClass.getESuperTypes()
+			.add(theTypesPackage.getElementType());
 		g1 = createEGenericType(theEcorePackage_1.getEClassifier());
 		invalidTypeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theTypesPackage.getInvalidType());
@@ -1335,7 +1353,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		g2 = createEGenericType(theEcorePackage_1.getEOperation());
 		g1.getETypeArguments().add(g2);
 		voidTypeEClass.getEGenericSuperTypes().add(g1);
-		constraintEClass.getESuperTypes().add(theEcorePackage_1.getENamedElement());
+		constraintEClass.getESuperTypes().add(
+			theEcorePackage_1.getENamedElement());
 		g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());
 		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
 		g1.getETypeArguments().add(g2);
@@ -1344,7 +1363,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		expressionInOCLEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNavigationCallExp());
 		associationClassCallExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage.getAssociationClassCallExp());
+		g1 = createEGenericType(theExpressionsPackage
+			.getAssociationClassCallExp());
 		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theEcorePackage_1.getEStructuralFeature());
@@ -1376,7 +1396,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		collectionLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theEcorePackage_1.getETypedElement());
 		collectionLiteralPartEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage.getCollectionLiteralPart());
+		g1 = createEGenericType(theExpressionsPackage
+			.getCollectionLiteralPart());
 		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
 		g1.getETypeArguments().add(g2);
 		collectionLiteralPartEClass.getEGenericSuperTypes().add(g1);
@@ -1414,7 +1435,8 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		integerLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNumericLiteralExp());
 		unlimitedNaturalLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage.getUnlimitedNaturalLiteralExp());
+		g1 = createEGenericType(theExpressionsPackage
+			.getUnlimitedNaturalLiteralExp());
 		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
 		g1.getETypeArguments().add(g2);
 		unlimitedNaturalLiteralExpEClass.getEGenericSuperTypes().add(g1);
@@ -1586,119 +1608,278 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		variableExpEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(anyTypeEClass, AnyType.class,
+			"AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(bagTypeEClass, BagType.class, "BagType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(bagTypeEClass, BagType.class,
+			"BagType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			collectionTypeEClass,
+			CollectionType.class,
+			"CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			elementTypeEClass,
+			ElementType.class,
+			"ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			invalidTypeEClass,
+			InvalidType.class,
+			"InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			messageTypeEClass,
+			MessageType.class,
+			"MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(orderedSetTypeEClass, OrderedSetType.class, "OrderedSetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			orderedSetTypeEClass,
+			OrderedSetType.class,
+			"OrderedSetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			primitiveTypeEClass,
+			PrimitiveType.class,
+			"PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(sequenceTypeEClass, SequenceType.class, "SequenceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			sequenceTypeEClass,
+			SequenceType.class,
+			"SequenceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(setTypeEClass, SetType.class, "SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(setTypeEClass, SetType.class,
+			"SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			tupleTypeEClass,
+			TupleType.class,
+			"TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(typeTypeEClass, TypeType.class, "TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			typeTypeEClass,
+			TypeType.class,
+			"TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			voidTypeEClass,
+			VoidType.class,
+			"VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(callOperationActionEClass, CallOperationAction.class, "CallOperationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCallOperationAction_Operation(), theEcorePackage_1.getEOperation(), null, "operation", null, 1, 1, CallOperationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(
+			callOperationActionEClass,
+			CallOperationAction.class,
+			"CallOperationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(
+			getCallOperationAction_Operation(),
+			theEcorePackage_1.getEOperation(),
+			null,
+			"operation", null, 1, 1, CallOperationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			constraintEClass,
+			Constraint.class,
+			"Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(theUtilitiesPackage.getExpressionInOCL());
 		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theEcorePackage_1.getEParameter());
 		g1.getETypeArguments().add(g2);
-		initEReference(getConstraint_Specification(), g1, null, "specification", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstraint_ConstrainedElements(), theEcorePackage_1.getENamedElement(), null, "constrainedElements", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getConstraint_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(
+			getConstraint_Specification(),
+			g1,
+			null,
+			"specification", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(
+			getConstraint_ConstrainedElements(),
+			theEcorePackage_1.getENamedElement(),
+			null,
+			"constrainedElements", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(
+			getConstraint_Stereotype(),
+			ecorePackage.getEString(),
+			"stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(sendSignalActionEClass, SendSignalAction.class, "SendSignalAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSendSignalAction_Signal(), theEcorePackage_1.getEClass(), null, "signal", null, 1, 1, SendSignalAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(
+			sendSignalActionEClass,
+			SendSignalAction.class,
+			"SendSignalAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(
+			getSendSignalAction_Signal(),
+			theEcorePackage_1.getEClass(),
+			null,
+			"signal", null, 1, 1, SendSignalAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(expressionInOCLEClass, ExpressionInOCL.class, "ExpressionInOCL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			expressionInOCLEClass,
+			ExpressionInOCL.class,
+			"ExpressionInOCL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(associationClassCallExpEClass, AssociationClassCallExp.class, "AssociationClassCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			associationClassCallExpEClass,
+			AssociationClassCallExp.class,
+			"AssociationClassCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(booleanLiteralExpEClass, BooleanLiteralExp.class, "BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			booleanLiteralExpEClass,
+			BooleanLiteralExp.class,
+			"BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(callExpEClass, CallExp.class, "CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(callExpEClass, CallExp.class,
+			"CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			collectionItemEClass,
+			CollectionItem.class,
+			"CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(collectionLiteralExpEClass, CollectionLiteralExp.class, "CollectionLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			collectionLiteralExpEClass,
+			CollectionLiteralExp.class,
+			"CollectionLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(collectionLiteralPartEClass, CollectionLiteralPart.class, "CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			collectionLiteralPartEClass,
+			CollectionLiteralPart.class,
+			"CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(collectionRangeEClass, CollectionRange.class, "CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			collectionRangeEClass,
+			CollectionRange.class,
+			"CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(enumLiteralExpEClass, EnumLiteralExp.class, "EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			enumLiteralExpEClass,
+			EnumLiteralExp.class,
+			"EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(featureCallExpEClass, FeatureCallExp.class, "FeatureCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			featureCallExpEClass,
+			FeatureCallExp.class,
+			"FeatureCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(ifExpEClass, IfExp.class, "IfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(ifExpEClass, IfExp.class,
+			"IfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(integerLiteralExpEClass, IntegerLiteralExp.class, "IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			integerLiteralExpEClass,
+			IntegerLiteralExp.class,
+			"IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(unlimitedNaturalLiteralExpEClass, UnlimitedNaturalLiteralExp.class, "UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			unlimitedNaturalLiteralExpEClass,
+			UnlimitedNaturalLiteralExp.class,
+			"UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(invalidLiteralExpEClass, InvalidLiteralExp.class, "InvalidLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			invalidLiteralExpEClass,
+			InvalidLiteralExp.class,
+			"InvalidLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(iterateExpEClass, IterateExp.class, "IterateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			iterateExpEClass,
+			IterateExp.class,
+			"IterateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(iteratorExpEClass, IteratorExp.class, "IteratorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			iteratorExpEClass,
+			IteratorExp.class,
+			"IteratorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(letExpEClass, LetExp.class, "LetExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(letExpEClass, LetExp.class,
+			"LetExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(literalExpEClass, LiteralExp.class, "LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			literalExpEClass,
+			LiteralExp.class,
+			"LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(loopExpEClass, LoopExp.class, "LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(loopExpEClass, LoopExp.class,
+			"LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(messageExpEClass, MessageExp.class, "MessageExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			messageExpEClass,
+			MessageExp.class,
+			"MessageExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(navigationCallExpEClass, NavigationCallExp.class, "NavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			navigationCallExpEClass,
+			NavigationCallExp.class,
+			"NavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(nullLiteralExpEClass, NullLiteralExp.class, "NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			nullLiteralExpEClass,
+			NullLiteralExp.class,
+			"NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(numericLiteralExpEClass, NumericLiteralExp.class, "NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			numericLiteralExpEClass,
+			NumericLiteralExp.class,
+			"NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(oclExpressionEClass, OCLExpression.class, "OCLExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			oclExpressionEClass,
+			OCLExpression.class,
+			"OCLExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(operationCallExpEClass, OperationCallExp.class, "OperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			operationCallExpEClass,
+			OperationCallExp.class,
+			"OperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(primitiveLiteralExpEClass, PrimitiveLiteralExp.class, "PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			primitiveLiteralExpEClass,
+			PrimitiveLiteralExp.class,
+			"PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(propertyCallExpEClass, PropertyCallExp.class, "PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			propertyCallExpEClass,
+			PropertyCallExp.class,
+			"PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(realLiteralExpEClass, RealLiteralExp.class, "RealLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			realLiteralExpEClass,
+			RealLiteralExp.class,
+			"RealLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(stateExpEClass, StateExp.class, "StateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			stateExpEClass,
+			StateExp.class,
+			"StateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(stringLiteralExpEClass, StringLiteralExp.class, "StringLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			stringLiteralExpEClass,
+			StringLiteralExp.class,
+			"StringLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(tupleLiteralExpEClass, TupleLiteralExp.class, "TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			tupleLiteralExpEClass,
+			TupleLiteralExp.class,
+			"TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(tupleLiteralPartEClass, TupleLiteralPart.class, "TupleLiteralPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			tupleLiteralPartEClass,
+			TupleLiteralPart.class,
+			"TupleLiteralPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(typeExpEClass, TypeExp.class, "TypeExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(typeExpEClass, TypeExp.class,
+			"TypeExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(unspecifiedValueExpEClass, UnspecifiedValueExp.class, "UnspecifiedValueExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			unspecifiedValueExpEClass,
+			UnspecifiedValueExp.class,
+			"UnspecifiedValueExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			variableEClass,
+			Variable.class,
+			"Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(variableExpEClass, VariableExp.class, "VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(
+			variableExpEClass,
+			VariableExp.class,
+			"VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1710,120 +1891,72 @@ public class EcorePackageImpl extends EPackageImpl implements EcorePackage {
 		createExtendedMetaDataAnnotations();
 	}
 
-    /**
+	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected void createEcoreAnnotations() {
+	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-		addAnnotation
-		  (anyTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (collectionTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (elementTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (invalidTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (messageTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (primitiveTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (tupleTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (typeTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (voidTypeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (constraintEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (collectionLiteralPartEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (oclExpressionEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (tupleLiteralPartEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (variableEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });
+		addAnnotation(anyTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(collectionTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(elementTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(invalidTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(messageTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(primitiveTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tupleTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(typeTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(voidTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(constraintEClass, source, new String[]{
+			"constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(collectionLiteralPartEClass, source, new String[]{
+			"constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(oclExpressionEClass, source, new String[]{
+			"constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tupleLiteralPartEClass, source, new String[]{
+			"constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(variableEClass, source, new String[]{
+			"constraints", "WellFormedName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
 
-    /**
+	/**
 	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected void createExtendedMetaDataAnnotations() {
+	protected void createExtendedMetaDataAnnotations() {
 		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$												
-		addAnnotation
-		  (expressionInOCLEClass, 
-		   source, 
-		   new String[] {
-			 "name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (oclExpressionEClass, 
-		   source, 
-		   new String[] {
-			 "name", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
+		addAnnotation(expressionInOCLEClass, source, new String[]{
+			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(oclExpressionEClass, source, new String[]{
+			"name", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
 
 } //EcorePackageImpl

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.6 2008/11/24 00:38:49 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -41,7 +41,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
+public class TypeExpImpl
+		extends OCLExpressionImpl
+		implements TypeExp {
+
 	/**
 	 * The cached value of the '{@link #getReferredType() <em>Referred Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -77,12 +80,14 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * @generated
 	 */
 	public EClassifier getReferredType() {
-		if (referredType != null && ((EObject)referredType).eIsProxy()) {
-			InternalEObject oldReferredType = (InternalEObject)referredType;
-			referredType = (EClassifier)eResolveProxy(oldReferredType);
+		if (referredType != null && ((EObject) referredType).eIsProxy()) {
+			InternalEObject oldReferredType = (InternalEObject) referredType;
+			referredType = (EClassifier) eResolveProxy(oldReferredType);
 			if (referredType != oldReferredType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.TYPE_EXP__REFERRED_TYPE, oldReferredType,
+						referredType));
 			}
 		}
 		return referredType;
@@ -106,7 +111,9 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 		EClassifier oldReferredType = referredType;
 		referredType = newReferredType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TYPE_EXP__REFERRED_TYPE, oldReferredType, referredType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TYPE_EXP__REFERRED_TYPE, oldReferredType,
+				referredType));
 	}
 
 	/**
@@ -117,8 +124,9 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
-				if (resolve) return getReferredType();
+			case EcorePackage.TYPE_EXP__REFERRED_TYPE :
+				if (resolve)
+					return getReferredType();
 				return basicGetReferredType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -132,8 +140,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
-				setReferredType((EClassifier)newValue);
+			case EcorePackage.TYPE_EXP__REFERRED_TYPE :
+				setReferredType((EClassifier) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -147,8 +155,8 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
-				setReferredType((EClassifier)null);
+			case EcorePackage.TYPE_EXP__REFERRED_TYPE :
+				setReferredType((EClassifier) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -162,7 +170,7 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TYPE_EXP__REFERRED_TYPE:
+			case EcorePackage.TYPE_EXP__REFERRED_TYPE :
 				return referredType != null;
 		}
 		return super.eIsSet(featureID);
@@ -177,8 +185,10 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.TYPE_EXP__REFERRED_TYPE: return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
-				default: return -1;
+				case EcorePackage.TYPE_EXP__REFERRED_TYPE :
+					return ExpressionsPackage.TYPE_EXP__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -193,8 +203,10 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE: return EcorePackage.TYPE_EXP__REFERRED_TYPE;
-				default: return -1;
+				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :
+					return EcorePackage.TYPE_EXP__REFERRED_TYPE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -214,7 +226,7 @@ public class TypeExpImpl extends OCLExpressionImpl implements TypeExp {
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitTypeExp(this);
 	}
 

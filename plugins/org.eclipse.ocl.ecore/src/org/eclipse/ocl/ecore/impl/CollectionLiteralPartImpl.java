@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.6 2008/11/24 00:39:47 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -33,7 +33,10 @@ import org.eclipse.ocl.util.ToStringVisitor;
  *
  * @generated
  */
-public abstract class CollectionLiteralPartImpl extends ETypedElementImpl implements CollectionLiteralPart {
+public abstract class CollectionLiteralPartImpl
+		extends ETypedElementImpl
+		implements CollectionLiteralPart {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,7 +62,7 @@ public abstract class CollectionLiteralPartImpl extends ETypedElementImpl implem
 	 * @generated NOT
 	 */
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-	    // subclasses must implement this method
+		// subclasses must implement this method
 		throw new UnsupportedOperationException();
 	}
 
@@ -91,7 +94,7 @@ public abstract class CollectionLiteralPartImpl extends ETypedElementImpl implem
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
 

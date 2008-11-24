@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationCallExpImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: NavigationCallExpImpl.java,v 1.6 2008/11/24 00:38:43 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -54,7 +54,10 @@ import org.eclipse.ocl.expressions.OCLExpression;
  *
  * @generated
  */
-public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implements NavigationCallExp {
+public abstract class NavigationCallExpImpl
+		extends FeatureCallExpImpl
+		implements NavigationCallExp {
+
 	/**
 	 * The cached value of the '{@link #getQualifier() <em>Qualifier</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -101,7 +104,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	 */
 	public EList<OCLExpression<EClassifier>> getQualifier() {
 		if (qualifier == null) {
-			qualifier = new EObjectContainmentEList<OCLExpression<EClassifier>>(OCLExpression.class, this, EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER);
+			qualifier = new EObjectContainmentEList<OCLExpression<EClassifier>>(
+				OCLExpression.class, this,
+				EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER);
 		}
 		return qualifier;
 	}
@@ -112,12 +117,14 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	 * @generated
 	 */
 	public EStructuralFeature getNavigationSource() {
-		if (navigationSource != null && ((EObject)navigationSource).eIsProxy()) {
-			InternalEObject oldNavigationSource = (InternalEObject)navigationSource;
-			navigationSource = (EStructuralFeature)eResolveProxy(oldNavigationSource);
+		if (navigationSource != null && ((EObject) navigationSource).eIsProxy()) {
+			InternalEObject oldNavigationSource = (InternalEObject) navigationSource;
+			navigationSource = (EStructuralFeature) eResolveProxy(oldNavigationSource);
 			if (navigationSource != oldNavigationSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
+						oldNavigationSource, navigationSource));
 			}
 		}
 		return navigationSource;
@@ -141,7 +148,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 		EStructuralFeature oldNavigationSource = navigationSource;
 		navigationSource = newNavigationSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, oldNavigationSource, navigationSource));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
+				oldNavigationSource, navigationSource));
 	}
 
 	/**
@@ -150,10 +159,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
-				return ((InternalEList<?>)getQualifier()).basicRemove(otherEnd, msgs);
+			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER :
+				return ((InternalEList<?>) getQualifier()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -166,10 +177,11 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				return getQualifier();
-			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				if (resolve) return getNavigationSource();
+			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+				if (resolve)
+					return getNavigationSource();
 				return basicGetNavigationSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -184,12 +196,14 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				getQualifier().clear();
-				getQualifier().addAll((Collection<? extends OCLExpression<EClassifier>>)newValue);
+				getQualifier()
+					.addAll(
+						(Collection<? extends OCLExpression<EClassifier>>) newValue);
 				return;
-			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				setNavigationSource((EStructuralFeature)newValue);
+			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+				setNavigationSource((EStructuralFeature) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,11 +217,11 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				getQualifier().clear();
 				return;
-			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
-				setNavigationSource((EStructuralFeature)null);
+			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+				setNavigationSource((EStructuralFeature) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -221,9 +235,9 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER:
+			case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				return qualifier != null && !qualifier.isEmpty();
-			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE:
+			case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
 				return navigationSource != null;
 		}
 		return super.eIsSet(featureID);
@@ -238,9 +252,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.NavigationCallExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER: return ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER;
-				case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE: return ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
-				default: return -1;
+				case EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER :
+					return ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER;
+				case EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+					return ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -255,9 +272,12 @@ public abstract class NavigationCallExpImpl extends FeatureCallExpImpl implement
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.NavigationCallExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER: return EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER;
-				case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE: return EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
-				default: return -1;
+				case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER :
+					return EcorePackage.NAVIGATION_CALL_EXP__QUALIFIER;
+				case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
+					return EcorePackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);

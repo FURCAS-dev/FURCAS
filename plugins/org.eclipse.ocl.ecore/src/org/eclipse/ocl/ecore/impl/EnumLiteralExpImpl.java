@@ -13,22 +13,30 @@
  *
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.7 2008/09/28 17:33:30 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.8 2008/11/24 00:38:38 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.EnumLiteralExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.EnumLiteralExpOperations;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -45,7 +53,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp {
+public class EnumLiteralExpImpl
+		extends LiteralExpImpl
+		implements EnumLiteralExp {
+
 	/**
 	 * The cached value of the '{@link #getReferredEnumLiteral() <em>Referred Enum Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -81,12 +92,15 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * @generated
 	 */
 	public EEnumLiteral getReferredEnumLiteral() {
-		if (referredEnumLiteral != null && ((EObject)referredEnumLiteral).eIsProxy()) {
-			InternalEObject oldReferredEnumLiteral = (InternalEObject)referredEnumLiteral;
-			referredEnumLiteral = (EEnumLiteral)eResolveProxy(oldReferredEnumLiteral);
+		if (referredEnumLiteral != null
+			&& ((EObject) referredEnumLiteral).eIsProxy()) {
+			InternalEObject oldReferredEnumLiteral = (InternalEObject) referredEnumLiteral;
+			referredEnumLiteral = (EEnumLiteral) eResolveProxy(oldReferredEnumLiteral);
 			if (referredEnumLiteral != oldReferredEnumLiteral) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
+						oldReferredEnumLiteral, referredEnumLiteral));
 			}
 		}
 		return referredEnumLiteral;
@@ -110,19 +124,23 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 		EEnumLiteral oldReferredEnumLiteral = referredEnumLiteral;
 		referredEnumLiteral = newReferredEnumLiteral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL, oldReferredEnumLiteral, referredEnumLiteral));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
+				oldReferredEnumLiteral, referredEnumLiteral));
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkEnumType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return EnumLiteralExpOperations.checkEnumType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkEnumType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return EnumLiteralExpOperations.checkEnumType(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -130,8 +148,9 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				if (resolve) return getReferredEnumLiteral();
+			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+				if (resolve)
+					return getReferredEnumLiteral();
 				return basicGetReferredEnumLiteral();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -145,8 +164,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				setReferredEnumLiteral((EEnumLiteral)newValue);
+			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+				setReferredEnumLiteral((EEnumLiteral) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -160,8 +179,8 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
-				setReferredEnumLiteral((EEnumLiteral)null);
+			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+				setReferredEnumLiteral((EEnumLiteral) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -175,7 +194,7 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL:
+			case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
 				return referredEnumLiteral != null;
 		}
 		return super.eIsSet(featureID);
@@ -190,8 +209,10 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL: return ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
-				default: return -1;
+				case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+					return ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -206,8 +227,10 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL: return EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
-				default: return -1;
+				case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
+					return EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -217,7 +240,7 @@ public class EnumLiteralExpImpl extends LiteralExpImpl implements EnumLiteralExp
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitEnumLiteralExp(this);
 	}
 

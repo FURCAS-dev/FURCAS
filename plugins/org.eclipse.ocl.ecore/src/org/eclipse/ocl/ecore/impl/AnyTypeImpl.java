@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyTypeImpl.java,v 1.7 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: AnyTypeImpl.java,v 1.8 2008/11/24 00:39:17 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -37,61 +37,65 @@ import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
  *
  * @generated
  */
-public class AnyTypeImpl extends EClassifierImpl implements AnyType {
-    private EList<EOperation> operations;
-    
-    /**
+public class AnyTypeImpl
+		extends EClassifierImpl
+		implements AnyType {
+
+	private EList<EOperation> operations;
+
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    protected AnyTypeImpl() {
+	protected AnyTypeImpl() {
 		super();
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    @Override
-    protected EClass eStaticClass() {
+	@Override
+	protected EClass eStaticClass() {
 		return EcorePackage.Literals.ANY_TYPE;
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public String getName() {
-        if (name == null) {
-            name = SINGLETON_NAME;
-        }
-        
-        return name;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getName() {
+		if (name == null) {
+			name = SINGLETON_NAME;
+		}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public EList<EOperation> oclOperations() {
-        if (operations == null) {
-            AnyType prototype = (AnyType) OCLStandardLibraryImpl.INSTANCE.getOclAny();
-            
-            if (prototype == this) {
-                // I *am* the standard library type!
-                operations = OCLStandardLibraryImpl.getExistingOperations(this);
-            } else {
-                // the prototype defines my operations for me
-                operations = prototype.oclOperations();
-            }
-        }
-        
-        return operations;
-    }
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<EOperation> oclOperations() {
+		if (operations == null) {
+			AnyType prototype = (AnyType) OCLStandardLibraryImpl.INSTANCE
+				.getOclAny();
+
+			if (prototype == this) {
+				// I *am* the standard library type!
+				operations = OCLStandardLibraryImpl.getExistingOperations(this);
+			} else {
+				// the prototype defines my operations for me
+				operations = prototype.oclOperations();
+			}
+		}
+
+		return operations;
+	}
 
 } //AnyTypeImpl

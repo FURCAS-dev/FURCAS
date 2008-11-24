@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.3 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.4 2008/11/24 00:39:54 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -41,7 +41,10 @@ import org.eclipse.ocl.util.ToStringVisitor;
  *
  * @generated
  */
-public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureCallExp {
+public abstract class FeatureCallExpImpl
+		extends CallExpImpl
+		implements FeatureCallExp {
+
 	/**
 	 * The default value of the '{@link #isMarkedPre() <em>Marked Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,7 +102,9 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 		boolean oldMarkedPre = markedPre;
 		markedPre = newMarkedPre;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.FEATURE_CALL_EXP__MARKED_PRE, oldMarkedPre, markedPre));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.FEATURE_CALL_EXP__MARKED_PRE, oldMarkedPre,
+				markedPre));
 	}
 
 	/**
@@ -110,8 +115,10 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE:
-				return isMarkedPre() ? Boolean.TRUE : Boolean.FALSE;
+			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
+				return isMarkedPre()
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,8 +131,8 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE:
-				setMarkedPre(((Boolean)newValue).booleanValue());
+			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
+				setMarkedPre(((Boolean) newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -139,7 +146,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE:
+			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
 				setMarkedPre(MARKED_PRE_EDEFAULT);
 				return;
 		}
@@ -154,7 +161,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE:
+			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
 				return markedPre != MARKED_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -169,8 +176,10 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE: return ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE;
-				default: return -1;
+				case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
+					return ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -185,8 +194,10 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE: return EcorePackage.FEATURE_CALL_EXP__MARKED_PRE;
-				default: return -1;
+				case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :
+					return EcorePackage.FEATURE_CALL_EXP__MARKED_PRE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -202,7 +213,7 @@ public abstract class FeatureCallExpImpl extends CallExpImpl implements FeatureC
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
 

@@ -12,7 +12,7 @@
  *   Zeligsoft - Bug 241426
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.7 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.8 2008/11/24 00:39:43 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -20,6 +20,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+//import org.eclipse.emf.common.util.BasicDiagnostic;
+//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -28,10 +31,15 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
+
+//import org.eclipse.emf.ecore.plugin.EcorePlugin;
+//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+//import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.expressions.operations.TupleLiteralPartOperations;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.ASTNode;
@@ -59,7 +67,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLiteralPart {
+public class TupleLiteralPartImpl
+		extends ETypedElementImpl
+		implements TupleLiteralPart {
+
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -197,7 +208,9 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__START_POSITION, oldStartPosition, startPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TUPLE_LITERAL_PART__START_POSITION,
+				oldStartPosition, startPosition));
 	}
 
 	/**
@@ -218,7 +231,9 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__END_POSITION, oldEndPosition, endPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TUPLE_LITERAL_PART__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -239,7 +254,9 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION,
+				oldTypeStartPosition, typeStartPosition));
 	}
 
 	/**
@@ -260,7 +277,9 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION,
+				oldTypeEndPosition, typeEndPosition));
 	}
 
 	/**
@@ -277,12 +296,18 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(OCLExpression<EClassifier> newValue, NotificationChain msgs) {
+	public NotificationChain basicSetValue(OCLExpression<EClassifier> newValue,
+			NotificationChain msgs) {
 		OCLExpression<EClassifier> oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, EcorePackage.TUPLE_LITERAL_PART__VALUE,
+				oldValue, newValue);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -296,14 +321,19 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+				msgs = ((InternalEObject) value).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+				msgs = ((InternalEObject) newValue).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- EcorePackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
 			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__VALUE, newValue, newValue));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TUPLE_LITERAL_PART__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -312,12 +342,14 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 * @generated
 	 */
 	public EStructuralFeature getAttribute() {
-		if (attribute != null && ((EObject)attribute).eIsProxy()) {
-			InternalEObject oldAttribute = (InternalEObject)attribute;
-			attribute = (EStructuralFeature)eResolveProxy(oldAttribute);
+		if (attribute != null && ((EObject) attribute).eIsProxy()) {
+			InternalEObject oldAttribute = (InternalEObject) attribute;
+			attribute = (EStructuralFeature) eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE,
+						oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -341,19 +373,23 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		EStructuralFeature oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE, oldAttribute,
+				attribute));
 	}
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public boolean checkValueType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return TupleLiteralPartOperations.checkValueType(this, diagnostics, context);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkValueType(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return TupleLiteralPartOperations.checkValueType(this, diagnostics,
+			context);
+	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -377,9 +413,10 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_PART__VALUE:
+			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
 				return basicSetValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -393,18 +430,19 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
 				return new Integer(getStartPosition());
-			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
 				return new Integer(getEndPosition());
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
 				return new Integer(getTypeStartPosition());
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
 				return new Integer(getTypeEndPosition());
-			case EcorePackage.TUPLE_LITERAL_PART__VALUE:
+			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
 				return getValue();
-			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				if (resolve) return getAttribute();
+			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+				if (resolve)
+					return getAttribute();
 				return basicGetAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -419,23 +457,23 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
+				setStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
+				setEndPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
-				setTypeStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
+				setTypeStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
-				setTypeEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
+				setTypeEndPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__VALUE:
-				setValue((OCLExpression<EClassifier>)newValue);
+			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
+				setValue((OCLExpression<EClassifier>) newValue);
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				setAttribute((EStructuralFeature)newValue);
+			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+				setAttribute((EStructuralFeature) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -449,23 +487,23 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
 				setStartPosition(START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
 				setEndPosition(END_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
 				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
 				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__VALUE:
-				setValue((OCLExpression<EClassifier>)null);
+			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
+				setValue((OCLExpression<EClassifier>) null);
 				return;
-			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE:
-				setAttribute((EStructuralFeature)null);
+			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+				setAttribute((EStructuralFeature) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -479,17 +517,17 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
 				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
 				return endPosition != END_POSITION_EDEFAULT;
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION:
+			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
 				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
-			case EcorePackage.TUPLE_LITERAL_PART__VALUE:
+			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
 				return value != null;
-			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE:
+			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE :
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
@@ -504,33 +542,44 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.TUPLE_LITERAL_PART__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.TUPLE_LITERAL_PART__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
+				case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
+					return UtilitiesPackage.AST_NODE__START_POSITION;
+				case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
+					return UtilitiesPackage.AST_NODE__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-				case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-				default: return -1;
+				case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralPart.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.TUPLE_LITERAL_PART__VALUE: return ExpressionsPackage.TUPLE_LITERAL_PART__VALUE;
-				case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE: return ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE;
-				default: return -1;
+				case EcorePackage.TUPLE_LITERAL_PART__VALUE :
+					return ExpressionsPackage.TUPLE_LITERAL_PART__VALUE;
+				case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+					return ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -545,33 +594,44 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.TUPLE_LITERAL_PART__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.TUPLE_LITERAL_PART__END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.AST_NODE__START_POSITION :
+					return EcorePackage.TUPLE_LITERAL_PART__START_POSITION;
+				case UtilitiesPackage.AST_NODE__END_POSITION :
+					return EcorePackage.TUPLE_LITERAL_PART__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION;
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION :
+					return EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION :
+					return EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralPart.class) {
 			switch (baseFeatureID) {
-				case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE: return EcorePackage.TUPLE_LITERAL_PART__VALUE;
-				case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE: return EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE;
-				default: return -1;
+				case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE :
+					return EcorePackage.TUPLE_LITERAL_PART__VALUE;
+				case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
+					return EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -587,7 +647,7 @@ public class TupleLiteralPartImpl extends ETypedElementImpl implements TupleLite
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
 

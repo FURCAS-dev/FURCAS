@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.4 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.5 2008/11/24 00:39:08 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -40,7 +40,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements UnspecifiedValueExp {
+public class UnspecifiedValueExpImpl
+		extends OCLExpressionImpl
+		implements UnspecifiedValueExp {
+
 	/**
 	 * The default value of the '{@link #getTypeStartPosition() <em>Type Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,7 +121,9 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION, oldTypeStartPosition, typeStartPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION,
+				oldTypeStartPosition, typeStartPosition));
 	}
 
 	/**
@@ -139,7 +144,9 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION, oldTypeEndPosition, typeEndPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION,
+				oldTypeEndPosition, typeEndPosition));
 	}
 
 	/**
@@ -150,9 +157,9 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
 				return new Integer(getTypeStartPosition());
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
 				return new Integer(getTypeEndPosition());
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -166,11 +173,11 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-				setTypeStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+				setTypeStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-				setTypeEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+				setTypeEndPosition(((Integer) newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,10 +191,10 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
 				setTypeStartPosition(TYPE_START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
 				setTypeEndPosition(TYPE_END_POSITION_EDEFAULT);
 				return;
 		}
@@ -202,9 +209,9 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
 				return typeStartPosition != TYPE_START_POSITION_EDEFAULT;
-			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
+			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
 				return typeEndPosition != TYPE_END_POSITION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -219,14 +226,18 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
-				case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION: return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
-				default: return -1;
+				case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION;
+				case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+					return UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.UnspecifiedValueExp.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -241,14 +252,18 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION: return EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
-				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION: return EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION :
+					return EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION;
+				case UtilitiesPackage.TYPED_AST_NODE__TYPE_END_POSITION :
+					return EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.UnspecifiedValueExp.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -268,7 +283,7 @@ public class UnspecifiedValueExpImpl extends OCLExpressionImpl implements Unspec
 	 * @generated NOT
 	 */
 	@Override
-    public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
+	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return v.visitUnspecifiedValueExp(this);
 	}
 

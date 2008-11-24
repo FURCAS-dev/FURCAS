@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpImpl.java,v 1.3 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: PrimitiveLiteralExpImpl.java,v 1.4 2008/11/24 00:38:18 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -31,7 +31,10 @@ import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
  *
  * @generated
  */
-public abstract class PrimitiveLiteralExpImpl extends LiteralExpImpl implements PrimitiveLiteralExp {
+public abstract class PrimitiveLiteralExpImpl
+		extends LiteralExpImpl
+		implements PrimitiveLiteralExp {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

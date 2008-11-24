@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.5 2008/08/03 23:04:08 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.6 2008/11/24 00:39:53 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -44,7 +44,10 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * @generated
  */
-public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCLExpression {
+public abstract class OCLExpressionImpl
+		extends ETypedElementImpl
+		implements OCLExpression {
+
 	/**
 	 * The default value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,6 +57,7 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	 * @ordered
 	 */
 	protected static final int START_POSITION_EDEFAULT = -1;
+
 	/**
 	 * The cached value of the '{@link #getStartPosition() <em>Start Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,6 +67,7 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	 * @ordered
 	 */
 	protected int startPosition = START_POSITION_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,6 +77,7 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	 * @ordered
 	 */
 	protected static final int END_POSITION_EDEFAULT = -1;
+
 	/**
 	 * The cached value of the '{@link #getEndPosition() <em>End Position</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -119,7 +125,9 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.OCL_EXPRESSION__START_POSITION, oldStartPosition, startPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.OCL_EXPRESSION__START_POSITION, oldStartPosition,
+				startPosition));
 	}
 
 	/**
@@ -140,7 +148,9 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.OCL_EXPRESSION__END_POSITION, oldEndPosition, endPosition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.OCL_EXPRESSION__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -179,9 +189,9 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EcorePackage.OCL_EXPRESSION__START_POSITION:
+			case EcorePackage.OCL_EXPRESSION__START_POSITION :
 				return new Integer(getStartPosition());
-			case EcorePackage.OCL_EXPRESSION__END_POSITION:
+			case EcorePackage.OCL_EXPRESSION__END_POSITION :
 				return new Integer(getEndPosition());
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -195,11 +205,11 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EcorePackage.OCL_EXPRESSION__START_POSITION:
-				setStartPosition(((Integer)newValue).intValue());
+			case EcorePackage.OCL_EXPRESSION__START_POSITION :
+				setStartPosition(((Integer) newValue).intValue());
 				return;
-			case EcorePackage.OCL_EXPRESSION__END_POSITION:
-				setEndPosition(((Integer)newValue).intValue());
+			case EcorePackage.OCL_EXPRESSION__END_POSITION :
+				setEndPosition(((Integer) newValue).intValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -213,10 +223,10 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EcorePackage.OCL_EXPRESSION__START_POSITION:
+			case EcorePackage.OCL_EXPRESSION__START_POSITION :
 				setStartPosition(START_POSITION_EDEFAULT);
 				return;
-			case EcorePackage.OCL_EXPRESSION__END_POSITION:
+			case EcorePackage.OCL_EXPRESSION__END_POSITION :
 				setEndPosition(END_POSITION_EDEFAULT);
 				return;
 		}
@@ -231,9 +241,9 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EcorePackage.OCL_EXPRESSION__START_POSITION:
+			case EcorePackage.OCL_EXPRESSION__START_POSITION :
 				return startPosition != START_POSITION_EDEFAULT;
-			case EcorePackage.OCL_EXPRESSION__END_POSITION:
+			case EcorePackage.OCL_EXPRESSION__END_POSITION :
 				return endPosition != END_POSITION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -248,24 +258,30 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
-				case EcorePackage.OCL_EXPRESSION__START_POSITION: return UtilitiesPackage.AST_NODE__START_POSITION;
-				case EcorePackage.OCL_EXPRESSION__END_POSITION: return UtilitiesPackage.AST_NODE__END_POSITION;
-				default: return -1;
+				case EcorePackage.OCL_EXPRESSION__START_POSITION :
+					return UtilitiesPackage.AST_NODE__START_POSITION;
+				case EcorePackage.OCL_EXPRESSION__END_POSITION :
+					return UtilitiesPackage.AST_NODE__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.OCLExpression.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -280,24 +296,30 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
-				case UtilitiesPackage.AST_NODE__START_POSITION: return EcorePackage.OCL_EXPRESSION__START_POSITION;
-				case UtilitiesPackage.AST_NODE__END_POSITION: return EcorePackage.OCL_EXPRESSION__END_POSITION;
-				default: return -1;
+				case UtilitiesPackage.AST_NODE__START_POSITION :
+					return EcorePackage.OCL_EXPRESSION__START_POSITION;
+				case UtilitiesPackage.AST_NODE__END_POSITION :
+					return EcorePackage.OCL_EXPRESSION__END_POSITION;
+				default :
+					return -1;
 			}
 		}
 		if (baseClass == org.eclipse.ocl.expressions.OCLExpression.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+				default :
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -313,7 +335,7 @@ public abstract class OCLExpressionImpl extends ETypedElementImpl implements OCL
 		if (eIsProxy()) {
 			return super.toString();
 		}
-		
+
 		return accept(ToStringVisitor.getInstance(this));
 	}
 
