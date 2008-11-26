@@ -36,6 +36,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ocl.examples.internal.l10n.Messages;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -126,7 +127,7 @@ public abstract class AbstractExampleWizard extends Wizard
 						protected void execute(IProgressMonitor m)
 						
 							throws CoreException, InvocationTargetException, InterruptedException {
-							m.beginTask("Unzipping Projects", projectDescriptors.size()); //$NON-NLS-1$
+							m.beginTask(Messages.AbstractExampleWizard_unzipping, projectDescriptors.size());
 							
 							for (Iterator i = projectDescriptors.iterator(); i.hasNext();) {
 								unzipProject((ProjectDescriptor)i.next(), m);
