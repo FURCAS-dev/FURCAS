@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: MessageExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -50,7 +50,10 @@ import org.eclipse.ocl.cst.SimpleNameCS;
  *
  * @generated
  */
-public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpCS {
+public class MessageExpCSImpl
+		extends OCLExpressionCSImpl
+		implements MessageExpCS {
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -134,12 +137,18 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(OCLExpressionCS newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(OCLExpressionCS newTarget,
+			NotificationChain msgs) {
 		OCLExpressionCS oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.MESSAGE_EXP_CS__TARGET, oldTarget,
+				newTarget);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -153,14 +162,19 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__TARGET, null, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__TARGET,
+					null, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__TARGET, null, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__TARGET,
+					null, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__TARGET, newTarget, newTarget));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.MESSAGE_EXP_CS__TARGET, newTarget, newTarget));
 	}
 
 	/**
@@ -179,9 +193,12 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	 */
 	public void setKind(MessageExpKind newKind) {
 		MessageExpKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		kind = newKind == null
+			? KIND_EDEFAULT
+			: newKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__KIND, oldKind, kind));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.MESSAGE_EXP_CS__KIND, oldKind, kind));
 	}
 
 	/**
@@ -198,12 +215,18 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS,
+			NotificationChain msgs) {
 		SimpleNameCS oldSimpleNameCS = simpleNameCS;
 		simpleNameCS = newSimpleNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS,
+				oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -217,14 +240,20 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 		if (newSimpleNameCS != simpleNameCS) {
 			NotificationChain msgs = null;
 			if (simpleNameCS != null)
-				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) simpleNameCS)
+					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
 			if (newSimpleNameCS != null)
-				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newSimpleNameCS)
+					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, null, msgs);
 			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS,
+				newSimpleNameCS));
 	}
 
 	/**
@@ -234,7 +263,9 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	 */
 	public EList<OCLMessageArgCS> getArguments() {
 		if (arguments == null) {
-			arguments = new EObjectContainmentEList<OCLMessageArgCS>(OCLMessageArgCS.class, this, CSTPackage.MESSAGE_EXP_CS__ARGUMENTS);
+			arguments = new EObjectContainmentEList<OCLMessageArgCS>(
+				OCLMessageArgCS.class, this,
+				CSTPackage.MESSAGE_EXP_CS__ARGUMENTS);
 		}
 		return arguments;
 	}
@@ -245,14 +276,16 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.MESSAGE_EXP_CS__TARGET:
+			case CSTPackage.MESSAGE_EXP_CS__TARGET :
 				return basicSetTarget(null, msgs);
-			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
+			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS :
 				return basicSetSimpleNameCS(null, msgs);
-			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS :
+				return ((InternalEList<?>) getArguments()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -265,13 +298,13 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.MESSAGE_EXP_CS__TARGET:
+			case CSTPackage.MESSAGE_EXP_CS__TARGET :
 				return getTarget();
-			case CSTPackage.MESSAGE_EXP_CS__KIND:
+			case CSTPackage.MESSAGE_EXP_CS__KIND :
 				return getKind();
-			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
+			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS :
 				return getSimpleNameCS();
-			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
+			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS :
 				return getArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -286,18 +319,19 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.MESSAGE_EXP_CS__TARGET:
-				setTarget((OCLExpressionCS)newValue);
+			case CSTPackage.MESSAGE_EXP_CS__TARGET :
+				setTarget((OCLExpressionCS) newValue);
 				return;
-			case CSTPackage.MESSAGE_EXP_CS__KIND:
-				setKind((MessageExpKind)newValue);
+			case CSTPackage.MESSAGE_EXP_CS__KIND :
+				setKind((MessageExpKind) newValue);
 				return;
-			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)newValue);
+			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) newValue);
 				return;
-			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
+			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS :
 				getArguments().clear();
-				getArguments().addAll((Collection<? extends OCLMessageArgCS>)newValue);
+				getArguments().addAll(
+					(Collection<? extends OCLMessageArgCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -311,16 +345,16 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.MESSAGE_EXP_CS__TARGET:
-				setTarget((OCLExpressionCS)null);
+			case CSTPackage.MESSAGE_EXP_CS__TARGET :
+				setTarget((OCLExpressionCS) null);
 				return;
-			case CSTPackage.MESSAGE_EXP_CS__KIND:
+			case CSTPackage.MESSAGE_EXP_CS__KIND :
 				setKind(KIND_EDEFAULT);
 				return;
-			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)null);
+			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) null);
 				return;
-			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
+			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS :
 				getArguments().clear();
 				return;
 		}
@@ -335,13 +369,13 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.MESSAGE_EXP_CS__TARGET:
+			case CSTPackage.MESSAGE_EXP_CS__TARGET :
 				return target != null;
-			case CSTPackage.MESSAGE_EXP_CS__KIND:
+			case CSTPackage.MESSAGE_EXP_CS__KIND :
 				return kind != KIND_EDEFAULT;
-			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS:
+			case CSTPackage.MESSAGE_EXP_CS__SIMPLE_NAME_CS :
 				return simpleNameCS != null;
-			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS:
+			case CSTPackage.MESSAGE_EXP_CS__ARGUMENTS :
 				return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -354,7 +388,8 @@ public class MessageExpCSImpl extends OCLExpressionCSImpl implements MessageExpC
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (kind: "); //$NON-NLS-1$

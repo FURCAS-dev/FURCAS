@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerLiteralExpCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: IntegerLiteralExpCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -33,8 +33,11 @@ package org.eclipse.ocl.cst;
  * @model
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
-public interface IntegerLiteralExpCS extends PrimitiveLiteralExpCS {
+public interface IntegerLiteralExpCS
+		extends PrimitiveLiteralExpCS {
+
 	/**
 	 * Returns the value of the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->

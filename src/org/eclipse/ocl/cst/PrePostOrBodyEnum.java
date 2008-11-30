@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PrePostOrBodyEnum.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: PrePostOrBodyEnum.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum PrePostOrBodyEnum implements Enumerator {
+public enum PrePostOrBodyEnum
+		implements Enumerator {
 	/**
 	 * The '<em><b>Pre</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -114,12 +115,8 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PrePostOrBodyEnum[] VALUES_ARRAY =
-		new PrePostOrBodyEnum[] {
-			PRE_LITERAL,
-			POST_LITERAL,
-			BODY_LITERAL,
-		};
+	private static final PrePostOrBodyEnum[] VALUES_ARRAY = new PrePostOrBodyEnum[]{
+		PRE_LITERAL, POST_LITERAL, BODY_LITERAL,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Pre Post Or Body Enum</b></em>' enumerators.
@@ -127,7 +124,8 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<PrePostOrBodyEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<PrePostOrBodyEnum> VALUES = Collections
+		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Pre Post Or Body Enum</b></em>' literal with the specified literal value.
@@ -169,9 +167,12 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	 */
 	public static PrePostOrBodyEnum get(int value) {
 		switch (value) {
-			case PRE: return PRE_LITERAL;
-			case POST: return POST_LITERAL;
-			case BODY: return BODY_LITERAL;
+			case PRE :
+				return PRE_LITERAL;
+			case POST :
+				return POST_LITERAL;
+			case BODY :
+				return BODY_LITERAL;
 		}
 		return null;
 	}
@@ -215,7 +216,7 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -224,7 +225,7 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -233,7 +234,7 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -246,5 +247,5 @@ public enum PrePostOrBodyEnum implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //PrePostOrBodyEnum

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: InvOrDefCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: InvOrDefCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -40,7 +40,10 @@ import org.eclipse.ocl.cst.SimpleNameCS;
  *
  * @generated
  */
-public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
+public abstract class InvOrDefCSImpl
+		extends CSTNodeImpl
+		implements InvOrDefCS {
+
 	/**
 	 * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -94,12 +97,18 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS,
+			NotificationChain msgs) {
 		SimpleNameCS oldSimpleNameCS = simpleNameCS;
 		simpleNameCS = newSimpleNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS,
+				oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -113,14 +122,20 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 		if (newSimpleNameCS != simpleNameCS) {
 			NotificationChain msgs = null;
 			if (simpleNameCS != null)
-				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) simpleNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, null, msgs);
 			if (newSimpleNameCS != null)
-				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newSimpleNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, null, msgs);
 			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS, newSimpleNameCS,
+				newSimpleNameCS));
 	}
 
 	/**
@@ -130,11 +145,13 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	 */
 	public InvOrDefCS getInvOrDefCS() {
 		if (invOrDefCS != null && invOrDefCS.eIsProxy()) {
-			InternalEObject oldInvOrDefCS = (InternalEObject)invOrDefCS;
-			invOrDefCS = (InvOrDefCS)eResolveProxy(oldInvOrDefCS);
+			InternalEObject oldInvOrDefCS = (InternalEObject) invOrDefCS;
+			invOrDefCS = (InvOrDefCS) eResolveProxy(oldInvOrDefCS);
 			if (invOrDefCS != oldInvOrDefCS) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS, oldInvOrDefCS,
+						invOrDefCS));
 			}
 		}
 		return invOrDefCS;
@@ -158,7 +175,9 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 		InvOrDefCS oldInvOrDefCS = invOrDefCS;
 		invOrDefCS = newInvOrDefCS;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS, oldInvOrDefCS,
+				invOrDefCS));
 	}
 
 	/**
@@ -167,9 +186,10 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS:
+			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				return basicSetSimpleNameCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -183,10 +203,11 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS:
+			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				return getSimpleNameCS();
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS:
-				if (resolve) return getInvOrDefCS();
+			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
+				if (resolve)
+					return getInvOrDefCS();
 				return basicGetInvOrDefCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -200,11 +221,11 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)newValue);
+			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) newValue);
 				return;
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS:
-				setInvOrDefCS((InvOrDefCS)newValue);
+			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
+				setInvOrDefCS((InvOrDefCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,11 +239,11 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)null);
+			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) null);
 				return;
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS:
-				setInvOrDefCS((InvOrDefCS)null);
+			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
+				setInvOrDefCS((InvOrDefCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -236,9 +257,9 @@ public abstract class InvOrDefCSImpl extends CSTNodeImpl implements InvOrDefCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS:
+			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				return simpleNameCS != null;
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS:
+			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
 				return invOrDefCS != null;
 		}
 		return super.eIsSet(featureID);

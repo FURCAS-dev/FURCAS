@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypeCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: PrimitiveTypeCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -30,7 +30,10 @@ import org.eclipse.ocl.cst.PrimitiveTypeCS;
  *
  * @generated
  */
-public class PrimitiveTypeCSImpl extends SimpleNameCSImpl implements PrimitiveTypeCS {
+public class PrimitiveTypeCSImpl
+		extends SimpleNameCSImpl
+		implements PrimitiveTypeCS {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

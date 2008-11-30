@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: TupleLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -42,7 +42,10 @@ import org.eclipse.ocl.cst.VariableCS;
  *
  * @generated
  */
-public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLiteralExpCS {
+public class TupleLiteralExpCSImpl
+		extends LiteralExpCSImpl
+		implements TupleLiteralExpCS {
+
 	/**
 	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -79,7 +82,9 @@ public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLite
 	 */
 	public EList<VariableCS> getVariables() {
 		if (variables == null) {
-			variables = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES);
+			variables = new EObjectContainmentEList<VariableCS>(
+				VariableCS.class, this,
+				CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES);
 		}
 		return variables;
 	}
@@ -90,10 +95,12 @@ public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLite
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
-				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES :
+				return ((InternalEList<?>) getVariables()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -106,7 +113,7 @@ public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES :
 				return getVariables();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -121,9 +128,10 @@ public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLite
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES :
 				getVariables().clear();
-				getVariables().addAll((Collection<? extends VariableCS>)newValue);
+				getVariables().addAll(
+					(Collection<? extends VariableCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -137,7 +145,7 @@ public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLite
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES :
 				getVariables().clear();
 				return;
 		}
@@ -152,7 +160,7 @@ public class TupleLiteralExpCSImpl extends LiteralExpCSImpl implements TupleLite
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES:
+			case CSTPackage.TUPLE_LITERAL_EXP_CS__VARIABLES :
 				return variables != null && !variables.isEmpty();
 		}
 		return super.eIsSet(featureID);

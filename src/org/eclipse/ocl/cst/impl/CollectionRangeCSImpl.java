@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: CollectionRangeCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -39,7 +39,10 @@ import org.eclipse.ocl.cst.OCLExpressionCS;
  *
  * @generated
  */
-public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implements CollectionRangeCS {
+public class CollectionRangeCSImpl
+		extends CollectionLiteralPartCSImpl
+		implements CollectionRangeCS {
+
 	/**
 	 * The cached value of the '{@link #getLastExpressionCS() <em>Last Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -83,12 +86,19 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLastExpressionCS(OCLExpressionCS newLastExpressionCS, NotificationChain msgs) {
+	public NotificationChain basicSetLastExpressionCS(
+			OCLExpressionCS newLastExpressionCS, NotificationChain msgs) {
 		OCLExpressionCS oldLastExpressionCS = lastExpressionCS;
 		lastExpressionCS = newLastExpressionCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, oldLastExpressionCS, newLastExpressionCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS,
+				oldLastExpressionCS, newLastExpressionCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -102,14 +112,22 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 		if (newLastExpressionCS != lastExpressionCS) {
 			NotificationChain msgs = null;
 			if (lastExpressionCS != null)
-				msgs = ((InternalEObject)lastExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, null, msgs);
+				msgs = ((InternalEObject) lastExpressionCS).eInverseRemove(
+					this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS,
+					null, msgs);
 			if (newLastExpressionCS != null)
-				msgs = ((InternalEObject)newLastExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, null, msgs);
+				msgs = ((InternalEObject) newLastExpressionCS).eInverseAdd(
+					this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS,
+					null, msgs);
 			msgs = basicSetLastExpressionCS(newLastExpressionCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS, newLastExpressionCS, newLastExpressionCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS,
+				newLastExpressionCS, newLastExpressionCS));
 	}
 
 	/**
@@ -118,9 +136,10 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS :
 				return basicSetLastExpressionCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -134,7 +153,7 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS :
 				return getLastExpressionCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -148,8 +167,8 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-				setLastExpressionCS((OCLExpressionCS)newValue);
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS :
+				setLastExpressionCS((OCLExpressionCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -163,8 +182,8 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
-				setLastExpressionCS((OCLExpressionCS)null);
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS :
+				setLastExpressionCS((OCLExpressionCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -178,7 +197,7 @@ public class CollectionRangeCSImpl extends CollectionLiteralPartCSImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS:
+			case CSTPackage.COLLECTION_RANGE_CS__LAST_EXPRESSION_CS :
 				return lastExpressionCS != null;
 		}
 		return super.eIsSet(featureID);

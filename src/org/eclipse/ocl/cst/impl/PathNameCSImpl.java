@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: PathNameCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -38,7 +38,10 @@ import org.eclipse.ocl.cst.PathNameCS;
  *
  * @generated
  */
-public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
+public class PathNameCSImpl
+		extends TypeCSImpl
+		implements PathNameCS {
+
 	/**
 	 * The cached value of the '{@link #getSequenceOfNames() <em>Sequence Of Names</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -75,7 +78,8 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
 	 */
 	public EList<String> getSequenceOfNames() {
 		if (sequenceOfNames == null) {
-			sequenceOfNames = new EDataTypeEList<String>(String.class, this, CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES);
+			sequenceOfNames = new EDataTypeEList<String>(String.class, this,
+				CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES);
 		}
 		return sequenceOfNames;
 	}
@@ -88,7 +92,7 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
 				return getSequenceOfNames();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -103,9 +107,10 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
 				getSequenceOfNames().clear();
-				getSequenceOfNames().addAll((Collection<? extends String>)newValue);
+				getSequenceOfNames().addAll(
+					(Collection<? extends String>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -119,7 +124,7 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
 				getSequenceOfNames().clear();
 				return;
 		}
@@ -134,7 +139,7 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
 				return sequenceOfNames != null && !sequenceOfNames.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -147,7 +152,8 @@ public class PathNameCSImpl extends TypeCSImpl implements PathNameCS {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sequenceOfNames: "); //$NON-NLS-1$

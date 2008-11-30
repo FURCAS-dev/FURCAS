@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleNameCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: SimpleNameCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -38,7 +38,10 @@ import org.eclipse.ocl.cst.SimpleTypeEnum;
  *
  * @generated
  */
-public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameCS {
+public class SimpleNameCSImpl
+		extends OCLExpressionCSImpl
+		implements SimpleNameCS {
+
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -116,7 +119,8 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.SIMPLE_NAME_CS__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.SIMPLE_NAME_CS__VALUE, oldValue, value));
 	}
 
 	/**
@@ -135,9 +139,12 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 	 */
 	public void setType(SimpleTypeEnum newType) {
 		SimpleTypeEnum oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
+		type = newType == null
+			? TYPE_EDEFAULT
+			: newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.SIMPLE_NAME_CS__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.SIMPLE_NAME_CS__TYPE, oldType, type));
 	}
 
 	/**
@@ -148,9 +155,9 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.SIMPLE_NAME_CS__VALUE:
+			case CSTPackage.SIMPLE_NAME_CS__VALUE :
 				return getValue();
-			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+			case CSTPackage.SIMPLE_NAME_CS__TYPE :
 				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -164,11 +171,11 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.SIMPLE_NAME_CS__VALUE:
-				setValue((String)newValue);
+			case CSTPackage.SIMPLE_NAME_CS__VALUE :
+				setValue((String) newValue);
 				return;
-			case CSTPackage.SIMPLE_NAME_CS__TYPE:
-				setType((SimpleTypeEnum)newValue);
+			case CSTPackage.SIMPLE_NAME_CS__TYPE :
+				setType((SimpleTypeEnum) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,10 +189,10 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.SIMPLE_NAME_CS__VALUE:
+			case CSTPackage.SIMPLE_NAME_CS__VALUE :
 				setValue(VALUE_EDEFAULT);
 				return;
-			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+			case CSTPackage.SIMPLE_NAME_CS__TYPE :
 				setType(TYPE_EDEFAULT);
 				return;
 		}
@@ -200,9 +207,11 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.SIMPLE_NAME_CS__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-			case CSTPackage.SIMPLE_NAME_CS__TYPE:
+			case CSTPackage.SIMPLE_NAME_CS__VALUE :
+				return VALUE_EDEFAULT == null
+					? value != null
+					: !VALUE_EDEFAULT.equals(value);
+			case CSTPackage.SIMPLE_NAME_CS__TYPE :
 				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -215,7 +224,8 @@ public class SimpleNameCSImpl extends OCLExpressionCSImpl implements SimpleNameC
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: "); //$NON-NLS-1$

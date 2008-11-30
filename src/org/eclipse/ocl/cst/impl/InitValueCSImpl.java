@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: InitValueCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: InitValueCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -30,7 +30,10 @@ import org.eclipse.ocl.cst.InitValueCS;
  *
  * @generated
  */
-public class InitValueCSImpl extends InitOrDerValueCSImpl implements InitValueCS {
+public class InitValueCSImpl
+		extends InitOrDerValueCSImpl
+		implements InitValueCS {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

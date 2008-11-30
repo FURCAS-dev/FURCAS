@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionType.java,v 1.6 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: CollectionType.java,v 1.7 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.utilities.TypedASTNode;
  * @model
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface CollectionType<C, O>
 		extends PredefinedType<O>, TypedASTNode {

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: StateExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -38,7 +38,10 @@ import org.eclipse.ocl.cst.StateExpCS;
  *
  * @generated
  */
-public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
+public class StateExpCSImpl
+		extends TypeCSImpl
+		implements StateExpCS {
+
 	/**
 	 * The cached value of the '{@link #getSequenceOfNames() <em>Sequence Of Names</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -75,7 +78,8 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	 */
 	public EList<String> getSequenceOfNames() {
 		if (sequenceOfNames == null) {
-			sequenceOfNames = new EDataTypeUniqueEList<String>(String.class, this, CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES);
+			sequenceOfNames = new EDataTypeUniqueEList<String>(String.class,
+				this, CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES);
 		}
 		return sequenceOfNames;
 	}
@@ -88,7 +92,7 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES :
 				return getSequenceOfNames();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -103,9 +107,10 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES :
 				getSequenceOfNames().clear();
-				getSequenceOfNames().addAll((Collection<? extends String>)newValue);
+				getSequenceOfNames().addAll(
+					(Collection<? extends String>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -119,7 +124,7 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES :
 				getSequenceOfNames().clear();
 				return;
 		}
@@ -134,7 +139,7 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES:
+			case CSTPackage.STATE_EXP_CS__SEQUENCE_OF_NAMES :
 				return sequenceOfNames != null && !sequenceOfNames.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -147,7 +152,8 @@ public class StateExpCSImpl extends TypeCSImpl implements StateExpCS {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sequenceOfNames: "); //$NON-NLS-1$

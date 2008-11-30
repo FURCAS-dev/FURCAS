@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.9 2008/11/24 00:22:00 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.10 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface UtilitiesPackage
 		extends EPackage {
@@ -602,6 +603,7 @@ public interface UtilitiesPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @noimplement This interface is not intended to be implemented by clients.
+	 * @noextend This interface is not intended to be extended by clients.
 	 */
 	interface Literals {
 

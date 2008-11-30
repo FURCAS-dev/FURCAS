@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: StringLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -36,7 +36,10 @@ import org.eclipse.ocl.cst.StringLiteralExpCS;
  *
  * @generated
  */
-public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements StringLiteralExpCS {
+public class StringLiteralExpCSImpl
+		extends PrimitiveLiteralExpCSImpl
+		implements StringLiteralExpCS {
+
 	/**
 	 * The default value of the '{@link #getStringSymbol() <em>String Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,7 +97,9 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 		String oldStringSymbol = stringSymbol;
 		stringSymbol = newStringSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL, oldStringSymbol, stringSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL,
+				oldStringSymbol, stringSymbol));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
 				return getStringSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,8 +124,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-				setStringSymbol((String)newValue);
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
+				setStringSymbol((String) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,7 +139,7 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
 				setStringSymbol(STRING_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -149,8 +154,10 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL:
-				return STRING_SYMBOL_EDEFAULT == null ? stringSymbol != null : !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
+			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
+				return STRING_SYMBOL_EDEFAULT == null
+					? stringSymbol != null
+					: !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,7 +169,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stringSymbol: "); //$NON-NLS-1$

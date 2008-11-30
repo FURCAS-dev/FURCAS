@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: CollectionLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -46,7 +46,10 @@ import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
  *
  * @generated
  */
-public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements CollectionLiteralExpCS {
+public class CollectionLiteralExpCSImpl
+		extends LiteralExpCSImpl
+		implements CollectionLiteralExpCS {
+
 	/**
 	 * The default value of the '{@link #getCollectionType() <em>Collection Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,9 +115,13 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	public void setCollectionType(CollectionTypeIdentifierEnum newCollectionType) {
 		CollectionTypeIdentifierEnum oldCollectionType = collectionType;
-		collectionType = newCollectionType == null ? COLLECTION_TYPE_EDEFAULT : newCollectionType;
+		collectionType = newCollectionType == null
+			? COLLECTION_TYPE_EDEFAULT
+			: newCollectionType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE, oldCollectionType, collectionType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE,
+				oldCollectionType, collectionType));
 	}
 
 	/**
@@ -124,7 +131,9 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	public EList<CollectionLiteralPartCS> getCollectionLiteralParts() {
 		if (collectionLiteralParts == null) {
-			collectionLiteralParts = new EObjectContainmentEList<CollectionLiteralPartCS>(CollectionLiteralPartCS.class, this, CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
+			collectionLiteralParts = new EObjectContainmentEList<CollectionLiteralPartCS>(
+				CollectionLiteralPartCS.class, this,
+				CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS);
 		}
 		return collectionLiteralParts;
 	}
@@ -135,10 +144,12 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				return ((InternalEList<?>)getCollectionLiteralParts()).basicRemove(otherEnd, msgs);
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS :
+				return ((InternalEList<?>) getCollectionLiteralParts())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -151,9 +162,9 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE :
 				return getCollectionType();
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS :
 				return getCollectionLiteralParts();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -168,12 +179,13 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
-				setCollectionType((CollectionTypeIdentifierEnum)newValue);
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE :
+				setCollectionType((CollectionTypeIdentifierEnum) newValue);
 				return;
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS :
 				getCollectionLiteralParts().clear();
-				getCollectionLiteralParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
+				getCollectionLiteralParts().addAll(
+					(Collection<? extends CollectionLiteralPartCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,10 +199,10 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE :
 				setCollectionType(COLLECTION_TYPE_EDEFAULT);
 				return;
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS :
 				getCollectionLiteralParts().clear();
 				return;
 		}
@@ -205,10 +217,11 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE:
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE :
 				return collectionType != COLLECTION_TYPE_EDEFAULT;
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS:
-				return collectionLiteralParts != null && !collectionLiteralParts.isEmpty();
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS :
+				return collectionLiteralParts != null
+					&& !collectionLiteralParts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,7 +233,8 @@ public class CollectionLiteralExpCSImpl extends LiteralExpCSImpl implements Coll
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (collectionType: "); //$NON-NLS-1$
