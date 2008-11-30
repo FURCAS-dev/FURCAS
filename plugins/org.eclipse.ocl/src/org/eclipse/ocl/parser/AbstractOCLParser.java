@@ -11,11 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *             - Bug 243976
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 255599
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
+ * $Id: AbstractOCLParser.java,v 1.3 2008/11/30 21:31:12 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -347,9 +347,28 @@ public abstract class AbstractOCLParser extends AbstractParser
 		OperationCallExpCS result = CSTFactory.eINSTANCE.createOperationCallExpCS();
 		result.setSource(oclExpressionCS);
 		result.setSimpleNameCS(simpleNameCS);
-		result.setIsMarkedPreCS(isMarkedPreCS);
 		result.getArguments().addAll(arguments);
+		
+		if (isAtPre(isMarkedPreCS)) {
+			result.setIsMarkedPreCS(isMarkedPreCS);
+		}
+		
 		return result;
+	}
+	
+	/**
+	 * Queries whether the specified <tt>{@literal @pre}</tt> construct was
+	 * actually present in the text. This method is safe with null inputs.
+	 * 
+	 * @param atPreCS
+	 *            an "at pre" construct or <code>null</code>
+	 * @return <code>true</code> if the <tt>atPreCS</tt> is present;
+	 *         <code>false</code>, otherwise
+	 * 
+	 * @since 1.3
+	 */
+	protected boolean isAtPre(IsMarkedPreCS atPreCS) {
+		return (atPreCS != null) && atPreCS.isPre();
 	}
 
 	protected OperationCallExpCS createOperationCallExpCS(
@@ -373,8 +392,12 @@ public abstract class AbstractOCLParser extends AbstractParser
 			StateExpCS stateExpCS) {
 		OperationCallExpCS result = CSTFactory.eINSTANCE.createOperationCallExpCS();
 		result.setSimpleNameCS(simpleNameCS);
-		result.setIsMarkedPreCS(isMarkedPreCS);
 		result.getArguments().add(stateExpCS);
+		
+		if (isAtPre(isMarkedPreCS)) {
+			result.setIsMarkedPreCS(isMarkedPreCS);
+		}
+		
 		return result;
 	}
 	
@@ -391,7 +414,11 @@ public abstract class AbstractOCLParser extends AbstractParser
 		VariableExpCS result = CSTFactory.eINSTANCE.createVariableExpCS();
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
-		result.setIsMarkedPreCS(isMarkedPreCS);
+		
+		if (isAtPre(isMarkedPreCS)) {
+			result.setIsMarkedPreCS(isMarkedPreCS);
+		}
+		
 		return result;
 	}
 
@@ -601,7 +628,11 @@ public abstract class AbstractOCLParser extends AbstractParser
 		FeatureCallExpCS result = CSTFactory.eINSTANCE.createFeatureCallExpCS();
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
-		result.setIsMarkedPreCS(isMarkedPreCS);
+		
+		if ((isMarkedPreCS != null) && isMarkedPreCS.isPre()) {
+			result.setIsMarkedPreCS(isMarkedPreCS);
+		}
+		
 		return result;
 	}
 
