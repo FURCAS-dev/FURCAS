@@ -12,11 +12,12 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *               - Bug 237126, 245586, 213886
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
- *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990
+ *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
+ *               255599
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.18 2008/11/12 15:25:50 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.19 2008/11/30 21:31:12 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -59,6 +60,7 @@ import org.eclipse.ocl.cst.IntegerLiteralExpCS;
 import org.eclipse.ocl.cst.InvCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
 import org.eclipse.ocl.cst.InvalidLiteralExpCS;
+import org.eclipse.ocl.cst.IsMarkedPreCS;
 import org.eclipse.ocl.cst.IterateExpCS;
 import org.eclipse.ocl.cst.IteratorExpCS;
 import org.eclipse.ocl.cst.LetExpCS;
@@ -1835,7 +1837,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		OCLExpression<C> astNode = simpleNameCS(simpleNameCS, env, null);
 		List<OCLExpression<C>> qualifiers = qualifiersCS(variableExpCS.getArguments(), env, astNode);
 
-		if (variableExpCS.getIsMarkedPreCS().isPre()) {
+		if (isAtPre(variableExpCS)) {
 			if (astNode instanceof FeatureCallExp) {
 				((FeatureCallExp<C>) astNode).setMarkedPre(true);
 			} else {
@@ -1868,6 +1870,38 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		return astNode;
+	}
+
+	/**
+	 * Queries whether the specified call expression is adorned with
+	 * <tt>{@literal @pre}</tt>.
+	 * 
+	 * @param callExp
+	 *            a call expression
+	 * 
+	 * @return whether the expression is marked pre
+	 * 
+	 * @since 1.3
+	 */
+	protected boolean isAtPre(FeatureCallExpCS callExp) {
+		IsMarkedPreCS atPre = callExp.getIsMarkedPreCS();
+		return (atPre != null) && atPre.isPre();
+	}
+
+	/**
+	 * Queries whether the specified variable expression is adorned with
+	 * <tt>{@literal @pre}</tt>.
+	 * 
+	 * @param variableExp
+	 *            a variable expression
+	 * 
+	 * @return whether the expression is marked pre
+	 * 
+	 * @since 1.3
+	 */
+	protected boolean isAtPre(VariableExpCS callExp) {
+		IsMarkedPreCS atPre = callExp.getIsMarkedPreCS();
+		return (atPre != null) && atPre.isPre();
 	}
 
 	/**
@@ -3685,7 +3719,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 			List<OCLExpression<C>> qualifiers = qualifiersCS(modelPropertyCallExpCS.getArguments(), env, astNode);
 
-			if (modelPropertyCallExpCS.getIsMarkedPreCS().isPre()) {
+			if (isAtPre(modelPropertyCallExpCS)) {
 				if (astNode instanceof FeatureCallExp) {
 					((FeatureCallExp<C>) astNode).setMarkedPre(true);
 				} else {
@@ -3882,7 +3916,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
             }
         }
         
-		astNode.setMarkedPre(operationCallExpCS.getIsMarkedPreCS().isPre());
+		astNode.setMarkedPre(isAtPre(operationCallExpCS));
 
 		initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
 
