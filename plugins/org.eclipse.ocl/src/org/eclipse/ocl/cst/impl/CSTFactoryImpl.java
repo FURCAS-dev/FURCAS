@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.3 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: CSTFactoryImpl.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -83,7 +83,10 @@ import org.eclipse.ocl.cst.VariableExpCS;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
+public class CSTFactoryImpl
+		extends EFactoryImpl
+		implements CSTFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -92,12 +95,12 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 */
 	public static CSTFactory init() {
 		try {
-			CSTFactory theCSTFactory = (CSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/CST"); //$NON-NLS-1$ 
+			CSTFactory theCSTFactory = (CSTFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/CST"); //$NON-NLS-1$ 
 			if (theCSTFactory != null) {
 				return theCSTFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new CSTFactoryImpl();
@@ -121,51 +124,95 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case CSTPackage.PACKAGE_DECLARATION_CS: return createPackageDeclarationCS();
-			case CSTPackage.PATH_NAME_CS: return createPathNameCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS: return createPropertyContextCS();
-			case CSTPackage.SIMPLE_NAME_CS: return createSimpleNameCS();
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS: return createClassifierContextDeclCS();
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS: return createOperationContextDeclCS();
-			case CSTPackage.OPERATION_CS: return createOperationCS();
-			case CSTPackage.VARIABLE_CS: return createVariableCS();
-			case CSTPackage.PRE_POST_OR_BODY_DECL_CS: return createPrePostOrBodyDeclCS();
-			case CSTPackage.DER_VALUE_CS: return createDerValueCS();
-			case CSTPackage.INIT_VALUE_CS: return createInitValueCS();
-			case CSTPackage.INV_CS: return createInvCS();
-			case CSTPackage.DEF_CS: return createDefCS();
-			case CSTPackage.DEF_EXPRESSION_CS: return createDefExpressionCS();
-			case CSTPackage.VARIABLE_EXP_CS: return createVariableExpCS();
-			case CSTPackage.IS_MARKED_PRE_CS: return createIsMarkedPreCS();
-			case CSTPackage.PRIMITIVE_TYPE_CS: return createPrimitiveTypeCS();
-			case CSTPackage.TUPLE_TYPE_CS: return createTupleTypeCS();
-			case CSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
-			case CSTPackage.LET_EXP_CS: return createLetExpCS();
-			case CSTPackage.IF_EXP_CS: return createIfExpCS();
-			case CSTPackage.MESSAGE_EXP_CS: return createMessageExpCS();
-			case CSTPackage.OCL_MESSAGE_ARG_CS: return createOCLMessageArgCS();
-			case CSTPackage.ENUM_LITERAL_EXP_CS: return createEnumLiteralExpCS();
-			case CSTPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
-			case CSTPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
-			case CSTPackage.TUPLE_LITERAL_EXP_CS: return createTupleLiteralExpCS();
-			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
-			case CSTPackage.INTEGER_LITERAL_EXP_CS: return createIntegerLiteralExpCS();
-			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS: return createUnlimitedNaturalLiteralExpCS();
-			case CSTPackage.REAL_LITERAL_EXP_CS: return createRealLiteralExpCS();
-			case CSTPackage.STRING_LITERAL_EXP_CS: return createStringLiteralExpCS();
-			case CSTPackage.BOOLEAN_LITERAL_EXP_CS: return createBooleanLiteralExpCS();
-			case CSTPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
-			case CSTPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
-			case CSTPackage.COLLECTION_RANGE_CS: return createCollectionRangeCS();
-			case CSTPackage.CALL_EXP_CS: return createCallExpCS();
-			case CSTPackage.LOOP_EXP_CS: return createLoopExpCS();
-			case CSTPackage.ITERATOR_EXP_CS: return createIteratorExpCS();
-			case CSTPackage.ITERATE_EXP_CS: return createIterateExpCS();
-			case CSTPackage.FEATURE_CALL_EXP_CS: return createFeatureCallExpCS();
-			case CSTPackage.OPERATION_CALL_EXP_CS: return createOperationCallExpCS();
-			case CSTPackage.STATE_EXP_CS: return createStateExpCS();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case CSTPackage.PACKAGE_DECLARATION_CS :
+				return createPackageDeclarationCS();
+			case CSTPackage.PATH_NAME_CS :
+				return createPathNameCS();
+			case CSTPackage.PROPERTY_CONTEXT_CS :
+				return createPropertyContextCS();
+			case CSTPackage.SIMPLE_NAME_CS :
+				return createSimpleNameCS();
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS :
+				return createClassifierContextDeclCS();
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS :
+				return createOperationContextDeclCS();
+			case CSTPackage.OPERATION_CS :
+				return createOperationCS();
+			case CSTPackage.VARIABLE_CS :
+				return createVariableCS();
+			case CSTPackage.PRE_POST_OR_BODY_DECL_CS :
+				return createPrePostOrBodyDeclCS();
+			case CSTPackage.DER_VALUE_CS :
+				return createDerValueCS();
+			case CSTPackage.INIT_VALUE_CS :
+				return createInitValueCS();
+			case CSTPackage.INV_CS :
+				return createInvCS();
+			case CSTPackage.DEF_CS :
+				return createDefCS();
+			case CSTPackage.DEF_EXPRESSION_CS :
+				return createDefExpressionCS();
+			case CSTPackage.VARIABLE_EXP_CS :
+				return createVariableExpCS();
+			case CSTPackage.IS_MARKED_PRE_CS :
+				return createIsMarkedPreCS();
+			case CSTPackage.PRIMITIVE_TYPE_CS :
+				return createPrimitiveTypeCS();
+			case CSTPackage.TUPLE_TYPE_CS :
+				return createTupleTypeCS();
+			case CSTPackage.COLLECTION_TYPE_CS :
+				return createCollectionTypeCS();
+			case CSTPackage.LET_EXP_CS :
+				return createLetExpCS();
+			case CSTPackage.IF_EXP_CS :
+				return createIfExpCS();
+			case CSTPackage.MESSAGE_EXP_CS :
+				return createMessageExpCS();
+			case CSTPackage.OCL_MESSAGE_ARG_CS :
+				return createOCLMessageArgCS();
+			case CSTPackage.ENUM_LITERAL_EXP_CS :
+				return createEnumLiteralExpCS();
+			case CSTPackage.COLLECTION_LITERAL_EXP_CS :
+				return createCollectionLiteralExpCS();
+			case CSTPackage.COLLECTION_LITERAL_PART_CS :
+				return createCollectionLiteralPartCS();
+			case CSTPackage.TUPLE_LITERAL_EXP_CS :
+				return createTupleLiteralExpCS();
+			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS :
+				return createPrimitiveLiteralExpCS();
+			case CSTPackage.INTEGER_LITERAL_EXP_CS :
+				return createIntegerLiteralExpCS();
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS :
+				return createUnlimitedNaturalLiteralExpCS();
+			case CSTPackage.REAL_LITERAL_EXP_CS :
+				return createRealLiteralExpCS();
+			case CSTPackage.STRING_LITERAL_EXP_CS :
+				return createStringLiteralExpCS();
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS :
+				return createBooleanLiteralExpCS();
+			case CSTPackage.NULL_LITERAL_EXP_CS :
+				return createNullLiteralExpCS();
+			case CSTPackage.INVALID_LITERAL_EXP_CS :
+				return createInvalidLiteralExpCS();
+			case CSTPackage.COLLECTION_RANGE_CS :
+				return createCollectionRangeCS();
+			case CSTPackage.CALL_EXP_CS :
+				return createCallExpCS();
+			case CSTPackage.LOOP_EXP_CS :
+				return createLoopExpCS();
+			case CSTPackage.ITERATOR_EXP_CS :
+				return createIteratorExpCS();
+			case CSTPackage.ITERATE_EXP_CS :
+				return createIterateExpCS();
+			case CSTPackage.FEATURE_CALL_EXP_CS :
+				return createFeatureCallExpCS();
+			case CSTPackage.OPERATION_CALL_EXP_CS :
+				return createOperationCallExpCS();
+			case CSTPackage.STATE_EXP_CS :
+				return createStateExpCS();
+			default :
+				throw new IllegalArgumentException(
+					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -177,20 +224,23 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case CSTPackage.SIMPLE_TYPE_ENUM:
+			case CSTPackage.SIMPLE_TYPE_ENUM :
 				return createSimpleTypeEnumFromString(eDataType, initialValue);
-			case CSTPackage.PRE_POST_OR_BODY_ENUM:
-				return createPrePostOrBodyEnumFromString(eDataType, initialValue);
-			case CSTPackage.COLLECTION_TYPE_IDENTIFIER_ENUM:
-				return createCollectionTypeIdentifierEnumFromString(eDataType, initialValue);
-			case CSTPackage.MESSAGE_EXP_KIND:
+			case CSTPackage.PRE_POST_OR_BODY_ENUM :
+				return createPrePostOrBodyEnumFromString(eDataType,
+					initialValue);
+			case CSTPackage.COLLECTION_TYPE_IDENTIFIER_ENUM :
+				return createCollectionTypeIdentifierEnumFromString(eDataType,
+					initialValue);
+			case CSTPackage.MESSAGE_EXP_KIND :
 				return createMessageExpKindFromString(eDataType, initialValue);
-			case CSTPackage.DOT_OR_ARROW_ENUM:
+			case CSTPackage.DOT_OR_ARROW_ENUM :
 				return createDotOrArrowEnumFromString(eDataType, initialValue);
-			case CSTPackage.ITOKEN:
+			case CSTPackage.ITOKEN :
 				return createITokenFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			default :
+				throw new IllegalArgumentException(
+					"The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -202,20 +252,23 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case CSTPackage.SIMPLE_TYPE_ENUM:
+			case CSTPackage.SIMPLE_TYPE_ENUM :
 				return convertSimpleTypeEnumToString(eDataType, instanceValue);
-			case CSTPackage.PRE_POST_OR_BODY_ENUM:
-				return convertPrePostOrBodyEnumToString(eDataType, instanceValue);
-			case CSTPackage.COLLECTION_TYPE_IDENTIFIER_ENUM:
-				return convertCollectionTypeIdentifierEnumToString(eDataType, instanceValue);
-			case CSTPackage.MESSAGE_EXP_KIND:
+			case CSTPackage.PRE_POST_OR_BODY_ENUM :
+				return convertPrePostOrBodyEnumToString(eDataType,
+					instanceValue);
+			case CSTPackage.COLLECTION_TYPE_IDENTIFIER_ENUM :
+				return convertCollectionTypeIdentifierEnumToString(eDataType,
+					instanceValue);
+			case CSTPackage.MESSAGE_EXP_KIND :
 				return convertMessageExpKindToString(eDataType, instanceValue);
-			case CSTPackage.DOT_OR_ARROW_ENUM:
+			case CSTPackage.DOT_OR_ARROW_ENUM :
 				return convertDotOrArrowEnumToString(eDataType, instanceValue);
-			case CSTPackage.ITOKEN:
+			case CSTPackage.ITOKEN :
 				return convertITokenToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			default :
+				throw new IllegalArgumentException(
+					"The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -491,15 +544,15 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS() {
+	public UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS() {
 		UnlimitedNaturalLiteralExpCSImpl unlimitedNaturalLiteralExpCS = new UnlimitedNaturalLiteralExpCSImpl();
 		return unlimitedNaturalLiteralExpCS;
 	}
 
-    /**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -654,9 +707,12 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrePostOrBodyEnum createPrePostOrBodyEnumFromString(EDataType eDataType, String initialValue) {
+	public PrePostOrBodyEnum createPrePostOrBodyEnumFromString(
+			EDataType eDataType, String initialValue) {
 		PrePostOrBodyEnum result = PrePostOrBodyEnum.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null)
+			throw new IllegalArgumentException(
+				"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -665,8 +721,11 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertPrePostOrBodyEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public String convertPrePostOrBodyEnumToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null
+			? null
+			: instanceValue.toString();
 	}
 
 	/**
@@ -674,9 +733,12 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleTypeEnum createSimpleTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public SimpleTypeEnum createSimpleTypeEnumFromString(EDataType eDataType,
+			String initialValue) {
 		SimpleTypeEnum result = SimpleTypeEnum.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null)
+			throw new IllegalArgumentException(
+				"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -685,8 +747,11 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertSimpleTypeEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public String convertSimpleTypeEnumToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null
+			? null
+			: instanceValue.toString();
 	}
 
 	/**
@@ -694,9 +759,13 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CollectionTypeIdentifierEnum createCollectionTypeIdentifierEnumFromString(EDataType eDataType, String initialValue) {
-		CollectionTypeIdentifierEnum result = CollectionTypeIdentifierEnum.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	public CollectionTypeIdentifierEnum createCollectionTypeIdentifierEnumFromString(
+			EDataType eDataType, String initialValue) {
+		CollectionTypeIdentifierEnum result = CollectionTypeIdentifierEnum
+			.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+				"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -705,8 +774,11 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertCollectionTypeIdentifierEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public String convertCollectionTypeIdentifierEnumToString(
+			EDataType eDataType, Object instanceValue) {
+		return instanceValue == null
+			? null
+			: instanceValue.toString();
 	}
 
 	/**
@@ -714,9 +786,12 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DotOrArrowEnum createDotOrArrowEnumFromString(EDataType eDataType, String initialValue) {
+	public DotOrArrowEnum createDotOrArrowEnumFromString(EDataType eDataType,
+			String initialValue) {
 		DotOrArrowEnum result = DotOrArrowEnum.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null)
+			throw new IllegalArgumentException(
+				"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -725,8 +800,11 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertDotOrArrowEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public String convertDotOrArrowEnumToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null
+			? null
+			: instanceValue.toString();
 	}
 
 	/**
@@ -735,8 +813,9 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IToken createITokenFromString(EDataType eDataType, String initialValue) {
-		return (IToken)super.createFromString(eDataType, initialValue);
+	public IToken createITokenFromString(EDataType eDataType,
+			String initialValue) {
+		return (IToken) super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -745,7 +824,8 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertITokenToString(EDataType eDataType, Object instanceValue) {
+	public String convertITokenToString(EDataType eDataType,
+			Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
@@ -754,9 +834,12 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageExpKind createMessageExpKindFromString(EDataType eDataType, String initialValue) {
+	public MessageExpKind createMessageExpKindFromString(EDataType eDataType,
+			String initialValue) {
 		MessageExpKind result = MessageExpKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null)
+			throw new IllegalArgumentException(
+				"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -765,8 +848,11 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertMessageExpKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public String convertMessageExpKindToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null
+			? null
+			: instanceValue.toString();
 	}
 
 	/**
@@ -775,7 +861,7 @@ public class CSTFactoryImpl extends EFactoryImpl implements CSTFactory {
 	 * @generated
 	 */
 	public CSTPackage getCSTPackage() {
-		return (CSTPackage)getEPackage();
+		return (CSTPackage) getEPackage();
 	}
 
 	/**

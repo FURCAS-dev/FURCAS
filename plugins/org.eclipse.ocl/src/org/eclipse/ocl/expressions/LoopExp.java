@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.7 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: LoopExp.java,v 1.8 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface LoopExp<C, PM>
 		extends CallExp<C> {

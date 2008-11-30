@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: PropertyContextCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -45,7 +45,10 @@ import org.eclipse.ocl.cst.TypeCS;
  *
  * @generated
  */
-public class PropertyContextCSImpl extends ContextDeclCSImpl implements PropertyContextCS {
+public class PropertyContextCSImpl
+		extends ContextDeclCSImpl
+		implements PropertyContextCS {
+
 	/**
 	 * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -119,12 +122,18 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS,
+			NotificationChain msgs) {
 		PathNameCS oldPathNameCS = pathNameCS;
 		pathNameCS = newPathNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS,
+				oldPathNameCS, newPathNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -138,14 +147,22 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 		if (newPathNameCS != pathNameCS) {
 			NotificationChain msgs = null;
 			if (pathNameCS != null)
-				msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) pathNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, null,
+					msgs);
 			if (newPathNameCS != null)
-				msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newPathNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, null,
+					msgs);
 			msgs = basicSetPathNameCS(newPathNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS, newPathNameCS,
+				newPathNameCS));
 	}
 
 	/**
@@ -162,12 +179,19 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS,
+			NotificationChain msgs) {
 		SimpleNameCS oldSimpleNameCS = simpleNameCS;
 		simpleNameCS = newSimpleNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS,
+				oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -181,14 +205,22 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 		if (newSimpleNameCS != simpleNameCS) {
 			NotificationChain msgs = null;
 			if (simpleNameCS != null)
-				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) simpleNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS, null,
+					msgs);
 			if (newSimpleNameCS != null)
-				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newSimpleNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS, null,
+					msgs);
 			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS,
+				newSimpleNameCS, newSimpleNameCS));
 	}
 
 	/**
@@ -205,12 +237,18 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
+	public NotificationChain basicSetTypeCS(TypeCS newTypeCS,
+			NotificationChain msgs) {
 		TypeCS oldTypeCS = typeCS;
 		typeCS = newTypeCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, oldTypeCS, newTypeCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS,
+				oldTypeCS, newTypeCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -224,14 +262,19 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 		if (newTypeCS != typeCS) {
 			NotificationChain msgs = null;
 			if (typeCS != null)
-				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) typeCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, null, msgs);
 			if (newTypeCS != null)
-				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) newTypeCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, null, msgs);
 			msgs = basicSetTypeCS(newTypeCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, newTypeCS, newTypeCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS, newTypeCS, newTypeCS));
 	}
 
 	/**
@@ -248,12 +291,19 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitOrDerValueCS(InitOrDerValueCS newInitOrDerValueCS, NotificationChain msgs) {
+	public NotificationChain basicSetInitOrDerValueCS(
+			InitOrDerValueCS newInitOrDerValueCS, NotificationChain msgs) {
 		InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
 		initOrDerValueCS = newInitOrDerValueCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS, oldInitOrDerValueCS, newInitOrDerValueCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
+				oldInitOrDerValueCS, newInitOrDerValueCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -267,14 +317,22 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 		if (newInitOrDerValueCS != initOrDerValueCS) {
 			NotificationChain msgs = null;
 			if (initOrDerValueCS != null)
-				msgs = ((InternalEObject)initOrDerValueCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS, null, msgs);
+				msgs = ((InternalEObject) initOrDerValueCS).eInverseRemove(
+					this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
+					null, msgs);
 			if (newInitOrDerValueCS != null)
-				msgs = ((InternalEObject)newInitOrDerValueCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS, null, msgs);
+				msgs = ((InternalEObject) newInitOrDerValueCS).eInverseAdd(
+					this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
+					null, msgs);
 			msgs = basicSetInitOrDerValueCS(newInitOrDerValueCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS, newInitOrDerValueCS, newInitOrDerValueCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
+				newInitOrDerValueCS, newInitOrDerValueCS));
 	}
 
 	/**
@@ -283,15 +341,16 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS :
 				return basicSetPathNameCS(null, msgs);
-			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS :
 				return basicSetSimpleNameCS(null, msgs);
-			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				return basicSetTypeCS(null, msgs);
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
 				return basicSetInitOrDerValueCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -305,13 +364,13 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS :
 				return getPathNameCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS :
 				return getSimpleNameCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				return getTypeCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
 				return getInitOrDerValueCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -325,17 +384,17 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS:
-				setPathNameCS((PathNameCS)newValue);
+			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS :
+				setPathNameCS((PathNameCS) newValue);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)newValue);
+			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) newValue);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS:
-				setTypeCS((TypeCS)newValue);
+			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
+				setTypeCS((TypeCS) newValue);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS:
-				setInitOrDerValueCS((InitOrDerValueCS)newValue);
+			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
+				setInitOrDerValueCS((InitOrDerValueCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -349,17 +408,17 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS:
-				setPathNameCS((PathNameCS)null);
+			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS :
+				setPathNameCS((PathNameCS) null);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)null);
+			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) null);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS:
-				setTypeCS((TypeCS)null);
+			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
+				setTypeCS((TypeCS) null);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS:
-				setInitOrDerValueCS((InitOrDerValueCS)null);
+			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
+				setInitOrDerValueCS((InitOrDerValueCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -373,13 +432,13 @@ public class PropertyContextCSImpl extends ContextDeclCSImpl implements Property
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__PATH_NAME_CS :
 				return pathNameCS != null;
-			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS :
 				return simpleNameCS != null;
-			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				return typeCS != null;
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS:
+			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
 				return initOrDerValueCS != null;
 		}
 		return super.eIsSet(featureID);

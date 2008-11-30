@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: FeatureCallExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -46,7 +46,10 @@ import org.eclipse.ocl.cst.OCLExpressionCS;
  *
  * @generated
  */
-public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallExpCS {
+public class FeatureCallExpCSImpl
+		extends CallExpCSImpl
+		implements FeatureCallExpCS {
+
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -93,7 +96,9 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	 */
 	public EList<OCLExpressionCS> getArguments() {
 		if (arguments == null) {
-			arguments = new EObjectContainmentEList<OCLExpressionCS>(OCLExpressionCS.class, this, CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS);
+			arguments = new EObjectContainmentEList<OCLExpressionCS>(
+				OCLExpressionCS.class, this,
+				CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS);
 		}
 		return arguments;
 	}
@@ -112,12 +117,19 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIsMarkedPreCS(IsMarkedPreCS newIsMarkedPreCS, NotificationChain msgs) {
+	public NotificationChain basicSetIsMarkedPreCS(
+			IsMarkedPreCS newIsMarkedPreCS, NotificationChain msgs) {
 		IsMarkedPreCS oldIsMarkedPreCS = isMarkedPreCS;
 		isMarkedPreCS = newIsMarkedPreCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS, oldIsMarkedPreCS, newIsMarkedPreCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS,
+				oldIsMarkedPreCS, newIsMarkedPreCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -131,14 +143,22 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 		if (newIsMarkedPreCS != isMarkedPreCS) {
 			NotificationChain msgs = null;
 			if (isMarkedPreCS != null)
-				msgs = ((InternalEObject)isMarkedPreCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS, null, msgs);
+				msgs = ((InternalEObject) isMarkedPreCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS,
+					null, msgs);
 			if (newIsMarkedPreCS != null)
-				msgs = ((InternalEObject)newIsMarkedPreCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS, null, msgs);
+				msgs = ((InternalEObject) newIsMarkedPreCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS,
+					null, msgs);
 			msgs = basicSetIsMarkedPreCS(newIsMarkedPreCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS, newIsMarkedPreCS, newIsMarkedPreCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS,
+				newIsMarkedPreCS, newIsMarkedPreCS));
 	}
 
 	/**
@@ -147,11 +167,13 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
-			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS :
+				return ((InternalEList<?>) getArguments()).basicRemove(
+					otherEnd, msgs);
+			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS :
 				return basicSetIsMarkedPreCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -165,9 +187,9 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS :
 				return getArguments();
-			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS :
 				return getIsMarkedPreCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -182,12 +204,13 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS :
 				getArguments().clear();
-				getArguments().addAll((Collection<? extends OCLExpressionCS>)newValue);
+				getArguments().addAll(
+					(Collection<? extends OCLExpressionCS>) newValue);
 				return;
-			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS:
-				setIsMarkedPreCS((IsMarkedPreCS)newValue);
+			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS :
+				setIsMarkedPreCS((IsMarkedPreCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,11 +224,11 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS :
 				getArguments().clear();
 				return;
-			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS:
-				setIsMarkedPreCS((IsMarkedPreCS)null);
+			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS :
+				setIsMarkedPreCS((IsMarkedPreCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -219,9 +242,9 @@ public class FeatureCallExpCSImpl extends CallExpCSImpl implements FeatureCallEx
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__ARGUMENTS :
 				return arguments != null && !arguments.isEmpty();
-			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS:
+			case CSTPackage.FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS :
 				return isMarkedPreCS != null;
 		}
 		return super.eIsSet(featureID);

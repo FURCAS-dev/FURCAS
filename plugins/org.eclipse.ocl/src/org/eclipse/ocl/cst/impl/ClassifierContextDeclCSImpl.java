@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: ClassifierContextDeclCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -46,7 +46,10 @@ import org.eclipse.ocl.cst.PathNameCS;
  *
  * @generated
  */
-public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements ClassifierContextDeclCS {
+public class ClassifierContextDeclCSImpl
+		extends ContextDeclCSImpl
+		implements ClassifierContextDeclCS {
+
 	/**
 	 * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -111,12 +114,19 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS,
+			NotificationChain msgs) {
 		PathNameCS oldPathNameCS = pathNameCS;
 		pathNameCS = newPathNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS,
+				oldPathNameCS, newPathNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -130,14 +140,22 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 		if (newPathNameCS != pathNameCS) {
 			NotificationChain msgs = null;
 			if (pathNameCS != null)
-				msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) pathNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS,
+					null, msgs);
 			if (newPathNameCS != null)
-				msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newPathNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS,
+					null, msgs);
 			msgs = basicSetPathNameCS(newPathNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS,
+				newPathNameCS, newPathNameCS));
 	}
 
 	/**
@@ -147,11 +165,13 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	public InvOrDefCS getInvOrDefCS() {
 		if (invOrDefCS != null && invOrDefCS.eIsProxy()) {
-			InternalEObject oldInvOrDefCS = (InternalEObject)invOrDefCS;
-			invOrDefCS = (InvOrDefCS)eResolveProxy(oldInvOrDefCS);
+			InternalEObject oldInvOrDefCS = (InternalEObject) invOrDefCS;
+			invOrDefCS = (InvOrDefCS) eResolveProxy(oldInvOrDefCS);
 			if (invOrDefCS != oldInvOrDefCS) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS,
+						oldInvOrDefCS, invOrDefCS));
 			}
 		}
 		return invOrDefCS;
@@ -176,7 +196,9 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 		InvOrDefCS oldInvOrDefCS = invOrDefCS;
 		invOrDefCS = newInvOrDefCS;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS, oldInvOrDefCS, invOrDefCS));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS,
+				oldInvOrDefCS, invOrDefCS));
 	}
 
 	/**
@@ -187,7 +209,9 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	public EList<InvOrDefCS> getConstraints() {
 		if (constraints == null) {
-			constraints = new EObjectContainmentEList<InvOrDefCS>(InvOrDefCS.class, this, CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS);
+			constraints = new EObjectContainmentEList<InvOrDefCS>(
+				InvOrDefCS.class, this,
+				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS);
 		}
 		return constraints;
 	}
@@ -198,12 +222,14 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				return basicSetPathNameCS(null, msgs);
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
+				return ((InternalEList<?>) getConstraints()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -216,12 +242,13 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				return getPathNameCS();
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-				if (resolve) return getInvOrDefCS();
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
+				if (resolve)
+					return getInvOrDefCS();
 				return basicGetInvOrDefCS();
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -236,15 +263,16 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-				setPathNameCS((PathNameCS)newValue);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
+				setPathNameCS((PathNameCS) newValue);
 				return;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-				setInvOrDefCS((InvOrDefCS)newValue);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
+				setInvOrDefCS((InvOrDefCS) newValue);
 				return;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends InvOrDefCS>)newValue);
+				getConstraints().addAll(
+					(Collection<? extends InvOrDefCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -258,13 +286,13 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
-				setPathNameCS((PathNameCS)null);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
+				setPathNameCS((PathNameCS) null);
 				return;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
-				setInvOrDefCS((InvOrDefCS)null);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
+				setInvOrDefCS((InvOrDefCS) null);
 				return;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				getConstraints().clear();
 				return;
 		}
@@ -279,11 +307,11 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				return pathNameCS != null;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
 				return invOrDefCS != null;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS:
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);

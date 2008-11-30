@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: LetExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -46,7 +46,10 @@ import org.eclipse.ocl.cst.VariableCS;
  *
  * @generated
  */
-public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
+public class LetExpCSImpl
+		extends OCLExpressionCSImpl
+		implements LetExpCS {
+
 	/**
 	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -93,7 +96,8 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	 */
 	public EList<VariableCS> getVariables() {
 		if (variables == null) {
-			variables = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.LET_EXP_CS__VARIABLES);
+			variables = new EObjectContainmentEList<VariableCS>(
+				VariableCS.class, this, CSTPackage.LET_EXP_CS__VARIABLES);
 		}
 		return variables;
 	}
@@ -112,12 +116,18 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInExpression(OCLExpressionCS newInExpression, NotificationChain msgs) {
+	public NotificationChain basicSetInExpression(
+			OCLExpressionCS newInExpression, NotificationChain msgs) {
 		OCLExpressionCS oldInExpression = inExpression;
 		inExpression = newInExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.LET_EXP_CS__IN_EXPRESSION, oldInExpression, newInExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.LET_EXP_CS__IN_EXPRESSION,
+				oldInExpression, newInExpression);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -131,14 +141,20 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 		if (newInExpression != inExpression) {
 			NotificationChain msgs = null;
 			if (inExpression != null)
-				msgs = ((InternalEObject)inExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LET_EXP_CS__IN_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) inExpression).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.LET_EXP_CS__IN_EXPRESSION, null, msgs);
 			if (newInExpression != null)
-				msgs = ((InternalEObject)newInExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.LET_EXP_CS__IN_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newInExpression).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.LET_EXP_CS__IN_EXPRESSION, null, msgs);
 			msgs = basicSetInExpression(newInExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.LET_EXP_CS__IN_EXPRESSION, newInExpression, newInExpression));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.LET_EXP_CS__IN_EXPRESSION, newInExpression,
+				newInExpression));
 	}
 
 	/**
@@ -147,11 +163,13 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.LET_EXP_CS__VARIABLES:
-				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
-			case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
+			case CSTPackage.LET_EXP_CS__VARIABLES :
+				return ((InternalEList<?>) getVariables()).basicRemove(
+					otherEnd, msgs);
+			case CSTPackage.LET_EXP_CS__IN_EXPRESSION :
 				return basicSetInExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -165,9 +183,9 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.LET_EXP_CS__VARIABLES:
+			case CSTPackage.LET_EXP_CS__VARIABLES :
 				return getVariables();
-			case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
+			case CSTPackage.LET_EXP_CS__IN_EXPRESSION :
 				return getInExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -182,12 +200,13 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.LET_EXP_CS__VARIABLES:
+			case CSTPackage.LET_EXP_CS__VARIABLES :
 				getVariables().clear();
-				getVariables().addAll((Collection<? extends VariableCS>)newValue);
+				getVariables().addAll(
+					(Collection<? extends VariableCS>) newValue);
 				return;
-			case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
-				setInExpression((OCLExpressionCS)newValue);
+			case CSTPackage.LET_EXP_CS__IN_EXPRESSION :
+				setInExpression((OCLExpressionCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,11 +220,11 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.LET_EXP_CS__VARIABLES:
+			case CSTPackage.LET_EXP_CS__VARIABLES :
 				getVariables().clear();
 				return;
-			case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
-				setInExpression((OCLExpressionCS)null);
+			case CSTPackage.LET_EXP_CS__IN_EXPRESSION :
+				setInExpression((OCLExpressionCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -219,9 +238,9 @@ public class LetExpCSImpl extends OCLExpressionCSImpl implements LetExpCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.LET_EXP_CS__VARIABLES:
+			case CSTPackage.LET_EXP_CS__VARIABLES :
 				return variables != null && !variables.isEmpty();
-			case CSTPackage.LET_EXP_CS__IN_EXPRESSION:
+			case CSTPackage.LET_EXP_CS__IN_EXPRESSION :
 				return inExpression != null;
 		}
 		return super.eIsSet(featureID);

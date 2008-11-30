@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: CallExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -43,7 +43,10 @@ import org.eclipse.ocl.cst.SimpleNameCS;
  *
  * @generated
  */
-public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
+public class CallExpCSImpl
+		extends OCLExpressionCSImpl
+		implements CallExpCS {
+
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -117,12 +120,18 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(OCLExpressionCS newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(OCLExpressionCS newSource,
+			NotificationChain msgs) {
 		OCLExpressionCS oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.CALL_EXP_CS__SOURCE, oldSource,
+				newSource);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -136,14 +145,19 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SOURCE, null, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SOURCE,
+					null, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SOURCE, null, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SOURCE,
+					null, msgs);
 			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SOURCE, newSource, newSource));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CALL_EXP_CS__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -162,9 +176,12 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	 */
 	public void setAccessor(DotOrArrowEnum newAccessor) {
 		DotOrArrowEnum oldAccessor = accessor;
-		accessor = newAccessor == null ? ACCESSOR_EDEFAULT : newAccessor;
+		accessor = newAccessor == null
+			? ACCESSOR_EDEFAULT
+			: newAccessor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__ACCESSOR, oldAccessor, accessor));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CALL_EXP_CS__ACCESSOR, oldAccessor, accessor));
 	}
 
 	/**
@@ -181,12 +198,18 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS,
+			NotificationChain msgs) {
 		SimpleNameCS oldSimpleNameCS = simpleNameCS;
 		simpleNameCS = newSimpleNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS,
+				oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -200,14 +223,20 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 		if (newSimpleNameCS != simpleNameCS) {
 			NotificationChain msgs = null;
 			if (simpleNameCS != null)
-				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) simpleNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
 			if (newSimpleNameCS != null)
-				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newSimpleNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, null, msgs);
 			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS, newSimpleNameCS,
+				newSimpleNameCS));
 	}
 
 	/**
@@ -216,11 +245,12 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.CALL_EXP_CS__SOURCE:
+			case CSTPackage.CALL_EXP_CS__SOURCE :
 				return basicSetSource(null, msgs);
-			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
+			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS :
 				return basicSetSimpleNameCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -234,11 +264,11 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.CALL_EXP_CS__SOURCE:
+			case CSTPackage.CALL_EXP_CS__SOURCE :
 				return getSource();
-			case CSTPackage.CALL_EXP_CS__ACCESSOR:
+			case CSTPackage.CALL_EXP_CS__ACCESSOR :
 				return getAccessor();
-			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
+			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS :
 				return getSimpleNameCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -252,14 +282,14 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.CALL_EXP_CS__SOURCE:
-				setSource((OCLExpressionCS)newValue);
+			case CSTPackage.CALL_EXP_CS__SOURCE :
+				setSource((OCLExpressionCS) newValue);
 				return;
-			case CSTPackage.CALL_EXP_CS__ACCESSOR:
-				setAccessor((DotOrArrowEnum)newValue);
+			case CSTPackage.CALL_EXP_CS__ACCESSOR :
+				setAccessor((DotOrArrowEnum) newValue);
 				return;
-			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)newValue);
+			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,14 +303,14 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.CALL_EXP_CS__SOURCE:
-				setSource((OCLExpressionCS)null);
+			case CSTPackage.CALL_EXP_CS__SOURCE :
+				setSource((OCLExpressionCS) null);
 				return;
-			case CSTPackage.CALL_EXP_CS__ACCESSOR:
+			case CSTPackage.CALL_EXP_CS__ACCESSOR :
 				setAccessor(ACCESSOR_EDEFAULT);
 				return;
-			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)null);
+			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -294,11 +324,11 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.CALL_EXP_CS__SOURCE:
+			case CSTPackage.CALL_EXP_CS__SOURCE :
 				return source != null;
-			case CSTPackage.CALL_EXP_CS__ACCESSOR:
+			case CSTPackage.CALL_EXP_CS__ACCESSOR :
 				return accessor != ACCESSOR_EDEFAULT;
-			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS:
+			case CSTPackage.CALL_EXP_CS__SIMPLE_NAME_CS :
 				return simpleNameCS != null;
 		}
 		return super.eIsSet(featureID);
@@ -311,7 +341,8 @@ public class CallExpCSImpl extends OCLExpressionCSImpl implements CallExpCS {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (accessor: "); //$NON-NLS-1$

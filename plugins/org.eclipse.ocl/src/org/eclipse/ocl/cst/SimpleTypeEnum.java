@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleTypeEnum.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: SimpleTypeEnum.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum SimpleTypeEnum implements Enumerator {
+public enum SimpleTypeEnum
+		implements Enumerator {
 	/**
 	 * The '<em><b>Identifier</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -339,21 +340,11 @@ public enum SimpleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SimpleTypeEnum[] VALUES_ARRAY =
-		new SimpleTypeEnum[] {
-			IDENTIFIER_LITERAL,
-			SELF_LITERAL,
-			INTEGER_LITERAL,
-			STRING_LITERAL,
-			REAL_LITERAL,
-			BOOLEAN_LITERAL,
-			OCL_ANY_LITERAL,
-			OCL_VOID_LITERAL,
-			INVALID_LITERAL,
-			OCL_MESSAGE_LITERAL,
-			KEYWORD_LITERAL,
-			UNLIMITED_NATURAL_LITERAL,
-		};
+	private static final SimpleTypeEnum[] VALUES_ARRAY = new SimpleTypeEnum[]{
+		IDENTIFIER_LITERAL, SELF_LITERAL, INTEGER_LITERAL, STRING_LITERAL,
+		REAL_LITERAL, BOOLEAN_LITERAL, OCL_ANY_LITERAL, OCL_VOID_LITERAL,
+		INVALID_LITERAL, OCL_MESSAGE_LITERAL, KEYWORD_LITERAL,
+		UNLIMITED_NATURAL_LITERAL,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Simple Type Enum</b></em>' enumerators.
@@ -361,7 +352,8 @@ public enum SimpleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<SimpleTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<SimpleTypeEnum> VALUES = Collections
+		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Simple Type Enum</b></em>' literal with the specified literal value.
@@ -403,18 +395,30 @@ public enum SimpleTypeEnum implements Enumerator {
 	 */
 	public static SimpleTypeEnum get(int value) {
 		switch (value) {
-			case IDENTIFIER: return IDENTIFIER_LITERAL;
-			case SELF: return SELF_LITERAL;
-			case INTEGER: return INTEGER_LITERAL;
-			case STRING: return STRING_LITERAL;
-			case REAL: return REAL_LITERAL;
-			case BOOLEAN: return BOOLEAN_LITERAL;
-			case OCL_ANY: return OCL_ANY_LITERAL;
-			case OCL_VOID: return OCL_VOID_LITERAL;
-			case INVALID: return INVALID_LITERAL;
-			case OCL_MESSAGE: return OCL_MESSAGE_LITERAL;
-			case KEYWORD: return KEYWORD_LITERAL;
-			case UNLIMITED_NATURAL: return UNLIMITED_NATURAL_LITERAL;
+			case IDENTIFIER :
+				return IDENTIFIER_LITERAL;
+			case SELF :
+				return SELF_LITERAL;
+			case INTEGER :
+				return INTEGER_LITERAL;
+			case STRING :
+				return STRING_LITERAL;
+			case REAL :
+				return REAL_LITERAL;
+			case BOOLEAN :
+				return BOOLEAN_LITERAL;
+			case OCL_ANY :
+				return OCL_ANY_LITERAL;
+			case OCL_VOID :
+				return OCL_VOID_LITERAL;
+			case INVALID :
+				return INVALID_LITERAL;
+			case OCL_MESSAGE :
+				return OCL_MESSAGE_LITERAL;
+			case KEYWORD :
+				return KEYWORD_LITERAL;
+			case UNLIMITED_NATURAL :
+				return UNLIMITED_NATURAL_LITERAL;
 		}
 		return null;
 	}
@@ -458,7 +462,7 @@ public enum SimpleTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -467,7 +471,7 @@ public enum SimpleTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -476,7 +480,7 @@ public enum SimpleTypeEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -489,5 +493,5 @@ public enum SimpleTypeEnum implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //SimpleTypeEnum

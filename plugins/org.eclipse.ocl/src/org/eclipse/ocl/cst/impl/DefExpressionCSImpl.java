@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: DefExpressionCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -43,7 +43,10 @@ import org.eclipse.ocl.cst.VariableCS;
  *
  * @generated
  */
-public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS {
+public class DefExpressionCSImpl
+		extends CSTNodeImpl
+		implements DefExpressionCS {
+
 	/**
 	 * The cached value of the '{@link #getOperationCS() <em>Operation CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -107,12 +110,18 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOperationCS(OperationCS newOperationCS, NotificationChain msgs) {
+	public NotificationChain basicSetOperationCS(OperationCS newOperationCS,
+			NotificationChain msgs) {
 		OperationCS oldOperationCS = operationCS;
 		operationCS = newOperationCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, oldOperationCS, newOperationCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS,
+				oldOperationCS, newOperationCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -126,14 +135,22 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 		if (newOperationCS != operationCS) {
 			NotificationChain msgs = null;
 			if (operationCS != null)
-				msgs = ((InternalEObject)operationCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, null, msgs);
+				msgs = ((InternalEObject) operationCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, null,
+					msgs);
 			if (newOperationCS != null)
-				msgs = ((InternalEObject)newOperationCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, null, msgs);
+				msgs = ((InternalEObject) newOperationCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, null,
+					msgs);
 			msgs = basicSetOperationCS(newOperationCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, newOperationCS, newOperationCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS, newOperationCS,
+				newOperationCS));
 	}
 
 	/**
@@ -150,12 +167,18 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVariableCS(VariableCS newVariableCS, NotificationChain msgs) {
+	public NotificationChain basicSetVariableCS(VariableCS newVariableCS,
+			NotificationChain msgs) {
 		VariableCS oldVariableCS = variableCS;
 		variableCS = newVariableCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, oldVariableCS, newVariableCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS,
+				oldVariableCS, newVariableCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -169,14 +192,20 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 		if (newVariableCS != variableCS) {
 			NotificationChain msgs = null;
 			if (variableCS != null)
-				msgs = ((InternalEObject)variableCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, null, msgs);
+				msgs = ((InternalEObject) variableCS)
+					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, null, msgs);
 			if (newVariableCS != null)
-				msgs = ((InternalEObject)newVariableCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, null, msgs);
+				msgs = ((InternalEObject) newVariableCS)
+					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, null, msgs);
 			msgs = basicSetVariableCS(newVariableCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, newVariableCS, newVariableCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS, newVariableCS,
+				newVariableCS));
 	}
 
 	/**
@@ -193,12 +222,18 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExpressionCS(OCLExpressionCS newExpressionCS, NotificationChain msgs) {
+	public NotificationChain basicSetExpressionCS(
+			OCLExpressionCS newExpressionCS, NotificationChain msgs) {
 		OCLExpressionCS oldExpressionCS = expressionCS;
 		expressionCS = newExpressionCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS,
+				oldExpressionCS, newExpressionCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -212,14 +247,22 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 		if (newExpressionCS != expressionCS) {
 			NotificationChain msgs = null;
 			if (expressionCS != null)
-				msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, null, msgs);
+				msgs = ((InternalEObject) expressionCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, null,
+					msgs);
 			if (newExpressionCS != null)
-				msgs = ((InternalEObject)newExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, null, msgs);
+				msgs = ((InternalEObject) newExpressionCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, null,
+					msgs);
 			msgs = basicSetExpressionCS(newExpressionCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, newExpressionCS, newExpressionCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS, newExpressionCS,
+				newExpressionCS));
 	}
 
 	/**
@@ -228,13 +271,14 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS :
 				return basicSetOperationCS(null, msgs);
-			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS :
 				return basicSetVariableCS(null, msgs);
-			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS :
 				return basicSetExpressionCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -248,11 +292,11 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS :
 				return getOperationCS();
-			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS :
 				return getVariableCS();
-			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS :
 				return getExpressionCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -266,14 +310,14 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS:
-				setOperationCS((OperationCS)newValue);
+			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS :
+				setOperationCS((OperationCS) newValue);
 				return;
-			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS:
-				setVariableCS((VariableCS)newValue);
+			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS :
+				setVariableCS((VariableCS) newValue);
 				return;
-			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS:
-				setExpressionCS((OCLExpressionCS)newValue);
+			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS :
+				setExpressionCS((OCLExpressionCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -287,14 +331,14 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS:
-				setOperationCS((OperationCS)null);
+			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS :
+				setOperationCS((OperationCS) null);
 				return;
-			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS:
-				setVariableCS((VariableCS)null);
+			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS :
+				setVariableCS((VariableCS) null);
 				return;
-			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS:
-				setExpressionCS((OCLExpressionCS)null);
+			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS :
+				setExpressionCS((OCLExpressionCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -308,11 +352,11 @@ public class DefExpressionCSImpl extends CSTNodeImpl implements DefExpressionCS 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__OPERATION_CS :
 				return operationCS != null;
-			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__VARIABLE_CS :
 				return variableCS != null;
-			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS:
+			case CSTPackage.DEF_EXPRESSION_CS__EXPRESSION_CS :
 				return expressionCS != null;
 		}
 		return super.eIsSet(featureID);

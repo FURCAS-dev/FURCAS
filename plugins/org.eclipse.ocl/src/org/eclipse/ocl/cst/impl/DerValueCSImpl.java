@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DerValueCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: DerValueCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -30,7 +30,10 @@ import org.eclipse.ocl.cst.DerValueCS;
  *
  * @generated
  */
-public class DerValueCSImpl extends InitOrDerValueCSImpl implements DerValueCS {
+public class DerValueCSImpl
+		extends InitOrDerValueCSImpl
+		implements DerValueCS {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

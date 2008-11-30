@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTNodeImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: CSTNodeImpl.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -42,7 +42,10 @@ import org.eclipse.ocl.cst.CSTPackage;
  *
  * @generated
  */
-public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
+public abstract class CSTNodeImpl
+		extends EObjectImpl
+		implements CSTNode {
+
 	/**
 	 * The default value of the '{@link #getStartOffset() <em>Start Offset</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -186,7 +189,8 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 		int oldStartOffset = startOffset;
 		startOffset = newStartOffset;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__START_OFFSET, oldStartOffset, startOffset));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CST_NODE__START_OFFSET, oldStartOffset, startOffset));
 	}
 
 	/**
@@ -207,7 +211,8 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 		int oldEndOffset = endOffset;
 		endOffset = newEndOffset;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__END_OFFSET, oldEndOffset, endOffset));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CST_NODE__END_OFFSET, oldEndOffset, endOffset));
 	}
 
 	/**
@@ -230,7 +235,8 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 		IToken oldStartToken = startToken;
 		startToken = newStartToken;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__START_TOKEN, oldStartToken, startToken));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CST_NODE__START_TOKEN, oldStartToken, startToken));
 	}
 
 	/**
@@ -253,7 +259,8 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 		IToken oldEndToken = endToken;
 		endToken = newEndToken;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__END_TOKEN, oldEndToken, endToken));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CST_NODE__END_TOKEN, oldEndToken, endToken));
 	}
 
 	/**
@@ -276,7 +283,8 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 		Object oldAst = ast;
 		ast = newAst;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.CST_NODE__AST, oldAst, ast));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CST_NODE__AST, oldAst, ast));
 	}
 
 	/**
@@ -287,15 +295,15 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.CST_NODE__START_OFFSET:
+			case CSTPackage.CST_NODE__START_OFFSET :
 				return new Integer(getStartOffset());
-			case CSTPackage.CST_NODE__END_OFFSET:
+			case CSTPackage.CST_NODE__END_OFFSET :
 				return new Integer(getEndOffset());
-			case CSTPackage.CST_NODE__START_TOKEN:
+			case CSTPackage.CST_NODE__START_TOKEN :
 				return getStartToken();
-			case CSTPackage.CST_NODE__END_TOKEN:
+			case CSTPackage.CST_NODE__END_TOKEN :
 				return getEndToken();
-			case CSTPackage.CST_NODE__AST:
+			case CSTPackage.CST_NODE__AST :
 				return getAst();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -309,19 +317,19 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.CST_NODE__START_OFFSET:
-				setStartOffset(((Integer)newValue).intValue());
+			case CSTPackage.CST_NODE__START_OFFSET :
+				setStartOffset(((Integer) newValue).intValue());
 				return;
-			case CSTPackage.CST_NODE__END_OFFSET:
-				setEndOffset(((Integer)newValue).intValue());
+			case CSTPackage.CST_NODE__END_OFFSET :
+				setEndOffset(((Integer) newValue).intValue());
 				return;
-			case CSTPackage.CST_NODE__START_TOKEN:
-				setStartToken((IToken)newValue);
+			case CSTPackage.CST_NODE__START_TOKEN :
+				setStartToken((IToken) newValue);
 				return;
-			case CSTPackage.CST_NODE__END_TOKEN:
-				setEndToken((IToken)newValue);
+			case CSTPackage.CST_NODE__END_TOKEN :
+				setEndToken((IToken) newValue);
 				return;
-			case CSTPackage.CST_NODE__AST:
+			case CSTPackage.CST_NODE__AST :
 				setAst(newValue);
 				return;
 		}
@@ -336,19 +344,19 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.CST_NODE__START_OFFSET:
+			case CSTPackage.CST_NODE__START_OFFSET :
 				setStartOffset(START_OFFSET_EDEFAULT);
 				return;
-			case CSTPackage.CST_NODE__END_OFFSET:
+			case CSTPackage.CST_NODE__END_OFFSET :
 				setEndOffset(END_OFFSET_EDEFAULT);
 				return;
-			case CSTPackage.CST_NODE__START_TOKEN:
+			case CSTPackage.CST_NODE__START_TOKEN :
 				setStartToken(START_TOKEN_EDEFAULT);
 				return;
-			case CSTPackage.CST_NODE__END_TOKEN:
+			case CSTPackage.CST_NODE__END_TOKEN :
 				setEndToken(END_TOKEN_EDEFAULT);
 				return;
-			case CSTPackage.CST_NODE__AST:
+			case CSTPackage.CST_NODE__AST :
 				setAst(AST_EDEFAULT);
 				return;
 		}
@@ -363,16 +371,22 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.CST_NODE__START_OFFSET:
+			case CSTPackage.CST_NODE__START_OFFSET :
 				return startOffset != START_OFFSET_EDEFAULT;
-			case CSTPackage.CST_NODE__END_OFFSET:
+			case CSTPackage.CST_NODE__END_OFFSET :
 				return endOffset != END_OFFSET_EDEFAULT;
-			case CSTPackage.CST_NODE__START_TOKEN:
-				return START_TOKEN_EDEFAULT == null ? startToken != null : !START_TOKEN_EDEFAULT.equals(startToken);
-			case CSTPackage.CST_NODE__END_TOKEN:
-				return END_TOKEN_EDEFAULT == null ? endToken != null : !END_TOKEN_EDEFAULT.equals(endToken);
-			case CSTPackage.CST_NODE__AST:
-				return AST_EDEFAULT == null ? ast != null : !AST_EDEFAULT.equals(ast);
+			case CSTPackage.CST_NODE__START_TOKEN :
+				return START_TOKEN_EDEFAULT == null
+					? startToken != null
+					: !START_TOKEN_EDEFAULT.equals(startToken);
+			case CSTPackage.CST_NODE__END_TOKEN :
+				return END_TOKEN_EDEFAULT == null
+					? endToken != null
+					: !END_TOKEN_EDEFAULT.equals(endToken);
+			case CSTPackage.CST_NODE__AST :
+				return AST_EDEFAULT == null
+					? ast != null
+					: !AST_EDEFAULT.equals(ast);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -384,7 +398,8 @@ public abstract class CSTNodeImpl extends EObjectImpl implements CSTNode {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (startOffset: "); //$NON-NLS-1$

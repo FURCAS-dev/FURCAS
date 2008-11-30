@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: VariableCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: VariableCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -42,7 +42,10 @@ import org.eclipse.ocl.cst.VariableCS;
  *
  * @generated
  */
-public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
+public class VariableCSImpl
+		extends CSTNodeImpl
+		implements VariableCS {
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -120,7 +123,8 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.VARIABLE_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -137,12 +141,18 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
+	public NotificationChain basicSetTypeCS(TypeCS newTypeCS,
+			NotificationChain msgs) {
 		TypeCS oldTypeCS = typeCS;
 		typeCS = newTypeCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS, newTypeCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, oldTypeCS,
+				newTypeCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -156,14 +166,19 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 		if (newTypeCS != typeCS) {
 			NotificationChain msgs = null;
 			if (typeCS != null)
-				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) typeCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS,
+					null, msgs);
 			if (newTypeCS != null)
-				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) newTypeCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__TYPE_CS,
+					null, msgs);
 			msgs = basicSetTypeCS(newTypeCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__TYPE_CS, newTypeCS, newTypeCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.VARIABLE_CS__TYPE_CS, newTypeCS, newTypeCS));
 	}
 
 	/**
@@ -180,12 +195,18 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInitExpression(OCLExpressionCS newInitExpression, NotificationChain msgs) {
+	public NotificationChain basicSetInitExpression(
+			OCLExpressionCS newInitExpression, NotificationChain msgs) {
 		OCLExpressionCS oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, oldInitExpression, newInitExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION,
+				oldInitExpression, newInitExpression);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -199,14 +220,20 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 		if (newInitExpression != initExpression) {
 			NotificationChain msgs = null;
 			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) initExpression).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
 			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newInitExpression).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.VARIABLE_CS__INIT_EXPRESSION, null, msgs);
 			msgs = basicSetInitExpression(newInitExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.VARIABLE_CS__INIT_EXPRESSION, newInitExpression, newInitExpression));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.VARIABLE_CS__INIT_EXPRESSION, newInitExpression,
+				newInitExpression));
 	}
 
 	/**
@@ -215,11 +242,12 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.VARIABLE_CS__TYPE_CS:
+			case CSTPackage.VARIABLE_CS__TYPE_CS :
 				return basicSetTypeCS(null, msgs);
-			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION :
 				return basicSetInitExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -233,11 +261,11 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.VARIABLE_CS__NAME:
+			case CSTPackage.VARIABLE_CS__NAME :
 				return getName();
-			case CSTPackage.VARIABLE_CS__TYPE_CS:
+			case CSTPackage.VARIABLE_CS__TYPE_CS :
 				return getTypeCS();
-			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION :
 				return getInitExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -251,14 +279,14 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.VARIABLE_CS__NAME:
-				setName((String)newValue);
+			case CSTPackage.VARIABLE_CS__NAME :
+				setName((String) newValue);
 				return;
-			case CSTPackage.VARIABLE_CS__TYPE_CS:
-				setTypeCS((TypeCS)newValue);
+			case CSTPackage.VARIABLE_CS__TYPE_CS :
+				setTypeCS((TypeCS) newValue);
 				return;
-			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-				setInitExpression((OCLExpressionCS)newValue);
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION :
+				setInitExpression((OCLExpressionCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -272,14 +300,14 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.VARIABLE_CS__NAME:
+			case CSTPackage.VARIABLE_CS__NAME :
 				setName(NAME_EDEFAULT);
 				return;
-			case CSTPackage.VARIABLE_CS__TYPE_CS:
-				setTypeCS((TypeCS)null);
+			case CSTPackage.VARIABLE_CS__TYPE_CS :
+				setTypeCS((TypeCS) null);
 				return;
-			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
-				setInitExpression((OCLExpressionCS)null);
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION :
+				setInitExpression((OCLExpressionCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -293,11 +321,13 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.VARIABLE_CS__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case CSTPackage.VARIABLE_CS__TYPE_CS:
+			case CSTPackage.VARIABLE_CS__NAME :
+				return NAME_EDEFAULT == null
+					? name != null
+					: !NAME_EDEFAULT.equals(name);
+			case CSTPackage.VARIABLE_CS__TYPE_CS :
 				return typeCS != null;
-			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION:
+			case CSTPackage.VARIABLE_CS__INIT_EXPRESSION :
 				return initExpression != null;
 		}
 		return super.eIsSet(featureID);
@@ -310,7 +340,8 @@ public class VariableCSImpl extends CSTNodeImpl implements VariableCS {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$

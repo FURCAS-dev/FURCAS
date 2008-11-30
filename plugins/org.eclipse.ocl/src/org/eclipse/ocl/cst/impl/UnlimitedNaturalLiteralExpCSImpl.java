@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -36,7 +36,10 @@ import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
  *
  * @generated
  */
-public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements UnlimitedNaturalLiteralExpCS {
+public class UnlimitedNaturalLiteralExpCSImpl
+		extends PrimitiveLiteralExpCSImpl
+		implements UnlimitedNaturalLiteralExpCS {
+
 	/**
 	 * The default value of the '{@link #getIntegerSymbol() <em>Integer Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,7 +97,9 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 		Integer oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL, oldIntegerSymbol, integerSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL :
 				return getIntegerSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,8 +124,8 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
-				setIntegerSymbol((Integer)newValue);
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL :
+				setIntegerSymbol((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,7 +139,7 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -149,8 +154,10 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL:
-				return INTEGER_SYMBOL_EDEFAULT == null ? integerSymbol != null : !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
+			case CSTPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL :
+				return INTEGER_SYMBOL_EDEFAULT == null
+					? integerSymbol != null
+					: !INTEGER_SYMBOL_EDEFAULT.equals(integerSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,7 +169,8 @@ public class UnlimitedNaturalLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl 
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (integerSymbol: "); //$NON-NLS-1$

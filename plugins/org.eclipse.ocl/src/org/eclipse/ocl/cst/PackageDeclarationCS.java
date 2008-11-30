@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCS.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: PackageDeclarationCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -37,8 +37,11 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
-public interface PackageDeclarationCS extends CSTNode {
+public interface PackageDeclarationCS
+		extends CSTNode {
+
 	/**
 	 * Returns the value of the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

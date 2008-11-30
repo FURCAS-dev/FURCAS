@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DotOrArrowEnum.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: DotOrArrowEnum.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum DotOrArrowEnum implements Enumerator {
+public enum DotOrArrowEnum
+		implements Enumerator {
 	/**
 	 * The '<em><b>None</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -114,12 +115,8 @@ public enum DotOrArrowEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final DotOrArrowEnum[] VALUES_ARRAY =
-		new DotOrArrowEnum[] {
-			NONE_LITERAL,
-			DOT_LITERAL,
-			ARROW_LITERAL,
-		};
+	private static final DotOrArrowEnum[] VALUES_ARRAY = new DotOrArrowEnum[]{
+		NONE_LITERAL, DOT_LITERAL, ARROW_LITERAL,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Dot Or Arrow Enum</b></em>' enumerators.
@@ -127,7 +124,8 @@ public enum DotOrArrowEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<DotOrArrowEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<DotOrArrowEnum> VALUES = Collections
+		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Dot Or Arrow Enum</b></em>' literal with the specified literal value.
@@ -169,9 +167,12 @@ public enum DotOrArrowEnum implements Enumerator {
 	 */
 	public static DotOrArrowEnum get(int value) {
 		switch (value) {
-			case NONE: return NONE_LITERAL;
-			case DOT: return DOT_LITERAL;
-			case ARROW: return ARROW_LITERAL;
+			case NONE :
+				return NONE_LITERAL;
+			case DOT :
+				return DOT_LITERAL;
+			case ARROW :
+				return ARROW_LITERAL;
 		}
 		return null;
 	}
@@ -215,7 +216,7 @@ public enum DotOrArrowEnum implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -224,7 +225,7 @@ public enum DotOrArrowEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -233,7 +234,7 @@ public enum DotOrArrowEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -246,5 +247,5 @@ public enum DotOrArrowEnum implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //DotOrArrowEnum

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: PrimitiveLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -36,7 +36,10 @@ import org.eclipse.ocl.cst.PrimitiveLiteralExpCS;
  *
  * @generated
  */
-public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements PrimitiveLiteralExpCS {
+public class PrimitiveLiteralExpCSImpl
+		extends LiteralExpCSImpl
+		implements PrimitiveLiteralExpCS {
+
 	/**
 	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,7 +97,8 @@ public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements Primi
 		String oldSymbol = symbol;
 		symbol = newSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
 	}
 
 	/**
@@ -105,7 +109,7 @@ public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements Primi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL:
+			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL :
 				return getSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,8 +123,8 @@ public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements Primi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL:
-				setSymbol((String)newValue);
+			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL :
+				setSymbol((String) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,7 +138,7 @@ public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements Primi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL:
+			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL :
 				setSymbol(SYMBOL_EDEFAULT);
 				return;
 		}
@@ -149,8 +153,10 @@ public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements Primi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL:
-				return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
+			case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL :
+				return SYMBOL_EDEFAULT == null
+					? symbol != null
+					: !SYMBOL_EDEFAULT.equals(symbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,7 +168,8 @@ public class PrimitiveLiteralExpCSImpl extends LiteralExpCSImpl implements Primi
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (symbol: "); //$NON-NLS-1$

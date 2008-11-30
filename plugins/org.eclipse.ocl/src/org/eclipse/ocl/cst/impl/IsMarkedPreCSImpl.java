@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IsMarkedPreCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: IsMarkedPreCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -36,7 +36,10 @@ import org.eclipse.ocl.cst.IsMarkedPreCS;
  *
  * @generated
  */
-public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
+public class IsMarkedPreCSImpl
+		extends CSTNodeImpl
+		implements IsMarkedPreCS {
+
 	/**
 	 * The default value of the '{@link #isPre() <em>Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -92,9 +95,13 @@ public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
 	 */
 	public void setPre(boolean newPre) {
 		boolean oldPre = (eFlags & PRE_EFLAG) != 0;
-		if (newPre) eFlags |= PRE_EFLAG; else eFlags &= ~PRE_EFLAG;
+		if (newPre)
+			eFlags |= PRE_EFLAG;
+		else
+			eFlags &= ~PRE_EFLAG;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.IS_MARKED_PRE_CS__PRE, oldPre, newPre));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.IS_MARKED_PRE_CS__PRE, oldPre, newPre));
 	}
 
 	/**
@@ -105,8 +112,10 @@ public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.IS_MARKED_PRE_CS__PRE:
-				return isPre() ? Boolean.TRUE : Boolean.FALSE;
+			case CSTPackage.IS_MARKED_PRE_CS__PRE :
+				return isPre()
+					? Boolean.TRUE
+					: Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,8 +128,8 @@ public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.IS_MARKED_PRE_CS__PRE:
-				setPre(((Boolean)newValue).booleanValue());
+			case CSTPackage.IS_MARKED_PRE_CS__PRE :
+				setPre(((Boolean) newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,7 +143,7 @@ public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.IS_MARKED_PRE_CS__PRE:
+			case CSTPackage.IS_MARKED_PRE_CS__PRE :
 				setPre(PRE_EDEFAULT);
 				return;
 		}
@@ -149,7 +158,7 @@ public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.IS_MARKED_PRE_CS__PRE:
+			case CSTPackage.IS_MARKED_PRE_CS__PRE :
 				return ((eFlags & PRE_EFLAG) != 0) != PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -162,7 +171,8 @@ public class IsMarkedPreCSImpl extends CSTNodeImpl implements IsMarkedPreCS {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pre: "); //$NON-NLS-1$

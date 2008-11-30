@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: BooleanLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -36,7 +36,10 @@ import org.eclipse.ocl.cst.CSTPackage;
  *
  * @generated
  */
-public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements BooleanLiteralExpCS {
+public class BooleanLiteralExpCSImpl
+		extends PrimitiveLiteralExpCSImpl
+		implements BooleanLiteralExpCS {
+
 	/**
 	 * The default value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,7 +97,9 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 		Boolean oldBooleanSymbol = booleanSymbol;
 		booleanSymbol = newBooleanSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL, oldBooleanSymbol, booleanSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL,
+				oldBooleanSymbol, booleanSymbol));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL:
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
 				return getBooleanSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,8 +124,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL:
-				setBooleanSymbol((Boolean)newValue);
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
+				setBooleanSymbol((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,7 +139,7 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL:
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
 				setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
 				return;
 		}
@@ -149,8 +154,10 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL:
-				return BOOLEAN_SYMBOL_EDEFAULT == null ? booleanSymbol != null : !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
+				return BOOLEAN_SYMBOL_EDEFAULT == null
+					? booleanSymbol != null
+					: !BOOLEAN_SYMBOL_EDEFAULT.equals(booleanSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,7 +169,8 @@ public class BooleanLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implement
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (booleanSymbol: "); //$NON-NLS-1$
