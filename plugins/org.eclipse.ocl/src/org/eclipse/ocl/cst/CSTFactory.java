@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactory.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: CSTFactory.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -27,7 +27,9 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.ocl.cst.CSTPackage
  * @generated
  */
-public interface CSTFactory extends EFactory {
+public interface CSTFactory
+		extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

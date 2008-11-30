@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessageArgCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: OCLMessageArgCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -41,7 +41,10 @@ import org.eclipse.ocl.cst.TypeCS;
  *
  * @generated
  */
-public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS {
+public class OCLMessageArgCSImpl
+		extends CSTNodeImpl
+		implements OCLMessageArgCS {
+
 	/**
 	 * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -95,12 +98,18 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
+	public NotificationChain basicSetTypeCS(TypeCS newTypeCS,
+			NotificationChain msgs) {
 		TypeCS oldTypeCS = typeCS;
 		typeCS = newTypeCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, oldTypeCS, newTypeCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS,
+				oldTypeCS, newTypeCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -114,14 +123,19 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 		if (newTypeCS != typeCS) {
 			NotificationChain msgs = null;
 			if (typeCS != null)
-				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) typeCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
 			if (newTypeCS != null)
-				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) newTypeCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, null, msgs);
 			msgs = basicSetTypeCS(newTypeCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, newTypeCS, newTypeCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS, newTypeCS, newTypeCS));
 	}
 
 	/**
@@ -138,12 +152,18 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExpression(OCLExpressionCS newExpression, NotificationChain msgs) {
+	public NotificationChain basicSetExpression(OCLExpressionCS newExpression,
+			NotificationChain msgs) {
 		OCLExpressionCS oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, oldExpression, newExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION,
+				oldExpression, newExpression);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -157,14 +177,20 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 		if (newExpression != expression) {
 			NotificationChain msgs = null;
 			if (expression != null)
-				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) expression)
+					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
 			if (newExpression != null)
-				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newExpression)
+					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, null, msgs);
 			msgs = basicSetExpression(newExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, newExpression, newExpression));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION, newExpression,
+				newExpression));
 	}
 
 	/**
@@ -173,11 +199,12 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS :
 				return basicSetTypeCS(null, msgs);
-			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION :
 				return basicSetExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -191,9 +218,9 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS :
 				return getTypeCS();
-			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION :
 				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -207,11 +234,11 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-				setTypeCS((TypeCS)newValue);
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS :
+				setTypeCS((TypeCS) newValue);
 				return;
-			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-				setExpression((OCLExpressionCS)newValue);
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION :
+				setExpression((OCLExpressionCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,11 +252,11 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
-				setTypeCS((TypeCS)null);
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS :
+				setTypeCS((TypeCS) null);
 				return;
-			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
-				setExpression((OCLExpressionCS)null);
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION :
+				setExpression((OCLExpressionCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -243,9 +270,9 @@ public class OCLMessageArgCSImpl extends CSTNodeImpl implements OCLMessageArgCS 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS:
+			case CSTPackage.OCL_MESSAGE_ARG_CS__TYPE_CS :
 				return typeCS != null;
-			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION:
+			case CSTPackage.OCL_MESSAGE_ARG_CS__EXPRESSION :
 				return expression != null;
 		}
 		return super.eIsSet(featureID);

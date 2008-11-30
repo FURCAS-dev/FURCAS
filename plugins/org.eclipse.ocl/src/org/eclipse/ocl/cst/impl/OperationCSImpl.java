@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: OperationCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -50,7 +50,10 @@ import org.eclipse.ocl.cst.VariableCS;
  *
  * @generated
  */
-public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
+public class OperationCSImpl
+		extends CSTNodeImpl
+		implements OperationCS {
+
 	/**
 	 * The cached value of the '{@link #getPathNameCS() <em>Path Name CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -124,12 +127,18 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetPathNameCS(PathNameCS newPathNameCS,
+			NotificationChain msgs) {
 		PathNameCS oldPathNameCS = pathNameCS;
 		pathNameCS = newPathNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CS__PATH_NAME_CS, oldPathNameCS, newPathNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.OPERATION_CS__PATH_NAME_CS,
+				oldPathNameCS, newPathNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -143,14 +152,20 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 		if (newPathNameCS != pathNameCS) {
 			NotificationChain msgs = null;
 			if (pathNameCS != null)
-				msgs = ((InternalEObject)pathNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__PATH_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) pathNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OPERATION_CS__PATH_NAME_CS, null, msgs);
 			if (newPathNameCS != null)
-				msgs = ((InternalEObject)newPathNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__PATH_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newPathNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OPERATION_CS__PATH_NAME_CS, null, msgs);
 			msgs = basicSetPathNameCS(newPathNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CS__PATH_NAME_CS, newPathNameCS, newPathNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.OPERATION_CS__PATH_NAME_CS, newPathNameCS,
+				newPathNameCS));
 	}
 
 	/**
@@ -167,12 +182,18 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS, NotificationChain msgs) {
+	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS,
+			NotificationChain msgs) {
 		SimpleNameCS oldSimpleNameCS = simpleNameCS;
 		simpleNameCS = newSimpleNameCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, oldSimpleNameCS, newSimpleNameCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.OPERATION_CS__SIMPLE_NAME_CS,
+				oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -186,14 +207,20 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 		if (newSimpleNameCS != simpleNameCS) {
 			NotificationChain msgs = null;
 			if (simpleNameCS != null)
-				msgs = ((InternalEObject)simpleNameCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) simpleNameCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, null, msgs);
 			if (newSimpleNameCS != null)
-				msgs = ((InternalEObject)newSimpleNameCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, null, msgs);
+				msgs = ((InternalEObject) newSimpleNameCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, null, msgs);
 			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, newSimpleNameCS, newSimpleNameCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.OPERATION_CS__SIMPLE_NAME_CS, newSimpleNameCS,
+				newSimpleNameCS));
 	}
 
 	/**
@@ -203,7 +230,8 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	 */
 	public EList<VariableCS> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CSTPackage.OPERATION_CS__PARAMETERS);
+			parameters = new EObjectContainmentEList<VariableCS>(
+				VariableCS.class, this, CSTPackage.OPERATION_CS__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -222,12 +250,18 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
+	public NotificationChain basicSetTypeCS(TypeCS newTypeCS,
+			NotificationChain msgs) {
 		TypeCS oldTypeCS = typeCS;
 		typeCS = newTypeCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CS__TYPE_CS, oldTypeCS, newTypeCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET, CSTPackage.OPERATION_CS__TYPE_CS, oldTypeCS,
+				newTypeCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -241,14 +275,19 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 		if (newTypeCS != typeCS) {
 			NotificationChain msgs = null;
 			if (typeCS != null)
-				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) typeCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__TYPE_CS,
+					null, msgs);
 			if (newTypeCS != null)
-				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__TYPE_CS, null, msgs);
+				msgs = ((InternalEObject) newTypeCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CS__TYPE_CS,
+					null, msgs);
 			msgs = basicSetTypeCS(newTypeCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CS__TYPE_CS, newTypeCS, newTypeCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.OPERATION_CS__TYPE_CS, newTypeCS, newTypeCS));
 	}
 
 	/**
@@ -257,15 +296,17 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CS__PATH_NAME_CS:
+			case CSTPackage.OPERATION_CS__PATH_NAME_CS :
 				return basicSetPathNameCS(null, msgs);
-			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS:
+			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS :
 				return basicSetSimpleNameCS(null, msgs);
-			case CSTPackage.OPERATION_CS__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case CSTPackage.OPERATION_CS__TYPE_CS:
+			case CSTPackage.OPERATION_CS__PARAMETERS :
+				return ((InternalEList<?>) getParameters()).basicRemove(
+					otherEnd, msgs);
+			case CSTPackage.OPERATION_CS__TYPE_CS :
 				return basicSetTypeCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -279,13 +320,13 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CS__PATH_NAME_CS:
+			case CSTPackage.OPERATION_CS__PATH_NAME_CS :
 				return getPathNameCS();
-			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS:
+			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS :
 				return getSimpleNameCS();
-			case CSTPackage.OPERATION_CS__PARAMETERS:
+			case CSTPackage.OPERATION_CS__PARAMETERS :
 				return getParameters();
-			case CSTPackage.OPERATION_CS__TYPE_CS:
+			case CSTPackage.OPERATION_CS__TYPE_CS :
 				return getTypeCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -300,18 +341,19 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CS__PATH_NAME_CS:
-				setPathNameCS((PathNameCS)newValue);
+			case CSTPackage.OPERATION_CS__PATH_NAME_CS :
+				setPathNameCS((PathNameCS) newValue);
 				return;
-			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)newValue);
+			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) newValue);
 				return;
-			case CSTPackage.OPERATION_CS__PARAMETERS:
+			case CSTPackage.OPERATION_CS__PARAMETERS :
 				getParameters().clear();
-				getParameters().addAll((Collection<? extends VariableCS>)newValue);
+				getParameters().addAll(
+					(Collection<? extends VariableCS>) newValue);
 				return;
-			case CSTPackage.OPERATION_CS__TYPE_CS:
-				setTypeCS((TypeCS)newValue);
+			case CSTPackage.OPERATION_CS__TYPE_CS :
+				setTypeCS((TypeCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,17 +367,17 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CS__PATH_NAME_CS:
-				setPathNameCS((PathNameCS)null);
+			case CSTPackage.OPERATION_CS__PATH_NAME_CS :
+				setPathNameCS((PathNameCS) null);
 				return;
-			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS:
-				setSimpleNameCS((SimpleNameCS)null);
+			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) null);
 				return;
-			case CSTPackage.OPERATION_CS__PARAMETERS:
+			case CSTPackage.OPERATION_CS__PARAMETERS :
 				getParameters().clear();
 				return;
-			case CSTPackage.OPERATION_CS__TYPE_CS:
-				setTypeCS((TypeCS)null);
+			case CSTPackage.OPERATION_CS__TYPE_CS :
+				setTypeCS((TypeCS) null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -349,13 +391,13 @@ public class OperationCSImpl extends CSTNodeImpl implements OperationCS {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CS__PATH_NAME_CS:
+			case CSTPackage.OPERATION_CS__PATH_NAME_CS :
 				return pathNameCS != null;
-			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS:
+			case CSTPackage.OPERATION_CS__SIMPLE_NAME_CS :
 				return simpleNameCS != null;
-			case CSTPackage.OPERATION_CS__PARAMETERS:
+			case CSTPackage.OPERATION_CS__PARAMETERS :
 				return parameters != null && !parameters.isEmpty();
-			case CSTPackage.OPERATION_CS__TYPE_CS:
+			case CSTPackage.OPERATION_CS__TYPE_CS :
 				return typeCS != null;
 		}
 		return super.eIsSet(featureID);

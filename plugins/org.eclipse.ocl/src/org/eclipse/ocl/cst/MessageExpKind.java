@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpKind.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: MessageExpKind.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum MessageExpKind implements Enumerator {
+public enum MessageExpKind
+		implements Enumerator {
 	/**
 	 * The '<em><b>Has Sent</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -89,11 +90,8 @@ public enum MessageExpKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final MessageExpKind[] VALUES_ARRAY =
-		new MessageExpKind[] {
-			HAS_SENT_LITERAL,
-			SENT_LITERAL,
-		};
+	private static final MessageExpKind[] VALUES_ARRAY = new MessageExpKind[]{
+		HAS_SENT_LITERAL, SENT_LITERAL,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Message Exp Kind</b></em>' enumerators.
@@ -101,7 +99,8 @@ public enum MessageExpKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<MessageExpKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<MessageExpKind> VALUES = Collections
+		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Message Exp Kind</b></em>' literal with the specified literal value.
@@ -143,8 +142,10 @@ public enum MessageExpKind implements Enumerator {
 	 */
 	public static MessageExpKind get(int value) {
 		switch (value) {
-			case HAS_SENT: return HAS_SENT_LITERAL;
-			case SENT: return SENT_LITERAL;
+			case HAS_SENT :
+				return HAS_SENT_LITERAL;
+			case SENT :
+				return SENT_LITERAL;
 		}
 		return null;
 	}
@@ -188,7 +189,7 @@ public enum MessageExpKind implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -197,7 +198,7 @@ public enum MessageExpKind implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -206,7 +207,7 @@ public enum MessageExpKind implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -219,5 +220,5 @@ public enum MessageExpKind implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //MessageExpKind

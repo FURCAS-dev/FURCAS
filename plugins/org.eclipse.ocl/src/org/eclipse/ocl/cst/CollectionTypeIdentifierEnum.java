@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeIdentifierEnum.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: CollectionTypeIdentifierEnum.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum CollectionTypeIdentifierEnum implements Enumerator {
+public enum CollectionTypeIdentifierEnum
+		implements Enumerator {
 	/**
 	 * The '<em><b>Set</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -164,14 +165,9 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final CollectionTypeIdentifierEnum[] VALUES_ARRAY =
-		new CollectionTypeIdentifierEnum[] {
-			SET_LITERAL,
-			BAG_LITERAL,
-			SEQUENCE_LITERAL,
-			COLLECTION_LITERAL,
-			ORDERED_SET_LITERAL,
-		};
+	private static final CollectionTypeIdentifierEnum[] VALUES_ARRAY = new CollectionTypeIdentifierEnum[]{
+		SET_LITERAL, BAG_LITERAL, SEQUENCE_LITERAL, COLLECTION_LITERAL,
+		ORDERED_SET_LITERAL,};
 
 	/**
 	 * A public read-only list of all the '<em><b>Collection Type Identifier Enum</b></em>' enumerators.
@@ -179,7 +175,8 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<CollectionTypeIdentifierEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<CollectionTypeIdentifierEnum> VALUES = Collections
+		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Collection Type Identifier Enum</b></em>' literal with the specified literal value.
@@ -221,11 +218,16 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	 */
 	public static CollectionTypeIdentifierEnum get(int value) {
 		switch (value) {
-			case SET: return SET_LITERAL;
-			case BAG: return BAG_LITERAL;
-			case SEQUENCE: return SEQUENCE_LITERAL;
-			case COLLECTION: return COLLECTION_LITERAL;
-			case ORDERED_SET: return ORDERED_SET_LITERAL;
+			case SET :
+				return SET_LITERAL;
+			case BAG :
+				return BAG_LITERAL;
+			case SEQUENCE :
+				return SEQUENCE_LITERAL;
+			case COLLECTION :
+				return COLLECTION_LITERAL;
+			case ORDERED_SET :
+				return ORDERED_SET_LITERAL;
 		}
 		return null;
 	}
@@ -269,7 +271,7 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
@@ -278,7 +280,7 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
@@ -287,7 +289,7 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
@@ -300,5 +302,5 @@ public enum CollectionTypeIdentifierEnum implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
+
 } //CollectionTypeIdentifierEnum

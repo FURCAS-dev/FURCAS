@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.3 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: PrimitiveType.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @model
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface PrimitiveType<O>
 		extends PredefinedType<O> {

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCSImpl.java,v 1.2 2008/10/04 00:54:09 cdamus Exp $
+ * $Id: OperationContextDeclCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -46,7 +46,10 @@ import org.eclipse.ocl.cst.PrePostOrBodyDeclCS;
  *
  * @generated
  */
-public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements OperationContextDeclCS {
+public class OperationContextDeclCSImpl
+		extends ContextDeclCSImpl
+		implements OperationContextDeclCS {
+
 	/**
 	 * The cached value of the '{@link #getOperationCS() <em>Operation CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -100,12 +103,19 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOperationCS(OperationCS newOperationCS, NotificationChain msgs) {
+	public NotificationChain basicSetOperationCS(OperationCS newOperationCS,
+			NotificationChain msgs) {
 		OperationCS oldOperationCS = operationCS;
 		operationCS = newOperationCS;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS, oldOperationCS, newOperationCS);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS,
+				oldOperationCS, newOperationCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -119,14 +129,22 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 		if (newOperationCS != operationCS) {
 			NotificationChain msgs = null;
 			if (operationCS != null)
-				msgs = ((InternalEObject)operationCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS, null, msgs);
+				msgs = ((InternalEObject) operationCS).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS,
+					null, msgs);
 			if (newOperationCS != null)
-				msgs = ((InternalEObject)newOperationCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS, null, msgs);
+				msgs = ((InternalEObject) newOperationCS).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS,
+					null, msgs);
 			msgs = basicSetOperationCS(newOperationCS, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS, newOperationCS, newOperationCS));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS,
+				newOperationCS, newOperationCS));
 	}
 
 	/**
@@ -136,7 +154,9 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 */
 	public EList<PrePostOrBodyDeclCS> getPrePostOrBodyDecls() {
 		if (prePostOrBodyDecls == null) {
-			prePostOrBodyDecls = new EObjectContainmentEList<PrePostOrBodyDeclCS>(PrePostOrBodyDeclCS.class, this, CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS);
+			prePostOrBodyDecls = new EObjectContainmentEList<PrePostOrBodyDeclCS>(
+				PrePostOrBodyDeclCS.class, this,
+				CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS);
 		}
 		return prePostOrBodyDecls;
 	}
@@ -147,12 +167,14 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS:
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS :
 				return basicSetOperationCS(null, msgs);
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS:
-				return ((InternalEList<?>)getPrePostOrBodyDecls()).basicRemove(otherEnd, msgs);
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS :
+				return ((InternalEList<?>) getPrePostOrBodyDecls())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -165,9 +187,9 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS:
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS :
 				return getOperationCS();
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS:
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS :
 				return getPrePostOrBodyDecls();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -182,12 +204,13 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS:
-				setOperationCS((OperationCS)newValue);
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS :
+				setOperationCS((OperationCS) newValue);
 				return;
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS:
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS :
 				getPrePostOrBodyDecls().clear();
-				getPrePostOrBodyDecls().addAll((Collection<? extends PrePostOrBodyDeclCS>)newValue);
+				getPrePostOrBodyDecls().addAll(
+					(Collection<? extends PrePostOrBodyDeclCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,10 +224,10 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS:
-				setOperationCS((OperationCS)null);
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS :
+				setOperationCS((OperationCS) null);
 				return;
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS:
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS :
 				getPrePostOrBodyDecls().clear();
 				return;
 		}
@@ -219,10 +242,11 @@ public class OperationContextDeclCSImpl extends ContextDeclCSImpl implements Ope
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS:
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION_CS :
 				return operationCS != null;
-			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS:
-				return prePostOrBodyDecls != null && !prePostOrBodyDecls.isEmpty();
+			case CSTPackage.OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS :
+				return prePostOrBodyDecls != null
+					&& !prePostOrBodyDecls.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

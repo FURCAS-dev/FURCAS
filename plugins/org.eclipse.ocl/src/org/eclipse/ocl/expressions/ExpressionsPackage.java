@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsPackage.java,v 1.9 2008/11/24 00:22:28 cdamus Exp $
+ * $Id: ExpressionsPackage.java,v 1.10 2008/11/30 22:11:38 cdamus Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * @model kind="package"
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface ExpressionsPackage
 		extends EPackage {
@@ -3194,6 +3195,7 @@ public interface ExpressionsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @noimplement This interface is not intended to be implemented by clients.
+	 * @noextend This interface is not intended to be extended by clients.
 	 */
 	interface Literals {
 

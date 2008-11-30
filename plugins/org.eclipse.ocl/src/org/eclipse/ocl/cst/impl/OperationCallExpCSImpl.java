@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpCSImpl.java,v 1.2 2008/10/04 00:54:08 cdamus Exp $
+ * $Id: OperationCallExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -30,7 +30,10 @@ import org.eclipse.ocl.cst.OperationCallExpCS;
  *
  * @generated
  */
-public class OperationCallExpCSImpl extends FeatureCallExpCSImpl implements OperationCallExpCS {
+public class OperationCallExpCSImpl
+		extends FeatureCallExpCSImpl
+		implements OperationCallExpCS {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
