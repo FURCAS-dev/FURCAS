@@ -8,11 +8,11 @@
 </message_arguments>
 </filter>
 </resource>
-<resource path="src/org/eclipse/ocl/uml/internal/operations/CollectionTypeOperations.java" type="org.eclipse.ocl.uml.internal.operations.CollectionTypeOperations">
-<filter id="576720909">
+<resource path="src/org/eclipse/ocl/uml/FeatureCallExp.java" type="org.eclipse.ocl.uml.FeatureCallExp">
+<filter id="574619656">
 <message_arguments>
-<message_argument value="DataTypeOperations"/>
-<message_argument value="CollectionTypeOperations"/>
+<message_argument value="FeatureCallExp"/>
+<message_argument value="FeatureCallExp"/>
 </message_arguments>
 </filter>
 </resource>
@@ -24,11 +24,11 @@
 </message_arguments>
 </filter>
 </resource>
-<resource path="src/org/eclipse/ocl/uml/FeatureCallExp.java" type="org.eclipse.ocl.uml.FeatureCallExp">
-<filter id="574619656">
+<resource path="src/org/eclipse/ocl/uml/internal/operations/CollectionTypeOperations.java" type="org.eclipse.ocl.uml.internal.operations.CollectionTypeOperations">
+<filter id="576720909">
 <message_arguments>
-<message_argument value="FeatureCallExp"/>
-<message_argument value="FeatureCallExp"/>
+<message_argument value="DataTypeOperations"/>
+<message_argument value="CollectionTypeOperations"/>
 </message_arguments>
 </filter>
 </resource>
@@ -161,19 +161,19 @@
 </message_arguments>
 </filter>
 </resource>
-<resource path="src/org/eclipse/ocl/uml/RealLiteralExp.java" type="org.eclipse.ocl.uml.RealLiteralExp">
-<filter id="574619656">
-<message_arguments>
-<message_argument value="RealLiteralExp"/>
-<message_argument value="RealLiteralExp"/>
-</message_arguments>
-</filter>
-</resource>
 <resource path="src/org/eclipse/ocl/uml/UnlimitedNaturalLiteralExp.java" type="org.eclipse.ocl.uml.UnlimitedNaturalLiteralExp">
 <filter id="574619656">
 <message_arguments>
 <message_argument value="UnlimitedNaturalLiteralExp"/>
 <message_argument value="UnlimitedNaturalLiteralExp"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/RealLiteralExp.java" type="org.eclipse.ocl.uml.RealLiteralExp">
+<filter id="574619656">
+<message_arguments>
+<message_argument value="RealLiteralExp"/>
+<message_argument value="RealLiteralExp"/>
 </message_arguments>
 </filter>
 </resource>
@@ -376,6 +376,12 @@
 <message_argument value="ElementType"/>
 </message_arguments>
 </filter>
+<filter id="571473929">
+<message_arguments>
+<message_argument value="ElementType"/>
+<message_argument value="ElementType"/>
+</message_arguments>
+</filter>
 </resource>
 <resource path="src/org/eclipse/ocl/uml/PrimitiveLiteralExp.java" type="org.eclipse.ocl.uml.PrimitiveLiteralExp">
 <filter id="574619656">
@@ -425,19 +431,19 @@
 </message_arguments>
 </filter>
 </resource>
-<resource path="src/org/eclipse/ocl/uml/LiteralExp.java" type="org.eclipse.ocl.uml.LiteralExp">
-<filter id="574619656">
-<message_arguments>
-<message_argument value="LiteralExp"/>
-<message_argument value="LiteralExp"/>
-</message_arguments>
-</filter>
-</resource>
 <resource path="src/org/eclipse/ocl/uml/IntegerLiteralExp.java" type="org.eclipse.ocl.uml.IntegerLiteralExp">
 <filter id="574619656">
 <message_arguments>
 <message_argument value="IntegerLiteralExp"/>
 <message_argument value="IntegerLiteralExp"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/LiteralExp.java" type="org.eclipse.ocl.uml.LiteralExp">
+<filter id="574619656">
+<message_arguments>
+<message_argument value="LiteralExp"/>
+<message_argument value="LiteralExp"/>
 </message_arguments>
 </filter>
 </resource>
@@ -529,19 +535,19 @@
 </message_arguments>
 </filter>
 </resource>
-<resource path="src/org/eclipse/ocl/uml/internal/operations/VoidTypeOperations.java" type="org.eclipse.ocl.uml.internal.operations.VoidTypeOperations">
-<filter id="576720909">
-<message_arguments>
-<message_argument value="ClassifierOperations"/>
-<message_argument value="VoidTypeOperations"/>
-</message_arguments>
-</filter>
-</resource>
 <resource path="src/org/eclipse/ocl/uml/PrimitiveType.java" type="org.eclipse.ocl.uml.PrimitiveType">
 <filter id="574619656">
 <message_arguments>
 <message_argument value="PrimitiveType"/>
 <message_argument value="PrimitiveType"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/internal/operations/VoidTypeOperations.java" type="org.eclipse.ocl.uml.internal.operations.VoidTypeOperations">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierOperations"/>
+<message_argument value="VoidTypeOperations"/>
 </message_arguments>
 </filter>
 </resource>
@@ -561,19 +567,19 @@
 </message_arguments>
 </filter>
 </resource>
-<resource path="src/org/eclipse/ocl/uml/internal/operations/TypeTypeOperations.java" type="org.eclipse.ocl.uml.internal.operations.TypeTypeOperations">
-<filter id="576720909">
-<message_arguments>
-<message_argument value="ClassifierOperations"/>
-<message_argument value="TypeTypeOperations"/>
-</message_arguments>
-</filter>
-</resource>
 <resource path="src/org/eclipse/ocl/uml/AnyType.java" type="org.eclipse.ocl.uml.AnyType">
 <filter id="574619656">
 <message_arguments>
 <message_argument value="AnyType"/>
 <message_argument value="AnyType"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/uml/internal/operations/TypeTypeOperations.java" type="org.eclipse.ocl.uml.internal.operations.TypeTypeOperations">
+<filter id="576720909">
+<message_arguments>
+<message_argument value="ClassifierOperations"/>
+<message_argument value="TypeTypeOperations"/>
 </message_arguments>
 </filter>
 </resource>
