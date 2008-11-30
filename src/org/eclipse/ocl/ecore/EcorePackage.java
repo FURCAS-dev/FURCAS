@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.9 2008/11/24 00:45:16 cdamus Exp $
+ * $Id: EcorePackage.java,v 1.10 2008/11/30 21:38:34 cdamus Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  *   <li>and each data type</li>
  * </ul>
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.ecore.EcoreFactory
  * @model kind="package"
