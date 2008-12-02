@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008 IBM Corporation, Open Canarias S.L. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   A. Sanchez-Barbudo - Test case contribution - Bug 236247
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.2 2008/05/17 00:53:07 cdamus Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.3 2008/12/02 12:10:16 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -700,6 +701,16 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		o.getArgument().set(0, arg);
 		
 		assertOK(o, ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENTS_CONFORM);
+	}
+	
+	/**
+	 * Tests that operation call expressions involving standard library operations
+	 * which have a generic collection as parameter pass the constraint.
+	 */
+	public void test_OperationCallExp_checkArgumentsConform_generic_collections_232028() {
+		OperationCallExp o = (OperationCallExp) parseUnvalidated(
+		"context uml::String inv: Set{'foo'}->includesAll(Set{'bar'})"); //$NON-NLS-1$		
+		assertOK(o);
 	}
 	
 	public void test_OperationCallExp_checkArgumentCount() {
