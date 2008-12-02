@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
  *
- * $Id: CSTFactory.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTFactory.java,v 1.4 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.cst.CSTPackage
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface CSTFactory
 		extends EFactory {
@@ -424,6 +426,16 @@ public interface CSTFactory
 	 * @generated
 	 */
 	StateExpCS createStateExpCS();
+
+	/**
+	 * Returns a new object of class '<em>OCL Document CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OCL Document CS</em>'.
+	 * @generated
+	 */
+	OCLDocumentCS createOCLDocumentCS();
 
 	/**
 	 * Returns the package supported by this factory.

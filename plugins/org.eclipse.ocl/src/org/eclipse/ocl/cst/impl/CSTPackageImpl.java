@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTPackageImpl.java,v 1.5 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -59,6 +59,7 @@ import org.eclipse.ocl.cst.LoopExpCS;
 import org.eclipse.ocl.cst.MessageExpCS;
 import org.eclipse.ocl.cst.MessageExpKind;
 import org.eclipse.ocl.cst.NullLiteralExpCS;
+import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.OCLMessageArgCS;
 import org.eclipse.ocl.cst.OperationCS;
@@ -400,6 +401,13 @@ public class CSTPackageImpl
 	 * @generated
 	 */
 	private EClass stateExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclDocumentCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1599,6 +1607,26 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOCLDocumentCS() {
+		return oclDocumentCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOCLDocumentCS_PackageDeclarations() {
+		return (EReference) oclDocumentCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -2079,6 +2107,10 @@ public class CSTPackageImpl
 		stateExpCSEClass = createEClass(STATE_EXP_CS);
 		createEAttribute(stateExpCSEClass, STATE_EXP_CS__SEQUENCE_OF_NAMES);
 
+		oclDocumentCSEClass = createEClass(OCL_DOCUMENT_CS);
+		createEReference(oclDocumentCSEClass,
+			OCL_DOCUMENT_CS__PACKAGE_DECLARATIONS);
+
 		// Create enums
 		simpleTypeEnumEEnum = createEEnum(SIMPLE_TYPE_ENUM);
 		prePostOrBodyEnumEEnum = createEEnum(PRE_POST_OR_BODY_ENUM);
@@ -2180,6 +2212,7 @@ public class CSTPackageImpl
 		operationCallExpCSEClass.getESuperTypes().add(
 			this.getFeatureCallExpCS());
 		stateExpCSEClass.getESuperTypes().add(this.getTypeCS());
+		oclDocumentCSEClass.getESuperTypes().add(this.getCSTNode());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(cstNodeEClass, CSTNode.class,
@@ -2802,6 +2835,16 @@ public class CSTPackageImpl
 			getStateExpCS_SequenceOfNames(),
 			ecorePackage.getEString(),
 			"sequenceOfNames", null, 0, -1, StateExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(
+			oclDocumentCSEClass,
+			OCLDocumentCS.class,
+			"OCLDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(
+			getOCLDocumentCS_PackageDeclarations(),
+			this.getPackageDeclarationCS(),
+			null,
+			"packageDeclarations", null, 0, -1, OCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(simpleTypeEnumEEnum, SimpleTypeEnum.class, "SimpleTypeEnum"); //$NON-NLS-1$
