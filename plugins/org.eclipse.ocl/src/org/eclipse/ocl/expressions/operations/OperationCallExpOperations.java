@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Adolfo Sanchez-Barbudo Herrera - 231515 Fix NPE in checkArgumentCount
  *   Zeligsoft - Bug 207365
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 236247
  * 
  * </copyright>
  *
- * $Id: OperationCallExpOperations.java,v 1.6 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: OperationCallExpOperations.java,v 1.7 2008/12/02 12:10:20 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -32,6 +33,8 @@ import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.TypeUtil;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,24 +87,29 @@ public class OperationCallExpOperations
 			OCLExpression<C> source = operationCallExp.getSource();
 			O oper = operationCallExp.getReferredOperation();
 			List<OCLExpression<C>> args = operationCallExp.getArgument();
-
-			if ((oper != null)
-				&& (source != null)
-				&& (env.getUMLReflection().getParameters(oper).size() == args
-					.size())) {
-				C sourceType = source.getType();
-				String operName = env.getUMLReflection().getName(oper);
+			
+			if ((oper != null) && (source != null)) {
+				UMLReflection<?, C, O, ?, ?, ?, ?, ?, ?, ?> uml = env
+					.getUMLReflection();
 
 				// Check argument conformance.
-				O oper1 = env.lookupOperation(sourceType, operName, args);
-				if (oper1 != oper) {
-					result = false;
-					message = OCLMessages.bind(
-						OCLMessages.IllegalOperation_ERROR_, operationCallExp
-							.toString());
+				List<?> parms = uml.getParameters(oper);
+
+				// if the wrong number of parameters, the other constraint
+				// on argument count will complain
+				if (parms.size() == args.size()) {
+					// We check the arguments of the operationCallExp against
+					// the parameters of the referred operation
+					if (!TypeUtil.matchArgs(env, source.getType(), parms, args)) {
+						result = false;
+						message = OCLMessages.bind(
+							OCLMessages.IllegalOperation_ERROR_,
+							operationCallExp.toString());
+
+					}
 				}
 			}
-		}
+		}	
 
 		if (!result) {
 			if (diagnostics != null) {
@@ -111,6 +119,7 @@ public class OperationCallExpOperations
 					message, new Object[]{operationCallExp}));
 			}
 		}
+		
 		return result;
 	}
 
