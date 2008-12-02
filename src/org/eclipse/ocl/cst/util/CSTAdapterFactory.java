@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.5 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTAdapterFactory.java,v 1.6 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -53,6 +53,7 @@ import org.eclipse.ocl.cst.LiteralExpCS;
 import org.eclipse.ocl.cst.LoopExpCS;
 import org.eclipse.ocl.cst.MessageExpCS;
 import org.eclipse.ocl.cst.NullLiteralExpCS;
+import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.OCLMessageArgCS;
 import org.eclipse.ocl.cst.OperationCS;
@@ -384,6 +385,11 @@ public class CSTAdapterFactory
 		@Override
 		public Adapter caseStateExpCS(StateExpCS object) {
 			return createStateExpCSAdapter();
+		}
+
+		@Override
+		public Adapter caseOCLDocumentCS(OCLDocumentCS object) {
+			return createOCLDocumentCSAdapter();
 		}
 
 		@Override
@@ -1018,6 +1024,21 @@ public class CSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createStateExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.cst.OCLDocumentCS <em>OCL Document CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.cst.OCLDocumentCS
+	 * @generated
+	 */
+	public Adapter createOCLDocumentCSAdapter() {
 		return null;
 	}
 

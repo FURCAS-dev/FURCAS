@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2008 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
+ *   Zeligsoft - Bug 251349
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.5 2008/02/15 05:20:03 cdamus Exp $
+ * $Id: OCL.java,v 1.6 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -254,7 +255,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 		
 		List<CT> result = new java.util.ArrayList<CT>();
-		analyzer.parsePackageDeclarationCS(result);
+		analyzer.parseOCLDocument(result);
 		
 		constraints.addAll(result);
 		

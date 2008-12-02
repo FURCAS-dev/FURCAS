@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
   <uml:Model xmi:id="_qdx8sQ8fEduhWtVvKtiQ7w" name="ocl">
     <packagedElement xmi:type="uml:Package" xmi:id="_qdx8sP8fEduhWtVvKtiQ7w" name="cst">
       <packageImport xmi:id="_CSYeEI2GEd2mlKUM3HGxZg">
@@ -693,6 +693,16 @@
       <packagedElement xmi:type="uml:Association" xmi:id="_vKb1cI2IEd2mlKUM3HGxZg" memberEnd="_bgLRUI2IEd2mlKUM3HGxZg _Bd6z4I2JEd2mlKUM3HGxZg">
         <ownedEnd xmi:id="_Bd6z4I2JEd2mlKUM3HGxZg" name="context" type="_qdx9C_8fEduhWtVvKtiQ7w" association="_vKb1cI2IEd2mlKUM3HGxZg"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WuZt4L8sEd2tbsirxV4pLA" name="OCLDocumentCS">
+        <generalization xmi:id="_rrSWEL-xEd27Y-WjraRi9w" general="_qdx8sf8fEduhWtVvKtiQ7w"/>
+        <ownedAttribute xmi:id="_woRO4L8sEd2tbsirxV4pLA" name="packageDeclarations" type="_qdx8tv8fEduhWtVvKtiQ7w" aggregation="composite" association="_ctnB0L8tEd2tbsirxV4pLA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_98bzoL8sEd2tbsirxV4pLA" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Ds80L8sEd2tbsirxV4pLA"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ctnB0L8tEd2tbsirxV4pLA" memberEnd="_woRO4L8sEd2tbsirxV4pLA _jrh2ML8tEd2tbsirxV4pLA">
+        <ownedEnd xmi:id="_jrh2ML8tEd2tbsirxV4pLA" name="oclDocument" type="_WuZt4L8sEd2tbsirxV4pLA" association="_ctnB0L8tEd2tbsirxV4pLA"/>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_qdx-XP8fEduhWtVvKtiQ7w">
       <eAnnotations xmi:id="_qdx-Xf8fEduhWtVvKtiQ7w" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -865,4 +875,6 @@
   <Ecore:EAttribute xmi:id="_na5BwI2GEd2mlKUM3HGxZg" isTransient="true" base_Property="_kTt1cI2GEd2mlKUM3HGxZg"/>
   <Ecore:EAttribute xmi:id="_CoEkwI2HEd2mlKUM3HGxZg" isTransient="true" base_Property="_xJpmEI2GEd2mlKUM3HGxZg"/>
   <Ecore:EReference xmi:id="_j10GkI2IEd2mlKUM3HGxZg" base_Property="_bgLRUI2IEd2mlKUM3HGxZg"/>
+  <Ecore:EClass xmi:id="_u2txsL8sEd2tbsirxV4pLA" base_Class="_WuZt4L8sEd2tbsirxV4pLA"/>
+  <Ecore:EReference xmi:id="_xEai4L8tEd2tbsirxV4pLA" base_Property="_woRO4L8sEd2tbsirxV4pLA"/>
 </xmi:XMI>

@@ -11,11 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *             - Bug 243976
- *   Zeligsoft - Bugs 243976, 255599
+ *   Zeligsoft - Bugs 243976, 255599, 251349
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.3 2008/11/30 21:31:12 cdamus Exp $
+ * $Id: AbstractOCLParser.java,v 1.4 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -53,6 +53,7 @@ import org.eclipse.ocl.cst.LetExpCS;
 import org.eclipse.ocl.cst.MessageExpCS;
 import org.eclipse.ocl.cst.MessageExpKind;
 import org.eclipse.ocl.cst.NullLiteralExpCS;
+import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.OCLMessageArgCS;
 import org.eclipse.ocl.cst.OperationCS;
@@ -629,7 +630,7 @@ public abstract class AbstractOCLParser extends AbstractParser
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
 		
-		if ((isMarkedPreCS != null) && isMarkedPreCS.isPre()) {
+		if (isAtPre(isMarkedPreCS)) {
 			result.setIsMarkedPreCS(isMarkedPreCS);
 		}
 		
@@ -679,6 +680,27 @@ public abstract class AbstractOCLParser extends AbstractParser
 		OCLMessageArgCS result = CSTFactory.eINSTANCE.createOCLMessageArgCS();
 		result.setTypeCS(typeCS);
 		result.setExpression(oclExpressionCS);
+		return result;
+	}
+	
+	/**
+	 * Creates an OCL document CS from a chain of package context declarations.
+	 * 
+	 * @param packageDecl
+	 *            a chain of package context declarations
+	 * @return the document CS
+	 * 
+	 * @since 1.3
+	 */
+	protected OCLDocumentCS createOCLDocumentCS(PackageDeclarationCS packageDecl) {
+		OCLDocumentCS result = CSTFactory.eINSTANCE.createOCLDocumentCS();
+
+		for (PackageDeclarationCS decl = packageDecl; decl != null; decl = decl
+			.getPackageDeclarationCS()) {
+			
+			result.getPackageDeclarations().add(0, decl);
+		}
+		
 		return result;
 	}
 }

@@ -309,5 +309,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sequenceOfNames" upperBound="-1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OCLDocumentCS" eSuperTypes="#//cst/CSTNode">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="packageDeclarations"
+          ordered="false" upperBound="-1" eType="#//cst/PackageDeclarationCS" containment="true"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

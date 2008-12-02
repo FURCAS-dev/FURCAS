@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.4 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
