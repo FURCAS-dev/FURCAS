@@ -298,6 +298,10 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/StateExpCS">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StateExpCS/sequenceOfNames"/>
       </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OCLDocumentCS">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/OCLDocumentCS/packageDeclarations"/>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

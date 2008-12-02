@@ -10,11 +10,11 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bug 243976, 251349
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.7 2008/10/04 00:54:10 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.8 2008/12/02 11:58:50 cdamus Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -27,6 +27,7 @@ import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
 import org.eclipse.ocl.cst.InvCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
+import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.PackageDeclarationCS;
 import org.eclipse.ocl.cst.PrePostOrBodyDeclCS;
@@ -154,6 +155,34 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         
         return sanitize(result);
     }
+
+	/**
+	 * Parses the input as an OCLDocumentCS.
+	 * 
+	 * @param constraints
+	 *            the constraints list to populate
+	 * @return the parsed constraints (as many as could be parsed)
+	 * 
+	 * @since 1.3
+	 */
+	public List<CT> parseOCLDocument(final List<CT> constraints) {
+		CSTNode cstNode = parseConcreteSyntax();
+
+		if ((cstNode != null) && !(cstNode instanceof PackageDeclarationCS)) {
+			ERROR(cstNode, "parseOCLDocument",//$NON-NLS-1$
+				OCLMessages.bind(OCLMessages.ParseCSTNodeType_ERROR_,
+					"PackageDeclarationCS",//$NON-NLS-1$
+					cstNode.eClass().getName()));
+			return sanitize(constraints);
+		}
+
+		OCLDocumentCS documentCS = getParser().createOCLDocumentCS(
+			(PackageDeclarationCS) cstNode);
+
+		documentCS(documentCS, constraints);
+
+		return sanitize(constraints);
+	}
 
 	/**
 	 * Parses the input as a PackageDeclarationCS.

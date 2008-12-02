@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTSwitch.java,v 1.5 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -53,6 +53,7 @@ import org.eclipse.ocl.cst.LiteralExpCS;
 import org.eclipse.ocl.cst.LoopExpCS;
 import org.eclipse.ocl.cst.MessageExpCS;
 import org.eclipse.ocl.cst.NullLiteralExpCS;
+import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.OCLMessageArgCS;
 import org.eclipse.ocl.cst.OperationCS;
@@ -726,6 +727,15 @@ public class CSTSwitch<T> {
 					result = caseOCLExpressionCS(stateExpCS);
 				if (result == null)
 					result = caseCSTNode(stateExpCS);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case CSTPackage.OCL_DOCUMENT_CS : {
+				OCLDocumentCS oclDocumentCS = (OCLDocumentCS) theEObject;
+				T result = caseOCLDocumentCS(oclDocumentCS);
+				if (result == null)
+					result = caseCSTNode(oclDocumentCS);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -1453,6 +1463,22 @@ public class CSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseStateExpCS(StateExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OCL Document CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OCL Document CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLDocumentCS(OCLDocumentCS object) {
 		return null;
 	}
 

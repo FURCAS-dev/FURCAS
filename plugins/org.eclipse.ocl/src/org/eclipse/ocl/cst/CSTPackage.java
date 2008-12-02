@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 231435, 243976
+ *   Zeligsoft - Bugs 231435, 243976, 251349
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.5 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.6 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -168,6 +168,50 @@ public interface CSTPackage
 	int PACKAGE_DECLARATION_CS = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLExpressionCSImpl <em>OCL Expression CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.cst.impl.OCLExpressionCSImpl
+	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLExpressionCS()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_EXPRESSION_CS = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.TypeCSImpl <em>Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.cst.impl.TypeCSImpl
+	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTypeCS()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TYPE_CS = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.cst.impl.PathNameCSImpl
+	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPathNameCS()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PATH_NAME_CS = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.cst.impl.ContextDeclCSImpl
+	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getContextDeclCS()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS = 5;
+
+	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -258,17 +302,6 @@ public interface CSTPackage
 	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLExpressionCSImpl <em>OCL Expression CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.cst.impl.OCLExpressionCSImpl
-	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLExpressionCS()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int OCL_EXPRESSION_CS = 4;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,17 +362,6 @@ public interface CSTPackage
 	int OCL_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.TypeCSImpl <em>Type CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.cst.impl.TypeCSImpl
-	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTypeCS()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int TYPE_CS = 3;
-
-	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,17 +420,6 @@ public interface CSTPackage
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.cst.impl.PathNameCSImpl
-	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPathNameCS()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PATH_NAME_CS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -479,17 +490,6 @@ public interface CSTPackage
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.cst.impl.ContextDeclCSImpl
-	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getContextDeclCS()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4786,6 +4786,87 @@ public interface CSTPackage
 	int STATE_EXP_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.cst.impl.OCLDocumentCSImpl
+	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLDocumentCS()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS = 50;
+
+	/**
+	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS__START_OFFSET = CST_NODE__START_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+	 * The feature id for the '<em><b>End Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+	 * The feature id for the '<em><b>Ast</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS__AST = CST_NODE__AST;
+
+	/**
+	 * The feature id for the '<em><b>Package Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS__PACKAGE_DECLARATIONS = CST_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>OCL Document CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OCL_DOCUMENT_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.SimpleTypeEnum <em>Simple Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4794,7 +4875,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int SIMPLE_TYPE_ENUM = 50;
+	int SIMPLE_TYPE_ENUM = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.PrePostOrBodyEnum <em>Pre Post Or Body Enum</em>}' enum.
@@ -4805,7 +4886,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int PRE_POST_OR_BODY_ENUM = 51;
+	int PRE_POST_OR_BODY_ENUM = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.CollectionTypeIdentifierEnum <em>Collection Type Identifier Enum</em>}' enum.
@@ -4816,7 +4897,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_IDENTIFIER_ENUM = 52;
+	int COLLECTION_TYPE_IDENTIFIER_ENUM = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.MessageExpKind <em>Message Exp Kind</em>}' enum.
@@ -4827,7 +4908,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int MESSAGE_EXP_KIND = 53;
+	int MESSAGE_EXP_KIND = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.DotOrArrowEnum <em>Dot Or Arrow Enum</em>}' enum.
@@ -4838,7 +4919,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int DOT_OR_ARROW_ENUM = 54;
+	int DOT_OR_ARROW_ENUM = 55;
 
 	/**
 	 * The meta object id for the '<em>IToken</em>' data type.
@@ -4849,7 +4930,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int ITOKEN = 55;
+	int ITOKEN = 56;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.CSTNode <em>Node</em>}'.
@@ -6247,6 +6328,29 @@ public interface CSTPackage
 	EAttribute getStateExpCS_SequenceOfNames();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.OCLDocumentCS <em>OCL Document CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OCL Document CS</em>'.
+	 * @see org.eclipse.ocl.cst.OCLDocumentCS
+	 * @generated
+	 */
+	EClass getOCLDocumentCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.OCLDocumentCS#getPackageDeclarations <em>Package Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Package Declarations</em>'.
+	 * @see org.eclipse.ocl.cst.OCLDocumentCS#getPackageDeclarations()
+	 * @see #getOCLDocumentCS()
+	 * @generated
+	 */
+	EReference getOCLDocumentCS_PackageDeclarations();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.ocl.cst.SimpleTypeEnum <em>Simple Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7549,6 +7653,27 @@ public interface CSTPackage
 		 */
 		EAttribute STATE_EXP_CS__SEQUENCE_OF_NAMES = eINSTANCE
 			.getStateExpCS_SequenceOfNames();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * @since 1.3
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.cst.impl.OCLDocumentCSImpl
+		 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLDocumentCS()
+		 * @generated
+		 */
+		EClass OCL_DOCUMENT_CS = eINSTANCE.getOCLDocumentCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Package Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 1.3
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_DOCUMENT_CS__PACKAGE_DECLARATIONS = eINSTANCE
+			.getOCLDocumentCS_PackageDeclarations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.SimpleTypeEnum <em>Simple Type Enum</em>}' enum.

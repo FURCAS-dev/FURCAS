@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 251349
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTFactoryImpl.java,v 1.5 2008/12/02 11:58:50 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -55,6 +55,7 @@ import org.eclipse.ocl.cst.LoopExpCS;
 import org.eclipse.ocl.cst.MessageExpCS;
 import org.eclipse.ocl.cst.MessageExpKind;
 import org.eclipse.ocl.cst.NullLiteralExpCS;
+import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.OCLMessageArgCS;
 import org.eclipse.ocl.cst.OperationCS;
 import org.eclipse.ocl.cst.OperationCallExpCS;
@@ -210,6 +211,8 @@ public class CSTFactoryImpl
 				return createOperationCallExpCS();
 			case CSTPackage.STATE_EXP_CS :
 				return createStateExpCS();
+			case CSTPackage.OCL_DOCUMENT_CS :
+				return createOCLDocumentCS();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -680,6 +683,17 @@ public class CSTFactoryImpl
 	public StateExpCS createStateExpCS() {
 		StateExpCSImpl stateExpCS = new StateExpCSImpl();
 		return stateExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLDocumentCS createOCLDocumentCS() {
+		OCLDocumentCSImpl oclDocumentCS = new OCLDocumentCSImpl();
+		return oclDocumentCS;
 	}
 
 	/**
