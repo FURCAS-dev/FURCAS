@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.6 2008/11/24 00:38:49 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.7 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -225,9 +225,9 @@ public class TypeExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitTypeExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitTypeExp(this);
 	}
 
 } //TypeExpImpl

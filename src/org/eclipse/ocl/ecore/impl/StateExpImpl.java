@@ -13,12 +13,13 @@
  *
  * </copyright>
  *
- * $Id: StateExpImpl.java,v 1.7 2008/11/24 00:40:02 cdamus Exp $
+ * $Id: StateExpImpl.java,v 1.8 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -225,9 +226,9 @@ public class StateExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitStateExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, EObject, ?, ?, ?>) v).visitStateExp(this);
 	}
 
 } //StateExpImpl

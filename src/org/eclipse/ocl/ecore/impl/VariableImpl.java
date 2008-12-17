@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.8 2008/11/24 00:39:39 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.9 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -656,8 +656,9 @@ public class VariableImpl
 	/**
 	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitVariable(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?>) v).visitVariable(this);
 	}
 
 } //VariableImpl

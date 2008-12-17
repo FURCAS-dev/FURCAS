@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.7 2008/11/24 00:39:32 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.8 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -666,9 +666,9 @@ public class MessageExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitMessageExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, CallOperationAction, SendSignalAction, ?>) v).visitMessageExp(this);
 	}
 
 } //MessageExpImpl

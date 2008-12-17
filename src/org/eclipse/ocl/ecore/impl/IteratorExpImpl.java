@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.6 2008/11/24 00:38:30 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.7 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -23,6 +23,8 @@ import java.util.Map;
 //import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EParameter;
 
 //import org.eclipse.emf.ecore.plugin.EcorePlugin;
 //import org.eclipse.emf.ecore.util.EObjectValidator;
@@ -112,9 +114,9 @@ public class IteratorExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitIteratorExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?>) v).visitIteratorExp(this);
 	}
 
 } //IteratorExpImpl

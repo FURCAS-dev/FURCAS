@@ -12,7 +12,7 @@
  *   Zeligsoft - Bug 241426
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.8 2008/11/24 00:39:43 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.9 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -654,8 +654,9 @@ public class TupleLiteralPartImpl
 	/**
 	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitTupleLiteralPart(this);
+		return ((Visitor<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v).visitTupleLiteralPart(this);
 	}
 
 } //TupleLiteralPartImpl
