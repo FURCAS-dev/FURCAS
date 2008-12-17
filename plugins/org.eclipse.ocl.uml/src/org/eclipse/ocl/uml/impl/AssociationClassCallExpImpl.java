@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.6 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.uml.AssociationClassCallExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -225,9 +226,9 @@ public class AssociationClassCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitAssociationClassCallExp(this);
+		return ((Visitor<T, Classifier, ?, Property, ?, ?, ?, ?, ?, ?>) v).visitAssociationClassCallExp(this);
 	}
 
 } //AssociationClassCallExpImpl

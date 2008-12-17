@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.9 2008/11/24 00:24:55 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.10 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -380,8 +380,9 @@ public class TupleLiteralPartImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitTupleLiteralPart(this);
+		return ((Visitor<T, Classifier, ?, Property, ?, ?, ?, ?, ?, ?>) v).visitTupleLiteralPart(this);
 	}
 
 	/**

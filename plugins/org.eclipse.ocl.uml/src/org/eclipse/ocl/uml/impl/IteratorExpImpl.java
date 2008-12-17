@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: IteratorExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: IteratorExpImpl.java,v 1.6 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -25,6 +25,8 @@ import org.eclipse.ocl.expressions.operations.IteratorExpOperations;
 import org.eclipse.ocl.uml.IteratorExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Parameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,9 +109,9 @@ public class IteratorExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitIteratorExp(this);
+		return ((Visitor<T, Classifier, ?, ?, ?, Parameter, ?, ?, ?, ?>) v).visitIteratorExp(this);
 	}
 
 } //IteratorExpImpl
