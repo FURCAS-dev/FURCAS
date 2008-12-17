@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RealLiteralExpImpl.java,v 1.6 2008/11/24 00:40:14 cdamus Exp $
+ * $Id: RealLiteralExpImpl.java,v 1.7 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.common.notify.Notification;
 //import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 //import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -96,9 +97,9 @@ public class RealLiteralExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitRealLiteralExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitRealLiteralExp(this);
 	}
 
 	/**

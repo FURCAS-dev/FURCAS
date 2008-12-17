@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.7 2008/11/24 00:39:29 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.8 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -318,8 +318,9 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitExpressionInOCL(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?>) v).visitExpressionInOCL(this);
 	}
 
 	/**
