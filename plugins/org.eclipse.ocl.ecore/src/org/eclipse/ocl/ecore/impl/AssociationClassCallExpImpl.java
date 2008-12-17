@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.6 2008/11/24 00:38:46 cdamus Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.7 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -225,9 +226,9 @@ public class AssociationClassCallExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitAssociationClassCallExp(this);
+		return ((Visitor<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v).visitAssociationClassCallExp(this);
 	}
 
 } //AssociationClassCallExpImpl

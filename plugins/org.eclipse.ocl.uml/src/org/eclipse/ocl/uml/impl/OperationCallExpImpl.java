@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.6 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -386,9 +386,9 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitOperationCallExp(this);
+		return ((Visitor<T, Classifier, Operation, ?, ?, ?, ?, ?, ?, ?>) v).visitOperationCallExp(this);
 	}
 
 } //OperationCallExpImpl

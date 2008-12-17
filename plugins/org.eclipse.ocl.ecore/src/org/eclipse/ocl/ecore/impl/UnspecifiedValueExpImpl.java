@@ -13,12 +13,13 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.5 2008/11/24 00:39:08 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.6 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.UnspecifiedValueExp;
@@ -282,9 +283,9 @@ public class UnspecifiedValueExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitUnspecifiedValueExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitUnspecifiedValueExp(this);
 	}
 
 } //UnspecifiedValueExpImpl

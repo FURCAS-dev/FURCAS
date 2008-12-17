@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EnumLiteralExpImpl.java,v 1.5 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: EnumLiteralExpImpl.java,v 1.6 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.expressions.operations.EnumLiteralExpOperations;
 import org.eclipse.ocl.uml.EnumLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 
 /**
@@ -234,9 +235,9 @@ public class EnumLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitEnumLiteralExp(this);
+		return ((Visitor<T, Classifier, ?, ?, EnumerationLiteral, ?, ?, ?, ?, ?>) v).visitEnumLiteralExp(this);
 	}
 
 } //EnumLiteralExpImpl

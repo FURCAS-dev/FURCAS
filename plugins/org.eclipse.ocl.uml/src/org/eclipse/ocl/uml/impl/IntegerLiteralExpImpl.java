@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: IntegerLiteralExpImpl.java,v 1.6 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: IntegerLiteralExpImpl.java,v 1.7 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.expressions.operations.IntegerLiteralExpOperations;
 import org.eclipse.ocl.uml.IntegerLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -230,9 +231,9 @@ public class IntegerLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitIntegerLiteralExp(this);
+		return ((Visitor<T, Classifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitIntegerLiteralExp(this);
 	}
 
 } //IntegerLiteralExpImpl

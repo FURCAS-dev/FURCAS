@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.7 2008/11/24 00:39:42 cdamus Exp $
+ * $Id: IfExpImpl.java,v 1.8 2008/12/17 19:19:14 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -449,9 +449,9 @@ public class IfExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitIfExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitIfExp(this);
 	}
 
 } //IfExpImpl

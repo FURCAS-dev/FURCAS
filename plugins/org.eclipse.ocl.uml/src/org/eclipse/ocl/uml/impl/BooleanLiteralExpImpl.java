@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: BooleanLiteralExpImpl.java,v 1.6 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: BooleanLiteralExpImpl.java,v 1.7 2008/12/17 19:19:28 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.expressions.operations.BooleanLiteralExpOperations;
 import org.eclipse.ocl.uml.BooleanLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -230,9 +231,9 @@ public class BooleanLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitBooleanLiteralExp(this);
+		return ((Visitor<T, Classifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitBooleanLiteralExp(this);
 	}
 
 } //BooleanLiteralExpImpl
