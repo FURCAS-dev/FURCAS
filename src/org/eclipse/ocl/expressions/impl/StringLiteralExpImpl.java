@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.5 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.6 2008/12/17 19:19:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -190,9 +190,9 @@ public class StringLiteralExpImpl<C>
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitStringLiteralExp(this);
+		return ((Visitor<T, C, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitStringLiteralExp(this);
 	}
 
 } //StringLiteralExpImpl

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.4 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.5 2008/12/17 19:19:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -57,9 +57,9 @@ public class InvalidLiteralExpImpl<C>
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitInvalidLiteralExp(this);
+		return ((Visitor<T, C, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitInvalidLiteralExp(this);
 	}
 
 } //InvalidLiteralExpImpl

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.6 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.7 2008/12/17 19:19:21 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -195,9 +195,9 @@ public class TupleLiteralExpImpl<C, P>
 	/**
 	 * @generated NOT
 	 */
-	@Override
+	@Override @SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return v.visitTupleLiteralExp(this);
+		return ((Visitor<T, C, ?, P, ?, ?, ?, ?, ?, ?>) v).visitTupleLiteralExp(this);
 	}
 
 } //TupleLiteralExpImpl
