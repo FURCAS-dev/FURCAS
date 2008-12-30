@@ -10,14 +10,14 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *               - Bug 237126, 245586, 213886
+ *               - Bug 237126, 245586, 213886, 242236
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
- *               255599, 251349
+ *               255599, 251349, 242236, 259740
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.20 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.21 2008/12/30 11:49:05 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -128,7 +128,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractAnalyzer;
-import org.eclipse.ocl.lpg.BasicEnvironment;
+import org.eclipse.ocl.lpg.BasicEnvironment2;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
@@ -435,7 +435,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 							CollectionKind kind = getCollectionKind(
 							        getOCLType(env, property));
 							if (kind != null) {
-								acc.setType(getCollectionType(env, kind, assocClass));
+								// FIXME associate a CSTNode with the collection
+								acc.setType(getCollectionType(null, env, kind, assocClass));
 							} else {
 								acc.setType(assocClass);
 							}
@@ -565,7 +566,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		result.setSource(source);	   
 		
 		// Performs method signature checking		
-		O oper = lookupOperation(operationCallExpCS, env, ownerType, operName, args);
+		O oper = lookupOperation(operationCallExpCS.getSimpleNameCS(), env, ownerType, operName, args);
 		
 		// sometimes we use the resolved name in case the environment's look-up
 		// supports aliasing
@@ -662,18 +663,25 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			List<CT> constraints) {
 
 		PathNameCS pathNameCS = packageDeclarationCS.getPathNameCS();
-		EList<String> pathname = (pathNameCS == null)
-			? null
-			: pathNameCS.getSequenceOfNames();
 
+		EList<String> pathname;
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> packageEnv;
 
-		if (pathname == null) {
+		if (pathNameCS == null) {
 			packageEnv = env;
 			pathname = ECollections.emptyEList();
+			initASTMapping(packageEnv, createDummyPackage(env,
+				packageDeclarationCS), packageDeclarationCS);
 		} else {
+			pathname = pathNameCS.getSequenceOfNames();
 			try {
 				packageEnv = createPackageContext(getOCLEnvironment(), pathname);
+				if (packageEnv != null) {
+					PK contextPackage = packageEnv.getContextPackage();
+					initASTMapping(packageEnv, contextPackage,
+						packageDeclarationCS);
+					pathNameCS.setAst(contextPackage);
+				}
 			} catch (LookupException e) {
 				ERROR(pathNameCS, "packageDeclarationCS", //$NON-NLS-1$
 					e.getMessage());
@@ -772,39 +780,44 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	operationCS(OperationCS operationCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
-		
+
 		O operation = null;
 		C classifier = null;
-		EList<String> operationName = new BasicEList<String>();
-		operationName.addAll(operationCS.getPathNameCS().getSequenceOfNames());
-		operationName.add(operationCS.getSimpleNameCS().getValue());
+		EList<String> className = operationCS.getPathNameCS()
+			.getSequenceOfNames();
+		String operationName = operationCS.getSimpleNameCS().getValue();
+		EList<String> qualifiedOperationName = new BasicEList<String>();
+		qualifiedOperationName.addAll(className);
+		qualifiedOperationName.add(operationName);
 
-		if (operationName.size() > 1) {
-			int lastName = operationName.size() - 1;
-			List<String> className = new java.util.ArrayList<String>(
-				operationName.subList(0, lastName));
-			classifier = lookupClassifier(operationCS, env, className);
-			
+		EList<VariableCS> parametersCS = operationCS.getParameters();
+		if (className.size() > 0) {
+			classifier = lookupClassifier(operationCS.getPathNameCS(), env,
+				className);
+
 			if (classifier != null) {
-				// create the classifier context as parent for the operation context
-				env = environmentFactory.createClassifierContext(env, classifier);
-				
+				// create the classifier context as parent for the operation
+				// context
+				env = environmentFactory.createClassifierContext(env,
+					classifier);
+
 				// ensure that the classifier context has a 'self' variable
 				if (env.lookupLocal(SELF_VARIABLE_NAME) == null) {
 					genVariableDeclaration(operationCS, "operationCS", env,//$NON-NLS-1$
 						SELF_VARIABLE_NAME, classifier, null, true, true, true);
 				}
-				
+
 				// find the context operation
-				List<Variable<C, PM>> contextParms =
-					parametersCS(operationCS.getParameters(), env);
-				operation = lookupOperation(operationCS, env, 
-					classifier, operationName.get(lastName), contextParms);
+				List<Variable<C, PM>> contextParms = parametersCS(parametersCS,
+					env);
+				operation = lookupOperation(operationCS, env, classifier,
+					operationName, contextParms);
+				operationCS.getSimpleNameCS().setAst(operation);
 
 				if (operation == null) {
 					String message = OCLMessages.bind(
 						OCLMessages.UnrecognizedContext_ERROR_,
-						makeString(operationName));
+						makeString(qualifiedOperationName));
 					ERROR(operationCS, "operationContextDeclCS", message);//$NON-NLS-1$
 					return null;
 				}
@@ -814,20 +827,31 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (operation == null) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
-				makeString(operationName));
+				makeString(qualifiedOperationName));
 			ERROR(operationCS, "operationContextDeclCS", message);//$NON-NLS-1$
 			return null;
 		}
-		
-		TRACE("operationCS", "context", operationName);//$NON-NLS-2$//$NON-NLS-1$
+
+		TypeCS operationTypeCS = operationCS.getTypeCS();
+		C opType1 = (operationTypeCS != null)
+			? typeCS(operationTypeCS, env)
+			: getOclVoid();
+		C opType2 = uml.getOCLType(operation);
+		if (!TypeUtil.compatibleTypeMatch(env, opType1, opType2)) {
+			String message = OCLMessages.bind(
+				OCLMessages.TypeConformanceOperation_ERROR_,
+				makeString(qualifiedOperationName));
+			ERROR(operationCS, "operationContextDeclCS", message);//$NON-NLS-1$
+			return null;
+		}
+
+		TRACE("operationCS", "context", qualifiedOperationName);//$NON-NLS-2$//$NON-NLS-1$
 
 		// this ensures that parameters are correctly renamed according to the
-		//   context declaration (thus ensuring that they do not mask attributes
-		//   of the context classifier)
-		return createOperationContext(
-				env,
-				(OperationContextDeclCS) operationCS.eContainer(),
-				operation);
+		// context declaration (thus ensuring that they do not mask attributes
+		// of the context classifier)
+		return createOperationContext(env, (OperationContextDeclCS) operationCS
+			.eContainer(), operation);
 	}
 
 	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
@@ -835,6 +859,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OperationContextDeclCS operationContextCS,
 			O operation) {
+		
+		if (operationContextCS != null) {
+			operationContextCS.setAst(operation);
+		}
 		
 		// create the operation context
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result =
@@ -899,7 +927,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			PrePostOrBodyDeclCS prePostOrBodyDeclCS) {
 
-		Variable<C, PM> resultVar = null;
+		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
+		initASTMapping(env, spec, prePostOrBodyDeclCS, null);
 		
 		O operation = env.getContextOperation();
 		
@@ -907,7 +936,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		    (OperationContextDeclCS) prePostOrBodyDeclCS.eContainer();
 		
 		// create a disposable child operation context for this environment
-		env = createOperationContext(env, operationContext, operation);
+		env = createOperationContext(env, operationContext, operation);		
+		Variable<C, PM> selfVar = env.getSelfVariable();
+		spec.setContextVariable(selfVar);
 		
 		C operationType = getOCLType(env, operation);
         if (operationType instanceof VoidType) {
@@ -915,7 +946,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         }
         
 		String stereotype = null;
-		
+		Variable<C, PM> resultVar = null;
 		switch (prePostOrBodyDeclCS.getKind().getValue()) {
 			case PrePostOrBodyEnum.PRE:
 				stereotype = UMLReflection.PRECONDITION;
@@ -928,8 +959,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				// same type as the operation
 				if ((operationType != null) && (env.lookupLocal(Environment.RESULT_VARIABLE_NAME) == null)) {
 					resultVar = genVariableDeclaration(
-						prePostOrBodyDeclCS, "prePostOrBodyDeclCS0", env, //$NON-NLS-1$
+						null, "prePostOrBodyDeclCS0", env, //$NON-NLS-1$
 						Environment.RESULT_VARIABLE_NAME, operationType, null, true, true, false);
+					initASTMapping(env, resultVar, prePostOrBodyDeclCS, null);
+					spec.setResultVariable(resultVar);
 				}
 
 				break;
@@ -942,8 +975,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				// condition constraint
 				if ((operationType != null) && (env.lookupLocal(Environment.RESULT_VARIABLE_NAME) == null)) {
 					resultVar = genVariableDeclaration(
-						prePostOrBodyDeclCS, "prePostOrBodyDeclCS", env, //$NON-NLS-1$
+						null, "prePostOrBodyDeclCS", env, //$NON-NLS-1$
 						Environment.RESULT_VARIABLE_NAME, operationType, null, true, true, false);
+					initASTMapping(env, resultVar, prePostOrBodyDeclCS, null);
+					spec.setResultVariable(resultVar);
 				}
 
 				break;
@@ -964,15 +999,17 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			SimpleNameCS simpleNameCS = prePostOrBodyDeclCS.getSimpleNameCS();
 			if (simpleNameCS != null) {
                 uml.setConstraintName(astNode, simpleNameCS.getValue());
+                simpleNameCS.setAst(astNode);
 			}
 			
 			List<EObject> constrainedElement = uml.getConstrainedElements(astNode);
 			constrainedElement.add((EObject) operation);
 			
 			C owner = uml.getOwningClassifier(operation);
-			if (owner != env.getSelfVariable().getType()) {
+			C selfVarType = selfVar.getType();
+			if (owner != selfVarType) {
 				// implicitly redefining the operation in a specializing classifier
-				constrainedElement.add((EObject) env.getSelfVariable().getType());
+				constrainedElement.add((EObject) selfVarType);
 				
 				if (operationContext != null) {
     	            // check settings for using inherited feature context in
@@ -991,12 +1028,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				}
 			}
 			
-			ExpressionInOCL<C, PM> spec = createExpressionInOCL();
-			initASTMapping(env, spec, prePostOrBodyDeclCS);
 			spec.setBodyExpression(oclExpression);
-			
-			spec.setContextVariable(env.getSelfVariable());
-			spec.setResultVariable(resultVar);
 			
 			// compute the parameter variables
 			List<PM> parameters = uml.getParameters(operation);
@@ -1004,6 +1036,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			for (Variable<C, PM> var : vars) {
 				if (parameters.contains(var.getRepresentedParameter())) {
 					spec.getParameterVariable().add(var);
+					initASTMapping(env, var, prePostOrBodyDeclCS);
 				}
 			}
 			
@@ -1040,7 +1073,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			List<CT> constraints) {
 
 		EList<String> pathName = propertyContextCS.getPathNameCS().getSequenceOfNames();
-		C owner = lookupClassifier(propertyContextCS, env, pathName);
+		C owner = lookupClassifier(propertyContextCS.getPathNameCS(), env, pathName);
 		
 		if (owner == null) {
 			String message = OCLMessages.bind(
@@ -1058,7 +1091,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		SimpleNameCS simplenameCS = propertyContextCS.getSimpleNameCS();
 		String simpleName = simplenameCS.getValue();
 		P property = lookupProperty(simplenameCS, env, owner, simpleName);
-		
+		propertyContextCS.setAst(property);
 		EList<String> propertyName = new BasicEList<String>();
 		propertyName.addAll(pathName);
 		propertyName.add(simpleName);
@@ -1072,7 +1105,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		C type = typeCS(propertyContextCS.getTypeCS(), env);
-		C propertyType = TypeUtil.getPropertyType(env, owner, property);
+		C propertyType = getPropertyType(simplenameCS, env, owner, property);
 		if ((type == null) || !TypeUtil.exactTypeMatch(env, propertyType, type)) {
 			String message = OCLMessages.bind(
 				OCLMessages.UnrecognizedContext_ERROR_,
@@ -1198,7 +1231,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
-		initASTMapping(env, spec, initOrDerValueCS);
+		initASTMapping(env, spec, initOrDerValueCS, null);
 		spec.setBodyExpression(oclExpression);
 		
 		spec.setContextVariable(env.getSelfVariable());
@@ -1234,7 +1267,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result = null;
 		
 		EList<String> pathName = classifierContextDeclCS.getPathNameCS().getSequenceOfNames();
-		C type = lookupClassifier(classifierContextDeclCS, env, pathName);
+		C type = lookupClassifier(classifierContextDeclCS.getPathNameCS(), env, pathName);
 		
 		if (type == null) {
 			String message = OCLMessages.bind(
@@ -1247,7 +1280,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		type = uml.asOCLType(type);
 
 		result = environmentFactory.createClassifierContext(env, type);
-		
+		classifierContextDeclCS.setAst(type);
         if (result.getSelfVariable() == null) {
             // ensure that the classifier context has a "self" variable
     		genVariableDeclaration(classifierContextDeclCS, "classifierContextDeclCS", result, //$NON-NLS-1$
@@ -1329,7 +1362,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			oclExpressionCS(invCS.getExpressionCS(), env);
 
 		CT astNode = createConstraint();
-		initASTMapping(env, astNode, invCS);
 		
 		SimpleNameCS simpleNameCS = invCS.getSimpleNameCS();
 
@@ -1342,10 +1374,15 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		constrainedElement.add((EObject) type);
 		
 		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
-		initASTMapping(env, spec, invCS);
+		initASTMapping(env, astNode, invCS);
+		initASTMapping(env, env.getSelfVariable(), invCS, null);
+		initASTMapping(env, spec, invCS.getExpressionCS(), null);
 		spec.setBodyExpression(oclExpression);
 		
 		spec.setContextVariable(env.getSelfVariable());
+		if (simpleNameCS != null) {
+			 simpleNameCS.setAst(spec.getContextVariable());
+		}
 		
         uml.setSpecification(astNode, spec);
         uml.setStereotype(astNode, UMLReflection.INVARIANT);
@@ -1371,7 +1408,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		OCLExpression<C> expression = null;
 		
 		CT astNode = createConstraint();
-		initASTMapping(env, astNode, defCS);
 		
 		Variable<C, PM> variable = null;
 		C operType = null;
@@ -1387,7 +1423,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		constrainedElement.add((EObject) contextClassifier);
 		
 		ExpressionInOCL<C, PM> spec = createExpressionInOCL();
-		initASTMapping(env, spec, defCS);
+		initASTMapping(env, astNode, defCS);
+		initASTMapping(env, env.getSelfVariable(), defCS, null);
+		initASTMapping(env, spec, defExpr);
+		if (simpleNameCS != null) {
+			 simpleNameCS.setAst(spec.getContextVariable());
+		}
         uml.setSpecification(astNode, spec);
         uml.setStereotype(astNode, UMLReflection.DEFINITION);
 		
@@ -1397,8 +1438,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				contextEnv = env;
 				
 				variable = variableDeclarationCS(defExpr.getVariableCS(), contextEnv, false);
-				
-				P existing = lookupProperty(defExpr.getVariableCS(),
+				spec.setResultVariable(variable);
+				P existing = lookupProperty(null,
 				        env,
 						contextClassifier,
 						variable.getName());
@@ -1434,7 +1475,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				
 				String operName = operCS.getSimpleNameCS().getValue();
 				
-				O existing = lookupOperation(operCS, env, contextClassifier, operName, params);
+				O existing = lookupOperation(null, env, contextClassifier, operName, params);
 				if (existing != null) {
 					ERROR(defCS, "defCS", //$NON-NLS-1$
 						OCLMessages.bind(OCLMessages.DuplicateOperation_ERROR_,
@@ -1449,10 +1490,14 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				//    it will resolve correctly
 				feature = (EObject) env.defineOperation(
 						contextClassifier,
-						defExpr.getOperationCS().getSimpleNameCS().getValue(),
+						operName,
 						operType,
 						params,
 						astNode);
+				operCS.setAst(feature);
+				operCS.getSimpleNameCS().setAst(feature);
+				if (operCS.getPathNameCS() != null)
+					operCS.getPathNameCS().setAst(contextClassifier);
                 if (getEnvironment().getValue(ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {
                     constrainedElement.add(feature);
                 }
@@ -1601,6 +1646,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		if (typeCS instanceof PrimitiveTypeCS) {
 			astNode = primitiveTypeCS(((PrimitiveTypeCS)typeCS).getType(), env);
+			typeCS.setAst(astNode);
 		} else if (typeCS instanceof PathNameCS) {
 			astNode = lookupClassifier(typeCS, env, ((PathNameCS)typeCS).getSequenceOfNames());
 			if (astNode == null) {
@@ -1608,7 +1654,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 						OCLMessages.UnrecognizedType_ERROR_,
 						formatPath(((PathNameCS)typeCS).getSequenceOfNames()));
 				ERROR(typeCS, "typeCS", message);//$NON-NLS-1$
-				astNode = getOclVoid();
+				astNode = createDummyInvalidType(env, typeCS, message);
 			}
 		} else if (typeCS instanceof CollectionTypeCS ||
 				typeCS instanceof TupleTypeCS) {
@@ -1685,7 +1731,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		CollectionKind kind = collectionTypeIdentifierCS(collectionTypeCS.getCollectionTypeIdentifier());
 		C type = typeCS(collectionTypeCS.getTypeCS(), env);
 	
-		C result = getCollectionType(env, kind, type);
+		C result = getCollectionType(collectionTypeCS, env, kind, type);
 		
 		@SuppressWarnings("unchecked")
 		CollectionType<C, O> astNode = (CollectionType<C, O>) result;
@@ -1855,6 +1901,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		SimpleNameCS simpleNameCS = variableExpCS.getSimpleNameCS();
 		OCLExpression<C> astNode = simpleNameCS(simpleNameCS, env, null);
+		variableExpCS.setAst(astNode);
 		List<OCLExpression<C>> qualifiers = qualifiersCS(variableExpCS.getArguments(), env, astNode);
 
 		if (isAtPre(variableExpCS)) {
@@ -1932,13 +1979,14 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @param var the referred variable
 	 * 
 	 * @return the variable expression
+	 * @since 1.3
 	 */
-	private VariableExp<C, PM> createVariableExp(
+	protected VariableExp<C, PM> createVariableExp(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CSTNode cst, Variable<C, PM> var) {
 		VariableExp<C, PM> result = oclFactory.createVariableExp();
 
-		initASTMapping(env, result, cst);
+		initASTMapping(env, result, cst, var);
 
 		if (var != null) {
 			result.setType(var.getType());
@@ -2005,7 +2053,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					PropertyCallExp<C, P> ref = oclFactory.createPropertyCallExp();
 					initASTMapping(env, ref, arg);
 					ref.setReferredProperty(property);
-					ref.setType(TypeUtil.getPropertyType(env, sourceType, property));
+					ref.setType(getPropertyType(qualifier, env, sourceType, property));
 					
 					if (source == null) {
 						Variable<C, PM> implicitSource = env.lookupImplicitSourceForProperty(simpleName);
@@ -2213,6 +2261,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			case SimpleTypeEnum.OCL_VOID:
 			case SimpleTypeEnum.INVALID:
 			case SimpleTypeEnum.OCL_MESSAGE:
+			case SimpleTypeEnum.UNLIMITED_NATURAL:
 				// if we have a source, then this is a feature call
 				if (source == null) {
 					classifier = primitiveTypeCS(simpleNameCS.getType(), env);
@@ -2341,7 +2390,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 					CollectionKind kind = getCollectionKind(getOCLType(env, end));
 					if (kind != null) {
-						acrefType = getCollectionType(env, kind, assocClass);
+						acrefType = getCollectionType(simpleNameCS, env, kind, assocClass);
 					} else {
 						acrefType = assocClass;
 					}
@@ -2394,9 +2443,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			TRACE("variableExpCS", "Property: " + simpleName);//$NON-NLS-2$//$NON-NLS-1$
 
 			result = oclFactory.createPropertyCallExp();
-			initASTMapping(env, result, simpleNameCS);
+			initASTMapping(env, result, simpleNameCS, null);
 			result.setReferredProperty(property);
-			result.setType(TypeUtil.getPropertyType(env, owner, property));
+			result.setType(getPropertyType(simpleNameCS, env, owner, property));
 
 			if (source != null) {
 				result.setSource(source);
@@ -2444,15 +2493,18 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected TypeExp<C> simpleTypeName(SimpleNameCS simpleNameCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			OCLExpression<C> source, C classifier, String simpleName) {
-
+		
+		if (simpleNameCS.getAst() != null) {
+			// Non-null when invoked from variableExpCS, so there is
+			// no point trying to turn the variable name into a type
+			return null;
+		}
+		
 		TypeExp<C> result = null;
 
 		// if we have a source, then this is a feature call
 		if ((classifier == null) && (source == null)) {
-			List<String> names = new java.util.ArrayList<String>(1);
-			names.add(simpleName);
-
-			classifier = lookupClassifier(simpleNameCS, env, names);
+			classifier = lookupClassifier(simpleNameCS, env, Collections.singletonList(simpleName));
 		}
 
 		if (classifier != null) {
@@ -2545,7 +2597,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			ERROR(simpleNameCS, "variableExpCS", message);//$NON-NLS-1$
 		}
 
-		return createDummyInvalidLiteralExp();
+		return createDummyInvalidLiteralExp(env, simpleNameCS);
 	}
 
 	/**
@@ -2568,7 +2620,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			.getElementType();
 		
 		IteratorExp<C, PM> result = oclFactory.createIteratorExp();
-		initASTMapping(env, result, cstNode);		
+		initASTMapping(env, result, cstNode, null);		
 		Variable<C, PM> itervar =
 			genVariableDeclaration(cstNode, "modelPropertyCallCS", env,//$NON-NLS-1$
 						null, sourceElementType, null, false, true, false);
@@ -2605,12 +2657,14 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (source.getType() instanceof SequenceType ||
 				source.getType() instanceof OrderedSetType) {
 			C c = getCollectionType(
+					cstNode,
 					env,
 					CollectionKind.SEQUENCE_LITERAL,
 					bodyType);
 			result.setType(c);
 		} else {
 			C c = getCollectionType(
+					cstNode,
 					env,
 					CollectionKind.BAG_LITERAL,
 					bodyType);
@@ -3116,12 +3170,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		EL literal = null;
         P attribute = null;
-		C enumType = lookupClassifier(enumLiteralExpCS, env, sequenceOfNames);
+		C enumType = lookupClassifier(enumLiteralExpCS.getPathNameCS(), env, sequenceOfNames);
 		if (enumType == null) {
 			
 			// Check to see whether the pathname corresponds to a type
 			sequenceOfNames.add(lastToken);
-			C type = lookupClassifier(enumLiteralExpCS, env, sequenceOfNames);
+			C type = lookupClassifier(enumLiteralExpCS.getSimpleNameCS(), env, sequenceOfNames);
 			if (type == null) {
 				String message = OCLMessages.bind(
 						OCLMessages.UnrecognizedType_ERROR_,
@@ -3129,6 +3183,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				ERROR(enumLiteralExpCS, "enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
 			} else {
                 astNode = typeCS(enumLiteralExpCS, env, type);
+                enumLiteralExpCS.getPathNameCS().setAst(uml.getPackage(type));
 			}
 		} else {
             if (uml.isEnumeration(enumType)) {
@@ -3157,6 +3212,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     			litExp.setReferredEnumLiteral(literal);
     			astNode = litExp;
     			astNode.setType(enumType);
+                enumLiteralExpCS.getSimpleNameCS().setAst(literal);
             } else if (attribute != null) {
                 if (!uml.isStatic(attribute)) {
                     String message = OCLMessages.bind(
@@ -3169,20 +3225,21 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                 PropertyCallExp<C, P> pcExp = oclFactory.createPropertyCallExp();
         		initASTMapping(env, pcExp, enumLiteralExpCS);
                 astNode = pcExp;
-                
+                enumLiteralExpCS.getSimpleNameCS().setAst(attribute);
+                enumLiteralExpCS.getPathNameCS().setAst(enumType);
                 TypeExp<C> typeExp = typeCS(enumLiteralExpCS, env, enumType);
                 initStartEndPositions(typeExp, enumLiteralExpCS.getPathNameCS());
                 
                 pcExp.setSource(typeExp);
                 pcExp.setReferredProperty(attribute);
-                pcExp.setType(TypeUtil.getPropertyType(env, enumType, attribute));
+                pcExp.setType(getPropertyType(enumLiteralExpCS.getSimpleNameCS(), env, enumType, attribute));
                 
                 initPropertyPositions(pcExp, enumLiteralExpCS.getSimpleNameCS());
             } else {
                 // try looking for a nested classifier
                 sequenceOfNames.add(lastToken);
                 
-                C type = lookupClassifier(enumLiteralExpCS, env, sequenceOfNames);
+                C type = lookupClassifier(enumLiteralExpCS.getSimpleNameCS(), env, sequenceOfNames);
                 if (type == null) {
                     String message = OCLMessages.bind(
                         OCLMessages.UnrecognizedEnum_ERROR_,
@@ -3190,6 +3247,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
                     ERROR(enumLiteralExpCS, "enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
                 } else {
                     astNode = typeCS(enumLiteralExpCS, env, type);
+                    enumLiteralExpCS.getSimpleNameCS().setAst(type);
+                    enumLiteralExpCS.getPathNameCS().setAst(uml.getPackage(type));
                 }
             }
 		}
@@ -3213,7 +3272,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         C type) {
         
         TypeExp<C> astNode = oclFactory.createTypeExp();
-		initASTMapping(env, astNode, cstNode);
+		initASTMapping(env, astNode, cstNode, null);
         astNode.setReferredType(type);
         astNode.setType(getTypeType(cstNode, env, type));
         
@@ -3280,10 +3339,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		if (collectionParts.isEmpty()) {
 			// absolute wildcard element type
-			resultType = getCollectionType(env, kind,
+			resultType = getCollectionType(collectionLiteralExpCS, env, kind,
 					env.getOCLStandardLibrary().getOclVoid());
 		} else {
-			resultType = getCollectionType(env, kind, type);
+			resultType = getCollectionType(collectionLiteralExpCS, env, kind, type);
 		}
 		
 		astNode.setType(resultType);
@@ -3421,16 +3480,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
    	  	 */
 		if (!(astNode.getType() instanceof CollectionType)) {
 			CollectionLiteralExp<C> astNode1 = oclFactory.createCollectionLiteralExp();
-			initASTMapping(env, astNode1, oclExpressionCS);
+			initASTMapping(env, astNode1, oclExpressionCS, null);
 			astNode1.setKind(CollectionKind.SET_LITERAL);
 			List<CollectionLiteralPart<C>> collectionParts = astNode1.getPart();
 			CollectionItem<C> collItem = oclFactory.createCollectionItem();
-			initASTMapping(env, collItem, oclExpressionCS);
+			initASTMapping(env, collItem, oclExpressionCS, null);
 			collItem.setType(astNode.getType());
 			collItem.setItem(astNode);				
 			collectionParts.add(collItem);
 			
-			C type = getCollectionType(env, astNode1.getKind(), astNode.getType());
+			C type = getCollectionType(oclExpressionCS, env, astNode1.getKind(), astNode.getType());
 			
 			astNode1.setType(type);
 			
@@ -3456,25 +3515,25 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			IteratorExpCS iteratorExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 		
-		IteratorExp<C, PM> astNode;
-		
 		OCLExpression<C> source =
 			getCollectionSourceExpression(iteratorExpCS.getSource(), env);
+		if (source == null) {
+            return null;
+        }
 		String name = iteratorExpCS.getSimpleNameCS().getValue();
 
 		Variable<C, PM> vdcl = null;
 		Variable<C, PM> vdcl1 = null;
-		OCLExpression<C> expr = null;
-		List<Variable<C, PM>> iterators = null;
-	
+		
+		IteratorExp<C, PM> astNode = oclFactory.createIteratorExp();
+		initASTMapping(env, astNode, iteratorExpCS);
+		astNode.setName(name);
+		resolveIteratorOperation(iteratorExpCS.getSimpleNameCS(), env);
+		List<Variable<C, PM>> iterators = astNode.getIterator();	
 		
 		if (iteratorExpCS.getVariable1() != null) {
 			vdcl = variableDeclarationCS(iteratorExpCS.getVariable1(), env, true);
 				
-			astNode = oclFactory.createIteratorExp();
-			initASTMapping(env, astNode, iteratorExpCS);
-			astNode.setName(name);
-			iterators = astNode.getIterator();	
 			if (vdcl.getType() == null) {
 				C sourceType = source.getType();
 				if (sourceType instanceof CollectionType) {
@@ -3503,10 +3562,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		} else  {
 
-			astNode = oclFactory.createIteratorExp();
-			initASTMapping(env, astNode, iteratorExpCS);
-			astNode.setName(name);
-			iterators = astNode.getIterator();	
 			// Synthesize the iterator expression.
 			@SuppressWarnings("unchecked")
 			CollectionType<C, O> ct = (CollectionType<C, O>) source.getType();
@@ -3517,8 +3572,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 		
 		OCLExpressionCS exprCS = iteratorExpCS.getBody();
+		OCLExpression<C> expr = null;
 
-		if ((source != null) && isErrorNode(source)) {
+		if (isErrorNode(source)) {
 			// don't attempt to parse iterator body for an unparseable source
 			expr = createDummyInvalidLiteralExp(env, iteratorExpCS);
 			// don't parse call expressions sourced on this result
@@ -3596,6 +3652,21 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		return astNode;
 	}
+
+	/**
+	 * Ovverridden by subclasses to assign the AST Operation target for an
+	 * iterator reference from the CST.
+	 * The default implementation does nothing.
+	 * 
+	 * @param simpleNameCS the iterator name
+	 * @param env the current OCL environment
+	 * 
+	 * @since 1.3
+	 */
+	protected void resolveIteratorOperation(SimpleNameCS simpleNameCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		// nothing to do
+	}
 	
 	/**
 	 * IterateExpCS
@@ -3653,8 +3724,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		astNode = oclFactory.createIterateExp();
 		initASTMapping(env, astNode, iterateExpCS);
 		astNode.setName("iterate");			//$NON-NLS-1$
+		resolveIteratorOperation(iterateExpCS.getSimpleNameCS(), env);
 
-		if ((source != null) && isErrorNode(source)) {
+		if (isErrorNode(source)) {
 			// don't attempt to parse iterate body for an unparseable source
 			expr = createDummyInvalidLiteralExp(env, iterateExpCS);
 			// don't parse call expressions sourced on this result
@@ -3674,7 +3746,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					OCLMessages.DeclarationType_ERROR_,
 					vdcl1.getName());
 			ERROR(vdcl, "iterateExpCS", message);//$NON-NLS-1$
-			vdcl1.setType(getOclVoid());
+			vdcl1.setType(createDummyInvalidType(env, iterateExpCS.getVariable1(), message));
 		}
 		
 		astNode.setType(vdcl1.getType());
@@ -3756,6 +3828,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	            AssociationClassCallExp<C, P> callNode = (AssociationClassCallExp<C, P>) astNode;
 				checkNotReflexive(env, "modelPropertyCallExpCS", callNode);//$NON-NLS-1$
 			}
+			initASTMapping(env, astNode, modelPropertyCallExpCS);
 		}
 
 		return astNode;
@@ -3899,7 +3972,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         
 		astNode = genOperationCallExp(env, operationCallExpCS, "operationCallExpCS", operationName,//$NON-NLS-1$
 				source, operationSourceType, args);
-		
         if (isStatic) {
             @SuppressWarnings("unchecked")
             TypeType<C, O> typeType = (TypeType<C, O>) operationSourceType;
@@ -3927,7 +3999,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			result = createImplicitCollect(source, astNode, env, operationCallExpCS);			
 	   	}
 
-		if ((source != null) && isErrorNode(source)) {
+		if (isErrorNode(source)) {
 			// don't attempt to parse navigation from an unparseable source
 			markAsErrorNode(result);
 		}
@@ -4053,30 +4125,83 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C elementType) {
 		
-		return TypeUtil.resolveSetType(env, elementType);
+		C setType = TypeUtil.resolveSetType(env, elementType);
+		initASTMapping(env, setType, cstNode);
+		return setType;
 	}
 	
 	protected C getOrderedSetType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C elementType) {
 		
-		return TypeUtil.resolveOrderedSetType(env, elementType);
+		C orderedSetType = TypeUtil.resolveOrderedSetType(env, elementType);
+		initASTMapping(env, orderedSetType, cstNode);
+		return orderedSetType;
 	}
 	
 	protected C getBagType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C elementType) {
 		
-		return TypeUtil.resolveBagType(env, elementType);
+		C bagType = TypeUtil.resolveBagType(env, elementType);
+		initASTMapping(env, bagType, cstNode);
+		return bagType;
 	}
 	
 	protected C getSequenceType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C elementType) {
 		
-		return TypeUtil.resolveSequenceType(env, elementType);
+		C sequenceType = TypeUtil.resolveSequenceType(env, elementType);
+		initASTMapping(env, sequenceType, cstNode);
+		return sequenceType;
 	}
+
+	/**
+	 * Obtains the current environment's representation of the collection type
+	 * of the specified kind on the given element type. As a side-effect, the
+	 * specified CST note is linked to the result, as its AST node mapping.
+	 * 
+	 * @param cstNode
+	 *            the concrete syntax of a collection-type reference
+	 * @param env
+	 *            the current environment
+	 * @param kind
+	 *            the collection kind to retrieve
+	 * @param elementType
+	 *            the collection type's element type
+	 * 
+	 * @return the current environment's matching collection type
+	 * 
+	 * @since 1.3
+	 */
+	protected C getCollectionType(CSTNode cstNode,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			CollectionKind kind, C elementType) {
+		@SuppressWarnings("deprecation")
+		C collectionType = getCollectionType(env, kind, elementType);
+		initASTMapping(env, collectionType, cstNode);
+		return collectionType;
+	}	
 	
+	/**
+	 * Obtains the current environment's representation of the collection type
+	 * of the specified kind on the given element type.
+	 * 
+	 * @param env
+	 *            the current environment
+	 * @param kind
+	 *            the collection kind to retrieve
+	 * @param elementType
+	 *            the collection type's element type
+	 * 
+	 * @return the current environment's matching collection type
+	 * 
+	 * @deprecated Since 1.3, use the
+	 *             {@link #getCollectionType(CSTNode, Environment, CollectionKind, Object)}
+	 *             method, instead.
+	 */
+	@Deprecated	// Use getCollectionType(cstNode, env, elementType)
 	protected C getCollectionType(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CollectionKind kind, C elementType) {
@@ -4087,25 +4212,58 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected C getTupleType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			EList<? extends TypedElement<C>> parts) {
-		return TypeUtil.resolveTupleType(env, parts);
+		C tupleType = TypeUtil.resolveTupleType(env, parts);
+		initASTMapping(env, tupleType, cstNode);
+		return tupleType;
 	}
 	
 	protected C getTypeType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C type) {
-		return TypeUtil.resolveTypeType(env, type);
+		C typeType = TypeUtil.resolveTypeType(env, type);
+		initASTMapping(env, typeType, cstNode);
+		return typeType;
 	}
 	
 	protected C getOperationMessageType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			O operation) {
-		return TypeUtil.resolveOperationMessageType(env, operation);
+		C operationMessageType = TypeUtil.resolveOperationMessageType(env, operation);
+		initASTMapping(env, operationMessageType, cstNode);
+		return operationMessageType;
 	}
 	
 	protected C getSignalMessageType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C signal) {
-		return TypeUtil.resolveSignalMessageType(env, signal);
+		C signalMessageType = TypeUtil.resolveSignalMessageType(env, signal);
+		initASTMapping(env, signalMessageType, cstNode);
+		return signalMessageType;
+	}
+
+	/**
+	 * Obtains the type, in the current environment, of the specified property.
+	 * As a side-effect, the CST node is configured with traceability to the
+	 * resulting type and the referenced property.
+	 * 
+	 * @param cstNode
+	 *            a property-call or property-context concrete syntax
+	 * @param env
+	 *            the current OCL parsing environment
+	 * @param owner
+	 *            the contextual classifier of the property reference
+	 * @param property
+	 *            the referenced property
+	 * @return the property's type
+	 * 
+	 * @since 1.3
+	 */
+	protected C getPropertyType(CSTNode cstNode,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			C owner, P property) {
+		C propertyType = TypeUtil.getPropertyType(env, owner, property);
+		initASTMapping(env, propertyType, cstNode, property);
+		return propertyType;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -4125,17 +4283,22 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		
 		return null;
 	}
-	
+
 	/**
 	 * Creates a dummy expression of invalid-literal type to be a placeholder
-	 * for a (sub)expression that could not be parsed.  The resulting
-	 * expression is {@linkplain #markAsErrorNode(OCLExpression) marked}
-	 * as an error place-holder expression.
+	 * for a (sub)expression that could not be parsed. The resulting expression
+	 * is {@linkplain #markAsErrorNode(OCLExpression) marked} as an error
+	 * place-holder expression.
 	 * 
 	 * @return the dummy invalid-literal expression
 	 * 
 	 * @see #markAsErrorNode(OCLExpression)
+	 * 
+	 * @deprecated Use the
+	 *             {@link #createDummyInvalidLiteralExp(Environment, CSTNode)}
+	 *             method, instead
 	 */
+	@Deprecated
 	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp() {
 		InvalidLiteralExp<C> result = oclFactory.createInvalidLiteralExp();
 		result.setType(getStandardLibrary().getInvalid());
@@ -4164,11 +4327,57 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			CSTNode cstNode) {
-		
+		@SuppressWarnings("deprecation")
 		InvalidLiteralExp<C> result = createDummyInvalidLiteralExp();
 		initASTMapping(env, result, cstNode);
 		
 		return result;
+	}
+
+	/**
+	 * Return the type used to terminate the AST reference from cstNode that
+	 * failed to be resolved due to message.
+	 * 
+	 * @param env
+	 *            the current OCL parsing environment
+	 * @param cstNode
+	 *            a concrete syntax node that could not be resolved
+	 * @param message
+	 *            the reason for the failure to resolve. Subclasses may choose
+	 *            to log this message in some way
+	 * 
+	 * @return the dummy Invalid type
+	 * 
+	 * @since 1.3
+	 */
+	protected C createDummyInvalidType(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			CSTNode cstNode,
+			String message) {
+		C astNode = getOclVoid();
+		cstNode.setAst(astNode);
+		return astNode;
+	}
+
+	/**
+	 * Return the package used to terminate the AST reference from an implicit
+	 * PackageDeclarationCS. This default implementation simply returns
+	 * <code>null</code>. Subclasses may override to create a more interesting
+	 * package.
+	 * 
+	 * @param env
+	 *            the current OCL parsing environment
+	 * @param packageDeclarationCS
+	 *            the concrete syntax of the package declaration
+	 * 
+	 * @return the dumy package, or <code>null</code> if non is required
+	 * 
+	 * @since 1.3
+	 */
+	protected Object createDummyPackage(
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			PackageDeclarationCS packageDeclarationCS) {
+		return null;
 	}
 	
 	/**
@@ -4237,7 +4446,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		try {
 			Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
 			    Environment.Lookup.class);
-			return lookup.tryLookupClassifier(className);
+			C classifier = lookup.tryLookupClassifier(className);
+			
+			if (cstNode != null) {
+            	cstNode.setAst(classifier);
+			}
+			
+			return classifier;
 		} catch (LookupException e) {
 			ERROR(cstNode, null, e.getMessage());
 			return e.getAmbiguousMatches().isEmpty() ? env
@@ -4259,7 +4474,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         try {
             Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
                 Environment.Lookup.class);
-            return lookup.tryLookupOperation(owner, name, args);
+            O operation = lookup.tryLookupOperation(owner, name, args);
+            
+            if (cstNode != null) {
+            	cstNode.setAst(operation);
+            }
+            
+			return operation;
         } catch (LookupException e) {
             ERROR(cstNode, null, e.getMessage());
             return e.getAmbiguousMatches().isEmpty() ? null
@@ -4274,7 +4495,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         try {
             Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
                 Environment.Lookup.class);
-            return lookup.tryLookupProperty(owner, name);
+            P property = lookup.tryLookupProperty(owner, name);
+            
+            if (cstNode != null) {
+            	cstNode.setAst(property);
+            }
+            
+			return property;
         } catch (LookupException e) {
             ERROR(cstNode, null, e.getMessage());
             return e.getAmbiguousMatches().isEmpty() ? null
@@ -4289,7 +4516,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         try {
             Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
                 Environment.Lookup.class);
-            return lookup.tryLookupAssociationClassReference(owner, name);
+            C associationClassReference = lookup.tryLookupAssociationClassReference(owner, name);
+            
+            if (cstNode != null) {
+            	cstNode.setAst(cstNode);
+            }
+            
+			return associationClassReference;
         } catch (LookupException e) {
             ERROR(cstNode, null, e.getMessage());
             return e.getAmbiguousMatches().isEmpty() ? null
@@ -4304,7 +4537,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
         try {
             Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
                 Environment.Lookup.class);
-            return lookup.tryLookupSignal(owner, name, args);
+            C signal = lookup.tryLookupSignal(owner, name, args);
+            
+            if (cstNode != null) {
+            	cstNode.setAst(signal);
+            }
+            
+			return signal;
         } catch (LookupException e) {
             ERROR(cstNode, null, e.getMessage());
             return e.getAmbiguousMatches().isEmpty() ? null
@@ -4317,7 +4556,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C sourceType, List<String> statePath) {
 		try {
-			return env.lookupState(sourceType, statePath);
+			S state = env.lookupState(sourceType, statePath);
+			
+            if (cstNode != null) {
+            	cstNode.setAst(state);
+            }
+            
+			return state;
         } catch (LookupException e) {
             ERROR(cstNode, null, e.getMessage());
             return e.getAmbiguousMatches().isEmpty() ? null
@@ -4346,20 +4591,51 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
     protected CT createConstraint() {
         return uml.createConstraint();
     }
-	
+
 	/**
-	 * Initialize the mapping of an object (typically an astNode) to its originating cstNode,
-	 * so that AST-based analysis may report error messages exploiting the CST context, or
-	 * to support incremental AST/CST update.
+	 * Initialize the symmetric mapping of an object (typically an astNode) to
+	 * its originating cstNode, so that AST-based analysis may report error
+	 * messages exploiting the CST context, or to support incremental AST/CST
+	 * update. Any pre-existing mapping is preserved. Mappings involving a null
+	 * object are ignored.
 	 * 
 	 * @param env
+	 *            the current OCL parsing environment
 	 * @param astNode
+	 *            the abstract syntax node
 	 * @param cstNode
+	 *            the concrete syntax node that generated it
 	 */
 	protected void initASTMapping(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
-			Object astNode, CSTNode cstNode) {
-		
-		OCLUtil.getAdapter(env, BasicEnvironment.class).initASTMapping(astNode, cstNode);
+			Object astNode, CSTNode cstNode) {		
+		initASTMapping(env, astNode, cstNode, astNode);
+	}
+
+	
+	/**
+	 * Initialize the asymmetric mapping of an object (typically an astNode) to
+	 * its originating cstNode, and of a cstNode to its consequent object
+	 * (typically an astNode) so that AST-based analysis may report error
+	 * messages exploiting the CST context, or to support incremental AST/CST
+	 * update. Any pre-existing mapping is preserved. Each mapping involving a
+	 * null object is ignored, so that for instance the toAstNode may be set
+	 * null to establish only the fromAstNode to cstNode mapping.
+	 * 
+	 * @param env
+	 *            the current OCL parsing environment
+	 * @param fromAstNode
+	 *            the source of an AST-to-CST mapping
+	 * @param cstNode
+	 *            the target of the AST-to-CST mapping and the source of a
+	 *            CST-to-AST mapping
+	 * @param toAstNode
+	 *            the target of the CST-to-AST mapping
+	 * 
+	 * @since 1.3
+	 */
+	protected void initASTMapping(Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			Object fromAstNode, CSTNode cstNode, Object toAstNode) {
+		OCLUtil.getAdapter(env, BasicEnvironment2.class).initASTMapping(fromAstNode, cstNode, toAstNode);
 	}
     
     /**
