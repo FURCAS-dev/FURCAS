@@ -9,15 +9,17 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 2488692, 253252
+ *   Zeligsoft - Bugs 2488692, 253252, 259630
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.6 2008/11/05 16:30:20 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.7 2008/12/30 11:33:08 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,12 +27,16 @@ import java.util.regex.Pattern;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.EvaluationOptions;
@@ -280,6 +286,65 @@ public class UMLEnvironmentTest
         
         assertSame(ProblemHandler.Severity.ERROR, childOptions.get(ProblemOption.CLOSURE_ITERATOR));
     }
+    
+    
+    /**
+     * Tests the evaluation of inverse link navigation in instance models.
+     */
+	public void test_linkNavigationInReverse_259630() {
+		UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
+
+		OCL ocl = OCL.newInstance(factory);
+		EvaluationOptions
+			.setOption(ocl.getEvaluationEnvironment(),
+				UMLEvaluationOptions.EVALUATION_MODE,
+				EvaluationMode.INSTANCE_MODEL);
+
+		Resource res = resourceSet.getResource(URI.createPlatformPluginURI(
+			"/org.eclipse.ocl.uml.tests/model/instances.uml", true), true); //$NON-NLS-1$
+		Package instancesPkg = (Package) EcoreUtil.getObjectByType(res
+			.getContents(), UMLPackage.Literals.PACKAGE);
+
+		Class classA = (Class) instancesPkg.getOwnedType("A"); //$NON-NLS-1$
+		Class classB = (Class) instancesPkg.getOwnedType("B"); //$NON-NLS-1$
+		InstanceSpecification anA = (InstanceSpecification) instancesPkg
+			.getPackagedElement("anA"); //$NON-NLS-1$
+		InstanceSpecification anotherA = (InstanceSpecification) instancesPkg
+			.getPackagedElement("anotherA"); //$NON-NLS-1$
+		InstanceSpecification aB = (InstanceSpecification) instancesPkg
+			.getPackagedElement("aB"); //$NON-NLS-1$
+
+		// test forward navigation to be sure
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setContext(classA);
+		OCLExpression<Classifier> query = null;
+		try {
+			query = helper.createQuery("self.b"); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+
+		Object result = ocl.evaluate(anA, query);
+		assertEquals(
+			"Wrong result in forward direction", Collections.singleton(aB), result); //$NON-NLS-1$
+
+		// now for the interesting test: inverse navigation
+		helper.setContext(classB);
+		try {
+			query = helper.createQuery("self.a"); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+
+		result = ocl.evaluate(aB, query);
+
+		assertTrue(result instanceof Collection);
+
+		Collection<?> collection = (Collection<?>) result;
+		assertEquals("Wrong number of results", 2, collection.size()); //$NON-NLS-1$
+		assertTrue("anA not in the results", collection.contains(anA)); //$NON-NLS-1$
+		assertTrue("anotherA not in the results", collection.contains(anotherA)); //$NON-NLS-1$
+	}
     
     //
     // Framework methods
