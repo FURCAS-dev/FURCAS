@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
  *   Zeligsoft - Bug 233673
+ *   E.D.Willink - Bug 242236
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.6 2008/10/16 01:57:50 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.7 2008/12/30 11:48:35 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -32,6 +33,7 @@ import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.TypeChecker;
 import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
 import org.eclipse.ocl.lpg.BasicEnvironment;
+import org.eclipse.ocl.lpg.BasicEnvironment2;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.parser.OCLProblemHandler;
@@ -48,7 +50,7 @@ import org.eclipse.ocl.utilities.TypedElement;
  */
 public final class OCLUtil {
     /** Use weak references as the keys to avoid memory leaks. */
-	private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment>> environments = new java.util.WeakHashMap<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment>>();
+	private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment2>> environments = new java.util.WeakHashMap<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment2>>();
 
     /** Use weak references as the keys to avoid memory leaks. */
 	private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<TypeChecker<?, ?, ?>>> typesCheckerEnvironments = new java.util.WeakHashMap<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<TypeChecker<?, ?, ?>>>();
@@ -100,6 +102,8 @@ public final class OCLUtil {
 			if (adapterType == TypeChecker.class) {
 				result = (T) getTypeChecker(env);
 			} else if (adapterType == BasicEnvironment.class) {
+				result = (T) getBasicEnvironment(env);
+			} else if (adapterType == BasicEnvironment2.class) {
 				result = (T) getBasicEnvironment(env);
 			} else if (adapterType == ProblemHandler.class) {
 				result = (T) getAdapter(env, BasicEnvironment.class).getProblemHandler();
@@ -160,11 +164,11 @@ public final class OCLUtil {
 	 * @param env the environment for which to define an external adapter
 	 * @return the external adapter
 	 */
-	private static BasicEnvironment getBasicEnvironment(
+	private static BasicEnvironment2 getBasicEnvironment(
 	        final Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
 	    
-	    BasicEnvironment result = null;
-	    Reference<BasicEnvironment> ref = environments.get(env);
+	    BasicEnvironment2 result = null;
+	    Reference<BasicEnvironment2> ref = environments.get(env);
 	    
 	    if (ref != null) {
 	        result = ref.get();
@@ -183,7 +187,7 @@ public final class OCLUtil {
                 }
             };
             
-            environments.put(env, new java.lang.ref.WeakReference<BasicEnvironment>(result));
+            environments.put(env, new java.lang.ref.WeakReference<BasicEnvironment2>(result));
 	    }
 	    
 	    return result;
