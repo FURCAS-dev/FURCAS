@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 247079
+ *   Bas Elzinga - Bug 259630
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.13 2008/09/12 19:55:32 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.14 2008/12/30 11:33:12 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -600,7 +601,7 @@ public class UMLEvaluationEnvironment
                         // get value of the other end. Multiplicity of an
                         // association end is always 1 from the association's
                         // perspective
-                        Slot otherSlot = getSlot(referencer, otherEnd);
+                        Slot otherSlot = getSlot(referencer, property);
                         if (otherSlot != null) {
                             ValueSpecification value = otherSlot.getValues()
                                 .isEmpty() ? null
