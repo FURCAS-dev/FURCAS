@@ -10,12 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
- *             - Bug 243976 
- *   Zeligsoft - Bugs 245760, 243976
+ *             - Bugs 243976, 242236
+ *   Zeligsoft - Bugs 245760, 243976, 242236
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.5 2008/10/04 00:54:10 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.6 2008/12/30 11:48:35 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -41,7 +41,7 @@ import org.eclipse.ocl.parser.OCLProblemHandler;
  * 
  * @since 1.2
  */
-public abstract class AbstractBasicEnvironment implements BasicEnvironment {
+public abstract class AbstractBasicEnvironment implements BasicEnvironment2 {
 	private BasicEnvironment parent;					// parent in environment hierarchy
 	private ProblemHandler problemHandler = null;			// handler for problem reports
 	private FormattingHelper formatter = null;				// message formatting helper
@@ -185,11 +185,38 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	}
 
 	public void initASTMapping(Object astNode, CSTNode cstNode) {
-		if ((astNode != null) && (cstNode != null)) {
-			CSTNode oldCSTNode = getASTNodeToCSTNodeMap().put(astNode, cstNode);
-			cstNode.setAst(astNode);
-			if (oldCSTNode != null && OCLPlugin.shouldTrace(OCLDebugOptions.PARSING)) {
-				OCLPlugin.trace("Displaced " + oldCSTNode); //$NON-NLS-1$
+		initASTMapping(astNode, cstNode, astNode);
+	}
+
+	/**
+	 * @since 1.3
+	 */
+	public void initASTMapping(Object fromAstNode, CSTNode cstNode,
+			Object toAstNode) {
+		if (cstNode != null) {
+			if (fromAstNode != null) {
+				Map<Object, CSTNode> nodeToCSTNodeMap = getASTNodeToCSTNodeMap();
+				CSTNode oldCSTNode = nodeToCSTNodeMap.get(fromAstNode);
+				if (oldCSTNode == null) {
+					nodeToCSTNodeMap.put(fromAstNode, cstNode);
+				} else if (oldCSTNode != cstNode) {
+					if (OCLPlugin.shouldTrace(OCLDebugOptions.PARSING)) {
+						OCLPlugin
+							.trace("Preserved AST mapping of " + fromAstNode.getClass().getSimpleName() + " to " + oldCSTNode.getClass().getSimpleName() + " rather than " + cstNode.getClass().getSimpleName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					}
+				}
+			}
+			
+			if (toAstNode != null) {
+				Object oldAstNode = cstNode.getAst();
+				if (oldAstNode == null) {
+					cstNode.setAst(toAstNode);
+				} else if (oldAstNode != toAstNode) {
+					if (OCLPlugin.shouldTrace(OCLDebugOptions.PARSING)) {
+						OCLPlugin
+							.trace("Preserved CST mapping of " + cstNode.getClass().getSimpleName() + " to " + oldAstNode.getClass().getSimpleName() + " rather than " + toAstNode.getClass().getSimpleName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					}
+				}
 			}
 		}
 	}
