@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2007 IBM Corporation and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
 -- * Contributors:
 -- *   IBM - Initial API and implementation
 -- *   E.D. Willink - Elimination of some shift-reduce conflicts
+-- *      - Bug 259818
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.2 2008/10/04 00:54:10 cdamus Exp $
+-- * $Id: OCLParser.g,v 1.3 2009/01/13 19:44:29 cdamus Exp $
 -- */
 --
 -- The OCL Parser
@@ -28,7 +29,6 @@
 %options margin=4
 %options noserialize
 %options package=org.eclipse.ocl.parser
---%options template=dtParserTemplateD.g
 %options import_terminals=OCLLexer.g
 %options ast_type=CSTNode
 %options programming_language=java
@@ -234,20 +234,16 @@ $Rules
 		  $EndJava
 		./
 
-	defExpressionCS ::= IDENTIFIER ':' typeCS '=' oclExpressionCS
+	defExpressionCS ::= typedVariableCS '=' oclExpressionCS
 		/.$BeginJava
-					VariableCS variableCS = createVariableCS(
-								getTokenText($getToken(1)),
-								(TypeCS)$getSym(3),
-								null
-							);
-					setOffsets(variableCS, getIToken($getToken(1)), (CSTNode)$getSym(3));
+					VariableCS variableCS = (VariableCS)$getSym(1);
+					OCLExpressionCS expressionCS = (OCLExpressionCS)$getSym(3);
 					CSTNode result = createDefExpressionCS(
 							variableCS,
 							null,
-							(OCLExpressionCS)$getSym(5)
+							expressionCS
 						);
-					setOffsets(result, variableCS, (CSTNode)$getSym(5));
+					setOffsets(result, variableCS, expressionCS);
 					$setResult(result);
 		  $EndJava
 		./
