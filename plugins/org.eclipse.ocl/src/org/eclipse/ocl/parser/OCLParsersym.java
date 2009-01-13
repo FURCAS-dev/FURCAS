@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,18 +11,19 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
-*   E.D.Willink - Bugs 225493, 243976
+*   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.4 2008/11/16 14:20:09 cdamus Exp $
+* $Id: OCLParsersym.java,v 1.5 2009/01/13 19:44:29 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
 
 /**
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 @SuppressWarnings("nls")
 public interface OCLParsersym {
@@ -42,25 +43,25 @@ public interface OCLParsersym {
       TK_DIVIDE = 17,
       TK_GREATER = 18,
       TK_LESS = 19,
-      TK_EQUAL = 4,
+      TK_EQUAL = 3,
       TK_GREATER_EQUAL = 20,
       TK_LESS_EQUAL = 21,
       TK_NOT_EQUAL = 5,
       TK_LPAREN = 1,
-      TK_RPAREN = 2,
+      TK_RPAREN = 4,
       TK_LBRACE = 69,
       TK_RBRACE = 80,
       TK_LBRACKET = 81,
       TK_RBRACKET = 74,
       TK_ARROW = 83,
-      TK_BAR = 71,
+      TK_BAR = 72,
       TK_COMMA = 36,
       TK_COLON = 24,
       TK_COLONCOLON = 67,
       TK_SEMICOLON = 84,
       TK_DOT = 85,
       TK_DOTDOT = 86,
-      TK_ATPRE = 72,
+      TK_ATPRE = 70,
       TK_CARET = 87,
       TK_CARETCARET = 88,
       TK_QUESTIONMARK = 89,
@@ -72,7 +73,7 @@ public interface OCLParsersym {
       TK_package = 90,
       TK_endpackage = 91,
       TK_def = 78,
-      TK_if = 70,
+      TK_if = 71,
       TK_then = 92,
       TK_else = 93,
       TK_endif = 94,
@@ -128,16 +129,16 @@ public interface OCLParsersym {
       TK_OclMessage = 15,
       TK_OclInvalid = 66,
       TK_EOF_TOKEN = 79,
-      TK_IDENTIFIER = 3,
+      TK_IDENTIFIER = 2,
       TK_INTEGER_RANGE_START = 82,
       TK_ERROR_TOKEN = 99;
 
       public final static String orderedTerminalSymbols[] = {
                  "",
                  "LPAREN",
-                 "RPAREN",
                  "IDENTIFIER",
                  "EQUAL",
+                 "RPAREN",
                  "NOT_EQUAL",
                  "body",
                  "String",
@@ -203,9 +204,9 @@ public interface OCLParsersym {
                  "COLONCOLON",
                  "let",
                  "LBRACE",
+                 "ATPRE",
                  "if",
                  "BAR",
-                 "ATPRE",
                  "context",
                  "RBRACKET",
                  "inv",

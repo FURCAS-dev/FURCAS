@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,11 +10,11 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
-*   Zeligsoft - Bug 248869
-*
+*      - Bug 259818
+*      
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.2 2008/09/28 17:33:00 cdamus Exp $
+* $Id: OCLLexer.java,v 1.3 2009/01/13 19:44:29 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -64,13 +64,17 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
     	return oclEnvironment;
     }
 
+    @Override
     public int [] getKeywordKinds() { return kwLexer.getKeywordKinds(); }
+
     public int getLeftSpan() { return lexParser.getFirstToken(); }
     public AbstractParser getParser() { return parser; }
     public int getRhsFirstTokenIndex(int i) { return lexParser.getFirstToken(i); }
     public int getRhsLastTokenIndex(int i) { return lexParser.getLastToken(i); }
     public int getRightSpan() { return lexParser.getLastToken(); }
-    @Override public int getToken(int i) { return lexParser.getToken(i); }
+
+    @Override
+    public int getToken(int i) { return lexParser.getToken(i); }
 
     @Override
     public void initialize(char [] content, String filename)
