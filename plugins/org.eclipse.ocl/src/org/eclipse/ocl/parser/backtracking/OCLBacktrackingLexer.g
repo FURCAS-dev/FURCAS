@@ -1,0 +1,41 @@
+--/**
+-- * <copyright>
+-- *
+-- * Copyright (c) 2008, 2009 Eclipse.org and others.
+-- * All rights reserved.   This program and the accompanying materials
+-- * are made available under the terms of the Eclipse Public License v1.0
+-- * which accompanies this distribution, and is available at
+-- * http://www.eclipse.org/legal/epl-v10.html
+-- *
+-- * Contributors:
+-- *   IBM - Initial API and implementation
+-- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+-- *
+-- * </copyright>
+-- *
+-- * $Id: OCLBacktrackingLexer.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- */
+--
+-- The OCL Backtracking Lexer, which is nominally identical to the
+-- normal Lexer, however the extra ERROR_TOKEN symbol makes it difficult
+-- to share reliably.
+--
+
+%options escape=$
+%options la=2
+%options fp=OCLBacktrackingLexer,prefix=Char_
+%options single-productions
+%options noserialize
+%options package=org.eclipse.ocl.parser.backtracking
+%options template=../../lpg/LexerTemplateD.g
+%options filter=OCLBacktrackingKWLexer.g
+%options export_terminals=("OCLBacktrackingParsersym.java", "TK_")
+%options include_directory="..;../../lpg"
+
+$Include
+	OCLLexer.g
+$End
+
+$Define
+	$kw_lexer_class /.OCLBacktrackingKWLexer./
+$End

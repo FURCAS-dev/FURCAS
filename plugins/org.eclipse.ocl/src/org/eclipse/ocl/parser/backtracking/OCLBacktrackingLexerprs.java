@@ -10,18 +10,23 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*      - Bug 259818
 *
 * </copyright>
 *
-* $Id: OCLLexerprs.java,v 1.2 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLBacktrackingLexerprs.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
 */
 
-package org.eclipse.ocl.parser;
+package org.eclipse.ocl.parser.backtracking;
 
 /**
+ * The backtracking variant of the OCL lexer parse table.
+ * 
  * @noextend This class is not intended to be subclassed by clients.
+ * 
+ * @since 1.3
  */
-public class OCLLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLLexersym {
+public class OCLBacktrackingLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLBacktrackingLexersym {
 
     public interface IsKeyword {
         public final static byte isKeyword[] = {0,
