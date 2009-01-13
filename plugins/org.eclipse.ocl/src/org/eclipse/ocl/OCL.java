@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.7 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: OCL.java,v 1.8 2009/01/13 20:31:30 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -35,6 +35,8 @@ import org.eclipse.ocl.internal.helper.HelperUtil;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.ValidationVisitor;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
+import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -263,9 +265,21 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 */
 	public List<CT> parse(OCLInput input)
 			throws ParserException {
-		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-			rootEnvironment, input.getContentAsString());
-		analyzer.setTraceFlag(isParseTracingEnabled());
+
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer;
+		String contentAsString = input.getContentAsString();
+		if (parserRepairCount > 0) {
+			OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(
+				rootEnvironment, contentAsString.toCharArray());
+			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
+			parser.setDefaultRepairCount(parserRepairCount);
+			lexer.lexToTokens(parser);
+			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				parser);
+		} else {
+			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				rootEnvironment, contentAsString);
+		}
 
 		// clear out old diagnostics
 		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment,

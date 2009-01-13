@@ -10,20 +10,25 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*      - Bug 259818
 *
 * </copyright>
 *
-* $Id: OCLKWLexersym.java,v 1.2 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLBacktrackingKWLexersym.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
 */
 
-package org.eclipse.ocl.parser;
+package org.eclipse.ocl.parser.backtracking;
 
 /**
+ * The backtracking variant of the OCL keyword lexer symbol table.
+ * 
  * @noimplement This interface is not intended to be implemented by clients.
  * @noextend This interface is not intended to be extended by clients.
+ * 
+ * @since 1.3
  */
 @SuppressWarnings("nls")
-public interface OCLKWLexersym {
+public interface OCLBacktrackingKWLexersym {
     public final static int
       Char_DollarSign = 40,
       Char_a = 5,

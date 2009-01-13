@@ -16,13 +16,12 @@
 *
 * </copyright>
 *
-* $Id: OCLParserprs.java,v 1.5 2009/01/13 19:44:29 cdamus Exp $
+* $Id: OCLParserprs.java,v 1.6 2009/01/13 20:31:30 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
 
 /**
- * @noimplement This interface is not intended to be referenced by clients.
  * @noextend This interface is not intended to be extended by clients.
  */
 @SuppressWarnings("nls")
