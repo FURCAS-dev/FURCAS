@@ -10,19 +10,25 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
-*
+*      - Bug 259818
+*   
 * </copyright>
 *
-* $Id: OCLKWLexer.java,v 1.2 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLBacktrackingKWLexer.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
 */
 
-package org.eclipse.ocl.parser;
+package org.eclipse.ocl.parser.backtracking;
+
 
 
 /**
+ * The backtracking variant of the OCL keyword lexer.
+ * 
  * @noextend This class is not intended to be subclassed by clients.
+ * 
+ * @since 1.3
  */
-public class OCLKWLexer extends OCLKWLexerprs implements OCLParsersym
+public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs implements OCLBacktrackingParsersym
 {
     private char[] inputChars;
     private final int keywordKind[] = new int[63 + 1];
@@ -122,7 +128,7 @@ public class OCLKWLexer extends OCLKWLexerprs implements OCLParsersym
     }
 
 
-    public OCLKWLexer(char[] inputChars, int identifierKind)
+    public OCLBacktrackingKWLexer(char[] inputChars, int identifierKind)
     {
         this.inputChars = inputChars;
         keywordKind[0] = identifierKind;
