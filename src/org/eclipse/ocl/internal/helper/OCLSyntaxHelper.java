@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2002, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bug 207365
- *
+ *   E.D.Willink - Bug 259818
+ *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.12 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.13 2009/01/13 19:44:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -864,7 +865,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<IToken> tokenize(OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer) {
 		IToken token = null;
 		List<IToken> result = new ArrayList<IToken>();
-		AbstractParser parser = analyzer.getParser();
+		AbstractParser parser = analyzer.getAbstractParser();
 		for (;;) {
 			try {
 				token = parser.getIToken(parser.getToken());
@@ -948,7 +949,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
 					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
 							environment, txt);
-				AbstractParser parser = analyzer.getParser();		
+				AbstractParser parser = analyzer.getAbstractParser();		
 				List<IToken> tokens = tokenize(analyzer);
 				
 				ListIterator<IToken> iter = tokens.listIterator(tokens.size());
@@ -1099,7 +1100,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<String> parseTokensPathNameCS(
 			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer,
 			List<IToken> tokens) {
-		AbstractParser parser = analyzer.getParser();		
+		AbstractParser parser = analyzer.getAbstractParser();		
 		ArrayList<String> path = new ArrayList<String>();
 		IToken token;
 		int index = tokens.size() - 1;
@@ -1349,7 +1350,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					env, variables);
 		
 		if (!parseVariableDeclaration(env, mainAnalyzer)) {
-			AbstractParser parser = mainAnalyzer.getParser();		
+			AbstractParser parser = mainAnalyzer.getAbstractParser();		
 			parser.reset();
 			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer;
 			String newTxt;

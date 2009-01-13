@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -11,12 +11,12 @@
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Elimination of some shift-reduce conflicts
 -- *   E.D.Willink - Remove unnecessary warning suppression
--- *   E.D.Willink - Bugs 225493, 243976
+-- *   E.D.Willink - Bugs 225493, 243976, 259818
 -- *   Zeligsoft - Bug 243976
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.4 2008/10/04 00:54:10 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.5 2009/01/13 19:44:29 cdamus Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -28,6 +28,10 @@ $Define
 	-- Definition of macros used in the parser template
 	--
 	$prs_stream_class /.AbstractOCLParser./
+	$prs_parser_class /.DeterministicParser./
+	$prs_parser_exception /.NotDeterministicParseTableException./
+	$prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -NOBACKTRACK option")./
+	$prs_parse_args /../
 	$lex_stream_class /.AbstractLexer./
 	$action_class /.$file_prefix./
 	$copyright_contributions /.*./
@@ -39,7 +43,7 @@ $Define
 	/. $Header
 				case $rule_number:./
 
-	-- From dtParserTemplateD.g
+	-- From bt/dtParserTemplateD.g
 	------------------------------------------------------
 	$Header
 	/.
@@ -111,7 +115,7 @@ $Define
 	public class $action_class extends $prs_stream_class implements RuleAction$additional_interfaces
 	{
 		protected static ParseTable prs = new $prs_type();
-		private DeterministicParser dtParser;
+		private $prs_parser_class dtParser;
 
 		public $action_class($lex_stream_class lexer) {
 			super(lexer);
@@ -139,17 +143,17 @@ $Define
 			ParseTable prsTable = new $prs_type();
 
 			try {
-				dtParser = new DeterministicParser(monitor, this, prsTable, this);
+				dtParser = new $prs_parser_class(monitor, this, prsTable, this);
 			}
-			catch (NotDeterministicParseTableException e) {
-				throw new RuntimeException("****Error: Regenerate $prs_type.java with -NOBACKTRACK option");
+			catch ($prs_parser_exception e) {
+                $prs_parser_throw;
 			}
 			catch (BadParseSymFileException e) {
 				throw new RuntimeException("****Error: Bad Parser Symbol File -- $sym_type.java. Regenerate $prs_type.java");
 			}
 
 			try {
-				return ($ast_type) dtParser.parse();
+				return ($ast_type) dtParser.parse($prs_parse_args);
 			}
 			catch (BadParseException e) {
 				reset(e.error_token); // point to error token
@@ -198,7 +202,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.4 2008/10/04 00:54:10 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.5 2009/01/13 19:44:29 cdamus Exp $
  */
 	./
 $End
@@ -227,11 +231,11 @@ $Globals
 	
 	import $lpg_ns.BadParseException;
 	import $lpg_ns.BadParseSymFileException;
-	import $lpg_ns.DeterministicParser;
+	import $lpg_ns.$prs_parser_class;
 	import $lpg_ns.DiagnoseParser;
 	import $lpg_ns.IToken;
 	import $lpg_ns.Monitor;
-	import $lpg_ns.NotDeterministicParseTableException;
+	import $lpg_ns.$prs_parser_exception;
 	import $lpg_ns.ParseTable;
 	import $lpg_ns.RuleAction;
 	./
@@ -398,18 +402,43 @@ $Rules
 	-- of constructing an LPG grammar, but that are not reserved by OCL
 	-- and are commonly used in models such as the UML metamodel, itself
 	--
+	
+	binaryIdentifier -> oclIsUndefined
+	binaryIdentifier -> oclIsInvalid
+	binaryIdentifier -> oclIsNew
+	binaryIdentifier -> oclAsType
+	binaryIdentifier -> oclIsKindOf
+	binaryIdentifier -> oclIsTypeOf
+	binaryIdentifier -> EQUAL
+	binaryIdentifier -> NOT_EQUAL
+	binaryIdentifier -> PLUS
+	binaryIdentifier -> MULTIPLY
+	binaryIdentifier -> DIVIDE
+	binaryIdentifier -> GREATER
+	binaryIdentifier -> LESS
+	binaryIdentifier -> GREATER_EQUAL
+	binaryIdentifier -> LESS_EQUAL
+	binaryIdentifier -> and
+	binaryIdentifier -> or
+	binaryIdentifier -> xor
+
+	unaryIdentifier -> MINUS
+	unaryIdentifier -> not
+
+	iteratorIdentifier -> forAll
+	iteratorIdentifier -> exists
+	iteratorIdentifier -> isUnique
+	iteratorIdentifier -> any
+	iteratorIdentifier -> one
+	iteratorIdentifier -> collect
+	iteratorIdentifier -> select
+	iteratorIdentifier -> reject
+	iteratorIdentifier -> collectNested
+	iteratorIdentifier -> sortedBy
+	iteratorIdentifier -> closure
+
 	keywordAsIdentifier1 -> iterate
-	keywordAsIdentifier1 -> forAll
-	keywordAsIdentifier1 -> exists
-	keywordAsIdentifier1 -> isUnique
-	keywordAsIdentifier1 -> any
-	keywordAsIdentifier1 -> one
-	keywordAsIdentifier1 -> collect
-	keywordAsIdentifier1 -> select
-	keywordAsIdentifier1 -> reject
-	keywordAsIdentifier1 -> collectNested
-	keywordAsIdentifier1 -> sortedBy
-	keywordAsIdentifier1 -> closure
+	keywordAsIdentifier1 -> iteratorIdentifier
 	keywordAsIdentifier1 -> allInstances
 	keywordAsIdentifier1 -> body
 	keywordAsIdentifier1 -> derive
@@ -422,7 +451,39 @@ $Rules
 	--------
 	keywordAsIdentifier -> keywordAsIdentifier1
 	keywordAsIdentifier -> null
-	
+
+	binaryName -> simpleNameCS
+	binaryName ::= binaryIdentifier
+		/.$NewCase./
+	keywordAsName ::= keywordAsIdentifier
+		/.$NewCase./
+	keywordAsName1 ::= keywordAsIdentifier1
+		/.$NewCase./
+	unaryName ::= unaryIdentifier
+		/.$BeginJava
+					SimpleNameCS result = createSimpleNameCS(
+								SimpleTypeEnum.IDENTIFIER_LITERAL,
+								getTokenText($getToken(1))
+							);
+					setOffsets(result, getIToken($getToken(1)));
+					$setResult(result);
+		  $EndJava
+		./
+		
+	iterateName ::= iterate
+		/.$NewCase./
+	iteratorName ::= iteratorIdentifier
+		/.$NewCase./
+	oclIsInStateName ::= oclIsInState
+		/.$BeginJava
+					SimpleNameCS result = createSimpleNameCS(
+								SimpleTypeEnum.KEYWORD_LITERAL,
+								getTokenText($getToken(1))
+							);
+					setOffsets(result, getIToken($getToken(1)));
+					$setResult(result);
+		  $EndJava
+		./
 
 	--
 	-- the 'operationCS' non-terminal is not referenced in this grammar
@@ -865,6 +926,8 @@ $Rules
 		./
 
 	variableExpCS ::= simpleNameCS isMarkedPreCS
+		/.$NewCase./
+	variableExpCS ::= keywordAsName1 isMarkedPreCS
 		/.$BeginJava
 					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
 					CSTNode result = createVariableExpCS(
@@ -880,51 +943,11 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	variableExpCS ::= keywordAsIdentifier1 isMarkedPreCS
-		/.$BeginJava
-					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.IDENTIFIER_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
-					CSTNode result = createVariableExpCS(
-							simpleNameCS,
-							new BasicEList(),
-							isMarkedPreCS
-						);
-					if (isMarkedPreCS.isPre()) {
-						setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(2));
-					} else {
-						setOffsets(result, getIToken($getToken(1)));
-					}
-					$setResult(result);
-		  $EndJava
-		./
 	variableExpCS ::= simpleNameCS '[' argumentsCS ']' isMarkedPreCS
+		/.$NewCase./
+	variableExpCS ::= keywordAsName1 '[' argumentsCS ']' isMarkedPreCS
 		/.$BeginJava
 					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(5);
-					CSTNode result = createVariableExpCS(
-							(SimpleNameCS)$getSym(1),
-							(EList)$getSym(3),
-							isMarkedPreCS
-						);
-					if (isMarkedPreCS.isPre()) {
-						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
-					} else {
-						setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
-					}
-					$setResult(result);
-		  $EndJava
-		./
-	variableExpCS ::= keywordAsIdentifier1 '[' argumentsCS ']' isMarkedPreCS
-		/.$BeginJava
-					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(5);
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.IDENTIFIER_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
 					CSTNode result = createVariableExpCS(
 							(SimpleNameCS)$getSym(1),
 							(EList)$getSym(3),
@@ -1086,16 +1109,8 @@ $Rules
 
     -- also covers the case of static attribute call, in which
     --    case @pre is not allowed anyway
-	enumLiteralExpCS ::= pathNameCS '::' keywordAsIdentifier
-		/.$BeginJava
-					CSTNode result = createEnumLiteralExpCS(
-							(PathNameCS)$getSym(1),
-							getTokenText($getToken(3))
-						);
-					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(3)));
-					$setResult(result);
-		  $EndJava
-		./
+	enumLiteralExpCS ::= pathNameCS '::' keywordAsName
+		/.$NewCase./
 	enumLiteralExpCS ::= pathNameCS '::' simpleNameCS
 		/.$BeginJava
 					CSTNode result = createEnumLiteralExpCS(
@@ -1305,106 +1320,69 @@ $Rules
 	loopExpCS -> iteratorExpCS
 	loopExpCS -> iterateExpCS
 
-	iteratorExpCS ::= forAll '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= exists '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= isUnique '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= one '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= any '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= collect '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= select '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= reject '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= collectNested '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= sortedBy '(' iterContents ')'
-		/.$NewCase./
-	iteratorExpCS ::= closure '(' iterContents ')'
+	iteratorExpCS ::= iteratorName '(' oclExpressionCS ')'
 		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.KEYWORD_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
-					Object[] iterContents = (Object[])$getSym(3);
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					CSTNode result = createIteratorExpCS(
 							simpleNameCS,
-							(VariableCS)iterContents[0],
-							(VariableCS)iterContents[1],
-							(OCLExpressionCS)iterContents[2]
+							null,
+							null,
+							(OCLExpressionCS)$getSym(3)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
+					setOffsets(result, simpleNameCS, getIToken($getToken(4)));
+					$setResult(result);
+		  $EndJava
+		./
+	iteratorExpCS ::= iteratorName '(' variableCS '|' oclExpressionCS ')'
+		/.$BeginJava
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
+					CSTNode result = createIteratorExpCS(
+							simpleNameCS,
+							(VariableCS)$getSym(3),
+							null,
+							(OCLExpressionCS)$getSym(5)
+						);
+					setOffsets(result, simpleNameCS, getIToken($getToken(6)));
+					$setResult(result);
+		  $EndJava
+		./
+	iteratorExpCS ::= iteratorName '(' variableCS ',' variableCS '|' oclExpressionCS ')'
+		/.$BeginJava
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
+					CSTNode result = createIteratorExpCS(
+							simpleNameCS,
+							(VariableCS)$getSym(3),
+							(VariableCS)$getSym(5),
+							(OCLExpressionCS)$getSym(7)
+						);
+					setOffsets(result, simpleNameCS, getIToken($getToken(8)));
 					$setResult(result);
 		  $EndJava
 		./
 
-
-	iterContents ::= oclExpressionCS
+	iterateExpCS ::= iterateName '(' variableCS '|' oclExpressionCS ')'
 		/.$BeginJava
-					$setResult(new Object[] {
-							null,
-							null,
-							$getSym(1)
-						});
-		  $EndJava
-		./
-	
-	iterContents ::= variableCS '|' oclExpressionCS
-		/.$BeginJava
-					$setResult(new Object[] {
-							$getSym(1),
-							null,
-							$getSym(3)
-						});
-		  $EndJava
-		./
-	iterContents ::= variableCS ',' variableCS '|' oclExpressionCS
-		/.$BeginJava
-					$setResult(new Object[] {
-							$getSym(1),
-							$getSym(3),
-							$getSym(5)
-						});
-		  $EndJava
-		./
-
-	iterateExpCS ::= iterate '(' variableCS '|' oclExpressionCS ')'
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.KEYWORD_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					CSTNode result = createIterateExpCS(
 							simpleNameCS,
 							(VariableCS)$getSym(3),
 							null,
 							(OCLExpressionCS)$getSym(5)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(6)));
+					setOffsets(result, simpleNameCS, getIToken($getToken(6)));
 					$setResult(result);
 		  $EndJava
 		./
-	iterateExpCS ::= iterate '(' variableCS ';' variableCS '|' oclExpressionCS ')'
+	iterateExpCS ::= iterateName '(' variableCS ';' variableCS '|' oclExpressionCS ')'
 		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.KEYWORD_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					CSTNode result = createIterateExpCS(
 							simpleNameCS,
 							(VariableCS)$getSym(3),
 							(VariableCS)$getSym(5),
 							(OCLExpressionCS)$getSym(7)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(8)));
+					setOffsets(result, simpleNameCS, getIToken($getToken(8)));
 					$setResult(result);
 		  $EndJava
 		./
@@ -1420,7 +1398,7 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	variableCS ::= IDENTIFIER ':' typeCS
+	typedVariableCS ::= IDENTIFIER ':' typeCS
 		/.$BeginJava
 					CSTNode result = createVariableCS(
 							getTokenText($getToken(1)),
@@ -1431,6 +1409,7 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
+	variableCS -> typedVariableCS
 	variableCS ::= IDENTIFIER ':' typeCS '=' oclExpressionCS
 		/.$BeginJava
 					CSTNode result = createVariableCS(
@@ -1531,119 +1510,52 @@ $Rules
 	featureCallExpCS -> attrOrNavCallExpCS
 
 	featureCallExpCS -> operationCallExpCS
-	featureCallExpCS ::= MINUS isMarkedPreCS '(' argumentsCSopt ')'
+	featureCallExpCS ::= unaryName isMarkedPreCS '(' argumentsCSopt ')'
 		/.$NewCase./
-	featureCallExpCS ::= not isMarkedPreCS '(' argumentsCSopt ')'
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.IDENTIFIER_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
-					CSTNode result = createOperationCallExpCS(
-							simpleNameCS,
-							(IsMarkedPreCS)$getSym(2),
-							(EList)$getSym(4)
-						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
-					$setResult(result);
-		  $EndJava
-		./
-
-	operationCallExpCS ::=  simpleNameCS isMarkedPreCS '(' argumentsCSopt ')'
+	-- even though these operations do not use @pre or do not accept multiple arguments
+	-- in order to get better error reporting, the rule signature must comply with
+	-- the full rule of an operationCallExpCS
+	-- the alternative would be to remove these as keywords, but then the parser
+	-- would accept variable declarations where the var can be named "oclIsNew" for example
+	operationCallExpCS ::= binaryName isMarkedPreCS '(' argumentsCSopt ')'
+		/.$NewCase./
+	keywordOperationCallExpCS ::= keywordAsName isMarkedPreCS '(' argumentsCSopt ')'
 		/.$BeginJava
 					CSTNode result = createOperationCallExpCS(
 							(SimpleNameCS)$getSym(1),
 							(IsMarkedPreCS)$getSym(2),
 							(EList)$getSym(4)
 						);
-					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(5)));
+					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
 		  $EndJava
 		./
 
-	-- even though these operations do not use @pre or do not accept multiple arguments
-	-- in order to get better error reporting, the rule signature must comply with
-	-- the full rule of an operationCallExpCS
-	-- the alternative would be to remove these as keywords, but then the parser
-	-- would accept variable declarations where the var can be named "oclIsNew" for example
-	operationCallExpCS ::= oclIsUndefined isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= oclIsInvalid isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= oclIsNew isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= oclAsType isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= oclIsKindOf isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= oclIsTypeOf isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= EQUAL isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= NOT_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= PLUS isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= MULTIPLY isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= DIVIDE isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= GREATER isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= LESS isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= GREATER_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= LESS_EQUAL isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= and isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= or isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	operationCallExpCS ::= xor isMarkedPreCS '(' argumentsCSopt ')'
-		/.$NewCase./
-	keywordOperationCallExpCS ::= keywordAsIdentifier isMarkedPreCS '(' argumentsCSopt ')'
+	stateExpCS ::= pathNameCSOpt
 		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.IDENTIFIER_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
+					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
+					StateExpCS result = createStateExpCS(pathNameCS);
+					setOffsets(result, pathNameCS);
+					$setResult(result);
+		  $EndJava
+		./
+	-- FIXME StateExpCS creates a needless irregularity; unwrap its content as an argument list
+	operationCallExpCS ::= oclIsInStateName isMarkedPreCS '(' stateExpCS ')'
+		/.$BeginJava
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					CSTNode result = createOperationCallExpCS(
 							simpleNameCS,
 							(IsMarkedPreCS)$getSym(2),
-							(EList)$getSym(4)
+							(StateExpCS)$getSym(4)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
+					setOffsets(result, simpleNameCS, getIToken($getToken(5)));
 					$setResult(result);
 		  $EndJava
 		./
-
-	operationCallExpCS ::= oclIsInState isMarkedPreCS '(' pathNameCSOpt ')'
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.KEYWORD_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
-
-					PathNameCS pathNameCS = (PathNameCS) dtParser.getSym(4);
-					StateExpCS stateExpCS = createStateExpCS(pathNameCS);
-					setOffsets(stateExpCS, pathNameCS);
-				
-					CSTNode result = createOperationCallExpCS(
-							simpleNameCS,
-							(IsMarkedPreCS)dtParser.getSym(2),
-							stateExpCS
-						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
-					$setResult(result);
-		  $EndJava
-		./
-
 
 	attrOrNavCallExpCS ::= simpleNameCS isMarkedPreCS
+		/.$NewCase./
+	attrOrNavCallExpCS ::= keywordAsName isMarkedPreCS
 		/.$BeginJava
 					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
 					CSTNode result = createFeatureCallExpCS(
@@ -1655,27 +1567,6 @@ $Rules
 						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(2));
 					} else {
 						setOffsets(result, (CSTNode)$getSym(1));
-					}
-					$setResult(result);
-		  $EndJava
-		./
-	attrOrNavCallExpCS ::= keywordAsIdentifier isMarkedPreCS
-		/.$BeginJava
-					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.IDENTIFIER_LITERAL,
-								getTokenText($getToken(1))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(1)));
-					CSTNode result = createFeatureCallExpCS(
-							simpleNameCS,
-							new BasicEList(),
-							isMarkedPreCS
-						);
-					if (isMarkedPreCS.isPre()) {
-						setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(2));
-					} else {
-						setOffsets(result, getIToken($getToken(1)));
 					}
 					$setResult(result);
 		  $EndJava
@@ -1731,36 +1622,13 @@ $Rules
 		  $EndJava
 		./
 
-	letExpCS ::= let variableCS letExpSubCSopt in oclExpressionCS
+	letExpCS ::= let variableListCS in oclExpressionCS
 		/.$BeginJava
-					EList variables = (EList)$getSym(3);
-					variables.add(0, $getSym(2));
 					CSTNode result = createLetExpCS(
-							variables,
-							(OCLExpressionCS)$getSym(5)
+							(EList)$getSym(2),
+							(OCLExpressionCS)$getSym(4)
 						);
-					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(5));
-					$setResult(result);
-		  $EndJava
-		./
-
-	letExpSubCSopt ::= $empty
-		/.$EmptyListAction./
-	letExpSubCSopt -> letExpSubCS		
-
-
-	letExpSubCS ::= ',' variableCS
-		/.$BeginJava
-					EList result = new BasicEList();
-					result.add($getSym(2));
-					$setResult(result);
-		  $EndJava
-		./
-
-	letExpSubCS ::= letExpSubCS ',' variableCS 
-		/.$BeginJava
-					EList result = (EList)$getSym(1);
-					result.add($getSym(3));
+					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
 					$setResult(result);
 		  $EndJava
 		./

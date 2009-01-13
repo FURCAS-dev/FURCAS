@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,12 +11,12 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
-*   E.D.Willink - Bugs 225493, 243976
+*   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.4 2008/10/04 00:54:10 cdamus Exp $
+* $Id: OCLParser.java,v 1.5 2009/01/13 19:44:29 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -94,7 +94,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			dtParser = new DeterministicParser(monitor, this, prsTable, this);
 		}
 		catch (NotDeterministicParseTableException e) {
-			throw new RuntimeException("****Error: Regenerate OCLParserprs.java with -NOBACKTRACK option");
+            throw new RuntimeException("****Error: Regenerate OCLParserprs.java with -NOBACKTRACK option");
 		}
 		catch (BadParseSymFileException e) {
 			throw new RuntimeException("****Error: Bad Parser Symbol File -- OCLParsersym.java. Regenerate OCLParserprs.java");
@@ -138,9 +138,62 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 		
  
 			//
-			// Rule 26:  operationCS1 ::= IDENTIFIER ( parametersCSopt ) : typeCSopt
+			// Rule 46:  binaryName ::= binaryIdentifier
 			//
-			case 26: {
+			case 46:
+ 
+			//
+			// Rule 47:  keywordAsName ::= keywordAsIdentifier
+			//
+			case 47:
+ 
+			//
+			// Rule 48:  keywordAsName1 ::= keywordAsIdentifier1
+			//
+			case 48:
+ 
+			//
+			// Rule 49:  unaryName ::= unaryIdentifier
+			//
+			case 49: {
+				
+				SimpleNameCS result = createSimpleNameCS(
+							SimpleTypeEnum.IDENTIFIER_LITERAL,
+							getTokenText(dtParser.getToken(1))
+						);
+				setOffsets(result, getIToken(dtParser.getToken(1)));
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
+			//
+			// Rule 50:  iterateName ::= iterate
+			//
+			case 50:
+ 
+			//
+			// Rule 51:  iteratorName ::= iteratorIdentifier
+			//
+			case 51:
+ 
+			//
+			// Rule 52:  oclIsInStateName ::= oclIsInState
+			//
+			case 52: {
+				
+				SimpleNameCS result = createSimpleNameCS(
+							SimpleTypeEnum.KEYWORD_LITERAL,
+							getTokenText(dtParser.getToken(1))
+						);
+				setOffsets(result, getIToken(dtParser.getToken(1)));
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
+			//
+			// Rule 55:  operationCS1 ::= IDENTIFIER ( parametersCSopt ) : typeCSopt
+			//
+			case 55: {
 				
 				CSTNode result = createOperationCS(
 						getTokenText(dtParser.getToken(1)),
@@ -157,9 +210,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 27:  operationCS2 ::= pathNameCS :: simpleNameCS ( parametersCSopt ) : typeCSopt
+			// Rule 56:  operationCS2 ::= pathNameCS :: simpleNameCS ( parametersCSopt ) : typeCSopt
 			//
-			case 27: {
+			case 56: {
 				
 				CSTNode result = createOperationCS(
 						(PathNameCS)dtParser.getSym(1),
@@ -177,16 +230,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 28:  parametersCSopt ::= $Empty
+			// Rule 57:  parametersCSopt ::= $Empty
 			//
-			case 28:
+			case 57:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 30:  parametersCS ::= variableCS
+			// Rule 59:  parametersCS ::= variableCS
 			//
-			case 30: {
+			case 59: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -195,9 +248,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 31:  parametersCS ::= parametersCS , variableCS
+			// Rule 60:  parametersCS ::= parametersCS , variableCS
 			//
-			case 31: {
+			case 60: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -206,51 +259,51 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 32:  simpleNameCSopt ::= $Empty
+			// Rule 61:  simpleNameCSopt ::= $Empty
 			//
-			case 32:
+			case 61:
 				dtParser.setSym1(null);
 				break;
  
 			//
-			// Rule 38:  impliesExpCS ::= impliesExpCS implies andOrXorExpCS
+			// Rule 67:  impliesExpCS ::= impliesExpCS implies andOrXorExpCS
 			//
-			case 38:
+			case 67:
  
 			//
-			// Rule 39:  impliesWithLet ::= impliesExpCS implies andOrXorWithLet
+			// Rule 68:  impliesWithLet ::= impliesExpCS implies andOrXorWithLet
 			//
-			case 39:
+			case 68:
  
 			//
-			// Rule 42:  andOrXorExpCS ::= andOrXorExpCS and equalityExpCS
+			// Rule 71:  andOrXorExpCS ::= andOrXorExpCS and equalityExpCS
 			//
-			case 42:
+			case 71:
  
 			//
-			// Rule 43:  andOrXorExpCS ::= andOrXorExpCS or equalityExpCS
+			// Rule 72:  andOrXorExpCS ::= andOrXorExpCS or equalityExpCS
 			//
-			case 43:
+			case 72:
  
 			//
-			// Rule 44:  andOrXorExpCS ::= andOrXorExpCS xor equalityExpCS
+			// Rule 73:  andOrXorExpCS ::= andOrXorExpCS xor equalityExpCS
 			//
-			case 44:
+			case 73:
  
 			//
-			// Rule 45:  andOrXorWithLet ::= andOrXorExpCS and equalityWithLet
+			// Rule 74:  andOrXorWithLet ::= andOrXorExpCS and equalityWithLet
 			//
-			case 45:
+			case 74:
  
 			//
-			// Rule 46:  andOrXorWithLet ::= andOrXorExpCS or equalityWithLet
+			// Rule 75:  andOrXorWithLet ::= andOrXorExpCS or equalityWithLet
 			//
-			case 46:
+			case 75:
  
 			//
-			// Rule 47:  andOrXorWithLet ::= andOrXorExpCS xor equalityWithLet
+			// Rule 76:  andOrXorWithLet ::= andOrXorExpCS xor equalityWithLet
 			//
-			case 47: {
+			case 76: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -270,14 +323,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 50:  equalityExpCS ::= equalityExpCS = relationalExpCS
+			// Rule 79:  equalityExpCS ::= equalityExpCS = relationalExpCS
 			//
-			case 50:
+			case 79:
  
 			//
-			// Rule 51:  equalityWithLet ::= equalityExpCS = relationalWithLet
+			// Rule 80:  equalityWithLet ::= equalityExpCS = relationalWithLet
 			//
-			case 51: {
+			case 80: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -297,14 +350,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 52:  equalityExpCS ::= equalityExpCS <> relationalExpCS
+			// Rule 81:  equalityExpCS ::= equalityExpCS <> relationalExpCS
 			//
-			case 52:
+			case 81:
  
 			//
-			// Rule 53:  equalityWithLet ::= equalityExpCS <> relationalWithLet
+			// Rule 82:  equalityWithLet ::= equalityExpCS <> relationalWithLet
 			//
-			case 53: {
+			case 82: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -324,14 +377,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 56:  relationalExpCS ::= relationalExpCS > ifExpCSPrec
+			// Rule 85:  relationalExpCS ::= relationalExpCS > ifExpCSPrec
 			//
-			case 56:
+			case 85:
  
 			//
-			// Rule 57:  relationalWithLet ::= relationalExpCS > additiveWithLet
+			// Rule 86:  relationalWithLet ::= relationalExpCS > additiveWithLet
 			//
-			case 57: {
+			case 86: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -351,14 +404,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 58:  relationalExpCS ::= relationalExpCS < ifExpCSPrec
+			// Rule 87:  relationalExpCS ::= relationalExpCS < ifExpCSPrec
 			//
-			case 58:
+			case 87:
  
 			//
-			// Rule 59:  relationalWithLet ::= relationalExpCS < additiveWithLet
+			// Rule 88:  relationalWithLet ::= relationalExpCS < additiveWithLet
 			//
-			case 59: {
+			case 88: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -378,14 +431,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 60:  relationalExpCS ::= relationalExpCS >= ifExpCSPrec
+			// Rule 89:  relationalExpCS ::= relationalExpCS >= ifExpCSPrec
 			//
-			case 60:
+			case 89:
  
 			//
-			// Rule 61:  relationalWithLet ::= relationalExpCS >= additiveWithLet
+			// Rule 90:  relationalWithLet ::= relationalExpCS >= additiveWithLet
 			//
-			case 61: {
+			case 90: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -405,14 +458,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 62:  relationalExpCS ::= relationalExpCS <= ifExpCSPrec
+			// Rule 91:  relationalExpCS ::= relationalExpCS <= ifExpCSPrec
 			//
-			case 62:
+			case 91:
  
 			//
-			// Rule 63:  relationalWithLet ::= relationalExpCS <= additiveWithLet
+			// Rule 92:  relationalWithLet ::= relationalExpCS <= additiveWithLet
 			//
-			case 63: {
+			case 92: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -432,14 +485,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 68:  additiveExpCS ::= additiveExpCS + multiplicativeExpCS
+			// Rule 97:  additiveExpCS ::= additiveExpCS + multiplicativeExpCS
 			//
-			case 68:
+			case 97:
  
 			//
-			// Rule 69:  additiveWithLet ::= additiveExpCS + multiplicativeWithLet
+			// Rule 98:  additiveWithLet ::= additiveExpCS + multiplicativeWithLet
 			//
-			case 69: {
+			case 98: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -459,14 +512,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 70:  additiveExpCS ::= additiveExpCS - multiplicativeExpCS
+			// Rule 99:  additiveExpCS ::= additiveExpCS - multiplicativeExpCS
 			//
-			case 70:
+			case 99:
  
 			//
-			// Rule 71:  additiveWithLet ::= additiveExpCS - multiplicativeWithLet
+			// Rule 100:  additiveWithLet ::= additiveExpCS - multiplicativeWithLet
 			//
-			case 71: {
+			case 100: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -486,14 +539,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 74:  multiplicativeExpCS ::= multiplicativeExpCS * unaryExpCS
+			// Rule 103:  multiplicativeExpCS ::= multiplicativeExpCS * unaryExpCS
 			//
-			case 74:
+			case 103:
  
 			//
-			// Rule 75:  multiplicativeWithLet ::= multiplicativeExpCS * unaryWithLet
+			// Rule 104:  multiplicativeWithLet ::= multiplicativeExpCS * unaryWithLet
 			//
-			case 75: {
+			case 104: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -513,14 +566,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 76:  multiplicativeExpCS ::= multiplicativeExpCS / unaryExpCS
+			// Rule 105:  multiplicativeExpCS ::= multiplicativeExpCS / unaryExpCS
 			//
-			case 76:
+			case 105:
  
 			//
-			// Rule 77:  multiplicativeWithLet ::= multiplicativeExpCS / unaryWithLet
+			// Rule 106:  multiplicativeWithLet ::= multiplicativeExpCS / unaryWithLet
 			//
-			case 77: {
+			case 106: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -540,9 +593,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 80:  unaryExpCS ::= - unaryExpCS
+			// Rule 109:  unaryExpCS ::= - unaryExpCS
 			//
-			case 80: {
+			case 109: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -560,9 +613,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 81:  unaryExpCS ::= not unaryExpCS
+			// Rule 110:  unaryExpCS ::= not unaryExpCS
 			//
-			case 81: {
+			case 110: {
 				
 				SimpleNameCS simpleNameCS = createSimpleNameCS(
 							SimpleTypeEnum.STRING_LITERAL,
@@ -580,9 +633,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 83:  dotArrowExpCS ::= dotArrowExpCS callExpCS
+			// Rule 112:  dotArrowExpCS ::= dotArrowExpCS callExpCS
 			//
-			case 83: {
+			case 112: {
 				
 				CallExpCS result = (CallExpCS)dtParser.getSym(2);
 				result.setSource((OCLExpressionCS)dtParser.getSym(1));
@@ -592,9 +645,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 84:  dotArrowExpCS ::= dotArrowExpCS messageExpCS
+			// Rule 113:  dotArrowExpCS ::= dotArrowExpCS messageExpCS
 			//
-			case 84: {
+			case 113: {
 				
 				MessageExpCS result = (MessageExpCS)dtParser.getSym(2);
 				result.setTarget((OCLExpressionCS)dtParser.getSym(1));
@@ -604,9 +657,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 85:  dotArrowExpCS ::= NUMERIC_OPERATION ( argumentsCSopt )
+			// Rule 114:  dotArrowExpCS ::= NUMERIC_OPERATION ( argumentsCSopt )
 			//
-			case 85: {
+			case 114: {
 				
 				// NUMERIC_OPERATION -> Integer '.' Identifier
 				String text = getTokenText(dtParser.getToken(1));
@@ -650,9 +703,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 86:  dotArrowExpCS ::= pathNameCS :: simpleNameCS ( argumentsCSopt )
+			// Rule 115:  dotArrowExpCS ::= pathNameCS :: simpleNameCS ( argumentsCSopt )
 			//
-			case 86: {
+			case 115: {
 				
 				OperationCallExpCS result = createOperationCallExpCS(
 						(PathNameCS)dtParser.getSym(1),
@@ -666,9 +719,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 91:  oclExpCS ::= ( oclExpressionCS )
+			// Rule 120:  oclExpCS ::= ( oclExpressionCS )
 			//
-			case 91: {
+			case 120: {
 				
 				CSTNode result = (CSTNode)dtParser.getSym(2);
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(3)));
@@ -677,9 +730,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 92:  variableExpCS ::= simpleNameCS isMarkedPreCS
+			// Rule 121:  variableExpCS ::= simpleNameCS isMarkedPreCS
 			//
-			case 92: {
+			case 121:
+ 
+			//
+			// Rule 122:  variableExpCS ::= keywordAsName1 isMarkedPreCS
+			//
+			case 122: {
 				
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(2);
 				CSTNode result = createVariableExpCS(
@@ -697,34 +755,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 93:  variableExpCS ::= keywordAsIdentifier1 isMarkedPreCS
+			// Rule 123:  variableExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCS
 			//
-			case 93: {
-				
-				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(2);
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.IDENTIFIER_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-				CSTNode result = createVariableExpCS(
-						simpleNameCS,
-						new BasicEList(),
-						isMarkedPreCS
-					);
-				if (isMarkedPreCS.isPre()) {
-					setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(2));
-				} else {
-					setOffsets(result, getIToken(dtParser.getToken(1)));
-				}
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
+			case 123:
+ 
 			//
-			// Rule 94:  variableExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCS
+			// Rule 124:  variableExpCS ::= keywordAsName1 [ argumentsCS ] isMarkedPreCS
 			//
-			case 94: {
+			case 124: {
 				
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(5);
 				CSTNode result = createVariableExpCS(
@@ -742,34 +780,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 95:  variableExpCS ::= keywordAsIdentifier1 [ argumentsCS ] isMarkedPreCS
+			// Rule 126:  simpleNameCS ::= self
 			//
-			case 95: {
-				
-				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(5);
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.IDENTIFIER_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-				CSTNode result = createVariableExpCS(
-						(SimpleNameCS)dtParser.getSym(1),
-						(EList)dtParser.getSym(3),
-						isMarkedPreCS
-					);
-				if (isMarkedPreCS.isPre()) {
-					setOffsets(result, (CSTNode)dtParser.getSym(1), (CSTNode)dtParser.getSym(5));
-				} else {
-					setOffsets(result, (CSTNode)dtParser.getSym(1), getIToken(dtParser.getToken(4)));
-				}
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
-			//
-			// Rule 97:  simpleNameCS ::= self
-			//
-			case 97: {
+			case 126: {
 				
 				CSTNode result = createSimpleNameCS(
 						SimpleTypeEnum.SELF_LITERAL,
@@ -781,9 +794,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 98:  simpleNameCS ::= IDENTIFIER
+			// Rule 127:  simpleNameCS ::= IDENTIFIER
 			//
-			case 98: {
+			case 127: {
 				
 				CSTNode result = createSimpleNameCS(
 						SimpleTypeEnum.IDENTIFIER_LITERAL,
@@ -795,9 +808,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 99:  primitiveTypeCS ::= Integer
+			// Rule 128:  primitiveTypeCS ::= Integer
 			//
-			case 99: {
+			case 128: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.INTEGER_LITERAL,
@@ -809,9 +822,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 100:  primitiveTypeCS ::= UnlimitedNatural
+			// Rule 129:  primitiveTypeCS ::= UnlimitedNatural
 			//
-			case 100: {
+			case 129: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.UNLIMITED_NATURAL_LITERAL,
@@ -823,9 +836,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 101:  primitiveTypeCS ::= String
+			// Rule 130:  primitiveTypeCS ::= String
 			//
-			case 101: {
+			case 130: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.STRING_LITERAL,
@@ -837,9 +850,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 102:  primitiveTypeCS ::= Real
+			// Rule 131:  primitiveTypeCS ::= Real
 			//
-			case 102: {
+			case 131: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.REAL_LITERAL,
@@ -851,9 +864,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 103:  primitiveTypeCS ::= Boolean
+			// Rule 132:  primitiveTypeCS ::= Boolean
 			//
-			case 103: {
+			case 132: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.BOOLEAN_LITERAL,
@@ -865,9 +878,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 104:  primitiveTypeCS ::= OclAny
+			// Rule 133:  primitiveTypeCS ::= OclAny
 			//
-			case 104: {
+			case 133: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_ANY_LITERAL,
@@ -879,9 +892,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 105:  primitiveTypeCS ::= OclVoid
+			// Rule 134:  primitiveTypeCS ::= OclVoid
 			//
-			case 105: {
+			case 134: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_VOID_LITERAL,
@@ -893,9 +906,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 106:  primitiveTypeCS ::= Invalid
+			// Rule 135:  primitiveTypeCS ::= Invalid
 			//
-			case 106: {
+			case 135: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.INVALID_LITERAL,
@@ -907,9 +920,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 107:  primitiveTypeCS ::= OclMessage
+			// Rule 136:  primitiveTypeCS ::= OclMessage
 			//
-			case 107: {
+			case 136: {
 				
 				CSTNode result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_MESSAGE_LITERAL,
@@ -921,9 +934,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 108:  pathNameCS ::= IDENTIFIER
+			// Rule 137:  pathNameCS ::= IDENTIFIER
 			//
-			case 108: {
+			case 137: {
 				
 				CSTNode result = createPathNameCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -932,9 +945,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 109:  pathNameCS ::= pathNameCS :: simpleNameCS
+			// Rule 138:  pathNameCS ::= pathNameCS :: simpleNameCS
 			//
-			case 109: {
+			case 138: {
 				
 				PathNameCS result = (PathNameCS)dtParser.getSym(1);
 				result = extendPathNameCS(result, getTokenText(dtParser.getToken(3)));
@@ -944,9 +957,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 110:  pathNameCSOpt ::= $Empty
+			// Rule 139:  pathNameCSOpt ::= $Empty
 			//
-			case 110: {
+			case 139: {
 				
 				CSTNode result = createPathNameCS();
 				dtParser.setSym1(result);
@@ -954,23 +967,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 118:  enumLiteralExpCS ::= pathNameCS :: keywordAsIdentifier
+			// Rule 147:  enumLiteralExpCS ::= pathNameCS :: keywordAsName
 			//
-			case 118: {
-				
-				CSTNode result = createEnumLiteralExpCS(
-						(PathNameCS)dtParser.getSym(1),
-						getTokenText(dtParser.getToken(3))
-					);
-				setOffsets(result, (CSTNode)dtParser.getSym(1), getIToken(dtParser.getToken(3)));
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
+			case 147:
+ 
 			//
-			// Rule 119:  enumLiteralExpCS ::= pathNameCS :: simpleNameCS
+			// Rule 148:  enumLiteralExpCS ::= pathNameCS :: simpleNameCS
 			//
-			case 119: {
+			case 148: {
 				
 				CSTNode result = createEnumLiteralExpCS(
 						(PathNameCS)dtParser.getSym(1),
@@ -982,9 +986,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 120:  collectionLiteralExpCS ::= collectionTypeIdentifierCS { collectionLiteralPartsCSopt }
+			// Rule 149:  collectionLiteralExpCS ::= collectionTypeIdentifierCS { collectionLiteralPartsCSopt }
 			//
-			case 120: {
+			case 149: {
 				
 				Object[] objs = (Object[])dtParser.getSym(1);
 				CSTNode result = createCollectionLiteralExpCS(
@@ -997,61 +1001,61 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 121:  collectionTypeIdentifierCS ::= Set
+			// Rule 150:  collectionTypeIdentifierCS ::= Set
 			//
-			case 121: {
+			case 150: {
 				
 				dtParser.setSym1(new Object[]{getIToken(dtParser.getToken(1)), CollectionTypeIdentifierEnum.SET_LITERAL});
 	  		  break;
 			}
 	 
 			//
-			// Rule 122:  collectionTypeIdentifierCS ::= Bag
+			// Rule 151:  collectionTypeIdentifierCS ::= Bag
 			//
-			case 122: {
+			case 151: {
 				
 				dtParser.setSym1(new Object[]{getIToken(dtParser.getToken(1)), CollectionTypeIdentifierEnum.BAG_LITERAL});
 	  		  break;
 			}
 	 
 			//
-			// Rule 123:  collectionTypeIdentifierCS ::= Sequence
+			// Rule 152:  collectionTypeIdentifierCS ::= Sequence
 			//
-			case 123: {
+			case 152: {
 				
 				dtParser.setSym1(new Object[]{getIToken(dtParser.getToken(1)), CollectionTypeIdentifierEnum.SEQUENCE_LITERAL});
 	  		  break;
 			}
 	 
 			//
-			// Rule 124:  collectionTypeIdentifierCS ::= Collection
+			// Rule 153:  collectionTypeIdentifierCS ::= Collection
 			//
-			case 124: {
+			case 153: {
 				
 				dtParser.setSym1(new Object[]{getIToken(dtParser.getToken(1)), CollectionTypeIdentifierEnum.COLLECTION_LITERAL});
 	  		  break;
 			}
 	 
 			//
-			// Rule 125:  collectionTypeIdentifierCS ::= OrderedSet
+			// Rule 154:  collectionTypeIdentifierCS ::= OrderedSet
 			//
-			case 125: {
+			case 154: {
 				
 				dtParser.setSym1(new Object[]{getIToken(dtParser.getToken(1)), CollectionTypeIdentifierEnum.ORDERED_SET_LITERAL});
 	  		  break;
 			}
 	 
 			//
-			// Rule 126:  collectionLiteralPartsCSopt ::= $Empty
+			// Rule 155:  collectionLiteralPartsCSopt ::= $Empty
 			//
-			case 126:
+			case 155:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 128:  collectionLiteralPartsCS ::= collectionLiteralPartCS
+			// Rule 157:  collectionLiteralPartsCS ::= collectionLiteralPartCS
 			//
-			case 128: {
+			case 157: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -1060,9 +1064,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 129:  collectionLiteralPartsCS ::= collectionLiteralPartsCS , collectionLiteralPartCS
+			// Rule 158:  collectionLiteralPartsCS ::= collectionLiteralPartsCS , collectionLiteralPartCS
 			//
-			case 129: {
+			case 158: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -1071,9 +1075,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 131:  collectionLiteralPartCS ::= oclExpressionCS
+			// Rule 160:  collectionLiteralPartCS ::= oclExpressionCS
 			//
-			case 131: {
+			case 160: {
 				
 				CSTNode result = createCollectionLiteralPartCS(
 						(OCLExpressionCS)dtParser.getSym(1)
@@ -1084,9 +1088,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 132:  collectionRangeCS ::= - INTEGER_RANGE_START oclExpressionCS
+			// Rule 161:  collectionRangeCS ::= - INTEGER_RANGE_START oclExpressionCS
 			//
-			case 132: {
+			case 161: {
 				
 				OCLExpressionCS rangeStart = createRangeStart(
 						getTokenText(dtParser.getToken(2)), true);
@@ -1100,9 +1104,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 133:  collectionRangeCS ::= INTEGER_RANGE_START oclExpressionCS
+			// Rule 162:  collectionRangeCS ::= INTEGER_RANGE_START oclExpressionCS
 			//
-			case 133: {
+			case 162: {
 				
 				OCLExpressionCS rangeStart = createRangeStart(
 						getTokenText(dtParser.getToken(1)), false);
@@ -1116,9 +1120,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 134:  collectionRangeCS ::= oclExpressionCS .. oclExpressionCS
+			// Rule 163:  collectionRangeCS ::= oclExpressionCS .. oclExpressionCS
 			//
-			case 134: {
+			case 163: {
 				
 				CSTNode result = createCollectionRangeCS(
 						(OCLExpressionCS)dtParser.getSym(1),
@@ -1130,9 +1134,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 140:  tupleLiteralExpCS ::= Tuple { variableListCS2 }
+			// Rule 169:  tupleLiteralExpCS ::= Tuple { variableListCS2 }
 			//
-			case 140: {
+			case 169: {
 				
 				CSTNode result = createTupleLiteralExpCS((EList)dtParser.getSym(3));
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
@@ -1141,9 +1145,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 141:  integerLiteralExpCS ::= INTEGER_LITERAL
+			// Rule 170:  integerLiteralExpCS ::= INTEGER_LITERAL
 			//
-			case 141: {
+			case 170: {
 				
 				CSTNode result = createIntegerLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1152,9 +1156,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 142:  unlimitedNaturalLiteralExpCS ::= *
+			// Rule 171:  unlimitedNaturalLiteralExpCS ::= *
 			//
-			case 142: {
+			case 171: {
 				
 				CSTNode result = createUnlimitedNaturalLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1163,9 +1167,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 143:  realLiteralExpCS ::= REAL_LITERAL
+			// Rule 172:  realLiteralExpCS ::= REAL_LITERAL
 			//
-			case 143: {
+			case 172: {
 				
 				CSTNode result = createRealLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1174,9 +1178,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 144:  stringLiteralExpCS ::= STRING_LITERAL
+			// Rule 173:  stringLiteralExpCS ::= STRING_LITERAL
 			//
-			case 144: {
+			case 173: {
 				
 				CSTNode result = createStringLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1185,9 +1189,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 145:  booleanLiteralExpCS ::= true
+			// Rule 174:  booleanLiteralExpCS ::= true
 			//
-			case 145: {
+			case 174: {
 				
 				CSTNode result = createBooleanLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1196,9 +1200,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 146:  booleanLiteralExpCS ::= false
+			// Rule 175:  booleanLiteralExpCS ::= false
 			//
-			case 146: {
+			case 175: {
 				
 				CSTNode result = createBooleanLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1207,9 +1211,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 147:  nullLiteralExpCS ::= null
+			// Rule 176:  nullLiteralExpCS ::= null
 			//
-			case 147: {
+			case 176: {
 				
 				CSTNode result = createNullLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1218,9 +1222,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 148:  invalidLiteralExpCS ::= OclInvalid
+			// Rule 177:  invalidLiteralExpCS ::= OclInvalid
 			//
-			case 148: {
+			case 177: {
 				
 				CSTNode result = createInvalidLiteralExpCS(getTokenText(dtParser.getToken(1)));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1229,14 +1233,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 149:  callExpCS ::= -> featureCallExpCS
+			// Rule 178:  callExpCS ::= -> featureCallExpCS
 			//
-			case 149:
+			case 178:
  
 			//
-			// Rule 150:  callExpCS ::= -> loopExpCS
+			// Rule 179:  callExpCS ::= -> loopExpCS
 			//
-			case 150: {
+			case 179: {
 				
 				CallExpCS result = (CallExpCS)dtParser.getSym(2);
 				result.setAccessor(DotOrArrowEnum.ARROW_LITERAL);
@@ -1245,14 +1249,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 151:  callExpCS ::= . keywordOperationCallExpCS
+			// Rule 180:  callExpCS ::= . keywordOperationCallExpCS
 			//
-			case 151:
+			case 180:
  
 			//
-			// Rule 152:  callExpCS ::= . featureCallExpCS
+			// Rule 181:  callExpCS ::= . featureCallExpCS
 			//
-			case 152: {
+			case 181: {
 				
 				CallExpCS result = (CallExpCS)dtParser.getSym(2);
 				result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
@@ -1261,162 +1265,94 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 155:  iteratorExpCS ::= forAll ( iterContents )
+			// Rule 184:  iteratorExpCS ::= iteratorName ( oclExpressionCS )
 			//
-			case 155:
- 
-			//
-			// Rule 156:  iteratorExpCS ::= exists ( iterContents )
-			//
-			case 156:
- 
-			//
-			// Rule 157:  iteratorExpCS ::= isUnique ( iterContents )
-			//
-			case 157:
- 
-			//
-			// Rule 158:  iteratorExpCS ::= one ( iterContents )
-			//
-			case 158:
- 
-			//
-			// Rule 159:  iteratorExpCS ::= any ( iterContents )
-			//
-			case 159:
- 
-			//
-			// Rule 160:  iteratorExpCS ::= collect ( iterContents )
-			//
-			case 160:
- 
-			//
-			// Rule 161:  iteratorExpCS ::= select ( iterContents )
-			//
-			case 161:
- 
-			//
-			// Rule 162:  iteratorExpCS ::= reject ( iterContents )
-			//
-			case 162:
- 
-			//
-			// Rule 163:  iteratorExpCS ::= collectNested ( iterContents )
-			//
-			case 163:
- 
-			//
-			// Rule 164:  iteratorExpCS ::= sortedBy ( iterContents )
-			//
-			case 164:
- 
-			//
-			// Rule 165:  iteratorExpCS ::= closure ( iterContents )
-			//
-			case 165: {
+			case 184: {
 				
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.KEYWORD_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-				Object[] iterContents = (Object[])dtParser.getSym(3);
+				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
 				CSTNode result = createIteratorExpCS(
 						simpleNameCS,
-						(VariableCS)iterContents[0],
-						(VariableCS)iterContents[1],
-						(OCLExpressionCS)iterContents[2]
+						null,
+						null,
+						(OCLExpressionCS)dtParser.getSym(3)
 					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
+				setOffsets(result, simpleNameCS, getIToken(dtParser.getToken(4)));
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 166:  iterContents ::= oclExpressionCS
+			// Rule 185:  iteratorExpCS ::= iteratorName ( variableCS | oclExpressionCS )
 			//
-			case 166: {
+			case 185: {
 				
-				dtParser.setSym1(new Object[] {
+				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
+				CSTNode result = createIteratorExpCS(
+						simpleNameCS,
+						(VariableCS)dtParser.getSym(3),
 						null,
-						null,
-						dtParser.getSym(1)
-					});
+						(OCLExpressionCS)dtParser.getSym(5)
+					);
+				setOffsets(result, simpleNameCS, getIToken(dtParser.getToken(6)));
+				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 167:  iterContents ::= variableCS | oclExpressionCS
+			// Rule 186:  iteratorExpCS ::= iteratorName ( variableCS , variableCS | oclExpressionCS )
 			//
-			case 167: {
+			case 186: {
 				
-				dtParser.setSym1(new Object[] {
-						dtParser.getSym(1),
-						null,
-						dtParser.getSym(3)
-					});
+				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
+				CSTNode result = createIteratorExpCS(
+						simpleNameCS,
+						(VariableCS)dtParser.getSym(3),
+						(VariableCS)dtParser.getSym(5),
+						(OCLExpressionCS)dtParser.getSym(7)
+					);
+				setOffsets(result, simpleNameCS, getIToken(dtParser.getToken(8)));
+				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 168:  iterContents ::= variableCS , variableCS | oclExpressionCS
+			// Rule 187:  iterateExpCS ::= iterateName ( variableCS | oclExpressionCS )
 			//
-			case 168: {
+			case 187: {
 				
-				dtParser.setSym1(new Object[] {
-						dtParser.getSym(1),
-						dtParser.getSym(3),
-						dtParser.getSym(5)
-					});
-	  		  break;
-			}
-	 
-			//
-			// Rule 169:  iterateExpCS ::= iterate ( variableCS | oclExpressionCS )
-			//
-			case 169: {
-				
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.KEYWORD_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
+				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
 				CSTNode result = createIterateExpCS(
 						simpleNameCS,
 						(VariableCS)dtParser.getSym(3),
 						null,
 						(OCLExpressionCS)dtParser.getSym(5)
 					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(6)));
+				setOffsets(result, simpleNameCS, getIToken(dtParser.getToken(6)));
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 170:  iterateExpCS ::= iterate ( variableCS ; variableCS | oclExpressionCS )
+			// Rule 188:  iterateExpCS ::= iterateName ( variableCS ; variableCS | oclExpressionCS )
 			//
-			case 170: {
+			case 188: {
 				
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.KEYWORD_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
+				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
 				CSTNode result = createIterateExpCS(
 						simpleNameCS,
 						(VariableCS)dtParser.getSym(3),
 						(VariableCS)dtParser.getSym(5),
 						(OCLExpressionCS)dtParser.getSym(7)
 					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(8)));
+				setOffsets(result, simpleNameCS, getIToken(dtParser.getToken(8)));
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 171:  variableCS ::= IDENTIFIER
+			// Rule 189:  variableCS ::= IDENTIFIER
 			//
-			case 171: {
+			case 189: {
 				
 				CSTNode result = createVariableCS(
 						getTokenText(dtParser.getToken(1)),
@@ -1429,9 +1365,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 172:  variableCS ::= IDENTIFIER : typeCS
+			// Rule 190:  typedVariableCS ::= IDENTIFIER : typeCS
 			//
-			case 172: {
+			case 190: {
 				
 				CSTNode result = createVariableCS(
 						getTokenText(dtParser.getToken(1)),
@@ -1444,9 +1380,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 173:  variableCS ::= IDENTIFIER : typeCS = oclExpressionCS
+			// Rule 192:  variableCS ::= IDENTIFIER : typeCS = oclExpressionCS
 			//
-			case 173: {
+			case 192: {
 				
 				CSTNode result = createVariableCS(
 						getTokenText(dtParser.getToken(1)),
@@ -1459,9 +1395,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 174:  variableCS2 ::= IDENTIFIER = oclExpressionCS
+			// Rule 193:  variableCS2 ::= IDENTIFIER = oclExpressionCS
 			//
-			case 174: {
+			case 193: {
 				
 				CSTNode result = createVariableCS(
 						getTokenText(dtParser.getToken(1)),
@@ -1474,16 +1410,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 175:  typeCSopt ::= $Empty
+			// Rule 194:  typeCSopt ::= $Empty
 			//
-			case 175:
+			case 194:
 				dtParser.setSym1(null);
 				break;
  
 			//
-			// Rule 181:  collectionTypeCS ::= collectionTypeIdentifierCS ( typeCS )
+			// Rule 200:  collectionTypeCS ::= collectionTypeIdentifierCS ( typeCS )
 			//
-			case 181: {
+			case 200: {
 				
 				Object[] objs = (Object[])dtParser.getSym(1);
 				CSTNode result = createCollectionTypeCS(
@@ -1496,9 +1432,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 182:  tupleTypeCS ::= Tuple ( variableListCSopt )
+			// Rule 201:  tupleTypeCS ::= Tuple ( variableListCSopt )
 			//
-			case 182: {
+			case 201: {
 				
 				CSTNode result = createTupleTypeCS((EList)dtParser.getSym(3));
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
@@ -1507,16 +1443,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 183:  variableListCSopt ::= $Empty
+			// Rule 202:  variableListCSopt ::= $Empty
 			//
-			case 183:
+			case 202:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 185:  variableListCS ::= variableCS
+			// Rule 204:  variableListCS ::= variableCS
 			//
-			case 185: {
+			case 204: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -1525,9 +1461,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 186:  variableListCS ::= variableListCS , variableCS
+			// Rule 205:  variableListCS ::= variableListCS , variableCS
 			//
-			case 186: {
+			case 205: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -1536,14 +1472,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 187:  variableListCS2 ::= variableCS2
+			// Rule 206:  variableListCS2 ::= variableCS2
 			//
-			case 187:
+			case 206:
  
 			//
-			// Rule 188:  variableListCS2 ::= variableCS
+			// Rule 207:  variableListCS2 ::= variableCS
 			//
-			case 188: {
+			case 207: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -1552,14 +1488,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 189:  variableListCS2 ::= variableListCS2 , variableCS2
+			// Rule 208:  variableListCS2 ::= variableListCS2 , variableCS2
 			//
-			case 189:
+			case 208:
  
 			//
-			// Rule 190:  variableListCS2 ::= variableListCS2 , variableCS
+			// Rule 209:  variableListCS2 ::= variableListCS2 , variableCS
 			//
-			case 190: {
+			case 209: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -1568,184 +1504,67 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 193:  featureCallExpCS ::= MINUS isMarkedPreCS ( argumentsCSopt )
+			// Rule 212:  featureCallExpCS ::= unaryName isMarkedPreCS ( argumentsCSopt )
 			//
-			case 193:
+			case 212:
  
 			//
-			// Rule 194:  featureCallExpCS ::= not isMarkedPreCS ( argumentsCSopt )
+			// Rule 213:  operationCallExpCS ::= binaryName isMarkedPreCS ( argumentsCSopt )
 			//
-			case 194: {
-				
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.IDENTIFIER_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-				CSTNode result = createOperationCallExpCS(
-						simpleNameCS,
-						(IsMarkedPreCS)dtParser.getSym(2),
-						(EList)dtParser.getSym(4)
-					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
+			case 213:
+ 
 			//
-			// Rule 195:  operationCallExpCS ::= simpleNameCS isMarkedPreCS ( argumentsCSopt )
+			// Rule 214:  keywordOperationCallExpCS ::= keywordAsName isMarkedPreCS ( argumentsCSopt )
 			//
-			case 195: {
+			case 214: {
 				
 				CSTNode result = createOperationCallExpCS(
 						(SimpleNameCS)dtParser.getSym(1),
 						(IsMarkedPreCS)dtParser.getSym(2),
 						(EList)dtParser.getSym(4)
 					);
-				setOffsets(result, (CSTNode)dtParser.getSym(1), getIToken(dtParser.getToken(5)));
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
-			//
-			// Rule 196:  operationCallExpCS ::= oclIsUndefined isMarkedPreCS ( argumentsCSopt )
-			//
-			case 196:
- 
-			//
-			// Rule 197:  operationCallExpCS ::= oclIsInvalid isMarkedPreCS ( argumentsCSopt )
-			//
-			case 197:
- 
-			//
-			// Rule 198:  operationCallExpCS ::= oclIsNew isMarkedPreCS ( argumentsCSopt )
-			//
-			case 198:
- 
-			//
-			// Rule 199:  operationCallExpCS ::= oclAsType isMarkedPreCS ( argumentsCSopt )
-			//
-			case 199:
- 
-			//
-			// Rule 200:  operationCallExpCS ::= oclIsKindOf isMarkedPreCS ( argumentsCSopt )
-			//
-			case 200:
- 
-			//
-			// Rule 201:  operationCallExpCS ::= oclIsTypeOf isMarkedPreCS ( argumentsCSopt )
-			//
-			case 201:
- 
-			//
-			// Rule 202:  operationCallExpCS ::= EQUAL isMarkedPreCS ( argumentsCSopt )
-			//
-			case 202:
- 
-			//
-			// Rule 203:  operationCallExpCS ::= NOT_EQUAL isMarkedPreCS ( argumentsCSopt )
-			//
-			case 203:
- 
-			//
-			// Rule 204:  operationCallExpCS ::= PLUS isMarkedPreCS ( argumentsCSopt )
-			//
-			case 204:
- 
-			//
-			// Rule 205:  operationCallExpCS ::= MULTIPLY isMarkedPreCS ( argumentsCSopt )
-			//
-			case 205:
- 
-			//
-			// Rule 206:  operationCallExpCS ::= DIVIDE isMarkedPreCS ( argumentsCSopt )
-			//
-			case 206:
- 
-			//
-			// Rule 207:  operationCallExpCS ::= GREATER isMarkedPreCS ( argumentsCSopt )
-			//
-			case 207:
- 
-			//
-			// Rule 208:  operationCallExpCS ::= LESS isMarkedPreCS ( argumentsCSopt )
-			//
-			case 208:
- 
-			//
-			// Rule 209:  operationCallExpCS ::= GREATER_EQUAL isMarkedPreCS ( argumentsCSopt )
-			//
-			case 209:
- 
-			//
-			// Rule 210:  operationCallExpCS ::= LESS_EQUAL isMarkedPreCS ( argumentsCSopt )
-			//
-			case 210:
- 
-			//
-			// Rule 211:  operationCallExpCS ::= and isMarkedPreCS ( argumentsCSopt )
-			//
-			case 211:
- 
-			//
-			// Rule 212:  operationCallExpCS ::= or isMarkedPreCS ( argumentsCSopt )
-			//
-			case 212:
- 
-			//
-			// Rule 213:  operationCallExpCS ::= xor isMarkedPreCS ( argumentsCSopt )
-			//
-			case 213:
- 
-			//
-			// Rule 214:  keywordOperationCallExpCS ::= keywordAsIdentifier isMarkedPreCS ( argumentsCSopt )
-			//
-			case 214: {
-				
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.IDENTIFIER_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-				CSTNode result = createOperationCallExpCS(
-						simpleNameCS,
-						(IsMarkedPreCS)dtParser.getSym(2),
-						(EList)dtParser.getSym(4)
-					);
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 215:  operationCallExpCS ::= oclIsInState isMarkedPreCS ( pathNameCSOpt )
+			// Rule 215:  stateExpCS ::= pathNameCSOpt
 			//
 			case 215: {
 				
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.KEYWORD_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-
-				PathNameCS pathNameCS = (PathNameCS) dtParser.getSym(4);
-				StateExpCS stateExpCS = createStateExpCS(pathNameCS);
-				setOffsets(stateExpCS, pathNameCS);
-			
-				CSTNode result = createOperationCallExpCS(
-						simpleNameCS,
-						(IsMarkedPreCS)dtParser.getSym(2),
-						stateExpCS
-					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));
+				PathNameCS pathNameCS = (PathNameCS)dtParser.getSym(1);
+				StateExpCS result = createStateExpCS(pathNameCS);
+				setOffsets(result, pathNameCS);
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 216:  attrOrNavCallExpCS ::= simpleNameCS isMarkedPreCS
+			// Rule 216:  operationCallExpCS ::= oclIsInStateName isMarkedPreCS ( stateExpCS )
 			//
 			case 216: {
+				
+				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
+				CSTNode result = createOperationCallExpCS(
+						simpleNameCS,
+						(IsMarkedPreCS)dtParser.getSym(2),
+						(StateExpCS)dtParser.getSym(4)
+					);
+				setOffsets(result, simpleNameCS, getIToken(dtParser.getToken(5)));
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
+			//
+			// Rule 217:  attrOrNavCallExpCS ::= simpleNameCS isMarkedPreCS
+			//
+			case 217:
+ 
+			//
+			// Rule 218:  attrOrNavCallExpCS ::= keywordAsName isMarkedPreCS
+			//
+			case 218: {
 				
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(2);
 				CSTNode result = createFeatureCallExpCS(
@@ -1763,34 +1582,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 217:  attrOrNavCallExpCS ::= keywordAsIdentifier isMarkedPreCS
+			// Rule 219:  attrOrNavCallExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCS
 			//
-			case 217: {
-				
-				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(2);
-				SimpleNameCS simpleNameCS = createSimpleNameCS(
-							SimpleTypeEnum.IDENTIFIER_LITERAL,
-							getTokenText(dtParser.getToken(1))
-						);
-				setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
-				CSTNode result = createFeatureCallExpCS(
-						simpleNameCS,
-						new BasicEList(),
-						isMarkedPreCS
-					);
-				if (isMarkedPreCS.isPre()) {
-					setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(2));
-				} else {
-					setOffsets(result, getIToken(dtParser.getToken(1)));
-				}
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
-			//
-			// Rule 218:  attrOrNavCallExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCS
-			//
-			case 218: {
+			case 219: {
 				
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(5);
 				CSTNode result = createFeatureCallExpCS(
@@ -1808,9 +1602,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 219:  isMarkedPreCS ::= $Empty
+			// Rule 220:  isMarkedPreCS ::= $Empty
 			//
-			case 219: {
+			case 220: {
 				
 				CSTNode result = createIsMarkedPreCS(false);
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1819,9 +1613,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 220:  isMarkedPreCS ::= @pre
+			// Rule 221:  isMarkedPreCS ::= @pre
 			//
-			case 220: {
+			case 221: {
 				
 				CSTNode result = createIsMarkedPreCS(true);
 				setOffsets(result, getIToken(dtParser.getToken(1)));
@@ -1830,16 +1624,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 221:  argumentsCSopt ::= $Empty
+			// Rule 222:  argumentsCSopt ::= $Empty
 			//
-			case 221:
+			case 222:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 223:  argumentsCS ::= oclExpressionCS
+			// Rule 224:  argumentsCS ::= oclExpressionCS
 			//
-			case 223: {
+			case 224: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -1848,55 +1642,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 224:  argumentsCS ::= argumentsCS , oclExpressionCS
-			//
-			case 224: {
-				
-				EList result = (EList)dtParser.getSym(1);
-				result.add(dtParser.getSym(3));
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
-			//
-			// Rule 225:  letExpCS ::= let variableCS letExpSubCSopt in oclExpressionCS
+			// Rule 225:  argumentsCS ::= argumentsCS , oclExpressionCS
 			//
 			case 225: {
 				
-				EList variables = (EList)dtParser.getSym(3);
-				variables.add(0, dtParser.getSym(2));
-				CSTNode result = createLetExpCS(
-						variables,
-						(OCLExpressionCS)dtParser.getSym(5)
-					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(5));
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
-			//
-			// Rule 226:  letExpSubCSopt ::= $Empty
-			//
-			case 226:
-				dtParser.setSym1(new BasicEList());
-				break;
- 
-			//
-			// Rule 228:  letExpSubCS ::= , variableCS
-			//
-			case 228: {
-				
-				EList result = new BasicEList();
-				result.add(dtParser.getSym(2));
-				dtParser.setSym1(result);
-	  		  break;
-			}
-	 
-			//
-			// Rule 229:  letExpSubCS ::= letExpSubCS , variableCS
-			//
-			case 229: {
-				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
 				dtParser.setSym1(result);
@@ -1904,9 +1653,23 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 230:  ifExpCS ::= if oclExpressionCS then oclExpressionCS else oclExpressionCS endif
+			// Rule 226:  letExpCS ::= let variableListCS in oclExpressionCS
 			//
-			case 230: {
+			case 226: {
+				
+				CSTNode result = createLetExpCS(
+						(EList)dtParser.getSym(2),
+						(OCLExpressionCS)dtParser.getSym(4)
+					);
+				setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(4));
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
+			//
+			// Rule 227:  ifExpCS ::= if oclExpressionCS then oclExpressionCS else oclExpressionCS endif
+			//
+			case 227: {
 				
 				CSTNode result = createIfExpCS(
 						(OCLExpressionCS)dtParser.getSym(2),
@@ -1919,14 +1682,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 231:  messageExpCS ::= ^ simpleNameCS ( oclMessageArgumentsCSopt )
+			// Rule 228:  messageExpCS ::= ^ simpleNameCS ( oclMessageArgumentsCSopt )
 			//
-			case 231:
+			case 228:
  
 			//
-			// Rule 232:  messageExpCS ::= ^^ simpleNameCS ( oclMessageArgumentsCSopt )
+			// Rule 229:  messageExpCS ::= ^^ simpleNameCS ( oclMessageArgumentsCSopt )
 			//
-			case 232: {
+			case 229: {
 				
 				CSTNode result = createMessageExpCS(
 						getIToken(dtParser.getToken(1)).getKind() == OCLParsersym.TK_CARET,
@@ -1939,16 +1702,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 233:  oclMessageArgumentsCSopt ::= $Empty
+			// Rule 230:  oclMessageArgumentsCSopt ::= $Empty
 			//
-			case 233:
+			case 230:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 235:  oclMessageArgumentsCS ::= oclMessageArgCS
+			// Rule 232:  oclMessageArgumentsCS ::= oclMessageArgCS
 			//
-			case 235: {
+			case 232: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -1957,9 +1720,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 236:  oclMessageArgumentsCS ::= oclMessageArgumentsCS , oclMessageArgCS
+			// Rule 233:  oclMessageArgumentsCS ::= oclMessageArgumentsCS , oclMessageArgCS
 			//
-			case 236: {
+			case 233: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(3));
@@ -1968,9 +1731,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 237:  oclMessageArgCS ::= oclExpressionCS
+			// Rule 234:  oclMessageArgCS ::= oclExpressionCS
 			//
-			case 237: {
+			case 234: {
 				
 				CSTNode result = createOCLMessageArgCS(
 						null,
@@ -1982,9 +1745,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 238:  oclMessageArgCS ::= ?
+			// Rule 235:  oclMessageArgCS ::= ?
 			//
-			case 238: {
+			case 235: {
 				
 				CSTNode result = createOCLMessageArgCS(
 						null,
@@ -1996,9 +1759,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 239:  oclMessageArgCS ::= ? : typeCS
+			// Rule 236:  oclMessageArgCS ::= ? : typeCS
 			//
-			case 239: {
+			case 236: {
 				
 				CSTNode result = createOCLMessageArgCS(
 						(TypeCS)dtParser.getSym(3),
@@ -2010,9 +1773,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 248:  packageDeclarationCSm ::= packageDeclarationCSm packageDeclarationCS
+			// Rule 245:  packageDeclarationCSm ::= packageDeclarationCSm packageDeclarationCS
 			//
-			case 248: {
+			case 245: {
 				
 				PackageDeclarationCS result = (PackageDeclarationCS)dtParser.getSym(2);
 				result.setPackageDeclarationCS((PackageDeclarationCS) dtParser.getSym(1));
@@ -2021,9 +1784,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 249:  packageDeclarationCS ::= package pathNameCS contextDeclCSmopt endpackage
+			// Rule 246:  packageDeclarationCS ::= package pathNameCS contextDeclCSmopt endpackage
 			//
-			case 249: {
+			case 246: {
 				
 				CSTNode result = createPackageDeclarationCS(
 						(PathNameCS)dtParser.getSym(2),
@@ -2035,9 +1798,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 250:  packageDeclarationCS1 ::= contextDeclCSm
+			// Rule 247:  packageDeclarationCS1 ::= contextDeclCSm
 			//
-			case 250: {
+			case 247: {
 				
 				EList contextDecls = (EList)dtParser.getSym(1);
 				CSTNode result = createPackageDeclarationCS(null, contextDecls);
@@ -2049,16 +1812,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 251:  contextDeclCSmopt ::= $Empty
+			// Rule 248:  contextDeclCSmopt ::= $Empty
 			//
-			case 251:
+			case 248:
 				dtParser.setSym1(new BasicEList());
 				break;
  
 			//
-			// Rule 253:  contextDeclCSm ::= contextDeclCS
+			// Rule 250:  contextDeclCSm ::= contextDeclCS
 			//
-			case 253: {
+			case 250: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -2067,9 +1830,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 254:  contextDeclCSm ::= contextDeclCSm contextDeclCS
+			// Rule 251:  contextDeclCSm ::= contextDeclCSm contextDeclCS
 			//
-			case 254: {
+			case 251: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(2));
@@ -2078,9 +1841,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 258:  propertyContextCS ::= context pathNameCS :: simpleNameCS : typeCS initOrDerValueCS
+			// Rule 255:  propertyContextCS ::= context pathNameCS :: simpleNameCS : typeCS initOrDerValueCS
 			//
-			case 258: {
+			case 255: {
 				
 				CSTNode result = createPropertyContextCS(
 						(PathNameCS)dtParser.getSym(2),
@@ -2094,9 +1857,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 259:  initOrDerValueCS ::= initOrDerValueCSopt init : oclExpressionCS
+			// Rule 256:  initOrDerValueCS ::= initOrDerValueCSopt init : oclExpressionCS
 			//
-			case 259: {
+			case 256: {
 				
 				CSTNode result = createInitValueCS(
 						(InitOrDerValueCS)dtParser.getSym(1),
@@ -2112,9 +1875,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 260:  initOrDerValueCS ::= initOrDerValueCSopt derive : oclExpressionCS
+			// Rule 257:  initOrDerValueCS ::= initOrDerValueCSopt derive : oclExpressionCS
 			//
-			case 260: {
+			case 257: {
 				
 				CSTNode result = createDerValueCS(
 						(InitOrDerValueCS)dtParser.getSym(1),
@@ -2130,16 +1893,16 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 261:  initOrDerValueCSopt ::= $Empty
+			// Rule 258:  initOrDerValueCSopt ::= $Empty
 			//
-			case 261:
+			case 258:
 				dtParser.setSym1(null);
 				break;
  
 			//
-			// Rule 263:  classifierContextDeclCS ::= context pathNameCS invOrDefCSm
+			// Rule 260:  classifierContextDeclCS ::= context pathNameCS invOrDefCSm
 			//
-			case 263: {
+			case 260: {
 				
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)dtParser.getSym(3);
 				CSTNode result = createClassifierContextDeclCS(
@@ -2152,9 +1915,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 264:  invOrDefCSm ::= invOrDefCS
+			// Rule 261:  invOrDefCSm ::= invOrDefCS
 			//
-			case 264: {
+			case 261: {
 				
 				EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
 				result.add((InvOrDefCS)dtParser.getSym(1));
@@ -2163,9 +1926,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 265:  invOrDefCSm ::= invOrDefCSm invOrDefCS
+			// Rule 262:  invOrDefCSm ::= invOrDefCSm invOrDefCS
 			//
-			case 265: {
+			case 262: {
 				
 				EList<InvOrDefCS> result = (EList<InvOrDefCS>)dtParser.getSym(1);
 				result.add((InvOrDefCS)dtParser.getSym(2));
@@ -2174,9 +1937,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 266:  invOrDefCS ::= inv simpleNameCSopt : oclExpressionCS
+			// Rule 263:  invOrDefCS ::= inv simpleNameCSopt : oclExpressionCS
 			//
-			case 266: {
+			case 263: {
 				
 				CSTNode result = createInvCS(
 						(SimpleNameCS)dtParser.getSym(2),
@@ -2188,9 +1951,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 267:  invOrDefCS ::= def simpleNameCSopt : defExpressionCS
+			// Rule 264:  invOrDefCS ::= def simpleNameCSopt : defExpressionCS
 			//
-			case 267: {
+			case 264: {
 				
 				CSTNode result = createDefCS(
 						(SimpleNameCS)dtParser.getSym(2),
@@ -2202,30 +1965,26 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 268:  defExpressionCS ::= IDENTIFIER : typeCS = oclExpressionCS
+			// Rule 265:  defExpressionCS ::= typedVariableCS = oclExpressionCS
 			//
-			case 268: {
+			case 265: {
 				
-				VariableCS variableCS = createVariableCS(
-							getTokenText(dtParser.getToken(1)),
-							(TypeCS)dtParser.getSym(3),
-							null
-						);
-				setOffsets(variableCS, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(3));
+				VariableCS variableCS = (VariableCS)dtParser.getSym(1);
+				OCLExpressionCS expressionCS = (OCLExpressionCS)dtParser.getSym(3);
 				CSTNode result = createDefExpressionCS(
 						variableCS,
 						null,
-						(OCLExpressionCS)dtParser.getSym(5)
+						expressionCS
 					);
-				setOffsets(result, variableCS, (CSTNode)dtParser.getSym(5));
+				setOffsets(result, variableCS, expressionCS);
 				dtParser.setSym1(result);
 	  		  break;
 			}
 	 
 			//
-			// Rule 269:  defExpressionCS ::= operationCS1 = oclExpressionCS
+			// Rule 266:  defExpressionCS ::= operationCS1 = oclExpressionCS
 			//
-			case 269: {
+			case 266: {
 				
 				CSTNode result = createDefExpressionCS(
 						null,
@@ -2238,9 +1997,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 270:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclCSm
+			// Rule 267:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclCSm
 			//
-			case 270: {
+			case 267: {
 				
 				EList prePostOrBodyDecls = (EList)dtParser.getSym(3);
 				CSTNode result = createOperationContextDeclCS(
@@ -2253,9 +2012,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 271:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCS
+			// Rule 268:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCS
 			//
-			case 271: {
+			case 268: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -2264,9 +2023,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 272:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCSm prePostOrBodyDeclCS
+			// Rule 269:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCSm prePostOrBodyDeclCS
 			//
-			case 272: {
+			case 269: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(2));
@@ -2275,9 +2034,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 273:  prePostOrBodyDeclCS ::= pre simpleNameCSopt : oclExpressionCS
+			// Rule 270:  prePostOrBodyDeclCS ::= pre simpleNameCSopt : oclExpressionCS
 			//
-			case 273: {
+			case 270: {
 				
 				CSTNode result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.PRE_LITERAL,
@@ -2290,9 +2049,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 274:  prePostOrBodyDeclCS ::= post simpleNameCSopt : oclExpressionCS
+			// Rule 271:  prePostOrBodyDeclCS ::= post simpleNameCSopt : oclExpressionCS
 			//
-			case 274: {
+			case 271: {
 				
 				CSTNode result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.POST_LITERAL,
@@ -2305,9 +2064,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 275:  prePostOrBodyDeclCS ::= body simpleNameCSopt : oclExpressionCS
+			// Rule 272:  prePostOrBodyDeclCS ::= body simpleNameCSopt : oclExpressionCS
 			//
-			case 275: {
+			case 272: {
 				
 				CSTNode result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.BODY_LITERAL,
