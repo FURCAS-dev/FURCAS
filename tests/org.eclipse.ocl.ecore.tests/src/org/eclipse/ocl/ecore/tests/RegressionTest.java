@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bugs 243526, 248869, 259740
+ *   Zeligsoft - Bugs 243526, 248869, 259740, 259818
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.10 2008/12/30 11:49:20 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.11 2009/01/15 19:09:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1833,5 +1833,25 @@ public class RegressionTest
 			"package ocltest context Apple " + //$NON-NLS-1$
 			"inv: let i : Integer = -1 in not i.oclIsKindOf(UnlimitedNatural)" + //$NON-NLS-1$
 			" endpackage"); //$NON-NLS-1$
+    }
+    
+    /**
+     * Tests that a package declaration for an unresolved package fails to
+     * parse (as it should).
+     */
+    public void test_nullPackageEnvironment_259818() {
+        try {
+            parse(
+                "package NOSUCHPACKAGE context ocltest::Fruit " + //$NON-NLS-1$
+                " inv: true" + //$NON-NLS-1$
+                " endpackage"); //$NON-NLS-1$
+            
+            fail("Should have failed to parse or validate"); //$NON-NLS-1$
+        } catch (AssertionFailedError e) {
+            // success
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        } catch (Exception e) {
+            fail("Parse failed with run-time exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        }
     }
 }
