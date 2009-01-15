@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 244946
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 260403
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.11 2008/08/30 18:35:03 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.12 2009/01/15 03:47:26 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1238,4 +1239,17 @@ public class CollectionsTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
+
+	/**
+	 * Test to check the collections which are declared as OclAny type.
+	 */
+	public void test_oclAnyCollections_260403() {
+
+		try {
+			assertTrue(check("let aSeq : Sequence(OclAny) = Sequence {'aString'} in" + //$NON-NLS-1$
+				" aSeq->including(10) = Sequence {'aString',10}")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
 }
