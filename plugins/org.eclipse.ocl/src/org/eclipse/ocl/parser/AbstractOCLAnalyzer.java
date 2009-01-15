@@ -14,10 +14,11 @@
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
  *               255599, 251349, 242236, 259740
+ *   Nicolas Rouquette - Bug 259818 (regression)
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.22 2009/01/13 19:44:09 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.23 2009/01/15 19:09:28 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -716,7 +717,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				return;
 			}
 
-			if (env == null) {
+			if (packageEnv == null) {
 				ERROR(pathNameCS, "packageDeclarationCS", //$NON-NLS-1$
 					OCLMessages.bind(OCLMessages.PackageNotFound_ERROR_,
 						makeString(pathname)));
