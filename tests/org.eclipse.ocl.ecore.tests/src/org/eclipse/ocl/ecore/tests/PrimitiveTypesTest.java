@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 248869
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 260403
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.3 2008/09/28 17:34:22 cdamus Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.4 2009/01/15 03:47:26 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -108,29 +109,25 @@ public class PrimitiveTypesTest
         }
     }
     
-    /**
-     * Tests that operations involving integers and unlimited naturals
-     * fail to parse or validate because they are incompatible types.
-     */
-    public void test_unlimitedValueArithmetic_integers() {
-        helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
-        
-        try {
-            assertInvalid(evaluate(helper, 1, "2 + *")); //$NON-NLS-1$
-            fail("Should have failed to parse or validate"); //$NON-NLS-1$
-        } catch (ParserException e) {
-            // Success
-            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        }
-        
-        try {
-            assertInvalid(evaluate(helper, 1, "* + 2")); //$NON-NLS-1$
-            fail("Should have failed to parse or validate"); //$NON-NLS-1$
-        } catch (ParserException e) {
-            // Success
-            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        }
-    }
+	/**
+	 * Tests that operations involving integers and unlimited naturals fail to
+	 * parse or validate because they are incompatible types.
+	 */
+	public void test_unlimitedValueArithmetic_integers() {
+		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
+
+		try {
+			assertInvalid(evaluate(helper, 1, "2 + *")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+
+		try {
+			assertInvalid(evaluate(helper, 1, "* + 2")); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
     
     /**
      * Tests that operations involving reals and unlimited naturals

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation and others.
+ * Copyright (c) 2008, 2009 IBM Corporation, Open Canarias S.L. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 260403
  *
  * </copyright>
  *
@@ -110,21 +111,22 @@ public class ParsingOptionsTest
         }
     }
 
-    /**
-     * Tests the implicit root class option for testing common supertype.
-     */
-    public void test_implicitRootClass_option_commonSupertype() {
-        // without the option
-        assertNull(TypeUtil.commonSuperType(null, ocl.getEnvironment(), apple, stem));
-        
-        ParsingOptions.setOption(ocl.getEnvironment(),
-                ParsingOptions.implicitRootClass(ocl.getEnvironment()),
-                EcorePackage.Literals.EOBJECT);
-        
-        // with the option
-        assertSame(EcorePackage.Literals.EOBJECT,
-                TypeUtil.commonSuperType(null, ocl.getEnvironment(), apple, stem));
-    }
+	/**
+	 * Tests the implicit root class option for testing common supertype.
+	 */
+	public void test_implicitRootClass_option_commonSupertype() {
+		// without the option
+		assertSame(ocl.getEnvironment().getOCLStandardLibrary().getOclAny(),
+			TypeUtil.commonSuperType(null, ocl.getEnvironment(), apple, stem));
+
+		ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions
+			.implicitRootClass(ocl.getEnvironment()),
+			EcorePackage.Literals.EOBJECT);
+
+		// with the option
+		assertSame(EcorePackage.Literals.EOBJECT, TypeUtil.commonSuperType(
+			null, ocl.getEnvironment(), apple, stem));
+	}
 
     /**
      * Tests the implicit root class option for testing type conformance.
