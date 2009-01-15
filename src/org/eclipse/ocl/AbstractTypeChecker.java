@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
+ * Copyright (c) 2008, 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,8 +10,9 @@
  *     Open Canarias - Bug 233673 Refactoring to support type checking extensibility 
  *     Zeligsoft - Bugs 244886, 245619, 233673, 179990
  *     Stefan Schulze - Bug 245619
+ *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.2 2008/11/12 15:25:50 cdamus Exp $
+ * $Id: AbstractTypeChecker.java,v 1.3 2009/01/15 03:47:29 cdamus Exp $
  */
 
 package org.eclipse.ocl;
@@ -570,8 +571,9 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			return (C) resolveTupleType(tupleParts);
 		}
 
-		// exhausted the possibilities for pre-defined types
-		if (type1 instanceof PredefinedType || type2 instanceof PredefinedType) {
+		// once exhausted the possibilities for pre-defined types,
+		// if one of them is a CollectionType they don't have common super type
+		if (type1 instanceof CollectionType || type2 instanceof CollectionType) {
 			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 				getName(type1), getName(type2));
 			error(message, "commonSuperType", problemObject); //$NON-NLS-1$
@@ -591,14 +593,11 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			}
 		}
 
-		if (result == null) {
-			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
-				getName(type1), getName(type2));
-			error(message, "commonSuperType", problemObject); //$NON-NLS-1$
-			return null;
-		}
-
-		return result;
+		// if common super type hasn't been found, OclAny is the common
+		// supertype
+		return (result == null)
+			? stdlib.getOclAny()
+			: result;
 	}
 
 	/**
@@ -860,18 +859,17 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		String name = uml.getName(oper);
 		List<PM> parameters = uml.getParameters(oper);
-		List<String> paramNames = new java.util.ArrayList<String>(
-				parameters.size());
-		List<C> paramTypes = new java.util.ArrayList<C>(
-				parameters.size());
-		List<Variable<C, PM>> args = new ArrayList<Variable<C, PM>>(
-				parameters.size());
+		List<String> paramNames = new java.util.ArrayList<String>(parameters
+			.size());
+		List<C> paramTypes = new java.util.ArrayList<C>(parameters.size());
+		List<Variable<C, PM>> args = new ArrayList<Variable<C, PM>>(parameters
+			.size());
 
 		for (PM param : parameters) {
 			paramNames.add(uml.getName(param));
 			paramTypes.add(resolveGenericType(owner, resolve(uml
 				.getOCLType(param)), stdlib.getT()));
-			
+
 			C paramType = resolve(uml.getOCLType(param));
 
 			Variable<C, PM> var = oclFactory.createVariable();
