@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.8 2008/11/24 00:24:41 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.9 2009/01/22 00:20:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -313,7 +313,9 @@ public abstract class OCLExpressionImpl
 			return super.toString();
 		}
 
-		return accept(ToStringVisitor.getInstance(this));
+		return this
+			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
+				.getInstance(this));
 	}
 
 	/**
