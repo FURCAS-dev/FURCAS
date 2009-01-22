@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Zeligsoft - Bug 207365 - Maintain currency with JDT compiler
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartImpl.java,v 1.6 2008/11/24 00:39:47 cdamus Exp $
+ * $Id: CollectionLiteralPartImpl.java,v 1.7 2009/01/22 00:20:02 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -95,7 +96,9 @@ public abstract class CollectionLiteralPartImpl
 			return super.toString();
 		}
 
-		return accept(ToStringVisitor.getInstance(this));
+		return this
+			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
+				.getInstance(this));
 	}
 
 } //CollectionLiteralPartImpl
