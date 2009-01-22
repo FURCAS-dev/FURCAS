@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 207365
+ *   Zeligsoft - Bug 207365, 207365
  * 
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.4 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.5 2009/01/22 00:20:06 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.util.ToStringVisitor;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
+import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -386,7 +387,9 @@ public abstract class CallExpImpl
 			return super.toString();
 		}
 
-		return accept(ToStringVisitor.getInstance(this));
+		return this
+			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
+				.getInstance(this));
 	}
 
 } //CallExpImpl
