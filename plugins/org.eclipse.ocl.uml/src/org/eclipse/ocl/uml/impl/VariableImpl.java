@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.10 2008/12/17 19:19:28 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.11 2009/01/23 17:16:12 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -383,7 +383,8 @@ public class VariableImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, Classifier, ?, ?, ?, Parameter, ?, ?, ?, ?>) v).visitVariable(this);
+		return ((Visitor<T, Classifier, ?, ?, ?, Parameter, ?, ?, ?, ?>) v)
+			.visitVariable(this);
 	}
 
 	/**
@@ -421,13 +422,13 @@ public class VariableImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLPackage.VARIABLE__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case UMLPackage.VARIABLE__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 			case UMLPackage.VARIABLE__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case UMLPackage.VARIABLE__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 			case UMLPackage.VARIABLE__INIT_EXPRESSION :
 				return getInitExpression();
 			case UMLPackage.VARIABLE__REPRESENTED_PARAMETER :
@@ -448,16 +449,16 @@ public class VariableImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case UMLPackage.VARIABLE__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case UMLPackage.VARIABLE__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 			case UMLPackage.VARIABLE__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case UMLPackage.VARIABLE__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 			case UMLPackage.VARIABLE__INIT_EXPRESSION :
 				setInitExpression((OCLExpression<Classifier>) newValue);
