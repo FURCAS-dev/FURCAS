@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.4 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.5 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -114,9 +114,7 @@ public abstract class FeatureCallExpImpl<C>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :
-				return isMarkedPre()
-					? Boolean.TRUE
-					: Boolean.FALSE;
+				return isMarkedPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,7 +128,7 @@ public abstract class FeatureCallExpImpl<C>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :
-				setMarkedPre(((Boolean) newValue).booleanValue());
+				setMarkedPre((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

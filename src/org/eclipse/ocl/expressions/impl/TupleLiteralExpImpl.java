@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.7 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.8 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -195,9 +195,11 @@ public class TupleLiteralExpImpl<C, P>
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, C, ?, P, ?, ?, ?, ?, ?, ?>) v).visitTupleLiteralExp(this);
+		return ((Visitor<T, C, ?, P, ?, ?, ?, ?, ?, ?>) v)
+			.visitTupleLiteralExp(this);
 	}
 
 } //TupleLiteralExpImpl

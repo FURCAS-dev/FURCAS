@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bugs 243976, 207365
  *
  * </copyright>
  *
- * $Id: CSTNodeImpl.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CSTNodeImpl.java,v 1.4 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -296,9 +296,9 @@ public abstract class CSTNodeImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CSTPackage.CST_NODE__START_OFFSET :
-				return new Integer(getStartOffset());
+				return getStartOffset();
 			case CSTPackage.CST_NODE__END_OFFSET :
-				return new Integer(getEndOffset());
+				return getEndOffset();
 			case CSTPackage.CST_NODE__START_TOKEN :
 				return getStartToken();
 			case CSTPackage.CST_NODE__END_TOKEN :
@@ -318,10 +318,10 @@ public abstract class CSTNodeImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CSTPackage.CST_NODE__START_OFFSET :
-				setStartOffset(((Integer) newValue).intValue());
+				setStartOffset((Integer) newValue);
 				return;
 			case CSTPackage.CST_NODE__END_OFFSET :
-				setEndOffset(((Integer) newValue).intValue());
+				setEndOffset((Integer) newValue);
 				return;
 			case CSTPackage.CST_NODE__START_TOKEN :
 				setStartToken((IToken) newValue);

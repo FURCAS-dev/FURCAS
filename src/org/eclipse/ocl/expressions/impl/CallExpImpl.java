@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.5 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.6 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -240,9 +240,9 @@ public abstract class CallExpImpl<C>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION :
-				return new Integer(getPropertyStartPosition());
+				return getPropertyStartPosition();
 			case ExpressionsPackage.CALL_EXP__PROPERTY_END_POSITION :
-				return new Integer(getPropertyEndPosition());
+				return getPropertyEndPosition();
 			case ExpressionsPackage.CALL_EXP__SOURCE :
 				return getSource();
 		}
@@ -259,10 +259,10 @@ public abstract class CallExpImpl<C>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.CALL_EXP__PROPERTY_START_POSITION :
-				setPropertyStartPosition(((Integer) newValue).intValue());
+				setPropertyStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.CALL_EXP__PROPERTY_END_POSITION :
-				setPropertyEndPosition(((Integer) newValue).intValue());
+				setPropertyEndPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.CALL_EXP__SOURCE :
 				setSource((OCLExpression<C>) newValue);

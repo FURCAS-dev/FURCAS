@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.7 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -473,9 +473,9 @@ public class MessageExpImpl<C, COA, SSA>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.MESSAGE_EXP__PROPERTY_START_POSITION :
-				return new Integer(getPropertyStartPosition());
+				return getPropertyStartPosition();
 			case ExpressionsPackage.MESSAGE_EXP__PROPERTY_END_POSITION :
-				return new Integer(getPropertyEndPosition());
+				return getPropertyEndPosition();
 			case ExpressionsPackage.MESSAGE_EXP__TARGET :
 				return getTarget();
 			case ExpressionsPackage.MESSAGE_EXP__ARGUMENT :
@@ -498,10 +498,10 @@ public class MessageExpImpl<C, COA, SSA>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.MESSAGE_EXP__PROPERTY_START_POSITION :
-				setPropertyStartPosition(((Integer) newValue).intValue());
+				setPropertyStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.MESSAGE_EXP__PROPERTY_END_POSITION :
-				setPropertyEndPosition(((Integer) newValue).intValue());
+				setPropertyEndPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.MESSAGE_EXP__TARGET :
 				setTarget((OCLExpression<C>) newValue);
@@ -628,9 +628,11 @@ public class MessageExpImpl<C, COA, SSA>
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, C, ?, ?, ?, ?, ?, COA, SSA, ?>) v).visitMessageExp(this);
+		return ((Visitor<T, C, ?, ?, ?, ?, ?, COA, SSA, ?>) v)
+			.visitMessageExp(this);
 	}
 
 } //MessageExpImpl

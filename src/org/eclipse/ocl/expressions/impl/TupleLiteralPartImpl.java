@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.9 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.10 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -417,7 +417,8 @@ public class TupleLiteralPartImpl<C, P>
 	 */
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, C, ?, P, ?, ?, ?, ?, ?, ?>) v).visitTupleLiteralPart(this);
+		return ((Visitor<T, C, ?, P, ?, ?, ?, ?, ?, ?>) v)
+			.visitTupleLiteralPart(this);
 	}
 
 	/**
@@ -455,13 +456,13 @@ public class TupleLiteralPartImpl<C, P>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE :
 				return getValue();
 			case ExpressionsPackage.TUPLE_LITERAL_PART__ATTRIBUTE :
@@ -482,16 +483,16 @@ public class TupleLiteralPartImpl<C, P>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.TUPLE_LITERAL_PART__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.TUPLE_LITERAL_PART__VALUE :
 				setValue((OCLExpression<C>) newValue);
