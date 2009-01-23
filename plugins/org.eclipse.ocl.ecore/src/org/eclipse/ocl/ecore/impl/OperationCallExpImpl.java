@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 248869
+ *   Zeligsoft - Bugs 248869, 207365
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.10 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.11 2009/01/23 17:16:21 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -276,7 +276,7 @@ public class OperationCallExpImpl
 					return getReferredOperation();
 				return basicGetReferredOperation();
 			case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
-				return new Integer(getOperationCode());
+				return getOperationCode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -300,7 +300,7 @@ public class OperationCallExpImpl
 				setReferredOperation((EOperation) newValue);
 				return;
 			case EcorePackage.OPERATION_CALL_EXP__OPERATION_CODE :
-				setOperationCode(((Integer) newValue).intValue());
+				setOperationCode((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -392,9 +392,11 @@ public class OperationCallExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, EOperation, ?, ?, ?, ?, ?, ?, ?>) v).visitOperationCallExp(this);
+		return ((Visitor<T, EClassifier, EOperation, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitOperationCallExp(this);
 	}
 
 } //OperationCallExpImpl

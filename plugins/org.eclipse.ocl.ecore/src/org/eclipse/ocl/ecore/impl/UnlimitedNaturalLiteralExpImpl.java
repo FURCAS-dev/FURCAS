@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 241426
+ *   Zeligsoft - Bugs 241426, 207365
  *
  * </copyright>
  *
- * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.7 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: UnlimitedNaturalLiteralExpImpl.java,v 1.8 2009/01/23 17:16:21 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -159,9 +159,7 @@ public class UnlimitedNaturalLiteralExpImpl
 			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
 				return getIntegerSymbol();
 			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
-				return isUnlimited()
-					? Boolean.TRUE
-					: Boolean.FALSE;
+				return isUnlimited();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -267,9 +265,11 @@ public class UnlimitedNaturalLiteralExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitUnlimitedNaturalLiteralExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitUnlimitedNaturalLiteralExp(this);
 	}
 
 } //UnlimitedNaturalLiteralExpImpl

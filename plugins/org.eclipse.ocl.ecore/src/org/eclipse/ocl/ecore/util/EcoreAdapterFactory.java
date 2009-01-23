@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreAdapterFactory.java,v 1.7 2008/11/24 00:40:22 cdamus Exp $
+ * $Id: EcoreAdapterFactory.java,v 1.8 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -380,8 +380,9 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public <O> Adapter caseAnyType_1(org.eclipse.ocl.types.AnyType<O> object) {
-			return createAnyType_1Adapter();
+		public <O> Adapter caseTypes_AnyType(
+				org.eclipse.ocl.types.AnyType<O> object) {
+			return createTypes_AnyTypeAdapter();
 		}
 
 		@Override
@@ -400,15 +401,15 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public <C, O> Adapter caseCollectionType_1(
+		public <C, O> Adapter caseTypes_CollectionType(
 				org.eclipse.ocl.types.CollectionType<C, O> object) {
-			return createCollectionType_1Adapter();
+			return createTypes_CollectionTypeAdapter();
 		}
 
 		@Override
-		public <C, O> Adapter caseBagType_1(
+		public <C, O> Adapter caseTypes_BagType(
 				org.eclipse.ocl.types.BagType<C, O> object) {
-			return createBagType_1Adapter();
+			return createTypes_BagTypeAdapter();
 		}
 
 		@Override
@@ -417,63 +418,63 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public Adapter caseElementType_1(
+		public Adapter caseTypes_ElementType(
 				org.eclipse.ocl.types.ElementType object) {
-			return createElementType_1Adapter();
+			return createTypes_ElementTypeAdapter();
 		}
 
 		@Override
-		public <O> Adapter caseInvalidType_1(
+		public <O> Adapter caseTypes_InvalidType(
 				org.eclipse.ocl.types.InvalidType<O> object) {
-			return createInvalidType_1Adapter();
+			return createTypes_InvalidTypeAdapter();
 		}
 
 		@Override
-		public <C, O, P> Adapter caseMessageType_1(
+		public <C, O, P> Adapter caseTypes_MessageType(
 				org.eclipse.ocl.types.MessageType<C, O, P> object) {
-			return createMessageType_1Adapter();
+			return createTypes_MessageTypeAdapter();
 		}
 
 		@Override
-		public <C, O> Adapter caseOrderedSetType_1(
+		public <C, O> Adapter caseTypes_OrderedSetType(
 				org.eclipse.ocl.types.OrderedSetType<C, O> object) {
-			return createOrderedSetType_1Adapter();
+			return createTypes_OrderedSetTypeAdapter();
 		}
 
 		@Override
-		public <O> Adapter casePrimitiveType_1(
+		public <O> Adapter caseTypes_PrimitiveType(
 				org.eclipse.ocl.types.PrimitiveType<O> object) {
-			return createPrimitiveType_1Adapter();
+			return createTypes_PrimitiveTypeAdapter();
 		}
 
 		@Override
-		public <C, O> Adapter caseSequenceType_1(
+		public <C, O> Adapter caseTypes_SequenceType(
 				org.eclipse.ocl.types.SequenceType<C, O> object) {
-			return createSequenceType_1Adapter();
+			return createTypes_SequenceTypeAdapter();
 		}
 
 		@Override
-		public <C, O> Adapter caseSetType_1(
+		public <C, O> Adapter caseTypes_SetType(
 				org.eclipse.ocl.types.SetType<C, O> object) {
-			return createSetType_1Adapter();
+			return createTypes_SetTypeAdapter();
 		}
 
 		@Override
-		public <O, P> Adapter caseTupleType_1(
+		public <O, P> Adapter caseTypes_TupleType(
 				org.eclipse.ocl.types.TupleType<O, P> object) {
-			return createTupleType_1Adapter();
+			return createTypes_TupleTypeAdapter();
 		}
 
 		@Override
-		public <C, O> Adapter caseTypeType_1(
+		public <C, O> Adapter caseTypes_TypeType(
 				org.eclipse.ocl.types.TypeType<C, O> object) {
-			return createTypeType_1Adapter();
+			return createTypes_TypeTypeAdapter();
 		}
 
 		@Override
-		public <O> Adapter caseVoidType_1(
+		public <O> Adapter caseTypes_VoidType(
 				org.eclipse.ocl.types.VoidType<O> object) {
-			return createVoidType_1Adapter();
+			return createTypes_VoidTypeAdapter();
 		}
 
 		@Override
@@ -482,9 +483,9 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public <C, PM> Adapter caseExpressionInOCL_1(
+		public <C, PM> Adapter caseUtilities_ExpressionInOCL(
 				org.eclipse.ocl.utilities.ExpressionInOCL<C, PM> object) {
-			return createExpressionInOCL_1Adapter();
+			return createUtilities_ExpressionInOCLAdapter();
 		}
 
 		@Override
@@ -498,9 +499,9 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public <C> Adapter caseOCLExpression_1(
+		public <C> Adapter caseExpressions_OCLExpression(
 				org.eclipse.ocl.expressions.OCLExpression<C> object) {
-			return createOCLExpression_1Adapter();
+			return createExpressions_OCLExpressionAdapter();
 		}
 
 		@Override
@@ -509,207 +510,207 @@ public class EcoreAdapterFactory
 		}
 
 		@Override
-		public <C> Adapter caseCallExp_1(
+		public <C> Adapter caseExpressions_CallExp(
 				org.eclipse.ocl.expressions.CallExp<C> object) {
-			return createCallExp_1Adapter();
+			return createExpressions_CallExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseFeatureCallExp_1(
+		public <C> Adapter caseExpressions_FeatureCallExp(
 				org.eclipse.ocl.expressions.FeatureCallExp<C> object) {
-			return createFeatureCallExp_1Adapter();
+			return createExpressions_FeatureCallExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter caseNavigationCallExp_1(
+		public <C, P> Adapter caseExpressions_NavigationCallExp(
 				org.eclipse.ocl.expressions.NavigationCallExp<C, P> object) {
-			return createNavigationCallExp_1Adapter();
+			return createExpressions_NavigationCallExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter caseAssociationClassCallExp_1(
+		public <C, P> Adapter caseExpressions_AssociationClassCallExp(
 				org.eclipse.ocl.expressions.AssociationClassCallExp<C, P> object) {
-			return createAssociationClassCallExp_1Adapter();
+			return createExpressions_AssociationClassCallExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseLiteralExp_1(
+		public <C> Adapter caseExpressions_LiteralExp(
 				org.eclipse.ocl.expressions.LiteralExp<C> object) {
-			return createLiteralExp_1Adapter();
+			return createExpressions_LiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter casePrimitiveLiteralExp_1(
+		public <C> Adapter caseExpressions_PrimitiveLiteralExp(
 				org.eclipse.ocl.expressions.PrimitiveLiteralExp<C> object) {
-			return createPrimitiveLiteralExp_1Adapter();
+			return createExpressions_PrimitiveLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseBooleanLiteralExp_1(
+		public <C> Adapter caseExpressions_BooleanLiteralExp(
 				org.eclipse.ocl.expressions.BooleanLiteralExp<C> object) {
-			return createBooleanLiteralExp_1Adapter();
+			return createExpressions_BooleanLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseCollectionLiteralPart_1(
+		public <C> Adapter caseExpressions_CollectionLiteralPart(
 				org.eclipse.ocl.expressions.CollectionLiteralPart<C> object) {
-			return createCollectionLiteralPart_1Adapter();
+			return createExpressions_CollectionLiteralPartAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseCollectionItem_1(
+		public <C> Adapter caseExpressions_CollectionItem(
 				org.eclipse.ocl.expressions.CollectionItem<C> object) {
-			return createCollectionItem_1Adapter();
+			return createExpressions_CollectionItemAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseCollectionLiteralExp_1(
+		public <C> Adapter caseExpressions_CollectionLiteralExp(
 				org.eclipse.ocl.expressions.CollectionLiteralExp<C> object) {
-			return createCollectionLiteralExp_1Adapter();
+			return createExpressions_CollectionLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseCollectionRange_1(
+		public <C> Adapter caseExpressions_CollectionRange(
 				org.eclipse.ocl.expressions.CollectionRange<C> object) {
-			return createCollectionRange_1Adapter();
+			return createExpressions_CollectionRangeAdapter();
 		}
 
 		@Override
-		public <C, EL> Adapter caseEnumLiteralExp_1(
+		public <C, EL> Adapter caseExpressions_EnumLiteralExp(
 				org.eclipse.ocl.expressions.EnumLiteralExp<C, EL> object) {
-			return createEnumLiteralExp_1Adapter();
+			return createExpressions_EnumLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseIfExp_1(
+		public <C> Adapter caseExpressions_IfExp(
 				org.eclipse.ocl.expressions.IfExp<C> object) {
-			return createIfExp_1Adapter();
+			return createExpressions_IfExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseNumericLiteralExp_1(
+		public <C> Adapter caseExpressions_NumericLiteralExp(
 				org.eclipse.ocl.expressions.NumericLiteralExp<C> object) {
-			return createNumericLiteralExp_1Adapter();
+			return createExpressions_NumericLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseIntegerLiteralExp_1(
+		public <C> Adapter caseExpressions_IntegerLiteralExp(
 				org.eclipse.ocl.expressions.IntegerLiteralExp<C> object) {
-			return createIntegerLiteralExp_1Adapter();
+			return createExpressions_IntegerLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseUnlimitedNaturalLiteralExp_1(
+		public <C> Adapter caseExpressions_UnlimitedNaturalLiteralExp(
 				org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp<C> object) {
-			return createUnlimitedNaturalLiteralExp_1Adapter();
+			return createExpressions_UnlimitedNaturalLiteralExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseInvalidLiteralExp_1(
+		public <C> Adapter caseExpressions_InvalidLiteralExp(
 				org.eclipse.ocl.expressions.InvalidLiteralExp<C> object) {
-			return createInvalidLiteralExp_1Adapter();
+			return createExpressions_InvalidLiteralExpAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseLoopExp_1(
+		public <C, PM> Adapter caseExpressions_LoopExp(
 				org.eclipse.ocl.expressions.LoopExp<C, PM> object) {
-			return createLoopExp_1Adapter();
+			return createExpressions_LoopExpAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseIterateExp_1(
+		public <C, PM> Adapter caseExpressions_IterateExp(
 				org.eclipse.ocl.expressions.IterateExp<C, PM> object) {
-			return createIterateExp_1Adapter();
+			return createExpressions_IterateExpAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseIteratorExp_1(
+		public <C, PM> Adapter caseExpressions_IteratorExp(
 				org.eclipse.ocl.expressions.IteratorExp<C, PM> object) {
-			return createIteratorExp_1Adapter();
+			return createExpressions_IteratorExpAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseLetExp_1(
+		public <C, PM> Adapter caseExpressions_LetExp(
 				org.eclipse.ocl.expressions.LetExp<C, PM> object) {
-			return createLetExp_1Adapter();
+			return createExpressions_LetExpAdapter();
 		}
 
 		@Override
-		public <C, COA, SSA> Adapter caseMessageExp_1(
+		public <C, COA, SSA> Adapter caseExpressions_MessageExp(
 				org.eclipse.ocl.expressions.MessageExp<C, COA, SSA> object) {
-			return createMessageExp_1Adapter();
+			return createExpressions_MessageExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseNullLiteralExp_1(
+		public <C> Adapter caseExpressions_NullLiteralExp(
 				org.eclipse.ocl.expressions.NullLiteralExp<C> object) {
-			return createNullLiteralExp_1Adapter();
+			return createExpressions_NullLiteralExpAdapter();
 		}
 
 		@Override
-		public <C, O> Adapter caseOperationCallExp_1(
+		public <C, O> Adapter caseExpressions_OperationCallExp(
 				org.eclipse.ocl.expressions.OperationCallExp<C, O> object) {
-			return createOperationCallExp_1Adapter();
+			return createExpressions_OperationCallExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter casePropertyCallExp_1(
+		public <C, P> Adapter caseExpressions_PropertyCallExp(
 				org.eclipse.ocl.expressions.PropertyCallExp<C, P> object) {
-			return createPropertyCallExp_1Adapter();
+			return createExpressions_PropertyCallExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseRealLiteralExp_1(
+		public <C> Adapter caseExpressions_RealLiteralExp(
 				org.eclipse.ocl.expressions.RealLiteralExp<C> object) {
-			return createRealLiteralExp_1Adapter();
+			return createExpressions_RealLiteralExpAdapter();
 		}
 
 		@Override
-		public <C, S> Adapter caseStateExp_1(
+		public <C, S> Adapter caseExpressions_StateExp(
 				org.eclipse.ocl.expressions.StateExp<C, S> object) {
-			return createStateExp_1Adapter();
+			return createExpressions_StateExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseStringLiteralExp_1(
+		public <C> Adapter caseExpressions_StringLiteralExp(
 				org.eclipse.ocl.expressions.StringLiteralExp<C> object) {
-			return createStringLiteralExp_1Adapter();
+			return createExpressions_StringLiteralExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter caseTupleLiteralExp_1(
+		public <C, P> Adapter caseExpressions_TupleLiteralExp(
 				org.eclipse.ocl.expressions.TupleLiteralExp<C, P> object) {
-			return createTupleLiteralExp_1Adapter();
+			return createExpressions_TupleLiteralExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter caseTupleLiteralPart_1(
+		public <C, P> Adapter caseExpressions_TupleLiteralPart(
 				org.eclipse.ocl.expressions.TupleLiteralPart<C, P> object) {
-			return createTupleLiteralPart_1Adapter();
+			return createExpressions_TupleLiteralPartAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseTypeExp_1(
+		public <C> Adapter caseExpressions_TypeExp(
 				org.eclipse.ocl.expressions.TypeExp<C> object) {
-			return createTypeExp_1Adapter();
+			return createExpressions_TypeExpAdapter();
 		}
 
 		@Override
-		public <C> Adapter caseUnspecifiedValueExp_1(
+		public <C> Adapter caseExpressions_UnspecifiedValueExp(
 				org.eclipse.ocl.expressions.UnspecifiedValueExp<C> object) {
-			return createUnspecifiedValueExp_1Adapter();
+			return createExpressions_UnspecifiedValueExpAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseVariable_1(
+		public <C, PM> Adapter caseExpressions_Variable(
 				org.eclipse.ocl.expressions.Variable<C, PM> object) {
-			return createVariable_1Adapter();
+			return createExpressions_VariableAdapter();
 		}
 
 		@Override
-		public <C, PM> Adapter caseVariableExp_1(
+		public <C, PM> Adapter caseExpressions_VariableExp(
 				org.eclipse.ocl.expressions.VariableExp<C, PM> object) {
-			return createVariableExp_1Adapter();
+			return createExpressions_VariableExpAdapter();
 		}
 
 		@Override
@@ -1521,12 +1522,13 @@ public class EcoreAdapterFactory
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * @since 1.3
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.AnyType
 	 * @generated
 	 */
-	public Adapter createAnyType_1Adapter() {
-		return null;
+	public Adapter createTypes_AnyTypeAdapter() {
+		return createAnyType_1Adapter();
 	}
 
 	/**
@@ -1576,13 +1578,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.CollectionType
 	 * @generated
 	 */
-	public Adapter createCollectionType_1Adapter() {
-		return null;
+	public Adapter createTypes_CollectionTypeAdapter() {
+		return createCollectionType_1Adapter();
 	}
 
 	/**
@@ -1590,13 +1593,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.BagType
 	 * @generated
 	 */
-	public Adapter createBagType_1Adapter() {
-		return null;
+	public Adapter createTypes_BagTypeAdapter() {
+		return createBagType_1Adapter();
 	}
 
 	/**
@@ -1618,13 +1622,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.ElementType
 	 * @generated
 	 */
-	public Adapter createElementType_1Adapter() {
-		return null;
+	public Adapter createTypes_ElementTypeAdapter() {
+		return createElementType_1Adapter();
 	}
 
 	/**
@@ -1632,13 +1637,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.InvalidType
 	 * @generated
 	 */
-	public Adapter createInvalidType_1Adapter() {
-		return null;
+	public Adapter createTypes_InvalidTypeAdapter() {
+		return createInvalidType_1Adapter();
 	}
 
 	/**
@@ -1647,12 +1653,13 @@ public class EcoreAdapterFactory
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * @since 1.3
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.MessageType
 	 * @generated
 	 */
-	public Adapter createMessageType_1Adapter() {
-		return null;
+	public Adapter createTypes_MessageTypeAdapter() {
+		return createMessageType_1Adapter();
 	}
 
 	/**
@@ -1660,13 +1667,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.OrderedSetType
 	 * @generated
 	 */
-	public Adapter createOrderedSetType_1Adapter() {
-		return null;
+	public Adapter createTypes_OrderedSetTypeAdapter() {
+		return createOrderedSetType_1Adapter();
 	}
 
 	/**
@@ -1674,13 +1682,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.PrimitiveType
 	 * @generated
 	 */
-	public Adapter createPrimitiveType_1Adapter() {
-		return null;
+	public Adapter createTypes_PrimitiveTypeAdapter() {
+		return createPrimitiveType_1Adapter();
 	}
 
 	/**
@@ -1688,13 +1697,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.SequenceType
 	 * @generated
 	 */
-	public Adapter createSequenceType_1Adapter() {
-		return null;
+	public Adapter createTypes_SequenceTypeAdapter() {
+		return createSequenceType_1Adapter();
 	}
 
 	/**
@@ -1702,13 +1712,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.SetType
 	 * @generated
 	 */
-	public Adapter createSetType_1Adapter() {
-		return null;
+	public Adapter createTypes_SetTypeAdapter() {
+		return createSetType_1Adapter();
 	}
 
 	/**
@@ -1716,13 +1727,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.TupleType
 	 * @generated
 	 */
-	public Adapter createTupleType_1Adapter() {
-		return null;
+	public Adapter createTypes_TupleTypeAdapter() {
+		return createTupleType_1Adapter();
 	}
 
 	/**
@@ -1730,13 +1742,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.TypeType
 	 * @generated
 	 */
-	public Adapter createTypeType_1Adapter() {
-		return null;
+	public Adapter createTypes_TypeTypeAdapter() {
+		return createTypeType_1Adapter();
 	}
 
 	/**
@@ -1744,13 +1757,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.VoidType
 	 * @generated
 	 */
-	public Adapter createVoidType_1Adapter() {
-		return null;
+	public Adapter createTypes_VoidTypeAdapter() {
+		return createVoidType_1Adapter();
 	}
 
 	/**
@@ -1772,13 +1786,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.utilities.ExpressionInOCL
 	 * @generated
 	 */
-	public Adapter createExpressionInOCL_1Adapter() {
-		return null;
+	public Adapter createUtilities_ExpressionInOCLAdapter() {
+		return createExpressionInOCL_1Adapter();
 	}
 
 	/**
@@ -1814,13 +1829,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.OCLExpression
 	 * @generated
 	 */
-	public Adapter createOCLExpression_1Adapter() {
-		return null;
+	public Adapter createExpressions_OCLExpressionAdapter() {
+		return createOCLExpression_1Adapter();
 	}
 
 	/**
@@ -1842,13 +1858,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.CallExp
 	 * @generated
 	 */
-	public Adapter createCallExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_CallExpAdapter() {
+		return createCallExp_1Adapter();
 	}
 
 	/**
@@ -1856,13 +1873,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.FeatureCallExp
 	 * @generated
 	 */
-	public Adapter createFeatureCallExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_FeatureCallExpAdapter() {
+		return createFeatureCallExp_1Adapter();
 	}
 
 	/**
@@ -1870,13 +1888,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.NavigationCallExp
 	 * @generated
 	 */
-	public Adapter createNavigationCallExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_NavigationCallExpAdapter() {
+		return createNavigationCallExp_1Adapter();
 	}
 
 	/**
@@ -1884,13 +1903,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.AssociationClassCallExp
 	 * @generated
 	 */
-	public Adapter createAssociationClassCallExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_AssociationClassCallExpAdapter() {
+		return createAssociationClassCallExp_1Adapter();
 	}
 
 	/**
@@ -1898,13 +1918,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.LiteralExp
 	 * @generated
 	 */
-	public Adapter createLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_LiteralExpAdapter() {
+		return createLiteralExp_1Adapter();
 	}
 
 	/**
@@ -1912,13 +1933,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.PrimitiveLiteralExp
 	 * @generated
 	 */
-	public Adapter createPrimitiveLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_PrimitiveLiteralExpAdapter() {
+		return createPrimitiveLiteralExp_1Adapter();
 	}
 
 	/**
@@ -1926,13 +1948,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.BooleanLiteralExp
 	 * @generated
 	 */
-	public Adapter createBooleanLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_BooleanLiteralExpAdapter() {
+		return createBooleanLiteralExp_1Adapter();
 	}
 
 	/**
@@ -1940,13 +1963,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.CollectionLiteralPart
 	 * @generated
 	 */
-	public Adapter createCollectionLiteralPart_1Adapter() {
-		return null;
+	public Adapter createExpressions_CollectionLiteralPartAdapter() {
+		return createCollectionLiteralPart_1Adapter();
 	}
 
 	/**
@@ -1954,13 +1978,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.CollectionItem
 	 * @generated
 	 */
-	public Adapter createCollectionItem_1Adapter() {
-		return null;
+	public Adapter createExpressions_CollectionItemAdapter() {
+		return createCollectionItem_1Adapter();
 	}
 
 	/**
@@ -1968,13 +1993,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.CollectionLiteralExp
 	 * @generated
 	 */
-	public Adapter createCollectionLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_CollectionLiteralExpAdapter() {
+		return createCollectionLiteralExp_1Adapter();
 	}
 
 	/**
@@ -1982,13 +2008,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.CollectionRange
 	 * @generated
 	 */
-	public Adapter createCollectionRange_1Adapter() {
-		return null;
+	public Adapter createExpressions_CollectionRangeAdapter() {
+		return createCollectionRange_1Adapter();
 	}
 
 	/**
@@ -1996,13 +2023,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.EnumLiteralExp
 	 * @generated
 	 */
-	public Adapter createEnumLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_EnumLiteralExpAdapter() {
+		return createEnumLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2010,13 +2038,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.IfExp
 	 * @generated
 	 */
-	public Adapter createIfExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_IfExpAdapter() {
+		return createIfExp_1Adapter();
 	}
 
 	/**
@@ -2024,13 +2053,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.NumericLiteralExp
 	 * @generated
 	 */
-	public Adapter createNumericLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_NumericLiteralExpAdapter() {
+		return createNumericLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2038,13 +2068,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.IntegerLiteralExp
 	 * @generated
 	 */
-	public Adapter createIntegerLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_IntegerLiteralExpAdapter() {
+		return createIntegerLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2052,13 +2083,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp
 	 * @generated
 	 */
-	public Adapter createUnlimitedNaturalLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_UnlimitedNaturalLiteralExpAdapter() {
+		return createUnlimitedNaturalLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2066,13 +2098,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.InvalidLiteralExp
 	 * @generated
 	 */
-	public Adapter createInvalidLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_InvalidLiteralExpAdapter() {
+		return createInvalidLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2080,13 +2113,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.LoopExp
 	 * @generated
 	 */
-	public Adapter createLoopExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_LoopExpAdapter() {
+		return createLoopExp_1Adapter();
 	}
 
 	/**
@@ -2094,13 +2128,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.IterateExp
 	 * @generated
 	 */
-	public Adapter createIterateExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_IterateExpAdapter() {
+		return createIterateExp_1Adapter();
 	}
 
 	/**
@@ -2108,13 +2143,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.IteratorExp
 	 * @generated
 	 */
-	public Adapter createIteratorExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_IteratorExpAdapter() {
+		return createIteratorExp_1Adapter();
 	}
 
 	/**
@@ -2122,13 +2158,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.LetExp
 	 * @generated
 	 */
-	public Adapter createLetExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_LetExpAdapter() {
+		return createLetExp_1Adapter();
 	}
 
 	/**
@@ -2136,13 +2173,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.MessageExp
 	 * @generated
 	 */
-	public Adapter createMessageExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_MessageExpAdapter() {
+		return createMessageExp_1Adapter();
 	}
 
 	/**
@@ -2150,13 +2188,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.NullLiteralExp
 	 * @generated
 	 */
-	public Adapter createNullLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_NullLiteralExpAdapter() {
+		return createNullLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2164,13 +2203,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.OperationCallExp
 	 * @generated
 	 */
-	public Adapter createOperationCallExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_OperationCallExpAdapter() {
+		return createOperationCallExp_1Adapter();
 	}
 
 	/**
@@ -2178,13 +2218,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.PropertyCallExp
 	 * @generated
 	 */
-	public Adapter createPropertyCallExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_PropertyCallExpAdapter() {
+		return createPropertyCallExp_1Adapter();
 	}
 
 	/**
@@ -2192,13 +2233,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.RealLiteralExp
 	 * @generated
 	 */
-	public Adapter createRealLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_RealLiteralExpAdapter() {
+		return createRealLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2206,13 +2248,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.StateExp
 	 * @generated
 	 */
-	public Adapter createStateExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_StateExpAdapter() {
+		return createStateExp_1Adapter();
 	}
 
 	/**
@@ -2220,13 +2263,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.StringLiteralExp
 	 * @generated
 	 */
-	public Adapter createStringLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_StringLiteralExpAdapter() {
+		return createStringLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2234,13 +2278,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.TupleLiteralExp
 	 * @generated
 	 */
-	public Adapter createTupleLiteralExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_TupleLiteralExpAdapter() {
+		return createTupleLiteralExp_1Adapter();
 	}
 
 	/**
@@ -2248,13 +2293,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.TupleLiteralPart
 	 * @generated
 	 */
-	public Adapter createTupleLiteralPart_1Adapter() {
-		return null;
+	public Adapter createExpressions_TupleLiteralPartAdapter() {
+		return createTupleLiteralPart_1Adapter();
 	}
 
 	/**
@@ -2262,13 +2308,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.TypeExp
 	 * @generated
 	 */
-	public Adapter createTypeExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_TypeExpAdapter() {
+		return createTypeExp_1Adapter();
 	}
 
 	/**
@@ -2276,13 +2323,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.UnspecifiedValueExp
 	 * @generated
 	 */
-	public Adapter createUnspecifiedValueExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_UnspecifiedValueExpAdapter() {
+		return createUnspecifiedValueExp_1Adapter();
 	}
 
 	/**
@@ -2290,13 +2338,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.Variable
 	 * @generated
 	 */
-	public Adapter createVariable_1Adapter() {
-		return null;
+	public Adapter createExpressions_VariableAdapter() {
+		return createVariable_1Adapter();
 	}
 
 	/**
@@ -2304,13 +2353,14 @@ public class EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.expressions.VariableExp
 	 * @generated
 	 */
-	public Adapter createVariableExp_1Adapter() {
-		return null;
+	public Adapter createExpressions_VariableExpAdapter() {
+		return createVariableExp_1Adapter();
 	}
 
 	/**
@@ -2322,6 +2372,398 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createEObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_AnyTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createAnyType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_CollectionTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createCollectionType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_BagTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createBagType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_ElementTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createElementType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_InvalidTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createInvalidType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_MessageTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createMessageType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_OrderedSetTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createOrderedSetType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_PrimitiveTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createPrimitiveType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_SequenceTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createSequenceType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_SetTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createSetType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_TupleTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createTupleType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_TypeTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createTypeType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createTypes_VoidTypeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createVoidType_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createUtilities_ExpressionInOCLAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createExpressionInOCL_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_OCLExpressionAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createOCLExpression_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_CallExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createCallExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_FeatureCallExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createFeatureCallExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_NavigationCallExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createNavigationCallExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_AssociationClassCallExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createAssociationClassCallExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_LiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_PrimitiveLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createPrimitiveLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_BooleanLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createBooleanLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionLiteralPartAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createCollectionLiteralPart_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionItemAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createCollectionItem_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createCollectionLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_CollectionRangeAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createCollectionRange_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_EnumLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createEnumLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_IfExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createIfExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_NumericLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createNumericLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_IntegerLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createIntegerLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_UnlimitedNaturalLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createUnlimitedNaturalLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_InvalidLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createInvalidLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_LoopExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createLoopExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_IterateExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createIterateExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_IteratorExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createIteratorExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_LetExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createLetExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_MessageExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createMessageExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_NullLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createNullLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_OperationCallExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createOperationCallExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_PropertyCallExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createPropertyCallExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_RealLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createRealLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_StateExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createStateExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_StringLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createStringLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_TupleLiteralExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createTupleLiteralExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_TupleLiteralPartAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createTupleLiteralPart_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_TypeExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createTypeExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_UnspecifiedValueExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createUnspecifiedValueExp_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_VariableAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createVariable_1Adapter() {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link createExpressions_VariableExpAdapter} method, instead.
+	 */
+	@Deprecated
+	public Adapter createVariableExp_1Adapter() {
 		return null;
 	}
 
