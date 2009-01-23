@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
+ * Copyright (c) 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpOperations.java,v 1.7 2008/12/02 12:10:20 cdamus Exp $
+ * $Id: OperationCallExpOperations.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -87,7 +87,7 @@ public class OperationCallExpOperations
 			OCLExpression<C> source = operationCallExp.getSource();
 			O oper = operationCallExp.getReferredOperation();
 			List<OCLExpression<C>> args = operationCallExp.getArgument();
-			
+
 			if ((oper != null) && (source != null)) {
 				UMLReflection<?, C, O, ?, ?, ?, ?, ?, ?, ?> uml = env
 					.getUMLReflection();
@@ -109,7 +109,7 @@ public class OperationCallExpOperations
 					}
 				}
 			}
-		}	
+		}
 
 		if (!result) {
 			if (diagnostics != null) {
@@ -119,7 +119,7 @@ public class OperationCallExpOperations
 					message, new Object[]{operationCallExp}));
 			}
 		}
-		
+
 		return result;
 	}
 

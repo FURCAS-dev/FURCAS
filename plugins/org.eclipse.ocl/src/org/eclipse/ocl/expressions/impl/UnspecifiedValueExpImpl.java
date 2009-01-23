@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.5 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.6 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -158,9 +158,9 @@ public class UnspecifiedValueExpImpl<C>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,10 +174,10 @@ public class UnspecifiedValueExpImpl<C>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -279,9 +279,11 @@ public class UnspecifiedValueExpImpl<C>
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, C, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitUnspecifiedValueExp(this);
+		return ((Visitor<T, C, ?, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitUnspecifiedValueExp(this);
 	}
 
 } //UnspecifiedValueExpImpl

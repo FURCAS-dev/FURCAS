@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.9 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: VariableImpl.java,v 1.10 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -455,13 +455,13 @@ public class VariableImpl<C, PM>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExpressionsPackage.VARIABLE__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case ExpressionsPackage.VARIABLE__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 			case ExpressionsPackage.VARIABLE__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case ExpressionsPackage.VARIABLE__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 			case ExpressionsPackage.VARIABLE__INIT_EXPRESSION :
 				return getInitExpression();
 			case ExpressionsPackage.VARIABLE__REPRESENTED_PARAMETER :
@@ -482,16 +482,16 @@ public class VariableImpl<C, PM>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExpressionsPackage.VARIABLE__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.VARIABLE__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.VARIABLE__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.VARIABLE__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 			case ExpressionsPackage.VARIABLE__INIT_EXPRESSION :
 				setInitExpression((OCLExpression<C>) newValue);

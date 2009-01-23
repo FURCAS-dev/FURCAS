@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLExpressionImpl.java,v 1.7 2009/01/22 00:20:03 cdamus Exp $
+ * $Id: OCLExpressionImpl.java,v 1.8 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -191,9 +191,9 @@ public abstract class OCLExpressionImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.OCL_EXPRESSION__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case EcorePackage.OCL_EXPRESSION__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,10 +207,10 @@ public abstract class OCLExpressionImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.OCL_EXPRESSION__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case EcorePackage.OCL_EXPRESSION__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

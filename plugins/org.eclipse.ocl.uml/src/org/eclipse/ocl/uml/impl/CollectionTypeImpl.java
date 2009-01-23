@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.12 2008/11/24 00:24:44 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.13 2009/01/23 17:16:11 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -470,13 +470,13 @@ public class CollectionTypeImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLPackage.COLLECTION_TYPE__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case UMLPackage.COLLECTION_TYPE__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 			case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE :
 				if (resolve)
 					return getElementType();
@@ -496,16 +496,16 @@ public class CollectionTypeImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case UMLPackage.COLLECTION_TYPE__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case UMLPackage.COLLECTION_TYPE__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 			case UMLPackage.COLLECTION_TYPE__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case UMLPackage.COLLECTION_TYPE__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 			case UMLPackage.COLLECTION_TYPE__ELEMENT_TYPE :
 				setElementType((Classifier) newValue);

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureCallExpImpl.java,v 1.5 2009/01/22 00:20:03 cdamus Exp $
+ * $Id: FeatureCallExpImpl.java,v 1.6 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -118,9 +118,7 @@ public abstract class FeatureCallExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
-				return isMarkedPre()
-					? Boolean.TRUE
-					: Boolean.FALSE;
+				return isMarkedPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,7 +132,7 @@ public abstract class FeatureCallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
-				setMarkedPre(((Boolean) newValue).booleanValue());
+				setMarkedPre((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

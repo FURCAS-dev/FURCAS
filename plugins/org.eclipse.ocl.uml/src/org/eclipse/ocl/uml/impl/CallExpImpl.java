@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.5 2009/01/22 00:20:06 cdamus Exp $
+ * $Id: CallExpImpl.java,v 1.6 2009/01/23 17:16:12 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -250,9 +250,9 @@ public abstract class CallExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLPackage.CALL_EXP__PROPERTY_START_POSITION :
-				return new Integer(getPropertyStartPosition());
+				return getPropertyStartPosition();
 			case UMLPackage.CALL_EXP__PROPERTY_END_POSITION :
-				return new Integer(getPropertyEndPosition());
+				return getPropertyEndPosition();
 			case UMLPackage.CALL_EXP__SOURCE :
 				return getSource();
 		}
@@ -269,10 +269,10 @@ public abstract class CallExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case UMLPackage.CALL_EXP__PROPERTY_START_POSITION :
-				setPropertyStartPosition(((Integer) newValue).intValue());
+				setPropertyStartPosition((Integer) newValue);
 				return;
 			case UMLPackage.CALL_EXP__PROPERTY_END_POSITION :
-				setPropertyEndPosition(((Integer) newValue).intValue());
+				setPropertyEndPosition((Integer) newValue);
 				return;
 			case UMLPackage.CALL_EXP__SOURCE :
 				setSource((OCLExpression<Classifier>) newValue);

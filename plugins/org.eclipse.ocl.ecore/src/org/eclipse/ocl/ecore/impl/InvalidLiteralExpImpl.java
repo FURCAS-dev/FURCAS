@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *
+ *   Zeligsoft - Bug 207365
+ *   
  * </copyright>
  *
- * $Id: InvalidLiteralExpImpl.java,v 1.5 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: InvalidLiteralExpImpl.java,v 1.6 2009/01/23 17:16:21 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -58,9 +59,11 @@ public class InvalidLiteralExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitInvalidLiteralExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitInvalidLiteralExp(this);
 	}
 
 } //InvalidLiteralExpImpl

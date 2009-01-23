@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: StringLiteralExpImpl.java,v 1.7 2008/12/17 19:19:28 cdamus Exp $
+ * $Id: StringLiteralExpImpl.java,v 1.8 2009/01/23 17:16:11 cdamus Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -231,9 +231,11 @@ public class StringLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, Classifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitStringLiteralExp(this);
+		return ((Visitor<T, Classifier, ?, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitStringLiteralExp(this);
 	}
 
 } //StringLiteralExpImpl
