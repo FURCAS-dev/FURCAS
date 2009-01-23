@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 241426
+ *   Zeligsoft - Bugs 241426, 207365
  *
  * </copyright>
  *
- * $Id: UnspecifiedValueExpImpl.java,v 1.6 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: UnspecifiedValueExpImpl.java,v 1.7 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -159,9 +159,9 @@ public class UnspecifiedValueExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -175,10 +175,10 @@ public class UnspecifiedValueExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case EcorePackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -283,9 +283,11 @@ public class UnspecifiedValueExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitUnspecifiedValueExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitUnspecifiedValueExp(this);
 	}
 
 } //UnspecifiedValueExpImpl

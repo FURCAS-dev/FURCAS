@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- * 
+ *   Zeligsoft - Bug 207365
+ *   
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.8 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.9 2009/01/23 17:16:21 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -320,7 +321,8 @@ public class ExpressionInOCLImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?>) v).visitExpressionInOCL(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?>) v)
+			.visitExpressionInOCL(this);
 	}
 
 	/**

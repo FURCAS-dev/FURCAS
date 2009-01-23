@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 248869
+ *   Zeligsoft - Bug 248869, 207365
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.8 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: MessageExpImpl.java,v 1.9 2009/01/23 17:16:21 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -482,9 +482,9 @@ public class MessageExpImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
-				return new Integer(getPropertyStartPosition());
+				return getPropertyStartPosition();
 			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
-				return new Integer(getPropertyEndPosition());
+				return getPropertyEndPosition();
 			case EcorePackage.MESSAGE_EXP__TARGET :
 				return getTarget();
 			case EcorePackage.MESSAGE_EXP__ARGUMENT :
@@ -507,10 +507,10 @@ public class MessageExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.MESSAGE_EXP__PROPERTY_START_POSITION :
-				setPropertyStartPosition(((Integer) newValue).intValue());
+				setPropertyStartPosition((Integer) newValue);
 				return;
 			case EcorePackage.MESSAGE_EXP__PROPERTY_END_POSITION :
-				setPropertyEndPosition(((Integer) newValue).intValue());
+				setPropertyEndPosition((Integer) newValue);
 				return;
 			case EcorePackage.MESSAGE_EXP__TARGET :
 				setTarget((OCLExpression<EClassifier>) newValue);
@@ -666,9 +666,11 @@ public class MessageExpImpl
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, CallOperationAction, SendSignalAction, ?>) v).visitMessageExp(this);
+		return ((Visitor<T, EClassifier, ?, ?, ?, ?, ?, CallOperationAction, SendSignalAction, ?>) v)
+			.visitMessageExp(this);
 	}
 
 } //MessageExpImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,10 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 241426
+ *   Zeligsoft - Bugs 241426, 207365
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.9 2008/12/17 19:19:14 cdamus Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.10 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -431,13 +431,13 @@ public class TupleLiteralPartImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
 				return getValue();
 			case EcorePackage.TUPLE_LITERAL_PART__ATTRIBUTE :
@@ -458,16 +458,16 @@ public class TupleLiteralPartImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.TUPLE_LITERAL_PART__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case EcorePackage.TUPLE_LITERAL_PART__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 			case EcorePackage.TUPLE_LITERAL_PART__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case EcorePackage.TUPLE_LITERAL_PART__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 			case EcorePackage.TUPLE_LITERAL_PART__VALUE :
 				setValue((OCLExpression<EClassifier>) newValue);
@@ -656,7 +656,8 @@ public class TupleLiteralPartImpl
 	 */
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v).visitTupleLiteralPart(this);
+		return ((Visitor<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v)
+			.visitTupleLiteralPart(this);
 	}
 
 } //TupleLiteralPartImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreSwitch.java,v 1.8 2008/11/24 00:40:26 cdamus Exp $
+ * $Id: EcoreSwitch.java,v 1.9 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -115,7 +115,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEClassifier(anyType);
 				if (result == null)
-					result = caseAnyType_1(anyType);
+					result = caseTypes_AnyType(anyType);
 				if (result == null)
 					result = caseENamedElement(anyType);
 				if (result == null)
@@ -132,11 +132,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCollectionType(bagType);
 				if (result == null)
-					result = caseBagType_1(bagType);
+					result = caseTypes_BagType(bagType);
 				if (result == null)
 					result = caseEDataType(bagType);
 				if (result == null)
-					result = caseCollectionType_1(bagType);
+					result = caseTypes_CollectionType(bagType);
 				if (result == null)
 					result = caseEClassifier(bagType);
 				if (result == null)
@@ -159,7 +159,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEDataType(collectionType);
 				if (result == null)
-					result = caseCollectionType_1(collectionType);
+					result = caseTypes_CollectionType(collectionType);
 				if (result == null)
 					result = caseEClassifier(collectionType);
 				if (result == null)
@@ -182,7 +182,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEClass(elementType);
 				if (result == null)
-					result = caseElementType_1(elementType);
+					result = caseTypes_ElementType(elementType);
 				if (result == null)
 					result = caseEClassifier(elementType);
 				if (result == null)
@@ -199,7 +199,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEClassifier(invalidType);
 				if (result == null)
-					result = caseInvalidType_1(invalidType);
+					result = caseTypes_InvalidType(invalidType);
 				if (result == null)
 					result = caseENamedElement(invalidType);
 				if (result == null)
@@ -216,7 +216,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEClass(messageType);
 				if (result == null)
-					result = caseMessageType_1(messageType);
+					result = caseTypes_MessageType(messageType);
 				if (result == null)
 					result = caseEClassifier(messageType);
 				if (result == null)
@@ -235,11 +235,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCollectionType(orderedSetType);
 				if (result == null)
-					result = caseOrderedSetType_1(orderedSetType);
+					result = caseTypes_OrderedSetType(orderedSetType);
 				if (result == null)
 					result = caseEDataType(orderedSetType);
 				if (result == null)
-					result = caseCollectionType_1(orderedSetType);
+					result = caseTypes_CollectionType(orderedSetType);
 				if (result == null)
 					result = caseEClassifier(orderedSetType);
 				if (result == null)
@@ -262,7 +262,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEDataType(primitiveType);
 				if (result == null)
-					result = casePrimitiveType_1(primitiveType);
+					result = caseTypes_PrimitiveType(primitiveType);
 				if (result == null)
 					result = caseEClassifier(primitiveType);
 				if (result == null)
@@ -281,11 +281,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCollectionType(sequenceType);
 				if (result == null)
-					result = caseSequenceType_1(sequenceType);
+					result = caseTypes_SequenceType(sequenceType);
 				if (result == null)
 					result = caseEDataType(sequenceType);
 				if (result == null)
-					result = caseCollectionType_1(sequenceType);
+					result = caseTypes_CollectionType(sequenceType);
 				if (result == null)
 					result = caseEClassifier(sequenceType);
 				if (result == null)
@@ -308,11 +308,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCollectionType(setType);
 				if (result == null)
-					result = caseSetType_1(setType);
+					result = caseTypes_SetType(setType);
 				if (result == null)
 					result = caseEDataType(setType);
 				if (result == null)
-					result = caseCollectionType_1(setType);
+					result = caseTypes_CollectionType(setType);
 				if (result == null)
 					result = caseEClassifier(setType);
 				if (result == null)
@@ -337,7 +337,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEDataType(tupleType);
 				if (result == null)
-					result = caseTupleType_1(tupleType);
+					result = caseTypes_TupleType(tupleType);
 				if (result == null)
 					result = caseEClassifier(tupleType);
 				if (result == null)
@@ -356,7 +356,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEClassifier(typeType);
 				if (result == null)
-					result = caseTypeType_1(typeType);
+					result = caseTypes_TypeType(typeType);
 				if (result == null)
 					result = caseENamedElement(typeType);
 				if (result == null)
@@ -373,7 +373,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseEClassifier(voidType);
 				if (result == null)
-					result = caseVoidType_1(voidType);
+					result = caseTypes_VoidType(voidType);
 				if (result == null)
 					result = caseENamedElement(voidType);
 				if (result == null)
@@ -413,7 +413,7 @@ public class EcoreSwitch<T> {
 				ExpressionInOCL expressionInOCL = (ExpressionInOCL) theEObject;
 				T result = caseExpressionInOCL(expressionInOCL);
 				if (result == null)
-					result = caseExpressionInOCL_1(expressionInOCL);
+					result = caseUtilities_ExpressionInOCL(expressionInOCL);
 				if (result == null)
 					result = caseVisitable(expressionInOCL);
 				if (result == null)
@@ -426,23 +426,23 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseNavigationCallExp(associationClassCallExp);
 				if (result == null)
-					result = caseAssociationClassCallExp_1(associationClassCallExp);
+					result = caseExpressions_AssociationClassCallExp(associationClassCallExp);
 				if (result == null)
 					result = caseFeatureCallExp(associationClassCallExp);
 				if (result == null)
-					result = caseNavigationCallExp_1(associationClassCallExp);
+					result = caseExpressions_NavigationCallExp(associationClassCallExp);
 				if (result == null)
 					result = caseCallExp(associationClassCallExp);
 				if (result == null)
-					result = caseFeatureCallExp_1(associationClassCallExp);
+					result = caseExpressions_FeatureCallExp(associationClassCallExp);
 				if (result == null)
 					result = caseOCLExpression(associationClassCallExp);
 				if (result == null)
-					result = caseCallExp_1(associationClassCallExp);
+					result = caseExpressions_CallExp(associationClassCallExp);
 				if (result == null)
 					result = caseETypedElement(associationClassCallExp);
 				if (result == null)
-					result = caseOCLExpression_1(associationClassCallExp);
+					result = caseExpressions_OCLExpression(associationClassCallExp);
 				if (result == null)
 					result = caseCallingASTNode(associationClassCallExp);
 				if (result == null)
@@ -465,19 +465,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = casePrimitiveLiteralExp(booleanLiteralExp);
 				if (result == null)
-					result = caseBooleanLiteralExp_1(booleanLiteralExp);
+					result = caseExpressions_BooleanLiteralExp(booleanLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(booleanLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(booleanLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(booleanLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(booleanLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(booleanLiteralExp);
+					result = caseExpressions_LiteralExp(booleanLiteralExp);
 				if (result == null)
 					result = caseETypedElement(booleanLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(booleanLiteralExp);
+					result = caseExpressions_OCLExpression(booleanLiteralExp);
 				if (result == null)
 					result = caseENamedElement(booleanLiteralExp);
 				if (result == null)
@@ -498,11 +498,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(callExp);
 				if (result == null)
-					result = caseCallExp_1(callExp);
+					result = caseExpressions_CallExp(callExp);
 				if (result == null)
 					result = caseETypedElement(callExp);
 				if (result == null)
-					result = caseOCLExpression_1(callExp);
+					result = caseExpressions_OCLExpression(callExp);
 				if (result == null)
 					result = caseCallingASTNode(callExp);
 				if (result == null)
@@ -525,11 +525,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCollectionLiteralPart(collectionItem);
 				if (result == null)
-					result = caseCollectionItem_1(collectionItem);
+					result = caseExpressions_CollectionItem(collectionItem);
 				if (result == null)
 					result = caseETypedElement(collectionItem);
 				if (result == null)
-					result = caseCollectionLiteralPart_1(collectionItem);
+					result = caseExpressions_CollectionLiteralPart(collectionItem);
 				if (result == null)
 					result = caseENamedElement(collectionItem);
 				if (result == null)
@@ -548,15 +548,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLiteralExp(collectionLiteralExp);
 				if (result == null)
-					result = caseCollectionLiteralExp_1(collectionLiteralExp);
+					result = caseExpressions_CollectionLiteralExp(collectionLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(collectionLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(collectionLiteralExp);
+					result = caseExpressions_LiteralExp(collectionLiteralExp);
 				if (result == null)
 					result = caseETypedElement(collectionLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(collectionLiteralExp);
+					result = caseExpressions_OCLExpression(collectionLiteralExp);
 				if (result == null)
 					result = caseENamedElement(collectionLiteralExp);
 				if (result == null)
@@ -577,7 +577,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseETypedElement(collectionLiteralPart);
 				if (result == null)
-					result = caseCollectionLiteralPart_1(collectionLiteralPart);
+					result = caseExpressions_CollectionLiteralPart(collectionLiteralPart);
 				if (result == null)
 					result = caseENamedElement(collectionLiteralPart);
 				if (result == null)
@@ -596,11 +596,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCollectionLiteralPart(collectionRange);
 				if (result == null)
-					result = caseCollectionRange_1(collectionRange);
+					result = caseExpressions_CollectionRange(collectionRange);
 				if (result == null)
 					result = caseETypedElement(collectionRange);
 				if (result == null)
-					result = caseCollectionLiteralPart_1(collectionRange);
+					result = caseExpressions_CollectionLiteralPart(collectionRange);
 				if (result == null)
 					result = caseENamedElement(collectionRange);
 				if (result == null)
@@ -619,15 +619,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLiteralExp(enumLiteralExp);
 				if (result == null)
-					result = caseEnumLiteralExp_1(enumLiteralExp);
+					result = caseExpressions_EnumLiteralExp(enumLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(enumLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(enumLiteralExp);
+					result = caseExpressions_LiteralExp(enumLiteralExp);
 				if (result == null)
 					result = caseETypedElement(enumLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(enumLiteralExp);
+					result = caseExpressions_OCLExpression(enumLiteralExp);
 				if (result == null)
 					result = caseENamedElement(enumLiteralExp);
 				if (result == null)
@@ -648,15 +648,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCallExp(featureCallExp);
 				if (result == null)
-					result = caseFeatureCallExp_1(featureCallExp);
+					result = caseExpressions_FeatureCallExp(featureCallExp);
 				if (result == null)
 					result = caseOCLExpression(featureCallExp);
 				if (result == null)
-					result = caseCallExp_1(featureCallExp);
+					result = caseExpressions_CallExp(featureCallExp);
 				if (result == null)
 					result = caseETypedElement(featureCallExp);
 				if (result == null)
-					result = caseOCLExpression_1(featureCallExp);
+					result = caseExpressions_OCLExpression(featureCallExp);
 				if (result == null)
 					result = caseCallingASTNode(featureCallExp);
 				if (result == null)
@@ -679,11 +679,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(ifExp);
 				if (result == null)
-					result = caseIfExp_1(ifExp);
+					result = caseExpressions_IfExp(ifExp);
 				if (result == null)
 					result = caseETypedElement(ifExp);
 				if (result == null)
-					result = caseOCLExpression_1(ifExp);
+					result = caseExpressions_OCLExpression(ifExp);
 				if (result == null)
 					result = caseENamedElement(ifExp);
 				if (result == null)
@@ -704,23 +704,23 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseNumericLiteralExp(integerLiteralExp);
 				if (result == null)
-					result = caseIntegerLiteralExp_1(integerLiteralExp);
+					result = caseExpressions_IntegerLiteralExp(integerLiteralExp);
 				if (result == null)
 					result = casePrimitiveLiteralExp(integerLiteralExp);
 				if (result == null)
-					result = caseNumericLiteralExp_1(integerLiteralExp);
+					result = caseExpressions_NumericLiteralExp(integerLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(integerLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(integerLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(integerLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(integerLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(integerLiteralExp);
+					result = caseExpressions_LiteralExp(integerLiteralExp);
 				if (result == null)
 					result = caseETypedElement(integerLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(integerLiteralExp);
+					result = caseExpressions_OCLExpression(integerLiteralExp);
 				if (result == null)
 					result = caseENamedElement(integerLiteralExp);
 				if (result == null)
@@ -741,23 +741,23 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseNumericLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseUnlimitedNaturalLiteralExp_1(unlimitedNaturalLiteralExp);
+					result = caseExpressions_UnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = casePrimitiveLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseNumericLiteralExp_1(unlimitedNaturalLiteralExp);
+					result = caseExpressions_NumericLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(unlimitedNaturalLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(unlimitedNaturalLiteralExp);
+					result = caseExpressions_LiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseETypedElement(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(unlimitedNaturalLiteralExp);
+					result = caseExpressions_OCLExpression(unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseENamedElement(unlimitedNaturalLiteralExp);
 				if (result == null)
@@ -778,15 +778,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLiteralExp(invalidLiteralExp);
 				if (result == null)
-					result = caseInvalidLiteralExp_1(invalidLiteralExp);
+					result = caseExpressions_InvalidLiteralExp(invalidLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(invalidLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(invalidLiteralExp);
+					result = caseExpressions_LiteralExp(invalidLiteralExp);
 				if (result == null)
 					result = caseETypedElement(invalidLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(invalidLiteralExp);
+					result = caseExpressions_OCLExpression(invalidLiteralExp);
 				if (result == null)
 					result = caseENamedElement(invalidLiteralExp);
 				if (result == null)
@@ -807,19 +807,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLoopExp(iterateExp);
 				if (result == null)
-					result = caseIterateExp_1(iterateExp);
+					result = caseExpressions_IterateExp(iterateExp);
 				if (result == null)
 					result = caseCallExp(iterateExp);
 				if (result == null)
-					result = caseLoopExp_1(iterateExp);
+					result = caseExpressions_LoopExp(iterateExp);
 				if (result == null)
 					result = caseOCLExpression(iterateExp);
 				if (result == null)
-					result = caseCallExp_1(iterateExp);
+					result = caseExpressions_CallExp(iterateExp);
 				if (result == null)
 					result = caseETypedElement(iterateExp);
 				if (result == null)
-					result = caseOCLExpression_1(iterateExp);
+					result = caseExpressions_OCLExpression(iterateExp);
 				if (result == null)
 					result = caseCallingASTNode(iterateExp);
 				if (result == null)
@@ -842,19 +842,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLoopExp(iteratorExp);
 				if (result == null)
-					result = caseIteratorExp_1(iteratorExp);
+					result = caseExpressions_IteratorExp(iteratorExp);
 				if (result == null)
 					result = caseCallExp(iteratorExp);
 				if (result == null)
-					result = caseLoopExp_1(iteratorExp);
+					result = caseExpressions_LoopExp(iteratorExp);
 				if (result == null)
 					result = caseOCLExpression(iteratorExp);
 				if (result == null)
-					result = caseCallExp_1(iteratorExp);
+					result = caseExpressions_CallExp(iteratorExp);
 				if (result == null)
 					result = caseETypedElement(iteratorExp);
 				if (result == null)
-					result = caseOCLExpression_1(iteratorExp);
+					result = caseExpressions_OCLExpression(iteratorExp);
 				if (result == null)
 					result = caseCallingASTNode(iteratorExp);
 				if (result == null)
@@ -877,11 +877,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(letExp);
 				if (result == null)
-					result = caseLetExp_1(letExp);
+					result = caseExpressions_LetExp(letExp);
 				if (result == null)
 					result = caseETypedElement(letExp);
 				if (result == null)
-					result = caseOCLExpression_1(letExp);
+					result = caseExpressions_OCLExpression(letExp);
 				if (result == null)
 					result = caseENamedElement(letExp);
 				if (result == null)
@@ -902,11 +902,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(literalExp);
 				if (result == null)
-					result = caseLiteralExp_1(literalExp);
+					result = caseExpressions_LiteralExp(literalExp);
 				if (result == null)
 					result = caseETypedElement(literalExp);
 				if (result == null)
-					result = caseOCLExpression_1(literalExp);
+					result = caseExpressions_OCLExpression(literalExp);
 				if (result == null)
 					result = caseENamedElement(literalExp);
 				if (result == null)
@@ -927,15 +927,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseCallExp(loopExp);
 				if (result == null)
-					result = caseLoopExp_1(loopExp);
+					result = caseExpressions_LoopExp(loopExp);
 				if (result == null)
 					result = caseOCLExpression(loopExp);
 				if (result == null)
-					result = caseCallExp_1(loopExp);
+					result = caseExpressions_CallExp(loopExp);
 				if (result == null)
 					result = caseETypedElement(loopExp);
 				if (result == null)
-					result = caseOCLExpression_1(loopExp);
+					result = caseExpressions_OCLExpression(loopExp);
 				if (result == null)
 					result = caseCallingASTNode(loopExp);
 				if (result == null)
@@ -958,11 +958,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(messageExp);
 				if (result == null)
-					result = caseMessageExp_1(messageExp);
+					result = caseExpressions_MessageExp(messageExp);
 				if (result == null)
 					result = caseETypedElement(messageExp);
 				if (result == null)
-					result = caseOCLExpression_1(messageExp);
+					result = caseExpressions_OCLExpression(messageExp);
 				if (result == null)
 					result = caseCallingASTNode(messageExp);
 				if (result == null)
@@ -985,19 +985,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseFeatureCallExp(navigationCallExp);
 				if (result == null)
-					result = caseNavigationCallExp_1(navigationCallExp);
+					result = caseExpressions_NavigationCallExp(navigationCallExp);
 				if (result == null)
 					result = caseCallExp(navigationCallExp);
 				if (result == null)
-					result = caseFeatureCallExp_1(navigationCallExp);
+					result = caseExpressions_FeatureCallExp(navigationCallExp);
 				if (result == null)
 					result = caseOCLExpression(navigationCallExp);
 				if (result == null)
-					result = caseCallExp_1(navigationCallExp);
+					result = caseExpressions_CallExp(navigationCallExp);
 				if (result == null)
 					result = caseETypedElement(navigationCallExp);
 				if (result == null)
-					result = caseOCLExpression_1(navigationCallExp);
+					result = caseExpressions_OCLExpression(navigationCallExp);
 				if (result == null)
 					result = caseCallingASTNode(navigationCallExp);
 				if (result == null)
@@ -1020,15 +1020,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLiteralExp(nullLiteralExp);
 				if (result == null)
-					result = caseNullLiteralExp_1(nullLiteralExp);
+					result = caseExpressions_NullLiteralExp(nullLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(nullLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(nullLiteralExp);
+					result = caseExpressions_LiteralExp(nullLiteralExp);
 				if (result == null)
 					result = caseETypedElement(nullLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(nullLiteralExp);
+					result = caseExpressions_OCLExpression(nullLiteralExp);
 				if (result == null)
 					result = caseENamedElement(nullLiteralExp);
 				if (result == null)
@@ -1049,19 +1049,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = casePrimitiveLiteralExp(numericLiteralExp);
 				if (result == null)
-					result = caseNumericLiteralExp_1(numericLiteralExp);
+					result = caseExpressions_NumericLiteralExp(numericLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(numericLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(numericLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(numericLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(numericLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(numericLiteralExp);
+					result = caseExpressions_LiteralExp(numericLiteralExp);
 				if (result == null)
 					result = caseETypedElement(numericLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(numericLiteralExp);
+					result = caseExpressions_OCLExpression(numericLiteralExp);
 				if (result == null)
 					result = caseENamedElement(numericLiteralExp);
 				if (result == null)
@@ -1082,7 +1082,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseETypedElement(oclExpression);
 				if (result == null)
-					result = caseOCLExpression_1(oclExpression);
+					result = caseExpressions_OCLExpression(oclExpression);
 				if (result == null)
 					result = caseENamedElement(oclExpression);
 				if (result == null)
@@ -1103,19 +1103,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseFeatureCallExp(operationCallExp);
 				if (result == null)
-					result = caseOperationCallExp_1(operationCallExp);
+					result = caseExpressions_OperationCallExp(operationCallExp);
 				if (result == null)
 					result = caseCallExp(operationCallExp);
 				if (result == null)
-					result = caseFeatureCallExp_1(operationCallExp);
+					result = caseExpressions_FeatureCallExp(operationCallExp);
 				if (result == null)
 					result = caseOCLExpression(operationCallExp);
 				if (result == null)
-					result = caseCallExp_1(operationCallExp);
+					result = caseExpressions_CallExp(operationCallExp);
 				if (result == null)
 					result = caseETypedElement(operationCallExp);
 				if (result == null)
-					result = caseOCLExpression_1(operationCallExp);
+					result = caseExpressions_OCLExpression(operationCallExp);
 				if (result == null)
 					result = caseCallingASTNode(operationCallExp);
 				if (result == null)
@@ -1138,15 +1138,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLiteralExp(primitiveLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(primitiveLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(primitiveLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(primitiveLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(primitiveLiteralExp);
+					result = caseExpressions_LiteralExp(primitiveLiteralExp);
 				if (result == null)
 					result = caseETypedElement(primitiveLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(primitiveLiteralExp);
+					result = caseExpressions_OCLExpression(primitiveLiteralExp);
 				if (result == null)
 					result = caseENamedElement(primitiveLiteralExp);
 				if (result == null)
@@ -1167,23 +1167,23 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseNavigationCallExp(propertyCallExp);
 				if (result == null)
-					result = casePropertyCallExp_1(propertyCallExp);
+					result = caseExpressions_PropertyCallExp(propertyCallExp);
 				if (result == null)
 					result = caseFeatureCallExp(propertyCallExp);
 				if (result == null)
-					result = caseNavigationCallExp_1(propertyCallExp);
+					result = caseExpressions_NavigationCallExp(propertyCallExp);
 				if (result == null)
 					result = caseCallExp(propertyCallExp);
 				if (result == null)
-					result = caseFeatureCallExp_1(propertyCallExp);
+					result = caseExpressions_FeatureCallExp(propertyCallExp);
 				if (result == null)
 					result = caseOCLExpression(propertyCallExp);
 				if (result == null)
-					result = caseCallExp_1(propertyCallExp);
+					result = caseExpressions_CallExp(propertyCallExp);
 				if (result == null)
 					result = caseETypedElement(propertyCallExp);
 				if (result == null)
-					result = caseOCLExpression_1(propertyCallExp);
+					result = caseExpressions_OCLExpression(propertyCallExp);
 				if (result == null)
 					result = caseCallingASTNode(propertyCallExp);
 				if (result == null)
@@ -1206,23 +1206,23 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseNumericLiteralExp(realLiteralExp);
 				if (result == null)
-					result = caseRealLiteralExp_1(realLiteralExp);
+					result = caseExpressions_RealLiteralExp(realLiteralExp);
 				if (result == null)
 					result = casePrimitiveLiteralExp(realLiteralExp);
 				if (result == null)
-					result = caseNumericLiteralExp_1(realLiteralExp);
+					result = caseExpressions_NumericLiteralExp(realLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(realLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(realLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(realLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(realLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(realLiteralExp);
+					result = caseExpressions_LiteralExp(realLiteralExp);
 				if (result == null)
 					result = caseETypedElement(realLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(realLiteralExp);
+					result = caseExpressions_OCLExpression(realLiteralExp);
 				if (result == null)
 					result = caseENamedElement(realLiteralExp);
 				if (result == null)
@@ -1243,11 +1243,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(stateExp);
 				if (result == null)
-					result = caseStateExp_1(stateExp);
+					result = caseExpressions_StateExp(stateExp);
 				if (result == null)
 					result = caseETypedElement(stateExp);
 				if (result == null)
-					result = caseOCLExpression_1(stateExp);
+					result = caseExpressions_OCLExpression(stateExp);
 				if (result == null)
 					result = caseENamedElement(stateExp);
 				if (result == null)
@@ -1268,19 +1268,19 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = casePrimitiveLiteralExp(stringLiteralExp);
 				if (result == null)
-					result = caseStringLiteralExp_1(stringLiteralExp);
+					result = caseExpressions_StringLiteralExp(stringLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(stringLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp_1(stringLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(stringLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(stringLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(stringLiteralExp);
+					result = caseExpressions_LiteralExp(stringLiteralExp);
 				if (result == null)
 					result = caseETypedElement(stringLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(stringLiteralExp);
+					result = caseExpressions_OCLExpression(stringLiteralExp);
 				if (result == null)
 					result = caseENamedElement(stringLiteralExp);
 				if (result == null)
@@ -1301,15 +1301,15 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseLiteralExp(tupleLiteralExp);
 				if (result == null)
-					result = caseTupleLiteralExp_1(tupleLiteralExp);
+					result = caseExpressions_TupleLiteralExp(tupleLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(tupleLiteralExp);
 				if (result == null)
-					result = caseLiteralExp_1(tupleLiteralExp);
+					result = caseExpressions_LiteralExp(tupleLiteralExp);
 				if (result == null)
 					result = caseETypedElement(tupleLiteralExp);
 				if (result == null)
-					result = caseOCLExpression_1(tupleLiteralExp);
+					result = caseExpressions_OCLExpression(tupleLiteralExp);
 				if (result == null)
 					result = caseENamedElement(tupleLiteralExp);
 				if (result == null)
@@ -1330,7 +1330,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseETypedElement(tupleLiteralPart);
 				if (result == null)
-					result = caseTupleLiteralPart_1(tupleLiteralPart);
+					result = caseExpressions_TupleLiteralPart(tupleLiteralPart);
 				if (result == null)
 					result = caseENamedElement(tupleLiteralPart);
 				if (result == null)
@@ -1353,11 +1353,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(typeExp);
 				if (result == null)
-					result = caseTypeExp_1(typeExp);
+					result = caseExpressions_TypeExp(typeExp);
 				if (result == null)
 					result = caseETypedElement(typeExp);
 				if (result == null)
-					result = caseOCLExpression_1(typeExp);
+					result = caseExpressions_OCLExpression(typeExp);
 				if (result == null)
 					result = caseENamedElement(typeExp);
 				if (result == null)
@@ -1378,11 +1378,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(unspecifiedValueExp);
 				if (result == null)
-					result = caseUnspecifiedValueExp_1(unspecifiedValueExp);
+					result = caseExpressions_UnspecifiedValueExp(unspecifiedValueExp);
 				if (result == null)
 					result = caseETypedElement(unspecifiedValueExp);
 				if (result == null)
-					result = caseOCLExpression_1(unspecifiedValueExp);
+					result = caseExpressions_OCLExpression(unspecifiedValueExp);
 				if (result == null)
 					result = caseTypedASTNode(unspecifiedValueExp);
 				if (result == null)
@@ -1405,7 +1405,7 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseETypedElement(variable);
 				if (result == null)
-					result = caseVariable_1(variable);
+					result = caseExpressions_Variable(variable);
 				if (result == null)
 					result = caseENamedElement(variable);
 				if (result == null)
@@ -1428,11 +1428,11 @@ public class EcoreSwitch<T> {
 				if (result == null)
 					result = caseOCLExpression(variableExp);
 				if (result == null)
-					result = caseVariableExp_1(variableExp);
+					result = caseExpressions_VariableExp(variableExp);
 				if (result == null)
 					result = caseETypedElement(variableExp);
 				if (result == null)
-					result = caseOCLExpression_1(variableExp);
+					result = caseExpressions_OCLExpression(variableExp);
 				if (result == null)
 					result = caseENamedElement(variableExp);
 				if (result == null)
@@ -2297,14 +2297,16 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Any Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <O> T caseAnyType_1(org.eclipse.ocl.types.AnyType<O> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <O> T caseTypes_AnyType(org.eclipse.ocl.types.AnyType<O> object) {
+		return caseAnyType_1(object);
 	}
 
 	/**
@@ -2357,15 +2359,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseCollectionType_1(
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseTypes_CollectionType(
 			org.eclipse.ocl.types.CollectionType<C, O> object) {
-		return null;
+		return caseCollectionType_1(object);
 	}
 
 	/**
@@ -2373,14 +2377,16 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Bag Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseBagType_1(org.eclipse.ocl.types.BagType<C, O> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseTypes_BagType(org.eclipse.ocl.types.BagType<C, O> object) {
+		return caseBagType_1(object);
 	}
 
 	/**
@@ -2403,14 +2409,16 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElementType_1(org.eclipse.ocl.types.ElementType object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public T caseTypes_ElementType(org.eclipse.ocl.types.ElementType object) {
+		return caseElementType_1(object);
 	}
 
 	/**
@@ -2418,14 +2426,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Invalid Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <O> T caseInvalidType_1(org.eclipse.ocl.types.InvalidType<O> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <O> T caseTypes_InvalidType(
+			org.eclipse.ocl.types.InvalidType<O> object) {
+		return caseInvalidType_1(object);
 	}
 
 	/**
@@ -2433,15 +2444,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Message Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O, P> T caseMessageType_1(
+	@SuppressWarnings("deprecation")
+	public <C, O, P> T caseTypes_MessageType(
 			org.eclipse.ocl.types.MessageType<C, O, P> object) {
-		return null;
+		return caseMessageType_1(object);
 	}
 
 	/**
@@ -2449,15 +2462,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Ordered Set Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseOrderedSetType_1(
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseTypes_OrderedSetType(
 			org.eclipse.ocl.types.OrderedSetType<C, O> object) {
-		return null;
+		return caseOrderedSetType_1(object);
 	}
 
 	/**
@@ -2465,15 +2480,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <O> T casePrimitiveType_1(
+	@SuppressWarnings("deprecation")
+	public <O> T caseTypes_PrimitiveType(
 			org.eclipse.ocl.types.PrimitiveType<O> object) {
-		return null;
+		return casePrimitiveType_1(object);
 	}
 
 	/**
@@ -2481,15 +2498,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sequence Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseSequenceType_1(
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseTypes_SequenceType(
 			org.eclipse.ocl.types.SequenceType<C, O> object) {
-		return null;
+		return caseSequenceType_1(object);
 	}
 
 	/**
@@ -2497,14 +2516,16 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Set Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseSetType_1(org.eclipse.ocl.types.SetType<C, O> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseTypes_SetType(org.eclipse.ocl.types.SetType<C, O> object) {
+		return caseSetType_1(object);
 	}
 
 	/**
@@ -2512,14 +2533,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <O, P> T caseTupleType_1(org.eclipse.ocl.types.TupleType<O, P> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <O, P> T caseTypes_TupleType(
+			org.eclipse.ocl.types.TupleType<O, P> object) {
+		return caseTupleType_1(object);
 	}
 
 	/**
@@ -2527,14 +2551,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Type Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseTypeType_1(org.eclipse.ocl.types.TypeType<C, O> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseTypes_TypeType(
+			org.eclipse.ocl.types.TypeType<C, O> object) {
+		return caseTypeType_1(object);
 	}
 
 	/**
@@ -2542,14 +2569,16 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Void Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <O> T caseVoidType_1(org.eclipse.ocl.types.VoidType<O> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <O> T caseTypes_VoidType(org.eclipse.ocl.types.VoidType<O> object) {
+		return caseVoidType_1(object);
 	}
 
 	/**
@@ -2572,15 +2601,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Expression In OCL</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseExpressionInOCL_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseUtilities_ExpressionInOCL(
 			org.eclipse.ocl.utilities.ExpressionInOCL<C, PM> object) {
-		return null;
+		return caseExpressionInOCL_1(object);
 	}
 
 	/**
@@ -2618,15 +2649,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>OCL Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseOCLExpression_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_OCLExpression(
 			org.eclipse.ocl.expressions.OCLExpression<C> object) {
-		return null;
+		return caseOCLExpression_1(object);
 	}
 
 	/**
@@ -2649,14 +2682,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseCallExp_1(org.eclipse.ocl.expressions.CallExp<C> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_CallExp(
+			org.eclipse.ocl.expressions.CallExp<C> object) {
+		return caseCallExp_1(object);
 	}
 
 	/**
@@ -2664,15 +2700,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseFeatureCallExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_FeatureCallExp(
 			org.eclipse.ocl.expressions.FeatureCallExp<C> object) {
-		return null;
+		return caseFeatureCallExp_1(object);
 	}
 
 	/**
@@ -2680,15 +2718,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Navigation Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, P> T caseNavigationCallExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, P> T caseExpressions_NavigationCallExp(
 			org.eclipse.ocl.expressions.NavigationCallExp<C, P> object) {
-		return null;
+		return caseNavigationCallExp_1(object);
 	}
 
 	/**
@@ -2696,15 +2736,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Association Class Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, P> T caseAssociationClassCallExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, P> T caseExpressions_AssociationClassCallExp(
 			org.eclipse.ocl.expressions.AssociationClassCallExp<C, P> object) {
-		return null;
+		return caseAssociationClassCallExp_1(object);
 	}
 
 	/**
@@ -2712,15 +2754,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_LiteralExp(
 			org.eclipse.ocl.expressions.LiteralExp<C> object) {
-		return null;
+		return caseLiteralExp_1(object);
 	}
 
 	/**
@@ -2728,15 +2772,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Primitive Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T casePrimitiveLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_PrimitiveLiteralExp(
 			org.eclipse.ocl.expressions.PrimitiveLiteralExp<C> object) {
-		return null;
+		return casePrimitiveLiteralExp_1(object);
 	}
 
 	/**
@@ -2744,15 +2790,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Boolean Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseBooleanLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_BooleanLiteralExp(
 			org.eclipse.ocl.expressions.BooleanLiteralExp<C> object) {
-		return null;
+		return caseBooleanLiteralExp_1(object);
 	}
 
 	/**
@@ -2760,15 +2808,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseCollectionLiteralPart_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_CollectionLiteralPart(
 			org.eclipse.ocl.expressions.CollectionLiteralPart<C> object) {
-		return null;
+		return caseCollectionLiteralPart_1(object);
 	}
 
 	/**
@@ -2776,15 +2826,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseCollectionItem_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_CollectionItem(
 			org.eclipse.ocl.expressions.CollectionItem<C> object) {
-		return null;
+		return caseCollectionItem_1(object);
 	}
 
 	/**
@@ -2792,15 +2844,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseCollectionLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_CollectionLiteralExp(
 			org.eclipse.ocl.expressions.CollectionLiteralExp<C> object) {
-		return null;
+		return caseCollectionLiteralExp_1(object);
 	}
 
 	/**
@@ -2808,15 +2862,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Range</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseCollectionRange_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_CollectionRange(
 			org.eclipse.ocl.expressions.CollectionRange<C> object) {
-		return null;
+		return caseCollectionRange_1(object);
 	}
 
 	/**
@@ -2824,15 +2880,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Enum Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, EL> T caseEnumLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, EL> T caseExpressions_EnumLiteralExp(
 			org.eclipse.ocl.expressions.EnumLiteralExp<C, EL> object) {
-		return null;
+		return caseEnumLiteralExp_1(object);
 	}
 
 	/**
@@ -2840,14 +2898,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>If Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseIfExp_1(org.eclipse.ocl.expressions.IfExp<C> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_IfExp(
+			org.eclipse.ocl.expressions.IfExp<C> object) {
+		return caseIfExp_1(object);
 	}
 
 	/**
@@ -2855,15 +2916,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Numeric Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseNumericLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_NumericLiteralExp(
 			org.eclipse.ocl.expressions.NumericLiteralExp<C> object) {
-		return null;
+		return caseNumericLiteralExp_1(object);
 	}
 
 	/**
@@ -2871,15 +2934,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Integer Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseIntegerLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_IntegerLiteralExp(
 			org.eclipse.ocl.expressions.IntegerLiteralExp<C> object) {
-		return null;
+		return caseIntegerLiteralExp_1(object);
 	}
 
 	/**
@@ -2887,15 +2952,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Unlimited Natural Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseUnlimitedNaturalLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_UnlimitedNaturalLiteralExp(
 			org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp<C> object) {
-		return null;
+		return caseUnlimitedNaturalLiteralExp_1(object);
 	}
 
 	/**
@@ -2903,15 +2970,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Invalid Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseInvalidLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_InvalidLiteralExp(
 			org.eclipse.ocl.expressions.InvalidLiteralExp<C> object) {
-		return null;
+		return caseInvalidLiteralExp_1(object);
 	}
 
 	/**
@@ -2919,15 +2988,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Loop Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseLoopExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseExpressions_LoopExp(
 			org.eclipse.ocl.expressions.LoopExp<C, PM> object) {
-		return null;
+		return caseLoopExp_1(object);
 	}
 
 	/**
@@ -2935,15 +3006,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseIterateExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseExpressions_IterateExp(
 			org.eclipse.ocl.expressions.IterateExp<C, PM> object) {
-		return null;
+		return caseIterateExp_1(object);
 	}
 
 	/**
@@ -2951,15 +3024,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseIteratorExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseExpressions_IteratorExp(
 			org.eclipse.ocl.expressions.IteratorExp<C, PM> object) {
-		return null;
+		return caseIteratorExp_1(object);
 	}
 
 	/**
@@ -2967,15 +3042,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Let Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseLetExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseExpressions_LetExp(
 			org.eclipse.ocl.expressions.LetExp<C, PM> object) {
-		return null;
+		return caseLetExp_1(object);
 	}
 
 	/**
@@ -2983,15 +3060,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Message Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, COA, SSA> T caseMessageExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, COA, SSA> T caseExpressions_MessageExp(
 			org.eclipse.ocl.expressions.MessageExp<C, COA, SSA> object) {
-		return null;
+		return caseMessageExp_1(object);
 	}
 
 	/**
@@ -2999,15 +3078,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Null Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseNullLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_NullLiteralExp(
 			org.eclipse.ocl.expressions.NullLiteralExp<C> object) {
-		return null;
+		return caseNullLiteralExp_1(object);
 	}
 
 	/**
@@ -3015,15 +3096,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Operation Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, O> T caseOperationCallExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, O> T caseExpressions_OperationCallExp(
 			org.eclipse.ocl.expressions.OperationCallExp<C, O> object) {
-		return null;
+		return caseOperationCallExp_1(object);
 	}
 
 	/**
@@ -3031,15 +3114,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Property Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, P> T casePropertyCallExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, P> T caseExpressions_PropertyCallExp(
 			org.eclipse.ocl.expressions.PropertyCallExp<C, P> object) {
-		return null;
+		return casePropertyCallExp_1(object);
 	}
 
 	/**
@@ -3047,15 +3132,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Real Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseRealLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_RealLiteralExp(
 			org.eclipse.ocl.expressions.RealLiteralExp<C> object) {
-		return null;
+		return caseRealLiteralExp_1(object);
 	}
 
 	/**
@@ -3063,15 +3150,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>State Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, S> T caseStateExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, S> T caseExpressions_StateExp(
 			org.eclipse.ocl.expressions.StateExp<C, S> object) {
-		return null;
+		return caseStateExp_1(object);
 	}
 
 	/**
@@ -3079,15 +3168,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>String Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseStringLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_StringLiteralExp(
 			org.eclipse.ocl.expressions.StringLiteralExp<C> object) {
-		return null;
+		return caseStringLiteralExp_1(object);
 	}
 
 	/**
@@ -3095,15 +3186,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tuple Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, P> T caseTupleLiteralExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, P> T caseExpressions_TupleLiteralExp(
 			org.eclipse.ocl.expressions.TupleLiteralExp<C, P> object) {
-		return null;
+		return caseTupleLiteralExp_1(object);
 	}
 
 	/**
@@ -3111,15 +3204,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tuple Literal Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, P> T caseTupleLiteralPart_1(
+	@SuppressWarnings("deprecation")
+	public <C, P> T caseExpressions_TupleLiteralPart(
 			org.eclipse.ocl.expressions.TupleLiteralPart<C, P> object) {
-		return null;
+		return caseTupleLiteralPart_1(object);
 	}
 
 	/**
@@ -3127,14 +3222,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Type Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseTypeExp_1(org.eclipse.ocl.expressions.TypeExp<C> object) {
-		return null;
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_TypeExp(
+			org.eclipse.ocl.expressions.TypeExp<C> object) {
+		return caseTypeExp_1(object);
 	}
 
 	/**
@@ -3142,15 +3240,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Unspecified Value Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T caseUnspecifiedValueExp_1(
+	@SuppressWarnings("deprecation")
+	public <C> T caseExpressions_UnspecifiedValueExp(
 			org.eclipse.ocl.expressions.UnspecifiedValueExp<C> object) {
-		return null;
+		return caseUnspecifiedValueExp_1(object);
 	}
 
 	/**
@@ -3158,15 +3258,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseVariable_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseExpressions_Variable(
 			org.eclipse.ocl.expressions.Variable<C, PM> object) {
-		return null;
+		return caseVariable_1(object);
 	}
 
 	/**
@@ -3174,15 +3276,17 @@ public class EcoreSwitch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Variable Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, PM> T caseVariableExp_1(
+	@SuppressWarnings("deprecation")
+	public <C, PM> T caseExpressions_VariableExp(
 			org.eclipse.ocl.expressions.VariableExp<C, PM> object) {
-		return null;
+		return caseVariableExp_1(object);
 	}
 
 	/**
@@ -3197,6 +3301,436 @@ public class EcoreSwitch<T> {
 	 * @generated
 	 */
 	public T defaultCase(EObject object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_AnyType} method, instead.
+	 */
+	@Deprecated
+	public <O> T caseAnyType_1(org.eclipse.ocl.types.AnyType<O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_CollectionType} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseCollectionType_1(
+			org.eclipse.ocl.types.CollectionType<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_BagType} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseBagType_1(org.eclipse.ocl.types.BagType<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_ElementType} method, instead.
+	 */
+	@Deprecated
+	public T caseElementType_1(org.eclipse.ocl.types.ElementType object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_InvalidType} method, instead.
+	 */
+	@Deprecated
+	public <O> T caseInvalidType_1(org.eclipse.ocl.types.InvalidType<O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_MessageType} method, instead.
+	 */
+	@Deprecated
+	public <C, O, P> T caseMessageType_1(
+			org.eclipse.ocl.types.MessageType<C, O, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_OrderedSetType} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseOrderedSetType_1(
+			org.eclipse.ocl.types.OrderedSetType<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_PrimitiveType} method, instead.
+	 */
+	@Deprecated
+	public <O> T casePrimitiveType_1(
+			org.eclipse.ocl.types.PrimitiveType<O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_SequenceType} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseSequenceType_1(
+			org.eclipse.ocl.types.SequenceType<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_SetType} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseSetType_1(org.eclipse.ocl.types.SetType<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_TupleType} method, instead.
+	 */
+	@Deprecated
+	public <O, P> T caseTupleType_1(org.eclipse.ocl.types.TupleType<O, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_TypeType} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseTypeType_1(org.eclipse.ocl.types.TypeType<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseTypes_VoidType} method, instead.
+	 */
+	@Deprecated
+	public <O> T caseVoidType_1(org.eclipse.ocl.types.VoidType<O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseUtilities_ExpressionInOCL} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseExpressionInOCL_1(
+			org.eclipse.ocl.utilities.ExpressionInOCL<C, PM> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_OCLExpression} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseOCLExpression_1(
+			org.eclipse.ocl.expressions.OCLExpression<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_CallExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseCallExp_1(org.eclipse.ocl.expressions.CallExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_FeatureCallExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseFeatureCallExp_1(
+			org.eclipse.ocl.expressions.FeatureCallExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_NavigationCallExp} method, instead.
+	 */
+	@Deprecated
+	public <C, P> T caseNavigationCallExp_1(
+			org.eclipse.ocl.expressions.NavigationCallExp<C, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_AssociationClassCallExp} method, instead.
+	 */
+	@Deprecated
+	public <C, P> T caseAssociationClassCallExp_1(
+			org.eclipse.ocl.expressions.AssociationClassCallExp<C, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_LiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseLiteralExp_1(
+			org.eclipse.ocl.expressions.LiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_PrimitiveLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T casePrimitiveLiteralExp_1(
+			org.eclipse.ocl.expressions.PrimitiveLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_BooleanLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseBooleanLiteralExp_1(
+			org.eclipse.ocl.expressions.BooleanLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_CollectionLiteralPart} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseCollectionLiteralPart_1(
+			org.eclipse.ocl.expressions.CollectionLiteralPart<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_CollectionItem} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseCollectionItem_1(
+			org.eclipse.ocl.expressions.CollectionItem<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_CollectionLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseCollectionLiteralExp_1(
+			org.eclipse.ocl.expressions.CollectionLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_CollectionRange} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseCollectionRange_1(
+			org.eclipse.ocl.expressions.CollectionRange<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_EnumLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C, EL> T caseEnumLiteralExp_1(
+			org.eclipse.ocl.expressions.EnumLiteralExp<C, EL> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_IfExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseIfExp_1(org.eclipse.ocl.expressions.IfExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_NumericLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseNumericLiteralExp_1(
+			org.eclipse.ocl.expressions.NumericLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_IntegerLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseIntegerLiteralExp_1(
+			org.eclipse.ocl.expressions.IntegerLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_UnlimitedNaturalLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseUnlimitedNaturalLiteralExp_1(
+			org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_InvalidLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseInvalidLiteralExp_1(
+			org.eclipse.ocl.expressions.InvalidLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_LoopExp} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseLoopExp_1(
+			org.eclipse.ocl.expressions.LoopExp<C, PM> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_IterateExp} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseIterateExp_1(
+			org.eclipse.ocl.expressions.IterateExp<C, PM> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_IteratorExp} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseIteratorExp_1(
+			org.eclipse.ocl.expressions.IteratorExp<C, PM> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_LetExp} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseLetExp_1(
+			org.eclipse.ocl.expressions.LetExp<C, PM> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_MessageExp} method, instead.
+	 */
+	@Deprecated
+	public <C, COA, SSA> T caseMessageExp_1(
+			org.eclipse.ocl.expressions.MessageExp<C, COA, SSA> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_NullLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseNullLiteralExp_1(
+			org.eclipse.ocl.expressions.NullLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_OperationCallExp} method, instead.
+	 */
+	@Deprecated
+	public <C, O> T caseOperationCallExp_1(
+			org.eclipse.ocl.expressions.OperationCallExp<C, O> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_PropertyCallExp} method, instead.
+	 */
+	@Deprecated
+	public <C, P> T casePropertyCallExp_1(
+			org.eclipse.ocl.expressions.PropertyCallExp<C, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_RealLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseRealLiteralExp_1(
+			org.eclipse.ocl.expressions.RealLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_StateExp} method, instead.
+	 */
+	@Deprecated
+	public <C, S> T caseStateExp_1(
+			org.eclipse.ocl.expressions.StateExp<C, S> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_StringLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseStringLiteralExp_1(
+			org.eclipse.ocl.expressions.StringLiteralExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_TupleLiteralExp} method, instead.
+	 */
+	@Deprecated
+	public <C, P> T caseTupleLiteralExp_1(
+			org.eclipse.ocl.expressions.TupleLiteralExp<C, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_TupleLiteralPart} method, instead.
+	 */
+	@Deprecated
+	public <C, P> T caseTupleLiteralPart_1(
+			org.eclipse.ocl.expressions.TupleLiteralPart<C, P> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_TypeExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseTypeExp_1(org.eclipse.ocl.expressions.TypeExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_UnspecifiedValueExp} method, instead.
+	 */
+	@Deprecated
+	public <C> T caseUnspecifiedValueExp_1(
+			org.eclipse.ocl.expressions.UnspecifiedValueExp<C> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_Variable} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseVariable_1(
+			org.eclipse.ocl.expressions.Variable<C, PM> object) {
+		return null;
+	}
+
+	/**
+	 * @deprecated Since 1.3, override the {@link #caseExpressions_VariableExp} method, instead.
+	 */
+	@Deprecated
+	public <C, PM> T caseVariableExp_1(
+			org.eclipse.ocl.expressions.VariableExp<C, PM> object) {
 		return null;
 	}
 

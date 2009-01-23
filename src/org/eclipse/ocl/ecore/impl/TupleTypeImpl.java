@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 241426
+ *   Zeligsoft - Bugs 241426, 207365
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.8 2008/11/24 00:38:46 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.9 2009/01/23 17:16:23 cdamus Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -211,9 +211,7 @@ public class TupleTypeImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EcorePackage.TUPLE_TYPE__SERIALIZABLE :
-				return isSerializable()
-					? Boolean.TRUE
-					: Boolean.FALSE;
+				return isSerializable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,7 +225,7 @@ public class TupleTypeImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.TUPLE_TYPE__SERIALIZABLE :
-				setSerializable(((Boolean) newValue).booleanValue());
+				setSerializable((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
