@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.8 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.9 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -268,7 +268,7 @@ public class OperationCallExpImpl<C, O>
 					return getReferredOperation();
 				return basicGetReferredOperation();
 			case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
-				return new Integer(getOperationCode());
+				return getOperationCode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,7 +291,7 @@ public class OperationCallExpImpl<C, O>
 				setReferredOperation((O) newValue);
 				return;
 			case ExpressionsPackage.OPERATION_CALL_EXP__OPERATION_CODE :
-				setOperationCode(((Integer) newValue).intValue());
+				setOperationCode((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -339,9 +339,11 @@ public class OperationCallExpImpl<C, O>
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, C, O, ?, ?, ?, ?, ?, ?, ?>) v).visitOperationCallExp(this);
+		return ((Visitor<T, C, O, ?, ?, ?, ?, ?, ?, ?>) v)
+			.visitOperationCallExp(this);
 	}
 
 } //OperationCallExpImpl

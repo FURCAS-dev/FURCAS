@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Zeligsoft - Bug 243976
+ *   Zeligsoft - Bug 243976, 207365
  *
  * </copyright>
  *
- * $Id: IsMarkedPreCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: IsMarkedPreCSImpl.java,v 1.4 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -113,9 +113,7 @@ public class IsMarkedPreCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CSTPackage.IS_MARKED_PRE_CS__PRE :
-				return isPre()
-					? Boolean.TRUE
-					: Boolean.FALSE;
+				return isPre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,7 +127,7 @@ public class IsMarkedPreCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CSTPackage.IS_MARKED_PRE_CS__PRE :
-				setPre(((Boolean) newValue).booleanValue());
+				setPre((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

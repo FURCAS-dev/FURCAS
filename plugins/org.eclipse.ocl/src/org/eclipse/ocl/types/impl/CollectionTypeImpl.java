@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.7 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -502,13 +502,13 @@ public class CollectionTypeImpl<C, O>
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TypesPackage.COLLECTION_TYPE__START_POSITION :
-				return new Integer(getStartPosition());
+				return getStartPosition();
 			case TypesPackage.COLLECTION_TYPE__END_POSITION :
-				return new Integer(getEndPosition());
+				return getEndPosition();
 			case TypesPackage.COLLECTION_TYPE__TYPE_START_POSITION :
-				return new Integer(getTypeStartPosition());
+				return getTypeStartPosition();
 			case TypesPackage.COLLECTION_TYPE__TYPE_END_POSITION :
-				return new Integer(getTypeEndPosition());
+				return getTypeEndPosition();
 			case TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE :
 				if (resolve)
 					return getElementType();
@@ -529,16 +529,16 @@ public class CollectionTypeImpl<C, O>
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TypesPackage.COLLECTION_TYPE__START_POSITION :
-				setStartPosition(((Integer) newValue).intValue());
+				setStartPosition((Integer) newValue);
 				return;
 			case TypesPackage.COLLECTION_TYPE__END_POSITION :
-				setEndPosition(((Integer) newValue).intValue());
+				setEndPosition((Integer) newValue);
 				return;
 			case TypesPackage.COLLECTION_TYPE__TYPE_START_POSITION :
-				setTypeStartPosition(((Integer) newValue).intValue());
+				setTypeStartPosition((Integer) newValue);
 				return;
 			case TypesPackage.COLLECTION_TYPE__TYPE_END_POSITION :
-				setTypeEndPosition(((Integer) newValue).intValue());
+				setTypeEndPosition((Integer) newValue);
 				return;
 			case TypesPackage.COLLECTION_TYPE__ELEMENT_TYPE :
 				setElementType((C) newValue);

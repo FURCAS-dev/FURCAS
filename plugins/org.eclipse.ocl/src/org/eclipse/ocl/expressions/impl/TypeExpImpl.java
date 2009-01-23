@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.6 2008/12/17 19:19:21 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.7 2009/01/23 17:16:03 cdamus Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -179,7 +179,8 @@ public class TypeExpImpl<C>
 	/**
 	 * @generated NOT
 	 */
-	@Override @SuppressWarnings("unchecked")
+	@Override
+	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return ((Visitor<T, C, ?, ?, ?, ?, ?, ?, ?, ?>) v).visitTypeExp(this);
 	}
