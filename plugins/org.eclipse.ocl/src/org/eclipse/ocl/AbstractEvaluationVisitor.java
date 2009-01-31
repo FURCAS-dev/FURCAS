@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 238050, 253252
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.7 2008/11/05 16:30:17 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.8 2009/01/31 19:47:15 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -221,6 +222,9 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	public Object visitExpression(OCLExpression<C> expression) {
         try {
             return expression.accept(getVisitor());
+        } catch (EvaluationHaltedException e) {
+        	// evaluation stopped on demand, propagate further
+        	throw e;
         } catch (RuntimeException e) {
             String msg = e.getLocalizedMessage();
             if (msg == null) {

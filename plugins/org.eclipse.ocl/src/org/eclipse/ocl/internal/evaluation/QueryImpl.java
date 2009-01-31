@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corporation, and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.4 2009/01/31 19:47:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -24,15 +25,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.Query;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.helper.HelperUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.util.ProblemAware;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +54,7 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
  * @generated
  */
 public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-		implements Query<C, CLS, E> {
+		implements Query<C, CLS, E>, ProblemAware {
 	
 	private Map<CLS, ? extends Set<? extends E>> extentMap = null;
 
@@ -57,7 +62,9 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 	private final Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment;
 	private EvaluationEnvironment<C, O, P, CLS, E> evalEnv;
-
+	private Diagnostic evalProblems;
+	private BasicDiagnostic batchEvalProblems;
+	
 	/**
 	 * 
 	 * @param environment
@@ -93,6 +100,8 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	public Object evaluate(Object obj) {
+		evalProblems = null;
+		
 		if (obj == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
 				OCLMessages.NullArgExpectEObj_ERROR_);
@@ -118,6 +127,9 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		try {
 			result = ev.visitExpression(expression);
+		} catch (EvaluationHaltedException e) {
+			evalProblems = e.getDiagnostic();
+			result = environment.getOCLStandardLibrary().getOclInvalid(); 			
 		} finally {
 			myEnv.remove(SELF_VARIABLE_NAME);
 		}
@@ -126,13 +138,24 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	public Object evaluate() {
+		evalProblems = null;
+		
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  There is no "self" context variable
 		EvaluationVisitor<?, C, O, P, ?, ?, ?, ?, ?, CT, CLS, E> ev =
 			environment.getFactory().createEvaluationVisitor(
 					environment, getEvaluationEnvironment(), getExtentMap());
 		
-		return ev.visitExpression(expression);
+		Object result;
+		
+		try {
+			result = ev.visitExpression(expression);
+		} catch (EvaluationHaltedException e) {
+			evalProblems = e.getDiagnostic();
+			result = environment.getOCLStandardLibrary().getOclInvalid();
+		}
+		
+		return result;
 	}
 
 	public boolean check(Object obj) {
@@ -164,13 +187,19 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		List<Object> result = new BasicEList<Object>();
 		Iterator<?> iter = objList.iterator();
-		while (iter.hasNext()) {
-			result.add(evaluate(iter.next()));
+		try {
+			while (iter.hasNext()) {
+				result.add(evaluate(iter.next()));
+				
+				handleNextEvaluateProblems();
+			}
+		} finally {
+			commitBatchEvaluateProblems();
 		}
-		
+
 		return result;
 	}
-
+	
 	public boolean check(List<?> objList) {
 		if (objList == null) {
 			IllegalArgumentException error = new IllegalArgumentException(
@@ -205,11 +234,18 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 		
 		List<T> result = new BasicEList<T>();
-		for (T obj : objList) {
-			if (check(obj)) {
-				result.add(obj);
+		try {
+			for (T obj : objList) {
+				if (check(obj)) {
+					result.add(obj);
+				}
+
+				handleNextEvaluateProblems();
 			}
+		} finally {
+			commitBatchEvaluateProblems();
 		}
+
 		return result;
 	}
 
@@ -222,11 +258,18 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 		
 		List<T> result = new BasicEList<T>();
-		for (T obj : objList) {
-			if (!check(obj)) {
-				result.add(obj);
+		try {
+			for (T obj : objList) {
+				if (!check(obj)) {
+					result.add(obj);
+				}
+
+				handleNextEvaluateProblems();
 			}
+		} finally {
+			commitBatchEvaluateProblems();
 		}
+
 		return result;
 	}
 
@@ -246,6 +289,10 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return evalEnv;
 	}
 
+	public Diagnostic getProblems() {
+		return evalProblems;
+	}
+	
 	@Override
     public String toString() {
 		StringBuffer result = new StringBuffer();
@@ -257,4 +304,33 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		return result.toString();
 	}
 
+	/**
+	 * Assigns collected interim diagnostics of batch evaluation to the
+	 * resulting evaluation problems.
+	 */
+	private void commitBatchEvaluateProblems() {
+		evalProblems = batchEvalProblems;
+		batchEvalProblems = null;
+	}
+
+	/**
+	 * Handles problems of single evaluation performed on behalf of batch
+	 * evaluate invocation.
+	 */
+	private void handleNextEvaluateProblems() {
+		Diagnostic nextEvalProblems = getProblems();
+		if (nextEvalProblems != null) {
+			if (batchEvalProblems == null) {
+				BasicDiagnostic rootDiagnostic = new BasicDiagnostic(
+					nextEvalProblems.getSeverity(), OCLPlugin.getPluginId(),
+					nextEvalProblems.getCode(), nextEvalProblems.getMessage(),
+					null);
+
+				batchEvalProblems = rootDiagnostic;
+			}
+			
+			batchEvalProblems.add(nextEvalProblems);
+		}
+	}
+		
 } //QueryImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 253252
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.9 2008/11/05 16:30:17 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.10 2009/01/31 19:47:15 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -35,6 +36,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -186,6 +188,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				}
 				
 				return result;
+	        } catch (EvaluationHaltedException e) {
+				// evaluation stopped on demand, propagate father	        
+	        	throw e;				
 			} catch (UnsupportedOperationException ignore) {
 				// let the EvaluationVisitor do its thing
 			} catch (Exception e) {
@@ -1473,13 +1478,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, Boolean.FALSE);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove the result variable from the environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove the result variable from the environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateForAllIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1499,13 +1504,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, Boolean.TRUE);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from the environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from the environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateCollectNestedIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1538,13 +1543,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, initResultVal);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {		
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateCollectIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1577,13 +1582,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, initResultVal);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateSelectIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1621,14 +1626,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// generate a name for the result variable and add it to the environment
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, initResultVal);
-
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateRejectIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1667,13 +1672,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, initResultVal);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateOneIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1693,13 +1698,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, Boolean.FALSE);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateAnyIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1718,13 +1723,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, null);
 
-		// evaluate
-		Object result = is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	private Object evaluateSortedByIterator(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1746,21 +1751,21 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		final Map<Object, Comparable<Object>> map =
 			new HashMap<Object, Comparable<Object>>();
 		getEvaluationEnvironment().add(resultName, map);
-
-		// evaluate
-		// TODO: find an efficient way to do this.
-		Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
-		
-		if (evaluationResult == getOclInvalid()) {
-			// handle the OclInvalid result
-			return evaluationResult;
+		try {
+			// evaluate
+			// TODO: find an efficient way to do this.
+			Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
+			
+			if (evaluationResult == getOclInvalid()) {
+				// handle the OclInvalid result
+				return evaluationResult;
+			}
+			
+			is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
 		}
-		
-		is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
 		// sort the source collection based on the natural ordering of the
 		// body expression evaluations
 		List<Object> result = new ArrayList<Object>(coll);
@@ -1800,12 +1805,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, new HashSet<Object>());
 
-		// evaluate
-		is.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
+		try {
+			// evaluate
+			is.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
+		
 		return is.isDone() ? Boolean.FALSE : Boolean.TRUE;
 	}
 
@@ -1828,13 +1835,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		String resultName = generateName();
 		getEvaluationEnvironment().add(resultName, initResultVal);
 
-		// evaluate
-		Object result = template.evaluate(coll, iterators, body, resultName);
-
-		// remove result name from environment
-		getEvaluationEnvironment().remove(resultName);
-
-		return result;
+		try {
+			// evaluate
+			return template.evaluate(coll, iterators, body, resultName);
+		} finally {
+			// remove result name from environment
+			getEvaluationEnvironment().remove(resultName);
+		}
 	}
 
 	/**
@@ -2084,16 +2091,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// get variable decl for let variable
 		Variable<C, PM> vd = l.getVariable();
 		String name = (String) vd.accept(getVisitor());
-
-		// evaluate the "in" part of the let
-		OCLExpression<C> inExp = l.getIn();
-		Object val = inExp.accept(getVisitor());
-
-		// remove the variable-init expression binding from the environment
-		getEvaluationEnvironment().remove(name);
-
-		// return the value of the "in"
-		return val;
+		
+		try {
+			// evaluate the "in" part of the let
+			OCLExpression<C> inExp = l.getIn();
+			// return the value of the "in"			
+			return inExp.accept(getVisitor());
+			
+		} finally {
+			// remove the variable-init expression binding from the environment
+			getEvaluationEnvironment().remove(name);
+		}
 	}
 
 	/**
