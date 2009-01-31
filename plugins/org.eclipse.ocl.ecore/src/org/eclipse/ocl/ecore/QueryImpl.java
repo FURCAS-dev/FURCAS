@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Borland Software Corporation, and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.1 2007/03/27 15:05:30 cdamus Exp $
+ * $Id: QueryImpl.java,v 1.2 2009/01/31 19:46:43 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -21,11 +22,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.Query;
+import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.util.ProblemAware;
 
 
 /**
@@ -33,7 +37,7 @@ import org.eclipse.ocl.Query;
  * 
  * @author Christian W. Damus (cdamus)
  */
-class QueryImpl implements OCL.Query {
+class QueryImpl implements OCL.Query, ProblemAware {
     private final Query<EClassifier, EClass, EObject> delegate;
     private final OCL ocl;
     
@@ -94,4 +98,7 @@ class QueryImpl implements OCL.Query {
 		return delegate.select(objects);
 	}
 
+	public Diagnostic getProblems() {
+		return OCLUtil.getEvaluationProblems(delegate);
+	}
 }
