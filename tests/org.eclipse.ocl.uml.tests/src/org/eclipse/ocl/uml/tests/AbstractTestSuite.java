@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 245897, 179990
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.14 2008/11/12 17:13:12 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.15 2009/01/31 19:47:29 cdamus Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -212,6 +213,7 @@ public abstract class AbstractTestSuite
 		result.addTest(TypesValidatorTest.suite());
 		result.addTest(ExpressionsValidatorTest.suite());
 		result.addTest(SerializationTest.suite());
+		result.addTest(EvaluationHaltedTest.suite());
 		
 		return result;
 	}
