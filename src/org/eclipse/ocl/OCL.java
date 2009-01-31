@@ -12,10 +12,11 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bug 251349
  *   E.D.Willink - Bug 259818
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.8 2009/01/13 20:31:30 cdamus Exp $
+ * $Id: OCL.java,v 1.9 2009/01/31 19:47:15 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -78,6 +79,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<CT> constraints = new java.util.ArrayList<CT>();
 
 	private Diagnostic problems;
+	private Diagnostic evaluationProblems;	
 
 	private int parserRepairCount = 0;
 
@@ -418,6 +420,8 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @see #check(Object, Object)
 	 */
 	public Object evaluate(Object context, OCLExpression<C> expression) {
+		evaluationProblems = null;
+		
 		// can determine a more appropriate context from the context
 		// variable of the expression, to account for stereotype constraints
 		context = HelperUtil.getConstraintContext(rootEnvironment, context,
@@ -439,6 +443,9 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 		try {
 			result = ev.visitExpression(expression);
+		} catch (EvaluationHaltedException e) {
+			evaluationProblems = e.getDiagnostic();
+			result = rootEnvironment.getOCLStandardLibrary().getOclInvalid();
 		} finally {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
@@ -713,6 +720,18 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 */
 	public Diagnostic getProblems() {
 		return problems;
+	}
+
+	/**
+	 * Obtains problems, if any, occurred during evaluation of the last OCL
+	 * constraint or query expression.
+	 * 
+	 * @return evaluation problems or <code>null</code> if all was OK
+	 * 
+	 * @since 1.3
+	 */
+	public Diagnostic getEvaluationProblems() {
+		return evaluationProblems;
 	}
 
 	/**
