@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,13 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
- *   Zeligsoft - Bug 233673
+ *   Zeligsoft - Bugs 233673, 261128
  *   E.D.Willink - Bug 242236
+ *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.7 2008/12/30 11:48:35 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.8 2009/01/31 19:47:15 cdamus Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -28,6 +29,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LookupException;
+import org.eclipse.ocl.Query;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.TypeChecker;
@@ -386,5 +388,27 @@ public final class OCLUtil {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Attempts to get evaluation problems available from the last evaluation of
+	 * the given query.
+	 * 
+	 * @param query
+	 *            a query to check for evaluation problems
+	 * @return the diagnostic object encapsulating the problem details or
+	 *         <code>null</code> if no problems are available
+	 * 
+	 * @since 1.3
+	 */
+	public static <C, CLS, E> Diagnostic getEvaluationProblems(
+			Query<C, CLS, E> query) {
+
+		if (query instanceof ProblemAware) {
+			ProblemAware problemAware = (ProblemAware) query;
+			return problemAware.getProblems();
+		}
+
+		return null;
 	}
 }
