@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 248869
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.6 2008/09/28 17:34:22 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.7 2009/02/12 00:01:52 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -52,6 +53,7 @@ import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.options.ParsingOptions;
 
 /**
  * Tests the {@link ExpressionsUtil} class.
@@ -157,6 +159,40 @@ public class EcoreEnvironmentTest
         assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
         assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
     }
+	
+    /**
+     * Tests extensibility of the OCL Ecore environment, that the particular
+     * scenario also works with backslash escaping, such that the Java operation
+     * implementation gets the expected string values.
+     */
+	public void test_extensibility_156360_with_backslash_escaping() {
+		OCL ocl = OCL.newInstance(new MyEnvironmentFactory());
+
+		OCL.Helper helper = ocl.createOCLHelper();
+		helper.setContext(EcorePackage.Literals.ESTRING);
+
+		Constraint constraint = null;
+
+		Boolean oldBackslashProcessingEnabled = ParsingOptions.getValue(ocl
+			.getEnvironment(), ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING);
+		ParsingOptions.setOption(ocl.getEnvironment(),
+			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING, true);
+
+		try {
+			constraint = helper
+				.createInvariant("self.regexMatch('\\\\d{3}-\\\\d{3}-\\\\d{3}') <> null"); //$NON-NLS-1$
+		} catch (Exception e) {
+			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		} finally {
+			ParsingOptions.setOption(ocl.getEnvironment(),
+				ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
+				oldBackslashProcessingEnabled);
+		}
+
+		assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
+		assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
+		assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
+	}
 	
 	//
 	// Framework methods

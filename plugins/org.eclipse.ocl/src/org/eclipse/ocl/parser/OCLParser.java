@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
+*   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.5 2009/01/13 19:44:29 cdamus Exp $
+* $Id: OCLParser.java,v 1.6 2009/02/12 00:04:09 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -1182,7 +1183,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			//
 			case 173: {
 				
-				CSTNode result = createStringLiteralExpCS(getTokenText(dtParser.getToken(1)));
+				CSTNode result = createStringLiteralExpCS(unescape(getIToken((dtParser.getToken(1)))));
 				setOffsets(result, getIToken(dtParser.getToken(1)));
 				dtParser.setSym1(result);
 	  		  break;

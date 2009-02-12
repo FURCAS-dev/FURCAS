@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 253252
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.7 2008/11/05 16:30:22 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.8 2009/02/12 00:01:52 cdamus Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -39,6 +40,7 @@ import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.options.EvaluationOptions;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.CollectionType;
 
 /**
@@ -354,6 +356,80 @@ public class BasicOCLTest
         }
     }
     
+	/**
+	 * Tests backslash escaping in string literals.
+	 */
+	public void test_escapeSequences_242880() {
+		helper.setContext(EcorePackage.Literals.ESTRING);
+
+		Boolean oldBackslashProcessingEnabled = ParsingOptions.getValue(ocl
+			.getEnvironment(), ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING);
+		ParsingOptions.setOption(ocl.getEnvironment(),
+			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING, true);
+
+		String self = ""; //$NON-NLS-1$
+
+		try {
+			assertInvalidString("'str\\(ing'"); //$NON-NLS-1$
+			assertInvalidString("'string\\'"); //$NON-NLS-1$
+			assertInvalidString("'string\\9'"); //$NON-NLS-1$
+
+			assertEquals("str\ning", //$NON-NLS-1$
+				evaluate(helper, self, "'str\\ning'")); //$NON-NLS-1$
+
+			assertEquals("str\\(ing", //$NON-NLS-1$
+				evaluate(helper, self, "'str\\\\(ing'")); //$NON-NLS-1$
+
+			assertEquals("string", //$NON-NLS-1$
+				evaluate(helper, self,
+					"let \"s\\\"g\" : String = 'string' in " + //$NON-NLS-1$
+						"\"s\\\"g\"")); //$NON-NLS-1$
+
+			assertEquals("str\b \t \n \f \r \" \' \\ing", //$NON-NLS-1$
+				evaluate(helper, self,
+					"'str\\b \\t \\n \\f \\r \\\" \\\' \\\\ing'")); //$NON-NLS-1$
+
+			assertEquals("\123tring", //$NON-NLS-1$
+				evaluate(helper, self, "'\\123tring'")); //$NON-NLS-1$
+
+			assertEquals("\0123tring", //$NON-NLS-1$
+				evaluate(helper, self, "'\\0123tring'")); //$NON-NLS-1$
+
+			assertEquals("\70123tring", //$NON-NLS-1$
+				evaluate(helper, self, "'\\70123tring'")); //$NON-NLS-1$
+
+			assertEquals("\70\123tring", //$NON-NLS-1$
+				evaluate(helper, self, "'\\70\\123tring'")); //$NON-NLS-1$
+
+			assertEquals("\70\123tring", //$NON-NLS-1$
+				evaluate(helper, self, "'\\70\\123tring'")); //$NON-NLS-1$
+
+			assertEquals("\345string", //$NON-NLS-1$
+				evaluate(helper, self, "'\\345string'")); //$NON-NLS-1$
+
+			assertEquals("\456string", //$NON-NLS-1$
+				evaluate(helper, self, "'\\456string'")); //$NON-NLS-1$
+
+			assertEquals("\12", //$NON-NLS-1$
+				evaluate(helper, self, "'\\12'")); //$NON-NLS-1$
+
+			assertEquals("string\12", //$NON-NLS-1$
+				evaluate(helper, self, "'string\\12'")); //$NON-NLS-1$
+
+			assertEquals("string\377", //$NON-NLS-1$
+				evaluate(helper, self, "'string\\377'")); //$NON-NLS-1$
+
+			assertEquals("string\t\378", //$NON-NLS-1$
+				evaluate(helper, self, "'string\\t\\378'")); //$NON-NLS-1$
+		} catch (ParserException e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		} finally {
+			ParsingOptions.setOption(ocl.getEnvironment(),
+				ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
+				oldBackslashProcessingEnabled);
+		}
+	}
+    
     /**
      * Test non-standard doubled single-quote syntax for embedding single-quotes
      * in string literals.
@@ -604,4 +680,14 @@ public class BasicOCLTest
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
     }
+    
+	private void assertInvalidString(String input) {
+		boolean isParserError = false;
+		try {
+			evaluate(helper, "", input); //$NON-NLS-1$
+		} catch (ParserException e) {
+			isParserError = true;
+		}
+		assertTrue(isParserError);
+	}
 }
