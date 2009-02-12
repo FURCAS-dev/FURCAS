@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component id="org.eclipse.ocl" version="2">
-<resource path="src/org/eclipse/ocl/cst/impl/ClassifierContextDeclCSImpl.java" type="org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl">
-<filter id="338792546">
-<message_arguments>
-<message_argument value="org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl"/>
-<message_argument value="basicSetInvOrDefCS(InvOrDefCS, NotificationChain)"/>
-</message_arguments>
-</filter>
-</resource>
 <resource path="src/org/eclipse/ocl/parser/OCLParserprs.java" type="org.eclipse.ocl.parser.OCLParserprs">
 <filter id="388194388">
 <message_arguments>
@@ -101,6 +93,72 @@
 </message_arguments>
 </filter>
 </resource>
+<resource path="src/org/eclipse/ocl/cst/impl/ClassifierContextDeclCSImpl.java" type="org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl">
+<filter id="338792546">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl"/>
+<message_argument value="basicSetInvOrDefCS(InvOrDefCS, NotificationChain)"/>
+</message_arguments>
+</filter>
+</resource>
+<resource path="src/org/eclipse/ocl/parser/OCLLexerprs.java" type="org.eclipse.ocl.parser.OCLLexerprs">
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="NUM_RULES"/>
+<message_argument value="326"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="START_STATE"/>
+<message_argument value="327"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="ERROR_ACTION"/>
+<message_argument value="506"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="NUM_STATES"/>
+<message_argument value="49"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="LA_STATE_OFFSET"/>
+<message_argument value="832"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="ACCEPT_ACTION"/>
+<message_argument value="505"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="NUM_NONTERMINALS"/>
+<message_argument value="40"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLLexerprs"/>
+<message_argument value="NUM_SYMBOLS"/>
+<message_argument value="143"/>
+</message_arguments>
+</filter>
+</resource>
 <resource path="src/org/eclipse/ocl/parser/OCLParsersym.java" type="org.eclipse.ocl.parser.OCLParsersym">
 <filter id="388194388">
 <message_arguments>
@@ -133,13 +191,6 @@
 <filter id="388194388">
 <message_arguments>
 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
-<message_argument value="TK_ATPRE"/>
-<message_argument value="72"/>
-</message_arguments>
-</filter>
-<filter id="388194388">
-<message_arguments>
-<message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
 <message_argument value="TK_if"/>
 <message_argument value="70"/>
 </message_arguments>
@@ -147,8 +198,15 @@
 <filter id="388194388">
 <message_arguments>
 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
-<message_argument value="TK_RPAREN"/>
-<message_argument value="2"/>
+<message_argument value="TK_ATPRE"/>
+<message_argument value="72"/>
+</message_arguments>
+</filter>
+<filter id="388194388">
+<message_arguments>
+<message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
+<message_argument value="TK_pre"/>
+<message_argument value="77"/>
 </message_arguments>
 </filter>
 <filter id="388194388">
@@ -161,8 +219,8 @@
 <filter id="388194388">
 <message_arguments>
 <message_argument value="org.eclipse.ocl.parser.OCLParsersym"/>
-<message_argument value="TK_pre"/>
-<message_argument value="77"/>
+<message_argument value="TK_RPAREN"/>
+<message_argument value="2"/>
 </message_arguments>
 </filter>
 <filter id="388194388">

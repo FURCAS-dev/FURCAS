@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bug 253512
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.8 2008/11/12 15:38:23 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.9 2009/02/12 00:04:09 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -241,6 +242,9 @@ public class OCLMessages {
     public static String NonStd_CompareTo_;
     
     public static String Ambig_AssocEnd_;
+    
+    public static String StringNotProperlyClosed_ERROR;
+    public static String InvalidEscapeSequence_ERROR;
 	
 	private static IMessages messagesImpl;
 	
