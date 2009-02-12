@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,10 +15,11 @@
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
  *               255599, 251349, 242236, 259740
  *   Nicolas Rouquette - Bug 259818 (regression)
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.23 2009/01/15 19:09:28 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.24 2009/02/12 00:04:09 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2980,93 +2981,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		StringLiteralExp<C> astNode = oclFactory.createStringLiteralExp();
 		initASTMapping(env, astNode, stringLiteralExpCS);
-		String stringLiteral = stringLiteralExpCS.getStringSymbol();
-		if (stringLiteral.length() <= 2) {
-			astNode.setStringSymbol("");//$NON-NLS-1$
-		} else {
-			astNode.setStringSymbol(processStringEscapes(stringLiteral
-				.substring(1, stringLiteral.length() - 1)));
-		}
+		astNode.setStringSymbol(stringLiteralExpCS.getStringSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getString());
 
 		TRACE("stringLiteralExpCS", "String: " + stringLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$
 
 		return astNode;
-	}
-
-	/**
-	 * Processes escape sequences in string literals. Currently, only the
-	 * non-standard " '' " escape for single-quotes is supported.
-	 * 
-	 * @param stringLiteral
-	 *            a string literal
-	 * 
-	 * @return the string, with any escape sequences converted
-	 */
-	private String processStringEscapes(String stringLiteral) {
-		String result = stringLiteral;
-
-		int length = stringLiteral.length();
-
-		for (int i = 0; i < length; i++) {
-			// optimize for the case that there is no escape: don't create
-			// any new string object or buffer unless we need one
-			if (stringLiteral.charAt(i) == '\'') { // known BMP code point
-				StringBuilder buf = new StringBuilder(length);
-
-				// found an escape. Copy content up to this point
-				buf.append(stringLiteral, 0, i);
-
-				// continue processing to the end, appending to the buffer
-				for (; i < length; i++) {
-					char c = stringLiteral.charAt(i);
-
-					if (c != '\'') { // known BMP code point
-						buf.append(c);
-					} else {
-						i++; // next char
-
-						if (i >= length) {
-							// trailing single-quote is not an escape (although,
-							// the lexer couldn't have parsed it, anyway)
-							buf.append('\'');
-						} else {
-							c = stringLiteral.charAt(i);
-
-							switch (c) {
-								case '\'' : // known BMP code point
-									// append the escaped single-quote
-									buf.append('\'');
-									break;
-								default :
-									// parser shouldn't have produced this
-									buf.append('\''); // include the escape
-									buf.append(c);
-									break;
-							}
-						}
-					}
-				}
-
-				result = buf.toString(); // convert the buffer
-			}
-		}
-
-		if (!result.equals(stringLiteral)) {
-			// check settings for using non-standard closure iterator
-			ProblemHandler.Severity sev = getEnvironment().getValue(
-				ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
-			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-				getEnvironment().problem(
-					sev,
-					ProblemHandler.Phase.ANALYZER,
-					OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_,
-						stringLiteral), "stringLiteralExpCS", //$NON-NLS-1$
-					null);
-			}
-		}
-
-		return result;
 	}
 
 	/**

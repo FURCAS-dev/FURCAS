@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
 -- *   E.D.Willink - Remove unnecessary warning suppression
 -- *   E.D.Willink - Bugs 225493, 243976, 259818
 -- *   Zeligsoft - Bug 243976
+-- *   Borland - Bug 242880
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.5 2009/01/13 19:44:29 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.6 2009/02/12 00:04:09 cdamus Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -187,7 +188,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -199,10 +200,11 @@ $Notice
  *   E.D.Willink - Remove unnecessary warning suppression
  *   E.D.Willink - Bugs 225493, 243976
  *   Zeligsoft - Bug 243976
+ *   Borland - Bug 242880
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.5 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.6 2009/02/12 00:04:09 cdamus Exp $
  */
 	./
 $End
@@ -1261,7 +1263,7 @@ $Rules
 		./
 	stringLiteralExpCS ::= STRING_LITERAL
 		/.$BeginJava
-					CSTNode result = createStringLiteralExpCS(getTokenText($getToken(1)));
+					CSTNode result = createStringLiteralExpCS(unescape(getIToken(($getToken(1)))));
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
 		  $EndJava

@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2007 IBM Corporation and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
 -- * Contributors:
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
--- *
+-- *   Borland - Bug 242880
+-- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.2 2009/02/12 00:04:09 cdamus Exp $
 -- */
 --
 -- The OCL Lexer
@@ -53,7 +54,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -62,10 +63,11 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+ *   Borland - Bug 242880
  $copyright_contributions
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.2 2009/02/12 00:04:09 cdamus Exp $
  */
 	./
 $End
@@ -529,13 +531,16 @@ $Rules
                        '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
                        '[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' | '#' | DollarSign
 
-    SpecialNotDQ -> '+' | '-' | '/' | '(' | ')' | '*' | '!' | '@' | '`' | '~' |
-                    '%' | '&' | '^' | ':' | ';' | "'" | '|' | '{' | '}' |
-                    '[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' | '#' | DollarSign
+    SpecialNotSQNotDQ -> '+' | '-' | '/' | '(' | ')' | '*' | '!' | '@' | '`' | '~' |
+                         '%' | '&' | '^' | ':' | ';' | '|' | '{' | '}' |
+                         '[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' | '#' | DollarSign
 
-    SpecialNotSQ -> '+' | '-' | '/' | '(' | ')' | '*' | '!' | '@' | '`' | '~' |
-                    '%' | '&' | '^' | ':' | ';' | '"' | '|' | '{' | '}' | '\' |
-                    '[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' | '#' | DollarSign
+    
+    SpecialNotDQ -> SpecialNotSQNotDQ | "'"
+    SpecialNotSQ -> SpecialNotSQNotDQ | '"'
+
+    EscapedSymbols -> NotSQNotDQ | '"' | "'" | '\'
+    BackslashEscapedSymbol -> '\' EscapedSymbols
 
     NotSlashOrStar -> Letter
                     | Digit
@@ -551,6 +556,11 @@ $Rules
             | FF
             | CtlCharNotWS
 
+    NotSQNotDQ -> Letter
+           | Digit
+           | SpecialNotSQNotDQ
+           | Space
+
     NotDQ -> Letter
            | Digit
            | SpecialNotDQ
@@ -564,6 +574,7 @@ $Rules
            | SpecialNotSQ
            | Space
            | EscapedSQ
+           | BackslashEscapedSymbol
            --| '\' u HexDigit HexDigit HexDigit HexDigit
            --| '\' OctalDigit
 

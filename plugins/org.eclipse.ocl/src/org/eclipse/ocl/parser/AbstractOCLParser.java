@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,18 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *             - Bugs 243976, 259818
  *   Zeligsoft - Bugs 243976, 255599, 251349
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.5 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: AbstractOCLParser.java,v 1.6 2009/02/12 00:04:09 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
+import lpg.lpgjavaruntime.IToken;
 import lpg.lpgjavaruntime.NullExportedSymbolsException;
 import lpg.lpgjavaruntime.NullTerminalSymbolsException;
+import lpg.lpgjavaruntime.ParseErrorCodes;
 import lpg.lpgjavaruntime.UndefinedEofSymbolException;
 import lpg.lpgjavaruntime.UnimplementedTerminalsException;
 
@@ -76,13 +79,17 @@ import org.eclipse.ocl.cst.TypeCS;
 import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.cst.VariableExpCS;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.AbstractLexer;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.BasicEnvironment;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.options.ProblemOption;
 
 public abstract class AbstractOCLParser
 		extends AbstractParser {
-
+	
 	public AbstractOCLParser(BasicEnvironment environment) {
 		super(environment);
 	}
@@ -113,7 +120,7 @@ public abstract class AbstractOCLParser
 					+ OCLParsersym.orderedTerminalSymbols[OCLParserprs.EOFT_SYMBOL]);
 		}
 	}
-
+	
 	protected PackageDeclarationCS createPackageDeclarationCS(
 			PathNameCS pathNameCS, EList<ContextDeclCS> contextDecls) {
 		PackageDeclarationCS result = CSTFactory.eINSTANCE
@@ -680,5 +687,172 @@ public abstract class AbstractOCLParser
 		}
 
 		return result;
+	}
+	
+	/**
+	 * <p>
+	 * Escaping support based on the QVT specification (8.4.3).
+	 * </p>
+	 * <p>
+	 * All the usual escape characters using backslash can be used including the '\n' new-line character.
+	 *  The list of available escape characters are those defined for the Java language.
+	 *  <p>
+	 *  <p>
+	 *  EscapeSequence:
+	 *  </p>
+	 *  <table border="0" align="left">
+	 *  <tr><td><b><tt>\b</tt></b></td> <td><tt>\u0008</tt>: backspace <tt>BS</tt></td></tr>
+	 *  <tr><td><b><tt>\t</tt></b></td> <td><tt>\u0009</tt>: horizontal tab <tt>HT</tt></td></tr>
+	 *  <tr><td><b><tt>\n</tt></b></td> <td><tt>\u000a</tt>: line feed <tt>LF</tt></td></tr>
+	 *  <tr><td><b><tt>\f</tt></b></td> <td><tt>\u000c</tt>: form feed <tt>FF</tt></td></tr> 
+	 *  <tr><td><b><tt>\r</tt></b></td> <td><tt>\u000d</tt>: carriage return <tt>CR</tt></td></tr>
+	 *  <tr><td><b><tt>\"</tt></b></td> <td><tt>\u0022</tt>: double quote <tt>"</tt></td></tr>
+	 *  <tr><td><b><tt>\'</tt></b></td> <td><tt>\u0027</tt>: single quote <tt>'</tt></td></tr>
+	 *  <tr><td><b><tt>\\</tt></b></td> <td><tt>\u005c</tt>: backslash <tt>\</tt></td></tr>
+	 *  <tr><td rowspan="2" valign="top"><b>OctalEscape</b></td> <td><tt>\u0000</tt> to <tt>\u00ff</tt>: from octal value</td></tr>
+	 *  <tr><td>\ ZeroToThree OctalDigit OctalDigit</td></tr>
+	 *  <tr><td><b>OctalDigit<b></td> <td><tt>0 1 2 3 4 5 6 7</tt></td></tr>
+	 *  <tr><td><b>ZeroToThree</b></td> <td><tt>0 1 2 3</tt></td></tr>
+	 *  </table>
+	 *  
+	 * @param stringLiteral a string literal token with escape notation 
+	 * @return the unescaped string
+	 * 
+	 * @since 1.3
+	 */
+	protected String unescape(IToken stringLiteral) {
+		String rawString = stringLiteral.toString();
+		int rawStringLength = rawString.length();
+		if (rawStringLength <= 2) {
+			return ""; //$NON-NLS-1$
+		}
+		StringBuilder unescapedStringBuilder = null;
+		boolean isBackslashEscapeProcessingUsed = getEnvironment().isEnabled(
+			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING);
+		boolean isNonStdSQEscapingUsed = false;
+		int n = rawStringLength - 1;
+		for (int i = 1; i < n; i++) {
+			char ch = rawString.charAt(i);
+			if ((isBackslashEscapeProcessingUsed && (ch == '\\'))
+				|| ((ch == '\'') && isNonStdSQSupported())) {
+				if (unescapedStringBuilder == null) {
+					unescapedStringBuilder = new StringBuilder(rawString
+						.substring(1, i));
+				}
+				i++;
+				if (i >= n) {
+					reportError(
+						ParseErrorCodes.INVALID_CODE,
+						"", stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(), //$NON-NLS-1$
+						OCLMessages.StringNotProperlyClosed_ERROR);
+				}
+				char nextCh = rawString.charAt(i);
+				if (ch == '\\') {
+					switch (nextCh) {
+						case 'b' :
+							unescapedStringBuilder.append('\b');
+							break;
+						case 't' :
+							unescapedStringBuilder.append('\t');
+							break;
+						case 'n' :
+							unescapedStringBuilder.append('\n');
+							break;
+						case 'f' :
+							unescapedStringBuilder.append('\f');
+							break;
+						case 'r' :
+							unescapedStringBuilder.append('\r');
+							break;
+						case '\"' :
+							unescapedStringBuilder.append('\"');
+							break;
+						case '\'' :
+							unescapedStringBuilder.append('\'');
+							break;
+						case '\\' :
+							unescapedStringBuilder.append('\\');
+							break;
+						default :
+							// octal escape check
+							int unescapedChar = -1;
+							if ((nextCh >= '\u0030') && (nextCh <= '\u0037')) { // octal
+																				// digit
+								unescapedChar = Character
+									.getNumericValue(nextCh);
+								if (i + 1 < n) {
+									char tmpCh = rawString.charAt(i + 1);
+									if ((tmpCh >= '\u0030')
+										&& (tmpCh <= '\u0037')) { // octal digit
+										unescapedChar = 8 * unescapedChar
+											+ Character.getNumericValue(tmpCh);
+										i++;
+										if (i + 1 < n) {
+											tmpCh = rawString.charAt(i + 1);
+											if ((tmpCh >= '\u0030')
+												&& (tmpCh <= '\u0037') // octal
+																		// digit
+												&& (nextCh <= '\u0033')) { // most-significant
+																			// digit
+																			// in
+																			// range
+																			// 0..2
+												unescapedChar = 8
+													* unescapedChar
+													+ Character
+														.getNumericValue(tmpCh);
+												i++;
+											}
+										}
+									}
+								}
+								unescapedStringBuilder
+									.append((char) unescapedChar);
+							}
+							if (unescapedChar < 0) {
+								reportError(
+									ParseErrorCodes.INVALID_CODE,
+									"", stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(), //$NON-NLS-1$
+									OCLMessages.InvalidEscapeSequence_ERROR);
+							}
+							break;
+					}
+				} else { // non-std '' escaping
+					unescapedStringBuilder.append('\'');
+					isNonStdSQEscapingUsed = true;
+					assert nextCh == '\'' : "Unexpected escape sequence in string literal: " + rawString; //$NON-NLS-1$
+				}
+			} else if (unescapedStringBuilder != null) {
+				unescapedStringBuilder.append(ch);
+			}
+		}
+		if (isNonStdSQEscapingUsed) {
+			// check settings for using non-standard closure iterator
+			ProblemHandler.Severity sev = getEnvironment().getValue(
+				ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
+			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+				getEnvironment().problem(
+					sev,
+					ProblemHandler.Phase.PARSER,
+					OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_,
+						stringLiteral), "STRING_LITERAL", //$NON-NLS-1$
+					null);
+			}
+		}
+		return (unescapedStringBuilder == null)
+			? rawString.substring(1, n)
+			: unescapedStringBuilder.toString();
+	}
+
+	/**
+	 * To be overridden in parsers which prohibit non-std SQL-like single quote
+	 * escaping (" <tt>''</tt> ").
+	 * 
+	 * @return true if such escaping is supported, false otherwise
+	 * 
+	 * @since 1.3
+	 */
+	protected boolean isNonStdSQSupported() {
+		return true;
 	}
 }
