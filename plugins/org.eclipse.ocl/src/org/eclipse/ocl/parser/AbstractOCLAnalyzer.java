@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.24 2009/02/12 00:04:09 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.25 2009/03/05 14:12:14 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2981,7 +2981,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		StringLiteralExp<C> astNode = oclFactory.createStringLiteralExp();
 		initASTMapping(env, astNode, stringLiteralExpCS);
-		astNode.setStringSymbol(stringLiteralExpCS.getStringSymbol());
+		astNode.setStringSymbol(stringLiteralExpCS.getUnescapedStringSymbol());
 		astNode.setType(env.getOCLStandardLibrary().getString());
 
 		TRACE("stringLiteralExpCS", "String: " + stringLiteralExpCS.getSymbol());//$NON-NLS-2$//$NON-NLS-1$

@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
+*   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLBacktrackingParser.java,v 1.2 2009/03/05 14:12:14 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.cst.PathNameCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.cst.SimpleTypeEnum;
 import org.eclipse.ocl.cst.StateExpCS;
+import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TypeCS;
 import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -60,7 +62,7 @@ import org.eclipse.ocl.cst.OperationCS;
 import org.eclipse.ocl.cst.PackageDeclarationCS;
 import org.eclipse.ocl.cst.PrePostOrBodyEnum;
 
-import org.eclipse.ocl.parser.AbstractOCLParser;
+	import org.eclipse.ocl.parser.AbstractOCLParser;
 
 /**
  * The backtracking variant of the OCL parser.
@@ -1189,8 +1191,10 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 			//
 			case 173: {
 				
-				CSTNode result = createStringLiteralExpCS(getTokenText(dtParser.getToken(1)));
-				setOffsets(result, getIToken(dtParser.getToken(1)));
+				IToken literalToken = getIToken(dtParser.getToken(1));
+				StringLiteralExpCS result = createStringLiteralExpCS(literalToken.toString());
+				result.setUnescapedStringSymbol(unescape(literalToken));
+				setOffsets(result, literalToken);
 				dtParser.setSym1(result);
 	  		  break;
 			}
