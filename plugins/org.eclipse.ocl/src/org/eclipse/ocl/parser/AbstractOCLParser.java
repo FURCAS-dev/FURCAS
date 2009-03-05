@@ -12,11 +12,11 @@
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *             - Bugs 243976, 259818
  *   Zeligsoft - Bugs 243976, 255599, 251349
- *   Borland - Bug 242880
+ *   Borland - Bugs 242880, 266320
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.6 2009/02/12 00:04:09 cdamus Exp $
+ * $Id: AbstractOCLParser.java,v 1.7 2009/03/05 14:30:51 cdamus Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -836,7 +836,7 @@ public abstract class AbstractOCLParser
 					ProblemHandler.Phase.PARSER,
 					OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_,
 						stringLiteral), "STRING_LITERAL", //$NON-NLS-1$
-					null);
+					stringLiteral);
 			}
 		}
 		return (unescapedStringBuilder == null)
