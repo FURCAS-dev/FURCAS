@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,11 @@
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
  *             - Bugs 243976, 242236
  *   Zeligsoft - Bugs 245760, 243976, 242236
+ *   Borland - Bug 266320
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.6 2008/12/30 11:48:35 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.7 2009/03/05 14:30:51 cdamus Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lpg.lpgjavaruntime.IToken;
 import lpg.lpgjavaruntime.ParseErrorCodes;
 
 import org.eclipse.ocl.cst.CSTNode;
@@ -332,9 +334,17 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment2 {
 			String problemContext, Object problemObject) {
 		ProblemHandler problemHandler = getProblemHandler();
 		if (problemHandler != null) {
+			int startOffset = -1;
+			int endOffset = -1;
 			CSTNode cstNode = getASTMapping(problemObject);
-			int startOffset = cstNode != null ? cstNode.getStartOffset() : -1;
-			int endOffset = cstNode != null ? cstNode.getEndOffset() : -1;
+			if (cstNode != null) {
+				startOffset = cstNode.getStartOffset();
+				endOffset = cstNode.getEndOffset();
+			} else if (problemObject instanceof IToken) {
+				IToken token = (IToken) problemObject;
+				startOffset = token.getStartOffset();
+				endOffset = token.getEndOffset();
+			}
 			problemHandler.handleProblem(severity, phase,
 				problemMessage, problemContext, startOffset, endOffset);
 		}
