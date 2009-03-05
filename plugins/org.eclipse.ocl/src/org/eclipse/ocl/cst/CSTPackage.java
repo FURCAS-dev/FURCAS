@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 231435, 243976, 251349
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.6 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.7 2009/03/05 14:12:13 cdamus Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -3615,6 +3616,17 @@ public interface CSTPackage
 	int STRING_LITERAL_EXP_CS__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Unescaped String Symbol</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>String Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3622,7 +3634,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int STRING_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int STRING_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -6075,6 +6087,18 @@ public interface CSTPackage
 	EAttribute getStringLiteralExpCS_StringSymbol();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.StringLiteralExpCS#getUnescapedStringSymbol <em>Unescaped String Symbol</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unescaped String Symbol</em>'.
+	 * @see org.eclipse.ocl.cst.StringLiteralExpCS#getUnescapedStringSymbol()
+	 * @see #getStringLiteralExpCS()
+	 * @generated
+	 */
+	EAttribute getStringLiteralExpCS_UnescapedStringSymbol();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.BooleanLiteralExpCS <em>Boolean Literal Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7431,6 +7455,16 @@ public interface CSTPackage
 		 */
 		EAttribute STRING_LITERAL_EXP_CS__STRING_SYMBOL = eINSTANCE
 			.getStringLiteralExpCS_StringSymbol();
+
+		/**
+		 * The meta object literal for the '<em><b>Unescaped String Symbol</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * @since 1.3
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL = eINSTANCE
+			.getStringLiteralExpCS_UnescapedStringSymbol();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
