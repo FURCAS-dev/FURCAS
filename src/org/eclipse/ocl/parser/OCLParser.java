@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.6 2009/02/12 00:04:09 cdamus Exp $
+* $Id: OCLParser.java,v 1.7 2009/03/05 14:12:14 cdamus Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -38,6 +38,7 @@ import org.eclipse.ocl.cst.PathNameCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.cst.SimpleTypeEnum;
 import org.eclipse.ocl.cst.StateExpCS;
+import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TypeCS;
 import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -1183,8 +1184,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			//
 			case 173: {
 				
-				CSTNode result = createStringLiteralExpCS(unescape(getIToken((dtParser.getToken(1)))));
-				setOffsets(result, getIToken(dtParser.getToken(1)));
+				IToken literalToken = getIToken(dtParser.getToken(1));
+				StringLiteralExpCS result = createStringLiteralExpCS(literalToken.toString());
+				result.setUnescapedStringSymbol(unescape(literalToken));
+				setOffsets(result, literalToken);
 				dtParser.setSym1(result);
 	  		  break;
 			}

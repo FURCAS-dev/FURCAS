@@ -257,6 +257,7 @@
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/StringLiteralExpCS">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StringLiteralExpCS/stringSymbol"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StringLiteralExpCS/unescapedStringSymbol"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/BooleanLiteralExpCS">
         <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/BooleanLiteralExpCS/booleanSymbol"/>

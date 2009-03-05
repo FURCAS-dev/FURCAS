@@ -557,6 +557,10 @@
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Ev8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_HPVqoAKSEd6O0MANVU0HEw" name="unescapedStringSymbol" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HPVqoQKSEd6O0MANVU0HEw"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-E_8fEduhWtVvKtiQ7w" name="BooleanLiteralExpCS">
         <generalization xmi:id="_qdx-FP8fEduhWtVvKtiQ7w" general="_qdx9__8fEduhWtVvKtiQ7w"/>
@@ -877,4 +881,5 @@
   <Ecore:EReference xmi:id="_j10GkI2IEd2mlKUM3HGxZg" base_Property="_bgLRUI2IEd2mlKUM3HGxZg"/>
   <Ecore:EClass xmi:id="_u2txsL8sEd2tbsirxV4pLA" base_Class="_WuZt4L8sEd2tbsirxV4pLA"/>
   <Ecore:EReference xmi:id="_xEai4L8tEd2tbsirxV4pLA" base_Property="_woRO4L8sEd2tbsirxV4pLA"/>
+  <Ecore:EAttribute xmi:id="_K42H8AKSEd6O0MANVU0HEw" base_Property="_HPVqoAKSEd6O0MANVU0HEw"/>
 </xmi:XMI>

@@ -17,7 +17,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.6 2009/02/12 00:04:09 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.7 2009/03/05 14:12:14 cdamus Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -198,13 +198,13 @@ $Notice
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
  *   E.D.Willink - Remove unnecessary warning suppression
- *   E.D.Willink - Bugs 225493, 243976
+ *   E.D.Willink - Bugs 225493, 243976, 259818
  *   Zeligsoft - Bug 243976
  *   Borland - Bug 242880
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.6 2009/02/12 00:04:09 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.7 2009/03/05 14:12:14 cdamus Exp $
  */
 	./
 $End
@@ -226,6 +226,7 @@ $Globals
 	import org.eclipse.ocl.cst.SimpleNameCS;
 	import org.eclipse.ocl.cst.SimpleTypeEnum;
 	import org.eclipse.ocl.cst.StateExpCS;
+	import org.eclipse.ocl.cst.StringLiteralExpCS;
 	import org.eclipse.ocl.cst.TypeCS;
 	import org.eclipse.ocl.cst.VariableCS;
 	import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -1263,8 +1264,10 @@ $Rules
 		./
 	stringLiteralExpCS ::= STRING_LITERAL
 		/.$BeginJava
-					CSTNode result = createStringLiteralExpCS(unescape(getIToken(($getToken(1)))));
-					setOffsets(result, getIToken($getToken(1)));
+					IToken literalToken = getIToken($getToken(1));
+					StringLiteralExpCS result = createStringLiteralExpCS(literalToken.toString());
+					result.setUnescapedStringSymbol(unescape(literalToken));
+					setOffsets(result, literalToken);
 					$setResult(result);
 		  $EndJava
 		./

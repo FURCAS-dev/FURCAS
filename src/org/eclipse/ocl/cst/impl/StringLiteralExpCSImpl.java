@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 243976
+ *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: StringLiteralExpCSImpl.java,v 1.4 2009/03/05 14:12:13 cdamus Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -31,6 +32,7 @@ import org.eclipse.ocl.cst.StringLiteralExpCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.impl.StringLiteralExpCSImpl#getStringSymbol <em>String Symbol</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.impl.StringLiteralExpCSImpl#getUnescapedStringSymbol <em>Unescaped String Symbol</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +61,28 @@ public class StringLiteralExpCSImpl
 	 * @ordered
 	 */
 	protected String stringSymbol = STRING_SYMBOL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUnescapedStringSymbol() <em>Unescaped String Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @see #getUnescapedStringSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNESCAPED_STRING_SYMBOL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUnescapedStringSymbol() <em>Unescaped String Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @see #getUnescapedStringSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected String unescapedStringSymbol = UNESCAPED_STRING_SYMBOL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,6 +128,31 @@ public class StringLiteralExpCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUnescapedStringSymbol() {
+		return unescapedStringSymbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 1.3
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnescapedStringSymbol(String newUnescapedStringSymbol) {
+		String oldUnescapedStringSymbol = unescapedStringSymbol;
+		unescapedStringSymbol = newUnescapedStringSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL,
+				oldUnescapedStringSymbol, unescapedStringSymbol));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -112,6 +161,8 @@ public class StringLiteralExpCSImpl
 		switch (featureID) {
 			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
 				return getStringSymbol();
+			case CSTPackage.STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL :
+				return getUnescapedStringSymbol();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -127,6 +178,9 @@ public class StringLiteralExpCSImpl
 			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
 				setStringSymbol((String) newValue);
 				return;
+			case CSTPackage.STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL :
+				setUnescapedStringSymbol((String) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -141,6 +195,9 @@ public class StringLiteralExpCSImpl
 		switch (featureID) {
 			case CSTPackage.STRING_LITERAL_EXP_CS__STRING_SYMBOL :
 				setStringSymbol(STRING_SYMBOL_EDEFAULT);
+				return;
+			case CSTPackage.STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL :
+				setUnescapedStringSymbol(UNESCAPED_STRING_SYMBOL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,6 +215,11 @@ public class StringLiteralExpCSImpl
 				return STRING_SYMBOL_EDEFAULT == null
 					? stringSymbol != null
 					: !STRING_SYMBOL_EDEFAULT.equals(stringSymbol);
+			case CSTPackage.STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL :
+				return UNESCAPED_STRING_SYMBOL_EDEFAULT == null
+					? unescapedStringSymbol != null
+					: !UNESCAPED_STRING_SYMBOL_EDEFAULT
+						.equals(unescapedStringSymbol);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -175,6 +237,8 @@ public class StringLiteralExpCSImpl
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stringSymbol: "); //$NON-NLS-1$
 		result.append(stringSymbol);
+		result.append(", unescapedStringSymbol: "); //$NON-NLS-1$
+		result.append(unescapedStringSymbol);
 		result.append(')');
 		return result.toString();
 	}
