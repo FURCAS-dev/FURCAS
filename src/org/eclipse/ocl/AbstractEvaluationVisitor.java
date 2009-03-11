@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 238050, 253252
- *   Radek Dvorak - Bug 261128
+ *   Radek Dvorak - Bugs 261128, 265066
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.8 2009/01/31 19:47:15 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.9 2009/03/11 13:04:28 cdamus Exp $
  */
 package org.eclipse.ocl;
 
@@ -106,6 +106,28 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
         return visitor;
     }
 
+	/**
+	 * Sets the evaluation environment to be used by this visitor during
+	 * evaluation.
+	 * 
+	 * @param evaluationEnvironment
+	 *            non-null evaluation environment
+	 * @throws IllegalArgumentException
+	 *             if the passed <code>evaluationEnvironment</code> is
+	 *             <code>null</code>
+	 * 
+	 * @since 1.3
+	 */
+	protected void setEvaluationEnvironment(
+			EvaluationEnvironment<C, O, P, CLS, E> evaluationEnvironment) {
+		
+		if (evaluationEnvironment == null) {
+			throw new IllegalArgumentException("null evaluation environment"); //$NON-NLS-1$
+		}
+
+		this.evalEnv = evaluationEnvironment;
+	}
+    
     /**
      * Sets the visitor on which I perform nested
      * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.
