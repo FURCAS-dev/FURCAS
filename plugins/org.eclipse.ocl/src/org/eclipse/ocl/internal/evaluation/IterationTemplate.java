@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Radek Dvorak - Bug 261128
+ *   Radek Dvorak - Bugs 261128, 265066
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.3 2009/01/31 19:47:15 cdamus Exp $
+ * $Id: IterationTemplate.java,v 1.4 2009/03/11 13:04:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -28,7 +28,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 
-class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
+public class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	
 	private EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> evalVisitor;
 	private EvaluationEnvironment<C, O, P, CLS, E> env;

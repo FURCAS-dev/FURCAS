@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Borland - Bug 265066
  *
  * </copyright>
  *
- * $Id: IterationTemplateAny.java,v 1.3 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: IterationTemplateAny.java,v 1.4 2009/03/11 13:04:28 cdamus Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -26,7 +27,7 @@ import org.eclipse.ocl.expressions.Variable;
 /**
  *
  */
-class IterationTemplateAny<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
+public class IterationTemplateAny<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
 	protected IterationTemplateAny(
