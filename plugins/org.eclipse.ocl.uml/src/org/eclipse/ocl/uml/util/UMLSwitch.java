@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLSwitch.java,v 1.8 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: UMLSwitch.java,v 1.9 2009/05/26 20:06:43 aigdalov Exp $
  */
 package org.eclipse.ocl.uml.util;
 
@@ -136,13 +136,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = casePredefinedType(anyType);
 				if (result == null)
-					result = caseNamedElement(anyType);
-				if (result == null)
 					result = casePackageableElement(anyType);
 				if (result == null)
-					result = caseElement(anyType);
+					result = caseNamedElement(anyType);
 				if (result == null)
 					result = caseParameterableElement(anyType);
+				if (result == null)
+					result = caseElement(anyType);
 				if (result == null)
 					result = caseEModelElement(anyType);
 				if (result == null)
@@ -167,13 +167,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = casePredefinedType(voidType);
 				if (result == null)
-					result = caseNamedElement(voidType);
-				if (result == null)
 					result = casePackageableElement(voidType);
 				if (result == null)
-					result = caseElement(voidType);
+					result = caseNamedElement(voidType);
 				if (result == null)
 					result = caseParameterableElement(voidType);
+				if (result == null)
+					result = caseElement(voidType);
 				if (result == null)
 					result = caseEModelElement(voidType);
 				if (result == null)
@@ -198,13 +198,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = casePredefinedType(invalidType);
 				if (result == null)
-					result = caseNamedElement(invalidType);
-				if (result == null)
 					result = casePackageableElement(invalidType);
 				if (result == null)
-					result = caseElement(invalidType);
+					result = caseNamedElement(invalidType);
 				if (result == null)
 					result = caseParameterableElement(invalidType);
+				if (result == null)
+					result = caseElement(invalidType);
 				if (result == null)
 					result = caseEModelElement(invalidType);
 				if (result == null)
@@ -227,13 +227,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseTemplateableElement(elementType);
 				if (result == null)
-					result = caseNamedElement(elementType);
-				if (result == null)
 					result = casePackageableElement(elementType);
 				if (result == null)
-					result = caseElement(elementType);
+					result = caseNamedElement(elementType);
 				if (result == null)
 					result = caseParameterableElement(elementType);
+				if (result == null)
+					result = caseElement(elementType);
 				if (result == null)
 					result = caseEModelElement(elementType);
 				if (result == null)
@@ -258,13 +258,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = casePredefinedType(typeType);
 				if (result == null)
-					result = caseNamedElement(typeType);
-				if (result == null)
 					result = casePackageableElement(typeType);
 				if (result == null)
-					result = caseElement(typeType);
+					result = caseNamedElement(typeType);
 				if (result == null)
 					result = caseParameterableElement(typeType);
+				if (result == null)
+					result = caseElement(typeType);
 				if (result == null)
 					result = caseEModelElement(typeType);
 				if (result == null)
@@ -289,13 +289,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = casePredefinedType(messageType);
 				if (result == null)
-					result = caseNamedElement(messageType);
-				if (result == null)
 					result = casePackageableElement(messageType);
 				if (result == null)
-					result = caseElement(messageType);
+					result = caseNamedElement(messageType);
 				if (result == null)
 					result = caseParameterableElement(messageType);
+				if (result == null)
+					result = caseElement(messageType);
 				if (result == null)
 					result = caseEModelElement(messageType);
 				if (result == null)
@@ -324,13 +324,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseTemplateableElement(primitiveType);
 				if (result == null)
-					result = caseNamedElement(primitiveType);
-				if (result == null)
 					result = casePackageableElement(primitiveType);
 				if (result == null)
-					result = caseElement(primitiveType);
+					result = caseNamedElement(primitiveType);
 				if (result == null)
 					result = caseParameterableElement(primitiveType);
+				if (result == null)
+					result = caseElement(primitiveType);
 				if (result == null)
 					result = caseEModelElement(primitiveType);
 				if (result == null)
@@ -361,13 +361,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseASTNode(collectionType);
 				if (result == null)
-					result = caseNamedElement(collectionType);
-				if (result == null)
 					result = casePackageableElement(collectionType);
 				if (result == null)
-					result = caseElement(collectionType);
+					result = caseNamedElement(collectionType);
 				if (result == null)
 					result = caseParameterableElement(collectionType);
+				if (result == null)
+					result = caseElement(collectionType);
 				if (result == null)
 					result = caseEModelElement(collectionType);
 				if (result == null)
@@ -394,13 +394,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseTemplateableElement(tupleType);
 				if (result == null)
-					result = caseNamedElement(tupleType);
-				if (result == null)
 					result = casePackageableElement(tupleType);
 				if (result == null)
-					result = caseElement(tupleType);
+					result = caseNamedElement(tupleType);
 				if (result == null)
 					result = caseParameterableElement(tupleType);
+				if (result == null)
+					result = caseElement(tupleType);
 				if (result == null)
 					result = caseEModelElement(tupleType);
 				if (result == null)
@@ -435,13 +435,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseASTNode(bagType);
 				if (result == null)
-					result = caseNamedElement(bagType);
-				if (result == null)
 					result = casePackageableElement(bagType);
 				if (result == null)
-					result = caseElement(bagType);
+					result = caseNamedElement(bagType);
 				if (result == null)
 					result = caseParameterableElement(bagType);
+				if (result == null)
+					result = caseElement(bagType);
 				if (result == null)
 					result = caseEModelElement(bagType);
 				if (result == null)
@@ -476,13 +476,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseASTNode(setType);
 				if (result == null)
-					result = caseNamedElement(setType);
-				if (result == null)
 					result = casePackageableElement(setType);
 				if (result == null)
-					result = caseElement(setType);
+					result = caseNamedElement(setType);
 				if (result == null)
 					result = caseParameterableElement(setType);
+				if (result == null)
+					result = caseElement(setType);
 				if (result == null)
 					result = caseEModelElement(setType);
 				if (result == null)
@@ -517,13 +517,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseASTNode(orderedSetType);
 				if (result == null)
-					result = caseNamedElement(orderedSetType);
-				if (result == null)
 					result = casePackageableElement(orderedSetType);
 				if (result == null)
-					result = caseElement(orderedSetType);
+					result = caseNamedElement(orderedSetType);
 				if (result == null)
 					result = caseParameterableElement(orderedSetType);
+				if (result == null)
+					result = caseElement(orderedSetType);
 				if (result == null)
 					result = caseEModelElement(orderedSetType);
 				if (result == null)
@@ -558,13 +558,13 @@ public class UMLSwitch<T> {
 				if (result == null)
 					result = caseASTNode(sequenceType);
 				if (result == null)
-					result = caseNamedElement(sequenceType);
-				if (result == null)
 					result = casePackageableElement(sequenceType);
 				if (result == null)
-					result = caseElement(sequenceType);
+					result = caseNamedElement(sequenceType);
 				if (result == null)
 					result = caseParameterableElement(sequenceType);
+				if (result == null)
+					result = caseElement(sequenceType);
 				if (result == null)
 					result = caseEModelElement(sequenceType);
 				if (result == null)

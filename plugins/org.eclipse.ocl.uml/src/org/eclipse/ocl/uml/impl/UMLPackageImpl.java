@@ -13,10 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.10 2008/10/12 01:12:31 cdamus Exp $
+ * $Id: UMLPackageImpl.java,v 1.11 2009/05/26 20:06:43 aigdalov Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
@@ -460,20 +461,10 @@ public class UMLPackageImpl
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link UMLPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -488,8 +479,8 @@ public class UMLPackageImpl
 
 		// Obtain or create and register package
 		UMLPackageImpl theUMLPackage = (UMLPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof UMLPackageImpl
-			? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			.get(eNS_URI) instanceof UMLPackageImpl
+			? EPackage.Registry.INSTANCE.get(eNS_URI)
 			: new UMLPackageImpl());
 
 		isInited = true;
@@ -518,6 +509,8 @@ public class UMLPackageImpl
 		// Mark meta-data to indicate it can't be changed
 		theUMLPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(UMLPackage.eNS_URI, theUMLPackage);
 		return theUMLPackage;
 	}
 
@@ -1834,13 +1827,31 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createSubsetsAnnotations() {
-		String source = "subsets"; //$NON-NLS-1$      
-		addAnnotation(getAnyType_OwnedOperation(), source, new String[]{});
-		addAnnotation(getVoidType_OwnedOperation(), source, new String[]{});
-		addAnnotation(getInvalidType_OwnedOperation(), source, new String[]{});
-		addAnnotation(getTypeType_OwnedOperation(), source, new String[]{});
-		addAnnotation(getMessageType_OwnedOperation(), source, new String[]{});
-		addAnnotation(getMessageType_OwnedAttribute(), source, new String[]{});
+		String source = "subsets"; //$NON-NLS-1$	    
+		addAnnotation(getAnyType_OwnedOperation(), source, new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/feature") //$NON-NLS-1$
+			});
+		addAnnotation(getVoidType_OwnedOperation(), source, new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/feature") //$NON-NLS-1$
+			});
+		addAnnotation(getInvalidType_OwnedOperation(), source, new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/feature") //$NON-NLS-1$
+			});
+		addAnnotation(getTypeType_OwnedOperation(), source, new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/feature") //$NON-NLS-1$
+			});
+		addAnnotation(getMessageType_OwnedOperation(), source, new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/feature") //$NON-NLS-1$
+			});
+		addAnnotation(getMessageType_OwnedAttribute(), source, new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/attribute") //$NON-NLS-1$
+			});
 	}
 
 	/**
@@ -1850,7 +1861,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$                  
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$							    
 		addAnnotation(expressionInOCLEClass, source, new String[]{
 			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
 		});
@@ -1866,7 +1877,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$                      
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$									    
 		addAnnotation(oclExpressionEClass, source, new String[]{
 			"constraints", "has_type" //$NON-NLS-1$ //$NON-NLS-2$
 		});
