@@ -1,4 +1,4 @@
-<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="java.util.* org.eclipse.emf.ecore.* org.eclipse.emf.ecore.util.EcoreUtil org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.codegen.ecore.genmodel.impl.Literals" class="PackageClass" version="$Id: PackageClass.javajet,v 1.2 2008/11/30 22:11:39 cdamus Exp $" %>
+<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="java.util.* org.eclipse.emf.ecore.* org.eclipse.emf.ecore.util.EcoreUtil org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.codegen.ecore.genmodel.impl.Literals" class="PackageClass" version="$Id: PackageClass.javajet,v 1.3 2009/05/26 20:06:33 aigdalov Exp $" %>
 <%
 /**
  * <copyright>
@@ -32,6 +32,8 @@ package <%=genPackage.getReflectionPackageName()%>;
 <%if (isImplementation) {%>
 <%genModel.addPseudoImport("org.eclipse.emf.ecore.EPackage.Registry");%>
 <%genModel.addPseudoImport("org.eclipse.emf.ecore.EPackage.Descriptor");%>
+<%genModel.addPseudoImport("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container");%>
+<%genModel.addPseudoImport("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container.Dynamic");%>
   <%if (genPackage.isLiteralsInterface()) {%>
 <%genModel.addPseudoImport(genPackage.getQualifiedPackageInterfaceName() + ".Literals");%>
   <%}%>
@@ -240,20 +242,10 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
     private static boolean isInited = false;
 
     /**
-     * Creates, registers, and initializes the <b>Package</b> for this
-     * model, and for any others upon which it depends.  Simple
-     * dependencies are satisfied by calling this method on all
-     * dependent packages before doing anything else.  This method drives
-     * initialization for interdependent packages directly, in parallel
-     * with this package, itself.
-     * <p>Of this package and its interdependencies, all packages which
-     * have not yet been registered by their URI values are first created
-     * and registered.  The packages are then initialized in two steps:
-     * meta-model objects for all of the packages are created before any
-     * are initialized, since one package's meta-model objects may refer to
-     * those of another.
-     * <p>Invocation of this method will not affect any packages that have
-     * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link <%=genPackage.getImportedPackageInterfaceName()%>#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #eNS_URI
@@ -268,7 +260,7 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
         if (isInited) return (<%=genPackage.getImportedPackageInterfaceName()%>)<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.getEPackage(<%=genPackage.getImportedPackageInterfaceName()%>.eNS_URI);
 
         // Obtain or create and register package
-        <%=genPackage.getPackageClassName()%> the<%=genPackage.getBasicPackageName()%> = (<%=genPackage.getPackageClassName()%>)(<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.getEPackage(eNS_URI) instanceof <%=genPackage.getPackageClassName()%> ? <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.getEPackage(eNS_URI) : new <%=genPackage.getPackageClassName()%>());
+		<%=genPackage.getPackageClassName()%> the<%=genPackage.getBasicPackageName()%> = (<%=genPackage.getPackageClassName()%>)(<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.get(eNS_URI) instanceof <%=genPackage.getPackageClassName()%> ? <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.get(eNS_URI) : new <%=genPackage.getPackageClassName()%>());
 
         isInited = true;
 
@@ -344,6 +336,9 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
         the<%=genPackage.getBasicPackageName()%>.freeze();
 
   <%}%>
+  
+		// Update the registry and return the package
+		<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.put(<%=genPackage.getImportedPackageInterfaceName()%>.eNS_URI, the<%=genPackage.getBasicPackageName()%>);
         return the<%=genPackage.getBasicPackageName()%>;
     }
 
@@ -825,7 +820,7 @@ int maxGenericTypeAssignment = 0;
     protected void create<%=genPackage.getAnnotationSourceIdentifier(annotationSource)%>Annotations()
     {
         String source = <%if (annotationSource == null) {%>null;<%} else {%>"<%=annotationSource%>";<%=genModel.getNonNLS()%><%}%>
-      <%for (EAnnotation eAnnotation : genPackage.getAllAnnotations()) {%>  
+      <%for (EAnnotation eAnnotation : genPackage.getAllAnnotations()) { List<GenPackage.AnnotationReferenceData> annotationReferenceDataList = genPackage.getReferenceData(eAnnotation);%>	
         <%if (annotationSource == null ? eAnnotation.getSource() == null : annotationSource.equals(eAnnotation.getSource())) {%>    
         addAnnotation
           (<%=genPackage.getAnnotatedModelElementAccessor(eAnnotation)%>, 
@@ -835,9 +830,17 @@ int maxGenericTypeAssignment = 0;
           <%for (Iterator<Map.Entry<String, String>> k = eAnnotation.getDetails().iterator(); k.hasNext();) { Map.Entry<String, String> detail = k.next(); String key = Literals.toStringLiteral(detail.getKey(), genModel); String value = Literals.toStringLiteral(detail.getValue(), genModel);%>
              <%=key%>, <%=value%><%=k.hasNext() ? "," : ""%><%=genModel.getNonNLS(key + value)%>
           <%}%>
+		   }<%if (annotationReferenceDataList.isEmpty()) {%>);<%} else {%>,<%}%>
+          <%if (!annotationReferenceDataList.isEmpty()) {%>
+		   new <%=genModel.getImportedName("org.eclipse.emf.common.util.URI")%>[] 
+           {
+            <%for (Iterator<GenPackage.AnnotationReferenceData> k = annotationReferenceDataList.iterator(); k.hasNext();) { GenPackage.AnnotationReferenceData annotationReferenceData = k.next();%>
+			 <%=genModel.getImportedName("org.eclipse.emf.common.util.URI")%>.createURI(<%if (annotationReferenceData.containingGenPackage != genPackage) {%><%=annotationReferenceData.containingGenPackage.getImportedPackageInterfaceName()%>.<%}%>eNS_URI).appendFragment("<%=annotationReferenceData.uriFragment%>")<%if (k.hasNext()) {%>,<%}%><%=genModel.getNonNLS()%>
+          <%}%>
            });
         <%}%>
-        <%for (EAnnotation nestedEAnnotation : genPackage.getAllNestedAnnotations(eAnnotation)) {String nestedAnnotationSource = nestedEAnnotation.getSource(); int depth = 1; for (EObject eContainer = nestedEAnnotation.eContainer(); eContainer != eAnnotation; eContainer = eContainer.eContainer()) { ++depth; }%>
+        <%}%>
+        <%for (EAnnotation nestedEAnnotation : genPackage.getAllNestedAnnotations(eAnnotation)) {String nestedAnnotationSource = nestedEAnnotation.getSource(); int depth = 1; for (EObject eContainer = nestedEAnnotation.eContainer(); eContainer != eAnnotation; eContainer = eContainer.eContainer()) { ++depth; } List<GenPackage.AnnotationReferenceData> nestedAnnotationReferenceDataList = genPackage.getReferenceData(nestedEAnnotation);%>
         addAnnotation
           (<%=genPackage.getAnnotatedModelElementAccessor(eAnnotation)%>, 
            <%=depth%>,
@@ -847,20 +850,16 @@ int maxGenericTypeAssignment = 0;
           <%for (Iterator<Map.Entry<String, String>> l = nestedEAnnotation.getDetails().iterator(); l.hasNext();) { Map.Entry<String, String> detail = l.next(); String key = Literals.toStringLiteral(detail.getKey(), genModel); String value = Literals.toStringLiteral(detail.getValue(), genModel);%>
             <%=key%>, <%=value%><%=l.hasNext() ? "," : ""%><%=genModel.getNonNLS(key + value)%>
           <%}%>
+		   }<%if (nestedAnnotationReferenceDataList.isEmpty()) {%>);<%} else {%>,<%}%>
+          <%if (!nestedAnnotationReferenceDataList.isEmpty()) {%>
+		   new <%=genModel.getImportedName("org.eclipse.emf.common.util.URI")%>[] 
+		   {
+            <%for (Iterator<GenPackage.AnnotationReferenceData> l = nestedAnnotationReferenceDataList.iterator(); l.hasNext();) { GenPackage.AnnotationReferenceData annotationReferenceData = l.next();%>
+			 <%=genModel.getImportedName("org.eclipse.emf.common.util.URI")%>.createURI(<%if (annotationReferenceData.containingGenPackage != genPackage) {%><%=annotationReferenceData.containingGenPackage.getImportedPackageInterfaceName()%>.<%}%>eNS_URI).appendFragment("<%=annotationReferenceData.uriFragment%>")<%if (l.hasNext()) {%>,<%}%><%=genModel.getNonNLS()%>
+            <%}%>
            });
         <%}%>
-        <%for (EAnnotation nestedEAnnotation : genPackage.getAllNestedAnnotations(eAnnotation)) {String nestedAnnotationSource = nestedEAnnotation.getSource(); int depth = 1; for (EObject eContainer = nestedEAnnotation.eContainer(); eContainer != eAnnotation; eContainer = eContainer.eContainer()) { ++depth; }%>
-        addAnnotation
-          (<%=genPackage.getAnnotatedModelElementAccessor(eAnnotation)%>, 
-           <%=depth%>,
-           <%if (nestedAnnotationSource == null) {%>null,<%} else {%>"<%=nestedAnnotationSource%>",<%=genModel.getNonNLS()%><%}%>
-           new String[] 
-           {
-          <%for (Iterator<Map.Entry<String, String>> l = nestedEAnnotation.getDetails().iterator(); l.hasNext();) { Map.Entry<String, String> detail = l.next(); String key = Literals.toStringLiteral(detail.getKey(), genModel); String value = Literals.toStringLiteral(detail.getValue(), genModel);%>
-            <%=key%>, <%=value%><%=l.hasNext() ? "," : ""%><%=genModel.getNonNLS(key + value)%>
-          <%}%>
-           });
-        <%}%>
+      <%}%>
       <%}%>
     }
 
