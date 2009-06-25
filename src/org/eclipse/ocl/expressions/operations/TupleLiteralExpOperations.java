@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: TupleLiteralExpOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -90,7 +90,7 @@ public class TupleLiteralExpOperations
 			UMLReflection<?, C, ?, P, ?, ?, ?, ?, ?, ?> uml = env
 				.getUMLReflection();
 			C type = tupleLiteralExp.getType();
-			if (!(type instanceof TupleType)) {
+			if (!(type instanceof TupleType<?, ?>)) {
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.TypeConformanceTupleLiteralExp_ERROR_,

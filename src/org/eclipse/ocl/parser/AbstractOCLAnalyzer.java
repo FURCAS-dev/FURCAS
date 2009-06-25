@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.25 2009/03/05 14:12:14 cdamus Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.26 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -370,7 +370,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			String rule, NavigationCallExp<C, P> nc,
 			List<OCLExpression<C>> qualifiers) {
 
-		if (nc instanceof PropertyCallExp) {
+		if (nc instanceof PropertyCallExp<?, ?>) {
 			P source = ((PropertyCallExp<C, P>) nc).getReferredProperty();
 			List<P> expectedQualifiers = uml.getQualifiers(source);
 
@@ -398,7 +398,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					if (uml.isMany(source)) {
 						C ncType = nc.getType();
 
-						if (ncType instanceof CollectionType) {
+						if (ncType instanceof CollectionType<?, ?>) {
 							// qualifying the navigation results in a
 							// non-collection
 							// type
@@ -410,7 +410,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					}
 				}
 			}
-		} else if (nc instanceof AssociationClassCallExp) {
+		} else if (nc instanceof AssociationClassCallExp<?, ?>) {
 			if (qualifiers.size() != 1) {
 				ERROR(qualifiers, rule, OCLMessages.bind(
 					OCLMessages.AssociationClassQualifierCount_ERROR_, nc
@@ -423,7 +423,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 
 			Object qualifier = qualifiers.get(0);
-			if (!(qualifier instanceof PropertyCallExp)) {
+			if (!(qualifier instanceof PropertyCallExp<?, ?>)) {
 				ERROR(qualifier, rule, OCLMessages.bind(
 					OCLMessages.AssociationClassQualifierType_ERROR_, nc
 						.toString()));
@@ -987,7 +987,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		spec.setContextVariable(selfVar);
 
 		C operationType = getOCLType(env, operation);
-		if (operationType instanceof VoidType) {
+		if (operationType instanceof VoidType<?>) {
 			operationType = null; // a void operation has no result
 		}
 
@@ -1642,17 +1642,17 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// handle the generic typing of OclMessages
 		if (expr != null) {
 			C exprType = expr.getType();
-			while (exprType instanceof CollectionType) {
+			while (exprType instanceof CollectionType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) exprType;
 
 				exprType = ct.getElementType();
 			}
 
-			if (exprType instanceof MessageType) {
+			if (exprType instanceof MessageType<?, ?, ?>) {
 				C varType = type;
 
-				if (varType instanceof CollectionType) {
+				if (varType instanceof CollectionType<?, ?>) {
 					do {
 						@SuppressWarnings("unchecked")
 						CollectionType<C, O> collType = (CollectionType<C, O>) varType;
@@ -1664,7 +1664,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 							collType.setElementType(exprType);
 							break;
 						}
-					} while (varType instanceof CollectionType);
+					} while (varType instanceof CollectionType<?, ?>);
 				} else if (type == env.getOCLStandardLibrary().getOclMessage()) {
 					// substitute the actual type for the generic type
 					type = exprType;
@@ -1994,7 +1994,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			.getArguments(), env, astNode);
 
 		if (isAtPre(variableExpCS)) {
-			if (astNode instanceof FeatureCallExp) {
+			if (astNode instanceof FeatureCallExp<?>) {
 				((FeatureCallExp<C>) astNode).setMarkedPre(true);
 			} else {
 				ERROR(astNode, "variableExpCS", OCLMessages.IllegalAtPre_ERROR_);//$NON-NLS-1$
@@ -2002,12 +2002,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		if (!qualifiers.isEmpty()) {
-			if (astNode instanceof NavigationCallExp) {
+			if (astNode instanceof NavigationCallExp<?, ?>) {
 				@SuppressWarnings("unchecked")
 				NavigationCallExp<C, P> callNode = (NavigationCallExp<C, P>) astNode;
 				setQualifiers(env, "variableExpCS", callNode, qualifiers); //$NON-NLS-1$
-			} else if ((astNode instanceof LoopExp)
-				&& ((LoopExp<?, ?>) astNode).getBody() instanceof NavigationCallExp) {
+			} else if ((astNode instanceof LoopExp<?, ?>)
+				&& ((LoopExp<?, ?>) astNode).getBody() instanceof NavigationCallExp<?, ?>) {
 				// might have parsed an implicit collect expression
 				@SuppressWarnings("unchecked")
 				NavigationCallExp<C, P> callNode = (NavigationCallExp<C, P>) ((LoopExp<C, ?>) astNode)
@@ -2018,7 +2018,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					OCLMessages.bind(OCLMessages.IllegalQualifiers_ERROR_,
 						computeInputString(variableExpCS)));
 			}
-		} else if (astNode instanceof AssociationClassCallExp) {
+		} else if (astNode instanceof AssociationClassCallExp<?, ?>) {
 			@SuppressWarnings("unchecked")
 			AssociationClassCallExp<C, P> callNode = (AssociationClassCallExp<C, P>) astNode;
 			checkNotReflexive(env, "variableExpCS", callNode);//$NON-NLS-1$
@@ -2109,13 +2109,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		List<OCLExpression<C>> qualifiers = new java.util.ArrayList<OCLExpression<C>>();
 
-		if (navigation instanceof LoopExp) {
+		if (navigation instanceof LoopExp<?, ?>) {
 			@SuppressWarnings("unchecked")
 			LoopExp<C, ?> loopNode = (LoopExp<C, ?>) navigation;
 			navigation = loopNode.getBody();
 		}
 
-		if (navigation instanceof AssociationClassCallExp) {
+		if (navigation instanceof AssociationClassCallExp<?, ?>) {
 			@SuppressWarnings("unchecked")
 			AssociationClassCallExp<C, P> acc = (AssociationClassCallExp<C, P>) navigation;
 			OCLExpression<C> source = acc.getSource();
@@ -2409,7 +2409,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		C sourceElementType = null;
 		if (source != null) {
 			sourceElementType = source.getType();
-			if (sourceElementType instanceof CollectionType) {
+			if (sourceElementType instanceof CollectionType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) sourceElementType;
 
@@ -2440,8 +2440,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		 * COLLECT operator. Note that this rule is not called after "->". Check
 		 * for FeatureCallExp in case we created a dummy InvalidLiteralExp.
 		 */
-		if ((source != null) && (source.getType() instanceof CollectionType)
-			&& (astNode instanceof FeatureCallExp)) {
+		if ((source != null) && (source.getType() instanceof CollectionType<?, ?>)
+			&& (astNode instanceof FeatureCallExp<?>)) {
 			astNode = createImplicitCollect(source,
 				(FeatureCallExp<C>) astNode, env, simpleNameCS);
 		}
@@ -2768,7 +2768,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		 */
 		propertyCall.setSource(vexp);
 
-		if (!(propertyCall instanceof OperationCallExp)) {
+		if (!(propertyCall instanceof OperationCallExp<?, ?>)) {
 			// the overall start and end positions are the property positions
 			propertyCall.setStartPosition(propertyCall
 				.getPropertyStartPosition());
@@ -2781,15 +2781,15 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// that we are collecting is a Collection type, the resulting
 		// type must be flattened by taking its element type (recursively)
 		C bodyType = propertyCall.getType();
-		if (bodyType instanceof CollectionType) {
+		if (bodyType instanceof CollectionType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			CollectionType<C, O> ct = (CollectionType<C, O>) bodyType;
 
 			bodyType = CollectionUtil.getFlattenedElementType(ct);
 		}
 
-		if (source.getType() instanceof SequenceType
-			|| source.getType() instanceof OrderedSetType) {
+		if (source.getType() instanceof SequenceType<?, ?>
+			|| source.getType() instanceof OrderedSetType<?, ?>) {
 			C c = getCollectionType(cstNode, env,
 				CollectionKind.SEQUENCE_LITERAL, bodyType);
 			result.setType(c);
@@ -3591,7 +3591,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		/*
 		 * The source must be a collection type.
 		 */
-		if (!(astNode.getType() instanceof CollectionType)) {
+		if (!(astNode.getType() instanceof CollectionType<?, ?>)) {
 			CollectionLiteralExp<C> astNode1 = oclFactory
 				.createCollectionLiteralExp();
 			initASTMapping(env, astNode1, oclExpressionCS, null);
@@ -3653,7 +3653,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 			if (vdcl.getType() == null) {
 				C sourceType = source.getType();
-				if (sourceType instanceof CollectionType) {
+				if (sourceType instanceof CollectionType<?, ?>) {
 					@SuppressWarnings("unchecked")
 					CollectionType<C, O> ct = (CollectionType<C, O>) sourceType;
 
@@ -3668,7 +3668,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 				if (vdcl1.getType() == null) {
 					C sourceType = source.getType();
-					if (sourceType instanceof CollectionType) {
+					if (sourceType instanceof CollectionType<?, ?>) {
 						@SuppressWarnings("unchecked")
 						CollectionType<C, O> ct = (CollectionType<C, O>) sourceType;
 
@@ -3710,20 +3710,20 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		} else if (name.equals("collect")) {//$NON-NLS-1$
 			// The result type for collect must be flattened
 			C elementType = expr.getType();
-			if (elementType instanceof CollectionType) {
+			if (elementType instanceof CollectionType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) elementType;
 				elementType = CollectionUtil.getFlattenedElementType(ct);
 			}
-			if (source.getType() instanceof SequenceType
-				|| source.getType() instanceof OrderedSetType) {
+			if (source.getType() instanceof SequenceType<?, ?>
+				|| source.getType() instanceof OrderedSetType<?, ?>) {
 				astNode.setType(getSequenceType(exprCS, env, elementType));
 			} else {
 				astNode.setType(getBagType(exprCS, env, elementType));
 			}
 		} else if (name.equals("collectNested")) {//$NON-NLS-1$
-			if (source.getType() instanceof SequenceType
-				|| source.getType() instanceof OrderedSetType) {
+			if (source.getType() instanceof SequenceType<?, ?>
+				|| source.getType() instanceof OrderedSetType<?, ?>) {
 				astNode.setType(getSequenceType(exprCS, env, expr.getType()));
 			} else {
 				astNode.setType(getBagType(exprCS, env, expr.getType()));
@@ -3734,8 +3734,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 			astNode.setType(ct.getElementType());
 		} else if (name.equals("sortedBy")) {//$NON-NLS-1$
-			if ((source.getType() instanceof SequenceType)
-				|| source.getType() instanceof BagType) {
+			if ((source.getType() instanceof SequenceType<?, ?>)
+				|| source.getType() instanceof BagType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) source
 					.getType();
@@ -3754,7 +3754,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			// get the body element type if it is a collection-type
 			// expression
 			C bodyType = expr.getType();
-			if (bodyType instanceof CollectionType) {
+			if (bodyType instanceof CollectionType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) bodyType;
 
@@ -3924,7 +3924,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				modelPropertyCallExpCS.getArguments(), env, astNode);
 
 			if (isAtPre(modelPropertyCallExpCS)) {
-				if (astNode instanceof FeatureCallExp) {
+				if (astNode instanceof FeatureCallExp<?>) {
 					((FeatureCallExp<C>) astNode).setMarkedPre(true);
 				} else {
 					ERROR(
@@ -3934,13 +3934,13 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			}
 
 			if (!qualifiers.isEmpty()) {
-				if (astNode instanceof NavigationCallExp) {
+				if (astNode instanceof NavigationCallExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					NavigationCallExp<C, P> callNode = (NavigationCallExp<C, P>) astNode;
 					setQualifiers(env, "modelPropertyCallExpCS",//$NON-NLS-1$
 						callNode, qualifiers);
-				} else if ((astNode instanceof LoopExp)
-					&& (getLoopBody(astNode) instanceof NavigationCallExp)) {
+				} else if ((astNode instanceof LoopExp<?, ?>)
+					&& (getLoopBody(astNode) instanceof NavigationCallExp<?, ?>)) {
 					// might have parsed an implicit collect expression
 
 					@SuppressWarnings("unchecked")
@@ -3953,7 +3953,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 						OCLMessages.bind(OCLMessages.IllegalQualifiers_ERROR_,
 							computeInputString(modelPropertyCallExpCS)));
 				}
-			} else if (astNode instanceof AssociationClassCallExp) {
+			} else if (astNode instanceof AssociationClassCallExp<?, ?>) {
 				@SuppressWarnings("unchecked")
 				AssociationClassCallExp<C, P> callNode = (AssociationClassCallExp<C, P>) astNode;
 				checkNotReflexive(env, "modelPropertyCallExpCS", callNode);//$NON-NLS-1$
@@ -4091,7 +4091,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		 */
 		C operationSourceType = source.getType();
 		boolean isImplicitCollect = (operator == DotOrArrowEnum.DOT)
-			&& (operationSourceType instanceof CollectionType);
+			&& (operationSourceType instanceof CollectionType<?, ?>);
 
 		if (isImplicitCollect) {
 			@SuppressWarnings("unchecked")
@@ -4101,7 +4101,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		// if the sourceType is a TypeType then this must be a static operation
-		boolean isStatic = operationSourceType instanceof TypeType;
+		boolean isStatic = operationSourceType instanceof TypeType<?, ?>;
 
 		astNode = genOperationCallExp(env, operationCallExpCS,
 			"operationCallExpCS", operationName,//$NON-NLS-1$

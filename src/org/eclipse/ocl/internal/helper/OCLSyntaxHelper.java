@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.13 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.14 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -180,7 +180,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<Choice> getOperationChoices(C owner) {
 		List<Choice> result = getOperationChoices(owner, TypeUtil.getOperations(environment, owner));
 		
-		if (owner instanceof CollectionType) {
+		if (owner instanceof CollectionType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			CollectionType<C, O> collType = (CollectionType<C, O>) owner;
 			
@@ -569,7 +569,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<Choice> getChoices(C type, ConstraintKind constraintType) {
 		List<Choice> rawChoices;
 		
-		if (type instanceof CollectionType) {
+		if (type instanceof CollectionType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			CollectionType<C, O> ct = (CollectionType<C, O>) type;
 			
@@ -578,7 +578,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			} else if (syntaxHelpStringSuffix == DOT) {
 				// get features of element type (flattened)
 				C elementType = ct.getElementType();
-				while (elementType instanceof CollectionType) {
+				while (elementType instanceof CollectionType<?, ?>) {
 					elementType = ct.getElementType();
 				}
 				return getChoices(ct.getElementType(), constraintType);

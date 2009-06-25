@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.3 2009/01/15 03:47:29 cdamus Exp $
+ * $Id: AbstractTypeChecker.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -174,17 +174,17 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		// and so does OclAny, also
 		if (type1 == stdlib.getOclAny()) {
-			return (type2 instanceof CollectionType)
+			return (type2 instanceof CollectionType<?, ?>)
 				? UNRELATED_TYPE
 				: STRICT_SUPERTYPE;
 		} else if (type2 == stdlib.getOclAny()) {
-			return (type1 instanceof CollectionType)
+			return (type1 instanceof CollectionType<?, ?>)
 				? UNRELATED_TYPE
 				: STRICT_SUBTYPE;
 		}
 
 		// handle primitive types
-		if (type1 instanceof PrimitiveType) {
+		if (type1 instanceof PrimitiveType<?>) {
 			if ((type1 == stdlib.getInteger())
 				|| (type1 == stdlib.getUnlimitedNatural())) {
 				if (type2 == stdlib.getReal()) {
@@ -198,14 +198,14 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			}
 
 			return UNRELATED_TYPE;
-		} else if (type2 instanceof PrimitiveType) {
+		} else if (type2 instanceof PrimitiveType<?>) {
 			// tested all possible primitive type conformances in the other case
 			return UNRELATED_TYPE;
 		}
 
 		// handle collection types
-		if (type1 instanceof CollectionType) {
-			if (!(type2 instanceof CollectionType)) {
+		if (type1 instanceof CollectionType<?, ?>) {
+			if (!(type2 instanceof CollectionType<?, ?>)) {
 				return UNRELATED_TYPE;
 			}
 
@@ -248,21 +248,21 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			}
 		}
 
-		if (type1 instanceof MessageType && type2 == stdlib.getOclMessage()) {
+		if (type1 instanceof MessageType<?, ?, ?> && type2 == stdlib.getOclMessage()) {
 			return STRICT_SUBTYPE;
-		} else if (type2 instanceof MessageType
+		} else if (type2 instanceof MessageType<?, ?, ?>
 			&& type1 == stdlib.getOclMessage()) {
 			return STRICT_SUPERTYPE;
 		}
 
-		if (type1 instanceof TypeType && type2 == stdlib.getOclType()) {
+		if (type1 instanceof TypeType<?, ?> && type2 == stdlib.getOclType()) {
 			return STRICT_SUBTYPE;
-		} else if (type2 instanceof TypeType && type1 == stdlib.getOclType()) {
+		} else if (type2 instanceof TypeType<?, ?> && type1 == stdlib.getOclType()) {
 			return STRICT_SUPERTYPE;
 		}
 
-		if (type1 instanceof TupleType || type2 instanceof TupleType) {
-			if (!((type1 instanceof TupleType) && (type2 instanceof TupleType))) {
+		if (type1 instanceof TupleType<?, ?> || type2 instanceof TupleType<?, ?>) {
+			if (!((type1 instanceof TupleType<?, ?>) && (type2 instanceof TupleType<?, ?>))) {
 				return UNRELATED_TYPE;
 			}
 
@@ -309,7 +309,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		// exhausted the possibilities for pre-defined types
-		if (type1 instanceof PredefinedType || type2 instanceof PredefinedType) {
+		if (type1 instanceof PredefinedType<?> || type2 instanceof PredefinedType<?>) {
 			return UNRELATED_TYPE;
 		}
 
@@ -641,7 +641,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			C type2, int opcode) {
 
 		// all of the primitive types are considered as mutually comparable
-		if (!(type1 instanceof PrimitiveType && type2 instanceof PrimitiveType)) {
+		if (!(type1 instanceof PrimitiveType<?> && type2 instanceof PrimitiveType<?>)) {
 			if (commonSuperType(problemObject, type1, type2) == null) {
 				String message = OCLMessages.bind(
 					OCLMessages.Noncomforming_ERROR_, getName(type1),
@@ -677,7 +677,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	public List<O> getOperations(C owner) {
 		List<O> result;
 
-		if (owner instanceof TypeType) {
+		if (owner instanceof TypeType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			TypeType<C, O> source = (TypeType<C, O>) owner;
 			result = new java.util.ArrayList<O>(source.oclOperations());
@@ -691,12 +691,12 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 			result = Collections.unmodifiableList(result);
 		} else {
-			if (owner instanceof PredefinedType) {
+			if (owner instanceof PredefinedType<?>) {
 				@SuppressWarnings("unchecked")
 				PredefinedType<O> source = (PredefinedType<O>) owner;
 				result = new ArrayList<O>(source.oclOperations());
 
-				if ((source instanceof AnyType)
+				if ((source instanceof AnyType<?>)
 					&& !ParsingOptions.getValue(env,
 						ParsingOptions.USE_COMPARE_TO_OPERATION)) {
 					// exclude the OclAny operations for <, <=, >, >= which
@@ -713,7 +713,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 				// it's a user type. Try to convert it to an OCL standard type
 				owner = uml.asOCLType(owner);
 
-				if (owner instanceof PredefinedType) {
+				if (owner instanceof PredefinedType<?>) {
 					@SuppressWarnings("unchecked")
 					PredefinedType<O> pt = (PredefinedType<O>) owner;
 					result = new ArrayList<O>(pt.oclOperations());
@@ -799,7 +799,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	public List<P> getAttributes(C owner) {
 		List<P> result;
 
-		if (owner instanceof TypeType) {
+		if (owner instanceof TypeType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			TypeType<C, O> source = (TypeType<C, O>) owner;
 			result = new java.util.ArrayList<P>();
@@ -813,13 +813,13 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 			result = Collections.unmodifiableList(result);
 		} else {
-			if (owner instanceof PredefinedType) {
+			if (owner instanceof PredefinedType<?>) {
 				result = new java.util.ArrayList<P>(uml.getAttributes(owner));
 			} else {
 				// it's a user type. Try to convert it to an OCL standard type
 				owner = uml.asOCLType(owner);
 
-				if (owner instanceof PredefinedType) {
+				if (owner instanceof PredefinedType<?>) {
 					result = new java.util.ArrayList<P>(uml
 						.getAttributes(owner));
 				} else {
@@ -1011,8 +1011,8 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			C popType = resolve(uml.getOCLType(paramOrProperty));
 
 			// handle parameters of type OclType
-			if (popType instanceof TypeType) {
-				if (arg instanceof TypeExp) {
+			if (popType instanceof TypeType<?, ?>) {
+				if (arg instanceof TypeExp<?>) {
 					continue;
 				}
 				return false;
@@ -1100,7 +1100,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	}
 
 	public boolean isStandardLibraryFeature(C owner, Object feature) {
-		boolean result = owner instanceof PredefinedType;
+		boolean result = owner instanceof PredefinedType<?>;
 
 		if (result) {
 			result = env.getUMLReflection().isOperation(feature)

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.8 2008/04/26 16:24:08 cdamus Exp $
+ * $Id: ToStringVisitor.java,v 1.9 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -167,7 +167,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		
 		StringBuffer result = new StringBuffer();
 		result.append(sourceResult);
-		result.append(sourceType instanceof CollectionType ? "->" : "."); //$NON-NLS-1$ //$NON-NLS-2$
+		result.append(sourceType instanceof CollectionType<?, ?> ? "->" : "."); //$NON-NLS-1$ //$NON-NLS-2$
 		result.append(getName(oper));
 		
         result.append('(');
@@ -342,7 +342,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     public String visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
 		StringBuffer result = new StringBuffer();
 		result.append("?"); //$NON-NLS-1$
-		if (uv.getType() != null && !(uv.getType() instanceof VoidType)) {
+		if (uv.getType() != null && !(uv.getType() instanceof VoidType<?>)) {
 			result.append(" : "); //$NON-NLS-1$
 			result.append(getName(uv.getType()));
 		}
@@ -594,7 +594,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		
 		result.append(targetResult);
 		
-		result.append((messageExp.getType() instanceof CollectionType)?
+		result.append((messageExp.getType() instanceof CollectionType<?, ?>)?
             "^^" : "^");  //$NON-NLS-1$//$NON-NLS-2$
 	
 		if (messageExp.getCalledOperation() != null) {
