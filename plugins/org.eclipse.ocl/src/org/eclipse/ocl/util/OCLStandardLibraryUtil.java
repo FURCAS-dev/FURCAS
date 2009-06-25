@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.12 2009/01/13 19:44:09 cdamus Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.13 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -491,26 +491,26 @@ public final class OCLStandardLibraryUtil {
 			Environment<PK, C, O, P, EL, PM, ST, COA, SSA, CT, CLS, E> env,
 			C sourceType, int opcode, List<? extends TypedElement<C>> args) {
 
-		if (sourceType instanceof PrimitiveType) {
+		if (sourceType instanceof PrimitiveType<?>) {
 			return getPrimitiveTypeResultTypeOf(problemObject, env, sourceType,
 				opcode, args);
-		} else if (sourceType instanceof CollectionType) {
-			if (sourceType instanceof BagType) {
+		} else if (sourceType instanceof CollectionType<?, ?>) {
+			if (sourceType instanceof BagType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				BagType<C, O> bagType = (BagType<C, O>) sourceType;
 				return getBagTypeResultTypeOf(problemObject, env, bagType,
 					opcode, args);
-			} else if (sourceType instanceof SetType) {
+			} else if (sourceType instanceof SetType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				SetType<C, O> setType = (SetType<C, O>) sourceType;
 				return getSetTypeResultTypeOf(problemObject, env, setType,
 					opcode, args);
-			} else if (sourceType instanceof OrderedSetType) {
+			} else if (sourceType instanceof OrderedSetType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				OrderedSetType<C, O> orderedSetType = (OrderedSetType<C, O>) sourceType;
 				return getOrderedSetTypeResultTypeOf(problemObject, env,
 					orderedSetType, opcode, args);
-			} else if (sourceType instanceof SequenceType) {
+			} else if (sourceType instanceof SequenceType<?, ?>) {
 				@SuppressWarnings("unchecked")
 				SequenceType<C, O> seqType = (SequenceType<C, O>) sourceType;
 				return getSequenceTypeResultTypeOf(problemObject, env, seqType,
@@ -520,12 +520,12 @@ public final class OCLStandardLibraryUtil {
 			CollectionType<C, O> collType = (CollectionType<C, O>) sourceType;
 			return getCollectionTypeResultTypeOf(problemObject, env, collType,
 				opcode, args);
-		} else if (sourceType instanceof TypeType) {
+		} else if (sourceType instanceof TypeType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			TypeType<C, O> typeType = (TypeType<C, O>) sourceType;
 			return getTypeTypeResultTypeOf(problemObject, env, typeType,
 				opcode, args);
-		} else if (sourceType instanceof MessageType) {
+		} else if (sourceType instanceof MessageType<?, ?, ?>) {
 			@SuppressWarnings("unchecked")
 			MessageType<C, O, P> messageType = (MessageType<C, O, P>) sourceType;
 			return getMessageTypeResultTypeOf(problemObject, env, messageType,
@@ -639,14 +639,14 @@ public final class OCLStandardLibraryUtil {
 				return stdlib.getBoolean();
 			case OCL_AS_TYPE :
 				arg = args.get(0);
-				if (arg instanceof TypeExp) {
+				if (arg instanceof TypeExp<?>) {
 					TypeExp<C> typeExp = (TypeExp<C>) arg;
 					argType = typeExp.getReferredType();
 				} else {
 					argType = arg.getType();
 				}
 
-				if (sourceType instanceof CollectionType) {
+				if (sourceType instanceof CollectionType<?, ?>) {
 					String message = OCLMessages.bind(
 						OCLMessages.Noncomforming_ERROR_, uml
 							.getName(sourceType), getOperationName(opcode));
@@ -778,7 +778,7 @@ public final class OCLStandardLibraryUtil {
 				argType = args.get(0).getType();
 				argElementType = getElementType(argType);
 
-				if (argType instanceof SetType) {
+				if (argType instanceof SetType<?, ?>) {
 					return getSetType(env, oclFactory, TypeUtil
 						.commonSuperType(problemObject, env, elemType,
 							argElementType));
@@ -792,7 +792,7 @@ public final class OCLStandardLibraryUtil {
 			case COUNT :
 				return stdlib.getInteger();
 			case FLATTEN :
-				if (!(elemType instanceof CollectionType)) {
+				if (!(elemType instanceof CollectionType<?, ?>)) {
 					return sourceType;
 				}
 				return getBagType(env, oclFactory, CollectionUtil
@@ -852,7 +852,7 @@ public final class OCLStandardLibraryUtil {
 				C newElementType = TypeUtil.commonSuperType(problemObject, env,
 					elemType, argElementType);
 
-				if (argType instanceof BagType) {
+				if (argType instanceof BagType<?, ?>) {
 					resultType = getBagType(env, oclFactory, newElementType);
 				} else {
 					resultType = getSetType(env, oclFactory, newElementType);
@@ -892,7 +892,7 @@ public final class OCLStandardLibraryUtil {
 			case COUNT :
 				return stdlib.getInteger();
 			case FLATTEN :
-				if (!(elemType instanceof CollectionType)) {
+				if (!(elemType instanceof CollectionType<?, ?>)) {
 					return sourceType;
 				}
 
@@ -922,7 +922,7 @@ public final class OCLStandardLibraryUtil {
 	}
 
 	private static <C, O> C getElementType(C type) {
-		if (type instanceof CollectionType) {
+		if (type instanceof CollectionType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			CollectionType<C, ?> castType = (CollectionType<C, ?>) type;
 			return castType.getElementType();
@@ -1043,7 +1043,7 @@ public final class OCLStandardLibraryUtil {
 			case EXCLUDING :
 				return sourceType;
 			case FLATTEN :
-				if (!(elemType instanceof CollectionType)) {
+				if (!(elemType instanceof CollectionType<?, ?>)) {
 					return sourceType;
 				}
 

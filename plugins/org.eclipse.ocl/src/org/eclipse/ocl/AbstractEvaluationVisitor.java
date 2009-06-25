@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.9 2009/03/11 13:04:28 cdamus Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -442,7 +442,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// ask if not lax-null-handling
 		if (value == null) {
 			return isLaxNullHandling()
-				? Boolean.valueOf(type instanceof VoidType)
+				? Boolean.valueOf(type instanceof VoidType<?>)
 				: null;
 		}
 
@@ -450,7 +450,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// to ask if not lax-null-handling
 		if (value == stdlib.getOclInvalid()) {
 			return isLaxNullHandling()
-				? Boolean.valueOf(type instanceof InvalidType)
+				? Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;
 		}
 

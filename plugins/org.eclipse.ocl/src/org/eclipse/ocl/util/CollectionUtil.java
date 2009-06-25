@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.7 2008/09/28 17:33:00 cdamus Exp $
+ * $Id: CollectionUtil.java,v 1.8 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -214,11 +214,11 @@ public class CollectionUtil {
     	if (self.size() != c.size()) {
     		// collections of different sizes cannot be equal
     		return false;
-    	} else if (self instanceof Bag && c instanceof Bag) {
+    	} else if (self instanceof Bag<?> && c instanceof Bag<?>) {
             return ((Bag<?>) self).equals(c);
-    	} else if (self instanceof List && c instanceof List) {
+    	} else if (self instanceof List<?> && c instanceof List<?>) {
             return ((List<?>) self).equals(c);
-    	} else if (self instanceof LinkedHashSet && c instanceof LinkedHashSet) {
+    	} else if (self instanceof LinkedHashSet<?> && c instanceof LinkedHashSet<?>) {
             // OrderedSet
 
             // LinkedHashSet.equals() doesn't care about order but we do
@@ -238,7 +238,7 @@ public class CollectionUtil {
             }
             
             return true;
-        } else if (self instanceof Set && c instanceof Set) {
+        } else if (self instanceof Set<?> && c instanceof Set<?>) {
         	return ((Set<?>) self).equals(c);
         } else {
         	// incompatible OCL types
@@ -293,7 +293,7 @@ public class CollectionUtil {
         
         Collection<E> result = null;
 
-        if (self instanceof Set || c instanceof Set) {
+        if (self instanceof Set<?> || c instanceof Set<?>) {
             // if either argument is a set, so is the result
             if (size1 == 0 || size2 == 0) {
                 return Collections.emptySet();
@@ -352,9 +352,9 @@ public class CollectionUtil {
         }
     	
         Collection<E> result = null;
-        if (self instanceof Bag || c instanceof Bag) {
+        if (self instanceof Bag<?> || c instanceof Bag<?>) {
             result = createNewBag(self);
-        } else if (self instanceof List || c instanceof List) {
+        } else if (self instanceof List<?> || c instanceof List<?>) {
             result = createNewSequence(self);
         } else {
             result = createNewSet(self);
@@ -390,14 +390,14 @@ public class CollectionUtil {
     
             // if the element type is not a collection type, the result is the
             // current collection.
-            if (!(object instanceof Collection)) {
+            if (!(object instanceof Collection<?>)) {
                 break;
             }
     
             Collection<Object> newResult = null;
-            if (result instanceof Bag) {
+            if (result instanceof Bag<?>) {
                 newResult = createNewBag();
-            } else if (result instanceof Set) {
+            } else if (result instanceof Set<?>) {
                 newResult = createNewSet();
             } else {
                 // Sequence
@@ -469,11 +469,11 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> excluding(Collection<E> self, Object object) {
         Collection<E> result = null;
-        if (self instanceof Set) {
+        if (self instanceof Set<?>) {
             result = createNewSet(self);
-        } else if (self instanceof Bag) {
+        } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
-        } else if (self instanceof List) {
+        } else if (self instanceof List<?>) {
             List<E> resultSeq = createNewSequence(self);
             while (resultSeq.remove(object)) {
                 ; // for sequences we need to remove all the matching elements
@@ -530,9 +530,9 @@ public class CollectionUtil {
     public static <E> Collection<E> including(Collection<E> self, E object) {
         Collection<E> result;
         
-        if (self instanceof Set) {
+        if (self instanceof Set<?>) {
             result = createNewSet(self);
-        } else if (self instanceof Bag) {
+        } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
         } else {
             result = createNewSequence(self);
@@ -556,7 +556,7 @@ public class CollectionUtil {
      * @return the source collection as a set
      */
     public static <E> Set<E> asSet(Collection<E> self) {
-        if (self instanceof Set) {
+        if (self instanceof Set<?>) {
             return (Set<E>) self;
         }
         return createNewSet(self);
@@ -575,7 +575,7 @@ public class CollectionUtil {
      * @return the source collection as a bag
      */
     public static <E> Bag<E> asBag(Collection<E> self) {
-        if (self instanceof Bag) {
+        if (self instanceof Bag<?>) {
             return (Bag<E>) self;
         }
         return createNewBag(self);
@@ -594,7 +594,7 @@ public class CollectionUtil {
      * @return the source collection as a sequence
      */
     public static <E> List<E> asSequence(Collection<E> self) {
-        if (self instanceof List) {
+        if (self instanceof List<?>) {
             return (List<E>) self;
         }
         return createNewSequence(self);
@@ -614,7 +614,7 @@ public class CollectionUtil {
      */
     public static <E> LinkedHashSet<E> asOrderedSet(Collection<E> self) {
         // TODO: create an interface for OrderedSet
-        if (self instanceof LinkedHashSet) {
+        if (self instanceof LinkedHashSet<?>) {
             return (LinkedHashSet<E>) self;
         }
         return createNewOrderedSet(self);
@@ -674,7 +674,7 @@ public class CollectionUtil {
     public static <E> Collection<E> append(Collection<E> self, E object) {
         Collection<E> result;
         // TODO: make an interface for OrderedSet
-        if (self instanceof LinkedHashSet) {
+        if (self instanceof LinkedHashSet<?>) {
             result = createNewOrderedSet(self);
             result.remove(object);  // appended object must be last
         } else {
@@ -699,7 +699,7 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> prepend(Collection<E> self, E object) {
         Collection<E> result;
-        if (self instanceof LinkedHashSet) {
+        if (self instanceof LinkedHashSet<?>) {
             result = createNewOrderedSet();
         } else {
             result = createNewSequence();
@@ -734,7 +734,7 @@ public class CollectionUtil {
         }
         
         Collection<E> result;
-        if (self instanceof LinkedHashSet) {
+        if (self instanceof LinkedHashSet<?>) {
             result = createNewOrderedSet();
         } else {
             result = createNewSequence();
@@ -788,7 +788,7 @@ public class CollectionUtil {
         }
         
         Collection<E> result;
-        if (self instanceof LinkedHashSet) {
+        if (self instanceof LinkedHashSet<?>) {
             result = createNewOrderedSet();
         } else {
             result = createNewSequence();
@@ -1020,11 +1020,11 @@ public class CollectionUtil {
     public static <E> Collection<E> createNewCollectionOfSameKind(Collection<?> c) {
     	Collection<E> result;
     	
-    	if (c instanceof Bag) {
+    	if (c instanceof Bag<?>) {
     		result = createNewBag();
-    	} else if (c instanceof LinkedHashSet) {
+    	} else if (c instanceof LinkedHashSet<?>) {
     		result = createNewOrderedSet();
-    	} else if (c instanceof Set) {
+    	} else if (c instanceof Set<?>) {
     		result = createNewSet();
     	} else {
     		result = createNewSequence();
@@ -1043,11 +1043,11 @@ public class CollectionUtil {
     public static <E> Collection<E> createNewCollection(Collection<? extends E> c) {
     	Collection<E> result;
     	
-    	if (c instanceof Bag) {
+    	if (c instanceof Bag<?>) {
     		result = createNewBag(c);
-    	} else if (c instanceof LinkedHashSet) {
+    	} else if (c instanceof LinkedHashSet<?>) {
     		result = createNewOrderedSet(c);
-    	} else if (c instanceof Set) {
+    	} else if (c instanceof Set<?>) {
     		result = createNewSet(c);
     	} else {
     		result = createNewSequence(c);
@@ -1130,13 +1130,13 @@ public class CollectionUtil {
 	private static CollectionKind kindOf(Collection<?> c) {
 	    CollectionKind result;
 	    
-        if (c instanceof List){
+        if (c instanceof List<?>){
             result = CollectionKind.SEQUENCE_LITERAL;
-        } else if (c instanceof LinkedHashSet) {
+        } else if (c instanceof LinkedHashSet<?>) {
             result = CollectionKind.ORDERED_SET_LITERAL;
-        } else if (c instanceof Set) {
+        } else if (c instanceof Set<?>) {
             result = CollectionKind.SET_LITERAL;
-        } else if (c instanceof Bag) {
+        } else if (c instanceof Bag<?>) {
             result = CollectionKind.BAG_LITERAL;
         } else {
             result = CollectionKind.COLLECTION_LITERAL;
@@ -1171,7 +1171,7 @@ public class CollectionUtil {
                 }
                 
                 Object next = iter.next();
-                if (next instanceof Collection) {
+                if (next instanceof Collection<?>) {
                     // nested collection
                     result.append(toString((Collection<?>) next));
                 } else if (next instanceof String) {

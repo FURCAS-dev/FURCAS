@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: LoopExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: LoopExpOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -82,7 +82,7 @@ public class LoopExpOperations
 
 		if (source != null) {
 			C sourceType = source.getType();
-			if (!(sourceType instanceof CollectionType)) {
+			if (!(sourceType instanceof CollectionType<?, ?>)) {
 				result = false;
 				message = OCLMessages.bind(OCLMessages.IteratorSource_ERROR_,
 					loopExp.toString());
@@ -157,7 +157,7 @@ public class LoopExpOperations
 			.getValidationEnvironment(loopExp, context);
 
 		if ((env != null) && (loopExp.getSource() != null)
-			&& (loopExp.getSource().getType() instanceof CollectionType)) {
+			&& (loopExp.getSource().getType() instanceof CollectionType<?, ?>)) {
 			@SuppressWarnings("unchecked")
 			CollectionType<C, ?> ct = (CollectionType<C, ?>) loopExp
 				.getSource().getType();

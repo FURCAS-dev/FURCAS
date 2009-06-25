@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.12 2008/04/24 23:37:20 cdamus Exp $
+ * $Id: AbstractTypeResolver.java,v 1.13 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -322,7 +322,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 			CollectionKind kind, C elementType) {
 		
 		for (C next : uml.getClassifiers(getCollectionPackage())) {
-            if (next instanceof CollectionType) {
+            if (next instanceof CollectionType<?, ?>) {
     			@SuppressWarnings("unchecked")
     			CollectionType<C, O> type =
     				(CollectionType<C, O>) next;
@@ -417,7 +417,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	protected TupleType<O, P> findTupleType(
 			EList<? extends TypedElement<C>> parts) {
 		for (C next : uml.getClassifiers(getTuplePackage())) {
-            if (next instanceof TupleType) {
+            if (next instanceof TupleType<?, ?>) {
     			@SuppressWarnings("unchecked")
     			TupleType<O, P> type =
     				(TupleType<O, P>) next;
@@ -540,7 +540,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	 */
 	protected TypeType<C, O> findTypeType(C type) {
 		for (C next : uml.getClassifiers(getTypePackage())) {
-            if (next instanceof TypeType) {
+            if (next instanceof TypeType<?, ?>) {
     			@SuppressWarnings("unchecked")
     			TypeType<C, O> typeType =
     				(TypeType<C, O>) next;
@@ -678,7 +678,7 @@ public abstract class AbstractTypeResolver<PK, C, O, P, PM>
 	 */
 	protected MessageType<C, O, P> findMessageType(Object element) {
 		for (C next : uml.getClassifiers(getMessagePackage())) {
-            if (next instanceof MessageType) {
+            if (next instanceof MessageType<?, ?, ?>) {
     			@SuppressWarnings("unchecked")
     			MessageType<C, O, P> type =
     				(MessageType<C, O, P>) next;

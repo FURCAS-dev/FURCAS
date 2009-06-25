@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.9 2008/11/12 15:25:50 cdamus Exp $
+ * $Id: ValidationVisitor.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -406,7 +406,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		C refType = TypeUtil.getPropertyType(env, source.getType(), property);
 		
-		if (!pc.getQualifier().isEmpty() && (refType instanceof CollectionType)) {
+		if (!pc.getQualifier().isEmpty() && (refType instanceof CollectionType<?, ?>)) {
 			// qualifying the navigation results in a non-collection
 			//    type
 			@SuppressWarnings("unchecked")
@@ -459,7 +459,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return validatorError(ae, message, "visitAssociationClassCallExp");//$NON-NLS-1$
 		}
 		
-		if (type instanceof CollectionType) {
+		if (type instanceof CollectionType<?, ?>) {
 			@SuppressWarnings("unchecked")
 			C elementType = ((CollectionType<C, O>) type).getElementType();
 			type = elementType;
@@ -649,7 +649,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	public Boolean visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
 		// unspecified values need not declare a type (it can be OclVoid).
 		//   The only restriction is that they can only be used in message expressions
-		if (!(uv.eContainer() instanceof MessageExp)) {
+		if (!(uv.eContainer() instanceof MessageExp<?, ?, ?>)) {
 			String message = OCLMessages.bind(
 							OCLMessages.IllegalUnspecifiedValueExp_ERROR_,
 							uv.toString());
@@ -663,7 +663,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * Callback for a TypeExp visit.
 	 */
 	public Boolean visitTypeExp(TypeExp<C> t) {
-		if (!(t.getType() instanceof TypeType)) {
+		if (!(t.getType() instanceof TypeType<?, ?>)) {
 			String message = OCLMessages.bind(OCLMessages.TypeConformanceTypeExp_ERROR_,
 							getName(t.getType()));
 			return validatorError(t, message, "visitTypeExp");//$NON-NLS-1$
@@ -847,7 +847,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 
 		C sourceType = source.getType();
-		if (!(sourceType instanceof CollectionType)) {
+		if (!(sourceType instanceof CollectionType<?, ?>)) {
 			String message = OCLMessages.bind(
 					OCLMessages.IteratorSource_ERROR_,
 					ie.toString());
@@ -917,7 +917,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 
 		int opcode = 0;
-		if (source.getType() instanceof PredefinedType) {
+		if (source.getType() instanceof PredefinedType<?>) {
 			opcode = OCLStandardLibraryUtil.getOperationCode(name);
 		}
 		
@@ -938,16 +938,16 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 		
 		if (opcode == PredefinedType.COLLECT) {
-			if (source.getType() instanceof SequenceType
-				|| source.getType() instanceof OrderedSetType) {
-				if (!(type instanceof SequenceType)) {
+			if (source.getType() instanceof SequenceType<?, ?>
+				|| source.getType() instanceof OrderedSetType<?, ?>) {
+				if (!(type instanceof SequenceType<?, ?>)) {
 					String message = OCLMessages.bind(
 							OCLMessages.TypeConformanceCollectSequence_ERROR_,
 							ie.toString());
 					return validatorError(ie, message,
 						"visitIteratorExp");//$NON-NLS-1$
 				}
-			} else if (!(type instanceof BagType)) {
+			} else if (!(type instanceof BagType<?, ?>)) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceCollectBag_ERROR_,
 						ie.toString());
@@ -982,7 +982,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 
 		C sourceType = source.getType();
-		if (!(sourceType instanceof CollectionType)) {
+		if (!(sourceType instanceof CollectionType<?, ?>)) {
 			String message = OCLMessages.bind(
 					OCLMessages.IteratorSource_ERROR_,
 					ie.toString());
@@ -1003,7 +1003,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         PredefinedType.CLOSURE_NAME), "iteratorExp", ie); //$NON-NLS-1$
             }
 			
-			if (!(type instanceof SetType)) {
+			if (!(type instanceof SetType<?, ?>)) {
 				String message = OCLMessages.bind(
 					OCLMessages.TypeConformanceClosure_ERROR_,
 					ie.toString());
@@ -1104,7 +1104,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionKind kind = cl.getKind();
 		C type = cl.getType();
 		
-		if (!(type instanceof CollectionType)) {
+		if (!(type instanceof CollectionType<?, ?>)) {
 			String message = OCLMessages.bind(
 					OCLMessages.TypeConformanceCollectionLiteralExp_ERROR_,
 					cl.toString());
@@ -1113,7 +1113,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		switch (kind) {
 		case SET_LITERAL:
-			if (!(type instanceof SetType)) {
+			if (!(type instanceof SetType<?, ?>)) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceSetLiteral_ERROR_,
 						cl.toString());
@@ -1121,7 +1121,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 			break;
 		case ORDERED_SET_LITERAL:
-			if (!(type instanceof OrderedSetType)) {
+			if (!(type instanceof OrderedSetType<?, ?>)) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceOrderedSetLiteral_ERROR_,
 						cl.toString());
@@ -1129,7 +1129,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 			break;
 		case BAG_LITERAL:
-			if (!(type instanceof BagType)) {
+			if (!(type instanceof BagType<?, ?>)) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceBagLiteral_ERROR_,
 						cl.toString());
@@ -1138,7 +1138,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			break;
 		default:
 			if ((kind != CollectionKind.SEQUENCE_LITERAL)
-					|| !(type instanceof SequenceType)) {
+					|| !(type instanceof SequenceType<?, ?>)) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceSequenceLiteral_ERROR_,
 						cl.toString());
@@ -1153,7 +1153,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collectionType = (CollectionType<C, O>) type;
 		
 		if (parts.isEmpty()) {
-			if (!(collectionType.getElementType() instanceof VoidType)) {
+			if (!(collectionType.getElementType() instanceof VoidType<?>)) {
 				String message = OCLMessages.bind(
 						OCLMessages.TypeConformanceEmptyCollection_ERROR_,
 						cl.toString());
@@ -1206,7 +1206,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	public Boolean visitTupleLiteralExp(TupleLiteralExp<C, P> tl) {
 
 		C type = tl.getType();
-		if (!(type instanceof TupleType)) {
+		if (!(type instanceof TupleType<?, ?>)) {
 			String message = OCLMessages.bind(
 							OCLMessages.TypeConformanceTupleLiteralExp_ERROR_,
 							tl.toString());
@@ -1334,13 +1334,13 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         if (exp.getSource() != null) {
             OCLExpression<C> source = exp.getSource();
             
-            if (source.getType() instanceof TypeType) {
+            if (source.getType() instanceof TypeType<?, ?>) {
                 @SuppressWarnings("unchecked")
                 TypeType<C, ?>  typeType = (TypeType<C, ?>) source.getType();
                 
                 Object feature = null;
                 
-                if (exp instanceof OperationCallExp) {
+                if (exp instanceof OperationCallExp<?, ?>) {
                     feature = ((OperationCallExp<?, ?>) exp).getReferredOperation();
                     
                     // operation must either be defined by the TypeType
@@ -1353,7 +1353,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             getName(feature));
                         return validatorError(exp, message, "visitFeatureCallExp");//$NON-NLS-1$
                     }
-                } else if (exp instanceof PropertyCallExp) {
+                } else if (exp instanceof PropertyCallExp<?, ?>) {
                     feature = ((PropertyCallExp<?, ?>) exp).getReferredProperty();
                     
                     // property must be a static attribute of
@@ -1375,7 +1375,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     }
 
 	public Boolean visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
-		if (!(il.getType() instanceof InvalidType)) {
+		if (!(il.getType() instanceof InvalidType<?>)) {
 			String message = OCLMessages.TypeConformanceInvalidLiteral_ERROR_;
 			return validatorError(il, message, "visitInvalidLiteralExp");//$NON-NLS-1$
 		}
@@ -1383,7 +1383,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	}
 
 	public Boolean visitNullLiteralExp(NullLiteralExp<C> il) {
-		if (!(il.getType() instanceof VoidType)) {
+		if (!(il.getType() instanceof VoidType<?>)) {
 			String message = OCLMessages.TypeConformanceNullLiteral_ERROR_;
 			return validatorError(il, message, "visitNullLiteralExp");//$NON-NLS-1$
 		}
@@ -1453,7 +1453,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         || UMLReflection.POSTCONDITION.equals(stereotype)) {
                     operType = getOCLType(operation);
                     
-                    if (operType instanceof VoidType) {
+                    if (operType instanceof VoidType<?>) {
                         operType = null;
                     }
                 }
@@ -1596,7 +1596,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     		String operationName = getName(constrainedOperation);
     		
     		// void operations may not have body constraints
-			if (operationType instanceof VoidType) {
+			if (operationType instanceof VoidType<?>) {
 				String message = OCLMessages.bind(
 						OCLMessages.BodyConditionNotAllowed_ERROR_,
 					operationName);
@@ -1794,13 +1794,13 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         //    allowed to be nested inside any number of lets for the user's
         //    convenience
         OCLExpression<C> exp = uml.getSpecification(constraint).getBodyExpression();
-        while (exp instanceof LetExp) {
+        while (exp instanceof LetExp<?, ?>) {
             @SuppressWarnings("unchecked")
             LetExp<C, ?> letExp = (LetExp<C, ?>) exp;
         	exp = letExp.getIn();
         }
         OperationCallExp<C, O> body = null;
-        if (exp instanceof OperationCallExp) {
+        if (exp instanceof OperationCallExp<?, ?>) {
             @SuppressWarnings("unchecked")
             OperationCallExp<C, O> callExp = (OperationCallExp<C, O>) exp;
         	body = callExp;
@@ -1959,7 +1959,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		// the implicitly defined "result" variable always has the same type
 		//    as the operation
-		boolean result = (expr instanceof VariableExp);
+		boolean result = (expr instanceof VariableExp<?, ?>);
 		
 		if (result) {
             result = TypeUtil.exactTypeMatch(env, expr.getType(), expectedType);

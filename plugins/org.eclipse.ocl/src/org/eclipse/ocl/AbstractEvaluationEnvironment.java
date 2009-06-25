@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.6 2007/12/12 22:08:04 cdamus Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.7 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -184,11 +184,11 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     		        if (EList.class.isAssignableFrom(parmTypes[i])) {
     		            if (args[i] == null) {
     		                args[i] = ECollections.EMPTY_ELIST;
-    		            } else if (!(args[i] instanceof Collection)) {
+    		            } else if (!(args[i] instanceof Collection<?>)) {
     		                EList<Object> list = new BasicEList.FastCompare<Object>(1);
     		                list.add(args[i]);
     		                args[i] = list;
-    		            } else if (!(args[i] instanceof EList)) {
+    		            } else if (!(args[i] instanceof EList<?>)) {
     		                args[i] = new BasicEList.FastCompare<Object>((Collection<?>) args[i]);
     		            }
     		        }
@@ -216,7 +216,7 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     	    case PredefinedType.GREATER_THAN:
     	    case PredefinedType.LESS_THAN_EQUAL:
     	    case PredefinedType.GREATER_THAN_EQUAL:
-            if ((source instanceof Comparable) && (args.length == 1)) {
+            if ((source instanceof Comparable<?>) && (args.length == 1)) {
                 @SuppressWarnings("unchecked")
                 Comparable<Object> comparable = (Comparable<Object>) source;
                 Object other = args[0];

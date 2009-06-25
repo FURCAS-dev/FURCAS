@@ -16,7 +16,7 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.16 2008/11/13 02:31:38 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.17 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -75,7 +75,7 @@ public class TypeUtil {
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			O operation) {
 		
-		return env.getUMLReflection().getOwningClassifier(operation) instanceof AnyType;
+		return env.getUMLReflection().getOwningClassifier(operation) instanceof AnyType<?>;
 	}
 
 	/**
@@ -497,7 +497,7 @@ public class TypeUtil {
 			int opcode) throws SemanticException {
 		
 		// all of the primitive types are considered as mutually comparable
-		if (!(type1 instanceof PrimitiveType && type2 instanceof PrimitiveType)) {
+		if (!(type1 instanceof PrimitiveType<?> && type2 instanceof PrimitiveType<?>)) {
 			if (commonSuperType(env, type1, type2) == null) {
 				String message = OCLMessages.bind(
 					OCLMessages.Noncomforming_ERROR_,

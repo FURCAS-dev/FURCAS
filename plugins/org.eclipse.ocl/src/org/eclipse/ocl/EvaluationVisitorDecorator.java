@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.2 2008/01/02 20:12:59 cdamus Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -94,14 +94,14 @@ public class EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CL
     void setupRecursion(
             EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> decorated,
             EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> decorator) {
-        if (decorated instanceof AbstractEvaluationVisitor) {
+        if (decorated instanceof AbstractEvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
             // tell the visitor to recursively invoke the head decorator so
             //   that it may intercept the recursion
             AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 abstractVisitor = (AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) decorated;
             
             abstractVisitor.setVisitor(decorator);
-        } else if (decorated instanceof EvaluationVisitorDecorator) {
+        } else if (decorated instanceof EvaluationVisitorDecorator<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
             // propagate the head decorator down the chain to the tail
             //   (which, hopefully, is an AbstractEvaluationVisitor)
             EvaluationVisitorDecorator<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>

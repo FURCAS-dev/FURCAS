@@ -14,7 +14,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.5 2009/03/11 13:04:28 cdamus Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.6 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -88,7 +88,7 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result =
 			createEnvironment(parent);
 		
-		if (result instanceof AbstractEnvironment) {
+		if (result instanceof AbstractEnvironment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 			((AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) result)
 				.setContextPackage(context);
 		}
@@ -155,7 +155,7 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result =
 			createEnvironment(parent);
 		
-		if (result instanceof AbstractEnvironment) {
+		if (result instanceof AbstractEnvironment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 			((AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) result)
 				.setContextOperation(operation);
 		}
@@ -185,7 +185,7 @@ public abstract class AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SS
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result =
 			createEnvironment(parent);
 		
-		if (result instanceof AbstractEnvironment) {
+		if (result instanceof AbstractEnvironment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 			((AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) result)
 				.setContextProperty(property);
 		}

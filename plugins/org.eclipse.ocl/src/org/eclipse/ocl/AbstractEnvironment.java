@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.18 2008/10/16 01:57:50 cdamus Exp $
+ * $Id: AbstractEnvironment.java,v 1.19 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -414,7 +414,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			result = new java.util.ArrayList<P>(additionals);
 		}
 		
-		Collection<? extends C> allParents = (classifier instanceof PredefinedType)
+		Collection<? extends C> allParents = (classifier instanceof PredefinedType<?>)
 			? OCLStandardLibraryUtil.getAllSupertypes(this,
 				(PredefinedType<?>) classifier)
 			: getUMLReflection().getAllSupertypes(classifier);
@@ -478,7 +478,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			result = new java.util.ArrayList<O>(additionals);
 		}
 		
-		Collection<? extends C> allParents = (classifier instanceof PredefinedType)
+		Collection<? extends C> allParents = (classifier instanceof PredefinedType<?>)
 			? OCLStandardLibraryUtil.getAllSupertypes(this,
 				(PredefinedType<?>) classifier)
 			: getUMLReflection().getAllSupertypes(classifier);
@@ -1164,7 +1164,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      */
     public void dispose() {
         if ((getInternalParent() == null)
-                && (getTypeResolver() instanceof AbstractTypeResolver)) {
+                && (getTypeResolver() instanceof AbstractTypeResolver<?, ?, ?, ?, ?>)) {
             ((AbstractTypeResolver<?, ?, ?, ?, ?>) getTypeResolver()).dispose();
         }
     }    
