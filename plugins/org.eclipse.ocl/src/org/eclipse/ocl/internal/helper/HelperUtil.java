@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.6 2008/02/16 00:07:22 cdamus Exp $
+ * $Id: HelperUtil.java,v 1.7 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -485,7 +485,7 @@ public class HelperUtil {
 		
 		Object result = element;
 
-		if (expr.eContainer() instanceof ExpressionInOCL) {
+		if (expr.eContainer() instanceof ExpressionInOCL<?, ?>) {
 			@SuppressWarnings("unchecked")
 			ExpressionInOCL<C, PM> specification =
 				(ExpressionInOCL<C, PM>) expr.eContainer();

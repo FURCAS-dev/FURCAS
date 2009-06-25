@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.1 2009/03/11 13:04:28 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.2 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -289,11 +289,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return Boolean.valueOf(!ObjectUtil.equal(sourceVal, argVal));
 		}
 
-		if (sourceType instanceof PrimitiveType
-			|| sourceType instanceof CollectionType
+		if (sourceType instanceof PrimitiveType<?>
+			|| sourceType instanceof CollectionType<?, ?>
 			|| getUMLReflection().isEnumeration(sourceType)
 			|| getUMLReflection().isDataType(sourceType)
-			|| (sourceType instanceof VoidType) || (sourceType instanceof InvalidType)) {
+			|| (sourceType instanceof VoidType<?>) || (sourceType instanceof InvalidType<?>)) {
 
 			if (numArgs == 0) {
 				//
@@ -406,7 +406,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						if (sourceType == getString()) {
 							// String::size()
 							return new Integer(((String) sourceVal).length());
-						} else if (sourceType instanceof CollectionType) {
+						} else if (sourceType instanceof CollectionType<?, ?>) {
 							return new Integer(((Collection<?>) sourceVal).size());
 						}
 					case PredefinedType.TO_INTEGER:
@@ -526,10 +526,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 					// if the source is undefined or the conversion to
 					// OclVoid so is the result
-					if (sourceVal == null || (argType instanceof VoidType)) {
+					if (sourceVal == null || (argType instanceof VoidType<?>)) {
                         return null;
                     }
-					if (sourceVal == getOclInvalid() || (argType instanceof InvalidType)) {
+					if (sourceVal == getOclInvalid() || (argType instanceof InvalidType<?>)) {
                         return getOclInvalid();
                     }
 
@@ -1007,7 +1007,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (sourceVal instanceof Collection) {
+				} else if (sourceVal instanceof Collection<?>) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 
@@ -1109,7 +1109,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							return CollectionUtil.indexOf(sourceColl,
 								argVal);
 					} // end of collection type switch
-				} else if (sourceVal instanceof Comparable) {
+				} else if (sourceVal instanceof Comparable<?>) {
 
 					// Handle < (lessThan)
 					if (opCode == PredefinedType.LESS_THAN) {
@@ -1172,7 +1172,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					int lower = ((Integer) arg1).intValue() - 1;
 					int upper = ((Integer) arg2).intValue();
 					return ((String) sourceVal).substring(lower, upper);
-				} else if (sourceVal instanceof Collection) {
+				} else if (sourceVal instanceof Collection<?>) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 					if (opCode == PredefinedType.INSERT_AT) {
@@ -1208,7 +1208,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// the instances are the literals
 					return new java.util.HashSet<EL>(
                             getUMLReflection().getEnumerationLiterals(classifier));
-				} else if (sourceVal instanceof VoidType) {
+				} else if (sourceVal instanceof VoidType<?>) {
 					// OclVoid has a single instance: null
 					Set<Object> result = new java.util.HashSet<Object>();
 					result.add(null);
@@ -1291,7 +1291,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			// Handle < (lessThan)
-			else if ((opCode == PredefinedType.LESS_THAN) && (sourceVal instanceof Comparable)) {
+			else if ((opCode == PredefinedType.LESS_THAN) && (sourceVal instanceof Comparable<?>)) {
 				@SuppressWarnings("unchecked")
 				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
@@ -1302,7 +1302,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			//	Handle <= (lessThanEqual)
-			else if ((opCode == PredefinedType.LESS_THAN_EQUAL) && (sourceVal instanceof Comparable)) {
+			else if ((opCode == PredefinedType.LESS_THAN_EQUAL) && (sourceVal instanceof Comparable<?>)) {
 				@SuppressWarnings("unchecked")
 				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
@@ -1313,7 +1313,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			// Handle > (greaterThan)
-			else if ((opCode == PredefinedType.GREATER_THAN) && (sourceVal instanceof Comparable)) {
+			else if ((opCode == PredefinedType.GREATER_THAN) && (sourceVal instanceof Comparable<?>)) {
 				@SuppressWarnings("unchecked")
 				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
@@ -1324,7 +1324,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			// Handle > (greaterThanEqual)
-			else if ((opCode == PredefinedType.GREATER_THAN_EQUAL) && (sourceVal instanceof Comparable)) {
+			else if ((opCode == PredefinedType.GREATER_THAN_EQUAL) && (sourceVal instanceof Comparable<?>)) {
 				@SuppressWarnings("unchecked")
 				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
@@ -1419,7 +1419,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     public Object visitIteratorExp(IteratorExp<C, PM> ie) {
 		C sourceType = ie.getSource().getType();
 		
-		if (sourceType instanceof PredefinedType) {
+		if (sourceType instanceof PredefinedType<?>) {
 			Object sourceValue = ie.getSource().accept(getVisitor());
 			
 			// value of iteration expression is undefined if the source is
@@ -1533,7 +1533,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType || collType instanceof BagType) {
+		if (collType instanceof SetType<?, ?> || collType instanceof BagType<?, ?>) {
             // collection on a Bag or a Set yields a Bag
 			initResultVal = CollectionUtil.createNewBag();
         } else {
@@ -1572,7 +1572,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType || collType instanceof BagType) {
+		if (collType instanceof SetType<?, ?> || collType instanceof BagType<?, ?>) {
             // collection on a Bag or a Set yields a Bag
 			initResultVal = CollectionUtil.createNewBag();
         } else {
@@ -1611,13 +1611,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType) {
+		if (collType instanceof SetType<?, ?>) {
             // Set
 			initResultVal = CollectionUtil.createNewSet();
-        } else if (collType instanceof BagType) {
+        } else if (collType instanceof BagType<?, ?>) {
             // Bag
 			initResultVal = CollectionUtil.createNewBag();
-        } else if (collType instanceof SequenceType) {
+        } else if (collType instanceof SequenceType<?, ?>) {
             // Sequence
 			initResultVal = CollectionUtil.createNewSequence();
         } else {
@@ -1656,13 +1656,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CollectionType<C, O> collType = (CollectionType<C, O>) ie.getSource().getType();
 		
 		Object initResultVal = null;
-		if (collType instanceof SetType) {
+		if (collType instanceof SetType<?, ?>) {
             // Set
 			initResultVal = CollectionUtil.createNewSet();
-        } else if (collType instanceof BagType) {
+        } else if (collType instanceof BagType<?, ?>) {
             // Bag
 			initResultVal = CollectionUtil.createNewBag();
-        } else if (collType instanceof SequenceType) {
+        } else if (collType instanceof SequenceType<?, ?>) {
             // Sequence
 			initResultVal = CollectionUtil.createNewSequence();
         } else {
@@ -1789,7 +1789,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// type is Sequence if source is a sequence or a Bag,
 		// SortedSet if source is a SortedSet or a Set
 		C collType = ie.getSource().getType();
-		if (collType instanceof SetType || collType instanceof OrderedSetType) {
+		if (collType instanceof SetType<?, ?> || collType instanceof OrderedSetType<?, ?>) {
             return CollectionUtil.createNewOrderedSet(result);
         } else {
             return CollectionUtil.createNewSequence(result);
@@ -1924,7 +1924,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		Object result = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
 		
-		if ((pc.getType() instanceof CollectionType) && !(result instanceof Collection)) {
+		if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
 			// this was an XSD "unspecified multiplicity".  Now that we know what
 			//    the multiplicity is, we can coerce it to a collection value
 			@SuppressWarnings("unchecked")
@@ -2152,7 +2152,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		} else {
 			// not a sequence or not a simple range
 			for (CollectionLiteralPart<C> part : parts) {
-				if (part instanceof CollectionItem) {
+				if (part instanceof CollectionItem<?>) {
 					// CollectionItem part
 					CollectionItem<C> item = (CollectionItem<C>) part;
 					OCLExpression<C> itemExp = item.getItem();
@@ -2192,9 +2192,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	private static final class IntegerRangeList
 		extends AbstractList<Integer> {
 
-		public IntegerRangeList() {
-			super();
-		}
+//		public IntegerRangeList() {
+//			super();
+//		}
 
 		public IntegerRangeList(int first, int last) {
 			super();
@@ -2202,13 +2202,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			this.last = last;
 		}
 
-		public int getFirst() {
-			return first;
-		}
+//		public int getFirst() {
+//			return first;
+//		}
 
-		public int getLast() {
-			return last;
-		}
+//		public int getLast() {
+//			return last;
+//		}
 
 		@Override
         public int size() {

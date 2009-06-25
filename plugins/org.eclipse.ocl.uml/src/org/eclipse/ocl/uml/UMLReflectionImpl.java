@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.10 2008/09/10 18:44:15 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.11 2009/06/25 19:23:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -429,7 +429,7 @@ class UMLReflectionImpl
     }
     
     public boolean isComparable(Classifier type) {
-        if ((type instanceof PrimitiveType)
+        if ((type instanceof PrimitiveType<?>)
             || (type.getOperation("<", null, null) != null)) { //$NON-NLS-1$
             
             return true;
@@ -475,7 +475,7 @@ class UMLReflectionImpl
     public ExpressionInOCL<Classifier, Parameter>
     getSpecification(Constraint constraint) {
         
-        if (constraint.getSpecification() instanceof ExpressionInOCL) {
+        if (constraint.getSpecification() instanceof ExpressionInOCL<?, ?>) {
             return (org.eclipse.ocl.uml.ExpressionInOCL) constraint.getSpecification();
         }
         
@@ -577,10 +577,10 @@ class UMLReflectionImpl
         if (dataType instanceof Enumeration) {
             return dataType;
         }
-        if (dataType instanceof CollectionType) {
+        if (dataType instanceof CollectionType<?, ?>) {
             return dataType;
         }
-        if (dataType instanceof PrimitiveType) {
+        if (dataType instanceof PrimitiveType<?>) {
             return dataType;
         }
     

@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.9 2009/01/31 19:47:15 cdamus Exp $
+ * $Id: OCL.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -141,7 +141,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		this.environmentFactory = envFactory;
 		this.rootEnvironment = rootEnv;
 
-		if (envFactory instanceof AbstractEnvironmentFactory) {
+		if (envFactory instanceof AbstractEnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 			AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> abstractFactory = (AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) envFactory;
 
 			abstractFactory.setEvaluationTracingEnabled(traceEvaluation);
@@ -703,7 +703,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	public void setEvaluationTracingEnabled(boolean b) {
 		traceEvaluation = b;
 
-		if (environmentFactory instanceof AbstractEnvironmentFactory) {
+		if (environmentFactory instanceof AbstractEnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 			AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> abstractFactory = (AbstractEnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environmentFactory;
 
 			abstractFactory.setEvaluationTracingEnabled(traceEvaluation);
@@ -756,7 +756,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		getConstraints().clear();
 
 		// dispose of my environment
-		if (getEnvironment() instanceof Environment.Internal) {
+		if (getEnvironment() instanceof Environment.Internal<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) {
 			Environment.Internal<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = (Environment.Internal<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>) getEnvironment();
 			env.dispose();
 		}

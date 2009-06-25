@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.2 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: IterationTemplateClosure.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -73,7 +73,7 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 		
 		Collection<Object> newResults = CollectionUtil.createNewSet();
 		
-		if (bodyVal instanceof Collection) {
+		if (bodyVal instanceof Collection<?>) {
 			Collection<?> bodyColl = (Collection<?>) bodyVal;
 			
 			for (Object next : bodyColl) {

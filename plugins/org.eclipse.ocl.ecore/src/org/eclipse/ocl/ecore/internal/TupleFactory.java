@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.1 2008/09/10 19:21:04 cdamus Exp $
+ * $Id: TupleFactory.java,v 1.2 2009/06/25 19:23:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -141,7 +141,7 @@ public class TupleFactory extends EFactoryImpl {
         private String toString(Object o) {
             if (o instanceof String) {
                 return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (o instanceof Collection) {
+            } else if (o instanceof Collection<?>) {
                 return CollectionUtil.toString((Collection<?>) o);
             } else if (o == null) {
                 return "null"; //$NON-NLS-1$

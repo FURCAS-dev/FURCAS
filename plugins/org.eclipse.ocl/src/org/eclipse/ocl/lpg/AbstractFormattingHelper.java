@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractFormattingHelper.java,v 1.2 2007/11/06 20:02:10 cdamus Exp $
+ * $Id: AbstractFormattingHelper.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -119,19 +119,19 @@ public class AbstractFormattingHelper implements FormattingHelper
 	}
 	
 	public String formatType(Object type) {
-		if (type instanceof VoidType) {
+		if (type instanceof VoidType<?>) {
             return "<void-type>"; //$NON-NLS-1$
-        } else if (type instanceof TypeType) {
+        } else if (type instanceof TypeType<?, ?>) {
             return "<type-type>"; //$NON-NLS-1$
-        } else if (type instanceof InvalidType) {
+        } else if (type instanceof InvalidType<?>) {
             return "<invalid-type>"; //$NON-NLS-1$
-        } else if (type instanceof AnyType) {
+        } else if (type instanceof AnyType<?>) {
             return "<any-type>"; //$NON-NLS-1$
-        } else if (type instanceof CollectionType) {
+        } else if (type instanceof CollectionType<?, ?>) {
 			StringBuffer s = new StringBuffer();
-			s.append(((CollectionType<?,?>)type).getKind().toString());
+			s.append(((CollectionType<?, ?>)type).getKind().toString());
 			s.append('(');
-			s.append(formatType(((CollectionType<?,?>)type).getElementType()));
+			s.append(formatType(((CollectionType<?, ?>)type).getElementType()));
 			s.append(')');
 			return s.toString();
 		} else {

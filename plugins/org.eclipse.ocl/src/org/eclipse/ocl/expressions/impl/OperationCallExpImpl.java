@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.9 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: OperationCallExpImpl.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.impl;
 
@@ -186,7 +186,7 @@ public class OperationCallExpImpl<C, O>
 					String operName = env.getUMLReflection().getName(
 						getReferredOperation());
 
-					if (type instanceof PredefinedType) {
+					if (type instanceof PredefinedType<?>) {
 						operationCode = OCLStandardLibraryUtil
 							.getOperationCode(operName);
 					} else if (TypeUtil.isOclAnyOperation(env,

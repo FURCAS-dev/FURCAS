@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.14 2008/12/30 11:33:12 cdamus Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.15 2009/06/25 19:23:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -550,7 +550,7 @@ public class UMLEvaluationEnvironment
         CollectionKind kind = getCollectionKind(feature);
 
         if (kind != null) {
-            if (value instanceof Collection) {
+            if (value instanceof Collection<?>) {
                 return copy ? CollectionUtil.createNewCollection(kind,
                     (Collection<?>) value)
                     : value;
@@ -561,7 +561,7 @@ public class UMLEvaluationEnvironment
                 return result;
             }
         } else {
-            if (value instanceof Collection) {
+            if (value instanceof Collection<?>) {
                 Collection<?> collection = (Collection<?>) value;
                 return collection.isEmpty() ? null
                     : collection.iterator().next();
@@ -1264,7 +1264,7 @@ public class UMLEvaluationEnvironment
         private String toString(Object o) {
             if (o instanceof String) {
                 return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
-            } else if (o instanceof Collection) {
+            } else if (o instanceof Collection<?>) {
                 return CollectionUtil.toString((Collection<?>) o);
             } else if (o == null) {
                 return "null"; //$NON-NLS-1$

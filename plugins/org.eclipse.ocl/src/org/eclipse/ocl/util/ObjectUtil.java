@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ObjectUtil.java,v 1.4 2008/02/16 00:07:21 cdamus Exp $
+ * $Id: ObjectUtil.java,v 1.5 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -155,7 +155,7 @@ public class ObjectUtil {
                 false); iter.hasNext();) {
                 iter.next().eAdapters().clear();
             }
-	    } else if (object instanceof Collection) {
+	    } else if (object instanceof Collection<?>) {
 	        for (Object next : ((Collection<?>) object)) {
 	            dispose(next);
 	        }

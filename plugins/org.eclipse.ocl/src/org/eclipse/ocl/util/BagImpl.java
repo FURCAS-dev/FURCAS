@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagImpl.java,v 1.3 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: BagImpl.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -113,7 +113,7 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 	 */
 	@Override
     public boolean equals(Object o) {
-		if (o instanceof BagImpl) {
+		if (o instanceof BagImpl<?>) {
 			BagImpl<?> b = (BagImpl<?>) o;
 			if (size() == b.size()) {
 				for (Iterator<?> it = iterator(); it.hasNext();) {

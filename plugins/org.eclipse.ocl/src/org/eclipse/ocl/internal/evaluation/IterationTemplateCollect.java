@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollect.java,v 1.3 2008/03/26 21:17:25 cdamus Exp $
+ * $Id: IterationTemplateCollect.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -56,7 +56,7 @@ public class IterationTemplateCollect<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 			return bodyVal;
 		}
 		
-		if (bodyVal instanceof Collection) {
+		if (bodyVal instanceof Collection<?>) {
 			Collection<?> bodyColl = (Collection<?>) bodyVal;
 			currVal.addAll(CollectionUtil.flatten(bodyColl));
 		}

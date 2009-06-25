@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: IteratorExpOperations.java,v 1.3 2008/10/12 01:09:49 cdamus Exp $
+ * $Id: IteratorExpOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -97,7 +97,7 @@ public class IteratorExpOperations
 				case PredefinedType.FOR_ALL :
 				case PredefinedType.EXISTS :
 				case PredefinedType.IS_UNIQUE :
-					if (!(type instanceof PrimitiveType)
+					if (!(type instanceof PrimitiveType<?>)
 						|| !"Boolean".equals(env.getUMLReflection() //$NON-NLS-1$
 							.getName(type))) {
 						result = false;
@@ -152,16 +152,16 @@ public class IteratorExpOperations
 
 			switch (opcode) {
 				case PredefinedType.COLLECT :
-					if ((source.getType() instanceof SequenceType)
-						|| (source.getType() instanceof OrderedSetType)) {
-						if (!(type instanceof SequenceType)) {
+					if ((source.getType() instanceof SequenceType<?, ?>)
+						|| (source.getType() instanceof OrderedSetType<?, ?>)) {
+						if (!(type instanceof SequenceType<?, ?>)) {
 							result = false;
 							message = OCLMessages
 								.bind(
 									OCLMessages.TypeConformanceCollectSequence_ERROR_,
 									iteratorExp.toString());
 						}
-					} else if (!(type instanceof BagType)) {
+					} else if (!(type instanceof BagType<?, ?>)) {
 						result = false;
 						message = OCLMessages.bind(
 							OCLMessages.TypeConformanceCollectBag_ERROR_,
@@ -267,7 +267,7 @@ public class IteratorExpOperations
 				case PredefinedType.ANY :
 				case PredefinedType.EXISTS :
 				case PredefinedType.ONE :
-					if (!(type instanceof PrimitiveType)
+					if (!(type instanceof PrimitiveType<?>)
 						|| !"Boolean".equals(env.getUMLReflection() //$NON-NLS-1$
 							.getName(type))) {
 						result = false;
