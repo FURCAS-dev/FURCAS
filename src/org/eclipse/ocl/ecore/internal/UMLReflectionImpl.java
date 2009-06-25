@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.8 2008/09/10 18:44:25 cdamus Exp $
+ * $Id: UMLReflectionImpl.java,v 1.9 2009/06/25 19:23:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -536,10 +536,10 @@ public class UMLReflectionImpl
         if (dataType instanceof EEnum) {
             return dataType;
         }
-        if (dataType instanceof CollectionType) {
+        if (dataType instanceof CollectionType<?, ?>) {
             return dataType;
         }
-        if (dataType instanceof PrimitiveType) {
+        if (dataType instanceof PrimitiveType<?>) {
             return dataType;
         }
     

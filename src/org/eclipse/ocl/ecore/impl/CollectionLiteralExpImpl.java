@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.9 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.10 2009/06/25 19:23:32 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -176,7 +176,7 @@ public class CollectionLiteralExpImpl
 		if (size == 1) {
 			CollectionLiteralPart<EClassifier> part = partsList.get(0);
 
-			return part instanceof CollectionRange;
+			return part instanceof CollectionRange<?>;
 		}
 
 		return false;
