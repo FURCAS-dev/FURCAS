@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.6 2008/11/02 00:46:58 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.7 2009/06/25 19:23:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -393,7 +393,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		// add the type to the standard library package
 		stdlibPackage.getEClassifiers().add(stdType);
 		
-		if ((stdType instanceof PredefinedType) && !(stdType instanceof EClass)) {
+		if ((stdType instanceof PredefinedType<?>) && !(stdType instanceof EClass)) {
 			// an EClass would store its own operations; this cannot.
 			//    Create a shadow class to store the operations
 			result = createShadowClass(stdType);

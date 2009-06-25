@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.7 2008/02/16 00:07:23 cdamus Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.8 2009/06/25 19:23:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -194,7 +194,7 @@ public class EcoreEvaluationEnvironment
         
         CollectionKind result = null;
         
-        if (oclType instanceof CollectionType) {
+        if (oclType instanceof CollectionType<?, ?>) {
             result = ((CollectionType<?, ?>) oclType).getKind();
             ObjectUtil.dispose(oclType);  // we created this object
         }
@@ -227,7 +227,7 @@ public class EcoreEvaluationEnvironment
         CollectionKind kind = getCollectionKind(element);
 
         if (kind != null) {
-            if (value instanceof Collection) {
+            if (value instanceof Collection<?>) {
                 return copy ? CollectionUtil.createNewCollection(kind,
                     (Collection<?>) value)
                     : value;
@@ -238,7 +238,7 @@ public class EcoreEvaluationEnvironment
                 return result;
             }
         } else {
-            if (value instanceof Collection) {
+            if (value instanceof Collection<?>) {
                 Collection<?> collection = (Collection<?>) value;
                 return collection.isEmpty() ? null
                     : collection.iterator().next();
@@ -310,13 +310,13 @@ public class EcoreEvaluationEnvironment
             EStructuralFeature property = entry.getKey();
             Object value = entry.getValue();
 
-            if (property.isMany() && (value instanceof Collection)) {
+            if (property.isMany() && (value instanceof Collection<?>)) {
                 @SuppressWarnings("unchecked")
                 Collection<Object> coll = (Collection<Object>) tuple
                     .eGet(property);
                 coll.addAll((Collection<?>) value);
-            } else if ((property.getEType() instanceof CollectionType)
-                && (value instanceof Collection)) {
+            } else if ((property.getEType() instanceof CollectionType<?, ?>)
+                && (value instanceof Collection<?>)) {
                 // always copy the collection to the correct type
                 @SuppressWarnings("unchecked")
                 CollectionType<EClassifier, EOperation> collType = (CollectionType<EClassifier, EOperation>) property
