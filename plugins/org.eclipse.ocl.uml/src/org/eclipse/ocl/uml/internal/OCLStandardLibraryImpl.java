@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.7 2008/11/30 22:06:25 cdamus Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.8 2009/06/25 19:23:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -262,7 +262,6 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
     
     // this method is used to build the standard library when not loading it
     //   from file
-    @SuppressWarnings("unchecked")
 	private static Package build() {
 		if (stdlibPackage != null) {
 			return stdlibPackage;

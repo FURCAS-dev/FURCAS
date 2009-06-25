@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeResolverImpl.java,v 1.4 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: TypeResolverImpl.java,v 1.5 2009/06/25 19:23:24 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -149,7 +149,6 @@ public class TypeResolverImpl
                 kind, elementType);
         
         // ensure that the collection type's operations are correctly defined
-        @SuppressWarnings("unchecked")
         DataType umlResult = (DataType) result;
         Collection<Operation> ownedOperations = umlResult.getOwnedOperations();
         if (ownedOperations.isEmpty()) {

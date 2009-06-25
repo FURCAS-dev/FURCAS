@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.8 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.9 2009/06/25 19:23:24 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -168,7 +168,7 @@ public class CollectionLiteralExpImpl
 		if (size == 1) {
 			CollectionLiteralPart<Classifier> part = partsList.get(0);
 
-			return part instanceof CollectionRange;
+			return part instanceof CollectionRange<?>;
 		}
 
 		return false;
