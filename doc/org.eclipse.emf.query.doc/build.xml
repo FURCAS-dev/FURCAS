@@ -63,6 +63,7 @@
 
 	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${docPlugin}.">
 		<!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
+		<echo message="${eclipse.home}"/>
 		<exec executable="sh">
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}"/>
