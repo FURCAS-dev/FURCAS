@@ -65,7 +65,7 @@
 		<!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
 		<exec executable="sh">
 			<arg value="build/antJavadoc.sh"/>
-			<arg value="${eclipse.home}/../eclipse"/>
+			<arg value="${eclipse.home}/../../../eclipse"/>
 		</exec>
 		
 		<antcall target="build.index"/>
