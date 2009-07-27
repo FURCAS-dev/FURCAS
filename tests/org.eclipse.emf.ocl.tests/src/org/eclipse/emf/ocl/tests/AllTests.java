@@ -39,7 +39,7 @@ public class AllTests
 	}
 
 	public static Test suite() {
-		if (System.getProperty("standalone") != null) {
+		if (System.getProperty("standalone") != null) { //$NON-NLS-1$
 			// running tests stand-alone:  must set up the environment registry
 			Environment.Registry.INSTANCE.registerEnvironment(
 					EcoreEnvironmentFactory.INSTANCE.createEnvironment());

@@ -136,7 +136,8 @@ public class ParsingTest
 		helper.setContextOperation(fruit, fruit_preferredColor);
         
         try {
-            OCLExpression expr = helper.createBodyCondition(
+            @SuppressWarnings("unused")
+			OCLExpression expr = helper.createBodyCondition(
                 "if true then Color::red else Color::brown endif"); //$NON-NLS-1$
             
             fail("Should have failed to parse"); //$NON-NLS-1$

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.16 2007/10/11 23:05:16 cdamus Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.17 2009/07/27 15:28:57 ewillink Exp $
  */
 
 package org.eclipse.emf.ocl.expressions.impl;
@@ -1927,7 +1927,7 @@ public class EvaluationVisitorImpl
             return result;
         }
         
-		throw new IllegalArgumentException("No such property: " + property.getName());
+		throw new IllegalArgumentException("No such property: " + property.getName()); //$NON-NLS-1$
 	}
     
     /**
@@ -2236,6 +2236,7 @@ public class EvaluationVisitorImpl
 	private static final class IntegerRangeList
 		extends AbstractList {
 
+		@SuppressWarnings("unused")
 		public IntegerRangeList() {
 			super();
 		}
@@ -2246,10 +2247,12 @@ public class EvaluationVisitorImpl
 			this.last = last;
 		}
 
+		@SuppressWarnings("unused")
 		public int getFirst() {
 			return first;
 		}
 
+		@SuppressWarnings("unused")
 		public int getLast() {
 			return last;
 		}
