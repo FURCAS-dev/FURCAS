@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.7 2008/12/30 11:33:08 cdamus Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.8 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -299,9 +299,8 @@ public class UMLEnvironmentTest
 			.setOption(ocl.getEvaluationEnvironment(),
 				UMLEvaluationOptions.EVALUATION_MODE,
 				EvaluationMode.INSTANCE_MODEL);
-
-		Resource res = resourceSet.getResource(URI.createPlatformPluginURI(
-			"/org.eclipse.ocl.uml.tests/model/instances.uml", true), true); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/instances.uml"); //$NON-NLS-1$
+		Resource res = resourceSet.getResource(uri, true);
 		Package instancesPkg = (Package) EcoreUtil.getObjectByType(res
 			.getContents(), UMLPackage.Literals.PACKAGE);
 
@@ -338,7 +337,7 @@ public class UMLEnvironmentTest
 
 		result = ocl.evaluate(aB, query);
 
-		assertTrue(result instanceof Collection);
+		assertTrue(result instanceof Collection<?>);
 
 		Collection<?> collection = (Collection<?>) result;
 		assertEquals("Wrong number of results", 2, collection.size()); //$NON-NLS-1$

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.4 2008/09/28 17:32:44 cdamus Exp $
+ * $Id: OperationConstraintsTest.java,v 1.5 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -309,14 +309,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			int variableCalls = 0;
 			for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(expr)); iter.hasNext();) {
 				Object next = iter.next();
-				if (next instanceof PropertyCallExp) {
+				if (next instanceof PropertyCallExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					PropertyCallExp<Classifier, Property> pc =
 						(PropertyCallExp<Classifier, Property>) next;
 					if ("str".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
 						propertyCalls++;
 					}
-				} else if (next instanceof VariableExp) {
+				} else if (next instanceof VariableExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					VariableExp<Classifier, Parameter> v =
 						(VariableExp<Classifier, Parameter>) next;

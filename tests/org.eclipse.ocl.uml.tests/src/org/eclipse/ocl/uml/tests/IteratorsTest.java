@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.5 2008/05/17 20:41:31 cdamus Exp $
+ * $Id: IteratorsTest.java,v 1.6 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -766,7 +766,7 @@ public class IteratorsTest
             result = evaluate(helper, EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->collect(null)"); //$NON-NLS-1$
 
-            assertTrue(result instanceof Collection);
+            assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertEquals(3, collResult.size());
@@ -798,7 +798,7 @@ public class IteratorsTest
                 EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)"); //$NON-NLS-1$
 
-            assertTrue(result instanceof Collection);
+            assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertEquals(3, collResult.size());
@@ -831,7 +831,7 @@ public class IteratorsTest
             result = evaluate(helper, umlMetamodel,
                 "let c : Set(Type) = Set{null} in ownedType->closure(c)"); //$NON-NLS-1$
 
-            assertTrue(result instanceof Collection);
+            assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertTrue(collResult.isEmpty());

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvariantConstraintsTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: InvariantConstraintsTest.java,v 1.3 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -110,7 +110,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 			int typeCalls = 0;
 			for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(expr)); iter.hasNext();) {
 				Object next = iter.next();
-				if (next instanceof PropertyCallExp) {
+				if (next instanceof PropertyCallExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					PropertyCallExp<Classifier, Property> pc =
 						(PropertyCallExp<Classifier, Property>) next;
@@ -118,7 +118,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 					if ("Fruit".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
 						propertyCalls++;
 					}
-				} else if (next instanceof TypeExp) {
+				} else if (next instanceof TypeExp<?>) {
 					@SuppressWarnings("unchecked")
 					TypeExp<Classifier> te = (TypeExp<Classifier>) next;
 					

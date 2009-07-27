@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.3 2008/02/15 05:20:16 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.4 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -30,6 +30,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.OCLInput;
@@ -240,9 +241,8 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		
 		instancePackage = umlf.createPackage();
 		constraints = new java.util.HashMap<String, Constraint>();
-		
-		URL url = new URL(
-				"platform:/plugin/org.eclipse.ocl.uml.tests/model/test_constraints.ocl"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/test_constraints.ocl"); //$NON-NLS-1$
+		URL url = new URL(uri.toString());
 		InputStream is = url.openStream();
 		List<Constraint> parsed = ocl.parse(new OCLInput(is));
 		is.close();
