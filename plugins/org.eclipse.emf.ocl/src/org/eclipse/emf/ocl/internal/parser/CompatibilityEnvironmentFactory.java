@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityEnvironmentFactory.java,v 1.3 2007/10/11 23:05:17 cdamus Exp $
+ * $Id: CompatibilityEnvironmentFactory.java,v 1.4 2009/07/27 15:28:57 ewillink Exp $
  */
 package org.eclipse.emf.ocl.internal.parser;
 
@@ -144,7 +144,7 @@ public class CompatibilityEnvironmentFactory extends EcoreEnvironmentFactory {
     public org.eclipse.ocl.Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEnvironment() {
         return CompatibilityUtil.getCompatibilityEnvironment(
             null,
-            oldStyle.createPackageContext(Collections.singletonList("ecore")),
+            oldStyle.createPackageContext(Collections.singletonList("ecore")), //$NON-NLS-1$
             this);
     }
     

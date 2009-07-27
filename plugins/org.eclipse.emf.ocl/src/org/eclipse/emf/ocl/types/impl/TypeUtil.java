@@ -13,7 +13,7 @@
   *
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.18 2008/08/30 17:04:16 cdamus Exp $
+ * $Id: TypeUtil.java,v 1.19 2009/07/27 15:28:57 ewillink Exp $
  */
 package org.eclipse.emf.ocl.types.impl;
 
@@ -1065,6 +1065,7 @@ public class TypeUtil {
 		private EList additionalProperties;
 		private EList additionalOperations;
 		
+		@SuppressWarnings("unused")
 		protected EClassifier getOwner() {
 			return (EClassifier) getTarget();
 		}

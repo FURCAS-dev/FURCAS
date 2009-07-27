@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompatibilityUtil.java,v 1.5 2008/02/15 05:20:14 cdamus Exp $
+ * $Id: CompatibilityUtil.java,v 1.6 2009/07/27 15:28:57 ewillink Exp $
  */
 
 package org.eclipse.emf.ocl.internal.parser;
@@ -127,6 +127,7 @@ public class CompatibilityUtil {
 			}
 		} else {
 			// maybe it's an OclAny-defined operation?
+			@SuppressWarnings("unused")
 			OCLStandardLibrary<EClassifier> stdlib =
 				EcoreEnvironmentFactory.INSTANCE.createEnvironment().getOCLStandardLibrary();
 			
