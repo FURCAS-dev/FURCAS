@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.4 2008/08/03 23:02:11 cdamus Exp $
+ * $Id: TypesValidatorTest.java,v 1.5 2009/07/27 15:30:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -152,11 +152,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	public void test_emptyCollectionType_196972() {
 		// load our test resource
 		ResourceSet rset = new ResourceSetImpl();
-		Resource res = rset
-			.getResource(
-				URI
-					.createPlatformPluginURI(
-						"/org.eclipse.ocl.ecore.tests/model/VoidCollectionTypes.ecore", true), true); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/VoidCollectionTypes.ecore"); //$NON-NLS-1$
+		Resource res = rset.getResource(uri, true);
 		EPackage epackage = (EPackage) res.getContents().get(0);
 		
 		// this one is ill-named

@@ -13,13 +13,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.17 2009/01/31 19:46:34 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.18 2009/07/27 15:30:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
@@ -59,6 +58,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
+import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -127,6 +127,41 @@ public abstract class AbstractTestSuite
 	
 	public AbstractTestSuite(String name) {
 		super(name);
+	}
+	
+	public static URI getTestModelURI(String localFileName) {
+		String testPlugInId = "org.eclipse.ocl.ecore.tests"; //$NON-NLS-1$
+		try {
+			Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
+			Method getBundle = platformClass.getDeclaredMethod("getBundle", new Class[] {String.class}); //$NON-NLS-1$
+			Object bundle = getBundle.invoke(null, new Object[] {testPlugInId});
+			
+			if (bundle != null) {
+				Method getEntry = bundle.getClass().getMethod("getEntry", new Class[] {String.class}); //$NON-NLS-1$
+				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
+				return URI.createURI(url.toString());
+			}
+			else {
+				initializeStandalone();
+			}
+		} catch (Exception e) {
+			initializeStandalone();
+		}
+		String urlString = System.getProperty(testPlugInId);
+		if (urlString == null)
+			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
+		return URI.createFileURI(urlString + "/" + localFileName); //$NON-NLS-1$
+	}
+
+	private static boolean initialized = false;
+
+	public static void initializeStandalone() {
+		if (initialized)
+			return;
+		initialized = true;
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+			"ecore", new XMIResourceFactoryImpl()); //$NON-NLS-1$
+		OCLStandardLibraryImpl.INSTANCE.getClass();		// Ensure OCLStandardLibrary loaded before use
 	}
 
 	/**
@@ -202,7 +237,11 @@ public abstract class AbstractTestSuite
 	}
 	
 	protected OCL createOCL() {
-		return OCL.newInstance();
+		OCL newInstance = OCL.newInstance();
+		String repairs = System.getProperty("org.eclipse.ocl.ecore.tests.repairs"); //$NON-NLS-1$
+		if (repairs != null)
+			newInstance.setParserRepairCount(Integer.parseInt(repairs));
+		return newInstance;
 	}
 	
 	protected OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint>
@@ -215,7 +254,8 @@ public abstract class AbstractTestSuite
 		throws Exception {
 		
 	    ocl.dispose();
-	    
+	    ocl = null;
+	    helper = null;
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
 	}
 	
@@ -665,37 +705,9 @@ public abstract class AbstractTestSuite
 	}
 	
 	private static void initFruitPackage() {
-		URL url = null;
-
-		try {
-			Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
-			Method getBundle = platformClass.getDeclaredMethod("getBundle", new Class[] {String.class}); //$NON-NLS-1$
-			Object bundle = getBundle.invoke(null, new Object[] {"org.eclipse.ocl.ecore.tests"}); //$NON-NLS-1$
-			
-			if (bundle != null) {
-				Method getEntry = bundle.getClass().getMethod("getEntry", new Class[] {String.class}); //$NON-NLS-1$
-				url = (URL) getEntry.invoke(bundle, new Object[] {"/model/OCLTest.ecore"}); //$NON-NLS-1$
-			}
-		} catch (Exception e) {
-			// not running in Eclipse
-		}
-		
-		if (url == null) {
-			try {
-				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-						"ecore", new XMIResourceFactoryImpl()); //$NON-NLS-1$
-				String urlString = System.getProperty("org.eclipse.ocl.ecore.tests.testmodel"); //$NON-NLS-1$
-				if (!urlString.startsWith("file:")) { //$NON-NLS-1$
-					urlString = "file:" + urlString; //$NON-NLS-1$
-				}
-				url = new URL(urlString);
-			} catch (MalformedURLException e) {
-				fail(e.getLocalizedMessage());
-			}
-		}
-		
+		URI uri = getTestModelURI("/model/OCLTest.ecore"); //$NON-NLS-1$
 		ResourceSet rset = new ResourceSetImpl();
-		Resource res = rset.getResource(URI.createURI(url.toString()), true);
+		Resource res = rset.getResource(uri, true);
 		
 		fruitPackage = (EPackage) res.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(fruitPackage.getNsURI(), fruitPackage);

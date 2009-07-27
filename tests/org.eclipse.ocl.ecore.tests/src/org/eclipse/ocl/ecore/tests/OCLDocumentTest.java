@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.5 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: OCLDocumentTest.java,v 1.6 2009/07/27 15:30:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -28,6 +28,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -314,9 +315,8 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		super.setUp();
 		
 		constraints = new java.util.HashMap<String, Constraint>();
-		
-		URL url = new URL(
-				"platform:/plugin/org.eclipse.ocl.ecore.tests/model/test_constraints.ocl"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/test_constraints.ocl"); //$NON-NLS-1$
+		URL url = new URL(uri.toString());
 		InputStream is = url.openStream();
 		List<Constraint> parsed = ocl.parse(new OCLInput(is));
 		is.close();
