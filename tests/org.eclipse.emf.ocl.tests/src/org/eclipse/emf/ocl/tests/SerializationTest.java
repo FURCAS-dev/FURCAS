@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.4 2007/10/11 23:05:08 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.5 2009/07/27 15:28:52 ewillink Exp $
  */
 
 package org.eclipse.emf.ocl.tests;
@@ -41,7 +41,6 @@ import org.eclipse.emf.ocl.helper.IOCLHelper;
 import org.eclipse.emf.ocl.parser.PersistentEnvironment;
 import org.eclipse.emf.ocl.types.impl.TypeUtil;
 import org.eclipse.emf.ocl.uml.Constraint;
-import org.eclipse.emf.ocl.utilities.ASTNode;
 
 /**
  * Tests for serialization of OCL constraints and expressions.
