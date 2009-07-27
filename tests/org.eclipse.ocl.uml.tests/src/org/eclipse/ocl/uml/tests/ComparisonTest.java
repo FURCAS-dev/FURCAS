@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.6 2008/09/10 18:44:04 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.7 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -584,7 +584,7 @@ public class ComparisonTest
 			expr = helper.createQuery("self.f()"); //$NON-NLS-1$
 			
 			type = expr.getType();
-			assertTrue(type instanceof CollectionType);
+			assertTrue(type instanceof CollectionType<?, ?>);
 			type = ((org.eclipse.ocl.uml.CollectionType) type).getElementType();
 			assertSame(datatype, type);
 			

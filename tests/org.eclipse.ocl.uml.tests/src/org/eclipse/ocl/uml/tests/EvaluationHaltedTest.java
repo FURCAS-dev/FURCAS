@@ -506,8 +506,8 @@ public class EvaluationHaltedTest
 	}
 
 	private static void assertListResult(Object result, List<?> expectedElements) {
-		assertTrue("result must be a List", result instanceof List); //$NON-NLS-1$
-		assertNotNull("expectedElements must be a List", result instanceof List); //$NON-NLS-1$		
+		assertTrue("result must be a List", result instanceof List<?>); //$NON-NLS-1$
+		assertNotNull("expectedElements must be a List", result instanceof List<?>); //$NON-NLS-1$		
 		List<?> resultCollection = (List<?>) result;
 		assertEquals(expectedElements, resultCollection);
 	}

@@ -14,18 +14,18 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.15 2009/01/31 19:47:29 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.16 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -44,7 +44,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
@@ -58,6 +60,9 @@ import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.ExpressionInOCL;
 import org.eclipse.ocl.uml.OCL;
+import org.eclipse.ocl.uml.UMLEnvironment;
+import org.eclipse.ocl.uml.UMLEnvironmentFactory;
+import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.Visitable;
@@ -246,7 +251,11 @@ public abstract class AbstractTestSuite
 	}
 	
 	protected OCL createOCL() {
-		return OCL.newInstance(resourceSet);
+		OCL newInstance = OCL.newInstance(resourceSet);
+		String repairs = System.getProperty("org.eclipse.ocl.uml.tests.repairs"); //$NON-NLS-1$
+		if (repairs != null)
+			newInstance.setParserRepairCount(Integer.parseInt(repairs));
+		return newInstance;
 	}
 	
 	protected OCLHelper<Classifier, Operation, Property, Constraint> createHelper() {
@@ -785,7 +794,7 @@ public abstract class AbstractTestSuite
 			result.setDefiningFeature(property);
 		}
 		
-		if (value instanceof Collection) {
+		if (value instanceof Collection<?>) {
 			for (Object e : (Collection<?>) value) {
 				addValue(result, e);
 			}
@@ -1008,35 +1017,67 @@ public abstract class AbstractTestSuite
         fruitPackage = null;
 	}
 	
-	private static void initFruitPackage() {
-		URL url = null;
-
+	public static URI getTestModelURI(String localFileName) {
+		String testPlugInId = "org.eclipse.ocl.uml.tests"; //$NON-NLS-1$
 		try {
 			java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
 			Method getBundle = platformClass.getDeclaredMethod("getBundle", new java.lang.Class[] {String.class}); //$NON-NLS-1$
-			Object bundle = getBundle.invoke(null, new Object[] {"org.eclipse.ocl.uml.tests"}); //$NON-NLS-1$
+			Object bundle = getBundle.invoke(null, new Object[] {testPlugInId});
 			
 			if (bundle != null) {
 				Method getEntry = bundle.getClass().getMethod("getEntry", new java.lang.Class[] {String.class}); //$NON-NLS-1$
-				url = (URL) getEntry.invoke(bundle, new Object[] {"/model/OCLTest.uml"}); //$NON-NLS-1$
+				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
+				return URI.createURI(url.toString());
+			}
+			else {
+				initializeStandalone();
 			}
 		} catch (Exception e) {
-			// not running in Eclipse
+			initializeStandalone();
 		}
-		
-		if (url == null) {
-			try {
-				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-						UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-				String urlString = System.getProperty("org.eclipse.ocl.uml.tests.testmodel"); //$NON-NLS-1$
-				if (!urlString.startsWith("file:")) { //$NON-NLS-1$
-					urlString = "file:" + urlString; //$NON-NLS-1$
-				}
-				url = new URL(urlString);
-			} catch (MalformedURLException e) {
-				fail(e.getLocalizedMessage());
-			}
-		}
+		String urlString = System.getProperty(testPlugInId);
+		if (urlString == null)
+			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
+		return URI.createFileURI(urlString + "/" + localFileName); //$NON-NLS-1$
+	}
+
+	private static boolean initialized = false;
+
+	public static void initializeStandalone() {
+		if (initialized)
+			return;
+		initialized = true;
+		Map<URI, URI> uriMap = URIMappingRegistryImpl.INSTANCE.map();		
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		Environment.Registry.INSTANCE.registerEnvironment(
+			new UMLEnvironmentFactory().createEnvironment());
+		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
+		if (oclLocation == null)
+			fail("'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"); //$NON-NLS-1$
+		oclLocation = "file:/" + oclLocation; //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
+		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
+		if (resourcesLocation == null)
+			fail("'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"); //$NON-NLS-1$
+		resourcesLocation = "file:/" + resourcesLocation; //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.STANDARD_PROFILE_URI), URI.createURI(resourcesLocation + "/profiles/Standard.profile.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.ECORE_PROFILE_URI), URI.createURI(resourcesLocation + "/profiles/Ecore.profile.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.UML_METAMODEL_URI), URI.createURI(resourcesLocation + "/metamodels/UML.metamodel.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI), URI.createURI(resourcesLocation + "/libraries/UMLPrimitiveTypes.library.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI), URI.createURI(resourcesLocation + "/libraries/EcorePrimitiveTypes.library.uml")); //$NON-NLS-1$
+//		resourcesLocation = System.getProperty("org.eclipse.ocl"); //$NON-NLS-1$
+//		if (resourcesLocation == null)
+//			AbstractTestSuite.fail("'org.eclipse.ocl' property not defined; use the launch configuration to define it"); //$NON-NLS-1$
+//		resourcesLocation = "file:/" + resourcesLocation; //$NON-NLS-1$
+//		uriMap.put(URI.createURI(OCL.OCL_METAMODEL_URI), URI.createURI(resourcesLocation + "/model/OCL.uml")); //$NON-NLS-1$
+		OCLStandardLibraryImpl.INSTANCE.getClass();		// Ensure OCLStandardLibrary loaded before use
+	}
+	
+	private static void initFruitPackage() {
+		URI uri = getTestModelURI("/model/OCLTest.uml"); //$NON-NLS-1$
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		
 		disposeResourceSet();
 		
@@ -1044,7 +1085,7 @@ public abstract class AbstractTestSuite
 		    resourceSet = new ResourceSetImpl();
 		}
 		
-		Resource res = resourceSet.getResource(URI.createURI(url.toString()), true);
+		Resource res = resourceSet.getResource(uri, true);
 		
 		fruitPackage = (Package) res.getContents().get(0);
 		

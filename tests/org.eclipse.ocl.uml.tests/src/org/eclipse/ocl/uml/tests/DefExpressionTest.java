@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.6 2008/08/05 00:36:50 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.7 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -204,7 +204,7 @@ public class DefExpressionTest
 			
 			assertEquals(UMLReflection.DEFINITION, getStereotype(constraint));
 			
-			assertTrue(expr.getType() instanceof SetType);
+			assertTrue(expr.getType() instanceof SetType<?, ?>);
 			assertSame(
 					((org.eclipse.ocl.uml.SetType) expr.getType()).getElementType(),
 					apple);
@@ -243,11 +243,11 @@ public class DefExpressionTest
 			OCLExpression<Classifier> expr = helper.createQuery("self.oclAllParents()"); //$NON-NLS-1$
 			
 			Object oclAllParents = ocl.evaluate(apple, expr);
-			assertTrue(oclAllParents instanceof Set);
+			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).contains(fruit));
 			
 			oclAllParents = ocl.evaluate(color, expr);
-			assertTrue(oclAllParents instanceof Set);
+			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).isEmpty());
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -265,11 +265,11 @@ public class DefExpressionTest
 			OCLExpression<Classifier> expr = helper.createQuery("self.oclAllParents"); //$NON-NLS-1$
 			
 			Object oclAllParents = ocl.evaluate(apple, expr);
-			assertTrue(oclAllParents instanceof Set);
+			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).contains(fruit));
 			
 			oclAllParents = ocl.evaluate(color, expr);
-			assertTrue(oclAllParents instanceof Set);
+			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).isEmpty());
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$

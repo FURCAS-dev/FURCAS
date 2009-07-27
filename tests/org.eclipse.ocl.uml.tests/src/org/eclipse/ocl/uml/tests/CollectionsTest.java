@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.6 2007/05/03 13:06:08 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.7 2009/07/27 15:30:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -751,7 +751,7 @@ public class CollectionsTest
             Property part = tt.getOwnedAttribute("a", null); //$NON-NLS-1$
 
             assertNotNull(part);
-            assertTrue(part.getType() instanceof CollectionType);
+            assertTrue(part.getType() instanceof CollectionType<?, ?>);
 
             @SuppressWarnings("unchecked")
             CollectionType<Classifier, Operation> collType = (CollectionType<Classifier, Operation>) part
@@ -759,12 +759,12 @@ public class CollectionsTest
             assertSame(getMetaclass("Type"), collType.getElementType()); //$NON-NLS-1$
 
             Object result = ocl.evaluate(umlMetamodel, expr);
-            assertTrue(result instanceof Tuple);
+            assertTrue(result instanceof Tuple<?, ?>);
 
             @SuppressWarnings("unchecked")
             Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) result;
 
-            assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+            assertTrue(tuple.getValue("a") instanceof Collection<?>); //$NON-NLS-1$
             assertTrue(((Collection<?>) tuple.getValue("a")).contains(getMetaclass("Classifier"))); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
@@ -789,7 +789,7 @@ public class CollectionsTest
             Property part = tt.getOwnedAttribute("a", null); //$NON-NLS-1$
 
             assertNotNull(part);
-            assertTrue(part.getType() instanceof CollectionType);
+            assertTrue(part.getType() instanceof CollectionType<?, ?>);
 
             @SuppressWarnings("unchecked")
             CollectionType<Classifier, Operation> collType = (CollectionType<Classifier, Operation>) part
@@ -798,12 +798,12 @@ public class CollectionsTest
                 .getElementType());
 
             Object result = ocl.evaluate(umlMetamodel, expr);
-            assertTrue(result instanceof Tuple);
+            assertTrue(result instanceof Tuple<?, ?>);
 
             @SuppressWarnings("unchecked")
             Tuple<Operation, Property> tuple = (Tuple<Operation, Property>) result;
 
-            assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+            assertTrue(tuple.getValue("a") instanceof Collection<?>); //$NON-NLS-1$
             assertTrue(((Collection<?>) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
@@ -825,8 +825,8 @@ public class CollectionsTest
             Object value = ocl.evaluate(umlMetamodel, expr);
 
             // should be a set, not an EList
-            assertTrue(value instanceof Set);
-            assertFalse(value instanceof EList);
+            assertTrue(value instanceof Set<?>);
+            assertFalse(value instanceof EList<?>);
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }
@@ -847,8 +847,8 @@ public class CollectionsTest
             Object value = ocl.evaluate(umlMetamodel, expr);
 
             // should be a set, not an EList
-            assertTrue(value instanceof Set);
-            assertFalse(value instanceof EList);
+            assertTrue(value instanceof Set<?>);
+            assertFalse(value instanceof EList<?>);
         } catch (Exception exc) {
             fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
         }

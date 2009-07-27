@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitorTest.java,v 1.2 2007/11/21 20:35:09 cdamus Exp $
+ * $Id: AbstractVisitorTest.java,v 1.3 2009/07/27 15:30:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -105,7 +105,8 @@ public class AbstractVisitorTest
         EClassifier, EOperation, EStructuralFeature, EEnumLiteral,
         EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
         
-        public TestVisitor() {
+        @SuppressWarnings("unused")
+		public TestVisitor() {
             super();
         }
         
