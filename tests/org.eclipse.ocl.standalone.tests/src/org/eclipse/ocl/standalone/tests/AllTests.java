@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.6 2008/11/13 02:32:06 cdamus Exp $
+ * $Id: AllTests.java,v 1.7 2009/08/25 20:45:17 ewillink Exp $
  */
 package org.eclipse.ocl.standalone.tests;
 
@@ -63,7 +63,6 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite result = new TestSuite("All OCL Tests"); //$NON-NLS-1$
         
-        result.addTest(org.eclipse.emf.ocl.tests.AllTests.suite());
         result.addTest(org.eclipse.ocl.ecore.tests.AllTests.suite());
         result.addTest(org.eclipse.ocl.uml.tests.AllTests.suite());
         
@@ -112,15 +111,6 @@ public class AllTests extends TestCase {
             URI.createURI(umlResources + "/metamodels/")); //$NON-NLS-1$
         uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP),
             URI.createURI(umlResources + "/profiles/")); //$NON-NLS-1$
-
-        // configure the fake "oclenv:" resource factory
-        Map<String, Object> protMap = Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap();
-        
-        try {
-            protMap.put("oclenv", Class.forName("org.eclipse.emf.ocl.parser.EnvironmentResource$Factory").newInstance()); //$NON-NLS-1$ //$NON-NLS-2$
-        } catch (Exception e) {
-            fail("Failed to load compatibility environment resource: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        }
     }
     
     private static String getUMLResourcesJar() {
