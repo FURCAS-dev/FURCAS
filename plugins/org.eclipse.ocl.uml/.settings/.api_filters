@@ -352,15 +352,6 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src/org/eclipse/ocl/uml/UMLPackage.java" type="org.eclipse.ocl.uml.UMLPackage">
-        <filter id="1209008130">
-            <message_arguments>
-                <message_argument value="1.3"/>
-                <message_argument value="2.0"/>
-                <message_argument value="eCONTENT_TYPE"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/ocl/uml/UnlimitedNaturalLiteralExp.java" type="org.eclipse.ocl.uml.UnlimitedNaturalLiteralExp">
         <filter id="574619656">
             <message_arguments>
