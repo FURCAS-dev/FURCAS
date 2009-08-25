@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.emf.ocl.doc" default="build.jars" basedir=".">
+<project name="org.eclipse.ocl.doc" default="build.jars" basedir=".">
 
 	<property file="${buildDirectory}/finalPluginsVersions.properties"/>
 	<property name="pluginVersion" value="${org.eclipse.ocl.doc}"/>
