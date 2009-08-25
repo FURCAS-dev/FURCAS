@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.ocl.examples"
       label="%featureName"
-      version="1.3.0.qualifier"
+      version="3.0.0.qualifier"
       provider-name="%providerName"
       image="modeling32.png">
 
