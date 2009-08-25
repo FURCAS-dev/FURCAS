@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnicodeSupport.java,v 1.3 2007/10/11 23:04:53 cdamus Exp $
+ * $Id: UnicodeSupport.java,v 1.4 2009/08/25 20:30:36 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -27,27 +27,7 @@ import com.ibm.icu.text.UTF16;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class UnicodeSupport {
-	private static final UnicodeSupport INSTANCE;
-	
-	static {
-		UnicodeSupport instance = null;
-		try {
-			Class<?> icuClass = Class.forName(
-					"org.eclipse.emf.ocl.internal.l10n.ICUProxy$ICU"); //$NON-NLS-1$
-			instance = (UnicodeSupport) icuClass.newInstance();
-		} catch (NoClassDefFoundError e) {
-			// expected in non-Eclipse environment
-		} catch (Exception e) {
-			// expected in non-Eclipse environment
-		}
-		
-		if (instance == null) {
-			// could not find the ICU class.  Use the default implementation
-			instance = new UnicodeSupport.Default();
-		}
-		
-		INSTANCE = instance;
-	}
+	private static final UnicodeSupport INSTANCE = new UnicodeSupport.Default();
 	
 	/**
 	 * This class is not instantiable nor subclassable by clients.
