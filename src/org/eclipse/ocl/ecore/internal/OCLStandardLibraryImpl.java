@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.7 2009/06/25 19:23:32 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.8 2009/08/26 05:57:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -41,6 +41,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.ElementType;
 import org.eclipse.ocl.types.InvalidType;
@@ -190,6 +191,9 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
         }
         
         ResourceSet rset = new ResourceSetImpl();
+        // Ensure that an EcoreResource factory is registered for the ecore extension.
+        // Note that when running standalone, a registration in the global registry is not certain.
+        OCL.initialize(rset);
         Resource res = null;
         
         try {
