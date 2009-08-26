@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.8 2009/06/25 19:23:24 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.9 2009/08/26 05:57:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -40,6 +40,7 @@ import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.VoidType;
+import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLFactory;
@@ -197,6 +198,9 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         }
         
         ResourceSet rset = new ResourceSetImpl();
+        // Ensure that a UMLResource factory is registered for the uml extension.
+        // Note that when running standalone, a registration in the global registry is not certain.
+        OCL.initialize(null);
         Resource res = null;
         
         try {

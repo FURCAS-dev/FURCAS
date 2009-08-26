@@ -12,14 +12,18 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.3 2007/05/17 17:06:27 cdamus Exp $
+ * $Id: OCL.java,v 1.4 2009/08/26 05:57:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
 
+import java.util.Map;
+
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
@@ -36,6 +40,7 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -63,6 +68,53 @@ public class OCL extends org.eclipse.ocl.OCL<
 			EnumerationLiteral, Parameter, State,
 			CallOperationAction, SendSignalAction, Constraint,
 			Class, EObject> {
+
+	/**
+	 * Initialize registries to support OCL and UML usage. This method is
+	 * intended for initialization of standalone behaviors for which plugin extension
+	 * registrations have not been applied.
+	 *<p> 
+	 * A null resourceSet may be provided to initialize the global package registry
+	 * and global URI mapping registry.
+	 *<p> 
+	 * A non-null resourceSet may be provided to identify specific package
+	 * and global URI mapping registries.
+	 *<p> 
+	 * The locations of the org.eclipse.ocl.uml and org.eclipse.uml2.uml.resources
+	 * plugins must be identified by the correspondingly named Java properties.
+	 * A standalone application command line might do this by incorporating
+	 * 
+	 * <p><tt>-Dorg.eclipse.ocl.uml=C:/Eclipse/plugins/org.eclipse.ocl.uml</tt>
+	 * <br><tt>-Dorg.eclipse.uml2.uml.resources=C:/Eclipse/plugins/org.eclipse.uml2.uml.resources</tt>
+	 * <p>
+	 * This method is used to configure the ResourceSet used to load the OCL Standard Library.
+
+	 * @param resourceSet to be initialized or null for global initialization
+	 * @return a failure reason, null if successful
+	 * 
+	 * @since 3.0
+	 */
+	public static String initialize(ResourceSet resourceSet) {
+		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
+		if (oclLocation == null)
+			return "'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
+		if (resourcesLocation == null)
+			return "'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
+			? resourceSet.getResourceFactoryRegistry()
+			: Resource.Factory.Registry.INSTANCE;
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		Map<URI, URI> uriMap = resourceSet != null
+			? resourceSet.getURIConverter().getURIMap()
+			: URIConverter.URI_MAP;		
+		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createFileURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
+		return null;
+	}
 
     /**
      * Initializes me with an environment factory for the UML metamodel.
