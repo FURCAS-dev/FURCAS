@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.3 2007/05/17 17:06:29 cdamus Exp $
+ * $Id: OCL.java,v 1.4 2009/08/26 05:57:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
@@ -47,6 +49,32 @@ public class OCL extends org.eclipse.ocl.OCL<
 			EEnumLiteral, EParameter, EObject,
 			CallOperationAction, SendSignalAction, Constraint,
 			EClass, EObject> {
+
+	/**
+	 * Initialize registries to support OCL and Ecore usage. This method is
+	 * intended for initialization of standalone behaviors for which plugin extension
+	 * registrations have not been applied. 
+	 *<p> 
+	 * A null resourceSet may be provided to initialize the global package registry
+	 * and global URI mapping registry.
+	 *<p> 
+	 * A non-null resourceSet may be provided to identify a specific package registry.
+	 *<p>
+	 * This method is used to configure the ResourceSet used to load the OCL Standard Library.
+
+	 * @param resourceSet to be initialized or null for global initialization
+	 * @return a failure reason, null if successful
+	 * 
+	 * @since 3.0
+	 */
+	public static String initialize(ResourceSet resourceSet) {
+		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
+			? resourceSet.getResourceFactoryRegistry()
+			: Resource.Factory.Registry.INSTANCE;
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+			"ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		return null;
+	}
 
 	/**
      * Initializes me with an environment factory for the Ecore metamodel.
