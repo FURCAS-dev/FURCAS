@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
+*   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.2 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -130,6 +131,8 @@ public interface OCLBacktrackingParsersym {
       TK_EOF_TOKEN = 73,
       TK_IDENTIFIER = 4,
       TK_INTEGER_RANGE_START = 97,
+      TK_SINGLE_LINE_COMMENT = 100,
+      TK_MULTI_LINE_COMMENT = 101,
       TK_ERROR_TOKEN = 1;
 
       public final static String orderedTerminalSymbols[] = {
@@ -232,7 +235,9 @@ public interface OCLBacktrackingParsersym {
                  "package",
                  "INTEGER_RANGE_START",
                  "attr",
-                 "oper"
+                 "oper",
+                 "SINGLE_LINE_COMMENT",
+                 "MULTI_LINE_COMMENT"
              };
 
     public final static boolean isValidForParser = true;

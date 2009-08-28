@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,17 +11,14 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
-*   
+*
 * </copyright>
 *
-* $Id: OCLLexerprs.java,v 1.3 2009/02/12 00:04:09 cdamus Exp $
+* $Id: OCLLexerprs.java,v 1.4 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
 
-/**
- * @noextend This class is not intended to be subclassed by clients.
- */
 public class OCLLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLLexersym {
 
     public interface IsKeyword {

@@ -14,7 +14,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.2 2009/02/12 00:04:09 cdamus Exp $
+-- * $Id: OCLLexer.g,v 1.3 2009/08/28 20:43:11 ewillink Exp $
 -- */
 --
 -- The OCL Lexer
@@ -67,7 +67,7 @@ $Notice
  $copyright_contributions
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.2 2009/02/12 00:04:09 cdamus Exp $
+ * $Id: OCLLexer.g,v 1.3 2009/08/28 20:43:11 ewillink Exp $
  */
 	./
 $End
@@ -124,6 +124,9 @@ $Export
 	CARET
 	CARETCARET
 	QUESTIONMARK
+	
+	SINGLE_LINE_COMMENT
+	MULTI_LINE_COMMENT
 
 $End
 
@@ -261,13 +264,13 @@ $Rules
 
 	Token ::= SLC
 		/.$BeginAction
-					skipToken();
+					makeComment($_SINGLE_LINE_COMMENT);
 		  $EndAction
 		./
 
     Token ::= '/' '*' Inside Stars '/'
         /.$BeginAction
-                    skipToken();
+                    makeComment($_MULTI_LINE_COMMENT);
           $EndAction
         ./
 

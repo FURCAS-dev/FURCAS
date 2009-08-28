@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,11 +10,11 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
-*      - Bug 259818
-*      
+*   Borland - Bug 242880
+*
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.3 2009/01/13 19:44:29 cdamus Exp $
+* $Id: OCLLexer.java,v 1.4 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -381,7 +381,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 10:  Token ::= SLC
             //
             case 10: { 
-				skipToken();
+				makeComment(TK_SINGLE_LINE_COMMENT);
 	            break;
             }
 	 
@@ -389,7 +389,7 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             // Rule 11:  Token ::= / * Inside Stars /
             //
             case 11: { 
-                skipToken();
+                makeComment(TK_MULTI_LINE_COMMENT);
                 break;
             }
      
