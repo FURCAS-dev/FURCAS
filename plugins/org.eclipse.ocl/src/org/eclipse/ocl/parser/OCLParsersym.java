@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
+*   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.5 2009/01/13 19:44:29 cdamus Exp $
+* $Id: OCLParsersym.java,v 1.6 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -131,7 +132,9 @@ public interface OCLParsersym {
       TK_EOF_TOKEN = 79,
       TK_IDENTIFIER = 2,
       TK_INTEGER_RANGE_START = 82,
-      TK_ERROR_TOKEN = 99;
+      TK_SINGLE_LINE_COMMENT = 99,
+      TK_MULTI_LINE_COMMENT = 100,
+      TK_ERROR_TOKEN = 101;
 
       public final static String orderedTerminalSymbols[] = {
                  "",
@@ -233,6 +236,8 @@ public interface OCLParsersym {
                  "in",
                  "attr",
                  "oper",
+                 "SINGLE_LINE_COMMENT",
+                 "MULTI_LINE_COMMENT",
                  "ERROR_TOKEN"
              };
 

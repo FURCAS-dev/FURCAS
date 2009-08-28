@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.2 2009/03/05 14:12:14 cdamus Exp $
+* $Id: OCLBacktrackingParser.java,v 1.3 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -64,11 +64,6 @@ import org.eclipse.ocl.cst.PrePostOrBodyEnum;
 
 	import org.eclipse.ocl.parser.AbstractOCLParser;
 
-/**
- * The backtracking variant of the OCL parser.
- * 
- * @since 1.3
- */
 public class OCLBacktrackingParser extends AbstractOCLParser implements RuleAction
 {
 	protected static ParseTable prs = new OCLBacktrackingParserprs();
