@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,24 +10,16 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
-*      - Bug 259818
-*   
+*
 * </copyright>
 *
-* $Id: OCLBacktrackingKWLexer.java,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLBacktrackingKWLexer.java,v 1.2 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
 
 
-/**
- * The backtracking variant of the OCL keyword lexer.
- * 
- * @noextend This class is not intended to be subclassed by clients.
- * 
- * @since 1.3
- */
 public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs implements OCLBacktrackingParsersym
 {
     private char[] inputChars;

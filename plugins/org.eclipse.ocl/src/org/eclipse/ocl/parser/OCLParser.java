@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.7 2009/03/05 14:12:14 cdamus Exp $
+* $Id: OCLParser.java,v 1.8 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;

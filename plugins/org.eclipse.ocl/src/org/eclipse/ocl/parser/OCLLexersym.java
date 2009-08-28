@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+*   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.2 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLLexersym.java,v 1.3 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;

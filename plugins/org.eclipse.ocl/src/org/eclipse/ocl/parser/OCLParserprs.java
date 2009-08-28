@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,10 +13,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
+*   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLParserprs.java,v 1.6 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLParserprs.java,v 1.7 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -38,7 +39,8 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
             0,0,0,1,1,1,0,1,0,0,
             1,0,1,0,1,1,1,1,0,0,
             0,0,0,0,0,0,0,0,0,1,
-            1,1,1,1,1,1,1,1,0
+            1,1,1,1,1,1,1,1,0,0,
+            0
         };
     };
     public final static byte isKeyword[] = IsKeyword.isKeyword;
@@ -817,7 +819,7 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
             0,0,0,0,0,0,0,0,0,0,
             0,94,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,
-            0
+            0,0,0
         };
     };
     public final static byte termCheck[] = TermCheck.termCheck;
@@ -1104,7 +1106,8 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
             31,32,33,53,54,96,21,51,13,25,
             42,18,38,16,35,36,37,41,97,14,
             15,99,17,22,23,24,26,27,28,39,
-            40,43,44,45,50,52,59,60,100
+            40,43,44,45,50,52,59,60,100,101,
+            102
         };
     };
     public final static char terminalIndex[] = TerminalIndex.terminalIndex;
@@ -1112,17 +1115,17 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     public interface NonterminalIndex {
         public final static char nonterminalIndex[] = {0,
-            0,104,113,136,101,102,0,105,0,103,
-            110,0,134,106,129,131,0,0,0,0,
+            0,106,115,138,103,104,0,107,0,105,
+            112,0,136,108,131,133,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,
-            130,0,127,128,124,125,126,0,122,123,
-            120,121,118,119,116,117,0,142,115,0,
-            135,143,0,0,0,0,154,0,0,0,
-            147,149,150,0,107,0,0,114,138,0,
-            140,144,145,0,0,146,151,152,153,0,
-            0,108,109,111,112,132,133,0,0,137,
-            139,141,0,0,0,0,0,148,0,155,
-            156,157,0,0
+            132,0,129,130,126,127,128,0,124,125,
+            122,123,120,121,118,119,0,144,117,0,
+            137,145,0,0,0,0,156,0,0,0,
+            149,151,152,0,109,0,0,116,140,0,
+            142,146,147,0,0,148,153,154,155,0,
+            0,110,111,113,114,134,135,0,0,139,
+            141,143,0,0,0,0,0,150,0,157,
+            158,159,0,0
         };
     };
     public final static char nonterminalIndex[] = NonterminalIndex.nonterminalIndex;
@@ -1190,29 +1193,29 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     public interface ScopeRhs {
         public final static char scopeRhs[] = {0,
-            174,1,101,88,0,12,0,174,1,101,
-            87,0,144,93,144,92,144,71,0,45,
-            0,144,92,144,71,0,44,116,45,0,
-            144,71,0,43,116,44,116,45,0,172,
-            68,0,52,116,0,150,81,101,0,16,
-            0,0,155,1,149,107,0,155,1,149,
-            109,0,155,1,149,164,0,194,1,59,
-            0,151,1,103,0,151,24,2,0,7,
-            116,0,144,72,148,84,148,1,181,0,
-            148,84,148,1,181,0,18,116,12,0,
-            148,1,181,0,22,115,18,116,12,0,
-            144,72,148,1,181,0,144,72,148,36,
-            148,1,182,0,148,36,148,1,182,0,
-            148,1,182,0,19,115,18,116,12,0,
-            144,72,148,1,182,0,144,1,182,0,
-            190,69,59,0,14,0,188,69,103,0,
-            150,81,113,0,144,1,0,155,1,101,
-            67,102,0,155,1,60,0,132,0,4,
-            130,0,3,130,0,136,0,2,128,0,
-            1,128,0,138,0,9,125,0,8,125,
-            0,6,125,0,5,125,0,140,0,10,
-            123,0,7,123,0,142,0,48,121,0,
-            47,121,0,46,121,0
+            176,1,103,88,0,12,0,176,1,103,
+            87,0,146,93,146,92,146,71,0,45,
+            0,146,92,146,71,0,44,118,45,0,
+            146,71,0,43,118,44,118,45,0,174,
+            68,0,52,118,0,152,81,103,0,16,
+            0,0,157,1,151,109,0,157,1,151,
+            111,0,157,1,151,166,0,196,1,59,
+            0,153,1,105,0,153,24,2,0,7,
+            118,0,146,72,150,84,150,1,183,0,
+            150,84,150,1,183,0,18,118,12,0,
+            150,1,183,0,22,117,18,118,12,0,
+            146,72,150,1,183,0,146,72,150,36,
+            150,1,184,0,150,36,150,1,184,0,
+            150,1,184,0,19,117,18,118,12,0,
+            146,72,150,1,184,0,146,1,184,0,
+            192,69,59,0,14,0,190,69,105,0,
+            152,81,115,0,146,1,0,157,1,103,
+            67,104,0,157,1,60,0,134,0,4,
+            132,0,3,132,0,138,0,2,130,0,
+            1,130,0,140,0,9,127,0,8,127,
+            0,6,127,0,5,127,0,142,0,10,
+            125,0,7,125,0,144,0,48,123,0,
+            47,123,0,46,123,0
         };
     };
     public final static char scopeRhs[] = ScopeRhs.scopeRhs;
@@ -1236,28 +1239,28 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     public interface InSymb {
         public final static char inSymb[] = {0,
-            0,180,2,176,179,6,77,76,78,75,
-            90,197,73,178,24,22,23,154,154,154,
-            154,154,102,184,102,151,102,103,59,24,
-            24,24,24,24,24,24,198,67,178,201,
-            67,199,3,1,1,68,51,35,1,107,
-            110,109,103,59,16,37,2,105,33,32,
-            31,30,29,113,101,102,60,115,132,71,
-            136,140,138,145,142,183,147,2,101,151,
-            194,172,172,144,149,149,149,69,69,81,
-            81,67,1,85,83,88,87,17,16,144,
+            0,182,2,178,181,6,77,76,78,75,
+            90,199,73,180,24,22,23,156,156,156,
+            156,156,104,186,104,153,104,105,59,24,
+            24,24,24,24,24,24,200,67,180,203,
+            67,201,3,1,1,68,51,35,1,109,
+            112,111,105,59,16,37,2,107,33,32,
+            31,30,29,115,103,104,60,117,134,71,
+            138,142,140,147,144,185,149,2,103,153,
+            196,174,174,146,151,151,151,69,69,81,
+            81,67,1,85,83,88,87,17,16,146,
             35,34,5,3,21,20,19,18,95,28,
             27,26,3,3,24,1,24,1,36,96,
-            1,1,1,188,144,82,35,189,190,2,
-            150,150,101,155,150,164,107,101,107,38,
-            181,104,182,101,101,92,132,132,138,138,
-            142,140,140,140,165,167,151,165,155,195,
-            102,155,86,82,36,36,3,36,74,74,
-            1,149,149,81,1,1,1,1,144,4,
-            36,176,4,155,1,150,148,148,144,2,
-            174,89,175,174,93,24,24,155,74,84,
-            72,36,72,24,36,144,148,144,148,144,
-            72,72,144,144
+            1,1,1,190,146,82,35,191,192,2,
+            152,152,103,157,152,166,109,103,109,38,
+            183,106,184,103,103,92,134,134,140,140,
+            144,142,142,142,167,169,153,167,157,197,
+            104,157,86,82,36,36,3,36,74,74,
+            1,151,151,81,1,1,1,1,146,4,
+            36,178,4,157,1,152,150,150,146,2,
+            176,89,177,176,93,24,24,157,74,84,
+            72,36,72,24,36,146,150,146,150,146,
+            72,72,146,146
         };
     };
     public final static char inSymb[] = InSymb.inSymb;
@@ -1365,6 +1368,8 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
             "EOF_TOKEN",
             "IDENTIFIER",
             "INTEGER_RANGE_START",
+            "SINGLE_LINE_COMMENT",
+            "MULTI_LINE_COMMENT",
             "ERROR_TOKEN",
             "iteratorIdentifier",
             "keywordAsIdentifier1",
@@ -1429,7 +1434,7 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
     public final String name(int index) { return name[index]; }
 
     public final static int
-           ERROR_SYMBOL      = 99,
+           ERROR_SYMBOL      = 101,
            SCOPE_UBOUND      = 43,
            SCOPE_SIZE        = 44,
            MAX_NAME_LENGTH   = 26;
@@ -1441,12 +1446,12 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     public final static int
            NUM_STATES        = 214,
-           NT_OFFSET         = 99,
+           NT_OFFSET         = 101,
            LA_STATE_OFFSET   = 3369,
            MAX_LA            = 2,
            NUM_RULES         = 272,
            NUM_NONTERMINALS  = 104,
-           NUM_SYMBOLS       = 203,
+           NUM_SYMBOLS       = 205,
            SEGMENT_SIZE      = 8192,
            START_STATE       = 2905,
            IDENTIFIER_SYMBOL = 2,

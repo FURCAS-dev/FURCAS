@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., and others.
+* Copyright (c) 2005, 2007 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexersym.java,v 1.2 2009/01/13 20:31:30 cdamus Exp $
+* $Id: OCLKWLexersym.java,v 1.3 2009/08/28 20:43:11 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
