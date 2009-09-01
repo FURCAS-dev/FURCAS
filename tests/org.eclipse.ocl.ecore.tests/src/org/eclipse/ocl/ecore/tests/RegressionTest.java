@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.11 2009/01/15 19:09:29 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.12 2009/09/01 20:10:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1207,33 +1207,33 @@ public class RegressionTest
 	}
 	
 	/**
-	 * Test the Invalid type and its literal 'OclInvalid'.
+	 * Test the OclInvalid type and its literal 'invalid'.
 	 */
 	public void test_oclInvalid() {
 		Object result = evaluate(parse(
 			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: OclInvalid.oclIsTypeOf(Invalid) " + //$NON-NLS-1$
+			"inv: invalid.oclIsTypeOf(OclInvalid) " + //$NON-NLS-1$
 			" endpackage")); //$NON-NLS-1$
 		
 		assertEquals(Boolean.TRUE, result);
 		
 		result = evaluate(parse(
 				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: OclInvalid.oclIsUndefined() " + //$NON-NLS-1$
+				"inv: invalid.oclIsUndefined() " + //$NON-NLS-1$
 				" endpackage")); //$NON-NLS-1$
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
 				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: OclInvalid.oclIsInvalid() " + //$NON-NLS-1$
+				"inv: invalid.oclIsInvalid() " + //$NON-NLS-1$
 				" endpackage")); //$NON-NLS-1$
 			
 		assertEquals(Boolean.TRUE, result);
 		
 		result = evaluate(parse(
 				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: OclInvalid.oclAsType(Integer) " + //$NON-NLS-1$
+				"inv: invalid.oclAsType(Integer) " + //$NON-NLS-1$
 				" endpackage")); //$NON-NLS-1$
 			
 		assertInvalid(result);
@@ -1243,7 +1243,7 @@ public class RegressionTest
 				"inv: null.oclAsType(Apple).color " + //$NON-NLS-1$
 				" endpackage")); //$NON-NLS-1$
 		
-		// feature calls on null result in OclInvalid
+		// feature calls on null result in invalid
 		assertInvalid(result);
 		
 		result = evaluate(parse(
@@ -1251,7 +1251,7 @@ public class RegressionTest
 				"inv: null.oclAsType(Apple).stem " + //$NON-NLS-1$
 				" endpackage")); //$NON-NLS-1$
 		
-		// feature calls on null result in OclInvalid
+		// feature calls on null result in invalid
 		assertInvalid(result);
 		
 		result = evaluate(parse(
@@ -1259,7 +1259,7 @@ public class RegressionTest
 				"inv: null.oclAsType(Apple).preferredLabel('foo') " + //$NON-NLS-1$
 				" endpackage")); //$NON-NLS-1$
 		
-		// feature calls on null result in OclInvalid
+		// feature calls on null result in invalid
 		assertInvalid(result);
 	}
 	

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.13 2009/01/15 04:22:06 cdamus Exp $
+ * $Id: CollectionsTest.java,v 1.14 2009/09/01 20:10:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1011,7 +1011,7 @@ public class CollectionsTest
 			OCLExpression<EClassifier> expr = helper
 				.createQuery("Set{'a', 'b', 'c'}->union(var)"); //$NON-NLS-1$
 
-			ocl.getEvaluationEnvironment().add("var", getOclInvalid()); //$NON-NLS-1$
+			ocl.getEvaluationEnvironment().add("var", getInvalid()); //$NON-NLS-1$
 			Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
 			assertInvalid(result);
 		} catch (Exception exc) {
