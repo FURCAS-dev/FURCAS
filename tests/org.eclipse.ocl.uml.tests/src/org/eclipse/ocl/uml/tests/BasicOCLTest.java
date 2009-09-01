@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.6 2008/03/14 19:59:31 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.7 2009/09/01 20:11:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -78,7 +78,7 @@ public class BasicOCLTest
      */
     public void test_collectionsAndIteratorsAccess_222747() {
         CollectionType<Classifier, Operation> type = ocl.getEnvironment().getOCLFactory().createSetType(
-                ocl.getEnvironment().getOCLStandardLibrary().getInvalid());
+                ocl.getEnvironment().getOCLStandardLibrary().getOclInvalid());
         
         Set<Operation> iterators = new java.util.HashSet<Operation>(type.oclIterators());
         Set<Operation> operations = new java.util.HashSet<Operation>(type.oclOperations());
