@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.11 2009/09/01 20:11:23 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -172,9 +172,10 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
      * Obtains my environment's implementation of the <tt>OclInvalid</tt> value.
      * 
      * @return the invalid result
+     * @since 3.0
      */
-	protected final Object getOclInvalid() {
-		return getStandardLibrary().getOclInvalid();
+	protected final Object getInvalid() {
+		return getStandardLibrary().getInvalid();
 	}
     
     /**
@@ -255,8 +256,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
             OCLPlugin.log(Diagnostic.ERROR, OCLStatusCodes.IGNORED_EXCEPTION_WARNING,
                 OCLMessages.bind(OCLMessages.EvaluationFailed_ERROR_, msg), e);
             
-            // failure to evaluate results in OclInvalid
-            return getOclInvalid();
+            // failure to evaluate results in invalid
+            return getInvalid();
         }
 	}
 	
@@ -310,7 +311,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 */
 	protected boolean isUndefined(Object value) {
 		return (value == null) || 
-			(value == getEnvironment().getOCLStandardLibrary().getOclInvalid());
+			(value == getEnvironment().getOCLStandardLibrary().getInvalid());
 	}
     
     /**
@@ -446,9 +447,9 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 				: null;
 		}
 
-		// the type of OclInvalid is Invalid, except that we aren't even allowed
+		// the type of invalid is OclInvalid, except that we aren't even allowed
 		// to ask if not lax-null-handling
-		if (value == stdlib.getOclInvalid()) {
+		if (value == stdlib.getInvalid()) {
 			return isLaxNullHandling()
 				? Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;

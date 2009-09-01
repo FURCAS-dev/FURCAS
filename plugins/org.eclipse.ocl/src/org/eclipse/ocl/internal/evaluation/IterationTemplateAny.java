@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateAny.java,v 1.4 2009/03/11 13:04:28 cdamus Exp $
+ * $Id: IterationTemplateAny.java,v 1.5 2009/09/01 20:11:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -54,9 +54,9 @@ public class IterationTemplateAny<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		
 		// If the body result is undefined then the entire expression's value
 		// is invalid
-		if ((bodyVal == null) || (bodyVal == getOclInvalid())) {
+		if ((bodyVal == null) || (bodyVal == getInvalid())) {
 			setDone(true);
-			return getOclInvalid();
+			return getInvalid();
 		}
 		
 		boolean bodyCond = ((Boolean)bodyVal).booleanValue();

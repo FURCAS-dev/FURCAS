@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.26 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.27 2009/09/01 20:11:22 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -304,10 +304,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			case OCLParsersym.TK_Tuple :
 			case OCLParsersym.TK_OclAny :
 			case OCLParsersym.TK_OclVoid :
-			case OCLParsersym.TK_Invalid :
+			case OCLParsersym.TK_OclInvalid :
 			case OCLParsersym.TK_OclMessage :
 			case OCLParsersym.TK_null :
-			case OCLParsersym.TK_OclInvalid :
+			case OCLParsersym.TK_invalid :
 			case OCLParsersym.TK_IDENTIFIER :
 			case OCLParsersym.TK_EOF_TOKEN :
 				return true;
@@ -2847,7 +2847,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				break;
 
 			case INVALID_LITERAL :
-				astNode = env.getOCLStandardLibrary().getInvalid();
+				astNode = env.getOCLStandardLibrary().getOclInvalid();
 				break;
 
 			case OCL_MESSAGE_LITERAL :
@@ -3049,9 +3049,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		InvalidLiteralExp<C> astNode = oclFactory.createInvalidLiteralExp();
 		initASTMapping(env, astNode, invalidLiteralExpCS);
-		astNode.setType(env.getOCLStandardLibrary().getInvalid());
+		astNode.setType(env.getOCLStandardLibrary().getOclInvalid());
 
-		TRACE("invalidLiteralExpCS", "Invalid: OclInvalid");//$NON-NLS-2$//$NON-NLS-1$
+		TRACE("invalidLiteralExpCS", "Invalid: invalid");//$NON-NLS-2$//$NON-NLS-1$
 
 		return astNode;
 	}
@@ -4444,7 +4444,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	@Deprecated
 	protected InvalidLiteralExp<C> createDummyInvalidLiteralExp() {
 		InvalidLiteralExp<C> result = oclFactory.createInvalidLiteralExp();
-		result.setType(getStandardLibrary().getInvalid());
+		result.setType(getStandardLibrary().getOclInvalid());
 
 		markAsErrorNode(result);
 

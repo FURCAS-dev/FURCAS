@@ -13,7 +13,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexersym.java,v 1.3 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLKWLexersym.java,v 1.4 2009/09/01 20:11:22 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -47,7 +47,7 @@ public interface OCLKWLexersym {
       Char_s = 9,
       Char_t = 2,
       Char_u = 14,
-      Char_v = 17,
+      Char_v = 18,
       Char_w = 33,
       Char_x = 19,
       Char_y = 16,
@@ -60,7 +60,7 @@ public interface OCLKWLexersym {
       Char_F = 44,
       Char_G = 45,
       Char_H = 46,
-      Char_I = 18,
+      Char_I = 17,
       Char_J = 47,
       Char_K = 35,
       Char_L = 48,
@@ -98,8 +98,8 @@ public interface OCLKWLexersym {
                  "u",
                  "g",
                  "y",
-                 "v",
                  "I",
+                 "v",
                  "x",
                  "A",
                  "N",

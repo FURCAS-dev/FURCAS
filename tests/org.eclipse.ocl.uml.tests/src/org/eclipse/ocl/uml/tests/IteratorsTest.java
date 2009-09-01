@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.6 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.7 2009/09/01 20:11:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -583,8 +583,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_forAll_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -595,7 +595,7 @@ public class IteratorsTest
 
             assertInvalid(result);
 
-            // check that the "check" API interprets OclInvalid as a constraint
+            // check that the "check" API interprets invalid as a constraint
             // violation
             assertFalse(check(helper, EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1}->forAll(b and b)")); //$NON-NLS-1$
@@ -611,8 +611,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_exists_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -634,8 +634,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_one_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -657,8 +657,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_any_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -680,8 +680,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_select_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -703,8 +703,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_reject_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -726,14 +726,14 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the
+     * Tests that when the body of an iterator results in invalid, the
      * isUnique iterator expression treats it like any other value.
      */
     public void test_isUnique_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
 
         try {
-            // OclInvalid supports the = operation
+            // invalid supports the = operation
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->isUnique(b and b)"); //$NON-NLS-1$
 
@@ -749,8 +749,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_collect_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -762,7 +762,7 @@ public class IteratorsTest
             assertInvalid(result);
 
             // in the case of a null value, null is allowed in a collection, so
-            // it does not result in OclInvalid
+            // it does not result in invalid
             result = evaluate(helper, EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->collect(null)"); //$NON-NLS-1$
 
@@ -779,8 +779,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_collectNested_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -792,7 +792,7 @@ public class IteratorsTest
             assertInvalid(result);
 
             // in the case of a null value, null is allowed in a collection, so
-            // it does not result in OclInvalid
+            // it does not result in invalid
             result = evaluate(
                 helper,
                 EcorePackage.eINSTANCE,
@@ -814,20 +814,20 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_closure_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
 
         try {
             Object result = evaluate(helper, umlMetamodel,
-                "let c : Type = OclInvalid in ownedType->closure(c)"); //$NON-NLS-1$
+                "let c : Type = invalid in ownedType->closure(c)"); //$NON-NLS-1$
 
             assertInvalid(result);
 
             // in the case of a null value, null is allowed in a collection, so
-            // it does not result in OclInvalid
+            // it does not result in invalid
             result = evaluate(helper, umlMetamodel,
                 "let c : Set(Type) = Set{null} in ownedType->closure(c)"); //$NON-NLS-1$
 
@@ -841,8 +841,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that when the body of an iterator results in OclInvalid, the entire
-     * iterator expression's value is OclInvalid.
+     * Tests that when the body of an iterator results in invalid, the entire
+     * iterator expression's value is invalid.
      */
     public void test_sortedBy_invalidBody_142518() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -864,8 +864,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that the generic iterate() iterator returns OclInvalid when the
-     * source collection is null or OclInvalid.
+     * Tests that the generic iterate() iterator returns invalid when the
+     * source collection is null or invalid.
      */
     public void test_iterateWithNullSource_143996() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -876,7 +876,7 @@ public class IteratorsTest
                     "p : Package; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
 
             assertInvalid(evaluate(helper, pkg1,
-                "let e : Collection(Package) = OclInvalid in e->iterate(" + //$NON-NLS-1$
+                "let e : Collection(Package) = invalid in e->iterate(" + //$NON-NLS-1$
                     "p : Package; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -884,8 +884,8 @@ public class IteratorsTest
     }
 
     /**
-     * Tests that the exists() iterator return OclInvalid when the source
-     * collection is null or OclInvalid.
+     * Tests that the exists() iterator return invalid when the source
+     * collection is null or invalid.
      */
     public void test_existsWithNullSource_143996() {
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
@@ -896,7 +896,7 @@ public class IteratorsTest
                     "p : Package | p.name = 'bob')")); //$NON-NLS-1$
 
             assertInvalid(evaluate(helper, pkg1,
-                "let e : Collection(Package) = OclInvalid in e->exists(" + //$NON-NLS-1$
+                "let e : Collection(Package) = invalid in e->exists(" + //$NON-NLS-1$
                     "p : Package | p.name = 'bob')")); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$

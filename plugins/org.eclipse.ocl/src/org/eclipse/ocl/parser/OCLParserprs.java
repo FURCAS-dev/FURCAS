@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParserprs.java,v 1.7 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLParserprs.java,v 1.8 2009/09/01 20:11:22 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -1097,16 +1097,16 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
 
     public interface TerminalIndex {
         public final static char terminalIndex[] = {0,
-            11,98,7,12,10,55,86,87,88,89,
-            90,92,93,94,95,3,4,5,6,8,
-            9,56,57,20,34,46,47,48,61,62,
-            63,64,65,1,2,19,58,66,67,68,
-            69,70,71,72,73,74,75,76,77,85,
-            49,78,79,80,81,82,83,84,91,30,
-            31,32,33,53,54,96,21,51,13,25,
+            11,98,7,12,10,55,87,88,89,90,
+            91,93,94,95,96,3,4,5,6,8,
+            9,56,57,20,34,46,47,48,62,63,
+            64,65,66,1,2,19,58,67,68,69,
+            70,71,72,73,74,75,76,77,78,86,
+            49,79,80,81,82,83,84,85,92,30,
+            31,32,33,53,54,59,21,51,13,25,
             42,18,38,16,35,36,37,41,97,14,
             15,99,17,22,23,24,26,27,28,39,
-            40,43,44,45,50,52,59,60,100,101,
+            40,43,44,45,50,52,60,61,100,101,
             102
         };
     };
@@ -1327,6 +1327,7 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
             "derive",
             "init",
             "null",
+            "invalid",
             "attr",
             "oper",
             "Set",
@@ -1362,9 +1363,8 @@ public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym
             "Tuple",
             "OclAny",
             "OclVoid",
-            "Invalid",
-            "OclMessage",
             "OclInvalid",
+            "OclMessage",
             "EOF_TOKEN",
             "IDENTIFIER",
             "INTEGER_RANGE_START",

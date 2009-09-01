@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.6 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLParsersym.java,v 1.7 2009/09/01 20:11:22 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -91,6 +91,7 @@ public interface OCLParsersym {
       TK_derive = 22,
       TK_init = 23,
       TK_null = 37,
+      TK_invalid = 66,
       TK_attr = 97,
       TK_oper = 98,
       TK_Set = 29,
@@ -126,9 +127,8 @@ public interface OCLParsersym {
       TK_Tuple = 59,
       TK_OclAny = 12,
       TK_OclVoid = 13,
-      TK_Invalid = 14,
+      TK_OclInvalid = 14,
       TK_OclMessage = 15,
-      TK_OclInvalid = 66,
       TK_EOF_TOKEN = 79,
       TK_IDENTIFIER = 2,
       TK_INTEGER_RANGE_START = 82,
@@ -151,7 +151,7 @@ public interface OCLParsersym {
                  "Boolean",
                  "OclAny",
                  "OclVoid",
-                 "Invalid",
+                 "OclInvalid",
                  "OclMessage",
                  "MULTIPLY",
                  "DIVIDE",
@@ -203,7 +203,7 @@ public interface OCLParsersym {
                  "REAL_LITERAL",
                  "true",
                  "false",
-                 "OclInvalid",
+                 "invalid",
                  "COLONCOLON",
                  "let",
                  "LBRACE",

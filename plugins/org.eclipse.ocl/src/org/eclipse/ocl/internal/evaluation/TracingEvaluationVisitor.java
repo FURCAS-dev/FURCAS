@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.1 2007/01/25 18:24:36 cdamus Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.2 2009/09/01 20:11:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -70,7 +70,7 @@ public class TracingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
     }
 
     private boolean isInvalid(Object value) {
-        return value == getEnvironment().getOCLStandardLibrary().getOclInvalid();
+        return value == getEnvironment().getOCLStandardLibrary().getInvalid();
     }
     
     private Object trace(Object expression, Object value) {

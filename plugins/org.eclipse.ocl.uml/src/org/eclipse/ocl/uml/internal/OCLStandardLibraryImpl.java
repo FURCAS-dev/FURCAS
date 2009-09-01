@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.9 2009/08/26 05:57:43 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.10 2009/09/01 20:11:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -79,7 +79,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
 	private static Classifier OCL_MESSAGE;
 	private static Classifier OCL_TYPE;
 
-    private static Classifier INVALID;
+    private static Classifier OCL_INVALID;
 	
 	private static Classifier OCL_T;
 	private static Classifier OCL_T2;
@@ -96,8 +96,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
     /** The shared instance of the OCL Standard Library for the UML environment. */
     public static final OCLStandardLibraryImpl INSTANCE = new OCLStandardLibraryImpl();
     
-    /** The singleton instance of the <tt>Invalid</tt> standard library type. */
-    public static Object OCL_INVALID =
+    /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
+    public static Object INVALID =
         org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createInstanceSpecification();
 
     /** The package containing the OCL Standard Library classifiers. */
@@ -120,8 +120,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         return OCL_UNLIMITED_NATURAL;
     }
     
-	public Classifier getInvalid() {
-		return INVALID;
+	public Classifier getOclInvalid() {
+		return OCL_INVALID;
 	}
 
 	public Classifier getReal() {
@@ -140,8 +140,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
 		return OCL_ELEMENT;
 	}
 
-	public Object getOclInvalid() {
-		return OCL_INVALID;
+	public Object getInvalid() {
+		return INVALID;
 	}
 
 	public Classifier getState() {
@@ -217,7 +217,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
             OCL_VOID = (Classifier) stdlibPackage.getOwnedType(VoidType.SINGLETON_NAME);
             OCL_MESSAGE = (Classifier) stdlibPackage.getOwnedType(MessageType.SINGLETON_NAME);
 
-            INVALID = (Classifier) stdlibPackage.getOwnedType(InvalidType.SINGLETON_NAME);
+            OCL_INVALID = (Classifier) stdlibPackage.getOwnedType(InvalidType.SINGLETON_NAME);
             
             OCL_T = (Classifier) stdlibPackage.getOwnedType("T"); //$NON-NLS-1$
             OCL_T2 = (Classifier) stdlibPackage.getOwnedType("T2"); //$NON-NLS-1$
@@ -245,8 +245,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
             STATE = (Classifier) stdlibPackage.getOwnedType("State"); //$NON-NLS-1$
             OCL_EXPRESSION = (Classifier) stdlibPackage.getOwnedType("OclExpression"); //$NON-NLS-1$
             
-            ((InstanceSpecification) OCL_INVALID).getClassifiers().add(INVALID);
-            ((InstanceSpecification) OCL_INVALID).setName("OclInvalid"); //$NON-NLS-1$
+            ((InstanceSpecification) INVALID).getClassifiers().add(OCL_INVALID);
+            ((InstanceSpecification) INVALID).setName("OclInvalid"); //$NON-NLS-1$
             
             addToPackageRegistry(stdlibPackage);
            
@@ -301,7 +301,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         OCL_VOID = UMLFactory.eINSTANCE.createVoidType();
         OCL_MESSAGE = UMLFactory.eINSTANCE.createMessageType();
 
-        INVALID = UMLFactory.eINSTANCE.createInvalidType();
+        OCL_INVALID = UMLFactory.eINSTANCE.createInvalidType();
         
         OCL_T = UMLFactory.eINSTANCE.createAnyType();
         OCL_T.setName("T"); //$NON-NLS-1$
@@ -320,15 +320,15 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         OCL_EXPRESSION = UMLFactory.eINSTANCE.createElementType();
         OCL_EXPRESSION.setName("OclExpression"); //$NON-NLS-1$
         
-		InstanceSpecification oclInvalid = (InstanceSpecification) OCL_INVALID;
-		oclInvalid.getClassifiers().add(INVALID);
+		InstanceSpecification oclInvalid = (InstanceSpecification) INVALID;
+		oclInvalid.getClassifiers().add(OCL_INVALID);
 		oclInvalid.setName("OclInvalid"); //$NON-NLS-1$
 		
         register(OCL_ANY).addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
         register(OCL_VOID).addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
-        register(INVALID).addAll(
+        register(OCL_INVALID).addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
         register(OCL_BOOLEAN).addAll(
             OCLStandardLibraryUtil.createBooleanOperations(env));
@@ -384,7 +384,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<Classifi
         register(OCL_T);  // operations already defined by OclAny
         register(OCL_T2);  // operations already defined by OclAny
         
-        ((InstanceSpecification) OCL_INVALID).getClassifiers().add(INVALID);
+        ((InstanceSpecification) INVALID).getClassifiers().add(OCL_INVALID);
         
         addToPackageRegistry(stdlibPackage);
         

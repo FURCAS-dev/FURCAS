@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.6 2008/01/03 15:28:30 cdamus Exp $
+ * $Id: UMLTest.java,v 1.7 2009/09/01 20:11:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -334,7 +334,7 @@ public class UMLTest
             " endpackage"); //$NON-NLS-1$
         
         try {
-            assertNotSame(getOclInvalid(), evaluate(expr, umlMetamodel));
+            assertNotSame(getInvalid(), evaluate(expr, umlMetamodel));
         } catch (RuntimeException e) {
             fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }

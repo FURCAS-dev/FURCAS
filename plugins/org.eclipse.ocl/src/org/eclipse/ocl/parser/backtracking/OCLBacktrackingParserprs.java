@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParserprs.java,v 1.2 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLBacktrackingParserprs.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -1445,15 +1445,15 @@ public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, 
     public interface TerminalIndex {
         public final static char terminalIndex[] = {0,
             102,11,12,98,7,55,10,3,4,5,
-            6,8,9,56,57,86,87,88,89,90,
-            92,93,94,95,46,47,48,1,2,34,
-            19,61,62,63,64,65,20,58,66,67,
-            68,69,70,71,72,73,74,75,76,77,
-            85,91,49,78,79,80,81,82,83,84,
-            30,31,32,33,53,54,96,51,42,18,
+            6,8,9,56,57,87,88,89,90,91,
+            93,94,95,96,46,47,48,1,2,34,
+            19,62,63,64,65,66,20,58,67,68,
+            69,70,71,72,73,74,75,76,77,78,
+            86,92,49,79,80,81,82,83,84,85,
+            30,31,32,33,53,54,59,51,42,18,
             36,37,97,14,25,35,38,41,16,21,
             22,40,52,45,17,23,24,26,27,43,
-            44,50,13,15,28,39,99,59,60,100,
+            44,50,13,15,28,39,99,60,61,100,
             101
         };
     };
@@ -1686,6 +1686,7 @@ public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, 
             "derive",
             "init",
             "null",
+            "invalid",
             "attr",
             "oper",
             "Set",
@@ -1721,9 +1722,8 @@ public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, 
             "Tuple",
             "OclAny",
             "OclVoid",
-            "Invalid",
-            "OclMessage",
             "OclInvalid",
+            "OclMessage",
             "EOF_TOKEN",
             "IDENTIFIER",
             "INTEGER_RANGE_START",

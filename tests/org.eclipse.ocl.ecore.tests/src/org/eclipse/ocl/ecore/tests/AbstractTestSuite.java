@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.18 2009/07/27 15:30:26 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.19 2009/09/01 20:10:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -696,12 +696,12 @@ public abstract class AbstractTestSuite
 		return ocl.getEnvironment().getOCLStandardLibrary();
 	}
 	
-	protected Object getOclInvalid() {
-		return getOCLStandardLibrary().getOclInvalid();
+	protected Object getInvalid() {
+		return getOCLStandardLibrary().getInvalid();
 	}
 	
 	protected void assertInvalid(Object value) {
-		assertTrue("Expected OclInvalid", ocl.isInvalid(value)); //$NON-NLS-1$
+		assertTrue("Expected invalid", ocl.isInvalid(value)); //$NON-NLS-1$
 	}
 	
 	private static void initFruitPackage() {

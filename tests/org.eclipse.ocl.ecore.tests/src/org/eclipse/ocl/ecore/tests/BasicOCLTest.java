@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.8 2009/02/12 00:01:52 cdamus Exp $
+ * $Id: BasicOCLTest.java,v 1.9 2009/09/01 20:10:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -506,27 +506,27 @@ public class BasicOCLTest
             
             // strict null handling on for literal nulls (which are handled
             // separately from null values in non-OclVoid expressions)
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclAsType(OclVoid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclAsType(EAnnotation)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclAsType(String)")); //$NON-NLS-1$
             
             // strict null handling on for null values in non-OclVoid expressions)
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.oclIsTypeOf(OclVoid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.oclIsKindOf(OclVoid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.oclAsType(OclVoid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.oclAsType(EAnnotation)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.oclAsType(String)")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -541,58 +541,58 @@ public class BasicOCLTest
         EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
         
         try {
-            // lax null handling on for literal OclInvalids (which are handled
-            // separately from OclInvalid values in non-Invalid expressions)
+            // lax null handling on for literal invalids (which are handled
+            // separately from invalid values in non-OclInvalid expressions)
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "OclInvalid.oclIsTypeOf(Invalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "OclInvalid.oclIsKindOf(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclAsType(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclAsType(EAnnotation)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclAsType(EAnnotation)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclAsType(String)")); //$NON-NLS-1$
             
-            // lax null handling on for OclInvalid values in non-Invalid expressions)
+            // lax null handling on for invalid values in non-OclInvalid expressions)
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(Invalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)")); //$NON-NLS-1$
             
             
             EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
                 EvaluationOptions.LAX_NULL_HANDLING, false);
             
-            // strict null handling on for literal OclInvalids (which are handled
-            // separately from OclInvalid values in non-Invalid expressions)
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclIsTypeOf(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclIsKindOf(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclAsType(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclAsType(EAnnotation)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "OclInvalid.oclAsType(String)")); //$NON-NLS-1$
+            // strict null handling on for literal invalids (which are handled
+            // separately from invalid values in non-OclInvalid expressions)
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclAsType(EAnnotation)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "invalid.oclAsType(String)")); //$NON-NLS-1$
             
-            // strict null handling on for OclInvalid values in non-Invalid expressions)
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(Invalid)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            // strict null handling on for invalid values in non-OclInvalid expressions)
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)")); //$NON-NLS-1$
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)")); //$NON-NLS-1$
-            assertEquals(getOclInvalid(),
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -608,15 +608,15 @@ public class BasicOCLTest
         EClassifier eclassifier = null;
         
         try {
-            // lax null handling on for OclInvalid values in non-Invalid expressions)
+            // lax null handling on for invalid values in non-OclInvalid expressions)
             assertEquals(null,
                 evaluate(helper, eclassifier, "self.oclAsType(EClass)")); //$NON-NLS-1$
             
             EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
                 EvaluationOptions.LAX_NULL_HANDLING, false);
             
-            // strict null handling on for OclInvalid values in non-Invalid expressions)
-            assertEquals(getOclInvalid(),
+            // strict null handling on for invalid values in non-OclInvalid expressions)
+            assertEquals(getInvalid(),
                 evaluate(helper, eclassifier, "self.oclAsType(EClass)")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -661,21 +661,21 @@ public class BasicOCLTest
         
         try {
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid <> Set{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> Set{'foo'}")); //$NON-NLS-1$
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid = Set{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = Set{'foo'}")); //$NON-NLS-1$
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid <> Sequence{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> Sequence{'foo'}")); //$NON-NLS-1$
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid = Sequence{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = Sequence{'foo'}")); //$NON-NLS-1$
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid <> OrderedSet{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> OrderedSet{'foo'}")); //$NON-NLS-1$
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid = OrderedSet{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = OrderedSet{'foo'}")); //$NON-NLS-1$
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid <> Bag{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> Bag{'foo'}")); //$NON-NLS-1$
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "OclInvalid = Bag{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = Bag{'foo'}")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
