@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.9 2008/11/24 00:24:16 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.10 2009/09/01 20:11:00 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -95,7 +95,7 @@ public class InvalidTypeImpl
 	public EList<Operation> oclOperations() {
 		if (operations == null) {
 			InvalidType prototype = (InvalidType) OCLStandardLibraryImpl.INSTANCE
-				.getInvalid();
+				.getOclInvalid();
 
 			if (prototype == this) {
 				// I *am* the standard library type!

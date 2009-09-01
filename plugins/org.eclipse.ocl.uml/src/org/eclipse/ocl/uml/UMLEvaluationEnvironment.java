@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationEnvironment.java,v 1.15 2009/06/25 19:23:24 ewillink Exp $
+ * $Id: UMLEvaluationEnvironment.java,v 1.16 2009/09/01 20:11:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -321,7 +321,7 @@ public class UMLEvaluationEnvironment
     // implements the inherited specification
     @Override
     protected Object getInvalidResult() {
-        return OCLStandardLibraryImpl.OCL_INVALID;
+        return OCLStandardLibraryImpl.INVALID;
     }
 
     // implements the inherited specification
@@ -1316,7 +1316,7 @@ public class UMLEvaluationEnvironment
         public Object caseValueSpecification(ValueSpecification object) {
             // the default case is a value specification that we don't
             // understand
-            return OCLStandardLibraryImpl.OCL_INVALID;
+            return OCLStandardLibraryImpl.INVALID;
         }
 
         /**

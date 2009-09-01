@@ -58,8 +58,11 @@ public class UMLOCLStandardLibrary implements OCLStandardLibrary<Classifier>{
 		return stdLibBuilder.getInteger();
 	}
 
-	public Classifier getInvalid() {		
-		return stdLibBuilder.getInvalid();
+	/**
+	 * @since 3.0
+	 */
+	public Classifier getOclInvalid() {		
+		return stdLibBuilder.getOclInvalid();
 	}
 
 	public Classifier getOclAny() {		
@@ -74,8 +77,8 @@ public class UMLOCLStandardLibrary implements OCLStandardLibrary<Classifier>{
 		return stdLibBuilder.getOclExpression();
 	}
 
-	public Object getOclInvalid() {		
-		return stdLibBuilder.getOclInvalid();
+	public Object getInvalid() {		
+		return stdLibBuilder.getInvalid();
 	}
 
 	public Classifier getOclMessage() {		
