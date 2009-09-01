@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.3 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: IterationTemplateClosure.java,v 1.4 2009/09/01 20:11:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -65,10 +65,10 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 		Set<Object> currVal = (Set<Object>) env.getValueOf(resultName);
 		
 		// If the body result is invalid then the entire expression's value
-		// is invalid, because OCL does not permit OclInvalid in a collection
-		if (bodyVal == getOclInvalid()) {
+		// is invalid, because OCL does not permit invalid in a collection
+		if (bodyVal == getInvalid()) {
 			setDone(true);
-			return getOclInvalid();
+			return getInvalid();
 		}
 		
 		Collection<Object> newResults = CollectionUtil.createNewSet();

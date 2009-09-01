@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.5 2009/08/25 20:30:37 ewillink Exp $
+ * $Id: QueryImpl.java,v 1.6 2009/09/01 20:11:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -129,7 +129,7 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			result = ev.visitExpression(expression);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = environment.getOCLStandardLibrary().getOclInvalid(); 			
+			result = environment.getOCLStandardLibrary().getInvalid(); 			
 		} finally {
 			myEnv.remove(SELF_VARIABLE_NAME);
 		}
@@ -152,7 +152,7 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			result = ev.visitExpression(expression);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = environment.getOCLStandardLibrary().getOclInvalid();
+			result = environment.getOCLStandardLibrary().getInvalid();
 		}
 		
 		return result;

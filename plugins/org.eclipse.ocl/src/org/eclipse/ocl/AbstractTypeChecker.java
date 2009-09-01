@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.5 2009/09/01 20:11:23 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -158,17 +158,17 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		// OclVoid makes for easy cases
-		if ((type1 == stdlib.getOclVoid()) && (type2 != stdlib.getInvalid())) {
+		if ((type1 == stdlib.getOclVoid()) && (type2 != stdlib.getOclInvalid())) {
 			return STRICT_SUBTYPE;
 		} else if ((type2 == stdlib.getOclVoid())
-			&& (type1 != stdlib.getInvalid())) {
+			&& (type1 != stdlib.getOclInvalid())) {
 			return STRICT_SUPERTYPE;
 		}
 
 		// so does OclInvalid
-		if (type1 == stdlib.getInvalid()) {
+		if (type1 == stdlib.getOclInvalid()) {
 			return STRICT_SUBTYPE;
-		} else if (type2 == stdlib.getInvalid()) {
+		} else if (type2 == stdlib.getOclInvalid()) {
 			return STRICT_SUPERTYPE;
 		}
 
@@ -470,10 +470,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			return type1;
 		}
 
-		if ((type1 == stdlib.getOclVoid()) || (type1 == stdlib.getInvalid())) {
+		if ((type1 == stdlib.getOclVoid()) || (type1 == stdlib.getOclInvalid())) {
 			return type2;
 		}
-		if ((type2 == stdlib.getOclVoid()) || (type2 == stdlib.getInvalid())) {
+		if ((type2 == stdlib.getOclVoid()) || (type2 == stdlib.getOclInvalid())) {
 			return type1;
 		}
 
@@ -1092,7 +1092,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		// special handling for null and invalid values, whose types conform
 		// to all others
 		OCLStandardLibrary<C> lib = env.getOCLStandardLibrary();
-		if ((owner == lib.getOclVoid()) || (owner == lib.getInvalid())) {
+		if ((owner == lib.getOclVoid()) || (owner == lib.getOclInvalid())) {
 			return findOperationForVoidOrInvalid(owner, name, args);
 		}
 

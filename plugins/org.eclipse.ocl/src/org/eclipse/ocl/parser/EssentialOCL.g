@@ -17,7 +17,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.7 2009/03/05 14:12:14 cdamus Exp $
+-- * $Id: EssentialOCL.g,v 1.8 2009/09/01 20:11:22 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -201,10 +201,11 @@ $Notice
  *   E.D.Willink - Bugs 225493, 243976, 259818
  *   Zeligsoft - Bug 243976
  *   Borland - Bug 242880
+ *   E.D.Willink - Bug 282882 resolve invalid confusion
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.7 2009/03/05 14:12:14 cdamus Exp $
+ * $Id: EssentialOCL.g,v 1.8 2009/09/01 20:11:22 ewillink Exp $
  */
 	./
 $End
@@ -274,6 +275,7 @@ $KeyWords
 	derive
 	init
 	null
+	invalid
 --  return  -- don't need a keyword for LPG purposes
 
 	--
@@ -319,10 +321,8 @@ $KeyWords
 	Tuple
 	OclAny
 	OclVoid
-	Invalid
-	OclMessage
-	
 	OclInvalid
+	OclMessage
 $End
 
 $Identifier
@@ -1058,7 +1058,7 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	primitiveTypeCS ::= Invalid
+	primitiveTypeCS ::= OclInvalid
 		/.$BeginJava
 					CSTNode result = createPrimitiveTypeCS(
 							SimpleTypeEnum.INVALID_LITERAL,
@@ -1294,7 +1294,7 @@ $Rules
 		  $EndJava
 		./
 
-	invalidLiteralExpCS ::= OclInvalid
+	invalidLiteralExpCS ::= invalid
 		/.$BeginJava
 					CSTNode result = createInvalidLiteralExpCS(getTokenText($getToken(1)));
 					setOffsets(result, getIToken($getToken(1)));

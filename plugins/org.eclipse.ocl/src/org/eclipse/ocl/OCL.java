@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: OCL.java,v 1.11 2009/09/01 20:11:23 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -445,7 +445,7 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			result = ev.visitExpression(expression);
 		} catch (EvaluationHaltedException e) {
 			evaluationProblems = e.getDiagnostic();
-			result = rootEnvironment.getOCLStandardLibrary().getOclInvalid();
+			result = rootEnvironment.getOCLStandardLibrary().getInvalid();
 		} finally {
 			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 		}
@@ -454,19 +454,19 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	}
 
 	/**
-	 * Queries whether a value is the special <tt>OclInvalid</tt> token. This is
+	 * Queries whether a value is the special <tt>invalid</tt> token. This is
 	 * useful for determining whether the result of an expression evaluation is
 	 * valid.
 	 * 
 	 * @param value
 	 *            some OCL value
-	 * @return <code>true</code> if it is the <tt>OclInvalid</tt>;
+	 * @return <code>true</code> if it is the <tt>invalid</tt>;
 	 *         <code>false</code>, otherwise
 	 * 
 	 * @see #evaluate(Object, OCLExpression)
 	 */
 	public boolean isInvalid(Object value) {
-		return getEnvironment().getOCLStandardLibrary().getOclInvalid() == value;
+		return getEnvironment().getOCLStandardLibrary().getInvalid() == value;
 	}
 
 	/**

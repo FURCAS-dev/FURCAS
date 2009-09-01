@@ -13,7 +13,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+-- * $Id: OCLKWLexer.g,v 1.2 2009/09/01 20:11:22 ewillink Exp $
 -- */
 --
 -- The OCL KeyWord Lexer
@@ -54,7 +54,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: OCLKWLexer.g,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: OCLKWLexer.g,v 1.2 2009/09/01 20:11:22 ewillink Exp $
  */
 	./
 $End
@@ -99,6 +99,7 @@ $Export
 	derive
 	init
 	null
+	invalid
 --  return  -- don't need a keyword for LPG purposes
 	
 	--
@@ -151,10 +152,8 @@ $Export
 	Tuple
 	OclAny
 	OclVoid
-	Invalid
-	OclMessage
-
 	OclInvalid
+	OclMessage
 $End
 
 $Terminals
@@ -518,9 +517,9 @@ $Rules
 		  $EndAction
 		./
 
-		| I n v a l i d
+		| O c l I n v a l i d
 		/.$BeginAction
-			$setResult($_Invalid);
+			$setResult($_OclInvalid);
 		  $EndAction
 		./
 
@@ -536,9 +535,9 @@ $Rules
 		  $EndAction
 		./
 
-		| O c l I n v a l i d
+		| i n v a l i d
 		/.$BeginAction
-			$setResult($_OclInvalid);
+			$setResult($_invalid);
 		  $EndAction
 		./
 

@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.8 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLParser.java,v 1.9 2009/09/01 20:11:22 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -908,7 +908,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 135:  primitiveTypeCS ::= Invalid
+			// Rule 135:  primitiveTypeCS ::= OclInvalid
 			//
 			case 135: {
 				
@@ -1226,7 +1226,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 177:  invalidLiteralExpCS ::= OclInvalid
+			// Rule 177:  invalidLiteralExpCS ::= invalid
 			//
 			case 177: {
 				
