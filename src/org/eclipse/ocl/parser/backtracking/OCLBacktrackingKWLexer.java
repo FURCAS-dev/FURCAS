@@ -13,7 +13,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingKWLexer.java,v 1.2 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLBacktrackingKWLexer.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -468,9 +468,9 @@ public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs implements
 	  
 	
         //
-        // Rule 58:  KeyWord ::= I n v a l i d
+        // Rule 58:  KeyWord ::= O c l I n v a l i d
         //
-		keywordKind[58] = (TK_Invalid);
+		keywordKind[58] = (TK_OclInvalid);
 	  
 	
         //
@@ -486,9 +486,9 @@ public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs implements
 	  
 	
         //
-        // Rule 61:  KeyWord ::= O c l I n v a l i d
+        // Rule 61:  KeyWord ::= i n v a l i d
         //
-		keywordKind[61] = (TK_OclInvalid);
+		keywordKind[61] = (TK_invalid);
 	  
 	
         //

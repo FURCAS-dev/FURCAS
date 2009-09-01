@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplate.java,v 1.4 2009/03/11 13:04:28 cdamus Exp $
+ * $Id: IterationTemplate.java,v 1.5 2009/09/01 20:11:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -181,7 +181,7 @@ public class IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		return evalVisitor.getEnvironment().getOCLStandardLibrary();
 	}
 	
-	protected Object getOclInvalid() {
-		return getOCLStandardLibrary().getOclInvalid();
+	protected Object getInvalid() {
+		return getOCLStandardLibrary().getInvalid();
 	}
 }

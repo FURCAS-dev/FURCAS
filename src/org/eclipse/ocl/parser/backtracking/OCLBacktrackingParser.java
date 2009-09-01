@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.3 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLBacktrackingParser.java,v 1.4 2009/09/01 20:11:23 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -910,7 +910,7 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 			}
 	 
 			//
-			// Rule 135:  primitiveTypeCS ::= Invalid
+			// Rule 135:  primitiveTypeCS ::= OclInvalid
 			//
 			case 135: {
 				
@@ -1228,7 +1228,7 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 			}
 	 
 			//
-			// Rule 177:  invalidLiteralExpCS ::= OclInvalid
+			// Rule 177:  invalidLiteralExpCS ::= invalid
 			//
 			case 177: {
 				

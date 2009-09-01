@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.2 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -180,7 +180,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				if (body != null) {
 					// if source is undefined, result is OclInvalid
 					if (isUndefined(sourceVal)) {
-						return getOclInvalid();
+						return getInvalid();
 					}
 					
 					result = call(oper, body, sourceVal, evalArgs);
@@ -210,7 +210,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						"visitOperationCallExp", //$NON-NLS-1$
 						e.getLocalizedMessage()),
 					e);
-				return getOclInvalid();
+				return getInvalid();
 			}
 		}
 		
@@ -305,7 +305,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				if (isUndefined(sourceVal)
 						&& opCode != PredefinedType.OCL_IS_UNDEFINED
 						&& opCode != PredefinedType.OCL_IS_INVALID) {
-                    return getOclInvalid();
+                    return getInvalid();
                 }
 				
 				// evaluate this operation
@@ -329,7 +329,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             if (sourceType == getUnlimitedNatural()) {
                                 // the unlimited value has no absolute
                                 if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                    return getOclInvalid();
+                                    return getInvalid();
                                 }
                             }
                             
@@ -341,7 +341,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             if (sourceType == getUnlimitedNatural()) {
                                 // the unlimited value has no absolute
                                 if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                    return getOclInvalid();
+                                    return getInvalid();
                                 }
                             }
                             
@@ -363,7 +363,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             
                             // the unlimited value has no floor
                             if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return getOclInvalid();
+                                return getInvalid();
                             }
                         }
                         
@@ -381,7 +381,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             
                             // the unlimited value can't be rounded
                             if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return getOclInvalid();
+                                return getInvalid();
                             }
                         }
                         
@@ -399,7 +399,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 					case PredefinedType.OCL_IS_INVALID:
 						// OclAny::oclIsInvalid()
-						return (sourceVal == getOclInvalid())?
+						return (sourceVal == getInvalid())?
 								Boolean.TRUE : Boolean.FALSE;
 
 					case PredefinedType.SIZE:
@@ -503,10 +503,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	                    if (isLaxNullHandling()) {
 	                        break;
 	                    } else {
-	                        return getOclInvalid();
+	                        return getInvalid();
 	                    }
 	                default:
-	                    return getOclInvalid();
+	                    return getInvalid();
 	                }
 	            }
 
@@ -529,8 +529,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (sourceVal == null || (argType instanceof VoidType<?>)) {
                         return null;
                     }
-					if (sourceVal == getOclInvalid() || (argType instanceof InvalidType<?>)) {
-                        return getOclInvalid();
+					if (sourceVal == getInvalid() || (argType instanceof InvalidType<?>)) {
+                        return getInvalid();
                     }
 
 					if (sourceVal instanceof Double
@@ -596,7 +596,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                                 return Boolean.FALSE;
                             default:
                                 // cannot do arithmetic on the unlimited value
-                                return getOclInvalid();
+                                return getInvalid();
                             }
                     } else if (sourceUnlimited || argUnlimited) {
                         switch (opCode) {
@@ -608,7 +608,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                             return sourceUnlimited;
                         default:
                             // cannot do arithmetic on the unlimited value
-                            return getOclInvalid();
+                            return getInvalid();
                         }
                     }
                     
@@ -631,13 +631,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							// denominator of 0 means undefined
 							double num = sourceInt;
 							double denom = argInt;
-							return (denom == 0.0) ? getOclInvalid() : num / denom;
+							return (denom == 0.0) ? getInvalid() : num / denom;
 						}
 
 						// Integer::div(Integer)
 						case PredefinedType.DIV:
 							// denominator of 0 means undefined
-							return (argInt == 0) ? getOclInvalid() :
+							return (argInt == 0) ? getInvalid() :
 							    coerceNumber(sourceInt / argInt);
 
 						// Integer::mod(Integer)
@@ -702,7 +702,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                                 return Boolean.TRUE;
                             default:
                                 // cannot do arithmetic on the unlimited value
-                                return getOclInvalid();
+                                return getInvalid();
                             }
                         }
                     }
@@ -724,7 +724,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// Integer::divide(Real)
                         case PredefinedType.DIVIDE:
                             // denominator of 0 results in undefined
-                            return (argReal == 0.0) ? getOclInvalid() : sourceInt / argReal;
+                            return (argReal == 0.0) ? getInvalid() : sourceInt / argReal;
 
 						// Integer::max(Real)
 						case PredefinedType.MAX:
@@ -786,7 +786,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                                 return Boolean.FALSE;
                             default:
                                 // cannot do arithmetic on the unlimited value
-                                return getOclInvalid();
+                                return getInvalid();
                             }
                         }
                     }
@@ -811,7 +811,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// Real::divide(Integer)
                         case PredefinedType.DIVIDE:
                             // denominator of 0 results in undefined
-                            return (argInt == 0) ? getOclInvalid() : sourceReal / argInt;
+                            return (argInt == 0) ? getInvalid() : sourceReal / argInt;
 
 						// Real::max(Integer)
 						case PredefinedType.MAX:
@@ -874,7 +874,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// Real::divide(Real)
 						case PredefinedType.DIVIDE:
                             // denominator of 0 results in undefined
-                            return (argReal == 0.0) ? getOclInvalid() : sourceReal / argReal;
+                            return (argReal == 0.0) ? getInvalid() : sourceReal / argReal;
 
 						// Real::max(Real)
 						case PredefinedType.MAX:
@@ -1012,7 +1012,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 
                     // bug 183144:  inputting OclInvalid should result in OclInvalid
-                    if (argVal == getOclInvalid()) {
+                    if (argVal == getInvalid()) {
                         return argVal;
                     }
                     
@@ -1146,7 +1146,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// check if undefined
 				if (isUndefined(sourceVal)) {
-                    return getOclInvalid();
+                    return getInvalid();
                 }
 
 				// evaluate arg1
@@ -1154,7 +1154,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// check if undefined
 				if (isUndefined(arg1)) {
-                    return getOclInvalid();
+                    return getInvalid();
                 }
 
 				// evaluate arg2
@@ -1162,7 +1162,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// check if undefined
 				if (isUndefined(arg2)) {
-                    return getOclInvalid();
+                    return getInvalid();
                 }
 
 				if (sourceVal instanceof String) {
@@ -1227,7 +1227,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 
 			if (opCode == PredefinedType.OCL_IS_INVALID) {
-				return (sourceVal == getOclInvalid())?
+				return (sourceVal == getInvalid())?
 						Boolean.TRUE : Boolean.FALSE;
 			}
 
@@ -1240,10 +1240,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     if (isLaxNullHandling()) {
                         break;
                     } else {
-                        return getOclInvalid();
+                        return getInvalid();
                     }
                 default:
-                    return getOclInvalid();
+                    return getInvalid();
 			    }
 			}
 
@@ -1286,7 +1286,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				if (Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
 					return sourceVal;
 				} else {
-					return getOclInvalid();
+					return getInvalid();
 				}
 			}
 
@@ -1339,7 +1339,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			//   successfully parsed and/or validated the expression
 			//
 
-			return getOclInvalid();
+			return getInvalid();
 		}
 
 		return null;
@@ -1392,7 +1392,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// value of iteration expression is undefined if the source is
 			//   null or OclInvalid
 			if (isUndefined(sourceValue)) {
-				return getOclInvalid();
+				return getInvalid();
 			}
 			
 			Collection<?> coll = (Collection<?>) sourceValue;
@@ -1425,7 +1425,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// value of iteration expression is undefined if the source is
 			//   null or OclInvalid
 			if (isUndefined(sourceValue)) {
-				return getOclInvalid();
+				return getInvalid();
 			}
 			
 			Collection<?> sourceCollection = (Collection<?>) sourceValue;
@@ -1762,7 +1762,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// TODO: find an efficient way to do this.
 			Object evaluationResult = is.evaluate(coll, iterators, body, resultName);
 			
-			if (evaluationResult == getOclInvalid()) {
+			if (evaluationResult == getInvalid()) {
 				// handle the OclInvalid result
 				return evaluationResult;
 			}
@@ -1899,7 +1899,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// if source is undefined, result is OclInvalid
 		if (isUndefined(context)) {
-            return getOclInvalid();
+            return getInvalid();
         }
 
 		OCLExpression<C> derivation = getPropertyBody(property);
@@ -1951,7 +1951,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		Object context = ae.getSource().accept(getVisitor());
 		
 		if (isUndefined(context)) {
-			return getOclInvalid();
+			return getInvalid();
 		}
 		
 		// evaluate attribute on source value
@@ -2080,7 +2080,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	@Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 		// just make up some object to take the place of the OclInvalid literal
-		return getOclInvalid();
+		return getInvalid();
 	}
 
 	@Override

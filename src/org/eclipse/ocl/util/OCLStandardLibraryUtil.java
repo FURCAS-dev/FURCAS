@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.13 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.14 2009/09/01 20:11:23 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1209,7 +1209,7 @@ public final class OCLStandardLibraryUtil {
 				return stdlib.getBoolean();
 			case RESULT :
 				return (messageType.getReferredOperation() == null)
-					? (C) stdlib.getInvalid()
+					? stdlib.getOclInvalid()
 					: TypeUtil.resolveType(env, uml.getOCLType(messageType
 						.getReferredOperation()));
 		}

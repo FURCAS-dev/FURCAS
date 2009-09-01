@@ -14,7 +14,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexerprs.java,v 1.4 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLLexerprs.java,v 1.5 2009/09/01 20:11:22 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;

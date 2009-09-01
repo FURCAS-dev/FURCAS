@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.2 2009/08/28 20:43:11 ewillink Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -90,6 +90,7 @@ public interface OCLBacktrackingParsersym {
       TK_derive = 14,
       TK_init = 15,
       TK_null = 38,
+      TK_invalid = 67,
       TK_attr = 98,
       TK_oper = 99,
       TK_Set = 32,
@@ -125,9 +126,8 @@ public interface OCLBacktrackingParsersym {
       TK_Tuple = 52,
       TK_OclAny = 21,
       TK_OclVoid = 22,
-      TK_Invalid = 23,
+      TK_OclInvalid = 23,
       TK_OclMessage = 24,
-      TK_OclInvalid = 67,
       TK_EOF_TOKEN = 73,
       TK_IDENTIFIER = 4,
       TK_INTEGER_RANGE_START = 97,
@@ -159,7 +159,7 @@ public interface OCLBacktrackingParsersym {
                  "Boolean",
                  "OclAny",
                  "OclVoid",
-                 "Invalid",
+                 "OclInvalid",
                  "OclMessage",
                  "and",
                  "or",
@@ -203,7 +203,7 @@ public interface OCLBacktrackingParsersym {
                  "REAL_LITERAL",
                  "true",
                  "false",
-                 "OclInvalid",
+                 "invalid",
                  "let",
                  "if",
                  "BAR",

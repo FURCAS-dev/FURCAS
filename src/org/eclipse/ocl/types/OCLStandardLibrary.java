@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibrary.java,v 1.2 2007/05/17 17:06:22 cdamus Exp $
+ * $Id: OCLStandardLibrary.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -51,20 +51,20 @@ public interface OCLStandardLibrary<C> {
 	
     /**
      * Obtains the single instance of the {@link InvalidType} metatype, named
-     * <tt>Invalid</tt>.
+     * <tt>OclInvalid</tt>.
      * 
-     * @return the <tt>Invalid</tt> type (an instance of {@link InvalidType})
+     * @return the <tt>OclInvalid</tt> type (an instance of {@link InvalidType})
      */
-	C getInvalid();
+	C getOclInvalid();
 	
     /**
-     * Obtains the single instance of the {@link #getInvalid() Invalid} type,
-     * identified by the token <tt>OclInvalid</tt>.
+     * Obtains the single instance of the {@link #getOclInvalid() OclInvalid} type,
+     * identified by the token <tt>invalid</tt>.
      * 
-     * @return the <tt>OclInvalid</tt> instance
-     *     (an instance of {@link #getInvalid() Invalid})
+     * @return the <tt>invalid</tt> instance
+     *     (an instance of {@link #getInvalid() invalid})
      */
-	Object getOclInvalid();
+	Object getInvalid();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateCollectNested.java,v 1.2 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: IterationTemplateCollectNested.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -48,8 +48,8 @@ public final class IterationTemplateCollectNested<PK, C, O, P, EL, PM, S, COA, S
 		Collection<Object> currVal = (Collection<Object>) env.getValueOf(resultName);
 		
 		// If the body result is invalid then the entire expression's value
-		// is invalid, because OCL does not permit OclInvalid in a collection
-		if (bodyVal == getOclInvalid()) {
+		// is invalid, because OCL does not permit invalid in a collection
+		if (bodyVal == getInvalid()) {
 			setDone(true);
 			return bodyVal;
 		}
