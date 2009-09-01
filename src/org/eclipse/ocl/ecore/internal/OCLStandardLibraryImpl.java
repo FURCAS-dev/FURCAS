@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.8 2009/08/26 05:57:41 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.9 2009/09/01 20:11:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -71,7 +71,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 	private static EClassifier OCL_MESSAGE;
 	private static EClassifier OCL_TYPE;
 
-	private static EClassifier INVALID;
+	private static EClassifier OCL_INVALID;
 	
 	private static EClassifier OCL_T;
 	private static EClassifier OCL_T2;
@@ -92,8 +92,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
     /** The package containing the OCL Standard Library classifiers. */
 	public static EPackage stdlibPackage = init();
     
-    /** The singleton instance of the <tt>Invalid</tt> standard library type. */
-    public static final EObject OCL_INVALID = stdlibPackage.getEFactoryInstance().create(
+    /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
+    public static final EObject INVALID = stdlibPackage.getEFactoryInstance().create(
         (EClass) stdlibPackage.getEClassifier("Invalid_Class")); //$NON-NLS-1$
     
     // not instantiable by clients
@@ -113,8 +113,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
         return OCL_UNLIMITED_NATURAL;
     }
     
-	public EClassifier getInvalid() {
-		return INVALID;
+	public EClassifier getOclInvalid() {
+		return OCL_INVALID;
 	}
 
 	public EClassifier getReal() {
@@ -133,8 +133,8 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		return OCL_ELEMENT;
 	}
 
-	public Object getOclInvalid() {
-		return OCL_INVALID;
+	public Object getInvalid() {
+		return INVALID;
 	}
 
 	public EClassifier getState() {
@@ -216,7 +216,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
             OCL_VOID = stdlibPackage.getEClassifier(VoidType.SINGLETON_NAME);
             OCL_MESSAGE = stdlibPackage.getEClassifier(MessageType.SINGLETON_NAME);
 
-            INVALID = stdlibPackage.getEClassifier(InvalidType.SINGLETON_NAME);
+            OCL_INVALID = stdlibPackage.getEClassifier(InvalidType.SINGLETON_NAME);
             
             OCL_T = stdlibPackage.getEClassifier("T"); //$NON-NLS-1$
             OCL_T2 = stdlibPackage.getEClassifier("T2"); //$NON-NLS-1$
@@ -300,7 +300,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
         OCL_VOID = EcoreFactory.eINSTANCE.createVoidType();
         OCL_MESSAGE = EcoreFactory.eINSTANCE.createMessageType();
 
-        INVALID = EcoreFactory.eINSTANCE.createInvalidType();
+        OCL_INVALID = EcoreFactory.eINSTANCE.createInvalidType();
         
         OCL_T = EcoreFactory.eINSTANCE.createAnyType();
         OCL_T.setName("T"); //$NON-NLS-1$
@@ -328,7 +328,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
 		register(OCL_VOID).getEOperations().addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
-		register(INVALID).getEOperations().addAll(
+		register(OCL_INVALID).getEOperations().addAll(
             OCLStandardLibraryUtil.createAnyTypeOperations(env));
 		register(OCL_BOOLEAN).getEOperations().addAll(
             OCLStandardLibraryUtil.createBooleanOperations(env));

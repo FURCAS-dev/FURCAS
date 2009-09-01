@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: InvalidTypeImpl.java,v 1.6 2008/11/24 00:39:32 cdamus Exp $
+ * $Id: InvalidTypeImpl.java,v 1.7 2009/09/01 20:11:57 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -79,7 +79,7 @@ public class InvalidTypeImpl
 	public EList<EOperation> oclOperations() {
 		if (operations == null) {
 			InvalidType prototype = (InvalidType) OCLStandardLibraryImpl.INSTANCE
-				.getInvalid();
+				.getOclInvalid();
 
 			if (prototype == this) {
 				// I *am* the standard library type!
