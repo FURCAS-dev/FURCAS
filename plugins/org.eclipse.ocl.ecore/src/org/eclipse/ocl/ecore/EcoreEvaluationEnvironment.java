@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.8 2009/06/25 19:23:32 ewillink Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.9 2009/09/01 20:11:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -159,7 +159,7 @@ public class EcoreEvaluationEnvironment
     // implements the inherited specification
     @Override
     protected Object getInvalidResult() {
-        return OCLStandardLibraryImpl.OCL_INVALID;
+        return OCLStandardLibraryImpl.INVALID;
     }
 
     // implements the inherited specification

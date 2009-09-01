@@ -58,8 +58,11 @@ public class EcoreOCLStandardLibrary implements OCLStandardLibrary<EClassifier>{
 		return stdLibBuilder.getInteger();
 	}
 
-	public EClassifier getInvalid() {		
-		return stdLibBuilder.getInvalid();
+	/**
+	 * @since 3.0
+	 */
+	public EClassifier getOclInvalid() {		
+		return stdLibBuilder.getOclInvalid();
 	}
 
 	public EClassifier getOclAny() {		
@@ -74,8 +77,8 @@ public class EcoreOCLStandardLibrary implements OCLStandardLibrary<EClassifier>{
 		return stdLibBuilder.getOclExpression();
 	}
 
-	public Object getOclInvalid() {		
-		return stdLibBuilder.getOclInvalid();
+	public Object getInvalid() {		
+		return stdLibBuilder.getInvalid();
 	}
 
 	public EClassifier getOclMessage() {		
