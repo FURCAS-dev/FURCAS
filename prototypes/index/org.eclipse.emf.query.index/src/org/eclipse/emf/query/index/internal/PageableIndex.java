@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal;
 
-import org.eclipse.emf.query.index.api.Index;
+import org.eclipse.emf.query.index.Index;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation

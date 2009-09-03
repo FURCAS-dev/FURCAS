@@ -8,24 +8,21 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
 
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+package org.eclipse.emf.query.index.query;
+
 /**
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
+ * A query that can be executed wihtin a {@link QueryCommand} using a
+ * {@link QueryExecutor} returning a given {@link <DescriptorType>}.
  * 
+ * Implementations of this class are usually plain data objects. The implementor
+ * is responsible for providing an appropriate {@link QueryExecutorStrategy}
+ * that defines the execution logic.
+ * 
+ * @author koehnlein
+ * @author Martin Strenge, SAP AG
+ * @author Bernd Kolb, SAP AG
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
-
-	public static final int TARGET_FRAGMENT = 11;
-
-	public boolean isIntraLink();
-	
-	public String getSourceResourceURI();
-
-	public String getSourceFragment();
-
-	public String getTargetFragment();
+public interface Query<T, DescriptorType> {
 
 }

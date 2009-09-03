@@ -8,24 +8,32 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
+package org.eclipse.emf.query.index;
 
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+import org.eclipse.emf.query.index.event.IndexChangeListenerRegistry;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.update.UpdateCommand;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
+public interface Index {
 
-	public static final int TARGET_FRAGMENT = 11;
+	IndexChangeListenerRegistry getEventListenerRegistry();
 
-	public boolean isIntraLink();
+	/**
+	 * For execution of multiple queries with guaranteed isolation. Holds the
+	 * read lock during the execution of the runnable.
+	 * 
+	 * @param readRunnable
+	 */
+	void executeQueryCommand(QueryCommand command);
+
+	void executeUpdateCommand(UpdateCommand command);
+
+	void save();
 	
-	public String getSourceResourceURI();
-
-	public String getSourceFragment();
-
-	public String getTargetFragment();
-
+	void load();
 }

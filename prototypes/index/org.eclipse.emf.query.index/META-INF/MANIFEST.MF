@@ -7,15 +7,15 @@ Bundle-Vendor: %provider.name
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.4.2",
  org.junit4;bundle-version="4.3.1"
-Export-Package: org.eclipse.emf.query.index._stringpool,
- org.eclipse.emf.query.index.api,
- org.eclipse.emf.query.index.api.event,
- org.eclipse.emf.query.index.api.query,
- org.eclipse.emf.query.index.api.query.descriptors,
- org.eclipse.emf.query.index.api.update,
- org.eclipse.emf.query.index.impl,
- org.eclipse.emf.query.index.impl.query,
- org.eclipse.emf.query.index.impl.update,
+Export-Package: org.eclipse.emf.query.index,
+ org.eclipse.emf.query.index.event,
  org.eclipse.emf.query.index.internal,
- org.eclipse.emf.query.index.maps,
- org.eclipse.emf.query.index.util
+ org.eclipse.emf.query.index.internal._stringpool,
+ org.eclipse.emf.query.index.internal.impl,
+ org.eclipse.emf.query.index.internal.impl.query,
+ org.eclipse.emf.query.index.internal.impl.update,
+ org.eclipse.emf.query.index.internal.maps,
+ org.eclipse.emf.query.index.internal.util,
+ org.eclipse.emf.query.index.query,
+ org.eclipse.emf.query.index.query.descriptors,
+ org.eclipse.emf.query.index.update

@@ -8,24 +8,17 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
+package org.eclipse.emf.query.index.event;
 
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
+public interface IndexChangeListenerRegistry {
 
-	public static final int TARGET_FRAGMENT = 11;
+	void addIndexChangeListener(IndexChangeListener listener);
 
-	public boolean isIntraLink();
-	
-	public String getSourceResourceURI();
-
-	public String getSourceFragment();
-
-	public String getTargetFragment();
+	void removeIndexChangeListener(IndexChangeListener listener);
 
 }

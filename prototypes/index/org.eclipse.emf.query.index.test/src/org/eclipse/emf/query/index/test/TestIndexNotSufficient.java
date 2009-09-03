@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,33 +21,31 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.api.Index;
-import org.eclipse.emf.query.index.api.query.EObjectQuery;
-import org.eclipse.emf.query.index.api.query.EReferenceQuery;
-import org.eclipse.emf.query.index.api.query.IndexQueryFactory;
-import org.eclipse.emf.query.index.api.query.Query;
-import org.eclipse.emf.query.index.api.query.QueryCommand;
-import org.eclipse.emf.query.index.api.query.QueryExecutor;
-import org.eclipse.emf.query.index.api.query.QueryResult;
-import org.eclipse.emf.query.index.api.query.ResourceQuery;
-import org.eclipse.emf.query.index.api.query.descriptors.EObjectDescriptor;
-import org.eclipse.emf.query.index.api.query.descriptors.EReferenceDescriptor;
-import org.eclipse.emf.query.index.api.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.api.update.IndexUpdater;
-import org.eclipse.emf.query.index.api.update.ResourceIndexer;
-import org.eclipse.emf.query.index.api.update.UpdateCommand;
-import org.eclipse.emf.query.index.impl.PageableIndexImpl;
-import org.eclipse.emf.query.index.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
+import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.query.EObjectQuery;
+import org.eclipse.emf.query.index.query.EReferenceQuery;
+import org.eclipse.emf.query.index.query.IndexQueryFactory;
+import org.eclipse.emf.query.index.query.Query;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.QueryResult;
+import org.eclipse.emf.query.index.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
+import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.update.IndexUpdater;
+import org.eclipse.emf.query.index.update.ResourceIndexer;
+import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -93,9 +92,9 @@ public class TestIndexNotSufficient extends Assert {
 	private static final int ELEMENT_COUNT = 1000;
 
 	private Options getOptions() {
-		return Options.PAGING_DISABLED;
+		return new Options(getTempDir(), Options.DISABLED, Options.DISABLED);
 	}
-	
+
 	@Test
 	public void testDump() throws Exception {
 		PageableIndexImpl index = new PageableIndexImpl(getOptions());
@@ -107,8 +106,8 @@ public class TestIndexNotSufficient extends Assert {
 		System.out.print("Creating resources");
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI("C:/tmp/dump_1.xmi"));
-		Resource r2 = rs.createResource(URI.createFileURI("C:/tmp/dump_2.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/dump_1.xmi"));
+		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/dump_2.xmi"));
 
 		resourceURIs.add(r.getURI());
 		resourceURIs.add(r2.getURI());
@@ -134,15 +133,15 @@ public class TestIndexNotSufficient extends Assert {
 		System.out.print(".");
 		r.unload();
 		r2.unload();
-		
+
 		time = System.currentTimeMillis() - time;
 		System.out.println(time);
 
 		index.save();
-		
+
 		index = new PageableIndexImpl(getOptions());
 		index.load();
-		
+
 		index.executeQueryCommand(new QueryCommand() {
 
 			@Override
@@ -151,20 +150,20 @@ public class TestIndexNotSufficient extends Assert {
 				QueryResult<EObjectDescriptor> result = queryExecutor.execute(query);
 				int size = 0;
 				for (EObjectDescriptor eob : result) {
-					System.out.println(eob.getResourceURI()+"#"+eob.getFragment());
+					System.out.println(eob.getResourceURI() + "#" + eob.getFragment());
 					size++;
 				}
 				assertEquals(5, size);
 			}
-			
+
 		});
-		
+
 		this.deleteResources(Arrays.asList(r.getURI(), r2.getURI()), index);
-		
+
 		r.delete(null);
 		r2.delete(null);
 	}
-	
+
 	@Test
 	public void testEReferenceQuery() throws Exception {
 		PageableIndexImpl index = new PageableIndexImpl(getOptions());
@@ -175,9 +174,11 @@ public class TestIndexNotSufficient extends Assert {
 
 		System.out.print("Creating resources");
 		long time = System.currentTimeMillis();
+		
+		getTempDir();
 
-		Resource r = rs.createResource(URI.createFileURI("C:/tmp/resERefQuery_1.xmi"));
-		Resource r2 = rs.createResource(URI.createFileURI("C:/tmp/resERefQuery_2.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_1.xmi"));
+		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_2.xmi"));
 
 		resourceURIs.add(r.getURI());
 		resourceURIs.add(r2.getURI());
@@ -230,6 +231,10 @@ public class TestIndexNotSufficient extends Assert {
 		r2.delete(null);
 	}
 
+	private static String getTempDir() {
+		return System.getProperty("java.io.tmpdir") + File.separator + "index";
+	}
+
 	@Test
 	public void testIntraEReferenceQuery() throws Exception {
 		PageableIndexImpl index = new PageableIndexImpl(getOptions());
@@ -241,7 +246,7 @@ public class TestIndexNotSufficient extends Assert {
 		System.out.print("Creating resources");
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI("C:/tmp/resIntraERefQuery_1.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resIntraERefQuery_1.xmi"));
 
 		resourceURIs.add(r.getURI());
 
@@ -294,7 +299,7 @@ public class TestIndexNotSufficient extends Assert {
 		System.out.print("Creating resources");
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI("C:/tmp/resQueryEResource.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resQueryEResource.xmi"));
 
 		resourceURIs.add(r.getURI());
 
@@ -342,7 +347,7 @@ public class TestIndexNotSufficient extends Assert {
 		System.out.print("Creating resources");
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI("C:/tmp/resQueryEObject.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resQueryEObject.xmi"));
 
 		resourceURIs.add(r.getURI());
 
@@ -401,8 +406,8 @@ public class TestIndexNotSufficient extends Assert {
 		long time = System.currentTimeMillis();
 
 		for (int i = 0; i < (RESOURCE_COUNT / 2); i++) {
-			Resource r = rs.createResource(URI.createFileURI("C:/tmp/res" + i + "_1.xmi"));
-			Resource r2 = rs.createResource(URI.createFileURI("C:/tmp/res" + i + "_2.xmi"));
+			Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/res" + i + "_1.xmi"));
+			Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/res" + i + "_2.xmi"));
 
 			resourceURIs.add(r.getURI());
 			resourceURIs.add(r2.getURI());
@@ -437,13 +442,13 @@ public class TestIndexNotSufficient extends Assert {
 		time = System.currentTimeMillis();
 		index.save();
 		time = System.currentTimeMillis() - time;
-		System.out.println("Index save time: "+time);
+		System.out.println("Index save time: " + time);
 
 		index = new PageableIndexImpl(getOptions());
 		time = System.currentTimeMillis();
 		index.load();
 		time = System.currentTimeMillis() - time;
-		System.out.println("Index load time: "+time);
+		System.out.println("Index load time: " + time);
 
 		time = System.currentTimeMillis();
 		this.deleteResources(resourceURIs, index);
@@ -460,7 +465,7 @@ public class TestIndexNotSufficient extends Assert {
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
 				new ResourceIndexer() {
-					
+
 					@Override
 					protected Map<String, String> getResourceUserData(Resource res) {
 						Map<String, String> result = new HashMap<String, String>();
@@ -476,7 +481,7 @@ public class TestIndexNotSufficient extends Assert {
 					}
 				}.resourceChanged(updater, r);
 			}
-			
+
 		});
 	}
 
@@ -491,6 +496,11 @@ public class TestIndexNotSufficient extends Assert {
 			}
 
 		});
+	}
+	
+	@AfterClass
+	public static void deleteTempDir(){
+		new File(getTempDir()).deleteOnExit();
 	}
 
 }

@@ -8,24 +8,18 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
+package org.eclipse.emf.query.index.query;
 
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 /**
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
- * 
+ * @author Martin Strenge, SAP AG
+ * @author Bernd Kolb, SAP AG
+ *
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
+public interface ResourceQuery<T> extends Query<T, ResourceDescriptor> {
 
-	public static final int TARGET_FRAGMENT = 11;
+	void uri(String uri);
 
-	public boolean isIntraLink();
-	
-	public String getSourceResourceURI();
-
-	public String getSourceFragment();
-
-	public String getTargetFragment();
+	void userData(String key, String value);
 
 }

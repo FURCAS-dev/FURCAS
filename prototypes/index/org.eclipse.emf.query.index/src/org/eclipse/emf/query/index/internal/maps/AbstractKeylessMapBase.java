@@ -8,24 +8,23 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
-
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+package org.eclipse.emf.query.index.internal.maps;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
+public abstract class AbstractKeylessMapBase<K, E extends MapEntry> extends AbstractMapBase<K, E> {
 
-	public static final int TARGET_FRAGMENT = 11;
+	protected final int keyNr;
 
-	public boolean isIntraLink();
-	
-	public String getSourceResourceURI();
+	protected AbstractKeylessMapBase(int keyNr) {
 
-	public String getSourceFragment();
+		this.keyNr = keyNr;
+	}
 
-	public String getTargetFragment();
+	abstract public void put(E element);
+
+	abstract public void remove(E element);
 
 }

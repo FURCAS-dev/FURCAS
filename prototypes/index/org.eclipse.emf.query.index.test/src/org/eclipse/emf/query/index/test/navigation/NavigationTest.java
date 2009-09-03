@@ -27,22 +27,22 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.emf.query.index.api.Index;
-import org.eclipse.emf.query.index.api.query.EObjectQuery;
-import org.eclipse.emf.query.index.api.query.EReferenceQuery;
-import org.eclipse.emf.query.index.api.query.IndexQueryFactory;
-import org.eclipse.emf.query.index.api.query.QueryCommand;
-import org.eclipse.emf.query.index.api.query.QueryExecutor;
-import org.eclipse.emf.query.index.api.query.QueryResult;
-import org.eclipse.emf.query.index.api.query.ResourceQuery;
-import org.eclipse.emf.query.index.api.query.descriptors.EObjectDescriptor;
-import org.eclipse.emf.query.index.api.query.descriptors.EReferenceDescriptor;
-import org.eclipse.emf.query.index.api.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.api.update.IndexUpdater;
-import org.eclipse.emf.query.index.api.update.ResourceIndexer;
-import org.eclipse.emf.query.index.api.update.UpdateCommand;
-import org.eclipse.emf.query.index.impl.PageableIndexImpl;
-import org.eclipse.emf.query.index.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
+import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.query.EObjectQuery;
+import org.eclipse.emf.query.index.query.EReferenceQuery;
+import org.eclipse.emf.query.index.query.IndexQueryFactory;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.QueryResult;
+import org.eclipse.emf.query.index.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
+import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.update.IndexUpdater;
+import org.eclipse.emf.query.index.update.ResourceIndexer;
+import org.eclipse.emf.query.index.update.UpdateCommand;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -53,14 +53,14 @@ import org.junit.Test;
  */
 public class NavigationTest extends Assert {
 
-	protected static final int NUM_MODELS = 100;
+	protected static final int NUM_MODELS = 3000;
 	protected static final int REPS = 5;
 	private static Index index;
 
 	@Test
 	public void testBuildUp() throws Exception {
 
-		index = new PageableIndexImpl(Options.PAGING_DISABLED);
+		index = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
 		final Resource r = new XMIResourceImpl();
 		r.getContents().add(EcorePackage.eINSTANCE);
@@ -82,17 +82,22 @@ public class NavigationTest extends Assert {
 		long end = System.currentTimeMillis();
 		System.out.println("Total indexing time: " + (end - begin) + "ms.");
 
-		index.executeQueryCommand(new QueryCommand() {
-			@Override
-			public void execute(QueryExecutor queryExecutor) {
-				EObjectQuery<EObjectDescriptor> createEObjectQuery = IndexQueryFactory.createEObjectQuery();
-				EReferenceQuery<EReferenceDescriptor> createEReferenceQuery = IndexQueryFactory.createEReferenceQuery();
-				System.out.println("#EObjectDescriptors " + size(queryExecutor.execute(createEObjectQuery)));
-				System.out.println("#EReferenceDescriptors " + size(queryExecutor.execute(createEReferenceQuery)));
-			}
-		});
-		end = System.currentTimeMillis();
-		System.out.println("Total query iteration time: " + (end - begin) + "ms.");
+		long timeUsed = 0;
+		for (int i = 0; i < REPS; i++) {
+			begin = System.currentTimeMillis();
+			index.executeQueryCommand(new QueryCommand() {
+				@Override
+				public void execute(QueryExecutor queryExecutor) {
+					EObjectQuery<EObjectDescriptor> createEObjectQuery = IndexQueryFactory.createEObjectQuery();
+					EReferenceQuery<EReferenceDescriptor> createEReferenceQuery = IndexQueryFactory.createEReferenceQuery();
+					System.out.println("#EObjectDescriptors " + size(queryExecutor.execute(createEObjectQuery)));
+					System.out.println("#EReferenceDescriptors " + size(queryExecutor.execute(createEReferenceQuery)));
+				}
+			});
+			end = System.currentTimeMillis();
+			timeUsed += end - begin;
+		}
+		System.out.println("Total query iteration time: " + timeUsed/(float)REPS + "ms.");
 	}
 
 	@Test

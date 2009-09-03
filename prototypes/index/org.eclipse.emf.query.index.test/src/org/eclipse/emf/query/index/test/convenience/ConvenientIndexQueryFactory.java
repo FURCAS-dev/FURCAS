@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.test.convenience;
 
-import org.eclipse.emf.query.index.api.query.EObjectQuery;
-import org.eclipse.emf.query.index.api.query.EReferenceQuery;
-import org.eclipse.emf.query.index.api.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.EObjectQuery;
+import org.eclipse.emf.query.index.query.EReferenceQuery;
+import org.eclipse.emf.query.index.query.ResourceQuery;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation

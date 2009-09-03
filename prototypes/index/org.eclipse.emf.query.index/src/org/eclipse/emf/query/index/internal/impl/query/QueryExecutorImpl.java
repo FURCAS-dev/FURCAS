@@ -8,8 +8,10 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
+package org.eclipse.emf.query.index.internal.impl.query;
 
+import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
+import org.eclipse.emf.query.index.internal.QueryInternal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
 import org.eclipse.emf.query.index.query.Query;
 import org.eclipse.emf.query.index.query.QueryResult;
@@ -18,16 +20,29 @@ import org.eclipse.emf.query.index.query.QueryResult;
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public interface QueryInternal<T, DescriptorType> extends Query<T, DescriptorType> {
+public class QueryExecutorImpl implements QueryExecutorInternal {
 
-	static enum QueryKind {
-		LINK, EOBJECT, RESOURCE
+	private final GlobalTables globalTables;
+	private boolean valid = true;
+
+	public QueryExecutorImpl(GlobalTables _globalTables) {
+		this.globalTables = _globalTables;
 	}
 
-	QueryKind getQueryKind();
+	@Override
+	public <T, DescriptorType, QueryType extends Query<T, DescriptorType>> QueryResult<T> execute(QueryType query) {
 
-	QueryResult<T> execute(QueryExecutorInternal queryExecutor, GlobalTables globalTables);
+		return ((QueryInternal<T, DescriptorType>) query).execute(this, this.globalTables);
+	}
 
-	QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<DescriptorType> result);
+	@Override
+	public void invalidate() {
+		this.valid = false;
+	}
+
+	@Override
+	public boolean isValid() {
+		return this.valid;
+	}
 
 }

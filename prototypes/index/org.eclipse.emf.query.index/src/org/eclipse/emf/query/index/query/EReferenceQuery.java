@@ -8,25 +8,26 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
+package org.eclipse.emf.query.index.query;
 
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
-import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 /**
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
- * 
+ * @author Martin Strenge, SAP AG
+ * @author Bernd Kolb, SAP AG
+ *
  */
-public interface ResourceDescriptorInternal extends ResourceDescriptor, PageableElement, MapEntry {
+public interface EReferenceQuery<T> extends Query<T, EReferenceDescriptor> {
 
-	public static final long NOT_INDEXED = -1;
+	/**
+	 * @return The {@link EObjectQuery} for the link's source object
+	 */
+	public EObjectQuery<EObjectDescriptor> sourceEObject();
 
-	void addEObjectDescriptor(EObjectDescriptor eod);
+	/**
+	 * @return The {@link EObjectQuery} for the link's target object
+	 */
+	public EObjectQuery<EObjectDescriptor> targetEObject();
 
-	void addReferenceDescriptor(EReferenceDescriptor refDesc);
-
-	EObjectDescriptor getEObjectDescriptor(String fragment);
-
+	public void eReferenceURI(String eReferenceURI);
 }

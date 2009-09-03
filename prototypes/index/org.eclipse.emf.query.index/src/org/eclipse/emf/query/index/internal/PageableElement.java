@@ -13,7 +13,7 @@ package org.eclipse.emf.query.index.internal;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import org.eclipse.emf.query.index.maps.MapEntry;
+import org.eclipse.emf.query.index.internal.maps.MapEntry;
 
 /**
  * @author Martin Strenge - Initial API and implementation

@@ -8,24 +8,16 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
-
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+package org.eclipse.emf.query.index.internal.maps;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
+public interface SerializableMap<K, E> {
 
-	public static final int TARGET_FRAGMENT = 11;
-
-	public boolean isIntraLink();
+	void serialize(SerializationStrategy<K, E> strategy);
 	
-	public String getSourceResourceURI();
-
-	public String getSourceFragment();
-
-	public String getTargetFragment();
+	void deserialize(SerializationStrategy<K, E> strategy);
 
 }

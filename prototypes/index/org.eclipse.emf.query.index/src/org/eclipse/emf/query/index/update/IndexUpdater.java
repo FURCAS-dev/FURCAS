@@ -8,24 +8,22 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query.index.internal;
+package org.eclipse.emf.query.index.update;
 
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+import java.util.Map;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public interface IncomingReferenceDescriptor extends MapEntry {
+public interface IndexUpdater {
 
-	public static final int TARGET_FRAGMENT = 11;
+	public void insertResource(String uri, long version, Map<String, String> userData);
 
-	public boolean isIntraLink();
-	
-	public String getSourceResourceURI();
+	public void insertEObject(String resourceUri, String fragment, String typeUri, String name, Map<String, String> userData);
 
-	public String getSourceFragment();
+	public void insertEReference(String sourceResourceUri, String sourceFragment, String typeUri, String targetResourceUri,
+			String targetFragment);
 
-	public String getTargetFragment();
-
+	public void deleteResource(String uri);
 }

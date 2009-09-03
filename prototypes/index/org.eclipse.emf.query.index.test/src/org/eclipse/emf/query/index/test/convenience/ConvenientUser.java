@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.test.convenience;
 
-import org.eclipse.emf.query.index.api.Index;
-import org.eclipse.emf.query.index.api.query.QueryCommand;
-import org.eclipse.emf.query.index.api.query.QueryExecutor;
-import org.eclipse.emf.query.index.api.query.QueryResult;
-import org.eclipse.emf.query.index.api.query.ResourceQuery;
+import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.QueryResult;
+import org.eclipse.emf.query.index.query.ResourceQuery;
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
