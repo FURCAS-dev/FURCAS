@@ -28,7 +28,7 @@ public abstract class FilteredIterableMulti<T> implements Iterable<T> {
 
 		@Override
 		public Object next() {
-			throw new UnsupportedOperationException();
+			throw new NoSuchElementException();
 		}
 
 		@Override

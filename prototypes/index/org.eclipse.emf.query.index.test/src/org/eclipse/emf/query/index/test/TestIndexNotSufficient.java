@@ -43,8 +43,10 @@ import org.eclipse.emf.query.index.api.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.api.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.api.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.api.update.IndexUpdater;
+import org.eclipse.emf.query.index.api.update.ResourceIndexer;
 import org.eclipse.emf.query.index.api.update.UpdateCommand;
 import org.eclipse.emf.query.index.impl.PageableIndexImpl;
+import org.eclipse.emf.query.index.impl.PageableIndexImpl.Options;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -90,9 +92,13 @@ public class TestIndexNotSufficient extends Assert {
 
 	private static final int ELEMENT_COUNT = 1000;
 
+	private Options getOptions() {
+		return Options.PAGING_DISABLED;
+	}
+	
 	@Test
 	public void testDump() throws Exception {
-		PageableIndexImpl index = new PageableIndexImpl();
+		PageableIndexImpl index = new PageableIndexImpl(getOptions());
 
 		ResourceSet rs = new ResourceSetImpl();
 
@@ -134,7 +140,7 @@ public class TestIndexNotSufficient extends Assert {
 
 		index.save();
 		
-		index = new PageableIndexImpl();
+		index = new PageableIndexImpl(getOptions());
 		index.load();
 		
 		index.executeQueryCommand(new QueryCommand() {
@@ -161,7 +167,7 @@ public class TestIndexNotSufficient extends Assert {
 	
 	@Test
 	public void testEReferenceQuery() throws Exception {
-		PageableIndexImpl index = new PageableIndexImpl();
+		PageableIndexImpl index = new PageableIndexImpl(getOptions());
 
 		ResourceSet rs = new ResourceSetImpl();
 
@@ -226,7 +232,7 @@ public class TestIndexNotSufficient extends Assert {
 
 	@Test
 	public void testIntraEReferenceQuery() throws Exception {
-		PageableIndexImpl index = new PageableIndexImpl();
+		PageableIndexImpl index = new PageableIndexImpl(getOptions());
 
 		ResourceSet rs = new ResourceSetImpl();
 
@@ -279,7 +285,7 @@ public class TestIndexNotSufficient extends Assert {
 
 	@Test
 	public void testEResourceQuery() throws Exception {
-		PageableIndexImpl index = new PageableIndexImpl();
+		PageableIndexImpl index = new PageableIndexImpl(getOptions());
 
 		ResourceSet rs = new ResourceSetImpl();
 
@@ -327,7 +333,7 @@ public class TestIndexNotSufficient extends Assert {
 
 	@Test
 	public void testEObjectQuery() throws Exception {
-		PageableIndexImpl index = new PageableIndexImpl();
+		PageableIndexImpl index = new PageableIndexImpl(getOptions());
 
 		ResourceSet rs = new ResourceSetImpl();
 
@@ -385,7 +391,7 @@ public class TestIndexNotSufficient extends Assert {
 
 	@Test
 	public void testOneMillionNewIndex() throws Exception {
-		Index index = new PageableIndexImpl();
+		Index index = new PageableIndexImpl(getOptions());
 
 		ResourceSet rs = new ResourceSetImpl();
 
@@ -433,7 +439,7 @@ public class TestIndexNotSufficient extends Assert {
 		time = System.currentTimeMillis() - time;
 		System.out.println("Index save time: "+time);
 
-		index = new PageableIndexImpl();
+		index = new PageableIndexImpl(getOptions());
 		time = System.currentTimeMillis();
 		index.load();
 		time = System.currentTimeMillis() - time;
@@ -448,6 +454,32 @@ public class TestIndexNotSufficient extends Assert {
 		System.out.println(time);
 	}
 
+	private void resourceChanged(Index index, final Resource... r) {
+		index.executeUpdateCommand(new UpdateCommand() {
+
+			@Override
+			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+				new ResourceIndexer() {
+					
+					@Override
+					protected Map<String, String> getResourceUserData(Resource res) {
+						Map<String, String> result = new HashMap<String, String>();
+						result.put("key", "abcd");
+						return result;
+					}
+
+					@Override
+					protected Map<String, String> getEObjectUserData(EObject element) {
+						Map<String, String> result = new HashMap<String, String>();
+						result.put("key", "wxyz");
+						return result;
+					}
+				}.resourceChanged(updater, r);
+			}
+			
+		});
+	}
+
 	protected void deleteResources(final Collection<URI> uris, Index index) {
 		index.executeUpdateCommand(new UpdateCommand() {
 
@@ -460,153 +492,5 @@ public class TestIndexNotSufficient extends Assert {
 
 		});
 	}
-
-	protected void resourceChanged(final Index index, final Resource... resources) {
-		index.executeUpdateCommand(new UpdateCommand() {
-
-			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-				ResourceSet resourceSet = resources[0].getResourceSet();
-				URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
-				for (Resource resource : resources) {
-					String resourceUri = resource.getURI().toString();
-
-					updater.insertResource(resourceUri, System.currentTimeMillis(), getResourceUserData(resource));
-
-					for (Iterator<EObject> i = EcoreUtil.getAllProperContents(resource, false); i.hasNext();) {
-						EObject element = i.next();
-						if (isIndexElement(element)) {
-
-							String fragment = EcoreUtil.getURI(element).fragment();
-							String typeUri = EcoreUtil.getURI(element.eClass()).toString();
-
-							updater.insertEObject(resourceUri, fragment, typeUri, getEObjectName(element), getEObjectUserData(element));
-
-							URI sourceURI = uriConverter.normalize(EcoreUtil.getURI(element));
-							if (sourceURI != null) {
-								for (EReference eReference : element.eClass().getEAllReferences()) {
-									if (isIndexReference(eReference, element)) {
-										String refString = EcoreUtil.getURI(eReference).toString();
-
-										if (eReference.isMany()) {
-											List<?> targets = (List<?>) element.eGet(eReference, false);
-											for (int index = 0; index < targets.size(); ++index) {
-												Object target = targets.get(index);
-												createEReferenceDescriptor(updater, uriConverter, resourceUri, sourceURI.fragment(),
-														refString, target);
-											}
-										} else {
-											Object target = element.eGet(eReference, false);
-											createEReferenceDescriptor(updater, uriConverter, resourceUri, sourceURI.fragment(), refString,
-													target);
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
-		});
-
-	}
-
-	protected void createEReferenceDescriptor(IndexUpdater updater, URIConverter uriConverter, String srcResourceUri,
-			String sourceFragment, String reference, Object target) {
-		if (target instanceof EObject) {
-			URI targetURI = uriConverter.normalize(EcoreUtil.getURI((EObject) target));
-			if (targetURI != null) {
-				updater.insertEReference(srcResourceUri, sourceFragment, reference, targetURI.trimFragment().toString(), targetURI
-						.fragment());
-			}
-		}
-	}
-
-	private boolean isIndexReference(EReference reference, EObject element) {
-		return /* !eReference.isContainment() && */!reference.isDerived() && element.eIsSet(reference);
-	}
-
-	private boolean isIndexElement(EObject element) {
-		return true;
-	}
-
-	private Map<String, String> getEObjectUserData(EObject element) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("key", "wxyz");
-		return map;
-	}
-
-	private String getEObjectName(EObject element) {
-		if (element instanceof ENamedElement)
-			return ((ENamedElement) element).getName();
-		else
-			return null;
-	}
-
-	private Map<String, String> getResourceUserData(Resource res) {
-		Map<String, String> ret = new HashMap<String, String>();
-		ret.put("key", "abcd");
-		return ret;
-	}
-
-	//	//	@Test
-	//	public void testOneMillion() throws Exception {
-	//		OxUtil oxUtil = OxActivator.getDefault().getOxUtil();
-	//		OxTestUtil otu = new OxTestUtilImpl();
-	//
-	//		System.out.println("Creating DC...");
-	//		IDevelopmentConfiguration devConf = otu.importLocalDevConfigFromFile("MyLocalDevelopment");
-	//		ISoftwareComponent sc = otu.createSc(devConf, "MEMSC", "test.sap.com");
-	//		IDevelopmentComponent dc = otu.createLocalDc("memDc", "test.sap.com", sc);
-	//
-	//		ResourceSet rs = new ResourceSetImpl();
-	//		rs.setURIConverter(new OxUriConverter(devConf));
-	//
-	//		System.out.print("Creating resources");
-	//		for (int i = 0; i < (RESOURCE_COUNT / 2); i++) {
-	//			Resource r = rs.createResource(OxUriHandler.createOxUri(dc, "src/res" + i + "_1.xmi"));
-	//			Resource r2 = rs.createResource(OxUriHandler.createOxUri(dc, "src/res" + i + "_2.xmi"));
-	//
-	//			for (int j = 0; j < ELEMENT_COUNT; j++) {
-	//				EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-	//				eClass1.setName("EClass1_" + i + "_" + j);
-	//				EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
-	//				eClass2.setName("EClass2_" + i + "_" + j);
-	//				r.getContents().add(eClass1);
-	//				r2.getContents().add(eClass2);
-	//				if (j % 5 == 0) {
-	//					if (j % 10 == 0) {
-	//						eClass1.getESuperTypes().add(eClass2);
-	//					} else {
-	//						eClass2.getESuperTypes().add(eClass1);
-	//					}
-	//				}
-	//			}
-	//
-	//			r.save(null);
-	//			r2.save(null);
-	//			System.out.print(".");
-	//			r.unload();
-	//			r2.unload();
-	//		}
-	//
-	//		System.out.println("\nGetting Index...");
-	//
-	//		long time = System.currentTimeMillis();
-	//		SpiFacilitySlimIndexQueryService index = oxUtil.getIndex(devConf);
-	//
-	//		System.out.println("Finished in " + (System.currentTimeMillis() - time) + " ms.");
-	//
-	//		FileOutputStream fos = new FileOutputStream("C:/tmp/index.dump");
-	//
-	//		System.out.println("Dumping index...");
-	//
-	//		time = System.currentTimeMillis();
-	//		((PersistableIndexStore) ((IndexQueryService) index).getIndex()).save(fos);
-	//		time = System.currentTimeMillis() - time;
-	//
-	//		System.out.println("Finished in " + time + " ms.");
-	//	}
 
 }

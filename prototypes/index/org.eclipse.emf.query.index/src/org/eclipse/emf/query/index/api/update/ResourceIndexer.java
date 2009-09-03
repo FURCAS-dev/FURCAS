@@ -19,14 +19,16 @@ import org.eclipse.emf.query.index.api.Index;
 
 public class ResourceIndexer {
 
-	protected void resourceChanged(final Index index, IndexUpdater updater, final Resource... resources) {
+	public static final ResourceIndexer INSTANCE = new ResourceIndexer();
+	
+	public final void resourceChanged(IndexUpdater updater, final Resource... resources) {
 		ResourceSet resourceSet = resources[0].getResourceSet();
 		URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
 		Map<EClass, String> typeMap = new IdentityHashMap<EClass, String>();
 		for (Resource resource : resources) {
 			String resourceUri = resource.getURI().toString();
 
-			updater.insertResource(resourceUri, System.currentTimeMillis(), getResourceUserData(resource));
+			updater.insertResource(resourceUri, resource.getTimeStamp(), getResourceUserData(resource));
 
 			for (Iterator<EObject> i = EcoreUtil.getAllProperContents(resource, false); i.hasNext();) {
 				EObject element = i.next();
@@ -36,7 +38,7 @@ public class ResourceIndexer {
 					EClass type = element.eClass();
 					String typeUri;
 					if ((typeUri = typeMap.get(type)) == null) {
-						typeMap.put(type, typeUri = EcoreUtil.getURI(type).fragment());
+						typeMap.put(type, typeUri = EcoreUtil.getURI(type).toString());
 					}
 
 					updater.insertEObject(resourceUri, fragment, typeUri, getEObjectName(element), getEObjectUserData(element));
@@ -85,7 +87,7 @@ public class ResourceIndexer {
 		return null;
 	}
 
-	private String getEObjectName(EObject element) {
+	protected String getEObjectName(EObject element) {
 		EStructuralFeature nameFeature = element.eClass().getEStructuralFeature("name");
 		if (nameFeature != null && nameFeature.getEType() instanceof EDataType) {
 			if (!nameFeature.isMany()) {
