@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.28 2009/09/04 08:27:07 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.29 2009/09/04 10:19:33 asanchez Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2403,7 +2403,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			case SimpleTypeEnum.BOOLEAN :
 			case SimpleTypeEnum.OCL_ANY :
 			case SimpleTypeEnum.OCL_VOID :
-			case SimpleTypeEnum.INVALID :
+			case SimpleTypeEnum.OCL_INVALID :
 			case SimpleTypeEnum.OCL_MESSAGE :
 			case SimpleTypeEnum.UNLIMITED_NATURAL :
 				// if we have a source, then this is a feature call
@@ -2861,7 +2861,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				astNode = env.getOCLStandardLibrary().getOclVoid();
 				break;
 
-			case INVALID_LITERAL :
+			case OCL_INVALID_LITERAL :
 				astNode = env.getOCLStandardLibrary().getOclInvalid();
 				break;
 

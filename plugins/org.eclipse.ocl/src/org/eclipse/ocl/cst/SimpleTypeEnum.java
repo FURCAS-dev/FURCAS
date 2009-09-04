@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleTypeEnum.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: SimpleTypeEnum.java,v 1.4 2009/09/04 10:19:33 asanchez Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -115,14 +115,15 @@ public enum SimpleTypeEnum
 	OCL_VOID_LITERAL(8, "OclVoid", "OclVoid"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * The '<em><b>Invalid</b></em>' literal object.
+	 * The '<em><b>Ocl Invalid</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INVALID
+	 * @see #OCL_INVALID
 	 * @generated
 	 * @ordered
+	 * @since 3.0
 	 */
-	INVALID_LITERAL(9, "Invalid", "Invalid"), //$NON-NLS-1$ //$NON-NLS-2$
+	OCL_INVALID_LITERAL(9, "OclInvalid", "OclInvalid"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Ocl Message</b></em>' literal object.
@@ -275,19 +276,20 @@ public enum SimpleTypeEnum
 	public static final int OCL_VOID = 8;
 
 	/**
-	 * The '<em><b>Invalid</b></em>' literal value.
+	 * The '<em><b>Ocl Invalid</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Invalid</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Ocl Invalid</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INVALID_LITERAL
-	 * @model name="Invalid"
+	 * @see #OCL_INVALID_LITERAL
+	 * @model name="OclInvalid"
 	 * @generated
 	 * @ordered
+	 * @since 3.0
 	 */
-	public static final int INVALID = 9;
+	public static final int OCL_INVALID = 9;
 
 	/**
 	 * The '<em><b>Ocl Message</b></em>' literal value.
@@ -343,7 +345,7 @@ public enum SimpleTypeEnum
 	private static final SimpleTypeEnum[] VALUES_ARRAY = new SimpleTypeEnum[]{
 		IDENTIFIER_LITERAL, SELF_LITERAL, INTEGER_LITERAL, STRING_LITERAL,
 		REAL_LITERAL, BOOLEAN_LITERAL, OCL_ANY_LITERAL, OCL_VOID_LITERAL,
-		INVALID_LITERAL, OCL_MESSAGE_LITERAL, KEYWORD_LITERAL,
+		OCL_INVALID_LITERAL, OCL_MESSAGE_LITERAL, KEYWORD_LITERAL,
 		UNLIMITED_NATURAL_LITERAL,};
 
 	/**
@@ -411,8 +413,8 @@ public enum SimpleTypeEnum
 				return OCL_ANY_LITERAL;
 			case OCL_VOID :
 				return OCL_VOID_LITERAL;
-			case INVALID :
-				return INVALID_LITERAL;
+			case OCL_INVALID :
+				return OCL_INVALID_LITERAL;
 			case OCL_MESSAGE :
 				return OCL_MESSAGE_LITERAL;
 			case KEYWORD :

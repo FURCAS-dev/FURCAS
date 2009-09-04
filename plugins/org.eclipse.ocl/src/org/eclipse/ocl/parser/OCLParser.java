@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.10 2009/09/04 08:27:07 ewillink Exp $
+* $Id: OCLParser.java,v 1.11 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -915,7 +915,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			case 135: {
 				
 				CSTNode result = createPrimitiveTypeCS(
-						SimpleTypeEnum.INVALID_LITERAL,
+						SimpleTypeEnum.OCL_INVALID_LITERAL,
 						getTokenText(dtParser.getToken(1))
 					);
 				setOffsets(result, getIToken(dtParser.getToken(1)));

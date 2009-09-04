@@ -18,19 +18,11 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParserprs.java,v 1.4 2009/09/04 08:27:07 ewillink Exp $
+* $Id: OCLBacktrackingParserprs.java,v 1.5 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
-/**
- * The backtracking variant of the OCL parser parse table.
- * 
- * @noextend This class is not intended to be subclassed by clients.
- * 
- * @since 1.3
- */
-@SuppressWarnings("nls")
 public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, OCLBacktrackingParsersym {
 
     public interface IsKeyword {
