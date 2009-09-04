@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.9 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.10 2009/09/04 10:19:33 asanchez Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -772,7 +772,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 
 	@Override
     public String visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
-		return "OclInvalid"; //$NON-NLS-1$
+		return "invalid"; //$NON-NLS-1$
 	}
 
 	@Override

@@ -117,7 +117,7 @@
         <ownedLiteral xmi:id="_qdx88f8fEduhWtVvKtiQ7w" name="OclVoid">
           <specification xmi:type="uml:LiteralInteger" xmi:id="_qdx88v8fEduhWtVvKtiQ7w" value="8"/>
         </ownedLiteral>
-        <ownedLiteral xmi:id="_qdx88_8fEduhWtVvKtiQ7w" name="Invalid">
+        <ownedLiteral xmi:id="_qdx88_8fEduhWtVvKtiQ7w" name="OclInvalid">
           <specification xmi:type="uml:LiteralInteger" xmi:id="_qdx89P8fEduhWtVvKtiQ7w" value="9"/>
         </ownedLiteral>
         <ownedLiteral xmi:id="_qdx89f8fEduhWtVvKtiQ7w" name="OclMessage">

@@ -58,7 +58,7 @@
       <eLiterals name="Boolean" value="6"/>
       <eLiterals name="OclAny" value="7"/>
       <eLiterals name="OclVoid" value="8"/>
-      <eLiterals name="Invalid" value="9"/>
+      <eLiterals name="OclInvalid" value="9"/>
       <eLiterals name="OclMessage" value="10"/>
       <eLiterals name="keyword" value="11"/>
       <eLiterals name="UnlimitedNatural" value="12"/>

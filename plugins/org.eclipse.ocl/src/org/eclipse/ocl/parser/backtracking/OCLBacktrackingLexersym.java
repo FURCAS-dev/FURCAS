@@ -14,20 +14,11 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingLexersym.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+* $Id: OCLBacktrackingLexersym.java,v 1.4 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
-/**
- * The backtracking variant of the OCL lexer symbol table.
- * 
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
- * 
- * @since 1.3
- */
-@SuppressWarnings("nls")
 public interface OCLBacktrackingLexersym {
     public final static int
       Char_CtlCharNotWS = 103,
