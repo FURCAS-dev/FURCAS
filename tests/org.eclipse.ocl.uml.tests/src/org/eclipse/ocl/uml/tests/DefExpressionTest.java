@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.7 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: DefExpressionTest.java,v 1.8 2009/09/04 08:27:34 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -27,23 +27,33 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
+import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.SendSignalAction;
+import org.eclipse.uml2.uml.State;
 
 /**
  * Tests for def expressions (additional properties and operations).
@@ -271,6 +281,51 @@ public class DefExpressionTest
 			oclAllParents = ocl.evaluate(color, expr);
 			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).isEmpty());
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests the parsing the def expression for static attributes and operations.
+	 */
+	public void test_defExpression_static() {
+		try {
+			Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> env = ocl.getEnvironment();
+			UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> umlReflection = env.getUMLReflection();
+
+			ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.SUPPORT_STATIC_FEATURES, true);
+			parseDef("package ocltest context Fruit " + //$NON-NLS-1$
+				"def: bestColor1() : Color = null " + //$NON-NLS-1$
+				"static def: bestColor2() : Color = null " + //$NON-NLS-1$
+				"def: goodColor1 : Color = null " + //$NON-NLS-1$
+				"static def: goodColor2 : Color = null " + //$NON-NLS-1$
+				"endpackage"); //$NON-NLS-1$			
+			Operation operation1 = env.lookupOperation(fruit, "bestColor1", null);
+			assertNotNull(operation1);
+			assertEquals(false, umlReflection.isStatic(operation1));
+			Operation operation2 = env.lookupOperation(fruit, "bestColor2", null);			
+			assertNotNull(operation2);
+			assertEquals(true, umlReflection.isStatic(operation2));
+			Property property1 = env.lookupProperty(fruit, "goodColor1");			
+			assertNotNull(property1);
+			assertEquals(false, umlReflection.isStatic(property1));
+			Property property2 = env.lookupProperty(fruit, "goodColor2");			
+			assertNotNull(property2);
+			assertEquals(true, umlReflection.isStatic(property2));
+			
+			ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.SUPPORT_STATIC_FEATURES, false);
+			try {
+				ocl.parse(new OCLInput("package ocltest context Fruit " + //$NON-NLS-1$
+					"def: bestColor3() : Color = null " + //$NON-NLS-1$
+					"static def: bestColor4() : Color = null " + //$NON-NLS-1$
+					"endpackage")); //$NON-NLS-1$			
+	            fail("Should have failed to parse the unsupported static"); //$NON-NLS-1$
+	        } catch (ParserException e) {
+	            // success!
+	        	assertEquals(OCLMessages.UnsupportedStatic_ERROR_, e.getMessage());
+	            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	        }
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
