@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.6 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: CSTAdapterFactory.java,v 1.7 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -160,6 +160,11 @@ public class CSTAdapterFactory
 		}
 
 		@Override
+		public Adapter caseSimpleNameCS(SimpleNameCS object) {
+			return createSimpleNameCSAdapter();
+		}
+
+		@Override
 		public Adapter caseContextDeclCS(ContextDeclCS object) {
 			return createContextDeclCSAdapter();
 		}
@@ -167,11 +172,6 @@ public class CSTAdapterFactory
 		@Override
 		public Adapter casePropertyContextCS(PropertyContextCS object) {
 			return createPropertyContextCSAdapter();
-		}
-
-		@Override
-		public Adapter caseSimpleNameCS(SimpleNameCS object) {
-			return createSimpleNameCSAdapter();
 		}
 
 		@Override

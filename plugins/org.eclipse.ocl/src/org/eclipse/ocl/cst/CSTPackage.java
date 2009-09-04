@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.8 2009/09/04 08:27:07 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.9 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -210,7 +210,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int CONTEXT_DECL_CS = 5;
+	int CONTEXT_DECL_CS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -473,14 +473,14 @@ public interface CSTPackage
 	int PATH_NAME_CS__AST = TYPE_CS__AST;
 
 	/**
-	 * The feature id for the '<em><b>Sequence Of Names</b></em>' attribute list.
+	 * The feature id for the '<em><b>Simple Names</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int PATH_NAME_CS__SEQUENCE_OF_NAMES = TYPE_CS_FEATURE_COUNT + 0;
+	int PATH_NAME_CS__SIMPLE_NAMES = TYPE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Path Name CS</em>' class.
@@ -493,66 +493,6 @@ public interface CSTPackage
 	int PATH_NAME_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS__START_OFFSET = CST_NODE__START_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS__END_OFFSET = CST_NODE__END_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS__START_TOKEN = CST_NODE__START_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>End Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS__END_TOKEN = CST_NODE__END_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>Ast</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS__AST = CST_NODE__AST;
-
-	/**
-	 * The number of structural features of the '<em>Context Decl CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CONTEXT_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl <em>Property Context CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -561,107 +501,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int PROPERTY_CONTEXT_CS = 6;
-
-	/**
-	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>End Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>Ast</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__AST = CONTEXT_DECL_CS__AST;
-
-	/**
-	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__TYPE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Property Context CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int PROPERTY_CONTEXT_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+	int PROPERTY_CONTEXT_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
@@ -672,7 +512,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int SIMPLE_NAME_CS = 7;
+	int SIMPLE_NAME_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -755,6 +595,166 @@ public interface CSTPackage
 	int SIMPLE_NAME_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS__START_OFFSET = CST_NODE__START_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS__END_OFFSET = CST_NODE__END_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS__START_TOKEN = CST_NODE__START_TOKEN;
+
+	/**
+	 * The feature id for the '<em><b>End Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS__END_TOKEN = CST_NODE__END_TOKEN;
+
+	/**
+	 * The feature id for the '<em><b>Ast</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS__AST = CST_NODE__AST;
+
+	/**
+	 * The number of structural features of the '<em>Context Decl CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CONTEXT_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
+
+	/**
+	 * The feature id for the '<em><b>End Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
+
+	/**
+	 * The feature id for the '<em><b>Ast</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__AST = CONTEXT_DECL_CS__AST;
+
+	/**
+	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__TYPE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Property Context CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int PROPERTY_CONTEXT_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InitOrDerValueCSImpl <em>Init Or Der Value CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -816,16 +816,6 @@ public interface CSTPackage
 	int INIT_OR_DER_VALUE_CS__AST = CST_NODE__AST;
 
 	/**
-	 * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS = CST_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,7 +823,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INIT_OR_DER_VALUE_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 1;
+	int INIT_OR_DER_VALUE_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Init Or Der Value CS</em>' class.
@@ -843,7 +833,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INIT_OR_DER_VALUE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
+	int INIT_OR_DER_VALUE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl <em>Classifier Context Decl CS</em>}' class.
@@ -917,16 +907,6 @@ public interface CSTPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Inv Or Def CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -934,7 +914,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
@@ -944,7 +924,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
+	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
@@ -1018,16 +998,6 @@ public interface CSTPackage
 	int INV_OR_DEF_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Inv Or Def CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int INV_OR_DEF_CS__INV_OR_DEF_CS = CST_NODE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Inv Or Def CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1035,7 +1005,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INV_OR_DEF_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
+	int INV_OR_DEF_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OperationContextDeclCSImpl <em>Operation Context Decl CS</em>}' class.
@@ -1503,16 +1473,6 @@ public interface CSTPackage
 	int DER_VALUE_CS__AST = INIT_OR_DER_VALUE_CS__AST;
 
 	/**
-	 * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int DER_VALUE_CS__INIT_OR_DER_VALUE_CS = INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS;
-
-	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1592,16 +1552,6 @@ public interface CSTPackage
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__AST = INIT_OR_DER_VALUE_CS__AST;
-
-	/**
-	 * The feature id for the '<em><b>Init Or Der Value CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int INIT_VALUE_CS__INIT_OR_DER_VALUE_CS = INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
@@ -1695,16 +1645,6 @@ public interface CSTPackage
 	int INV_CS__SIMPLE_NAME_CS = INV_OR_DEF_CS__SIMPLE_NAME_CS;
 
 	/**
-	 * The feature id for the '<em><b>Inv Or Def CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int INV_CS__INV_OR_DEF_CS = INV_OR_DEF_CS__INV_OR_DEF_CS;
-
-	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1794,16 +1734,6 @@ public interface CSTPackage
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__SIMPLE_NAME_CS = INV_OR_DEF_CS__SIMPLE_NAME_CS;
-
-	/**
-	 * The feature id for the '<em><b>Inv Or Def CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int DEF_CS__INV_OR_DEF_CS = INV_OR_DEF_CS__INV_OR_DEF_CS;
 
 	/**
 	 * The feature id for the '<em><b>Def Expression CS</b></em>' containment reference.
@@ -2099,16 +2029,6 @@ public interface CSTPackage
 	int IS_MARKED_PRE_CS__AST = CST_NODE__AST;
 
 	/**
-	 * The feature id for the '<em><b>Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int IS_MARKED_PRE_CS__PRE = CST_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Is Marked Pre CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2116,7 +2036,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int IS_MARKED_PRE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
+	int IS_MARKED_PRE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PrimitiveTypeCSImpl <em>Primitive Type CS</em>}' class.
@@ -4788,14 +4708,14 @@ public interface CSTPackage
 	int STATE_EXP_CS__AST = TYPE_CS__AST;
 
 	/**
-	 * The feature id for the '<em><b>Sequence Of Names</b></em>' attribute list.
+	 * The feature id for the '<em><b>Simple Names</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int STATE_EXP_CS__SEQUENCE_OF_NAMES = TYPE_CS_FEATURE_COUNT + 0;
+	int STATE_EXP_CS__SIMPLE_NAMES = TYPE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>State Exp CS</em>' class.
@@ -5076,15 +4996,16 @@ public interface CSTPackage
 	EClass getPathNameCS();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.cst.PathNameCS#getSequenceOfNames <em>Sequence Of Names</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.PathNameCS#getSimpleNames <em>Simple Names</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Sequence Of Names</em>'.
-	 * @see org.eclipse.ocl.cst.PathNameCS#getSequenceOfNames()
+	 * @return the meta object for the containment reference list '<em>Simple Names</em>'.
+	 * @see org.eclipse.ocl.cst.PathNameCS#getSimpleNames()
 	 * @see #getPathNameCS()
 	 * @generated
 	 */
-	EAttribute getPathNameCS_SequenceOfNames();
+	EReference getPathNameCS_SimpleNames();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.TypeCS <em>Type CS</em>}'.
@@ -5160,15 +5081,16 @@ public interface CSTPackage
 	EReference getPropertyContextCS_TypeCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.PropertyContextCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.PropertyContextCS#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Init Or Der Value CS</em>'.
-	 * @see org.eclipse.ocl.cst.PropertyContextCS#getInitOrDerValueCS()
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see org.eclipse.ocl.cst.PropertyContextCS#getConstraints()
 	 * @see #getPropertyContextCS()
 	 * @generated
 	 */
-	EReference getPropertyContextCS_InitOrDerValueCS();
+	EReference getPropertyContextCS_Constraints();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.SimpleNameCS <em>Simple Name CS</em>}'.
@@ -5213,17 +5135,6 @@ public interface CSTPackage
 	EClass getInitOrDerValueCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Init Or Der Value CS</em>'.
-	 * @see org.eclipse.ocl.cst.InitOrDerValueCS#getInitOrDerValueCS()
-	 * @see #getInitOrDerValueCS()
-	 * @generated
-	 */
-	EReference getInitOrDerValueCS_InitOrDerValueCS();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.InitOrDerValueCS#getExpressionCS <em>Expression CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5254,17 +5165,6 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EReference getClassifierContextDeclCS_PathNameCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Inv Or Def CS</em>'.
-	 * @see org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS()
-	 * @see #getClassifierContextDeclCS()
-	 * @generated
-	 */
-	EReference getClassifierContextDeclCS_InvOrDefCS();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getConstraints <em>Constraints</em>}'.
@@ -5298,17 +5198,6 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EReference getInvOrDefCS_SimpleNameCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.cst.InvOrDefCS#getInvOrDefCS <em>Inv Or Def CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Inv Or Def CS</em>'.
-	 * @see org.eclipse.ocl.cst.InvOrDefCS#getInvOrDefCS()
-	 * @see #getInvOrDefCS()
-	 * @generated
-	 */
-	EReference getInvOrDefCS_InvOrDefCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.OperationContextDeclCS <em>Operation Context Decl CS</em>}'.
@@ -5651,17 +5540,6 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EClass getIsMarkedPreCS();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.IsMarkedPreCS#isPre <em>Pre</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Pre</em>'.
-	 * @see org.eclipse.ocl.cst.IsMarkedPreCS#isPre()
-	 * @see #getIsMarkedPreCS()
-	 * @generated
-	 */
-	EAttribute getIsMarkedPreCS_Pre();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.PrimitiveTypeCS <em>Primitive Type CS</em>}'.
@@ -6363,15 +6241,16 @@ public interface CSTPackage
 	EClass getStateExpCS();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.cst.StateExpCS#getSequenceOfNames <em>Sequence Of Names</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.StateExpCS#getSimpleNames <em>Simple Names</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Sequence Of Names</em>'.
-	 * @see org.eclipse.ocl.cst.StateExpCS#getSequenceOfNames()
+	 * @return the meta object for the containment reference list '<em>Simple Names</em>'.
+	 * @see org.eclipse.ocl.cst.StateExpCS#getSimpleNames()
 	 * @see #getStateExpCS()
 	 * @generated
 	 */
-	EAttribute getStateExpCS_SequenceOfNames();
+	EReference getStateExpCS_SimpleNames();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.OCLDocumentCS <em>OCL Document CS</em>}'.
@@ -6584,13 +6463,14 @@ public interface CSTPackage
 		EClass PATH_NAME_CS = eINSTANCE.getPathNameCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Sequence Of Names</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Simple Names</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PATH_NAME_CS__SEQUENCE_OF_NAMES = eINSTANCE
-			.getPathNameCS_SequenceOfNames();
+		EReference PATH_NAME_CS__SIMPLE_NAMES = eINSTANCE
+			.getPathNameCS_SimpleNames();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.TypeCSImpl <em>Type CS</em>}' class.
@@ -6605,6 +6485,7 @@ public interface CSTPackage
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.OCLExpressionCSImpl <em>OCL Expression CS</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.cst.impl.OCLExpressionCSImpl
 		 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLExpressionCS()
@@ -6660,13 +6541,14 @@ public interface CSTPackage
 			.getPropertyContextCS_TypeCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Init Or Der Value CS</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS = eINSTANCE
-			.getPropertyContextCS_InitOrDerValueCS();
+		EReference PROPERTY_CONTEXT_CS__CONSTRAINTS = eINSTANCE
+			.getPropertyContextCS_Constraints();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
@@ -6705,15 +6587,6 @@ public interface CSTPackage
 		EClass INIT_OR_DER_VALUE_CS = eINSTANCE.getInitOrDerValueCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Init Or Der Value CS</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS = eINSTANCE
-			.getInitOrDerValueCS_InitOrDerValueCS();
-
-		/**
 		 * The meta object literal for the '<em><b>Expression CS</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6743,15 +6616,6 @@ public interface CSTPackage
 			.getClassifierContextDeclCS_PathNameCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Inv Or Def CS</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS = eINSTANCE
-			.getClassifierContextDeclCS_InvOrDefCS();
-
-		/**
 		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * @since 1.3
@@ -6779,15 +6643,6 @@ public interface CSTPackage
 		 */
 		EReference INV_OR_DEF_CS__SIMPLE_NAME_CS = eINSTANCE
 			.getInvOrDefCS_SimpleNameCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Inv Or Def CS</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INV_OR_DEF_CS__INV_OR_DEF_CS = eINSTANCE
-			.getInvOrDefCS_InvOrDefCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.OperationContextDeclCSImpl <em>Operation Context Decl CS</em>}' class.
@@ -7084,14 +6939,6 @@ public interface CSTPackage
 		 * @generated
 		 */
 		EClass IS_MARKED_PRE_CS = eINSTANCE.getIsMarkedPreCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Pre</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IS_MARKED_PRE_CS__PRE = eINSTANCE.getIsMarkedPreCS_Pre();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.PrimitiveTypeCSImpl <em>Primitive Type CS</em>}' class.
@@ -7711,13 +7558,14 @@ public interface CSTPackage
 		EClass STATE_EXP_CS = eINSTANCE.getStateExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Sequence Of Names</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Simple Names</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STATE_EXP_CS__SEQUENCE_OF_NAMES = eINSTANCE
-			.getStateExpCS_SequenceOfNames();
+		EReference STATE_EXP_CS__SIMPLE_NAMES = eINSTANCE
+			.getStateExpCS_SimpleNames();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.

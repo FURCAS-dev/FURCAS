@@ -13,17 +13,21 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: PathNameCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.cst.CSTPackage;
 import org.eclipse.ocl.cst.PathNameCS;
+import org.eclipse.ocl.cst.SimpleNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +36,7 @@ import org.eclipse.ocl.cst.PathNameCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.cst.impl.PathNameCSImpl#getSequenceOfNames <em>Sequence Of Names</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.impl.PathNameCSImpl#getSimpleNames <em>Simple Names</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,14 +47,15 @@ public class PathNameCSImpl
 		implements PathNameCS {
 
 	/**
-	 * The cached value of the '{@link #getSequenceOfNames() <em>Sequence Of Names</em>}' attribute list.
+	 * The cached value of the '{@link #getSimpleNames() <em>Simple Names</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @see #getSequenceOfNames()
+	 * @see #getSimpleNames()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> sequenceOfNames;
+	protected EList<SimpleNameCS> simpleNames;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,15 +78,32 @@ public class PathNameCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getSequenceOfNames() {
-		if (sequenceOfNames == null) {
-			sequenceOfNames = new EDataTypeEList<String>(String.class, this,
-				CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES);
+	public EList<SimpleNameCS> getSimpleNames() {
+		if (simpleNames == null) {
+			simpleNames = new EObjectContainmentEList<SimpleNameCS>(
+				SimpleNameCS.class, this, CSTPackage.PATH_NAME_CS__SIMPLE_NAMES);
 		}
-		return sequenceOfNames;
+		return simpleNames;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CSTPackage.PATH_NAME_CS__SIMPLE_NAMES :
+				return ((InternalEList<?>) getSimpleNames()).basicRemove(
+					otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -92,8 +114,8 @@ public class PathNameCSImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
-				return getSequenceOfNames();
+			case CSTPackage.PATH_NAME_CS__SIMPLE_NAMES :
+				return getSimpleNames();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,10 +129,10 @@ public class PathNameCSImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
-				getSequenceOfNames().clear();
-				getSequenceOfNames().addAll(
-					(Collection<? extends String>) newValue);
+			case CSTPackage.PATH_NAME_CS__SIMPLE_NAMES :
+				getSimpleNames().clear();
+				getSimpleNames().addAll(
+					(Collection<? extends SimpleNameCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,8 +146,8 @@ public class PathNameCSImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
-				getSequenceOfNames().clear();
+			case CSTPackage.PATH_NAME_CS__SIMPLE_NAMES :
+				getSimpleNames().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -139,27 +161,10 @@ public class PathNameCSImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.PATH_NAME_CS__SEQUENCE_OF_NAMES :
-				return sequenceOfNames != null && !sequenceOfNames.isEmpty();
+			case CSTPackage.PATH_NAME_CS__SIMPLE_NAMES :
+				return simpleNames != null && !simpleNames.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (sequenceOfNames: "); //$NON-NLS-1$
-		result.append(sequenceOfNames);
-		result.append(')');
-		return result.toString();
 	}
 
 } //PathNameCSImpl

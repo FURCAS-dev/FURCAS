@@ -1,23 +1,18 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
 -- * http://www.eclipse.org/legal/epl-v10.html
 -- *
 -- * Contributors:
--- *   IBM - Initial API and implementation
--- *   E.D.Willink - Elimination of some shift-reduce conflicts
--- *   E.D.Willink - Remove unnecessary warning suppression
--- *   E.D.Willink - Bugs 225493, 243976, 259818
--- *   Zeligsoft - Bug 243976
--- *   Borland - Bug 242880
+-- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.9 2009/09/04 10:19:32 asanchez Exp $
+-- * $Id: EssentialOCL.g,v 1.10 2009/09/04 13:40:43 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -188,7 +183,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -198,14 +193,12 @@ $Notice
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
  *   E.D.Willink - Remove unnecessary warning suppression
- *   E.D.Willink - Bugs 225493, 243976, 259818
- *   Zeligsoft - Bug 243976
+ *   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
  *   Borland - Bug 242880
- *   E.D.Willink - Bug 282882 resolve invalid confusion
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.9 2009/09/04 10:19:32 asanchez Exp $
+ * $Id: EssentialOCL.g,v 1.10 2009/09/04 13:40:43 ewillink Exp $
  */
 	./
 $End
@@ -938,7 +931,7 @@ $Rules
 							new BasicEList(),
 							isMarkedPreCS
 						);
-					if (isMarkedPreCS.isPre()) {
+					if (isMarkedPreCS != null) {
 						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(2));
 					} else {
 						setOffsets(result, (CSTNode)$getSym(1));
@@ -956,7 +949,7 @@ $Rules
 							(EList)$getSym(3),
 							isMarkedPreCS
 						);
-					if (isMarkedPreCS.isPre()) {
+					if (isMarkedPreCS != null) {
 						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
 					} else {
 						setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
@@ -977,7 +970,8 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	simpleNameCS ::= IDENTIFIER
+	simpleNameCS -> simpleIdentifierCS
+	simpleIdentifierCS ::= IDENTIFIER
 		/.$BeginJava
 					CSTNode result = createSimpleNameCS(
 							SimpleTypeEnum.IDENTIFIER_LITERAL,
@@ -1079,18 +1073,20 @@ $Rules
 		  $EndJava
 		./
 
-	pathNameCS ::= IDENTIFIER
+	pathNameCS ::= simpleIdentifierCS
 		/.$BeginJava
-					CSTNode result = createPathNameCS(getTokenText($getToken(1)));
-					setOffsets(result, getIToken($getToken(1)));
+					SimpleNameCS simpleName = (SimpleNameCS)$getSym(1);
+					PathNameCS result = createPathNameCS(simpleName);
+					setOffsets(result, simpleName);
 					$setResult(result);
 		  $EndJava
 		./
 	pathNameCS ::= pathNameCS '::' simpleNameCS
 		/.$BeginJava
 					PathNameCS result = (PathNameCS)$getSym(1);
-					result = extendPathNameCS(result, getTokenText(dtParser.getToken(3)));
-					setOffsets(result, result, (CSTNode)$getSym(3));
+					SimpleNameCS simpleName = (SimpleNameCS)$getSym(3);
+					result = extendPathNameCS(result, simpleName);
+					setOffsets(result, result, simpleName);
 					$setResult(result);
 		  $EndJava
 		./
@@ -1568,7 +1564,7 @@ $Rules
 							new BasicEList(),
 							isMarkedPreCS
 						);
-					if (isMarkedPreCS.isPre()) {
+					if (isMarkedPreCS != null) {
 						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(2));
 					} else {
 						setOffsets(result, (CSTNode)$getSym(1));
@@ -1584,7 +1580,7 @@ $Rules
 							(EList)$getSym(3),
 							isMarkedPreCS
 						);
-					if (isMarkedPreCS.isPre()) {
+					if (isMarkedPreCS != null) {
 						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(5));
 					} else {
 						setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
@@ -1595,14 +1591,12 @@ $Rules
 
 	isMarkedPreCS ::= $empty
 		/.$BeginJava
-					CSTNode result = createIsMarkedPreCS(false);
-					setOffsets(result, getIToken($getToken(1)));
-					$setResult(result);
+					$setResult(null);
 		  $EndJava
 		./
 	isMarkedPreCS ::= '@pre'
 		/.$BeginJava
-					CSTNode result = createIsMarkedPreCS(true);
+					CSTNode result = createIsMarkedPreCS();
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
 		  $EndJava

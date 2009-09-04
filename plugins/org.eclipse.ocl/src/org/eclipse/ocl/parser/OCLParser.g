@@ -15,7 +15,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.4 2009/09/04 08:27:07 ewillink Exp $
+-- * $Id: OCLParser.g,v 1.5 2009/09/04 13:40:43 ewillink Exp $
 -- */
 --
 -- The OCL Parser
@@ -142,52 +142,49 @@ $Rules
 	contextDeclCS -> operationContextDeclCS
 	contextDeclCS -> propertyContextCS
 
-	propertyContextCS ::= context pathNameCS '::' simpleNameCS ':' typeCS initOrDerValueCS
+	propertyContextCS ::= context pathNameCS '::' simpleNameCS ':' typeCS initOrDerValueCSm
 		/.$BeginJava
+					EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)$getSym(7);
 					CSTNode result = createPropertyContextCS(
 							(PathNameCS)$getSym(2),
 							(SimpleNameCS)$getSym(4),
 							(TypeCS)$getSym(6),
-							(InitOrDerValueCS)$getSym(7)
+							list
 						);
-					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(7));
+					setOffsets(result, getIToken($getToken(1)), list.get(list.size()-1));
 					$setResult(result);
 		  $EndJava
 		./
 
-	initOrDerValueCS ::= initOrDerValueCSopt init ':' oclExpressionCS
+	initOrDerValueCSm ::= initOrDerValueCS
 		/.$BeginJava
-					CSTNode result = createInitValueCS(
-							(InitOrDerValueCS)$getSym(1),
-							(OCLExpressionCS)$getSym(4)
-						);
-					if ($getSym(1) != null) {
-						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(4));
-					} else {
-						setOffsets(result, getIToken($getToken(2)), (CSTNode)$getSym(4));
-					}
+					EList<InitOrDerValueCS> result = new BasicEList<InitOrDerValueCS>();
+					result.add((InitOrDerValueCS)$getSym(1));
 					$setResult(result);
 		  $EndJava
 		./
-
-	initOrDerValueCS ::= initOrDerValueCSopt derive ':' oclExpressionCS
+	initOrDerValueCSm ::= initOrDerValueCSm initOrDerValueCS
 		/.$BeginJava
-					CSTNode result = createDerValueCS(
-							(InitOrDerValueCS)$getSym(1),
-							(OCLExpressionCS)$getSym(4)
-						);
-					if ($getSym(1) != null) {
-						setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(4));
-					} else {
-						setOffsets(result, getIToken($getToken(2)), (CSTNode)$getSym(4));
-					}
+					EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>)$getSym(1);
+					result.add((InitOrDerValueCS)$getSym(2));
+					$setResult(result);
+		  $EndJava
+		./
+	initOrDerValueCS ::= init ':' oclExpressionCS
+		/.$BeginJava
+					CSTNode result = createInitValueCS((OCLExpressionCS)$getSym(3));
+					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
 					$setResult(result);
 		  $EndJava
 		./
 
-	initOrDerValueCSopt ::= $empty
-		/.$NullAction./
-	initOrDerValueCSopt -> initOrDerValueCS
+	initOrDerValueCS ::= derive ':' oclExpressionCS
+		/.$BeginJava
+					CSTNode result = createDerValueCS((OCLExpressionCS)$getSym(3));
+					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
+					$setResult(result);
+		  $EndJava
+		./
 
 	classifierContextDeclCS ::= context pathNameCS invOrDefCSm
 		/.$BeginJava

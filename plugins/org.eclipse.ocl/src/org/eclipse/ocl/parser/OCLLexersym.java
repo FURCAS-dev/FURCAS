@@ -14,11 +14,16 @@
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.5 2009/09/04 10:19:33 asanchez Exp $
+* $Id: OCLLexersym.java,v 1.6 2009/09/04 13:40:43 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
 
+/**
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
+ */
+@SuppressWarnings("nls")
 public interface OCLLexersym {
     public final static int
       Char_CtlCharNotWS = 103,

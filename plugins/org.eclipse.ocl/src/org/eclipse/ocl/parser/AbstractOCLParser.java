@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.7 2009/03/05 14:30:51 cdamus Exp $
+ * $Id: AbstractOCLParser.java,v 1.8 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -132,53 +132,36 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected PropertyContextCS createPropertyContextCS(PathNameCS pathNameCS,
 			SimpleNameCS simpleNameCS, TypeCS typeCS,
-			InitOrDerValueCS initOrDerValueCS) {
+			EList<InitOrDerValueCS> constraints) {
 		PropertyContextCS result = CSTFactory.eINSTANCE
 			.createPropertyContextCS();
 		result.setPathNameCS(pathNameCS);
 		result.setSimpleNameCS(simpleNameCS);
 		result.setTypeCS(typeCS);
-		result.setInitOrDerValueCS(initOrDerValueCS);
+		result.getConstraints().addAll(constraints);
 		return result;
 	}
 
-	protected DerValueCS createDerValueCS(InitOrDerValueCS initOrDerValueCS,
-			OCLExpressionCS oclExpressionCS) {
+	/**
+	 * @since 3.0
+	 */
+	protected DerValueCS createDerValueCS(OCLExpressionCS oclExpressionCS) {
 		DerValueCS result = CSTFactory.eINSTANCE.createDerValueCS();
-		result.setInitOrDerValueCS(initOrDerValueCS);
-		result.setExpressionCS(oclExpressionCS);
-		return result;
-	}
-
-	protected InitValueCS createInitValueCS(InitOrDerValueCS initOrDerValueCS,
-			OCLExpressionCS oclExpressionCS) {
-		InitValueCS result = CSTFactory.eINSTANCE.createInitValueCS();
-		result.setInitOrDerValueCS(initOrDerValueCS);
 		result.setExpressionCS(oclExpressionCS);
 		return result;
 	}
 
 	/**
-	 * @deprecated As of 1.3, the
-	 *             {@link #createClassifierContextDeclCS(PathNameCS, EList)}
-	 *             method should be used, instead.
+	 * @since 3.0
 	 */
-	@Deprecated
-	protected ClassifierContextDeclCS createClassifierContextDeclCS(
-			PathNameCS pathNameCS, InvOrDefCS invOrDefCS) {
-		ClassifierContextDeclCS result = CSTFactory.eINSTANCE
-			.createClassifierContextDeclCS();
-		result.setPathNameCS(pathNameCS);
-		result.setInvOrDefCS(invOrDefCS);
-
-		// fill in the owned constraints list
-		for (InvOrDefCS next = invOrDefCS; next != null; next = next
-			.getInvOrDefCS()) {
-			result.getConstraints().add(0, next);
-		}
-
+	protected InitValueCS createInitValueCS(OCLExpressionCS oclExpressionCS) {
+		InitValueCS result = CSTFactory.eINSTANCE.createInitValueCS();
+		result.setExpressionCS(oclExpressionCS);
 		return result;
 	}
 
@@ -201,29 +184,6 @@ public abstract class AbstractOCLParser
 			.createClassifierContextDeclCS();
 		result.setPathNameCS(pathNameCS);
 		result.getConstraints().addAll(constraints);
-
-		// Create the reversed linked list for 1.2.0 API compatibility
-		InvOrDefCS tail = null;
-		for (InvOrDefCS next : constraints) {
-			next.setInvOrDefCS(tail);
-			tail = next;
-		}
-		result.setInvOrDefCS(tail);
-		return result;
-	}
-
-	/**
-	 * @deprecated As of 1.3, the
-	 *             {@link #createInvCS(SimpleNameCS, OCLExpressionCS)} method
-	 *             should be used, instead.
-	 */
-	@Deprecated
-	protected InvCS createInvCS(InvOrDefCS invOrDefCS,
-			SimpleNameCS simpleNameCS, OCLExpressionCS oclExpressionCS) {
-		InvCS result = CSTFactory.eINSTANCE.createInvCS();
-		result.setSimpleNameCS(simpleNameCS);
-		result.setExpressionCS(oclExpressionCS);
-		result.setInvOrDefCS(invOrDefCS);
 		return result;
 	}
 
@@ -245,21 +205,6 @@ public abstract class AbstractOCLParser
 		InvCS result = CSTFactory.eINSTANCE.createInvCS();
 		result.setSimpleNameCS(simpleNameCS);
 		result.setExpressionCS(oclExpressionCS);
-		return result;
-	}
-
-	/**
-	 * @deprecated As of 1.3, the
-	 *             {@link #createDefCS(SimpleNameCS, OCLExpressionCS)} method
-	 *             should be used, instead.
-	 */
-	@Deprecated
-	protected DefCS createDefCS(InvOrDefCS invOrDefCS,
-			SimpleNameCS simpleNameCS, DefExpressionCS defExpressionCS) {
-		DefCS result = CSTFactory.eINSTANCE.createDefCS();
-		result.setSimpleNameCS(simpleNameCS);
-		result.setDefExpressionCS(defExpressionCS);
-		result.setInvOrDefCS(invOrDefCS);
 		return result;
 	}
 
@@ -357,14 +302,14 @@ public abstract class AbstractOCLParser
 	 * @since 1.3
 	 */
 	protected boolean isAtPre(IsMarkedPreCS atPreCS) {
-		return (atPreCS != null) && atPreCS.isPre();
+		return atPreCS != null;
 	}
 
 	protected OperationCallExpCS createOperationCallExpCS(
 			OCLExpressionCS oclExpressionCS, SimpleNameCS simpleNameCS,
 			EList<OCLExpressionCS> arguments) {
 		return createOperationCallExpCS(oclExpressionCS, simpleNameCS,
-			createIsMarkedPreCS(false), arguments);
+			null, arguments);
 	}
 
 	protected OperationCallExpCS createOperationCallExpCS(
@@ -391,7 +336,7 @@ public abstract class AbstractOCLParser
 
 	protected StateExpCS createStateExpCS(PathNameCS pathName) {
 		StateExpCS result = CSTFactory.eINSTANCE.createStateExpCS();
-		result.getSequenceOfNames().addAll(pathName.getSequenceOfNames());
+		result.getSimpleNames().addAll(pathName.getSimpleNames());
 		return result;
 	}
 
@@ -423,14 +368,20 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected PathNameCS createPathNameCS(String pathName) {
+	/**
+	 * @since 3.0
+	 */
+	protected PathNameCS createPathNameCS(SimpleNameCS name) {
 		PathNameCS result = CSTFactory.eINSTANCE.createPathNameCS();
-		result.getSequenceOfNames().add(unquote(pathName));
+		result.getSimpleNames().add(name);
 		return result;
 	}
 
-	protected PathNameCS extendPathNameCS(PathNameCS path, String name) {
-		path.getSequenceOfNames().add(unquote(name));
+	/**
+	 * @since 3.0
+	 */
+	protected PathNameCS extendPathNameCS(PathNameCS path, SimpleNameCS name) {
+		path.getSimpleNames().add(name);
 		return path;
 	}
 
@@ -626,9 +577,11 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected IsMarkedPreCS createIsMarkedPreCS(boolean isMarkedPre) {
+	/**
+	 * @since 3.0
+	 */
+	protected IsMarkedPreCS createIsMarkedPreCS() {
 		IsMarkedPreCS result = CSTFactory.eINSTANCE.createIsMarkedPreCS();
-		result.setPre(isMarkedPre);
 		return result;
 	}
 

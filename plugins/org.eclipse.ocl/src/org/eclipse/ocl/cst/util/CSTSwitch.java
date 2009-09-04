@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.5 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: CSTSwitch.java,v 1.6 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -198,6 +198,17 @@ public class CSTSwitch<T> {
 					result = defaultCase(theEObject);
 				return result;
 			}
+			case CSTPackage.SIMPLE_NAME_CS : {
+				SimpleNameCS simpleNameCS = (SimpleNameCS) theEObject;
+				T result = caseSimpleNameCS(simpleNameCS);
+				if (result == null)
+					result = caseOCLExpressionCS(simpleNameCS);
+				if (result == null)
+					result = caseCSTNode(simpleNameCS);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
 			case CSTPackage.CONTEXT_DECL_CS : {
 				ContextDeclCS contextDeclCS = (ContextDeclCS) theEObject;
 				T result = caseContextDeclCS(contextDeclCS);
@@ -214,17 +225,6 @@ public class CSTSwitch<T> {
 					result = caseContextDeclCS(propertyContextCS);
 				if (result == null)
 					result = caseCSTNode(propertyContextCS);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case CSTPackage.SIMPLE_NAME_CS : {
-				SimpleNameCS simpleNameCS = (SimpleNameCS) theEObject;
-				T result = caseSimpleNameCS(simpleNameCS);
-				if (result == null)
-					result = caseOCLExpressionCS(simpleNameCS);
-				if (result == null)
-					result = caseCSTNode(simpleNameCS);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
