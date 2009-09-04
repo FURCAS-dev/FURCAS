@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParserErrors.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- * $Id: OCLParserErrors.g,v 1.2 2009/09/04 13:40:44 ewillink Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser
@@ -71,31 +71,17 @@ $Rules
 		  $EndJava
 		./
 
-	initOrDerValueCS ::= initOrDerValueCSopt init ERROR_Colon
+	initOrDerValueCS ::= init ERROR_Colon
 		/.$BeginJava
-					CSTNode result = createInitValueCS(
-							(InitOrDerValueCS)$getSym(1),
-							null
-						);
-					if ($getSym(1) != null) {
-						setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(3)));
-					} else {
-						setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
-					}
+					CSTNode result = createInitValueCS(null);
+					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
 					$setResult(result);
 		  $EndJava
 		./
-	initOrDerValueCS ::= initOrDerValueCSopt derive ERROR_Colon
+	initOrDerValueCS ::= derive ERROR_Colon
 		/.$BeginJava
-					CSTNode result = createDerValueCS(
-							(InitOrDerValueCS)$getSym(1),
-							null
-						);
-					if ($getSym(1) != null) {
-						setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(3)));
-					} else {
-						setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
-					}
+					CSTNode result = createDerValueCS(null);
+					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
 					$setResult(result);
 		  $EndJava
 		./

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: ClassifierContextDeclCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -39,7 +39,6 @@ import org.eclipse.ocl.cst.PathNameCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getPathNameCS <em>Path Name CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getInvOrDefCS <em>Inv Or Def CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
@@ -59,16 +58,6 @@ public class ClassifierContextDeclCSImpl
 	 * @ordered
 	 */
 	protected PathNameCS pathNameCS;
-
-	/**
-	 * The cached value of the '{@link #getInvOrDefCS() <em>Inv Or Def CS</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInvOrDefCS()
-	 * @generated
-	 * @ordered
-	 */
-	protected InvOrDefCS invOrDefCS;
 
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -160,49 +149,6 @@ public class ClassifierContextDeclCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InvOrDefCS getInvOrDefCS() {
-		if (invOrDefCS != null && invOrDefCS.eIsProxy()) {
-			InternalEObject oldInvOrDefCS = (InternalEObject) invOrDefCS;
-			invOrDefCS = (InvOrDefCS) eResolveProxy(oldInvOrDefCS);
-			if (invOrDefCS != oldInvOrDefCS) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS,
-						oldInvOrDefCS, invOrDefCS));
-			}
-		}
-		return invOrDefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * @since 1.3
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InvOrDefCS basicGetInvOrDefCS() {
-		return invOrDefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInvOrDefCS(InvOrDefCS newInvOrDefCS) {
-		InvOrDefCS oldInvOrDefCS = invOrDefCS;
-		invOrDefCS = newInvOrDefCS;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS,
-				oldInvOrDefCS, invOrDefCS));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -244,10 +190,6 @@ public class ClassifierContextDeclCSImpl
 		switch (featureID) {
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				return getPathNameCS();
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
-				if (resolve)
-					return getInvOrDefCS();
-				return basicGetInvOrDefCS();
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return getConstraints();
 		}
@@ -265,9 +207,6 @@ public class ClassifierContextDeclCSImpl
 		switch (featureID) {
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				setPathNameCS((PathNameCS) newValue);
-				return;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
-				setInvOrDefCS((InvOrDefCS) newValue);
 				return;
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				getConstraints().clear();
@@ -289,9 +228,6 @@ public class ClassifierContextDeclCSImpl
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				setPathNameCS((PathNameCS) null);
 				return;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
-				setInvOrDefCS((InvOrDefCS) null);
-				return;
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				getConstraints().clear();
 				return;
@@ -309,8 +245,6 @@ public class ClassifierContextDeclCSImpl
 		switch (featureID) {
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS :
 				return pathNameCS != null;
-			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS :
-				return invOrDefCS != null;
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return constraints != null && !constraints.isEmpty();
 		}

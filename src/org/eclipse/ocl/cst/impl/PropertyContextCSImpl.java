@@ -13,15 +13,19 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: PropertyContextCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.cst.CSTPackage;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
 import org.eclipse.ocl.cst.PathNameCS;
@@ -39,7 +43,7 @@ import org.eclipse.ocl.cst.TypeCS;
  *   <li>{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl#getPathNameCS <em>Path Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl#getSimpleNameCS <em>Simple Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl#getTypeCS <em>Type CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl#getInitOrDerValueCS <em>Init Or Der Value CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,14 +84,15 @@ public class PropertyContextCSImpl
 	protected TypeCS typeCS;
 
 	/**
-	 * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' containment reference.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @see #getInitOrDerValueCS()
+	 * @see #getConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected InitOrDerValueCS initOrDerValueCS;
+	protected EList<InitOrDerValueCS> constraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -279,60 +284,17 @@ public class PropertyContextCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InitOrDerValueCS getInitOrDerValueCS() {
-		return initOrDerValueCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInitOrDerValueCS(
-			InitOrDerValueCS newInitOrDerValueCS, NotificationChain msgs) {
-		InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
-		initOrDerValueCS = newInitOrDerValueCS;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-				Notification.SET,
-				CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
-				oldInitOrDerValueCS, newInitOrDerValueCS);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<InitOrDerValueCS> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<InitOrDerValueCS>(
+				InitOrDerValueCS.class, this,
+				CSTPackage.PROPERTY_CONTEXT_CS__CONSTRAINTS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInitOrDerValueCS(InitOrDerValueCS newInitOrDerValueCS) {
-		if (newInitOrDerValueCS != initOrDerValueCS) {
-			NotificationChain msgs = null;
-			if (initOrDerValueCS != null)
-				msgs = ((InternalEObject) initOrDerValueCS).eInverseRemove(
-					this, EOPPOSITE_FEATURE_BASE
-						- CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
-					null, msgs);
-			if (newInitOrDerValueCS != null)
-				msgs = ((InternalEObject) newInitOrDerValueCS).eInverseAdd(
-					this, EOPPOSITE_FEATURE_BASE
-						- CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
-					null, msgs);
-			msgs = basicSetInitOrDerValueCS(newInitOrDerValueCS, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS,
-				newInitOrDerValueCS, newInitOrDerValueCS));
+		return constraints;
 	}
 
 	/**
@@ -350,8 +312,9 @@ public class PropertyContextCSImpl
 				return basicSetSimpleNameCS(null, msgs);
 			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				return basicSetTypeCS(null, msgs);
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
-				return basicSetInitOrDerValueCS(null, msgs);
+			case CSTPackage.PROPERTY_CONTEXT_CS__CONSTRAINTS :
+				return ((InternalEList<?>) getConstraints()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -370,8 +333,8 @@ public class PropertyContextCSImpl
 				return getSimpleNameCS();
 			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				return getTypeCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
-				return getInitOrDerValueCS();
+			case CSTPackage.PROPERTY_CONTEXT_CS__CONSTRAINTS :
+				return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -381,6 +344,7 @@ public class PropertyContextCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -393,8 +357,10 @@ public class PropertyContextCSImpl
 			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				setTypeCS((TypeCS) newValue);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
-				setInitOrDerValueCS((InitOrDerValueCS) newValue);
+			case CSTPackage.PROPERTY_CONTEXT_CS__CONSTRAINTS :
+				getConstraints().clear();
+				getConstraints().addAll(
+					(Collection<? extends InitOrDerValueCS>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -417,8 +383,8 @@ public class PropertyContextCSImpl
 			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				setTypeCS((TypeCS) null);
 				return;
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
-				setInitOrDerValueCS((InitOrDerValueCS) null);
+			case CSTPackage.PROPERTY_CONTEXT_CS__CONSTRAINTS :
+				getConstraints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -438,8 +404,8 @@ public class PropertyContextCSImpl
 				return simpleNameCS != null;
 			case CSTPackage.PROPERTY_CONTEXT_CS__TYPE_CS :
 				return typeCS != null;
-			case CSTPackage.PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS :
-				return initOrDerValueCS != null;
+			case CSTPackage.PROPERTY_CONTEXT_CS__CONSTRAINTS :
+				return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: InvOrDefCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: InvOrDefCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -34,7 +34,6 @@ import org.eclipse.ocl.cst.SimpleNameCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl#getSimpleNameCS <em>Simple Name CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl#getInvOrDefCS <em>Inv Or Def CS</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,16 +52,6 @@ public abstract class InvOrDefCSImpl
 	 * @ordered
 	 */
 	protected SimpleNameCS simpleNameCS;
-
-	/**
-	 * The cached value of the '{@link #getInvOrDefCS() <em>Inv Or Def CS</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInvOrDefCS()
-	 * @generated
-	 * @ordered
-	 */
-	protected InvOrDefCS invOrDefCS;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,48 +132,6 @@ public abstract class InvOrDefCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvOrDefCS getInvOrDefCS() {
-		if (invOrDefCS != null && invOrDefCS.eIsProxy()) {
-			InternalEObject oldInvOrDefCS = (InternalEObject) invOrDefCS;
-			invOrDefCS = (InvOrDefCS) eResolveProxy(oldInvOrDefCS);
-			if (invOrDefCS != oldInvOrDefCS) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS, oldInvOrDefCS,
-						invOrDefCS));
-			}
-		}
-		return invOrDefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InvOrDefCS basicGetInvOrDefCS() {
-		return invOrDefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInvOrDefCS(InvOrDefCS newInvOrDefCS) {
-		InvOrDefCS oldInvOrDefCS = invOrDefCS;
-		invOrDefCS = newInvOrDefCS;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS, oldInvOrDefCS,
-				invOrDefCS));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -205,10 +152,6 @@ public abstract class InvOrDefCSImpl
 		switch (featureID) {
 			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				return getSimpleNameCS();
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
-				if (resolve)
-					return getInvOrDefCS();
-				return basicGetInvOrDefCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -223,9 +166,6 @@ public abstract class InvOrDefCSImpl
 		switch (featureID) {
 			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				setSimpleNameCS((SimpleNameCS) newValue);
-				return;
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
-				setInvOrDefCS((InvOrDefCS) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -242,9 +182,6 @@ public abstract class InvOrDefCSImpl
 			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				setSimpleNameCS((SimpleNameCS) null);
 				return;
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
-				setInvOrDefCS((InvOrDefCS) null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -259,8 +196,6 @@ public abstract class InvOrDefCSImpl
 		switch (featureID) {
 			case CSTPackage.INV_OR_DEF_CS__SIMPLE_NAME_CS :
 				return simpleNameCS != null;
-			case CSTPackage.INV_OR_DEF_CS__INV_OR_DEF_CS :
-				return invOrDefCS != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,19 +11,27 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
-*   E.D.Willink - Bugs 225493, 243976, 259818
-*   Zeligsoft - Bug 243976
+*   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
 *   Borland - Bug 242880
-*   E.D.Willink - Bug 282882 resolve invalid confusion
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.9 2009/09/04 10:19:33 asanchez Exp $
+* $Id: OCLParsersym.java,v 1.10 2009/09/04 13:40:43 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
 
+/**
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
+ */
+@SuppressWarnings("nls")
 public interface OCLParsersym {
+	/**
+	 * Token kind codes.
+	 * 
+	 * @noreference These constants are not intended to be referenced by clients.
+	 */
     public final static int
       TK_NUMERIC_OPERATION = 60,
       TK_STRING_LITERAL = 61,
@@ -31,56 +39,56 @@ public interface OCLParsersym {
       TK_REAL_LITERAL = 63,
       TK_PLUS = 34,
       TK_MINUS = 35,
-      TK_MULTIPLY = 16,
-      TK_DIVIDE = 17,
-      TK_GREATER = 18,
-      TK_LESS = 19,
+      TK_MULTIPLY = 18,
+      TK_DIVIDE = 19,
+      TK_GREATER = 20,
+      TK_LESS = 21,
       TK_EQUAL = 3,
-      TK_GREATER_EQUAL = 20,
-      TK_LESS_EQUAL = 21,
+      TK_GREATER_EQUAL = 22,
+      TK_LESS_EQUAL = 23,
       TK_NOT_EQUAL = 5,
       TK_LPAREN = 1,
       TK_RPAREN = 4,
-      TK_LBRACE = 69,
-      TK_RBRACE = 81,
-      TK_LBRACKET = 82,
+      TK_LBRACE = 68,
+      TK_RBRACE = 80,
+      TK_LBRACKET = 81,
       TK_RBRACKET = 75,
-      TK_ARROW = 84,
+      TK_ARROW = 83,
       TK_BAR = 72,
       TK_COMMA = 36,
       TK_COLON = 24,
-      TK_COLONCOLON = 67,
-      TK_SEMICOLON = 85,
-      TK_DOT = 86,
-      TK_DOTDOT = 87,
+      TK_COLONCOLON = 69,
+      TK_SEMICOLON = 84,
+      TK_DOT = 85,
+      TK_DOTDOT = 86,
       TK_ATPRE = 70,
-      TK_CARET = 88,
-      TK_CARETCARET = 89,
-      TK_QUESTIONMARK = 90,
+      TK_CARET = 87,
+      TK_CARETCARET = 88,
+      TK_QUESTIONMARK = 89,
       TK_self = 25,
       TK_inv = 76,
       TK_pre = 77,
       TK_post = 78,
       TK_context = 73,
-      TK_package = 91,
-      TK_endpackage = 92,
+      TK_package = 90,
+      TK_endpackage = 91,
       TK_def = 74,
       TK_if = 71,
-      TK_then = 93,
-      TK_else = 94,
-      TK_endif = 95,
+      TK_then = 92,
+      TK_else = 93,
+      TK_endif = 94,
       TK_and = 26,
       TK_or = 27,
       TK_xor = 28,
       TK_not = 51,
-      TK_implies = 96,
-      TK_let = 68,
-      TK_in = 97,
+      TK_implies = 95,
+      TK_let = 67,
+      TK_in = 96,
       TK_true = 64,
       TK_false = 65,
       TK_body = 6,
-      TK_derive = 22,
-      TK_init = 23,
+      TK_derive = 7,
+      TK_init = 8,
       TK_null = 37,
       TK_invalid = 66,
       TK_attr = 98,
@@ -111,19 +119,19 @@ public interface OCLParsersym {
       TK_oclIsInvalid = 57,
       TK_oclIsInState = 58,
       TK_allInstances = 50,
-      TK_String = 7,
-      TK_Integer = 8,
-      TK_UnlimitedNatural = 9,
-      TK_Real = 10,
-      TK_Boolean = 11,
+      TK_String = 9,
+      TK_Integer = 10,
+      TK_UnlimitedNatural = 11,
+      TK_Real = 12,
+      TK_Boolean = 13,
       TK_Tuple = 59,
-      TK_OclAny = 12,
-      TK_OclVoid = 13,
-      TK_OclInvalid = 14,
-      TK_OclMessage = 15,
-      TK_EOF_TOKEN = 80,
+      TK_OclAny = 14,
+      TK_OclVoid = 15,
+      TK_OclInvalid = 16,
+      TK_OclMessage = 17,
+      TK_EOF_TOKEN = 97,
       TK_IDENTIFIER = 2,
-      TK_INTEGER_RANGE_START = 83,
+      TK_INTEGER_RANGE_START = 82,
       TK_SINGLE_LINE_COMMENT = 100,
       TK_MULTI_LINE_COMMENT = 101,
       TK_ERROR_TOKEN = 102;
@@ -136,6 +144,8 @@ public interface OCLParsersym {
                  "RPAREN",
                  "NOT_EQUAL",
                  "body",
+                 "derive",
+                 "init",
                  "String",
                  "Integer",
                  "UnlimitedNatural",
@@ -151,8 +161,6 @@ public interface OCLParsersym {
                  "LESS",
                  "GREATER_EQUAL",
                  "LESS_EQUAL",
-                 "derive",
-                 "init",
                  "COLON",
                  "self",
                  "and",
@@ -196,9 +204,9 @@ public interface OCLParsersym {
                  "true",
                  "false",
                  "invalid",
-                 "COLONCOLON",
                  "let",
                  "LBRACE",
+                 "COLONCOLON",
                  "ATPRE",
                  "if",
                  "BAR",
@@ -209,7 +217,6 @@ public interface OCLParsersym {
                  "pre",
                  "post",
                  "static",
-                 "EOF_TOKEN",
                  "RBRACE",
                  "LBRACKET",
                  "INTEGER_RANGE_START",
@@ -227,6 +234,7 @@ public interface OCLParsersym {
                  "endif",
                  "implies",
                  "in",
+                 "EOF_TOKEN",
                  "attr",
                  "oper",
                  "SINGLE_LINE_COMMENT",

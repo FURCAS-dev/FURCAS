@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.5 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: CSTFactoryImpl.java,v 1.6 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -129,10 +129,10 @@ public class CSTFactoryImpl
 				return createPackageDeclarationCS();
 			case CSTPackage.PATH_NAME_CS :
 				return createPathNameCS();
-			case CSTPackage.PROPERTY_CONTEXT_CS :
-				return createPropertyContextCS();
 			case CSTPackage.SIMPLE_NAME_CS :
 				return createSimpleNameCS();
+			case CSTPackage.PROPERTY_CONTEXT_CS :
+				return createPropertyContextCS();
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS :
 				return createClassifierContextDeclCS();
 			case CSTPackage.OPERATION_CONTEXT_DECL_CS :

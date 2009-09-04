@@ -13,9 +13,11 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: PropertyContextCS.java,v 1.4 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
+
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +30,7 @@ package org.eclipse.ocl.cst;
  *   <li>{@link org.eclipse.ocl.cst.PropertyContextCS#getPathNameCS <em>Path Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.PropertyContextCS#getSimpleNameCS <em>Simple Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.PropertyContextCS#getTypeCS <em>Type CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.cst.PropertyContextCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.PropertyContextCS#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,29 +122,20 @@ public interface PropertyContextCS
 	void setTypeCS(TypeCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Init Or Der Value CS</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.cst.InitOrDerValueCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Init Or Der Value CS</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init Or Der Value CS</em>' containment reference.
-	 * @see #setInitOrDerValueCS(InitOrDerValueCS)
-	 * @see org.eclipse.ocl.cst.CSTPackage#getPropertyContextCS_InitOrDerValueCS()
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
+	 * @see org.eclipse.ocl.cst.CSTPackage#getPropertyContextCS_Constraints()
 	 * @model containment="true"
 	 * @generated
 	 */
-	InitOrDerValueCS getInitOrDerValueCS();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.cst.PropertyContextCS#getInitOrDerValueCS <em>Init Or Der Value CS</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init Or Der Value CS</em>' containment reference.
-	 * @see #getInitOrDerValueCS()
-	 * @generated
-	 */
-	void setInitOrDerValueCS(InitOrDerValueCS value);
+	EList<InitOrDerValueCS> getConstraints();
 
 } // PropertyContextCS

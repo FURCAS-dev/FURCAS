@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.14 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.15 2009/09/04 13:40:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -30,6 +30,7 @@ import java.util.Set;
 
 import lpg.lpgjavaruntime.IToken;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
 import org.eclipse.ocl.cst.InvCS;
+import org.eclipse.ocl.cst.InvOrDefCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.PackageDeclarationCS;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
@@ -1214,7 +1216,8 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                     
                     ClassifierContextDeclCS context = (ClassifierContextDeclCS)
                         packageContext.getContextDecls().get(0);
-                    cst = ((InvCS) context.getInvOrDefCS()).getExpressionCS();
+                    EList<InvOrDefCS> constraints = context.getConstraints();
+                    cst = ((InvCS) constraints.get(constraints.size()-1)).getExpressionCS();
                     break;
                 } catch (ParserException ignore) {
                     // continue to try another backtrack, unless we are at a

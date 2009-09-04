@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.9 2009/09/04 10:19:33 asanchez Exp $
+ * $Id: CSTPackageImpl.java,v 1.10 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -684,23 +684,13 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassifierContextDeclCS_InvOrDefCS() {
-		return (EReference) classifierContextDeclCSEClass
-			.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getClassifierContextDeclCS_Constraints() {
 		return (EReference) classifierContextDeclCSEClass
-			.getEStructuralFeatures().get(2);
+			.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -830,19 +820,9 @@ public class CSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInitOrDerValueCS_InitOrDerValueCS() {
-		return (EReference) initOrDerValueCSEClass.getEStructuralFeatures()
-			.get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getInitOrDerValueCS_ExpressionCS() {
 		return (EReference) initOrDerValueCSEClass.getEStructuralFeatures()
-			.get(1);
+			.get(0);
 	}
 
 	/**
@@ -879,15 +859,6 @@ public class CSTPackageImpl
 	 */
 	public EReference getInvOrDefCS_SimpleNameCS() {
 		return (EReference) invOrDefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInvOrDefCS_InvOrDefCS() {
-		return (EReference) invOrDefCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -986,11 +957,12 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPathNameCS_SequenceOfNames() {
-		return (EAttribute) pathNameCSEClass.getEStructuralFeatures().get(0);
+	public EReference getPathNameCS_SimpleNames() {
+		return (EReference) pathNameCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1548,15 +1520,6 @@ public class CSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIsMarkedPreCS_Pre() {
-		return (EAttribute) isMarkedPreCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPropertyContextCS() {
 		return propertyContextCSEClass;
 	}
@@ -1593,10 +1556,11 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPropertyContextCS_InitOrDerValueCS() {
+	public EReference getPropertyContextCS_Constraints() {
 		return (EReference) propertyContextCSEClass.getEStructuralFeatures()
 			.get(3);
 	}
@@ -1612,11 +1576,12 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStateExpCS_SequenceOfNames() {
-		return (EAttribute) stateExpCSEClass.getEStructuralFeatures().get(0);
+	public EReference getStateExpCS_SimpleNames() {
+		return (EReference) stateExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1923,11 +1888,15 @@ public class CSTPackageImpl
 			PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS);
 
 		pathNameCSEClass = createEClass(PATH_NAME_CS);
-		createEAttribute(pathNameCSEClass, PATH_NAME_CS__SEQUENCE_OF_NAMES);
+		createEReference(pathNameCSEClass, PATH_NAME_CS__SIMPLE_NAMES);
 
 		typeCSEClass = createEClass(TYPE_CS);
 
 		oclExpressionCSEClass = createEClass(OCL_EXPRESSION_CS);
+
+		simpleNameCSEClass = createEClass(SIMPLE_NAME_CS);
+		createEAttribute(simpleNameCSEClass, SIMPLE_NAME_CS__VALUE);
+		createEAttribute(simpleNameCSEClass, SIMPLE_NAME_CS__TYPE);
 
 		contextDeclCSEClass = createEClass(CONTEXT_DECL_CS);
 
@@ -1938,15 +1907,9 @@ public class CSTPackageImpl
 			PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS);
 		createEReference(propertyContextCSEClass, PROPERTY_CONTEXT_CS__TYPE_CS);
 		createEReference(propertyContextCSEClass,
-			PROPERTY_CONTEXT_CS__INIT_OR_DER_VALUE_CS);
-
-		simpleNameCSEClass = createEClass(SIMPLE_NAME_CS);
-		createEAttribute(simpleNameCSEClass, SIMPLE_NAME_CS__VALUE);
-		createEAttribute(simpleNameCSEClass, SIMPLE_NAME_CS__TYPE);
+			PROPERTY_CONTEXT_CS__CONSTRAINTS);
 
 		initOrDerValueCSEClass = createEClass(INIT_OR_DER_VALUE_CS);
-		createEReference(initOrDerValueCSEClass,
-			INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS);
 		createEReference(initOrDerValueCSEClass,
 			INIT_OR_DER_VALUE_CS__EXPRESSION_CS);
 
@@ -1954,13 +1917,10 @@ public class CSTPackageImpl
 		createEReference(classifierContextDeclCSEClass,
 			CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS);
 		createEReference(classifierContextDeclCSEClass,
-			CLASSIFIER_CONTEXT_DECL_CS__INV_OR_DEF_CS);
-		createEReference(classifierContextDeclCSEClass,
 			CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS);
 
 		invOrDefCSEClass = createEClass(INV_OR_DEF_CS);
 		createEReference(invOrDefCSEClass, INV_OR_DEF_CS__SIMPLE_NAME_CS);
-		createEReference(invOrDefCSEClass, INV_OR_DEF_CS__INV_OR_DEF_CS);
 
 		operationContextDeclCSEClass = createEClass(OPERATION_CONTEXT_DECL_CS);
 		createEReference(operationContextDeclCSEClass,
@@ -2010,7 +1970,6 @@ public class CSTPackageImpl
 		createEReference(variableExpCSEClass, VARIABLE_EXP_CS__IS_MARKED_PRE_CS);
 
 		isMarkedPreCSEClass = createEClass(IS_MARKED_PRE_CS);
-		createEAttribute(isMarkedPreCSEClass, IS_MARKED_PRE_CS__PRE);
 
 		primitiveTypeCSEClass = createEClass(PRIMITIVE_TYPE_CS);
 
@@ -2122,7 +2081,7 @@ public class CSTPackageImpl
 		operationCallExpCSEClass = createEClass(OPERATION_CALL_EXP_CS);
 
 		stateExpCSEClass = createEClass(STATE_EXP_CS);
-		createEAttribute(stateExpCSEClass, STATE_EXP_CS__SEQUENCE_OF_NAMES);
+		createEReference(stateExpCSEClass, STATE_EXP_CS__SIMPLE_NAMES);
 
 		oclDocumentCSEClass = createEClass(OCL_DOCUMENT_CS);
 		createEReference(oclDocumentCSEClass,
@@ -2172,9 +2131,9 @@ public class CSTPackageImpl
 		pathNameCSEClass.getESuperTypes().add(this.getTypeCS());
 		typeCSEClass.getESuperTypes().add(this.getOCLExpressionCS());
 		oclExpressionCSEClass.getESuperTypes().add(this.getCSTNode());
+		simpleNameCSEClass.getESuperTypes().add(this.getOCLExpressionCS());
 		contextDeclCSEClass.getESuperTypes().add(this.getCSTNode());
 		propertyContextCSEClass.getESuperTypes().add(this.getContextDeclCS());
-		simpleNameCSEClass.getESuperTypes().add(this.getOCLExpressionCS());
 		initOrDerValueCSEClass.getESuperTypes().add(this.getCSTNode());
 		classifierContextDeclCSEClass.getESuperTypes().add(
 			this.getContextDeclCS());
@@ -2279,10 +2238,11 @@ public class CSTPackageImpl
 			pathNameCSEClass,
 			PathNameCS.class,
 			"PathNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getPathNameCS_SequenceOfNames(),
-			ecorePackage.getEString(),
-			"sequenceOfNames", null, 0, -1, PathNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(
+			getPathNameCS_SimpleNames(),
+			this.getSimpleNameCS(),
+			null,
+			"simpleNames", null, 0, -1, PathNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeCSEClass, TypeCS.class,
 			"TypeCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2291,6 +2251,19 @@ public class CSTPackageImpl
 			oclExpressionCSEClass,
 			OCLExpressionCS.class,
 			"OCLExpressionCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(
+			simpleNameCSEClass,
+			SimpleNameCS.class,
+			"SimpleNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(
+			getSimpleNameCS_Value(),
+			ecorePackage.getEString(),
+			"value", null, 0, 1, SimpleNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(
+			getSimpleNameCS_Type(),
+			this.getSimpleTypeEnum(),
+			"type", null, 0, 1, SimpleNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			contextDeclCSEClass,
@@ -2317,33 +2290,15 @@ public class CSTPackageImpl
 			null,
 			"typeCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(
-			getPropertyContextCS_InitOrDerValueCS(),
+			getPropertyContextCS_Constraints(),
 			this.getInitOrDerValueCS(),
 			null,
-			"initOrDerValueCS", null, 0, 1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(
-			simpleNameCSEClass,
-			SimpleNameCS.class,
-			"SimpleNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getSimpleNameCS_Value(),
-			ecorePackage.getEString(),
-			"value", null, 0, 1, SimpleNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(
-			getSimpleNameCS_Type(),
-			this.getSimpleTypeEnum(),
-			"type", null, 0, 1, SimpleNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+			"constraints", null, 0, -1, PropertyContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			initOrDerValueCSEClass,
 			InitOrDerValueCS.class,
 			"InitOrDerValueCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getInitOrDerValueCS_InitOrDerValueCS(),
-			this.getInitOrDerValueCS(),
-			null,
-			"initOrDerValueCS", null, 0, 1, InitOrDerValueCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(
 			getInitOrDerValueCS_ExpressionCS(),
 			this.getOCLExpressionCS(),
@@ -2360,11 +2315,6 @@ public class CSTPackageImpl
 			null,
 			"pathNameCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(
-			getClassifierContextDeclCS_InvOrDefCS(),
-			this.getInvOrDefCS(),
-			null,
-			"invOrDefCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
 			getClassifierContextDeclCS_Constraints(),
 			this.getInvOrDefCS(),
 			null,
@@ -2379,11 +2329,6 @@ public class CSTPackageImpl
 			this.getSimpleNameCS(),
 			null,
 			"simpleNameCS", null, 0, 1, InvOrDefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getInvOrDefCS_InvOrDefCS(),
-			this.getInvOrDefCS(),
-			null,
-			"invOrDefCS", null, 0, 1, InvOrDefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			operationContextDeclCSEClass,
@@ -2537,10 +2482,6 @@ public class CSTPackageImpl
 			isMarkedPreCSEClass,
 			IsMarkedPreCS.class,
 			"IsMarkedPreCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getIsMarkedPreCS_Pre(),
-			ecorePackage.getEBoolean(),
-			"pre", null, 0, 1, IsMarkedPreCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			primitiveTypeCSEClass,
@@ -2856,10 +2797,11 @@ public class CSTPackageImpl
 			stateExpCSEClass,
 			StateExpCS.class,
 			"StateExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getStateExpCS_SequenceOfNames(),
-			ecorePackage.getEString(),
-			"sequenceOfNames", null, 0, -1, StateExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(
+			getStateExpCS_SimpleNames(),
+			this.getSimpleNameCS(),
+			null,
+			"simpleNames", null, 0, -1, StateExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			oclDocumentCSEClass,

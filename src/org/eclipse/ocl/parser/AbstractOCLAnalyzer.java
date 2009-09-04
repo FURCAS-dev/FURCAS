@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.29 2009/09/04 10:19:33 asanchez Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.30 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -53,11 +53,13 @@ import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
 import org.eclipse.ocl.cst.ContextDeclCS;
 import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
+import org.eclipse.ocl.cst.DerValueCS;
 import org.eclipse.ocl.cst.DotOrArrowEnum;
 import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
+import org.eclipse.ocl.cst.InitValueCS;
 import org.eclipse.ocl.cst.IntegerLiteralExpCS;
 import org.eclipse.ocl.cst.InvCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
@@ -703,7 +705,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			initASTMapping(packageEnv, createDummyPackage(env,
 				packageDeclarationCS), packageDeclarationCS);
 		} else {
-			pathname = pathNameCS.getSequenceOfNames();
+			pathname = createSequenceOfNames(pathNameCS.getSimpleNames());
 			try {
 				packageEnv = createPackageContext(getOCLEnvironment(), pathname);
 				if (packageEnv != null) {
@@ -824,8 +826,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		O operation = null;
 		C classifier = null;
-		EList<String> className = operationCS.getPathNameCS()
-			.getSequenceOfNames();
+		EList<String> className = createSequenceOfNames(operationCS.getPathNameCS()
+			.getSimpleNames());
 		String operationName = operationCS.getSimpleNameCS().getValue();
 		EList<String> qualifiedOperationName = new BasicEList<String>();
 		qualifiedOperationName.addAll(className);
@@ -1130,8 +1132,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			List<CT> constraints) {
 
-		EList<String> pathName = propertyContextCS.getPathNameCS()
-			.getSequenceOfNames();
+		EList<String> pathName = createSequenceOfNames(propertyContextCS.getPathNameCS()
+			.getSimpleNames());
 		C owner = lookupClassifier(propertyContextCS.getPathNameCS(), env,
 			pathName);
 
@@ -1178,26 +1180,36 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// create the property context
 		env = environmentFactory.createAttributeContext(env, property);
 
-		CT astNode;
-		InitOrDerValueCS initOrDerValueCS = propertyContextCS
-			.getInitOrDerValueCS();
-		astNode = initOrDerValueCS(env, initOrDerValueCS);
-		constraints.add(astNode);
-
-		InitOrDerValueCS other = initOrDerValueCS.getInitOrDerValueCS();
-		if (other != null) {
-			if ((initOrDerValueCS.eClass() == other.eClass())
-				|| (other.getInitOrDerValueCS() != null)) {
-				String message = OCLMessages.bind(
-					OCLMessages.PropertyConstraints_ERROR_,
-					makeString(propertyName));
-				ERROR(initOrDerValueCS, "propertyContextCS", message);//$NON-NLS-1$
+		InitValueCS initCS = null;
+		DerValueCS derCS = null;	
+		for (InitOrDerValueCS initOrDerValueCS : propertyContextCS.getConstraints()) {
+			if (initOrDerValueCS instanceof InitValueCS) {
+				if (initCS != null) {
+					String message = OCLMessages.bind(
+						OCLMessages.PropertyConstraints_ERROR_,
+						makeString(propertyName));
+					ERROR(initOrDerValueCS, "propertyContextCS", message);//$NON-NLS-1$
+				}
+				else {
+					initCS = (InitValueCS) initOrDerValueCS;
+					CT astNode = initOrDerValueCS(env, initOrDerValueCS);
+					constraints.add(astNode);
+				}					
 			}
-
-			astNode = initOrDerValueCS(env, other);
-			constraints.add(astNode);
+			else if (initOrDerValueCS instanceof DerValueCS) {
+				if (derCS != null) {
+					String message = OCLMessages.bind(
+						OCLMessages.PropertyConstraints_ERROR_,
+						makeString(propertyName));
+					ERROR(initOrDerValueCS, "propertyContextCS", message);//$NON-NLS-1$
+				}
+				else {
+					derCS = (DerValueCS) initOrDerValueCS;
+					CT astNode = initOrDerValueCS(env, initOrDerValueCS);
+					constraints.add(astNode);
+				}					
+			}
 		}
-
 		return property;
 	}
 
@@ -1336,7 +1348,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result = null;
 
 		PathNameCS pathNameCS = classifierContextDeclCS.getPathNameCS();
-		EList<String> pathName = pathNameCS.getSequenceOfNames();
+		EList<String> pathName = createSequenceOfNames(pathNameCS.getSimpleNames());
 		C type = lookupClassifier(pathNameCS, env, pathName);
 
 		if (type == null) {
@@ -1745,12 +1757,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			astNode = primitiveTypeCS(((PrimitiveTypeCS) typeCS).getType(), env);
 			typeCS.setAst(astNode);
 		} else if (typeCS instanceof PathNameCS) {
-			astNode = lookupClassifier(typeCS, env, ((PathNameCS) typeCS)
-				.getSequenceOfNames());
+			EList<String> pathName = createSequenceOfNames(((PathNameCS) typeCS).getSimpleNames());
+			astNode = lookupClassifier(typeCS, env, pathName);
 			if (astNode == null) {
 				String message = OCLMessages.bind(
 					OCLMessages.UnrecognizedType_ERROR_,
-					formatPath(((PathNameCS) typeCS).getSequenceOfNames()));
+					formatPath(pathName));
 				ERROR(typeCS, "typeCS", message);//$NON-NLS-1$
 				astNode = createDummyInvalidType(env, typeCS, message);
 			}
@@ -1789,7 +1801,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		S state = null;
 
-		EList<String> statePath = stateExpCS.getSequenceOfNames();
+		EList<String> statePath = createSequenceOfNames(stateExpCS.getSimpleNames());
 
 		if (!statePath.isEmpty()) {
 			// to support content-assist, we can parse an expression that
@@ -2055,7 +2067,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 */
 	protected boolean isAtPre(FeatureCallExpCS callExp) {
 		IsMarkedPreCS atPre = callExp.getIsMarkedPreCS();
-		return (atPre != null) && atPre.isPre();
+		return atPre != null;
 	}
 
 	/**
@@ -2071,7 +2083,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 */
 	protected boolean isAtPre(VariableExpCS callExp) {
 		IsMarkedPreCS atPre = callExp.getIsMarkedPreCS();
-		return (atPre != null) && atPre.isPre();
+		return atPre != null;
 	}
 
 	/**
@@ -3271,8 +3283,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		OCLExpression<C> astNode = null;
 
-		EList<String> sequenceOfNames = new BasicEList<String>(enumLiteralExpCS
-			.getPathNameCS().getSequenceOfNames());
+		List<SimpleNameCS> simpleNames = enumLiteralExpCS.getPathNameCS().getSimpleNames();
+		EList<String> sequenceOfNames = createSequenceOfNames(simpleNames);
 		String lastToken = enumLiteralExpCS.getSimpleNameCS().getValue();
 
 		EL literal = null;
@@ -4022,12 +4034,12 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				// static operation call
 				PathNameCS pathName = (PathNameCS) sourceCS;
 
-				C sourceType = lookupClassifier(sourceCS, env, pathName
-					.getSequenceOfNames());
+				EList<String> pathNames = createSequenceOfNames(pathName
+					.getSimpleNames());
+				C sourceType = lookupClassifier(sourceCS, env, pathNames);
 				if (sourceType == null) {
 					String message = OCLMessages.bind(
-						OCLMessages.UnrecognizedType_ERROR_, pathName
-							.getSequenceOfNames());
+						OCLMessages.UnrecognizedType_ERROR_, pathNames);
 					ERROR(sourceCS, "operatonCallExpCS", message);//$NON-NLS-1$
 				} else {
 					source = typeCS(sourceCS, env, sourceType);
@@ -4804,6 +4816,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Object fromAstNode, CSTNode cstNode, Object toAstNode) {
 		OCLUtil.getAdapter(env, BasicEnvironment2.class).initASTMapping(
 			fromAstNode, cstNode, toAstNode);
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public static EList<String> createSequenceOfNames(List<SimpleNameCS> simpleNames) {
+		EList<String> sequenceOfNames = new BasicEList<String>();
+		for (SimpleNameCS simpleName : simpleNames)
+			sequenceOfNames.add(simpleName.getValue());
+		return sequenceOfNames;
 	}
 
 	/**
