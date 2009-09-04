@@ -54,7 +54,7 @@ import org.junit.Test;
 public class NavigationTest extends Assert {
 
 	protected static final int NUM_MODELS = 3000;
-	protected static final int REPS = 5;
+	protected static final int REPS = 20;
 	private static Index index;
 
 	@Test
@@ -69,12 +69,12 @@ public class NavigationTest extends Assert {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-				OurResourceIndexer ourResourceIndexer = new OurResourceIndexer();
+				ResourceIndexer ourResourceIndexer = new ResourceIndexer();
 				for (int i = 0; i < NUM_MODELS; i++) {
 					URI resourceURI = URI.createURI(Integer.toHexString(i) + ".ecore");
 					r.setURI(resourceURI);
-					ourResourceIndexer.resourceChanged2(updater, r);
-					System.out.println(i);
+					ourResourceIndexer.resourceChanged(updater, r);
+//					System.out.println(i);
 				}
 
 			}
@@ -125,7 +125,7 @@ public class NavigationTest extends Assert {
 					resourceQuery.uri(next.getResourceURI());
 					ResourceDescriptor result = queryExecutor.execute(resourceQuery).iterator().next();
 					timeUsed += System.nanoTime() - time;
-					System.out.println(result.getURI());
+//					System.out.println(result.getURI());
 				}
 				System.out.println("eobjectDesc.getResourceDescriptor() : " + (timeUsed) / (float) REPS);
 			}
@@ -276,17 +276,8 @@ public class NavigationTest extends Assert {
 					referenceQuery.targetEObject().resource().uri(next.getURI());
 
 					HashSet<EReferenceDescriptor> map = new HashSet<EReferenceDescriptor>();
-					Iterator<EReferenceDescriptor> iterator = queryExecutor.execute(referenceQuery).iterator();
-					while (iterator.hasNext()) {
-						EReferenceDescriptor next2 = iterator.next();
-						if (!map.add(next2)) {
-							System.out.println();
-							;
-						}
-					}
-					int size = map.size();
+					int size = size(queryExecutor.execute(referenceQuery));
 
-					// int size = size(queryExecutor.execute(referenceQuery));
 					timeUsed += System.nanoTime() - time;
 					System.out.println(size);
 				}
