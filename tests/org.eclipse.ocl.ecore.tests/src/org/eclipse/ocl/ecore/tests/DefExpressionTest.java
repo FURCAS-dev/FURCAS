@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.6 2008/08/05 00:33:46 cdamus Exp $
+ * $Id: DefExpressionTest.java,v 1.7 2009/09/04 08:27:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
@@ -39,6 +40,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -264,6 +267,43 @@ public class DefExpressionTest
 			allParents = ocl.evaluate(color, expr);
 			assertTrue(allParents instanceof Set);
 			assertTrue(((Set<?>) allParents).isEmpty());
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * Tests the parsing the def expression for static attributes and operations.
+	 */
+	public void test_defExpression_static() {
+		try {
+			ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.SUPPORT_STATIC_FEATURES, true);
+			try {
+				ocl.parse(new OCLInput("package ocltest context Fruit " + //$NON-NLS-1$
+					"def: bestColor1() : Color = null " + //$NON-NLS-1$
+					"static def: bestColor2() : Color = null " + //$NON-NLS-1$
+					"def: goodColor1 : Color = null " + //$NON-NLS-1$
+					"static def: goodColor2 : Color = null " + //$NON-NLS-1$
+					"endpackage")); //$NON-NLS-1$			
+	            fail("Should have failed to parse the unimplemented static"); //$NON-NLS-1$
+	        } catch (ParserException e) {
+	            // success!
+	        	assertEquals(OCLMessages.UnimplementedStatic_ERROR_, e.getMessage());
+	            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	        }
+			
+	        ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.SUPPORT_STATIC_FEATURES, false);
+			try {
+				ocl.parse(new OCLInput("package ocltest context Fruit " + //$NON-NLS-1$
+					"def: bestColor3() : Color = null " + //$NON-NLS-1$
+					"static def: bestColor4() : Color = null " + //$NON-NLS-1$
+					"endpackage")); //$NON-NLS-1$			
+	            fail("Should have failed to parse the unsupported static"); //$NON-NLS-1$
+	        } catch (ParserException e) {
+	            // success!
+	        	assertEquals(OCLMessages.UnsupportedStatic_ERROR_, e.getMessage());
+	            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	        }
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
