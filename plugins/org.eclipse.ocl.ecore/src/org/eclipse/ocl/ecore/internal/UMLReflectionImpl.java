@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.9 2009/06/25 19:23:32 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.10 2009/09/04 08:27:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -321,6 +321,10 @@ public class UMLReflectionImpl
     public boolean isOperation(Object metaElement) {
         return metaElement instanceof EOperation;
     }
+
+	public boolean isPackage(Object metaElement) {
+        return metaElement instanceof EPackage;
+	}
     
     public boolean isProperty(Object metaElement) {
         return metaElement instanceof EStructuralFeature;
@@ -333,6 +337,10 @@ public class UMLReflectionImpl
     public boolean isClass(Object metaElement) {
         return metaElement instanceof EClass;
     }
+
+	public boolean isConstraint(Object metaElement) {
+        return metaElement instanceof Constraint;
+	}
     
     public boolean isDataType(Object metaElement) {
         return metaElement instanceof EDataType;
@@ -691,4 +699,8 @@ public class UMLReflectionImpl
     public void setType(TypedElement<EClassifier> element, EClassifier type) {
     	element.setType(type);
     }
+
+	public boolean setIsStatic(Object feature, boolean isStatic) {
+		return false;
+	}
 }
