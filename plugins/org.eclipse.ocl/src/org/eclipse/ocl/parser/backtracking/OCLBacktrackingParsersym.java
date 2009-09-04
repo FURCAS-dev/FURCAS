@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,18 +11,25 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
-*   E.D.Willink - Bugs 225493, 243976, 259818
-*   Zeligsoft - Bug 243976
+*   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
 *   Borland - Bug 242880
-*   E.D.Willink - Bug 282882 resolve invalid confusion
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.5 2009/09/04 10:19:33 asanchez Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.6 2009/09/04 13:40:43 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
+/**
+ * The backtracking variant of the OCL parser symbol table.
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
+ * 
+ * @since 1.3
+ */
+@SuppressWarnings("nls")
 public interface OCLBacktrackingParsersym {
     public final static int
       TK_NUMERIC_OPERATION = 61,
@@ -31,40 +38,40 @@ public interface OCLBacktrackingParsersym {
       TK_REAL_LITERAL = 64,
       TK_PLUS = 28,
       TK_MINUS = 29,
-      TK_MULTIPLY = 17,
-      TK_DIVIDE = 18,
-      TK_GREATER = 19,
-      TK_LESS = 20,
+      TK_MULTIPLY = 19,
+      TK_DIVIDE = 20,
+      TK_GREATER = 21,
+      TK_LESS = 22,
       TK_EQUAL = 5,
-      TK_GREATER_EQUAL = 21,
-      TK_LESS_EQUAL = 22,
+      TK_GREATER_EQUAL = 23,
+      TK_LESS_EQUAL = 24,
       TK_NOT_EQUAL = 7,
       TK_LPAREN = 2,
       TK_RPAREN = 3,
       TK_LBRACE = 94,
-      TK_RBRACE = 75,
+      TK_RBRACE = 74,
       TK_LBRACKET = 95,
       TK_RBRACKET = 80,
       TK_ARROW = 86,
       TK_BAR = 70,
       TK_COMMA = 31,
       TK_COLON = 32,
-      TK_COLONCOLON = 81,
-      TK_SEMICOLON = 82,
+      TK_COLONCOLON = 84,
+      TK_SEMICOLON = 81,
       TK_DOT = 87,
       TK_DOTDOT = 88,
-      TK_ATPRE = 76,
+      TK_ATPRE = 75,
       TK_CARET = 89,
       TK_CARETCARET = 90,
       TK_QUESTIONMARK = 96,
       TK_self = 30,
-      TK_inv = 77,
+      TK_inv = 76,
       TK_pre = 71,
       TK_post = 72,
-      TK_context = 78,
+      TK_context = 77,
       TK_package = 97,
-      TK_endpackage = 83,
-      TK_def = 74,
+      TK_endpackage = 82,
+      TK_def = 73,
       TK_if = 69,
       TK_then = 91,
       TK_else = 92,
@@ -75,17 +82,17 @@ public interface OCLBacktrackingParsersym {
       TK_not = 53,
       TK_implies = 93,
       TK_let = 68,
-      TK_in = 84,
+      TK_in = 83,
       TK_true = 65,
       TK_false = 66,
       TK_body = 6,
-      TK_derive = 23,
-      TK_init = 24,
+      TK_derive = 8,
+      TK_init = 9,
       TK_null = 38,
       TK_invalid = 67,
       TK_attr = 99,
       TK_oper = 100,
-      TK_static = 79,
+      TK_static = 78,
       TK_Set = 33,
       TK_Bag = 34,
       TK_Sequence = 35,
@@ -111,17 +118,17 @@ public interface OCLBacktrackingParsersym {
       TK_oclIsInvalid = 59,
       TK_oclIsInState = 60,
       TK_allInstances = 51,
-      TK_String = 8,
-      TK_Integer = 9,
-      TK_UnlimitedNatural = 10,
-      TK_Real = 11,
-      TK_Boolean = 12,
+      TK_String = 10,
+      TK_Integer = 11,
+      TK_UnlimitedNatural = 12,
+      TK_Real = 13,
+      TK_Boolean = 14,
       TK_Tuple = 52,
-      TK_OclAny = 13,
-      TK_OclVoid = 14,
-      TK_OclInvalid = 15,
-      TK_OclMessage = 16,
-      TK_EOF_TOKEN = 73,
+      TK_OclAny = 15,
+      TK_OclVoid = 16,
+      TK_OclInvalid = 17,
+      TK_OclMessage = 18,
+      TK_EOF_TOKEN = 79,
       TK_IDENTIFIER = 4,
       TK_INTEGER_RANGE_START = 98,
       TK_SINGLE_LINE_COMMENT = 101,
@@ -137,6 +144,8 @@ public interface OCLBacktrackingParsersym {
                  "EQUAL",
                  "body",
                  "NOT_EQUAL",
+                 "derive",
+                 "init",
                  "String",
                  "Integer",
                  "UnlimitedNatural",
@@ -152,8 +161,6 @@ public interface OCLBacktrackingParsersym {
                  "LESS",
                  "GREATER_EQUAL",
                  "LESS_EQUAL",
-                 "derive",
-                 "init",
                  "and",
                  "or",
                  "xor",
@@ -202,18 +209,18 @@ public interface OCLBacktrackingParsersym {
                  "BAR",
                  "pre",
                  "post",
-                 "EOF_TOKEN",
                  "def",
                  "RBRACE",
                  "ATPRE",
                  "inv",
                  "context",
                  "static",
+                 "EOF_TOKEN",
                  "RBRACKET",
-                 "COLONCOLON",
                  "SEMICOLON",
                  "endpackage",
                  "in",
+                 "COLONCOLON",
                  "endif",
                  "ARROW",
                  "DOT",

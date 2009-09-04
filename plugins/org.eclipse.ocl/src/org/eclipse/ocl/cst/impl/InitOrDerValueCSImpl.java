@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCSImpl.java,v 1.4 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: InitOrDerValueCSImpl.java,v 1.5 2009/09/04 13:40:43 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -33,7 +33,6 @@ import org.eclipse.ocl.cst.OCLExpressionCS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.cst.impl.InitOrDerValueCSImpl#getInitOrDerValueCS <em>Init Or Der Value CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.InitOrDerValueCSImpl#getExpressionCS <em>Expression CS</em>}</li>
  * </ul>
  * </p>
@@ -43,16 +42,6 @@ import org.eclipse.ocl.cst.OCLExpressionCS;
 public abstract class InitOrDerValueCSImpl
 		extends CSTNodeImpl
 		implements InitOrDerValueCS {
-
-	/**
-	 * The cached value of the '{@link #getInitOrDerValueCS() <em>Init Or Der Value CS</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInitOrDerValueCS()
-	 * @generated
-	 * @ordered
-	 */
-	protected InitOrDerValueCS initOrDerValueCS;
 
 	/**
 	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
@@ -81,68 +70,6 @@ public abstract class InitOrDerValueCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return CSTPackage.Literals.INIT_OR_DER_VALUE_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InitOrDerValueCS getInitOrDerValueCS() {
-		return initOrDerValueCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInitOrDerValueCS(
-			InitOrDerValueCS newInitOrDerValueCS, NotificationChain msgs) {
-		InitOrDerValueCS oldInitOrDerValueCS = initOrDerValueCS;
-		initOrDerValueCS = newInitOrDerValueCS;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-				Notification.SET,
-				CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS,
-				oldInitOrDerValueCS, newInitOrDerValueCS);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInitOrDerValueCS(InitOrDerValueCS newInitOrDerValueCS) {
-		if (newInitOrDerValueCS != initOrDerValueCS) {
-			NotificationChain msgs = null;
-			if (initOrDerValueCS != null)
-				msgs = ((InternalEObject) initOrDerValueCS)
-					.eInverseRemove(
-						this,
-						EOPPOSITE_FEATURE_BASE
-							- CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS,
-						null, msgs);
-			if (newInitOrDerValueCS != null)
-				msgs = ((InternalEObject) newInitOrDerValueCS)
-					.eInverseAdd(
-						this,
-						EOPPOSITE_FEATURE_BASE
-							- CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS,
-						null, msgs);
-			msgs = basicSetInitOrDerValueCS(newInitOrDerValueCS, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS,
-				newInitOrDerValueCS, newInitOrDerValueCS));
 	}
 
 	/**
@@ -212,8 +139,6 @@ public abstract class InitOrDerValueCSImpl
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS :
-				return basicSetInitOrDerValueCS(null, msgs);
 			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS :
 				return basicSetExpressionCS(null, msgs);
 		}
@@ -228,8 +153,6 @@ public abstract class InitOrDerValueCSImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS :
-				return getInitOrDerValueCS();
 			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS :
 				return getExpressionCS();
 		}
@@ -244,9 +167,6 @@ public abstract class InitOrDerValueCSImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS :
-				setInitOrDerValueCS((InitOrDerValueCS) newValue);
-				return;
 			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS :
 				setExpressionCS((OCLExpressionCS) newValue);
 				return;
@@ -262,9 +182,6 @@ public abstract class InitOrDerValueCSImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS :
-				setInitOrDerValueCS((InitOrDerValueCS) null);
-				return;
 			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS :
 				setExpressionCS((OCLExpressionCS) null);
 				return;
@@ -280,8 +197,6 @@ public abstract class InitOrDerValueCSImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CSTPackage.INIT_OR_DER_VALUE_CS__INIT_OR_DER_VALUE_CS :
-				return initOrDerValueCS != null;
 			case CSTPackage.INIT_OR_DER_VALUE_CS__EXPRESSION_CS :
 				return expressionCS != null;
 		}

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: StateExpCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: StateExpCS.java,v 1.4 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.cst.StateExpCS#getSequenceOfNames <em>Sequence Of Names</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.StateExpCS#getSimpleNames <em>Simple Names</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,19 +41,20 @@ public interface StateExpCS
 		extends TypeCS {
 
 	/**
-	 * Returns the value of the '<em><b>Sequence Of Names</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Simple Names</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.cst.SimpleNameCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sequence Of Names</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Simple Names</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sequence Of Names</em>' attribute list.
-	 * @see org.eclipse.ocl.cst.CSTPackage#getStateExpCS_SequenceOfNames()
-	 * @model
+	 * @return the value of the '<em>Simple Names</em>' containment reference list.
+	 * @see org.eclipse.ocl.cst.CSTPackage#getStateExpCS_SimpleNames()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<String> getSequenceOfNames();
+	EList<SimpleNameCS> getSimpleNames();
 
 } // StateExpCS

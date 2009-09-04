@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: ClassifierContextDeclCS.java,v 1.4 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getPathNameCS <em>Path Name CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getConstraints <em>Constraints</em>}</li>
  * </ul>
  * </p>
@@ -67,32 +66,6 @@ public interface ClassifierContextDeclCS
 	 * @generated
 	 */
 	void setPathNameCS(PathNameCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Inv Or Def CS</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Inv Or Def CS</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inv Or Def CS</em>' reference.
-	 * @see #setInvOrDefCS(InvOrDefCS)
-	 * @see org.eclipse.ocl.cst.CSTPackage#getClassifierContextDeclCS_InvOrDefCS()
-	 * @model
-	 * @generated
-	 */
-	InvOrDefCS getInvOrDefCS();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getInvOrDefCS <em>Inv Or Def CS</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Inv Or Def CS</em>' reference.
-	 * @see #getInvOrDefCS()
-	 * @generated
-	 */
-	void setInvOrDefCS(InvOrDefCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.

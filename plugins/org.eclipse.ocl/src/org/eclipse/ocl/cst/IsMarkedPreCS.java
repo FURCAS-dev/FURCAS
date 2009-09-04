@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IsMarkedPreCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: IsMarkedPreCS.java,v 1.4 2009/09/04 13:40:44 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -22,12 +22,6 @@ package org.eclipse.ocl.cst;
  * A representation of the model object '<em><b>Is Marked Pre CS</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.ocl.cst.IsMarkedPreCS#isPre <em>Pre</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.cst.CSTPackage#getIsMarkedPreCS()
  * @model
@@ -37,31 +31,5 @@ package org.eclipse.ocl.cst;
  */
 public interface IsMarkedPreCS
 		extends CSTNode {
-
-	/**
-	 * Returns the value of the '<em><b>Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pre</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pre</em>' attribute.
-	 * @see #setPre(boolean)
-	 * @see org.eclipse.ocl.cst.CSTPackage#getIsMarkedPreCS_Pre()
-	 * @model
-	 * @generated
-	 */
-	boolean isPre();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.cst.IsMarkedPreCS#isPre <em>Pre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pre</em>' attribute.
-	 * @see #isPre()
-	 * @generated
-	 */
-	void setPre(boolean value);
 
 } // IsMarkedPreCS

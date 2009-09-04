@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- * $Id: EssentialOCLErrors.g,v 1.2 2009/09/04 13:40:44 ewillink Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
@@ -32,16 +32,14 @@ $Rules
 	ERROR_IsMarkedPreCS ::= ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_AT_PRE);
-					IsMarkedPreCS result = createIsMarkedPreCS(false);
-					setOffsets(result, getIToken($getToken(1)));
-					$setResult(result);
+					$setResult(null);
 		  $EndJava
 		./
 
 	ERROR_PathNameCS ::= ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_PATH_NAME);
-					CSTNode result = createPathNameCS(getTokenText($getToken(1)));
+					CSTNode result = createPathNameCS(createSimpleNameCS(SimpleTypeEnum.IDENTIFIER_LITERAL, getTokenText($getToken(1))));
 					setOffsets(result, getIToken($getToken(1)));
 					$setResult(result);
 		  $EndJava
@@ -65,7 +63,7 @@ $Rules
 					CSTNode result = createFeatureCallExpCS(
 							(SimpleNameCS)$getSym(1),
 							(EList)$getSym(3),
-							createIsMarkedPreCS(false)
+							null
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
 					$setResult(result);
@@ -398,7 +396,7 @@ $Rules
 					CSTNode result = createVariableExpCS(
 							(SimpleNameCS)$getSym(1),
 							(EList)$getSym(3),
-							createIsMarkedPreCS(false)
+							null
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
 					$setResult(result);

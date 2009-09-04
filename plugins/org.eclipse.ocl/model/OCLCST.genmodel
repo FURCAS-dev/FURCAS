@@ -86,10 +86,15 @@
             propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PackageDeclarationCS/packageDeclarationCS"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PathNameCS">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/PathNameCS/sequenceOfNames"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PathNameCS/simpleNames"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/TypeCS"/>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/OCLExpressionCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/SimpleNameCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/value"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/type"/>
+      </genClasses>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/ContextDeclCS"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PropertyContextCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
@@ -99,15 +104,9 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/typeCS"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/initOrDerValueCS"/>
-      </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/SimpleNameCS">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/value"/>
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/SimpleNameCS/type"/>
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/PropertyContextCS/constraints"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/InitOrDerValueCS">
-        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InitOrDerValueCS/initOrDerValueCS"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InitOrDerValueCS/expressionCS"/>
       </genClasses>
@@ -115,15 +114,11 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/pathNameCS"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/invOrDefCS"/>
-        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/ClassifierContextDeclCS/constraints"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="OCLCST.ecore#//cst/InvOrDefCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvOrDefCS/simpleNameCS"/>
-        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/InvOrDefCS/invOrDefCS"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationContextDeclCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
@@ -182,9 +177,7 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/VariableExpCS/isMarkedPreCS"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IsMarkedPreCS">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/IsMarkedPreCS/pre"/>
-      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/IsMarkedPreCS"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/PrimitiveTypeCS"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/TupleTypeCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
@@ -298,7 +291,8 @@
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationCallExpCS"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/StateExpCS">
-        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/StateExpCS/sequenceOfNames"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/StateExpCS/simpleNames"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OCLDocumentCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

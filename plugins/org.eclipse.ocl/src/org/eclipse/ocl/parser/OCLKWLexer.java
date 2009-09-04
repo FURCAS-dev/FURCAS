@@ -13,7 +13,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexer.java,v 1.6 2009/09/04 10:19:33 asanchez Exp $
+* $Id: OCLKWLexer.java,v 1.7 2009/09/04 13:40:43 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
