@@ -14,10 +14,11 @@
 *   E.D.Willink - Bugs 225493, 243976, 259818
 *   Zeligsoft - Bug 243976
 *   Borland - Bug 242880
+*   E.D.Willink - Bug 282882 resolve invalid confusion
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.9 2009/09/01 20:11:22 ewillink Exp $
+* $Id: OCLParser.java,v 1.10 2009/09/04 08:27:07 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -55,6 +56,7 @@ import lpg.lpgjavaruntime.ParseTable;
 import lpg.lpgjavaruntime.RuleAction;
 
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
@@ -1955,11 +1957,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 264:  invOrDefCS ::= def simpleNameCSopt : defExpressionCS
+			// Rule 264:  defCS ::= def simpleNameCSopt : defExpressionCS
 			//
 			case 264: {
 				
-				CSTNode result = createDefCS(
+				DefCS result = createDefCS(
 						(SimpleNameCS)dtParser.getSym(2),
 						(DefExpressionCS)dtParser.getSym(4)
 					);
@@ -1969,9 +1971,21 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 265:  defExpressionCS ::= typedVariableCS = oclExpressionCS
+			// Rule 266:  invOrDefCS ::= static defCS
 			//
-			case 265: {
+			case 266: {
+				
+				DefCS result = (DefCS)dtParser.getSym(2);
+				result.setStatic(true);
+				setOffsets(result, getIToken(dtParser.getToken(1)), result);
+				dtParser.setSym1(result);
+	  		  break;
+			}
+	 
+			//
+			// Rule 267:  defExpressionCS ::= typedVariableCS = oclExpressionCS
+			//
+			case 267: {
 				
 				VariableCS variableCS = (VariableCS)dtParser.getSym(1);
 				OCLExpressionCS expressionCS = (OCLExpressionCS)dtParser.getSym(3);
@@ -1986,9 +2000,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 266:  defExpressionCS ::= operationCS1 = oclExpressionCS
+			// Rule 268:  defExpressionCS ::= operationCS1 = oclExpressionCS
 			//
-			case 266: {
+			case 268: {
 				
 				CSTNode result = createDefExpressionCS(
 						null,
@@ -2001,9 +2015,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 267:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclCSm
+			// Rule 269:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclCSm
 			//
-			case 267: {
+			case 269: {
 				
 				EList prePostOrBodyDecls = (EList)dtParser.getSym(3);
 				CSTNode result = createOperationContextDeclCS(
@@ -2016,9 +2030,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 268:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCS
+			// Rule 270:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCS
 			//
-			case 268: {
+			case 270: {
 				
 				EList result = new BasicEList();
 				result.add(dtParser.getSym(1));
@@ -2027,9 +2041,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 269:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCSm prePostOrBodyDeclCS
+			// Rule 271:  prePostOrBodyDeclCSm ::= prePostOrBodyDeclCSm prePostOrBodyDeclCS
 			//
-			case 269: {
+			case 271: {
 				
 				EList result = (EList)dtParser.getSym(1);
 				result.add(dtParser.getSym(2));
@@ -2038,9 +2052,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 270:  prePostOrBodyDeclCS ::= pre simpleNameCSopt : oclExpressionCS
+			// Rule 272:  prePostOrBodyDeclCS ::= pre simpleNameCSopt : oclExpressionCS
 			//
-			case 270: {
+			case 272: {
 				
 				CSTNode result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.PRE_LITERAL,
@@ -2053,9 +2067,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 271:  prePostOrBodyDeclCS ::= post simpleNameCSopt : oclExpressionCS
+			// Rule 273:  prePostOrBodyDeclCS ::= post simpleNameCSopt : oclExpressionCS
 			//
-			case 271: {
+			case 273: {
 				
 				CSTNode result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.POST_LITERAL,
@@ -2068,9 +2082,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			}
 	 
 			//
-			// Rule 272:  prePostOrBodyDeclCS ::= body simpleNameCSopt : oclExpressionCS
+			// Rule 274:  prePostOrBodyDeclCS ::= body simpleNameCSopt : oclExpressionCS
 			//
-			case 272: {
+			case 274: {
 				
 				CSTNode result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.BODY_LITERAL,

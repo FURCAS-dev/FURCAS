@@ -13,7 +13,7 @@
 *
 * </copyright>
 *
-* $Id: OCLKWLexer.java,v 1.4 2009/09/01 20:11:22 ewillink Exp $
+* $Id: OCLKWLexer.java,v 1.5 2009/09/04 08:27:07 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -23,7 +23,7 @@ package org.eclipse.ocl.parser;
 public class OCLKWLexer extends OCLKWLexerprs implements OCLParsersym
 {
     private char[] inputChars;
-    private final int keywordKind[] = new int[63 + 1];
+    private final int keywordKind[] = new int[64 + 1];
 
     public int[] getKeywordKinds() { return keywordKind; }
 
@@ -501,6 +501,12 @@ public class OCLKWLexer extends OCLKWLexerprs implements OCLParsersym
         // Rule 63:  KeyWord ::= o p e r
         //
 		keywordKind[63] = (TK_oper);
+	  
+	
+        //
+        // Rule 64:  KeyWord ::= s t a t i c
+        //
+		keywordKind[64] = (TK_static);
 	  
 	
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: DefCSImpl.java,v 1.4 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.cst.DefExpressionCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.impl.DefCSImpl#getDefExpressionCS <em>Def Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.impl.DefCSImpl#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +53,28 @@ public class DefCSImpl
 	 * @ordered
 	 */
 	protected DefExpressionCS defExpressionCS;
+
+	/**
+	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STATIC_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int STATIC_EFLAG = 1 << 8;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,6 +152,33 @@ public class DefCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStatic() {
+		return (eFlags & STATIC_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatic(boolean newStatic) {
+		boolean oldStatic = (eFlags & STATIC_EFLAG) != 0;
+		if (newStatic)
+			eFlags |= STATIC_EFLAG;
+		else
+			eFlags &= ~STATIC_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.DEF_CS__STATIC, oldStatic, newStatic));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -152,6 +202,8 @@ public class DefCSImpl
 		switch (featureID) {
 			case CSTPackage.DEF_CS__DEF_EXPRESSION_CS :
 				return getDefExpressionCS();
+			case CSTPackage.DEF_CS__STATIC :
+				return isStatic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +218,9 @@ public class DefCSImpl
 		switch (featureID) {
 			case CSTPackage.DEF_CS__DEF_EXPRESSION_CS :
 				setDefExpressionCS((DefExpressionCS) newValue);
+				return;
+			case CSTPackage.DEF_CS__STATIC :
+				setStatic((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,6 +237,9 @@ public class DefCSImpl
 			case CSTPackage.DEF_CS__DEF_EXPRESSION_CS :
 				setDefExpressionCS((DefExpressionCS) null);
 				return;
+			case CSTPackage.DEF_CS__STATIC :
+				setStatic(STATIC_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -196,8 +254,27 @@ public class DefCSImpl
 		switch (featureID) {
 			case CSTPackage.DEF_CS__DEF_EXPRESSION_CS :
 				return defExpressionCS != null;
+			case CSTPackage.DEF_CS__STATIC :
+				return ((eFlags & STATIC_EFLAG) != 0) != STATIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (static: "); //$NON-NLS-1$
+		result.append((eFlags & STATIC_EFLAG) != 0);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DefCSImpl

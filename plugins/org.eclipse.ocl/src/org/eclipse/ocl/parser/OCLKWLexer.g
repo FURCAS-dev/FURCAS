@@ -10,10 +10,11 @@
 -- * Contributors:
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+-- *   E.D.Willink - Bug 285633 static definitions
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.2 2009/09/01 20:11:22 ewillink Exp $
+-- * $Id: OCLKWLexer.g,v 1.3 2009/09/04 08:27:07 ewillink Exp $
 -- */
 --
 -- The OCL KeyWord Lexer
@@ -54,7 +55,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: OCLKWLexer.g,v 1.2 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: OCLKWLexer.g,v 1.3 2009/09/04 08:27:07 ewillink Exp $
  */
 	./
 $End
@@ -93,7 +94,8 @@ $Export
 	--
 	-- the following appear to have been omitted from the list of
 	-- OCL reserved words in Section 7.4.9.  They will be treated 
-	-- as unreserved for compliance
+	-- as unreserved for compliance. They are reserved as from
+	-- OCL 2.1 RTF 09-05-02
 	--
 	body
 	derive
@@ -104,10 +106,16 @@ $Export
 	
 	--
 	-- the following are not used in the OCL concrete syntax, but
-	-- are defined as reserved words in the Spec 7.4.9
+	-- are defined as reserved words in the OCL 2.0 Spec 7.4.9
+	-- and were removed in the OCL 2.1 RTF 09-05-02. 
 	--
 	attr
 	oper
+
+	--
+	-- the following were introduced in the OCL 2.1 RTF 09-05-02. 
+	--
+	static
 
 	--
 	-- the remainder of the LPG keywords are defined as such for the
@@ -133,6 +141,9 @@ $Export
 	collectNested
 	sortedBy
 
+	--
+	-- the following is an MDT-OCL extension prototyping OMG Issue 13944. 
+	--
 	closure
 
 	oclIsKindOf
@@ -550,6 +561,12 @@ $Rules
 		| o p e r
 		/.$BeginAction
 			$setResult($_oper);
+		  $EndAction
+		./
+
+		| s t a t i c
+		/.$BeginAction
+			$setResult($_static);
 		  $EndAction
 		./
 $End

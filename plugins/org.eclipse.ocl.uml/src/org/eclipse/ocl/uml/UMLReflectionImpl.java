@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.11 2009/06/25 19:23:24 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.12 2009/09/04 08:27:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -343,6 +343,13 @@ class UMLReflectionImpl
     public boolean isStatic(Object feature) {
         return (feature instanceof Feature) && ((Feature) feature).isStatic();
     }
+    
+    public boolean setIsStatic(Object feature, boolean isStatic) {
+        if (!(feature instanceof Feature))
+        	return false;
+        ((Feature) feature).setIsStatic(isStatic);
+        return true;
+    }
 
     public boolean isAssociationClass(Classifier classifier) {
         return getAssociationClassType().isInstance(classifier);
@@ -364,6 +371,10 @@ class UMLReflectionImpl
     public boolean isOperation(Object metaElement) {
         return metaElement instanceof Operation;
     }
+
+	public boolean isPackage(Object metaElement) {
+        return metaElement instanceof Package;
+	}
     
     public boolean isProperty(Object metaElement) {
         return metaElement instanceof Property;
@@ -376,6 +387,10 @@ class UMLReflectionImpl
     public boolean isClass(Object metaElement) {
         return metaElement instanceof Class;
     }
+
+	public boolean isConstraint(Object metaElement) {
+        return metaElement instanceof Constraint;
+	}
     
     public boolean isDataType(Object metaElement) {
         return metaElement instanceof DataType;

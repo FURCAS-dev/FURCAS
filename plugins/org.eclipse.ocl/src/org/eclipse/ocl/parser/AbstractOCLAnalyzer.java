@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.27 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.28 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -1578,6 +1578,21 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 					expression = oclExpressionCS(defExpr.getExpressionCS(),
 						contextEnv);
+				}
+				
+				if ((feature != null) && defCS.isStatic()) {
+					Boolean supportStatic = getEnvironment().getValue(
+						ParsingOptions.SUPPORT_STATIC_FEATURES);
+					if (!supportStatic) {
+						ERROR(defCS, "defCS", //$NON-NLS-1$
+							OCLMessages.bind(
+								OCLMessages.UnsupportedStatic_ERROR_, null));
+					}
+					else if (!uml.setIsStatic(feature, true)) {
+						ERROR(defCS, "defCS", //$NON-NLS-1$
+							OCLMessages.bind(
+								OCLMessages.UnimplementedStatic_ERROR_, null));
+					}
 				}
 
 				if ((feature != null) && (expression != null)) {

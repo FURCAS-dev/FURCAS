@@ -299,6 +299,11 @@
         <ownedAttribute xmi:id="_qdx9Z_8fEduhWtVvKtiQ7w" name="defExpressionCS" type="_qdx9af8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx9d_8fEduhWtVvKtiQ7w">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx9aP8fEduhWtVvKtiQ7w"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_xfgwcIHuEd6-x8sJMVujww" name="static" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xfgwcYHuEd6-x8sJMVujww"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_0ngcIIHuEd6-x8sJMVujww" value="false"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx9af8fEduhWtVvKtiQ7w" name="DefExpressionCS">
         <generalization xmi:id="_qdx9av8fEduhWtVvKtiQ7w" general="_qdx8sf8fEduhWtVvKtiQ7w"/>

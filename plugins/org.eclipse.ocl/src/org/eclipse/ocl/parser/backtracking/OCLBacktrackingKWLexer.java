@@ -13,7 +13,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingKWLexer.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+* $Id: OCLBacktrackingKWLexer.java,v 1.4 2009/09/04 08:27:07 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -23,7 +23,7 @@ package org.eclipse.ocl.parser.backtracking;
 public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs implements OCLBacktrackingParsersym
 {
     private char[] inputChars;
-    private final int keywordKind[] = new int[63 + 1];
+    private final int keywordKind[] = new int[64 + 1];
 
     public int[] getKeywordKinds() { return keywordKind; }
 
@@ -501,6 +501,12 @@ public class OCLBacktrackingKWLexer extends OCLBacktrackingKWLexerprs implements
         // Rule 63:  KeyWord ::= o p e r
         //
 		keywordKind[63] = (TK_oper);
+	  
+	
+        //
+        // Rule 64:  KeyWord ::= s t a t i c
+        //
+		keywordKind[64] = (TK_static);
 	  
 	
 

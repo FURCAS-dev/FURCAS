@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.7 2009/05/26 20:06:32 aigdalov Exp $
+ * $Id: CSTPackageImpl.java,v 1.8 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -924,6 +924,16 @@ public class CSTPackageImpl
 	 */
 	public EReference getDefCS_DefExpressionCS() {
 		return (EReference) defCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDefCS_Static() {
+		return (EAttribute) defCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1986,6 +1996,7 @@ public class CSTPackageImpl
 
 		defCSEClass = createEClass(DEF_CS);
 		createEReference(defCSEClass, DEF_CS__DEF_EXPRESSION_CS);
+		createEAttribute(defCSEClass, DEF_CS__STATIC);
 
 		defExpressionCSEClass = createEClass(DEF_EXPRESSION_CS);
 		createEReference(defExpressionCSEClass, DEF_EXPRESSION_CS__OPERATION_CS);
@@ -2477,6 +2488,10 @@ public class CSTPackageImpl
 			this.getDefExpressionCS(),
 			null,
 			"defExpressionCS", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(
+			getDefCS_Static(),
+			ecorePackage.getEBoolean(),
+			"static", "false", 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(
 			defExpressionCSEClass,
