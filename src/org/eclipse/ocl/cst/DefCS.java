@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: DefCS.java,v 1.4 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -26,6 +26,7 @@ package org.eclipse.ocl.cst;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.DefCS#getDefExpressionCS <em>Def Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.DefCS#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,5 +64,34 @@ public interface DefCS
 	 * @generated
 	 */
 	void setDefExpressionCS(DefExpressionCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Static</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Static</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Static</em>' attribute.
+	 * @see #setStatic(boolean)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getDefCS_Static()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isStatic();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.DefCS#isStatic <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Static</em>' attribute.
+	 * @see #isStatic()
+	 * @generated
+	 */
+	void setStatic(boolean value);
 
 } // DefCS

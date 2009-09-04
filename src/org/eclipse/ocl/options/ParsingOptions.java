@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.5 2009/02/12 00:04:09 cdamus Exp $
+ * $Id: ParsingOptions.java,v 1.6 2009/09/04 08:27:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -21,6 +21,7 @@ package org.eclipse.ocl.options;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.util.OCLUtil;
+import org.eclipse.ocl.utilities.UMLReflection;
 
 
 
@@ -119,6 +120,24 @@ public class ParsingOptions {
             Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
         return (Option<C>) IMPLICIT_ROOT_CLASS;
     }
+
+    /**
+     * <p>
+     * Parsing option indicating whether to accept <tt>static</tt> as part of a
+     * definition constraint. <tt>static</tt> are a proposed cpability of OCL 2.1,
+     * however they are only available for meta-models that implement the
+     * {@link UMLReflection#setIsStatic(Object, boolean)} method. Therefore use of <tt>static</tt> constraints
+     * will generate an error message on the Ecore binding regardless of this setting.
+     * </p><p>
+     * The default value of this option is <tt>true</tt>.  For stricter compatibility
+     * with OCL 2.0, set this option <tt>false</tt>.
+     * </p>
+     * @since 3.0
+     * 
+     * @see UMLReflection#setIsStatic(Object, boolean)
+     */
+    public static final Option<Boolean> SUPPORT_STATIC_FEATURES =
+        new BasicOption<Boolean>("support.static.features", true); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

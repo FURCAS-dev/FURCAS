@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.7 2009/03/05 14:12:13 cdamus Exp $
+ * $Id: CSTPackage.java,v 1.8 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -1816,6 +1816,16 @@ public interface CSTPackage
 	int DEF_CS__DEF_EXPRESSION_CS = INV_OR_DEF_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int DEF_CS__STATIC = INV_OR_DEF_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1823,7 +1833,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int DEF_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 1;
+	int DEF_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.DefExpressionCSImpl <em>Def Expression CS</em>}' class.
@@ -5535,6 +5545,18 @@ public interface CSTPackage
 	EReference getDefCS_DefExpressionCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.DefCS#isStatic <em>Static</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Static</em>'.
+	 * @see org.eclipse.ocl.cst.DefCS#isStatic()
+	 * @see #getDefCS()
+	 * @generated
+	 */
+	EAttribute getDefCS_Static();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.DefExpressionCS <em>Def Expression CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6969,6 +6991,15 @@ public interface CSTPackage
 		 */
 		EReference DEF_CS__DEF_EXPRESSION_CS = eINSTANCE
 			.getDefCS_DefExpressionCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEF_CS__STATIC = eINSTANCE.getDefCS_Static();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.DefExpressionCSImpl <em>Def Expression CS</em>}' class.
