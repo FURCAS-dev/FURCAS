@@ -43,7 +43,7 @@
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Boolean"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclAny"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclVoid"/>
-        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/Invalid"/>
+        <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclInvalid"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/OclMessage"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/keyword"/>
         <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="OCLCST.ecore#//cst/SimpleTypeEnum/UnlimitedNatural"/>

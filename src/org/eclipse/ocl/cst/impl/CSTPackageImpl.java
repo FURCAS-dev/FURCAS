@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.8 2009/09/04 08:27:07 ewillink Exp $
+ * $Id: CSTPackageImpl.java,v 1.9 2009/09/04 10:19:33 asanchez Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -2881,7 +2881,7 @@ public class CSTPackageImpl
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.BOOLEAN_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_ANY_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_VOID_LITERAL);
-		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.INVALID_LITERAL);
+		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_INVALID_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.OCL_MESSAGE_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum, SimpleTypeEnum.KEYWORD_LITERAL);
 		addEEnumLiteral(simpleTypeEnumEEnum,

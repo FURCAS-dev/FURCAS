@@ -17,7 +17,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.8 2009/09/01 20:11:22 ewillink Exp $
+-- * $Id: EssentialOCL.g,v 1.9 2009/09/04 10:19:32 asanchez Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -205,7 +205,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.8 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: EssentialOCL.g,v 1.9 2009/09/04 10:19:32 asanchez Exp $
  */
 	./
 $End
@@ -1061,7 +1061,7 @@ $Rules
 	primitiveTypeCS ::= OclInvalid
 		/.$BeginJava
 					CSTNode result = createPrimitiveTypeCS(
-							SimpleTypeEnum.INVALID_LITERAL,
+							SimpleTypeEnum.OCL_INVALID_LITERAL,
 							getTokenText($getToken(1))
 						);
 					setOffsets(result, getIToken($getToken(1)));

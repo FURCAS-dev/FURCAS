@@ -18,20 +18,11 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.4 2009/09/04 08:27:07 ewillink Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.5 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
-/**
- * The backtracking variant of the OCL parser symbol table.
- * 
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
- * 
- * @since 1.3
- */
-@SuppressWarnings("nls")
 public interface OCLBacktrackingParsersym {
     public final static int
       TK_NUMERIC_OPERATION = 61,

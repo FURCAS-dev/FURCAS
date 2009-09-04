@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.5 2009/09/04 08:27:07 ewillink Exp $
+* $Id: OCLBacktrackingParser.java,v 1.6 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -917,7 +917,7 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 			case 135: {
 				
 				CSTNode result = createPrimitiveTypeCS(
-						SimpleTypeEnum.INVALID_LITERAL,
+						SimpleTypeEnum.OCL_INVALID_LITERAL,
 						getTokenText(dtParser.getToken(1))
 					);
 				setOffsets(result, getIToken(dtParser.getToken(1)));

@@ -18,15 +18,11 @@
 *
 * </copyright>
 *
-* $Id: OCLParserprs.java,v 1.9 2009/09/04 08:27:07 ewillink Exp $
+* $Id: OCLParserprs.java,v 1.10 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
 
-/**
- * @noextend This interface is not intended to be extended by clients.
- */
-@SuppressWarnings("nls")
 public class OCLParserprs implements lpg.lpgjavaruntime.ParseTable, OCLParsersym {
 
     public interface IsKeyword {

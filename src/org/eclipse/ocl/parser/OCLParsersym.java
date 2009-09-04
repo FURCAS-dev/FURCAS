@@ -18,22 +18,12 @@
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.8 2009/09/04 08:27:07 ewillink Exp $
+* $Id: OCLParsersym.java,v 1.9 2009/09/04 10:19:33 asanchez Exp $
 */
 
 package org.eclipse.ocl.parser;
 
-/**
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
- */
-@SuppressWarnings("nls")
 public interface OCLParsersym {
-	/**
-	 * Token kind codes.
-	 * 
-	 * @noreference These constants are not intended to be referenced by clients.
-	 */
     public final static int
       TK_NUMERIC_OPERATION = 60,
       TK_STRING_LITERAL = 61,
