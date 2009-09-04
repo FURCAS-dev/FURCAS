@@ -164,6 +164,7 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/DefCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/DefCS/defExpressionCS"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/DefCS/static"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/DefExpressionCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

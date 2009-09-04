@@ -138,6 +138,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="DefCS" eSuperTypes="#//cst/InvOrDefCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="defExpressionCS" eType="#//cst/DefExpressionCS"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DefExpressionCS" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="operationCS" eType="#//cst/OperationCS"

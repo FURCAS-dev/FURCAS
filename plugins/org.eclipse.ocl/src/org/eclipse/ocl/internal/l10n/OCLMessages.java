@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.9 2009/02/12 00:04:09 cdamus Exp $
+ * $Id: OCLMessages.java,v 1.10 2009/09/04 08:27:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -186,6 +186,8 @@ public class OCLMessages {
 	public static String DefinitionConstraintFeature_ERROR_;
 	public static String DefinitionConstraintConformance_ERROR_;
 	public static String DuplicateProperty_ERROR_;
+	public static String UnsupportedStatic_ERROR_;
+	public static String UnimplementedStatic_ERROR_;
 	public static String DuplicateOperation_ERROR_;
 	public static String InitOrDerConstraintConformance_ERROR_;
 	

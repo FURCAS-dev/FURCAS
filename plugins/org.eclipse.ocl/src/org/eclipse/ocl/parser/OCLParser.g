@@ -11,10 +11,11 @@
 -- *   IBM - Initial API and implementation
 -- *   E.D. Willink - Elimination of some shift-reduce conflicts
 -- *      - Bug 259818
+-- *   E.D.Willink - Bug 285633 static definitions
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.3 2009/01/13 19:44:29 cdamus Exp $
+-- * $Id: OCLParser.g,v 1.4 2009/09/04 08:27:07 ewillink Exp $
 -- */
 --
 -- The OCL Parser
@@ -52,6 +53,7 @@ $End
 $Globals
 	/.
 	import org.eclipse.ocl.Environment;
+	import org.eclipse.ocl.cst.DefCS;
 	import org.eclipse.ocl.cst.DefExpressionCS;
 	import org.eclipse.ocl.cst.InitOrDerValueCS;
 	import org.eclipse.ocl.cst.InvOrDefCS;
@@ -67,7 +69,8 @@ $KeyWords
 	
 	--
 	-- the following are not used in the OCL concrete syntax, but
-	-- are defined as reserved words in the Spec 7.4.9
+	-- are defined as reserved words in the OCL 2.0 Spec 7.4.9
+	-- and were removed in the OCL 2.1 RTF 09-05-02. 
 	--
 	attr
 	oper
@@ -223,13 +226,22 @@ $Rules
 		  $EndJava
 		./
 	
-	invOrDefCS ::= def simpleNameCSopt ':' defExpressionCS
+	defCS ::= def simpleNameCSopt ':' defExpressionCS
 		/.$BeginJava
-					CSTNode result = createDefCS(
+					DefCS result = createDefCS(
 							(SimpleNameCS)$getSym(2),
 							(DefExpressionCS)$getSym(4)
 						);
 					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
+					$setResult(result);
+		  $EndJava
+		./
+	invOrDefCS -> defCS
+	invOrDefCS ::= static defCS
+		/.$BeginJava
+					DefCS result = (DefCS)$getSym(2);
+					result.setStatic(true);
+					setOffsets(result, getIToken($getToken(1)), result);
 					$setResult(result);
 		  $EndJava
 		./

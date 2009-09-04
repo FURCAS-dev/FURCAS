@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.4 2007/10/15 22:23:12 cdamus Exp $
+ * $Id: UMLReflection.java,v 1.5 2009/09/04 08:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -334,6 +334,22 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
     boolean isStatic(Object feature);
     
     /**
+     * Sets a property or operation static (applies to a classifier
+     * rather than to its instances).
+     * <br>
+     * If the UML meta-model implementation (e.g. Ecore) does not support static
+     * features, or if the feature is not a feature, this mertghod does nothing
+     * and returns false.
+     * 
+     * @param feature an operation or a property
+     * @param isStatic whether it is to be static
+     * @return whether isStatic was successfully applied
+     * 
+     * @since 3.0
+     */
+    public boolean setIsStatic(Object feature, boolean isStatic);
+    
+    /**
      * Gets the qualifiers of a property representing a UML association end.
      * 
      * @param property a property of the model class
@@ -383,6 +399,16 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
     boolean isOperation(Object metaElement);
     
     /**
+     * Queries whether the specified model element is a package.
+     * 
+     * @param metaElement a model element
+     * @return whether it is a package
+     * 
+     * @since 3.0
+     */
+    boolean isPackage(Object metaElement);
+    
+    /**
      * Queries whether the specified model element is a property.
      * 
      * @param metaElement a model element
@@ -405,6 +431,16 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
      * @return whether it is a class
      */
     boolean isClass(Object metaElement);
+    
+    /**
+     * Queries whether the specified model element is a constraint.
+     * 
+     * @param metaElement a model element
+     * @return whether it is a constraint
+     * 
+     * @since 3.0
+     */
+    boolean isConstraint(Object metaElement);
     
     /**
      * Queries whether the specified model element is a data type.
