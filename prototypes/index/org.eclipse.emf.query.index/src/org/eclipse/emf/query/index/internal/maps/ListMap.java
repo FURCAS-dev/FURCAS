@@ -423,5 +423,39 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 
 		this.initialize(tab, size);
 	}
+	
+	public <T extends MapEntry> long getPosition(T element) {
+		if (element == null) {
+			throw new IllegalArgumentException("Argument must not be null");
+		}
+		int keyNr = this.keyNr;
+		Object[] tab = this.table;
+		int len = tab.length;
+		Object keyElem = element.getKeyElement(keyNr);
+		int i = hash(keyElem, len);
+
+		while (true) {
+			Object item = tab[i];
+			if (item == null) {
+				throw new IllegalArgumentException("Element not found");
+			}
+			if (((E[]) item)[0].getKeyElement(keyNr) == keyElem) {
+				E[] elems = (E[]) item;
+				for (int j = 0; j < elems.length; j++) {
+					if (elems[j] == element) {
+						return ((long)i) << 32 | j;
+					}
+				}
+			}
+			i = ++i % len;
+		}
+	}
+	
+	public E get(long position) {
+		int j = (int)position;
+		int i = (int)(position >> 32);
+		Object[] tab = (Object[]) this.table[i];
+		return (E) tab[j];
+	}
 
 }

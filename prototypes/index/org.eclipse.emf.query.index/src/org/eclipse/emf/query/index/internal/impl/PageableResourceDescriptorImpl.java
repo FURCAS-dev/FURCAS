@@ -230,7 +230,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 						.getUnderlyingMap()));
 			}
 			this.incomingLinkTable.serialize(strategyFactory.createIncomingLinkMapStrategy(this.eObjectTable, this.resourceTable
-					.getUnderlyingMap()));
+					.getUnderlyingMap(), this.outgoingLinkTable));
 			this.removeAllContentTables();
 		}
 	}
@@ -261,7 +261,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 			}
 			this.initIncomingContentTables();
 			this.incomingLinkTable.deserialize(strategyFactory.createIncomingLinkMapStrategy(this.eObjectTable, this.resourceTable
-					.getUnderlyingMap()));
+					.getUnderlyingMap(), this.outgoingLinkTable));
 		}
 	}
 

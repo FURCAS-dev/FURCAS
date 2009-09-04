@@ -57,10 +57,14 @@ public class NavigationTest extends Assert {
 	protected static final int REPS = 20;
 	private static Index index;
 
+	public Options getOptions() {
+		return new Options("C:/tmp/", Options.DISABLED, Options.DISABLED);
+	}
+	
 	@Test
 	public void testBuildUp() throws Exception {
 
-		index = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
+		index = new PageableIndexImpl(getOptions());
 
 		final Resource r = new XMIResourceImpl();
 		r.getContents().add(EcorePackage.eINSTANCE);
