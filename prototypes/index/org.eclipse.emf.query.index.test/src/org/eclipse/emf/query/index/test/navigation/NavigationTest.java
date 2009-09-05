@@ -11,20 +11,13 @@
 package org.eclipse.emf.query.index.test.navigation;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.query.index.Index;
@@ -53,21 +46,20 @@ import org.junit.Test;
  */
 public class NavigationTest extends Assert {
 
-	protected static final int NUM_MODELS = 3000;
+	protected static final int NUM_MODELS = 1000;
 	protected static final int REPS = 20;
 	private static Index index;
 
 	public Options getOptions() {
 		return new Options("C:/tmp/", Options.DISABLED, Options.DISABLED);
 	}
-	
+
 	@Test
 	public void testBuildUp() throws Exception {
 
 		index = new PageableIndexImpl(getOptions());
 
-		final Resource r = new XMIResourceImpl();
-		r.getContents().add(EcorePackage.eINSTANCE);
+		final Resource r = this.getEcoreCopy();
 		long begin = System.currentTimeMillis();
 		index.executeUpdateCommand(new UpdateCommand() {
 
@@ -78,7 +70,7 @@ public class NavigationTest extends Assert {
 					URI resourceURI = URI.createURI(Integer.toHexString(i) + ".ecore");
 					r.setURI(resourceURI);
 					ourResourceIndexer.resourceChanged(updater, r);
-//					System.out.println(i);
+					// System.out.println(i);
 				}
 
 			}
@@ -101,7 +93,22 @@ public class NavigationTest extends Assert {
 			end = System.currentTimeMillis();
 			timeUsed += end - begin;
 		}
-		System.out.println("Total query iteration time: " + timeUsed/(float)REPS + "ms.");
+		System.out.println("Total query iteration time: " + timeUsed / (float) REPS + "ms.");
+	}
+
+	private Resource getEcoreCopy() throws Exception {
+		ResourceSet rs = new ResourceSetImpl();
+		Resource copy = rs.createResource(URI.createFileURI("C:/tmp/ecoreCopy.xmi"));
+		Resource ecoreResource = EcorePackage.eINSTANCE.eResource();
+		copy.getContents().add(EcorePackage.eINSTANCE);
+		copy.save(null);
+		ecoreResource.getContents().add(EcorePackage.eINSTANCE);
+		copy.unload();
+		copy.load(null);
+		Resource result = new XMIResourceImpl();
+		result.getContents().addAll(copy.getContents());
+		copy.delete(null);
+		return result;
 	}
 
 	@Test
@@ -118,7 +125,7 @@ public class NavigationTest extends Assert {
 				// load classes
 				{
 					ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
-					resourceQuery.uri(next.getResourceURI());
+					resourceQuery.uri(next.getResourceURI().toString());
 					queryExecutor.execute(resourceQuery).iterator().next();
 				}
 
@@ -126,12 +133,12 @@ public class NavigationTest extends Assert {
 				for (int i = 0; i < REPS; i++) {
 					long time = System.nanoTime();
 					ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
-					resourceQuery.uri(next.getResourceURI());
+					resourceQuery.uri(next.getResourceURI().toString());
 					ResourceDescriptor result = queryExecutor.execute(resourceQuery).iterator().next();
 					timeUsed += System.nanoTime() - time;
-//					System.out.println(result.getURI());
+					// System.out.println(result.getURI());
 				}
-				System.out.println("eobjectDesc.getResourceDescriptor() : " + (timeUsed) / (float) REPS);
+				System.out.println("eobjectDesc.getResourceDescriptor() : " + (timeUsed) / REPS);
 			}
 
 		});
@@ -148,13 +155,13 @@ public class NavigationTest extends Assert {
 
 				ResourceDescriptor next = null;
 				Iterator<ResourceDescriptor> it = execute.iterator();
-				while (it.hasNext() && (next = it.next()) != null && next.getURI().length() == 0) {
+				while (it.hasNext() && (next = it.next()) != null && next.getURI().toString().length() == 0) {
 				}
 
 				// load classes
 				{
 					EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-					eObjectQuery.resource().uri(next.getURI());
+					eObjectQuery.resource().uri(next.getURI().toString());
 					queryExecutor.execute(eObjectQuery).iterator().next();
 				}
 
@@ -162,14 +169,14 @@ public class NavigationTest extends Assert {
 				for (int i = 0; i < REPS; i++) {
 					long time = System.nanoTime();
 					EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-					eObjectQuery.resource().uri(next.getURI());
+					eObjectQuery.resource().uri(next.getURI().toString());
 					Iterator<EObjectDescriptor> iterator = queryExecutor.execute(eObjectQuery).iterator();
 					while (iterator.hasNext()) {
 						iterator.next();
 					}
 					timeUsed += System.nanoTime() - time;
 				}
-				System.out.println("eResourceDesc.getEObjectDescriptor() : " + (timeUsed) / (float) REPS);
+				System.out.println("eResourceDesc.getEObjectDescriptor() : " + (timeUsed) / REPS);
 			}
 		});
 	}
@@ -185,13 +192,13 @@ public class NavigationTest extends Assert {
 
 				ResourceDescriptor next = null;
 				Iterator<ResourceDescriptor> it = execute.iterator();
-				while (it.hasNext() && (next = it.next()) != null && next.getURI().length() == 0) {
+				while (it.hasNext() && (next = it.next()) != null && next.getURI().toString().length() == 0) {
 				}
 
 				// load classes
 				{
 					EReferenceQuery<EReferenceDescriptor> referenceQuery = IndexQueryFactory.createEReferenceQuery();
-					referenceQuery.sourceEObject().resource().uri(next.getURI());
+					referenceQuery.sourceEObject().resource().uri(next.getURI().toString());
 					queryExecutor.execute(referenceQuery).iterator().next();
 				}
 
@@ -199,14 +206,14 @@ public class NavigationTest extends Assert {
 				for (int i = 0; i < REPS; i++) {
 					long time = System.nanoTime();
 					EReferenceQuery<EReferenceDescriptor> referenceQuery = IndexQueryFactory.createEReferenceQuery();
-					referenceQuery.sourceEObject().resource().uri(next.getURI());
+					referenceQuery.sourceEObject().resource().uri(next.getURI().toString());
 					Iterator<EReferenceDescriptor> iterator = queryExecutor.execute(referenceQuery).iterator();
 					while (iterator.hasNext()) {
 						iterator.next();
 					}
 					timeUsed += System.nanoTime() - time;
 				}
-				System.out.println("eResourceDesc.getEReferenceDescriptor() : " + (timeUsed) / (float) REPS);
+				System.out.println("eResourceDesc.getEReferenceDescriptor() : " + (timeUsed) / REPS);
 			}
 		});
 	}
@@ -222,17 +229,17 @@ public class NavigationTest extends Assert {
 
 				ResourceDescriptor next = null;
 				Iterator<ResourceDescriptor> it = execute.iterator();
-				while (it.hasNext() && (next = it.next()) != null && next.getURI().length() == 0) {
+				while (it.hasNext() && (next = it.next()) != null && next.getURI().toString().length() == 0) {
 				}
 
 				EReferenceQuery<EReferenceDescriptor> referenceQuery = IndexQueryFactory.createEReferenceQuery();
-				referenceQuery.sourceEObject().resource().uri(next.getURI());
+				referenceQuery.sourceEObject().resource().uri(next.getURI().toString());
 				EReferenceDescriptor referenceDescriptor = queryExecutor.execute(referenceQuery).iterator().next();
 
 				// load classes
 				{
 					EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-					eObjectQuery.resource().uri(referenceDescriptor.getTargetResourceURI());
+					eObjectQuery.resource().uri(referenceDescriptor.getTargetResourceURI().toString());
 					eObjectQuery.fragment(referenceDescriptor.getTargetFragment());
 					queryExecutor.execute(eObjectQuery).iterator().next();
 				}
@@ -241,7 +248,7 @@ public class NavigationTest extends Assert {
 				for (int i = 0; i < REPS; i++) {
 					long time = System.nanoTime();
 					EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-					eObjectQuery.resource().uri(referenceDescriptor.getTargetResourceURI());
+					eObjectQuery.resource().uri(referenceDescriptor.getTargetResourceURI().toString());
 					eObjectQuery.fragment(referenceDescriptor.getTargetFragment());
 					Iterator<EObjectDescriptor> iterator = queryExecutor.execute(eObjectQuery).iterator();
 					while (iterator.hasNext()) {
@@ -265,27 +272,26 @@ public class NavigationTest extends Assert {
 
 				ResourceDescriptor next = null;
 				Iterator<ResourceDescriptor> it = execute.iterator();
-				while (it.hasNext() && (next = it.next()) != null && next.getURI().length() == 0) {
+				while (it.hasNext() && (next = it.next()) != null && next.getURI().toString().length() == 0) {
 				}
 
 				// class loading
 				EReferenceQuery<EReferenceDescriptor> referenceQueryCL = IndexQueryFactory.createEReferenceQuery();
-				referenceQueryCL.targetEObject().resource().uri(next.getURI());
+				referenceQueryCL.targetEObject().resource().uri(next.getURI().toString());
 				queryExecutor.execute(referenceQueryCL).iterator().next();
 
 				long timeUsed = 0;
 				for (int i = 0; i < REPS; i++) {
 					long time = System.nanoTime();
 					EReferenceQuery<EReferenceDescriptor> referenceQuery = IndexQueryFactory.createEReferenceQuery();
-					referenceQuery.targetEObject().resource().uri(next.getURI());
+					referenceQuery.targetEObject().resource().uri(next.getURI().toString());
 
-					HashSet<EReferenceDescriptor> map = new HashSet<EReferenceDescriptor>();
 					int size = size(queryExecutor.execute(referenceQuery));
 
 					timeUsed += System.nanoTime() - time;
 					System.out.println(size);
 				}
-				System.out.println("getAllReferringReferences : " + (timeUsed) / (float) REPS);
+				System.out.println("getAllReferringReferences : " + (timeUsed) / REPS);
 			}
 
 		});
@@ -301,7 +307,7 @@ public class NavigationTest extends Assert {
 				// class loading
 				{
 					EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-					eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS).fragment());
+					eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS));
 					queryExecutor.execute(eObjectQuery).iterator().next();
 				}
 
@@ -309,12 +315,13 @@ public class NavigationTest extends Assert {
 				for (int i = 0; i < REPS; i++) {
 					long time = System.nanoTime();
 					EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-					eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS).fragment());
+					eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS));
 					int size = size(queryExecutor.execute(eObjectQuery));
-					timeUsed += System.nanoTime() - time;
-					System.out.println(size);
+					time = System.nanoTime() - time;
+					timeUsed += time;
+					System.out.println(size + ", " + time);
 				}
-				System.out.println("getInstancesOfEClass : " + (timeUsed) / (float) REPS);
+				System.out.println("getInstancesOfEClass : " + (timeUsed) / REPS);
 			}
 		});
 	}
@@ -349,76 +356,86 @@ public class NavigationTest extends Assert {
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
 				for (URI uri : uris) {
-					updater.deleteResource(uri.toString());
+					updater.deleteResource(uri);
 				}
 			}
 
 		});
 	}
 
-	private static final class OurResourceIndexer extends ResourceIndexer {
-
-		/**
-		 * This method is introduce to allow a test that renames the Ecore
-		 * resource. Since ecore is a self-referenced metamodel the URIs of
-		 * types change to the new name.
-		 * 
-		 * @param updater
-		 * @param resources
-		 */
-		public void resourceChanged2(IndexUpdater updater, final Resource... resources) {
-			ResourceSet resourceSet = resources[0].getResourceSet();
-			URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
-			Map<EClass, String> typeMap = new IdentityHashMap<EClass, String>();
-			for (Resource resource : resources) {
-				String resourceUri = resource.getURI().toString();
-
-				updater.insertResource(resourceUri, resource.getTimeStamp(), getResourceUserData(resource));
-
-				for (Iterator<EObject> i = EcoreUtil.getAllProperContents(resource, false); i.hasNext();) {
-					EObject element = i.next();
-					if (isIndexElement(element)) {
-
-						String fragment = resource.getURIFragment(element);
-						EClass type = element.eClass();
-						String typeUri;
-						if ((typeUri = typeMap.get(type)) == null) {
-							typeMap.put(type, typeUri = EcoreUtil.getURI(type).fragment());
-						}
-
-						updater.insertEObject(resourceUri, fragment, typeUri, getEObjectName(element), getEObjectUserData(element));
-
-						for (EReference eReference : element.eClass().getEAllReferences()) {
-							if (isIndexReference(eReference, element)) {
-								String refString = EcoreUtil.getURI(eReference).toString();
-
-								if (eReference.isMany()) {
-									List<?> targets = (List<?>) element.eGet(eReference, false);
-									for (int idx = 0; idx < targets.size(); ++idx) {
-										Object target = targets.get(idx);
-										createEReferenceDescriptor(updater, uriConverter, resourceUri, fragment, refString, target);
-									}
-								} else {
-									Object target = element.eGet(eReference, false);
-									createEReferenceDescriptor(updater, uriConverter, resourceUri, fragment, refString, target);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		private void createEReferenceDescriptor(IndexUpdater updater, URIConverter uriConverter, String srcResourceUri,
-				String sourceFragment, String reference, Object target) {
-			if (target instanceof EObject) {
-				URI targetURI = uriConverter.normalize(EcoreUtil.getURI((EObject) target));
-				if (targetURI != null) {
-					updater.insertEReference(srcResourceUri, sourceFragment, reference, targetURI.trimFragment().toString(), targetURI
-							.fragment());
-				}
-			}
-		}
-
-	}
+	// private static final class OurResourceIndexer extends ResourceIndexer {
+	//
+	// /**
+	// * This method is introduce to allow a test that renames the Ecore
+	// * resource. Since ecore is a self-referenced metamodel the URIs of
+	// * types change to the new name.
+	// *
+	// * @param updater
+	// * @param resources
+	// */
+	// public void resourceChanged2(IndexUpdater updater, final Resource...
+	// resources) {
+	// ResourceSet resourceSet = resources[0].getResourceSet();
+	// URIConverter uriConverter = (resourceSet != null) ?
+	// resourceSet.getURIConverter() : URIConverter.INSTANCE;
+	// Map<EClass, String> typeMap = new IdentityHashMap<EClass, String>();
+	// for (Resource resource : resources) {
+	// URI resourceUri = resource.getURI();
+	//
+	// updater.insertResource(resourceUri, resource.getTimeStamp(),
+	// getResourceUserData(resource));
+	//
+	// for (Iterator<EObject> i = EcoreUtil.getAllProperContents(resource,
+	// false); i.hasNext();) {
+	// EObject element = i.next();
+	// if (isIndexElement(element)) {
+	//
+	// String fragment = resource.getURIFragment(element);
+	// EClass type = element.eClass();
+	// String typeUri;
+	// if ((typeUri = typeMap.get(type)) == null) {
+	// typeMap.put(type, typeUri = EcoreUtil.getURI(type).fragment());
+	// }
+	//
+	// updater.insertEObject(resourceUri, fragment, typeUri,
+	// getEObjectName(element), getEObjectUserData(element));
+	//
+	// for (EReference eReference : element.eClass().getEAllReferences()) {
+	// if (isIndexReference(eReference, element)) {
+	// String refString = EcoreUtil.getURI(eReference).toString();
+	//
+	// if (eReference.isMany()) {
+	// List<?> targets = (List<?>) element.eGet(eReference, false);
+	// for (int idx = 0; idx < targets.size(); ++idx) {
+	// Object target = targets.get(idx);
+	// createEReferenceDescriptor(updater, uriConverter, resourceUri, fragment,
+	// refString, target);
+	// }
+	// } else {
+	// Object target = element.eGet(eReference, false);
+	// createEReferenceDescriptor(updater, uriConverter, resourceUri, fragment,
+	// refString, target);
+	// }
+	// }
+	// }
+	// }
+	// }
+	// }
+	// }
+	//
+	// private void createEReferenceDescriptor(IndexUpdater updater,
+	// URIConverter uriConverter, String srcResourceUri,
+	// String sourceFragment, String reference, Object target) {
+	// if (target instanceof EObject) {
+	// URI targetURI = uriConverter.normalize(EcoreUtil.getURI((EObject)
+	// target));
+	// if (targetURI != null) {
+	// updater.insertEReference(srcResourceUri, sourceFragment, reference,
+	// targetURI.trimFragment().toString(), targetURI
+	// .fragment());
+	// }
+	// }
+	// }
+	//
+	// }
 }

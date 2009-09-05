@@ -10,7 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.maps.MapEntry;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -21,8 +23,8 @@ public interface IncomingReferenceDescriptor extends MapEntry {
 	public static final int TARGET_FRAGMENT = 11;
 
 	public boolean isIntraLink();
-	
-	public String getSourceResourceURI();
+
+	public URI getSourceResourceURI();
 
 	public String getSourceFragment();
 

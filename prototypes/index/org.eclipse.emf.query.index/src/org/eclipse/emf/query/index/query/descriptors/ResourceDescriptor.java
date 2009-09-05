@@ -10,17 +10,19 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.query.descriptors;
 
+import org.eclipse.emf.common.util.URI;
+
 /**
  * @author Jan K�hnlein - Initial contribution and API
  * @author Martin Strenge, SAP AG
  * @author Bernd Kolb, SAP AG
  */
 public interface ResourceDescriptor {
-	
-	String getURI();
-	
+
+	URI getURI();
+
 	long getIndexedVersion();
 
 	String getUserData(String key);
-	
+
 }

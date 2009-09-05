@@ -11,6 +11,9 @@
 package org.eclipse.emf.query.index.update;
 
 import java.util.Map;
+
+import org.eclipse.emf.common.util.URI;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -18,12 +21,11 @@ import java.util.Map;
  */
 public interface IndexUpdater {
 
-	public void insertResource(String uri, long version, Map<String, String> userData);
+	public void insertResource(URI uri, long version, Map<String, String> userData);
 
-	public void insertEObject(String resourceUri, String fragment, String typeUri, String name, Map<String, String> userData);
+	public void insertEObject(URI resourceUri, String fragment, String typeUri, String name, Map<String, String> userData);
 
-	public void insertEReference(String sourceResourceUri, String sourceFragment, String typeUri, String targetResourceUri,
-			String targetFragment);
+	public void insertEReference(URI sourceResourceUri, String sourceFragment, String typeUri, URI targetResourceUri, String targetFragment);
 
-	public void deleteResource(String uri);
+	public void deleteResource(URI uri);
 }

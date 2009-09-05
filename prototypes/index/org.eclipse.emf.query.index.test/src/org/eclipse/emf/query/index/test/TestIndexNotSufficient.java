@@ -174,7 +174,7 @@ public class TestIndexNotSufficient extends Assert {
 
 		System.out.print("Creating resources");
 		long time = System.currentTimeMillis();
-		
+
 		getTempDir();
 
 		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_1.xmi"));
@@ -367,7 +367,7 @@ public class TestIndexNotSufficient extends Assert {
 
 		// query eobjects
 		EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
-		eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS).toString());
+		eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS));
 		eObjectQuery.fragment("/1*");
 
 		index.executeQueryCommand(new QueryCmd<EObjectDescriptor, EObjectDescriptor, EObjectQuery<EObjectDescriptor>>(eObjectQuery));
@@ -491,15 +491,15 @@ public class TestIndexNotSufficient extends Assert {
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
 				for (URI uri : uris) {
-					updater.deleteResource(uri.toString());
+					updater.deleteResource(uri);
 				}
 			}
 
 		});
 	}
-	
+
 	@AfterClass
-	public static void deleteTempDir(){
+	public static void deleteTempDir() {
 		new File(getTempDir()).deleteOnExit();
 	}
 

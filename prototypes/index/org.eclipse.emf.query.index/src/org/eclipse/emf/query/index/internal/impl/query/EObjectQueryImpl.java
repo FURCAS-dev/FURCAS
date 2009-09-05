@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.internal.QueryInternal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
@@ -101,7 +102,7 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 
 	@Override
 	public QueryResult<EODType> execute(QueryExecutorInternal queryExecutor, final GlobalTables globalTables) {
-		final Iterator<String> resourceScope = this.getResourceScope(globalTables).iterator();
+		final Iterator<URI> resourceScope = this.getResourceScope(globalTables).iterator();
 		return this.createQueryResult(queryExecutor, new FilteredIterableMulti<EObjectDescriptor>() {
 
 			@Override
@@ -128,11 +129,11 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 		});
 	}
 
-	public Iterable<String> getResourceScope(final GlobalTables globalTables) {
-		Collection<String> ret = null;
+	public Iterable<URI> getResourceScope(final GlobalTables globalTables) {
+		Collection<URI> ret = null;
 		if (this.resQuery != null) {
 			Iterable<ResourceDescriptor> executeListResult = resQuery.getResourceScope(globalTables);
-			Collection<String> list = new ArrayList<String>();
+			Collection<URI> list = new ArrayList<URI>();
 			for (ResourceDescriptor r : executeListResult) {
 				list.add(r.getURI());
 			}
@@ -143,7 +144,7 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 			}
 		}
 		if (type != null) {
-			Collection<String> all = globalTables.elementTypeIndex.getAll(type);
+			Collection<URI> all = globalTables.elementTypeIndex.getAll(type);
 			if (ret == null) {
 				ret = all;
 			} else {
@@ -162,8 +163,8 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 	}
 
 	@Override
-	public void eClassURI(String classURI) {
-		this.type = classURI.intern();
+	public void eClassURI(URI classURI) {
+		this.type = classURI.toString().intern();
 	}
 
 	@Override

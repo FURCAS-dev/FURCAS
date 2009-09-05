@@ -10,9 +10,11 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
 import org.eclipse.emf.query.index.internal.maps.MapEntry;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -25,11 +27,11 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptor, MapEntry, 
 
 	private final String reference;
 
-	private String targetResource;
+	private URI targetResource;
 
 	private String targetFragment;
 
-	public ReferenceDescriptorImpl(EObjectDescriptorImpl src, String ref, String tarRes, String tarFrag) {
+	public ReferenceDescriptorImpl(EObjectDescriptorImpl src, String ref, URI tarRes, String tarFrag) {
 		this.source = src;
 		this.reference = ref;
 		this.targetResource = tarRes;
@@ -48,10 +50,10 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptor, MapEntry, 
 		}
 	}
 
-	public void setTargetResource(String value) {
+	public void setTargetResource(URI value) {
 		this.targetResource = value;
 	}
-	
+
 	public void setTargetFragment(String value) {
 		this.targetFragment = value;
 	}
@@ -76,12 +78,12 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptor, MapEntry, 
 	}
 
 	@Override
-	public String getSourceResourceURI() {
+	public URI getSourceResourceURI() {
 		return this.source.getResourceURI();
 	}
 
 	@Override
-	public String getTargetResourceURI() {
+	public URI getTargetResourceURI() {
 		return this.targetResource;
 	}
 

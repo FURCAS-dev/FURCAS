@@ -13,8 +13,9 @@
  */
 package org.eclipse.emf.query.index.internal.impl;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -24,12 +25,13 @@ public class IncomingReferenceDescriptorImpl implements IncomingReferenceDescrip
 
 	private final String targetFragement;
 
-	private final String sourceResource;
+	private final URI sourceResource;
 
-	// TODO think about making this a 1..* reference -> one instance per target/src-res 
+	// TODO think about making this a 1..* reference -> one instance per
+	// target/src-res
 	private final String sourceFragment;
 
-	public IncomingReferenceDescriptorImpl(String targetFrag, String srcRes, String srcFragment) {
+	public IncomingReferenceDescriptorImpl(String targetFrag, URI srcRes, String srcFragment) {
 		this.targetFragement = targetFrag;
 		this.sourceResource = srcRes;
 		this.sourceFragment = srcFragment;
@@ -45,7 +47,7 @@ public class IncomingReferenceDescriptorImpl implements IncomingReferenceDescrip
 		}
 	}
 
-	public String getSourceResourceURI() {
+	public URI getSourceResourceURI() {
 		return sourceResource;
 	}
 

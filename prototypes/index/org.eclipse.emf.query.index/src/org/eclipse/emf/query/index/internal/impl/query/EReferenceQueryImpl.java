@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.internal.QueryInternal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
@@ -37,8 +38,8 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 	private String type;
 	private EObjectQueryImpl<EObjectDescriptor> tgtEObjectQuery;
 
-	private Set<String> srcResScope;
-	private Set<String> tgtResScope;
+	private Set<URI> srcResScope;
+	private Set<URI> tgtResScope;
 	private Direction direction;
 
 	public enum Direction {
@@ -47,8 +48,8 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 
 	@Override
 	public QueryResult<RDType> execute(QueryExecutorInternal queryExecutor, GlobalTables globalTables) {
-		final Iterator<String> resourceScope = this.getResourceScope(globalTables).iterator();
-		final PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceMap = globalTables.resourceIndex;
+		final Iterator<URI> resourceScope = this.getResourceScope(globalTables).iterator();
+		final PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceMap = globalTables.resourceIndex;
 		return this.createQueryResult(queryExecutor, new FilteredIterableMulti<EReferenceDescriptor>() {
 
 			@Override
@@ -76,24 +77,24 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 
 	}
 
-	public Iterable<String> getResourceScope(GlobalTables globalTables) {
+	public Iterable<URI> getResourceScope(GlobalTables globalTables) {
 		String tgtFragment = null;
 		String srcFragment = null;
 
 		if (srcEObjectQuery != null) {
 			if (srcResScope == null) {
-				this.srcResScope = new LinkedHashSet<String>();
+				this.srcResScope = new LinkedHashSet<URI>();
 			}
-			for (String next : srcEObjectQuery.getResourceScope(globalTables)) {
+			for (URI next : srcEObjectQuery.getResourceScope(globalTables)) {
 				srcResScope.add(next);
 			}
 			srcFragment = srcEObjectQuery.getFragment();
 		}
 		if (tgtEObjectQuery != null) {
 			if (tgtResScope == null) {
-				this.tgtResScope = new LinkedHashSet<String>();
+				this.tgtResScope = new LinkedHashSet<URI>();
 			}
-			for (String next : tgtEObjectQuery.getResourceScope(globalTables)) {
+			for (URI next : tgtEObjectQuery.getResourceScope(globalTables)) {
 				tgtResScope.add(next);
 			}
 			tgtFragment = tgtEObjectQuery.getFragment();
@@ -137,11 +138,11 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 		return this.type;
 	}
 
-	public Set<String> getTargetScope() {
+	public Set<URI> getTargetScope() {
 		return this.tgtResScope;
 	}
 
-	public Set<String> getSourceScope() {
+	public Set<URI> getSourceScope() {
 		return this.srcResScope;
 	}
 
@@ -150,8 +151,8 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 	 */
 
 	@Override
-	public void eReferenceURI(String referenceURI) {
-		this.type = referenceURI.intern();
+	public void eReferenceURI(URI referenceURI) {
+		this.type = referenceURI.toString().intern();
 	}
 
 	@Override

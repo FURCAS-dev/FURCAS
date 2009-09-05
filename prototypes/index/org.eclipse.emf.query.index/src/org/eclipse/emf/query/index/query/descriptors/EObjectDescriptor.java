@@ -9,14 +9,17 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 package org.eclipse.emf.query.index.query.descriptors;
+
+import org.eclipse.emf.common.util.URI;
+
 /**
  * @author Martin Strenge, SAP AG
  * @author Bernd Kolb, SAP AG
- *
+ * 
  */
 public interface EObjectDescriptor {
 
-	String getResourceURI();
+	URI getResourceURI();
 
 	String getName();
 

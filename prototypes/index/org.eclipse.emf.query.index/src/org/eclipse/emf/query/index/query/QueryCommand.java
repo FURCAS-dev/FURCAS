@@ -22,8 +22,8 @@ public interface QueryCommand {
 
 	/**
 	 * Within this method clients can execute Queries using the
-	 * {@link QueryExecutor}�handed in by the index store. A read transaction is
-	 * opened before the method is entered and closed after it.
+	 * {@link QueryExecutor}�handed in by the index store. A read transaction
+	 * is opened before the method is entered and closed after it.
 	 * 
 	 * @param queryExecutor
 	 */

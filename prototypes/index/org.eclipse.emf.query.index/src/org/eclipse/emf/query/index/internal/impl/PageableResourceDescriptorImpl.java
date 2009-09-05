@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
 import org.eclipse.emf.query.index.internal.ResourceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.impl.query.EObjectQueryImpl;
@@ -38,7 +39,7 @@ import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
  */
 public class PageableResourceDescriptorImpl implements ResourceDescriptorInternal {
 
-	private String uri;
+	private URI uri;
 	public static final int URI = 1;
 
 	private long versionId = NOT_INDEXED;
@@ -46,7 +47,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	private byte flags = 0;
 	private static final byte PAGED_OUT = 1 << 0;
 
-	private PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceTable;
+	private PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceTable;
 
 	private SingleMap<String, EObjectDescriptorImpl> eObjectTable;
 
@@ -58,8 +59,8 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	private Map<String, String> userData;
 
-	public PageableResourceDescriptorImpl(String _uri, long versionId, Map<String, String> uData,
-			PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resTable, boolean pagedOut) {
+	public PageableResourceDescriptorImpl(URI _uri, long versionId, Map<String, String> uData,
+			PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resTable, boolean pagedOut) {
 		this.userData = uData;
 		this.versionId = versionId;
 		this.uri = _uri;
@@ -125,11 +126,11 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		this.outgoingLinkTable.put((ReferenceDescriptorImpl) refDesc);
 	}
 
-	public String getURI() {
+	public URI getURI() {
 		return this.uri;
 	}
 
-	private void setURI(String value) {
+	private void setURI(URI value) {
 		this.uri = value;
 	}
 
@@ -156,7 +157,8 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	}
 
 	public void addIncomingLink(ReferenceDescriptorImpl incomingLink, PageableResourceDescriptorImpl fromResDesc) {
-		// TODO which way of unifying the targetFragment is the best one? compact() required?
+		// TODO which way of unifying the targetFragment is the best one?
+		// compact() required?
 		if (fromResDesc == this) {
 			String key = incomingLink.getTargetFragment();
 			IncomingReferenceDescriptor exDesc = incomingLinkTable.getEqual(key);
@@ -191,7 +193,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	}
 
 	public void removeIncomingLink(ReferenceDescriptorImpl incomingLink, PageableResourceDescriptorImpl fromResDesc) {
-		String resDescUri = fromResDesc.getURI();
+		URI resDescUri = fromResDesc.getURI();
 
 		for (Iterator<IncomingReferenceDescriptor> it = this.incomingLinkTable.iterator(incomingLink.getTargetFragment()); it.hasNext();) {
 			IncomingReferenceDescriptor extRefDesc = it.next();
@@ -321,7 +323,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	@Override
 	public String getId() {
-		return this.uri;
+		return this.uri.toString();
 	}
 
 	public Iterable<? extends EObjectDescriptor> queryEObjectDescriptor(EObjectQueryImpl<?> objectQuery) {

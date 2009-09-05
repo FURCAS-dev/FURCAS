@@ -16,6 +16,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.IndexUpdaterInternal;
 import org.eclipse.emf.query.index.internal.ResourceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.impl.EObjectDescriptorImpl;
@@ -35,25 +36,25 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 	private final GlobalTables globalTables;
 	private DescriptorFactory descriptorFactory;
 
-	private Map<String, ResourceDescriptorInternal> insertResourceCache;
-	private Set<String> deleteResourceCache;
+	private Map<URI, ResourceDescriptorInternal> insertResourceCache;
+	private Set<URI> deleteResourceCache;
 
 	public IndexUpdaterImpl(GlobalTables _globalTables) {
 		this.globalTables = _globalTables;
 		this.descriptorFactory = new DescriptorFactory(_globalTables.resourceIndex);
-		this.insertResourceCache = new LinkedHashMap<String, ResourceDescriptorInternal>();
-		this.deleteResourceCache = new LinkedHashSet<String>(); // TODO lazy
+		this.insertResourceCache = new LinkedHashMap<URI, ResourceDescriptorInternal>();
+		this.deleteResourceCache = new LinkedHashSet<URI>(); // TODO lazy
 		// initialization?
 	}
 
 	@Override
-	public void deleteResource(String uri) {
+	public void deleteResource(URI uri) {
 		this.deleteResourceCache.add(uri); // FIXME remove from
 		// insertResourceCache
 	}
 
 	@Override
-	public void insertEObject(String resourceUri, String fragment, String typeUri, String name, Map<String, String> userData) {
+	public void insertEObject(URI resourceUri, String fragment, String typeUri, String name, Map<String, String> userData) {
 		ResourceDescriptorInternal desc = this.insertResourceCache.get(resourceUri);
 		if (desc != null) {
 			EObjectDescriptorImpl eod = this.descriptorFactory.createEObjectDescriptor(typeUri, desc, fragment, name, userData);
@@ -64,8 +65,7 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 	}
 
 	@Override
-	public void insertEReference(String sourceResourceUri, String sourceFragment, String typeUri, String targetResourceUri,
-			String targetFragment) {
+	public void insertEReference(URI sourceResourceUri, String sourceFragment, String typeUri, URI targetResourceUri, String targetFragment) {
 		ResourceDescriptorInternal desc = this.insertResourceCache.get(sourceResourceUri);
 		if (desc != null) {
 			EObjectDescriptor eod = desc.getEObjectDescriptor(sourceFragment);
@@ -82,18 +82,18 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 	}
 
 	@Override
-	public void insertResource(String uri, long version, Map<String, String> userData) {
+	public void insertResource(URI uri, long version, Map<String, String> userData) {
 		ResourceDescriptorInternal resDesc = this.descriptorFactory.createResourceDescriptor(uri, version, userData);
 		this.insertResourceCache.put(uri, resDesc);
 	}
 
 	@Override
 	public void commit() {
-		for (String delResource : this.deleteResourceCache) {
+		for (URI delResource : this.deleteResourceCache) {
 			this.removeResourceDescriptor(delResource);
 		}
 
-		for (Map.Entry<String, ResourceDescriptorInternal> entry : this.insertResourceCache.entrySet()) {
+		for (Map.Entry<URI, ResourceDescriptorInternal> entry : this.insertResourceCache.entrySet()) {
 			this.removeResourceDescriptor(entry.getKey());
 			this.addResourceDescriptor(entry.getValue());
 		}
@@ -105,7 +105,7 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 
 	}
 
-	private void removeResourceDescriptor(String resource) {
+	private void removeResourceDescriptor(URI resource) {
 		PageableResourceDescriptorImpl resourceDescriptor = globalTables.resourceIndex.acquire(resource);
 
 		if (resourceDescriptor != null) {
@@ -164,7 +164,7 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 		assert _resDesc instanceof PageableResourceDescriptorImpl;
 		PageableResourceDescriptorImpl resDesc = (PageableResourceDescriptorImpl) _resDesc;
 
-		String oldKey = resDesc.getURI();
+		URI oldKey = resDesc.getURI();
 		PageableResourceDescriptorImpl existingResDesc = globalTables.resourceIndex.acquire(oldKey);
 		if (existingResDesc != null) {
 			if (!existingResDesc.isIndexed()) {
@@ -190,7 +190,7 @@ public class IndexUpdaterImpl implements IndexUpdaterInternal {
 	private void spreadOutgoingLinks(PageableResourceDescriptorImpl resDesc) {
 		for (Iterator<ReferenceDescriptorImpl> it = resDesc.getReferences(); it.hasNext();) {
 			ReferenceDescriptorImpl refDesc = it.next();
-			String targetResource = refDesc.getTargetResourceURI();
+			URI targetResource = refDesc.getTargetResourceURI();
 			PageableResourceDescriptorImpl targetResDesc = globalTables.resourceIndex.acquire(targetResource);
 			if (targetResDesc == null) {
 				targetResDesc = this.descriptorFactory.createResourceDescriptor(targetResource, ResourceDescriptorInternal.NOT_INDEXED,

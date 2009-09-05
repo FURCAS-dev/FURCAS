@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.internal.QueryInternal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
@@ -58,10 +59,10 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 	// FIXME return real iterator
 	public Iterable<ResourceDescriptor> getResourceScope(final GlobalTables globalTables) {
 		List<ResourceDescriptor> ret = null;
-		PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceMap = globalTables.resourceIndex;
+		PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceMap = globalTables.resourceIndex;
 		if (uriPattern == null || this.isPattern(uriPattern)) {
-			for (String next : resourceMap.getKeys()) {
-				if (QueryUtil.matchesGlobbing(next, uriPattern)) {
+			for (URI next : resourceMap.getKeys()) {
+				if (QueryUtil.matchesGlobbing(next.toString(), uriPattern)) {
 					PageableResourceDescriptorImpl match = resourceMap.acquire(next);
 					if (this.matches(match)) {
 						if (ret == null) {
@@ -73,7 +74,7 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 				}
 			}
 		} else {
-			PageableResourceDescriptorImpl match = resourceMap.acquire(uriPattern);
+			PageableResourceDescriptorImpl match = resourceMap.acquire(URI.createURI(uriPattern));
 			if (match != null) {
 				if (this.matches(match)) {
 					ret = Collections.<ResourceDescriptor> singletonList(match);

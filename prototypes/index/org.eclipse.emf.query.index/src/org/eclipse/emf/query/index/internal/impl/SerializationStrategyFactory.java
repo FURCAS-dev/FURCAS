@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
 import org.eclipse.emf.query.index.internal.maps.ListMap;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy;
@@ -526,11 +527,11 @@ public class SerializationStrategyFactory {
 
 	private static class OutgoingLinkMapStrategy extends BaseStrategy<String, ReferenceDescriptorImpl> {
 
-		private SingleMap<String, PageableResourceDescriptorImpl> resourceMap;
+		private SingleMap<URI, PageableResourceDescriptorImpl> resourceMap;
 
 		private SingleMap<String, EObjectDescriptorImpl> eObjectMap;
 
-		private OutgoingLinkMapStrategy(Channel _channel, SingleMap<String, PageableResourceDescriptorImpl> resDesc,
+		private OutgoingLinkMapStrategy(Channel _channel, SingleMap<URI, PageableResourceDescriptorImpl> resDesc,
 				SingleMap<String, EObjectDescriptorImpl> eObjMap) {
 			super(_channel);
 			this.resourceMap = resDesc;
@@ -539,8 +540,8 @@ public class SerializationStrategyFactory {
 
 		@Override
 		public ReferenceDescriptorImpl readElement(String key) {
-			String typeURI = channel.getString();
-			String tarRes = channel.getString();
+			String typeURI = channel.getString().intern();
+			URI tarRes = URI.createURI(channel.getString());
 			String fragment = channel.getString();
 
 			// FIXME expensive resolving
@@ -555,9 +556,8 @@ public class SerializationStrategyFactory {
 
 		@Override
 		public void writeElement(ReferenceDescriptorImpl element) {
-			// FIXME expensive resolving
-			channel.putString(element.getEReferenceURI());
-			channel.putString(element.getTargetResourceURI());
+			channel.putString(element.getEReferenceURI().toString());
+			channel.putString(element.getTargetResourceURI().toString());
 			channel.putString(element.getTargetFragment());
 		}
 
@@ -569,13 +569,13 @@ public class SerializationStrategyFactory {
 
 	private static class IncomingLinkMapStrategy extends BaseStrategy<String, IncomingReferenceDescriptor> {
 
-		private final SingleMap<String, PageableResourceDescriptorImpl> resourceMap;
+		private final SingleMap<URI, PageableResourceDescriptorImpl> resourceMap;
 
 		private final SingleMap<String, EObjectDescriptorImpl> eObjectMap;
 
 		private final ListMap<String, ReferenceDescriptorImpl> linkTable;
 
-		private IncomingLinkMapStrategy(Channel _channel, SingleMap<String, PageableResourceDescriptorImpl> resDesc,
+		private IncomingLinkMapStrategy(Channel _channel, SingleMap<URI, PageableResourceDescriptorImpl> resDesc,
 				SingleMap<String, EObjectDescriptorImpl> eObjMap, ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable) {
 			super(_channel);
 			this.resourceMap = resDesc;
@@ -593,7 +593,7 @@ public class SerializationStrategyFactory {
 			case INTRA:
 				return this.linkTable.get(channel.getLong());
 			case CROSS:
-				String tarRes = channel.getString();
+				URI tarRes = URI.createURI(channel.getString());
 				String fragment = channel.getString();
 				tarRes = this.resourceMap.getEqual(tarRes).getURI();
 				return new IncomingReferenceDescriptorImpl(key, tarRes, fragment);
@@ -620,7 +620,7 @@ public class SerializationStrategyFactory {
 				channel.putLong(this.linkTable.getPosition(element));
 			} else {
 				channel.putByte(CROSS);
-				channel.putString(element.getSourceResourceURI());
+				channel.putString(element.getSourceResourceURI().toString());
 				channel.putString(element.getSourceFragment());
 			}
 		}
@@ -641,24 +641,24 @@ public class SerializationStrategyFactory {
 		}
 	}
 
-	private static class ResourceMapStrategy extends BaseStrategy<String, PageableResourceDescriptorImpl> {
+	private static class ResourceMapStrategy extends BaseStrategy<URI, PageableResourceDescriptorImpl> {
 
-		private final PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceMap;
+		private final PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceMap;
 
-		public ResourceMapStrategy(Channel ch, PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resDesc) {
+		public ResourceMapStrategy(Channel ch, PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resDesc) {
 			super(ch);
 			this.resourceMap = resDesc;
 		}
 
 		@Override
-		public PageableResourceDescriptorImpl readElement(String key) {
+		public PageableResourceDescriptorImpl readElement(URI key) {
 			long version = channel.getLong();
 			return new PageableResourceDescriptorImpl(key, version, null, this.resourceMap, true /* pagedOut */);
 		}
 
 		@Override
-		public String readKey() {
-			return channel.getString();
+		public URI readKey() {
+			return URI.createURI(channel.getString());
 		}
 
 		@Override
@@ -667,33 +667,33 @@ public class SerializationStrategyFactory {
 		}
 
 		@Override
-		public void writeKey(String key) {
-			channel.putString(key);
+		public void writeKey(URI key) {
+			channel.putString(key.toString());
 		}
 
 	}
 
-	private static class GlobalTypeMapStrategy extends BaseStrategy<String, String> {
+	private static class GlobalTypeMapStrategy extends BaseStrategy<String, URI> {
 
-		private final SingleMap<String, PageableResourceDescriptorImpl> resourceMap;
+		private final SingleMap<URI, PageableResourceDescriptorImpl> resourceMap;
 
-		public GlobalTypeMapStrategy(Channel ch, SingleMap<String, PageableResourceDescriptorImpl> resMap) {
+		public GlobalTypeMapStrategy(Channel ch, SingleMap<URI, PageableResourceDescriptorImpl> resMap) {
 			super(ch);
 			this.resourceMap = resMap;
 		}
 
 		@Override
-		public String readElement(String key) {
+		public URI readElement(String key) {
 			return this.resourceMap.get(channel.getInt()).getURI();
 		}
 
 		@Override
 		public String readKey() {
-			return channel.getString();
+			return channel.getString().intern();
 		}
 
 		@Override
-		public void writeElement(String element) {
+		public void writeElement(URI element) {
 			int position = this.resourceMap.getPosition(element);
 			channel.putInt(position);
 		}
@@ -728,21 +728,22 @@ public class SerializationStrategyFactory {
 	}
 
 	public SerializationStrategy<String, ReferenceDescriptorImpl> createOutgoingLinkMapStrategy(
-			SingleMap<String, EObjectDescriptorImpl> eObjectMap, SingleMap<String, PageableResourceDescriptorImpl> resourceMap) {
+			SingleMap<String, EObjectDescriptorImpl> eObjectMap, SingleMap<URI, PageableResourceDescriptorImpl> resourceMap) {
 		return new OutgoingLinkMapStrategy(this.getChannel(), resourceMap, eObjectMap);
 	}
 
 	public SerializationStrategy<String, IncomingReferenceDescriptor> createIncomingLinkMapStrategy(
-			SingleMap<String, EObjectDescriptorImpl> eObjectMap, SingleMap<String, PageableResourceDescriptorImpl> resourceMap, ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable) {
+			SingleMap<String, EObjectDescriptorImpl> eObjectMap, SingleMap<URI, PageableResourceDescriptorImpl> resourceMap,
+			ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable) {
 		return new IncomingLinkMapStrategy(this.getChannel(), resourceMap, eObjectMap, outgoingLinkTable);
 	}
 
-	public SerializationStrategy<String, PageableResourceDescriptorImpl> createResourceMapStrategy(
-			PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceMap) {
+	public SerializationStrategy<URI, PageableResourceDescriptorImpl> createResourceMapStrategy(
+			PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceMap) {
 		return new ResourceMapStrategy(this.getChannel(), resourceMap);
 	}
 
-	public SerializationStrategy<String, String> createGlobalTypeMapStrategy(SingleMap<String, PageableResourceDescriptorImpl> underlyingMap) {
+	public SerializationStrategy<String, URI> createGlobalTypeMapStrategy(SingleMap<URI, PageableResourceDescriptorImpl> underlyingMap) {
 		return new GlobalTypeMapStrategy(this.getChannel(), underlyingMap);
 	}
 

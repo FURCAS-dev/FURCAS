@@ -10,7 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.maps.LeanMap;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -18,8 +20,8 @@ import org.eclipse.emf.query.index.internal.maps.LeanMap;
  */
 public class GlobalTables {
 
-	public PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceIndex;
+	public PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceIndex;
 
-	public LeanMap<String, String> elementTypeIndex;
+	public LeanMap<String, URI> elementTypeIndex;
 
 }

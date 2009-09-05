@@ -10,12 +10,14 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.query;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+
 /**
  * @author Martin Strenge, SAP AG
  * @author Bernd Kolb, SAP AG
- *
+ * 
  */
 public interface EObjectQuery<T> extends Query<T, EObjectDescriptor> {
 
@@ -27,7 +29,7 @@ public interface EObjectQuery<T> extends Query<T, EObjectDescriptor> {
 
 	public void nameEndsWith(String nameEnd);
 
-	public void eClassURI(String eClassURI);
+	public void eClassURI(URI eClassURI);
 
 	public void fragment(String fragment);
 

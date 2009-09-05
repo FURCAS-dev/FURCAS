@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.impl.update;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.impl.EObjectDescriptorImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableResourceDescriptorImpl;
 import org.eclipse.emf.query.index.internal.impl.PagingResourceDescriptorMap;
@@ -26,31 +27,28 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
  */
 public class DescriptorFactory {
 
-	private final PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> resourceIndex;
+	private final PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceIndex;
 
-	public DescriptorFactory(PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl> rIndex) {
+	public DescriptorFactory(PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> rIndex) {
 		this.resourceIndex = rIndex;
 	}
 
-	// FIXME create other descriptor instances if user data is null 
+	// FIXME create other descriptor instances if user data is null
 
 	public EObjectDescriptorImpl createEObjectDescriptor(String type, ResourceDescriptor resDesc, String fragment, String name,
 			Map<String, String> userData) {
 		assert resDesc instanceof PageableResourceDescriptorImpl;
 		return new EObjectDescriptorImpl(type.intern(), (PageableResourceDescriptorImpl) resDesc, fragment, name, userData);
+		// TODO "intern()" is less expensive in indexer + caching
 	}
 
-	public ReferenceDescriptorImpl createReferenceDescriptor(EObjectDescriptor source, String type, String targetResource,
+	public ReferenceDescriptorImpl createReferenceDescriptor(EObjectDescriptor source, String type, URI targetResource,
 			String targetFragment) {
 		assert source instanceof EObjectDescriptorImpl;
 		return new ReferenceDescriptorImpl((EObjectDescriptorImpl) source, type.intern(), targetResource, targetFragment);
 	}
 
-	public PageableResourceDescriptorImpl createResourceDescriptor(String uri, long versionId, Map<String, String> userData) {
-		return this.createInternalResourceDescriptor(uri, versionId, userData);
-	}
-
-	private PageableResourceDescriptorImpl createInternalResourceDescriptor(String uri, long versionId, Map<String, String> userData) {
+	public PageableResourceDescriptorImpl createResourceDescriptor(URI uri, long versionId, Map<String, String> userData) {
 		return new PageableResourceDescriptorImpl(uri, versionId, userData, this.resourceIndex, false);
 	}
 

@@ -21,33 +21,37 @@ public class ResourceIndexer {
 	public static final ResourceIndexer INSTANCE = new ResourceIndexer();
 
 	public final void resourceChanged(IndexUpdater updater, final Resource... resources) {
-		ResourceSet resourceSet = resources[0].getResourceSet();
-		URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
-		Map<Object, String> cache = new IdentityHashMap<Object, String>();
+		Map<Object, String> typeCache = new IdentityHashMap<Object, String>();
+		Map<Object, String> objectCache = new IdentityHashMap<Object, String>();
+		Map<Resource, URI> resourceCache = new IdentityHashMap<Resource, URI>();
 		for (Resource resource : resources) {
-			String resourceUri = resource.getURI().toString();
-			cache.put(resource, resourceUri);
+			ResourceSet resourceSet = resource.getResourceSet();
+			URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
+			URI resourceUri;
+			if ((resourceUri = resourceCache.get(resource)) == null) {
+				resourceCache.put(resource, resourceUri = uriConverter.normalize(resource.getURI()));
+			}
 
 			updater.insertResource(resourceUri, resource.getTimeStamp(), getResourceUserData(resource));
 
 			for (EObject child : resource.getContents()) {
-				addContent(updater, uriConverter, cache, resource, resourceUri, child);
+				addContent(updater, uriConverter, resourceCache, typeCache, objectCache, resource, resourceUri, child);
 			}
 		}
 	}
 
-	private void addContent(IndexUpdater updater, URIConverter uriConverter, Map<Object, String> cache, Resource resource,
-			String resourceUri, EObject element) {
+	private void addContent(IndexUpdater updater, URIConverter uriConverter, Map<Resource, URI> resourceCache,
+			Map<Object, String> typeCache, Map<Object, String> objectCache, Resource resource, URI resourceUri, EObject element) {
 		if (element.eResource() == resource && isIndexElement(element)) {
 
 			String fragment;
-			if ((fragment = cache.get(element)) == null) {
-				cache.put(element, fragment = resource.getURIFragment(element));
+			if ((fragment = objectCache.get(element)) == null) {
+				objectCache.put(element, fragment = resource.getURIFragment(element));
 			}
 			EClass type = element.eClass();
 			String typeUri;
-			if ((typeUri = cache.get(type)) == null) {
-				cache.put(type, typeUri = EcoreUtil.getURI(type).toString());
+			if ((typeUri = typeCache.get(type)) == null) {
+				typeCache.put(type, typeUri = EcoreUtil.getURI(type).toString());
 			}
 
 			updater.insertEObject(resourceUri, fragment, typeUri, getEObjectName(element), getEObjectUserData(element));
@@ -55,52 +59,54 @@ public class ResourceIndexer {
 			for (EReference eReference : element.eClass().getEAllReferences()) {
 				if (isIndexReference(eReference, element)) {
 					String refString;
-					if ((refString = cache.get(eReference)) == null) {
-						cache.put(eReference, refString = EcoreUtil.getURI(eReference).toString());
+					if ((refString = typeCache.get(eReference)) == null) {
+						typeCache.put(eReference, refString = EcoreUtil.getURI(eReference).toString());
 					}
 
 					if (eReference.isMany()) {
 						List<?> targets = (List<?>) element.eGet(eReference, false);
 						for (int idx = 0; idx < targets.size(); ++idx) {
 							Object target = targets.get(idx);
-							createEReferenceDescriptor(updater, cache, uriConverter, resourceUri, fragment, refString, target);
+							createEReferenceDescriptor(updater, resourceCache, objectCache, uriConverter, resourceUri, fragment, refString,
+									target);
 						}
 					} else {
 						Object target = element.eGet(eReference, false);
-						createEReferenceDescriptor(updater, cache, uriConverter, resourceUri, fragment, refString, target);
+						createEReferenceDescriptor(updater, resourceCache, objectCache, uriConverter, resourceUri, fragment, refString,
+								target);
 					}
 				}
 			}
 			for (EObject child : element.eContents()) {
-				this.addContent(updater, uriConverter, cache, resource, resourceUri, child);
+				this.addContent(updater, uriConverter, resourceCache, typeCache, objectCache, resource, resourceUri, child);
 			}
 		}
 	}
 
-	private void createEReferenceDescriptor(IndexUpdater updater, Map<Object, String> cache, URIConverter uriConverter,
-			String srcResourceUri, String sourceFragment, String reference, Object target) {
+	private void createEReferenceDescriptor(IndexUpdater updater, Map<Resource, URI> resourceCache, Map<Object, String> objectCache,
+			URIConverter uriConverter, URI srcResourceUri, String sourceFragment, String reference, Object target) {
 		if (target instanceof EObject) {
-			String resUri;
+			URI resUri;
 			Resource eResource = ((EObject) target).eResource();
 			String uriFragment;
 			if (eResource != null) {
-				if ((resUri = cache.get(eResource)) == null) {
-					cache.put(eResource, resUri = uriConverter.normalize(eResource.getURI()).toString());
+				if ((resUri = resourceCache.get(eResource)) == null) {
+					resourceCache.put(eResource, resUri = uriConverter.normalize(eResource.getURI()));
 				}
-				if ((uriFragment = cache.get(target)) == null) {
-					cache.put(target, uriFragment = eResource.getURIFragment((EObject) target));
+				if ((uriFragment = objectCache.get(target)) == null) {
+					objectCache.put(target, uriFragment = eResource.getURIFragment((EObject) target));
 				}
 			} else {
 				URI normalizedUri = uriConverter.normalize(EcoreUtil.getURI((EObject) target));
 				uriFragment = normalizedUri.fragment();
-				resUri = normalizedUri.trimFragment().toString();
+				resUri = normalizedUri.trimFragment();
 			}
 			updater.insertEReference(srcResourceUri, sourceFragment, reference, resUri, uriFragment);
 		}
 	}
 
 	protected boolean isIndexReference(EReference reference, EObject element) {
-		return !reference.isContainment() && !reference.isDerived() && element.eIsSet(reference);
+		return /* !reference.isContainment() && */!reference.isDerived() && element.eIsSet(reference);
 	}
 
 	protected boolean isIndexElement(EObject element) {

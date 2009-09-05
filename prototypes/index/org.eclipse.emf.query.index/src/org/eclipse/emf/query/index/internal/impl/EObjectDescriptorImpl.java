@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.impl;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.maps.MapEntry;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 
@@ -87,7 +88,7 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
 	}
 
 	@Override
-	public String getResourceURI() {
+	public URI getResourceURI() {
 		return this.resource.getURI();
 	}
 }

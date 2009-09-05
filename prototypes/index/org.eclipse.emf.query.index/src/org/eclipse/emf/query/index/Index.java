@@ -34,6 +34,6 @@ public interface Index {
 	void executeUpdateCommand(UpdateCommand command);
 
 	void save();
-	
+
 	void load();
 }

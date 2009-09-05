@@ -10,12 +10,14 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.query;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
+
 /**
  * @author Martin Strenge, SAP AG
  * @author Bernd Kolb, SAP AG
- *
+ * 
  */
 public interface EReferenceQuery<T> extends Query<T, EReferenceDescriptor> {
 
@@ -29,5 +31,5 @@ public interface EReferenceQuery<T> extends Query<T, EReferenceDescriptor> {
 	 */
 	public EObjectQuery<EObjectDescriptor> targetEObject();
 
-	public void eReferenceURI(String eReferenceURI);
+	public void eReferenceURI(URI eReferenceURI);
 }

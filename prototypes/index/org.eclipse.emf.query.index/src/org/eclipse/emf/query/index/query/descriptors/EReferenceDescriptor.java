@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.query.descriptors;
 
+import org.eclipse.emf.common.util.URI;
+
 /**
  * @author Jan K�hnlein - Initial contribution and API
  * @author Martin Strenge, SAP AG
@@ -24,9 +26,9 @@ public interface EReferenceDescriptor {
 
 	String getTargetFragment();
 
-	String getSourceResourceURI();
+	URI getSourceResourceURI();
 
-	String getTargetResourceURI();
+	URI getTargetResourceURI();
 
 	String getEReferenceURI();
 

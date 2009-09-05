@@ -16,11 +16,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import javax.management.OperationsException;
-
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.event.IndexChangeListenerRegistry;
 import org.eclipse.emf.query.index.internal.IndexUpdaterInternal;
 import org.eclipse.emf.query.index.internal.PageFileProvider;
@@ -41,7 +39,7 @@ import org.eclipse.emf.query.index.update.UpdateCommand;
 public class PageableIndexImpl implements PageableIndex {
 
 	public static class Options {
-		
+
 		public static final int DISABLED = Integer.MAX_VALUE;
 		public static final Options PAGING_AND_DUMPING_DISABLED = new Options(null, DISABLED, DISABLED);
 
@@ -56,18 +54,18 @@ public class PageableIndexImpl implements PageableIndex {
 			if (tolerance < 0) {
 				tolerance = DISABLED;
 			}
-			
+
 			this.baseDirectory = pagingDirectory;
 			this.limit = limit;
 			this.tolerance = tolerance;
-			
-			if (limit != DISABLED && pagingDirectory == null ) {
+
+			if (limit != DISABLED && pagingDirectory == null) {
 				throw new IllegalArgumentException("Base directory must be specified");
 			}
 			if (limit != DISABLED && tolerance == DISABLED) {
-				throw new IllegalArgumentException("Tolerance must be set");				
+				throw new IllegalArgumentException("Tolerance must be set");
 			}
-		}		
+		}
 	}
 
 	private static final String DUMP_FILE_ID = "dumpfile";
@@ -83,11 +81,11 @@ public class PageableIndexImpl implements PageableIndex {
 	public PageableIndexImpl(Options options) {
 		rwLock = new ReentrantReadWriteLock();
 		globalTables = new GlobalTables();
-		globalTables.elementTypeIndex = new LeanMap<String, String>(16);
+		globalTables.elementTypeIndex = new LeanMap<String, URI>(16);
 		chProv = new PageFileProviderImpl(options.baseDirectory);
 		PagingStrategy<PageableResourceDescriptorImpl> pagingStrategy = new PagingStrategyImpl<PageableResourceDescriptorImpl>(chProv,
 				options.limit, options.tolerance);
-		globalTables.resourceIndex = new PagingResourceDescriptorMap<String, PageableResourceDescriptorImpl>(
+		globalTables.resourceIndex = new PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl>(
 				PageableResourceDescriptorImpl.URI, pagingStrategy);
 		queryExecutor = new QueryExecutorImpl(globalTables);
 	}
