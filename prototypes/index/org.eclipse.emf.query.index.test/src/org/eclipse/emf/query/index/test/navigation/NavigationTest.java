@@ -46,9 +46,10 @@ import org.junit.Test;
  */
 public class NavigationTest extends Assert {
 
-	protected static final int NUM_MODELS = 1000;
+	protected static final int NUM_MODELS = 1 << 0;
 	protected static final int REPS = 20;
 	private static Index index;
+	private Resource cont;
 
 	public Options getOptions() {
 		return new Options("C:/tmp/", Options.DISABLED, Options.DISABLED);
@@ -59,6 +60,7 @@ public class NavigationTest extends Assert {
 
 		index = new PageableIndexImpl(getOptions());
 
+		System.out.println("indexing " + NUM_MODELS + " times ecore");
 		final Resource r = this.getEcoreCopy();
 		long begin = System.currentTimeMillis();
 		index.executeUpdateCommand(new UpdateCommand() {
@@ -70,7 +72,7 @@ public class NavigationTest extends Assert {
 					URI resourceURI = URI.createURI(Integer.toHexString(i) + ".ecore");
 					r.setURI(resourceURI);
 					ourResourceIndexer.resourceChanged(updater, r);
-					// System.out.println(i);
+					System.out.println(i);
 				}
 
 			}
@@ -105,6 +107,7 @@ public class NavigationTest extends Assert {
 		ecoreResource.getContents().add(EcorePackage.eINSTANCE);
 		copy.unload();
 		copy.load(null);
+		this.cont = copy;
 		Resource result = new XMIResourceImpl();
 		result.getContents().addAll(copy.getContents());
 		copy.delete(null);
