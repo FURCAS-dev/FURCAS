@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.impl;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -423,16 +424,20 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 					protected Iterator<ReferenceDescriptorImpl> getNextIterator() {
 						while (scopeIterator != null && scopeIterator.hasNext()) {
 							next = scopeIterator.next();
-							if (refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next)) {
-								PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
-								// is
-								// identical
-								// key
-								Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
-										.getSourceFragment());
-								resourceTable.release(resDesc);
-								if (candidates != null) {
-									return candidates.iterator();
+							if (refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) {
+								if (next.isIntraLink()) {
+									return Arrays.asList((ReferenceDescriptorImpl)next).iterator();
+								} else {
+									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
+									// is
+									// identical
+									// key
+									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
+											.getSourceFragment());
+									resourceTable.release(resDesc);
+									if (candidates != null) {
+										return candidates.iterator();
+									}
 								}
 							}
 						}
