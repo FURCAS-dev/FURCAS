@@ -531,6 +531,9 @@ public class SerializationStrategyFactory {
 
 		private SingleMap<String, EObjectDescriptorImpl> eObjectMap;
 
+		private static final byte INTRA = 0;
+		private static final byte CROSS = 1;
+
 		private OutgoingLinkMapStrategy(Channel _channel, SingleMap<URI, PageableResourceDescriptorImpl> resDesc,
 				SingleMap<String, EObjectDescriptorImpl> eObjMap) {
 			super(_channel);
@@ -541,11 +544,27 @@ public class SerializationStrategyFactory {
 		@Override
 		public ReferenceDescriptorImpl readElement(String key) {
 			String typeURI = channel.getString().intern();
-			URI tarRes = URI.createURI(channel.getString());
-			String fragment = channel.getString();
+			byte kind = channel.getByte();
+			
+			URI tarRes;
+			String fragment;
+			
+			switch (kind) {
+			case INTRA:
+				EObjectDescriptorImpl target = eObjectMap.get(channel.getInt());
+				tarRes = target.getResourceURI();
+				fragment = target.getFragment();
+				break;
+			case CROSS:
+				tarRes = URI.createURI(channel.getString());
+				fragment = channel.getString();
+				// FIXME expensive resolving?
+				tarRes = this.resourceMap.getEqual(tarRes).getURI();
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown link kind "+kind);
+			}
 
-			// FIXME expensive resolving
-			tarRes = this.resourceMap.getEqual(tarRes).getURI();
 			return new ReferenceDescriptorImpl(eObjectMap.get(key), typeURI, tarRes, fragment);
 		}
 
@@ -557,8 +576,14 @@ public class SerializationStrategyFactory {
 		@Override
 		public void writeElement(ReferenceDescriptorImpl element) {
 			channel.putString(element.getEReferenceURI().toString());
-			channel.putString(element.getTargetResourceURI().toString());
-			channel.putString(element.getTargetFragment());
+			if (element.isIntraLink()) {
+				channel.putByte(INTRA);
+				channel.putInt(eObjectMap.getPosition(element.getTargetFragment()));
+			} else {
+				channel.putByte(CROSS);
+				channel.putString(element.getTargetResourceURI().toString());
+				channel.putString(element.getTargetFragment());
+			}
 		}
 
 		@Override
