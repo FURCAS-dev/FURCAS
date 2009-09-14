@@ -31,7 +31,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
       <import plugin="org.junit" version="3.8.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.ocl" version="1.1.100" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ocl.ecore" version="1.3.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ocl.uml" version="2.0.0" match="greaterOrEqual"/>
    </requires>
@@ -48,13 +47,6 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          fragment="true"/>
-
-   <plugin
-         id="org.eclipse.emf.ocl.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.eclipse.ocl.ecore.tests"
