@@ -34,8 +34,4 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.ocl.uml"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.emf.ocl"
-         version="0.0.0"/>
-
 </feature>
