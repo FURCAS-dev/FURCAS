@@ -22,17 +22,17 @@ import org.eclipse.emf.query.index.query.QueryResult;
  */
 public class QueryResultImpl<ExtDescriptorType, IntDescriptorType> implements QueryResult<ExtDescriptorType> {
 
-	private final Iterable<IntDescriptorType> descIt;
+	private final Iterable<? extends IntDescriptorType> descIt;
 	private final QueryExecutorInternal queryExecutor;
 
-	QueryResultImpl(QueryExecutorInternal queryExecutor, Iterable<IntDescriptorType> it) {
+	QueryResultImpl(QueryExecutorInternal queryExecutor, Iterable<? extends IntDescriptorType> it) {
 		this.queryExecutor = queryExecutor;
 		this.descIt = it;
 	}
 
 	@Override
 	public Iterator<ExtDescriptorType> iterator() {
-		final Iterator<IntDescriptorType> it = descIt.iterator();
+		final Iterator<? extends IntDescriptorType> it = descIt.iterator();
 		return new Iterator<ExtDescriptorType>() {
 
 			@Override

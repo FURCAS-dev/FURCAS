@@ -28,6 +28,6 @@ public interface QueryInternal<T, DescriptorType> extends Query<T, DescriptorTyp
 
 	QueryResult<T> execute(QueryExecutorInternal queryExecutor, GlobalTables globalTables);
 
-	QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<DescriptorType> result);
+	QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends DescriptorType> result);
 
 }

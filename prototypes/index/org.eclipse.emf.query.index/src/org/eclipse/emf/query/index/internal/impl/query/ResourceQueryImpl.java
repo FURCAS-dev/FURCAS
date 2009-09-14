@@ -22,6 +22,7 @@ import org.eclipse.emf.query.index.internal.QueryInternal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
 import org.eclipse.emf.query.index.internal.impl.PageableResourceDescriptorImpl;
 import org.eclipse.emf.query.index.internal.impl.PagingResourceDescriptorMap;
+import org.eclipse.emf.query.index.internal.util.FilteredIterable;
 import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
@@ -52,13 +53,21 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 
 	@Override
 	public QueryResult<T> execute(QueryExecutorInternal queryExecutor, GlobalTables globalTables) {
-		return this.createQueryResult(queryExecutor, this.getResourceScope(globalTables));
+		Iterable<PageableResourceDescriptorImpl> scope = this.getResourceScope(globalTables);
+		FilteredIterable<PageableResourceDescriptorImpl> iterable = new FilteredIterable<PageableResourceDescriptorImpl>(scope) {
+
+			@Override
+			protected boolean matches(PageableResourceDescriptorImpl e) {
+				return e.isIndexed();
+			}
+		};
+		return this.createQueryResult(queryExecutor, iterable);
 	}
 
 	// TODO return value should be String ?
 	// FIXME return real iterator
-	public Iterable<ResourceDescriptor> getResourceScope(final GlobalTables globalTables) {
-		List<ResourceDescriptor> ret = null;
+	public Iterable<PageableResourceDescriptorImpl> getResourceScope(final GlobalTables globalTables) {
+		List<PageableResourceDescriptorImpl> ret = null;
 		PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceMap = globalTables.resourceIndex;
 		if (uriPattern == null || this.isPattern(uriPattern)) {
 			for (URI next : resourceMap.getKeys()) {
@@ -66,7 +75,7 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 					PageableResourceDescriptorImpl match = resourceMap.acquire(next);
 					if (this.matches(match)) {
 						if (ret == null) {
-							ret = new ArrayList<ResourceDescriptor>();
+							ret = new ArrayList<PageableResourceDescriptorImpl>();
 						}
 						ret.add(match);
 					}
@@ -77,7 +86,7 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 			PageableResourceDescriptorImpl match = resourceMap.acquire(URI.createURI(uriPattern));
 			if (match != null) {
 				if (this.matches(match)) {
-					ret = Collections.<ResourceDescriptor> singletonList(match);
+					ret = Collections.<PageableResourceDescriptorImpl> singletonList(match);
 				}
 				resourceMap.release(match);
 			}
@@ -115,7 +124,7 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 	}
 
 	@Override
-	public QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<ResourceDescriptor> result) {
+	public QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends ResourceDescriptor> result) {
 		return new QueryResultImpl<T, ResourceDescriptor>(queryExecutor, result);
 	}
 

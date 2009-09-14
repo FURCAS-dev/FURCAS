@@ -57,7 +57,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 				while (resourceScope.hasNext()) {
 					Iterable<? extends EReferenceDescriptor> posRet = null;
 					PageableResourceDescriptorImpl resDesc = resourceMap.acquire(resourceScope.next());
-					if (resDesc.isIndexed()) {
+					if (resDesc.isIndexed() || direction == Direction.BACKWARD) {
 						posRet = resDesc.queryEReferenceDescriptor(EReferenceQueryImpl.this);
 					}
 					resourceMap.release(resDesc);
@@ -177,7 +177,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 	}
 
 	@Override
-	public QueryResult<RDType> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<EReferenceDescriptor> result) {
+	public QueryResult<RDType> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends EReferenceDescriptor> result) {
 		return new QueryResultImpl<RDType, EReferenceDescriptor>(queryExecutor, result);
 	}
 }

@@ -132,7 +132,7 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 	public Iterable<URI> getResourceScope(final GlobalTables globalTables) {
 		Collection<URI> ret = null;
 		if (this.resQuery != null) {
-			Iterable<ResourceDescriptor> executeListResult = resQuery.getResourceScope(globalTables);
+			Iterable<PageableResourceDescriptorImpl> executeListResult = resQuery.getResourceScope(globalTables);
 			Collection<URI> list = new ArrayList<URI>();
 			for (ResourceDescriptor r : executeListResult) {
 				list.add(r.getURI());
@@ -173,7 +173,7 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 	}
 
 	@Override
-	public QueryResult<EODType> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<EObjectDescriptor> result) {
+	public QueryResult<EODType> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends EObjectDescriptor> result) {
 		return new QueryResultImpl<EODType, EObjectDescriptor>(queryExecutor, result);
 	}
 }
