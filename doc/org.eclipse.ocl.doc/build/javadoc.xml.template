@@ -16,6 +16,7 @@
 	<property environment="env"/>
 	<property name="javaHome" value="${env.JAVA_HOME}"/>
 	
+	<!--
 	<property name="jdk.link.location" value="javadoc/jdk"/>
 	<available property="jdkJavadocExists" file="${jdk.link.location}/package-list"/>
 	
@@ -59,6 +60,8 @@
 	</target>
 
 	<target name="javadoc" depends="getPackageLists">
+	-->
+	<target name="javadoc">
 		<javadoc 
 			destdir="${destDir}" 
 			classpath="${classpath}"
