@@ -20,17 +20,11 @@ plugin@org.eclipse.ocl.ecore.tests=v200902132056,:pserver:anonymous@dev.eclipse.
 plugin@org.eclipse.ocl.uml=v200908161630,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml
 plugin@org.eclipse.ocl.uml.tests=v200902010223,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests
 
-feature@org.eclipse.emf.ocl.sdk=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.emf.ocl.sdk-feature
-feature@org.eclipse.emf.ocl=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.emf.ocl-feature
-feature@org.eclipse.emf.ocl.doc=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.emf.ocl.doc-feature
 feature@org.eclipse.emf.ocl.examples=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples-feature
 feature@org.eclipse.emf.ocl.tests=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.emf.ocl.tests-feature
 
-plugin@org.eclipse.emf.ocl=v200908161630,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.emf.ocl
-plugin@org.eclipse.emf.ocl.doc=v200906151230,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.emf.ocl.doc
 plugin@org.eclipse.emf.ocl.examples=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples
 plugin@org.eclipse.emf.ocl.examples.interpreter=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples.interpreter
-plugin@org.eclipse.emf.ocl.tests=v200901271800,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.emf.ocl.tests
 
 !*** Plugins, features and fragments for Eclipse Coordinated Releases
 
