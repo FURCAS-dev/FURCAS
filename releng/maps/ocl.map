@@ -10,7 +10,7 @@ fragment@org.eclipse.ant.optional.junit=v20070202,:pserver:anonymous@dev.eclipse
 feature@org.eclipse.ocl.master=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.master-feature
 
 feature@org.eclipse.ocl=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl-feature
-feature@org.eclipse.ocl.uml=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature
+feature@org.eclipse.ocl.uml=v200909171820,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature
 feature@org.eclipse.ocl.doc=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature
 
 plugin@org.eclipse.ocl=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
