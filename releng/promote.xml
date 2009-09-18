@@ -35,7 +35,7 @@
 			${writableBuildRoot}/${topprojectName}/${projectName}/downloads/drops/${version}/${buildType}${buildTimestamp} or
 			${writableBuildRoot}/${topprojectName}/${projectName}/${subprojectName}/downloads/drops/${version}/${buildType}${buildTimestamp}
 		-->
-		<property name="buildDir" value="${writableBuildRoot}/${buildType}${buildTimestamp}-m2m-qvtoml" />
+		<property name="buildDir" value="${writableBuildRoot}/${buildType}${buildTimestamp}-mdt-ocl" />
 
 		<!-- invoke common promotion script -->
 		<property name="relengCommonBuilderDir" value="${workspaceDir}/org.eclipse.dash.common.releng" />
