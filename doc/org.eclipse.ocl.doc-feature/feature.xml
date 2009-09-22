@@ -6,7 +6,7 @@
       provider-name="%providerName"
       image="modeling32.png">
 
-   <description url="http://www.eclipse.org/modeling/mdt/">
+   <description url="http://www.eclipse.org/modeling/mdt/ocl/3_0">
       %description
    </description>
 
@@ -23,8 +23,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/updates/"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/"/>
    </url>
 
    <requires>
