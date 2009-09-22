@@ -9,9 +9,9 @@ fragment@org.eclipse.ant.optional.junit=v20070202,:pserver:anonymous@dev.eclipse
 
 feature@org.eclipse.ocl.master=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.master-feature
 
-feature@org.eclipse.ocl=v200909171820,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl-feature
-feature@org.eclipse.ocl.uml=v200909171820,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature
-feature@org.eclipse.ocl.doc=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature
+feature@org.eclipse.ocl=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl-feature
+feature@org.eclipse.ocl.uml=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature
+feature@org.eclipse.ocl.doc=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature
 
 plugin@org.eclipse.ocl=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
 plugin@org.eclipse.ocl.doc=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
@@ -20,16 +20,16 @@ plugin@org.eclipse.ocl.ecore.tests=v200909171740,:pserver:anonymous@dev.eclipse.
 plugin@org.eclipse.ocl.uml=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml
 plugin@org.eclipse.ocl.uml.tests=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests
 
-feature@org.eclipse.emf.ocl.examples=v200909171820,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples-feature
-feature@org.eclipse.emf.ocl.tests=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.emf.ocl.tests-feature
+feature@org.eclipse.emf.ocl.examples=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples-feature
+feature@org.eclipse.emf.ocl.tests=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.emf.ocl.tests-feature
 
 plugin@org.eclipse.emf.ocl.examples=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples
 plugin@org.eclipse.emf.ocl.examples.interpreter=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples.interpreter
 
 !*** Plugins, features and fragments for Eclipse Coordinated Releases
 
-feature@org.eclipse.ocl.all=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all-feature
-feature@org.eclipse.ocl.all.sdk=v200909171740,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all.sdk-feature
+feature@org.eclipse.ocl.all=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all-feature
+feature@org.eclipse.ocl.all.sdk=v200909230240,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all.sdk-feature
 
 !*** EMF Examples plugins
 plugin@org.eclipse.emf.examples.library=R2_3_1RC,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library
