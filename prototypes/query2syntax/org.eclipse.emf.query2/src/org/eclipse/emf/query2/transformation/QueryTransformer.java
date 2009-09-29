@@ -21,16 +21,23 @@ import org.eclipse.emf.query2.SelectEntry;
 import org.eclipse.emf.query2.TypeScopeProvider;
 import org.eclipse.emf.query2.WhereBool;
 import org.eclipse.emf.query2.WhereClause;
+import org.eclipse.emf.query2.WhereComparisonAttrs;
+import org.eclipse.emf.query2.WhereDouble;
 import org.eclipse.emf.query2.WhereEntry;
+import org.eclipse.emf.query2.WhereLong;
 import org.eclipse.emf.query2.WhereString;
 import org.eclipse.emf.query2.query.AndWhereEntry;
 import org.eclipse.emf.query2.query.AttributeWhereEntry;
 import org.eclipse.emf.query2.query.BooleanAttributeWhereEntry;
+import org.eclipse.emf.query2.query.DoubleWhereEntry;
 import org.eclipse.emf.query2.query.ElementScope;
+import org.eclipse.emf.query2.query.LongWhereEntry;
 import org.eclipse.emf.query2.query.MQLquery;
+import org.eclipse.emf.query2.query.NumericOperator;
 import org.eclipse.emf.query2.query.ResourceScope;
 import org.eclipse.emf.query2.query.StringAttributeWhereEntry;
 import org.eclipse.emf.query2.query.StringOperator;
+import org.eclipse.emf.query2.query.VariableWhereEntry;
 import org.eclipse.emf.query2.query.util.QuerySwitch;
 
 public class QueryTransformer {
@@ -131,6 +138,43 @@ public class QueryTransformer {
 		public List<WhereEntry> caseStringAttributeWhereEntry(StringAttributeWhereEntry object) {
 			return createWhereEntry(object, new WhereString(object.getAttribute().getName(), getOperation(object.getOperator()), object
 					.getPattern()));
+		}
+
+		@Override
+		public List<WhereEntry> caseLongWhereEntry(LongWhereEntry object) {
+			return createWhereEntry(object, new WhereLong(object.getAttribute().getName(), getOperation(object.getOperator()), object
+					.getValue()));
+		}
+
+		@Override
+		public List<WhereEntry> caseDoubleWhereEntry(DoubleWhereEntry object) {
+			return createWhereEntry(object, new WhereDouble(object.getAttribute().getName(), getOperation(object.getOperator()), object
+					.getValue()));
+		}
+
+		@Override
+		public List<WhereEntry> caseVariableWhereEntry(VariableWhereEntry object) {
+			return Collections
+					.<WhereEntry> singletonList(new WhereComparisonAttrs(object.getAlias().getAlias(), object.getAttribute().getName(),
+							getOperation(object.getOperator()), object.getRightAlias().getAlias(), object.getRightAttribute().getName()));
+		}
+
+		private Operation getOperation(NumericOperator operator) {
+			switch (operator) {
+			case EQUAL:
+				return Operation.EQUAL;
+			case GREATER_EQUAL:
+				return Operation.GREATEREQUAL;
+			case GREATER_THEN:
+				return Operation.GREATER;
+			case LESS_EQUAL:
+				return Operation.SMALLEREQUAL;
+			case LESS_THEN:
+				return Operation.SMALLER;
+			case NOT_EQUAL:
+				return Operation.NOTEQUAL;
+			}
+			throw new IllegalArgumentException("unexpected operator: " + operator.toString());
 		}
 
 		private List<WhereEntry> createWhereEntry(AttributeWhereEntry object, WhereClause whereClause) {
