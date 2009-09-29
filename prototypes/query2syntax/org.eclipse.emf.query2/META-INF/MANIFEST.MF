@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.emf.query2
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0
-Bundle-SymbolicName: org.eclipse.emf.query2; singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.query2.syntax;singleton:=true
 Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -19,13 +19,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.emf.query2;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.query2,
- org.eclipse.emf.query2.services,
+ org.eclipse.emf.query2.parseTreeConstruction,
+ org.eclipse.emf.query2.parser.antlr,
  org.eclipse.emf.query2.query,
  org.eclipse.emf.query2.query.impl,
  org.eclipse.emf.query2.query.util,
- org.eclipse.emf.query2.parseTreeConstruction,
- org.eclipse.emf.query2.parser.antlr,
+ org.eclipse.emf.query2.services,
+ org.eclipse.emf.query2.transformation,
  org.eclipse.emf.query2.validation

@@ -9,7 +9,7 @@ import org.eclipse.xtext.conversion.IValueConverterService;
  * Use this class to register components to be used within the IDE.
  */
 public class QueryRuntimeModule extends org.eclipse.emf.query2.AbstractQueryRuntimeModule {
-	
+
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return QueryTypeConverter.class;

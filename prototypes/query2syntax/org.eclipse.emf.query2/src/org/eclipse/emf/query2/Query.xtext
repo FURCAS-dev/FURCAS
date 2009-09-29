@@ -6,14 +6,19 @@ generate query "http://www.eclipse.org/emf/query2/Query"
 
 Model:
 	(imports+=Import)*
-	query=MQLquery
+	(defaultQuery=MQLquery)?
+	(namedQueries+=NamedQuery)*
 ;
 
 Import :
 	'import' importURI=STRING;
 
+NamedQuery:
+	name=ID ":" query=MQLquery
+;
+
 MQLquery :
-	"select" selectEntries+=SelectEntry ("," selectEntries+=SelectEntry)* "from" fromEntries+=FromEntry ("," fromEntries+=FromEntry)* ("where" (whereEntries+=WhereEntry)+)?
+	"select" selectEntries+=SelectEntry ("," selectEntries+=SelectEntry)* "from" fromEntries+=FromEntry ("," fromEntries+=FromEntry)* ("where" whereEntry=WhereEntry)?
 ;
 
 
@@ -27,19 +32,15 @@ FromEntry:
 ;
 
 ScopeClause:
-	(notIn?="not")? "in" scope=Scope
-;
-
-Scope:
 	ResourceScope | ElementScope
 ;
 
 ResourceScope:
-	"resources" "{" uris+=STRING ("," uris+=STRING)* "}"
+	(notIn?="not")? "in" "resources" "{" uris+=STRING ("," uris+=STRING)* "}"
 ;
 
 ElementScope:
-	"elements" "{" uris+=STRING ("," uris+=STRING)* "}"
+	(notIn?="not")? "in" "elements" "{" uris+=STRING ("," uris+=STRING)* "}"
 ;
 
 WhereEntry returns WhereEntry:
