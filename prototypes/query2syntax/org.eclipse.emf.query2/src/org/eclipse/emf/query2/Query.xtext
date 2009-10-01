@@ -21,8 +21,6 @@ MQLquery :
 	"select" selectEntries+=SelectEntry ("," selectEntries+=SelectEntry)* "from" fromEntries+=FromEntry ("," fromEntries+=FromEntry)* ("where" whereEntry=WhereEntry)?
 ;
 
-
-
 SelectEntry:
 	select=[FromEntry] ("." attribute=[ecore::EAttribute])?
 ; 
@@ -55,7 +53,7 @@ AndWhereEntry returns WhereEntry:
 ;
 
 ConcreteWhereEntry returns WhereEntry:
-	ParWhereEntry | AttributeWhereEntry | NullWhereEntry | ReferenceAliasWhereEntry | AliasWhereEntry | SubselectWhereEntry
+	ParWhereEntry | AttributeWhereEntry | ReferenceWhereEntry | AliasWhereEntry | NullWhereEntry
 ;
 
 ParWhereEntry  returns WhereEntry:
@@ -100,6 +98,10 @@ BooleanAttributeWhereEntry:
 
 enum BooleanOperator:
 	equal="=" | notEqual="!="
+;
+
+ReferenceWhereEntry:
+	ReferenceAliasWhereEntry | SubselectWhereEntry
 ;
 
 NullWhereEntry:

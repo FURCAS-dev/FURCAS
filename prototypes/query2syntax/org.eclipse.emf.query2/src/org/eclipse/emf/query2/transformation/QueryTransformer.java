@@ -29,10 +29,12 @@ import org.eclipse.emf.query2.WhereString;
 import org.eclipse.emf.query2.query.AndWhereEntry;
 import org.eclipse.emf.query2.query.AttributeWhereEntry;
 import org.eclipse.emf.query2.query.BooleanAttributeWhereEntry;
+import org.eclipse.emf.query2.query.BooleanOperator;
 import org.eclipse.emf.query2.query.DoubleWhereEntry;
 import org.eclipse.emf.query2.query.ElementScope;
 import org.eclipse.emf.query2.query.LongWhereEntry;
 import org.eclipse.emf.query2.query.MQLquery;
+import org.eclipse.emf.query2.query.NullWhereEntry;
 import org.eclipse.emf.query2.query.NumericOperator;
 import org.eclipse.emf.query2.query.ResourceScope;
 import org.eclipse.emf.query2.query.StringAttributeWhereEntry;
@@ -157,6 +159,22 @@ public class QueryTransformer {
 			return Collections
 					.<WhereEntry> singletonList(new WhereComparisonAttrs(object.getAlias().getAlias(), object.getAttribute().getName(),
 							getOperation(object.getOperator()), object.getRightAlias().getAlias(), object.getRightAttribute().getName()));
+		}
+
+		@Override
+		public List<WhereEntry> caseNullWhereEntry(NullWhereEntry object) {
+			return Collections.<WhereEntry> singletonList(new LocalWhereEntry(object.getAlias().getAlias(), new WhereString(object
+					.getFeature().getName(), getOperation(object.getOperator()), null)));
+		}
+
+		private Operation getOperation(BooleanOperator operator) {
+			switch (operator) {
+			case EQUAL:
+				return Operation.EQUAL;
+			case NOT_EQUAL:
+				return Operation.NOTEQUAL;
+			}
+			throw new IllegalArgumentException("unexpected operator: " + operator.toString());
 		}
 
 		private Operation getOperation(NumericOperator operator) {
