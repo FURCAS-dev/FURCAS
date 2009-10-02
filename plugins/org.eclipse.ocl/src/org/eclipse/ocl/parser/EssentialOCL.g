@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.10 2009/09/04 13:40:43 ewillink Exp $
+-- * $Id: EssentialOCL.g,v 1.11 2009/10/02 20:55:21 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -183,7 +183,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -193,12 +193,12 @@ $Notice
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
  *   E.D.Willink - Remove unnecessary warning suppression
- *   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
+ *   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993, 288040
  *   Borland - Bug 242880
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.10 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: EssentialOCL.g,v 1.11 2009/10/02 20:55:21 ewillink Exp $
  */
 	./
 $End
@@ -544,86 +544,44 @@ $Rules
 	oclExpressionCS -> impliesExpCS
 	oclExpressionCS -> impliesWithLet
 	
-	impliesExpCS -> andOrXorExpCS
-	impliesWithLet -> andOrXorWithLet
-	impliesExpCS ::= impliesExpCS implies andOrXorExpCS
+	impliesExpCS -> xorExpCS
+	impliesWithLet -> xorWithLet
+	impliesExpCS ::= impliesExpCS implies xorExpCS
 		/.$NewCase./
-	impliesWithLet ::= impliesExpCS implies andOrXorWithLet
+	impliesWithLet ::= impliesExpCS implies xorWithLet
 		/.$NewCase./
 
-	andOrXorExpCS -> equalityExpCS
-	andOrXorWithLet -> equalityWithLet
-	andOrXorExpCS ::= andOrXorExpCS and equalityExpCS
+	xorExpCS -> orExpCS
+	xorWithLet -> orWithLet
+	xorExpCS ::= xorExpCS xor orExpCS
 		/.$NewCase./
-	andOrXorExpCS ::= andOrXorExpCS or equalityExpCS
+	xorWithLet ::= xorExpCS xor orWithLet
 		/.$NewCase./
-	andOrXorExpCS ::= andOrXorExpCS xor equalityExpCS
+
+	orExpCS -> andExpCS
+	orWithLet -> andWithLet
+	orExpCS ::= orExpCS or andExpCS
 		/.$NewCase./
-	andOrXorWithLet ::= andOrXorExpCS and equalityWithLet
+	orWithLet ::= orExpCS or andWithLet
 		/.$NewCase./
-	andOrXorWithLet ::= andOrXorExpCS or equalityWithLet
+
+	andExpCS -> equalityExpCS
+	andWithLet -> equalityWithLet
+	andExpCS ::= andExpCS and equalityExpCS
 		/.$NewCase./
-	andOrXorWithLet ::= andOrXorExpCS xor equalityWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								getTokenText($getToken(2))
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+	andWithLet ::= andExpCS and equalityWithLet
+		/.$NewCase./
 
 	equalityExpCS -> relationalExpCS
 	equalityWithLet -> relationalWithLet
 	equalityExpCS ::= equalityExpCS '=' relationalExpCS
 		/.$NewCase./
 	equalityWithLet ::= equalityExpCS '=' relationalWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.EQUAL)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	equalityExpCS ::= equalityExpCS '<>' relationalExpCS
 		/.$NewCase./
 	equalityWithLet ::= equalityExpCS '<>' relationalWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.NOT_EQUAL)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	
 	relationalExpCS -> ifExpCSPrec
 	-- Note that ifExp already embeds let, so we needn't deal with it here
@@ -631,83 +589,19 @@ $Rules
 	relationalExpCS ::= relationalExpCS '>' ifExpCSPrec
 		/.$NewCase./
 	relationalWithLet ::= relationalExpCS '>' additiveWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.GREATER_THAN)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	relationalExpCS ::= relationalExpCS '<' ifExpCSPrec
 		/.$NewCase./
 	relationalWithLet ::= relationalExpCS '<' additiveWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.LESS_THAN)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	relationalExpCS ::= relationalExpCS '>=' ifExpCSPrec
 		/.$NewCase./
 	relationalWithLet ::= relationalExpCS '>=' additiveWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.GREATER_THAN_EQUAL)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	relationalExpCS ::= relationalExpCS '<=' ifExpCSPrec
 		/.$NewCase./
 	relationalWithLet ::= relationalExpCS '<=' additiveWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.LESS_THAN_EQUAL)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	
 	ifExpCSPrec -> additiveExpCS
 	ifExpCSPrec -> ifExpCS
@@ -717,73 +611,25 @@ $Rules
 	additiveExpCS ::= additiveExpCS '+' multiplicativeExpCS
 		/.$NewCase./
 	additiveWithLet ::= additiveExpCS '+' multiplicativeWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.PLUS)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	additiveExpCS ::= additiveExpCS '-' multiplicativeExpCS
 		/.$NewCase./
 	additiveWithLet ::= additiveExpCS '-' multiplicativeWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.MINUS)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	
 	multiplicativeExpCS -> unaryExpCS
 	multiplicativeWithLet -> unaryWithLet
 	multiplicativeExpCS ::= multiplicativeExpCS '*' unaryExpCS
 		/.$NewCase./
 	multiplicativeWithLet ::= multiplicativeExpCS '*' unaryWithLet
-		/.$BeginJava
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.TIMES)
-							);
-					setOffsets(simpleNameCS, getIToken($getToken(2)));
-					EList args = new BasicEList();
-					args.add($getSym(3));
-					CSTNode result = createOperationCallExpCS(
-							(OCLExpressionCS)$getSym(1),
-							simpleNameCS,
-							args
-						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
+		/.$NewCase./
 	multiplicativeExpCS ::= multiplicativeExpCS '/' unaryExpCS
 		/.$NewCase./
 	multiplicativeWithLet ::= multiplicativeExpCS '/' unaryWithLet
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = createSimpleNameCS(
 								SimpleTypeEnum.STRING_LITERAL,
-								OCLStandardLibraryUtil.getOperationName(PredefinedType.DIVIDE)
+								getTokenText($getToken(2))
 							);
 					setOffsets(simpleNameCS, getIToken($getToken(2)));
 					EList args = new BasicEList();
