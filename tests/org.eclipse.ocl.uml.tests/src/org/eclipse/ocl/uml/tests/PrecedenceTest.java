@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 248869
+ *   E.D.Willink - Bug 288040 xor/or/and
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.5 2008/09/28 17:32:44 cdamus Exp $
+ * $Id: PrecedenceTest.java,v 1.6 2009/10/02 20:43:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,10 +25,15 @@ import junit.framework.TestSuite;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.expressions.LetExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Operation;
@@ -173,6 +179,40 @@ public class PrecedenceTest
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }
+    }
+        
+    public void test_or_and_precedence() throws ParserException {
+        helper.setContext(class1);
+		assertTrue(check(helper, class1, "((true or false) and false) = false")); //$NON-NLS-1$
+//1.x		assertTrue(check(helper, class1, "(true or false and false) = false")); //$NON-NLS-1$
+		helper.createInvariant("(true or false and false) = true"); //$NON-NLS-1$
+		try {
+			OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
+			fail("Expected warning not found"); //$NON-NLS-1$
+		} catch (SemanticException e) {
+			System.out.println("Got expected warning: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			assertEquals(OCLMessages.XorOrAndPrecedence_WARNING, e.getMessage());
+		}
+		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, false);
+		helper.createInvariant("(true or false and false) = true"); //$NON-NLS-1$
+		OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
+    }
+    
+    public void test_xor_or_precedence() throws ParserException {
+        helper.setContext(class1);
+		assertTrue(check(helper, class1, "((true xor false) or true) = true")); //$NON-NLS-1$
+//1.x		assertTrue(check(helper, class1, "(true xor false or true) = true")); //$NON-NLS-1$
+		helper.createInvariant("(true xor false or true) = false"); //$NON-NLS-1$
+		try {
+			OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
+			fail("Expected warning not found"); //$NON-NLS-1$
+		} catch (SemanticException e) {
+			System.out.println("Got expected warning: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			assertEquals(OCLMessages.XorOrAndPrecedence_WARNING, e.getMessage());
+		}
+		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, false);
+		helper.createInvariant("(true xor false or true) = false"); //$NON-NLS-1$
+		OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
     }
     
     //
