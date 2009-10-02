@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.30 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.31 2009/10/02 20:56:51 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -4009,6 +4009,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			OperationCallExpCS operationCallExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 
+		if (ParsingOptions.getValue(env, ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE)) {
+			checkForXorOrAndPrecedenceHazard(operationCallExpCS);
+		}
+
 		OperationCallExp<C, O> astNode = null;
 
 		List<OCLExpression<C>> args = new java.util.ArrayList<OCLExpression<C>>();
@@ -4167,6 +4171,28 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		return result;
+	}
+
+	private void checkForXorOrAndPrecedenceHazard(OperationCallExpCS operationCallExpCS) {
+		String parentOperationName = operationCallExpCS.getSimpleNameCS().getValue();
+		if ("xor".equals(parentOperationName)) { //$NON-NLS-1$
+			OCLExpressionCS childExpression = operationCallExpCS.getArguments().get(0);
+			if (childExpression instanceof OperationCallExpCS) {
+				String childOperationName = ((OperationCallExpCS)childExpression).getSimpleNameCS().getValue();
+				if ("or".equals(childOperationName) || "and".equals(childOperationName)) { //$NON-NLS-1$ //$NON-NLS-2$
+					getEnvironment().analyzerWarning(OCLMessages.XorOrAndPrecedence_WARNING, "operationCallExpCS", operationCallExpCS); //$NON-NLS-1$
+				}
+			}
+		}
+		else if ("or".equals(parentOperationName)) { //$NON-NLS-1$
+			OCLExpressionCS childExpression = operationCallExpCS.getArguments().get(0);
+			if (childExpression instanceof OperationCallExpCS) {
+				String childOperationName = ((OperationCallExpCS)childExpression).getSimpleNameCS().getValue();
+				if ("and".equals(childOperationName)) { //$NON-NLS-1$
+					getEnvironment().analyzerWarning(OCLMessages.XorOrAndPrecedence_WARNING, "operationCallExpCS", operationCallExpCS); //$NON-NLS-1$
+				}
+			}
+		}
 	}
 
 	/**
