@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.8 2009/01/31 19:47:15 cdamus Exp $
+ * $Id: OCLUtil.java,v 1.9 2009/10/02 20:55:46 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -343,6 +343,64 @@ public final class OCLUtil {
 			result = ((OCLProblemHandler) problemHandler).getDiagnostic();
 			
 			if ((result != null) && (result.getSeverity() >= Diagnostic.ERROR)) {
+				List<?> data = result.getData();
+				
+				if (data.contains(ProblemHandler.Phase.LEXER)
+						|| data.contains(ProblemHandler.Phase.PARSER)) {
+					throw new SyntaxException(result);
+				} else {
+					throw new SemanticException(result);
+				}
+			}
+		}
+		
+		return result;
+	}
+    
+    /**
+	 * Checks whether the specified environment's problem handler has any
+	 * diagnostics of warnings severity or worse and, if so, throws a semantic
+	 * exception encapsulating these diagnostics.
+	 * 
+	 * @param env an environment in which we have parsed some OCL
+	 * 
+	 * @throws SyntaxException if there are any errors in parsing the concrete
+	 *    syntax
+	 * @throws SemanticException if there are any errors in analyzing the
+	 *    abstract syntax 
+	 * 
+	 * @see #checkForErrors(ProblemHandler)
+     * @since 3.0
+	 */
+	public static Diagnostic checkForErrorsOrWarnings(
+			Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env)
+			throws SyntaxException, SemanticException {
+		
+		return checkForErrorsOrWarnings(getAdapter(env, ProblemHandler.class));
+	}
+
+	/**
+	 * Checks whether the specified problem handler has any
+	 * diagnostics of warning severity or worse and, if so, throws a semantic
+	 * exception encapsulating these diagnostics.
+	 * 
+	 * @param problemHandler a problem handler
+	 * 
+	 * @throws SyntaxException if there are any errors in parsing the concrete
+	 *    syntax
+	 * @throws SemanticException if there are any errors in analyzing the
+	 *    abstract syntax 
+	 * @since 3.0
+	 */
+	public static Diagnostic checkForErrorsOrWarnings(ProblemHandler problemHandler)
+			throws SyntaxException, SemanticException {
+		
+		Diagnostic result = null;
+		
+		if (problemHandler instanceof OCLProblemHandler) {
+			result = ((OCLProblemHandler) problemHandler).getDiagnostic();
+			
+			if ((result != null) && (result.getSeverity() >= Diagnostic.WARNING)) {
 				List<?> data = result.getData();
 				
 				if (data.contains(ProblemHandler.Phase.LEXER)
