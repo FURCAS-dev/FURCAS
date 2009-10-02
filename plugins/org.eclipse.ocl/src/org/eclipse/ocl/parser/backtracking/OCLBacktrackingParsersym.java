@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
+* Copyright (c) 2005, 2009 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -11,12 +11,12 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Elimination of some shift-reduce conflicts
 *   E.D.Willink - Remove unnecessary warning suppression
-*   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993
+*   E.D.Willink - Bugs 225493, 243976, 259818, 282882, 287993, 288040
 *   Borland - Bug 242880
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.6 2009/09/04 13:40:43 ewillink Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.7 2009/10/02 20:56:08 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -38,14 +38,14 @@ public interface OCLBacktrackingParsersym {
       TK_REAL_LITERAL = 64,
       TK_PLUS = 28,
       TK_MINUS = 29,
-      TK_MULTIPLY = 19,
-      TK_DIVIDE = 20,
-      TK_GREATER = 21,
-      TK_LESS = 22,
+      TK_MULTIPLY = 18,
+      TK_DIVIDE = 19,
+      TK_GREATER = 20,
+      TK_LESS = 21,
       TK_EQUAL = 5,
-      TK_GREATER_EQUAL = 23,
-      TK_LESS_EQUAL = 24,
-      TK_NOT_EQUAL = 7,
+      TK_GREATER_EQUAL = 22,
+      TK_LESS_EQUAL = 23,
+      TK_NOT_EQUAL = 24,
       TK_LPAREN = 2,
       TK_RPAREN = 3,
       TK_LBRACE = 94,
@@ -86,8 +86,8 @@ public interface OCLBacktrackingParsersym {
       TK_true = 65,
       TK_false = 66,
       TK_body = 6,
-      TK_derive = 8,
-      TK_init = 9,
+      TK_derive = 7,
+      TK_init = 8,
       TK_null = 38,
       TK_invalid = 67,
       TK_attr = 99,
@@ -118,16 +118,16 @@ public interface OCLBacktrackingParsersym {
       TK_oclIsInvalid = 59,
       TK_oclIsInState = 60,
       TK_allInstances = 51,
-      TK_String = 10,
-      TK_Integer = 11,
-      TK_UnlimitedNatural = 12,
-      TK_Real = 13,
-      TK_Boolean = 14,
+      TK_String = 9,
+      TK_Integer = 10,
+      TK_UnlimitedNatural = 11,
+      TK_Real = 12,
+      TK_Boolean = 13,
       TK_Tuple = 52,
-      TK_OclAny = 15,
-      TK_OclVoid = 16,
-      TK_OclInvalid = 17,
-      TK_OclMessage = 18,
+      TK_OclAny = 14,
+      TK_OclVoid = 15,
+      TK_OclInvalid = 16,
+      TK_OclMessage = 17,
       TK_EOF_TOKEN = 79,
       TK_IDENTIFIER = 4,
       TK_INTEGER_RANGE_START = 98,
@@ -143,7 +143,6 @@ public interface OCLBacktrackingParsersym {
                  "IDENTIFIER",
                  "EQUAL",
                  "body",
-                 "NOT_EQUAL",
                  "derive",
                  "init",
                  "String",
@@ -161,6 +160,7 @@ public interface OCLBacktrackingParsersym {
                  "LESS",
                  "GREATER_EQUAL",
                  "LESS_EQUAL",
+                 "NOT_EQUAL",
                  "and",
                  "or",
                  "xor",

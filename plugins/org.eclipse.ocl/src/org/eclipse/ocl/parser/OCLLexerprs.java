@@ -1,7 +1,7 @@
 /**
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
+* Copyright (c) 2005, 2009 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexerprs.java,v 1.7 2009/09/04 13:40:43 ewillink Exp $
+* $Id: OCLLexerprs.java,v 1.8 2009/10/02 20:56:30 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
