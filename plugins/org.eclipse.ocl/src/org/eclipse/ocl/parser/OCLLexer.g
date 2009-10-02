@@ -1,20 +1,18 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp., and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
 -- * http://www.eclipse.org/legal/epl-v10.html
 -- *
 -- * Contributors:
--- *   IBM - Initial API and implementation
--- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
--- *   Borland - Bug 242880
+-- *   See (or edit) Notice Declaration below
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.3 2009/08/28 20:43:11 ewillink Exp $
+-- * $Id: OCLLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
 -- */
 --
 -- The OCL Lexer
@@ -54,7 +52,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Borland Software Corp.,  and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -67,7 +65,7 @@ $Notice
  $copyright_contributions
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.3 2009/08/28 20:43:11 ewillink Exp $
+ * $Id: OCLLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
  */
 	./
 $End

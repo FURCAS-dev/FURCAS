@@ -1,20 +1,18 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2005, 2007 IBM Corporation and others.
+-- * Copyright (c) 2005, 2009 IBM Corporation and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
 -- * http://www.eclipse.org/legal/epl-v10.html
 -- *
 -- * Contributors:
--- *   IBM - Initial API and implementation
--- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
--- *   E.D.Willink - Bug 285633 static definitions
+-- *   See (or edit) Notice Declaration below
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.3 2009/09/04 08:27:07 ewillink Exp $
+-- * $Id: OCLKWLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
 -- */
 --
 -- The OCL KeyWord Lexer
@@ -43,7 +41,7 @@ $Notice
 	/./**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -55,7 +53,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: OCLKWLexer.g,v 1.3 2009/09/04 08:27:07 ewillink Exp $
+ * $Id: OCLKWLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
  */
 	./
 $End
