@@ -652,6 +652,11 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-Vf8fEduhWtVvKtiQ7w" name="OperationCallExpCS">
         <generalization xmi:id="_qdx-Vv8fEduhWtVvKtiQ7w" general="_qdx-Sv8fEduhWtVvKtiQ7w"/>
+        <ownedAttribute xmi:id="_306UMJXiEd6Wx-S3aeq4Aw" name="isAtomic" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBooleanObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_306UMZXiEd6Wx-S3aeq4Aw"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_8lGFsJXiEd6Wx-S3aeq4Aw" value="false"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-V_8fEduhWtVvKtiQ7w" name="StateExpCS">
         <generalization xmi:id="_qdx-WP8fEduhWtVvKtiQ7w" general="_qdx8xP8fEduhWtVvKtiQ7w"/>

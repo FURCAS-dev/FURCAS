@@ -289,7 +289,9 @@
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/FeatureCallExpCS/isMarkedPreCS"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationCallExpCS"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/OperationCallExpCS">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLCST.ecore#//cst/OperationCallExpCS/isAtomic"/>
+      </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLCST.ecore#//cst/StateExpCS">
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCLCST.ecore#//cst/StateExpCS/simpleNames"/>

@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.11 2009/10/02 20:55:21 ewillink Exp $
+-- * $Id: EssentialOCL.g,v 1.12 2009/10/04 11:15:51 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -198,7 +198,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.11 2009/10/02 20:55:21 ewillink Exp $
+ * $Id: EssentialOCL.g,v 1.12 2009/10/04 11:15:51 ewillink Exp $
  */
 	./
 $End
@@ -762,6 +762,9 @@ $Rules
 	oclExpCS ::= '(' oclExpressionCS ')'
 		/.$BeginJava
 					CSTNode result = (CSTNode)$getSym(2);
+					if (result instanceof OperationCallExpCS) {
+						((OperationCallExpCS)result).setIsAtomic(true);
+					}
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
 		  $EndJava
@@ -1160,6 +1163,9 @@ $Rules
 		/.$BeginJava
 					CallExpCS result = (CallExpCS)$getSym(2);
 					result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
+					if (result instanceof OperationCallExpCS) {
+						((OperationCallExpCS)result).setIsAtomic(true);
+					}
 					$setResult(result);
 		  $EndJava
 		./

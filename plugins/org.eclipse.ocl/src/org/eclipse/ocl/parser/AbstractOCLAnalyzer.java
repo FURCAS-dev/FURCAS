@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.31 2009/10/02 20:56:51 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.32 2009/10/04 11:15:51 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -4178,8 +4178,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if ("xor".equals(parentOperationName)) { //$NON-NLS-1$
 			OCLExpressionCS childExpression = operationCallExpCS.getArguments().get(0);
 			if (childExpression instanceof OperationCallExpCS) {
-				String childOperationName = ((OperationCallExpCS)childExpression).getSimpleNameCS().getValue();
-				if ("or".equals(childOperationName) || "and".equals(childOperationName)) { //$NON-NLS-1$ //$NON-NLS-2$
+				OperationCallExpCS childOperationCallExpCS = (OperationCallExpCS)childExpression;
+				String childOperationName = childOperationCallExpCS.getSimpleNameCS().getValue();
+				if (!childOperationCallExpCS.getIsAtomic() && ("or".equals(childOperationName) || "and".equals(childOperationName))) { //$NON-NLS-1$ //$NON-NLS-2$
 					getEnvironment().analyzerWarning(OCLMessages.XorOrAndPrecedence_WARNING, "operationCallExpCS", operationCallExpCS); //$NON-NLS-1$
 				}
 			}
@@ -4187,8 +4188,9 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		else if ("or".equals(parentOperationName)) { //$NON-NLS-1$
 			OCLExpressionCS childExpression = operationCallExpCS.getArguments().get(0);
 			if (childExpression instanceof OperationCallExpCS) {
-				String childOperationName = ((OperationCallExpCS)childExpression).getSimpleNameCS().getValue();
-				if ("and".equals(childOperationName)) { //$NON-NLS-1$
+				OperationCallExpCS childOperationCallExpCS = (OperationCallExpCS)childExpression;
+				String childOperationName = childOperationCallExpCS.getSimpleNameCS().getValue();
+				if (!childOperationCallExpCS.getIsAtomic() && "and".equals(childOperationName)) { //$NON-NLS-1$
 					getEnvironment().analyzerWarning(OCLMessages.XorOrAndPrecedence_WARNING, "operationCallExpCS", operationCallExpCS); //$NON-NLS-1$
 				}
 			}
