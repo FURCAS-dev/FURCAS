@@ -16,7 +16,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.13 2009/10/02 20:56:31 ewillink Exp $
+* $Id: OCLParser.java,v 1.14 2009/10/04 11:15:51 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser;
@@ -556,6 +556,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 			case 124: {
 				
 				CSTNode result = (CSTNode)dtParser.getSym(2);
+				if (result instanceof OperationCallExpCS) {
+					((OperationCallExpCS)result).setIsAtomic(true);
+				}
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(3)));
 				dtParser.setSym1(result);
 	  		  break;
@@ -1096,6 +1099,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 				
 				CallExpCS result = (CallExpCS)dtParser.getSym(2);
 				result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
+				if (result instanceof OperationCallExpCS) {
+					((OperationCallExpCS)result).setIsAtomic(true);
+				}
 				dtParser.setSym1(result);
 	  		  break;
 			}

@@ -16,7 +16,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.8 2009/10/02 20:56:08 ewillink Exp $
+* $Id: OCLBacktrackingParser.java,v 1.9 2009/10/04 11:15:31 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -558,6 +558,9 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 			case 124: {
 				
 				CSTNode result = (CSTNode)dtParser.getSym(2);
+				if (result instanceof OperationCallExpCS) {
+					((OperationCallExpCS)result).setIsAtomic(true);
+				}
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(3)));
 				dtParser.setSym1(result);
 	  		  break;
@@ -1098,6 +1101,9 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 				
 				CallExpCS result = (CallExpCS)dtParser.getSym(2);
 				result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
+				if (result instanceof OperationCallExpCS) {
+					((OperationCallExpCS)result).setIsAtomic(true);
+				}
 				dtParser.setSym1(result);
 	  		  break;
 			}

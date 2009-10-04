@@ -302,7 +302,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="isMarkedPreCS" eType="#//cst/IsMarkedPreCS"
           containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpCS" eSuperTypes="#//cst/FeatureCallExpCS"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpCS" eSuperTypes="#//cst/FeatureCallExpCS">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAtomic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+          defaultValueLiteral="false"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StateExpCS" eSuperTypes="#//cst/TypeCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNames" upperBound="-1"
           eType="#//cst/SimpleNameCS" containment="true"/>
