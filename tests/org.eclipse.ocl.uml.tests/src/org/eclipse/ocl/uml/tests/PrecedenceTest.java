@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.6 2009/10/02 20:43:42 ewillink Exp $
+ * $Id: PrecedenceTest.java,v 1.7 2009/10/04 11:08:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -45,6 +45,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  *
  * @author Christian W. Damus (cwdamus)
  */
+@SuppressWarnings("nls")
 public class PrecedenceTest
 	extends AbstractTestSuite {
 
@@ -58,7 +59,7 @@ public class PrecedenceTest
 	}
 	
 	public static Test suite() {
-		return new TestSuite(PrecedenceTest.class, "Operator Precedence Tests"); //$NON-NLS-1$
+		return new TestSuite(PrecedenceTest.class, "Operator Precedence Tests");
 	}
     
 	/**
@@ -70,25 +71,25 @@ public class PrecedenceTest
 
         try {
             helper.createInvariant(
-                "self.base_Property.redefinedProperty->isEmpty() = false implies \n" + //$NON-NLS-1$
-                "   self.base_Property.redefinedProperty->size() = 1 and\n" + //$NON-NLS-1$
-                "   let rp : uml::Property =\n" + //$NON-NLS-1$
-                "            self.base_Property.redefinedProperty->asSequence()->at(1) in \n" + //$NON-NLS-1$
-                "     self.base_Property.name = rp.name and\n" + //$NON-NLS-1$
-                "     self.base_Property.type = rp.type"); //$NON-NLS-1$
+                "self.base_Property.redefinedProperty->isEmpty() = false implies \n" +
+                "   self.base_Property.redefinedProperty->size() = 1 and\n" +
+                "   let rp : uml::Property =\n" +
+                "            self.base_Property.redefinedProperty->asSequence()->at(1) in \n" +
+                "     self.base_Property.name = rp.name and\n" +
+                "     self.base_Property.type = rp.type");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
-        helper.setContext(getMetaclass("NamedElement")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("NamedElement"));
         
         try {
             helper.createInvariant(
-                "namespace.getNamesOfMember(\n" + //$NON-NLS-1$
-                "   let ne : NamedElement = self in ne)->exists(n |\n" + //$NON-NLS-1$
-                "       let len : Integer = n.size() in len = 1)"); //$NON-NLS-1$
+                "namespace.getNamesOfMember(\n" +
+                "   let ne : NamedElement = self in ne)->exists(n |\n" +
+                "       let len : Integer = n.size() in len = 1)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
 
@@ -103,14 +104,14 @@ public class PrecedenceTest
      */
     @SuppressWarnings("unchecked")
 	public void test_let_inExpression_182201() {
-        helper.setContext(getMetaclass("NamedElement")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("NamedElement"));
 
         OCLExpression<Classifier> expr = null;
         
         try {
-            expr = helper.createQuery("let ne : NamedElement = self in ne.name"); //$NON-NLS-1$
+            expr = helper.createQuery("let ne : NamedElement = self in ne.name");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
 
         assertNotNull(expr);
@@ -121,9 +122,9 @@ public class PrecedenceTest
         
         try {
             expr = helper.createQuery(
-                "let n : String = let ne : NamedElement = self in ne.name in n.size()"); //$NON-NLS-1$
+                "let n : String = let ne : NamedElement = self in ne.name in n.size()");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
 
         assertNotNull(expr);
@@ -135,7 +136,7 @@ public class PrecedenceTest
         OperationCallExp<Classifier, Operation> opCall =
             (OperationCallExp<Classifier, Operation>) letExp.getIn();
         
-        assertEquals("size", opCall.getReferredOperation().getName()); //$NON-NLS-1$
+        assertEquals("size", opCall.getReferredOperation().getName());
         
         expr = letExp.getVariable().getInitExpression();
         assertTrue(expr instanceof LetExp);
@@ -146,9 +147,9 @@ public class PrecedenceTest
         // a different nesting
         try {
             expr = helper.createQuery(
-                "let ne : NamedElement = self in let n : String = ne.name in n.size()"); //$NON-NLS-1$
+                "let ne : NamedElement = self in let n : String = ne.name in n.size()");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
 
         assertNotNull(expr);
@@ -163,7 +164,7 @@ public class PrecedenceTest
         OperationCallExp<Classifier, Operation> opCall2 =
             (OperationCallExp<Classifier, Operation>) letExp.getIn();
         
-        assertEquals("size", opCall2.getReferredOperation().getName()); //$NON-NLS-1$
+        assertEquals("size", opCall2.getReferredOperation().getName());
     }
     
     public void test_equality_relational_179249() {
@@ -175,45 +176,55 @@ public class PrecedenceTest
             //    Integer has no "< Boolean" operation (we would parse this
             //    expression as "1 < (2 = true)"
             
-            helper.createInvariant("1 < 2 = true"); //$NON-NLS-1$
+            helper.createInvariant("1 < 2 = true");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
         
-    public void test_or_and_precedence() throws ParserException {
+	public void test_or_and_precedence() throws ParserException {
         helper.setContext(class1);
-		assertTrue(check(helper, class1, "((true or false) and false) = false")); //$NON-NLS-1$
-//1.x		assertTrue(check(helper, class1, "(true or false and false) = false")); //$NON-NLS-1$
-		helper.createInvariant("(true or false and false) = true"); //$NON-NLS-1$
-		try {
-			OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
-			fail("Expected warning not found"); //$NON-NLS-1$
-		} catch (SemanticException e) {
-			System.out.println("Got expected warning: " + e.getLocalizedMessage()); //$NON-NLS-1$
-			assertEquals(OCLMessages.XorOrAndPrecedence_WARNING, e.getMessage());
-		}
-		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, false);
-		helper.createInvariant("(true or false and false) = true"); //$NON-NLS-1$
-		OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
+        assertTrueWithoutWarning("(true or (false and false)) = true");
+        assertTrueWithoutWarning("(true or false.and(false)) = true");
+        assertTrueWithoutWarning("((true or false) and false) = false");
+		assertTrueWithoutWarning("(true or false and false) = true");
+		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, true);
+        assertTrueWithoutWarning("(true or (false and false)) = true");
+        assertTrueWithoutWarning("(true or false.and(false)) = true");
+        assertTrueWithoutWarning("((true or false) and false) = false");
+//1.x		assertTrue(check(helper, class1, "(true or false and false) = false"));
+		assertTrueWithWarning("(true or false and false) = true", OCLMessages.XorOrAndPrecedence_WARNING);
     }
     
     public void test_xor_or_precedence() throws ParserException {
         helper.setContext(class1);
-		assertTrue(check(helper, class1, "((true xor false) or true) = true")); //$NON-NLS-1$
-//1.x		assertTrue(check(helper, class1, "(true xor false or true) = true")); //$NON-NLS-1$
-		helper.createInvariant("(true xor false or true) = false"); //$NON-NLS-1$
+        assertTrueWithoutWarning("(true xor (false or false)) = true");
+        assertTrueWithoutWarning("(true xor false.or(false)) = true");
+        assertTrueWithoutWarning("((true xor false) or true) = true");
+		assertTrueWithoutWarning("(true xor false or true) = false");
+		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, true);
+        assertTrueWithoutWarning("(true xor (false or false)) = true");
+        assertTrueWithoutWarning("(true xor false.or(false)) = true");
+        assertTrueWithoutWarning("((true xor false) or true) = true");
+//1.x		assertTrue(check(helper, class1, "(true xor false or true) = true"));
+        assertTrueWithWarning("(true xor false or true) = false", OCLMessages.XorOrAndPrecedence_WARNING);
+    }
+
+	protected void assertTrueWithWarning(String expression, String warning)throws ParserException {
+		helper.createInvariant(expression);
 		try {
 			OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
-			fail("Expected warning not found"); //$NON-NLS-1$
+			fail("Missing warning: " + warning);
 		} catch (SemanticException e) {
-			System.out.println("Got expected warning: " + e.getLocalizedMessage()); //$NON-NLS-1$
-			assertEquals(OCLMessages.XorOrAndPrecedence_WARNING, e.getMessage());
+			System.out.println("Got expected warning: " + e.getLocalizedMessage());
+			assertEquals(warning, e.getMessage());
 		}
-		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, false);
-		helper.createInvariant("(true xor false or true) = false"); //$NON-NLS-1$
+	}
+
+	protected void assertTrueWithoutWarning(String expression)throws ParserException {
+		helper.createInvariant(expression);
 		OCLUtil.checkForErrorsOrWarnings(helper.getEnvironment());
-    }
+	}
     
     //
     // Framework methods
@@ -228,15 +239,15 @@ public class PrecedenceTest
         // create a little test model for a Smalltalk-like collection class that
         //    defines operations corresponding to OCL iterators
         
-        res = new ResourceImpl(URI.createURI("foo://uml")); //$NON-NLS-1$
+        res = new ResourceImpl(URI.createURI("foo://uml"));
         
         pkg = UMLFactory.eINSTANCE.createPackage();
-        pkg.setName("testpkg"); //$NON-NLS-1$
+        pkg.setName("testpkg");
         
         res.getContents().add(pkg);
         
-        class1 = pkg.createOwnedClass("Class1", false); //$NON-NLS-1$
-        class1.createOwnedAttribute("base_Property", getMetaclass("Property"));  //$NON-NLS-1$//$NON-NLS-2$
+        class1 = pkg.createOwnedClass("Class1", false);
+        class1.createOwnedAttribute("base_Property", getMetaclass("Property")); //$NON-NLS-2$
     }
     
     @Override
