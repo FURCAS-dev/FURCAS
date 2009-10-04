@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.7 2009/10/02 20:46:49 ewillink Exp $
+ * $Id: ParsingOptions.java,v 1.8 2009/10/04 11:06:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -72,14 +72,14 @@ public class ParsingOptions {
      * Parsing option indicating whether to generate a warning when the
      * OCL 2.1 parsing of distinct xor, or, and precedences leads to a different
      * parse to the OCL 2.0 specification of all levels equal.
-     * The default value of this option is <tt>true</tt>.  To ignore
+     * The default value of this option is <tt>false</tt>.  To diagnose
      * compatibility with the OCL 2.0  behaviour in the MDT-OCL 1.x release,
-     * set this option <tt>false</tt>.
+     * set this option <tt>true</tt>.
      * </p>
      * @since 3.0
      */
     public static final Option<Boolean> WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE =
-        new BasicOption<Boolean>("warn.of.xor.or.and.precedence.change", true); //$NON-NLS-1$
+        new BasicOption<Boolean>("warn.of.xor.or.and.precedence.change", false); //$NON-NLS-1$
 
     /**
      * <p>
