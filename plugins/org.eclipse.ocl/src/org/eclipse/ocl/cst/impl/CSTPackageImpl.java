@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.10 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: CSTPackageImpl.java,v 1.11 2009/10/04 11:16:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -1508,6 +1508,17 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperationCallExpCS_IsAtomic() {
+		return (EAttribute) operationCallExpCSEClass.getEStructuralFeatures()
+			.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -2079,6 +2090,8 @@ public class CSTPackageImpl
 			FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS);
 
 		operationCallExpCSEClass = createEClass(OPERATION_CALL_EXP_CS);
+		createEAttribute(operationCallExpCSEClass,
+			OPERATION_CALL_EXP_CS__IS_ATOMIC);
 
 		stateExpCSEClass = createEClass(STATE_EXP_CS);
 		createEReference(stateExpCSEClass, STATE_EXP_CS__SIMPLE_NAMES);
@@ -2792,6 +2805,10 @@ public class CSTPackageImpl
 			operationCallExpCSEClass,
 			OperationCallExpCS.class,
 			"OperationCallExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(
+			getOperationCallExpCS_IsAtomic(),
+			ecorePackage.getEBooleanObject(),
+			"isAtomic", "false", 0, 1, OperationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(
 			stateExpCSEClass,
