@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.9 2009/09/04 13:40:44 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.10 2009/10/04 11:22:31 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -4637,6 +4637,16 @@ public interface CSTPackage
 	int OPERATION_CALL_EXP_CS__IS_MARKED_PRE_CS = FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS;
 
 	/**
+	 * The feature id for the '<em><b>Is Atomic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OPERATION_CALL_EXP_CS__IS_ATOMIC = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4644,7 +4654,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
+	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.StateExpCSImpl <em>State Exp CS</em>}' class.
@@ -6231,6 +6241,18 @@ public interface CSTPackage
 	EClass getOperationCallExpCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic <em>Is Atomic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Atomic</em>'.
+	 * @see org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic()
+	 * @see #getOperationCallExpCS()
+	 * @generated
+	 */
+	EAttribute getOperationCallExpCS_IsAtomic();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.StateExpCS <em>State Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7546,6 +7568,16 @@ public interface CSTPackage
 		 * @generated
 		 */
 		EClass OPERATION_CALL_EXP_CS = eINSTANCE.getOperationCallExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Atomic</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_CALL_EXP_CS__IS_ATOMIC = eINSTANCE
+			.getOperationCallExpCS_IsAtomic();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.StateExpCSImpl <em>State Exp CS</em>}' class.
