@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: OperationCallExpCS.java,v 1.4 2009/10/04 11:17:11 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -22,6 +22,12 @@ package org.eclipse.ocl.cst;
  * A representation of the model object '<em><b>Operation Call Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic <em>Is Atomic</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.ocl.cst.CSTPackage#getOperationCallExpCS()
  * @model
@@ -31,4 +37,33 @@ package org.eclipse.ocl.cst;
  */
 public interface OperationCallExpCS
 		extends FeatureCallExpCS {
+
+	/**
+	 * Returns the value of the '<em><b>Is Atomic</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Atomic</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Atomic</em>' attribute.
+	 * @see #setIsAtomic(Boolean)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getOperationCallExpCS_IsAtomic()
+	 * @model default="false"
+	 * @generated
+	 */
+	Boolean getIsAtomic();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic <em>Is Atomic</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Atomic</em>' attribute.
+	 * @see #getIsAtomic()
+	 * @generated
+	 */
+	void setIsAtomic(Boolean value);
 } // OperationCallExpCS
