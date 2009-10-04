@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SimpleTypeEnum.java,v 1.4 2009/09/04 10:19:33 asanchez Exp $
+ * $Id: SimpleTypeEnum.java,v 1.5 2009/10/04 11:04:56 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -117,11 +117,11 @@ public enum SimpleTypeEnum
 	/**
 	 * The '<em><b>Ocl Invalid</b></em>' literal object.
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @see #OCL_INVALID
 	 * @generated
 	 * @ordered
-	 * @since 3.0
 	 */
 	OCL_INVALID_LITERAL(9, "OclInvalid", "OclInvalid"), //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -282,12 +282,12 @@ public enum SimpleTypeEnum
 	 * If the meaning of '<em><b>Ocl Invalid</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @see #OCL_INVALID_LITERAL
 	 * @model name="OclInvalid"
 	 * @generated
 	 * @ordered
-	 * @since 3.0
 	 */
 	public static final int OCL_INVALID = 9;
 
