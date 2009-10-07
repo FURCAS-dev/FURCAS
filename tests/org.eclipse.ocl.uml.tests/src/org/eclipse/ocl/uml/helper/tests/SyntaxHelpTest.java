@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: SyntaxHelpTest.java,v 1.2 2007/02/14 14:46:17 cdamus Exp $
+ * $Id: SyntaxHelpTest.java,v 1.3 2009/10/07 20:42:34 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
 
 import java.util.Collection;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -34,17 +31,6 @@ import org.eclipse.ocl.helper.ConstraintKind;
  */
 public class SyntaxHelpTest
 	extends AbstractTestSuite {
-
-	/**
-	 * Initializes me with my name.
-	 */
-	public SyntaxHelpTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(SyntaxHelpTest.class, "Syntax Help Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests completion of enumeration literals in classifier invariant

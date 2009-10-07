@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.8 2009/09/04 08:27:34 ewillink Exp $
+ * $Id: DefExpressionTest.java,v 1.9 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -22,9 +22,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -64,16 +61,8 @@ import org.eclipse.uml2.uml.State;
 public class DefExpressionTest
 	extends AbstractTestSuite {
 	
-	private Resource instanceResource;
-	private Package instancePackage;
-	
-	public DefExpressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(DefExpressionTest.class, "Def Expression Tests"); //$NON-NLS-1$
-	}
+	Resource instanceResource;
+	Package instancePackage;
 	
 	/**
 	 * Tests the parsing the def expression for an operation from raw text.
@@ -1007,7 +996,7 @@ public class DefExpressionTest
 	//
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		super.setUp();
 		
 		instanceResource = resourceSet.createResource(
@@ -1016,14 +1005,5 @@ public class DefExpressionTest
 		instancePackage = umlf.createPackage();
 		instancePackage.setName("instances"); //$NON-NLS-1$
 		instanceResource.getContents().add(instancePackage);
-	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		instancePackage = null;
-		instanceResource.unload();
-		resourceSet.getResources().remove(instanceResource);
-		
-		super.tearDown();
 	}
 }

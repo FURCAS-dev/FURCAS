@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.5 2008/05/04 01:13:47 cdamus Exp $
+ * $Id: ValidationTest.java,v 1.6 2009/10/07 20:39:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
@@ -49,15 +46,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * @author Christian W. Damus (cdamus)
  */
 public class ValidationTest extends AbstractTestSuite {
-
-	public ValidationTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(ValidationTest.class,
-			"Expression Validation Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests that operation calls may only invoke query operations. 
@@ -150,6 +138,10 @@ public class ValidationTest extends AbstractTestSuite {
 	
 	private class CustomFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
+		public CustomFruitEnvironmentFactory() {
+			super(resourceSet.getPackageRegistry());
+		}
+
 		@Override
         public EcoreEnvironment createEnvironment() {
 			return new CustomFruitEnvironment(this);
@@ -164,7 +156,7 @@ public class ValidationTest extends AbstractTestSuite {
 	
 	private class CustomFruitEnvironment extends EcoreEnvironment {
 		public CustomFruitEnvironment(CustomFruitEnvironmentFactory factory) {
-			super(EPackage.Registry.INSTANCE);
+			super(resourceSet.getPackageRegistry());
 			
 			setFactory(factory);
 			setContextPackage(fruitPackage);

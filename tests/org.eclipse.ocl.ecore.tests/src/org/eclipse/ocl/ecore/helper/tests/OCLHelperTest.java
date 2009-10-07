@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperTest.java,v 1.3 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: OCLHelperTest.java,v 1.4 2009/10/07 20:38:54 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
@@ -35,17 +32,6 @@ import org.eclipse.ocl.helper.OCLHelper;
  */
 public class OCLHelperTest
 	extends AbstractTestSuite {
-
-	/**
-	 * Initializes me with my name.
-	 */
-	public OCLHelperTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(OCLHelperTest.class, "Basic Tests"); //$NON-NLS-1$
-	}
 	
 	public void testHelperCreation() {
 		OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint> helper1 =

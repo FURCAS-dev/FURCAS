@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.9 2008/11/13 02:31:59 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.10 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -23,9 +23,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -38,8 +35,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.Environment;
@@ -63,16 +58,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
 public class SerializationTest
 	extends AbstractTestSuite {
 
-	private ResourceSet rset;
-	private Resource res;
-	
-	public SerializationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
-	}
+	Resource res;
 	
 	/**
 	 * Tests the serialization of an expression that uses no standard library types.
@@ -198,7 +184,9 @@ public class SerializationTest
 	 * expression.
 	 */
 	public void test_signalMessageSerialization() {
-		ocl = OCL.newInstance(new MessagesTest.MessagingFruitEnvironmentFactory(),
+		expectModified = true;
+		ocl.dispose();
+		ocl = OCL.newInstance(new MessagesTest.MessagingFruitEnvironmentFactory(this),
 		        res);
 		helper = ocl.createOCLHelper();
 		
@@ -497,9 +485,7 @@ public class SerializationTest
 	//
 	
 	@Override
-    protected void setUp()
-		throws Exception {
-		
+    protected void setUp() {
         //FIXME:  Need to use extrinsic IDs because lookup fails on hierarchical
         //    name-based fragments owing to %-encoding of the names in references
         res = new XMIResourceImpl() {
@@ -511,48 +497,38 @@ public class SerializationTest
             @Override
             protected boolean useUUIDs() {
                 return true;
-            }};
+            }
+        };
 		res.setURI(URI.createFileURI("/tmp/ocltest.xmi")); //$NON-NLS-1$
-		((XMLResource) res).setEncoding("UTF-8"); //$NON-NLS-1$
+        ((XMLResource) res).setEncoding("UTF-8"); //$NON-NLS-1$
 		
         super.setUp();
-        
-        rset = new ResourceSetImpl();
-        rset.getResources().add(res);
-        rset.getResources().add(fruitPackage.eResource());
+
+        resourceSet.getResources().add(res);
     }
     
     @Override
     protected OCL createOCL() {
-        EcoreEnvironmentFactory factory = new EcoreEnvironmentFactory();
+//    	OCL ocl = super.createOCL();
+        EcoreEnvironmentFactory factory = new EcoreEnvironmentFactory(resourceSet.getPackageRegistry());
         EcoreEnvironment environment = (EcoreEnvironment) factory.loadEnvironment(res);
+
+//        EcoreEnvironmentFactory factory = ocl.;
+        
+        
+//		EcoreEnvironment result = new EcoreEnvironment(resourceSet.getPackageRegistry(), res);
+//		result.setFactory(this);
+        
         
         return OCL.newInstance(environment);
     }
-	
-	@Override
-    protected void tearDown()
-		throws Exception {
-		
-		res.unload();
-		res = null;
-		
-		// let the next test re-initialize the fruit package to eliminate the
-		//    Drop signal
-		rset.getResources().remove(fruitPackage.eResource());
-		fruitPackage = null;
-		
-		rset = null;
-		
-		super.tearDown();
-	}
 	
 	protected OCLExpression<EClassifier> parseExpression(
 			EClassifier context, String expr) {
 		helper.setContext(context);
 		
 		EcoreEnvironment env = (EcoreEnvironment) ocl.getEnvironment();
-		rset.getResources().add(env.getTypeResolver().getResource());
+		resourceSet.getResources().add(env.getTypeResolver().getResource());
 		
 		OCLExpression<EClassifier> result = null;
 		

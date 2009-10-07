@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.7 2009/09/01 20:11:49 ewillink Exp $
+ * $Id: UMLTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -21,8 +21,6 @@ import java.util.Map;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -45,22 +43,14 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class UMLTest
     extends AbstractTestSuite {
 
-    private Resource instanceResource;
-
-    private Package instancePackage;
-
-    public UMLTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(UMLTest.class, "UML-Specific Tests"); //$NON-NLS-1$
-    }
+	Resource instanceResource;
+    Package instancePackage;
 
     /**
      * Tests that name look-up accounts for namespace imports.
      */
     public void test_importedElements() {
+        expectModified = true;
         Package imported = UMLFactory.eINSTANCE.createPackage();
         imported
             .createOwnedClass("Foo", false).createOwnedAttribute("boo", getUMLBoolean()); //$NON-NLS-1$//$NON-NLS-2$
@@ -105,6 +95,7 @@ public class UMLTest
      * Tests parsing static operation calls using the dot.
      */
     public void test_staticOperations_dot_bug164887() {
+        expectModified = true;
         try {
             fruit_ripen.setIsStatic(true);
 
@@ -131,6 +122,7 @@ public class UMLTest
      * Tests parsing static operation calls using the double colon.
      */
     public void test_staticOperations_colonColon_bug164887() {
+        expectModified = true;
         try {
             fruit_ripen.setIsStatic(true);
 
@@ -152,6 +144,7 @@ public class UMLTest
      * Tests parsing static attribute calls using the dot.
      */
     public void test_staticAttributes_dot_bug164887() {
+        expectModified = true;
         try {
             fruit_color.setIsStatic(true);
 
@@ -178,6 +171,7 @@ public class UMLTest
      * Tests parsing static attribute calls using the double colon.
      */
     public void test_staticAttributes_colonColon_bug164887() {
+        expectModified = true;
         try {
             fruit_color.setIsStatic(true);
 
@@ -378,6 +372,7 @@ public class UMLTest
      * Test accessing private attributes in general classifiers.
      */
     public void test_privateAttributeInheritance_214224() {
+        expectModified = true;
         fruit_color.setVisibility(VisibilityKind.PRIVATE_LITERAL);
         
         EPackage epkg = UMLUtil.convertToEcore(fruitPackage, null).iterator().next();
@@ -397,11 +392,6 @@ public class UMLTest
             assertEquals(Boolean.TRUE, evaluate(expr, instance));
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        } finally {
-            resourceSet.getPackageRegistry().remove(epkg.getNsURI());
-            
-            // reset the test model
-            fruitPackage = null;
         }
     }
 
@@ -409,6 +399,7 @@ public class UMLTest
      * Test accessing private operations in general classifiers.
      */
     public void test_privateOperationInheritance_214224() {
+        expectModified = true;
         fruit_preferredColor.setVisibility(VisibilityKind.PRIVATE_LITERAL);
         
         EPackage epkg = UMLUtil.convertToEcore(fruitPackage, null).iterator().next();
@@ -434,11 +425,6 @@ public class UMLTest
             assertEquals(Boolean.TRUE, evaluate(expr, instance));
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        } finally {
-            resourceSet.getPackageRegistry().remove(epkg.getNsURI());
-            
-            // reset the test model
-            fruitPackage = null;
         }
     }
 
@@ -446,6 +432,7 @@ public class UMLTest
      * Test accessing private signal receptions in general classifiers.
      */
     public void test_privateReceptionInheritance_214224() {
+        expectModified = true;
         fruit.getOwnedReceptions().get(0).setVisibility(VisibilityKind.PRIVATE_LITERAL);
         
         try {
@@ -455,9 +442,6 @@ public class UMLTest
                 " endpackage"); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        } finally {
-            // reset the test model
-            fruitPackage = null;
         }
     }
 
@@ -466,8 +450,7 @@ public class UMLTest
     //
 
     @Override
-    protected void setUp()
-        throws Exception {
+    protected void setUp() {
         super.setUp();
 
         instanceResource = resourceSet.createResource(URI
@@ -476,15 +459,5 @@ public class UMLTest
         instancePackage = umlf.createPackage();
         instancePackage.setName("instances"); //$NON-NLS-1$
         instanceResource.getContents().add(instancePackage);
-    }
-
-    @Override
-    protected void tearDown()
-        throws Exception {
-        instancePackage = null;
-        instanceResource.unload();
-        resourceSet.getResources().remove(instanceResource);
-
-        super.tearDown();
     }
 }

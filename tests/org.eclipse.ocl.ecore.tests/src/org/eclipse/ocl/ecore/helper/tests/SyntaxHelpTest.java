@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: SyntaxHelpTest.java,v 1.3 2007/04/30 12:38:16 cdamus Exp $
+ * $Id: SyntaxHelpTest.java,v 1.4 2009/10/07 20:38:54 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
 
 import java.util.Collection;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.OCL;
@@ -38,17 +35,6 @@ import org.eclipse.ocl.helper.ConstraintKind;
  */
 public class SyntaxHelpTest
 	extends AbstractTestSuite {
-
-	/**
-	 * Initializes me with my name.
-	 */
-	public SyntaxHelpTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(SyntaxHelpTest.class, "Syntax Help Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Basic completion test for metamodel level.
@@ -459,7 +445,8 @@ public class SyntaxHelpTest
 	 * Obtains all of the choices for a state expression and prints them out.
 	 */
 	public void test_stateChoices() {
-		ocl = OCL.newInstance(new StatesTest.StatefulFruitEnvironmentFactory());
+		ocl.dispose();
+		ocl = OCL.newInstance(new StatesTest.StatefulFruitEnvironmentFactory(this));
 		helper = ocl.createOCLHelper();
 
 		helper.setContext(apple);
@@ -483,7 +470,9 @@ public class SyntaxHelpTest
 	 * Obtains all of the choices for a message expression and prints them out.
 	 */
 	public void test_messageChoices() {
-		ocl = OCL.newInstance(new MessagesTest.MessagingFruitEnvironmentFactory());
+		expectModified = true;
+		ocl.dispose();
+		ocl = OCL.newInstance(new MessagesTest.MessagingFruitEnvironmentFactory(this));
 		helper = ocl.createOCLHelper();
 
 		helper.setOperationContext(apple, fruit_ripen);

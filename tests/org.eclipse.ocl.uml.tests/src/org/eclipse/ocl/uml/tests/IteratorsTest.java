@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.7 2009/09/01 20:11:48 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,9 +24,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
@@ -45,29 +42,14 @@ import org.eclipse.uml2.uml.Property;
 public class IteratorsTest
     extends AbstractTestSuite {
 
-    private Package pkg1;
-
-    private Package pkg2;
-
-    private Package pkg3;
-
-    private Package pkg4;
-
-    private Package pkg5;
-
-    private Package jim;
-
-    private Package bob;
-
-    private Package george;
-
-    public IteratorsTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
-    }
+	Package pkg1;
+	Package pkg2;
+	Package pkg3;
+	Package pkg4;
+	Package pkg5;
+	Package jim;
+	Package bob;
+	Package george;
 
     /**
      * Tests the generic iterate() iterator.
@@ -908,8 +890,7 @@ public class IteratorsTest
     //
 
     @Override
-    protected void setUp()
-        throws Exception {
+    protected void setUp() {
         super.setUp();
 
         // need a metamodel that has a reflexive EReference.

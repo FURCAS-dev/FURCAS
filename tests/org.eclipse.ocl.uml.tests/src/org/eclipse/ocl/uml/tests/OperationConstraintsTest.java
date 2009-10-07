@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.5 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: OperationConstraintsTest.java,v 1.6 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -22,8 +22,6 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -46,15 +44,6 @@ import org.eclipse.uml2.uml.Type;
  * @author Christian W. Damus (cdamus)
  */
 public class OperationConstraintsTest extends AbstractTestSuite {
-
-	public OperationConstraintsTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(OperationConstraintsTest.class,
-			"Operation Constraints"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests a very simple precondition, with a package and operation context.
@@ -293,6 +282,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 * references to the variable from references to the attribute.
 	 */
 	public void test_parameterNameCoincidesWithAttributeName_140008() {
+        expectModified = true;
 		Operation foo = apple.createOwnedOperation("foo", //$NON-NLS-1$
 			new BasicEList<String>(Collections.singleton("str")), //$NON-NLS-1$
 			new BasicEList<Type>(Collections.singleton((Type) getUMLString())),

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.5 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -65,28 +63,16 @@ import org.eclipse.ocl.utilities.UMLReflection;
 public class AssociationTest
 	extends AbstractTestSuite {
 
-	private EReference stem_apple;
-	private EReference stem_tree;
-	private EAttribute stem_thickness;
-	
-	private EReference apple_tree;
-	
-	private EClass tree;
-	private EReference tree_apples;
-	
-	private EClass forest;
-	private EReference forest_trees;
-	
-	private EStructuralFeature q1;
-	private EStructuralFeature q2;
-	
-	public AssociationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(AssociationTest.class, "Association Tests"); //$NON-NLS-1$
-	}
+	EReference stem_apple;
+	EReference stem_tree;
+	EAttribute stem_thickness;	
+	EReference apple_tree;	
+	EClass tree;
+	EReference tree_apples;	
+	EClass forest;
+	EReference forest_trees;	
+	EStructuralFeature q1;
+	EStructuralFeature q2;
 	
 	/**
 	 * Tests support for association end qualifiers.
@@ -461,7 +447,7 @@ public class AssociationTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		// Employee class
 		EClass employee = EcoreFactory.eINSTANCE.createEClass();
@@ -481,17 +467,13 @@ public class AssociationTest
 		EObject emp1 = efactory.create(employee);
 
 		// parse & evaluate expression
-		try {
-			OCLExpression<EClassifier> expr = parse(
-					"package mypkg context Employee " + //$NON-NLS-1$
-					"inv: self.manager.manager" + //$NON-NLS-1$
-					" endpackage"); //$NON-NLS-1$
+		OCLExpression<EClassifier> expr = parse(
+				"package mypkg context Employee " + //$NON-NLS-1$
+				"inv: self.manager.manager" + //$NON-NLS-1$
+				" endpackage"); //$NON-NLS-1$
 
-			Object result = evaluate(expr, emp1);
-			assertInvalid(result);
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
-		}
+		Object result = evaluate(expr, emp1);
+		assertInvalid(result);
 	}
 	
 	/**
@@ -526,9 +508,9 @@ public class AssociationTest
 	 * Sets up a common fixture for the association class tests.
 	 */
 	@Override
-    public void setUp() throws Exception {
+    public void setUp() {
 		super.setUp();
-		
+		expectModified = true;
 		initFruitExtensions();
 	}
 	
@@ -615,6 +597,10 @@ public class AssociationTest
 	
 	private class AssocClassFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
+		public AssocClassFruitEnvironmentFactory() {
+			super(resourceSet.getPackageRegistry());
+		}
+		
 		@Override
         public EcoreEnvironment createEnvironment() {
 			return new AssocClassFruitEnvironment(this);
@@ -635,7 +621,7 @@ public class AssociationTest
 			new java.util.ArrayList<EStructuralFeature>(2);
 		
 		public AssocClassFruitEnvironment(AssocClassFruitEnvironmentFactory factory) {
-			super(EPackage.Registry.INSTANCE);
+			super(resourceSet.getPackageRegistry());
 			
 			setFactory(factory);
 			setContextPackage(fruitPackage);

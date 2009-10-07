@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.3 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -33,14 +30,6 @@ import org.eclipse.ocl.helper.ConstraintKind;
  */
 public class MessagesTest
 	extends AbstractTestSuite {
-	
-	public MessagesTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(MessagesTest.class, "Message Expression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the parsing of the hasSent ("^") expression for operations.

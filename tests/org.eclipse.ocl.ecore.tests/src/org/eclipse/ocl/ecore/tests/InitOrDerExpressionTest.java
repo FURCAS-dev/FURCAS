@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerExpressionTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: InitOrDerExpressionTest.java,v 1.5 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -22,8 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -44,22 +42,12 @@ import org.eclipse.ocl.utilities.UMLReflection;
 public class InitOrDerExpressionTest
 	extends AbstractTestSuite {
 	
-	private EClass banana;
-	
-	private Set<EObject> allApples;
-	private Map<EClass, Set<EObject>> extents;
-	
-	private EObject aFruit;
-	private EObject anApple;
-	private EObject anotherApple;
-	
-	public InitOrDerExpressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests"); //$NON-NLS-1$
-	}
+	EClass banana;	
+	Set<EObject> allApples;
+	Map<EClass, Set<EObject>> extents;	
+	EObject aFruit;
+	EObject anApple;
+	EObject anotherApple;
 	
 	/**
 	 * Tests the parsing the init expression for an attribute from raw text.
@@ -383,9 +371,9 @@ public class InitOrDerExpressionTest
 	//
 	
 	@Override
-    protected void setUp() throws Exception {
+    protected void setUp() {
 		super.setUp();
-		
+		expectModified = true;
 		banana = EcoreFactory.eINSTANCE.createEClass();
 		banana.setName("Banana"); //$NON-NLS-1$
 		banana.getESuperTypes().add(fruit);

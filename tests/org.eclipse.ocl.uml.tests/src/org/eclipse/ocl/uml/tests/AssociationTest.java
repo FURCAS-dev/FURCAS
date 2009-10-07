@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.8 2008/11/02 17:52:11 cdamus Exp $
+ * $Id: AssociationTest.java,v 1.9 2009/10/07 20:41:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -22,8 +22,6 @@ import java.util.Collection;
 import java.util.List;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -81,16 +79,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class AssociationTest
 	extends AbstractTestSuite {
 
-	private Resource instanceResource;
-	private Package instancePackage;
-	
-	public AssociationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(AssociationTest.class, "Association Tests"); //$NON-NLS-1$
-	}
+	Resource instanceResource;
+	Package instancePackage;
 	
 	/**
 	 * Tests support for association end qualifiers.
@@ -356,6 +346,7 @@ public class AssociationTest
 	 * reflexive association.
 	 */
 	public void test_associationClass_reflexive_RATLC00538077() {
+		expectModified = true;
 		// set up a reflexive association class for this test case
 		AssociationClass ac = (AssociationClass) fruitPackage.createOwnedType("AC", //$NON-NLS-1$
 				uml.getAssociationClass());
@@ -708,7 +699,7 @@ public class AssociationTest
         Resource res = new ResourceImpl(URI.createURI("test://foo")); //$NON-NLS-1$
         res.eAdapters().add(new ECrossReferenceAdapter());
 
-        EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+        resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 
         try {
             EClass eTree = (EClass) epackage.getEClassifier("Tree"); //$NON-NLS-1$
@@ -754,6 +745,7 @@ public class AssociationTest
     }
 
     public void test_unnamedAttribute_194245() {
+        expectModified = true;
         Property tree_forest = forest_trees.getOtherEnd();
         assertNotNull(tree_forest);
         assertNotNull(tree_forest.getName());
@@ -763,95 +755,85 @@ public class AssociationTest
         Resource res = new ResourceImpl(URI.createURI("test://foo")); //$NON-NLS-1$
         res.eAdapters().add(new ECrossReferenceAdapter());
 
-        try {
-            OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-                "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
-    
-            EPackage epackage = UMLUtil.convertToEcore(fruitPackage, null)
-                .iterator().next();
-            EFactory factory = epackage.getEFactoryInstance();
-    
-            EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
-    
-            EClass eTree = (EClass) epackage.getEClassifier("Tree"); //$NON-NLS-1$
-            EClass eForest = (EClass) epackage.getEClassifier("Forest"); //$NON-NLS-1$
-            EStructuralFeature eTrees = eForest.getEStructuralFeature("trees"); //$NON-NLS-1$
+        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
+            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
 
-            EObject aForest = factory.create(eForest);
-            res.getContents().add(aForest);
+        EPackage epackage = UMLUtil.convertToEcore(fruitPackage, null)
+            .iterator().next();
+        EFactory factory = epackage.getEFactoryInstance();
 
-            @SuppressWarnings("unchecked")
-            EList<EObject> trees = (EList<EObject>) aForest.eGet(eTrees);
-            EObject aTree = factory.create(eTree);
-            res.getContents().add(aTree);
-            trees.add(aTree);
-            EObject anotherTree = factory.create(eTree);
-            res.getContents().add(anotherTree);
-            trees.add(anotherTree);
-            aTree = factory.create(eTree);
-            res.getContents().add(aTree);
-            trees.add(aTree);
+        resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 
-            assertTrue(check(expr, anotherTree));
-        } finally {
-            fruitPackage = null; // re-initialize for next test
-            res.unload();
-        }
+        EClass eTree = (EClass) epackage.getEClassifier("Tree"); //$NON-NLS-1$
+        EClass eForest = (EClass) epackage.getEClassifier("Forest"); //$NON-NLS-1$
+        EStructuralFeature eTrees = eForest.getEStructuralFeature("trees"); //$NON-NLS-1$
+
+        EObject aForest = factory.create(eForest);
+        res.getContents().add(aForest);
+
+        @SuppressWarnings("unchecked")
+        EList<EObject> trees = (EList<EObject>) aForest.eGet(eTrees);
+        EObject aTree = factory.create(eTree);
+        res.getContents().add(aTree);
+        trees.add(aTree);
+        EObject anotherTree = factory.create(eTree);
+        res.getContents().add(anotherTree);
+        trees.add(anotherTree);
+        aTree = factory.create(eTree);
+        res.getContents().add(aTree);
+        trees.add(aTree);
+
+        assertTrue(check(expr, anotherTree));
     }
 
     public void test_unnamedAttribute_instanceSpecification_194245() {
+        expectModified = true;
         Property tree_forest = forest_trees.getOtherEnd();
         assertNotNull(tree_forest);
         assertNotNull(tree_forest.getName());
         tree_forest.setName(null); // unnamed end
         
-        try {
-            OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-                "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
-    
-            InstanceSpecification aForest = instantiate(instancePackage, forest);
-    
-            InstanceSpecification aTree = instantiate(instancePackage, tree);
-            addValue(aForest, forest_trees, aTree);
-            InstanceSpecification anotherTree = instantiate(instancePackage, tree);
-            addValue(aForest, forest_trees, anotherTree);
-            aTree = instantiate(instancePackage, tree);
-            addValue(aForest, forest_trees, aTree);
-    
-            assertTrue(check(expr, anotherTree));
-        } finally {
-            fruitPackage = null; // re-initialize for next test
-        }
+        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
+            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+
+        InstanceSpecification aForest = instantiate(instancePackage, forest);
+
+        InstanceSpecification aTree = instantiate(instancePackage, tree);
+        addValue(aForest, forest_trees, aTree);
+        InstanceSpecification anotherTree = instantiate(instancePackage, tree);
+        addValue(aForest, forest_trees, anotherTree);
+        aTree = instantiate(instancePackage, tree);
+        addValue(aForest, forest_trees, aTree);
+
+        assertTrue(check(expr, anotherTree));
     }
 
     public void test_associationEndAmbiguity_nonNavigable_194245() {
+        expectModified = true;
         // create a duplicate end
         forest.createAssociation(
             true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree, //$NON-NLS-1$
             false, AggregationKind.SHARED_LITERAL, "forest", 0, 1); //$NON-NLS-1$
         
-        try {
-            BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(),
-                BasicEnvironment.class);
-            benv.setOption(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
-                ProblemHandler.Severity.WARNING);
-            
-            parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-                "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
-    
-            Diagnostic diag = ocl.getProblems();
-            assertNotNull(diag);
-            assertEquals(Diagnostic.WARNING, diag.getSeverity());
-            System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
-        } finally {
-            fruitPackage = null; // re-initialize for next test
-        }
+        BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(),
+            BasicEnvironment.class);
+        benv.setOption(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
+            ProblemHandler.Severity.WARNING);
+        
+        parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
+            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+
+        Diagnostic diag = ocl.getProblems();
+        assertNotNull(diag);
+        assertEquals(Diagnostic.WARNING, diag.getSeverity());
+        System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
     }
 
     public void test_associationEndAmbiguity_unnamed_194245() {
+        expectModified = true;
         Property tree_forest = forest_trees.getOtherEnd();
         assertNotNull(tree_forest);
         assertNotNull(tree_forest.getName());
@@ -862,26 +844,23 @@ public class AssociationTest
             true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree, //$NON-NLS-1$
             false, AggregationKind.SHARED_LITERAL, null, 0, 1); // unnamed
         
-        try {
-            BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(),
-                BasicEnvironment.class);
-            benv.setOption(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
-                ProblemHandler.Severity.WARNING);
-            
-            parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-                "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
-    
-            Diagnostic diag = ocl.getProblems();
-            assertNotNull(diag);
-            assertEquals(Diagnostic.WARNING, diag.getSeverity());
-            System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
-        } finally {
-            fruitPackage = null; // re-initialize for next test
-        }
+        BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(),
+            BasicEnvironment.class);
+        benv.setOption(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
+            ProblemHandler.Severity.WARNING);
+        
+        parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
+            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
+            " endpackage"); //$NON-NLS-1$
+
+        Diagnostic diag = ocl.getProblems();
+        assertNotNull(diag);
+        assertEquals(Diagnostic.WARNING, diag.getSeverity());
+        System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
     }
 
     public void test_associationEndAmbiguity_errorSeverity_194245() {
+        expectModified = true;
         // create a duplicate end
         forest.createAssociation(
             true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree, //$NON-NLS-1$
@@ -896,8 +875,6 @@ public class AssociationTest
         } catch (ParserException e) {
             // success
             System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        } finally {
-            fruitPackage = null; // re-initialize for next test
         }
     }
 
@@ -1032,7 +1009,7 @@ public class AssociationTest
 	//
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		super.setUp();
 		
 		instanceResource = resourceSet.createResource(
@@ -1041,14 +1018,5 @@ public class AssociationTest
 		instancePackage = umlf.createPackage();
 		instancePackage.setName("instances"); //$NON-NLS-1$
 		instanceResource.getContents().add(instancePackage);
-	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		instancePackage = null;
-		instanceResource.unload();
-		resourceSet.getResources().remove(instanceResource);
-		
-		super.tearDown();
 	}
 }

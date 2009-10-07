@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: InvariantConstraintsTest.java,v 1.3 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: InvariantConstraintsTest.java,v 1.4 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.Collections;
 import java.util.Iterator;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -38,15 +35,6 @@ import org.eclipse.uml2.uml.Property;
  * @author Christian W. Damus (cdamus)
  */
 public class InvariantConstraintsTest extends AbstractTestSuite {
-
-	public InvariantConstraintsTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(InvariantConstraintsTest.class,
-			"Invariant Constraints"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests a very simple invariant, with a package and classifier context
@@ -97,6 +85,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 * distinguish references to the type from references to the property.
 	 */
 	public void test_propertyNameCoincidesWithTypeName_140347() {
+        expectModified = true;
 		Property myFruit = apple.createOwnedAttribute(
 				"Fruit", fruit); //$NON-NLS-1$
 		
@@ -155,6 +144,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
      * Tests resolution of qualified classifier names for nested classifiers.
      */
     public void test_nestedClassifiers() {
+        expectModified = true;
         Class seed = (Class) apple.createNestedClassifier("Seed", uml.getClass_()); //$NON-NLS-1$
         seed.createOwnedAttribute("fruit", apple); //$NON-NLS-1$
         

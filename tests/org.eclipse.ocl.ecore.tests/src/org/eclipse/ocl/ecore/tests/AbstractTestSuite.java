@@ -13,16 +13,20 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.19 2009/09/01 20:10:53 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.20 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -47,7 +51,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
@@ -55,10 +59,10 @@ import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
-import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -78,56 +82,98 @@ import org.eclipse.ocl.utilities.Visitable;
  */
 public abstract class AbstractTestSuite
 	extends TestCase {
+	
+    protected static final class CheckedTestSuite extends TestSuite {
 
-	protected static org.eclipse.ocl.ecore.EcorePackage ocltypes =
+		public CheckedTestSuite(String name) {
+			super(name);
+		}
+
+		public void createTestSuite(Class<? extends AbstractTestSuite> testClass, String testName) {
+	        addTest(new TestSuite(testClass, testName));
+		}
+
+		public void addTestSuite(CheckedTestSuite suite) {
+	        addTest(suite);
+		}
+	}
+
+	// set this variable true when testing for memory leaks
+    private static boolean DISPOSE_RESOURCE_SET = false;
+
+	protected static final org.eclipse.ocl.ecore.EcorePackage ocltypes =
         org.eclipse.ocl.ecore.EcorePackage.eINSTANCE;
-	protected static EcorePackage ecore = EcorePackage.eINSTANCE;
+	protected static final EcorePackage ecore = EcorePackage.eINSTANCE;
+
+	protected static ResourceSet resourceSet;
+	private static ArrayList<Resource> standardResources;
 	
-	protected static EPackage fruitPackage;
-	protected static EFactory fruitFactory;
+	private static void disposeResourceSet() {
+        for (Resource res : resourceSet.getResources()) {
+            res.unload();
+            res.eAdapters().clear();
+        }
+        resourceSet.getResources().clear();
+        resourceSet.eAdapters().clear();
+        resourceSet = null;
+		standardResources = null;
+	}
+
+	protected static void initializeResourceSet() {
+	    resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+			"ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		resourceSet.getPackageRegistry().put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
+		//
+		standardResources = new ArrayList<Resource>(resourceSet.getResources());
+	}
 	
-	protected static EClass fruit;
-	protected static EOperation fruit_ripen;
-	protected static EOperation fruit_preferredColor;
-	protected static EOperation fruit_newFruit;
-	protected static EOperation fruit_setColor;
-	protected static EAttribute fruit_color;
+	protected EPackage fruitPackage;
+	protected EFactory fruitFactory;
 	
-	protected static EClass apple;
-	protected static EAttribute apple_label;
-	protected static EReference apple_stem;
-	protected static EOperation apple_labelOper;
-	protected static EOperation apple_newApple;
+	protected EClass fruit;
+	protected EOperation fruit_ripen;
+	protected EOperation fruit_preferredColor;
+	protected EOperation fruit_newFruit;
+	protected EOperation fruit_setColor;
+	protected EAttribute fruit_color;
 	
-	protected static EClass stem;
+	protected EClass apple;
+	protected EAttribute apple_label;
+	protected EReference apple_stem;
+	protected EOperation apple_labelOper;
+	protected EOperation apple_newApple;
 	
-	protected static EEnum color;
-	protected static EEnumLiteral color_black;
-	protected static EEnumLiteral color_red;
-	protected static EEnumLiteral color_green;
-	protected static EEnumLiteral color_yellow;
-	protected static EEnumLiteral color_orange;
-	protected static EEnumLiteral color_brown;
-	protected static EEnumLiteral color_pink;
+	protected EClass stem;
 	
-	protected static EClass util;
-	protected static EReference util_orderedSet;
-	protected static EReference util_set;
-	protected static EReference util_bag;
-	protected static EReference util_sequence;
-	protected static EOperation util_processOrderedSet;
-	protected static EOperation util_processSet;
-	protected static EOperation util_processBag;
-	protected static EOperation util_processSequence;
+	protected EEnum color;
+	protected EEnumLiteral color_black;
+	protected EEnumLiteral color_red;
+	protected EEnumLiteral color_green;
+	protected EEnumLiteral color_yellow;
+	protected EEnumLiteral color_orange;
+	protected EEnumLiteral color_brown;
+	protected EEnumLiteral color_pink;
+	
+	protected EClass util;
+	protected EReference util_orderedSet;
+	protected EReference util_set;
+	protected EReference util_bag;
+	protected EReference util_sequence;
+	protected EOperation util_processOrderedSet;
+	protected EOperation util_processSet;
+	protected EOperation util_processBag;
+	protected EOperation util_processSequence;
 	
 	protected OCL ocl;
 	protected OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint>
 	helper;
 	protected final OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
-	
-	public AbstractTestSuite(String name) {
-		super(name);
-	}
+
+	/**
+	 * Set this true to suppress a failure from modifying the fruitPackage
+	 */
+	protected boolean expectModified = false;
 	
 	public static URI getTestModelURI(String localFileName) {
 		String testPlugInId = "org.eclipse.ocl.ecore.tests"; //$NON-NLS-1$
@@ -141,11 +187,8 @@ public abstract class AbstractTestSuite
 				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
 				return URI.createURI(url.toString());
 			}
-			else {
-				initializeStandalone();
-			}
 		} catch (Exception e) {
-			initializeStandalone();
+			// not running in Eclipse
 		}
 		String urlString = System.getProperty(testPlugInId);
 		if (urlString == null)
@@ -159,9 +202,6 @@ public abstract class AbstractTestSuite
 		if (initialized)
 			return;
 		initialized = true;
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-			"ecore", new XMIResourceFactoryImpl()); //$NON-NLS-1$
-		OCLStandardLibraryImpl.INSTANCE.getClass();		// Ensure OCLStandardLibrary loaded before use
 	}
 
 	/**
@@ -170,40 +210,42 @@ public abstract class AbstractTestSuite
 	 * @return the suite
 	 */
 	public static Test suite() {
-		TestSuite result = new TestSuite("OCL Tests for Ecore Metamodel"); //$NON-NLS-1$
+		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for Ecore Metamodel"); //$NON-NLS-1$
 		
-		result.addTest(BasicOCLTest.suite());
-		result.addTest(KeywordsTest.suite());
-		result.addTest(ComparisonTest.suite());
-        result.addTest(PrimitiveTypesTest.suite());
-        result.addTest(PredefinedSuperTypeInheritedOperationTest.suite());
-		result.addTest(CollectionsTest.suite());
-		result.addTest(IteratorsTest.suite());
-		result.addTest(TuplesTest.suite());
-		result.addTest(AssociationTest.suite());
-		result.addTest(StatesTest.suite());
-		result.addTest(MessagesTest.suite());
-		result.addTest(InvariantConstraintsTest.suite());
-		result.addTest(OperationConstraintsTest.suite());
-		result.addTest(LocationInformationTest.suite());
-		result.addTest(DefExpressionTest.suite());
-		result.addTest(OCLOperationCollisionTest.suite());
-		result.addTest(FeatureRedefinitionTest.suite());
-		result.addTest(InitOrDerExpressionTest.suite());
-		result.addTest(OCLDocumentTest.suite());
-		result.addTest(AbstractVisitorTest.suite());
-		result.addTest(TypeConformanceTests.suite());
-		result.addTest(org.eclipse.ocl.ecore.helper.tests.AbstractTestSuite.suite());
-		result.addTest(RegressionTest.suite());
-		result.addTest(EcoreEnvironmentTest.suite());
-        result.addTest(ExtensibilityTest.suite());
-		result.addTest(ValidationTest.suite());
-		result.addTest(ProblemOptionTest.suite());
-		result.addTest(ParsingOptionsTest.suite());
-		result.addTest(TypesValidatorTest.suite());
-		result.addTest(ExpressionsValidatorTest.suite());
-		result.addTest(SerializationTest.suite());
-		result.addTest(EvaluationHaltedTest.suite());
+		result.createTestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
+		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests"); //$NON-NLS-1$
+		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests"); //$NON-NLS-1$
+        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests"); //$NON-NLS-1$
+        result.createTestSuite(PredefinedSuperTypeInheritedOperationTest.class,
+        	"Inheritance of additional operations"); //$NON-NLS-1$
+		result.createTestSuite(CollectionsTest.class, "Collection Type Tests"); //$NON-NLS-1$
+		result.createTestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
+		result.createTestSuite(TuplesTest.class, "Tuple Tests"); //$NON-NLS-1$
+		result.createTestSuite(AssociationTest.class, "Association Tests"); //$NON-NLS-1$
+		result.createTestSuite(StatesTest.class, "State Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(MessagesTest.class, "Message Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(InvariantConstraintsTest.class, "Invariant Constraints"); //$NON-NLS-1$
+		result.createTestSuite(OperationConstraintsTest.class, "Operation Constraints"); //$NON-NLS-1$
+		result.createTestSuite(LocationInformationTest.class, "Location Information Tests"); //$NON-NLS-1$
+		result.createTestSuite(DefExpressionTest.class, "Def Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(OCLOperationCollisionTest.class,
+			"Collision with OCL Standard Operation"); //$NON-NLS-1$
+		result.createTestSuite(FeatureRedefinitionTest.class, "Feature redefinition tests"); //$NON-NLS-1$
+		result.createTestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(OCLDocumentTest.class, "OCL Document Parsing Tests"); //$NON-NLS-1$
+		result.createTestSuite(AbstractVisitorTest.class, "AbstractVisitor Tests"); //$NON-NLS-1$
+		result.createTestSuite(TypeConformanceTests.class, "Primitive Type Conformance Tests"); //$NON-NLS-1$
+		result.addTestSuite(org.eclipse.ocl.ecore.helper.tests.AbstractTestSuite.suite());
+		result.createTestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
+		result.createTestSuite(EcoreEnvironmentTest.class, "Ecore Environment Tests"); //$NON-NLS-1$
+        result.createTestSuite(ExtensibilityTest.class, "Extensibility Tests"); //$NON-NLS-1$
+		result.createTestSuite(ValidationTest.class, "Expression Validation Tests"); //$NON-NLS-1$
+		result.createTestSuite(ProblemOptionTest.class, "Problem Option Tests"); //$NON-NLS-1$
+		result.createTestSuite(ParsingOptionsTest.class, "Parsing Options Tests"); //$NON-NLS-1$
+		result.createTestSuite(TypesValidatorTest.class, "Types Validator Tests"); //$NON-NLS-1$
+		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests"); //$NON-NLS-1$
+		result.createTestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
+		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests"); //$NON-NLS-1$
 		
 		return result;
 	}
@@ -213,21 +255,36 @@ public abstract class AbstractTestSuite
 	//
 	
 	@Override
-    protected void setUp()
-		throws Exception {
+    protected void setUp() {
 		
 		System.out.println("==> Start  " + getName()); //$NON-NLS-1$
 		
-		if (fruitPackage == null) {
-			initFruitPackage();
+        if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
+        	disposeResourceSet();
+        }
+		if (!initialized) {
+			boolean isRunning = false;
+			try {
+				Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
+				Method isRunningMethod = platformClass.getDeclaredMethod("isRunning"); //$NON-NLS-1$
+				isRunning = Boolean.TRUE.equals(isRunningMethod.invoke(null));
+			} catch (Exception e) {
+			}
+			if (!isRunning) {
+				initializeStandalone();
+			}
+		}		
+		if (resourceSet == null) {
+			initializeResourceSet();
 		}
+		initFruitPackage();
 		
 		assertSame(
-				fruitPackage,
-				EPackage.Registry.INSTANCE.getEPackage(fruitPackage.getNsURI()));
+			fruitPackage,
+			resourceSet.getPackageRegistry().getEPackage(fruitPackage.getNsURI()));
 		assertSame(
-				fruitPackage,
-				EcoreEnvironment.findPackage(Collections.singletonList(fruitPackage.getName())));
+			fruitPackage,
+			EcoreEnvironment.findPackage(Collections.singletonList(fruitPackage.getName()), resourceSet.getPackageRegistry()));
 
 		ocl = createOCL();
 //        ocl.setParseTracingEnabled(true);
@@ -237,7 +294,7 @@ public abstract class AbstractTestSuite
 	}
 	
 	protected OCL createOCL() {
-		OCL newInstance = OCL.newInstance();
+		OCL newInstance = OCL.newInstance(new EcoreEnvironmentFactory(resourceSet.getPackageRegistry()));
 		String repairs = System.getProperty("org.eclipse.ocl.ecore.tests.repairs"); //$NON-NLS-1$
 		if (repairs != null)
 			newInstance.setParserRepairCount(Integer.parseInt(repairs));
@@ -252,11 +309,67 @@ public abstract class AbstractTestSuite
 	@Override
     protected void tearDown()
 		throws Exception {
+		final Resource resource = fruitPackage.eResource();
+		final boolean isModified = resource.isModified();
+		final boolean expectIsModified = expectModified;
+		//
+		//	Unload any resources that a test may have loaded.
+		//
+		for (ListIterator<Resource> i = resourceSet.getResources().listIterator(); i.hasNext(); ) {
+			Resource res = i.next();
+			if (((res == resource) && isModified) || !standardResources.contains(res)) {
+				i.remove();
+				res.unload();
+                res.eAdapters().clear();
+			}				
+		}
+		//
+		//	Null out any references that a test may have left behind, so that unwanted
+		//	objects are not locked into memory.
+		//
+		for (java.lang.Class<?> aClass = getClass(); AbstractTestSuite.class.isAssignableFrom(aClass); aClass = aClass.getSuperclass()) {
+			for (Field field : aClass.getDeclaredFields()) {
+				int modifiers = field.getModifiers();
+				if (Modifier.isFinal(modifiers)) {
+				}
+				else if (!Modifier.isStatic(modifiers)) {
+					java.lang.Class<?> fieldType = field.getType();
+					if (Object.class.isAssignableFrom(fieldType)) {
+						String fieldName = field.getName();
+						try {
+							String tearDownName = "tearDown_" + fieldName; //$NON-NLS-1$
+							Method method = aClass.getDeclaredMethod(tearDownName);
+							try {
+								method.invoke(this);
+							} catch (Exception e) {
+								// tearDown_xxx must be public
+								fail("Failed to invoke " + getClass().getSimpleName() + "." + tearDownName + " : " + e);   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+							}
+						}
+						catch (NoSuchMethodException e) {
+							try {
+								field.set(this, null);
+							} catch (Exception e1) {
+								// xxx without a tearDown_xxx must be public to ensure that leakage can be stopped
+								fail("Failed to set " + getClass().getSimpleName() + "." + fieldName + " to null : " + e1);  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+							}
+						}
+					}
+				}
+				else if (aClass != AbstractTestSuite.class) {
+					// Tests may not have statics since they are prone to memory leakage
+					fail("static test variable:" + field);  //$NON-NLS-1$
+				}
+			}
+		}
+		assertTrue(isModified == expectIsModified  );	    
 		
-	    ocl.dispose();
-	    ocl = null;
-	    helper = null;
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
+	}
+
+	protected void tearDown_ocl() {
+		ocl.dispose();
+		ocl = null;
 	}
 	
 	/**
@@ -704,13 +817,12 @@ public abstract class AbstractTestSuite
 		assertTrue("Expected invalid", ocl.isInvalid(value)); //$NON-NLS-1$
 	}
 	
-	private static void initFruitPackage() {
+	protected void initFruitPackage() {
 		URI uri = getTestModelURI("/model/OCLTest.ecore"); //$NON-NLS-1$
-		ResourceSet rset = new ResourceSetImpl();
-		Resource res = rset.getResource(uri, true);
+		Resource res = resourceSet.getResource(uri, true);
 		
 		fruitPackage = (EPackage) res.getContents().get(0);
-		EPackage.Registry.INSTANCE.put(fruitPackage.getNsURI(), fruitPackage);
+		resourceSet.getPackageRegistry().put(fruitPackage.getNsURI(), fruitPackage);
 		
 		fruitFactory = fruitPackage.getEFactoryInstance();
 		
@@ -747,5 +859,6 @@ public abstract class AbstractTestSuite
 		util_processSet = util.getEOperations().get(1);
 		util_processBag = util.getEOperations().get(2);
 		util_processSequence = util.getEOperations().get(3);
+		res.setTrackingModification(true);
 	}
 }

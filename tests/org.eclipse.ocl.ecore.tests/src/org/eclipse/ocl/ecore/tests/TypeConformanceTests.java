@@ -13,13 +13,9 @@
  * 
  * </copyright>
  * 
- * $Id: TypeConformanceTests.java,v 1.1 2008/10/10 15:23:39 cdamus Exp $
+ * $Id: TypeConformanceTests.java,v 1.2 2009/10/07 20:39:29 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -30,18 +26,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.ocl.OCL;
-import org.eclipse.ocl.ecore.CallOperationAction;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.ExpressionsFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.helper.OCLHelper;
 
 /**
  * Tests consistency of the conversion of user-defined types to OCL primitive
@@ -51,30 +40,16 @@ import org.eclipse.ocl.helper.OCLHelper;
  */
 @SuppressWarnings("nls")
 public class TypeConformanceTests
-		extends TestCase {
+		extends AbstractTestSuite {
 
-	private OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint> helper;
+	EDataType dt;
+	EClass cl;
+	EOperation op3;
+	EPackage p;
 
-	private OCL<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> ocl;
-
-	private EDataType dt;
-
-	private EClass cl;
-
-	private EOperation op3;
-
-	private EPackage p;
-
-	public static Test suite() {
-		return new TestSuite(TypeConformanceTests.class,
-			"Primitive Type Conformance Tests");
-	}
-
-	protected void setUp()
-			throws Exception {
-		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE
-			.createEnvironment());
-		helper = ocl.createOCLHelper();
+	@Override
+	protected void setUp() {
+		super.setUp();
 		EcoreFactory f = EcoreFactory.eINSTANCE;
 		p = f.createEPackage();
 		dt = f.createEDataType();

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.4 2008/12/02 12:10:25 cdamus Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.5 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -21,9 +21,6 @@ package org.eclipse.ocl.ecore.tests;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
@@ -74,16 +71,7 @@ import org.eclipse.ocl.expressions.util.ExpressionsValidator;
  */
 public class ExpressionsValidatorTest extends AbstractTestSuite {
 
-	private EcoreFactory factory = EcoreFactory.eINSTANCE;
-	
-	public ExpressionsValidatorTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(ExpressionsValidatorTest.class,
-			"Expressions Validator Tests"); //$NON-NLS-1$
-	}
+	private final EcoreFactory factory = EcoreFactory.eINSTANCE;
 	
 	public void test_BooleanLiteralExp_checkBooleanType() {
 		BooleanLiteralExp bl = factory.createBooleanLiteralExp();
@@ -551,7 +539,8 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	}
 	
 	public void test_MessageExp_checkSignalArguments() {
-		MessagingFruitEnvironmentFactory envFactory = new MessagesTest.MessagingFruitEnvironmentFactory();
+		expectModified = true;
+		MessagingFruitEnvironmentFactory envFactory = new MessagesTest.MessagingFruitEnvironmentFactory(this);
 		ocl.dispose();
 		ocl = OCL.newInstance(envFactory);
 		helper = ocl.createOCLHelper();
@@ -565,29 +554,24 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		assertNotNull(drop);
 		action.setSignal(drop);
 		
-		try {
-			UnspecifiedValueExp arg = factory.createUnspecifiedValueExp();
-			arg.setType(getOCLStandardLibrary().getInteger());
-			m.getArgument().add(arg);
-			
-			arg = factory.createUnspecifiedValueExp();
-			arg.setType(getOCLStandardLibrary().getBoolean());
-			m.getArgument().add(arg);
-			
-			assertProblem(m, ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS);
-			
-			arg.setType(stem);
-			
-			assertOK(m, ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS);
-			
-			// wrong number of arguments
-			m.getArgument().remove(arg);
-			
-			assertProblem(m, ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS);
-		} finally {
-			// forget the signal business
-			fruitPackage = null;
-		}
+		UnspecifiedValueExp arg = factory.createUnspecifiedValueExp();
+		arg.setType(getOCLStandardLibrary().getInteger());
+		m.getArgument().add(arg);
+		
+		arg = factory.createUnspecifiedValueExp();
+		arg.setType(getOCLStandardLibrary().getBoolean());
+		m.getArgument().add(arg);
+		
+		assertProblem(m, ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS);
+		
+		arg.setType(stem);
+		
+		assertOK(m, ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS);
+		
+		// wrong number of arguments
+		m.getArgument().remove(arg);
+		
+		assertProblem(m, ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS);
 	}
 	
 	public void test_MessageExp_checkTargetDefinesOperation() {

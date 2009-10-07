@@ -14,13 +14,10 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.7 2009/10/04 11:08:29 ewillink Exp $
+ * $Id: PrecedenceTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -49,18 +46,9 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class PrecedenceTest
 	extends AbstractTestSuite {
 
-    private Resource res;
-    
-    private Package pkg;
-    private Class class1;
-
-	public PrecedenceTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(PrecedenceTest.class, "Operator Precedence Tests");
-	}
+    Resource res;
+    Package pkg;
+    Class class1;
     
 	/**
 	 * Test that let expressions require parenthesis when embedding them in
@@ -231,8 +219,7 @@ public class PrecedenceTest
     //
     
     @Override
-    protected void setUp()
-        throws Exception {
+    protected void setUp() {
         
         super.setUp();
         
@@ -248,18 +235,5 @@ public class PrecedenceTest
         
         class1 = pkg.createOwnedClass("Class1", false);
         class1.createOwnedAttribute("base_Property", getMetaclass("Property")); //$NON-NLS-2$
-    }
-    
-    @Override
-    protected void tearDown()
-        throws Exception {
-        
-        pkg = null;
-        class1 = null;
-        
-        res.unload();
-        res = null;
-        
-        super.tearDown();
     }
 }

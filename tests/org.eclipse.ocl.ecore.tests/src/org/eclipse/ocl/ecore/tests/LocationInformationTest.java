@@ -13,13 +13,10 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.5 2008/09/28 17:34:22 cdamus Exp $
+ * $Id: LocationInformationTest.java,v 1.6 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -74,14 +71,6 @@ import org.eclipse.ocl.utilities.TypedASTNode;
  */
 public class LocationInformationTest
 	extends AbstractTestSuite {
-
-	public LocationInformationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(LocationInformationTest.class, "Location Information Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the <code>implies</code> expression, boolean literal, enumeration
@@ -434,7 +423,7 @@ public class LocationInformationTest
 		final String exprString =
 			"self.oclIsInState(Bad::Rotten)"; //$NON-NLS-1$
 		OCLExpression<EClassifier> constraint = createQuery(
-				new StatesTest.StatefulFruitEnvironmentFactory(), apple, exprString);
+				new StatesTest.StatefulFruitEnvironmentFactory(this), apple, exprString);
 		
 		OperationCallExp<EClassifier, EOperation> callExp = asOperationCall(constraint);
 		assertLocation(callExp, 0, exprString.length());

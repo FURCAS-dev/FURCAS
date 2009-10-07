@@ -12,22 +12,17 @@
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.3 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: TypesValidatorTest.java,v 1.4 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.Map;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.types.util.TypesValidator;
@@ -44,16 +39,7 @@ import org.eclipse.uml2.uml.Package;
  */
 public class TypesValidatorTest extends AbstractTestSuite {
 
-	private UMLFactory factory = UMLFactory.eINSTANCE;
-	
-	public TypesValidatorTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(TypesValidatorTest.class,
-			"Types Validator Tests"); //$NON-NLS-1$
-	}
+	UMLFactory factory = UMLFactory.eINSTANCE;
 	
 	public void test_CollectionType_checkCollectionTypeName() {
 		CollectionType type = factory.createCollectionType();
@@ -136,9 +122,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_emptyCollectionType_196972() {
 		// load our test resource
-		ResourceSet rset = new ResourceSetImpl();
 		URI uri = getTestModelURI("/model/VoidCollectionTypes.uml"); //$NON-NLS-1$
-		Resource res = rset.getResource(uri, true);
+		Resource res = resourceSet.getResource(uri, true);
 		Package epackage = (Package) res.getContents().get(0);
 		
 		// this one is ill-named

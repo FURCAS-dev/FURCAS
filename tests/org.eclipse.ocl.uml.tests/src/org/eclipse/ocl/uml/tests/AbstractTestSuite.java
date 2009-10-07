@@ -14,23 +14,24 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.17 2009/09/01 20:11:49 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.18 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.ListIterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
@@ -60,9 +60,7 @@ import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.ExpressionInOCL;
 import org.eclipse.ocl.uml.OCL;
-import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
-import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.Visitable;
@@ -102,6 +100,21 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public abstract class AbstractTestSuite
 	extends TestCase {
+	
+    protected static final class CheckedTestSuite extends TestSuite {
+
+		public CheckedTestSuite(String name) {
+			super(name);
+		}
+
+		public void createTestSuite(java.lang.Class<? extends AbstractTestSuite> testClass, String testName) {
+	        addTest(new TestSuite(testClass, testName));
+		}
+
+		public void addTestSuite(CheckedTestSuite suite) {
+	        addTest(suite);
+		}
+	}
 
     // set this variable true when testing for memory leaks
     private static boolean DISPOSE_UML_METAMODEL = false;
@@ -110,6 +123,7 @@ public abstract class AbstractTestSuite
 		.newSingleThreadExecutor();
 
 	protected static ResourceSet resourceSet;
+	private static ArrayList<Resource> standardResources;
 	
 	protected static org.eclipse.ocl.uml.UMLPackage ocltypes =
         org.eclipse.ocl.uml.UMLPackage.eINSTANCE;
@@ -120,105 +134,126 @@ public abstract class AbstractTestSuite
 	protected static Package umlMetamodel;
 	protected static Package umlPrimitiveTypes;
 	protected static Package ecorePrimitiveTypes;
+
+	private static void initializeResourceSet() {
+		Environment.Registry.INSTANCE.registerEnvironment(
+			new UMLEnvironmentFactory().createEnvironment());
+	    resourceSet = new ResourceSetImpl();
+	    OCL.initialize(resourceSet);
+		// Make sure that the UML metamodel and primitive types
+		//   libraries are loaded
+		umlMetamodel = (Package) resourceSet.getResource(
+				URI.createURI(UMLResource.UML_METAMODEL_URI),
+				true).getContents().get(0);
+		umlPrimitiveTypes = (Package) resourceSet.getResource(
+				URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI),
+				true).getContents().get(0);
+		ecorePrimitiveTypes = (Package) resourceSet.getResource(
+				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
+				true).getContents().get(0);
+		//
+		standardResources = new ArrayList<Resource>(resourceSet.getResources());
+	}
 	
-	protected static Package fruitPackage;
-	protected static EPackage fruitEPackage;
-	protected static EFactory fruitEFactory;
+	protected Package fruitPackage;
+	protected EPackage fruitEPackage;
+	protected EFactory fruitEFactory;
 	
-	protected static Class fruit;
-	protected static Operation fruit_ripen;
-	protected static Operation fruit_preferredColor;
-	protected static Operation fruit_newFruit;
-	protected static Operation fruit_setColor;
-	protected static Property fruit_color;
-    protected static Property fruit_friends;
+	protected Class fruit;
+	protected Operation fruit_ripen;
+	protected Operation fruit_preferredColor;
+	protected Operation fruit_newFruit;
+	protected Operation fruit_setColor;
+	protected Property fruit_color;
+    protected Property fruit_friends;
 	
-	protected static Class apple;
-	protected static Property apple_label;
-	protected static Property apple_tree;
-    protected static Property apple_appleFriends;
-	protected static Operation apple_labelOper;
-	protected static Operation apple_newApple;
+	protected Class apple;
+	protected Property apple_label;
+	protected Property apple_tree;
+    protected Property apple_appleFriends;
+	protected Operation apple_labelOper;
+	protected Operation apple_newApple;
 	
-	protected static AssociationClass stem;
-	protected static Property stem_length;
+	protected AssociationClass stem;
+	protected Property stem_length;
 	
-	protected static Class tree;
-	protected static Property tree_apples;
-    protected static Property tree_height;
+	protected Class tree;
+	protected Property tree_apples;
+    protected Property tree_height;
 	
-	protected static Enumeration color;
-	protected static EnumerationLiteral color_black;
-	protected static EnumerationLiteral color_red;
-	protected static EnumerationLiteral color_green;
-	protected static EnumerationLiteral color_yellow;
-	protected static EnumerationLiteral color_orange;
-	protected static EnumerationLiteral color_brown;
-	protected static EnumerationLiteral color_pink;
+	protected Enumeration color;
+	protected EnumerationLiteral color_black;
+	protected EnumerationLiteral color_red;
+	protected EnumerationLiteral color_green;
+	protected EnumerationLiteral color_yellow;
+	protected EnumerationLiteral color_orange;
+	protected EnumerationLiteral color_brown;
+	protected EnumerationLiteral color_pink;
 	
-	protected static Class forest;
-	protected static Property forest_trees;
-	protected static Property forest_trees_zoneQualifier;
-	protected static Property forest_trees_indexQualifier;
-    protected static Property forest_area;
+	protected Class forest;
+	protected Property forest_trees;
+	protected Property forest_trees_zoneQualifier;
+	protected Property forest_trees_indexQualifier;
+    protected Property forest_area;
 	
-	protected static Association a_forest_tree;
-	protected static Property a_forest_tree_forest;
+	protected Association a_forest_tree;
+	protected Property a_forest_tree_forest;
 	
-	protected static Class util;
-	protected static Property util_orderedSet;
-	protected static Property util_set;
-	protected static Property util_bag;
-	protected static Property util_sequence;
-	protected static Operation util_processOrderedSet;
-	protected static Operation util_processSet;
-	protected static Operation util_processBag;
-	protected static Operation util_processSequence;
+	protected Class util;
+	protected Property util_orderedSet;
+	protected Property util_set;
+	protected Property util_bag;
+	protected Property util_sequence;
+	protected Operation util_processOrderedSet;
+	protected Operation util_processSet;
+	protected Operation util_processBag;
+	protected Operation util_processSequence;
 	
 	protected OCL ocl;
 	protected OCLHelper<Classifier, Operation, Property, Constraint> helper;
-	
-	public AbstractTestSuite(String name) {
-		super(name);
-	}
+
+	/**
+	 * Set this true to suppress a failure from modifying the fruitPackage
+	 */
+	protected boolean expectModified = false;
 
 	/**
 	 * Creates the test suite.
 	 * 
 	 * @return the suite
 	 */
-	public static Test suite() {
-		TestSuite result = new TestSuite("OCL Tests for UML Metamodel"); //$NON-NLS-1$
+	public static CheckedTestSuite suite() {
+		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel"); //$NON-NLS-1$
 		
-		result.addTest(BasicOCLTest.suite());
-        result.addTest(PrimitiveTypesTest.suite());
-		result.addTest(ComparisonTest.suite());
-		result.addTest(CollectionsTest.suite());
-		result.addTest(AssociationTest.suite());
-		result.addTest(IteratorsTest.suite());
-        result.addTest(KeywordsTest.suite());
-        result.addTest(PrecedenceTest.suite());
-		result.addTest(TuplesTest.suite());
-		result.addTest(StatesTest.suite());
-		result.addTest(MessagesTest.suite());
-		result.addTest(ProfilesTest.suite());
-		result.addTest(InvariantConstraintsTest.suite());
-		result.addTest(OperationConstraintsTest.suite());
-		result.addTest(LocationInformationTest.suite());
-		result.addTest(FeatureRedefinitionTest.suite());
-		result.addTest(DefExpressionTest.suite());
-		result.addTest(InitOrDerExpressionTest.suite());
-        result.addTest(UMLTest.suite());
-		result.addTest(OCLDocumentTest.suite());
-        result.addTest(UtilitiesTest.suite());
-        result.addTest(UMLEnvironmentTest.suite());
-		result.addTest(org.eclipse.ocl.uml.helper.tests.AbstractTestSuite.suite());
-		result.addTest(RegressionTest.suite());
-		result.addTest(ValidationTest.suite());
-		result.addTest(TypesValidatorTest.suite());
-		result.addTest(ExpressionsValidatorTest.suite());
-		result.addTest(SerializationTest.suite());
-		result.addTest(EvaluationHaltedTest.suite());
+		result.createTestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
+        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests"); //$NON-NLS-1$
+		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests"); //$NON-NLS-1$
+		result.createTestSuite(CollectionsTest.class, "Collection Type Tests"); //$NON-NLS-1$
+		result.createTestSuite(AssociationTest.class, "Association Tests"); //$NON-NLS-1$
+		result.createTestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
+        result.createTestSuite(KeywordsTest.class, "LPG and OCL Keyword Tests"); //$NON-NLS-1$
+        result.createTestSuite(PrecedenceTest.class, "Operator Precedence Tests"); //$NON-NLS-1$
+		result.createTestSuite(TuplesTest.class, "Tuple Tests"); //$NON-NLS-1$
+		result.createTestSuite(StatesTest.class, "State Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(MessagesTest.class, "Message Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(ProfilesTest.class, "Profile Constraint Tests"); //$NON-NLS-1$
+		result.createTestSuite(InvariantConstraintsTest.class, "Invariant Constraints"); //$NON-NLS-1$
+		result.createTestSuite(OperationConstraintsTest.class, "Operation Constraints"); //$NON-NLS-1$
+		result.createTestSuite(LocationInformationTest.class, "Location Information Tests"); //$NON-NLS-1$
+		result.createTestSuite(FeatureRedefinitionTest.class, "Feature redefinition tests"); //$NON-NLS-1$
+		result.createTestSuite(DefExpressionTest.class, "Def Expression Tests"); //$NON-NLS-1$
+		result.createTestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests"); //$NON-NLS-1$
+        result.createTestSuite(UMLTest.class, "UML-Specific Tests"); //$NON-NLS-1$
+		result.createTestSuite(OCLDocumentTest.class, "OCL Document Parsing Tests"); //$NON-NLS-1$
+        result.createTestSuite(UtilitiesTest.class, "OCLUMLUtil Utility Class Tests"); //$NON-NLS-1$
+        result.createTestSuite(UMLEnvironmentTest.class, "UML Environment Tests"); //$NON-NLS-1$
+		result.addTestSuite(org.eclipse.ocl.uml.helper.tests.AbstractTestSuite.suite());
+		result.createTestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
+		result.createTestSuite(ValidationTest.class, "Expression Validation Tests"); //$NON-NLS-1$
+		result.createTestSuite(TypesValidatorTest.class, "Types Validator Tests"); //$NON-NLS-1$
+		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests"); //$NON-NLS-1$
+		result.createTestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
+		result.createTestSuite(EvaluationHaltedTest.class, "UML Halted Evaluation Tests"); //$NON-NLS-1$
 		
 		return result;
 	}
@@ -228,21 +263,36 @@ public abstract class AbstractTestSuite
 	//
 	
 	@Override
-    protected void setUp()
-		throws Exception {
+    protected void setUp() {
 		
 		System.out.println("==> Start  " + getName()); //$NON-NLS-1$
 		
-		if (fruitPackage == null) {
-			initFruitPackage();
+        if ((resourceSet != null) && DISPOSE_UML_METAMODEL) {
+        	disposeResourceSet();
+        }
+		if (!initialized) {
+			boolean isRunning = false;
+			try {
+				java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
+				Method isRunningMethod = platformClass.getDeclaredMethod("isRunning"); //$NON-NLS-1$
+				isRunning = Boolean.TRUE.equals(isRunningMethod.invoke(null));
+			} catch (Exception e) {
+			}
+			if (!isRunning) {
+				initializeStandalone();
+			}
+		}		
+		if (resourceSet == null) {
+			initializeResourceSet();
 		}
-		
-		assertSame(
-				fruitPackage,
-				OCLUMLUtil.findPackage(
-						Collections.singletonList(fruitPackage.getName()),
-						resourceSet));
+		initFruitPackage();
 
+		assertSame(
+			fruitPackage,
+			OCLUMLUtil.findPackage(
+					Collections.singletonList(fruitPackage.getName()),
+					resourceSet));
+		
 		ocl = createOCL();
 //        ocl.setParseTracingEnabled(true);
 //        ocl.setEvaluationTracingEnabled(true);
@@ -262,17 +312,83 @@ public abstract class AbstractTestSuite
 		return ocl.createOCLHelper();
 	}
 	
+	/**
+	 * Clean up on behalf of derived tests, alleviating them of the tedious need to avoid
+	 * leaks. All loaded resources are unloaded and all fields are nulled, by invoking
+	 * tearDown_xxx() if such a method is available, or setting it to null otherwise.
+	 * public access must be provided.
+	 * 
+	 * This method is final to force invocation. Provide a tearDown_xxx method to do
+	 * some derived action during tearDown.
+	 */
 	@Override
-    protected void tearDown()
+    protected final void tearDown()
 		throws Exception {
-		
-	    ocl.dispose();
-        helper = null;
-	    ocl = null;
-	    
-	    disposeResourceSet();
-	    
+		final Resource resource = fruitPackage.eResource();
+		final boolean isModified = resource.isModified();
+		final boolean expectIsModified = expectModified;
+		//
+		//	Unload any resources that a test may have loaded.
+		//
+		for (ListIterator<Resource> i = resourceSet.getResources().listIterator(); i.hasNext(); ) {
+			Resource res = i.next();
+			if (((res == resource) && isModified) || !standardResources.contains(res)) {
+				i.remove();
+				res.unload();
+                res.eAdapters().clear();
+			}				
+		}
+		//
+		//	Null out any references that a test may have left behind, so that unwanted
+		//	objects are not locked into memory.
+		//
+		for (java.lang.Class<?> aClass = getClass(); AbstractTestSuite.class.isAssignableFrom(aClass); aClass = aClass.getSuperclass()) {
+			for (Field field : aClass.getDeclaredFields()) {
+				int modifiers = field.getModifiers();
+				if (Modifier.isFinal(modifiers)) {
+				}
+				else if (!Modifier.isStatic(modifiers)) {
+					java.lang.Class<?> fieldType = field.getType();
+					if (Object.class.isAssignableFrom(fieldType)) {
+						String fieldName = field.getName();
+						try {
+							String tearDownName = "tearDown_" + fieldName; //$NON-NLS-1$
+							Method method = aClass.getDeclaredMethod(tearDownName);
+							try {
+								method.invoke(this);
+							} catch (Exception e) {
+								// tearDown_xxx must be public
+								fail("Failed to invoke " + getClass().getSimpleName() + "." + tearDownName + " : " + e);   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+							}
+						}
+						catch (NoSuchMethodException e) {
+							try {
+								field.set(this, null);
+							} catch (Exception e1) {
+								// xxx without a tearDown_xxx must be public to ensure that leakage can be stopped
+								fail("Failed to set " + getClass().getSimpleName() + "." + fieldName + " to null : " + e1);  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+							}
+						}
+					}
+				}
+				else if (aClass != AbstractTestSuite.class) {
+					// Tests may not have statics since they are prone to memory leakage
+					fail("static test variable:" + field);  //$NON-NLS-1$
+				}
+			}
+		}
+		assertTrue(isModified == expectIsModified  );	    
 		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
+	}
+
+	protected void tearDown_ocl() {
+		ocl.dispose();
+		ocl = null;
+	}
+
+	public void tearDown_fruitEPackage() {
+		resourceSet.getPackageRegistry().remove(fruitEPackage.getNsURI());
+		fruitEPackage = null;
 	}
     
     protected final Classifier getMetaclass(String name) {
@@ -967,54 +1083,31 @@ public abstract class AbstractTestSuite
 		return result;
 	}
 	
-	protected static void unload(EObject eObject) {
+	protected void unload(EObject eObject) {
 	    eObject.eAdapters().clear();
 	    for (Iterator<EObject> iter = eObject.eAllContents(); iter.hasNext();) {
 	        iter.next().eAdapters().clear();
 	    }
 	}
 	
-	protected static void unload(Collection<? extends EObject> eObjects) {
+	protected void unload(Collection<? extends EObject> eObjects) {
 	    for (EObject eObject : eObjects) {
 	        unload(eObject);
 	    }
 	}
 	
 	private static void disposeResourceSet() {
-        if (resourceSet != null) {
-            if (DISPOSE_UML_METAMODEL) {
-                for (Resource res : resourceSet.getResources()) {
-                    res.unload();
-                    res.eAdapters().clear();
-                }
-                resourceSet.getResources().clear();
-                resourceSet.eAdapters().clear();
-                resourceSet = null;
-                
-                umlMetamodel = null;
-                umlPrimitiveTypes = null;
-                ecorePrimitiveTypes = null;
-            } else {
-                // unload and remove all resources but the UML Metamodel.
-                // Don't clear the resource set's adapter-list
-                
-                Set<Resource> toPreserve = new java.util.HashSet<Resource>();
-                toPreserve.add(umlMetamodel.eResource());
-                toPreserve.add(umlPrimitiveTypes.eResource());
-                toPreserve.add(ecorePrimitiveTypes.eResource());
-                
-                for (Resource res : resourceSet.getResources()) {
-                    if (!toPreserve.contains(res)) {
-                        res.unload();
-                        res.eAdapters().clear();
-                    }
-                }
-                
-                resourceSet.getResources().retainAll(toPreserve);
-            }
+        for (Resource res : resourceSet.getResources()) {
+            res.unload();
+            res.eAdapters().clear();
         }
-        
-        fruitPackage = null;
+        resourceSet.getResources().clear();
+        resourceSet.eAdapters().clear();
+        resourceSet = null;
+        umlMetamodel = null;
+        umlPrimitiveTypes = null;
+        ecorePrimitiveTypes = null;
+		standardResources = null;
 	}
 	
 	public static URI getTestModelURI(String localFileName) {
@@ -1029,11 +1122,8 @@ public abstract class AbstractTestSuite
 				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
 				return URI.createURI(url.toString());
 			}
-			else {
-				initializeStandalone();
-			}
 		} catch (Exception e) {
-			initializeStandalone();
+			// not running in Eclipse
 		}
 		String urlString = System.getProperty(testPlugInId);
 		if (urlString == null)
@@ -1047,44 +1137,10 @@ public abstract class AbstractTestSuite
 		if (initialized)
 			return;
 		initialized = true;
-		Map<URI, URI> uriMap = URIMappingRegistryImpl.INSTANCE.map();		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		Environment.Registry.INSTANCE.registerEnvironment(
-			new UMLEnvironmentFactory().createEnvironment());
-		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
-		if (oclLocation == null)
-			fail("'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"); //$NON-NLS-1$
-		oclLocation = "file:/" + oclLocation; //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
-		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
-		if (resourcesLocation == null)
-			fail("'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"); //$NON-NLS-1$
-		resourcesLocation = "file:/" + resourcesLocation; //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.STANDARD_PROFILE_URI), URI.createURI(resourcesLocation + "/profiles/Standard.profile.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.ECORE_PROFILE_URI), URI.createURI(resourcesLocation + "/profiles/Ecore.profile.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.UML_METAMODEL_URI), URI.createURI(resourcesLocation + "/metamodels/UML.metamodel.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI), URI.createURI(resourcesLocation + "/libraries/UMLPrimitiveTypes.library.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI), URI.createURI(resourcesLocation + "/libraries/EcorePrimitiveTypes.library.uml")); //$NON-NLS-1$
-//		resourcesLocation = System.getProperty("org.eclipse.ocl"); //$NON-NLS-1$
-//		if (resourcesLocation == null)
-//			AbstractTestSuite.fail("'org.eclipse.ocl' property not defined; use the launch configuration to define it"); //$NON-NLS-1$
-//		resourcesLocation = "file:/" + resourcesLocation; //$NON-NLS-1$
-//		uriMap.put(URI.createURI(OCL.OCL_METAMODEL_URI), URI.createURI(resourcesLocation + "/model/OCL.uml")); //$NON-NLS-1$
-		OCLStandardLibraryImpl.INSTANCE.getClass();		// Ensure OCLStandardLibrary loaded before use
 	}
 	
-	private static void initFruitPackage() {
-		URI uri = getTestModelURI("/model/OCLTest.uml"); //$NON-NLS-1$
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		
-		disposeResourceSet();
-		
-		if (resourceSet == null) {
-		    resourceSet = new ResourceSetImpl();
-		}
-		
+	private void initFruitPackage() {
+		URI uri = getTestModelURI("/model/OCLTest.uml"); //$NON-NLS-1$		
 		Resource res = resourceSet.getResource(uri, true);
 		
 		fruitPackage = (Package) res.getContents().get(0);
@@ -1139,22 +1195,11 @@ public abstract class AbstractTestSuite
 		util_processBag = util.getOwnedOperation("processBag", null, null); //$NON-NLS-1$
 		util_processSequence = util.getOwnedOperation("processSequence", null, null); //$NON-NLS-1$
 		
-		// also make sure that the UML metamodel and primitive types
-		//   libraries are loaded
-		
-		umlMetamodel = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.UML_METAMODEL_URI),
-				true).getContents().get(0);
-		umlPrimitiveTypes = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI),
-				true).getContents().get(0);
-		ecorePrimitiveTypes = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
-				true).getContents().get(0);
 		
 		// convert the Package to Ecore for evaluation on instances
 		fruitEPackage = UMLUtil.convertToEcore(fruitPackage, null).iterator().next();
-		EPackage.Registry.INSTANCE.put(fruitEPackage.getNsURI(), fruitEPackage);
+		resourceSet.getPackageRegistry().put(fruitEPackage.getNsURI(), fruitEPackage);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
+		res.setTrackingModification(true);
 	}
 }

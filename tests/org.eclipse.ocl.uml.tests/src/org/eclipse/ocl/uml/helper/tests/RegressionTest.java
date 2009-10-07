@@ -13,15 +13,12 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.3 2008/10/12 01:10:17 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.4 2009/10/07 20:42:33 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -36,14 +33,6 @@ import org.eclipse.uml2.uml.Classifier;
 public class RegressionTest
 	extends AbstractTestSuite {
 
-	public RegressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
-	}
-	
 	/**
 	 * Regression test to check that we complete on the right-most
 	 * sub-expression to the left of the '.' (i.e., not treating this

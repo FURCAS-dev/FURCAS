@@ -13,13 +13,10 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.3 2009/01/15 04:22:07 cdamus Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.4 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
@@ -32,14 +29,6 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class PrimitiveTypesTest
 		extends AbstractTestSuite {
-
-	public PrimitiveTypesTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(PrimitiveTypesTest.class, "Primitive Type Tests"); //$NON-NLS-1$
-	}
 
 	/**
 	 * Tests that we correctly interpret the UML UnlimitedNatural primitive

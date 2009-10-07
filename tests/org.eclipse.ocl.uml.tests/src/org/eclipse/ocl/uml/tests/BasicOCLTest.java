@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.7 2009/09/01 20:11:49 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -20,9 +20,6 @@ package org.eclipse.ocl.uml.tests;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -48,14 +45,6 @@ import org.eclipse.uml2.uml.VisibilityKind;
  */
 public class BasicOCLTest
 	extends AbstractTestSuite {
-
-	public BasicOCLTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
-	}
     
     public void hide_test_createStandardLibrary() {
         Resource res = ocl.getEnvironment().getOCLStandardLibrary().getOclAny().eResource();

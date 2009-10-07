@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.7 2009/09/04 08:27:30 ewillink Exp $
+ * $Id: DefExpressionTest.java,v 1.8 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -22,9 +22,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -54,14 +51,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
 @SuppressWarnings("nls")
 public class DefExpressionTest
 	extends AbstractTestSuite {
-	
-	public DefExpressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(DefExpressionTest.class, "Def Expression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the parsing the def expression for an operation from raw text.
@@ -201,7 +190,7 @@ public class DefExpressionTest
 			
 			assertEquals(UMLReflection.DEFINITION, constraint.getStereotype());
 			
-			assertTrue(expr.getType() instanceof SetType);
+			assertTrue(expr.getType() instanceof SetType<?, ?>);
 			assertSame(
 					((org.eclipse.ocl.ecore.SetType) expr.getType()).getElementType(),
 					apple);
@@ -239,11 +228,11 @@ public class DefExpressionTest
 			OCLExpression<EClassifier> expr = helper.createQuery("self.allParents()"); //$NON-NLS-1$
 			
 			Object allParents = ocl.evaluate(apple, expr);
-			assertTrue(allParents instanceof Set);
+			assertTrue(allParents instanceof Set<?>);
 			assertTrue(((Set<?>) allParents).contains(fruit));
 			
 			allParents = ocl.evaluate(color, expr);
-			assertTrue(allParents instanceof Set);
+			assertTrue(allParents instanceof Set<?>);
 			assertTrue(((Set<?>) allParents).isEmpty());
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
@@ -261,11 +250,11 @@ public class DefExpressionTest
 			OCLExpression<EClassifier> expr = helper.createQuery("self.allParents"); //$NON-NLS-1$
 			
 			Object allParents = ocl.evaluate(apple, expr);
-			assertTrue(allParents instanceof Set);
+			assertTrue(allParents instanceof Set<?>);
 			assertTrue(((Set<?>) allParents).contains(fruit));
 			
 			allParents = ocl.evaluate(color, expr);
-			assertTrue(allParents instanceof Set);
+			assertTrue(allParents instanceof Set<?>);
 			assertTrue(((Set<?>) allParents).isEmpty());
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$

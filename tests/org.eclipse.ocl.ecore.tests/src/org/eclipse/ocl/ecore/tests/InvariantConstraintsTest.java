@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: InvariantConstraintsTest.java,v 1.2 2007/02/14 14:45:48 cdamus Exp $
+ * $Id: InvariantConstraintsTest.java,v 1.3 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.Collections;
 import java.util.Iterator;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
@@ -39,15 +36,6 @@ import org.eclipse.ocl.expressions.TypeExp;
  * @author Christian W. Damus (cdamus)
  */
 public class InvariantConstraintsTest extends AbstractTestSuite {
-
-	public InvariantConstraintsTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(InvariantConstraintsTest.class,
-			"Invariant Constraints"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests a very simple invariant, with a package and classifier context
@@ -98,6 +86,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 * distinguish references to the type from references to the property.
 	 */
 	public void test_propertyNameCoincidesWithTypeName_140347() {
+		expectModified = true;
 		EReference myFruit = EcoreFactory.eINSTANCE.createEReference();
 		myFruit.setName("Fruit"); //$NON-NLS-1$
 		myFruit.setEType(fruit);
@@ -113,7 +102,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 			int typeCalls = 0;
 			for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(expr)); iter.hasNext();) {
 				Object next = iter.next();
-				if (next instanceof PropertyCallExp) {
+				if (next instanceof PropertyCallExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					PropertyCallExp<EClassifier, EStructuralFeature> pc =
 						(PropertyCallExp<EClassifier, EStructuralFeature>) next;
@@ -121,7 +110,7 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 					if ("Fruit".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
 						propertyCalls++;
 					}
-				} else if (next instanceof TypeExp) {
+				} else if (next instanceof TypeExp<?>) {
 					@SuppressWarnings("unchecked")
 					TypeExp<EClassifier> te = (TypeExp<EClassifier>) next;
 					

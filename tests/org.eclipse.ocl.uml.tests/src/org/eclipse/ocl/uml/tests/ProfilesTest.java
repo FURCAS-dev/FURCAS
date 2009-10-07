@@ -13,7 +13,7 @@
  *   
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.8 2008/11/12 17:13:12 cdamus Exp $
+ * $Id: ProfilesTest.java,v 1.9 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -23,9 +23,6 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -54,41 +51,20 @@ import org.eclipse.uml2.uml.Stereotype;
 public class ProfilesTest
     extends AbstractTestSuite {
 
-    private static Profile testProfile;
-
-    private static Stereotype testStereotype;
-
-    private static Stereotype testSubStereotype;
-
-    private static Property stereoEnum;
-
-    private static Property stereoX;
-    
-    private static Property stereoTag;
-
-    private static Enumeration testEnumeration;
-
-    private static EnumerationLiteral maybe;
-
-    private static EnumerationLiteral no;
-
-    private static EnumerationLiteral yes;
-    
-    private static Class tag;
-    
-    private static EClass eTag;
-    
-    private static Property tagName;
-    
-    private static EAttribute eTagName;
-
-    public ProfilesTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(ProfilesTest.class, "Profile Constraint Tests"); //$NON-NLS-1$
-    }
+    private Profile testProfile;
+    Stereotype testStereotype;
+    Stereotype testSubStereotype;
+    Property stereoEnum;
+    Property stereoX;  
+    Property stereoTag;
+    Enumeration testEnumeration;
+    EnumerationLiteral maybe;
+    EnumerationLiteral no;
+    EnumerationLiteral yes;   
+    Class tag;   
+    EClass eTag;   
+    Property tagName;   
+    EAttribute eTagName;
 
     /**
      * Tests the parsing of the constraints on stereotypes.
@@ -339,8 +315,7 @@ public class ProfilesTest
     //
 
     @Override
-    protected void setUp()
-        throws Exception {
+    protected void setUp() {
         super.setUp();
 
         if (testProfile == null) {
@@ -348,29 +323,15 @@ public class ProfilesTest
         }
 
         fruitPackage.applyProfile(testProfile);
+        expectModified = true;
     }
 
-    @Override
-    protected void tearDown()
-        throws Exception {
+    public void tearDown_testProfile() {
         fruitPackage.unapplyProfile(testProfile);
-
         testProfile = null;
-        testStereotype = null;
-        stereoEnum = null;
-        stereoX = null;
-        stereoTag = null;
-        testEnumeration = null;
-        maybe = null;
-        no = null;
-        yes = null;
-        tag = null;
-        tagName = null;
-        
-        super.tearDown();
     }
 
-    private static void initTestProfile() {
+    private void initTestProfile() {
         Resource res = fruitPackage.eResource();
         URI uri = res.getURI().trimSegments(1).appendSegment(
             "OCLTest.profile.uml"); //$NON-NLS-1$

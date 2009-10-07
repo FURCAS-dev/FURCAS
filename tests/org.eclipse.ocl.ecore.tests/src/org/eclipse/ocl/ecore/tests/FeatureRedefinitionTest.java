@@ -13,14 +13,10 @@
  * 
  * </copyright>
  *
- * $Id: FeatureRedefinitionTest.java,v 1.1 2008/08/30 23:33:06 cdamus Exp $
+ * $Id: FeatureRedefinitionTest.java,v 1.2 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -30,8 +26,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -43,39 +37,17 @@ import org.eclipse.ocl.expressions.OCLExpression;
  */
 @SuppressWarnings("nls")
 public class FeatureRedefinitionTest
-		extends TestCase {
+		extends AbstractTestSuite {
 
-	private OCL.Helper helper;
-
-	private OCL ocl;
-
-	private EClass c3;
-
-	private EOperation op3;
-
-	private EAttribute attr3;
-
-	private EClass c2;
-
-	private EAttribute attr2;
-
-	private EOperation op2;
-
-	private EClass c1;
-
-	private EAttribute attr1;
-
-	private EOperation op1;
-
-	/**
-	 * Creates my test suite.
-	 * 
-	 * @return my test suite
-	 */
-	public static Test suite() {
-		return new TestSuite(FeatureRedefinitionTest.class,
-			"Feature redefinition tests");
-	}
+	EClass c3;
+	EOperation op3;
+	EAttribute attr3;
+	EClass c2;
+	EAttribute attr2;
+	EOperation op2;
+	EClass c1;
+	EAttribute attr1;
+	EOperation op1;
 
 	public void testCallOverridingMethod()
 			throws Exception {
@@ -163,8 +135,9 @@ public class FeatureRedefinitionTest
 	// Test framework
 	//
 
+	@Override
 	protected void setUp() {
-
+		super.setUp();
 		EcoreFactory f = EcoreFactory.eINSTANCE;
 		EPackage p = f.createEPackage();
 
@@ -227,17 +200,5 @@ public class FeatureRedefinitionTest
 		c3.getEOperations().add(op3);
 		op3.setName("foo");
 		op3.setEType(EcorePackage.Literals.EINT);
-
-		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
-		helper = ocl.createOCLHelper();
-	}
-	
-	@Override
-	protected void tearDown()
-			throws Exception {
-		
-		ocl.dispose();
-		
-		super.tearDown();
 	}
 }

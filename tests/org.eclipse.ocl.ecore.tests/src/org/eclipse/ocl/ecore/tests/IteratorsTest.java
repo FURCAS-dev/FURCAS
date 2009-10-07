@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.7 2009/09/01 20:10:53 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.8 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -24,9 +24,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -45,29 +42,14 @@ import org.eclipse.ocl.ParserException;
 public class IteratorsTest
     extends AbstractTestSuite {
 
-    private EPackage pkg1;
-
-    private EPackage pkg2;
-
-    private EPackage pkg3;
-
-    private EPackage pkg4;
-
-    private EPackage pkg5;
-
-    private EPackage jim;
-
-    private EPackage bob;
-
-    private EPackage george;
-
-    public IteratorsTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
-    }
+    EPackage pkg1;
+    EPackage pkg2;
+    EPackage pkg3;
+    EPackage pkg4;
+    EPackage pkg5;
+    EPackage jim;
+    EPackage bob;
+    EPackage george;
 
     /**
      * Tests the generic iterate() iterator.
@@ -802,7 +784,7 @@ public class IteratorsTest
             result = evaluate(helper, EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->collect(null)"); //$NON-NLS-1$
 
-            assertTrue(result instanceof Collection);
+            assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertEquals(3, collResult.size());
@@ -834,7 +816,7 @@ public class IteratorsTest
                 EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)"); //$NON-NLS-1$
 
-            assertTrue(result instanceof Collection);
+            assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertEquals(3, collResult.size());
@@ -867,7 +849,7 @@ public class IteratorsTest
             result = evaluate(helper, EcorePackage.eINSTANCE,
                 "let c : Set(EClassifier) = Set{null} in eClassifiers->closure(c)"); //$NON-NLS-1$
 
-            assertTrue(result instanceof Collection);
+            assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertTrue(collResult.isEmpty());
@@ -1116,8 +1098,7 @@ public class IteratorsTest
     //
 
     @Override
-    protected void setUp()
-        throws Exception {
+    protected void setUp() {
         super.setUp();
 
         // need a metamodel that has a reflexive EReference.

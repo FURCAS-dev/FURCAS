@@ -14,13 +14,10 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.5 2009/01/15 04:22:06 cdamus Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.6 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -40,14 +37,6 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
  */
 public class PrimitiveTypesTest
 		extends AbstractTestSuite {
-
-	public PrimitiveTypesTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(PrimitiveTypesTest.class, "Primitive Type Tests"); //$NON-NLS-1$
-	}
 
 	/**
 	 * Tests that we correctly interpret the type of the upper-bound
@@ -197,14 +186,12 @@ public class PrimitiveTypesTest
 		testattr.setEType(testdatatype);
 
 		try {
-			EPackage.Registry.INSTANCE.put(testpkg.getNsURI(), testpkg);
+			resourceSet.getPackageRegistry().put(testpkg.getNsURI(), testpkg);
 
 			helper.setContext(testclass);
 			helper.createInvariant("self.data->size() > 1"); //$NON-NLS-1$
 		} catch (ParserException e) {
 			fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(testpkg.getNsURI());
 		}
 	}
 }

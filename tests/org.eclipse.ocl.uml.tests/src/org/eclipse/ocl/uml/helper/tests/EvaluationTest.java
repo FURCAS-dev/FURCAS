@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: EvaluationTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: EvaluationTest.java,v 1.3 2009/10/07 20:42:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -34,17 +31,6 @@ import org.eclipse.uml2.uml.Package;
  */
 public class EvaluationTest
 	extends AbstractTestSuite {
-
-	/**
-	 * Initializes me with my name.
-	 */
-	public EvaluationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(EvaluationTest.class, "Constraint Evaluation Tests"); //$NON-NLS-1$
-	}
 	
 	public void test_allInstances() {
 		helper.setContext(fruit);

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.7 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: ComparisonTest.java,v 1.8 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,9 +24,6 @@ import java.math.BigInteger;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
@@ -62,36 +59,27 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class ComparisonTest
 	extends AbstractTestSuite {
 
-	private Package pkg;
-	private Class thingType;
-	private Property values;
-	private DataType valueType;
-	private Class numeroType;
-	private Property numeros;
-	private Property bdValue;
-	private Property biValue;
+	Package pkg;
+	Class thingType;
+	Property values;
+	DataType valueType;
+	Class numeroType;
+	Property numeros;
+	Property bdValue;
+	Property biValue;
 	
-	private EPackage epkg;
-	private EFactory efactory;
-	private EClass ethingType;
-	private EAttribute evalues;
-	private EDataType evalueType;
-	private EClass enumeroType;
-	private EReference enumeros;
-	private EAttribute ebdValue;
-	private EAttribute ebiValue;
+	EPackage epkg;
+	EFactory efactory;
+	EClass ethingType;
+	EAttribute evalues;
+	EDataType evalueType;
+	EClass enumeroType;
+	EReference enumeros;
+	EAttribute ebdValue;
+	EAttribute ebiValue;
 	
-	private Class comparable;
-	
-	private EObject thing;
-	
-	public ComparisonTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(ComparisonTest.class, "Comparison/Ordering Tests"); //$NON-NLS-1$
-	}
+	Class comparable;	
+	EObject thing;
 	
 	/**
 	 * Tests the &lt; operator.
@@ -714,7 +702,7 @@ public class ComparisonTest
 	//
 	
 	@Override
-    protected void setUp() throws Exception {
+    protected void setUp() {
 		super.setUp();
 		
 		pkg = umlf.createPackage();

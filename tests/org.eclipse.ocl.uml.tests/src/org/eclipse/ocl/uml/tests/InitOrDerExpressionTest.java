@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerExpressionTest.java,v 1.3 2007/10/11 23:04:36 cdamus Exp $
+ * $Id: InitOrDerExpressionTest.java,v 1.4 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -41,21 +39,11 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 public class InitOrDerExpressionTest
 	extends AbstractTestSuite {
 	
-	private Class banana;
-	
-	private Set<EObject> allApples;
-	
-	private InstanceSpecification aFruit;
-	private InstanceSpecification anApple;
-	private InstanceSpecification anotherApple;
-	
-	public InitOrDerExpressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests"); //$NON-NLS-1$
-	}
+	Class banana;
+	Set<EObject> allApples;	
+	InstanceSpecification aFruit;
+	InstanceSpecification anApple;
+	InstanceSpecification anotherApple;
 	
 	/**
 	 * Tests the parsing the init expression for an attribute from raw text.
@@ -377,7 +365,7 @@ public class InitOrDerExpressionTest
 	//
 	
 	@Override
-    protected void setUp() throws Exception {
+    protected void setUp() {
 		super.setUp();
 		
 		banana = fruitPackage.createOwnedClass("Banana", false); //$NON-NLS-1$
@@ -391,19 +379,6 @@ public class InitOrDerExpressionTest
 		allApples = new java.util.HashSet<EObject>();
 		allApples.add(anApple);
 		allApples.add(anotherApple);
-	}
-	
-	@Override
-    protected void tearDown() throws Exception {
-		allApples = null;
-		
-		fruitPackage.getOwnedTypes().remove(banana);
-		fruitPackage.getPackagedElements().remove(aFruit);
-		fruitPackage.getPackagedElements().remove(anApple);
-		fruitPackage.getPackagedElements().remove(anotherApple);
-		
-		banana = null;
-		
-		super.tearDown();
+		expectModified = true;
 	}
 }
