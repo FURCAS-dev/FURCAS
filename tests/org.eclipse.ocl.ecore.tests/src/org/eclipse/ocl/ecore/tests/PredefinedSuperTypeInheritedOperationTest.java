@@ -13,14 +13,10 @@
  * 
  * </copyright>
  *
- * $Id: PredefinedSuperTypeInheritedOperationTest.java,v 1.1 2008/08/30 20:18:10 cdamus Exp $
+ * $Id: PredefinedSuperTypeInheritedOperationTest.java,v 1.2 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
@@ -29,8 +25,6 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.helper.OCLHelper;
 
 /**
@@ -38,14 +32,7 @@ import org.eclipse.ocl.helper.OCLHelper;
  * an OCL pre-defined type.
  */
 @SuppressWarnings("nls")
-public class PredefinedSuperTypeInheritedOperationTest extends TestCase {
-
-	private OCL ocl;
-
-	public static Test suite() {
-		return new TestSuite(PredefinedSuperTypeInheritedOperationTest.class,
-			"Inheritance of additional operations");
-	}
+public class PredefinedSuperTypeInheritedOperationTest extends AbstractTestSuite {
 
 	public void testInheritedOperation() throws ParserException {
 		OCLHelper<EClassifier, ?, ?, ?> helper = ocl.createOCLHelper();
@@ -103,7 +90,7 @@ public class PredefinedSuperTypeInheritedOperationTest extends TestCase {
 	
 	@Override
 	protected void setUp() {
-		ocl = OCL.newInstance(new EcoreEnvironmentFactory());
+		super.setUp();
 		EcoreEnvironment env = (EcoreEnvironment) ocl.getEnvironment();
 		env.addHelperOperation(env.getOCLStandardLibrary().getReal(),
 			createAdditionalRealOperation());

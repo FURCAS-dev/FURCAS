@@ -13,16 +13,13 @@
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.5 2009/07/27 15:30:26 ewillink Exp $
+ * $Id: TypesValidatorTest.java,v 1.6 2009/10/07 20:39:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.Collections;
 import java.util.Map;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -31,8 +28,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreValidator;
 import org.eclipse.ocl.Environment;
@@ -49,16 +44,7 @@ import org.eclipse.ocl.types.util.TypesValidator;
  */
 public class TypesValidatorTest extends AbstractTestSuite {
 
-	private EcoreFactory factory = EcoreFactory.eINSTANCE;
-	
-	public TypesValidatorTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(TypesValidatorTest.class,
-			"Types Validator Tests"); //$NON-NLS-1$
-	}
+	private final EcoreFactory factory = EcoreFactory.eINSTANCE;
 	
 	public void test_CollectionType_checkCollectionTypeName() {
 		CollectionType type = factory.createCollectionType();
@@ -151,9 +137,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_emptyCollectionType_196972() {
 		// load our test resource
-		ResourceSet rset = new ResourceSetImpl();
 		URI uri = getTestModelURI("/model/VoidCollectionTypes.ecore"); //$NON-NLS-1$
-		Resource res = rset.getResource(uri, true);
+		Resource res = resourceSet.getResource(uri, true);
 		EPackage epackage = (EPackage) res.getContents().get(0);
 		
 		// this one is ill-named

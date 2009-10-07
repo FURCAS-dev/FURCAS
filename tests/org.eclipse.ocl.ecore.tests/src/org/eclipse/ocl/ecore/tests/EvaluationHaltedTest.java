@@ -17,9 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
@@ -55,28 +52,22 @@ import org.eclipse.ocl.util.OCLUtil;
 public class EvaluationHaltedTest
 		extends AbstractTestSuite {
 
-	private org.eclipse.ocl.expressions.OCLExpression<EClassifier> queryExp;
+	org.eclipse.ocl.expressions.OCLExpression<EClassifier> queryExp;
 
-	private org.eclipse.ocl.ecore.OCL.Query query;
+	org.eclipse.ocl.ecore.OCL.Query query;
 
-	private InterruptibleEnvFactory envFactory = new InterruptibleEnvFactory();
+	private final InterruptibleEnvFactory envFactory = new InterruptibleEnvFactory();
 
-	public EvaluationHaltedTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(EvaluationHaltedTest.class,
-			"Ecore Halted Evaluation Tests"); //$NON-NLS-1$
+	@Override
+	public OCL createOCL() {
+		return OCL.newInstance(envFactory);
 	}
 
 	@Override
-	protected void setUp()
-			throws Exception {
+	protected void setUp() {
 		super.setUp();
 
-		this.envFactory = new InterruptibleEnvFactory();
-		this.ocl = OCL.newInstance(envFactory);
+		this.ocl = createOCL();
 
 		this.helper = ocl.createOCLHelper();
 		helper.setContext(ocl.getEnvironment().getOCLStandardLibrary()
@@ -284,19 +275,19 @@ public class EvaluationHaltedTest
 	//
 	// Framework part
 	//
-	static String HALT_OPERATION_NAME = "halt"; //$NON-NLS-1$
+	static final String HALT_OPERATION_NAME = "halt"; //$NON-NLS-1$
 
-	static String HALT_KIND_BASIC = "basic"; //$NON-NLS-1$	
+	static final String HALT_KIND_BASIC = "basic"; //$NON-NLS-1$	
 
-	static String HALT_KIND_ON_ERROR = "error"; //$NON-NLS-1$	
+	static final String HALT_KIND_ON_ERROR = "error"; //$NON-NLS-1$	
 
-	static String HALT_KIND_CUSTOM = "custom"; //$NON-NLS-1$
+	static final String HALT_KIND_CUSTOM = "custom"; //$NON-NLS-1$
 
-	static String HALT_KIND_NONE = "none"; //$NON-NLS-1$	
+	static final String HALT_KIND_NONE = "none"; //$NON-NLS-1$	
 
-	static String OCL_CATCHED_EXC = "ocl.catch"; //$NON-NLS-1$	
+	static final String OCL_CATCHED_EXC = "ocl.catch"; //$NON-NLS-1$	
 
-	static Diagnostic CUSTOM_DIAGNOSTIC_INSTANCE = new BasicDiagnostic(
+	static final Diagnostic CUSTOM_DIAGNOSTIC_INSTANCE = new BasicDiagnostic(
 		HALT_KIND_CUSTOM, 0, HALT_KIND_CUSTOM, null);
 
 	class InterruptibleEnv
@@ -501,8 +492,8 @@ public class EvaluationHaltedTest
 	}
 
 	private static void assertListResult(Object result, List<?> expectedElements) {
-		assertTrue("result must be a List", result instanceof List); //$NON-NLS-1$
-		assertNotNull("expectedElements must be a List", result instanceof List); //$NON-NLS-1$		
+		assertTrue("result must be a List", result instanceof List<?>); //$NON-NLS-1$
+		assertNotNull("expectedElements must be a List", result instanceof List<?>); //$NON-NLS-1$		
 		List<?> resultCollection = (List<?>) result;
 		assertEquals(expectedElements, resultCollection);
 	}

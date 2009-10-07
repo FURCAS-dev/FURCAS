@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.14 2009/09/01 20:10:53 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.15 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -23,9 +23,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -56,14 +53,6 @@ import org.eclipse.ocl.util.TypeUtil;
  */
 public class CollectionsTest
 		extends AbstractTestSuite {
-
-	public CollectionsTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(CollectionsTest.class, "Collection Type Tests"); //$NON-NLS-1$
-	}
 
 	/**
 	 * Tests the insertAt() operation for sequences.
@@ -932,7 +921,7 @@ public class CollectionsTest
 			EStructuralFeature part = tt.getEStructuralFeature("a"); //$NON-NLS-1$
 
 			assertNotNull(part);
-			assertTrue(part.getEType() instanceof CollectionType);
+			assertTrue(part.getEType() instanceof CollectionType<?, ?>);
 
 			@SuppressWarnings("unchecked")
 			CollectionType<EClassifier, EOperation> collType = (CollectionType<EClassifier, EOperation>) part
@@ -941,12 +930,12 @@ public class CollectionsTest
 				.getElementType());
 
 			Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
-			assertTrue(result instanceof Tuple);
+			assertTrue(result instanceof Tuple<?, ?>);
 
 			@SuppressWarnings("unchecked")
 			Tuple<EOperation, EStructuralFeature> tuple = (Tuple<EOperation, EStructuralFeature>) result;
 
-			assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+			assertTrue(tuple.getValue("a") instanceof Collection<?>); //$NON-NLS-1$
 			assertTrue(((Collection<?>) tuple.getValue("a")).contains(EcorePackage.Literals.ECLASSIFIER)); //$NON-NLS-1$
 		} catch (Exception exc) {
 			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
@@ -971,7 +960,7 @@ public class CollectionsTest
 			EStructuralFeature part = tt.getEStructuralFeature("a"); //$NON-NLS-1$
 
 			assertNotNull(part);
-			assertTrue(part.getEType() instanceof CollectionType);
+			assertTrue(part.getEType() instanceof CollectionType<?, ?>);
 
 			@SuppressWarnings("unchecked")
 			CollectionType<EClassifier, EOperation> collType = (CollectionType<EClassifier, EOperation>) part
@@ -980,12 +969,12 @@ public class CollectionsTest
 				.getElementType());
 
 			Object result = ocl.evaluate(EcorePackage.eINSTANCE, expr);
-			assertTrue(result instanceof Tuple);
+			assertTrue(result instanceof Tuple<?, ?>);
 
 			@SuppressWarnings("unchecked")
 			Tuple<EOperation, EStructuralFeature> tuple = (Tuple<EOperation, EStructuralFeature>) result;
 
-			assertTrue(tuple.getValue("a") instanceof Collection); //$NON-NLS-1$
+			assertTrue(tuple.getValue("a") instanceof Collection<?>); //$NON-NLS-1$
 			assertTrue(((Collection<?>) tuple.getValue("a")).contains("b")); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (Exception exc) {
 			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
@@ -1080,7 +1069,7 @@ public class CollectionsTest
 		try {
 			OCLExpression<EClassifier> expr = helper
 				.createQuery("self.eContents()"); //$NON-NLS-1$
-			assertTrue(expr.getType() instanceof CollectionType);
+			assertTrue(expr.getType() instanceof CollectionType<?, ?>);
 
 			CollectionType<?, ?> actualType = (CollectionType<?, ?>) expr
 				.getType();

@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.1 2007/04/20 22:42:54 cdamus Exp $
+ * $Id: KeywordsTest.java,v 1.2 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -51,29 +48,14 @@ import org.eclipse.ocl.expressions.Variable;
 public class KeywordsTest
     extends AbstractTestSuite {
 
-    private Resource res;
-
-    private EPackage smalltalk;
-
-    private EClass collection;
-
-    private EClass block;
-
-    private EClass elseClass;
-
-    private EClass clazz;
-
-    private EClass property;
-
-    private EClass constraint;
-
-    public KeywordsTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(KeywordsTest.class, "OCL Keyword Tests"); //$NON-NLS-1$
-    }
+    Resource res;
+    EPackage smalltalk;
+    EClass collection;
+    EClass block;
+    EClass elseClass;
+    EClass clazz;
+    EClass property;
+    EClass constraint;
 
     public void test_isUnique_162300() {
         helper.setContext(property);
@@ -215,9 +197,7 @@ public class KeywordsTest
     //
 
     @Override
-    protected void setUp()
-        throws Exception {
-
+    protected void setUp() {
         super.setUp();
 
         // create a little test model for a Smalltalk-like collection class that
@@ -231,7 +211,7 @@ public class KeywordsTest
         smalltalk.setNsURI("foo://smalltalk"); //$NON-NLS-1$
 
         res.getContents().add(smalltalk);
-        EPackage.Registry.INSTANCE.put(smalltalk.getNsURI(), smalltalk);
+        resourceSet.getPackageRegistry().put(smalltalk.getNsURI(), smalltalk);
 
         EClass object = EcoreFactory.eINSTANCE.createEClass();
         object.setName("Object"); //$NON-NLS-1$
@@ -360,22 +340,5 @@ public class KeywordsTest
         result.setName(name);
         eenum.getELiterals().add(result);
         return result;
-    }
-
-    @Override
-    protected void tearDown()
-        throws Exception {
-
-        EPackage.Registry.INSTANCE.remove(smalltalk.getNsURI());
-
-        smalltalk = null;
-        collection = null;
-        block = null;
-        elseClass = null;
-
-        res.unload();
-        res = null;
-
-        super.tearDown();
     }
 }

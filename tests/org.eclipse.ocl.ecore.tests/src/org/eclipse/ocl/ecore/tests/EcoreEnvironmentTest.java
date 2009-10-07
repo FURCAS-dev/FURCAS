@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.7 2009/02/12 00:01:52 cdamus Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.8 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -22,9 +22,6 @@ package org.eclipse.ocl.ecore.tests;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -63,14 +60,6 @@ import org.eclipse.ocl.options.ParsingOptions;
 public class EcoreEnvironmentTest
 	extends AbstractTestSuite {
 
-	public EcoreEnvironmentTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(EcoreEnvironmentTest.class, "Ecore Environment Tests"); //$NON-NLS-1$
-	}
-
 	/**
 	 * Tests the default EcoreEnvironment which uses the global package registry.
 	 */
@@ -87,7 +76,7 @@ public class EcoreEnvironmentTest
 		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "green"); //$NON-NLS-1$
 		
 		// remove the package from the global registry
-		EPackage.Registry.INSTANCE.remove(fruitPackage.getNsURI());
+		resourceSet.getPackageRegistry().remove(fruitPackage.getNsURI());
 
 		// registry no longer contains the fruit package
 		// no choices should be returned
@@ -102,6 +91,7 @@ public class EcoreEnvironmentTest
 	public void test_customEPackageRegistry_lookup() {
 		EPackage.Registry registry = new EPackageRegistryImpl();
 
+		ocl.dispose();
 		ocl = OCL.newInstance(new EcoreEnvironmentFactory(registry));
 		OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint> helper =
 			ocl.createOCLHelper();
@@ -141,6 +131,7 @@ public class EcoreEnvironmentTest
      * Tests extensibility of the OCL Ecore environment.
      */
     public void test_extensibility_156360() {
+		ocl.dispose();
         OCL ocl = OCL.newInstance(new MyEnvironmentFactory());
 
         OCL.Helper helper = ocl.createOCLHelper();
@@ -192,21 +183,6 @@ public class EcoreEnvironmentTest
 		assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
 		assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
 		assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
-	}
-	
-	//
-	// Framework methods
-	//
-	
-	@Override
-    protected void tearDown() throws Exception {
-		// deregister the fruit package so that it won't confuse the global registry
-		EPackage.Registry.INSTANCE.remove(fruitPackage.getNsURI());
-		
-		// let the next test's setup recreate the package
-		fruitPackage = null;
-		
-		super.tearDown();
 	}
 	
 	class MyEnvironment extends EcoreEnvironment {

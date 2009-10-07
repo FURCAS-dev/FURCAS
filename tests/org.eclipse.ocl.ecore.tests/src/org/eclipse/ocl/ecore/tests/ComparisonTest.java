@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.9 2008/09/10 18:43:57 cdamus Exp $
+ * $Id: ComparisonTest.java,v 1.10 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -23,9 +23,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.LinkedHashSet;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -58,27 +55,17 @@ import org.eclipse.ocl.types.CollectionType;
 public class ComparisonTest
 	extends AbstractTestSuite {
 
-	private EPackage pkg;
-	private EClass thingType;
-	private EAttribute values;
-	private EAttribute bdValue;
-	private EAttribute biValue;
-	private EDataType valueType;
-	private EClass numeroType;
-	private EReference numeros;
-	
-	private EClass comparable;
-    private EDataType myDataType;
-	
-	private EObject thing;
-	
-	public ComparisonTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(ComparisonTest.class, "Comparison/Ordering Tests"); //$NON-NLS-1$
-	}
+	EPackage pkg;
+	EClass thingType;
+	EAttribute values;
+	EAttribute bdValue;
+	EAttribute biValue;
+	EDataType valueType;
+	EClass numeroType;
+	EReference numeros;	
+	EClass comparable;
+    EDataType myDataType;	
+	EObject thing;
 	
 	/**
 	 * Tests the &lt; operator.
@@ -589,7 +576,7 @@ public class ComparisonTest
 			expr = helper.createQuery("self.f()"); //$NON-NLS-1$
 			
 			type = expr.getType();
-			assertTrue(type instanceof CollectionType);
+			assertTrue(type instanceof CollectionType<?, ?>);
 			type = ((org.eclipse.ocl.ecore.CollectionType) type).getElementType();
 			assertSame(edatatype, type);
 			
@@ -740,7 +727,7 @@ public class ComparisonTest
 	//
 	
 	@Override
-    protected void setUp() throws Exception {
+    protected void setUp() {
 		super.setUp();
 		
 		pkg = EcoreFactory.eINSTANCE.createEPackage();

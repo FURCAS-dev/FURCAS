@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.10 2009/10/07 16:59:09 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.11 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -22,9 +22,6 @@ package org.eclipse.ocl.ecore.tests;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -51,14 +48,6 @@ import org.eclipse.ocl.types.CollectionType;
  */
 public class BasicOCLTest
 	extends AbstractTestSuite {
-
-	public BasicOCLTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
-	}
     
     public void hide_test_createStandardLibrary() {
         Resource res = ocl.getEnvironment().getOCLStandardLibrary().getOclAny().eResource();
@@ -370,9 +359,13 @@ public class BasicOCLTest
 		String self = ""; //$NON-NLS-1$
 
 		try {
+			assertInvalidString("'\\\\\\ '"); //$NON-NLS-1$
 			assertInvalidString("'str\\(ing'"); //$NON-NLS-1$
 			assertInvalidString("'string\\'"); //$NON-NLS-1$
 			assertInvalidString("'string\\9'"); //$NON-NLS-1$
+
+			assertEquals("\\", //$NON-NLS-1$
+				evaluate(helper, self, "'\\\\'")); //$NON-NLS-1$
 
 			assertEquals("str\ning", //$NON-NLS-1$
 				evaluate(helper, self, "'str\\ning'")); //$NON-NLS-1$

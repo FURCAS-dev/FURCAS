@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitorTest.java,v 1.3 2009/07/27 15:30:26 ewillink Exp $
+ * $Id: AbstractVisitorTest.java,v 1.4 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -43,15 +40,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  */
 public class AbstractVisitorTest
 	extends AbstractTestSuite {
-
-	public AbstractVisitorTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(AbstractVisitorTest.class, "AbstractVisitor Tests"); //$NON-NLS-1$
-	}
-    
+   
     /**
      * Tests that the results of handle/visit methods are percolated to the
      * root of the recursive visitation.

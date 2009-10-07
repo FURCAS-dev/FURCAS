@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.12 2009/09/01 20:10:53 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.13 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -25,8 +25,6 @@ import java.util.Map;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -75,14 +73,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class RegressionTest
 	extends AbstractTestSuite {
-
-	public RegressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the "..." escape syntax for reserved words.  Regression test for
@@ -93,7 +83,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
 		eclass.setName("MyType"); //$NON-NLS-1$
@@ -104,15 +94,10 @@ public class RegressionTest
 		eattr.setName("context"); //$NON-NLS-1$
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
-		
-		try {
-			parseConstraint(
-				"package mypkg context MyType " + //$NON-NLS-1$
-				"inv: self.\"context\"->notEmpty() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
-		}
+		parseConstraint(
+			"package mypkg context MyType " + //$NON-NLS-1$
+			"inv: self.\"context\"->notEmpty() " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
 	}
 	
 	/**
@@ -124,7 +109,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
 		eclass.setName("MyType"); //$NON-NLS-1$
@@ -134,15 +119,10 @@ public class RegressionTest
 		eattr.setName("an attribute"); //$NON-NLS-1$
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
-		
-		try {
-			parseConstraint(
-				"package mypkg context MyType " + //$NON-NLS-1$
-				"inv: self.\"an attribute\"->notEmpty() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
-		}
+		parseConstraint(
+			"package mypkg context MyType " + //$NON-NLS-1$
+			"inv: self.\"an attribute\"->notEmpty() " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
 	}
 	
 	/**
@@ -154,7 +134,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
 		eclass.setName("MyType"); //$NON-NLS-1$
@@ -164,33 +144,28 @@ public class RegressionTest
 		eattr.setName("an\"attribute"); //$NON-NLS-1$
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
+		// try first to parse within surrounding double-quotes
+		parseConstraint(
+			"package mypkg context MyType " + //$NON-NLS-1$
+			"inv: self.\"an\\\"attribute\"->notEmpty() " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
+
+		AssertionFailedError err = null;
 		
 		try {
-			// try first to parse within surrounding double-quotes
+			// also try to parse without the surrounding double-quotes.
+			//   This is not allowed
 			parseConstraint(
-				"package mypkg context MyType " + //$NON-NLS-1$
-				"inv: self.\"an\\\"attribute\"->notEmpty() " + //$NON-NLS-1$
+				"package ecore context EClass " + //$NON-NLS-1$
+				"inv: self.an\\\"attribute->notEmpty() " + //$NON-NLS-1$
 				"endpackage"); //$NON-NLS-1$
-
-			AssertionFailedError err = null;
-			
-			try {
-				// also try to parse without the surrounding double-quotes.
-				//   This is not allowed
-				parseConstraint(
-					"package ecore context EClass " + //$NON-NLS-1$
-					"inv: self.an\\\"attribute->notEmpty() " + //$NON-NLS-1$
-					"endpackage"); //$NON-NLS-1$
-			} catch (AssertionFailedError e) {
-				// success
-				err = e;
-				System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
-			}
-			
-			assertNotNull("Should not have parsed.", err); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
+		} catch (AssertionFailedError e) {
+			// success
+			err = e;
+			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
+		
+		assertNotNull("Should not have parsed.", err); //$NON-NLS-1$
 	}
 	
 	/**
@@ -202,7 +177,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
 		eclass.setName("MyType"); //$NON-NLS-1$
@@ -213,16 +188,11 @@ public class RegressionTest
 		eattr.setName("\u0160\u01d6\u0429\u0639"); //$NON-NLS-1$
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
-		
-		try {
-			// try these characters in the attribute name and string literal
-			parseConstraint(
-				"package mypkg context MyType " + //$NON-NLS-1$
-				"inv: self.\u0160\u01d6\u0429\u0639 <> '\u0160\u01d6\u0429\u0639' " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
-		}
+		// try these characters in the attribute name and string literal
+		parseConstraint(
+			"package mypkg context MyType " + //$NON-NLS-1$
+			"inv: self.\u0160\u01d6\u0429\u0639 <> '\u0160\u01d6\u0429\u0639' " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
 	}
 	
 	/**
@@ -235,7 +205,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		// create three classes.  A and B are unrelated, but C extends
 		//   both.  Therefore, it is possible to cast a variable of type
@@ -263,25 +233,20 @@ public class RegressionTest
 		attrB.setName("b"); //$NON-NLS-1$
 		attrB.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		b.getEStructuralFeatures().add(attrB);
+		OCLExpression<EClassifier> constraint = parseConstraint(
+			"package mypkg context A " + //$NON-NLS-1$
+			"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " + //$NON-NLS-1$
+			"endpackage"); //$NON-NLS-1$
 		
-		try {
-			OCLExpression<EClassifier> constraint = parseConstraint(
-				"package mypkg context A " + //$NON-NLS-1$
-				"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
-			
-			EObject eobj = epackage.getEFactoryInstance().create(c);
-			eobj.eSet(attrA, Boolean.TRUE);
-			eobj.eSet(attrB, Boolean.TRUE);
-			
-			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
-			
-			eobj.eSet(attrB, Boolean.FALSE);
-			
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
-		}
+		EObject eobj = epackage.getEFactoryInstance().create(c);
+		eobj.eSet(attrA, Boolean.TRUE);
+		eobj.eSet(attrB, Boolean.TRUE);
+		
+		assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+		
+		eobj.eSet(attrB, Boolean.FALSE);
+		
+		assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
 	}
 	
 	/**
@@ -292,7 +257,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
 		a.setName("A"); //$NON-NLS-1$
@@ -335,8 +300,6 @@ public class RegressionTest
 			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
 	}
 	
@@ -348,7 +311,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
 		a.setName("A"); //$NON-NLS-1$
@@ -391,8 +354,6 @@ public class RegressionTest
 			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
 	}
 	
@@ -404,7 +365,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
 		a.setName("A"); //$NON-NLS-1$
@@ -447,8 +408,6 @@ public class RegressionTest
 			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
 	}
 	
@@ -1010,7 +969,7 @@ public class RegressionTest
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
 		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
-		EPackage.Registry.INSTANCE.put(epackage.getNsURI(), epackage);
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		// Library1
 		//  - Library2
@@ -1077,8 +1036,6 @@ public class RegressionTest
 			assertTrue(result.get(1).eGet(writerName).equals("Jane")); //$NON-NLS-1$
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} finally {
-			EPackage.Registry.INSTANCE.remove(epackage.getNsURI());
 		}
 	}
 	
@@ -1420,11 +1377,12 @@ public class RegressionTest
 		b.setName("B"); //$NON-NLS-1$
 		nestedPackage.getEClassifiers().add(b);
 		
-		EPackage.Registry reg = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+		EPackage.Registry reg = new EPackageRegistryImpl(resourceSet.getPackageRegistry());
 		reg.put(rootPackage.getNsURI(), rootPackage);
 		reg.put(nestedPackage.getNsURI(), nestedPackage);
 		EcoreEnvironmentFactory ef = new EcoreEnvironmentFactory(reg);
 		
+		ocl.dispose();
 		ocl = OCL.newInstance(ef);
 		helper = ocl.createOCLHelper();
 		helper.setContext(b);
@@ -1772,7 +1730,7 @@ public class RegressionTest
         attr1.setEType(EcorePackage.Literals.ESTRING);
         superclass.getEStructuralFeatures().add(attr1);
         
-        EPackage.Registry.INSTANCE.put(rootpkg.getNsURI(), rootpkg);
+        resourceSet.getPackageRegistry().put(rootpkg.getNsURI(), rootpkg);
         
         try {
             // parse dollar sign in comments, element names, and string literals
@@ -1783,8 +1741,6 @@ public class RegressionTest
                 "endpackage")); //$NON-NLS-1$
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        } finally {
-            EPackage.Registry.INSTANCE.remove(rootpkg.getNsURI());
         }
     }
     
@@ -1812,7 +1768,7 @@ public class RegressionTest
 		for (Iterator<EObject> iter = constraint.eAllContents(); iter.hasNext();) {
 			EObject next = iter.next();
 			
-			if (next instanceof VariableExp) {
+			if (next instanceof VariableExp<?, ?>) {
 				VariableExp<?, ?> ve = (VariableExp<?, ?>) next;
 				assertNotNull(ve.getReferredVariable());
 				assertEquals(ve.getReferredVariable().getName(), ve.getName());

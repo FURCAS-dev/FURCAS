@@ -18,9 +18,6 @@
 
 package org.eclipse.ocl.ecore.tests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -38,14 +35,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class ParsingOptionsTest
 		extends AbstractTestSuite {
-
-	public ParsingOptionsTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(ParsingOptionsTest.class, "Parsing Options Tests"); //$NON-NLS-1$
-	}
 
 	/**
 	 * Tests the implicit root class option for access to operations.

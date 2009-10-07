@@ -12,16 +12,13 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: StatesTest.java,v 1.5 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.Arrays;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -53,14 +50,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class StatesTest
 	extends AbstractTestSuite {
-	
-	public StatesTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(StatesTest.class, "State Expression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the parsing of the oclIsInState() expression.
@@ -198,45 +187,51 @@ public class StatesTest
 	
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new StatefulFruitEnvironmentFactory());
+		return OCL.newInstance(new StatefulFruitEnvironmentFactory(this));
 	}
 	
-	private static List<String> FRUIT_BAD = Arrays.asList(new String[] {"Bad"}); //$NON-NLS-1$
+	private static final List<String> FRUIT_BAD = Arrays.asList(new String[] {"Bad"}); //$NON-NLS-1$
 	
 	public static class StatefulFruitEnvironmentFactory extends EcoreEnvironmentFactory {
-
+		protected final AbstractTestSuite suite;
+		
+		public StatefulFruitEnvironmentFactory(AbstractTestSuite suite) {
+			this.suite = suite;
+		}
+		
 		@Override
         public EcoreEnvironment createEnvironment() {
-			return new StatefulFruitEnvironment(this);
+			return new StatefulFruitEnvironment(this, suite);
 		}
 
 		@Override
         public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			return new StatefulFruitEnvironment(this, parent);
+			return new StatefulFruitEnvironment(this, parent, suite);
 		}
 	}
 	
 	private static class StatefulFruitEnvironment extends EcoreEnvironment {
+		protected final AbstractTestSuite suite;
 		private EObject fruitRipe;
 		private EObject fruitBad;
 		private EObject appleBruised;
 		private EObject appleRotten;
 		
-		public StatefulFruitEnvironment(StatefulFruitEnvironmentFactory factory) {
-			super(EPackage.Registry.INSTANCE);
-			
+		public StatefulFruitEnvironment(StatefulFruitEnvironmentFactory factory, AbstractTestSuite suite) {
+			super(resourceSet.getPackageRegistry());
+			this.suite = suite;
 			setFactory(factory);
-			setContextPackage(fruitPackage);
+			setContextPackage(suite.fruitPackage);
 			
 			initStates();
 		}
 		
 		public StatefulFruitEnvironment(
 				StatefulFruitEnvironmentFactory factory,
-				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
+				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
 			super(parent);
-			
+			this.suite = suite;
 			setFactory(factory);
 			
 			initStates();
@@ -259,12 +254,12 @@ public class StatesTest
 
 		@Override
         protected void collectStates(EClassifier owner, List<String> pathPrefix, List<EObject> states) {
-			if (owner == fruit) {
+			if (owner == suite.fruit) {
 				if (pathPrefix.isEmpty()) {
 					states.add(fruitRipe);
 					states.add(fruitBad);
 				}
-			} else if (owner == apple) {
+			} else if (owner == suite.apple) {
 				if (pathPrefix.isEmpty()) {
 					states.add(fruitBad);
 				} else if (pathPrefix.equals(FRUIT_BAD)) {

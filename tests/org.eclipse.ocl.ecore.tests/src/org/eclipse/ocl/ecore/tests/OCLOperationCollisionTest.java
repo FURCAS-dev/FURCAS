@@ -11,10 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.ecore.tests;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -43,7 +39,7 @@ import org.eclipse.ocl.helper.OCLHelper;
  */
 @SuppressWarnings("nls")
 public class OCLOperationCollisionTest
-		extends TestCase {
+		extends AbstractTestSuite {
 
 	/**
 	 * Name of the colliding operation we'll provide as an additional EOperation
@@ -51,40 +47,20 @@ public class OCLOperationCollisionTest
 	 */
 	private static final String OPERATION_STRING_LAST = "last";
 
-	/** Holds a reference to the ocl instance. */
-	private OCL ocl;
-
 	/** Flag to see whether the custom environment was called. */
 	private boolean enteredMyOperationBody;
 
-	/**
-	 * Create a test suite for this class.
-	 * 
-	 * @return the test suite
-	 */
-	public static Test suite() {
-		return new TestSuite(OCLOperationCollisionTest.class,
-			"Collision with OCL Standard Operation"); //$NON-NLS-1$
-	}
-
 	@Override
-	protected void setUp()
-			throws Exception {
+	protected void setUp() {
 		super.setUp();
-
-		ocl = OCL.newInstance(new MyEnvironmentFactory());
 		((EcoreEnvironment) ocl.getEnvironment()).addHelperOperation(ocl
 			.getEnvironment().getOCLStandardLibrary().getString(),
 			getLastOperation());
 	}
 
 	@Override
-	protected void tearDown()
-			throws Exception {
-
-		enteredMyOperationBody = false;
-
-		super.tearDown();
+	protected OCL createOCL() {
+		return OCL.newInstance(new MyEnvironmentFactory());
 	}
 
 	/**

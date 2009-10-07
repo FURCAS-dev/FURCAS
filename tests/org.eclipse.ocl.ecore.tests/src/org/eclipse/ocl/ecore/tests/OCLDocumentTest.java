@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.6 2009/07/27 15:30:26 ewillink Exp $
+ * $Id: OCLDocumentTest.java,v 1.7 2009/10/07 20:39:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -23,9 +23,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -51,16 +48,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class OCLDocumentTest extends AbstractTestSuite {
 
-	private Map<String, Constraint> constraints;
-	
-	public OCLDocumentTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(OCLDocumentTest.class,
-			"OCL Document Parsing Tests"); //$NON-NLS-1$
-	}
+	Map<String, Constraint> constraints;
 	
 	public void test_multipleInvariants() {
 		Constraint notBlack = getConstraint("not_black"); //$NON-NLS-1$
@@ -311,20 +299,24 @@ public class OCLDocumentTest extends AbstractTestSuite {
 	//
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		super.setUp();
 		
 		constraints = new java.util.HashMap<String, Constraint>();
 		URI uri = getTestModelURI("/model/test_constraints.ocl"); //$NON-NLS-1$
-		URL url = new URL(uri.toString());
-		InputStream is = url.openStream();
-		List<Constraint> parsed = ocl.parse(new OCLInput(is));
-		is.close();
-		
-		for (Constraint ct : parsed) {
-            validate(ct);
-			constraints.put(ct.getName(), ct);
-		}
+		try {
+			URL url = new URL(uri.toString());
+			InputStream is = url.openStream();
+			List<Constraint> parsed = ocl.parse(new OCLInput(is));
+			is.close();
+
+			for (Constraint ct : parsed) {
+	            validate(ct);
+				constraints.put(ct.getName(), ct);
+			}
+		} catch (Exception e) {
+			fail("Failed to parse " + uri + " : " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+		}		
 	}
 	
 	Constraint getConstraint(String name) {

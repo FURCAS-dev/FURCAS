@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExtensibilityTest.java,v 1.1 2007/10/11 23:04:44 cdamus Exp $
+ * $Id: ExtensibilityTest.java,v 1.2 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -21,9 +21,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
@@ -64,14 +61,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class ExtensibilityTest
     extends AbstractTestSuite {
-
-    public ExtensibilityTest(String name) {
-        super(name);
-    }
-    
-    public static Test suite() {
-        return new TestSuite(ExtensibilityTest.class, "Extensibility Tests"); //$NON-NLS-1$
-    }
 
     /**
      * Tests that we can successfully parse with an environment that does not

@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.4 2007/10/16 16:58:51 cdamus Exp $
+ * $Id: MessagesTest.java,v 1.5 2009/10/07 20:39:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -53,14 +50,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  */
 public class MessagesTest
 	extends AbstractTestSuite {
-	
-	public MessagesTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(MessagesTest.class, "Message Expression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the parsing of the hasSent ("^") expression for operations.
@@ -504,53 +493,55 @@ public class MessagesTest
 	
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new MessagingFruitEnvironmentFactory());
+		return OCL.newInstance(new MessagingFruitEnvironmentFactory(this));
 	}
 	
 	@Override
-    protected void tearDown()
-		throws Exception {
-
-		// let the next test re-initialize the fruit package to eliminate the
-		//    Drop signal
-		fruitPackage = null;
-		
-		super.tearDown();
+    public void setUp() {
+		super.setUp();
+		expectModified = true;
 	}
 	
 	public static class MessagingFruitEnvironmentFactory extends EcoreEnvironmentFactory {
 
+		protected final AbstractTestSuite suite;
+		
+		public MessagingFruitEnvironmentFactory(AbstractTestSuite suite) {
+			this.suite = suite;
+		}
+		
 		@Override
         public EcoreEnvironment createEnvironment() {
-			return new MessagingFruitEnvironment(this);
+			return new MessagingFruitEnvironment(this, suite);
 		}
 
 		@Override
         public EcoreEnvironment createEnvironment(
 				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-			return new MessagingFruitEnvironment(this, parent);
+			return new MessagingFruitEnvironment(this, parent, suite);
 		}
 	}
 	
 	private static class MessagingFruitEnvironment extends EcoreEnvironment {
+		protected final AbstractTestSuite suite;
 		private EClass dropSignal;
 		
 		private EList<EClassifier> signals = new BasicEList<EClassifier>();
 		
-		public MessagingFruitEnvironment(MessagingFruitEnvironmentFactory factory) {
-			super(EPackage.Registry.INSTANCE);
-			
+		public MessagingFruitEnvironment(MessagingFruitEnvironmentFactory factory, AbstractTestSuite suite) {
+			super(resourceSet.getPackageRegistry());
+			this.suite = suite;
 			setFactory(factory);
-			setContextPackage(fruitPackage);
+			setContextPackage(suite.fruitPackage);
 
 			init();
 		}
 		
 		public MessagingFruitEnvironment(
 				MessagingFruitEnvironmentFactory factory,
-				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
+				Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent, AbstractTestSuite suite) {
 			super(parent);
-			
+			this.suite = suite;
 			setFactory(factory);
 			
 			init();
@@ -566,12 +557,12 @@ public class MessagesTest
 			dropSignal.getEStructuralFeatures().add(property);
 			property = EcoreFactory.eINSTANCE.createEReference();
 			property.setName("stem"); //$NON-NLS-1$
-			property.setEType(stem);
+			property.setEType(suite.stem);
 			dropSignal.getEStructuralFeatures().add(property);
 			
 			signals.add(dropSignal);
 			
-			fruitPackage.getEClassifiers().add(dropSignal);
+			suite.fruitPackage.getEClassifiers().add(dropSignal);
 		}
 
         
@@ -580,7 +571,7 @@ public class MessagesTest
             return new UMLReflectionImpl() {
         		@Override
                 public List<EClassifier> getSignals(EClassifier owner) {
-        			if (owner == fruit || owner == apple) {
+        			if (owner == suite.fruit || owner == suite.apple) {
         				return signals;
         			}
         			

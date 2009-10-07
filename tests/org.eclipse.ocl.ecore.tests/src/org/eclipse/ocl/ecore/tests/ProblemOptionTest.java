@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ProblemOptionTest.java,v 1.2 2007/11/06 19:48:59 cdamus Exp $
+ * $Id: ProblemOptionTest.java,v 1.3 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -35,14 +32,6 @@ import org.eclipse.ocl.util.OCLUtil;
  */
 public class ProblemOptionTest
     extends AbstractTestSuite {
-
-    public ProblemOptionTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(ProblemOptionTest.class, "Problem Option Tests"); //$NON-NLS-1$
-    }
 
     /**
      * Tests the severity option for the <tt>toLower()</tt> and <tt>toUpper()</tt>

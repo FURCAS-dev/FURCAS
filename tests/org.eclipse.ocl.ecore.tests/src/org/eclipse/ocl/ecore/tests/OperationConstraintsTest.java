@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.6 2008/09/28 17:34:22 cdamus Exp $
+ * $Id: OperationConstraintsTest.java,v 1.7 2009/10/07 20:39:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -22,8 +22,6 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
@@ -48,15 +46,6 @@ import org.eclipse.ocl.expressions.VariableExp;
  * @author Christian W. Damus (cdamus)
  */
 public class OperationConstraintsTest extends AbstractTestSuite {
-
-	public OperationConstraintsTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(OperationConstraintsTest.class,
-			"Operation Constraints"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests a very simple precondition, with a package and operation context.
@@ -295,6 +284,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 * references to the variable from references to the attribute.
 	 */
 	public void test_parameterNameCoincidesWithAttributeName_140008() {
+		expectModified = true;
 		EOperation foo = EcoreFactory.eINSTANCE.createEOperation();
 		foo.setName("foo"); //$NON-NLS-1$
 		EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
@@ -318,7 +308,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			int variableCalls = 0;
 			for (Iterator<?> iter = EcoreUtil.getAllContents(Collections.singleton(expr)); iter.hasNext();) {
 				Object next = iter.next();
-				if (next instanceof PropertyCallExp) {
+				if (next instanceof PropertyCallExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					PropertyCallExp<EClassifier, EStructuralFeature> pc =
 						(PropertyCallExp<EClassifier, EStructuralFeature>) next;
@@ -326,7 +316,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 					if ("str".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
 						propertyCalls++;
 					}
-				} else if (next instanceof VariableExp) {
+				} else if (next instanceof VariableExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					VariableExp<EClassifier, EParameter> v =
 						(VariableExp<EClassifier, EParameter>) next;
