@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1223976686915_uuid:fe42fc62-d567-4929-a4b4-2ffd90132d5a</UID>
+<PACKAGE>moin.base</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>D022737</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="LPG_AST_BUILDER_ERROR_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">An internal error was reported by the AST Builder, error message: {0}</TEXT>
+<TEXT AKEY="v8R2jCs2sCwiER_JMIEXCEPTION_XMSG" BKEY="LPG_AST_BUILDER_JMIEXCEPTION_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">A JMI Exception was reported by the AST Builder, error message: {0}</TEXT>
+<TEXT AKEY="LPG_AST_NO_VISITOR_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">No visistor implemented for method {0}</TEXT>
+<TEXT AKEY="LPG_BAD_SYMFILE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Bad Parser Symbol File "{0}". Regenerate "{1}".</TEXT>
+<TEXT AKEY="LPG_BEFORE_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0} inserted before this token</TEXT>
+<TEXT AKEY="LPG_BUG_UNKNOWN_ESCAPE_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Bug in OCL parser: Unknown Escape in identifier definition</TEXT>
+<TEXT AKEY="LPG_DEFAULT_NOT_EXPLICIT_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Trying to set the default property for node "{0}" explicitly, this is forbidden</TEXT>
+<TEXT AKEY="LPG_DELETION_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Unexpected token(s) {0} ignored</TEXT>
+<TEXT AKEY="LPG_EOF_CODE_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Unexpected end-of-file reached</TEXT>
+<TEXT AKEY="LPG_ERROR_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Parsing terminated at token {0}</TEXT>
+<TEXT AKEY="LPG_GET_DEFAULT_NOT_ALLOWED_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Trying to get the default property for node "{0}" where this is not allowed</TEXT>
+<TEXT AKEY="LPG_INSERTION_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0} expected after this token</TEXT>
+<TEXT AKEY="LPG_INVALID_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0}: unexpected input discarded</TEXT>
+<TEXT AKEY="LPG_INVALID_ERRORCODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">LPG Bug: invalid error code {0}, token {1}</TEXT>
+<TEXT AKEY="LPG_INVALID_TOKEN_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0}: found invalid token</TEXT>
+<TEXT AKEY="LPG_LEXBUG_WRONG_REPORTERR_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Lexer bug: wrong reportError call</TEXT>
+<TEXT AKEY="w1qPugfRv5bfNOT_INITIALIZED_XMSG" BKEY="LPG_LEXSTREAM_NOT_INITIALIZED_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">The LexStream was not initialized</TEXT>
+<TEXT AKEY="LPG_LEX_DOESNTIMPLEMENT_EOF_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">The Lexer does not implement the Eof symbol {0}</TEXT>
+<TEXT AKEY="LPG_LEX_ERROR_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0}: unexpected character ignored</TEXT>
+<TEXT AKEY="LPG_MERGE_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0} formed from merged tokens</TEXT>
+<TEXT AKEY="LPG_MISPLACED_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0} : misplaced construct(s)</TEXT>
+<TEXT AKEY="/ih3W8wPMWbdG_DOWN_PROPERTY_XMSG" BKEY="LPG_NONEXISTING_DOWN_PROPERTY_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Trying to access non-existing down property "{0}" for node "{1}"</TEXT>
+<TEXT AKEY="LPG_NONEXISTING_UP_PROPERTY_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Trying to access non-existing up property "{0}" for node "{1}"</TEXT>
+<TEXT AKEY="vxW7V+WzMvUoWRONG_REPORTERR_XMSG" BKEY="LPG_PARSERBUG_WRONG_REPORTERR_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Parser bug: wrong reportError call</TEXT>
+<TEXT AKEY="LPG_REGENERATE_NOBACKTRACK_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Regenerate {0} with -NOBACKTRACK option</TEXT>
+<TEXT AKEY="LPG_SCOPE_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0} inserted to complete scope</TEXT>
+<TEXT AKEY="RlzGTA2N3vHj_SECONDARY_CODE_XMSG" BKEY="LPG_SUBSTITUTION_SECONDARY_CODE_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">{0} expected instead of this input</TEXT>
+<TEXT AKEY="LPG_TOKEN_IGNORED_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">The Lexer will not scan the following token(s): {0}</TEXT>
+<TEXT AKEY="LPG_WILL_NOT_SCAN_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">The Lexer will not scan the following token(s): {0}</TEXT>
+</RESOURCES>
+</ROOT>

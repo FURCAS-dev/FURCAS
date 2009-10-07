@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Company"
+    nsURI="http://sap.com/moin/Company" nsPrefix="company">
+  <eClassifiers xsi:type="ecore:EClass" name="Employee">
+    <eAnnotations source="http://sap.com/MOIN">
+      <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+      <details key="metaObject" value="Company.Employee"/>
+      <details key="metaObjectMofId" value="473C6EB6D6B7E0D6939411DC9D9E00199904B925"/>
+      <details key="isStructureType" value="false"/>
+      <details key="ova" value="secretary"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="salary" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employer" ordered="false"
+        unique="false" eType="#//Department" eOpposite="#//Department/employee">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.WorksIn"/>
+        <details key="metaObjectMofId" value="473C6EB6D6B7E0F1939411DCB3E500199904B925"/>
+        <details key="storedEnd" value="0"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="managed" ordered="false"
+        unique="false" eType="#//Department" eOpposite="#//Department/boss">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.Manages"/>
+        <details key="metaObjectMofId" value="473C6EB6D6B7E0F4939411DC9A9200199904B925"/>
+        <details key="storedEnd" value="0"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directed" ordered="false"
+        unique="false" eType="#//Division" eOpposite="#//Division/director">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.Directs"/>
+        <details key="metaObjectMofId" value="473C6EB6D6BA51D0939411DCBE8300199904B925"/>
+        <details key="storedEnd" value="0"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secretary" ordered="false"
+        unique="false" lowerBound="1" eType="#//Employee" containment="true">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="ovaMofId" value="473C6EB6D6B7E0D5939411DCB2A400199904B925"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Department">
+    <eAnnotations source="http://sap.com/MOIN">
+      <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+      <details key="metaObject" value="Company.Department"/>
+      <details key="metaObjectMofId" value="473C6EB6D6B7E0E1939411DCA5E700199904B925"/>
+      <details key="isStructureType" value="false"/>
+    </eAnnotations>
+    <eOperations name="calcExpenses" ordered="false" unique="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxJuniors" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employee" ordered="false"
+        upperBound="-1" eType="#//Employee" eOpposite="#//Employee/employer">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.WorksIn"/>
+        <details key="metaObjectMofId" value="473C6EB6D6B7E0F1939411DCB3E500199904B925"/>
+        <details key="storedEnd" value="0"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boss" ordered="false" unique="false"
+        lowerBound="1" eType="#//Employee" eOpposite="#//Employee/managed">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.Manages"/>
+        <details key="metaObjectMofId" value="473C6EB6D6B7E0F4939411DC9A9200199904B925"/>
+        <details key="storedEnd" value="0"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="division" eType="#//Division"
+        eOpposite="#//Division/department"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
+    <eAnnotations source="http://sap.com/MOIN">
+      <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+      <details key="metaObject" value="Company.Freelance"/>
+      <details key="metaObjectMofId" value="473C6EB6D6B7E0E7939411DC988800199904B925"/>
+      <details key="isStructureType" value="false"/>
+      <details key="ova" value="secretary"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignment" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Division">
+    <eAnnotations source="http://sap.com/MOIN">
+      <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+      <details key="metaObject" value="Company.Division"/>
+      <details key="metaObjectMofId" value="473C6EB6D6B7E0EE939411DCC52900199904B925"/>
+      <details key="isStructureType" value="false"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="department" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Department" eOpposite="#//Department/division">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.Divides"/>
+        <details key="metaObjectMofId" value="473C6EB6D6B7E0F7939411DC867200199904B925"/>
+        <details key="storedEnd" value="1"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="director" ordered="false"
+        unique="false" lowerBound="1" eType="#//Employee" eOpposite="#//Employee/directed">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+        <details key="metaObject" value="Company.Directs"/>
+        <details key="metaObjectMofId" value="473C6EB6D6BA51D0939411DCBE8300199904B925"/>
+        <details key="storedEnd" value="0"/>
+        <details key="compositeEnd" value="-1"/>
+        <details key="orderedEnd" value="-1"/>
+        <details key="exposedEndNumber" value="1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Student" eSuperTypes="#//Employee">
+    <eAnnotations source="http://sap.com/MOIN">
+      <details key="metamodels" value="sap.com/tc/moin/test/company[1.0.0]"/>
+      <details key="metaObject" value="Company.Student"/>
+      <details key="metaObjectMofId" value="47B2E2DF72495980DA2F11DC9D5D00199904B925"/>
+      <details key="isStructureType" value="false"/>
+      <details key="ova" value="secretary"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

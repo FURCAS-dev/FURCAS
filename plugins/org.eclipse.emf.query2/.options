@@ -1,0 +1,6 @@
+org.eclipse.emf.query2/Error=false
+org.eclipse.emf.query2/Debug=false
+org.eclipse.emf.query2/Warning=false
+org.eclipse.emf.query2/Info=false
+org.eclipse.emf.query2/Path=false
+org.eclipse.emf.query2/Fatal=false

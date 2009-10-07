@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="/*******************************************************************************&#xD;&#xA; * Copyright (c) 2006, 2009 SAP AG and others.&#xD;&#xA; * All rights reserved. This program and the accompanying materials&#xD;&#xA; * are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; * which accompanies this distribution, and is available at&#xD;&#xA; * http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; *&#xD;&#xA; * Contributors:&#xD;&#xA; *     SAP AG - initial API and implementation&#xD;&#xA; *******************************************************************************/"
+    modelDirectory="/org.eclipse.emf.query2.test/src-gen" modelPluginID="org.eclipse.emf.query2.test.mm"
+    modelName="Testcases" importerID="com.sap.tc.moin.moinmmimporter" containmentProxies="true"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="textverticalization.genmodel#//textverticalization">
+  <genPackages prefix="Testcases" basePackage="org.eclipse.emf.query2.test.mm" disposableProviderFactory="true"
+      ecorePackage="testcases.ecore#/">
+    <nestedGenPackages prefix="Case001" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case001">
+      <genClasses ecoreClass="testcases.ecore#//case001/A1">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case001/A1/bs"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case001/B1"/>
+      <genClasses ecoreClass="testcases.ecore#//case001/Super"/>
+      <genClasses ecoreClass="testcases.ecore#//case001/AReferencesB">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case001/AReferencesB/b"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case001/AReferencesB/a"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case002" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case002">
+      <genClasses ecoreClass="testcases.ecore#//case002/A2"/>
+      <genClasses ecoreClass="testcases.ecore#//case002/B2"/>
+      <genClasses ecoreClass="testcases.ecore#//case002/C2">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case002/C2/b"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case002/D2"/>
+      <genClasses ecoreClass="testcases.ecore#//case002/E2">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case002/E2/b"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case003" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case003">
+      <genClasses ecoreClass="testcases.ecore#//case003/A3"/>
+      <genClasses ecoreClass="testcases.ecore#//case003/B3">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case003/B3/Z"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case003/C3">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case003/C3/Y"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case003/D3">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case003/D3/refD3ToY"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case003/E3"/>
+      <genClasses ecoreClass="testcases.ecore#//case003/F3"/>
+      <genClasses ecoreClass="testcases.ecore#//case003/B3Sub"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case004" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case004">
+      <genClasses ecoreClass="testcases.ecore#//case004/A4">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/onePrimitive"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/onePrimitiveOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/onePrimitiveNotChangeable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitive"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveDouble"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveUnique"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveNotChangeable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveOrdered"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveOrderedUnique"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/A4/manyPrimitiveOrderedNotChangeable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/oneBChangeable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/oneBNotChangeable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/oneBOptional"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBsUnique"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBsNotUnique"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBsOrdered"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBsOrderedUnique"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBsNotOrdered"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/A4/manyBsNotChangeable"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/B4HasConstant"/>
+      <genClasses ecoreClass="testcases.ecore#//case004/C4">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/C4/primitive"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/C4/complex"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/D4">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeBoolean"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeBooleanOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeDouble"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeDoubleOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeFloat"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeFloatOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeInteger"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeIntegerOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeLong"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeLongOptional"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeString"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/D4/attributeStringOptional"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/B4">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case004/B4/onePrimitive"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/F4">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/F4/oneC"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/F4/manyCs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/F4/manyCsOrdered"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/A4Sub"/>
+      <genClasses ecoreClass="testcases.ecore#//case004/D4Sub"/>
+      <genClasses ecoreClass="testcases.ecore#//case004/C4Sub"/>
+      <genClasses ecoreClass="testcases.ecore#//case004/F4Sub"/>
+      <genClasses ecoreClass="testcases.ecore#//case004/hasCs">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case004/hasCs/f"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case004/hasCs/c"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/composesCs">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/composesCs/myF"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case004/composesCs/myCs"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/composesB">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case004/composesB/myB"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/composesB/myF"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case004/composesCsOrdered">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case004/composesCsOrdered/myF"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case004/composesCsOrdered/myCsOrdered"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case005" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case005">
+      <nestedGenPackages prefix="P1" basePackage="org.eclipse.emf.query2.test.mm.testcases.case005"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case005/p1">
+        <genClasses ecoreClass="testcases.ecore#//case005/p1/A5">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case005/p1/A5/X"/>
+        </genClasses>
+        <nestedGenPackages prefix="P2" basePackage="org.eclipse.emf.query2.test.mm.testcases.case005.p1"
+            disposableProviderFactory="true" ecorePackage="testcases.ecore#//case005/p1/p2">
+          <genClasses ecoreClass="testcases.ecore#//case005/p1/p2/B5"/>
+        </nestedGenPackages>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="P3" basePackage="org.eclipse.emf.query2.test.mm.testcases.case005"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case005/p3">
+        <genClasses ecoreClass="testcases.ecore#//case005/p3/C5"/>
+        <nestedGenPackages prefix="P4" basePackage="org.eclipse.emf.query2.test.mm.testcases.case005.p3"
+            disposableProviderFactory="true" ecorePackage="testcases.ecore#//case005/p3/p4">
+          <genClasses ecoreClass="testcases.ecore#//case005/p3/p4/D5"/>
+          <genClasses ecoreClass="testcases.ecore#//case005/p3/p4/Association2">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case005/p3/p4/Association2/Y"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case005/p3/p4/Association2/d5"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case006" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case006">
+      <genClasses ecoreClass="testcases.ecore#//case006/B6"/>
+      <genClasses ecoreClass="testcases.ecore#//case006/C6">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case006/C6/X"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case006/C6/W"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case006/D6"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case008" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case008">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="testcases.ecore#//case008/E8">
+        <genEnumLiterals ecoreEnumLiteral="testcases.ecore#//case008/E8/label1"/>
+        <genEnumLiterals ecoreEnumLiteral="testcases.ecore#//case008/E8/label2"/>
+      </genEnums>
+      <genClasses ecoreClass="testcases.ecore#//case008/S8">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/S8/field1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/S8/field2"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/S8/structure1"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case008/T8">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/T8/field1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/T8/field2"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case008/A8">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/A8/oneEnumerationE"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/A8/oneStructureS"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/A8/oneStructureT"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/A8/oneStructureV"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/A8/manyEnumerationE"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/A8/manyStructureS"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case008/U8">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/U8/subField1"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case008/V8">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/V8/structure1"/>
+      </genClasses>
+      <nestedGenPackages prefix="Inheritance" basePackage="org.eclipse.emf.query2.test.mm.testcases.case008"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case008/inheritance">
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/SuperStructure1">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SuperStructure1/superField1From1"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SuperStructure1/superField2From1"/>
+        </genClasses>
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/SubStructure1">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SubStructure1/subField1"/>
+        </genClasses>
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/SubStructure2">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SubStructure2/subField1"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SubStructure2/subField2"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SubStructure2/subField3"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SubStructure2/subField4"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SubStructure2/subField5"/>
+        </genClasses>
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/SuperStructure2">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case008/inheritance/SuperStructure2/superField1From2"/>
+        </genClasses>
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/SubStructureWithoutFields"/>
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/A8Inheritance">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/inheritance/A8Inheritance/manySuperStructure1"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/inheritance/A8Inheritance/oneSuperStructure1"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/inheritance/A8Inheritance/oneSuperStructure2"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/inheritance/A8Inheritance/oneSubStructure1"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case008/inheritance/A8Inheritance/oneSubStructure2"/>
+        </genClasses>
+        <genClasses ecoreClass="testcases.ecore#//case008/inheritance/B8Inheritance"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case009" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case009">
+      <genClasses ecoreClass="testcases.ecore#//case009/ClassThrowsException">
+        <genOperations ecoreOperation="testcases.ecore#//case009/ClassThrowsException/operationThrowsEx9"/>
+        <genOperations ecoreOperation="testcases.ecore#//case009/ClassThrowsException/operationThrowsEx9AndFx9">
+          <genParameters ecoreParameter="testcases.ecore#//case009/ClassThrowsException/operationThrowsEx9AndFx9/throwEx9"/>
+          <genParameters ecoreParameter="testcases.ecore#//case009/ClassThrowsException/operationThrowsEx9AndFx9/throwFx9"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case009/ClassThrowsException/changingOperationThrowsEx9AndFx9">
+          <genParameters ecoreParameter="testcases.ecore#//case009/ClassThrowsException/changingOperationThrowsEx9AndFx9/throwEx9"/>
+          <genParameters ecoreParameter="testcases.ecore#//case009/ClassThrowsException/changingOperationThrowsEx9AndFx9/throwFx9"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case009/A9"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case010" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case010">
+      <genClasses ecoreClass="testcases.ecore#//case010/A10">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/A10/manyBsNotChangeable"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/A10/manyBsOrdered"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/A10/manyBsChangeable"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/A10/navigable"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case010/B10">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/B10/oneAChangeable"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/B10/oneANotChangeable"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case010/C10">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/C10/first"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/C10/second"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case010/NotNavigableToNotNavigable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/NotNavigableToNotNavigable/notNavigableFrom"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/NotNavigableToNotNavigable/notNavigableTo"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case010/NotChangeableToNotChangeable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/NotChangeableToNotChangeable/notChangeableFromB"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/NotChangeableToNotChangeable/notChangeableFromA"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case010/NotChangeableAndNavigableToNotChangeableAndNavigable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/NotChangeableAndNavigableToNotChangeableAndNavigable/notChangeableAndNavigableFrom"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case010/NotChangeableAndNavigableToNotChangeableAndNavigable/notChangeableAndNavigableTo"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case011" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case011">
+      <genClasses ecoreClass="testcases.ecore#//case011/A11">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case011/A11/attribute1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case011/A11/attribute2"/>
+        <genOperations ecoreOperation="testcases.ecore#//case011/A11/callMultipleSetter">
+          <genParameters ecoreParameter="testcases.ecore#//case011/A11/callMultipleSetter/throwRuntimeExceptionBetweenTheCalls"/>
+          <genParameters ecoreParameter="testcases.ecore#//case011/A11/callMultipleSetter/attribute1"/>
+          <genParameters ecoreParameter="testcases.ecore#//case011/A11/callMultipleSetter/attribute2"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case011/A11/callMultipleGetter"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case012" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case012">
+      <genClasses ecoreClass="testcases.ecore#//case012/C12">
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInInteger">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInInteger/inInteger"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInD">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInD/inD"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInManyBoolean">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInManyBoolean/inManyBoolean"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInManyDs">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInManyDs/inManyDs"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationOutDouble">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationOutDouble/outDouble"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationOutD">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationOutD/outD"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationOutManyFloat">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationOutManyFloat/outManyFloat"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationOutManyDs">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationOutManyDs/manyDs"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInoutLong">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInoutLong/inoutLong"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInoutLongOptional">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInoutLongOptional/inoutLongOptional"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInoutManyLongs">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInoutManyLongs/inoutManyLongs"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInoutManyLongsOrdered">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInoutManyLongsOrdered/inoutManyLongsOrdered"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInoutD">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInoutD/inoutD"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationInoutManyDs">
+          <genParameters ecoreParameter="testcases.ecore#//case012/C12/operationInoutManyDs/inoutManyDs"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationReturnInteger"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationReturnD"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationReturnManyInteger"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/C12/operationReturnManyDs"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case012/D12"/>
+      <genClasses ecoreClass="testcases.ecore#//case012/A12">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case012/A12/attributeD12"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/A12/operationWithObjectParameters">
+          <genParameters ecoreParameter="testcases.ecore#//case012/A12/operationWithObjectParameters/paramD12"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case012/A12/operationWithThisAsReturnParameter"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/A12/operationGetAttributeD12"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case012/B12">
+        <genOperations ecoreOperation="testcases.ecore#//case012/B12/staticOperation1"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/B12/instanceOperation1"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/B12/staticOperation2"/>
+        <genOperations ecoreOperation="testcases.ecore#//case012/B12/instanceOperation2"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case013" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case013">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="testcases.ecore#//case013/E13">
+        <genEnumLiterals ecoreEnumLiteral="testcases.ecore#//case013/E13/enumField1"/>
+        <genEnumLiterals ecoreEnumLiteral="testcases.ecore#//case013/E13/enumField2"/>
+      </genEnums>
+      <genClasses ecoreClass="testcases.ecore#//case013/A13">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/A13/constrainedAttribute1"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case013/A13/constrainedAttributeMany1"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case013/B13">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/B13/initializedIntegerAttribute1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/B13/initializedStringAttribute1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/B13/initializedBooleanAttribute1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/B13/initializedDoubleAttribute1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/B13/notInitializedStringAttribute1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/B13/initializedEnumerationAttribute1"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case013/B13Sub2"/>
+      <genClasses ecoreClass="testcases.ecore#//case013/B13Sub2Sub"/>
+      <genClasses ecoreClass="testcases.ecore#//case013/B13Sub1"/>
+      <genClasses ecoreClass="testcases.ecore#//case013/B13Sub1Sub2"/>
+      <genClasses image="false" ecoreClass="testcases.ecore#//case013/C13Abstract">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case013/C13Abstract/attribute1"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case013/C13Sub"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case014" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case014">
+      <genClasses ecoreClass="testcases.ecore#//case014/A14">
+        <genOperations ecoreOperation="testcases.ecore#//case014/A14/operationJava"/>
+        <genOperations ecoreOperation="testcases.ecore#//case014/A14/operationJavaReturnInt"/>
+        <genOperations ecoreOperation="testcases.ecore#//case014/A14/operationJavaOnlyCommentAsCode"/>
+        <genOperations ecoreOperation="testcases.ecore#//case014/A14/operationJavaNoCode"/>
+        <genOperations ecoreOperation="testcases.ecore#//case014/A14/operationOcl">
+          <genParameters ecoreParameter="testcases.ecore#//case014/A14/operationOcl/stringP1"/>
+          <genParameters ecoreParameter="testcases.ecore#//case014/A14/operationOcl/integerP1"/>
+        </genOperations>
+        <genOperations ecoreOperation="testcases.ecore#//case014/A14/operationOclNoCode"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case015" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case015">
+      <genClasses ecoreClass="testcases.ecore#//case015/A15"/>
+      <nestedGenPackages prefix="Empty" basePackage="org.eclipse.emf.query2.test.mm.case015"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case015/empty"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case016" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case016">
+      <genClasses ecoreClass="testcases.ecore#//case016/A16">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case016/A16/b"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case016/B16"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case017" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case017">
+      <genClasses ecoreClass="testcases.ecore#//case017/A17">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case017/A17/toEnd"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case017/A17/fromEnd"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case018" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case018">
+      <genClasses ecoreClass="testcases.ecore#//case018/A18">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case018/A18/foundationAttributeA1f"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case018/B18">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case018/B18/specialOnePrimitive"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case018/usesA1FromFoundation">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case018/usesA1FromFoundation/a1FromFoundation"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case018/usesA1FromFoundation/a18"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case019" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case019">
+      <genClasses ecoreClass="testcases.ecore#//case019/B19">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case019/B19/translatableTextShort1"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case019/B19/translatableTextVeryShort1"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case019/B19/translatableButtons"/>
+      </genClasses>
+      <nestedGenPackages prefix="Serializationcallback" basePackage="org.eclipse.emf.query2.test.mm.testcases.case019"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case019/serializationcallback">
+        <genClasses ecoreClass="testcases.ecore#//case019/serializationcallback/A19Serialization">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case019/serializationcallback/A19Serialization/testTranslatableTextF"/>
+        </genClasses>
+        <genClasses ecoreClass="testcases.ecore#//case019/serializationcallback/B19Serialization">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case019/serializationcallback/B19Serialization/testTranslatableText"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Translatabletexts" basePackage="org.eclipse.emf.query2.test.mm.testcases.case019"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case019/translatabletexts">
+        <genClasses ecoreClass="testcases.ecore#//case019/translatabletexts/A19TranslatableText"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case020" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case020">
+      <genClasses ecoreClass="testcases.ecore#//case020/Super1"/>
+      <genClasses ecoreClass="testcases.ecore#//case020/Super2"/>
+      <genClasses ecoreClass="testcases.ecore#//case020/ChildInheritsMultiple1"/>
+      <genClasses ecoreClass="testcases.ecore#//case020/A20">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case020/A20/super1"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case020/A20/super2"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case020/A20/refSuper1"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case020/A20/refSuper2"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case021" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case021">
+      <genClasses image="false" ecoreClass="testcases.ecore#//case021/A21Abstract"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case022" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case022">
+      <genClasses ecoreClass="testcases.ecore#//case022/A22Javadoc">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case022/A22Javadoc/attributeJavadoc"/>
+        <genOperations ecoreOperation="testcases.ecore#//case022/A22Javadoc/operationJavadoc"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case022/B22JavadocSpecialCharacters">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case022/B22JavadocSpecialCharacters/javadocCommentEndSign"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case022/B22JavadocSpecialCharacters/httpAddress"/>
+      </genClasses>
+      <nestedGenPackages prefix="P22PackageJavadoc" basePackage="org.eclipse.emf.query2.test.mm.case022"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case022/P22PackageJavadoc"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case007" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007">
+      <nestedGenPackages prefix="Clustered" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/clustered">
+        <genClasses ecoreClass="testcases.ecore#//case007/clustered/ClusteredA"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/clustered/ClusteredB"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/clustered/ClusteredAReferencesClusteredB">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/clustered/ClusteredAReferencesClusteredB/clusteredB"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/clustered/ClusteredAReferencesClusteredB/clusteredA"/>
+        </genClasses>
+        <nestedGenPackages prefix="NestedOfClustered" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007.clustered"
+            disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/clustered/nestedOfClustered">
+          <genClasses ecoreClass="testcases.ecore#//case007/clustered/nestedOfClustered/nestedOfClusteredA"/>
+          <genClasses ecoreClass="testcases.ecore#//case007/clustered/nestedOfClustered/nestedOfClusteredB"/>
+          <genClasses ecoreClass="testcases.ecore#//case007/clustered/nestedOfClustered/NestedOfClusteredAReferencesNestedOfClusteredB">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case007/clustered/nestedOfClustered/NestedOfClusteredAReferencesNestedOfClusteredB/nestedOfClusteredB"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case007/clustered/nestedOfClustered/NestedOfClusteredAReferencesNestedOfClusteredB/nestedOfClusteredA"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Base" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/base">
+        <genClasses ecoreClass="testcases.ecore#//case007/base/BaseA"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/base/BaseB"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/base/BaseAReferencesBaseB">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/base/BaseAReferencesBaseB/baseB"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/base/BaseAReferencesBaseB/baseA"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Top" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/top">
+        <genClasses ecoreClass="testcases.ecore#//case007/top/TopA"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/top/TopB"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/top/TopAReferencesTopB">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/top/TopAReferencesTopB/topB"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/top/TopAReferencesTopB/topA"/>
+        </genClasses>
+        <nestedGenPackages prefix="NestedOfTop" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007.top"
+            disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/top/nestedOfTop">
+          <genClasses ecoreClass="testcases.ecore#//case007/top/nestedOfTop/NestedOfTopA"/>
+          <genClasses ecoreClass="testcases.ecore#//case007/top/nestedOfTop/NestedOfTopB"/>
+          <genClasses ecoreClass="testcases.ecore#//case007/top/nestedOfTop/NestedOfTopAReferencesNestedOfTopB">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case007/top/nestedOfTop/NestedOfTopAReferencesNestedOfTopB/nestedOfTopB"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case007/top/nestedOfTop/NestedOfTopAReferencesNestedOfTopB/nestedOfTopA"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Cluster" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/cluster">
+        <genClasses ecoreClass="testcases.ecore#//case007/cluster/ClusterA"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/cluster/ClusterB"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/cluster/ClusterAReferencesClusterB">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/cluster/ClusterAReferencesClusterB/clusterB"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/cluster/ClusterAReferencesClusterB/clusterA"/>
+        </genClasses>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Importer" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007"
+          disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/importer">
+        <genClasses ecoreClass="testcases.ecore#//case007/importer/ImporterA"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/importer/ImporterB"/>
+        <genClasses ecoreClass="testcases.ecore#//case007/importer/ImporterAReferencesImporterB">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/importer/ImporterAReferencesImporterB/importerB"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference testcases.ecore#//case007/importer/ImporterAReferencesImporterB/importerA"/>
+        </genClasses>
+        <nestedGenPackages prefix="Imported" basePackage="org.eclipse.emf.query2.test.mm.testcases.case007.importer"
+            disposableProviderFactory="true" ecorePackage="testcases.ecore#//case007/importer/imported">
+          <genClasses ecoreClass="testcases.ecore#//case007/importer/imported/ImportedA"/>
+          <genClasses ecoreClass="testcases.ecore#//case007/importer/imported/ImportedB"/>
+          <genClasses ecoreClass="testcases.ecore#//case007/importer/imported/ImportedAReferencesImportedB">
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case007/importer/imported/ImportedAReferencesImportedB/importedB"/>
+            <genFeatures notify="false" createChild="false" propertySortChoices="true"
+                ecoreFeature="ecore:EReference testcases.ecore#//case007/importer/imported/ImportedAReferencesImportedB/importedA"/>
+          </genClasses>
+        </nestedGenPackages>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case023" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case023">
+      <genClasses ecoreClass="testcases.ecore#//case023/A23">
+        <genOperations ecoreOperation="testcases.ecore#//case023/A23/getCRecursive">
+          <genParameters ecoreParameter="testcases.ecore#//case023/A23/getCRecursive/alreadyFound"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case023/B23">
+        <genOperations ecoreOperation="testcases.ecore#//case023/B23/collectA">
+          <genParameters ecoreParameter="testcases.ecore#//case023/B23/collectA/source1"/>
+          <genParameters ecoreParameter="testcases.ecore#//case023/B23/collectA/source2"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case023/C23"/>
+      <genClasses ecoreClass="testcases.ecore#//case023/A23Sub"/>
+      <genClasses ecoreClass="testcases.ecore#//case023/aa">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/aa/aDown"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/aa/aUp"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case023/ab">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/ab/aToB"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/ab/bToA"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case023/bc">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/bc/bToC"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/bc/cToB"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case023/ac">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/ac/aToC"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/ac/cToA"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case023/cc">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/cc/dependents"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference testcases.ecore#//case023/cc/c23"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case024" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case024">
+      <genClasses ecoreClass="testcases.ecore#//case024/A24">
+        <genOperations ecoreOperation="testcases.ecore#//case024/A24/testJmiCalls">
+          <genParameters ecoreParameter="testcases.ecore#//case024/A24/testJmiCalls/someElement"/>
+        </genOperations>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case025" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case025">
+      <genClasses ecoreClass="testcases.ecore#//case025/A25">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcases.ecore#//case025/A25/externalId"/>
+      </genClasses>
+      <genClasses ecoreClass="testcases.ecore#//case025/C25"/>
+      <genClasses ecoreClass="testcases.ecore#//case025/B25"/>
+      <genClasses ecoreClass="testcases.ecore#//case025/D25"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case026" basePackage="org.eclipse.emf.query2.test.mm.testcases"
+        disposableProviderFactory="true" ecorePackage="testcases.ecore#//case026">
+      <genClasses ecoreClass="testcases.ecore#//case026/A26">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case026/A26/reflectToOne"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcases.ecore#//case026/A26/reflectToMany"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+  <genPackages prefix="Testcasesfoundation" basePackage="org.eclipse.emf.query2.test.mm"
+      disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#/">
+    <nestedGenPackages prefix="Case001f" basePackage="org.eclipse.emf.query2.test.mm.testcasesfoundation"
+        disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#//case001f">
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case001f/A1f">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case001f/A1f/translatableText"/>
+      </genClasses>
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case001f/B1f">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case001f/B1f/onePrimitive"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case003f" basePackage="org.eclipse.emf.query2.test.mm.testcasesfoundation"
+        disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#//case003f">
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case003f/B3f">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case003f/B3f/textName"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case004f" basePackage="org.eclipse.emf.query2.test.mm.testcasesfoundation"
+        disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#//case004f">
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case004f/ShortTranslatableTextF"/>
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case004f/VeryShortTranslatableTextF"/>
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case004f/ButtonTextF"/>
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case004f/TranslatableTextF"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Case005f" basePackage="org.eclipse.emf.query2.test.mm.testcasesfoundation"
+        disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#//case005f">
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeTranslatableText">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeTranslatableText/translatableText"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeTranslatableText/generalTranslatableText"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeTranslatableText/specializedTranslatableText"/>
+      </genClasses>
+      <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeText">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeText/translatableText"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeText/generalText"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference testcasesfoundation.ecore#//case005f/A5fMigrationAttributeTypeText/specializedText"/>
+      </genClasses>
+      <nestedGenPackages prefix="Structurebasedtexts" basePackage="org.eclipse.emf.query2.test.mm.testcasesfoundation.case005f"
+          disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#//case005f/structurebasedtexts">
+        <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/structurebasedtexts/GeneralTranslatableText"/>
+        <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/structurebasedtexts/SpecializedTranslatableText"/>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Classbasedtexts" basePackage="org.eclipse.emf.query2.test.mm.testcasesfoundation.case005f"
+          disposableProviderFactory="true" ecorePackage="testcasesfoundation.ecore#//case005f/classbasedtexts">
+        <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/classbasedtexts/GeneralText"/>
+        <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/classbasedtexts/SpecializedText"/>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Textverticalizationf" disposableProviderFactory="true"
+          ecorePackage="testcasesfoundation.ecore#//case005f/textverticalizationf">
+        <genClasses ecoreClass="testcasesfoundation.ecore#//case005f/textverticalizationf/TextF">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case005f/textverticalizationf/TextF/maxWidth"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case005f/textverticalizationf/TextF/originalText"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case005f/textverticalizationf/TextF/resName"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case005f/textverticalizationf/TextF/resType"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case005f/textverticalizationf/TextF/translate"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testcasesfoundation.ecore#//case005f/textverticalizationf/TextF/transUnitId"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

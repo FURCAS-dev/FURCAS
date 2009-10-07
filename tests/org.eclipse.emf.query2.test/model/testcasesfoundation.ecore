@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="testcasesfoundation"
+    nsURI="http://sap.com/moin/testcasesfoundation" nsPrefix="testcasesfoundation">
+  <eSubpackages name="case001f" nsURI="http://sap.com/moin/testcasesfoundation/case001f"
+      nsPrefix="testcasesfoundationcase001f">
+    <eClassifiers xsi:type="ecore:EClass" name="A1f">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case001f.A1f"/>
+        <details key="metaObjectMofId" value="45ED922CA5D2947E0EE543701D54E6B7BF726A50"/>
+        <details key="isStructureType" value="false"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="translatableText" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EClass textverticalization.ecore#//TranslatableText"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="487D5B821B7458D052DE11DDB515C4DEC0A80165"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="B1f">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case001f.B1f"/>
+        <details key="metaObjectMofId" value="45ED922C4E128103DEF54D250988D90DD9621BAE"/>
+        <details key="isStructureType" value="false"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="onePrimitive" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="case003f" nsURI="http://sap.com/moin/testcasesfoundation/case003f"
+      nsPrefix="testcasesfoundationcase003f">
+    <eClassifiers xsi:type="ecore:EClass" name="B3f" eSuperTypes="textverticalization.ecore#//TranslatableText">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case003f.B3f"/>
+        <details key="metaObjectMofId" value="487D5B821B76A2C152DE11DDCB02C4DEC0A80165"/>
+        <details key="isStructureType" value="true"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="textName" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="case004f" nsURI="http://sap.com/moin/testcasesfoundation/case004f"
+      nsPrefix="testcasesfoundationcase004f">
+    <eClassifiers xsi:type="ecore:EClass" name="ShortTranslatableTextF" eSuperTypes="textverticalization.ecore#//TranslatableText">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case004f.ShortTranslatableTextF"/>
+        <details key="metaObjectMofId" value="48846003E8534BE0570C11DD87F4001558C93B47"/>
+        <details key="isStructureType" value="true"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VeryShortTranslatableTextF" eSuperTypes="textverticalization.ecore#//TranslatableText">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case004f.VeryShortTranslatableTextF"/>
+        <details key="metaObjectMofId" value="4884B2EC52D87810573E11DDBCA3001B776F88F3"/>
+        <details key="isStructureType" value="true"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ButtonTextF" eSuperTypes="#//case004f/VeryShortTranslatableTextF">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case004f.ButtonTextF"/>
+        <details key="metaObjectMofId" value="4884B2EC52DAE910573E11DD80DC001B776F88F3"/>
+        <details key="isStructureType" value="true"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TranslatableTextF" eSuperTypes="textverticalization.ecore#//TranslatableText">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case004f.TranslatableTextF"/>
+        <details key="metaObjectMofId" value="48D8F679F87ABDD1897711DD90B50019993BAD15"/>
+        <details key="isStructureType" value="true"/>
+      </eAnnotations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="case005f" nsURI="http://sap.com/moin/testcasesfoundation/case005f"
+      nsPrefix="testcasesfoundationcase005f">
+    <eClassifiers xsi:type="ecore:EClass" name="A5fMigrationAttributeTypeTranslatableText">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case005f.A5fMigrationAttributeTypeTranslatableText"/>
+        <details key="metaObjectMofId" value="48FEDD2F3CDD1BABA00F11DD8C38001558C93B47"/>
+        <details key="isStructureType" value="false"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="translatableText" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EClass textverticalization.ecore#//TranslatableText"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="48FEDD2F3CDD1BA8A00F11DD8747001558C93B47"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generalTranslatableText"
+          ordered="false" unique="false" lowerBound="1" eType="#//case005f/structurebasedtexts/GeneralTranslatableText"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="48FEDD2F3CDD1BA9A00F11DD9C8E001558C93B47"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specializedTranslatableText"
+          ordered="false" unique="false" lowerBound="1" eType="#//case005f/structurebasedtexts/SpecializedTranslatableText"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="48FEDD2F3CDD1BAAA00F11DDAAC8001558C93B47"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="A5fMigrationAttributeTypeText">
+      <eAnnotations source="http://sap.com/MOIN">
+        <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+        <details key="metaObject" value="testcasesfoundation.case005f.A5fMigrationAttributeTypeText"/>
+        <details key="metaObjectMofId" value="48FEDD2F3CDD1BB3A00F11DD9280001558C93B47"/>
+        <details key="isStructureType" value="false"/>
+        <details key="ova" value="translatableText,generalText,specializedText"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="translatableText" ordered="false"
+          unique="false" lowerBound="1" eType="#//case005f/textverticalizationf/TextF"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="48FEDD2F3CDD1BB0A00F11DDCAC2001558C93B47"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generalText" ordered="false"
+          unique="false" lowerBound="1" eType="#//case005f/classbasedtexts/GeneralText"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="48FEDD2F3CDD1BB1A00F11DD9481001558C93B47"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="specializedText" ordered="false"
+          unique="false" lowerBound="1" eType="#//case005f/classbasedtexts/SpecializedText"
+          containment="true">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="ovaMofId" value="48FEDD2F3CDD1BB2A00F11DD96C0001558C93B47"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eSubpackages name="structurebasedtexts" nsURI="http://sap.com/moin/testcasesfoundation/case005f/structurebasedtexts"
+        nsPrefix="testcasesfoundationcase005fsbt">
+      <eClassifiers xsi:type="ecore:EClass" name="GeneralTranslatableText" eSuperTypes="textverticalization.ecore#//TranslatableText">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+          <details key="metaObject" value="testcasesfoundation.case005f.structurebasedtexts.GeneralTranslatableText"/>
+          <details key="metaObjectMofId" value="48EF6AC639944C4096DA11DDA171001558C93B47"/>
+          <details key="isStructureType" value="true"/>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="SpecializedTranslatableText" eSuperTypes="#//case005f/structurebasedtexts/GeneralTranslatableText">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]"/>
+          <details key="metaObject" value="testcasesfoundation.case005f.structurebasedtexts.SpecializedTranslatableText"/>
+          <details key="metaObjectMofId" value="48EF6AC639944C4296DA11DD8836001558C93B47"/>
+          <details key="isStructureType" value="true"/>
+        </eAnnotations>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="classbasedtexts" nsURI="http://sap.com/moin/testcasesfoundation/case005f/classbasedtexts"
+        nsPrefix="testcasesfoundationcase005fcbt">
+      <eClassifiers xsi:type="ecore:EClass" name="GeneralText" eSuperTypes="#//case005f/textverticalizationf/TextF">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+          <details key="metaObject" value="testcasesfoundation.case005f.classbasedtexts.GeneralText"/>
+          <details key="metaObjectMofId" value="48FC2FA6A040E5409E7611DD9E510019993BAD15"/>
+          <details key="isStructureType" value="false"/>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="SpecializedText" eSuperTypes="#//case005f/classbasedtexts/GeneralText">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+          <details key="metaObject" value="testcasesfoundation.case005f.classbasedtexts.SpecializedText"/>
+          <details key="metaObjectMofId" value="48FC2FA6A040E5419E7611DD8E6D0019993BAD15"/>
+          <details key="isStructureType" value="false"/>
+        </eAnnotations>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="textverticalizationf" nsURI="http://sap.com/moin/testcasesfoundation/case005f/textverticalizationf"
+        nsPrefix="testcasesfoundationcase005ftv">
+      <eClassifiers xsi:type="ecore:EClass" name="TextF">
+        <eAnnotations source="http://sap.com/MOIN">
+          <details key="metamodels" value="test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]"/>
+          <details key="metaObject" value="testcasesfoundation.case005f.textverticalizationf.TextF"/>
+          <details key="metaObjectMofId" value="4908664F4300FB55A5BE11DDC041001558C93B47"/>
+          <details key="isStructureType" value="false"/>
+        </eAnnotations>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxWidth" ordered="false"
+            unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalText" ordered="false"
+            unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="resName" ordered="false"
+            unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="resType" ordered="false"
+            unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="translate" ordered="false"
+            unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="transUnitId" ordered="false"
+            unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>
