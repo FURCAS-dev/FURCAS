@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ParsingTest.java,v 1.2 2007/02/14 14:46:17 cdamus Exp $
+ * $Id: ParsingTest.java,v 1.3 2009/10/07 20:42:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.uml.UMLEnvironment;
@@ -32,17 +29,6 @@ import org.eclipse.uml2.uml.Constraint;
  */
 public class ParsingTest
 	extends AbstractTestSuite {
-
-	/**
-	 * Initializes me with my name.
-	 */
-	public ParsingTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(ParsingTest.class, "Constraint Parsing Tests"); //$NON-NLS-1$
-	}
 	
 	public void test_createQuery_125684() {
 		helper.setContext(fruit);
