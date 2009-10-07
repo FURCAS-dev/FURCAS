@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.9 2009/09/01 20:10:53 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.10 2009/10/07 16:59:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
