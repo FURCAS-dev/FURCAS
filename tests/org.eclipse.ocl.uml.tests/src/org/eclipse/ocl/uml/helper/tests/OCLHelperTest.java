@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperTest.java,v 1.2 2007/02/14 14:46:17 cdamus Exp $
+ * $Id: OCLHelperTest.java,v 1.3 2009/10/07 20:42:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.uml.OCL;
@@ -35,17 +32,6 @@ import org.eclipse.uml2.uml.Property;
  */
 public class OCLHelperTest
 	extends AbstractTestSuite {
-
-	/**
-	 * Initializes me with my name.
-	 */
-	public OCLHelperTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(OCLHelperTest.class, "Basic Tests"); //$NON-NLS-1$
-	}
 	
 	public void testHelperCreation() {
 		OCLHelper<Classifier, Operation, Property, Constraint> helper1 =

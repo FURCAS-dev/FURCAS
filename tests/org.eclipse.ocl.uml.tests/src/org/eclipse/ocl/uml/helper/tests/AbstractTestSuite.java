@@ -12,13 +12,11 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: AbstractTestSuite.java,v 1.3 2009/10/07 20:42:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 /**
  * Tests for the OCL engine plug-in.
@@ -28,23 +26,14 @@ import junit.framework.TestSuite;
 public abstract class AbstractTestSuite
 	extends org.eclipse.ocl.uml.tests.AbstractTestSuite {
 
-	/**
-	 * Initializes me with my name.
-	 * 
-	 * @param name my name
-	 */
-	public AbstractTestSuite(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		TestSuite result = new TestSuite("OCL Helper Tests"); //$NON-NLS-1$
+	public static CheckedTestSuite suite() {
+		CheckedTestSuite result = new CheckedTestSuite("OCL Helper Tests"); //$NON-NLS-1$
 		
-		result.addTest(OCLHelperTest.suite());
-		result.addTest(ParsingTest.suite());
-		result.addTest(SyntaxHelpTest.suite());
-		result.addTest(EvaluationTest.suite());
-		result.addTest(RegressionTest.suite());
+		result.createTestSuite(OCLHelperTest.class, "Basic Tests"); //$NON-NLS-1$
+		result.createTestSuite(ParsingTest.class, "Constraint Parsing Tests"); //$NON-NLS-1$
+		result.createTestSuite(SyntaxHelpTest.class, "Syntax Help Tests"); //$NON-NLS-1$
+		result.createTestSuite(EvaluationTest.class, "Constraint Evaluation Tests"); //$NON-NLS-1$
+		result.createTestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
 		
 		return result;
 	}
