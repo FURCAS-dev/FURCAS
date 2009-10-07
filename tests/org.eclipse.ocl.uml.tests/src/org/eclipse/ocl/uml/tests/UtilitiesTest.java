@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesTest.java,v 1.1 2007/01/25 18:41:56 cdamus Exp $
+ * $Id: UtilitiesTest.java,v 1.2 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 
@@ -29,15 +26,6 @@ import org.eclipse.ocl.uml.util.OCLUMLUtil;
  * @author Christian W. Damus (cdamus)
  */
 public class UtilitiesTest extends AbstractTestSuite {
-
-	public UtilitiesTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(UtilitiesTest.class,
-			"OCLUMLUtil Utility Class Tests"); //$NON-NLS-1$
-	}
 
     /**
      * Tests the <code>getMetaclass(Element)</code> method.

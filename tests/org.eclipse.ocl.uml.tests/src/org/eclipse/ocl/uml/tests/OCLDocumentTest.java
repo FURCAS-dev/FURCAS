@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.4 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: OCLDocumentTest.java,v 1.5 2009/10/07 20:41:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,9 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -58,15 +55,6 @@ public class OCLDocumentTest extends AbstractTestSuite {
 
 	private Package instancePackage;
 	private Map<String, Constraint> constraints;
-	
-	public OCLDocumentTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(OCLDocumentTest.class,
-			"OCL Document Parsing Tests"); //$NON-NLS-1$
-	}
 	
 	public void test_multipleInvariants() {
 		Constraint notBlack = getConstraint("not_black"); //$NON-NLS-1$
@@ -236,32 +224,35 @@ public class OCLDocumentTest extends AbstractTestSuite {
 	//
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		super.setUp();
 		
 		instancePackage = umlf.createPackage();
 		constraints = new java.util.HashMap<String, Constraint>();
 		URI uri = getTestModelURI("/model/test_constraints.ocl"); //$NON-NLS-1$
-		URL url = new URL(uri.toString());
-		InputStream is = url.openStream();
-		List<Constraint> parsed = ocl.parse(new OCLInput(is));
-		is.close();
-		
-		for (Constraint ct : parsed) {
-            validate(ct);
-			constraints.put(ct.getName(), ct);
+		try {
+			URL url = new URL(uri.toString());
+			InputStream is = url.openStream();
+			List<Constraint> parsed = ocl.parse(new OCLInput(is));
+			is.close();
+			
+			for (Constraint ct : parsed) {
+	            validate(ct);
+				constraints.put(ct.getName(), ct);
+			}
+		} catch (Exception e) {
+			fail("Failed to parse " + uri + " : " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 	
-	@Override
-	protected void tearDown() throws Exception {
-	    unload(instancePackage);
-	    instancePackage = null;
-	    
+	public void tearDown_constraints() throws Exception {
 	    unload(constraints.values());
 	    constraints = null;
-	    
-	    super.tearDown();
+	}
+	
+	public void tearDown_instancePackage() throws Exception {
+	    unload(instancePackage);
+	    instancePackage = null;
 	}
 	
 	Constraint getConstraint(String name) {

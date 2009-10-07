@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: StatesTest.java,v 1.3 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
@@ -34,14 +31,6 @@ import org.eclipse.uml2.uml.StateMachine;
  */
 public class StatesTest
 	extends AbstractTestSuite {
-	
-	public StatesTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(StatesTest.class, "State Expression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the parsing of the oclIsInState() expression.
@@ -177,6 +166,7 @@ public class StatesTest
 	 * Tests the case of multiple state machines with same-named states.
 	 */
 	public void test_multipleStateMachines() {
+        expectModified = true;
 		helper.setContext(fruit);
 		StateMachine machine2 = (StateMachine) fruit.createOwnedBehavior("Machine2", uml.getStateMachine()); //$NON-NLS-1$
 		machine2.createRegion("Region1").createSubvertex("Ripe", uml.getState()); //$NON-NLS-1$ //$NON-NLS-2$

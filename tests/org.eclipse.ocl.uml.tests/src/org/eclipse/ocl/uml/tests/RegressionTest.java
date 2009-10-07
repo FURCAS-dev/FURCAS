@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.7 2009/09/01 20:11:49 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,8 +24,6 @@ import java.util.Map;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -69,20 +67,13 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  */
 public class RegressionTest
 	extends AbstractTestSuite {
-
-	public RegressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the "..." escape syntax for reserved words.  Regression test for
 	 * RATLC00527506.
 	 */
 	public void test_quoteReservedWords_RATLC00527506() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -107,6 +98,7 @@ public class RegressionTest
 	 * RATLC00527509.
 	 */
 	public void test_quoteWhitespace_RATLC00527509() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -131,6 +123,7 @@ public class RegressionTest
 	 * RATLC00527509.
 	 */
 	public void test_quoteQuote_RATLC00527509() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -173,6 +166,7 @@ public class RegressionTest
 	 * RATLC01080816.
 	 */
 	public void test_internationalCharacters_RATLC01080816() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -199,6 +193,7 @@ public class RegressionTest
 	 * conformant.
 	 */
 	public void test_oclIsKindOf_RATLC01087664() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -240,6 +235,7 @@ public class RegressionTest
 	 * Tests support for short-circuiting AND operator.
 	 */
 	public void test_shortcircuitAnd_RATLC00536528() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -282,6 +278,7 @@ public class RegressionTest
 	 * Tests support for short-circuiting OR operator.
 	 */
 	public void test_shortcircuitOr_RATLC00536528() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -324,6 +321,7 @@ public class RegressionTest
 	 * Tests support for short-circuiting IMPLIES operator.
 	 */
 	public void test_shortcircuitImplies_RATLC00536528() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);
@@ -924,6 +922,7 @@ public class RegressionTest
 	 * match).
 	 */
 	public void test_innerScopeFeatureResolution_bugzilla113355() {
+        expectModified = true;
 		Package epackage = umlf.createPackage();
 		epackage.setName("MyPackage"); //$NON-NLS-1$
 		fruitPackage.eResource().getContents().add(epackage);

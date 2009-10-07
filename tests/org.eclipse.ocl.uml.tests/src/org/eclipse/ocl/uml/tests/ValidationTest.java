@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: ValidationTest.java,v 1.3 2009/10/07 20:41:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -31,20 +28,12 @@ import org.eclipse.uml2.uml.Classifier;
  * @author Christian W. Damus (cdamus)
  */
 public class ValidationTest extends AbstractTestSuite {
-
-	public ValidationTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(ValidationTest.class,
-			"Expression Validation Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests that operation calls may only invoke query operations. 
 	 */
 	public void test_callNonQueryOperation_136778() {
+        expectModified = true;
 		// newApple() is not a query operation
 		OCLExpression<Classifier> expr = parseConstraintUnvalidated(
 				"package ocltest context Apple " + //$NON-NLS-1$
@@ -65,16 +54,9 @@ public class ValidationTest extends AbstractTestSuite {
 	//
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		super.setUp();
 		
 		apple_newApple.setIsQuery(false);
-	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		apple_newApple.setIsQuery(true);
-		
-		super.tearDown();
 	}
 }

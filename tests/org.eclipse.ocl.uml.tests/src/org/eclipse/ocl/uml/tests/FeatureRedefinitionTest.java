@@ -13,17 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: FeatureRedefinitionTest.java,v 1.1 2008/08/30 23:33:11 cdamus Exp $
+ * $Id: FeatureRedefinitionTest.java,v 1.2 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.OperationCallExp;
 import org.eclipse.ocl.uml.PropertyCallExp;
 import org.eclipse.uml2.uml.Class;
@@ -33,10 +29,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
 
 /**
  * Tests access to redefined features.
@@ -45,41 +37,17 @@ import junit.framework.TestSuite;
  */
 @SuppressWarnings("nls")
 public class FeatureRedefinitionTest
-		extends TestCase {
+		extends AbstractTestSuite {
 
-	private ResourceSet rset;
-	
-	private OCL.Helper helper;
-
-	private OCL ocl;
-
-	private Class c3;
-
-	private Operation op3;
-
-	private Property attr3;
-
-	private Class c2;
-
-	private Property attr2;
-
-	private Operation op2;
-
-	private Class c1;
-
-	private Property attr1;
-
-	private Operation op1;
-
-	/**
-	 * Creates my test suite.
-	 * 
-	 * @return my test suite
-	 */
-	public static Test suite() {
-		return new TestSuite(FeatureRedefinitionTest.class,
-			"Feature redefinition tests");
-	}
+	Class c3;
+	Operation op3;
+	Property attr3;
+	Class c2;
+	Property attr2;
+	Operation op2;
+	Class c1;
+	Property attr1;
+	Operation op1;
 
 	public void testCallOverridingMethod()
 			throws Exception {
@@ -167,14 +135,11 @@ public class FeatureRedefinitionTest
 	// Test framework
 	//
 
+	@Override
 	protected void setUp() {
-
+		super.setUp();
 		UMLFactory f = UMLFactory.eINSTANCE;
-		
-		rset = new ResourceSetImpl();
-		
-		ocl = OCL.newInstance(rset);
-		helper = ocl.createOCLHelper();
+
 		
 		Classifier integer = ocl.getEnvironment().getOCLStandardLibrary()
 			.getInteger();
@@ -182,7 +147,7 @@ public class FeatureRedefinitionTest
 		Package p = f.createPackage();
 		p.setName("TestPackage");
 		
-		rset.createResource(URI.createURI("http:///test.uml")).getContents()
+		resourceSet.createResource(URI.createURI("http:///test.uml")).getContents()
 			.add(p);
 		
 		/* test model:
@@ -224,18 +189,5 @@ public class FeatureRedefinitionTest
 		op3.setIsQuery(true);
 		op3.getRedefinedOperations().add(op1);
 		op3.getRedefinedOperations().add(op2);
-	}
-	
-	@Override
-	protected void tearDown()
-			throws Exception {
-		
-		for (Resource next : rset.getResources()) {
-			next.unload();
-		}
-		
-		ocl.dispose();
-		
-		super.tearDown();
 	}
 }

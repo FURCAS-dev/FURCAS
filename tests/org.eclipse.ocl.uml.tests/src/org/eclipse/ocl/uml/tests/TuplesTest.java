@@ -13,13 +13,10 @@
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.5 2008/08/05 00:36:50 cdamus Exp $
+ * $Id: TuplesTest.java,v 1.6 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -35,14 +32,6 @@ import org.eclipse.uml2.uml.Property;
 @SuppressWarnings("nls")
 public class TuplesTest
 	extends AbstractTestSuite {
-	
-	public TuplesTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(TuplesTest.class, "Tuple Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the parsing of tuple literals with part types.

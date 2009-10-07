@@ -13,13 +13,10 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.4 2008/09/28 17:32:44 cdamus Exp $
+ * $Id: LocationInformationTest.java,v 1.5 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.EnvironmentFactory;
@@ -75,14 +72,6 @@ import org.eclipse.uml2.uml.State;
  */
 public class LocationInformationTest
 	extends AbstractTestSuite {
-
-	public LocationInformationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(LocationInformationTest.class, "Location Information Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Tests the <code>implies</code> expression, boolean literal, enumeration

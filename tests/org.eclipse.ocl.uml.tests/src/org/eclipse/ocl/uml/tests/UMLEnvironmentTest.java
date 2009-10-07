@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.8 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.9 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -23,9 +23,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -73,14 +70,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLEnvironmentTest
     extends AbstractTestSuite {
-
-    public UMLEnvironmentTest(String name) {
-        super(name);
-    }
-    
-    public static Test suite() {
-        return new TestSuite(UMLEnvironmentTest.class, "UML Environment Tests"); //$NON-NLS-1$
-    }
     
     /**
      * Tests extensibility of the OCL Ecore environment.
@@ -109,6 +98,7 @@ public class UMLEnvironmentTest
      * Tests the instance-model evaluation mode.
      */
     public void test_evaluationMode_instanceModel_194390() {
+        expectModified = true;
         UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
         
         OCL ocl = OCL.newInstance(factory);
@@ -151,6 +141,7 @@ public class UMLEnvironmentTest
      * Tests the Java-EObjects evaluation mode.
      */
     public void test_evaluationMode_runtimeObjects_194390() {
+        expectModified = true;
         UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
         
         OCL ocl = OCL.newInstance(factory);
@@ -194,6 +185,7 @@ public class UMLEnvironmentTest
      * Tests the adaptive evaluation mode.
      */
     public void test_evaluationMode_adaptive_194390() {
+        expectModified = true;
         UMLEnvironmentFactory factory = new UMLEnvironmentFactory(resourceSet);
         
         OCL ocl = OCL.newInstance(factory);

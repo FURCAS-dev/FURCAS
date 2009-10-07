@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.3 2008/12/02 12:10:16 cdamus Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.4 2009/10/07 20:41:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -21,9 +21,6 @@ package org.eclipse.ocl.uml.tests;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
@@ -73,17 +70,8 @@ import org.eclipse.uml2.uml.Signal;
  */
 public class ExpressionsValidatorTest extends AbstractTestSuite {
 
-	private UMLFactory factory = UMLFactory.eINSTANCE;
-	private org.eclipse.uml2.uml.UMLFactory umlFactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
-	
-	public ExpressionsValidatorTest(String name) {
-		super(name);
-	}
-
-	public static Test suite() {
-		return new TestSuite(ExpressionsValidatorTest.class,
-			"Expressions Validator Tests"); //$NON-NLS-1$
-	}
+	UMLFactory factory = UMLFactory.eINSTANCE;
+	org.eclipse.uml2.uml.UMLFactory umlFactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
 	
 	public void test_BooleanLiteralExp_checkBooleanType() {
 		BooleanLiteralExp bl = factory.createBooleanLiteralExp();

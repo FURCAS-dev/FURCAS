@@ -12,13 +12,10 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.5 2007/10/15 22:23:34 cdamus Exp $
+ * $Id: KeywordsTest.java,v 1.6 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -46,20 +43,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class KeywordsTest
 	extends AbstractTestSuite {
 
-    private Resource res;
-    
-    private Package smalltalk;
-    private Class collection;
-    private Class block;
-    private Class elseClass;
-    
-	public KeywordsTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(KeywordsTest.class, "LPG and OCL Keyword Tests"); //$NON-NLS-1$
-	}
+    Resource res;    
+    Package smalltalk;
+    Class collection;
+    Class block;
+    Class elseClass;
 	
 	public void test_isUnique_162300() {
 		helper.setContext(getMetaclass("Property")); //$NON-NLS-1$
@@ -217,8 +205,7 @@ public class KeywordsTest
     //
     
     @Override
-    protected void setUp()
-        throws Exception {
+    protected void setUp() {
         
         super.setUp();
         
@@ -275,21 +262,5 @@ public class KeywordsTest
             "init", UMLPackage.Literals.STATE); //$NON-NLS-1$
         state.createRegion("region").createSubvertex("body", //$NON-NLS-1$ //$NON-NLS-2$
             UMLPackage.Literals.STATE);
-    }
-    
-    @Override
-    protected void tearDown()
-        throws Exception {
-        
-        smalltalk = null;
-        collection = null;
-        block = null;
-        elseClass = null;
-        
-        res.unload();
-        resourceSet.getResources().remove(res);
-        res = null;
-        
-        super.tearDown();
     }
 }

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.9 2008/11/13 02:31:45 cdamus Exp $
+ * $Id: SerializationTest.java,v 1.10 2009/10/07 20:41:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -23,9 +23,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -59,15 +56,7 @@ import org.eclipse.uml2.uml.Property;
 public class SerializationTest
 	extends AbstractTestSuite {
 
-	private Resource res;
-	
-	public SerializationTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
-	}
+	Resource res;
 	
 	/**
 	 * Tests the serialization of an expression that uses no standard library types.
@@ -390,8 +379,7 @@ public class SerializationTest
 	//
 	
 	@Override
-    protected void setUp()
-		throws Exception {
+    protected void setUp() {
 		
 		//FIXME:  Need to use extrinsic IDs because lookup fails on hierarchical
 		//    name-based fragments
@@ -419,17 +407,6 @@ public class SerializationTest
 	    UMLEnvironment environment = (UMLEnvironment) factory.loadEnvironment(res);
 	    
 	    return OCL.newInstance(environment);
-	}
-	
-	@Override
-    protected void tearDown()
-		throws Exception {
-		
-		res.unload();
-		resourceSet.getResources().remove(res);
-		res = null;
-		
-		super.tearDown();
 	}
 	
 	protected OCLExpression<Classifier> parseExpression(

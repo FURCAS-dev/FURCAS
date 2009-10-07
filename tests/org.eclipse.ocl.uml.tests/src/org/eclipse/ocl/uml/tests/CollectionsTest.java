@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.7 2009/07/27 15:30:19 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -22,9 +22,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -47,14 +44,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class CollectionsTest
     extends AbstractTestSuite {
-
-    public CollectionsTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(CollectionsTest.class, "Collection Type Tests"); //$NON-NLS-1$
-    }
 
     /**
      * Tests the insertAt() operation for sequences.
