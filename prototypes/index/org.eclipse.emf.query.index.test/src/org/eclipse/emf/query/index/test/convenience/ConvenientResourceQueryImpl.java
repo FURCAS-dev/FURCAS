@@ -11,6 +11,7 @@
 package org.eclipse.emf.query.index.test.convenience;
 
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
+import org.eclipse.emf.query.index.internal.impl.query.QueryResultImpl;
 import org.eclipse.emf.query.index.internal.impl.query.ResourceQueryImpl;
 import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
@@ -21,8 +22,9 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
  */
 public class ConvenientResourceQueryImpl<T> extends ResourceQueryImpl<T> {
 
+	
 	@Override
-	public QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<ResourceDescriptor> result) {
+	public QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends ResourceDescriptor> result) {
 		return null;
 	}
 
