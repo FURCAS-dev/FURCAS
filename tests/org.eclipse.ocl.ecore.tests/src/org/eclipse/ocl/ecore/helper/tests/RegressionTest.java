@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.1 2007/01/25 18:32:32 cdamus Exp $
+ * $Id: RegressionTest.java,v 1.2 2009/10/07 20:38:54 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
 
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.helper.Choice;
@@ -34,14 +31,6 @@ import org.eclipse.ocl.helper.ConstraintKind;
  */
 public class RegressionTest
 	extends AbstractTestSuite {
-
-	public RegressionTest(String name) {
-		super(name);
-	}
-	
-	public static Test suite() {
-		return new TestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
-	}
 	
 	/**
 	 * Regression test to check that we complete on the right-most
