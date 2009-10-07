@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.query2.syntax/src-gen"
+    editDirectory="/org.eclipse.emf.query2.syntax.edit/src" editorDirectory="/org.eclipse.emf.query2.syntax.editor/src"
+    modelPluginID="org.eclipse.emf.query2.syntax" forceOverwrite="true" modelName="Query"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.emf.query2.syntax.edit"
+    editorPluginID="org.eclipse.emf.query2.syntax.editor">
+  <genPackages prefix="Query" basePackage="org.eclipse.emf.query2" disposableProviderFactory="true"
+      ecorePackage="Query.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Query.ecore#//NumericOperator">
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//NumericOperator/lessThen"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//NumericOperator/greaterThen"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//NumericOperator/lessEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//NumericOperator/greaterEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//NumericOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//NumericOperator/notEqual"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Query.ecore#//StringOperator">
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//StringOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//StringOperator/notEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//StringOperator/like"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//StringOperator/notLike"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Query.ecore#//BooleanOperator">
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//BooleanOperator/equal"/>
+      <genEnumLiterals ecoreEnumLiteral="Query.ecore#//BooleanOperator/notEqual"/>
+    </genEnums>
+    <genClasses ecoreClass="Query.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//Model/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//Model/defaultQuery"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//Model/namedQueries"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//Import/importURI"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//NamedQuery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//NamedQuery/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//NamedQuery/query"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//MQLquery">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//MQLquery/selectEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//MQLquery/fromEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//MQLquery/whereEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//SelectEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//SelectEntry/select"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//SelectEntry/attribute"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//FromEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//FromEntry/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//FromEntry/withoutsubtypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//FromEntry/alias"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//FromEntry/scopeClause"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//ScopeClause">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//ScopeClause/notIn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//ScopeClause/uris"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//ResourceScope"/>
+    <genClasses ecoreClass="Query.ecore#//ElementScope"/>
+    <genClasses ecoreClass="Query.ecore#//WhereEntry"/>
+    <genClasses ecoreClass="Query.ecore#//AttributeWhereEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//AttributeWhereEntry/alias"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//AttributeWhereEntry/attribute"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//NumericAttributeWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//NumericAttributeWhereEntry/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//DoubleWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//DoubleWhereEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//LongWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//LongWhereEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//VariableWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//VariableWhereEntry/operator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//VariableWhereEntry/rightAlias"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//VariableWhereEntry/rightAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//StringAttributeWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//StringAttributeWhereEntry/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//StringAttributeWhereEntry/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//BooleanAttributeWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//BooleanAttributeWhereEntry/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//BooleanAttributeWhereEntry/isTrue"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//ReferenceWhereEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//ReferenceWhereEntry/alias"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//ReferenceWhereEntry/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//NullWhereEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//NullWhereEntry/alias"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//NullWhereEntry/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//NullWhereEntry/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//ReferenceAliasWhereEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//ReferenceAliasWhereEntry/rightAlias"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//SubselectWhereEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//SubselectWhereEntry/notIn"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//SubselectWhereEntry/subQuery"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//AliasWhereEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//AliasWhereEntry/alias"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Query.ecore#//AliasWhereEntry/rightAlias"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//OrWhereEntry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//OrWhereEntry/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="Query.ecore#//AndWhereEntry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//AndWhereEntry/entries"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
