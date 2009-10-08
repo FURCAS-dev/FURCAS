@@ -137,7 +137,6 @@ public class TestTransformation extends Assert {
 	@Test
 	public void testSelectAttrThreeWhereAnd() {
 		String string = doTransformation("SelectAttrThreeWhereAnd");
-		System.out.println(string);
 		assertEquals(
 				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(name EQUAL 'EAttribute') where for a(abstract EQUAL true) where for a(abstract EQUAL true) where for a(interface EQUAL true)",
 				string);
@@ -150,6 +149,23 @@ public class TestTransformation extends Assert {
 				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
 				string);
 	}
+
+	@Test
+	public void testSelectPar() {
+		String string = doTransformation("SelectPar");
+		assertEquals(
+				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true)) where for a(interface EQUAL true)",
+				string);
+	}
+	
+	@Test
+	public void testSelectPar2() {
+		String string = doTransformation("SelectPar2");
+		assertEquals(
+				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, interface EQUAL true)))",
+				string);
+	}
+
 
 	@Ignore
 	@Test

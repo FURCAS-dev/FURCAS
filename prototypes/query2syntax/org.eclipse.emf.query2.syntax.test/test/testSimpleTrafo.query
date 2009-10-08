@@ -21,3 +21,7 @@ SelectAttrThreeWhereOr: select a.name from EClass as a where a.name = 'EAttribut
 SelectAttrThreeWhereAnd: select a.name from EClass as a where a.name = 'EAttribute' and a.abstract = true and a.abstract = true and a.interface = true 
 
 SelectAttrThreeWhereOrAnd: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true and a.interface = true
+
+SelectPar: select a.name from EClass as a where (a.name = 'EAttribute' or a.abstract = true) and a.interface = true
+
+SelectPar2: select a.name from EClass as a where a.name = 'EAttribute' or (a.abstract = true and a.interface = true)
