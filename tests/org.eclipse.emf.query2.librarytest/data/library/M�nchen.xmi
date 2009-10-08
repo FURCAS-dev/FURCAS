@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ASCII"?>
+<library:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http://eclipse.org/modeling/emf/query/1.0.0" location="M&#xfc;nchen">
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.178"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.144"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/K.xmi#/234"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.478"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.458"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/E.xmi#/59"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.38"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.101"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.286"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/R.xmi#/37"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.568"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.334"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.456"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.102"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/W.xmi#/155"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.261"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.350"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.26"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.425"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.495"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/W.xmi#/14"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.146"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.112"/>
+  </books>
+  <books>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.419"/>
+  </books>
+  <books>
+    <borrowedBy href="../person/T.xmi#/2"/>
+    <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.556"/>
+  </books>
+</library:Library>
