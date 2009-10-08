@@ -99,8 +99,10 @@ public class Parser {
 		pathName=pathName.replaceAll(" ", "");
 		pathName=pathName.replaceAll("á", "a");
 		pathName=pathName.replaceAll("ó", "o");
+		pathName=pathName.replaceAll("í", "i");
 		pathName=pathName.replaceAll("é", "e");
 		pathName=pathName.replaceAll("'", "");
+		pathName=pathName.replaceAll("\\(.*\\)", "");
 		Resource r = rs.createResource(URI.createPlatformResourceURI(
 				pathName, true));
 		return r;
