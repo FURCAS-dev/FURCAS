@@ -130,7 +130,6 @@
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.542"/>
   </books>
   <books>
-    <borrowedBy href="../person/-.xmi#/"/>
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.73"/>
   </books>
   <books>
@@ -2388,7 +2387,7 @@
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.211"/>
   </books>
   <books>
-    <borrowedBy href="../person/Ö.xmi#/0"/>
+    <borrowedBy href="../person/ï¿½.xmi#/0"/>
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.452"/>
   </books>
   <books>

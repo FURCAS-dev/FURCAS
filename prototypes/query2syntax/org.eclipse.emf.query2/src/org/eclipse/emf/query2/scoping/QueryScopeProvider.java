@@ -5,7 +5,14 @@ package org.eclipse.emf.query2.scoping;
 
 import static com.google.common.collect.Iterables.transform;
 
+import java.util.Collection;
+import java.util.Collections;
+
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.query2.query.AttributeWhereEntry;
 import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.MQLquery;
 import org.eclipse.xtext.scoping.IScope;
@@ -35,5 +42,19 @@ public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
 					}
 				});
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
+	}
+	
+	@SuppressWarnings("unchecked")
+	IScope scope_AttributeWhereEntry_attribute(AttributeWhereEntry _this, EReference ref) {
+		Iterable<IScopedElement> transformed = transform(
+				_this.getAlias().getType().getEAllAttributes(),
+				new Function<EAttribute, IScopedElement>() {
+
+					public IScopedElement apply(EAttribute attr) {
+						return ScopedElement.create(attr.getName(), attr);
+					}
+				});
+		return new SimpleScope(IScope.NULLSCOPE, transformed);
+		
 	}
 }

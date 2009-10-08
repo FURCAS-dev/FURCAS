@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <library:Library xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http://eclipse.org/modeling/emf/query/1.0.0" location="Ahmedabad">
   <books>
-    <borrowedBy href="../person/Ö.xmi#/0"/>
+    <borrowedBy href="../person/ï¿½.xmi#/0"/>
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.128"/>
   </books>
   <books>
@@ -2563,7 +2563,6 @@
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.354"/>
   </books>
   <books>
-    <borrowedBy href="../person/-.xmi#/"/>
     <instanceOf href="../publisher/dpunkt.xmi#//@manuscripts.144"/>
   </books>
   <books>
