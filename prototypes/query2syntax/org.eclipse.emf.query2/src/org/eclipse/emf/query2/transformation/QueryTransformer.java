@@ -288,17 +288,19 @@ public class QueryTransformer {
 
 		@Override
 		public WhereClause caseAndWhereEntry(AndWhereEntry object) {
-			WhereClause[] nestedClauses = new WhereClause[2];
-			nestedClauses[0]=(doSwitch(object.getEntries().get(0)));
-			nestedClauses[1]=(doSwitch(object.getEntries().get(0)));
+			List<WhereClause> nestedClauses = new ArrayList<WhereClause>(object.getEntries().size());
+			for (org.eclipse.emf.query2.query.WhereEntry entry : object.getEntries()) {
+				nestedClauses.add(doSwitch(entry));
+			}
 			return new WhereAnd(nestedClauses);
 		}
 		
 		@Override
 		public WhereClause caseOrWhereEntry(OrWhereEntry object) {
-			WhereClause[] nestedClauses = new WhereClause[2];
-			nestedClauses[0]=(doSwitch(object.getEntries().get(0)));
-			nestedClauses[1]=(doSwitch(object.getEntries().get(0)));
+			List<WhereClause> nestedClauses = new ArrayList<WhereClause>(object.getEntries().size());
+			for (org.eclipse.emf.query2.query.WhereEntry entry : object.getEntries()) {
+				nestedClauses.add(doSwitch(entry));
+			}
 			return new WhereOr(nestedClauses);
 		}
 
