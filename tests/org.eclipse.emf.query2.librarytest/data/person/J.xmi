@@ -2,6 +2,7 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http://eclipse.org/modeling/emf/query/1.0.0">
   <library:Person name="Josuttis, Nicolai M."/>
   <library:Person name="Jacke, Bj&#xf6;rn"/>
+  <library:Person name="Johannsen, Wolfgang"/>
   <library:Person name="Josuttis, Nicolai"/>
   <library:Person name="J&#xfc;ttner, Andreas"/>
   <library:Person name="Juwig, Oliver"/>

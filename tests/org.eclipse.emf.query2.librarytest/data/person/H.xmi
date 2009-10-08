@@ -2,11 +2,10 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:library="http://eclipse.org/modeling/emf/query/1.0.0">
   <library:Person name="Heilmann , Heidi"/>
   <library:Person name="Hildebrand, Knut"/>
-  <library:Person name="Heilmann-, Heidi"/>
+  <library:Person name="Heilmann, Heidi"/>
   <library:Person name="Haasis, Klaus"/>
   <library:Person name="Heid, J&#xf6;rn"/>
   <library:Person name="Hall, John R."/>
-  <library:Person name="Heilmann, Heidi"/>
   <library:Person name="Horn, Torsten"/>
   <library:Person name="H&#xf6;pfner, Hagen"/>
   <library:Person name="Haas, Thomas M."/>
@@ -16,6 +15,8 @@
   <library:Person name="Hasitschka, Martin"/>
   <library:Person name="Huseby, Sverre H."/>
   <library:Person name="Hitz, Martin"/>
+  <library:Person name="H&#xf6;rmann, Klaus"/>
+  <library:Person name="Hindel, Bernd"/>
   <library:Person name="Hofherr, Matthias"/>
   <library:Person name="Hook, Brian"/>
   <library:Person name="Hoffmann-Walbeck, Thomas"/>
@@ -31,7 +32,6 @@
   <library:Person name="Hardin, John"/>
   <library:Person name="Hartmann, Nils"/>
   <library:Person name="Hong, Bryan J."/>
-  <library:Person name="H&#xf6;rmann, Klaus"/>
   <library:Person name="Harnischmacher, Cyrill"/>
   <library:Person name="Hehn, Uwe"/>
   <library:Person name="Hansteen, Peter N.M."/>
@@ -43,7 +43,6 @@
   <library:Person name="Humm, Bernhard"/>
   <library:Person name="Howard, Jack"/>
   <library:Person name="Hafner, Katie"/>
-  <library:Person name="Hindel, Bernd"/>
   <library:Person name="Herzwurm, Georg"/>
   <library:Person name="Hochmuth, Uwe"/>
   <library:Person name="Hagen, Mike"/>
@@ -53,6 +52,7 @@
   <library:Person name="Hegewald, Falk"/>
   <library:Person name="Hien, Katharina"/>
   <library:Person name="Hengartner, Urs"/>
+  <library:Person name="Huber, Bernhard M."/>
   <library:Person name="Heijnk, Stefan"/>
   <library:Person name="Hoffmann"/>
   <library:Person name="Hofmann"/>
