@@ -520,34 +520,20 @@ public class QueryGrammarAccess implements IGrammarAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConcreteWhereEntry");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cParWhereEntryParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cAttributeWhereEntryParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cReferenceWhereEntryParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cAliasWhereEntryParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cNullWhereEntryParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cAbstractAliasWhereEntryParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//ConcreteWhereEntry returns WhereEntry:
-		//  ParWhereEntry|AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|
-		//  NullWhereEntry;
+		//  ParWhereEntry|AbstractAliasWhereEntry;
 		public ParserRule getRule() { return rule; }
 
-		//ParWhereEntry|AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|
-		//NullWhereEntry
+		//ParWhereEntry|AbstractAliasWhereEntry
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ParWhereEntry
 		public RuleCall getParWhereEntryParserRuleCall_0() { return cParWhereEntryParserRuleCall_0; }
 
-		//AttributeWhereEntry
-		public RuleCall getAttributeWhereEntryParserRuleCall_1() { return cAttributeWhereEntryParserRuleCall_1; }
-
-		//ReferenceWhereEntry
-		public RuleCall getReferenceWhereEntryParserRuleCall_2() { return cReferenceWhereEntryParserRuleCall_2; }
-
-		//AliasWhereEntry
-		public RuleCall getAliasWhereEntryParserRuleCall_3() { return cAliasWhereEntryParserRuleCall_3; }
-
-		//NullWhereEntry
-		public RuleCall getNullWhereEntryParserRuleCall_4() { return cNullWhereEntryParserRuleCall_4; }
+		//AbstractAliasWhereEntry
+		public RuleCall getAbstractAliasWhereEntryParserRuleCall_1() { return cAbstractAliasWhereEntryParserRuleCall_1; }
 	}
 
 	public class ParWhereEntryElements implements IParserRuleAccess {
@@ -572,6 +558,34 @@ public class QueryGrammarAccess implements IGrammarAccess {
 
 		//")"
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+
+	public class AbstractAliasWhereEntryElements implements IParserRuleAccess {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AbstractAliasWhereEntry");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAttributeWhereEntryParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cReferenceWhereEntryParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cAliasWhereEntryParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cNullWhereEntryParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		//AbstractAliasWhereEntry:
+		//  AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|NullWhereEntry;
+		public ParserRule getRule() { return rule; }
+
+		//AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|NullWhereEntry
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//AttributeWhereEntry
+		public RuleCall getAttributeWhereEntryParserRuleCall_0() { return cAttributeWhereEntryParserRuleCall_0; }
+
+		//ReferenceWhereEntry
+		public RuleCall getReferenceWhereEntryParserRuleCall_1() { return cReferenceWhereEntryParserRuleCall_1; }
+
+		//AliasWhereEntry
+		public RuleCall getAliasWhereEntryParserRuleCall_2() { return cAliasWhereEntryParserRuleCall_2; }
+
+		//NullWhereEntry
+		public RuleCall getNullWhereEntryParserRuleCall_3() { return cNullWhereEntryParserRuleCall_3; }
 	}
 
 	public class AttributeWhereEntryElements implements IParserRuleAccess {
@@ -1330,6 +1344,7 @@ public class QueryGrammarAccess implements IGrammarAccess {
 	private AndWhereEntryElements pAndWhereEntry;
 	private ConcreteWhereEntryElements pConcreteWhereEntry;
 	private ParWhereEntryElements pParWhereEntry;
+	private AbstractAliasWhereEntryElements pAbstractAliasWhereEntry;
 	private AttributeWhereEntryElements pAttributeWhereEntry;
 	private NumericAttributeWhereEntryElements pNumericAttributeWhereEntry;
 	private DoubleWhereEntryElements pDoubleWhereEntry;
@@ -1481,8 +1496,7 @@ public class QueryGrammarAccess implements IGrammarAccess {
 	}
 
 	//ConcreteWhereEntry returns WhereEntry:
-	//  ParWhereEntry|AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|
-	//  NullWhereEntry;
+	//  ParWhereEntry|AbstractAliasWhereEntry;
 	public ConcreteWhereEntryElements getConcreteWhereEntryAccess() {
 		return (pConcreteWhereEntry != null) ? pConcreteWhereEntry : (pConcreteWhereEntry = new ConcreteWhereEntryElements());
 	}
@@ -1499,6 +1513,16 @@ public class QueryGrammarAccess implements IGrammarAccess {
 	
 	public ParserRule getParWhereEntryRule() {
 		return getParWhereEntryAccess().getRule();
+	}
+
+	//AbstractAliasWhereEntry:
+	//  AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|NullWhereEntry;
+	public AbstractAliasWhereEntryElements getAbstractAliasWhereEntryAccess() {
+		return (pAbstractAliasWhereEntry != null) ? pAbstractAliasWhereEntry : (pAbstractAliasWhereEntry = new AbstractAliasWhereEntryElements());
+	}
+	
+	public ParserRule getAbstractAliasWhereEntryRule() {
+		return getAbstractAliasWhereEntryAccess().getRule();
 	}
 
 	//AttributeWhereEntry:

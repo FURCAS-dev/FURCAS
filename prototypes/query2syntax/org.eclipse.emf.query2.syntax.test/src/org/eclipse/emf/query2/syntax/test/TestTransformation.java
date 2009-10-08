@@ -106,7 +106,6 @@ public class TestTransformation extends Assert {
 	@Test
 	public void testSelectAttrWhereAttrNull() {
 		String string = doTransformation("selectAttrWhereAttrNull");
-		System.out.println(string);
 		assertEquals(
 				"select a.lowerBound from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
 						+ "where for a(lowerBound EQUAL null)", string);
@@ -115,9 +114,33 @@ public class TestTransformation extends Assert {
 	@Test
 	public void testSelectEClassWhereRefNull() {
 		String string = doTransformation("selectEClassWhereRefNull");
-		System.out.println(string);
 		assertEquals("select a from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a "
 				+ "where for a(eOperations EQUAL null)", string);
+	}
+
+	@Test
+	public void testSelectAttrTwoWhereOr() {
+		String string = doTransformation("selectAttrTwoWhereOr");
+		assertEquals(
+				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true))",
+				string);
+	}
+
+	@Test
+	public void testSelectAttrThreeWhereOr() {
+		String string = doTransformation("selectAttrThreeWhereOr");
+		assertEquals(
+				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', abstract EQUAL true, abstract EQUAL true))",
+				string);
+	}
+
+	@Test
+	public void testSelectAttrThreeWhereOrAnd() {
+		String string = doTransformation("selectAttrThreeWhereOrAnd");
+		System.out.println(string);
+		assertEquals(
+				"select a.name from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//EClass as a where for a(or (name EQUAL 'EAttribute', and (abstract EQUAL true, abstract EQUAL true)))",
+				string);
 	}
 
 	@Ignore

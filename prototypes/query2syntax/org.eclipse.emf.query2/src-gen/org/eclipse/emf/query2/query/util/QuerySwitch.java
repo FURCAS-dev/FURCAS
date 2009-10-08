@@ -168,10 +168,19 @@ public class QuerySwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY:
+      {
+        AbstractAliasWhereEntry abstractAliasWhereEntry = (AbstractAliasWhereEntry)theEObject;
+        T result = caseAbstractAliasWhereEntry(abstractAliasWhereEntry);
+        if (result == null) result = caseWhereEntry(abstractAliasWhereEntry);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case QueryPackage.ATTRIBUTE_WHERE_ENTRY:
       {
         AttributeWhereEntry attributeWhereEntry = (AttributeWhereEntry)theEObject;
         T result = caseAttributeWhereEntry(attributeWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(attributeWhereEntry);
         if (result == null) result = caseWhereEntry(attributeWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -181,6 +190,7 @@ public class QuerySwitch<T>
         NumericAttributeWhereEntry numericAttributeWhereEntry = (NumericAttributeWhereEntry)theEObject;
         T result = caseNumericAttributeWhereEntry(numericAttributeWhereEntry);
         if (result == null) result = caseAttributeWhereEntry(numericAttributeWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(numericAttributeWhereEntry);
         if (result == null) result = caseWhereEntry(numericAttributeWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -191,6 +201,7 @@ public class QuerySwitch<T>
         T result = caseDoubleWhereEntry(doubleWhereEntry);
         if (result == null) result = caseNumericAttributeWhereEntry(doubleWhereEntry);
         if (result == null) result = caseAttributeWhereEntry(doubleWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(doubleWhereEntry);
         if (result == null) result = caseWhereEntry(doubleWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -201,6 +212,7 @@ public class QuerySwitch<T>
         T result = caseLongWhereEntry(longWhereEntry);
         if (result == null) result = caseNumericAttributeWhereEntry(longWhereEntry);
         if (result == null) result = caseAttributeWhereEntry(longWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(longWhereEntry);
         if (result == null) result = caseWhereEntry(longWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -210,6 +222,7 @@ public class QuerySwitch<T>
         VariableWhereEntry variableWhereEntry = (VariableWhereEntry)theEObject;
         T result = caseVariableWhereEntry(variableWhereEntry);
         if (result == null) result = caseAttributeWhereEntry(variableWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(variableWhereEntry);
         if (result == null) result = caseWhereEntry(variableWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -219,6 +232,7 @@ public class QuerySwitch<T>
         StringAttributeWhereEntry stringAttributeWhereEntry = (StringAttributeWhereEntry)theEObject;
         T result = caseStringAttributeWhereEntry(stringAttributeWhereEntry);
         if (result == null) result = caseAttributeWhereEntry(stringAttributeWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(stringAttributeWhereEntry);
         if (result == null) result = caseWhereEntry(stringAttributeWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -228,6 +242,7 @@ public class QuerySwitch<T>
         BooleanAttributeWhereEntry booleanAttributeWhereEntry = (BooleanAttributeWhereEntry)theEObject;
         T result = caseBooleanAttributeWhereEntry(booleanAttributeWhereEntry);
         if (result == null) result = caseAttributeWhereEntry(booleanAttributeWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(booleanAttributeWhereEntry);
         if (result == null) result = caseWhereEntry(booleanAttributeWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -236,6 +251,7 @@ public class QuerySwitch<T>
       {
         ReferenceWhereEntry referenceWhereEntry = (ReferenceWhereEntry)theEObject;
         T result = caseReferenceWhereEntry(referenceWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(referenceWhereEntry);
         if (result == null) result = caseWhereEntry(referenceWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -244,6 +260,7 @@ public class QuerySwitch<T>
       {
         NullWhereEntry nullWhereEntry = (NullWhereEntry)theEObject;
         T result = caseNullWhereEntry(nullWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(nullWhereEntry);
         if (result == null) result = caseWhereEntry(nullWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -253,6 +270,7 @@ public class QuerySwitch<T>
         ReferenceAliasWhereEntry referenceAliasWhereEntry = (ReferenceAliasWhereEntry)theEObject;
         T result = caseReferenceAliasWhereEntry(referenceAliasWhereEntry);
         if (result == null) result = caseReferenceWhereEntry(referenceAliasWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(referenceAliasWhereEntry);
         if (result == null) result = caseWhereEntry(referenceAliasWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -262,6 +280,7 @@ public class QuerySwitch<T>
         SubselectWhereEntry subselectWhereEntry = (SubselectWhereEntry)theEObject;
         T result = caseSubselectWhereEntry(subselectWhereEntry);
         if (result == null) result = caseReferenceWhereEntry(subselectWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(subselectWhereEntry);
         if (result == null) result = caseWhereEntry(subselectWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -270,6 +289,7 @@ public class QuerySwitch<T>
       {
         AliasWhereEntry aliasWhereEntry = (AliasWhereEntry)theEObject;
         T result = caseAliasWhereEntry(aliasWhereEntry);
+        if (result == null) result = caseAbstractAliasWhereEntry(aliasWhereEntry);
         if (result == null) result = caseWhereEntry(aliasWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -450,6 +470,22 @@ public class QuerySwitch<T>
    * @generated
    */
   public T caseWhereEntry(WhereEntry object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Alias Where Entry</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Alias Where Entry</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractAliasWhereEntry(AbstractAliasWhereEntry object)
   {
     return null;
   }

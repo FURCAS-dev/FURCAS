@@ -543,6 +543,13 @@ public class AbstractQueryProposalProvider extends AbstractJavaBasedContentPropo
 		}
 		// subclasses may override
 	}
+	public void complete_AbstractAliasWhereEntry(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("complete_AbstractAliasWhereEntry '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
+					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
+		}
+		// subclasses may override
+	}
 	public void complete_AttributeWhereEntry(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("complete_AttributeWhereEntry '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()

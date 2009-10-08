@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.NullWhereEntry#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.NullWhereEntry#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.NullWhereEntry#getOperator <em>Operator</em>}</li>
  * </ul>
@@ -26,34 +25,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @model
  * @generated
  */
-public interface NullWhereEntry extends WhereEntry
+public interface NullWhereEntry extends AbstractAliasWhereEntry
 {
-  /**
-   * Returns the value of the '<em><b>Alias</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Alias</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Alias</em>' reference.
-   * @see #setAlias(FromEntry)
-   * @see org.eclipse.emf.query2.query.QueryPackage#getNullWhereEntry_Alias()
-   * @model
-   * @generated
-   */
-  FromEntry getAlias();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.emf.query2.query.NullWhereEntry#getAlias <em>Alias</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Alias</em>' reference.
-   * @see #getAlias()
-   * @generated
-   */
-  void setAlias(FromEntry value);
-
   /**
    * Returns the value of the '<em><b>Feature</b></em>' reference.
    * <!-- begin-user-doc -->

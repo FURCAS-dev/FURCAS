@@ -79,6 +79,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
       case QueryPackage.RESOURCE_SCOPE: return createResourceScope();
       case QueryPackage.ELEMENT_SCOPE: return createElementScope();
       case QueryPackage.WHERE_ENTRY: return createWhereEntry();
+      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY: return createAbstractAliasWhereEntry();
       case QueryPackage.ATTRIBUTE_WHERE_ENTRY: return createAttributeWhereEntry();
       case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY: return createNumericAttributeWhereEntry();
       case QueryPackage.DOUBLE_WHERE_ENTRY: return createDoubleWhereEntry();
@@ -248,6 +249,17 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
   {
     WhereEntryImpl whereEntry = new WhereEntryImpl();
     return whereEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AbstractAliasWhereEntry createAbstractAliasWhereEntry()
+  {
+    AbstractAliasWhereEntryImpl abstractAliasWhereEntry = new AbstractAliasWhereEntryImpl();
+    return abstractAliasWhereEntry;
   }
 
   /**

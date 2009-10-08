@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.QueryPackage;
 import org.eclipse.emf.query2.query.ReferenceWhereEntry;
 
@@ -25,25 +24,14 @@ import org.eclipse.emf.query2.query.ReferenceWhereEntry;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.ReferenceWhereEntryImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.ReferenceWhereEntryImpl#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ReferenceWhereEntryImpl extends WhereEntryImpl implements ReferenceWhereEntry
+public class ReferenceWhereEntryImpl extends AbstractAliasWhereEntryImpl implements ReferenceWhereEntry
 {
-  /**
-   * The cached value of the '{@link #getAlias() <em>Alias</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAlias()
-   * @generated
-   * @ordered
-   */
-  protected FromEntry alias;
-
   /**
    * The cached value of the '{@link #getReference() <em>Reference</em>}' reference.
    * <!-- begin-user-doc -->
@@ -73,49 +61,6 @@ public class ReferenceWhereEntryImpl extends WhereEntryImpl implements Reference
   protected EClass eStaticClass()
   {
     return QueryPackage.Literals.REFERENCE_WHERE_ENTRY;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FromEntry getAlias()
-  {
-    if (alias != null && alias.eIsProxy())
-    {
-      InternalEObject oldAlias = (InternalEObject)alias;
-      alias = (FromEntry)eResolveProxy(oldAlias);
-      if (alias != oldAlias)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.REFERENCE_WHERE_ENTRY__ALIAS, oldAlias, alias));
-      }
-    }
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FromEntry basicGetAlias()
-  {
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAlias(FromEntry newAlias)
-  {
-    FromEntry oldAlias = alias;
-    alias = newAlias;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.REFERENCE_WHERE_ENTRY__ALIAS, oldAlias, alias));
   }
 
   /**
@@ -171,9 +116,6 @@ public class ReferenceWhereEntryImpl extends WhereEntryImpl implements Reference
   {
     switch (featureID)
     {
-      case QueryPackage.REFERENCE_WHERE_ENTRY__ALIAS:
-        if (resolve) return getAlias();
-        return basicGetAlias();
       case QueryPackage.REFERENCE_WHERE_ENTRY__REFERENCE:
         if (resolve) return getReference();
         return basicGetReference();
@@ -191,9 +133,6 @@ public class ReferenceWhereEntryImpl extends WhereEntryImpl implements Reference
   {
     switch (featureID)
     {
-      case QueryPackage.REFERENCE_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)newValue);
-        return;
       case QueryPackage.REFERENCE_WHERE_ENTRY__REFERENCE:
         setReference((EReference)newValue);
         return;
@@ -211,9 +150,6 @@ public class ReferenceWhereEntryImpl extends WhereEntryImpl implements Reference
   {
     switch (featureID)
     {
-      case QueryPackage.REFERENCE_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)null);
-        return;
       case QueryPackage.REFERENCE_WHERE_ENTRY__REFERENCE:
         setReference((EReference)null);
         return;
@@ -231,8 +167,6 @@ public class ReferenceWhereEntryImpl extends WhereEntryImpl implements Reference
   {
     switch (featureID)
     {
-      case QueryPackage.REFERENCE_WHERE_ENTRY__ALIAS:
-        return alias != null;
       case QueryPackage.REFERENCE_WHERE_ENTRY__REFERENCE:
         return reference != null;
     }

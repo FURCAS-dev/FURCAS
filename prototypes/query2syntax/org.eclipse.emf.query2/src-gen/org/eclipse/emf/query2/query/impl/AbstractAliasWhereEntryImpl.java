@@ -8,46 +8,46 @@ package org.eclipse.emf.query2.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.query2.query.AttributeWhereEntry;
+import org.eclipse.emf.query2.query.AbstractAliasWhereEntry;
+import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute Where Entry</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Alias Where Entry</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.AttributeWhereEntryImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.AbstractAliasWhereEntryImpl#getAlias <em>Alias</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl implements AttributeWhereEntry
+public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements AbstractAliasWhereEntry
 {
   /**
-   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
+   * The cached value of the '{@link #getAlias() <em>Alias</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAttribute()
+   * @see #getAlias()
    * @generated
    * @ordered
    */
-  protected EAttribute attribute;
+  protected FromEntry alias;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AttributeWhereEntryImpl()
+  protected AbstractAliasWhereEntryImpl()
   {
     super();
   }
@@ -60,7 +60,7 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
   @Override
   protected EClass eStaticClass()
   {
-    return QueryPackage.Literals.ATTRIBUTE_WHERE_ENTRY;
+    return QueryPackage.Literals.ABSTRACT_ALIAS_WHERE_ENTRY;
   }
 
   /**
@@ -68,19 +68,19 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAttribute()
+  public FromEntry getAlias()
   {
-    if (attribute != null && attribute.eIsProxy())
+    if (alias != null && alias.eIsProxy())
     {
-      InternalEObject oldAttribute = (InternalEObject)attribute;
-      attribute = (EAttribute)eResolveProxy(oldAttribute);
-      if (attribute != oldAttribute)
+      InternalEObject oldAlias = (InternalEObject)alias;
+      alias = (FromEntry)eResolveProxy(oldAlias);
+      if (alias != oldAlias)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE, oldAttribute, attribute));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS, oldAlias, alias));
       }
     }
-    return attribute;
+    return alias;
   }
 
   /**
@@ -88,9 +88,9 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute basicGetAttribute()
+  public FromEntry basicGetAlias()
   {
-    return attribute;
+    return alias;
   }
 
   /**
@@ -98,12 +98,12 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAttribute(EAttribute newAttribute)
+  public void setAlias(FromEntry newAlias)
   {
-    EAttribute oldAttribute = attribute;
-    attribute = newAttribute;
+    FromEntry oldAlias = alias;
+    alias = newAlias;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE, oldAttribute, attribute));
+      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS, oldAlias, alias));
   }
 
   /**
@@ -116,9 +116,9 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE:
-        if (resolve) return getAttribute();
-        return basicGetAttribute();
+      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
+        if (resolve) return getAlias();
+        return basicGetAlias();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -133,8 +133,8 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE:
-        setAttribute((EAttribute)newValue);
+      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
+        setAlias((FromEntry)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -150,8 +150,8 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE:
-        setAttribute((EAttribute)null);
+      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
+        setAlias((FromEntry)null);
         return;
     }
     super.eUnset(featureID);
@@ -167,10 +167,10 @@ public class AttributeWhereEntryImpl extends AbstractAliasWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE:
-        return attribute != null;
+      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
+        return alias != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //AttributeWhereEntryImpl
+} //AbstractAliasWhereEntryImpl

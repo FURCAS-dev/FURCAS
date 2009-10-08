@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.query2.query.BooleanOperator;
-import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.NullWhereEntry;
 import org.eclipse.emf.query2.query.QueryPackage;
 
@@ -26,7 +25,6 @@ import org.eclipse.emf.query2.query.QueryPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.NullWhereEntryImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.NullWhereEntryImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.NullWhereEntryImpl#getOperator <em>Operator</em>}</li>
  * </ul>
@@ -34,18 +32,8 @@ import org.eclipse.emf.query2.query.QueryPackage;
  *
  * @generated
  */
-public class NullWhereEntryImpl extends WhereEntryImpl implements NullWhereEntry
+public class NullWhereEntryImpl extends AbstractAliasWhereEntryImpl implements NullWhereEntry
 {
-  /**
-   * The cached value of the '{@link #getAlias() <em>Alias</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAlias()
-   * @generated
-   * @ordered
-   */
-  protected FromEntry alias;
-
   /**
    * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
    * <!-- begin-user-doc -->
@@ -95,49 +83,6 @@ public class NullWhereEntryImpl extends WhereEntryImpl implements NullWhereEntry
   protected EClass eStaticClass()
   {
     return QueryPackage.Literals.NULL_WHERE_ENTRY;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FromEntry getAlias()
-  {
-    if (alias != null && alias.eIsProxy())
-    {
-      InternalEObject oldAlias = (InternalEObject)alias;
-      alias = (FromEntry)eResolveProxy(oldAlias);
-      if (alias != oldAlias)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.NULL_WHERE_ENTRY__ALIAS, oldAlias, alias));
-      }
-    }
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FromEntry basicGetAlias()
-  {
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAlias(FromEntry newAlias)
-  {
-    FromEntry oldAlias = alias;
-    alias = newAlias;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.NULL_WHERE_ENTRY__ALIAS, oldAlias, alias));
   }
 
   /**
@@ -216,9 +161,6 @@ public class NullWhereEntryImpl extends WhereEntryImpl implements NullWhereEntry
   {
     switch (featureID)
     {
-      case QueryPackage.NULL_WHERE_ENTRY__ALIAS:
-        if (resolve) return getAlias();
-        return basicGetAlias();
       case QueryPackage.NULL_WHERE_ENTRY__FEATURE:
         if (resolve) return getFeature();
         return basicGetFeature();
@@ -238,9 +180,6 @@ public class NullWhereEntryImpl extends WhereEntryImpl implements NullWhereEntry
   {
     switch (featureID)
     {
-      case QueryPackage.NULL_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)newValue);
-        return;
       case QueryPackage.NULL_WHERE_ENTRY__FEATURE:
         setFeature((EStructuralFeature)newValue);
         return;
@@ -261,9 +200,6 @@ public class NullWhereEntryImpl extends WhereEntryImpl implements NullWhereEntry
   {
     switch (featureID)
     {
-      case QueryPackage.NULL_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)null);
-        return;
       case QueryPackage.NULL_WHERE_ENTRY__FEATURE:
         setFeature((EStructuralFeature)null);
         return;
@@ -284,8 +220,6 @@ public class NullWhereEntryImpl extends WhereEntryImpl implements NullWhereEntry
   {
     switch (featureID)
     {
-      case QueryPackage.NULL_WHERE_ENTRY__ALIAS:
-        return alias != null;
       case QueryPackage.NULL_WHERE_ENTRY__FEATURE:
         return feature != null;
       case QueryPackage.NULL_WHERE_ENTRY__OPERATOR:

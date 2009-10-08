@@ -53,11 +53,15 @@ AndWhereEntry returns WhereEntry:
 ;
 
 ConcreteWhereEntry returns WhereEntry:
-	ParWhereEntry | AttributeWhereEntry | ReferenceWhereEntry | AliasWhereEntry | NullWhereEntry
+	ParWhereEntry | AbstractAliasWhereEntry
 ;
 
 ParWhereEntry  returns WhereEntry:
 	"(" WhereEntry ")"
+;
+
+AbstractAliasWhereEntry:
+	AttributeWhereEntry | ReferenceWhereEntry | AliasWhereEntry | NullWhereEntry
 ;
 
 AttributeWhereEntry:

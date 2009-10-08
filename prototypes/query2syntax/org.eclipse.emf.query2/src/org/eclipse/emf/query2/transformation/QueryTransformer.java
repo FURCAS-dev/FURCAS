@@ -19,13 +19,20 @@ import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectAttrs;
 import org.eclipse.emf.query2.SelectEntry;
 import org.eclipse.emf.query2.TypeScopeProvider;
+import org.eclipse.emf.query2.WhereAnd;
 import org.eclipse.emf.query2.WhereBool;
 import org.eclipse.emf.query2.WhereClause;
+import org.eclipse.emf.query2.WhereComparisonAliases;
 import org.eclipse.emf.query2.WhereComparisonAttrs;
 import org.eclipse.emf.query2.WhereDouble;
 import org.eclipse.emf.query2.WhereEntry;
 import org.eclipse.emf.query2.WhereLong;
+import org.eclipse.emf.query2.WhereNestedReference;
+import org.eclipse.emf.query2.WhereOr;
+import org.eclipse.emf.query2.WhereRelationReference;
 import org.eclipse.emf.query2.WhereString;
+import org.eclipse.emf.query2.query.AbstractAliasWhereEntry;
+import org.eclipse.emf.query2.query.AliasWhereEntry;
 import org.eclipse.emf.query2.query.AndWhereEntry;
 import org.eclipse.emf.query2.query.AttributeWhereEntry;
 import org.eclipse.emf.query2.query.BooleanAttributeWhereEntry;
@@ -36,15 +43,17 @@ import org.eclipse.emf.query2.query.LongWhereEntry;
 import org.eclipse.emf.query2.query.MQLquery;
 import org.eclipse.emf.query2.query.NullWhereEntry;
 import org.eclipse.emf.query2.query.NumericOperator;
+import org.eclipse.emf.query2.query.OrWhereEntry;
+import org.eclipse.emf.query2.query.ReferenceAliasWhereEntry;
 import org.eclipse.emf.query2.query.ResourceScope;
 import org.eclipse.emf.query2.query.StringAttributeWhereEntry;
 import org.eclipse.emf.query2.query.StringOperator;
+import org.eclipse.emf.query2.query.SubselectWhereEntry;
 import org.eclipse.emf.query2.query.VariableWhereEntry;
 import org.eclipse.emf.query2.query.util.QuerySwitch;
 
 public class QueryTransformer {
 
-	private static final String[] STRING_ARRAY = new String[0];
 	private static final URI[] URI_ARRAY = new URI[0];
 
 	public static Query transform(MQLquery query) {
@@ -156,15 +165,53 @@ public class QueryTransformer {
 
 		@Override
 		public List<WhereEntry> caseVariableWhereEntry(VariableWhereEntry object) {
-			return Collections
-					.<WhereEntry> singletonList(new WhereComparisonAttrs(object.getAlias().getAlias(), object.getAttribute().getName(),
-							getOperation(object.getOperator()), object.getRightAlias().getAlias(), object.getRightAttribute().getName()));
+			return toList(new WhereComparisonAttrs(object.getAlias().getAlias(), object.getAttribute().getName(), getOperation(object
+					.getOperator()), object.getRightAlias().getAlias(), object.getRightAttribute().getName()));
 		}
 
 		@Override
 		public List<WhereEntry> caseNullWhereEntry(NullWhereEntry object) {
-			return Collections.<WhereEntry> singletonList(new LocalWhereEntry(object.getAlias().getAlias(), new WhereString(object
-					.getFeature().getName(), getOperation(object.getOperator()), null)));
+			return toList(new LocalWhereEntry(object.getAlias().getAlias(), new WhereString(object.getFeature().getName(),
+					getOperation(object.getOperator()), null)));
+		}
+
+		@Override
+		public List<WhereEntry> caseReferenceAliasWhereEntry(ReferenceAliasWhereEntry object) {
+			return toList(new WhereRelationReference(object.getAlias().getAlias(), object.getReference().getName(), object.getRightAlias()
+					.getAlias()));
+		}
+
+		@Override
+		public List<WhereEntry> caseSubselectWhereEntry(SubselectWhereEntry object) {
+			Query query = QueryTransformer.transform(object.getSubQuery());
+			return toList(new WhereNestedReference(object.isNotIn(), object.getAlias().getAlias(), object.getReference().getName(), query));
+
+		}
+
+		@Override
+		public List<WhereEntry> caseAliasWhereEntry(AliasWhereEntry object) {
+			return toList(new WhereComparisonAliases(object.getAlias().getAlias(), object.getRightAlias().getAlias()));
+		}
+
+		@Override
+		public List<WhereEntry> caseOrWhereEntry(OrWhereEntry object) {
+			List<WhereClause> result = new ArrayList<WhereClause>();
+			for (org.eclipse.emf.query2.query.WhereEntry entry : object.getEntries()) {
+				result.add(new WhereClauseTransformer().doSwitch(entry));
+			}
+			String alias = findAlias(object);
+			return toList(new LocalWhereEntry(alias, new WhereOr(result)));
+		}
+
+		private String findAlias(org.eclipse.emf.query2.query.WhereEntry object) {
+			if (object instanceof AbstractAliasWhereEntry) {
+				return ((AbstractAliasWhereEntry) object).getAlias().getAlias();
+			}
+			if (object instanceof AndWhereEntry) {
+				return findAlias(((AndWhereEntry) object).getEntries().get(0));
+			} else {
+				return findAlias(((OrWhereEntry) object).getEntries().get(0));
+			}
 		}
 
 		private Operation getOperation(BooleanOperator operator) {
@@ -196,7 +243,7 @@ public class QueryTransformer {
 		}
 
 		private List<WhereEntry> createWhereEntry(AttributeWhereEntry object, WhereClause whereClause) {
-			return Collections.<WhereEntry> singletonList(new LocalWhereEntry(object.getAlias().getAlias(), whereClause));
+			return toList(new LocalWhereEntry(object.getAlias().getAlias(), whereClause));
 		}
 
 		private Operation getOperation(StringOperator operator) {
@@ -211,6 +258,82 @@ public class QueryTransformer {
 				throw new UnsupportedOperationException(operator.toString() + " not yet implemented");
 			}
 		}
+
+		private List<WhereEntry> toList(WhereEntry entry) {
+			return Collections.<WhereEntry> singletonList(entry);
+		}
+	}
+
+	private static class WhereClauseTransformer extends QuerySwitch<WhereClause> {
+
+		@Override
+		public WhereClause caseBooleanAttributeWhereEntry(BooleanAttributeWhereEntry object) {
+			return new WhereBool(object.getAttribute().getName(), object.isIsTrue());
+		}
+
+		@Override
+		public WhereClause caseStringAttributeWhereEntry(StringAttributeWhereEntry object) {
+			return new WhereString(object.getAttribute().getName(), getOperation(object.getOperator()), object.getPattern());
+		}
+
+		@Override
+		public WhereClause caseLongWhereEntry(LongWhereEntry object) {
+			return new WhereLong(object.getAttribute().getName(), getOperation(object.getOperator()), object.getValue());
+		}
+
+		@Override
+		public WhereClause caseDoubleWhereEntry(DoubleWhereEntry object) {
+			return new WhereDouble(object.getAttribute().getName(), getOperation(object.getOperator()), object.getValue());
+		}
+
+		@Override
+		public WhereClause caseAndWhereEntry(AndWhereEntry object) {
+			WhereClause[] nestedClauses = new WhereClause[2];
+			nestedClauses[0]=(doSwitch(object.getEntries().get(0)));
+			nestedClauses[1]=(doSwitch(object.getEntries().get(0)));
+			return new WhereAnd(nestedClauses);
+		}
+		
+		@Override
+		public WhereClause caseOrWhereEntry(OrWhereEntry object) {
+			WhereClause[] nestedClauses = new WhereClause[2];
+			nestedClauses[0]=(doSwitch(object.getEntries().get(0)));
+			nestedClauses[1]=(doSwitch(object.getEntries().get(0)));
+			return new WhereOr(nestedClauses);
+		}
+
+		
+		private Operation getOperation(NumericOperator operator) {
+			switch (operator) {
+			case EQUAL:
+				return Operation.EQUAL;
+			case GREATER_EQUAL:
+				return Operation.GREATEREQUAL;
+			case GREATER_THEN:
+				return Operation.GREATER;
+			case LESS_EQUAL:
+				return Operation.SMALLEREQUAL;
+			case LESS_THEN:
+				return Operation.SMALLER;
+			case NOT_EQUAL:
+				return Operation.NOTEQUAL;
+			}
+			throw new IllegalArgumentException("unexpected operator: " + operator.toString());
+		}
+
+		private Operation getOperation(StringOperator operator) {
+			switch (operator) {
+			case EQUAL:
+				return Operation.EQUAL;
+			case LIKE:
+				return Operation.LIKE;
+			case NOT_EQUAL:
+				return Operation.NOTEQUAL;
+			default:
+				throw new UnsupportedOperationException(operator.toString() + " not yet implemented");
+			}
+		}
+
 	}
 
 }

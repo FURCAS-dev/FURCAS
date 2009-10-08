@@ -44,6 +44,7 @@ public class QueryParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getScopeClauseAccess().getAlternatives(), "rule__ScopeClause__Alternatives");
 					put(grammarAccess.getConcreteWhereEntryAccess().getAlternatives(), "rule__ConcreteWhereEntry__Alternatives");
+					put(grammarAccess.getAbstractAliasWhereEntryAccess().getAlternatives(), "rule__AbstractAliasWhereEntry__Alternatives");
 					put(grammarAccess.getAttributeWhereEntryAccess().getAlternatives(), "rule__AttributeWhereEntry__Alternatives");
 					put(grammarAccess.getNumericAttributeWhereEntryAccess().getAlternatives(), "rule__NumericAttributeWhereEntry__Alternatives");
 					put(grammarAccess.getBooleanAttributeWhereEntryAccess().getAlternatives_4(), "rule__BooleanAttributeWhereEntry__Alternatives_4");

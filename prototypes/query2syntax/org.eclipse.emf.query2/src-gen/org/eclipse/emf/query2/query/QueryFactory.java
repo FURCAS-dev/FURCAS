@@ -117,6 +117,15 @@ public interface QueryFactory extends EFactory
   WhereEntry createWhereEntry();
 
   /**
+   * Returns a new object of class '<em>Abstract Alias Where Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Alias Where Entry</em>'.
+   * @generated
+   */
+  AbstractAliasWhereEntry createAbstractAliasWhereEntry();
+
+  /**
    * Returns a new object of class '<em>Attribute Where Entry</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

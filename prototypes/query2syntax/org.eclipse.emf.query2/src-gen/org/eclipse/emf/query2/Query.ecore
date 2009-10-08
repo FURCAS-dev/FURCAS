@@ -46,8 +46,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="ResourceScope" eSuperTypes="#//ScopeClause"/>
   <eClassifiers xsi:type="ecore:EClass" name="ElementScope" eSuperTypes="#//ScopeClause"/>
   <eClassifiers xsi:type="ecore:EClass" name="WhereEntry"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeWhereEntry" eSuperTypes="#//WhereEntry">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractAliasWhereEntry" eSuperTypes="#//WhereEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="alias" eType="#//FromEntry"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumericAttributeWhereEntry" eSuperTypes="#//AttributeWhereEntry">
@@ -90,12 +92,10 @@
     <eLiterals name="equal" literal="="/>
     <eLiterals name="notEqual" value="1" literal="!="/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceWhereEntry" eSuperTypes="#//WhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alias" eType="#//FromEntry"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NullWhereEntry" eSuperTypes="#//WhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alias" eType="#//FromEntry"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NullWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BooleanOperator"/>
   </eClassifiers>
@@ -107,8 +107,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subQuery" eType="#//MQLquery"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AliasWhereEntry" eSuperTypes="#//WhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alias" eType="#//FromEntry"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AliasWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightAlias" eType="#//FromEntry"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrWhereEntry" eSuperTypes="#//WhereEntry">

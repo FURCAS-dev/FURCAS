@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.AttributeWhereEntry#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.AttributeWhereEntry#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
@@ -25,34 +24,8 @@ import org.eclipse.emf.ecore.EAttribute;
  * @model
  * @generated
  */
-public interface AttributeWhereEntry extends WhereEntry
+public interface AttributeWhereEntry extends AbstractAliasWhereEntry
 {
-  /**
-   * Returns the value of the '<em><b>Alias</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Alias</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Alias</em>' reference.
-   * @see #setAlias(FromEntry)
-   * @see org.eclipse.emf.query2.query.QueryPackage#getAttributeWhereEntry_Alias()
-   * @model
-   * @generated
-   */
-  FromEntry getAlias();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.emf.query2.query.AttributeWhereEntry#getAlias <em>Alias</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Alias</em>' reference.
-   * @see #getAlias()
-   * @generated
-   */
-  void setAlias(FromEntry value);
-
   /**
    * Returns the value of the '<em><b>Attribute</b></em>' reference.
    * <!-- begin-user-doc -->

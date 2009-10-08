@@ -441,14 +441,14 @@ public interface QueryPackage extends EPackage
   int WHERE_ENTRY_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.AttributeWhereEntryImpl <em>Attribute Where Entry</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.AbstractAliasWhereEntryImpl <em>Abstract Alias Where Entry</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.query2.query.impl.AttributeWhereEntryImpl
-   * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getAttributeWhereEntry()
+   * @see org.eclipse.emf.query2.query.impl.AbstractAliasWhereEntryImpl
+   * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getAbstractAliasWhereEntry()
    * @generated
    */
-  int ATTRIBUTE_WHERE_ENTRY = 10;
+  int ABSTRACT_ALIAS_WHERE_ENTRY = 10;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -457,7 +457,35 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_WHERE_ENTRY__ALIAS = WHERE_ENTRY_FEATURE_COUNT + 0;
+  int ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS = WHERE_ENTRY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Abstract Alias Where Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT = WHERE_ENTRY_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.AttributeWhereEntryImpl <em>Attribute Where Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.query2.query.impl.AttributeWhereEntryImpl
+   * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getAttributeWhereEntry()
+   * @generated
+   */
+  int ATTRIBUTE_WHERE_ENTRY = 11;
+
+  /**
+   * The feature id for the '<em><b>Alias</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_WHERE_ENTRY__ALIAS = ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -466,7 +494,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE = WHERE_ENTRY_FEATURE_COUNT + 1;
+  int ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Attribute Where Entry</em>' class.
@@ -475,7 +503,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_WHERE_ENTRY_FEATURE_COUNT = WHERE_ENTRY_FEATURE_COUNT + 2;
+  int ATTRIBUTE_WHERE_ENTRY_FEATURE_COUNT = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.NumericAttributeWhereEntryImpl <em>Numeric Attribute Where Entry</em>}' class.
@@ -485,7 +513,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getNumericAttributeWhereEntry()
    * @generated
    */
-  int NUMERIC_ATTRIBUTE_WHERE_ENTRY = 11;
+  int NUMERIC_ATTRIBUTE_WHERE_ENTRY = 12;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -531,7 +559,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getDoubleWhereEntry()
    * @generated
    */
-  int DOUBLE_WHERE_ENTRY = 12;
+  int DOUBLE_WHERE_ENTRY = 13;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -586,7 +614,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getLongWhereEntry()
    * @generated
    */
-  int LONG_WHERE_ENTRY = 13;
+  int LONG_WHERE_ENTRY = 14;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -641,7 +669,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getVariableWhereEntry()
    * @generated
    */
-  int VARIABLE_WHERE_ENTRY = 14;
+  int VARIABLE_WHERE_ENTRY = 15;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -705,7 +733,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getStringAttributeWhereEntry()
    * @generated
    */
-  int STRING_ATTRIBUTE_WHERE_ENTRY = 15;
+  int STRING_ATTRIBUTE_WHERE_ENTRY = 16;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -760,7 +788,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getBooleanAttributeWhereEntry()
    * @generated
    */
-  int BOOLEAN_ATTRIBUTE_WHERE_ENTRY = 16;
+  int BOOLEAN_ATTRIBUTE_WHERE_ENTRY = 17;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -815,7 +843,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getReferenceWhereEntry()
    * @generated
    */
-  int REFERENCE_WHERE_ENTRY = 17;
+  int REFERENCE_WHERE_ENTRY = 18;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -824,7 +852,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REFERENCE_WHERE_ENTRY__ALIAS = WHERE_ENTRY_FEATURE_COUNT + 0;
+  int REFERENCE_WHERE_ENTRY__ALIAS = ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -833,7 +861,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REFERENCE_WHERE_ENTRY__REFERENCE = WHERE_ENTRY_FEATURE_COUNT + 1;
+  int REFERENCE_WHERE_ENTRY__REFERENCE = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Reference Where Entry</em>' class.
@@ -842,7 +870,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REFERENCE_WHERE_ENTRY_FEATURE_COUNT = WHERE_ENTRY_FEATURE_COUNT + 2;
+  int REFERENCE_WHERE_ENTRY_FEATURE_COUNT = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.NullWhereEntryImpl <em>Null Where Entry</em>}' class.
@@ -852,7 +880,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getNullWhereEntry()
    * @generated
    */
-  int NULL_WHERE_ENTRY = 18;
+  int NULL_WHERE_ENTRY = 19;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -861,7 +889,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NULL_WHERE_ENTRY__ALIAS = WHERE_ENTRY_FEATURE_COUNT + 0;
+  int NULL_WHERE_ENTRY__ALIAS = ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS;
 
   /**
    * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -870,7 +898,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NULL_WHERE_ENTRY__FEATURE = WHERE_ENTRY_FEATURE_COUNT + 1;
+  int NULL_WHERE_ENTRY__FEATURE = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -879,7 +907,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NULL_WHERE_ENTRY__OPERATOR = WHERE_ENTRY_FEATURE_COUNT + 2;
+  int NULL_WHERE_ENTRY__OPERATOR = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Null Where Entry</em>' class.
@@ -888,7 +916,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NULL_WHERE_ENTRY_FEATURE_COUNT = WHERE_ENTRY_FEATURE_COUNT + 3;
+  int NULL_WHERE_ENTRY_FEATURE_COUNT = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.ReferenceAliasWhereEntryImpl <em>Reference Alias Where Entry</em>}' class.
@@ -898,7 +926,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getReferenceAliasWhereEntry()
    * @generated
    */
-  int REFERENCE_ALIAS_WHERE_ENTRY = 19;
+  int REFERENCE_ALIAS_WHERE_ENTRY = 20;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -944,7 +972,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getSubselectWhereEntry()
    * @generated
    */
-  int SUBSELECT_WHERE_ENTRY = 20;
+  int SUBSELECT_WHERE_ENTRY = 21;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -999,7 +1027,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getAliasWhereEntry()
    * @generated
    */
-  int ALIAS_WHERE_ENTRY = 21;
+  int ALIAS_WHERE_ENTRY = 22;
 
   /**
    * The feature id for the '<em><b>Alias</b></em>' reference.
@@ -1008,7 +1036,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALIAS_WHERE_ENTRY__ALIAS = WHERE_ENTRY_FEATURE_COUNT + 0;
+  int ALIAS_WHERE_ENTRY__ALIAS = ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS;
 
   /**
    * The feature id for the '<em><b>Right Alias</b></em>' reference.
@@ -1017,7 +1045,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALIAS_WHERE_ENTRY__RIGHT_ALIAS = WHERE_ENTRY_FEATURE_COUNT + 1;
+  int ALIAS_WHERE_ENTRY__RIGHT_ALIAS = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Alias Where Entry</em>' class.
@@ -1026,7 +1054,7 @@ public interface QueryPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ALIAS_WHERE_ENTRY_FEATURE_COUNT = WHERE_ENTRY_FEATURE_COUNT + 2;
+  int ALIAS_WHERE_ENTRY_FEATURE_COUNT = ABSTRACT_ALIAS_WHERE_ENTRY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.query2.query.impl.OrWhereEntryImpl <em>Or Where Entry</em>}' class.
@@ -1036,7 +1064,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getOrWhereEntry()
    * @generated
    */
-  int OR_WHERE_ENTRY = 22;
+  int OR_WHERE_ENTRY = 23;
 
   /**
    * The feature id for the '<em><b>Entries</b></em>' containment reference list.
@@ -1064,7 +1092,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getAndWhereEntry()
    * @generated
    */
-  int AND_WHERE_ENTRY = 23;
+  int AND_WHERE_ENTRY = 24;
 
   /**
    * The feature id for the '<em><b>Entries</b></em>' containment reference list.
@@ -1092,7 +1120,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getNumericOperator()
    * @generated
    */
-  int NUMERIC_OPERATOR = 24;
+  int NUMERIC_OPERATOR = 25;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.query2.query.StringOperator <em>String Operator</em>}' enum.
@@ -1102,7 +1130,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getStringOperator()
    * @generated
    */
-  int STRING_OPERATOR = 25;
+  int STRING_OPERATOR = 26;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.query2.query.BooleanOperator <em>Boolean Operator</em>}' enum.
@@ -1112,7 +1140,7 @@ public interface QueryPackage extends EPackage
    * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getBooleanOperator()
    * @generated
    */
-  int BOOLEAN_OPERATOR = 26;
+  int BOOLEAN_OPERATOR = 27;
 
 
   /**
@@ -1403,6 +1431,27 @@ public interface QueryPackage extends EPackage
   EClass getWhereEntry();
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.emf.query2.query.AbstractAliasWhereEntry <em>Abstract Alias Where Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Alias Where Entry</em>'.
+   * @see org.eclipse.emf.query2.query.AbstractAliasWhereEntry
+   * @generated
+   */
+  EClass getAbstractAliasWhereEntry();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.AbstractAliasWhereEntry#getAlias <em>Alias</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Alias</em>'.
+   * @see org.eclipse.emf.query2.query.AbstractAliasWhereEntry#getAlias()
+   * @see #getAbstractAliasWhereEntry()
+   * @generated
+   */
+  EReference getAbstractAliasWhereEntry_Alias();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.emf.query2.query.AttributeWhereEntry <em>Attribute Where Entry</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1411,17 +1460,6 @@ public interface QueryPackage extends EPackage
    * @generated
    */
   EClass getAttributeWhereEntry();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.AttributeWhereEntry#getAlias <em>Alias</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Alias</em>'.
-   * @see org.eclipse.emf.query2.query.AttributeWhereEntry#getAlias()
-   * @see #getAttributeWhereEntry()
-   * @generated
-   */
-  EReference getAttributeWhereEntry_Alias();
 
   /**
    * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.AttributeWhereEntry#getAttribute <em>Attribute</em>}'.
@@ -1615,17 +1653,6 @@ public interface QueryPackage extends EPackage
   EClass getReferenceWhereEntry();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.ReferenceWhereEntry#getAlias <em>Alias</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Alias</em>'.
-   * @see org.eclipse.emf.query2.query.ReferenceWhereEntry#getAlias()
-   * @see #getReferenceWhereEntry()
-   * @generated
-   */
-  EReference getReferenceWhereEntry_Alias();
-
-  /**
    * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.ReferenceWhereEntry#getReference <em>Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1645,17 +1672,6 @@ public interface QueryPackage extends EPackage
    * @generated
    */
   EClass getNullWhereEntry();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.NullWhereEntry#getAlias <em>Alias</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Alias</em>'.
-   * @see org.eclipse.emf.query2.query.NullWhereEntry#getAlias()
-   * @see #getNullWhereEntry()
-   * @generated
-   */
-  EReference getNullWhereEntry_Alias();
 
   /**
    * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.NullWhereEntry#getFeature <em>Feature</em>}'.
@@ -1741,17 +1757,6 @@ public interface QueryPackage extends EPackage
    * @generated
    */
   EClass getAliasWhereEntry();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.AliasWhereEntry#getAlias <em>Alias</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Alias</em>'.
-   * @see org.eclipse.emf.query2.query.AliasWhereEntry#getAlias()
-   * @see #getAliasWhereEntry()
-   * @generated
-   */
-  EReference getAliasWhereEntry_Alias();
 
   /**
    * Returns the meta object for the reference '{@link org.eclipse.emf.query2.query.AliasWhereEntry#getRightAlias <em>Right Alias</em>}'.
@@ -2096,6 +2101,24 @@ public interface QueryPackage extends EPackage
     EClass WHERE_ENTRY = eINSTANCE.getWhereEntry();
 
     /**
+     * The meta object literal for the '{@link org.eclipse.emf.query2.query.impl.AbstractAliasWhereEntryImpl <em>Abstract Alias Where Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.query2.query.impl.AbstractAliasWhereEntryImpl
+     * @see org.eclipse.emf.query2.query.impl.QueryPackageImpl#getAbstractAliasWhereEntry()
+     * @generated
+     */
+    EClass ABSTRACT_ALIAS_WHERE_ENTRY = eINSTANCE.getAbstractAliasWhereEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Alias</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS = eINSTANCE.getAbstractAliasWhereEntry_Alias();
+
+    /**
      * The meta object literal for the '{@link org.eclipse.emf.query2.query.impl.AttributeWhereEntryImpl <em>Attribute Where Entry</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2104,14 +2127,6 @@ public interface QueryPackage extends EPackage
      * @generated
      */
     EClass ATTRIBUTE_WHERE_ENTRY = eINSTANCE.getAttributeWhereEntry();
-
-    /**
-     * The meta object literal for the '<em><b>Alias</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ATTRIBUTE_WHERE_ENTRY__ALIAS = eINSTANCE.getAttributeWhereEntry_Alias();
 
     /**
      * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
@@ -2272,14 +2287,6 @@ public interface QueryPackage extends EPackage
     EClass REFERENCE_WHERE_ENTRY = eINSTANCE.getReferenceWhereEntry();
 
     /**
-     * The meta object literal for the '<em><b>Alias</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REFERENCE_WHERE_ENTRY__ALIAS = eINSTANCE.getReferenceWhereEntry_Alias();
-
-    /**
      * The meta object literal for the '<em><b>Reference</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2296,14 +2303,6 @@ public interface QueryPackage extends EPackage
      * @generated
      */
     EClass NULL_WHERE_ENTRY = eINSTANCE.getNullWhereEntry();
-
-    /**
-     * The meta object literal for the '<em><b>Alias</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NULL_WHERE_ENTRY__ALIAS = eINSTANCE.getNullWhereEntry_Alias();
 
     /**
      * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
@@ -2374,14 +2373,6 @@ public interface QueryPackage extends EPackage
      * @generated
      */
     EClass ALIAS_WHERE_ENTRY = eINSTANCE.getAliasWhereEntry();
-
-    /**
-     * The meta object literal for the '<em><b>Alias</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ALIAS_WHERE_ENTRY__ALIAS = eINSTANCE.getAliasWhereEntry_Alias();
 
     /**
      * The meta object literal for the '<em><b>Right Alias</b></em>' reference feature.

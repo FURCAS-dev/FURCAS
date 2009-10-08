@@ -24,25 +24,14 @@ import org.eclipse.emf.query2.query.QueryPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.AliasWhereEntryImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.AliasWhereEntryImpl#getRightAlias <em>Right Alias</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AliasWhereEntryImpl extends WhereEntryImpl implements AliasWhereEntry
+public class AliasWhereEntryImpl extends AbstractAliasWhereEntryImpl implements AliasWhereEntry
 {
-  /**
-   * The cached value of the '{@link #getAlias() <em>Alias</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAlias()
-   * @generated
-   * @ordered
-   */
-  protected FromEntry alias;
-
   /**
    * The cached value of the '{@link #getRightAlias() <em>Right Alias</em>}' reference.
    * <!-- begin-user-doc -->
@@ -72,49 +61,6 @@ public class AliasWhereEntryImpl extends WhereEntryImpl implements AliasWhereEnt
   protected EClass eStaticClass()
   {
     return QueryPackage.Literals.ALIAS_WHERE_ENTRY;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FromEntry getAlias()
-  {
-    if (alias != null && alias.eIsProxy())
-    {
-      InternalEObject oldAlias = (InternalEObject)alias;
-      alias = (FromEntry)eResolveProxy(oldAlias);
-      if (alias != oldAlias)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.ALIAS_WHERE_ENTRY__ALIAS, oldAlias, alias));
-      }
-    }
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FromEntry basicGetAlias()
-  {
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAlias(FromEntry newAlias)
-  {
-    FromEntry oldAlias = alias;
-    alias = newAlias;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.ALIAS_WHERE_ENTRY__ALIAS, oldAlias, alias));
   }
 
   /**
@@ -170,9 +116,6 @@ public class AliasWhereEntryImpl extends WhereEntryImpl implements AliasWhereEnt
   {
     switch (featureID)
     {
-      case QueryPackage.ALIAS_WHERE_ENTRY__ALIAS:
-        if (resolve) return getAlias();
-        return basicGetAlias();
       case QueryPackage.ALIAS_WHERE_ENTRY__RIGHT_ALIAS:
         if (resolve) return getRightAlias();
         return basicGetRightAlias();
@@ -190,9 +133,6 @@ public class AliasWhereEntryImpl extends WhereEntryImpl implements AliasWhereEnt
   {
     switch (featureID)
     {
-      case QueryPackage.ALIAS_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)newValue);
-        return;
       case QueryPackage.ALIAS_WHERE_ENTRY__RIGHT_ALIAS:
         setRightAlias((FromEntry)newValue);
         return;
@@ -210,9 +150,6 @@ public class AliasWhereEntryImpl extends WhereEntryImpl implements AliasWhereEnt
   {
     switch (featureID)
     {
-      case QueryPackage.ALIAS_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)null);
-        return;
       case QueryPackage.ALIAS_WHERE_ENTRY__RIGHT_ALIAS:
         setRightAlias((FromEntry)null);
         return;
@@ -230,8 +167,6 @@ public class AliasWhereEntryImpl extends WhereEntryImpl implements AliasWhereEnt
   {
     switch (featureID)
     {
-      case QueryPackage.ALIAS_WHERE_ENTRY__ALIAS:
-        return alias != null;
       case QueryPackage.ALIAS_WHERE_ENTRY__RIGHT_ALIAS:
         return rightAlias != null;
     }

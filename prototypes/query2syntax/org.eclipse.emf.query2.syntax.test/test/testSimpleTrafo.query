@@ -13,3 +13,9 @@ selectAttrWhereAttrVar: select a.lowerBound, b.upperBound from ETypedElement as 
 selectAttrWhereAttrNull: select a.lowerBound from ETypedElement as a where a.lowerBound = null
 
 selectEClassWhereRefNull: select a from EClass as a where a.eOperations = null
+
+selectAttrTwoWhereOr: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true
+
+selectAttrThreeWhereOr: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true or a.abstract = true
+
+selectAttrThreeWhereOrAnd: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true and a.interface = true

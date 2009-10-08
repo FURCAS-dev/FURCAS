@@ -407,6 +407,33 @@ finally {
 
 
 
+// Entry rule entryRuleAbstractAliasWhereEntry
+entryRuleAbstractAliasWhereEntry :
+{ before(grammarAccess.getAbstractAliasWhereEntryRule()); }
+	 ruleAbstractAliasWhereEntry
+{ after(grammarAccess.getAbstractAliasWhereEntryRule()); } 
+	 EOF 
+;
+
+// Rule AbstractAliasWhereEntry
+ruleAbstractAliasWhereEntry 
+    @init {
+		int stackSize = keepStackSize();
+    }
+ :
+(
+{ before(grammarAccess.getAbstractAliasWhereEntryAccess().getAlternatives()); }
+(rule__AbstractAliasWhereEntry__Alternatives)
+{ after(grammarAccess.getAbstractAliasWhereEntryAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleAttributeWhereEntry
 entryRuleAttributeWhereEntry :
 { before(grammarAccess.getAttributeWhereEntryRule()); }
@@ -823,27 +850,43 @@ rule__ConcreteWhereEntry__Alternatives
 )
 
     |(
-{ before(grammarAccess.getConcreteWhereEntryAccess().getAttributeWhereEntryParserRuleCall_1()); }
+{ before(grammarAccess.getConcreteWhereEntryAccess().getAbstractAliasWhereEntryParserRuleCall_1()); }
+	ruleAbstractAliasWhereEntry
+{ after(grammarAccess.getConcreteWhereEntryAccess().getAbstractAliasWhereEntryParserRuleCall_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__AbstractAliasWhereEntry__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getAbstractAliasWhereEntryAccess().getAttributeWhereEntryParserRuleCall_0()); }
 	ruleAttributeWhereEntry
-{ after(grammarAccess.getConcreteWhereEntryAccess().getAttributeWhereEntryParserRuleCall_1()); }
+{ after(grammarAccess.getAbstractAliasWhereEntryAccess().getAttributeWhereEntryParserRuleCall_0()); }
 )
 
     |(
-{ before(grammarAccess.getConcreteWhereEntryAccess().getReferenceWhereEntryParserRuleCall_2()); }
+{ before(grammarAccess.getAbstractAliasWhereEntryAccess().getReferenceWhereEntryParserRuleCall_1()); }
 	ruleReferenceWhereEntry
-{ after(grammarAccess.getConcreteWhereEntryAccess().getReferenceWhereEntryParserRuleCall_2()); }
+{ after(grammarAccess.getAbstractAliasWhereEntryAccess().getReferenceWhereEntryParserRuleCall_1()); }
 )
 
     |(
-{ before(grammarAccess.getConcreteWhereEntryAccess().getAliasWhereEntryParserRuleCall_3()); }
+{ before(grammarAccess.getAbstractAliasWhereEntryAccess().getAliasWhereEntryParserRuleCall_2()); }
 	ruleAliasWhereEntry
-{ after(grammarAccess.getConcreteWhereEntryAccess().getAliasWhereEntryParserRuleCall_3()); }
+{ after(grammarAccess.getAbstractAliasWhereEntryAccess().getAliasWhereEntryParserRuleCall_2()); }
 )
 
     |(
-{ before(grammarAccess.getConcreteWhereEntryAccess().getNullWhereEntryParserRuleCall_4()); }
+{ before(grammarAccess.getAbstractAliasWhereEntryAccess().getNullWhereEntryParserRuleCall_3()); }
 	ruleNullWhereEntry
-{ after(grammarAccess.getConcreteWhereEntryAccess().getNullWhereEntryParserRuleCall_4()); }
+{ after(grammarAccess.getAbstractAliasWhereEntryAccess().getNullWhereEntryParserRuleCall_3()); }
 )
 
 ;

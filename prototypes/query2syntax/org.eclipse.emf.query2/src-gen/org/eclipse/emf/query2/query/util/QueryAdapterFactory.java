@@ -129,6 +129,11 @@ public class QueryAdapterFactory extends AdapterFactoryImpl
         return createWhereEntryAdapter();
       }
       @Override
+      public Adapter caseAbstractAliasWhereEntry(AbstractAliasWhereEntry object)
+      {
+        return createAbstractAliasWhereEntryAdapter();
+      }
+      @Override
       public Adapter caseAttributeWhereEntry(AttributeWhereEntry object)
       {
         return createAttributeWhereEntryAdapter();
@@ -366,6 +371,21 @@ public class QueryAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createWhereEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.AbstractAliasWhereEntry <em>Abstract Alias Where Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.emf.query2.query.AbstractAliasWhereEntry
+   * @generated
+   */
+  public Adapter createAbstractAliasWhereEntryAdapter()
   {
     return null;
   }

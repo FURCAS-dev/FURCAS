@@ -983,41 +983,11 @@ ruleConcreteWhereEntry returns [EObject current=null]
 
     |
     { 
-        currentNode=createCompositeNode(grammarAccess.getConcreteWhereEntryAccess().getAttributeWhereEntryParserRuleCall_1(), currentNode); 
+        currentNode=createCompositeNode(grammarAccess.getConcreteWhereEntryAccess().getAbstractAliasWhereEntryParserRuleCall_1(), currentNode); 
     }
-    this_AttributeWhereEntry_1=ruleAttributeWhereEntry
+    this_AbstractAliasWhereEntry_1=ruleAbstractAliasWhereEntry
     { 
-        $current = $this_AttributeWhereEntry_1.current; 
-        currentNode = currentNode.getParent();
-    }
-
-    |
-    { 
-        currentNode=createCompositeNode(grammarAccess.getConcreteWhereEntryAccess().getReferenceWhereEntryParserRuleCall_2(), currentNode); 
-    }
-    this_ReferenceWhereEntry_2=ruleReferenceWhereEntry
-    { 
-        $current = $this_ReferenceWhereEntry_2.current; 
-        currentNode = currentNode.getParent();
-    }
-
-    |
-    { 
-        currentNode=createCompositeNode(grammarAccess.getConcreteWhereEntryAccess().getAliasWhereEntryParserRuleCall_3(), currentNode); 
-    }
-    this_AliasWhereEntry_3=ruleAliasWhereEntry
-    { 
-        $current = $this_AliasWhereEntry_3.current; 
-        currentNode = currentNode.getParent();
-    }
-
-    |
-    { 
-        currentNode=createCompositeNode(grammarAccess.getConcreteWhereEntryAccess().getNullWhereEntryParserRuleCall_4(), currentNode); 
-    }
-    this_NullWhereEntry_4=ruleNullWhereEntry
-    { 
-        $current = $this_NullWhereEntry_4.current; 
+        $current = $this_AbstractAliasWhereEntry_1.current; 
         currentNode = currentNode.getParent();
     }
 );
@@ -1057,6 +1027,66 @@ ruleParWhereEntry returns [EObject current=null]
 ')' 
     {
         createLeafNode(grammarAccess.getParWhereEntryAccess().getRightParenthesisKeyword_2(), null); 
+    }
+);
+
+
+
+
+
+// Entry rule entryRuleAbstractAliasWhereEntry
+entryRuleAbstractAliasWhereEntry returns [EObject current=null] :
+	{ currentNode = createCompositeNode(grammarAccess.getAbstractAliasWhereEntryRule(), currentNode); }
+	 iv_ruleAbstractAliasWhereEntry=ruleAbstractAliasWhereEntry 
+	 { $current=$iv_ruleAbstractAliasWhereEntry.current; } 
+	 EOF 
+;
+
+// Rule AbstractAliasWhereEntry
+ruleAbstractAliasWhereEntry returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getAbstractAliasWhereEntryAccess().getAttributeWhereEntryParserRuleCall_0(), currentNode); 
+    }
+    this_AttributeWhereEntry_0=ruleAttributeWhereEntry
+    { 
+        $current = $this_AttributeWhereEntry_0.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getAbstractAliasWhereEntryAccess().getReferenceWhereEntryParserRuleCall_1(), currentNode); 
+    }
+    this_ReferenceWhereEntry_1=ruleReferenceWhereEntry
+    { 
+        $current = $this_ReferenceWhereEntry_1.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getAbstractAliasWhereEntryAccess().getAliasWhereEntryParserRuleCall_2(), currentNode); 
+    }
+    this_AliasWhereEntry_2=ruleAliasWhereEntry
+    { 
+        $current = $this_AliasWhereEntry_2.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getAbstractAliasWhereEntryAccess().getNullWhereEntryParserRuleCall_3(), currentNode); 
+    }
+    this_NullWhereEntry_3=ruleNullWhereEntry
+    { 
+        $current = $this_NullWhereEntry_3.current; 
+        currentNode = currentNode.getParent();
     }
 );
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.eclipse.emf.query2.Query" definesHiddenTokens="true" hiddenTokens="//@rules.34 //@rules.32 //@rules.33">
+<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.eclipse.emf.query2.Query" definesHiddenTokens="true" hiddenTokens="//@rules.35 //@rules.33 //@rules.34">
   <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
     <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   </metamodelDeclarations>
@@ -29,7 +29,7 @@
     <alternatives xsi:type="xtext:Group">
       <tokens xsi:type="xtext:Keyword" value="import"/>
       <tokens xsi:type="xtext:Assignment" feature="importURI" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
       </tokens>
     </alternatives>
   </rules>
@@ -39,7 +39,7 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <tokens xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value=":"/>
       <tokens xsi:type="xtext:Assignment" feature="query" operator="=">
@@ -90,7 +90,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Group" cardinality="?">
@@ -100,7 +100,7 @@
             <type metamodel="//@metamodelDeclarations.0">
               <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
             </type>
-            <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
           </terminal>
         </tokens>
       </tokens>
@@ -116,7 +116,7 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" cardinality="?" feature="withoutsubtypes" operator="?=">
@@ -124,7 +124,7 @@
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="as"/>
       <tokens xsi:type="xtext:Assignment" feature="alias" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
       </tokens>
       <tokens xsi:type="xtext:Assignment" cardinality="?" feature="scopeClause" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.6"/>
@@ -152,12 +152,12 @@
       <tokens xsi:type="xtext:Keyword" value="resources"/>
       <tokens xsi:type="xtext:Keyword" value="{"/>
       <tokens xsi:type="xtext:Assignment" feature="uris" operator="+=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
       </tokens>
       <tokens xsi:type="xtext:Group" cardinality="*">
         <tokens xsi:type="xtext:Keyword" value=","/>
         <tokens xsi:type="xtext:Assignment" feature="uris" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
         </tokens>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="}"/>
@@ -175,12 +175,12 @@
       <tokens xsi:type="xtext:Keyword" value="elements"/>
       <tokens xsi:type="xtext:Keyword" value="{"/>
       <tokens xsi:type="xtext:Assignment" feature="uris" operator="+=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
       </tokens>
       <tokens xsi:type="xtext:Group" cardinality="*">
         <tokens xsi:type="xtext:Keyword" value=","/>
         <tokens xsi:type="xtext:Assignment" feature="uris" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
         </tokens>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="}"/>
@@ -235,9 +235,6 @@
     <alternatives xsi:type="xtext:Alternatives">
       <groups xsi:type="xtext:RuleCall" rule="//@rules.12"/>
       <groups xsi:type="xtext:RuleCall" rule="//@rules.13"/>
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.23"/>
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.27"/>
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.24"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ParWhereEntry">
@@ -250,15 +247,26 @@
       <tokens xsi:type="xtext:Keyword" value=")"/>
     </alternatives>
   </rules>
+  <rules xsi:type="xtext:ParserRule" name="AbstractAliasWhereEntry">
+    <type metamodel="//@metamodelDeclarations.1">
+      <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//AbstractAliasWhereEntry"/>
+    </type>
+    <alternatives xsi:type="xtext:Alternatives">
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.14"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.24"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.28"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.25"/>
+    </alternatives>
+  </rules>
   <rules xsi:type="xtext:ParserRule" name="AttributeWhereEntry">
     <type metamodel="//@metamodelDeclarations.1">
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//AttributeWhereEntry"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.14"/>
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.19"/>
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.21"/>
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.17"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.15"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.18"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="NumericAttributeWhereEntry">
@@ -266,8 +274,8 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//NumericAttributeWhereEntry"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.15"/>
       <groups xsi:type="xtext:RuleCall" rule="//@rules.16"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.17"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="DoubleWhereEntry">
@@ -280,7 +288,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -289,14 +297,14 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.18"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.29"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
       </tokens>
     </alternatives>
   </rules>
@@ -310,7 +318,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -319,14 +327,14 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.18"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.28"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.29"/>
       </tokens>
     </alternatives>
   </rules>
@@ -340,7 +348,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -349,18 +357,18 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.18"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="rightAlias" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -369,7 +377,7 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
     </alternatives>
@@ -415,7 +423,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -424,14 +432,14 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.20"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.21"/>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="pattern" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
       </tokens>
     </alternatives>
   </rules>
@@ -468,7 +476,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -477,11 +485,11 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.23"/>
       </tokens>
       <tokens xsi:type="xtext:Alternatives">
         <groups xsi:type="xtext:Assignment" feature="isTrue" operator="?=">
@@ -511,8 +519,8 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//ReferenceWhereEntry"/>
     </type>
     <alternatives xsi:type="xtext:Alternatives">
-      <groups xsi:type="xtext:RuleCall" rule="//@rules.25"/>
       <groups xsi:type="xtext:RuleCall" rule="//@rules.26"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.27"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="NullWhereEntry">
@@ -525,7 +533,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -534,11 +542,11 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.22"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.23"/>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="null"/>
     </alternatives>
@@ -553,7 +561,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -562,7 +570,7 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="="/>
@@ -571,7 +579,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
     </alternatives>
@@ -586,7 +594,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="."/>
@@ -595,7 +603,7 @@
           <type metamodel="//@metamodelDeclarations.0">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Assignment" cardinality="?" feature="notIn" operator="?=">
@@ -619,7 +627,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
       <tokens xsi:type="xtext:Keyword" value="="/>
@@ -628,7 +636,7 @@
           <type metamodel="//@metamodelDeclarations.1">
             <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/query2/Query#//FromEntry"/>
           </type>
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.30"/>
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.31"/>
         </terminal>
       </tokens>
     </alternatives>

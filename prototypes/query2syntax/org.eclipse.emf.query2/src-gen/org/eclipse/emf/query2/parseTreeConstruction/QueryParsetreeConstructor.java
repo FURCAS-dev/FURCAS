@@ -45,18 +45,19 @@ protected class ThisRootNode extends RootToken {
 			case 10: return new AndWhereEntry_Group(this, this, 10, inst);
 			case 11: return new ConcreteWhereEntry_Alternatives(this, this, 11, inst);
 			case 12: return new ParWhereEntry_Group(this, this, 12, inst);
-			case 13: return new AttributeWhereEntry_Alternatives(this, this, 13, inst);
-			case 14: return new NumericAttributeWhereEntry_Alternatives(this, this, 14, inst);
-			case 15: return new DoubleWhereEntry_Group(this, this, 15, inst);
-			case 16: return new LongWhereEntry_Group(this, this, 16, inst);
-			case 17: return new VariableWhereEntry_Group(this, this, 17, inst);
-			case 18: return new StringAttributeWhereEntry_Group(this, this, 18, inst);
-			case 19: return new BooleanAttributeWhereEntry_Group(this, this, 19, inst);
-			case 20: return new ReferenceWhereEntry_Alternatives(this, this, 20, inst);
-			case 21: return new NullWhereEntry_Group(this, this, 21, inst);
-			case 22: return new ReferenceAliasWhereEntry_Group(this, this, 22, inst);
-			case 23: return new SubselectWhereEntry_Group(this, this, 23, inst);
-			case 24: return new AliasWhereEntry_Group(this, this, 24, inst);
+			case 13: return new AbstractAliasWhereEntry_Alternatives(this, this, 13, inst);
+			case 14: return new AttributeWhereEntry_Alternatives(this, this, 14, inst);
+			case 15: return new NumericAttributeWhereEntry_Alternatives(this, this, 15, inst);
+			case 16: return new DoubleWhereEntry_Group(this, this, 16, inst);
+			case 17: return new LongWhereEntry_Group(this, this, 17, inst);
+			case 18: return new VariableWhereEntry_Group(this, this, 18, inst);
+			case 19: return new StringAttributeWhereEntry_Group(this, this, 19, inst);
+			case 20: return new BooleanAttributeWhereEntry_Group(this, this, 20, inst);
+			case 21: return new ReferenceWhereEntry_Alternatives(this, this, 21, inst);
+			case 22: return new NullWhereEntry_Group(this, this, 22, inst);
+			case 23: return new ReferenceAliasWhereEntry_Group(this, this, 23, inst);
+			case 24: return new SubselectWhereEntry_Group(this, this, 24, inst);
+			case 25: return new AliasWhereEntry_Group(this, this, 25, inst);
 			default: return null;
 		}	
 	}	
@@ -2200,13 +2201,11 @@ protected class AndWhereEntry_EntriesAssignment_1_1_1 extends AssignmentToken  {
 /************ begin Rule ConcreteWhereEntry ****************
  *
  * ConcreteWhereEntry returns WhereEntry:
- *   ParWhereEntry|AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|
- *   NullWhereEntry;
+ *   ParWhereEntry|AbstractAliasWhereEntry;
  *
  **/
 
-// ParWhereEntry|AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|
-// NullWhereEntry
+// ParWhereEntry|AbstractAliasWhereEntry
 protected class ConcreteWhereEntry_Alternatives extends AlternativesToken {
 
 	public ConcreteWhereEntry_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2220,10 +2219,7 @@ protected class ConcreteWhereEntry_Alternatives extends AlternativesToken {
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new ConcreteWhereEntry_ParWhereEntryParserRuleCall_0(parent, this, 0, inst);
-			case 1: return new ConcreteWhereEntry_AttributeWhereEntryParserRuleCall_1(parent, this, 1, inst);
-			case 2: return new ConcreteWhereEntry_ReferenceWhereEntryParserRuleCall_2(parent, this, 2, inst);
-			case 3: return new ConcreteWhereEntry_AliasWhereEntryParserRuleCall_3(parent, this, 3, inst);
-			case 4: return new ConcreteWhereEntry_NullWhereEntryParserRuleCall_4(parent, this, 4, inst);
+			case 1: return new ConcreteWhereEntry_AbstractAliasWhereEntryParserRuleCall_1(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	
@@ -2265,120 +2261,27 @@ protected class ConcreteWhereEntry_ParWhereEntryParserRuleCall_0 extends RuleCal
 	}	
 }
 
-// AttributeWhereEntry
-protected class ConcreteWhereEntry_AttributeWhereEntryParserRuleCall_1 extends RuleCallToken {
+// AbstractAliasWhereEntry
+protected class ConcreteWhereEntry_AbstractAliasWhereEntryParserRuleCall_1 extends RuleCallToken {
 	
-	public ConcreteWhereEntry_AttributeWhereEntryParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public ConcreteWhereEntry_AbstractAliasWhereEntryParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getConcreteWhereEntryAccess().getAttributeWhereEntryParserRuleCall_1();
+		return grammarAccess.getConcreteWhereEntryAccess().getAbstractAliasWhereEntryParserRuleCall_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new AttributeWhereEntry_Alternatives(this, this, 0, inst);
+			case 0: return new AbstractAliasWhereEntry_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(AttributeWhereEntry_Alternatives.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getAttributeWhereEntryRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// ReferenceWhereEntry
-protected class ConcreteWhereEntry_ReferenceWhereEntryParserRuleCall_2 extends RuleCallToken {
-	
-	public ConcreteWhereEntry_ReferenceWhereEntryParserRuleCall_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getConcreteWhereEntryAccess().getReferenceWhereEntryParserRuleCall_2();
-	}
-
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new ReferenceWhereEntry_Alternatives(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(ReferenceWhereEntry_Alternatives.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getReferenceWhereEntryRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// AliasWhereEntry
-protected class ConcreteWhereEntry_AliasWhereEntryParserRuleCall_3 extends RuleCallToken {
-	
-	public ConcreteWhereEntry_AliasWhereEntryParserRuleCall_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getConcreteWhereEntryAccess().getAliasWhereEntryParserRuleCall_3();
-	}
-
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new AliasWhereEntry_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(AliasWhereEntry_Group.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getAliasWhereEntryRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// NullWhereEntry
-protected class ConcreteWhereEntry_NullWhereEntryParserRuleCall_4 extends RuleCallToken {
-	
-	public ConcreteWhereEntry_NullWhereEntryParserRuleCall_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getConcreteWhereEntryAccess().getNullWhereEntryParserRuleCall_4();
-	}
-
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new NullWhereEntry_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(NullWhereEntry_Group.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getNullWhereEntryRule().getType().getClassifier())) return null;
+		if(checkForRecursion(AbstractAliasWhereEntry_Alternatives.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getAbstractAliasWhereEntryRule().getType().getClassifier())) return null;
 		return current;
 	}
 	
@@ -2497,6 +2400,168 @@ protected class ParWhereEntry_RightParenthesisKeyword_2 extends KeywordToken  {
 
 
 /************ end Rule ParWhereEntry ****************/
+
+
+/************ begin Rule AbstractAliasWhereEntry ****************
+ *
+ * AbstractAliasWhereEntry:
+ *   AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|NullWhereEntry;
+ *
+ **/
+
+// AttributeWhereEntry|ReferenceWhereEntry|AliasWhereEntry|NullWhereEntry
+protected class AbstractAliasWhereEntry_Alternatives extends AlternativesToken {
+
+	public AbstractAliasWhereEntry_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getAbstractAliasWhereEntryAccess().getAlternatives();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new AbstractAliasWhereEntry_AttributeWhereEntryParserRuleCall_0(parent, this, 0, inst);
+			case 1: return new AbstractAliasWhereEntry_ReferenceWhereEntryParserRuleCall_1(parent, this, 1, inst);
+			case 2: return new AbstractAliasWhereEntry_AliasWhereEntryParserRuleCall_2(parent, this, 2, inst);
+			case 3: return new AbstractAliasWhereEntry_NullWhereEntryParserRuleCall_3(parent, this, 3, inst);
+			default: return null;
+		}	
+	}	
+		
+	public IInstanceDescription tryConsume() {
+		if(!current.isInstanceOf(grammarAccess.getAbstractAliasWhereEntryRule().getType().getClassifier())) return null;
+		return tryConsumeVal();
+	}
+}
+
+// AttributeWhereEntry
+protected class AbstractAliasWhereEntry_AttributeWhereEntryParserRuleCall_0 extends RuleCallToken {
+	
+	public AbstractAliasWhereEntry_AttributeWhereEntryParserRuleCall_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getAbstractAliasWhereEntryAccess().getAttributeWhereEntryParserRuleCall_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new AttributeWhereEntry_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(AttributeWhereEntry_Alternatives.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getAttributeWhereEntryRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// ReferenceWhereEntry
+protected class AbstractAliasWhereEntry_ReferenceWhereEntryParserRuleCall_1 extends RuleCallToken {
+	
+	public AbstractAliasWhereEntry_ReferenceWhereEntryParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getAbstractAliasWhereEntryAccess().getReferenceWhereEntryParserRuleCall_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new ReferenceWhereEntry_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(ReferenceWhereEntry_Alternatives.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getReferenceWhereEntryRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// AliasWhereEntry
+protected class AbstractAliasWhereEntry_AliasWhereEntryParserRuleCall_2 extends RuleCallToken {
+	
+	public AbstractAliasWhereEntry_AliasWhereEntryParserRuleCall_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getAbstractAliasWhereEntryAccess().getAliasWhereEntryParserRuleCall_2();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new AliasWhereEntry_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(AliasWhereEntry_Group.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getAliasWhereEntryRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// NullWhereEntry
+protected class AbstractAliasWhereEntry_NullWhereEntryParserRuleCall_3 extends RuleCallToken {
+	
+	public AbstractAliasWhereEntry_NullWhereEntryParserRuleCall_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getAbstractAliasWhereEntryAccess().getNullWhereEntryParserRuleCall_3();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new NullWhereEntry_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(NullWhereEntry_Group.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getNullWhereEntryRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule AbstractAliasWhereEntry ****************/
 
 
 /************ begin Rule AttributeWhereEntry ****************
