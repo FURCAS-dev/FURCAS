@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
@@ -7,19 +6,15 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.query.EObjectQuery;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
-import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.ResourceQuery;
-import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryStandaloneSetup;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.TypeScopeProvider;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.query.Model;
 import org.eclipse.emf.query2.query.NamedQuery;

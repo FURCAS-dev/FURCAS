@@ -5,16 +5,14 @@ package org.eclipse.emf.query2.scoping;
 
 import static com.google.common.collect.Iterables.transform;
 
-import java.util.Collection;
-import java.util.Collections;
-
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.query2.query.AttributeWhereEntry;
 import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.MQLquery;
+import org.eclipse.emf.query2.query.NullWhereEntry;
+import org.eclipse.emf.query2.query.ReferenceWhereEntry;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopedElement;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
@@ -32,29 +30,39 @@ import com.google.common.base.Function;
  */
 public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
 
+	private static final Function<ENamedElement, IScopedElement> NAME_2_STRUCTURAL_FEATURE = new Function<ENamedElement, IScopedElement>() {
+
+		public IScopedElement apply(ENamedElement feature) {
+			return ScopedElement.create(feature.getName(), feature);
+		}
+	};
+
 	IScope scope_FromEntry(MQLquery _this, EClass type) {
-		Iterable<IScopedElement> transformed = transform(
-				_this.getFromEntries(),
-				new Function<FromEntry, IScopedElement>() {
+		Iterable<IScopedElement> transformed = transform(_this.getFromEntries(), new Function<FromEntry, IScopedElement>() {
 
-					public IScopedElement apply(FromEntry from) {
-						return ScopedElement.create(from.getAlias(), from);
-					}
-				});
+			public IScopedElement apply(FromEntry from) {
+				return ScopedElement.create(from.getAlias(), from);
+			}
+		});
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	IScope scope_AttributeWhereEntry_attribute(AttributeWhereEntry _this, EReference ref) {
-		Iterable<IScopedElement> transformed = transform(
-				_this.getAlias().getType().getEAllAttributes(),
-				new Function<EAttribute, IScopedElement>() {
-
-					public IScopedElement apply(EAttribute attr) {
-						return ScopedElement.create(attr.getName(), attr);
-					}
-				});
+		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
-		
+
 	}
+
+	IScope scope_ReferenceWhereEntry_reference(ReferenceWhereEntry _this, EReference ref) {
+		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllReferences(), NAME_2_STRUCTURAL_FEATURE);
+		return new SimpleScope(IScope.NULLSCOPE, transformed);
+
+	}
+
+	IScope scope_NullWhereEntry_feature(NullWhereEntry _this, EReference ref) {
+		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
+		return new SimpleScope(IScope.NULLSCOPE, transformed);
+
+	}
+
 }

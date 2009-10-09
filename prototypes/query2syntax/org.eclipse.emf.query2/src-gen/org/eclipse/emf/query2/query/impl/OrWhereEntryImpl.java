@@ -9,15 +9,11 @@ package org.eclipse.emf.query2.query.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.query2.query.OrWhereEntry;
 import org.eclipse.emf.query2.query.QueryPackage;
 import org.eclipse.emf.query2.query.WhereEntry;

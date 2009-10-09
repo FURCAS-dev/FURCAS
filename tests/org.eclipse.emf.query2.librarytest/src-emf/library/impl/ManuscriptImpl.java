@@ -2,27 +2,22 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ManuscriptImpl.java,v 1.1 2009/10/08 15:02:51 bkolb Exp $
+ * $Id: ManuscriptImpl.java,v 1.2 2009/10/09 20:08:22 bkolb Exp $
  */
 package library.impl;
 
 import java.util.Collection;
 
-import library.Book;
 import library.Format;
 import library.LibraryPackage;
 import library.Manuscript;
 import library.Person;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**

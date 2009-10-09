@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Library.java,v 1.1 2009/10/08 15:02:51 bkolb Exp $
+ * $Id: Library.java,v 1.2 2009/10/09 20:08:22 bkolb Exp $
  */
 package library;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

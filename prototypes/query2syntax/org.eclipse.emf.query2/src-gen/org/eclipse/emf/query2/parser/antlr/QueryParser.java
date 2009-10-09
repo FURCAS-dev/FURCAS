@@ -4,14 +4,13 @@
 package org.eclipse.emf.query2.parser.antlr;
 
 import org.antlr.runtime.ANTLRInputStream;
-import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
+import org.eclipse.emf.query2.services.QueryGrammarAccess;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
+import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
-
-import org.eclipse.emf.query2.services.QueryGrammarAccess;
 
 public class QueryParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

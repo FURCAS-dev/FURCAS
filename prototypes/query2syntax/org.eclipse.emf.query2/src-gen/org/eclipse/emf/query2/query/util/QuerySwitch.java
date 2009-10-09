@@ -10,8 +10,32 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.query2.query.*;
+import org.eclipse.emf.query2.query.AbstractAliasWhereEntry;
+import org.eclipse.emf.query2.query.AliasWhereEntry;
+import org.eclipse.emf.query2.query.AndWhereEntry;
+import org.eclipse.emf.query2.query.AttributeWhereEntry;
+import org.eclipse.emf.query2.query.BooleanAttributeWhereEntry;
+import org.eclipse.emf.query2.query.DoubleWhereEntry;
+import org.eclipse.emf.query2.query.ElementScope;
+import org.eclipse.emf.query2.query.FromEntry;
+import org.eclipse.emf.query2.query.Import;
+import org.eclipse.emf.query2.query.LongWhereEntry;
+import org.eclipse.emf.query2.query.MQLquery;
+import org.eclipse.emf.query2.query.Model;
+import org.eclipse.emf.query2.query.NamedQuery;
+import org.eclipse.emf.query2.query.NullWhereEntry;
+import org.eclipse.emf.query2.query.NumericAttributeWhereEntry;
+import org.eclipse.emf.query2.query.OrWhereEntry;
+import org.eclipse.emf.query2.query.QueryPackage;
+import org.eclipse.emf.query2.query.ReferenceAliasWhereEntry;
+import org.eclipse.emf.query2.query.ReferenceWhereEntry;
+import org.eclipse.emf.query2.query.ResourceScope;
+import org.eclipse.emf.query2.query.ScopeClause;
+import org.eclipse.emf.query2.query.SelectEntry;
+import org.eclipse.emf.query2.query.StringAttributeWhereEntry;
+import org.eclipse.emf.query2.query.SubselectWhereEntry;
+import org.eclipse.emf.query2.query.VariableWhereEntry;
+import org.eclipse.emf.query2.query.WhereEntry;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,26 +1,20 @@
 package org.eclipse.emf.query2.parser.antlr.internal; 
 
 import java.io.InputStream;
-import org.eclipse.xtext.*;
-import org.eclipse.xtext.parser.*;
-import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.EObject;
+
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
-import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query2.services.QueryGrammarAccess;
-
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+import org.eclipse.xtext.conversion.ValueConverterException;
+import org.eclipse.xtext.parser.IAstFactory;
+import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
+import org.eclipse.xtext.parsetree.CompositeNode;
 
 public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {

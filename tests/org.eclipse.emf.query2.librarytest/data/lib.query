@@ -8,7 +8,9 @@ PagesByTitle: select a.pages from Manuscript as a where a.title like 'Linux Made
 
 PagesAndTitle: select a.title, a.pages from Manuscript as a
 
-PagesAndTitleByAuthor: select a.pages, a.title from Manuscript as a, Person as p where a.author = p and p.name like 'Boger, Marko' 
+PagesAndTitleByAuthor: select a.pages, a.title from Manuscript as a, Person as p 
+	where a.author = p 
+		and p.name like 'Boger, Marko' 
 
 BooksBorrowedByPersonPublishedByDPunkt: select b from Book as b, Person as p, Publisher as pub, Manuscript as m 
 	where b.borrowedBy=p 
@@ -16,7 +18,8 @@ BooksBorrowedByPersonPublishedByDPunkt: select b from Book as b, Person as p, Pu
 		and b.instanceOf=m 
 		and pub.manuscripts = m 
 		and pub.name like 'dpunkt'
-
+		
+// Refactor query to look like that:
 //BooksBorrowedByPersonPublishedByDPunkt: select b from Book as b, Person as p, Publisher as pub 
 //	where b.borrowedBy.name='Boger, Marko' 
 //		and b.instanceOf=pub.manuscripts 
@@ -26,8 +29,9 @@ ManuscriptsInBerlinOrHamburg: select m from Manuscript as m, Book as b, Library 
 	where (lib.location='Berlin' or lib.location='Hamburg')
 		and lib.books = b
 		and b.instanceOf = m
-		
-//BooksWithMoreThan250Pages: select b from Book as b, Manuscript as m where b.instanceOf = m and m.pages>=250 --> here we get an ex. because of long/int
+
+// here we get an ex. because of long/int		
+// BooksWithMoreThan250Pages: select b from Book as b, Manuscript as m where b.instanceOf = m and m.pages>=250
 
 AllBooksBorrowedByAnAuthor: select b from Book as b 
 	where b.borrowedBy in (

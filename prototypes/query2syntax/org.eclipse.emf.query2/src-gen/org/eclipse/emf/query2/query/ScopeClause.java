@@ -7,7 +7,6 @@
 package org.eclipse.emf.query2.query;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

@@ -2,13 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibrarySwitch.java,v 1.1 2009/10/08 15:02:51 bkolb Exp $
+ * $Id: LibrarySwitch.java,v 1.2 2009/10/09 20:08:23 bkolb Exp $
  */
 package library.util;
 
 import java.util.List;
 
-import library.*;
+import library.Book;
+import library.Library;
+import library.LibraryPackage;
+import library.Manuscript;
+import library.Person;
+import library.Publisher;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

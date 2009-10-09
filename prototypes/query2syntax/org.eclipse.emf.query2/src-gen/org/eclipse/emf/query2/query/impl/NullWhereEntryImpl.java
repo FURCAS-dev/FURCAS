@@ -7,13 +7,10 @@
 package org.eclipse.emf.query2.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.query2.query.BooleanOperator;
 import org.eclipse.emf.query2.query.NullWhereEntry;
 import org.eclipse.emf.query2.query.QueryPackage;

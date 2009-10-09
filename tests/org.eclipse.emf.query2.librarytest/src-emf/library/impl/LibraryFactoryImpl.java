@@ -2,19 +2,24 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1 2009/10/08 15:02:51 bkolb Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.2 2009/10/09 20:08:22 bkolb Exp $
  */
 package library.impl;
 
-import library.*;
+import library.Book;
+import library.Format;
+import library.Library;
+import library.LibraryFactory;
+import library.LibraryPackage;
+import library.Manuscript;
+import library.Person;
+import library.Publisher;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
