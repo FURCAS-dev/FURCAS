@@ -17,22 +17,19 @@ BooksBorrowedByPersonPublishedByDPunkt: select b from Book as b, Person as p, Pu
 		and pub.manuscripts = m 
 		and pub.name like 'dpunkt'
 
-/*		
-BooksBorrowedByPersonPublishedByDPunkt: select b from Book as b, Person as p, Publisher as pub 
-	where b.borrowedBy.name='Boger, Marko' 
-		and b.instanceOf=pub.manuscripts 
-		and pub.name like 'dpunkt'		
-*/
+//BooksBorrowedByPersonPublishedByDPunkt: select b from Book as b, Person as p, Publisher as pub 
+//	where b.borrowedBy.name='Boger, Marko' 
+//		and b.instanceOf=pub.manuscripts 
+//		and pub.name like 'dpunkt'		
 
 ManuscriptsInBerlinOrHamburg: select m from Manuscript as m, Book as b, Library as lib 
 	where (lib.location='Berlin' or lib.location='Hamburg')
 		and lib.books = b
 		and b.instanceOf = m
 		
-BooksWithMoreThan250Pages: select b from Book as b, Manuscript as m where b.instanceOf = m and m.pages>=250
+//BooksWithMoreThan250Pages: select b from Book as b, Manuscript as m where b.instanceOf = m and m.pages>=250 --> here we get an ex. because of long/int
 
 AllBooksBorrowedByAnAuthor: select b from Book as b 
 	where b.borrowedBy in (
 		select p from Person as p, Manuscript as m where m.author = p
 	)
-

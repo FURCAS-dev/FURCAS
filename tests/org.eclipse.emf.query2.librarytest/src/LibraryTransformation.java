@@ -1,7 +1,20 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query.index.query.EObjectQuery;
+import org.eclipse.emf.query.index.query.IndexQueryFactory;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.QueryResult;
+import org.eclipse.emf.query.index.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryStandaloneSetup;
@@ -25,9 +38,11 @@ public class LibraryTransformation extends QueryTestCase {
 
 	@BeforeClass
 	public static void setup() {
-		// new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+		if (!Platform.isRunning()) {
+			 new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+		}
+		
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
-
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
 		URI resourceURI = URI.createURI("platform:/resource/org.eclipse.emf.query2.librarytest/data/lib.query");
@@ -48,24 +63,13 @@ public class LibraryTransformation extends QueryTestCase {
 			System.out.println("\n" + query.getName() + "\n----------------------------------");
 			System.out.println(transform.toString().replaceAll("\\n", " ").trim());
 
-			ResultSet execute = new QueryProcessorImpl().execute(transform, getQueryContext(new TypeScopeProvider() {
-
-				@Override
-				public boolean isInclusiveScope() {
-					return true;
-				}
-
-				@Override
-				public URI[] getPartitionScope() {
-					return new URI[0];
-				}
-			}, rs));
+			ResultSet execute = new QueryProcessorImpl().execute(transform, getQueryContext(rs));
 
 			System.out.println(execute);
 		}
 	}
 
-	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider, final ResourceSet rs) {
+	private QueryContext getQueryContext(final ResourceSet rs) {
 		return new QueryContext() {
 
 			@Override
@@ -75,7 +79,19 @@ public class LibraryTransformation extends QueryTestCase {
 
 			@Override
 			public URI[] getResourceScope() {
-				return scopeProvider.getPartitionScope();
+				final List<URI> result = new ArrayList<URI>();
+				getIndex().executeQueryCommand(new QueryCommand() {
+
+					@Override
+					public void execute(QueryExecutor queryExecutor) {
+						ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
+						for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
+							result.add(desc.getURI());
+						}
+					}
+
+				});
+				return result.toArray(new URI[0]);
 			}
 
 			@Override

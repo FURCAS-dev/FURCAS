@@ -2,9 +2,7 @@ package org.eclipse.emf.query2.transformation;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -67,24 +65,13 @@ public class QueryTransformer {
 
 	private static List<SelectEntry> transformSelect(EList<org.eclipse.emf.query2.query.SelectEntry> selectEntries) {
 		List<SelectEntry> result = new ArrayList<SelectEntry>(selectEntries.size());
-		Map<String, ArrayList<String>> map = new LinkedHashMap<String, ArrayList<String>>();
+		
 		for (org.eclipse.emf.query2.query.SelectEntry entry : selectEntries) {
 			String alias = entry.getSelect().getAlias();
-			if (entry.getAttribute() != null) {
-				ArrayList<String> attributeNames;
-				if ((attributeNames = map.get(alias)) == null) {
-					attributeNames = new ArrayList<String>();
-					map.put(alias, attributeNames);
-				}
-				attributeNames.add(entry.getAttribute().getName());
-			}
-		}
-		for (org.eclipse.emf.query2.query.SelectEntry entry : selectEntries) {
-			String alias = entry.getSelect().getAlias();
-			if (entry.getAttribute() == null) {
+			if (entry.getAttribute() == null){
 				result.add(new SelectAlias(alias));
-			} else {
-				result.add(new SelectAttrs(alias, map.get(alias)));
+			}else {
+				result.add(new SelectAttrs(alias, new String[]{entry.getAttribute().getName()}));
 			}
 		}
 		return result;
@@ -103,11 +90,14 @@ public class QueryTransformer {
 
 							@Override
 							public boolean isInclusiveScope() {
-								return !es.isNotIn();
+								return es == null ? false : !es.isNotIn();
 							}
 
 							@Override
 							public URI[] getPartitionScope() {
+								if(es==null){
+									return new URI[0];
+								}
 								URI[] result = new URI[es.getUris().size()];
 								int i = 0;
 								for (String uri : es.getUris()) {
@@ -294,7 +284,7 @@ public class QueryTransformer {
 			}
 			return new WhereAnd(nestedClauses);
 		}
-		
+
 		@Override
 		public WhereClause caseOrWhereEntry(OrWhereEntry object) {
 			List<WhereClause> nestedClauses = new ArrayList<WhereClause>(object.getEntries().size());
@@ -304,7 +294,6 @@ public class QueryTransformer {
 			return new WhereOr(nestedClauses);
 		}
 
-		
 		private Operation getOperation(NumericOperator operator) {
 			switch (operator) {
 			case EQUAL:
