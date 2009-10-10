@@ -2,6 +2,7 @@
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
   <uml:Model xmi:id="_qdx8sQ8fEduhWtVvKtiQ7w" name="ocl">
     <packagedElement xmi:type="uml:Package" xmi:id="_qdx8sP8fEduhWtVvKtiQ7w" name="cst">
+      <elementImport xmi:id="_5DyD0LD5Ed6LkdYdYK9_JA"/>
       <packageImport xmi:id="_CSYeEI2GEd2mlKUM3HGxZg">
         <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#_0"/>
       </packageImport>
@@ -353,6 +354,7 @@
         <ownedEnd xmi:id="_qdx9lP8fEduhWtVvKtiQ7w" type="_qdx9j_8fEduhWtVvKtiQ7w" association="_qdx9k_8fEduhWtVvKtiQ7w"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx9lf8fEduhWtVvKtiQ7w" name="CollectionTypeCS">
+        <generalization xmi:id="_2NUGIJw2Ed6az7Hq7e93gA" general="_qdx83P8fEduhWtVvKtiQ7w"/>
         <generalization xmi:id="_qdx9lv8fEduhWtVvKtiQ7w" general="_qdx8xP8fEduhWtVvKtiQ7w"/>
         <ownedAttribute xmi:id="_qdx9l_8fEduhWtVvKtiQ7w" name="collectionTypeIdentifier" visibility="public" type="_qdx9m_8fEduhWtVvKtiQ7w" isOrdered="true">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx9mP8fEduhWtVvKtiQ7w"/>
@@ -549,6 +551,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-E_8fEduhWtVvKtiQ7w" name="BooleanLiteralExpCS">
+        <generalization xmi:id="_HVRk0LKtEd6RC43VVMBX9w" general="_qdx83P8fEduhWtVvKtiQ7w"/>
         <generalization xmi:id="_qdx-FP8fEduhWtVvKtiQ7w" general="_qdx9__8fEduhWtVvKtiQ7w"/>
         <ownedAttribute xmi:id="_qdx-Ff8fEduhWtVvKtiQ7w" name="booleanSymbol" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBooleanObject"/>
@@ -556,18 +559,12 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-F_8fEduhWtVvKtiQ7w" name="NullLiteralExpCS">
+        <generalization xmi:id="_GYa7ALKtEd6RC43VVMBX9w" general="_qdx83P8fEduhWtVvKtiQ7w"/>
         <generalization xmi:id="_qdx-GP8fEduhWtVvKtiQ7w" general="_qdx93f8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_qdx-Gf8fEduhWtVvKtiQ7w" name="symbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Gv8fEduhWtVvKtiQ7w"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-G_8fEduhWtVvKtiQ7w" name="InvalidLiteralExpCS">
+        <generalization xmi:id="_9073ALKsEd6RC43VVMBX9w" general="_qdx83P8fEduhWtVvKtiQ7w"/>
         <generalization xmi:id="_qdx-HP8fEduhWtVvKtiQ7w" general="_qdx93f8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_qdx-Hf8fEduhWtVvKtiQ7w" name="symbol" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Hv8fEduhWtVvKtiQ7w"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-H_8fEduhWtVvKtiQ7w" name="CollectionRangeCS">
         <generalization xmi:id="_qdx-IP8fEduhWtVvKtiQ7w" general="_qdx98P8fEduhWtVvKtiQ7w"/>
@@ -652,17 +649,13 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-Vf8fEduhWtVvKtiQ7w" name="OperationCallExpCS">
         <generalization xmi:id="_qdx-Vv8fEduhWtVvKtiQ7w" general="_qdx-Sv8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_306UMJXiEd6Wx-S3aeq4Aw" name="isAtomic" visibility="public" isOrdered="true">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBooleanObject"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_306UMZXiEd6Wx-S3aeq4Aw"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_8lGFsJXiEd6Wx-S3aeq4Aw" value="false"/>
+        <ownedAttribute xmi:id="_uREjQJrAEd6qQcRgrpdjbQ" name="pathNameCS" type="_qdx8v_8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uREjQZrAEd6qQcRgrpdjbQ"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_qdx-V_8fEduhWtVvKtiQ7w" name="StateExpCS">
-        <generalization xmi:id="_qdx-WP8fEduhWtVvKtiQ7w" general="_qdx8xP8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_pS7AEJPiEd6yA_hAShwLtA" name="simpleNames" type="_qdx83P8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pS7AEZPiEd6yA_hAShwLtA" value="*"/>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pS7AEpPiEd6yA_hAShwLtA"/>
+        <ownedAttribute xmi:id="_z9V7sLI8Ed6kyPEWd5jeqw" name="isAtomic" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBooleanObject"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_z9V7sbI8Ed6kyPEWd5jeqw"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_3WtEMLI8Ed6kyPEWd5jeqw" value="false"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_tvVQwI2FEd2mlKUM3HGxZg" name="IToken"/>
@@ -839,9 +832,9 @@
   <Ecore:EClass xmi:id="_qfsogP8fEduhWtVvKtiQ7w" base_Class="_qdx-E_8fEduhWtVvKtiQ7w"/>
   <Ecore:EAttribute xmi:id="_qfsogf8fEduhWtVvKtiQ7w" base_Property="_qdx-Ff8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qfsogv8fEduhWtVvKtiQ7w" base_Class="_qdx-F_8fEduhWtVvKtiQ7w"/>
-  <Ecore:EAttribute xmi:id="_qfsog_8fEduhWtVvKtiQ7w" base_Property="_qdx-Gf8fEduhWtVvKtiQ7w"/>
+  <Ecore:EAttribute xmi:id="_qfsog_8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qfsohP8fEduhWtVvKtiQ7w" base_Class="_qdx-G_8fEduhWtVvKtiQ7w"/>
-  <Ecore:EAttribute xmi:id="_qfsohf8fEduhWtVvKtiQ7w" base_Property="_qdx-Hf8fEduhWtVvKtiQ7w"/>
+  <Ecore:EAttribute xmi:id="_qfsohf8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qfsohv8fEduhWtVvKtiQ7w" base_Class="_qdx-H_8fEduhWtVvKtiQ7w"/>
   <Ecore:EReference xmi:id="_qfsoh_8fEduhWtVvKtiQ7w" xmlName="lastOclExpressionCS" base_Property="_qdx-If8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qfsoiP8fEduhWtVvKtiQ7w" base_Class="_qdx-Jf8fEduhWtVvKtiQ7w"/>
@@ -862,7 +855,7 @@
   <Ecore:EReference xmi:id="_qf-8Jf8fEduhWtVvKtiQ7w" base_Property="_qdx-TP8fEduhWtVvKtiQ7w"/>
   <Ecore:EReference xmi:id="_qf-8Jv8fEduhWtVvKtiQ7w" base_Property="_qdx-T_8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qf-8J_8fEduhWtVvKtiQ7w" base_Class="_qdx-Vf8fEduhWtVvKtiQ7w"/>
-  <Ecore:EClass xmi:id="_qf-8KP8fEduhWtVvKtiQ7w" base_Class="_qdx-V_8fEduhWtVvKtiQ7w"/>
+  <Ecore:EClass xmi:id="_qf-8KP8fEduhWtVvKtiQ7w"/>
   <Ecore:EAttribute xmi:id="_qf-8Kf8fEduhWtVvKtiQ7w"/>
   <Ecore:EDataType xmi:id="_wn-44I2FEd2mlKUM3HGxZg" instanceClassName="lpg.lpgjavaruntime.IToken" base_PrimitiveType="_tvVQwI2FEd2mlKUM3HGxZg"/>
   <Ecore:EAttribute xmi:id="_qkehgI2JEd2mlKUM3HGxZg" isTransient="true" base_Property="_PkTnII2GEd2mlKUM3HGxZg"/>

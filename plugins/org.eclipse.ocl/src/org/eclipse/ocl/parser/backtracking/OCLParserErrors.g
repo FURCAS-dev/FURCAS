@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParserErrors.g,v 1.2 2009/09/04 13:40:44 ewillink Exp $
+-- * $Id: OCLParserErrors.g,v 1.3 2009/10/10 07:10:29 ewillink Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser
@@ -55,11 +55,7 @@ $Rules
 		./
 	defExpressionCS ::= IDENTIFIER ERROR_Colon
 		/.$BeginJava
-					VariableCS variableCS = createVariableCS(
-								getTokenText($getToken(1)),
-								null,
-								null
-							);
+					VariableCS variableCS = createVariableCS(getTokenText($getToken(1)));
 					setOffsets(variableCS, getIToken($getToken(1)), getIToken($getToken(2)));
 					CSTNode result = createDefExpressionCS(
 							variableCS,

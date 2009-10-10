@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.11 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.12 2009/10/10 07:13:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -258,6 +258,32 @@ public class BasicOCLTest
 		eCls.setName("foo"); //$NON-NLS-1$
 		
 		assertFalse(check(expr, eCls));
+	}
+	
+	public void testIfExpressions_184048() {
+		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
+		eCls.setName("bar"); //$NON-NLS-1$
+		
+		OCLExpression<EClassifier> expr = parse(
+			"package ecore context EClass " + //$NON-NLS-1$
+			"inv: if self.abstract then name = 'bar' else name <> 'bar' endif ->asSequence()->at(1)" + //$NON-NLS-1$
+			"endpackage "); //$NON-NLS-1$
+		
+		assertFalse(check(expr, eCls));
+		
+		eCls.setAbstract(true);
+		
+		assertTrue(check(expr, eCls));
+		
+		eCls.setName("foo"); //$NON-NLS-1$
+		
+		assertFalse(check(expr, eCls));
+		
+		OCLExpression<EClassifier> expr2 = parse(
+			"package ecore context EClass " + //$NON-NLS-1$
+			"inv: 7 = 1 + let a : String = invalid in 1 + if self.oclIsUndefined() then 1 else 5 endif " + //$NON-NLS-1$
+			"endpackage "); //$NON-NLS-1$
+		assertTrue(check(expr2, eCls));
 	}
 	
 	public void testLetExpressions() {
