@@ -10,7 +10,7 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *               - Bugs 237126, 245586, 213886, 242236, 259818, 259819
+ *               - Bugs 184048, 237126, 245586, 213886, 242236, 259818, 259819
  *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
  *               255599, 251349, 242236, 259740
@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.32 2009/10/04 11:15:51 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.33 2009/10/10 07:03:54 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -89,7 +89,6 @@ import org.eclipse.ocl.cst.PropertyContextCS;
 import org.eclipse.ocl.cst.RealLiteralExpCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.cst.SimpleTypeEnum;
-import org.eclipse.ocl.cst.StateExpCS;
 import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TupleLiteralExpCS;
 import org.eclipse.ocl.cst.TupleTypeCS;
@@ -290,14 +289,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			case OCLParsersym.TK_collectNested :
 			case OCLParsersym.TK_sortedBy :
 			case OCLParsersym.TK_closure :
-			case OCLParsersym.TK_oclIsKindOf :
-			case OCLParsersym.TK_oclIsTypeOf :
-			case OCLParsersym.TK_oclAsType :
-			case OCLParsersym.TK_oclIsNew :
-			case OCLParsersym.TK_oclIsUndefined :
-			case OCLParsersym.TK_oclIsInvalid :
-			case OCLParsersym.TK_oclIsInState :
-			case OCLParsersym.TK_allInstances :
 			case OCLParsersym.TK_String :
 			case OCLParsersym.TK_Integer :
 			case OCLParsersym.TK_UnlimitedNatural :
@@ -705,7 +696,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			initASTMapping(packageEnv, createDummyPackage(env,
 				packageDeclarationCS), packageDeclarationCS);
 		} else {
-			pathname = createSequenceOfNames(pathNameCS.getSimpleNames());
+			pathname = createSequenceOfNames(pathNameCS, null);
 			try {
 				packageEnv = createPackageContext(getOCLEnvironment(), pathname);
 				if (packageEnv != null) {
@@ -826,8 +817,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		O operation = null;
 		C classifier = null;
-		EList<String> className = createSequenceOfNames(operationCS.getPathNameCS()
-			.getSimpleNames());
+		EList<String> className = createSequenceOfNames(operationCS.getPathNameCS(), null);
 		String operationName = operationCS.getSimpleNameCS().getValue();
 		EList<String> qualifiedOperationName = new BasicEList<String>();
 		qualifiedOperationName.addAll(className);
@@ -1132,8 +1122,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			List<CT> constraints) {
 
-		EList<String> pathName = createSequenceOfNames(propertyContextCS.getPathNameCS()
-			.getSimpleNames());
+		EList<String> pathName = createSequenceOfNames(propertyContextCS.getPathNameCS(), null);
 		C owner = lookupClassifier(propertyContextCS.getPathNameCS(), env,
 			pathName);
 
@@ -1348,7 +1337,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> result = null;
 
 		PathNameCS pathNameCS = classifierContextDeclCS.getPathNameCS();
-		EList<String> pathName = createSequenceOfNames(pathNameCS.getSimpleNames());
+		EList<String> pathName = createSequenceOfNames(pathNameCS, null);
 		C type = lookupClassifier(pathNameCS, env, pathName);
 
 		if (type == null) {
@@ -1757,7 +1746,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			astNode = primitiveTypeCS(((PrimitiveTypeCS) typeCS).getType(), env);
 			typeCS.setAst(astNode);
 		} else if (typeCS instanceof PathNameCS) {
-			EList<String> pathName = createSequenceOfNames(((PathNameCS) typeCS).getSimpleNames());
+			EList<String> pathName = createSequenceOfNames((PathNameCS) typeCS, null);
 			astNode = lookupClassifier(typeCS, env, pathName);
 			if (astNode == null) {
 				String message = OCLMessages.bind(
@@ -1789,9 +1778,10 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * @param env
 	 *            the OCL environment
 	 * @return a <code>StateExp</code> representing the state
+	 * @since 3.0
 	 */
 	protected StateExp<C, S> stateExpCS(OCLExpression<C> source,
-			StateExpCS stateExpCS,
+			CSTNode stateExpCS, EList<String> statePath,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 
 		C sourceType = null;
@@ -1800,8 +1790,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		S state = null;
-
-		EList<String> statePath = createSequenceOfNames(stateExpCS.getSimpleNames());
 
 		if (!statePath.isEmpty()) {
 			// to support content-assist, we can parse an expression that
@@ -3283,8 +3271,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 		OCLExpression<C> astNode = null;
 
-		List<SimpleNameCS> simpleNames = enumLiteralExpCS.getPathNameCS().getSimpleNames();
-		EList<String> sequenceOfNames = createSequenceOfNames(simpleNames);
+		EList<String> sequenceOfNames = createSequenceOfNames(enumLiteralExpCS.getPathNameCS(), null);
 		String lastToken = enumLiteralExpCS.getSimpleNameCS().getValue();
 
 		EL literal = null;
@@ -4009,111 +3996,25 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			OperationCallExpCS operationCallExpCS,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
 
+		int operator = operationCallExpCS.getAccessor().getValue();
+		if (operator == DotOrArrowEnum.ARROW) {
+			return arrowOperationCallExpCS(operationCallExpCS, env);
+		}
+		OCLExpressionCS sourceCS = operationCallExpCS.getSource();
+		if ((sourceCS == null) && (operationCallExpCS.getPathNameCS() != null)) {
+			return staticOperationCallExpCS(operationCallExpCS, env);
+		}
+		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
+		if (PredefinedType.OCL_IS_IN_STATE_NAME.equals(operationName)) {
+			return oclIsInStateOperationCallExpCS(operationCallExpCS, env);
+		}
 		if (ParsingOptions.getValue(env, ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE)) {
 			checkForXorOrAndPrecedenceHazard(operationCallExpCS);
 		}
-
-		OperationCallExp<C, O> astNode = null;
-
-		List<OCLExpression<C>> args = new java.util.ArrayList<OCLExpression<C>>();
-		// boolean isMarkedPre = false;
-
-		String name = operationCallExpCS.getSimpleNameCS().getValue();
-		int operator = operationCallExpCS.getAccessor().getValue();
-
-		/*
-		 * The type of the operation is specified by a path expression or self,
-		 * or by an explicit source expression. The source expression may be a
-		 * collection type (-> operation) or a regular navigation expression (.
-		 * operation)
-		 */
-		OCLExpression<C> source = null;
-		if (operator == DotOrArrowEnum.ARROW) {
-			source = getCollectionSourceExpression(operationCallExpCS
-				.getSource(), env);
-		} else {
-			OCLExpressionCS sourceCS = operationCallExpCS.getSource();
-
-			if (sourceCS instanceof PathNameCS) {
-				// static operation call
-				PathNameCS pathName = (PathNameCS) sourceCS;
-
-				EList<String> pathNames = createSequenceOfNames(pathName
-					.getSimpleNames());
-				C sourceType = lookupClassifier(sourceCS, env, pathNames);
-				if (sourceType == null) {
-					String message = OCLMessages.bind(
-						OCLMessages.UnrecognizedType_ERROR_, pathNames);
-					ERROR(sourceCS, "operatonCallExpCS", message);//$NON-NLS-1$
-				} else {
-					source = typeCS(sourceCS, env, sourceType);
-				}
-			} else {
-				source = oclExpressionCS(operationCallExpCS.getSource(), env);
-			}
-		}
-
-		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
-
-		if (PredefinedType.OCL_IS_IN_STATE_NAME.equals(operationName)) {
-			if (operationCallExpCS.getArguments().size() != 1) {
-				String message = OCLMessages.bind(
-					OCLMessages.IsInStateSignature_ERROR_,
-					computeInputString(operationCallExpCS));
-				ERROR(operationCallExpCS, "operationCallExpCS", message);//$NON-NLS-1$
-			}
-
-			if (!operationCallExpCS.getArguments().isEmpty()) {
-				OCLExpressionCS arg = operationCallExpCS.getArguments().get(0);
-
-				if (arg instanceof StateExpCS) {
-					args.add(stateExpCS(source, (StateExpCS) arg, env));
-				} else {
-					String message = OCLMessages.bind(
-						OCLMessages.IsInStateSignature_ERROR_,
-						computeInputString(operationCallExpCS));
-					ERROR(arg, "operationCallExpCS", message);//$NON-NLS-1$
-				}
-			}
-		} else {
-			for (OCLExpressionCS arg : operationCallExpCS.getArguments()) {
-				OCLExpression<C> argExpr = oclExpressionCS(arg, env);
-				if (argExpr == null) {
-					argExpr = createDummyInvalidLiteralExp(env, arg);
-					initASTMapping(env, argExpr, arg);
-				}
-				args.add(argExpr);
-			}
-		}
-
-		if (source == null) { // create an implicit source
-			Variable<C, PM> implicitSource = lookupImplicitSourceForOperation(
-				operationCallExpCS, env, args, operationName);
-			VariableExp<C, PM> vexp = createVariableExp(env,
-				operationCallExpCS, implicitSource);
-
-			if (implicitSource == null) {
-				String errMessage = name + "(";//$NON-NLS-1$
-				for (int i = 0; i < args.size(); i++) {
-					if (i > 0) {
-						errMessage += ", ";//$NON-NLS-1$
-					}
-					errMessage += uml.getName(args.get(i).getType());
-				}
-				errMessage += ")";//$NON-NLS-1$
-				String message = OCLMessages.bind(
-					OCLMessages.IllegalSignature_ERROR_, errMessage);
-				ERROR(operationCallExpCS, "operationCallExpCS", message); //$NON-NLS-1$
-			}
-
-			if (implicitSource != null) {
-				vexp.setType(implicitSource.getType());
-				vexp.setReferredVariable(implicitSource);
-			} else {
-				vexp.setType(getOclVoid());
-			}
-
-			source = vexp;
+		OCLExpression<C> source = oclExpressionCS(operationCallExpCS.getSource(), env);
+		List<OCLExpression<C>> args = argumentsCS(operationCallExpCS, env);
+		if (source == null) { 						// create an implicit source
+			source = createImplicitSource(operationCallExpCS, env, args);
 		}
 
 		/*
@@ -4134,7 +4035,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		// if the sourceType is a TypeType then this must be a static operation
 		boolean isStatic = operationSourceType instanceof TypeType<?, ?>;
 
-		astNode = genOperationCallExp(env, operationCallExpCS,
+		OperationCallExp<C, O> astNode = genOperationCallExp(env, operationCallExpCS,
 			"operationCallExpCS", operationName,//$NON-NLS-1$
 			source, operationSourceType, args);
 		if (isStatic) {
@@ -4171,6 +4072,214 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 
 		return result;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	protected OCLExpression<C> createImplicitSource(OperationCallExpCS operationCallExpCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
+			List<OCLExpression<C>> args) {
+
+		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
+		Variable<C, PM> implicitSource = lookupImplicitSourceForOperation(
+			operationCallExpCS, env, args, operationName);
+		VariableExp<C, PM> vexp = createVariableExp(env, operationCallExpCS, implicitSource);
+
+		if (implicitSource == null) {
+			String errMessage = operationName + "(";//$NON-NLS-1$
+			for (int i = 0; i < args.size(); i++) {
+				if (i > 0) {
+					errMessage += ", ";//$NON-NLS-1$
+				}
+				errMessage += uml.getName(args.get(i).getType());
+			}
+			errMessage += ")";//$NON-NLS-1$
+			String message = OCLMessages.bind(
+				OCLMessages.IllegalSignature_ERROR_, errMessage);
+			ERROR(operationCallExpCS, "operationCallExpCS", message); //$NON-NLS-1$
+		}
+
+		if (implicitSource != null) {
+			vexp.setType(implicitSource.getType());
+			vexp.setReferredVariable(implicitSource);
+		} else {
+			vexp.setType(getOclVoid());
+		}
+		return vexp;
+	}
+
+	/**
+	 * OperationCallExpCS for an ->
+	 * 
+	 * @param operationCallExpCS
+	 *            the <code>OperationCallExpCS</code> <code>CSTNode</code>
+	 * @param env
+	 *            the OCL environment
+	 * @return the parsed <code>OCLExpression</code>
+	 * @since 3.0
+	 */
+	protected OCLExpression<C> arrowOperationCallExpCS(
+			OperationCallExpCS operationCallExpCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+
+		OCLExpression<C> source = getCollectionSourceExpression(operationCallExpCS.getSource(), env);
+		List<OCLExpression<C>> args = argumentsCS(operationCallExpCS, env);
+		
+		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
+		C operationSourceType = source.getType();
+		OperationCallExp<C, O> astNode = genOperationCallExp(env, operationCallExpCS,
+			"operationCallExpCS", operationName,//$NON-NLS-1$
+			source, operationSourceType, args);
+
+		initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
+
+		if (isErrorNode(source)) {
+			// don't attempt to parse navigation from an unparseable source
+			markAsErrorNode(astNode);
+		}
+
+		return astNode;
+	}
+	/**
+	 * OperationCallExpCS for oclIsInState
+	 * 
+	 * @param operationCallExpCS
+	 *            the <code>OperationCallExpCS</code> <code>CSTNode</code>
+	 * @param env
+	 *            the OCL environment
+	 * @return the parsed <code>OCLExpression</code>
+	 * @since 3.0
+	 */
+	protected OCLExpression<C> oclIsInStateOperationCallExpCS(
+			OperationCallExpCS operationCallExpCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		if (operationCallExpCS.getArguments().size() != 1) {
+			String message = OCLMessages.bind(
+				OCLMessages.IsInStateSignature_ERROR_,
+				computeInputString(operationCallExpCS));
+			ERROR(operationCallExpCS, "operationCallExpCS", message);//$NON-NLS-1$
+		}
+
+		OCLExpression<C> source = oclExpressionCS(operationCallExpCS.getSource(), env);
+		List<OCLExpression<C>> args = new java.util.ArrayList<OCLExpression<C>>();
+		if (!operationCallExpCS.getArguments().isEmpty()) {
+			OCLExpressionCS arg = operationCallExpCS.getArguments().get(0);
+			if (arg instanceof VariableExpCS) {
+				VariableExpCS stateName = (VariableExpCS) arg;
+				EList<String> statePath = createSequenceOfNames(null, stateName.getSimpleNameCS());
+				args.add(stateExpCS(source, stateName, statePath, env));
+			} else if (arg instanceof EnumLiteralExpCS) {
+				EnumLiteralExpCS stateName = (EnumLiteralExpCS) arg;
+				EList<String> statePath = createSequenceOfNames(stateName.getPathNameCS(), stateName.getSimpleNameCS());
+				args.add(stateExpCS(source, stateName, statePath, env));
+			} else {
+				String message = OCLMessages.bind(
+					OCLMessages.IsInStateSignature_ERROR_,
+					computeInputString(operationCallExpCS));
+				ERROR(arg, "operationCallExpCS", message);//$NON-NLS-1$
+			}
+		}
+		if (source == null) { // create an implicit source
+			source = createImplicitSource(operationCallExpCS, env, args);
+		}
+		C operationSourceType = source.getType();
+		String operationName = operationCallExpCS.getSimpleNameCS().getValue();
+		OperationCallExp<C, O> astNode = genOperationCallExp(env, operationCallExpCS,
+			"operationCallExpCS", operationName,//$NON-NLS-1$
+			source, operationSourceType, args);
+		astNode.setMarkedPre(isAtPre(operationCallExpCS));
+		initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
+		if (isErrorNode(source)) {
+			// don't attempt to parse navigation from an unparseable source
+			markAsErrorNode(astNode);
+		}
+		return astNode;
+	}
+	
+	/**
+	 * @since 3.0
+	 */
+	protected OCLExpression<C> staticOperationCallExpCS(
+		OperationCallExpCS operationCallExpCS,
+		Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+
+	OCLExpression<C> source = null;
+//	OCLExpressionCS sourceCS = operationCallExpCS.getSource();
+	PathNameCS pathNameCS = operationCallExpCS.getPathNameCS();
+
+	EList<String> pathNames = createSequenceOfNames(pathNameCS, null);
+	C sourceType = lookupClassifier(pathNameCS, env, pathNames);
+	if (sourceType == null) {
+		String message = OCLMessages.bind(
+			OCLMessages.UnrecognizedType_ERROR_, pathNames);
+		ERROR(operationCallExpCS, "operatonCallExpCS", message);//$NON-NLS-1$
+	} else {
+		source = typeCS(pathNameCS, env, sourceType);
+	}
+
+	String operationName = operationCallExpCS.getSimpleNameCS().getValue();
+
+	List<OCLExpression<C>> args = argumentsCS(operationCallExpCS, env);
+
+	/*
+	 * If the source type is a collection and operator is ".", then there is
+	 * an implicit COLLECT operator.
+	 */
+	C operationSourceType = source.getType();
+
+	// if the sourceType is a TypeType then this must be a static operation
+	boolean isStatic = operationSourceType instanceof TypeType<?, ?>;
+
+	OperationCallExp<C, O> astNode = genOperationCallExp(env, operationCallExpCS,
+		"operationCallExpCS", operationName,//$NON-NLS-1$
+		source, operationSourceType, args);
+	if (isStatic) {
+		@SuppressWarnings("unchecked")
+		TypeType<C, O> typeType = (TypeType<C, O>) operationSourceType;
+		O operation = astNode.getReferredOperation();
+
+		// operation must either be defined by the TypeType (e.g.,
+		// allInstances())
+		// or be a static operation of the referred classifier
+		if (!(typeType.oclOperations().contains(operation) || uml
+			.isStatic(operation))) {
+
+			String message = OCLMessages.bind(
+				OCLMessages.NonStaticOperation_ERROR_, operationName);
+			ERROR(astNode, "operationCallExpCS", message);//$NON-NLS-1$
+		}
+	}
+
+//	astNode.setMarkedPre(isAtPre(operationCallExpCS));
+
+	initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
+
+	OCLExpression<C> result = astNode;
+
+	if (isErrorNode(source)) {
+		// don't attempt to parse navigation from an unparseable source
+		markAsErrorNode(result);
+	}
+
+	return result;
+}
+
+	/**
+	 * @since 3.0
+	 */
+	protected List<OCLExpression<C>> argumentsCS(OperationCallExpCS operationCallExpCS,
+			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+		List<OCLExpression<C>> args = new java.util.ArrayList<OCLExpression<C>>();
+		for (OCLExpressionCS arg : operationCallExpCS.getArguments()) {
+			OCLExpression<C> argExpr = oclExpressionCS(arg, env);
+			if (argExpr == null) {
+				argExpr = createDummyInvalidLiteralExp(env, arg);
+				initASTMapping(env, argExpr, arg);
+			}
+			args.add(argExpr);
+		}
+		return args;
 	}
 
 	private void checkForXorOrAndPrecedenceHazard(OperationCallExpCS operationCallExpCS) {
@@ -4849,10 +4958,26 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * @since 3.0
 	 */
+	@Deprecated  // Temporary compatibility with 3.0.0M1
 	public static EList<String> createSequenceOfNames(List<SimpleNameCS> simpleNames) {
 		EList<String> sequenceOfNames = new BasicEList<String>();
 		for (SimpleNameCS simpleName : simpleNames)
 			sequenceOfNames.add(simpleName.getValue());
+		return sequenceOfNames;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public static EList<String> createSequenceOfNames(PathNameCS pathNameCS, SimpleNameCS simpleNameCS) {
+		EList<String> sequenceOfNames = new BasicEList<String>();
+		if (pathNameCS != null) {
+			for (SimpleNameCS simpleName : pathNameCS.getSimpleNames())
+				sequenceOfNames.add(simpleName.getValue());
+		}
+		if (simpleNameCS != null) {
+			sequenceOfNames.add(simpleNameCS.getValue());
+		}
 		return sequenceOfNames;
 	}
 
