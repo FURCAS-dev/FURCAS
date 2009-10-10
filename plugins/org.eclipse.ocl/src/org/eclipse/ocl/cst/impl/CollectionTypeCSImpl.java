@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.4 2009/10/10 07:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -42,7 +42,7 @@ import org.eclipse.ocl.cst.TypeCS;
  * @generated
  */
 public class CollectionTypeCSImpl
-		extends TypeCSImpl
+		extends SimpleNameCSImpl
 		implements CollectionTypeCS {
 
 	/**

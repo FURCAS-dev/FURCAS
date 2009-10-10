@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: BooleanLiteralExpCS.java,v 1.4 2009/10/10 07:10:08 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -36,7 +36,7 @@ package org.eclipse.ocl.cst;
  * @noextend This interface is not intended to be extended by clients.
  */
 public interface BooleanLiteralExpCS
-		extends PrimitiveLiteralExpCS {
+		extends SimpleNameCS, PrimitiveLiteralExpCS {
 
 	/**
 	 * Returns the value of the '<em><b>Boolean Symbol</b></em>' attribute.
