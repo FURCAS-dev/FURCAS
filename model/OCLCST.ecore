@@ -163,7 +163,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" lowerBound="1"
           upperBound="-1" eType="#//cst/VariableCS" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeCS" eSuperTypes="#//cst/TypeCS">
+    <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeCS" eSuperTypes="#//cst/SimpleNameCS #//cst/TypeCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="collectionTypeIdentifier"
           eType="#//cst/CollectionTypeIdentifierEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="typeCS" eType="#//cst/TypeCS"
@@ -257,15 +257,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unescapedStringSymbol"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//cst/PrimitiveLiteralExpCS">
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExpCS" eSuperTypes="#//cst/SimpleNameCS #//cst/PrimitiveLiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExpCS" eSuperTypes="#//cst/SimpleNameCS #//cst/LiteralExpCS"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExpCS" eSuperTypes="#//cst/SimpleNameCS #//cst/LiteralExpCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionRangeCS" eSuperTypes="#//cst/CollectionLiteralPartCS">
       <eStructuralFeatures xsi:type="ecore:EReference" name="lastExpressionCS" eType="#//cst/OCLExpressionCS"
           containment="true">
@@ -303,12 +299,10 @@
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpCS" eSuperTypes="#//cst/FeatureCallExpCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAtomic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
           defaultValueLiteral="false"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StateExpCS" eSuperTypes="#//cst/TypeCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNames" upperBound="-1"
-          eType="#//cst/SimpleNameCS" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLDocumentCS" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="packageDeclarations"
