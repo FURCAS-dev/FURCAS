@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
+-- * $Id: OCLLexer.g,v 1.5 2009/10/10 11:47:01 ewillink Exp $
 -- */
 --
 -- The OCL Lexer
@@ -65,7 +65,7 @@ $Notice
  $copyright_contributions
  * </copyright>
  *
- * $Id: OCLLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
+ * $Id: OCLLexer.g,v 1.5 2009/10/10 11:47:01 ewillink Exp $
  */
 	./
 $End
@@ -87,8 +87,6 @@ $Export
 	STRING_LITERAL
 	INTEGER_LITERAL
 	REAL_LITERAL
-	NUMERIC_OPERATION
-	INTEGER_RANGE_START
 	
 	PLUS
 	MINUS
@@ -237,26 +235,20 @@ $Rules
 		./
 
 	Token ::= IntegerLiteral
-		/.$BeginAction
-					makeToken($_INTEGER_LITERAL);
-		  $EndAction
+		/.$NoAction
+		./
+		
+	Token ::= IntegerLiteral DotToken
+		/.$NoAction
+		./
+
+	Token ::= IntegerLiteral DotDotToken
+		/.$NoAction
 		./
 
 	Token ::= RealLiteral
 		/.$BeginAction
 					makeToken($_REAL_LITERAL);
-		  $EndAction
-		./
-
-	Token ::= NumericOperation
-		/.$BeginAction
-					makeToken($_NUMERIC_OPERATION);
-		  $EndAction
-		./
-
-	Token ::= IntegerRangeStart
-		/.$BeginAction
-					makeToken($_INTEGER_RANGE_START);
 		  $EndAction
 		./
 
@@ -410,13 +402,21 @@ $Rules
 		  $EndAction
 		./
 
-	Token ::= '.'
+	Token ::= DotToken
+		/.$NoAction
+		./
+
+	DotToken ::= '.'
 		/.$BeginAction
 					makeToken($_DOT);
 		  $EndAction
 		./
 
-	Token ::= '.' '.'
+	Token ::= DotDotToken
+		/.$NoAction
+		./
+
+	DotDotToken ::= '.' '.'
 		/.$BeginAction
 					makeToken($_DOTDOT);
 		  $EndAction
@@ -448,8 +448,11 @@ $Rules
 		./
 
 
-    IntegerLiteral -> Integer
-    --                | '0' LetterXx HexDigits
+    IntegerLiteral ::= Integer
+		/.$BeginAction
+					makeToken($_INTEGER_LITERAL);
+		  $EndAction
+		./
 
     RealLiteral -> Decimal
                  | Decimal Exponent
@@ -468,9 +471,6 @@ $Rules
 
     Integer -> Digit
              | Integer Digit
-
-    HexDigits -> HexDigit
-               | HexDigits HexDigit
 
     Decimal -> Integer '.' Integer
 
@@ -497,22 +497,8 @@ $Rules
 
     Digit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
-    OctalDigit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
-
-    a..fA..F -> a | b | c | d | e | f | A | B | C | D | E | F
-
-    HexDigit -> Digit
-              | a..fA..F
-
-    OctalDigits3 -> OctalDigit
-                  | OctalDigit OctalDigit
-                  | OctalDigit OctalDigit OctalDigit
-
     LetterEe -> 'E'
               | 'e'
-
-    LetterXx -> 'X'
-              | 'x'
 
     WS -> WSChar
         | WS WSChar
@@ -567,8 +553,6 @@ $Rules
            | SpecialNotDQ
            | Space
            | EscapedDQ
-           --| '\' u HexDigit HexDigit HexDigit HexDigit
-           --| '\' OctalDigit
 
     NotSQ -> Letter
            | Digit
@@ -576,8 +560,6 @@ $Rules
            | Space
            | EscapedSQ
            | BackslashEscapedSymbol
-           --| '\' u HexDigit HexDigit HexDigit HexDigit
-           --| '\' OctalDigit
 
 	EscapedSQ -> SingleQuote SingleQuote
 
@@ -595,17 +577,5 @@ $Rules
 	            | SLNotSQ
 
 	QuotedName -> '"' SLNotDQ '"'
-
-	NumericOperation -> Integer '.' Identifier
-	NumericOperation -> Integer '.' '+'
-	NumericOperation -> Integer '.' '-'
-	NumericOperation -> Integer '.' '*'
-	NumericOperation -> Integer '.' '/'
-	NumericOperation -> Integer '.' '<'
-	NumericOperation -> Integer '.' '<' '='
-	NumericOperation -> Integer '.' '>' '='
-	NumericOperation -> Integer '.' '>'
-
-	IntegerRangeStart -> Integer '.' '.'
 
 $End

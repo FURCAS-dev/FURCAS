@@ -14,7 +14,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingLexer.java,v 1.6 2009/10/02 20:56:08 ewillink Exp $
+* $Id: OCLBacktrackingLexer.java,v 1.7 2009/10/10 11:47:46 ewillink Exp $
 */
 
 package org.eclipse.ocl.parser.backtracking;
@@ -348,32 +348,26 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             //
             // Rule 6:  Token ::= IntegerLiteral
             //
-            case 6: { 
-				makeToken(TK_INTEGER_LITERAL);
-	            break;
-            }
+            case 6:
+                break; 
 	 
             //
-            // Rule 7:  Token ::= RealLiteral
+            // Rule 7:  Token ::= IntegerLiteral DotToken
             //
-            case 7: { 
-				makeToken(TK_REAL_LITERAL);
-	            break;
-            }
+            case 7:
+                break; 
 	 
             //
-            // Rule 8:  Token ::= NumericOperation
+            // Rule 8:  Token ::= IntegerLiteral DotDotToken
             //
-            case 8: { 
-				makeToken(TK_NUMERIC_OPERATION);
-	            break;
-            }
+            case 8:
+                break; 
 	 
             //
-            // Rule 9:  Token ::= IntegerRangeStart
+            // Rule 9:  Token ::= RealLiteral
             //
             case 9: { 
-				makeToken(TK_INTEGER_RANGE_START);
+				makeToken(TK_REAL_LITERAL);
 	            break;
             }
 	 
@@ -578,50 +572,70 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             }
 	 
             //
-            // Rule 35:  Token ::= .
+            // Rule 35:  Token ::= DotToken
             //
-            case 35: { 
+            case 35:
+                break; 
+	 
+            //
+            // Rule 36:  DotToken ::= .
+            //
+            case 36: { 
 				makeToken(TK_DOT);
 	            break;
             }
 	 
             //
-            // Rule 36:  Token ::= . .
+            // Rule 37:  Token ::= DotDotToken
             //
-            case 36: { 
+            case 37:
+                break; 
+	 
+            //
+            // Rule 38:  DotDotToken ::= . .
+            //
+            case 38: { 
 				makeToken(TK_DOTDOT);
 	            break;
             }
 	 
             //
-            // Rule 37:  Token ::= @ p r e
+            // Rule 39:  Token ::= @ p r e
             //
-            case 37: { 
+            case 39: { 
 				makeToken(TK_ATPRE);
 	            break;
             }
 	 
             //
-            // Rule 38:  Token ::= ^
+            // Rule 40:  Token ::= ^
             //
-            case 38: { 
+            case 40: { 
 				makeToken(TK_CARET);
 	            break;
             }
 	 
             //
-            // Rule 39:  Token ::= ^ ^
+            // Rule 41:  Token ::= ^ ^
             //
-            case 39: { 
+            case 41: { 
 				makeToken(TK_CARETCARET);
 	            break;
             }
 	 
             //
-            // Rule 40:  Token ::= ?
+            // Rule 42:  Token ::= ?
             //
-            case 40: { 
+            case 42: { 
 				makeToken(TK_QUESTIONMARK);
+	            break;
+            }
+	 
+            //
+            // Rule 43:  IntegerLiteral ::= Integer
+            //
+            case 43: { 
+				makeToken(TK_INTEGER_LITERAL);
 	            break;
             }
 	
