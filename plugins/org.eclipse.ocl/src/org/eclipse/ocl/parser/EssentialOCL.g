@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.g,v 1.13 2009/10/10 07:01:14 ewillink Exp $
+-- * $Id: EssentialOCL.g,v 1.14 2009/10/10 11:47:00 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -198,7 +198,7 @@ $Notice
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.g,v 1.13 2009/10/10 07:01:14 ewillink Exp $
+ * $Id: EssentialOCL.g,v 1.14 2009/10/10 11:47:00 ewillink Exp $
  */
 	./
 $End
@@ -210,7 +210,6 @@ $Globals
 	import org.eclipse.ocl.cst.CallExpCS;
 	import org.eclipse.ocl.cst.CollectionTypeCS;
 	import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
-	import org.eclipse.ocl.cst.IntegerLiteralExpCS;
 	import org.eclipse.ocl.cst.IsMarkedPreCS;
 	import org.eclipse.ocl.cst.MessageExpCS;
 	import org.eclipse.ocl.cst.OCLExpressionCS;
@@ -319,8 +318,6 @@ $End
 
 $Terminals
 	
-	NUMERIC_OPERATION
-
 	STRING_LITERAL
 	INTEGER_LITERAL
 	REAL_LITERAL
@@ -667,48 +664,6 @@ $Rules
 	dotArrowExpCS -> oclExpCS
 	dotArrowExpCS -> callExpCS
 	dotArrowExpCS -> oclMessageExpCS
-	dotArrowExpCS ::= NUMERIC_OPERATION '(' argumentsCSopt ')'
-		/.$BeginJava
-					// NUMERIC_OPERATION -> Integer '.' Identifier
-					String text = getTokenText(dtParser.getToken(1));
-					int index = text.indexOf('.');
-					String integer = text.substring(0, index);
-					String simpleName = text.substring(index + 1);
-
-					// create the IntegerLiteralExpCS
-					IToken numericToken = getIToken($getToken(1));
-					int startOffset = numericToken.getStartOffset();
-					int endOffset = startOffset + integer.length() - 1; // inclusive
-
-					IntegerLiteralExpCS integerLiteralExpCS = createIntegerLiteralExpCS(integer);
-					integerLiteralExpCS.setStartOffset(startOffset);
-					integerLiteralExpCS.setEndOffset(endOffset);
-					integerLiteralExpCS.setStartToken(numericToken);
-					integerLiteralExpCS.setEndToken(numericToken);
-
-					startOffset = endOffset + 2; // end of integerLiteral + 1('.') + 1(start of simpleName)
-					endOffset = getIToken($getToken(1)).getEndOffset();
-
-					// create the SimpleNameCS
-					SimpleNameCS simpleNameCS = createSimpleNameCS(
-								SimpleTypeEnum.IDENTIFIER_LITERAL,
-								simpleName
-							);
-					simpleNameCS.setStartOffset(startOffset);
-					simpleNameCS.setEndOffset(endOffset);
-					simpleNameCS.setStartToken(numericToken);
-					simpleNameCS.setEndToken(numericToken);
-
-					// create the OperationCallExpCS
-					CSTNode result = createOperationCallExpCS(
-							integerLiteralExpCS,
-							simpleNameCS,
-							(EList)$getSym(3)
-						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-					$setResult(result);
-		  $EndJava
-		./
 
 	oclExpCS -> ifExpCS
 	oclExpCS -> associationClassCallExpCS
@@ -1007,30 +962,6 @@ $Rules
 		  $EndJava
 		./
 
-	collectionRangeCS ::= '-' INTEGER_RANGE_START oclExpressionCS
-		/.$BeginJava
-					OCLExpressionCS rangeStart = createRangeStart(
-							getTokenText($getToken(2)), true);
-					CSTNode result = createCollectionRangeCS(
-							rangeStart,
-							(OCLExpressionCS)$getSym(3)
-						);
-					setOffsets(result, rangeStart, (CSTNode)$getSym(3));
-					$setResult(result);
-		  $EndJava
-		./
-	collectionRangeCS ::= INTEGER_RANGE_START oclExpressionCS
-		/.$BeginJava
-					OCLExpressionCS rangeStart = createRangeStart(
-							getTokenText($getToken(1)), false);
-					CSTNode result = createCollectionRangeCS(
-							rangeStart,
-							(OCLExpressionCS)$getSym(2)
-						);
-					setOffsets(result, rangeStart, (CSTNode)$getSym(2));
-					$setResult(result);
-		  $EndJava
-		./
 	collectionRangeCS ::= oclExpressionCS '..' oclExpressionCS
 		/.$BeginJava
 					CSTNode result = createCollectionRangeCS(
