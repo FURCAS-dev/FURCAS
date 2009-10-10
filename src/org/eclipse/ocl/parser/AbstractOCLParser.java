@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.8 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.9 2009/10/10 07:04:07 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.cst.ContextDeclCS;
 import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
+import org.eclipse.ocl.cst.DotOrArrowEnum;
 import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
@@ -71,7 +72,6 @@ import org.eclipse.ocl.cst.PropertyContextCS;
 import org.eclipse.ocl.cst.RealLiteralExpCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.cst.SimpleTypeEnum;
-import org.eclipse.ocl.cst.StateExpCS;
 import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TupleLiteralExpCS;
 import org.eclipse.ocl.cst.TupleTypeCS;
@@ -274,12 +274,17 @@ public abstract class AbstractOCLParser
 			SimpleTypeEnum.IDENTIFIER_LITERAL, simpleName), list, typeCS);
 	}
 
-	protected OperationCallExpCS createOperationCallExpCS(
-			OCLExpressionCS oclExpressionCS, SimpleNameCS simpleNameCS,
+	/**
+	 * @since 3.0
+	 */
+	private OperationCallExpCS createOperationCallExpCS(
+			OCLExpressionCS oclExpressionCS, DotOrArrowEnum dotOrArrow, PathNameCS pathNameCS, SimpleNameCS simpleNameCS,
 			IsMarkedPreCS isMarkedPreCS, EList<OCLExpressionCS> arguments) {
 		OperationCallExpCS result = CSTFactory.eINSTANCE
 			.createOperationCallExpCS();
 		result.setSource(oclExpressionCS);
+		result.setAccessor(dotOrArrow);
+		result.setPathNameCS(pathNameCS);
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
 
@@ -305,38 +310,37 @@ public abstract class AbstractOCLParser
 		return atPreCS != null;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected OperationCallExpCS createOperationCallExpCS(
 			OCLExpressionCS oclExpressionCS, SimpleNameCS simpleNameCS,
 			EList<OCLExpressionCS> arguments) {
-		return createOperationCallExpCS(oclExpressionCS, simpleNameCS,
+		return createOperationCallExpCS(oclExpressionCS, null, null, simpleNameCS,
 			null, arguments);
 	}
 
-	protected OperationCallExpCS createOperationCallExpCS(
-			SimpleNameCS simpleNameCS, IsMarkedPreCS isMarkedPreCS,
+	/**
+	 * @since 3.0
+	 */
+	protected OperationCallExpCS createArrowOperationCallExpCS(
+			OCLExpressionCS oclExpressionCS, SimpleNameCS simpleNameCS, IsMarkedPreCS isMarkedPreCS,
 			EList<OCLExpressionCS> arguments) {
-		return createOperationCallExpCS(null, simpleNameCS, isMarkedPreCS,
+		return createOperationCallExpCS(oclExpressionCS, DotOrArrowEnum.ARROW_LITERAL, null, simpleNameCS, isMarkedPreCS,
 			arguments);
 	}
 
-	protected OperationCallExpCS createOperationCallExpCS(
-			SimpleNameCS simpleNameCS, IsMarkedPreCS isMarkedPreCS,
-			StateExpCS stateExpCS) {
-		OperationCallExpCS result = CSTFactory.eINSTANCE
-			.createOperationCallExpCS();
-		result.setSimpleNameCS(simpleNameCS);
-		result.getArguments().add(stateExpCS);
-
-		if (isAtPre(isMarkedPreCS)) {
-			result.setIsMarkedPreCS(isMarkedPreCS);
+	/**
+	 * @since 3.0
+	 */
+	protected OperationCallExpCS createDotOperationCallExpCS(
+			OCLExpressionCS oclExpressionCS, PathNameCS pathNameCS, SimpleNameCS simpleNameCS, IsMarkedPreCS isMarkedPreCS,
+			EList<OCLExpressionCS> arguments) {
+		OperationCallExpCS result = createOperationCallExpCS(oclExpressionCS, DotOrArrowEnum.DOT_LITERAL, pathNameCS, simpleNameCS,
+			isMarkedPreCS, arguments);
+		if (oclExpressionCS != null) {
+			result.setIsAtomic(true);
 		}
-
-		return result;
-	}
-
-	protected StateExpCS createStateExpCS(PathNameCS pathName) {
-		StateExpCS result = CSTFactory.eINSTANCE.createStateExpCS();
-		result.getSimpleNames().addAll(pathName.getSimpleNames());
 		return result;
 	}
 
@@ -364,7 +368,7 @@ public abstract class AbstractOCLParser
 			String value) {
 		PrimitiveTypeCS result = CSTFactory.eINSTANCE.createPrimitiveTypeCS();
 		result.setType(type);
-		result.setValue(value);
+		result.setValue(unquote(value));
 		return result;
 	}
 
@@ -385,10 +389,47 @@ public abstract class AbstractOCLParser
 		return path;
 	}
 
+	/**
+	 * @since 3.0
+	 */
+	protected SimpleNameCS removeLastSimpleNameCS(PathNameCS path) {
+		EList<SimpleNameCS> simpleNames = path.getSimpleNames();
+		SimpleNameCS name = simpleNames.remove(simpleNames.size()-1);
+		setOffsets(path, path, simpleNames.get(simpleNames.size()-1));
+		return name;
+	}
+
 	protected PathNameCS createPathNameCS() {
 		return CSTFactory.eINSTANCE.createPathNameCS();
 	}
 
+	/**
+	 * @since 3.0
+	 */
+	protected PathNameCS createPathNamePrefixCS(PathNameCS pathNameCS) {
+		EList<SimpleNameCS> simpleNames = pathNameCS.getSimpleNames();
+		int size = simpleNames.size();
+		PathNameCS prefixPathNameCS = CSTFactory.eINSTANCE.createPathNameCS();
+		if (size > 1) {
+			for (int i = 0; i < size-1; i++) {
+				extendPathNameCS(prefixPathNameCS, simpleNames.get(i));
+			}
+			setOffsets(prefixPathNameCS, prefixPathNameCS.getSimpleNames().get(0), prefixPathNameCS.getSimpleNames().get(size-2));
+		}
+		return prefixPathNameCS;
+	}
+	/**
+	 * @since 3.0
+	 */
+	protected SimpleNameCS getPathNameSuffixCS(PathNameCS pathNameCS) {
+		EList<SimpleNameCS> simpleNames = pathNameCS.getSimpleNames();
+		int size = simpleNames.size();
+		return size > 0 ? simpleNames.get(size-1) : null;
+	}
+
+	/**
+	 * @since 3.0
+	 */
 	protected EnumLiteralExpCS createEnumLiteralExpCS(PathNameCS pathNameCS,
 			SimpleNameCS simpleNameCS) {
 		EnumLiteralExpCS result = CSTFactory.eINSTANCE.createEnumLiteralExpCS();
@@ -398,22 +439,14 @@ public abstract class AbstractOCLParser
 	}
 
 	/**
-	 * @deprecated Use {@link #createEnumLiteralExpCS(PathNameCS, SimpleNameCS)}
-	 *             , instead.
+	 * @since 3.0
 	 */
-	@Deprecated
-	protected EnumLiteralExpCS createEnumLiteralExpCS(PathNameCS pathNameCS,
-			String simpleName) {
-		return createEnumLiteralExpCS(pathNameCS, createSimpleNameCS(
-			SimpleTypeEnum.IDENTIFIER_LITERAL, simpleName));
-	}
-
 	protected CollectionLiteralExpCS createCollectionLiteralExpCS(
-			CollectionTypeIdentifierEnum type,
+			CollectionTypeCS typeCS,
 			EList<CollectionLiteralPartCS> collectionLiteralParts) {
 		CollectionLiteralExpCS result = CSTFactory.eINSTANCE
 			.createCollectionLiteralExpCS();
-		result.setCollectionType(type);
+		result.setCollectionType(typeCS.getCollectionTypeIdentifier());
 		result.getCollectionLiteralParts().addAll(collectionLiteralParts);
 		return result;
 	}
@@ -500,6 +533,8 @@ public abstract class AbstractOCLParser
 	protected BooleanLiteralExpCS createBooleanLiteralExpCS(String string) {
 		BooleanLiteralExpCS result = CSTFactory.eINSTANCE
 			.createBooleanLiteralExpCS();
+		result.setValue(string);
+		result.setType(SimpleTypeEnum.KEYWORD_LITERAL);
 		result.setSymbol(string);
 		result.setBooleanSymbol(Boolean.valueOf(string));
 		return result;
@@ -507,21 +542,29 @@ public abstract class AbstractOCLParser
 
 	protected NullLiteralExpCS createNullLiteralExpCS(String string) {
 		NullLiteralExpCS result = CSTFactory.eINSTANCE.createNullLiteralExpCS();
-		result.setSymbol(string);
+		result.setValue(string);
+		result.setType(SimpleTypeEnum.KEYWORD_LITERAL);
 		return result;
 	}
 
 	protected InvalidLiteralExpCS createInvalidLiteralExpCS(String string) {
 		InvalidLiteralExpCS result = CSTFactory.eINSTANCE
 			.createInvalidLiteralExpCS();
-		result.setSymbol(string);
+		result.setValue(string);
+		result.setType(SimpleTypeEnum.KEYWORD_LITERAL);
 		return result;
 	}
 
-	protected IteratorExpCS createIteratorExpCS(SimpleNameCS simpleNameCS,
+	/**
+	 * @since 3.0
+	 */
+	protected IteratorExpCS createIteratorExpCS(
+			OCLExpressionCS source, SimpleNameCS simpleNameCS,
 			VariableCS variable1, VariableCS variable2,
 			OCLExpressionCS oclExpressionCS) {
 		IteratorExpCS result = CSTFactory.eINSTANCE.createIteratorExpCS();
+		result.setSource(source);
+		result.setAccessor(DotOrArrowEnum.ARROW_LITERAL);
 		result.setSimpleNameCS(simpleNameCS);
 		result.setVariable1(variable1);
 		result.setVariable2(variable2);
@@ -529,10 +572,16 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected IterateExpCS createIterateExpCS(SimpleNameCS simpleNameCS,
+	/**
+	 * @since 3.0
+	 */
+	protected IterateExpCS createIterateExpCS(
+			OCLExpressionCS source, SimpleNameCS simpleNameCS,
 			VariableCS variable1, VariableCS variable2,
 			OCLExpressionCS oclExpressionCS) {
 		IterateExpCS result = CSTFactory.eINSTANCE.createIterateExpCS();
+		result.setSource(source);
+		result.setAccessor(DotOrArrowEnum.ARROW_LITERAL);
 		result.setSimpleNameCS(simpleNameCS);
 		result.setVariable1(variable1);
 		result.setVariable2(variable2);
@@ -540,20 +589,24 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected VariableCS createVariableCS(String varName, TypeCS typeCS,
-			OCLExpressionCS oclExpressionCS) {
+	/**
+	 * @since 3.0
+	 */
+	protected VariableCS createVariableCS(String varName) {
 		VariableCS result = CSTFactory.eINSTANCE.createVariableCS();
 		result.setName(unquote(varName));
-		result.setTypeCS(typeCS);
-		result.setInitExpression(oclExpressionCS);
 		return result;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected CollectionTypeCS createCollectionTypeCS(
-			CollectionTypeIdentifierEnum collectionType, TypeCS typeCS) {
+			CollectionTypeIdentifierEnum collectionType, String value) {
 		CollectionTypeCS result = CSTFactory.eINSTANCE.createCollectionTypeCS();
+		result.setType(SimpleTypeEnum.IDENTIFIER_LITERAL);
+		result.setValue(unquote(value));
 		result.setCollectionTypeIdentifier(collectionType);
-		result.setTypeCS(typeCS);
 		return result;
 	}
 
@@ -563,10 +616,15 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	protected FeatureCallExpCS createFeatureCallExpCS(
-			SimpleNameCS simpleNameCS, EList<OCLExpressionCS> arguments,
+			OCLExpressionCS source, SimpleNameCS simpleNameCS, EList<OCLExpressionCS> arguments,
 			IsMarkedPreCS isMarkedPreCS) {
 		FeatureCallExpCS result = CSTFactory.eINSTANCE.createFeatureCallExpCS();
+		result.setSource(source);
+		result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
 
@@ -602,9 +660,13 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected MessageExpCS createMessageExpCS(boolean hasSent,
+	/**
+	 * @since 3.0
+	 */
+	protected MessageExpCS createMessageExpCS(OCLExpressionCS target, boolean hasSent,
 			SimpleNameCS simpleNameCS, EList<OCLMessageArgCS> oclMessageArgs) {
 		MessageExpCS result = CSTFactory.eINSTANCE.createMessageExpCS();
+		result.setTarget(target);
 		result.setKind(hasSent
 			? MessageExpKind.HAS_SENT_LITERAL
 			: MessageExpKind.SENT_LITERAL);

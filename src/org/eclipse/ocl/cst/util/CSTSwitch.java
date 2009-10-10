@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.6 2009/09/04 13:40:44 ewillink Exp $
+ * $Id: CSTSwitch.java,v 1.7 2009/10/10 07:08:50 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -21,8 +21,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-//import org.eclipse.ocl.cst.*;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.CSTPackage;
@@ -67,7 +65,6 @@ import org.eclipse.ocl.cst.PrimitiveTypeCS;
 import org.eclipse.ocl.cst.PropertyContextCS;
 import org.eclipse.ocl.cst.RealLiteralExpCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
-import org.eclipse.ocl.cst.StateExpCS;
 import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TupleLiteralExpCS;
 import org.eclipse.ocl.cst.TupleTypeCS;
@@ -401,6 +398,8 @@ public class CSTSwitch<T> {
 				CollectionTypeCS collectionTypeCS = (CollectionTypeCS) theEObject;
 				T result = caseCollectionTypeCS(collectionTypeCS);
 				if (result == null)
+					result = caseSimpleNameCS(collectionTypeCS);
+				if (result == null)
 					result = caseTypeCS(collectionTypeCS);
 				if (result == null)
 					result = caseOCLExpressionCS(collectionTypeCS);
@@ -588,6 +587,8 @@ public class CSTSwitch<T> {
 				BooleanLiteralExpCS booleanLiteralExpCS = (BooleanLiteralExpCS) theEObject;
 				T result = caseBooleanLiteralExpCS(booleanLiteralExpCS);
 				if (result == null)
+					result = caseSimpleNameCS(booleanLiteralExpCS);
+				if (result == null)
 					result = casePrimitiveLiteralExpCS(booleanLiteralExpCS);
 				if (result == null)
 					result = caseLiteralExpCS(booleanLiteralExpCS);
@@ -603,6 +604,8 @@ public class CSTSwitch<T> {
 				NullLiteralExpCS nullLiteralExpCS = (NullLiteralExpCS) theEObject;
 				T result = caseNullLiteralExpCS(nullLiteralExpCS);
 				if (result == null)
+					result = caseSimpleNameCS(nullLiteralExpCS);
+				if (result == null)
 					result = caseLiteralExpCS(nullLiteralExpCS);
 				if (result == null)
 					result = caseOCLExpressionCS(nullLiteralExpCS);
@@ -615,6 +618,8 @@ public class CSTSwitch<T> {
 			case CSTPackage.INVALID_LITERAL_EXP_CS : {
 				InvalidLiteralExpCS invalidLiteralExpCS = (InvalidLiteralExpCS) theEObject;
 				T result = caseInvalidLiteralExpCS(invalidLiteralExpCS);
+				if (result == null)
+					result = caseSimpleNameCS(invalidLiteralExpCS);
 				if (result == null)
 					result = caseLiteralExpCS(invalidLiteralExpCS);
 				if (result == null)
@@ -714,19 +719,6 @@ public class CSTSwitch<T> {
 					result = caseOCLExpressionCS(operationCallExpCS);
 				if (result == null)
 					result = caseCSTNode(operationCallExpCS);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case CSTPackage.STATE_EXP_CS : {
-				StateExpCS stateExpCS = (StateExpCS) theEObject;
-				T result = caseStateExpCS(stateExpCS);
-				if (result == null)
-					result = caseTypeCS(stateExpCS);
-				if (result == null)
-					result = caseOCLExpressionCS(stateExpCS);
-				if (result == null)
-					result = caseCSTNode(stateExpCS);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -1448,21 +1440,6 @@ public class CSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseIsMarkedPreCS(IsMarkedPreCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateExpCS(StateExpCS object) {
 		return null;
 	}
 

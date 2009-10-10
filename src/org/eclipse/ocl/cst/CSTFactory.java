@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactory.java,v 1.4 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: CSTFactory.java,v 1.5 2009/10/10 07:10:08 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -417,15 +417,6 @@ public interface CSTFactory
 	 * @generated
 	 */
 	OperationCallExpCS createOperationCallExpCS();
-
-	/**
-	 * Returns a new object of class '<em>State Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Exp CS</em>'.
-	 * @generated
-	 */
-	StateExpCS createStateExpCS();
 
 	/**
 	 * Returns a new object of class '<em>OCL Document CS</em>'.

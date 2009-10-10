@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.7 2009/09/04 13:40:44 ewillink Exp $
+ * $Id: CSTAdapterFactory.java,v 1.8 2009/10/10 07:08:50 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -21,8 +21,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-
-//import org.eclipse.ocl.cst.*;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.CSTPackage;
@@ -67,7 +65,6 @@ import org.eclipse.ocl.cst.PrimitiveTypeCS;
 import org.eclipse.ocl.cst.PropertyContextCS;
 import org.eclipse.ocl.cst.RealLiteralExpCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
-import org.eclipse.ocl.cst.StateExpCS;
 import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TupleLiteralExpCS;
 import org.eclipse.ocl.cst.TupleTypeCS;
@@ -380,11 +377,6 @@ public class CSTAdapterFactory
 		@Override
 		public Adapter caseOperationCallExpCS(OperationCallExpCS object) {
 			return createOperationCallExpCSAdapter();
-		}
-
-		@Override
-		public Adapter caseStateExpCS(StateExpCS object) {
-			return createStateExpCSAdapter();
 		}
 
 		@Override
@@ -1010,20 +1002,6 @@ public class CSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createPropertyContextCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.cst.StateExpCS <em>State Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.cst.StateExpCS
-	 * @generated
-	 */
-	public Adapter createStateExpCSAdapter() {
 		return null;
 	}
 

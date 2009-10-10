@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.15 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.16 2009/10/10 07:09:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -825,7 +825,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	}
 	
 	/**
-	 * Gets the type of token at the specified index in the list of tokens
+	 * Gets the token at the specified index in the list of tokens
 	 * represented by the given text.  Token indices count from zero, with
 	 * negative indices counting backwards from the last token (-1 is the last,
 	 * -2 the next-to-last, etc.).
@@ -834,11 +834,11 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 * @param tokenIndex the token index to look at (negative indices count
 	 *    backwards from the end)
 	 *    
-	 * @return the token type at the index, or {@link OCLParsersym#TK_EOF_TOKEN}
+	 * @return the token at the index, or null
 	 *    if there is no token at the specified index
 	 */
-	private int tokenAt(String text, int tokenIndex) {
-		int result = OCLParsersym.TK_EOF_TOKEN;
+	private IToken tokenAt(String text, int tokenIndex) {
+		IToken result = null;
 		List<IToken> tokens = tokenize(text);
 		
 		if (tokenIndex < 0) {
@@ -846,7 +846,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 		
 		if ((tokenIndex >= 0) && (tokenIndex < tokens.size())) {
-			result = tokens.get(tokenIndex).getKind();
+			result = tokens.get(tokenIndex);
 		}
 		
 		return result;
@@ -963,7 +963,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 						if (iter.hasPrevious()) {
 							prev = iter.previous();
 							
-							if (prev.getKind() == OCLParsersym.TK_oclIsInState) {
+							if (isOclIsInState(prev)) {
 								syntaxHelpStringSuffix = OCL_IS_IN_STATE;
 								position = prev.getStartOffset();
 								break;
@@ -1000,7 +1000,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					result = getPathChoices(pathName);
 				}
 			} else if (txt.endsWith("(") // known BMP code point //$NON-NLS-1$
-					&& (tokenAt(txt, -2) == OCLParsersym.TK_oclIsInState)) {
+					&& isOclIsInState(tokenAt(txt, -2))) {
 
 				syntaxHelpStringSuffix = OCL_IS_IN_STATE;
 				
@@ -1075,6 +1075,14 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 		}
 		
 		return result;
+	}
+
+	protected boolean isOclIsInState(IToken token) {
+		if (token == null)
+			return false;
+		if (token.getKind() != OCLParsersym.TK_IDENTIFIER)
+			return false;
+		return PredefinedType.OCL_IS_IN_STATE_NAME.equals(token.toString());
 	}
 	
 	/**
