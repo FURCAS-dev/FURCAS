@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.10 2009/10/04 11:22:31 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.11 2009/10/10 07:10:08 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -2229,7 +2229,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__START_OFFSET = TYPE_CS__START_OFFSET;
+	int COLLECTION_TYPE_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
@@ -2239,7 +2239,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__END_OFFSET = TYPE_CS__END_OFFSET;
+	int COLLECTION_TYPE_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
@@ -2249,7 +2249,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__START_TOKEN = TYPE_CS__START_TOKEN;
+	int COLLECTION_TYPE_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
@@ -2259,7 +2259,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__END_TOKEN = TYPE_CS__END_TOKEN;
+	int COLLECTION_TYPE_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -2269,7 +2269,27 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__AST = TYPE_CS__AST;
+	int COLLECTION_TYPE_CS__AST = SIMPLE_NAME_CS__AST;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int COLLECTION_TYPE_CS__VALUE = SIMPLE_NAME_CS__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int COLLECTION_TYPE_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Collection Type Identifier</b></em>' attribute.
@@ -2279,7 +2299,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER = TYPE_CS_FEATURE_COUNT + 0;
+	int COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
@@ -2289,7 +2309,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS__TYPE_CS = TYPE_CS_FEATURE_COUNT + 1;
+	int COLLECTION_TYPE_CS__TYPE_CS = SIMPLE_NAME_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type CS</em>' class.
@@ -2299,7 +2319,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 2;
+	int COLLECTION_TYPE_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
@@ -3585,7 +3605,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
+	int BOOLEAN_LITERAL_EXP_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
@@ -3595,7 +3615,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
+	int BOOLEAN_LITERAL_EXP_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
@@ -3605,7 +3625,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
+	int BOOLEAN_LITERAL_EXP_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
@@ -3615,7 +3635,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
+	int BOOLEAN_LITERAL_EXP_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -3625,7 +3645,27 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
+	int BOOLEAN_LITERAL_EXP_CS__AST = SIMPLE_NAME_CS__AST;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__VALUE = SIMPLE_NAME_CS__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int BOOLEAN_LITERAL_EXP_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
@@ -3635,7 +3675,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
+	int BOOLEAN_LITERAL_EXP_CS__SYMBOL = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Boolean Symbol</b></em>' attribute.
@@ -3645,7 +3685,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
+	int BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL = SIMPLE_NAME_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp CS</em>' class.
@@ -3655,7 +3695,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
@@ -3676,7 +3716,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
+	int NULL_LITERAL_EXP_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
@@ -3686,7 +3726,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+	int NULL_LITERAL_EXP_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
@@ -3696,7 +3736,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+	int NULL_LITERAL_EXP_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
@@ -3706,7 +3746,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+	int NULL_LITERAL_EXP_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -3716,17 +3756,27 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
+	int NULL_LITERAL_EXP_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS__SYMBOL = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+	int NULL_LITERAL_EXP_CS__VALUE = SIMPLE_NAME_CS__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int NULL_LITERAL_EXP_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Null Literal Exp CS</em>' class.
@@ -3736,7 +3786,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InvalidLiteralExpCSImpl <em>Invalid Literal Exp CS</em>}' class.
@@ -3757,7 +3807,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
+	int INVALID_LITERAL_EXP_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
@@ -3767,7 +3817,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
+	int INVALID_LITERAL_EXP_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
@@ -3777,7 +3827,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
+	int INVALID_LITERAL_EXP_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
@@ -3787,7 +3837,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
+	int INVALID_LITERAL_EXP_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -3797,17 +3847,27 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
+	int INVALID_LITERAL_EXP_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS__SYMBOL = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+	int INVALID_LITERAL_EXP_CS__VALUE = SIMPLE_NAME_CS__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int INVALID_LITERAL_EXP_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp CS</em>' class.
@@ -3817,7 +3877,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int INVALID_LITERAL_EXP_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.CollectionRangeCSImpl <em>Collection Range CS</em>}' class.
@@ -4637,6 +4697,16 @@ public interface CSTPackage
 	int OPERATION_CALL_EXP_CS__IS_MARKED_PRE_CS = FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS;
 
 	/**
+	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OPERATION_CALL_EXP_CS__PATH_NAME_CS = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Is Atomic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4644,7 +4714,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_CS__IS_ATOMIC = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
+	int OPERATION_CALL_EXP_CS__IS_ATOMIC = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Operation Call Exp CS</em>' class.
@@ -4654,88 +4724,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.StateExpCSImpl <em>State Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.cst.impl.StateExpCSImpl
-	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getStateExpCS()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS = 49;
-
-	/**
-	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS__START_OFFSET = TYPE_CS__START_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS__END_OFFSET = TYPE_CS__END_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS__START_TOKEN = TYPE_CS__START_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>End Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS__END_TOKEN = TYPE_CS__END_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>Ast</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS__AST = TYPE_CS__AST;
-
-	/**
-	 * The feature id for the '<em><b>Simple Names</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS__SIMPLE_NAMES = TYPE_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>State Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int STATE_EXP_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.
@@ -4746,7 +4735,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OCL_DOCUMENT_CS = 50;
+	int OCL_DOCUMENT_CS = 49;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4827,7 +4816,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int SIMPLE_TYPE_ENUM = 51;
+	int SIMPLE_TYPE_ENUM = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.PrePostOrBodyEnum <em>Pre Post Or Body Enum</em>}' enum.
@@ -4838,7 +4827,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int PRE_POST_OR_BODY_ENUM = 52;
+	int PRE_POST_OR_BODY_ENUM = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.CollectionTypeIdentifierEnum <em>Collection Type Identifier Enum</em>}' enum.
@@ -4849,7 +4838,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_IDENTIFIER_ENUM = 53;
+	int COLLECTION_TYPE_IDENTIFIER_ENUM = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.MessageExpKind <em>Message Exp Kind</em>}' enum.
@@ -4860,7 +4849,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int MESSAGE_EXP_KIND = 54;
+	int MESSAGE_EXP_KIND = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.DotOrArrowEnum <em>Dot Or Arrow Enum</em>}' enum.
@@ -4871,7 +4860,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int DOT_OR_ARROW_ENUM = 55;
+	int DOT_OR_ARROW_ENUM = 54;
 
 	/**
 	 * The meta object id for the '<em>IToken</em>' data type.
@@ -4882,7 +4871,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int ITOKEN = 56;
+	int ITOKEN = 55;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.CSTNode <em>Node</em>}'.
@@ -6040,17 +6029,6 @@ public interface CSTPackage
 	EClass getNullLiteralExpCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.NullLiteralExpCS#getSymbol <em>Symbol</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see org.eclipse.ocl.cst.NullLiteralExpCS#getSymbol()
-	 * @see #getNullLiteralExpCS()
-	 * @generated
-	 */
-	EAttribute getNullLiteralExpCS_Symbol();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.InvalidLiteralExpCS <em>Invalid Literal Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6059,17 +6037,6 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EClass getInvalidLiteralExpCS();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.InvalidLiteralExpCS#getSymbol <em>Symbol</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see org.eclipse.ocl.cst.InvalidLiteralExpCS#getSymbol()
-	 * @see #getInvalidLiteralExpCS()
-	 * @generated
-	 */
-	EAttribute getInvalidLiteralExpCS_Symbol();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.CollectionRangeCS <em>Collection Range CS</em>}'.
@@ -6241,6 +6208,18 @@ public interface CSTPackage
 	EClass getOperationCallExpCS();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.OperationCallExpCS#getPathNameCS <em>Path Name CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Path Name CS</em>'.
+	 * @see org.eclipse.ocl.cst.OperationCallExpCS#getPathNameCS()
+	 * @see #getOperationCallExpCS()
+	 * @generated
+	 */
+	EReference getOperationCallExpCS_PathNameCS();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic <em>Is Atomic</em>}'.
 	 * <!-- begin-user-doc -->
 	 * @since 3.0
@@ -6251,28 +6230,6 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EAttribute getOperationCallExpCS_IsAtomic();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.StateExpCS <em>State Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>State Exp CS</em>'.
-	 * @see org.eclipse.ocl.cst.StateExpCS
-	 * @generated
-	 */
-	EClass getStateExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.StateExpCS#getSimpleNames <em>Simple Names</em>}'.
-	 * <!-- begin-user-doc -->
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Simple Names</em>'.
-	 * @see org.eclipse.ocl.cst.StateExpCS#getSimpleNames()
-	 * @see #getStateExpCS()
-	 * @generated
-	 */
-	EReference getStateExpCS_SimpleNames();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.OCLDocumentCS <em>OCL Document CS</em>}'.
@@ -7396,15 +7353,6 @@ public interface CSTPackage
 		EClass NULL_LITERAL_EXP_CS = eINSTANCE.getNullLiteralExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NULL_LITERAL_EXP_CS__SYMBOL = eINSTANCE
-			.getNullLiteralExpCS_Symbol();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.InvalidLiteralExpCSImpl <em>Invalid Literal Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7413,15 +7361,6 @@ public interface CSTPackage
 		 * @generated
 		 */
 		EClass INVALID_LITERAL_EXP_CS = eINSTANCE.getInvalidLiteralExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INVALID_LITERAL_EXP_CS__SYMBOL = eINSTANCE
-			.getInvalidLiteralExpCS_Symbol();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.CollectionRangeCSImpl <em>Collection Range CS</em>}' class.
@@ -7570,6 +7509,16 @@ public interface CSTPackage
 		EClass OPERATION_CALL_EXP_CS = eINSTANCE.getOperationCallExpCS();
 
 		/**
+		 * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CALL_EXP_CS__PATH_NAME_CS = eINSTANCE
+			.getOperationCallExpCS_PathNameCS();
+
+		/**
 		 * The meta object literal for the '<em><b>Is Atomic</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * @since 3.0
@@ -7578,26 +7527,6 @@ public interface CSTPackage
 		 */
 		EAttribute OPERATION_CALL_EXP_CS__IS_ATOMIC = eINSTANCE
 			.getOperationCallExpCS_IsAtomic();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.StateExpCSImpl <em>State Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.cst.impl.StateExpCSImpl
-		 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getStateExpCS()
-		 * @generated
-		 */
-		EClass STATE_EXP_CS = eINSTANCE.getStateExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Simple Names</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * @since 3.0
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STATE_EXP_CS__SIMPLE_NAMES = eINSTANCE
-			.getStateExpCS_SimpleNames();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.

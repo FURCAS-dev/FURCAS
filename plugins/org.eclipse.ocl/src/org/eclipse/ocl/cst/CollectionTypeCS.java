@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CollectionTypeCS.java,v 1.4 2009/10/10 07:10:08 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -37,7 +37,7 @@ package org.eclipse.ocl.cst;
  * @noextend This interface is not intended to be extended by clients.
  */
 public interface CollectionTypeCS
-		extends TypeCS {
+		extends SimpleNameCS, TypeCS {
 
 	/**
 	 * Returns the value of the '<em><b>Collection Type Identifier</b></em>' attribute.
