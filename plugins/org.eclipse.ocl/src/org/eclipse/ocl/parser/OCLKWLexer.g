@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
+-- * $Id: OCLKWLexer.g,v 1.5 2009/10/10 07:01:14 ewillink Exp $
 -- */
 --
 -- The OCL KeyWord Lexer
@@ -50,10 +50,11 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+ *   E.D.Willink - Bug 285633 static definitions
 $copyright_contributions
  * </copyright>
  *
- * $Id: OCLKWLexer.g,v 1.4 2009/10/02 20:55:33 ewillink Exp $
+ * $Id: OCLKWLexer.g,v 1.5 2009/10/10 07:01:14 ewillink Exp $
  */
 	./
 $End
@@ -101,14 +102,6 @@ $Export
 	null
 	invalid
 --  return  -- don't need a keyword for LPG purposes
-	
-	--
-	-- the following are not used in the OCL concrete syntax, but
-	-- are defined as reserved words in the OCL 2.0 Spec 7.4.9
-	-- and were removed in the OCL 2.1 RTF 09-05-02. 
-	--
-	attr
-	oper
 
 	--
 	-- the following were introduced in the OCL 2.1 RTF 09-05-02. 
@@ -143,15 +136,6 @@ $Export
 	-- the following is an MDT-OCL extension prototyping OMG Issue 13944. 
 	--
 	closure
-
-	oclIsKindOf
-	oclIsTypeOf
-	oclAsType
-	oclIsNew
-	oclIsUndefined
-	oclIsInvalid
-	oclIsInState
-	allInstances
 
 	String
 	Integer
@@ -429,54 +413,6 @@ $Rules
 			$setResult($_closure);
 		  $EndAction
 		./
-		
-		| o c l I s K i n d O f
-		/.$BeginAction
-			$setResult($_oclIsKindOf);
-		  $EndAction
-		./
-
-		| o c l I s T y p e O f
-		/.$BeginAction
-			$setResult($_oclIsTypeOf);
-		  $EndAction
-		./
-		
-		| o c l A s T y p e
-		/.$BeginAction
-			$setResult($_oclAsType);
-		  $EndAction
-		./
-		
-		| o c l I s N e w
-		/.$BeginAction
-			$setResult($_oclIsNew);
-		  $EndAction
-		./
-		
-		| o c l I s U n d e f i n e d
-		/.$BeginAction
-			$setResult($_oclIsUndefined);
-		  $EndAction
-		./
-		
-		| o c l I s I n v a l i d
-		/.$BeginAction
-			$setResult($_oclIsInvalid);
-		  $EndAction
-		./
-		
-		| o c l I s I n S t a t e
-		/.$BeginAction
-			$setResult($_oclIsInState);
-		  $EndAction
-		./
-		
-		| a l l I n s t a n c e s
-		/.$BeginAction
-			$setResult($_allInstances);
-		  $EndAction
-		./
 
 		| S t r i n g
 		/.$BeginAction
@@ -547,18 +483,6 @@ $Rules
 		| i n v a l i d
 		/.$BeginAction
 			$setResult($_invalid);
-		  $EndAction
-		./
-
-		| a t t r
-		/.$BeginAction
-			$setResult($_attr);
-		  $EndAction
-		./
-
-		| o p e r
-		/.$BeginAction
-			$setResult($_oper);
 		  $EndAction
 		./
 

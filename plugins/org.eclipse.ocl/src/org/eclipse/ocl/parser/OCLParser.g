@@ -15,7 +15,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.5 2009/09/04 13:40:43 ewillink Exp $
+-- * $Id: OCLParser.g,v 1.6 2009/10/10 07:01:15 ewillink Exp $
 -- */
 --
 -- The OCL Parser
@@ -61,19 +61,6 @@ $Globals
 	import org.eclipse.ocl.cst.PackageDeclarationCS;
 	import org.eclipse.ocl.cst.PrePostOrBodyEnum;
 	./
-$End
-
-$KeyWords
-	context
-	package
-	
-	--
-	-- the following are not used in the OCL concrete syntax, but
-	-- are defined as reserved words in the OCL 2.0 Spec 7.4.9
-	-- and were removed in the OCL 2.1 RTF 09-05-02. 
-	--
-	attr
-	oper
 $End
 
 $Rules
@@ -142,13 +129,14 @@ $Rules
 	contextDeclCS -> operationContextDeclCS
 	contextDeclCS -> propertyContextCS
 
-	propertyContextCS ::= context pathNameCS '::' simpleNameCS ':' typeCS initOrDerValueCSm
+	propertyContextCS ::= context qualifiedPathNameCS ':' typeCS initOrDerValueCSm
 		/.$BeginJava
-					EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)$getSym(7);
+					PathNameCS pathNameCS = (PathNameCS)$getSym(2);
+					EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)$getSym(5);
 					CSTNode result = createPropertyContextCS(
-							(PathNameCS)$getSym(2),
-							(SimpleNameCS)$getSym(4),
-							(TypeCS)$getSym(6),
+							pathNameCS,
+							removeLastSimpleNameCS(pathNameCS),
+							(TypeCS)$getSym(4),
 							list
 						);
 					setOffsets(result, getIToken($getToken(1)), list.get(list.size()-1));
