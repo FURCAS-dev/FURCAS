@@ -13,19 +13,18 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.6 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: CSTFactoryImpl.java,v 1.7 2009/10/10 07:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
 import lpg.lpgjavaruntime.IToken;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-//import org.eclipse.ocl.cst.*;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTFactory;
 import org.eclipse.ocl.cst.CSTPackage;
@@ -70,7 +69,6 @@ import org.eclipse.ocl.cst.PropertyContextCS;
 import org.eclipse.ocl.cst.RealLiteralExpCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.cst.SimpleTypeEnum;
-import org.eclipse.ocl.cst.StateExpCS;
 import org.eclipse.ocl.cst.StringLiteralExpCS;
 import org.eclipse.ocl.cst.TupleLiteralExpCS;
 import org.eclipse.ocl.cst.TupleTypeCS;
@@ -209,8 +207,6 @@ public class CSTFactoryImpl
 				return createFeatureCallExpCS();
 			case CSTPackage.OPERATION_CALL_EXP_CS :
 				return createOperationCallExpCS();
-			case CSTPackage.STATE_EXP_CS :
-				return createStateExpCS();
 			case CSTPackage.OCL_DOCUMENT_CS :
 				return createOCLDocumentCS();
 			default :
@@ -673,16 +669,6 @@ public class CSTFactoryImpl
 	public IsMarkedPreCS createIsMarkedPreCS() {
 		IsMarkedPreCSImpl isMarkedPreCS = new IsMarkedPreCSImpl();
 		return isMarkedPreCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateExpCS createStateExpCS() {
-		StateExpCSImpl stateExpCS = new StateExpCSImpl();
-		return stateExpCS;
 	}
 
 	/**

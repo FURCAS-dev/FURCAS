@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: BooleanLiteralExpCSImpl.java,v 1.3 2008/11/30 22:11:37 cdamus Exp $
+ * $Id: BooleanLiteralExpCSImpl.java,v 1.4 2009/10/10 07:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTPackage;
+import org.eclipse.ocl.cst.LiteralExpCS;
+import org.eclipse.ocl.cst.PrimitiveLiteralExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +32,7 @@ import org.eclipse.ocl.cst.CSTPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.cst.impl.BooleanLiteralExpCSImpl#getSymbol <em>Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.BooleanLiteralExpCSImpl#getBooleanSymbol <em>Boolean Symbol</em>}</li>
  * </ul>
  * </p>
@@ -37,8 +40,30 @@ import org.eclipse.ocl.cst.CSTPackage;
  * @generated
  */
 public class BooleanLiteralExpCSImpl
-		extends PrimitiveLiteralExpCSImpl
+		extends SimpleNameCSImpl
 		implements BooleanLiteralExpCS {
+
+	/**
+	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SYMBOL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getSymbol()
+	 * @generated
+	 * @ordered
+	 */
+	protected String symbol = SYMBOL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getBooleanSymbol() <em>Boolean Symbol</em>}' attribute.
@@ -84,6 +109,28 @@ public class BooleanLiteralExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getSymbol() {
+		return symbol;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSymbol(String newSymbol) {
+		String oldSymbol = symbol;
+		symbol = newSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL, oldSymbol, symbol));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Boolean getBooleanSymbol() {
 		return booleanSymbol;
 	}
@@ -110,6 +157,8 @@ public class BooleanLiteralExpCSImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL :
+				return getSymbol();
 			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
 				return getBooleanSymbol();
 		}
@@ -124,6 +173,9 @@ public class BooleanLiteralExpCSImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL :
+				setSymbol((String) newValue);
+				return;
 			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
 				setBooleanSymbol((Boolean) newValue);
 				return;
@@ -139,6 +191,9 @@ public class BooleanLiteralExpCSImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL :
+				setSymbol(SYMBOL_EDEFAULT);
+				return;
 			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
 				setBooleanSymbol(BOOLEAN_SYMBOL_EDEFAULT);
 				return;
@@ -154,6 +209,10 @@ public class BooleanLiteralExpCSImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL :
+				return SYMBOL_EDEFAULT == null
+					? symbol != null
+					: !SYMBOL_EDEFAULT.equals(symbol);
 			case CSTPackage.BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL :
 				return BOOLEAN_SYMBOL_EDEFAULT == null
 					? booleanSymbol != null
@@ -168,12 +227,62 @@ public class BooleanLiteralExpCSImpl
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == LiteralExpCS.class) {
+			switch (derivedFeatureID) {
+				default :
+					return -1;
+			}
+		}
+		if (baseClass == PrimitiveLiteralExpCS.class) {
+			switch (derivedFeatureID) {
+				case CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL :
+					return CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
+				default :
+					return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == LiteralExpCS.class) {
+			switch (baseFeatureID) {
+				default :
+					return -1;
+			}
+		}
+		if (baseClass == PrimitiveLiteralExpCS.class) {
+			switch (baseFeatureID) {
+				case CSTPackage.PRIMITIVE_LITERAL_EXP_CS__SYMBOL :
+					return CSTPackage.BOOLEAN_LITERAL_EXP_CS__SYMBOL;
+				default :
+					return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy())
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (booleanSymbol: "); //$NON-NLS-1$
+		result.append(" (symbol: "); //$NON-NLS-1$
+		result.append(symbol);
+		result.append(", booleanSymbol: "); //$NON-NLS-1$
 		result.append(booleanSymbol);
 		result.append(')');
 		return result.toString();
