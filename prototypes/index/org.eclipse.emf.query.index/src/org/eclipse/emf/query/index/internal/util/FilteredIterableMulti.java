@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.util;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -19,7 +20,7 @@ import java.util.NoSuchElementException;
  */
 public abstract class FilteredIterableMulti<T> implements Iterable<T> {
 
-	private static final Iterator<?> NO_IT = new Iterator<?>() {
+	private static final Iterator<?> NO_IT = new Iterator<Object>() {
 
 		@Override
 		public boolean hasNext() {
