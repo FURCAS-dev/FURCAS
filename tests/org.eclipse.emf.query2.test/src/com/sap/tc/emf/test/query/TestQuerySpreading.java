@@ -63,16 +63,11 @@ public class TestQuerySpreading extends QueryTestCase {
 
 	private QueryProcessorImpl getMQLProcessor() {
 
-		return new QueryProcessorImpl();
+		return new QueryProcessorImpl(index);
 	}
 
 	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider) {
 		return new QueryContext() {
-
-			@Override
-			public Index getIndex() {
-				return TestQuerySpreading.this.index;
-			}
 
 			@Override
 			public URI[] getResourceScope() {

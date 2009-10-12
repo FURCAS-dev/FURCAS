@@ -97,16 +97,11 @@ public class TestSuiteNegativeQueryTests extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl();
+		return new QueryProcessorImpl(index);
 	}
 
 	private QueryContext getQueryContext() {
 		return new QueryContext() {
-
-			@Override
-			public Index getIndex() {
-				return TestSuiteNegativeQueryTests.this.index;
-			}
 
 			@Override
 			public URI[] getResourceScope() {

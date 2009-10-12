@@ -20,6 +20,7 @@ import java.util.Set;
 import javax.management.ObjectName;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.QueryCommandWithResult;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query2.Query;
@@ -151,14 +152,17 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 */
 	private AuxServices mqlAuxServices;
 
+	private final Index index;
+
 	/**
 	 * The data areas relevant for the session
 	 */
 	// private Set<DataAreaDescriptor> sessionRelevantDataAreaDescriptors;
-	public QueryProcessorImpl() {
+	public QueryProcessorImpl(Index index) {
 		// public MQLProcessorImpl(ResourceSet rs,
 		// Collection<SpiMQLQueryService> queryServices) {
 
+		this.index = index;
 		if (logger.isTraced(LogSeverity.INFO)) {
 			// logger.trace( MoinSeverity.INFO,
 			// FQLTraceMessages.MQL_PROCESSOR_OBTAINED_FOR_CONNECTION,
@@ -315,8 +319,6 @@ public class QueryProcessorImpl implements QueryProcessor {
 			}
 
 			parsedQuery = mqlParser.parse(query, this);
-			// parsedQuery = this.mqlParser.parse( query, this ); // FIXME sync
-			// fix
 
 		} catch (QueryFormatException e) {
 			if (logger.isTraced(LogSeverity.ERROR)) {
@@ -326,8 +328,6 @@ public class QueryProcessorImpl implements QueryProcessor {
 		}
 
 		return this.prepareInternal(parsedQuery, mqlParser.getReport(), context, emfHelper);
-		// return this.prepareInternal( parsedQuery, this.mqlParser.getReport( )
-		// ); // FIXME sync fix
 	}
 
 	/**
@@ -390,7 +390,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 			/* assign the different BQL processors (if they exist) */
 			internalQuery = this.mqlFacilityAssigner.assign(internalQuery, Collections
-					.singletonList((SpiFacilityQueryLanguage) new BasicQueryProcessorMemoryEstimationImpl(context.getIndex())));
+					.singletonList((SpiFacilityQueryLanguage) new BasicQueryProcessorMemoryEstimationImpl(this.index)));
 
 			/*
 			 * Before releasing the query as prepared, remove possible empty
@@ -621,13 +621,11 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 	public ResultSet execute(String query, QueryContext scopeProvider) throws QueryExecutionException, QueryFormatException {
 
-		EmfHelper emfHelper = this.getEmfHelper(scopeProvider);
-		PreparedQuery preparedQuery = this.prepareInternal(query, scopeProvider, emfHelper);
-		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider.getResourceScope(), null, -1);
+		return this.execute(query, scopeProvider, -1);
 	}
 
 	private EmfHelper getEmfHelper(QueryContext context) {
-		return new EmfHelper(context);
+		return new EmfHelper(context, this.index);
 	}
 
 	// public MQLResultSet execute(MQLPreparedQuery query, int numberOfResults)

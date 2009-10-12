@@ -5,7 +5,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
@@ -34,9 +33,9 @@ public class LibraryTransformation extends QueryTestCase {
 	@BeforeClass
 	public static void setup() {
 		if (!Platform.isRunning()) {
-			 new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+			new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
 		}
-		
+
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
@@ -58,7 +57,7 @@ public class LibraryTransformation extends QueryTestCase {
 			System.out.println("\n" + query.getName() + "\n----------------------------------");
 			System.out.println(transform.toString().replaceAll("\\n", " ").trim());
 
-			ResultSet execute = new QueryProcessorImpl().execute(transform, getQueryContext(rs));
+			ResultSet execute = new QueryProcessorImpl(getDefaultIndexStore()).execute(transform, getQueryContext(rs));
 
 			System.out.println(execute);
 		}
@@ -68,14 +67,9 @@ public class LibraryTransformation extends QueryTestCase {
 		return new QueryContext() {
 
 			@Override
-			public Index getIndex() {
-				return getDefaultIndexStore();
-			}
-
-			@Override
 			public URI[] getResourceScope() {
 				final List<URI> result = new ArrayList<URI>();
-				getIndex().executeQueryCommand(new QueryCommand() {
+				getDefaultIndexStore().executeQueryCommand(new QueryCommand() {
 
 					@Override
 					public void execute(QueryExecutor queryExecutor) {

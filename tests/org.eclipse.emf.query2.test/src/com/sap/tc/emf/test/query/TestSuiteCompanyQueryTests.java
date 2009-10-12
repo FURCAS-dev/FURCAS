@@ -127,7 +127,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl();
+		return new QueryProcessorImpl(index);
 	}
 
 	private ResultSet executeQuery(Object query, QueryContext context) {
@@ -142,11 +142,6 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider) {
 		return new QueryContext() {
-
-			@Override
-			public Index getIndex() {
-				return TestSuiteCompanyQueryTests.this.index;
-			}
 
 			@Override
 			public URI[] getResourceScope() {

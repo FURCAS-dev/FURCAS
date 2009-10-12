@@ -42,9 +42,9 @@ public class EmfHelper {
 		return index;
 	}
 
-	public EmfHelper(QueryContext context) {
+	public EmfHelper(QueryContext context, Index index) {
 		this.rs = context.getResourceSet();
-		this.index = context.getIndex();
+		this.index = index;
 	}
 
 	public URI createUri(String uriString) {

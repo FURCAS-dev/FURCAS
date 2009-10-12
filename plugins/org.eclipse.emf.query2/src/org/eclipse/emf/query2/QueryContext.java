@@ -12,13 +12,10 @@ package org.eclipse.emf.query2;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.query.index.Index;
 
 public interface QueryContext {
 
 	ResourceSet getResourceSet();
-
-	Index getIndex();
 
 	URI[] getResourceScope();
 }

@@ -3181,17 +3181,12 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl();
+		return new QueryProcessorImpl(index);
 	}
 
 	private QueryContext getQueryContext() {
 
 		QueryContext context = new QueryContext() {
-
-			@Override
-			public Index getIndex() {
-				return BaseSyntheticQueryTests.this.index;
-			}
 
 			@Override
 			public URI[] getResourceScope() {
