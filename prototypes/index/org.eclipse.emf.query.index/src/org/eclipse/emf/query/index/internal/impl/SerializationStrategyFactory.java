@@ -48,6 +48,8 @@ public class SerializationStrategyFactory {
 
 	private static final int BYTE_SIZE = Byte.SIZE / 8;
 
+	public static final int NO_SIZE = 0x3F000000;
+
 	// Java spec requires for UTF-8 to be available on all supported platforms
 	private static final String STRING_ENCODING = "UTF-8"; //$NON-NLS-1$
 
@@ -93,10 +95,31 @@ public class SerializationStrategyFactory {
 
 		public int getInt() {
 
-			if (this.buffer.limit() - this.buffer.position() < INT_SIZE) {
-				this.adjustBuffer();
+			return getCompressedInt();
+
+			//			if (this.buffer.limit() - this.buffer.position() < INT_SIZE) {
+			//				this.adjustBuffer();
+			//			}
+			//			return this.buffer.getInt();
+		}
+
+		public int getCompressedInt() {
+			byte initialByte = getByte();
+			int code = (initialByte >> 6) & 0x3;
+			switch (code) {
+			case 0: {
+				return initialByte - 1;
 			}
-			return this.buffer.getInt();
+			case 1: {
+				return (initialByte << 8 & 0x3F00 | getByte() & 0xFF) - 1;
+			}
+			case 2: {
+				return ((initialByte << 16) & 0x3F0000 | (getByte() << 8) & 0xFF00 | getByte() & 0xFF) - 1;
+			}
+			default: {
+				return ((initialByte << 24) & 0x3F000000 | (getByte() << 16) & 0xFF0000 | (getByte() << 8) & 0xFF00 | getByte() & 0xFF) - 1;
+			}
+			}
 		}
 
 		private short getShort() {
@@ -135,7 +158,7 @@ public class SerializationStrategyFactory {
 
 			int length = this.getInt();
 
-			if (length == -1) {
+			if (length == NO_SIZE) {
 				return null;
 			}
 
@@ -239,10 +262,38 @@ public class SerializationStrategyFactory {
 
 		public void putInt(int value) {
 
-			if (this.buffer.limit() - this.buffer.position() < INT_SIZE) {
-				this.flushBuffer(INT_SIZE);
+			putCompressedInt(value);
+
+			//			if (this.buffer.limit() - this.buffer.position() < INT_SIZE) {
+			//				this.flushBuffer(INT_SIZE);
+			//			}
+			//			this.buffer.putInt(value);
+		}
+
+		public void putCompressedInt(int value) {
+			++value;
+			int firstByte = value >> 24 & 0xFF;
+			int secondByte = value >> 16 & 0xFF;
+			int thirdByte = value >> 8 & 0xFF;
+			int fourthBtye = value & 0xFF;
+			if (firstByte > 0x3F) {
+				throw new RuntimeException("Unsupported value " + value); // FIXME
+				// not_very_nice
+			} else if (firstByte != 0 || secondByte > 0x3F) {
+				putByte((byte) (firstByte | 0xC0));
+				putByte((byte) (secondByte));
+				putByte((byte) (thirdByte));
+				putByte((byte) (fourthBtye));
+			} else if (secondByte != 0 || thirdByte > 0x3F) {
+				putByte((byte) (secondByte | 0x80));
+				putByte((byte) (thirdByte));
+				putByte((byte) (fourthBtye));
+			} else if (thirdByte != 0 || fourthBtye > 0x3F) {
+				putByte((byte) (thirdByte | 0x40));
+				putByte((byte) (fourthBtye));
+			} else {
+				putByte((byte) (fourthBtye));
 			}
-			this.buffer.putInt(value);
 		}
 
 		private void putShort(short value) {
@@ -255,7 +306,7 @@ public class SerializationStrategyFactory {
 		public void putString(String value) {
 
 			if (value == null) {
-				this.putInt(-1);
+				this.putInt(NO_SIZE);
 				return;
 			}
 
@@ -455,7 +506,7 @@ public class SerializationStrategyFactory {
 		public EObjectDescriptorImpl readElement(String key) {
 			String name = this.channel.getString();
 			int size = channel.getInt();
-			if (size == -1) {
+			if (size == NO_SIZE) {
 				return new EObjectDescriptorImpl(null, this.resourceDescriptor, key, name, null);
 			} else {
 				Map<String, String> userData = new HashMap<String, String>(size);
@@ -476,7 +527,7 @@ public class SerializationStrategyFactory {
 			channel.putString(element.getName());
 			Map<String, String> userData = element.getUserData();
 			if (userData == null) {
-				channel.putInt(-1);
+				channel.putInt(NO_SIZE);
 			} else {
 				channel.putInt(userData.size());
 				for (Map.Entry<String, String> entry : userData.entrySet()) {
@@ -545,10 +596,10 @@ public class SerializationStrategyFactory {
 		public ReferenceDescriptorImpl readElement(String key) {
 			String typeURI = channel.getString().intern();
 			byte kind = channel.getByte();
-			
+
 			URI tarRes;
 			String fragment;
-			
+
 			switch (kind) {
 			case INTRA:
 				EObjectDescriptorImpl target = eObjectMap.get(channel.getInt());
@@ -562,7 +613,7 @@ public class SerializationStrategyFactory {
 				tarRes = this.resourceMap.getEqual(tarRes).getURI();
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown link kind "+kind);
+				throw new IllegalArgumentException("Unknown link kind " + kind);
 			}
 
 			return new ReferenceDescriptorImpl(eObjectMap.get(key), typeURI, tarRes, fragment);
@@ -631,7 +682,7 @@ public class SerializationStrategyFactory {
 		@Override
 		public String readKey() {
 			int pos = channel.getInt();
-			if (pos == -1) {
+			if (pos == NO_SIZE) {
 				return channel.getString();
 			} else {
 				return eObjectMap.get(pos).getFragment();
@@ -653,13 +704,15 @@ public class SerializationStrategyFactory {
 		@Override
 		public void writeKey(String key) {
 			if (eObjectMap == null) {
-				channel.putInt(-1);
+				channel.putInt(NO_SIZE);
 				channel.putString(key);
 			} else {
 				int pos = eObjectMap.getPosition(key);
-				channel.putInt(pos);
 				if (pos == -1) {
+					channel.putInt(NO_SIZE);
 					channel.putString(key);
+				} else {
+					channel.putInt(pos);
 				}
 			}
 

@@ -240,7 +240,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	private void serializeData(Channel channel) {
 		if (this.userData == null) {
-			channel.putInt(-1); // FIXME proper constants for signals!
+			channel.putInt(SerializationStrategyFactory.NO_SIZE); // FIXME constant position
 			return;
 		} else {
 			channel.putInt(this.userData.size());
@@ -270,7 +270,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	private void deserializeData(Channel channel) {
 		int size = channel.getInt();
-		if (size == -1) {
+		if (size == SerializationStrategyFactory.NO_SIZE) {
 			return;
 		} else {
 			Map<String, String> map = new HashMap<String, String>(size);
@@ -426,7 +426,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 							next = scopeIterator.next();
 							if (refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) {
 								if (next.isIntraLink()) {
-									return Arrays.asList((ReferenceDescriptorImpl)next).iterator();
+									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
 								} else {
 									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
 									// is

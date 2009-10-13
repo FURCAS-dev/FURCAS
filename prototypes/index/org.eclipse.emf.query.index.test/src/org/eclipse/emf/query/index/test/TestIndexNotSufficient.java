@@ -232,7 +232,7 @@ public class TestIndexNotSufficient extends Assert {
 	}
 
 	private static String getTempDir() {
-		return System.getProperty("java.io.tmpdir") + File.separator + "index";
+		return System.getProperty("java.io.tmpdir") + File.pathSeparator + "index";
 	}
 
 	@Test
