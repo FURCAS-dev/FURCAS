@@ -7,6 +7,7 @@
 package org.eclipse.emf.query2.query.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.query2.query.ElementScope;
 import org.eclipse.emf.query2.query.QueryPackage;
 

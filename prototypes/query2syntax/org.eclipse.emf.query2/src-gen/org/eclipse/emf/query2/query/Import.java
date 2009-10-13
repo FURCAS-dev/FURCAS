@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.Import#getImportURI <em>Import URI</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.Import#getImpURI <em>Imp URI</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,29 +27,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface Import extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Import URI</b></em>' attribute.
+   * Returns the value of the '<em><b>Imp URI</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Import URI</em>' attribute isn't clear,
+   * If the meaning of the '<em>Imp URI</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Import URI</em>' attribute.
-   * @see #setImportURI(String)
-   * @see org.eclipse.emf.query2.query.QueryPackage#getImport_ImportURI()
+   * @return the value of the '<em>Imp URI</em>' attribute.
+   * @see #setImpURI(String)
+   * @see org.eclipse.emf.query2.query.QueryPackage#getImport_ImpURI()
    * @model
    * @generated
    */
-  String getImportURI();
+  String getImpURI();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.query2.query.Import#getImportURI <em>Import URI</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.emf.query2.query.Import#getImpURI <em>Imp URI</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Import URI</em>' attribute.
-   * @see #getImportURI()
+   * @param value the new value of the '<em>Imp URI</em>' attribute.
+   * @see #getImpURI()
    * @generated
    */
-  void setImportURI(String value);
+  void setImpURI(String value);
 
 } // Import

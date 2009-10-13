@@ -4,24 +4,12 @@
 
 package org.eclipse.emf.query2.services;
 
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.CrossReference;
-import org.eclipse.xtext.EnumLiteralDeclaration;
-import org.eclipse.xtext.EnumRule;
-import org.eclipse.xtext.Grammar;
-import org.eclipse.xtext.GrammarUtil;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.IGrammarAccess;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.service.GrammarProvider;
-
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.Inject;
+
+import org.eclipse.xtext.*;
+
+import org.eclipse.xtext.service.GrammarProvider;
 
 
 @Singleton
@@ -68,24 +56,24 @@ public class QueryGrammarAccess implements IGrammarAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Import");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImportURIAssignment_1.eContents().get(0);
+		private final Assignment cImpURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cImpURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImpURIAssignment_1.eContents().get(0);
 		
 		//Import:
-		//  "import" importURI=STRING;
+		//  "import" impURI=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"import" importURI=STRING
+		//"import" impURI=STRING
 		public Group getGroup() { return cGroup; }
 
 		//"import"
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 
-		//importURI=STRING
-		public Assignment getImportURIAssignment_1() { return cImportURIAssignment_1; }
+		//impURI=STRING
+		public Assignment getImpURIAssignment_1() { return cImpURIAssignment_1; }
 
 		//STRING
-		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
+		public RuleCall getImpURISTRINGTerminalRuleCall_1_0() { return cImpURISTRINGTerminalRuleCall_1_0; }
 	}
 
 	public class NamedQueryElements implements IParserRuleAccess {
@@ -1404,7 +1392,7 @@ public class QueryGrammarAccess implements IGrammarAccess {
 	}
 
 	//Import:
-	//  "import" importURI=STRING;
+	//  "import" impURI=STRING;
 	public ImportElements getImportAccess() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
 	}

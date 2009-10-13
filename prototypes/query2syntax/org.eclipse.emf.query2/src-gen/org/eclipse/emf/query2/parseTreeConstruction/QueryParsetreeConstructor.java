@@ -3,16 +3,12 @@
 */
 package org.eclipse.emf.query2.parseTreeConstruction;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.query2.services.QueryGrammarAccess;
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.RuleCall;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.xtext.*;
 import org.eclipse.xtext.parsetree.reconstr.IInstanceDescription;
 import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
+
+import org.eclipse.emf.query2.services.QueryGrammarAccess;
 
 import com.google.inject.Inject;
 
@@ -236,11 +232,11 @@ protected class Model_NamedQueriesAssignment_2 extends AssignmentToken  {
 /************ begin Rule Import ****************
  *
  * Import:
- *   "import" importURI=STRING;
+ *   "import" impURI=STRING;
  *
  **/
 
-// "import" importURI=STRING
+// "import" impURI=STRING
 protected class Import_Group extends GroupToken {
 	
 	public Import_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -253,7 +249,7 @@ protected class Import_Group extends GroupToken {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Import_ImportURIAssignment_1(parent, this, 0, inst);
+			case 0: return new Import_ImpURIAssignment_1(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -283,15 +279,15 @@ protected class Import_ImportKeyword_0 extends KeywordToken  {
 		
 }
 
-// importURI=STRING
-protected class Import_ImportURIAssignment_1 extends AssignmentToken  {
+// impURI=STRING
+protected class Import_ImpURIAssignment_1 extends AssignmentToken  {
 	
-	public Import_ImportURIAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Import_ImpURIAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getImportAccess().getImportURIAssignment_1();
+		return grammarAccess.getImportAccess().getImpURIAssignment_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -302,11 +298,11 @@ protected class Import_ImportURIAssignment_1 extends AssignmentToken  {
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("importURI",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("importURI");
+		if((value = current.getConsumable("impURI",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("impURI");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0();
+			element = grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0();
 			return obj;
 		}
 		return null;

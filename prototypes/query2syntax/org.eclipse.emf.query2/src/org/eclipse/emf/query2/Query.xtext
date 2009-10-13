@@ -11,7 +11,7 @@ Model:
 ;
 
 Import :
-	'import' importURI=STRING;
+	'import' impURI=STRING;
 
 NamedQuery:
 	name=ID ":" query=MQLquery

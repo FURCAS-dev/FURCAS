@@ -4,7 +4,6 @@
 package org.eclipse.emf.query2.parser.antlr;
 
 import java.io.InputStream;
-
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class QueryAntlrTokenFileProvider implements IAntlrTokenFileProvider {

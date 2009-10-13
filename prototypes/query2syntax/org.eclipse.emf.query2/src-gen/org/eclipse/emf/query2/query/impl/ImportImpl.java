@@ -7,9 +7,12 @@
 package org.eclipse.emf.query2.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.query2.query.Import;
 import org.eclipse.emf.query2.query.QueryPackage;
 
@@ -20,7 +23,7 @@ import org.eclipse.emf.query2.query.QueryPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.ImportImpl#getImportURI <em>Import URI</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.ImportImpl#getImpURI <em>Imp URI</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,24 +32,24 @@ import org.eclipse.emf.query2.query.QueryPackage;
 public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 {
   /**
-   * The default value of the '{@link #getImportURI() <em>Import URI</em>}' attribute.
+   * The default value of the '{@link #getImpURI() <em>Imp URI</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getImportURI()
+   * @see #getImpURI()
    * @generated
    * @ordered
    */
-  protected static final String IMPORT_URI_EDEFAULT = null;
+  protected static final String IMP_URI_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getImportURI() <em>Import URI</em>}' attribute.
+   * The cached value of the '{@link #getImpURI() <em>Imp URI</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getImportURI()
+   * @see #getImpURI()
    * @generated
    * @ordered
    */
-  protected String importURI = IMPORT_URI_EDEFAULT;
+  protected String impURI = IMP_URI_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +77,9 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getImportURI()
+  public String getImpURI()
   {
-    return importURI;
+    return impURI;
   }
 
   /**
@@ -84,12 +87,12 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setImportURI(String newImportURI)
+  public void setImpURI(String newImpURI)
   {
-    String oldImportURI = importURI;
-    importURI = newImportURI;
+    String oldImpURI = impURI;
+    impURI = newImpURI;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.IMPORT__IMPORT_URI, oldImportURI, importURI));
+      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.IMPORT__IMP_URI, oldImpURI, impURI));
   }
 
   /**
@@ -102,8 +105,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case QueryPackage.IMPORT__IMPORT_URI:
-        return getImportURI();
+      case QueryPackage.IMPORT__IMP_URI:
+        return getImpURI();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,8 +121,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case QueryPackage.IMPORT__IMPORT_URI:
-        setImportURI((String)newValue);
+      case QueryPackage.IMPORT__IMP_URI:
+        setImpURI((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +138,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case QueryPackage.IMPORT__IMPORT_URI:
-        setImportURI(IMPORT_URI_EDEFAULT);
+      case QueryPackage.IMPORT__IMP_URI:
+        setImpURI(IMP_URI_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -152,8 +155,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case QueryPackage.IMPORT__IMPORT_URI:
-        return IMPORT_URI_EDEFAULT == null ? importURI != null : !IMPORT_URI_EDEFAULT.equals(importURI);
+      case QueryPackage.IMPORT__IMP_URI:
+        return IMP_URI_EDEFAULT == null ? impURI != null : !IMP_URI_EDEFAULT.equals(impURI);
     }
     return super.eIsSet(featureID);
   }
@@ -169,8 +172,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (importURI: ");
-    result.append(importURI);
+    result.append(" (impURI: ");
+    result.append(impURI);
     result.append(')');
     return result.toString();
   }

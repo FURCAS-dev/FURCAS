@@ -33,9 +33,9 @@ public class LibraryTransformation extends QueryTestCase {
 	@BeforeClass
 	public static void setup() {
 		if (!Platform.isRunning()) {
-			new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+			 new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
 		}
-
+		
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
@@ -55,11 +55,16 @@ public class LibraryTransformation extends QueryTestCase {
 
 			Query transform = QueryTransformer.transform(query.getQuery());
 			System.out.println("\n" + query.getName() + "\n----------------------------------");
-			System.out.println(transform.toString().replaceAll("\\n", " ").trim());
-
+			System.out.println(transform.toString().trim());
+			
+			long start = System.nanoTime();
 			ResultSet execute = new QueryProcessorImpl(getDefaultIndexStore()).execute(transform, getQueryContext(rs));
+			long end = System.nanoTime();
 
 			System.out.println(execute);
+			System.out.println("Size: "+execute.getSize());
+			long time = end-start;
+			System.out.println("QueryTime: "+ time+"ns ("+(time/1000000000f)+"s)");
 		}
 	}
 

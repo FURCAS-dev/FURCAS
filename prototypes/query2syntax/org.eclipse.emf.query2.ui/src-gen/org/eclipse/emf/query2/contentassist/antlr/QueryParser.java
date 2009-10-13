@@ -85,7 +85,7 @@ public class QueryParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getImportsAssignment_0(), "rule__Model__ImportsAssignment_0");
 					put(grammarAccess.getModelAccess().getDefaultQueryAssignment_1(), "rule__Model__DefaultQueryAssignment_1");
 					put(grammarAccess.getModelAccess().getNamedQueriesAssignment_2(), "rule__Model__NamedQueriesAssignment_2");
-					put(grammarAccess.getImportAccess().getImportURIAssignment_1(), "rule__Import__ImportURIAssignment_1");
+					put(grammarAccess.getImportAccess().getImpURIAssignment_1(), "rule__Import__ImpURIAssignment_1");
 					put(grammarAccess.getNamedQueryAccess().getNameAssignment_0(), "rule__NamedQuery__NameAssignment_0");
 					put(grammarAccess.getNamedQueryAccess().getQueryAssignment_2(), "rule__NamedQuery__QueryAssignment_2");
 					put(grammarAccess.getMQLqueryAccess().getSelectEntriesAssignment_1(), "rule__MQLquery__SelectEntriesAssignment_1");

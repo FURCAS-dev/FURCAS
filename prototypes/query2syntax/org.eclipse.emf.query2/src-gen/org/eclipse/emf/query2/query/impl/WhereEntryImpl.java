@@ -7,7 +7,9 @@
 package org.eclipse.emf.query2.query.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.query2.query.QueryPackage;
 import org.eclipse.emf.query2.query.WhereEntry;
 

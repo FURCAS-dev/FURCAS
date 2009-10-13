@@ -33,7 +33,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Query.ecore#//Model/namedQueries"/>
     </genClasses>
     <genClasses ecoreClass="Query.ecore#//Import">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//Import/importURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//Import/impURI"/>
     </genClasses>
     <genClasses ecoreClass="Query.ecore#//NamedQuery">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Query.ecore#//NamedQuery/name"/>

@@ -1197,9 +1197,9 @@ rule__Import__Group__1
     }
 :
 (
-{ before(grammarAccess.getImportAccess().getImportURIAssignment_1()); }
-(rule__Import__ImportURIAssignment_1)
-{ after(grammarAccess.getImportAccess().getImportURIAssignment_1()); }
+{ before(grammarAccess.getImportAccess().getImpURIAssignment_1()); }
+(rule__Import__ImpURIAssignment_1)
+{ after(grammarAccess.getImportAccess().getImpURIAssignment_1()); }
 )
 
 ;
@@ -3441,14 +3441,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Import__ImportURIAssignment_1
+rule__Import__ImpURIAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0()); }
-	RULE_STRING{ after(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0()); }
+	RULE_STRING{ after(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0()); }
 )
 
 ;

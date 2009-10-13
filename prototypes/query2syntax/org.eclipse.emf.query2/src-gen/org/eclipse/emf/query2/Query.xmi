@@ -28,7 +28,7 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <tokens xsi:type="xtext:Keyword" value="import"/>
-      <tokens xsi:type="xtext:Assignment" feature="importURI" operator="=">
+      <tokens xsi:type="xtext:Assignment" feature="impURI" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.32"/>
       </tokens>
     </alternatives>

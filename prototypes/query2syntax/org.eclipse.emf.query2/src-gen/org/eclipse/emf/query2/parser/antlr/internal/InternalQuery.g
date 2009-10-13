@@ -174,9 +174,9 @@ ruleImport returns [EObject current=null]
     }
 (	
 	
-	    lv_importURI_1=	RULE_STRING
+	    lv_impURI_1=	RULE_STRING
 	{
-		createLeafNode(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0(), "importURI"); 
+		createLeafNode(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0(), "impURI"); 
 	}
  
 	    {
@@ -186,7 +186,7 @@ ruleImport returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "importURI", lv_importURI_1, "STRING", lastConsumedNode);
+	       		set($current, "impURI", lv_impURI_1, "STRING", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }

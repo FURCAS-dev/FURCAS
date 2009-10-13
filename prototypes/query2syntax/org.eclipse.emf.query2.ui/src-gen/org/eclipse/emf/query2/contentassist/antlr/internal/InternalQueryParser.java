@@ -3884,30 +3884,30 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Import__Group__1
-    // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1194:1: rule__Import__Group__1 : ( ( rule__Import__ImportURIAssignment_1 ) ) ;
+    // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1194:1: rule__Import__Group__1 : ( ( rule__Import__ImpURIAssignment_1 ) ) ;
     public final void rule__Import__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1198:1: ( ( ( rule__Import__ImportURIAssignment_1 ) ) )
-            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1199:1: ( ( rule__Import__ImportURIAssignment_1 ) )
+            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1198:1: ( ( ( rule__Import__ImpURIAssignment_1 ) ) )
+            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1199:1: ( ( rule__Import__ImpURIAssignment_1 ) )
             {
-            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1199:1: ( ( rule__Import__ImportURIAssignment_1 ) )
-            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1200:1: ( rule__Import__ImportURIAssignment_1 )
+            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1199:1: ( ( rule__Import__ImpURIAssignment_1 ) )
+            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1200:1: ( rule__Import__ImpURIAssignment_1 )
             {
-             before(grammarAccess.getImportAccess().getImportURIAssignment_1()); 
-            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1201:1: ( rule__Import__ImportURIAssignment_1 )
-            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1201:2: rule__Import__ImportURIAssignment_1
+             before(grammarAccess.getImportAccess().getImpURIAssignment_1()); 
+            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1201:1: ( rule__Import__ImpURIAssignment_1 )
+            // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:1201:2: rule__Import__ImpURIAssignment_1
             {
-            pushFollow(FOLLOW_rule__Import__ImportURIAssignment_1_in_rule__Import__Group__12608);
-            rule__Import__ImportURIAssignment_1();
+            pushFollow(FOLLOW_rule__Import__ImpURIAssignment_1_in_rule__Import__Group__12608);
+            rule__Import__ImpURIAssignment_1();
             _fsp--;
 
 
             }
 
-             after(grammarAccess.getImportAccess().getImportURIAssignment_1()); 
+             after(grammarAccess.getImportAccess().getImpURIAssignment_1()); 
 
             }
 
@@ -9131,9 +9131,9 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Model__NamedQueriesAssignment_2
 
 
-    // $ANTLR start rule__Import__ImportURIAssignment_1
-    // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:3444:1: rule__Import__ImportURIAssignment_1 : ( RULE_STRING ) ;
-    public final void rule__Import__ImportURIAssignment_1() throws RecognitionException {
+    // $ANTLR start rule__Import__ImpURIAssignment_1
+    // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:3444:1: rule__Import__ImpURIAssignment_1 : ( RULE_STRING ) ;
+    public final void rule__Import__ImpURIAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -9144,9 +9144,9 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:3449:1: ( RULE_STRING )
             // ../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/contentassist/antlr/internal/InternalQuery.g:3450:1: RULE_STRING
             {
-             before(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__ImportURIAssignment_16909); 
-             after(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0()); 
+             before(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0()); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__ImpURIAssignment_16909); 
+             after(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0()); 
 
             }
 
@@ -9165,7 +9165,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Import__ImportURIAssignment_1
+    // $ANTLR end rule__Import__ImpURIAssignment_1
 
 
     // $ANTLR start rule__NamedQuery__NameAssignment_0
@@ -11566,7 +11566,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Model__NamedQueriesAssignment_2_in_rule__Model__Group__22528 = new BitSet(new long[]{0x0000000000000022L});
     public static final BitSet FOLLOW_20_in_rule__Import__Group__02570 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__Import__Group__1_in_rule__Import__Group__02580 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Import__ImportURIAssignment_1_in_rule__Import__Group__12608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Import__ImpURIAssignment_1_in_rule__Import__Group__12608 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NamedQuery__NameAssignment_0_in_rule__NamedQuery__Group__02646 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_rule__NamedQuery__Group__1_in_rule__NamedQuery__Group__02655 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_21_in_rule__NamedQuery__Group__12684 = new BitSet(new long[]{0x0000000000400000L});
@@ -11754,7 +11754,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleImport_in_rule__Model__ImportsAssignment_06816 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMQLquery_in_rule__Model__DefaultQueryAssignment_16847 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNamedQuery_in_rule__Model__NamedQueriesAssignment_26878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__ImportURIAssignment_16909 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__ImpURIAssignment_16909 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__NamedQuery__NameAssignment_06940 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMQLquery_in_rule__NamedQuery__QueryAssignment_26971 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSelectEntry_in_rule__MQLquery__SelectEntriesAssignment_17002 = new BitSet(new long[]{0x0000000000000002L});

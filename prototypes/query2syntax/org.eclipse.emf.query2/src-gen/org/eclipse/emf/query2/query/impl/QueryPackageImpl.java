@@ -11,7 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.emf.query2.query.AbstractAliasWhereEntry;
 import org.eclipse.emf.query2.query.AliasWhereEntry;
 import org.eclipse.emf.query2.query.AndWhereEntry;
@@ -365,7 +367,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getImport_ImportURI()
+  public EAttribute getImport_ImpURI()
   {
     return (EAttribute)importEClass.getEStructuralFeatures().get(0);
   }
@@ -1006,7 +1008,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     createEReference(modelEClass, MODEL__NAMED_QUERIES);
 
     importEClass = createEClass(IMPORT);
-    createEAttribute(importEClass, IMPORT__IMPORT_URI);
+    createEAttribute(importEClass, IMPORT__IMP_URI);
 
     namedQueryEClass = createEClass(NAMED_QUERY);
     createEAttribute(namedQueryEClass, NAMED_QUERY__NAME);
@@ -1148,7 +1150,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     initEReference(getModel_NamedQueries(), this.getNamedQuery(), null, "namedQueries", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getImport_ImpURI(), ecorePackage.getEString(), "impURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(namedQueryEClass, NamedQuery.class, "NamedQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNamedQuery_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

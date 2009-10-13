@@ -118,13 +118,13 @@ public interface QueryPackage extends EPackage
   int IMPORT = 1;
 
   /**
-   * The feature id for the '<em><b>Import URI</b></em>' attribute.
+   * The feature id for the '<em><b>Imp URI</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IMPORT__IMPORT_URI = 0;
+  int IMPORT__IMP_URI = 0;
 
   /**
    * The number of structural features of the '<em>Import</em>' class.
@@ -1197,15 +1197,15 @@ public interface QueryPackage extends EPackage
   EClass getImport();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.query2.query.Import#getImportURI <em>Import URI</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.query2.query.Import#getImpURI <em>Imp URI</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Import URI</em>'.
-   * @see org.eclipse.emf.query2.query.Import#getImportURI()
+   * @return the meta object for the attribute '<em>Imp URI</em>'.
+   * @see org.eclipse.emf.query2.query.Import#getImpURI()
    * @see #getImport()
    * @generated
    */
-  EAttribute getImport_ImportURI();
+  EAttribute getImport_ImpURI();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.emf.query2.query.NamedQuery <em>Named Query</em>}'.
@@ -1909,12 +1909,12 @@ public interface QueryPackage extends EPackage
     EClass IMPORT = eINSTANCE.getImport();
 
     /**
-     * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Imp URI</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IMPORT__IMPORT_URI = eINSTANCE.getImport_ImportURI();
+    EAttribute IMPORT__IMP_URI = eINSTANCE.getImport_ImpURI();
 
     /**
      * The meta object literal for the '{@link org.eclipse.emf.query2.query.impl.NamedQueryImpl <em>Named Query</em>}' class.

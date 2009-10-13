@@ -1,20 +1,26 @@
 package org.eclipse.emf.query2.parser.antlr.internal; 
 
 import java.io.InputStream;
-
-import org.antlr.runtime.BitSet;
-import org.antlr.runtime.EarlyExitException;
-import org.antlr.runtime.NoViableAltException;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.Token;
-import org.antlr.runtime.TokenStream;
-import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.xtext.*;
+import org.eclipse.xtext.parser.*;
+import org.eclipse.xtext.parser.impl.*;
+import org.eclipse.xtext.parsetree.*;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.query2.services.QueryGrammarAccess;
-import org.eclipse.xtext.conversion.ValueConverterException;
-import org.eclipse.xtext.parser.IAstFactory;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
-import org.eclipse.xtext.parsetree.CompositeNode;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
+import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
+import org.eclipse.xtext.conversion.ValueConverterException;
+import org.eclipse.emf.query2.services.QueryGrammarAccess;
+
+
+
+import org.antlr.runtime.*;
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
 
 public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
@@ -300,32 +306,32 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleImport
-    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:165:1: ruleImport returns [EObject current=null] : ( 'import' (lv_importURI_1= RULE_STRING ) ) ;
+    // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:165:1: ruleImport returns [EObject current=null] : ( 'import' (lv_impURI_1= RULE_STRING ) ) ;
     public final EObject ruleImport() throws RecognitionException {
         EObject current = null;
 
-        Token lv_importURI_1=null;
+        Token lv_impURI_1=null;
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:170:6: ( ( 'import' (lv_importURI_1= RULE_STRING ) ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:171:1: ( 'import' (lv_importURI_1= RULE_STRING ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:170:6: ( ( 'import' (lv_impURI_1= RULE_STRING ) ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:171:1: ( 'import' (lv_impURI_1= RULE_STRING ) )
             {
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:171:1: ( 'import' (lv_importURI_1= RULE_STRING ) )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:171:2: 'import' (lv_importURI_1= RULE_STRING )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:171:1: ( 'import' (lv_impURI_1= RULE_STRING ) )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:171:2: 'import' (lv_impURI_1= RULE_STRING )
             {
             match(input,11,FOLLOW_11_in_ruleImport302); 
 
                     createLeafNode(grammarAccess.getImportAccess().getImportKeyword_0(), null); 
                 
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:175:1: (lv_importURI_1= RULE_STRING )
-            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:177:6: lv_importURI_1= RULE_STRING
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:175:1: (lv_impURI_1= RULE_STRING )
+            // ../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/parser/antlr/internal/InternalQuery.g:177:6: lv_impURI_1= RULE_STRING
             {
-            lv_importURI_1=(Token)input.LT(1);
+            lv_impURI_1=(Token)input.LT(1);
             match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport324); 
 
-            		createLeafNode(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0(), "importURI"); 
+            		createLeafNode(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0(), "impURI"); 
             	
 
             	        if (current==null) {
@@ -334,7 +340,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        }
             	        
             	        try {
-            	       		set(current, "importURI", lv_importURI_1, "STRING", lastConsumedNode);
+            	       		set(current, "impURI", lv_impURI_1, "STRING", lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
             	        }

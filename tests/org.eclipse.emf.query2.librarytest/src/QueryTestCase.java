@@ -35,8 +35,22 @@ public class QueryTestCase extends Assert {
 
 	private static final Index DEFAULT_INDEX = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
+	private static class Counter{
+		int i = 0;
+		
+		void inc(){
+			i++;
+		}
+		
+		int getCount() {
+			return i;
+		}
+	}
+	
 	static {
 
+		System.out.println("Start indexing");
+		final Counter c = new Counter();
 		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommand() {
 
 			@Override
@@ -51,6 +65,8 @@ public class QueryTestCase extends Assert {
 						@Override
 						public boolean visit(IResource resource) throws CoreException {
 							if("xmi".equals(resource.getFileExtension())){
+								System.out.print(".");
+								c.inc();
 								indexer.resourceChanged(updater, rs.getResource(URI.createPlatformResourceURI(resource.getFullPath().toString(), true), true));
 							}
 							
@@ -63,6 +79,7 @@ public class QueryTestCase extends Assert {
 			}
 		});
 
+		System.out.println("\nIndexing finished. Indexed " + c.getCount() +" files");
 	}
 
 	public static Index getDefaultIndexStore() {
