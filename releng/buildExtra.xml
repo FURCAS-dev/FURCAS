@@ -10,10 +10,6 @@
 
 	<target name="preFetch">
 		<echo message="--- Unzipping LPG ---" />
-		<ant target="getBundle" antfile="${getDependenciesHelper.xml}">
-			<property name="url" value="${orbitURL}"/>
-			<property name="file" value="${orbitFile}"/>
-		</ant>
 		<unzip dest="${buildDirectory}/AAA" src="${downloadsDir}/${orbitFile}">
 			<patternset>
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*.jar"/>
