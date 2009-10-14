@@ -51,7 +51,7 @@
 	                <include name="**/eclipse/notice.html" />
 	            </patternset>
 	        </zipfileset>
-			<fileset dir="builder/extras">
+			<fileset dir="${relengBuilderDir}/builder/extras">
 				<include name="readme_standalone.html" />
 			</fileset>
 			<mapper type="flatten" />
