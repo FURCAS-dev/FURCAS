@@ -59,6 +59,12 @@
 						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
 			/>
 		</zip>
+		<!-- Add the LPG bundles into Master zip -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
+			<zipfileset dir="${buildDirectory}/LPG" 
+						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+			/>
+		</zip>
 
 		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
 
@@ -71,6 +77,7 @@
 			>
 				<include name="**/${domainNamespace}.ocl*/" />
 				<include name="**/${domainNamespace}.ocl*/**" />
+				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*" />
 						
 			</zipfileset>
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
