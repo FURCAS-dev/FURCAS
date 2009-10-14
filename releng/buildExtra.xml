@@ -1,0 +1,34 @@
+<project default="run" name="Project's .releng buildExtra.xml">
+
+	<target name="init">
+	</target>
+
+	<target name="run">
+		<!-- TODO: write code that's hooked into o.e.d.commonbuilder.releng's build.xml to do extra configs (eg., for inserting 3rd party libs into plugins) 
+		-->
+	</target>
+
+	<target name="extraPackaging">
+		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
+
+		<!-- build runtime from SDK -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-runtime${incubation}-${buildAlias}.zip" update="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
+			            dirmode="775"
+			            filemode="664"
+			            excludes="**/${domainNamespace}.*.examples*, **/${domainNamespace}.*.examples*/**, **/${domainNamespace}.*.samples*, **/${domainNamespace}.*.samples*/**, **/${domainNamespace}.*.sdk*, **/${domainNamespace}.*.sdk*/**, **/${domainNamespace}.*.all*, **/${domainNamespace}.*.all*/**, **/${domainNamespace}.*.doc*, **/${domainNamespace}.*.doc*/**, **/${domainNamespace}.*.source*, **/${domainNamespace}.*.source*/**, **/*src.zip"
+			>
+				<include name="**/${domainNamespace}.ocl*/" />
+				<include name="**/${domainNamespace}.ocl*/**" />
+						
+			</zipfileset>
+			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
+			            dirmode="775"
+			            filemode="664"
+			            id="rootfiles"
+			            includes="**/eclipse/epl-v10.html, **/eclipse/notice.html"
+			/>
+		</zip>
+	</target>
+	
+</project>
