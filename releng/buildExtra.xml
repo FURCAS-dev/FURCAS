@@ -19,7 +19,7 @@
 		<echo message="--- Unzipping LPG 2 ---" />
 		<echo>DIR = ${buildDirectory}/${buildLabel}/${allZip}</echo>
 		<echo>ALLZIP = ${allZip}</echo>
-		<unzip dest="${buildDirectory}/${buildLabel}/${allZip}" src="${downloadsDir}/${tools.orbit.file}">
+		<unzip dest="${buildDirectory}/${buildLabel}/${allZip}.temp" src="${downloadsDir}/${tools.orbit.file}">
 			<patternset>
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*.jar"/>
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime.source_${LPGRuntimeVersion}*.jar"/>
