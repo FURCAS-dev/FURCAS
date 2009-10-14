@@ -8,6 +8,22 @@
 		-->
 	</target>
 
+	<target name="getDependencies">
+		<!-- Important: This must be the last dependency downloaded, because the
+		                getDependency target strips versions from all plug-ins -->
+		<echo message="Unzipping LPG" />
+		<ant target="getBundle" antfile="${getDependenciesHelper.xml}">
+			<property name="url" value="${orbitURL}"/>
+			<property name="file" value="${orbitFile}"/>
+		</ant>
+		<unzip dest="${buildDirectory}/AAA" src="${downloadsDir}/${orbitFile}">
+			<patternset>
+				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*.jar"/>
+				<include name="**/net.sourceforge.lpg.lpgjavaruntime.source_${LPGRuntimeVersion}*.jar"/>
+			</patternset>
+		</unzip>
+	</target>
+	
 	<target name="extraPackaging">
 		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
 
