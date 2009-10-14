@@ -8,6 +8,40 @@
 		-->
 	</target>
 
+	<target name="getDependencies">
+		<echo message="getDependencies!!!" />
+	</target>
+	<target name="postFetch">
+		<echo message="postFetch!!!" />
+	</target>
+		<target name="preGenerate">
+			<echo message="preGenerate!!!" />
+		</target>
+		<target name="postGenerate">
+			<echo message="postGenerate!!!" />
+		</target>
+		<target name="preAssemble">
+			<echo message="preAssemble!!!" />
+		</target>
+		<target name="postAssemble">
+			<echo message="postAssemble!!!" />
+		</target>
+		<target name="prePackage">
+			<echo message="prePackage!!!" />
+		</target>
+		<target name="postPackage">
+			<echo message="postPackage!!!" />
+		</target>
+		<target name="preProcess">
+			<echo message="preProcess!!!" />
+		</target>
+	<target name="postProcess">
+		<echo message="postProcess!!!" />
+	</target>
+	<target name="postBuild">
+		<echo message="postBuild!!!" />
+	</target>
+
 	<target name="preFetch">
 		<echo message="--- Unzipping LPG ---" />
 		<unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
@@ -23,7 +57,6 @@
 		<zip destfile="${buildDirectory}/${buildLabel}/${SDKZip}" update="true">
 			<zipfileset dir="${buildDirectory}/LPG" 
 						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
-						prefix="eclipse/plugins"
 			/>
 		</zip>
 
