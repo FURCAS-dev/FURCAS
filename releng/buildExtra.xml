@@ -29,37 +29,37 @@
 			            includes="**/eclipse/epl-v10.html, **/eclipse/notice.html"
 			/>
 		</zip>
+
+		<!-- standalone: extract the jars we need into ./lib/, then the readme into ./, then zip the whole thing and clean up -->
+		<property name="allSDKZipUnpackTemp" value="${buildDirectory}/allSDKZipUnpackTemp" />
+		<mkdir dir="${allSDKZipUnpackTemp}/lib" />
+		<copy todir="${allSDKZipUnpackTemp}/lib" preservelastmodified="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
+				<patternset>
+					<include name="**/plugins/org.eclipse.ocl.ecore_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl.uml_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl_*.jar" />
+					<include name="**/plugins/net.sourceforge.lpg.lpgjavaruntime_*.jar" />
+				</patternset>
+			</zipfileset>
+			<mapper type="flatten" />
+		</copy>
+		<copy todir="${allSDKZipUnpackTemp}" preservelastmodified="true">
+	        <zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
+	            <patternset>
+	                <include name="**/eclipse/epl-v10.html" />
+	                <include name="**/eclipse/notice.html" />
+	            </patternset>
+	        </zipfileset>
+			<fileset dir="builder/extras">
+				<include name="readme_standalone.html" />
+			</fileset>
+			<mapper type="flatten" />
+		</copy>
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-standalone-${incubation}-${buildAlias}.zip" update="true">
+			<fileset dir="${allSDKZipUnpackTemp}" />
+		</zip>
+		<delete dir="${allSDKZipUnpackTemp}" />
+		
 	</target>
-	
-	<!-- standalone: extract the jars we need into ./lib/, then the readme into ./, then zip the whole thing and clean up -->
-	<property name="allSDKZipUnpackTemp" value="${buildDirectory}/allSDKZipUnpackTemp" />
-	<mkdir dir="${allSDKZipUnpackTemp}/lib" />
-	<copy todir="${allSDKZipUnpackTemp}/lib" preservelastmodified="true">
-		<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
-			<patternset>
-				<include name="**/plugins/org.eclipse.ocl.ecore_*.jar" />
-				<include name="**/plugins/org.eclipse.ocl.uml_*.jar" />
-				<include name="**/plugins/org.eclipse.ocl_*.jar" />
-				<include name="**/plugins/net.sourceforge.lpg.lpgjavaruntime_*.jar" />
-			</patternset>
-		</zipfileset>
-		<mapper type="flatten" />
-	</copy>
-	<copy todir="${allSDKZipUnpackTemp}" preservelastmodified="true">
-        <zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
-            <patternset>
-                <include name="**/eclipse/epl-v10.html" />
-                <include name="**/eclipse/notice.html" />
-            </patternset>
-        </zipfileset>
-		<fileset dir="builder/extras">
-			<include name="readme_standalone.html" />
-		</fileset>
-		<mapper type="flatten" />
-	</copy>
-	<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-standalone-${incubation}-${buildAlias}.zip" update="true">
-		<fileset dir="${allSDKZipUnpackTemp}" />
-	</zip>
-	<delete dir="${allSDKZipUnpackTemp}" />	
-	
 </project>
