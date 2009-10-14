@@ -11,9 +11,9 @@
 package org.eclipse.emf.query.index.internal.maps;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
 
@@ -86,8 +86,7 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 	}
 
 	/**
-	 * Adds the given element to the table. No uniqueness test is performed, so
-	 * double adding is possible.
+	 * Adds the given element to the table. No uniqueness test is performed, so double adding is possible.
 	 */
 	@Override
 	public void put(E element) {
@@ -165,7 +164,7 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 		}
 	}
 
-	public Collection<E> getAllWithEqualKey(K key) {
+	public List<E> getAllWithEqualKey(K key) {
 		// FIXME return unmodifiable collection
 		E[] list = this.getList_Equal(key);
 		if (list == null)
@@ -423,7 +422,7 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 
 		this.initialize(tab, size);
 	}
-	
+
 	public <T extends MapEntry> long getPosition(T element) {
 		if (element == null) {
 			throw new IllegalArgumentException("Argument must not be null");
@@ -443,17 +442,17 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 				E[] elems = (E[]) item;
 				for (int j = 0; j < elems.length; j++) {
 					if (elems[j] == element) {
-						return ((long)i) << 32 | j;
+						return ((long) i) << 32 | j;
 					}
 				}
 			}
 			i = ++i % len;
 		}
 	}
-	
+
 	public E get(long position) {
-		int j = (int)position;
-		int i = (int)(position >> 32);
+		int j = (int) position;
+		int i = (int) (position >> 32);
 		Object[] tab = (Object[]) this.table[i];
 		return (E) tab[j];
 	}

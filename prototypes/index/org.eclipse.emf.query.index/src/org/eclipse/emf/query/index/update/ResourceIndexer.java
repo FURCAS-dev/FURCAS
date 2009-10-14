@@ -22,9 +22,9 @@ public class ResourceIndexer {
 
 	public final void resourceChanged(IndexUpdater updater, final Resource... resources) {
 		Map<Object, String> typeCache = new IdentityHashMap<Object, String>();
-		Map<Object, String> objectCache = new IdentityHashMap<Object, String>();
 		Map<Resource, URI> resourceCache = new IdentityHashMap<Resource, URI>();
 		for (Resource resource : resources) {
+			Map<Object, String> objectCache = new IdentityHashMap<Object, String>();
 			ResourceSet resourceSet = resource.getResourceSet();
 			URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
 			URI resourceUri;

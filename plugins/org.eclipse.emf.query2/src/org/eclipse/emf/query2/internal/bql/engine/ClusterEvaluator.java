@@ -12,9 +12,12 @@ package org.eclipse.emf.query2.internal.bql.engine;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -48,10 +51,8 @@ import org.eclipse.emf.query2.internal.shared.AuxServices;
 import org.eclipse.emf.query2.internal.shared.BugException;
 import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
-
 /**
- * The cluster evaluator provides the functionalty to evaluate a nested model
- * element cluster expression.
+ * The cluster evaluator provides the functionalty to evaluate a nested model element cluster expression.
  * 
  * @author D029158
  * @version 27.02.2006
@@ -108,15 +109,13 @@ public final class ClusterEvaluator {
 	}
 
 	/**
-	 * Evaluates model element cluster. If the parameter clusterObject is an
-	 * instance of SelectExpression then this method returns the appropriate
-	 * result set If the parameter clusterObject is an instance of
-	 * ModelElementClusterExpression then this method returns a List of Objects
+	 * Evaluates model element cluster. If the parameter clusterObject is an instance of SelectExpression then this method returns the
+	 * appropriate result set If the parameter clusterObject is an instance of ModelElementClusterExpression then this method returns a List
+	 * of Objects
 	 * 
 	 * @param clusterObject
 	 *            select expression or model element cluster expression
-	 * @return BasicQueryResult if clusterObject represents a root model element
-	 *         cluster expression, otherwise list of Objects
+	 * @return BasicQueryResult if clusterObject represents a root model element cluster expression, otherwise list of Objects
 	 */
 	@SuppressWarnings( { "unchecked", "null" })
 	private Object evaluateClusterAuxiliary(Object clusterObject, int maxResultSetSize, int numberOfRequestedRows) {
@@ -149,18 +148,48 @@ public final class ClusterEvaluator {
 			throw new BugException(BugMessages.NO_SUCH_OBJECT_TYPE, clusterObject.getClass().getName());
 		}
 
+		// pre-calculated scope map
+		Map<SpiClusterExternalLinkExpression, Set<URI>> scopeMap = new IdentityHashMap<SpiClusterExternalLinkExpression, Set<URI>>();
+
 		// Evaluate child model element cluster expressions recursively
 		List<SpiClusterExternalLinkExpression> clusterExternalLinks = modelElementClusterExpression.getClusterExternalLinks();
 		int numberOfClusterExternalLinks = clusterExternalLinks.size();
 		EObject[][] childClusterResults = new EObject[numberOfClusterExternalLinks][];
 		for (int i = 0; i < numberOfClusterExternalLinks; i++) {
-			SpiModelElementClusterExpression linkTarget = clusterExternalLinks.get(i).getLinkTarget();
+			SpiClusterExternalLinkExpression clusterExternalLinkExpression = clusterExternalLinks.get(i);
+			SpiModelElementClusterExpression linkTarget = clusterExternalLinkExpression.getLinkTarget();
 			List<Object> childClusterResultList = (List<Object>) this.evaluateClusterAuxiliary(linkTarget, maxResultSetSize,
 					maxResultSetSize + 1);
 			// store the result as RefObject[]
 			EObject[] childClusterResultArray = new EObject[childClusterResultList.size()];
 			childClusterResultList.toArray(childClusterResultArray);
 			childClusterResults[i] = childClusterResultArray;
+
+			// get scope
+			Set<URI> scope;
+
+			// separate between fixed elements and the "normal" case
+			if (clusterExternalLinkExpression.getLinkTargetElementsSet() == null) {
+
+				Set<URI> scopeOfExternal = clusterExternalLinkExpression.getLinkTargetScopeSet();
+				boolean scopeOfExternalIncluded = clusterExternalLinkExpression.getLinkTargetScopeIncluded();
+
+				scope = (Set<URI>) this.partitionScopeSet.clone();
+				scopeOfExternal = (scopeOfExternal == null ? Collections.<URI> emptySet() : scopeOfExternal);
+				if (scopeOfExternalIncluded) {
+					scope.retainAll(scopeOfExternal);
+				} else {
+					scope.removeAll(scopeOfExternal);
+				}
+			} else {
+				scope = new HashSet<URI>();
+				Set<URI> elements = clusterExternalLinkExpression.getLinkTargetElementsSet();
+				for (URI mri : elements) {
+					scope.add(mri.trimFragment());
+				}
+			}
+
+			scopeMap.put(clusterExternalLinkExpression, scope);
 		}
 
 		// create navigation plan
@@ -171,7 +200,7 @@ public final class ClusterEvaluator {
 		boolean keepObtainingTuples = true;
 
 		while (keepObtainingTuples && clusterNavigationPlan.nextTuple()) {
-			if (!this.evaluateClusterExternalLinks(clusterNavigationPlan, modelElementClusterExpression, childClusterResults)) {
+			if (!this.evaluateClusterExternalLinks(clusterNavigationPlan, modelElementClusterExpression, childClusterResults, scopeMap)) {
 				continue;
 			}
 			if (!this.evaluateAttributes(clusterNavigationPlan, modelElementClusterExpression)) {
@@ -283,8 +312,7 @@ public final class ClusterEvaluator {
 				}
 				return false;
 			} else {
-				throw new BugException(BugMessages.NO_SUCH_MULTINARY_ATTRIBUTE_EXPRESSION_TYPE, multinaryExpression.getClass()
-						.getName());
+				throw new BugException(BugMessages.NO_SUCH_MULTINARY_ATTRIBUTE_EXPRESSION_TYPE, multinaryExpression.getClass().getName());
 			}
 		} else if (attributeExpression instanceof SpiLeafExpression) {
 			SpiLeafExpression leafExpression = (SpiLeafExpression) attributeExpression;
@@ -392,9 +420,8 @@ public final class ClusterEvaluator {
 	}
 
 	/**
-	 * Compares simple object of type Integer, Long, Double or Float with a list
-	 * of objects of the same type. This method returns true if there is at
-	 * least one element in the
+	 * Compares simple object of type Integer, Long, Double or Float with a list of objects of the same type. This method returns true if
+	 * there is at least one element in the
 	 * 
 	 * @param obj1
 	 *            Integer, Long, Float or Double instance
@@ -419,20 +446,20 @@ public final class ClusterEvaluator {
 	}
 
 	/**
-	 * Checks whether the current tuple of the cluster navigation plan fulfulls
-	 * the cluster external link expressions
+	 * Checks whether the current tuple of the cluster navigation plan fulfulls the cluster external link expressions
 	 * 
 	 * @param clusterNavigationPlan
 	 *            cluster navigation plan containing the current tuple
 	 * @param clusterExternalLinks
 	 *            cluster external links that are to be checked
 	 * @param childClusterResults
-	 *            results of the child clusters that have to match the cluster
-	 *            external links
+	 *            results of the child clusters that have to match the cluster external links
+	 * @param scopeMap
 	 * @return
 	 */
 	private boolean evaluateClusterExternalLinks(ClusterNavigationPlan clusterNavigationPlan,
-			SpiModelElementClusterExpression modelElementClusterExpression, EObject[][] childClusterResults) {
+			SpiModelElementClusterExpression modelElementClusterExpression, EObject[][] childClusterResults,
+			Map<SpiClusterExternalLinkExpression, Set<URI>> scopeMap) {
 
 		List<SpiClusterExternalLinkExpression> clusterExternalLinks = modelElementClusterExpression.getClusterExternalLinks();
 		for (int i = 0; i < childClusterResults.length; i++) {
@@ -446,27 +473,7 @@ public final class ClusterEvaluator {
 			//            }
 
 			// get scope
-			Set<URI> scope = new HashSet<URI>();
-
-			// separate between fixed elements and the "normal" case
-			if (clusterExternalLinkExpression.getLinkTargetElementsSet() == null) {
-
-				Set<URI> scopeOfExternal = clusterExternalLinkExpression.getLinkTargetScopeSet();
-				boolean scopeOfExternalIncluded = clusterExternalLinkExpression.getLinkTargetScopeIncluded();
-
-				scope.addAll(this.partitionScopeSet);
-				scopeOfExternal = (scopeOfExternal == null ? new HashSet<URI>(0) : scopeOfExternal);
-				if (scopeOfExternalIncluded) {
-					scope.retainAll(scopeOfExternal);
-				} else {
-					scope.removeAll(scopeOfExternal);
-				}
-			} else {
-				Set<URI> elements = clusterExternalLinkExpression.getLinkTargetElementsSet();
-				for (URI mri : elements) {
-					scope.add(mri.trimFragment());
-				}
-			}
+			Set<URI> scope = scopeMap.get(clusterExternalLinkExpression);
 
 			// observe that it is impossible for a nested cluster to return struct elements
 			EObject[] currentLinkedObjects = BasicQueryProcessorMemoryImpl.getLinkedObjects(this.emfHelper, currentObject,
@@ -514,17 +521,13 @@ public final class ClusterEvaluator {
 	}
 
 	/**
-	 * Returns true if the substring of strValue starting with position aStrPos
-	 * matches the pattern starting with aParseResultPos. This method is
-	 * normally called in evaluate() for the evaluation of a string value with
-	 * aParseResultPos = 0 and aStrPos = 0. The method checks the first sub
-	 * string of the parse result. If the check was successful then this method
-	 * is called recursively with the positions of the next sub string of the
-	 * parse result.
+	 * Returns true if the substring of strValue starting with position aStrPos matches the pattern starting with aParseResultPos. This
+	 * method is normally called in evaluate() for the evaluation of a string value with aParseResultPos = 0 and aStrPos = 0. The method
+	 * checks the first sub string of the parse result. If the check was successful then this method is called recursively with the
+	 * positions of the next sub string of the parse result.
 	 * 
 	 * @param aParseResultPos
-	 *            position of the parse result from which the check is to be
-	 *            executed
+	 *            position of the parse result from which the check is to be executed
 	 * @param strValue
 	 *            string value which is to be matched
 	 * @param aStrPos
@@ -591,8 +594,7 @@ public final class ClusterEvaluator {
 					}
 				}
 			} else {
-				throw new BugException(BugMessages.UNEXPECTED_OBJECT_TYPE_IN_PARSE_RESULT, currentParseResultObject.getClass()
-						.getName());
+				throw new BugException(BugMessages.UNEXPECTED_OBJECT_TYPE_IN_PARSE_RESULT, currentParseResultObject.getClass().getName());
 			}
 		}
 	}

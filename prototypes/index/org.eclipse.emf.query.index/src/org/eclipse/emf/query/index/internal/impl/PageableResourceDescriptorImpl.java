@@ -13,10 +13,10 @@ package org.eclipse.emf.query.index.internal.impl;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -179,8 +179,9 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 				key = targetDesc.getFragment();
 			}
 
-			Collection<IncomingReferenceDescriptor> incLinks = this.incomingLinkTable.getAllWithEqualKey(key);
-			for (IncomingReferenceDescriptor incLink : incLinks) {
+			List<IncomingReferenceDescriptor> incLinks = this.incomingLinkTable.getAllWithEqualKey(key);
+			for (int i = 0, n = incLinks.size(); i < n; i++) {
+				IncomingReferenceDescriptor incLink = incLinks.get(i);
 				if (incLink.getSourceFragment() == incomingLink.getSourceFragment()
 						&& incLink.getSourceResourceURI() == fromResDesc.getURI()) {
 					return;
