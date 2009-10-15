@@ -77,6 +77,8 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" ordered="false"
           upperBound="-1" eType="#//cst/InvOrDefCS" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InvOrDefCS" abstract="true" eSuperTypes="#//cst/CSTNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
@@ -217,12 +219,6 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" abstract="true" eSuperTypes="#//cst/OCLExpressionCS"/>
-    <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="simpleNameCS" eType="#//cst/SimpleNameCS"
-          containment="true"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExpCS" eSuperTypes="#//cst/LiteralExpCS">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="collectionType" eType="#//cst/CollectionTypeIdentifierEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="collectionLiteralParts"
@@ -293,14 +289,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="IteratorExpCS" eSuperTypes="#//cst/LoopExpCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="IterateExpCS" eSuperTypes="#//cst/LoopExpCS"/>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExpCS" eSuperTypes="#//cst/CallExpCS">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
           eType="#//cst/OCLExpressionCS" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="isMarkedPreCS" eType="#//cst/IsMarkedPreCS"
           containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpCS" eSuperTypes="#//cst/FeatureCallExpCS">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pathNameCS" eType="#//cst/PathNameCS"
-          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAtomic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
           defaultValueLiteral="false"/>
     </eClassifiers>
