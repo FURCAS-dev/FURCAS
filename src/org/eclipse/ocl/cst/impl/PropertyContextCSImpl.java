@@ -13,11 +13,12 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: PropertyContextCSImpl.java,v 1.5 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;

@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParserErrors.g,v 1.3 2009/10/10 07:10:29 ewillink Exp $
+-- * $Id: OCLParserErrors.g,v 1.4 2009/10/15 19:41:25 ewillink Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser
@@ -28,10 +28,34 @@ $End
 
 $Rules
 
+-----------------------------------------------------------------------
+--	Calls
+-----------------------------------------------------------------------	
+	OclMessageExpCS ::= primaryExpCS '^' simpleNameCS ERROR_TOKEN
+		/.$NewCase./
+	OclMessageExpCS ::= primaryExpCS '^^' simpleNameCS ERROR_TOKEN
+		/.$BeginJava
+					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_MESSAGE_ARGUMENTS);
+					OCLExpressionCS target = (OCLExpressionCS)$getSym(1);
+					MessageExpCS result = createMessageExpCS(
+							target,
+							getIToken($getToken(2)).getKind() == $sym_type.TK_CARET,
+							(SimpleNameCS)$getSym(3),
+							new BasicEList<OCLMessageArgCS>()
+						);
+					setOffsets(result, target, getIToken($getToken(4)));
+					$setResult(result);
+		  $EndJava
+		./
+
+-----------------------------------------------------------------------
+--	Contexts
+-----------------------------------------------------------------------
 	classifierContextDeclCS ::= context pathNameCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_INV_OR_DEF);
 					CSTNode result = createClassifierContextDeclCS(
+							null,
 							(PathNameCS)$getSym(2),
 							new BasicEList<InvOrDefCS>()
 						);
@@ -53,31 +77,17 @@ $Rules
 					$setResult(result);
 		  $EndJava
 		./
-	defExpressionCS ::= IDENTIFIER ERROR_Colon
+	defExpressionCS ::= notReservedSimpleNameCS ERROR_Colon
 		/.$BeginJava
-					VariableCS variableCS = createVariableCS(getTokenText($getToken(1)));
-					setOffsets(variableCS, getIToken($getToken(1)), getIToken($getToken(2)));
+					SimpleNameCS name = (SimpleNameCS)$getSym(1);
+					VariableCS variableCS = createVariableCS(name, null, null);
+					setOffsets(variableCS, name, getIToken($getToken(2)));
 					CSTNode result = createDefExpressionCS(
 							variableCS,
 							null,
 							null
 						);
 					setOffsets(result, variableCS, getIToken($getToken(2)));
-					$setResult(result);
-		  $EndJava
-		./
-
-	initOrDerValueCS ::= init ERROR_Colon
-		/.$BeginJava
-					CSTNode result = createInitValueCS(null);
-					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
-					$setResult(result);
-		  $EndJava
-		./
-	initOrDerValueCS ::= derive ERROR_Colon
-		/.$BeginJava
-					CSTNode result = createDerValueCS(null);
-					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
 					$setResult(result);
 		  $EndJava
 		./
@@ -103,34 +113,65 @@ $Rules
 		  $EndJava
 		./
 
-	packageDeclarationCS ::= package pathNameCS contextDeclCSmopt ERROR_Empty endpackage
+	operationCS1 ::= notReservedSimpleNameCS '(' parametersCSopt ')' ERROR_Colon
 		/.$BeginJava
-					CSTNode result = createPackageDeclarationCS(
-							(PathNameCS)$getSym(2),
-							(EList)$getSym(3)
+					CSTNode result = createOperationCS(
+							getTokenText($getToken(1)),
+							(EList)$getSym(3),
+							null
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
 		  $EndJava
 		./
-	packageDeclarationCS ::= package pathNameCS contextDeclCSmopt ERROR_TOKEN
+	operationCS1 ::= notReservedSimpleNameCS ERROR_TOKEN
 		/.$BeginJava
-					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_ENDPACKAGE);
-					CSTNode result = createPackageDeclarationCS(
-							(PathNameCS)$getSym(2),
-							(EList)$getSym(3)
+					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_LPAREN);
+					CSTNode result = createOperationCS(
+							getTokenText($getToken(1)),
+							new BasicEList(),
+							null
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
+					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
 					$setResult(result);
 		  $EndJava
 		./
-	packageDeclarationCS ::= package ERROR_PathNameCS
+	operationCS1 ::= ERROR_TOKEN
 		/.$BeginJava
-					CSTNode result = createPackageDeclarationCS(
-							(PathNameCS)$getSym(2),
-							new BasicEList()
+					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_IDENTIFIER);
+					CSTNode result = createOperationCS(
+							getTokenText($getToken(1)),
+							new BasicEList(),
+							null
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
+					setOffsets(result, getIToken($getToken(1)));
+					$setResult(result);
+		  $EndJava
+		./
+	operationCS2 ::= qualifiedPathNameCS '(' parametersCSopt ')' ERROR_Colon
+		/.$BeginJava
+					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
+					CSTNode result = createOperationCS(
+							pathNameCS,
+							removeLastSimpleNameCS(pathNameCS),
+							(EList)$getSym(3),
+							null
+						);
+					setOffsets(result, pathNameCS, getIToken($getToken(5)));
+					$setResult(result);
+		  $EndJava
+		./
+	operationCS2 ::= pathNameCS '::' ERROR_SimpleNameCS
+		/.$BeginJava
+					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
+					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+					CSTNode result = createOperationCS(
+							pathNameCS,
+							simpleNameCS,
+							new BasicEList(),
+							null
+						);
+					setOffsets(result, pathNameCS, simpleNameCS);
 					$setResult(result);
 		  $EndJava
 		./
@@ -169,18 +210,40 @@ $Rules
 		  $EndJava
 		./
 		
-	propertyContextCS ::= context pathNameCS '::' ERROR_SimpleNameCS
+	initOrDerValueCS ::= init ERROR_Colon
 		/.$BeginJava
-					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(4);
-					CSTNode result = createPropertyContextCS(
-							(PathNameCS)$getSym(2),
-							simpleNameCS,
-							null,
-							null
-						);
-					setOffsets(result, getIToken($getToken(1)), simpleNameCS);
+					CSTNode result = createInitValueCS(null);
+					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
 					$setResult(result);
 		  $EndJava
 		./
-		
+	initOrDerValueCS ::= derive ERROR_Colon
+		/.$BeginJava
+					CSTNode result = createDerValueCS(null);
+					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
+					$setResult(result);
+		  $EndJava
+		./
+
+	packageDeclarationCS ::= package pathNameCS contextDeclsCSopt ERROR_Empty endpackage
+		/.$BeginJava
+					CSTNode result = createPackageDeclarationCS(
+							(PathNameCS)$getSym(2),
+							(EList)$getSym(3)
+						);
+					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
+					$setResult(result);
+		  $EndJava
+		./
+	packageDeclarationCS ::= package pathNameCS contextDeclsCSopt ERROR_TOKEN
+		/.$BeginJava
+					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_ENDPACKAGE);
+					CSTNode result = createPackageDeclarationCS(
+							(PathNameCS)$getSym(2),
+							(EList)$getSym(3)
+						);
+					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
+					$setResult(result);
+		  $EndJava
+		./
 $End

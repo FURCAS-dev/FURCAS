@@ -1,4 +1,5 @@
 /**
+* Essential OCL Keyword Lexer
 * <copyright>
 *
 * Copyright (c) 2005, 2009 IBM Corporation and others.
@@ -10,11 +11,25 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
-*   E.D.Willink - Bug 285633 static definitions
-*
+*   E.D.Willink - Bug 285633, 292112
 * </copyright>
 *
-* $Id: OCLBacktrackingKWLexersym.java,v 1.7 2009/10/10 07:05:57 ewillink Exp $
+* $Id: OCLBacktrackingKWLexersym.java,v 1.8 2009/10/15 19:40:57 ewillink Exp $
+*/
+/**
+* Complete OCL Keyword Lexer
+* <copyright>
+*
+* Copyright (c) 2005, 2009 IBM Corporation and others.
+* All rights reserved.   This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+*
+* Contributors:
+*   IBM - Initial API and implementation
+*   E.D.Willink - Bug 292112
+* </copyright>
 */
 
 package org.eclipse.ocl.parser.backtracking;

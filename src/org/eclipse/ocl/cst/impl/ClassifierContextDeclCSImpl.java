@@ -13,11 +13,12 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: ClassifierContextDeclCSImpl.java,v 1.5 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.cst.CSTPackage;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
 import org.eclipse.ocl.cst.PathNameCS;
+import org.eclipse.ocl.cst.SimpleNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,6 +42,7 @@ import org.eclipse.ocl.cst.PathNameCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getPathNameCS <em>Path Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl#getSimpleNameCS <em>Simple Name CS</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +72,17 @@ public class ClassifierContextDeclCSImpl
 	 * @ordered
 	 */
 	protected EList<InvOrDefCS> constraints;
+
+	/**
+	 * The cached value of the '{@link #getSimpleNameCS() <em>Simple Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getSimpleNameCS()
+	 * @generated
+	 * @ordered
+	 */
+	protected SimpleNameCS simpleNameCS;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,6 +178,71 @@ public class ClassifierContextDeclCSImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleNameCS getSimpleNameCS() {
+		return simpleNameCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSimpleNameCS(SimpleNameCS newSimpleNameCS,
+			NotificationChain msgs) {
+		SimpleNameCS oldSimpleNameCS = simpleNameCS;
+		simpleNameCS = newSimpleNameCS;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+				Notification.SET,
+				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS,
+				oldSimpleNameCS, newSimpleNameCS);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSimpleNameCS(SimpleNameCS newSimpleNameCS) {
+		if (newSimpleNameCS != simpleNameCS) {
+			NotificationChain msgs = null;
+			if (simpleNameCS != null)
+				msgs = ((InternalEObject) simpleNameCS)
+					.eInverseRemove(
+						this,
+						EOPPOSITE_FEATURE_BASE
+							- CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS,
+						null, msgs);
+			if (newSimpleNameCS != null)
+				msgs = ((InternalEObject) newSimpleNameCS)
+					.eInverseAdd(
+						this,
+						EOPPOSITE_FEATURE_BASE
+							- CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS,
+						null, msgs);
+			msgs = basicSetSimpleNameCS(newSimpleNameCS, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS,
+				newSimpleNameCS, newSimpleNameCS));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -176,6 +255,8 @@ public class ClassifierContextDeclCSImpl
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return ((InternalEList<?>) getConstraints()).basicRemove(
 					otherEnd, msgs);
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS :
+				return basicSetSimpleNameCS(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -192,6 +273,8 @@ public class ClassifierContextDeclCSImpl
 				return getPathNameCS();
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return getConstraints();
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS :
+				return getSimpleNameCS();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +296,9 @@ public class ClassifierContextDeclCSImpl
 				getConstraints().addAll(
 					(Collection<? extends InvOrDefCS>) newValue);
 				return;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -231,6 +317,9 @@ public class ClassifierContextDeclCSImpl
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				getConstraints().clear();
 				return;
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS :
+				setSimpleNameCS((SimpleNameCS) null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -247,6 +336,8 @@ public class ClassifierContextDeclCSImpl
 				return pathNameCS != null;
 			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS :
 				return constraints != null && !constraints.isEmpty();
+			case CSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS :
+				return simpleNameCS != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactoryImpl.java,v 1.7 2009/10/10 07:09:24 ewillink Exp $
+ * $Id: CSTFactoryImpl.java,v 1.8 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -39,7 +39,6 @@ import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
 import org.eclipse.ocl.cst.DotOrArrowEnum;
-import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitValueCS;
@@ -169,8 +168,6 @@ public class CSTFactoryImpl
 				return createMessageExpCS();
 			case CSTPackage.OCL_MESSAGE_ARG_CS :
 				return createOCLMessageArgCS();
-			case CSTPackage.ENUM_LITERAL_EXP_CS :
-				return createEnumLiteralExpCS();
 			case CSTPackage.COLLECTION_LITERAL_EXP_CS :
 				return createCollectionLiteralExpCS();
 			case CSTPackage.COLLECTION_LITERAL_PART_CS :
@@ -489,16 +486,6 @@ public class CSTFactoryImpl
 	public VariableCS createVariableCS() {
 		VariableCSImpl variableCS = new VariableCSImpl();
 		return variableCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EnumLiteralExpCS createEnumLiteralExpCS() {
-		EnumLiteralExpCSImpl enumLiteralExpCS = new EnumLiteralExpCSImpl();
-		return enumLiteralExpCS;
 	}
 
 	/**

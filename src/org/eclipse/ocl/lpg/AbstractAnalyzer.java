@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractAnalyzer.java,v 1.3 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: AbstractAnalyzer.java,v 1.4 2009/10/15 19:38:31 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -259,11 +259,14 @@ public abstract class AbstractAnalyzer {
 	 * @return string representation of the list of string elements
 	 */
 	protected String makeString(EList<String> namelist) {
-		String msg = "";//$NON-NLS-1$
+		StringBuffer s = new StringBuffer();
 		for (int i = 0; i < namelist.size(); i++) {
-			msg += " " + namelist.get(i);//$NON-NLS-1$
+			if (i > 0) {
+				s.append(" ");		//$NON-NLS-1$
+			}
+			s.append(namelist.get(i));
 		}
-		return msg;
+		return s.toString();
 	}
 
 	/**
