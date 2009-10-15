@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTAdapterFactory.java,v 1.8 2009/10/10 07:08:50 ewillink Exp $
+ * $Id: CSTAdapterFactory.java,v 1.9 2009/10/15 19:38:31 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -34,7 +34,6 @@ import org.eclipse.ocl.cst.ContextDeclCS;
 import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
-import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
@@ -280,11 +279,6 @@ public class CSTAdapterFactory
 		@Override
 		public Adapter caseLiteralExpCS(LiteralExpCS object) {
 			return createLiteralExpCSAdapter();
-		}
-
-		@Override
-		public Adapter caseEnumLiteralExpCS(EnumLiteralExpCS object) {
-			return createEnumLiteralExpCSAdapter();
 		}
 
 		@Override
@@ -764,20 +758,6 @@ public class CSTAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLiteralExpCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.cst.EnumLiteralExpCS <em>Enum Literal Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.cst.EnumLiteralExpCS
-	 * @generated
-	 */
-	public Adapter createEnumLiteralExpCSAdapter() {
 		return null;
 	}
 

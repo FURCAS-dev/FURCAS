@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.4 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: AbstractParser.java,v 1.5 2009/10/15 19:38:31 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -197,7 +197,7 @@ public abstract class AbstractParser
 					return "<toString>"; //$NON-NLS-1$
 				}
 				int startOffset = getStartOffset();
-				int length = getEndOffset() - startOffset;
+				int length = getEndOffset() + 1 - startOffset;
 				if (length < 0) {
 					length = -length - 1;
 					startOffset = getEndOffset();
