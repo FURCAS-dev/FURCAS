@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLBacktrackingParser.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- * $Id: OCLBacktrackingParser.g,v 1.2 2009/10/15 19:41:25 ewillink Exp $
 -- */
 --
 -- The OCL Backtracking Parser
@@ -24,7 +24,7 @@
 --
 
 %options escape=$
-%options la=2
+%options la=1
 %options table=java
 %options fp=OCLBacktrackingParser,prefix=TK_
 %options error-maps
