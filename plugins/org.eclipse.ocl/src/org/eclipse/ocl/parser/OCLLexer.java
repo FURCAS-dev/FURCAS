@@ -1,4 +1,5 @@
 /**
+* Essential OCL Lexer
 * <copyright>
 *
 * Copyright (c) 2005, 2009 IBM Corporation and others.
@@ -11,10 +12,25 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
-*
+*   E.D.Willink - Bug 292112
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.10 2009/10/10 11:47:15 ewillink Exp $
+* $Id: OCLLexer.java,v 1.11 2009/10/15 19:44:00 ewillink Exp $
+*/
+/**
+* Complete OCL Lexer
+* <copyright>
+*
+* Copyright (c) 2005, 2009 IBM Corporation and others.
+* All rights reserved.   This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+*
+* Contributors:
+*   IBM - Initial API and implementation
+*   E.D.Willink - Bug 292112
+* </copyright>
 */
 
 package org.eclipse.ocl.parser;
@@ -600,42 +616,42 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             }
 	 
             //
-            // Rule 39:  Token ::= @ p r e
+            // Rule 39:  IntegerLiteral ::= Integer
             //
             case 39: { 
+				makeToken(TK_INTEGER_LITERAL);
+	            break;
+            }
+	 
+            //
+            // Rule 269:  Token ::= @ p r e
+            //
+            case 269: { 
 				makeToken(TK_ATPRE);
 	            break;
             }
 	 
             //
-            // Rule 40:  Token ::= ^
+            // Rule 270:  Token ::= ^
             //
-            case 40: { 
+            case 270: { 
 				makeToken(TK_CARET);
 	            break;
             }
 	 
             //
-            // Rule 41:  Token ::= ^ ^
+            // Rule 271:  Token ::= ^ ^
             //
-            case 41: { 
+            case 271: { 
 				makeToken(TK_CARETCARET);
 	            break;
             }
 	 
             //
-            // Rule 42:  Token ::= ?
+            // Rule 272:  Token ::= ?
             //
-            case 42: { 
+            case 272: { 
 				makeToken(TK_QUESTIONMARK);
-	            break;
-            }
-	 
-            //
-            // Rule 43:  IntegerLiteral ::= Integer
-            //
-            case 43: { 
-				makeToken(TK_INTEGER_LITERAL);
 	            break;
             }
 	
