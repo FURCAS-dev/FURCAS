@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpCS.java,v 1.5 2009/10/10 07:10:08 ewillink Exp $
+ * $Id: OperationCallExpCS.java,v 1.6 2009/10/15 19:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -25,7 +25,6 @@ package org.eclipse.ocl.cst;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.cst.OperationCallExpCS#getPathNameCS <em>Path Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic <em>Is Atomic</em>}</li>
  * </ul>
  * </p>
@@ -38,35 +37,6 @@ package org.eclipse.ocl.cst;
  */
 public interface OperationCallExpCS
 		extends FeatureCallExpCS {
-
-	/**
-	 * Returns the value of the '<em><b>Path Name CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Path Name CS</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * 
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path Name CS</em>' containment reference.
-	 * @see #setPathNameCS(PathNameCS)
-	 * @see org.eclipse.ocl.cst.CSTPackage#getOperationCallExpCS_PathNameCS()
-	 * @model containment="true"
-	 * @generated
-	 */
-	PathNameCS getPathNameCS();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.cst.OperationCallExpCS#getPathNameCS <em>Path Name CS</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path Name CS</em>' containment reference.
-	 * @see #getPathNameCS()
-	 * @generated
-	 */
-	void setPathNameCS(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Atomic</b></em>' attribute.

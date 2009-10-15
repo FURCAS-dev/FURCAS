@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.11 2009/10/10 07:10:08 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.12 2009/10/15 19:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -917,6 +917,16 @@ public interface CSTPackage
 	int CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -924,7 +934,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
+	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
@@ -2787,97 +2797,6 @@ public interface CSTPackage
 	int LITERAL_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.EnumLiteralExpCSImpl <em>Enum Literal Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.cst.impl.EnumLiteralExpCSImpl
-	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getEnumLiteralExpCS()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS = 30;
-
-	/**
-	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
-
-	/**
-	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>End Token</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
-
-	/**
-	 * The feature id for the '<em><b>Ast</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
-
-	/**
-	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__PATH_NAME_CS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Enum Literal Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int ENUM_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2886,7 +2805,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_LITERAL_EXP_CS = 31;
+	int COLLECTION_LITERAL_EXP_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -2977,7 +2896,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_LITERAL_PART_CS = 32;
+	int COLLECTION_LITERAL_PART_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3058,7 +2977,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int TUPLE_LITERAL_EXP_CS = 33;
+	int TUPLE_LITERAL_EXP_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3139,7 +3058,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 34;
+	int PRIMITIVE_LITERAL_EXP_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3220,7 +3139,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INTEGER_LITERAL_EXP_CS = 35;
+	int INTEGER_LITERAL_EXP_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3311,7 +3230,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 36;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3402,7 +3321,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int REAL_LITERAL_EXP_CS = 37;
+	int REAL_LITERAL_EXP_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3493,7 +3412,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int STRING_LITERAL_EXP_CS = 38;
+	int STRING_LITERAL_EXP_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3595,7 +3514,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int BOOLEAN_LITERAL_EXP_CS = 39;
+	int BOOLEAN_LITERAL_EXP_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3706,7 +3625,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int NULL_LITERAL_EXP_CS = 40;
+	int NULL_LITERAL_EXP_CS = 39;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3797,7 +3716,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int INVALID_LITERAL_EXP_CS = 41;
+	int INVALID_LITERAL_EXP_CS = 40;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3888,7 +3807,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_RANGE_CS = 42;
+	int COLLECTION_RANGE_CS = 41;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -3979,7 +3898,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int CALL_EXP_CS = 43;
+	int CALL_EXP_CS = 42;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4080,7 +3999,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int LOOP_EXP_CS = 44;
+	int LOOP_EXP_CS = 43;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4211,7 +4130,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int ITERATOR_EXP_CS = 45;
+	int ITERATOR_EXP_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4342,7 +4261,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int ITERATE_EXP_CS = 46;
+	int ITERATE_EXP_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4473,7 +4392,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int FEATURE_CALL_EXP_CS = 47;
+	int FEATURE_CALL_EXP_CS = 46;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4556,6 +4475,16 @@ public interface CSTPackage
 	int FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
+	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int FEATURE_CALL_EXP_CS__PATH_NAME_CS = CALL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4563,7 +4492,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int FEATURE_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 0;
+	int FEATURE_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
@@ -4573,7 +4502,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS = CALL_EXP_CS_FEATURE_COUNT + 1;
+	int FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS = CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature Call Exp CS</em>' class.
@@ -4583,7 +4512,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int FEATURE_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 2;
+	int FEATURE_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OperationCallExpCSImpl <em>Operation Call Exp CS</em>}' class.
@@ -4594,7 +4523,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_CS = 48;
+	int OPERATION_CALL_EXP_CS = 47;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4677,6 +4606,16 @@ public interface CSTPackage
 	int OPERATION_CALL_EXP_CS__SIMPLE_NAME_CS = FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
+	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int OPERATION_CALL_EXP_CS__PATH_NAME_CS = FEATURE_CALL_EXP_CS__PATH_NAME_CS;
+
+	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4697,16 +4636,6 @@ public interface CSTPackage
 	int OPERATION_CALL_EXP_CS__IS_MARKED_PRE_CS = FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS;
 
 	/**
-	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int OPERATION_CALL_EXP_CS__PATH_NAME_CS = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Is Atomic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4714,7 +4643,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_CS__IS_ATOMIC = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP_CS__IS_ATOMIC = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Operation Call Exp CS</em>' class.
@@ -4724,7 +4653,7 @@ public interface CSTPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 2;
+	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.
@@ -4735,7 +4664,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int OCL_DOCUMENT_CS = 49;
+	int OCL_DOCUMENT_CS = 48;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
@@ -4816,7 +4745,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int SIMPLE_TYPE_ENUM = 50;
+	int SIMPLE_TYPE_ENUM = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.PrePostOrBodyEnum <em>Pre Post Or Body Enum</em>}' enum.
@@ -4827,7 +4756,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int PRE_POST_OR_BODY_ENUM = 51;
+	int PRE_POST_OR_BODY_ENUM = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.CollectionTypeIdentifierEnum <em>Collection Type Identifier Enum</em>}' enum.
@@ -4838,7 +4767,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int COLLECTION_TYPE_IDENTIFIER_ENUM = 52;
+	int COLLECTION_TYPE_IDENTIFIER_ENUM = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.MessageExpKind <em>Message Exp Kind</em>}' enum.
@@ -4849,7 +4778,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int MESSAGE_EXP_KIND = 53;
+	int MESSAGE_EXP_KIND = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.DotOrArrowEnum <em>Dot Or Arrow Enum</em>}' enum.
@@ -4860,7 +4789,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int DOT_OR_ARROW_ENUM = 54;
+	int DOT_OR_ARROW_ENUM = 53;
 
 	/**
 	 * The meta object id for the '<em>IToken</em>' data type.
@@ -4871,7 +4800,7 @@ public interface CSTPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int ITOKEN = 55;
+	int ITOKEN = 54;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.CSTNode <em>Node</em>}'.
@@ -5176,6 +5105,18 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EReference getClassifierContextDeclCS_Constraints();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getSimpleNameCS <em>Simple Name CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
+	 * @see org.eclipse.ocl.cst.ClassifierContextDeclCS#getSimpleNameCS()
+	 * @see #getClassifierContextDeclCS()
+	 * @generated
+	 */
+	EReference getClassifierContextDeclCS_SimpleNameCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.InvOrDefCS <em>Inv Or Def CS</em>}'.
@@ -5775,38 +5716,6 @@ public interface CSTPackage
 	EClass getLiteralExpCS();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.EnumLiteralExpCS <em>Enum Literal Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Enum Literal Exp CS</em>'.
-	 * @see org.eclipse.ocl.cst.EnumLiteralExpCS
-	 * @generated
-	 */
-	EClass getEnumLiteralExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.EnumLiteralExpCS#getPathNameCS <em>Path Name CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name CS</em>'.
-	 * @see org.eclipse.ocl.cst.EnumLiteralExpCS#getPathNameCS()
-	 * @see #getEnumLiteralExpCS()
-	 * @generated
-	 */
-	EReference getEnumLiteralExpCS_PathNameCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.EnumLiteralExpCS#getSimpleNameCS <em>Simple Name CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Simple Name CS</em>'.
-	 * @see org.eclipse.ocl.cst.EnumLiteralExpCS#getSimpleNameCS()
-	 * @see #getEnumLiteralExpCS()
-	 * @generated
-	 */
-	EReference getEnumLiteralExpCS_SimpleNameCS();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.cst.CollectionLiteralExpCS <em>Collection Literal Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6176,6 +6085,18 @@ public interface CSTPackage
 	EClass getFeatureCallExpCS();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.FeatureCallExpCS#getPathNameCS <em>Path Name CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Path Name CS</em>'.
+	 * @see org.eclipse.ocl.cst.FeatureCallExpCS#getPathNameCS()
+	 * @see #getFeatureCallExpCS()
+	 * @generated
+	 */
+	EReference getFeatureCallExpCS_PathNameCS();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.cst.FeatureCallExpCS#getArguments <em>Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6206,18 +6127,6 @@ public interface CSTPackage
 	 * @generated
 	 */
 	EClass getOperationCallExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.cst.OperationCallExpCS#getPathNameCS <em>Path Name CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name CS</em>'.
-	 * @see org.eclipse.ocl.cst.OperationCallExpCS#getPathNameCS()
-	 * @see #getOperationCallExpCS()
-	 * @generated
-	 */
-	EReference getOperationCallExpCS_PathNameCS();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.cst.OperationCallExpCS#getIsAtomic <em>Is Atomic</em>}'.
@@ -6605,6 +6514,16 @@ public interface CSTPackage
 			.getClassifierContextDeclCS_Constraints();
 
 		/**
+		 * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+	 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS = eINSTANCE
+			.getClassifierContextDeclCS_SimpleNameCS();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6617,6 +6536,7 @@ public interface CSTPackage
 		/**
 		 * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -7122,34 +7042,6 @@ public interface CSTPackage
 		EClass LITERAL_EXP_CS = eINSTANCE.getLiteralExpCS();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.EnumLiteralExpCSImpl <em>Enum Literal Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.cst.impl.EnumLiteralExpCSImpl
-		 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getEnumLiteralExpCS()
-		 * @generated
-		 */
-		EClass ENUM_LITERAL_EXP_CS = eINSTANCE.getEnumLiteralExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENUM_LITERAL_EXP_CS__PATH_NAME_CS = eINSTANCE
-			.getEnumLiteralExpCS_PathNameCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS = eINSTANCE
-			.getEnumLiteralExpCS_SimpleNameCS();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.cst.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7481,6 +7373,16 @@ public interface CSTPackage
 		EClass FEATURE_CALL_EXP_CS = eINSTANCE.getFeatureCallExpCS();
 
 		/**
+		 * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_CALL_EXP_CS__PATH_NAME_CS = eINSTANCE
+			.getFeatureCallExpCS_PathNameCS();
+
+		/**
 		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7507,16 +7409,6 @@ public interface CSTPackage
 		 * @generated
 		 */
 		EClass OPERATION_CALL_EXP_CS = eINSTANCE.getOperationCallExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Path Name CS</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * @since 3.0
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERATION_CALL_EXP_CS__PATH_NAME_CS = eINSTANCE
-			.getOperationCallExpCS_PathNameCS();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Atomic</b></em>' attribute feature.
