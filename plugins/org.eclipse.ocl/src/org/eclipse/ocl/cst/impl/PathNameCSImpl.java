@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.4 2009/09/04 13:40:43 ewillink Exp $
+ * $Id: PathNameCSImpl.java,v 1.5 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -165,6 +165,12 @@ public class PathNameCSImpl
 				return simpleNames != null && !simpleNames.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public void setAst(Object newAst) {
+		// TODO Auto-generated method stub
+		super.setAst(newAst);
 	}
 
 } //PathNameCSImpl

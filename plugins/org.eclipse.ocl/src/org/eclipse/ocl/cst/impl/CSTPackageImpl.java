@@ -14,11 +14,12 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.12 2009/10/10 07:09:24 ewillink Exp $
+ * $Id: CSTPackageImpl.java,v 1.13 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
 import lpg.lpgjavaruntime.IToken;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -42,7 +43,6 @@ import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
 import org.eclipse.ocl.cst.DotOrArrowEnum;
-import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
@@ -275,13 +275,6 @@ public class CSTPackageImpl
 	 * @generated
 	 */
 	private EClass literalExpCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass enumLiteralExpCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -683,6 +676,17 @@ public class CSTPackageImpl
 	public EReference getClassifierContextDeclCS_Constraints() {
 		return (EReference) classifierContextDeclCSEClass
 			.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClassifierContextDeclCS_SimpleNameCS() {
+		return (EReference) classifierContextDeclCSEClass
+			.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1200,35 +1204,6 @@ public class CSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEnumLiteralExpCS() {
-		return enumLiteralExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEnumLiteralExpCS_PathNameCS() {
-		return (EReference) enumLiteralExpCSEClass.getEStructuralFeatures()
-			.get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getEnumLiteralExpCS_SimpleNameCS() {
-		return (EReference) enumLiteralExpCSEClass.getEStructuralFeatures()
-			.get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getCollectionLiteralExpCS() {
 		return collectionLiteralExpCSEClass;
 	}
@@ -1504,20 +1479,9 @@ public class CSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationCallExpCS_PathNameCS() {
-		return (EReference) operationCallExpCSEClass.getEStructuralFeatures()
-			.get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getOperationCallExpCS_IsAtomic() {
 		return (EAttribute) operationCallExpCSEClass.getEStructuralFeatures()
-			.get(1);
+			.get(0);
 	}
 
 	/**
@@ -1745,10 +1709,11 @@ public class CSTPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureCallExpCS_Arguments() {
+	public EReference getFeatureCallExpCS_PathNameCS() {
 		return (EReference) featureCallExpCSEClass.getEStructuralFeatures()
 			.get(0);
 	}
@@ -1758,9 +1723,19 @@ public class CSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureCallExpCS_IsMarkedPreCS() {
+	public EReference getFeatureCallExpCS_Arguments() {
 		return (EReference) featureCallExpCSEClass.getEStructuralFeatures()
 			.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureCallExpCS_IsMarkedPreCS() {
+		return (EReference) featureCallExpCSEClass.getEStructuralFeatures()
+			.get(2);
 	}
 
 	/**
@@ -1893,6 +1868,8 @@ public class CSTPackageImpl
 			CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS);
 		createEReference(classifierContextDeclCSEClass,
 			CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS);
+		createEReference(classifierContextDeclCSEClass,
+			CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS);
 
 		invOrDefCSEClass = createEClass(INV_OR_DEF_CS);
 		createEReference(invOrDefCSEClass, INV_OR_DEF_CS__SIMPLE_NAME_CS);
@@ -1977,12 +1954,6 @@ public class CSTPackageImpl
 
 		literalExpCSEClass = createEClass(LITERAL_EXP_CS);
 
-		enumLiteralExpCSEClass = createEClass(ENUM_LITERAL_EXP_CS);
-		createEReference(enumLiteralExpCSEClass,
-			ENUM_LITERAL_EXP_CS__PATH_NAME_CS);
-		createEReference(enumLiteralExpCSEClass,
-			ENUM_LITERAL_EXP_CS__SIMPLE_NAME_CS);
-
 		collectionLiteralExpCSEClass = createEClass(COLLECTION_LITERAL_EXP_CS);
 		createEAttribute(collectionLiteralExpCSEClass,
 			COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE);
@@ -2046,13 +2017,13 @@ public class CSTPackageImpl
 		iterateExpCSEClass = createEClass(ITERATE_EXP_CS);
 
 		featureCallExpCSEClass = createEClass(FEATURE_CALL_EXP_CS);
+		createEReference(featureCallExpCSEClass,
+			FEATURE_CALL_EXP_CS__PATH_NAME_CS);
 		createEReference(featureCallExpCSEClass, FEATURE_CALL_EXP_CS__ARGUMENTS);
 		createEReference(featureCallExpCSEClass,
 			FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS);
 
 		operationCallExpCSEClass = createEClass(OPERATION_CALL_EXP_CS);
-		createEReference(operationCallExpCSEClass,
-			OPERATION_CALL_EXP_CS__PATH_NAME_CS);
 		createEAttribute(operationCallExpCSEClass,
 			OPERATION_CALL_EXP_CS__IS_ATOMIC);
 
@@ -2133,7 +2104,6 @@ public class CSTPackageImpl
 		messageExpCSEClass.getESuperTypes().add(this.getOCLExpressionCS());
 		oclMessageArgCSEClass.getESuperTypes().add(this.getCSTNode());
 		literalExpCSEClass.getESuperTypes().add(this.getOCLExpressionCS());
-		enumLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		collectionLiteralExpCSEClass.getESuperTypes().add(
 			this.getLiteralExpCS());
 		collectionLiteralPartCSEClass.getESuperTypes().add(this.getCSTNode());
@@ -2295,6 +2265,11 @@ public class CSTPackageImpl
 			this.getInvOrDefCS(),
 			null,
 			"constraints", null, 0, -1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(
+			getClassifierContextDeclCS_SimpleNameCS(),
+			this.getSimpleNameCS(),
+			null,
+			"simpleNameCS", null, 0, 1, ClassifierContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			invOrDefCSEClass,
@@ -2566,21 +2541,6 @@ public class CSTPackageImpl
 			"LiteralExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(
-			enumLiteralExpCSEClass,
-			EnumLiteralExpCS.class,
-			"EnumLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getEnumLiteralExpCS_PathNameCS(),
-			this.getPathNameCS(),
-			null,
-			"pathNameCS", null, 0, 1, EnumLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getEnumLiteralExpCS_SimpleNameCS(),
-			this.getSimpleNameCS(),
-			null,
-			"simpleNameCS", null, 0, 1, EnumLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(
 			collectionLiteralExpCSEClass,
 			CollectionLiteralExpCS.class,
 			"CollectionLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2746,6 +2706,11 @@ public class CSTPackageImpl
 			FeatureCallExpCS.class,
 			"FeatureCallExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(
+			getFeatureCallExpCS_PathNameCS(),
+			this.getPathNameCS(),
+			null,
+			"pathNameCS", null, 0, 1, FeatureCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(
 			getFeatureCallExpCS_Arguments(),
 			this.getOCLExpressionCS(),
 			null,
@@ -2760,11 +2725,6 @@ public class CSTPackageImpl
 			operationCallExpCSEClass,
 			OperationCallExpCS.class,
 			"OperationCallExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getOperationCallExpCS_PathNameCS(),
-			this.getPathNameCS(),
-			null,
-			"pathNameCS", null, 0, 1, OperationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(
 			getOperationCallExpCS_IsAtomic(),
 			ecorePackage.getEBooleanObject(),
