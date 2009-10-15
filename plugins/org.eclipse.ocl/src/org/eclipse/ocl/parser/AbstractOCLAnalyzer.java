@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.33 2009/10/10 07:03:54 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.34 2009/10/15 19:43:33 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -55,7 +55,6 @@ import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
 import org.eclipse.ocl.cst.DotOrArrowEnum;
-import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
@@ -234,6 +233,18 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 	protected OCLStandardLibrary<C> getStandardLibrary() {
 		return getOCLEnvironment().getOCLStandardLibrary();
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public void initPathNameAst(PathNameCS pathNameCS, Object astNode) {
+		pathNameCS.setAst(astNode);
+		List<SimpleNameCS> simpleNames = pathNameCS.getSimpleNames();
+		for (int i = simpleNames.size() - 1; i >= 0; --i) {
+			simpleNames.get(i).setAst(astNode);
+			astNode = astNode instanceof EObject ? ((EObject)astNode).eContainer() : null;
+		}
 	}
 
 	/**
@@ -1755,6 +1766,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				ERROR(typeCS, "typeCS", message);//$NON-NLS-1$
 				astNode = createDummyInvalidType(env, typeCS, message);
 			}
+			initPathNameAst((PathNameCS)typeCS, astNode);
 		} else if (typeCS instanceof CollectionTypeCS
 			|| typeCS instanceof TupleTypeCS) {
 			if (typeCS instanceof CollectionTypeCS) {
@@ -3093,8 +3105,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				(CollectionLiteralExpCS) literalExpCS, env);
 		} else if (literalExpCS instanceof TupleLiteralExpCS) {
 			astNode = tupleLiteralExpCS((TupleLiteralExpCS) literalExpCS, env);
-		} else if (literalExpCS instanceof EnumLiteralExpCS) {
-			astNode = enumLiteralExpCS((EnumLiteralExpCS) literalExpCS, env);
+//		} else if (literalExpCS instanceof EnumLiteralExpCS) {
+//			astNode = enumLiteralExpCS((EnumLiteralExpCS) literalExpCS, env);
 		} else if (literalExpCS instanceof NullLiteralExpCS) {
 			astNode = nullLiteralExpCS((NullLiteralExpCS) literalExpCS, env);
 		} else if (literalExpCS instanceof InvalidLiteralExpCS) {
@@ -3265,120 +3277,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the OCL environment
 	 * @return the parsed <code>EnumLiteralExp</code>
 	 */
-	protected OCLExpression<C> enumLiteralExpCS(
-			EnumLiteralExpCS enumLiteralExpCS,
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
-
-		OCLExpression<C> astNode = null;
-
-		EList<String> sequenceOfNames = createSequenceOfNames(enumLiteralExpCS.getPathNameCS(), null);
-		String lastToken = enumLiteralExpCS.getSimpleNameCS().getValue();
-
-		EL literal = null;
-		P attribute = null;
-		C enumType = lookupClassifier(enumLiteralExpCS.getPathNameCS(), env,
-			sequenceOfNames);
-		if (enumType == null) {
-
-			// Check to see whether the pathname corresponds to a type
-			sequenceOfNames.add(lastToken);
-			C type = lookupClassifier(enumLiteralExpCS.getSimpleNameCS(), env,
-				sequenceOfNames);
-			if (type == null) {
-				String message = OCLMessages.bind(
-					OCLMessages.UnrecognizedType_ERROR_, sequenceOfNames);
-				ERROR(enumLiteralExpCS,
-					"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
-			} else {
-				astNode = typeCS(enumLiteralExpCS, env, type);
-				enumLiteralExpCS.getPathNameCS().setAst(uml.getPackage(type));
-			}
-		} else {
-			if (uml.isEnumeration(enumType)) {
-				// look first for an enumeration literal with this name, rather
-				// than a static attribute
-				literal = uml.getEnumerationLiteral(enumType, lastToken);
-				if ((literal == null) && isEscaped(lastToken)) {
-					literal = uml.getEnumerationLiteral(enumType,
-						unescape(lastToken));
-				}
-				if (literal == null) {
-					// try looking for a static attribute
-					attribute = lookupProperty(enumLiteralExpCS, env, enumType,
-						lastToken);
-				}
-			} else {
-				// look for a static attribute
-				attribute = lookupProperty(enumLiteralExpCS, env, enumType,
-					lastToken);
-			}
-
-			if (literal != null) {
-				astNode = oclFactory.createEnumLiteralExp();
-				initASTMapping(env, astNode, enumLiteralExpCS);
-
-				@SuppressWarnings("unchecked")
-				EnumLiteralExp<C, EL> litExp = (EnumLiteralExp<C, EL>) astNode;
-				litExp.setReferredEnumLiteral(literal);
-				astNode = litExp;
-				astNode.setType(enumType);
-				enumLiteralExpCS.getSimpleNameCS().setAst(literal);
-			} else if (attribute != null) {
-				if (!uml.isStatic(attribute)) {
-					String message = OCLMessages.bind(
-						OCLMessages.NonStaticAttribute_ERROR_, lastToken);
-					ERROR(enumLiteralExpCS.getSimpleNameCS(),
-						"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
-				}
-
-				PropertyCallExp<C, P> pcExp = oclFactory
-					.createPropertyCallExp();
-				initASTMapping(env, pcExp, enumLiteralExpCS);
-				astNode = pcExp;
-				enumLiteralExpCS.getSimpleNameCS().setAst(attribute);
-				enumLiteralExpCS.getPathNameCS().setAst(enumType);
-				TypeExp<C> typeExp = typeCS(enumLiteralExpCS, env, enumType);
-				initStartEndPositions(typeExp, enumLiteralExpCS.getPathNameCS());
-
-				pcExp.setSource(typeExp);
-				pcExp.setReferredProperty(attribute);
-				pcExp.setType(getPropertyType(enumLiteralExpCS
-					.getSimpleNameCS(), env, enumType, attribute));
-
-				initPropertyPositions(pcExp, enumLiteralExpCS.getSimpleNameCS());
-			} else {
-				// try looking for a nested classifier
-				sequenceOfNames.add(lastToken);
-
-				C type = lookupClassifier(enumLiteralExpCS.getSimpleNameCS(),
-					env, sequenceOfNames);
-				if (type == null) {
-					String message = OCLMessages.bind(
-						OCLMessages.UnrecognizedEnum_ERROR_, lastToken);
-					ERROR(enumLiteralExpCS,
-						"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
-				} else {
-					astNode = typeCS(enumLiteralExpCS, env, type);
-					enumLiteralExpCS.getSimpleNameCS().setAst(type);
-					enumLiteralExpCS.getPathNameCS().setAst(
-						uml.getPackage(type));
-				}
-			}
-		}
-
-		if (astNode == null) {
-			astNode = createDummyInvalidLiteralExp(env, enumLiteralExpCS);
-		}
-
-		String traceText = new String();
-		for (String next : sequenceOfNames) {
-			traceText += next + "::"; //$NON-NLS-1$
-		}
-		traceText += lastToken;
-		TRACE("enumerationOrClassLiteralExpCS", traceText); //$NON-NLS-1$
-
-		return astNode;
-	}
 
 	protected TypeExp<C> typeCS(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
@@ -3553,6 +3451,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		if (propertyCallExpCS instanceof LoopExpCS) {
 			astNode = loopExpCS((LoopExpCS) propertyCallExpCS, env);
 		} else if (propertyCallExpCS instanceof FeatureCallExpCS) {
+			// FIXME enumLiteral
 			astNode = modelPropertyCallExpCS(
 				(FeatureCallExpCS) propertyCallExpCS, env);
 		}
@@ -3931,6 +3830,118 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		} else {
 			OCLExpression<C> source = oclExpressionCS(modelPropertyCallExpCS
 				.getSource(), env);
+
+			if (source == null) {		// PropertyCallExpCS[C] or EnumLiteralExpCS
+				EList<String> sequenceOfNames = createSequenceOfNames(modelPropertyCallExpCS.getPathNameCS(), null);
+				String lastToken = modelPropertyCallExpCS.getSimpleNameCS().getValue();
+
+				EL literal = null;
+				P attribute = null;
+				C enumType = lookupClassifier(modelPropertyCallExpCS.getPathNameCS(), env,
+					sequenceOfNames);
+				if (enumType == null) {
+
+					// Check to see whether the pathname corresponds to a type
+					sequenceOfNames.add(lastToken);
+					C type = lookupClassifier(modelPropertyCallExpCS.getSimpleNameCS(), env,
+						sequenceOfNames);
+					if (type == null) {
+						String message = OCLMessages.bind(
+							OCLMessages.UnrecognizedType_ERROR_, sequenceOfNames);
+						ERROR(modelPropertyCallExpCS,
+							"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+					} else {
+						astNode = typeCS(modelPropertyCallExpCS, env, type);
+						modelPropertyCallExpCS.getPathNameCS().setAst(uml.getPackage(type));
+					}
+				} else {
+					if (uml.isEnumeration(enumType)) {
+						// look first for an enumeration literal with this name, rather
+						// than a static attribute
+						literal = uml.getEnumerationLiteral(enumType, lastToken);
+						if ((literal == null) && isEscaped(lastToken)) {
+							literal = uml.getEnumerationLiteral(enumType,
+								unescape(lastToken));
+						}
+						if (literal == null) {
+							// try looking for a static attribute
+							attribute = lookupProperty(modelPropertyCallExpCS, env, enumType,
+								lastToken);
+						}
+					} else {
+						// look for a static attribute
+						attribute = lookupProperty(modelPropertyCallExpCS, env, enumType,
+							lastToken);
+					}
+
+					if (literal != null) {
+						astNode = oclFactory.createEnumLiteralExp();
+						initASTMapping(env, astNode, modelPropertyCallExpCS);
+
+						@SuppressWarnings("unchecked")
+						EnumLiteralExp<C, EL> litExp = (EnumLiteralExp<C, EL>) astNode;
+						litExp.setReferredEnumLiteral(literal);
+						astNode = litExp;
+						astNode.setType(enumType);
+						modelPropertyCallExpCS.getSimpleNameCS().setAst(literal);
+					} else if (attribute != null) {
+						if (!uml.isStatic(attribute)) {
+							String message = OCLMessages.bind(
+								OCLMessages.NonStaticAttribute_ERROR_, lastToken);
+							ERROR(modelPropertyCallExpCS.getSimpleNameCS(),
+								"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+						}
+
+						PropertyCallExp<C, P> pcExp = oclFactory
+							.createPropertyCallExp();
+						initASTMapping(env, pcExp, modelPropertyCallExpCS);
+						astNode = pcExp;
+						modelPropertyCallExpCS.getSimpleNameCS().setAst(attribute);
+						modelPropertyCallExpCS.getPathNameCS().setAst(enumType);
+						TypeExp<C> typeExp = typeCS(modelPropertyCallExpCS, env, enumType);
+						initStartEndPositions(typeExp, modelPropertyCallExpCS.getPathNameCS());
+
+						pcExp.setSource(typeExp);
+						pcExp.setReferredProperty(attribute);
+						pcExp.setType(getPropertyType(modelPropertyCallExpCS
+							.getSimpleNameCS(), env, enumType, attribute));
+
+						initPropertyPositions(pcExp, modelPropertyCallExpCS.getSimpleNameCS());
+					} else {
+						// try looking for a nested classifier
+						sequenceOfNames.add(lastToken);
+
+						C type = lookupClassifier(modelPropertyCallExpCS.getSimpleNameCS(),
+							env, sequenceOfNames);
+						if (type == null) {
+							String message = OCLMessages.bind(
+								OCLMessages.UnrecognizedEnum_ERROR_, lastToken);
+							ERROR(modelPropertyCallExpCS,
+								"enumerationOrClassLiteralExpCS", message);//$NON-NLS-1$
+						} else {
+							astNode = typeCS(modelPropertyCallExpCS, env, type);
+							modelPropertyCallExpCS.getSimpleNameCS().setAst(type);
+							modelPropertyCallExpCS.getPathNameCS().setAst(
+								uml.getPackage(type));
+						}
+					}
+				}
+
+				if (astNode == null) {
+					astNode = createDummyInvalidLiteralExp(env, modelPropertyCallExpCS);
+				}
+
+				String traceText = new String();
+				for (String next : sequenceOfNames) {
+					traceText += next + "::"; //$NON-NLS-1$
+				}
+				traceText += lastToken;
+				TRACE("enumerationOrClassLiteralExpCS", traceText); //$NON-NLS-1$
+
+				return astNode;
+				
+			}
+					
 			astNode = simpleNameCS(modelPropertyCallExpCS.getSimpleNameCS(),
 				env, source);
 
@@ -4169,10 +4180,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				VariableExpCS stateName = (VariableExpCS) arg;
 				EList<String> statePath = createSequenceOfNames(null, stateName.getSimpleNameCS());
 				args.add(stateExpCS(source, stateName, statePath, env));
-			} else if (arg instanceof EnumLiteralExpCS) {
-				EnumLiteralExpCS stateName = (EnumLiteralExpCS) arg;
+			} else if (arg instanceof FeatureCallExpCS) {
+				FeatureCallExpCS stateName = (FeatureCallExpCS) arg;
 				EList<String> statePath = createSequenceOfNames(stateName.getPathNameCS(), stateName.getSimpleNameCS());
 				args.add(stateExpCS(source, stateName, statePath, env));
+				if (stateName.getSource() != null) {
+					// FIXME ERROR
+				}
+				if (stateName.getIsMarkedPreCS() != null) {
+					// FIXME ERROR
+				}
 			} else {
 				String message = OCLMessages.bind(
 					OCLMessages.IsInStateSignature_ERROR_,
