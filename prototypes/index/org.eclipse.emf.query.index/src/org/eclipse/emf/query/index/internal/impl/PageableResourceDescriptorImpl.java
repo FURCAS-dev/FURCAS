@@ -425,7 +425,8 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 					protected Iterator<ReferenceDescriptorImpl> getNextIterator() {
 						while (scopeIterator != null && scopeIterator.hasNext()) {
 							next = scopeIterator.next();
-							if (refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) {
+							if ((refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) && //
+									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment))) {
 								if (next.isIntraLink()) {
 									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
 								} else {
@@ -459,14 +460,9 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 						if (e.getTargetResourceURI() == getURI()) {
 							if (e.getTargetFragment().equals(next.getTargetFragment())) {
 								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-									if (srcFragment == null || QueryUtil.matchesGlobbing(e.getSource().getFragment(), srcFragment)) { // FIXME
-										// performance:
-										// put
-										// this
-										// into
-										// getNextIterator()
-										return true;
-									}
+									//									if (srcFragment == null || QueryUtil.matchesGlobbing(e.getSource().getFragment(), srcFragment)) { 
+									return true;
+									//									}
 								}
 							}
 						}
@@ -480,21 +476,27 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
 
+					private IncomingReferenceDescriptor next;
+
 					@Override
 					protected Iterator<? extends ReferenceDescriptorImpl> getNextIterator() {
-						while (scopeIterator.hasNext()) { // FIXME same loop as
-							// above
-							IncomingReferenceDescriptor next = scopeIterator.next();
-							if (refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next)) {
-								PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
-								// is
-								// identical
-								// key
-								Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
-										.getSourceFragment());
-								resourceTable.release(resDesc);
-								if (candidates != null) {
-									return candidates.iterator();
+						while (scopeIterator.hasNext()) { // FIXME same loop as above
+							next = scopeIterator.next();
+							if ((refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) && //
+									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment))) {
+								if (next.isIntraLink()) {
+									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
+								} else {
+									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
+									// is
+									// identical
+									// key
+									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
+											.getSourceFragment());
+									resourceTable.release(resDesc);
+									if (candidates != null) {
+										return candidates.iterator();
+									}
 								}
 							}
 						}
@@ -504,8 +506,9 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 					@Override
 					protected boolean matches(ReferenceDescriptorImpl e) {
 						if (e.getTargetResourceURI() == getURI()) {
-							if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-								if (srcFragment == null || QueryUtil.matchesGlobbing(e.getSource().getFragment(), srcFragment)) {
+							if (e.getTargetFragment().equals(next.getTargetFragment())) {
+								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
+									//								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
 									return true;
 								}
 							}

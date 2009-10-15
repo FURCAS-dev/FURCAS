@@ -27,6 +27,7 @@ import org.eclipse.emf.query2.QueryExecutionException;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.bql.api.SpiBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiSelectExpression;
+import org.eclipse.emf.query2.internal.bql.engine.BasicQueryProcessorMemoryEstimationImpl;
 import org.eclipse.emf.query2.internal.fql.SpiFacilityQueryLanguage;
 import org.eclipse.emf.query2.internal.fql.SpiFqlComparisonOperation;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
@@ -61,13 +62,10 @@ import org.eclipse.emf.query2.internal.shared.AuxServices;
 import org.eclipse.emf.query2.internal.shared.BugException;
 import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
-
 /**
- * This service interpretes the
- * {@link org.eclipse.emf.query2.internal.moinql.ast.InternalQuery}
- * structure. It uses the FQL services, including the memory FQL to calculate
- * parts of the query. Its query part results are further combined in-memory
- * according to the operations defined in the Internal Query.
+ * This service interpretes the {@link org.eclipse.emf.query2.internal.moinql.ast.InternalQuery} structure. It uses the FQL services,
+ * including the memory FQL to calculate parts of the query. Its query part results are further combined in-memory according to the
+ * operations defined in the Internal Query.
  */
 final public class InterpreterImpl implements Interpreter {
 
@@ -165,9 +163,8 @@ final public class InterpreterImpl implements Interpreter {
 	/* ----------------- */
 
 	/**
-	 * This record keeps track of the position of aliases and attributes. For an
-	 * alias, the attributePosition is -1 and if we have an attribute the
-	 * multivalued boolean keeps track whether the value is multivalued or not.
+	 * This record keeps track of the position of aliases and attributes. For an alias, the attributePosition is -1 and if we have an
+	 * attribute the multivalued boolean keeps track whether the value is multivalued or not.
 	 */
 	public static final class PositionRecord {
 
@@ -181,9 +178,8 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * Based on the resulting select entries and the positionMap, this method
-	 * calculates the aliasToPosition, attrsToPosition, and multiValuedAttrs
-	 * maps required to construct an MQL result set
+	 * Based on the resulting select entries and the positionMap, this method calculates the aliasToPosition, attrsToPosition, and
+	 * multiValuedAttrs maps required to construct an MQL result set
 	 */
 	private void calculateAliasAttributePositionMaps(List<SelectEntry> topLevelSelectEntries, Map<SelectEntry, PositionRecord> positionMap,
 			Map<String, Integer> aliasToPosition, List<Map<String, Integer>> attrsToPosition) {
@@ -270,8 +266,7 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * Calculates the union by concatenating the internal results. The
-	 * positionMap registers the position for all participating operands!
+	 * Calculates the union by concatenating the internal results. The positionMap registers the position for all participating operands!
 	 */
 	private SpiFqlQueryResultSet executeResultUnion(ResultUnion resultUnion, Map<SelectEntry, PositionRecord> positionMap,
 			int numberOfRequestedRows) throws QueryExecutionException {
@@ -328,9 +323,8 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * Leaf queries are executed on their FQL processor. Before doing this, we
-	 * check for nested queries (but only ones which are reset) and execute
-	 * those first and adapt the internal structure accordingly.
+	 * Leaf queries are executed on their FQL processor. Before doing this, we check for nested queries (but only ones which are reset) and
+	 * execute those first and adapt the internal structure accordingly.
 	 */
 	private SpiFqlQueryResultSet executeLeafQuery(LeafQuery leafQuery, Map<SelectEntry, PositionRecord> positionMap,
 			int numberOfRequestedRows) throws QueryExecutionException {
@@ -400,8 +394,15 @@ final public class InterpreterImpl implements Interpreter {
 					//						duration = (System.nanoTime() - duration) / 1000000;
 					//						this.mqlProcessor.leafQueryExecuted(selectExpression.toString(), duration);
 					//					} else {
-					resultSet = bql.execute(this.emfHelper, new CoreQueryClientScope(scope, scopeInclusive), selectExpression,
-							this.maxResultSetSize, numberOfRequestedRows);
+					if (bql instanceof BasicQueryProcessorMemoryEstimationImpl) {
+						this.emfHelper.setUseNonDirty();
+						resultSet = bql.execute(this.emfHelper, new CoreQueryClientScope(scope, scopeInclusive), selectExpression,
+								this.maxResultSetSize, numberOfRequestedRows);
+						this.emfHelper.setUseDirty();
+					} else {
+						resultSet = bql.execute(this.emfHelper, new CoreQueryClientScope(scope, scopeInclusive), selectExpression,
+								this.maxResultSetSize, numberOfRequestedRows);
+					}
 					//					}
 
 					// sanity check
@@ -514,11 +515,9 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This methods walks over the with entries and for the link predicates,
-	 * investigates the nested query. If it is reset, it executes the nested
-	 * query and caches the result set. Otherwise, if there was no reset, the
-	 * nested query is not touched and left for execution of the encompassing
-	 * leaf query.
+	 * This methods walks over the with entries and for the link predicates, investigates the nested query. If it is reset, it executes the
+	 * nested query and caches the result set. Otherwise, if there was no reset, the nested query is not touched and left for execution of
+	 * the encompassing leaf query.
 	 */
 	private void executeNestedResetQueries(List<WithEntry> leafQueryWithEntries) throws QueryExecutionException {
 
@@ -543,10 +542,8 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This method interprets the node query by evaluating the two from-entries
-	 * and joins the results in a new result set. It does this by emptying the
-	 * largest result set row by row. For each row, the joined rows are put in
-	 * the new result set.
+	 * This method interprets the node query by evaluating the two from-entries and joins the results in a new result set. It does this by
+	 * emptying the largest result set row by row. For each row, the joined rows are put in the new result set.
 	 */
 	private SpiFqlQueryResultSet executeNodeQuery(NodeQuery nodeQuery, Map<SelectEntry, PositionRecord> positionMap,
 			int numberOfRequestedRows) throws QueryExecutionException {
@@ -655,8 +652,7 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This record is the internal representation required to calculate
-	 * ComparisonWithEntries on FacilityQueryResultSets
+	 * This record is the internal representation required to calculate ComparisonWithEntries on FacilityQueryResultSets
 	 */
 	public static final class ExecutableComparison {
 
@@ -675,9 +671,8 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This method constructs the executable representation of a
-	 * ComparisonWithEntry, where it makes sure that the largest result set is
-	 * on the left.
+	 * This method constructs the executable representation of a ComparisonWithEntry, where it makes sure that the largest result set is on
+	 * the left.
 	 */
 	private ExecutableComparison[] constructExecutableComparisons(List<ComparisonWithEntry> withEntries,
 			Map<SelectEntry, PositionRecord> positionMap, InternalQuery largerLeftQuery, SpiFqlQueryResultSet largerLeftResultSet,
@@ -761,10 +756,8 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This record keeps positional information required to make the selection
-	 * in a join. It says that the element in the originatingPosition of the
-	 * originatingResultSet has to appear in the targetPosition of the
-	 * to-be-constructed resultSet.
+	 * This record keeps positional information required to make the selection in a join. It says that the element in the
+	 * originatingPosition of the originatingResultSet has to appear in the targetPosition of the to-be-constructed resultSet.
 	 */
 	public static final class ExecutableSelection {
 
@@ -778,8 +771,7 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This method produces the SelectionPositions which are required to know
-	 * what elements to pick from the different result sets.
+	 * This method produces the SelectionPositions which are required to know what elements to pick from the different result sets.
 	 */
 	private ExecutableSelection[] constructExecutableSelections(List<NodeSelectEntry> selectEntries,
 			Map<SelectEntry, PositionRecord> positionMap, InternalQuery largerLeftQuery, SpiFqlQueryResultSet largerResultSet,
@@ -821,8 +813,7 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This method produces an empty new BasicQueryResultSet of the correct
-	 * structure and fills the positionMap.
+	 * This method produces an empty new BasicQueryResultSet of the correct structure and fills the positionMap.
 	 */
 	private SpiFqlQueryResultSet constructEmptyBasicQueryResultSet(List<SelectEntry> selectEntries,
 			Map<SelectEntry, PositionRecord> positionMap) {
@@ -892,12 +883,10 @@ final public class InterpreterImpl implements Interpreter {
 	}
 
 	/**
-	 * This method actually performs the in-memory join. The targetResultSet is
-	 * initially empty. We make the product of the baseResultSet and the
-	 * otherResultSet where for each new row, we remove the last row of the
-	 * baseResultSet. The comparisons provide the information to select and
-	 * execute the elements from each of the rows. The selections provide the
-	 * information to fill a new row in the targetResultSet.
+	 * This method actually performs the in-memory join. The targetResultSet is initially empty. We make the product of the baseResultSet
+	 * and the otherResultSet where for each new row, we remove the last row of the baseResultSet. The comparisons provide the information
+	 * to select and execute the elements from each of the rows. The selections provide the information to fill a new row in the
+	 * targetResultSet.
 	 */
 	private void joinResultSets(SpiFqlQueryResultSet targetResultSet, SpiFqlQueryResultSet largerBaseResultSet,
 			SpiFqlQueryResultSet smallerOtherResultSet, ExecutableComparison[] executableComparisons,
@@ -999,8 +988,7 @@ final public class InterpreterImpl implements Interpreter {
 									hit = false;
 									for (int i = 0; !hit && i < leftValues.length; i++) {
 										for (int j = 0; !hit && j < rightValues.length; j++) {
-											hit = AuxServices.compareValues(leftValues[i], executableComparison.operation,
-													rightValues[j]);
+											hit = AuxServices.compareValues(leftValues[i], executableComparison.operation, rightValues[j]);
 										}
 									}
 								} else {

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
@@ -53,14 +54,32 @@ public class EmfHelper {
 
 	private Map<URI, EReference> referenceCache = new HashMap<URI, EReference>();
 
+	private Map<URI, EClass> eclassCache = new HashMap<URI, EClass>();
+
+	private boolean useDirty = false;
+
 	public Index getIndex() {
 		return index;
 	}
 
 	public EmfHelper(QueryContext context, Index index) {
 		this.rs = context.getResourceSet();
+		if (this.rs instanceof ResourceSetImpl) {
+			ResourceSetImpl rsImpl = (ResourceSetImpl) this.rs;
+			if (rsImpl.getURIResourceMap() == null) {
+				rsImpl.setURIResourceMap(new HashMap<URI, Resource>());
+			}
+		}
 		this.createDirtyIndex();
 		this.index = index;
+	}
+
+	public void setUseDirty() {
+		this.useDirty = true;
+	}
+
+	public void setUseNonDirty() {
+		this.useDirty = false;
 	}
 
 	private void createDirtyIndex() {
@@ -88,8 +107,12 @@ public class EmfHelper {
 
 	public EClass getTypeElement(URI uri) {
 
-		return (EClass) this.getElement(uri); // FIXME check if URI is really a
-		// type
+		EClass result;
+		if ((result = this.eclassCache.get(uri)) == null) {
+			result = (EClass) this.rs.getEObject(uri, true);
+			this.eclassCache.put(uri, result);
+		}
+		return result;
 	}
 
 	public EObject getElement(URI uri) {
@@ -128,7 +151,8 @@ public class EmfHelper {
 		Resource r = rs.getResource(resource, false);
 		if (r == null) {
 			r = rs.getResource(resource, true);
-			addToIndex(r);
+			if (useDirty)
+				addToIndex(r);
 		} else {
 			if (!r.isLoaded()) {
 				try {
@@ -190,29 +214,38 @@ public class EmfHelper {
 		}
 	}
 
-	public List<EObject> getReferringElementsWithTypeAndInScope(final EObject toObject, final EReference endAndMetaObject,
-			final Set<URI> priScope, final Set<URI> mrisOfTypes, final Set<URI> elements) {
+	private Index getBackwardNavIndex() {
+		if (useDirty) {
+			return this.dirtyIndex;
+		} else {
+			return this.index;
+		}
+	}
 
-		final URI toObjectUri = EcoreUtil.getURI(toObject);
+	public List<EObject> getReferringElementsWithTypeAndInScope(final EObject toObject, final URI endAndMetaObject,
+			final Set<URI> priScope, final Set<EClass> mrisOfTypes, final Set<URI> elements) {
+
 		QueryCommandWithResult<List<EObject>> command;
-		this.dirtyIndex.executeQueryCommand(command = new QueryCommandWithResult<List<EObject>>() {
+		this.getBackwardNavIndex().executeQueryCommand(command = new QueryCommandWithResult<List<EObject>>() {
 
 			@Override
 			public void execute(QueryExecutor queryExecutor) { // TODO provide more query possibilities on the index API
 				EReferenceQuery<EReferenceDescriptor> query = IndexQueryFactory.createEReferenceQuery();
-				query.eReferenceURI(EcoreUtil.getURI(endAndMetaObject));
-				query.targetEObject().fragment(toObjectUri.fragment());
-				query.targetEObject().resource().uri(toObjectUri.trimFragment().toString());
+				query.eReferenceURI(endAndMetaObject);
+				query.targetEObject().fragment(toObject.eResource().getURIFragment(toObject));
+				query.targetEObject().resource().uri(toObject.eResource().getURI().toString());
 
 				QueryResult<EReferenceDescriptor> queryResult = queryExecutor.execute(query);
 
 				List<EObject> returnVal = new ArrayList<EObject>();
 
 				for (EReferenceDescriptor entry : queryResult) {
-					URI uri = entry.getSourceResourceURI().appendFragment(entry.getSourceFragment());
+					URI resourceURI = entry.getSourceResourceURI();
+					String fragment = entry.getSourceFragment();
 					if ((priScope == null || priScope.contains(entry.getSourceResourceURI())) && //
-							elements == null || elements.contains(uri)) {
-						EObject eObject = rs.getEObject(uri, false);
+							elements == null || elements.contains(resourceURI.appendFragment(fragment))) {
+						Resource r = rs.getResource(resourceURI, true);
+						EObject eObject = r.getEObject(fragment);
 						assert eObject != null;
 						returnVal.add(eObject);
 					}
@@ -225,66 +258,13 @@ public class EmfHelper {
 
 		List<EObject> results = command.getResult();
 		for (Iterator<EObject> it = results.iterator(); it.hasNext();) {
-			if (mrisOfTypes != null && !mrisOfTypes.contains(EcoreUtil.getURI(it.next().eClass()))) {
+			if (mrisOfTypes != null && !mrisOfTypes.contains(it.next().eClass())) {
 				it.remove();
 			}
 		}
 
 		return results;
 
-		//		return new UsageCrossReferencer(this.rs) {
-		//
-		//			@Override
-		//			protected boolean crossReference(EObject object, EReference reference, EObject crossReferencedEObject) {
-		//
-		//				if (crossReferencedEObject.equals(fromObject) && reference.equals(endAndMetaObject) && // 
-		//						(mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(EcoreUtil.getURI(object.eClass()))) && //
-		//						(elements == null || elements.isEmpty() || elements.contains(EcoreUtil.getURI(object))) && //  
-		//						priScope.contains(object.eResource().getURI())) {
-		//					return true;
-		//				}
-		//				return false;
-		//			}
-		//
-		//			protected void handleCrossReference(EObject eObject) {
-		//				InternalEObject internalEObject = (InternalEObject) eObject;
-		//				EList<EReference> allReferences = internalEObject.eClass().getEAllReferences();
-		//
-		//				if (allReferences != null) {
-		//					for (EReference ref : allReferences) {
-		//						Object get = internalEObject.eGet(ref, true);
-		//						if (get == null) {
-		//							continue;
-		//						} else if (get instanceof EObject) {
-		//							this.checkAndAddElement(internalEObject, ref, (EObject) get);
-		//						} else if (get instanceof EList) {
-		//							for (EObject eObj : (EList<EObject>) get) {
-		//								if (eObj.eIsProxy()) {
-		//									eObj = EcoreUtil.resolve(eObj, EmfHelper.this.rs);
-		//								}
-		//								this.checkAndAddElement(internalEObject, ref, eObj);
-		//							}
-		//						}
-		//					}
-		//				}
-		//			}
-		//
-		//			private void checkAndAddElement(InternalEObject from, EReference eReference, EObject crossReferencedEObject) {
-		//				if (this.crossReference(from, eReference, crossReferencedEObject)) {
-		//					this.add(from, eReference, crossReferencedEObject);
-		//				}
-		//			}
-		//
-		//			public List<EObject> getReferringElements(EObject object) {
-		//
-		//				List<EObject> result = new ArrayList<EObject>();
-		//				Collection<Setting> findUsage = this.findUsage(object);
-		//				for (Setting setting : findUsage) {
-		//					result.add(setting.getEObject());
-		//				}
-		//				return result;
-		//			}
-		//		}.getReferringElements(fromObject);
 	}
 
 	public EObject resolve(EObject oppositeEObject) {

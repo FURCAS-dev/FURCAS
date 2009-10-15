@@ -40,12 +40,10 @@ import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.shared.BugException;
 import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
-
 /**
  * This implementation of
- * {@link org.eclipse.emf.query2.internal.bql.api.core.query.bql.api.moin.query.basicquery.spi.SpiBasicQueryProcessor} does not
- * require that the model elements which are relevant for the search are loaded
- * in memory. Link traversal during the execution of the query can lead to
+ * {@link org.eclipse.emf.query2.internal.bql.api.core.query.bql.api.moin.query.basicquery.spi.SpiBasicQueryProcessor} does not require that
+ * the model elements which are relevant for the search are loaded in memory. Link traversal during the execution of the query can lead to
  * partition loading.
  */
 public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryProcessor {
@@ -64,9 +62,8 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	}
 
 	/**
-	 * Executes a BQL query in memory. This implementation requires that the
-	 * partitionScope is inclusive. If a partition in the scope is not loaded,
-	 * it will be loaded by this BQL processor.
+	 * Executes a BQL query in memory. This implementation requires that the partitionScope is inclusive. If a partition in the scope is not
+	 * loaded, it will be loaded by this BQL processor.
 	 */
 	@Override
 	public SpiFqlQueryResultSet execute(EmfHelper _emfHelper, SpiFacilityQueryClientScope queryClientScope,
@@ -106,10 +103,8 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	}
 
 	/**
-	 * For a given fromObject, obtains all elements, associated with the it via
-	 * the associationMRI (and indicated association end number), where we
-	 * restrict the result set to the provided set of partitions. Storage can be
-	 * on either side.
+	 * For a given fromObject, obtains all elements, associated with the it via the associationMRI (and indicated association end number),
+	 * where we restrict the result set to the provided set of partitions. Storage can be on either side.
 	 */
 	public static EObject[] getLinkedObjects(EmfHelper emfHelper, EObject fromObject, URI assocMRI, Set<URI> priScope,
 			Set<URI> mrisOfTypes, Set<URI> elements) {
@@ -123,10 +118,11 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 		// endNumberOfFromObject );
 		// }
 		// RefObject metaObject = (RefObject) connection.getElement( assocMRI );
-		EReference metaObject = emfHelper.getReference(assocMRI);
-		if (metaObject == null) {
-			throw new BugException(BugMessages.LINK_TYPE_NOT_JMI_OBJECT, assocMRI);
-		}
+
+		//		EReference metaObject = emfHelper.getReference(assocMRI);
+		//		if (metaObject == null) {
+		//			throw new BugException(BugMessages.LINK_TYPE_NOT_JMI_OBJECT, assocMRI);
+		//		}
 
 		// first check if we have storage on the start side.
 		// boolean startAtStorageEnd;
@@ -153,7 +149,11 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 
 		// if ( startAtStorageEnd ) {
 		// start at storage end
-		result = getLinkedObjectsAndFilterByPartitions(emfHelper, fromObject, metaObject, priScope, mrisOfTypes, elements);
+		Set<EClass> eclassTypes = new HashSet<EClass>(mrisOfTypes.size());
+		for (URI uri : mrisOfTypes) {
+			eclassTypes.add(emfHelper.getTypeElement(uri));
+		}
+		result = getLinkedObjectsAndFilterByPartitions(emfHelper, fromObject, assocMRI, priScope, eclassTypes, elements);
 		// } else {
 		// // start at non-storage end
 		// result = new ArrayList<RefObject>( );
@@ -176,13 +176,13 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	}
 
 	/**
-	 * For the given fromObject, obtain all linked refObjects, where we know
-	 * that the fromObject is handled by the provided workspace.
+	 * For the given fromObject, obtain all linked refObjects, where we know that the fromObject is handled by the provided workspace.
 	 */
-	private static List<EObject> getLinkedObjectsAndFilterByPartitions(EmfHelper emfHelper, EObject fromObject,
-			EReference endAndMetaObject, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements) {
+	private static List<EObject> getLinkedObjectsAndFilterByPartitions(EmfHelper emfHelper, EObject fromObject, URI referenceURI,
+			Set<URI> priScope, Set<EClass> mrisOfTypes, Set<URI> elements) {
 
 		List<EObject> result = null;
+		EReference endAndMetaObject = emfHelper.getReference(referenceURI);
 
 		if (fromObject.eClass().getEAllReferences().contains(endAndMetaObject)) {
 			Object o = fromObject.eGet(endAndMetaObject, true);
@@ -246,53 +246,9 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 					}
 				}
 			} else {
-				result = emfHelper.getReferringElementsWithTypeAndInScope(fromObject, endAndMetaObject, priScope, mrisOfTypes, elements);
+				result = emfHelper.getReferringElementsWithTypeAndInScope(fromObject, referenceURI, priScope, mrisOfTypes, elements);
 			}
 		}
-
-		// if ( startAtStorageEnd ) {
-		// Collection<EndStorageLink> linksForEndAndMetaObject =
-		// workspace.getMemoryLinkManager( ).getLinksForEndAndMetaObject(
-		// connection.getSession( ), endAndMetaObject, fromObject );
-		// if ( linksForEndAndMetaObject != null ) {
-		// for ( EndStorageLink link : linksForEndAndMetaObject ) {
-		// try {
-		// RefObject objectOnOtherSide = (RefObject) link.getOtherEnd( ).get(
-		// connection.getSession( ) );
-		//
-		// if ( isInPartitionsOfTypeAndInElements( objectOnOtherSide, priScope,
-		// mrisOfTypes, elements ) ) {
-		// result.add( objectOnOtherSide );
-		// }
-		// } catch ( UnresolvableException ue ) {
-		// if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-		// logger.trace( MoinSeverity.DEBUG,
-		// FQLTraceMessages.UNABLE_TO_RESOLVE_OBJECT_LINKED_BY_VIA_ASSOCIATION,
-		// link.getOtherEndLri( ), link.getStorageEndMri( ),
-		// link.getMetaObjectMri( ) );
-		// }
-		// }
-		// }
-		// }
-		// } else {
-		// Collection<EndStorageLink>
-		// distributedEndStorageLinksForEndAndMetaObject =
-		// workspace.getMemoryLinkManager(
-		// ).getDistributedEndStorageLinksForEndAndMetaObject( connection,
-		// endAndMetaObject.getMetaObjectMofId( ), fromObject, priScope );
-		// if ( distributedEndStorageLinksForEndAndMetaObject != null ) {
-		// for ( EndStorageLink link :
-		// distributedEndStorageLinksForEndAndMetaObject ) {
-		// RefObject objectOnOtherSide = (RefObject) link.getStorageEnd( ).get(
-		// connection.getSession( ) );
-		//
-		// if ( isInPartitionsOfTypeAndInElements( objectOnOtherSide, priScope,
-		// mrisOfTypes, elements ) ) {
-		// result.add( objectOnOtherSide );
-		// }
-		// }
-		// }
-		// }
 
 		if (result == null) {
 			result = Collections.emptyList();
@@ -302,27 +258,22 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	}
 
 	/**
-	 * Checks if the provide object is in the element set if it is provided or
-	 * not empty, otherwise, check if it has the right type and finally, check
-	 * if it is in scope.
+	 * Checks if the provide object is in the element set if it is provided or not empty, otherwise, check if it has the right type and
+	 * finally, check if it is in scope.
 	 */
-	public static boolean isInPartitionsOfTypeAndInElements(EObject object, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements) {
+	public static boolean isInPartitionsOfTypeAndInElements(EObject object, Set<URI> priScope, Set<EClass> mrisOfTypes, Set<URI> elements) {
 
-		URI refObjectMri = EcoreUtil.getURI(object);
 		// we keep the element if it exists in the fixed element set
-		boolean toBeKept = elements == null || elements.isEmpty() || elements.contains(refObjectMri);
+		boolean toBeKept = elements == null || elements.isEmpty() || elements.contains(EcoreUtil.getURI(object));
 
 		// if not, we have to verify the type
 		if (toBeKept) {
-			URI refObjectTypeMri = EcoreUtil.getURI(object.eClass());
-
 			// don't forget Reflect::Element
-			toBeKept = mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(refObjectTypeMri);
+			toBeKept = mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(object.eClass());
 
 			if (toBeKept) {
 				// if of correct type, then check for partition in scope
-				URI pri = object.eResource().getURI();
-				toBeKept = (priScope != null ? priScope.contains(pri) : false);
+				toBeKept = (priScope != null ? priScope.contains(object.eResource().getURI()) : false);
 			}
 		}
 
@@ -330,8 +281,8 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	}
 
 	/**
-	 * gets the objects of all provided types within the provided priScope. If a
-	 * fixed element set is provided, only return objects from that set.
+	 * gets the objects of all provided types within the provided priScope. If a fixed element set is provided, only return objects from
+	 * that set.
 	 */
 	public static EObject[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements) {
 
