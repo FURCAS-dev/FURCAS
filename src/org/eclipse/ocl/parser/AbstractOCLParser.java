@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.9 2009/10/10 07:04:07 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.10 2009/10/15 19:43:33 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -41,7 +41,6 @@ import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
 import org.eclipse.ocl.cst.DotOrArrowEnum;
-import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
@@ -175,13 +174,14 @@ public abstract class AbstractOCLParser
 	 *            constraints in the classifier context
 	 * @return the classifier context declaration
 	 * 
-	 * @since 1.3
+	 * @since 3.0
 	 */
 	protected ClassifierContextDeclCS createClassifierContextDeclCS(
-			PathNameCS pathNameCS, EList<InvOrDefCS> constraints) {
+			SimpleNameCS simpleNameCS, PathNameCS pathNameCS, EList<InvOrDefCS> constraints) {
 
 		ClassifierContextDeclCS result = CSTFactory.eINSTANCE
 			.createClassifierContextDeclCS();
+		result.setSimpleNameCS(simpleNameCS);
 		result.setPathNameCS(pathNameCS);
 		result.getConstraints().addAll(constraints);
 		return result;
@@ -283,8 +283,8 @@ public abstract class AbstractOCLParser
 		OperationCallExpCS result = CSTFactory.eINSTANCE
 			.createOperationCallExpCS();
 		result.setSource(oclExpressionCS);
-		result.setAccessor(dotOrArrow);
-		result.setPathNameCS(pathNameCS);
+		result.setAccessor(oclExpressionCS != null ? dotOrArrow : DotOrArrowEnum.NONE_LITERAL);
+		result.setPathNameCS((pathNameCS != null) && (pathNameCS.getSimpleNames().size() > 0) ? pathNameCS : null);
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
 
@@ -395,7 +395,7 @@ public abstract class AbstractOCLParser
 	protected SimpleNameCS removeLastSimpleNameCS(PathNameCS path) {
 		EList<SimpleNameCS> simpleNames = path.getSimpleNames();
 		SimpleNameCS name = simpleNames.remove(simpleNames.size()-1);
-		setOffsets(path, path, simpleNames.get(simpleNames.size()-1));
+		setOffsets(path, path, simpleNames.size() > 0 ? simpleNames.get(simpleNames.size()-1) : path);
 		return name;
 	}
 
@@ -425,17 +425,6 @@ public abstract class AbstractOCLParser
 		EList<SimpleNameCS> simpleNames = pathNameCS.getSimpleNames();
 		int size = simpleNames.size();
 		return size > 0 ? simpleNames.get(size-1) : null;
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	protected EnumLiteralExpCS createEnumLiteralExpCS(PathNameCS pathNameCS,
-			SimpleNameCS simpleNameCS) {
-		EnumLiteralExpCS result = CSTFactory.eINSTANCE.createEnumLiteralExpCS();
-		result.setPathNameCS(pathNameCS);
-		result.setSimpleNameCS(simpleNameCS);
-		return result;
 	}
 
 	/**
@@ -592,9 +581,12 @@ public abstract class AbstractOCLParser
 	/**
 	 * @since 3.0
 	 */
-	protected VariableCS createVariableCS(String varName) {
+	protected VariableCS createVariableCS(SimpleNameCS varName, TypeCS typeCS,
+			OCLExpressionCS oclExpressionCS) {
 		VariableCS result = CSTFactory.eINSTANCE.createVariableCS();
-		result.setName(unquote(varName));
+		result.setName(unquote(varName.getValue()));
+		result.setTypeCS(typeCS);
+		result.setInitExpression(oclExpressionCS);
 		return result;
 	}
 
@@ -620,11 +612,12 @@ public abstract class AbstractOCLParser
 	 * @since 3.0
 	 */
 	protected FeatureCallExpCS createFeatureCallExpCS(
-			OCLExpressionCS source, SimpleNameCS simpleNameCS, EList<OCLExpressionCS> arguments,
+			OCLExpressionCS source, PathNameCS pathNameCS, SimpleNameCS simpleNameCS, EList<OCLExpressionCS> arguments,
 			IsMarkedPreCS isMarkedPreCS) {
 		FeatureCallExpCS result = CSTFactory.eINSTANCE.createFeatureCallExpCS();
 		result.setSource(source);
-		result.setAccessor(DotOrArrowEnum.DOT_LITERAL);
+		result.setAccessor(source != null ? DotOrArrowEnum.DOT_LITERAL : DotOrArrowEnum.NONE_LITERAL);
+		result.setPathNameCS((pathNameCS != null) && (pathNameCS.getSimpleNames().size() > 0) ? pathNameCS : null);
 		result.setSimpleNameCS(simpleNameCS);
 		result.getArguments().addAll(arguments);
 
