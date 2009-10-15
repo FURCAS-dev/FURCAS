@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.12 2009/10/10 07:13:31 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.13 2009/10/15 19:46:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -43,8 +43,6 @@ import org.eclipse.ocl.types.CollectionType;
 /**
  * Basic tests for OCL engine.
  *
- * @author Chris McGee (cbmcgee)
- * @author Christian W. Damus (cwdamus)
  */
 public class BasicOCLTest
 	extends AbstractTestSuite {
@@ -387,6 +385,7 @@ public class BasicOCLTest
 		try {
 			assertInvalidString("'\\\\\\ '"); //$NON-NLS-1$
 			assertInvalidString("'str\\(ing'"); //$NON-NLS-1$
+			// a comment
 			assertInvalidString("'string\\'"); //$NON-NLS-1$
 			assertInvalidString("'string\\9'"); //$NON-NLS-1$
 
@@ -449,10 +448,6 @@ public class BasicOCLTest
 		}
 	}
     
-    /**
-     * Test non-standard doubled single-quote syntax for embedding single-quotes
-     * in string literals.
-     */
     public void test_stringEscapes_184948() {
         helper.setContext(EcorePackage.Literals.ESTRING);
         String self = ""; //$NON-NLS-1$
