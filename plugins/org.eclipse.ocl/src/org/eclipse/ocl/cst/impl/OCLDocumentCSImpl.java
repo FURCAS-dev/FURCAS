@@ -12,22 +12,18 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentCSImpl.java,v 1.1 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: OCLDocumentCSImpl.java,v 1.2 2009/10/15 19:38:06 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.ocl.cst.CSTPackage;
 import org.eclipse.ocl.cst.OCLDocumentCS;
 import org.eclipse.ocl.cst.PackageDeclarationCS;

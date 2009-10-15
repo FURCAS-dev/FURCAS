@@ -1,4 +1,5 @@
 /**
+* Essential OCL Lexer
 * <copyright>
 *
 * Copyright (c) 2005, 2009 IBM Corporation and others.
@@ -11,10 +12,25 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
-*
+*   E.D.Willink - Bug 292112
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.8 2009/10/10 11:47:15 ewillink Exp $
+* $Id: OCLLexersym.java,v 1.9 2009/10/15 19:44:00 ewillink Exp $
+*/
+/**
+* Complete OCL Lexer
+* <copyright>
+*
+* Copyright (c) 2005, 2009 IBM Corporation and others.
+* All rights reserved.   This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+*
+* Contributors:
+*   IBM - Initial API and implementation
+*   E.D.Willink - Bug 292112
+* </copyright>
 */
 
 package org.eclipse.ocl.parser;

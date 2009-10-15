@@ -158,6 +158,9 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hce3sI2IEd2mlKUM3HGxZg" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hCecQI2IEd2mlKUM3HGxZg"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_tRI3kLZcEd6yDcYCBdIWCA" name="simpleNameCS" type="_qdx83P8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_z7wVcLZcEd6yDcYCBdIWCA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tRI3kbZcEd6yDcYCBdIWCA"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_qdx9Ef8fEduhWtVvKtiQ7w" memberEnd="_qdx9Df8fEduhWtVvKtiQ7w _qdx9Ev8fEduhWtVvKtiQ7w">
         <ownedEnd xmi:id="_qdx9Ev8fEduhWtVvKtiQ7w" type="_qdx9C_8fEduhWtVvKtiQ7w" association="_qdx9Ef8fEduhWtVvKtiQ7w"/>
@@ -464,21 +467,6 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx93f8fEduhWtVvKtiQ7w" name="LiteralExpCS" isAbstract="true">
         <generalization xmi:id="_qdx93v8fEduhWtVvKtiQ7w" general="_qdx8xv8fEduhWtVvKtiQ7w"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_qdx93_8fEduhWtVvKtiQ7w" name="EnumLiteralExpCS">
-        <generalization xmi:id="_qdx94P8fEduhWtVvKtiQ7w" general="_qdx93f8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_qdx94f8fEduhWtVvKtiQ7w" name="pathNameCS" type="_qdx8v_8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx95f8fEduhWtVvKtiQ7w">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx94v8fEduhWtVvKtiQ7w"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_qdx94_8fEduhWtVvKtiQ7w" name="simpleNameCS" type="_qdx83P8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx95_8fEduhWtVvKtiQ7w">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx95P8fEduhWtVvKtiQ7w"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_qdx95f8fEduhWtVvKtiQ7w" memberEnd="_qdx94f8fEduhWtVvKtiQ7w _qdx95v8fEduhWtVvKtiQ7w">
-        <ownedEnd xmi:id="_qdx95v8fEduhWtVvKtiQ7w" type="_qdx93_8fEduhWtVvKtiQ7w" association="_qdx95f8fEduhWtVvKtiQ7w"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_qdx95_8fEduhWtVvKtiQ7w" memberEnd="_qdx94_8fEduhWtVvKtiQ7w _qdx96P8fEduhWtVvKtiQ7w">
-        <ownedEnd xmi:id="_qdx96P8fEduhWtVvKtiQ7w" type="_qdx93_8fEduhWtVvKtiQ7w" association="_qdx95_8fEduhWtVvKtiQ7w"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx96f8fEduhWtVvKtiQ7w" name="CollectionLiteralExpCS">
         <generalization xmi:id="_qdx96v8fEduhWtVvKtiQ7w" general="_qdx93f8fEduhWtVvKtiQ7w"/>
         <ownedAttribute xmi:id="_qdx96_8fEduhWtVvKtiQ7w" name="collectionType" visibility="public" type="_qdx9m_8fEduhWtVvKtiQ7w" isOrdered="true">
@@ -633,6 +621,9 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-Sv8fEduhWtVvKtiQ7w" name="FeatureCallExpCS">
         <generalization xmi:id="_qdx-S_8fEduhWtVvKtiQ7w" general="_qdx-Jf8fEduhWtVvKtiQ7w"/>
+        <ownedAttribute xmi:id="_uREjQJrAEd6qQcRgrpdjbQ" name="pathNameCS" type="_qdx8v_8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uREjQZrAEd6qQcRgrpdjbQ"/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="_qdx-TP8fEduhWtVvKtiQ7w" name="arguments" type="_qdx8xv8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite" association="_qdx-Uf8fEduhWtVvKtiQ7w">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qdx-Tf8fEduhWtVvKtiQ7w" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qdx-Tv8fEduhWtVvKtiQ7w"/>
@@ -649,9 +640,6 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qdx-Vf8fEduhWtVvKtiQ7w" name="OperationCallExpCS">
         <generalization xmi:id="_qdx-Vv8fEduhWtVvKtiQ7w" general="_qdx-Sv8fEduhWtVvKtiQ7w"/>
-        <ownedAttribute xmi:id="_uREjQJrAEd6qQcRgrpdjbQ" name="pathNameCS" type="_qdx8v_8fEduhWtVvKtiQ7w" isOrdered="true" aggregation="composite">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uREjQZrAEd6qQcRgrpdjbQ"/>
-        </ownedAttribute>
         <ownedAttribute xmi:id="_z9V7sLI8Ed6kyPEWd5jeqw" name="isAtomic" visibility="public" isOrdered="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBooleanObject"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_z9V7sbI8Ed6kyPEWd5jeqw"/>
@@ -689,6 +677,9 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_ctnB0L8tEd2tbsirxV4pLA" memberEnd="_woRO4L8sEd2tbsirxV4pLA _jrh2ML8tEd2tbsirxV4pLA">
         <ownedEnd xmi:id="_jrh2ML8tEd2tbsirxV4pLA" name="oclDocument" type="_WuZt4L8sEd2tbsirxV4pLA" association="_ctnB0L8tEd2tbsirxV4pLA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_z7wVcLZcEd6yDcYCBdIWCA" memberEnd="_tRI3kLZcEd6yDcYCBdIWCA _CiFFoLZdEd6yDcYCBdIWCA">
+        <ownedEnd xmi:id="_CiFFoLZdEd6yDcYCBdIWCA" type="_qdx9C_8fEduhWtVvKtiQ7w" association="_z7wVcLZcEd6yDcYCBdIWCA"/>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_qdx-XP8fEduhWtVvKtiQ7w">
@@ -809,9 +800,9 @@
   <Ecore:EReference xmi:id="_qfsoaf8fEduhWtVvKtiQ7w" base_Property="_qdx90_8fEduhWtVvKtiQ7w"/>
   <Ecore:EReference xmi:id="_qfsoav8fEduhWtVvKtiQ7w" xmlName="oclExpression" base_Property="_qdx91f8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qfsoa_8fEduhWtVvKtiQ7w" base_Class="_qdx93f8fEduhWtVvKtiQ7w"/>
-  <Ecore:EClass xmi:id="_qfsobP8fEduhWtVvKtiQ7w" base_Class="_qdx93_8fEduhWtVvKtiQ7w"/>
-  <Ecore:EReference xmi:id="_qfsobf8fEduhWtVvKtiQ7w" base_Property="_qdx94f8fEduhWtVvKtiQ7w"/>
-  <Ecore:EReference xmi:id="_qfsobv8fEduhWtVvKtiQ7w" base_Property="_qdx94_8fEduhWtVvKtiQ7w"/>
+  <Ecore:EClass xmi:id="_qfsobP8fEduhWtVvKtiQ7w"/>
+  <Ecore:EReference xmi:id="_qfsobf8fEduhWtVvKtiQ7w"/>
+  <Ecore:EReference xmi:id="_qfsobv8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qfsob_8fEduhWtVvKtiQ7w" base_Class="_qdx96f8fEduhWtVvKtiQ7w"/>
   <Ecore:EAttribute xmi:id="_qfsocP8fEduhWtVvKtiQ7w" base_Property="_qdx96_8fEduhWtVvKtiQ7w"/>
   <Ecore:EReference xmi:id="_qfsocf8fEduhWtVvKtiQ7w" base_Property="_qdx97f8fEduhWtVvKtiQ7w"/>

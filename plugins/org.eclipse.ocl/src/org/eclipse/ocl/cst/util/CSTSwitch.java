@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTSwitch.java,v 1.7 2009/10/10 07:08:50 ewillink Exp $
+ * $Id: CSTSwitch.java,v 1.8 2009/10/15 19:38:31 ewillink Exp $
  */
 package org.eclipse.ocl.cst.util;
 
@@ -34,7 +34,6 @@ import org.eclipse.ocl.cst.ContextDeclCS;
 import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
 import org.eclipse.ocl.cst.DerValueCS;
-import org.eclipse.ocl.cst.EnumLiteralExpCS;
 import org.eclipse.ocl.cst.FeatureCallExpCS;
 import org.eclipse.ocl.cst.IfExpCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
@@ -458,19 +457,6 @@ public class CSTSwitch<T> {
 					result = caseOCLExpressionCS(literalExpCS);
 				if (result == null)
 					result = caseCSTNode(literalExpCS);
-				if (result == null)
-					result = defaultCase(theEObject);
-				return result;
-			}
-			case CSTPackage.ENUM_LITERAL_EXP_CS : {
-				EnumLiteralExpCS enumLiteralExpCS = (EnumLiteralExpCS) theEObject;
-				T result = caseEnumLiteralExpCS(enumLiteralExpCS);
-				if (result == null)
-					result = caseLiteralExpCS(enumLiteralExpCS);
-				if (result == null)
-					result = caseOCLExpressionCS(enumLiteralExpCS);
-				if (result == null)
-					result = caseCSTNode(enumLiteralExpCS);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -1169,21 +1155,6 @@ public class CSTSwitch<T> {
 	 * @generated
 	 */
 	public T caseLiteralExpCS(LiteralExpCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Enum Literal Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Enum Literal Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEnumLiteralExpCS(EnumLiteralExpCS object) {
 		return null;
 	}
 

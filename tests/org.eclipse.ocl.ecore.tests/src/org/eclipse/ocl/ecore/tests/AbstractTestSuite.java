@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.20 2009/10/07 20:39:28 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.21 2009/10/15 19:46:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -246,6 +246,11 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests"); //$NON-NLS-1$
 		result.createTestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests"); //$NON-NLS-1$
+
+		String repairs = System.getProperty("org.eclipse.ocl.ecore.tests.repairs"); //$NON-NLS-1$
+		if (repairs != null) {
+			result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests"); //$NON-NLS-1$
+		}
 		
 		return result;
 	}

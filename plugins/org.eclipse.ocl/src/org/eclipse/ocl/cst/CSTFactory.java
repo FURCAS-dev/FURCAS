@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactory.java,v 1.5 2009/10/10 07:10:08 ewillink Exp $
+ * $Id: CSTFactory.java,v 1.6 2009/10/15 19:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -246,15 +246,6 @@ public interface CSTFactory
 	 * @generated
 	 */
 	OCLMessageArgCS createOCLMessageArgCS();
-
-	/**
-	 * Returns a new object of class '<em>Enum Literal Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Enum Literal Exp CS</em>'.
-	 * @generated
-	 */
-	EnumLiteralExpCS createEnumLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Collection Literal Exp CS</em>'.

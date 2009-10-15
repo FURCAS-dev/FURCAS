@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextDeclCS.java,v 1.4 2009/09/04 13:40:44 ewillink Exp $
+ * $Id: ClassifierContextDeclCS.java,v 1.5 2009/10/15 19:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getPathNameCS <em>Path Name CS</em>}</li>
  *   <li>{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getSimpleNameCS <em>Simple Name CS</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,5 +84,33 @@ public interface ClassifierContextDeclCS
 	 * @generated
 	 */
 	EList<InvOrDefCS> getConstraints();
+
+	/**
+	 * Returns the value of the '<em><b>Simple Name CS</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Simple Name CS</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Simple Name CS</em>' containment reference.
+	 * @see #setSimpleNameCS(SimpleNameCS)
+	 * @see org.eclipse.ocl.cst.CSTPackage#getClassifierContextDeclCS_SimpleNameCS()
+	 * @model containment="true"
+	 * @generated
+	 */
+	SimpleNameCS getSimpleNameCS();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.cst.ClassifierContextDeclCS#getSimpleNameCS <em>Simple Name CS</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Simple Name CS</em>' containment reference.
+	 * @see #getSimpleNameCS()
+	 * @generated
+	 */
+	void setSimpleNameCS(SimpleNameCS value);
 
 } // ClassifierContextDeclCS
