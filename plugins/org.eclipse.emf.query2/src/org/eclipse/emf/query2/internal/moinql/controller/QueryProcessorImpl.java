@@ -57,8 +57,7 @@ import org.eclipse.emf.query2.report.ProcessReportImpl;
 import org.eclipse.emf.query2.report.ProcessWarning;
 
 /**
- * This is the controller class for the MQL Processor. It is the implementation
- * of the MQL service exported to clients.
+ * This is the controller class for the MQL Processor. It is the implementation of the MQL service exported to clients.
  */
 public class QueryProcessorImpl implements QueryProcessor {
 
@@ -92,8 +91,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 */
 	// private Map<String, SpiFacilityQueryLanguage> fqlProcessors;
 	/**
-	 * An MQL processor instance is provided per connection, which the
-	 * MQLProcessor has to keep a reference to
+	 * An MQL processor instance is provided per connection, which the MQLProcessor has to keep a reference to
 	 */
 	// protected CoreConnection conn;
 	/**
@@ -101,8 +99,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 */
 	// private EmfHelper emfHelper;
 	/**
-	 * If a result set is larger than the maxResultSetSize, the engine stops
-	 * execution with an exception! The default is 10000
+	 * If a result set is larger than the maxResultSetSize, the engine stops execution with an exception! The default is 10000
 	 */
 	private int maxResultSetSize = DEFAULT_MAX_RESULT_SET_SIZE;
 
@@ -112,8 +109,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	private ObjectName objectName;
 
 	/**
-	 * The MBean instance that gets registered in the MBeanServer. We need it
-	 * for the emission of JMX notifications.
+	 * The MBean instance that gets registered in the MBeanServer. We need it for the emission of JMX notifications.
 	 */
 	// private JmxAdapter jmxAdapter;
 	/**
@@ -122,23 +118,19 @@ public class QueryProcessorImpl implements QueryProcessor {
 	public volatile boolean jmxNotificationsEnabled;
 
 	/**
-	 * we only do a pre-optimization of a query during scheduling if the number
-	 * of relevant partition does not exceed this threshold. This should be
-	 * larger than 2 to make sure dirty null and transient partitions are
-	 * excluded where appropriate. The default is 10.
+	 * we only do a pre-optimization of a query during scheduling if the number of relevant partition does not exceed this threshold. This
+	 * should be larger than 2 to make sure dirty null and transient partitions are excluded where appropriate. The default is 10.
 	 */
 	private int thresholdForNumberOfRelevantPartitionsForOptimization = DEFAULT_THRESHOLD_FOR_NUMBER_OF_RELEVANT_PARTITIONS;
 
 	/**
-	 * per partitions, we only do a pre-optimization during scheduling of a
-	 * query if the number of elements does not exceed this threshold. The
-	 * default is 500.
+	 * per partitions, we only do a pre-optimization during scheduling of a query if the number of elements does not exceed this threshold.
+	 * The default is 500.
 	 */
 	private int thresholdForNumberOfElementsInPartitionForOptimization = DEFAULT_THRESHOLD_FOR_NUMBER_OF_ELEMENTS_IN_PARTITION;
 
 	/**
-	 * The MQL expander, which splits the query in strong clusters and avoids
-	 * multiple assocPredicates between 2 atomic entries
+	 * The MQL expander, which splits the query in strong clusters and avoids multiple assocPredicates between 2 atomic entries
 	 */
 	private Expander mqlExpander;
 
@@ -280,9 +272,8 @@ public class QueryProcessorImpl implements QueryProcessor {
 	}
 
 	/*
-	 * The scheduler uses certain thresholds to perform a certain optimization.
-	 * These methods permit them to be turned on/off. This is mainly for testing
-	 * purposes
+	 * The scheduler uses certain thresholds to perform a certain optimization. These methods permit them to be turned on/off. This is
+	 * mainly for testing purposes
 	 */
 
 	public void turnOffOptimizationForElementsDuringScheduling() {
@@ -357,8 +348,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 			/* -------------------------- */
 
 			/*
-			 * convert the query into the internal structure and check for
-			 * format and type errors
+			 * convert the query into the internal structure and check for format and type errors
 			 */
 			internalQuery = new TypeCheckerImpl(emfHelper).convert(query, report);
 			// internalQuery = this.mqlTypeChecker.convert( query, report ); //
@@ -393,8 +383,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 					.singletonList((SpiFacilityQueryLanguage) new BasicQueryProcessorMemoryEstimationImpl(this.index)));
 
 			/*
-			 * Before releasing the query as prepared, remove possible empty
-			 * parts
+			 * Before releasing the query as prepared, remove possible empty parts
 			 */
 			internalQuery = this.mqlAuxServices.reduceQueryAfterScopeChanges(internalQuery);
 
@@ -468,6 +457,8 @@ public class QueryProcessorImpl implements QueryProcessor {
 	private ResultSet executeSecuredInternal(PreparedQuery preparedQuery, EmfHelper emfHelper, boolean schedulingWanted,
 			boolean globalScopeIncluded, URI[] globalPartitionScope, URI[] globalContainerScope, int numberOfResults)
 			throws QueryExecutionException {
+
+		emfHelper.createDirtyIndex();
 
 		if (logger.isTraced(LogSeverity.INFO)) {
 			logger.trace(LogSeverity.INFO, FQLTraceMessages.MQL_PROCESSOR_EXECUTION_START);

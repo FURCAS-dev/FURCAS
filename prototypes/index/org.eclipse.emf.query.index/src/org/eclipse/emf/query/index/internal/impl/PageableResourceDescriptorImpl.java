@@ -583,4 +583,9 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	public long getIndexedVersion() {
 		return this.versionId;
 	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(this.uri);
+	}
 }

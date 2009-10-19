@@ -203,9 +203,12 @@ public final class ClusterEvaluator {
 			if (!this.evaluateClusterExternalLinks(clusterNavigationPlan, modelElementClusterExpression, childClusterResults, scopeMap)) {
 				continue;
 			}
-			if (!this.evaluateAttributes(clusterNavigationPlan, modelElementClusterExpression)) {
+			if (!this.evaluateAttributeComparisons(clusterNavigationPlan, modelElementClusterExpression)) {
 				continue;
 			}
+			//			if (!this.evaluateAttributes(clusterNavigationPlan, modelElementClusterExpression)) {
+			//				continue;
+			//			}
 
 			if (isRoot) {
 				// new entry in the result set
@@ -265,6 +268,117 @@ public final class ClusterEvaluator {
 		}
 	}
 
+	private boolean evaluateAttributeComparisons(ClusterNavigationPlan clusterNavigationPlan,
+			SpiModelElementClusterExpression modelElementClusterExpression) {
+
+		// check the attribute conditions for every model element expression in the cluster
+		int clusterSize = modelElementClusterExpression.getTotalNumberOfModelElementExpressions();
+		for (int i = 0; i < clusterSize; i++) {
+			SpiModelElementExpression currentModelElementExpression = modelElementClusterExpression.getModelElementExpression(i);
+			SpiAttributeExpression currentAttributeExpression = currentModelElementExpression.getAttributeExpression();
+			EObject currentObject = clusterNavigationPlan.getTupleElement(i);
+			if (currentAttributeExpression != null) {
+				if (currentAttributeExpression instanceof SpiAttributeToAttributeComparisonExpression) {
+					SpiAttributeToAttributeComparisonExpression leafExpression = (SpiAttributeToAttributeComparisonExpression) currentAttributeExpression;
+					Object currentAttributeValue = getAttrOrFieldValue(this.emfHelper, currentObject, leafExpression.getAttributeId());
+
+					List<Object> currentAttributeValueList = convertAttributeValueToReusableList(currentAttributeValue);
+					int currentAttributeValueSize = currentAttributeValueList.size();
+					SpiAttributeToAttributeComparisonExpression attributeToAttributeComparisonExpression = (SpiAttributeToAttributeComparisonExpression) leafExpression;
+					SpiAttributeInModelElement attributeInModelElement = attributeToAttributeComparisonExpression
+							.getComparedAttributeInModelElement();
+					SpiModelElementExpression comparedModelElementExpression = attributeInModelElement.getModelElementExpression();
+					int comparedModelElementExpressionNumber = modelElementClusterExpression
+							.getIndexOfModelElementExpressionInCluster(comparedModelElementExpression);
+					EObject comparedObject = clusterNavigationPlan.getTupleElement(comparedModelElementExpressionNumber);
+					String comparedAttributeId = attributeInModelElement.getAttributeId();
+					Object comparedAttributeValue = getAttrOrFieldValue(this.emfHelper, comparedObject, comparedAttributeId);
+					List<Object> comparedAttributeValueList = convertAttributeValueToReusableList(comparedAttributeValue);
+					for (int j = 0; j < currentAttributeValueSize; j++) {
+						if (compareSimpleObjectToSetOfSimpleObjects(currentAttributeValueList.get(j), comparedAttributeValueList,
+								attributeToAttributeComparisonExpression.getOperator())) {
+							reuseList(currentAttributeValueList);
+							reuseList(comparedAttributeValueList);
+							return true;
+						}
+					}
+					reuseList(currentAttributeValueList);
+					reuseList(comparedAttributeValueList);
+					return false;
+				}
+			}
+		}
+		// all evaluations successful
+		return true;
+	}
+
+	public static boolean evaluateAttributesExceptAttrComparisons(EmfHelper emfHelper, EObject currentObject,
+			SpiAttributeExpression attributeExpression) {
+
+		if (attributeExpression == null) {
+			return true;
+		}
+
+		if (attributeExpression instanceof SpiMultinaryExpression) {
+			SpiMultinaryExpression multinaryExpression = (SpiMultinaryExpression) attributeExpression;
+			Iterator it = multinaryExpression.getOperands();
+			if (multinaryExpression instanceof SpiAnd) {
+				while (it.hasNext()) {
+					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
+					if (!evaluateAttributesExceptAttrComparisons(emfHelper, currentObject, childAttributeExpression)) {
+						return false;
+					}
+				}
+				return true;
+			} else if (multinaryExpression instanceof SpiOr) {
+				while (it.hasNext()) {
+					SpiAttributeExpression childAttributeExpression = (SpiAttributeExpression) it.next();
+					if (evaluateAttributesExceptAttrComparisons(emfHelper, currentObject, childAttributeExpression)) {
+						return true;
+					}
+				}
+				return false;
+			} else {
+				throw new BugException(BugMessages.NO_SUCH_MULTINARY_ATTRIBUTE_EXPRESSION_TYPE, multinaryExpression.getClass().getName());
+			}
+		} else if (attributeExpression instanceof SpiLeafExpression) {
+			SpiLeafExpression leafExpression = (SpiLeafExpression) attributeExpression;
+			Object currentAttributeValue = getAttrOrFieldValue(emfHelper, currentObject, leafExpression.getAttributeId());
+
+			List<Object> currentAttributeValueList = convertAttributeValueToReusableList(currentAttributeValue);
+			int currentAttributeValueSize = currentAttributeValueList.size();
+			if (leafExpression instanceof SpiSimpleComparisonExpression) {
+				SpiSimpleComparisonExpression simpleComparisonExpression = (SpiSimpleComparisonExpression) leafExpression;
+				for (int i = 0; i < currentAttributeValueSize; i++) {
+					if (AuxServices.compareValues(currentAttributeValueList.get(i), simpleComparisonExpression.getOperator(),
+							simpleComparisonExpression.getValue())) {
+						reuseList(currentAttributeValueList);
+						return true;
+					}
+				}
+				reuseList(currentAttributeValueList);
+				return false;
+			} else if (leafExpression instanceof SpiLike) {
+				SpiLike likeExpression = (SpiLike) leafExpression;
+				for (int i = 0; i < currentAttributeValueSize; i++) {
+					if (evaluateLikeOperation(currentAttributeValueList.get(i), likeExpression)) {
+						reuseList(currentAttributeValueList);
+						return true;
+					}
+				}
+				reuseList(currentAttributeValueList);
+				return false;
+			} else if (leafExpression instanceof SpiAttributeToAttributeComparisonExpression) {
+				return true;
+			} else {
+				throw new BugException(BugMessages.NO_SUCH_LEAF_EXPRESSION_TYPE, leafExpression.getClass().getName());
+			}
+		} else {
+			throw new BugException(BugMessages.NO_SUCH_ATTRIBUTE_EXPRESSION_TYPE, attributeExpression.getClass().getName());
+		}
+	}
+
+	@Deprecated
 	private boolean evaluateAttributes(ClusterNavigationPlan clusterNavigationPlan,
 			SpiModelElementClusterExpression modelElementClusterExpression) {
 
@@ -498,7 +612,7 @@ public final class ClusterEvaluator {
 	 * @param val
 	 * @return true if the pattern matches, otherwise false
 	 */
-	public boolean evaluateLikeOperation(Object val, SpiLike spiLike) {
+	public static boolean evaluateLikeOperation(Object val, SpiLike spiLike) {
 
 		if (val == null) {
 			return (spiLike.isNegated() ? true : false);
@@ -515,7 +629,7 @@ public final class ClusterEvaluator {
 			throw new BugException(BugMessages.LIKE_COMPARISON_WITH_TYPES_OTHER_THAN_STRING_AND_LABELS_NOT_ALLOWED);
 		}
 
-		boolean positiveResult = this.matchesLikePattern(0, currentStringValue, 0, spiLike.getParseResult());
+		boolean positiveResult = matchesLikePattern(0, currentStringValue, 0, spiLike.getParseResult());
 
 		return (spiLike.isNegated() ? !positiveResult : positiveResult);
 	}
@@ -534,7 +648,7 @@ public final class ClusterEvaluator {
 	 *            position of strValue from which the check is to be executed
 	 * @return
 	 */
-	private boolean matchesLikePattern(int aParseResultPos, String strValue, int aStrPos, Object[] parseResult) {
+	private static boolean matchesLikePattern(int aParseResultPos, String strValue, int aStrPos, Object[] parseResult) {
 
 		int parseResultPos = aParseResultPos;
 		int strPos = aStrPos;
@@ -582,7 +696,7 @@ public final class ClusterEvaluator {
 						String nextSubstring = (String) parseResult[parseResultPos];
 						int index;
 						while ((index = strValue.indexOf(nextSubstring, strPos)) != -1) {
-							if (this.matchesLikePattern(parseResultPos, strValue, index, parseResult)) {
+							if (matchesLikePattern(parseResultPos, strValue, index, parseResult)) {
 								// for at least one found index is the matching of the remaining parse result objects
 								// successful
 								return true;

@@ -45,7 +45,6 @@ import org.eclipse.emf.query2.internal.moinql.engine.CoreQueryClientScope;
 import org.eclipse.emf.query2.internal.shared.BugException;
 import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
-
 /**
  * @author D045917
  */
@@ -141,8 +140,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Checks the consistency of the query and returns a connection from the
-	 * query client scope
+	 * Checks the consistency of the query and returns a connection from the query client scope
 	 */
 	private void verifyConsistencyOfQuery(SpiFacilityQueryClientScope queryClientScope, SpiSelectExpression selectExpression) {
 
@@ -163,9 +161,8 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Checks if the query is of the nature refAllOfKind/refAllOfClass. This
-	 * also includes queries with fixed elements and/or partition scopes as long
-	 * as only one fromType is involved.
+	 * Checks if the query is of the nature refAllOfKind/refAllOfClass. This also includes queries with fixed elements and/or partition
+	 * scopes as long as only one fromType is involved.
 	 */
 	private boolean isVerySimpleQuery(SpiSelectExpression selectExpression) {
 
@@ -209,8 +206,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Assumes that {@link #isVerySimpleQuery(SpiSelectExpression)} holds and
-	 * then executes the query without loading anything in memory
+	 * Assumes that {@link #isVerySimpleQuery(SpiSelectExpression)} holds and then executes the query without loading anything in memory
 	 */
 	@SuppressWarnings("unchecked")
 	private SpiFqlQueryResultSet executeVerySimpleQuery(SpiSelectExpression selectExpression) {
@@ -287,8 +283,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	protected void estimate(SpiModelElementClusterExpression meClusterExpression) {
 
 		/*
-		 * Phase 1) turn each model element expression into an inclusion scope.
-		 * Scopes of structure types are explicitly not considered.
+		 * Phase 1) turn each model element expression into an inclusion scope. Scopes of structure types are explicitly not considered.
 		 */
 
 		long timeStamp = System.nanoTime();
@@ -301,12 +296,9 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 		}
 
 		/*
-		 * Phase 2) reduce the inclusion scope between two non-structure typed
-		 * model element expressions whenever no cross-linking exists between a
-		 * partition and all other partitions Phase 3) collect all available
-		 * inclusion scopes to determine the new estimationSet. Observe that no
-		 * exclusion scopes exist. Finally, collect the partitions in which
-		 * fixed elements are considered
+		 * Phase 2) reduce the inclusion scope between two non-structure typed model element expressions whenever no cross-linking exists
+		 * between a partition and all other partitions Phase 3) collect all available inclusion scopes to determine the new estimationSet.
+		 * Observe that no exclusion scopes exist. Finally, collect the partitions in which fixed elements are considered
 		 */
 		timeStamp = System.nanoTime();
 		this.adaptScopeForCrossPartitionLinks(meClusterExpression);
@@ -338,8 +330,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Turn each model element expression into an inclusion scope. Scopes of
-	 * structure types are explicitly eliminated.
+	 * Turn each model element expression into an inclusion scope. Scopes of structure types are explicitly eliminated.
 	 */
 	private void adaptScopeForInstancesOfTypes(SpiModelElementClusterExpression meClusterExpression) {
 
@@ -363,11 +354,9 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * If possible, an inclusion scope is calculated based on 1) a possibly
-	 * existing scope 2) the involved partitions for the provided types.
-	 * Structure Types are not given a scope; If no types are provided, we
-	 * expect an existing inclusion scope which is fine and thus can also be
-	 * ignored here
+	 * If possible, an inclusion scope is calculated based on 1) a possibly existing scope 2) the involved partitions for the provided
+	 * types. Structure Types are not given a scope; If no types are provided, we expect an existing inclusion scope which is fine and thus
+	 * can also be ignored here
 	 */
 	private void adaptScopeForInstancesOfTypesInMee(SpiModelElementExpression mee) {
 
@@ -386,9 +375,8 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Reduce the inclusion scope between two non-structure typed model element
-	 * expressions whenever no cross-linking exists between a partition and all
-	 * other partitions
+	 * Reduce the inclusion scope between two non-structure typed model element expressions whenever no cross-linking exists between a
+	 * partition and all other partitions
 	 */
 	private void adaptScopeForCrossPartitionLinks(SpiModelElementClusterExpression meClusterExpression) {
 
@@ -555,12 +543,9 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Storage is at fromMe. If linkExists, then we estimate between the two
-	 * ModelElementExpressions for the existence of a link. Otherwise, we have
-	 * little estimation possibilities. Note: handling of fixed element set and
-	 * regular model element expressions (with PRI scope) is different because
-	 * they are not alligned anymore in BQL. In FQL, this complication would not
-	 * exist!
+	 * Storage is at fromMe. If linkExists, then we estimate between the two ModelElementExpressions for the existence of a link. Otherwise,
+	 * we have little estimation possibilities. Note: handling of fixed element set and regular model element expressions (with PRI scope)
+	 * is different because they are not alligned anymore in BQL. In FQL, this complication would not exist!
 	 */
 	private void adaptScopeForCrossPartitionLinksBetweenTwoMeExpressions(boolean linkExists, SpiModelElementExpression fromMe,
 			SpiModelElementExpression toMe, URI assocMri) {
@@ -638,9 +623,8 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * We try to reduce the scope for two model element expressions based on
-	 * whether the link is supposed to exist or whether it is not supposed to
-	 * exist. The fromMe has storage on its side.
+	 * We try to reduce the scope for two model element expressions based on whether the link is supposed to exist or whether it is not
+	 * supposed to exist. The fromMe has storage on its side.
 	 */
 	private void adaptScopeForCrossPartitionLinksBasedOnScopes(boolean linkExists, Set<URI> fromMeScope, Set<URI> resultingFromMeScope,
 			Set<URI> toMeScope, Set<URI> resultingToMeScope, URI assocMri) {
@@ -691,8 +675,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 	}
 
 	/**
-	 * Collect all available inclusion scopes to determine the new
-	 * estimationSet. Observe that no exclusion scopes exist
+	 * Collect all available inclusion scopes to determine the new estimationSet. Observe that no exclusion scopes exist
 	 */
 	private void collectEstimationSet(Set<URI> estimationSet, SpiModelElementClusterExpression meClusterExpression) {
 

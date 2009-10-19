@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -64,11 +65,22 @@ public class ResourceIndexer {
 					}
 
 					if (eReference.isMany()) {
-						List<?> targets = (List<?>) element.eGet(eReference, false);
-						for (int idx = 0; idx < targets.size(); ++idx) {
-							Object target = targets.get(idx);
-							createEReferenceDescriptor(updater, resourceCache, objectCache, uriConverter, resourceUri, fragment, refString,
-									target);
+						Object eGet = element.eGet(eReference, false);
+						if (eGet instanceof BasicEList) {
+							BasicEList<?> targets = (BasicEList<?>) eGet;
+							Object[] data = targets.data();
+							for (int idx = 0, n = targets.size(); idx < n; ++idx) {
+								Object target = data[idx];
+								createEReferenceDescriptor(updater, resourceCache, objectCache, uriConverter, resourceUri, fragment,
+										refString, target);
+							}
+						} else {
+							List<?> targets = (List<?>) eGet;
+							for (int idx = 0, n = targets.size(); idx < n; ++idx) {
+								Object target = targets.get(idx);
+								createEReferenceDescriptor(updater, resourceCache, objectCache, uriConverter, resourceUri, fragment,
+										refString, target);
+							}
 						}
 					} else {
 						Object target = element.eGet(eReference, false);

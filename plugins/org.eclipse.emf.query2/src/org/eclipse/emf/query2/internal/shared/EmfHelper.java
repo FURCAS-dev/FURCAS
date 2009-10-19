@@ -14,12 +14,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -70,7 +70,7 @@ public class EmfHelper {
 				rsImpl.setURIResourceMap(new HashMap<URI, Resource>());
 			}
 		}
-		this.createDirtyIndex();
+		//		this.createDirtyIndex();
 		this.index = index;
 	}
 
@@ -82,7 +82,7 @@ public class EmfHelper {
 		this.useDirty = false;
 	}
 
-	private void createDirtyIndex() {
+	public void createDirtyIndex() {
 		this.dirtyIndex = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
 		dirtyIndex.executeUpdateCommand(new UpdateCommand() {
@@ -191,12 +191,27 @@ public class EmfHelper {
 	public List<EObject> getElementsInResource(Resource mp) {
 
 		List<EObject> result = new ArrayList<EObject>();
-		EObject object = null;
-		for (TreeIterator<EObject> it = EcoreUtil.getAllProperContents(mp, false); it.hasNext();) {
-			if ((object = it.next()) instanceof EObject && !object.eIsProxy()) {
-				result.add(object);
+		Set<EObject> seen = new HashSet<EObject>();
+		int i = 0;
+		for (EObject eobject : mp.getContents()) {
+			if (seen.add(eobject)) {
+				result.add(eobject);
+			}
+			for (; i < result.size(); i++) {
+				EObject next = result.get(i);
+				for (EObject ob : next.eContents()) {
+					if (seen.add(ob) && ob.eResource() == mp) {
+						result.add(ob);
+					}
+				}
 			}
 		}
+
+		//		for (TreeIterator<EObject> it = EcoreUtil.getAllProperContents(mp, false); it.hasNext();) {
+		//			if ((object = it.next()) instanceof EObject && !object.eIsProxy()) {
+		//				result.add(object);
+		//			}
+		//		}
 		return result;
 	}
 
@@ -243,7 +258,7 @@ public class EmfHelper {
 					URI resourceURI = entry.getSourceResourceURI();
 					String fragment = entry.getSourceFragment();
 					if ((priScope == null || priScope.contains(entry.getSourceResourceURI())) && //
-							elements == null || elements.contains(resourceURI.appendFragment(fragment))) {
+							(elements == null || elements.contains(resourceURI.appendFragment(fragment)))) {
 						Resource r = rs.getResource(resourceURI, true);
 						EObject eObject = r.getEObject(fragment);
 						assert eObject != null;
@@ -257,9 +272,11 @@ public class EmfHelper {
 		});
 
 		List<EObject> results = command.getResult();
-		for (Iterator<EObject> it = results.iterator(); it.hasNext();) {
-			if (mrisOfTypes != null && !mrisOfTypes.contains(it.next().eClass())) {
-				it.remove();
+		if (mrisOfTypes != null) {
+			for (Iterator<EObject> it = results.iterator(); it.hasNext();) {
+				if (!mrisOfTypes.contains(it.next().eClass())) {
+					it.remove();
+				}
 			}
 		}
 

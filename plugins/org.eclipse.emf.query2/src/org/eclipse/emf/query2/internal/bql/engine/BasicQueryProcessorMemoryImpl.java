@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.internal.bql.api.SpiAbstractBasicQueryProcessor;
+import org.eclipse.emf.query2.internal.bql.api.SpiAttributeExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiSelectExpression;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryClientScope;
@@ -149,9 +151,14 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 
 		// if ( startAtStorageEnd ) {
 		// start at storage end
-		Set<EClass> eclassTypes = new HashSet<EClass>(mrisOfTypes.size());
-		for (URI uri : mrisOfTypes) {
-			eclassTypes.add(emfHelper.getTypeElement(uri));
+		Set<EClass> eclassTypes;
+		if (mrisOfTypes != null) {
+			eclassTypes = new HashSet<EClass>(mrisOfTypes.size()); // FIXME quick hack for performance
+			for (URI uri : mrisOfTypes) {
+				eclassTypes.add(emfHelper.getTypeElement(uri));
+			}
+		} else {
+			eclassTypes = null;
 		}
 		result = getLinkedObjectsAndFilterByPartitions(emfHelper, fromObject, assocMRI, priScope, eclassTypes, elements);
 		// } else {
@@ -284,7 +291,8 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	 * gets the objects of all provided types within the provided priScope. If a fixed element set is provided, only return objects from
 	 * that set.
 	 */
-	public static EObject[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements) {
+	public static EObject[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements,
+			SpiAttributeExpression attributeExpression) {
 
 		List<EObject> result = new ArrayList<EObject>();
 
@@ -306,7 +314,7 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 			// elements are only those which
 			// are also in the set of fixed elements
 			if (elements != null && elements.size() > 0) {
-				possibleResultElements = new HashSet<EObject>();
+				possibleResultElements = new LinkedHashSet<EObject>();
 				for (URI elementMri : elements) {
 					// only add if PRI is identical
 					if (elementMri.trimFragment().equals(pri)) {
@@ -315,6 +323,14 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 				}
 			} else {
 				possibleResultElements = _emfHelper.getElementsInResource(modelPartition);
+			}
+
+			Set<EClass> mriEclassSet = null;
+			if (possibleResultElements.size() > 0 && mrisOfTypes != null && mrisOfTypes.size() != 0) {
+				mriEclassSet = new HashSet<EClass>(mrisOfTypes.size());
+				for (URI uri : mrisOfTypes) {
+					mriEclassSet.add(_emfHelper.getTypeElement(uri));
+				}
 			}
 
 			// for all possible elements, only consider the refObjects, which
@@ -327,9 +343,11 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 				// Reflect::Element)
 				// MRI mriOfType = ( (Partitionable) refObject.refMetaObject( )
 				// ).get___Mri( );
-				URI mriOfType = getUri(refObject.eClass());
-				if (mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(mriOfType)) {
-					result.add(refObject);
+				//				URI mriOfType = getUri(refObject.eClass());
+				//				if (mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(mriOfType)) {
+				if (mriEclassSet == null || mriEclassSet.contains(refObject.eClass())) {
+					if (ClusterEvaluator.evaluateAttributesExceptAttrComparisons(_emfHelper, refObject, attributeExpression))
+						result.add(refObject);
 				}
 				// }
 			}

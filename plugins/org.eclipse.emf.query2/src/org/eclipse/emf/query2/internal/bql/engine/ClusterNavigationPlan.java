@@ -24,6 +24,7 @@ import javax.print.attribute.UnmodifiableSetException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.query2.internal.bql.api.SpiAttributeExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiClusterInternalLinkExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiLinkExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiModelElementClusterExpression;
@@ -34,43 +35,30 @@ import org.eclipse.emf.query2.internal.messages.BugMessages;
 import org.eclipse.emf.query2.internal.shared.BugException;
 import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
-
 /**
- * The cluster navigation plan describes how the memory query implementation can
- * navigate between the ModelElementExpression instances of a cluster.
+ * The cluster navigation plan describes how the memory query implementation can navigate between the ModelElementExpression instances of a
+ * cluster.
  * <p>
- * The cluster navigation plan is constructed from a model element cluster
- * expression. During the initialization a navigation plan is calculated which
- * allows the user to iterate over the model element tuples fulfilling the
- * cluster internal link expressions of the cluster. The internal operating mode
- * is described in the following.
+ * The cluster navigation plan is constructed from a model element cluster expression. During the initialization a navigation plan is
+ * calculated which allows the user to iterate over the model element tuples fulfilling the cluster internal link expressions of the
+ * cluster. The internal operating mode is described in the following.
  * <p>
- * The navigation plan is structured into several ordered navigation steps. A
- * navigation step consists of a navigation source and a navigation target each
- * representing a model element expression in the cluster. Every navigation step
- * allows the navigation from one model element expression of the cluster to
- * another model element expression of the cluster. The navigation plan defines
- * one specific start model element expression which is the source of the first
- * navigation step.
+ * The navigation plan is structured into several ordered navigation steps. A navigation step consists of a navigation source and a
+ * navigation target each representing a model element expression in the cluster. Every navigation step allows the navigation from one model
+ * element expression of the cluster to another model element expression of the cluster. The navigation plan defines one specific start
+ * model element expression which is the source of the first navigation step.
  * <p>
- * In the initialization phase it is tried to find a combination of start model
- * element expression and navigation steps that allows the navigation from the
- * start model element expression to each other model element expression in the
- * cluster by navigating the navigation steps according to the order of the
- * steps. The calculation of the navigation plan takes into account that some
- * association links can be navigated in both directions while attribute links
- * can be navigated only in one direction.
+ * In the initialization phase it is tried to find a combination of start model element expression and navigation steps that allows the
+ * navigation from the start model element expression to each other model element expression in the cluster by navigating the navigation
+ * steps according to the order of the steps. The calculation of the navigation plan takes into account that some association links can be
+ * navigated in both directions while attribute links can be navigated only in one direction.
  * <p>
- * In the iteration phase every model element expression in the cluster is
- * assigned a specific model element. These assignments alltogether define a
- * model element tuple in the cluster. The objective of the cluster navigation
- * plan is to provide the means for users to iterate over the model element
- * tuples which fulfill the link expressions in the cluster. It is possible that
- * the model element cluster expression contains more link expression than
- * required in order to create a navigation plan. In this case only a part of
- * the link expressions in the cluster are incorporated in the navigation steps.
- * This means that tuples that are found by navigating the navigation steps have
- * to be checked whether they fulfill the other link expressions as well.
+ * In the iteration phase every model element expression in the cluster is assigned a specific model element. These assignments alltogether
+ * define a model element tuple in the cluster. The objective of the cluster navigation plan is to provide the means for users to iterate
+ * over the model element tuples which fulfill the link expressions in the cluster. It is possible that the model element cluster expression
+ * contains more link expression than required in order to create a navigation plan. In this case only a part of the link expressions in the
+ * cluster are incorporated in the navigation steps. This means that tuples that are found by navigating the navigation steps have to be
+ * checked whether they fulfill the other link expressions as well.
  * 
  * @author D029158
  * @version 27.02.2006
@@ -141,6 +129,14 @@ public final class ClusterNavigationPlan {
 		this.partitionScopeSet = partitionScopeSet;
 		this.modelElementClusterExpression = modelElementClusterExpression;
 		this.initialize();
+
+		System.err.println("Direction: ");
+		for (int i = 0; i < this.navigationDirectionForward.length; i++) {
+			System.err.println("\t" + this.modelElementClusterExpression.getModelElementExpression(this.navigationSource[i]).getAlias()
+					+ " " + this.navigationDirectionForward[i] + " "
+					+ this.modelElementClusterExpression.getModelElementExpression(this.navigationTarget[i]).getAlias());
+		}
+		System.err.println();
 	}
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -271,9 +267,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Initializes the read positions of the navigation targets starting with
-	 * the navigation step <code>startNavigationStep</code> and finishing with
-	 * the last navigation step.
+	 * Initializes the read positions of the navigation targets starting with the navigation step <code>startNavigationStep</code> and
+	 * finishing with the last navigation step.
 	 * 
 	 * @param startNavigationStep
 	 *            navigation step to start with
@@ -310,9 +305,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Tries to add a navigation step to a specified model element expression as
-	 * navigation target. Tries to find a model element expression that can be
-	 * the source of the navigation step to the specified navigation target.
+	 * Tries to add a navigation step to a specified model element expression as navigation target. Tries to find a model element expression
+	 * that can be the source of the navigation step to the specified navigation target.
 	 * 
 	 * @param modelElementExpression
 	 *            number of model element expression
@@ -354,8 +348,7 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Checks the current plan if the model element expression is already
-	 * included
+	 * Checks the current plan if the model element expression is already included
 	 * 
 	 * @param modelElementExpression
 	 *            number of model element expression
@@ -378,10 +371,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Checks whether it is possible to navigate forward between two model
-	 * element expressions. Forward navigation means that the navigation source
-	 * corresponds to the link expression 'from' and the navigation target
-	 * corresponds to the link target.
+	 * Checks whether it is possible to navigate forward between two model element expressions. Forward navigation means that the navigation
+	 * source corresponds to the link expression 'from' and the navigation target corresponds to the link target.
 	 * 
 	 * @param links
 	 *            links that should be checked
@@ -389,8 +380,7 @@ public final class ClusterNavigationPlan {
 	 *            source model element expression
 	 * @param target
 	 *            target model element expression
-	 * @return link expression with which the navigation can take place or null
-	 *         if no appropriate link expression could be found
+	 * @return link expression with which the navigation can take place or null if no appropriate link expression could be found
 	 */
 	@SuppressWarnings("unchecked")
 	private SpiLinkExpression navigatesForward(List links, SpiModelElementExpression source, SpiModelElementExpression target) {
@@ -407,10 +397,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Checks whether it is possible to navigate backward between two model
-	 * element expressions. Backward navigation means that the navigation source
-	 * corresponds to the link expression target and the navigation target
-	 * corresponds to the link 'from'.
+	 * Checks whether it is possible to navigate backward between two model element expressions. Backward navigation means that the
+	 * navigation source corresponds to the link expression target and the navigation target corresponds to the link 'from'.
 	 * 
 	 * @param links
 	 *            links that should be checked
@@ -418,8 +406,7 @@ public final class ClusterNavigationPlan {
 	 *            source model element expression
 	 * @param target
 	 *            target model element expression
-	 * @return link expression with which the navigation can take place or null
-	 *         if no appropriate link expression could be found
+	 * @return link expression with which the navigation can take place or null if no appropriate link expression could be found
 	 */
 	@SuppressWarnings("unchecked")
 	private SpiLinkExpression navigatesBackward(List links, SpiModelElementExpression source, SpiModelElementExpression target) {
@@ -436,14 +423,12 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Checks whether it is possible to navigate forward between two model
-	 * element expressions using a specific link expression. Forward navigation
-	 * means that the navigation source corresponds to the link expression
-	 * 'from' and the navigation target corresponds to the link target.
+	 * Checks whether it is possible to navigate forward between two model element expressions using a specific link expression. Forward
+	 * navigation means that the navigation source corresponds to the link expression 'from' and the navigation target corresponds to the
+	 * link target.
 	 * 
 	 * @param linkExpression
-	 *            link expression for which the forward navigation shall be
-	 *            possible
+	 *            link expression for which the forward navigation shall be possible
 	 * @param source
 	 *            navigation source
 	 * @param target
@@ -467,14 +452,12 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Checks whether it is possible to navigate backward between two model
-	 * element expressions using a specific link expression. Backward navigation
-	 * means that the navigation source corresponds to the link expression
-	 * target and the navigation target corresponds to the link 'from'.
+	 * Checks whether it is possible to navigate backward between two model element expressions using a specific link expression. Backward
+	 * navigation means that the navigation source corresponds to the link expression target and the navigation target corresponds to the
+	 * link 'from'.
 	 * 
 	 * @param linkExpression
-	 *            link expression for which the forward navigation shall be
-	 *            possible
+	 *            link expression for which the forward navigation shall be possible
 	 * @param source
 	 *            navigation source
 	 * @param target
@@ -499,8 +482,7 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Determines the "other" link expressions that are not incorporated in the
-	 * navigation steps
+	 * Determines the "other" link expressions that are not incorporated in the navigation steps
 	 */
 	private void calculateOtherLinkExpressions() {
 
@@ -515,8 +497,7 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Returns true if the link expression is "already" included in the
-	 * navigation plan
+	 * Returns true if the link expression is "already" included in the navigation plan
 	 * 
 	 * @param linkExpression
 	 * @return
@@ -536,12 +517,10 @@ public final class ClusterNavigationPlan {
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Initializes the tuple reading. Calculates the model element list of the
-	 * start model element expression and sets the read pointer of the start
-	 * model element expression to the first model element. Sets the read of the
-	 * other model element expressions to initial. Returns true if the start
-	 * model element expression list contains at least one element, otherwise
-	 * false indicating that the query has not result
+	 * Initializes the tuple reading. Calculates the model element list of the start model element expression and sets the read pointer of
+	 * the start model element expression to the first model element. Sets the read of the other model element expressions to initial.
+	 * Returns true if the start model element expression list contains at least one element, otherwise false indicating that the query has
+	 * not result
 	 */
 	private boolean initializeTupleReading() {
 
@@ -555,7 +534,7 @@ public final class ClusterNavigationPlan {
 		Set<URI> scope = calculateScopeViaGlobalScope(mee.getScope(), mee.scopeIsIncluded());
 
 		this.currentModelElementList[this.startModelElementExpression] = BasicQueryProcessorMemoryImpl.getObjectsOfTypeInPartitions(
-				this.emfHelper, scope, mee.getTypesSet(), mee.getElementsSet());
+				this.emfHelper, scope, mee.getTypesSet(), mee.getElementsSet(), mee.getAttributeExpression());
 		if (this.currentModelElementList[this.startModelElementExpression] == null
 				|| this.currentModelElementList[this.startModelElementExpression].length == 0) {
 			// no result
@@ -796,8 +775,7 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Returns true if the intersection of set1 and set2 is empty, otherwise
-	 * false.
+	 * Returns true if the intersection of set1 and set2 is empty, otherwise false.
 	 */
 	public static boolean isIntersectionOfSetsIsEmpty(EObject[] set1, EObject[] set2) {
 
@@ -818,8 +796,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * this is used to check if an "other" link exists between from and to
-	 * objects (i.e. those crossing two MEEs not followed by the navigation path
+	 * this is used to check if an "other" link exists between from and to objects (i.e. those crossing two MEEs not followed by the
+	 * navigation path
 	 */
 	private boolean isLinked(SpiClusterInternalLinkExpression currentLinkExpression, EObject fromObject, EObject toObject, Set<URI> scope,
 			Set<URI> types, Set<URI> elements) {
@@ -865,9 +843,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Calculates for the navigation source the linked RefObject instances of
-	 * the navigation target. Returns true if at least one navigation target was
-	 * found, otherwise false.
+	 * Calculates for the navigation source the linked RefObject instances of the navigation target. Returns true if at least one navigation
+	 * target was found, otherwise false.
 	 * 
 	 * @param navigationStep
 	 *            navigation step
@@ -908,7 +885,9 @@ public final class ClusterNavigationPlan {
 		Set<URI> scopeForLinkedObjects = calculateScopeViaGlobalScope(scope, scopeIncluded);
 
 		// for keeping the linked objects
-		EObject[] linkedObjectArray = getLinkedElementObjects(sourceObject, linkType, scopeForLinkedObjects, mrisOfTypes, elements);
+		EObject[] linkedObjectArray = getLinkedElementObjectsWithAttributeCheck(sourceObject, linkType, scopeForLinkedObjects, mrisOfTypes,
+				elements, this.modelElementClusterExpression.getModelElementExpression(navigationTargetModelElementExpr)
+						.getAttributeExpression());
 
 		// if there are no links, return false
 		if (linkedObjectArray == null || linkedObjectArray.length == 0) {
@@ -923,6 +902,20 @@ public final class ClusterNavigationPlan {
 	private EObject[] getLinkedElementObjects(EObject sourceObject, URI linkType, Set<URI> scope, Set<URI> types, Set<URI> elements) {
 
 		return BasicQueryProcessorMemoryImpl.getLinkedObjects(this.emfHelper, sourceObject, linkType, scope, types, elements);
+	}
+
+	@SuppressWarnings("unchecked")
+	private EObject[] getLinkedElementObjectsWithAttributeCheck(EObject sourceObject, URI linkType, Set<URI> scope, Set<URI> types,
+			Set<URI> elements, SpiAttributeExpression attributeExpression) {
+
+		EObject[] list = BasicQueryProcessorMemoryImpl.getLinkedObjects(this.emfHelper, sourceObject, linkType, scope, types, elements);
+		ArrayList<EObject> result = new ArrayList<EObject>(list.length);
+		for (int i = 0, n = list.length; i < n; i++) {
+			if (ClusterEvaluator.evaluateAttributesExceptAttrComparisons(emfHelper, list[i], attributeExpression)) {
+				result.add(list[i]);
+			}
+		}
+		return result.toArray(new EObject[result.size()]);
 	}
 
 	//
@@ -1032,9 +1025,8 @@ public final class ClusterNavigationPlan {
 	//    }
 
 	/**
-	 * Returns true if the read pointer of the navigation target of a specified
-	 * navigation step is initial, which means that the link navigation has not
-	 * been calculated yet, otherwise this method returns false.
+	 * Returns true if the read pointer of the navigation target of a specified navigation step is initial, which means that the link
+	 * navigation has not been calculated yet, otherwise this method returns false.
 	 * 
 	 * @param navigationStep
 	 *            navigation step
@@ -1047,9 +1039,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Returns true if the read pointer of the navigation source of a specified
-	 * navigation step is initial, which means that the link navigation cannot
-	 * be calculated, otherwise this method returns false.
+	 * Returns true if the read pointer of the navigation source of a specified navigation step is initial, which means that the link
+	 * navigation cannot be calculated, otherwise this method returns false.
 	 * 
 	 * @param navigationStep
 	 *            navigation step
@@ -1062,9 +1053,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Returns true if the navigation target of a specified navigation step is
-	 * incrementable, otherwise returns false, which means that the iteration of
-	 * the navigation target is completed.
+	 * Returns true if the navigation target of a specified navigation step is incrementable, otherwise returns false, which means that the
+	 * iteration of the navigation target is completed.
 	 * 
 	 * @param navigationStep
 	 *            navigation step
@@ -1081,9 +1071,8 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Increment the navigation target of a navigation step. Returns true if
-	 * incrementation was successful, otherwise false which means that the
-	 * navigation target is not incrementable
+	 * Increment the navigation target of a navigation step. Returns true if incrementation was successful, otherwise false which means that
+	 * the navigation target is not incrementable
 	 * 
 	 * @param navigationStep
 	 *            navigation step
@@ -1100,20 +1089,16 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Updates the navigation target of a specified navigation step. There are
-	 * two kind of update activies possible: 1. calculating the linked objects
-	 * and setting the read position to the first linked model element or 2.
-	 * incrementing the read position of the linked model elements.
+	 * Updates the navigation target of a specified navigation step. There are two kind of update activies possible: 1. calculating the
+	 * linked objects and setting the read position to the first linked model element or 2. incrementing the read position of the linked
+	 * model elements.
 	 * <p>
-	 * If the read pointer of the navigation target is initial then the objects
-	 * which are linked to the link source are calculated. If at least one
-	 * linked object was found then the read pointer is set to the first linked
-	 * object and true is returned, otherwise false is returned
+	 * If the read pointer of the navigation target is initial then the objects which are linked to the link source are calculated. If at
+	 * least one linked object was found then the read pointer is set to the first linked object and true is returned, otherwise false is
+	 * returned
 	 * <p>
-	 * If the navigation target is not initial then it is tried to increment the
-	 * read pointer to the linked objects. If the incrementation was succesful
-	 * then true is returned, otherwise false is returned meaning that all
-	 * linked objects have been read already
+	 * If the navigation target is not initial then it is tried to increment the read pointer to the linked objects. If the incrementation
+	 * was succesful then true is returned, otherwise false is returned meaning that all linked objects have been read already
 	 * 
 	 * @param navigationStep
 	 *            navigation step
@@ -1155,8 +1140,7 @@ public final class ClusterNavigationPlan {
 	 * 
 	 * @param numberOfModelElementExpression
 	 *            number of the model element expression in the cluster
-	 * @return RefObject representing the current model element to the model
-	 *         element expression
+	 * @return RefObject representing the current model element to the model element expression
 	 */
 	public EObject getTupleElement(int numberOfModelElementExpression) {
 
@@ -1164,8 +1148,7 @@ public final class ClusterNavigationPlan {
 	}
 
 	/**
-	 * Sets the next tuple. If a tuple was found then this method returns true,
-	 * otherwise false.
+	 * Sets the next tuple. If a tuple was found then this method returns true, otherwise false.
 	 */
 	private boolean nextTupleNoCheckForOtherLinkExpressions() {
 
