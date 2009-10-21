@@ -11,6 +11,17 @@
 	<target name="getDependencies">
 		<echo message="getDependencies!!!" />
 	</target>
+
+	<target name="preFetch">
+		<echo message="[[[Unzipping LPG]]]" />
+		<unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
+			<patternset>
+				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*.jar"/>
+				<include name="**/net.sourceforge.lpg.lpgjavaruntime.source_${LPGRuntimeVersion}*.jar"/>
+			</patternset>
+		</unzip>
+	</target>
+
 	<target name="postFetch">
 		<echo message="postFetch!!!" />
 	</target>
@@ -24,7 +35,12 @@
 			<echo message="preAssemble!!!" />
 		</target>
 		<target name="postAssemble">
-			<echo message="postAssemble!!!" />
+			<echo message="[[[Add the LPG bundles into Master zip]]]" />
+			<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
+				<zipfileset dir="${buildDirectory}/LPG" 
+							includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+				/>
+			</zip>
 		</target>
 		<target name="prePackage">
 			<echo message="prePackage!!!" />
@@ -42,25 +58,9 @@
 		<echo message="postBuild!!!" />
 	</target>
 
-	<target name="preFetch">
-		<echo message="--- Unzipping LPG ---" />
-		<unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
-			<patternset>
-				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*.jar"/>
-				<include name="**/net.sourceforge.lpg.lpgjavaruntime.source_${LPGRuntimeVersion}*.jar"/>
-			</patternset>
-		</unzip>
-	</target>
-	
 	<target name="extraPackaging">
 		<!-- Add the LPG bundles into SDK zip -->
 		<zip destfile="${buildDirectory}/${buildLabel}/${SDKZip}" update="true">
-			<zipfileset dir="${buildDirectory}/LPG" 
-						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
-			/>
-		</zip>
-		<!-- Add the LPG bundles into Master zip -->
-		<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
 			<zipfileset dir="${buildDirectory}/LPG" 
 						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
 			/>
@@ -114,7 +114,7 @@
 			</fileset>
 			<mapper type="flatten" />
 		</copy>
-		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-standalone-${incubation}-${buildAlias}.zip" update="true">
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-standalone${incubation}-${buildAlias}.zip" update="true">
 			<fileset dir="${allSDKZipUnpackTemp}" />
 		</zip>
 		<delete dir="${allSDKZipUnpackTemp}" />
