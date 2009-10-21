@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -63,10 +64,8 @@ import org.eclipse.emf.query2.internal.moinql.ast.VirtualAtomicEntryReference;
 import org.eclipse.emf.query2.internal.moinql.ast.WhereClause;
 import org.eclipse.emf.query2.internal.moinql.ast.WithEntry;
 
-
 /**
- * The MQL transformation service provides services which are shared across
- * transformation phases in the MQL processor.
+ * The MQL transformation service provides services which are shared across transformation phases in the MQL processor.
  */
 final public class AuxServices {
 
@@ -139,8 +138,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Compares two object values for the operation. IMPORTANT: this has to be
-	 * semantically identical to the meaning of the operations in FQL!
+	 * Compares two object values for the operation. IMPORTANT: this has to be semantically identical to the meaning of the operations in
+	 * FQL!
 	 */
 	public static boolean compareValues(Object obj1, SpiFqlComparisonOperation operation, Object obj2) {
 
@@ -257,8 +256,7 @@ final public class AuxServices {
 	 */
 
 	/**
-	 * Splits the internal into strongly connected components in terms of
-	 * association predicates. The result is again an internal query
+	 * Splits the internal into strongly connected components in terms of association predicates. The result is again an internal query
 	 */
 	public InternalQuery split(InternalQuery internalQuery) {
 
@@ -287,12 +285,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Produce a clone of the internal query. The flag allows for a clone which
-	 * shares internal queries occurring in nested queries (in link predicates).
-	 * In other words, if includeNestedQueries is true, a deep clone is made,
-	 * otherwise, a shallow clone. The atomicEntryMap is a return parameter,
-	 * which registers which atomic entries have been mapped to which atomic
-	 * entries
+	 * Produce a clone of the internal query. The flag allows for a clone which shares internal queries occurring in nested queries (in link
+	 * predicates). In other words, if includeNestedQueries is true, a deep clone is made, otherwise, a shallow clone. The atomicEntryMap is
+	 * a return parameter, which registers which atomic entries have been mapped to which atomic entries
 	 */
 	public InternalQuery clone(InternalQuery internalQuery, boolean includeNestedQueries, Map<AtomicEntry, AtomicEntry> atomicEntryMap) {
 
@@ -315,8 +310,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Transforms the query by adjusting structure-type scopes and looking for
-	 * empty parts.
+	 * Transforms the query by adjusting structure-type scopes and looking for empty parts.
 	 */
 	public InternalQuery reduceQueryAfterScopeChanges(InternalQuery internalQuery) {
 
@@ -325,10 +319,8 @@ final public class AuxServices {
 		 */
 
 		/*
-		 * Adjust the scope of structure-based atomic entries. They have to be
-		 * the union of the scopes of the class-based atomic entries to which
-		 * they are connected (directly or indirectly). This is necessary
-		 * because phase 2 ignores structure types in its optimization.
+		 * Adjust the scope of structure-based atomic entries. They have to be the union of the scopes of the class-based atomic entries to
+		 * which they are connected (directly or indirectly). This is necessary because phase 2 ignores structure types in its optimization.
 		 */
 		try {
 			this.adjustStructureTypeScopeInternalQuery(internalQuery);
@@ -370,8 +362,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Computes the set intersection of two scopes. Note that the two booleans
-	 * are combined by a logical OR (we leave it to the caller to handle this)
+	 * Computes the set intersection of two scopes. Note that the two booleans are combined by a logical OR (we leave it to the caller to
+	 * handle this)
 	 */
 	public <E> Set<E> intersectScopes(Set<E> leftScope, boolean leftIncluded, Set<E> rightScope, boolean rightIncluded) {
 
@@ -379,8 +371,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Computes the set union of two scopes. Note that the two booleans are
-	 * combined by a logical AND (we leave it to the caller to handle this)
+	 * Computes the set union of two scopes. Note that the two booleans are combined by a logical AND (we leave it to the caller to handle
+	 * this)
 	 */
 	public <E> Set<E> unionScopes(Set<E> leftScope, boolean leftIncluded, Set<E> rightScope, boolean rightIncluded) {
 
@@ -396,8 +388,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Simply redirects the contained select entries of the
-	 * virtualAtomicEntryReference in the provided nodeSelectEntries and
+	 * Simply redirects the contained select entries of the virtualAtomicEntryReference in the provided nodeSelectEntries and
 	 * comparisonWithEntries
 	 */
 	public void redirectTypeReferencesForNodeQuery(List<NodeSelectEntry> selectEntries, List<ComparisonWithEntry> withEntries,
@@ -415,11 +406,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Type comparison removal happens by walking over the type comparisons,
-	 * constructing a new atomic entry which builds the intersection entry,
-	 * removing the type comparison, removing the old atomic entries from the
-	 * from-entries and finally replacing any references to the old atomic entry
-	 * with the new atomic entry
+	 * Type comparison removal happens by walking over the type comparisons, constructing a new atomic entry which builds the intersection
+	 * entry, removing the type comparison, removing the old atomic entries from the from-entries and finally replacing any references to
+	 * the old atomic entry with the new atomic entry
 	 */
 	public void removeTypeComparisons(InternalQuery internalQuery) {
 
@@ -439,11 +428,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Compresses node queries where possible by combining leaf queries if they
-	 * operate in the same facility and only have alias comparisons between the
-	 * two leaf queries At some point, we want to also compress attribute
-	 * comparisons, but is only possible whenever FQL queries can handle
-	 * non-assocPredicate connected attribute comparisons.
+	 * Compresses node queries where possible by combining leaf queries if they operate in the same facility and only have alias comparisons
+	 * between the two leaf queries At some point, we want to also compress attribute comparisons, but is only possible whenever FQL queries
+	 * can handle non-assocPredicate connected attribute comparisons.
 	 */
 	public InternalQuery compressNodeQueries(InternalQuery internalQuery) {
 
@@ -476,8 +463,7 @@ final public class AuxServices {
 	/* -------- */
 
 	/**
-	 * The general splitter is the standard recursion over the different query
-	 * types, with possible redirections for the node queries
+	 * The general splitter is the standard recursion over the different query types, with possible redirections for the node queries
 	 */
 	private InternalQuery splitInternalQuery(InternalQuery internalQuery, Set<NestedQuery> seenNestedQuery,
 			Map<SelectEntry, SelectEntry> selectEntryMap) {
@@ -520,10 +506,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Splitting of a NodeQuery is essentially a recursion. However, because
-	 * query splitting may affect the form of the select entries in nested
-	 * from-query, we have to use the newSelectEntryMap to correct the
-	 * SelectEntries and ComparisonWithEntries of the encompassing node query.
+	 * Splitting of a NodeQuery is essentially a recursion. However, because query splitting may affect the form of the select entries in
+	 * nested from-query, we have to use the newSelectEntryMap to correct the SelectEntries and ComparisonWithEntries of the encompassing
+	 * node query.
 	 */
 	private InternalQuery splitNodeQuery(NodeQuery nodeQuery, Set<NestedQuery> seenNestedQuery, Map<SelectEntry, SelectEntry> selectEntryMap) {
 
@@ -550,26 +535,21 @@ final public class AuxServices {
 	}
 
 	/**
-	 * The splitter works per leaf query (and recursively for nested leaf
-	 * queries) and consists of several phases:
+	 * The splitter works per leaf query (and recursively for nested leaf queries) and consists of several phases:
 	 * <ul>
-	 * <li>(1) Split the query along cluster boundaries, where for each cluster
-	 * we maintain the following data:
+	 * <li>(1) Split the query along cluster boundaries, where for each cluster we maintain the following data:
 	 * <ul>
-	 * <li>the atomic from-entries belonging to this component (including their
-	 * where-clauses)</li>
+	 * <li>the atomic from-entries belonging to this component (including their where-clauses)</li>
 	 * <li>the required select-entries to construct the final result</li>
 	 * <li>the required with-clauses which belong to the cluster</li>
 	 * <li>the required cross-cluster (attribute or type ) comparisons</li>
 	 * </ul>
 	 * </li>
-	 * <li>(2) We collect all cross-cluster comparisons, group them in pairs
-	 * according to aliases and weigh them with the number of comparisons
-	 * <li>(3) Based on the cross-cluster comparisons, we start combining
-	 * queries pairwise and construct the entire query from that. Note that if
-	 * no further cross-cluster comparisons are available, we can pair in any
-	 * order. Also, we maintain some book-keeping to minimize the number of
-	 * select entries to what is required for the encompassing query
+	 * <li>(2) We collect all cross-cluster comparisons, group them in pairs according to aliases and weigh them with the number of
+	 * comparisons
+	 * <li>(3) Based on the cross-cluster comparisons, we start combining queries pairwise and construct the entire query from that. Note
+	 * that if no further cross-cluster comparisons are available, we can pair in any order. Also, we maintain some book-keeping to minimize
+	 * the number of select entries to what is required for the encompassing query
 	 * </ul>
 	 * </ul>
 	 */
@@ -641,10 +621,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Produces a bunch of LeafQueries for each strongly connected set of atomic
-	 * entries. As an invariant, we assume that the list of atomicEntries is not
-	 * empty. The Set of ComparisonWithEntries is filled with all cross-cluster
-	 * comparisonWithEntries
+	 * Produces a bunch of LeafQueries for each strongly connected set of atomic entries. As an invariant, we assume that the list of
+	 * atomicEntries is not empty. The Set of ComparisonWithEntries is filled with all cross-cluster comparisonWithEntries
 	 */
 	private Set<InternalQuery> buildStronglyConnectedClusters(LeafQuery leafQuery, Set<ComparisonWithEntry> crossComparisonWithEntries,
 			Set<NestedQuery> seenNestedQuery) {
@@ -667,8 +645,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Actually builds a leaf query for a found strongly connected cluster
-	 * component
+	 * Actually builds a leaf query for a found strongly connected cluster component
 	 */
 	private LeafQuery buildOneStronglyComponent(AliasName leafQueryName, SpiFacilityQueryLanguage fqlProcessor,
 			List<LeafSelectEntry> topLevelSelectEntries, List<AtomicEntry> oldAtomicEntries, List<WithEntry> oldWithEntries,
@@ -686,7 +663,7 @@ final public class AuxServices {
 		// (1) first, we calculate one strongly-connected cluster
 
 		// Search for the atomic entries which actually belong to this cluster
-		Set<AtomicEntry> stillToProcess = new HashSet<AtomicEntry>();
+		Set<AtomicEntry> stillToProcess = new LinkedHashSet<AtomicEntry>();
 
 		// we initialize it with the one guaranteed member
 		stillToProcess.add(oldAtomicEntries.get(0));
@@ -875,9 +852,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * This class represents a pair of cluster components, which is compared one
-	 * or more times with a ComparisonWithEntry. The left and right cluster
-	 * match the left and right of the comparisons.
+	 * This class represents a pair of cluster components, which is compared one or more times with a ComparisonWithEntry. The left and
+	 * right cluster match the left and right of the comparisons.
 	 */
 	private final class ClusterPair implements Comparable<ClusterPair> {
 
@@ -949,12 +925,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * We group all comparisonWithEntries in clusterPairs combining the
-	 * comparisons between the same InternalQueries (which are LeafQueries for
-	 * now). We also construct ClusterPairs for all ClusterComponents which do
-	 * not collaborate with other cluster components and connect them
-	 * (arbitrarily) with the first clusterComponent. At this point, there is
-	 * *always* more than one cluster component
+	 * We group all comparisonWithEntries in clusterPairs combining the comparisons between the same InternalQueries (which are LeafQueries
+	 * for now). We also construct ClusterPairs for all ClusterComponents which do not collaborate with other cluster components and connect
+	 * them (arbitrarily) with the first clusterComponent. At this point, there is *always* more than one cluster component
 	 */
 	private List<ClusterPair> assignClusterPairs(Set<InternalQuery> clusterComponents, Set<ComparisonWithEntry> comparisonWithEntries) {
 
@@ -1044,8 +1017,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Simply a pair of internal queries whose identity is defined by the two
-	 * queries (in the right order)
+	 * Simply a pair of internal queries whose identity is defined by the two queries (in the right order)
 	 */
 	public class InternalQueryPair {
 
@@ -1101,8 +1073,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Combines the pairs of clusters in the order of the provided
-	 * clusterPairList and constructs new node queries out of this. We assume at
+	 * Combines the pairs of clusters in the order of the provided clusterPairList and constructs new node queries out of this. We assume at
 	 * least one cluster pair at this point.
 	 */
 	private NodeQuery combineClusterComponents(List<LeafSelectEntry> topLevelSelectEntries,
@@ -1231,9 +1202,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Now we have to integrate the newly built nodeQuery in the existing data
-	 * structures, which means to adapt the new clusterPairs, and all the
-	 * "other" comparisonWithEntries
+	 * Now we have to integrate the newly built nodeQuery in the existing data structures, which means to adapt the new clusterPairs, and
+	 * all the "other" comparisonWithEntries
 	 */
 	private void regroupClusterPairs(NodeQuery newNodeQuery, ClusterPair disappaeringClusterPair, List<ClusterPair> clusterPairs) {
 
@@ -1333,10 +1303,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Merges the source atomicEntry and target atomicEntry (does not alter the
-	 * source atomic entry). The invariant is that the source atomic entry
-	 * cannot be a fixed set entry if the target atomic entry is not a fixed
-	 * set.
+	 * Merges the source atomicEntry and target atomicEntry (does not alter the source atomic entry). The invariant is that the source
+	 * atomic entry cannot be a fixed set entry if the target atomic entry is not a fixed set.
 	 */
 	private void mergeLeftAtomicEntryIntoRightAtomicEntry(AtomicEntry sourceAtomicEntry, AtomicEntry targetAtomicEntry) {
 
@@ -1458,11 +1426,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Calculates the intersection or union between two sets and their inclusion
-	 * properties (non-destructively). Note that the including property of the
-	 * intersection is given by leftIncluding || rightIncluding (to be set by
-	 * the caller) and the including property of the union is given by
-	 * leftIncluding && rightIncluding (to be set by the caller).
+	 * Calculates the intersection or union between two sets and their inclusion properties (non-destructively). Note that the including
+	 * property of the intersection is given by leftIncluding || rightIncluding (to be set by the caller) and the including property of the
+	 * union is given by leftIncluding && rightIncluding (to be set by the caller).
 	 */
 	private <E> Set<E> combineSets(boolean intersect, Set<E> leftSet, boolean leftIncluding, Set<E> rightSet, boolean rightIncluding) {
 
@@ -1537,9 +1503,8 @@ final public class AuxServices {
 	/* ------------- */
 
 	/**
-	 * This method produces an identical internal query copy. The maps are
-	 * required to hook up the pointers appropriately for the <b>shared</b>
-	 * types in IQF
+	 * This method produces an identical internal query copy. The maps are required to hook up the pointers appropriately for the
+	 * <b>shared</b> types in IQF
 	 */
 	private InternalQuery deepCopyInternalQuery(InternalQuery internalQuery, Map<SelectEntry, SelectEntry> selectEntryMap,
 			Map<AtomicEntry, AtomicEntry> atomicEntryMap, Map<NestedQuery, NestedQuery> nestedQueryMap, boolean includeNestedQueries) {
@@ -1678,8 +1643,7 @@ final public class AuxServices {
 				newLeftTypeAttrRef = (VirtualAtomicAttrReference) this.deepCopyVirtualAtomicEntryReference(
 						(VirtualAtomicAttrReference) leftTypeAttrRef, selectEntryMap, atomicEntryMap);
 			} else {
-				throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, leftTypeAttrRef.getClass().getCanonicalName(),
-						"TypeAttrReference"); //$NON-NLS-1$
+				throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, leftTypeAttrRef.getClass().getCanonicalName(), "TypeAttrReference"); //$NON-NLS-1$
 			}
 
 			// copy right
@@ -1691,15 +1655,13 @@ final public class AuxServices {
 				newRightTypeAttrRef = (VirtualAtomicAttrReference) this.deepCopyVirtualAtomicEntryReference(
 						(VirtualAtomicAttrReference) rightTypeAttrRef, selectEntryMap, atomicEntryMap);
 			} else {
-				throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, rightTypeAttrRef.getClass().getCanonicalName(),
-						"TypeAttrReference"); //$NON-NLS-1$
+				throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, rightTypeAttrRef.getClass().getCanonicalName(), "TypeAttrReference"); //$NON-NLS-1$
 			}
 
 			comparisonWithEntryResult = new AttrComparison(operation, newLeftTypeAttrRef, newRightTypeAttrRef);
 
 		} else {
-			throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, comparisonWithEntry.getClass().getCanonicalName(),
-					"ComparisonWithEntry"); //$NON-NLS-1$
+			throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, comparisonWithEntry.getClass().getCanonicalName(), "ComparisonWithEntry"); //$NON-NLS-1$
 		}
 
 		return comparisonWithEntryResult;
@@ -2143,8 +2105,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Simply redirects the contained select entries of the
-	 * virtualAtomicEntryReference in the provided nodeSelectEntries and
+	 * Simply redirects the contained select entries of the virtualAtomicEntryReference in the provided nodeSelectEntries and
 	 * comparisonWithEntries
 	 */
 	private void redirectTypeReferencesForNodeQueries(List<NodeSelectEntry> selectEntries, List<ComparisonWithEntry> withEntries,
@@ -2182,8 +2143,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Simply rewires the virtual atomic entry if the selectEntryMap has a
-	 * matching selectEntry. Otherwise, this is a noop
+	 * Simply rewires the virtual atomic entry if the selectEntryMap has a matching selectEntry. Otherwise, this is a noop
 	 */
 	private void resetVirtualEntry(VirtualAtomicEntryReference virtualAer, Map<SelectEntry, SelectEntry> selectEntryMap) {
 
@@ -2238,9 +2198,8 @@ final public class AuxServices {
 	/* -------------------------------- */
 
 	/**
-	 * Adjusts the structure type scope of the internal query, by setting each
-	 * to the union of the scopes of the class-typed atomic entry to which they
-	 * are "connected" (directly or indirectly).
+	 * Adjusts the structure type scope of the internal query, by setting each to the union of the scopes of the class-typed atomic entry to
+	 * which they are "connected" (directly or indirectly).
 	 */
 	private void adjustStructureTypeScopeInternalQuery(InternalQuery internalQuery) {
 
@@ -2270,8 +2229,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Simple recursively walk over the internal query, which builds the
-	 * atomicEntryMap and the structureEdgeMap
+	 * Simple recursively walk over the internal query, which builds the atomicEntryMap and the structureEdgeMap
 	 */
 	@SuppressWarnings("unchecked")
 	private void constructStructureEntryMap(InternalQuery internalQuery, Set<NestedQuery> seenQueries,
@@ -2364,10 +2322,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * This recursive function walks over all edges in the structureEdgeMap and
-	 * unions the scope with whatever scope is already available in the
-	 * sourceAtomicEntry. To avoid an infinite walk with cycle in the edgeMap,
-	 * we also record which structure typed atomic entries we have already seen.
+	 * This recursive function walks over all edges in the structureEdgeMap and unions the scope with whatever scope is already available in
+	 * the sourceAtomicEntry. To avoid an infinite walk with cycle in the edgeMap, we also record which structure typed atomic entries we
+	 * have already seen.
 	 */
 	private void walkStructureTypedEdges(AtomicEntry sourceAtomicEntry, Set<AtomicEntry> seenAtomicEntries,
 			Map<AtomicEntry, Set<AtomicEntry>> structureEdgeMap) {
@@ -2430,11 +2387,9 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Type comparison removal happens by walking over the type comparisons,
-	 * constructing a new atomic entry which builds the intersection entry,
-	 * removing the type comparison, removing the old atomic entries from the
-	 * from-entries and finally replacing any references to the old atomic entry
-	 * with the new atomic entry
+	 * Type comparison removal happens by walking over the type comparisons, constructing a new atomic entry which builds the intersection
+	 * entry, removing the type comparison, removing the old atomic entries from the from-entries and finally replacing any references to
+	 * the old atomic entry with the new atomic entry
 	 */
 	private void removeTypeComparisonsForLeafQuery(LeafQuery leafQuery, Set<NestedQuery> seenNestedQuery) {
 
@@ -2516,8 +2471,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Give a map of toBeRemovedAtomicEntries, it rewires the withEntries, which
-	 * have to be at the leafQuery level.
+	 * Give a map of toBeRemovedAtomicEntries, it rewires the withEntries, which have to be at the leafQuery level.
 	 */
 	private void rewireWithEntriesForRemovedAtomicEntries(List<WithEntry> withEntries,
 			Map<AtomicEntry, AtomicEntry> toBeRemovedAtomicEntries) {
@@ -2545,8 +2499,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Compresses node queries where possible by combining leaf queries if they
-	 * operate in the same facility and only have alias comparisons (
+	 * Compresses node queries where possible by combining leaf queries if they operate in the same facility and only have alias comparisons
+	 * (
 	 */
 	private InternalQuery compressNodeQueriesForInternalQuery(InternalQuery internalQuery, Set<NestedQuery> seenNestedQuery,
 			Map<SelectEntry, SelectEntry> selectEntryMap) {
@@ -2614,8 +2568,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Given a map of connectedAtomicEntriesMap, produce the
-	 * toBeRemovedAtomicEntries, giving a reference atomic entry
+	 * Given a map of connectedAtomicEntriesMap, produce the toBeRemovedAtomicEntries, giving a reference atomic entry
 	 */
 	private void manageConnectedAtomicEntriesMap(Map<AtomicEntry, Set<AtomicEntry>> connectedAtomicEntriesMap,
 			Map<AtomicEntry, AtomicEntry> toBeRemovedAtomicEntries, AtomicEntry atomicEntry) {
@@ -2660,8 +2613,7 @@ final public class AuxServices {
 	}
 
 	/**
-	 * If the atomicEntryRef is not null and can be found in the map, it is
-	 * replaced with the target.
+	 * If the atomicEntryRef is not null and can be found in the map, it is replaced with the target.
 	 */
 	private void replaceAtomicEntryForReference(AtomicEntryReference atomicEntryRef, Map<AtomicEntry, AtomicEntry> toBeRemovedAtomicEntries) {
 
@@ -2676,9 +2628,8 @@ final public class AuxServices {
 	}
 
 	/**
-	 * Check if the node query is unnecessary and compress if possible. Observe
-	 * that firstNode and secondNode have been compressed already if it was
-	 * possible in the first place.
+	 * Check if the node query is unnecessary and compress if possible. Observe that firstNode and secondNode have been compressed already
+	 * if it was possible in the first place.
 	 */
 	private InternalQuery compressTwoLeafQueriesIfPossible(NodeQuery nodeQuery, InternalQuery firstCompressedFromEntry,
 			InternalQuery secondCompressedFromEntry, Map<SelectEntry, SelectEntry> selectEntryMap) {

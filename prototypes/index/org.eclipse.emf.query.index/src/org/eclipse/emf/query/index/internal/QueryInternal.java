@@ -13,18 +13,13 @@ package org.eclipse.emf.query.index.internal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
 import org.eclipse.emf.query.index.query.Query;
 import org.eclipse.emf.query.index.query.QueryResult;
+
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
 public interface QueryInternal<T, DescriptorType> extends Query<T, DescriptorType> {
-
-	static enum QueryKind {
-		LINK, EOBJECT, RESOURCE
-	}
-
-	QueryKind getQueryKind();
 
 	QueryResult<T> execute(QueryExecutorInternal queryExecutor, GlobalTables globalTables);
 

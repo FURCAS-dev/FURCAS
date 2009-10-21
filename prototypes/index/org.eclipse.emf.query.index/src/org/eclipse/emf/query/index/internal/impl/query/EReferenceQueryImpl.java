@@ -10,16 +10,20 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl.query;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.internal.QueryInternal;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
 import org.eclipse.emf.query.index.internal.impl.PageableResourceDescriptorImpl;
 import org.eclipse.emf.query.index.internal.impl.PagingResourceDescriptorMap;
+import org.eclipse.emf.query.index.internal.impl.ReferenceDescriptorImpl;
+import org.eclipse.emf.query.index.internal.util.FilteredIterable;
 import org.eclipse.emf.query.index.internal.util.FilteredIterableMulti;
 import org.eclipse.emf.query.index.query.EObjectQuery;
 import org.eclipse.emf.query.index.query.EReferenceQuery;
@@ -47,7 +51,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 	}
 
 	@Override
-	public QueryResult<RDType> execute(QueryExecutorInternal queryExecutor, GlobalTables globalTables) {
+	public QueryResult<RDType> execute(QueryExecutorInternal queryExecutor, final GlobalTables globalTables) {
 		final Iterator<URI> resourceScope = this.getResourceScope(globalTables).iterator();
 		final PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceMap = globalTables.resourceIndex;
 		return this.createQueryResult(queryExecutor, new FilteredIterableMulti<EReferenceDescriptor>() {
@@ -58,7 +62,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 					Iterable<? extends EReferenceDescriptor> posRet = null;
 					PageableResourceDescriptorImpl resDesc = resourceMap.acquire(resourceScope.next());
 					if (resDesc.isIndexed() || direction == Direction.BACKWARD) {
-						posRet = resDesc.queryEReferenceDescriptor(EReferenceQueryImpl.this);
+						posRet = queryEReferenceDescriptor(resDesc, globalTables);
 					}
 					resourceMap.release(resDesc);
 					if (posRet != null) {
@@ -172,12 +176,194 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 	}
 
 	@Override
-	public QueryKind getQueryKind() {
-		return QueryKind.LINK;
-	}
-
-	@Override
 	public QueryResult<RDType> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends EReferenceDescriptor> result) {
 		return new QueryResultImpl<RDType, EReferenceDescriptor>(queryExecutor, result);
+	}
+
+	public Iterable<? extends EReferenceDescriptor> queryEReferenceDescriptor(final PageableResourceDescriptorImpl resDesc,
+			final GlobalTables globalTables) {
+		EObjectQueryImpl<?> srcQuery = getSrcObjectQuery();
+		EObjectQueryImpl<?> tgtQuery = getTgtObjectQuery();
+
+		final String srcFragment = srcQuery == null ? null : srcQuery.getFragment();
+		final String tgtFragment = tgtQuery == null ? null : tgtQuery.getFragment();
+
+		switch (this.getDirection()) {
+		case BACKWARD:
+			if (tgtFragment == null || tgtFragment.indexOf('*') > -1) {
+				final Iterator<String> keyIterator = resDesc.incomingLinkTable.keyIterator();
+
+				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
+
+					Iterator<EReferenceDescriptorInternal> scopeIterator;
+					private EReferenceDescriptorInternal next;
+
+					@Override
+					protected Iterator<ReferenceDescriptorImpl> getNextIterator() {
+						while (scopeIterator != null && scopeIterator.hasNext()) {
+							next = scopeIterator.next();
+							if ((getSourceScope() == null || getSourceScope().contains(next.getSourceResourceURI())) && //
+									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment)) && //
+									(getType() == null || getType() == next.getEReferenceURI())) {
+								if (next.isIntraLink()) {
+									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
+								} else {
+									PageableResourceDescriptorImpl resDesc = globalTables.resourceIndex
+											.acquire(next.getSourceResourceURI()); // FIXME
+									// is
+									// identical
+									// key
+									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
+											.getSourceFragment());
+									globalTables.resourceIndex.release(resDesc);
+									if (candidates != null) {
+										return candidates.iterator();
+									}
+								}
+							}
+						}
+
+						while (keyIterator.hasNext()) {
+							String next = keyIterator.next();
+							if (QueryUtil.matchesGlobbing(next, tgtFragment)) {
+								scopeIterator = resDesc.incomingLinkTable.getAllWithEqualKey(next).iterator();
+								assert scopeIterator != null;
+								return getNextIterator();
+							}
+						}
+						return null;
+					}
+
+					@Override
+					protected boolean matches(ReferenceDescriptorImpl e) {
+						if (e.getTargetResourceURI() == resDesc.getURI()) {
+							if (e.getTargetFragment().equals(next.getTargetFragment())) {
+								if (getType() == null || getType() == e.getEReferenceURI()) {
+									//									if (srcFragment == null || QueryUtil.matchesGlobbing(e.getSource().getFragment(), srcFragment)) { 
+									return true;
+									//									}
+								}
+							}
+						}
+						return false;
+					}
+
+				};
+			} else {
+				final Iterator<EReferenceDescriptorInternal> scopeIterator = resDesc.incomingLinkTable.getAllWithEqualKey(tgtFragment)
+						.iterator();
+
+				return new FilteredIterable<EReferenceDescriptorInternal>(scopeIterator) {
+
+					@Override
+					protected boolean matches(EReferenceDescriptorInternal e) {
+						if (getType() == null || getType() == e.getEReferenceURI()) {
+							if (getSourceScope() == null || getSourceScope().contains(e.getSourceResourceURI())) {
+								if (srcFragment == null || QueryUtil.matchesGlobbing(e.getSourceFragment(), srcFragment)) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+
+				};
+
+				//				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
+				//
+				//					private EReferenceDescriptorInternal next;
+				//
+				//					@Override
+				//					protected Iterator<? extends ReferenceDescriptorImpl> getNextIterator() {
+				//						while (scopeIterator.hasNext()) { // FIXME same loop as above
+				//							next = scopeIterator.next();
+				//							if ((refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) && //
+				//									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment)) && //
+				//									(refQuery.getType() == null || refQuery.getType() == next.getEReferenceURI())) {
+				//								if (next.isIntraLink()) {
+				//									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
+				//								} else {
+				//									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
+				//									// is
+				//									// identical
+				//									// key
+				//									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
+				//											.getSourceFragment());
+				//									resourceTable.release(resDesc);
+				//									if (candidates != null) {
+				//										return candidates.iterator();
+				//									}
+				//								}
+				//							}
+				//						}
+				//						return null;
+				//					}
+				//
+				//					@Override
+				//					protected boolean matches(ReferenceDescriptorImpl e) {
+				//						if (e.getTargetResourceURI() == getURI()) {
+				//							if (e.getTargetFragment().equals(next.getTargetFragment())) {
+				//								//								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
+				//								//								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
+				//								return true;
+				//								//								}
+				//							}
+				//						}
+				//						return false;
+				//					}
+				//
+				//				};
+			}
+		case FORWARD:
+			if (srcFragment == null || srcFragment.indexOf('*') > -1) {
+				final Iterator<String> keyIterator = resDesc.outgoingLinkTable.keyIterator();
+
+				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
+
+					@Override
+					protected Iterator<ReferenceDescriptorImpl> getNextIterator() {
+						while (keyIterator.hasNext()) {
+							String next = keyIterator.next();
+							if (QueryUtil.matchesGlobbing(next, srcFragment)) {
+								return resDesc.outgoingLinkTable.getAllWithEqualKey(next).iterator();
+							}
+						}
+						return null;
+					}
+
+					@Override
+					protected boolean matches(ReferenceDescriptorImpl e) {
+						if (getType() == null || getType() == e.getEReferenceURI()) {
+							if (getTargetScope() == null || getTargetScope().contains(e.getTargetResourceURI())) {
+								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+
+				};
+			} else {
+				Iterator<ReferenceDescriptorImpl> scope = resDesc.outgoingLinkTable.getAllWithEqualKey(srcFragment).iterator();
+				return new FilteredIterable<ReferenceDescriptorImpl>(scope) {
+
+					@Override
+					protected boolean matches(ReferenceDescriptorImpl e) {
+						if (getType() == null || getType() == e.getEReferenceURI()) {
+							if (getTargetScope() == null || getTargetScope().contains(e.getTargetResourceURI())) {
+								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
+									return true;
+								}
+							}
+						}
+						return false;
+					}
+
+				};
+			}
+		default:
+			throw new IllegalArgumentException(getDirection().name());
+		}
 	}
 }

@@ -119,11 +119,6 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 	}
 
 	@Override
-	public QueryKind getQueryKind() {
-		return QueryKind.RESOURCE;
-	}
-
-	@Override
 	public QueryResult<T> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends ResourceDescriptor> result) {
 		return new QueryResultImpl<T, ResourceDescriptor>(queryExecutor, result);
 	}

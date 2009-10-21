@@ -25,7 +25,7 @@ public class QueryResultImpl<ExtDescriptorType, IntDescriptorType> implements Qu
 	private final Iterable<? extends IntDescriptorType> descIt;
 	private final QueryExecutorInternal queryExecutor;
 
-	QueryResultImpl(QueryExecutorInternal queryExecutor, Iterable<? extends IntDescriptorType> it) {
+	public QueryResultImpl(QueryExecutorInternal queryExecutor, Iterable<? extends IntDescriptorType> it) {
 		this.queryExecutor = queryExecutor;
 		this.descIt = it;
 	}

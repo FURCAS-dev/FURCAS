@@ -12,6 +12,7 @@ package org.eclipse.emf.query.index.internal.impl.query;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,8 +20,10 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.internal.QueryInternal;
+import org.eclipse.emf.query.index.internal.impl.EObjectDescriptorImpl;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
 import org.eclipse.emf.query.index.internal.impl.PageableResourceDescriptorImpl;
+import org.eclipse.emf.query.index.internal.util.FilteredIterable;
 import org.eclipse.emf.query.index.internal.util.FilteredIterableMulti;
 import org.eclipse.emf.query.index.query.EObjectQuery;
 import org.eclipse.emf.query.index.query.QueryResult;
@@ -111,7 +114,7 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 					Iterable<? extends EObjectDescriptor> posRet = null;
 					PageableResourceDescriptorImpl resDesc = globalTables.resourceIndex.acquire(resourceScope.next());
 					if (resDesc.isIndexed()) {
-						posRet = resDesc.queryEObjectDescriptor(EObjectQueryImpl.this);
+						posRet = queryEObjectDescriptor(resDesc);
 					}
 					globalTables.resourceIndex.release(resDesc);
 					if (posRet != null) {
@@ -168,12 +171,84 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 	}
 
 	@Override
-	public QueryKind getQueryKind() {
-		return QueryKind.EOBJECT;
-	}
-
-	@Override
 	public QueryResult<EODType> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends EObjectDescriptor> result) {
 		return new QueryResultImpl<EODType, EObjectDescriptor>(queryExecutor, result);
 	}
+
+	public Iterable<? extends EObjectDescriptor> queryEObjectDescriptor(PageableResourceDescriptorImpl resDesc) {
+		final String frag = getFragment();
+		final String type = getType();
+		final String name = getName();
+		final Map<String, String> uData = getUserData();
+
+		if (frag != null) {
+			if (frag.indexOf('*') == -1) { // concrete fragment
+				EObjectDescriptorImpl obj = resDesc.eObjectTable.getEqual(frag);
+				if (obj == null) {
+					return Collections.emptyList();
+				} else {
+					return new FilteredIterable<EObjectDescriptorImpl>(Collections.singletonList(obj)) {
+
+						@Override
+						protected boolean matches(EObjectDescriptorImpl e) {
+							if (type == null)
+								return matchesUserData(e, uData) && QueryUtil.matchesGlobbing(e.getName(), name);
+							else
+								return e.getEClassURI() == type && QueryUtil.matchesGlobbing(e.getName(), name)
+										&& matchesUserData(e, uData);
+						}
+
+					};
+				}
+			} else { // fragment patters
+				Iterable<EObjectDescriptorImpl> base = null;
+				if (type != null) {
+					base = resDesc.typeTable.getAllWithEqualKey(type);
+				} else {
+					base = resDesc.eObjectTable;
+				}
+				if (base == null) {
+					return Collections.emptyList();
+				} else {
+					return new FilteredIterable<EObjectDescriptorImpl>(base) {
+
+						@Override
+						protected boolean matches(EObjectDescriptorImpl e) {
+							return QueryUtil.matchesGlobbing(e.getFragment(), frag) && QueryUtil.matchesGlobbing(e.getName(), name)
+									&& matchesUserData(e, uData);
+						}
+
+					};
+				}
+			}
+		} else {
+			Iterable<EObjectDescriptorImpl> base;
+			if (type != null) {
+				base = resDesc.typeTable.getAllWithEqualKey(type);
+			} else {
+				base = resDesc.eObjectTable;
+			}
+			return uData == null ? base : new FilteredIterable<EObjectDescriptorImpl>(base) {
+
+				@Override
+				protected boolean matches(EObjectDescriptorImpl e) {
+					return matchesUserData(e, uData) && QueryUtil.matchesGlobbing(e.getName(), name);
+				}
+
+			};
+		}
+	}
+
+	private boolean matchesUserData(EObjectDescriptorImpl e, Map<String, String> uData) {
+		if (uData != null) {
+			for (Map.Entry<String, String> entry : uData.entrySet()) {
+				String userDataValue = e.getUserData(entry.getKey());
+				if (userDataValue == null || !QueryUtil.matchesGlobbing(userDataValue, entry.getValue())) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 }

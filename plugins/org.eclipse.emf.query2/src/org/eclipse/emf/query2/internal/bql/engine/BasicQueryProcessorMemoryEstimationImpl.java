@@ -111,16 +111,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 		}
 
 		// go now through the partition list and load them all if not already done
-		for (URI pri : globalScope) {
-			// load the PRI
-			timeStamp = System.nanoTime();
-			_emfHelper.getResource(pri);
-			// trace
-			if (logger.isTraced(LogSeverity.DEBUG)) {
-				time = (System.nanoTime() - timeStamp) / 1000000;
-				logger.trace(LogSeverity.DEBUG, FQLTraceMessages.MQL_PROCESSOR_LOADING_PARTITION_TIME, pri, time);
-			}
-		}
+		loadScopeResources(_emfHelper, globalScope);
 
 		timeStamp = System.nanoTime();
 
@@ -137,6 +128,21 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 		}
 
 		return resultSet;
+	}
+
+	private void loadScopeResources(EmfHelper _emfHelper, Set<URI> globalScope) {
+		long timeStamp;
+		long time;
+		for (URI pri : globalScope) {
+			// load the PRI
+			timeStamp = System.nanoTime();
+			_emfHelper.getResource(pri);
+			// trace
+			if (logger.isTraced(LogSeverity.DEBUG)) {
+				time = (System.nanoTime() - timeStamp) / 1000000;
+				logger.trace(LogSeverity.DEBUG, FQLTraceMessages.MQL_PROCESSOR_LOADING_PARTITION_TIME, pri, time);
+			}
+		}
 	}
 
 	/**
@@ -630,7 +636,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 			Set<URI> toMeScope, Set<URI> resultingToMeScope, URI assocMri) {
 
 		// we start by entering the PRIs which exist in both scopes as we are
-		// not able to make any statements about intra-partition links
+		// not able to make any statements about intra-partition links // FIXME thats not true anymore
 		for (URI pri : fromMeScope) {
 			if (toMeScope.contains(pri)) {
 				resultingFromMeScope.add(pri);

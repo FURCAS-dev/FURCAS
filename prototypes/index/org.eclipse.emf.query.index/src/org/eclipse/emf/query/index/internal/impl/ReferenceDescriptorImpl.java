@@ -11,16 +11,14 @@
 package org.eclipse.emf.query.index.internal.impl;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
-import org.eclipse.emf.query.index.internal.maps.MapEntry;
-import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
+import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class ReferenceDescriptorImpl implements EReferenceDescriptor, MapEntry, IncomingReferenceDescriptor {
+public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal {
 
 	private final EObjectDescriptorImpl source;
 	public static final int SOURCE_FRAGMENT = 1;

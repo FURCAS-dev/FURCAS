@@ -12,24 +12,17 @@ package org.eclipse.emf.query.index.internal.impl;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
+import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.ResourceDescriptorInternal;
-import org.eclipse.emf.query.index.internal.impl.query.EObjectQueryImpl;
-import org.eclipse.emf.query.index.internal.impl.query.EReferenceQueryImpl;
-import org.eclipse.emf.query.index.internal.impl.query.QueryUtil;
 import org.eclipse.emf.query.index.internal.maps.ListMap;
 import org.eclipse.emf.query.index.internal.maps.SingleMap;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
-import org.eclipse.emf.query.index.internal.util.FilteredIterable;
-import org.eclipse.emf.query.index.internal.util.FilteredIterableMulti;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 
@@ -50,15 +43,15 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	private PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceTable;
 
-	private SingleMap<String, EObjectDescriptorImpl> eObjectTable;
+	public SingleMap<String, EObjectDescriptorImpl> eObjectTable;
 
-	private ListMap<String, EObjectDescriptorImpl> typeTable;
+	public ListMap<String, EObjectDescriptorImpl> typeTable;
 
-	private ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable;
+	public ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable;
 
-	private ListMap<String, IncomingReferenceDescriptor> incomingLinkTable;
+	public ListMap<String, EReferenceDescriptorInternal> incomingLinkTable;
 
-	private Map<String, String> userData;
+	public Map<String, String> userData;
 
 	public PageableResourceDescriptorImpl(URI _uri, long versionId, Map<String, String> uData,
 			PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resTable, boolean pagedOut) {
@@ -77,7 +70,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	}
 
 	private void initIncomingContentTables() {
-		incomingLinkTable = new ListMap<String, IncomingReferenceDescriptor>(IncomingReferenceDescriptor.TARGET_FRAGMENT, 2);
+		incomingLinkTable = new ListMap<String, EReferenceDescriptorInternal>(EReferenceDescriptorInternal.TARGET_FRAGMENT, 2);
 	}
 
 	private void initResourceContentTables() {
@@ -162,7 +155,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		// compact() required?
 		if (fromResDesc == this) {
 			String key = incomingLink.getTargetFragment();
-			IncomingReferenceDescriptor exDesc = incomingLinkTable.getEqual(key);
+			EReferenceDescriptorInternal exDesc = incomingLinkTable.getEqual(key);
 			if (exDesc != null && exDesc.getTargetFragment() != key) {
 				incomingLink.setTargetFragment(exDesc.getTargetFragment());
 			}
@@ -171,7 +164,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 			String key = incomingLink.getTargetFragment();
 			EObjectDescriptorImpl targetDesc;
 			if (eObjectTable == null || (targetDesc = eObjectTable.getEqual(key)) == null) {
-				IncomingReferenceDescriptor exRef = incomingLinkTable.getEqual(key);
+				EReferenceDescriptorInternal exRef = incomingLinkTable.getEqual(key);
 				if (exRef != null) {
 					key = exRef.getTargetFragment();
 				}
@@ -179,17 +172,17 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 				key = targetDesc.getFragment();
 			}
 
-			List<IncomingReferenceDescriptor> incLinks = this.incomingLinkTable.getAllWithEqualKey(key);
+			List<EReferenceDescriptorInternal> incLinks = this.incomingLinkTable.getAllWithEqualKey(key);
 			for (int i = 0, n = incLinks.size(); i < n; i++) {
-				IncomingReferenceDescriptor incLink = incLinks.get(i);
+				EReferenceDescriptorInternal incLink = incLinks.get(i);
 				if (incLink.getSourceFragment() == incomingLink.getSourceFragment()
 						&& incLink.getSourceResourceURI() == fromResDesc.getURI()) {
 					return;
 				}
 			} // is there a faster alternative?
 
-			IncomingReferenceDescriptorImpl extRefDesc = new IncomingReferenceDescriptorImpl(key, fromResDesc.getURI(), incomingLink
-					.getSource().getFragment());
+			IncomingReferenceDescriptorImpl extRefDesc = new IncomingReferenceDescriptorImpl(this, key, fromResDesc.getURI(), incomingLink
+					.getSource().getFragment(), incomingLink.getEReferenceURI());
 			this.incomingLinkTable.put(extRefDesc);
 		}
 	}
@@ -197,8 +190,8 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	public void removeIncomingLink(ReferenceDescriptorImpl incomingLink, PageableResourceDescriptorImpl fromResDesc) {
 		URI resDescUri = fromResDesc.getURI();
 
-		for (Iterator<IncomingReferenceDescriptor> it = this.incomingLinkTable.iterator(incomingLink.getTargetFragment()); it.hasNext();) {
-			IncomingReferenceDescriptor extRefDesc = it.next();
+		for (Iterator<EReferenceDescriptorInternal> it = this.incomingLinkTable.iterator(incomingLink.getTargetFragment()); it.hasNext();) {
+			EReferenceDescriptorInternal extRefDesc = it.next();
 			if (extRefDesc.getSourceResourceURI() == resDescUri) {
 				it.remove(); // TODO not completely correct since it deletes all
 				// references of the fromResDesc
@@ -233,7 +226,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 				this.outgoingLinkTable.serialize(strategyFactory.createOutgoingLinkMapStrategy(this.eObjectTable, this.resourceTable
 						.getUnderlyingMap()));
 			}
-			this.incomingLinkTable.serialize(strategyFactory.createIncomingLinkMapStrategy(this.eObjectTable, this.resourceTable
+			this.incomingLinkTable.serialize(strategyFactory.createIncomingLinkMapStrategy(this, this.eObjectTable, this.resourceTable
 					.getUnderlyingMap(), this.outgoingLinkTable));
 			this.removeAllContentTables();
 		}
@@ -241,7 +234,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	private void serializeData(Channel channel) {
 		if (this.userData == null) {
-			channel.putInt(SerializationStrategyFactory.NO_SIZE); // FIXME constant position
+			channel.putInt(SerializationStrategyFactory.NO_INT); // FIXME constant position
 			return;
 		} else {
 			channel.putInt(this.userData.size());
@@ -264,14 +257,14 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 						.getUnderlyingMap()));
 			}
 			this.initIncomingContentTables();
-			this.incomingLinkTable.deserialize(strategyFactory.createIncomingLinkMapStrategy(this.eObjectTable, this.resourceTable
+			this.incomingLinkTable.deserialize(strategyFactory.createIncomingLinkMapStrategy(this, this.eObjectTable, this.resourceTable
 					.getUnderlyingMap(), this.outgoingLinkTable));
 		}
 	}
 
 	private void deserializeData(Channel channel) {
 		int size = channel.getInt();
-		if (size == SerializationStrategyFactory.NO_SIZE) {
+		if (size == SerializationStrategyFactory.NO_INT) {
 			return;
 		} else {
 			Map<String, String> map = new HashMap<String, String>(size);
@@ -326,249 +319,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	@Override
 	public String getId() {
 		return this.uri.toString();
-	}
-
-	public Iterable<? extends EObjectDescriptor> queryEObjectDescriptor(EObjectQueryImpl<?> objectQuery) {
-		final String frag = objectQuery.getFragment();
-		final String type = objectQuery.getType();
-		final String name = objectQuery.getName();
-		final Map<String, String> uData = objectQuery.getUserData();
-
-		if (frag != null) {
-			if (frag.indexOf('*') == -1) { // concrete fragment
-				EObjectDescriptorImpl obj = this.eObjectTable.getEqual(frag);
-				if (obj == null) {
-					return Collections.emptyList();
-				} else {
-					return new FilteredIterable<EObjectDescriptorImpl>(Collections.singletonList(obj)) {
-
-						@Override
-						protected boolean matches(EObjectDescriptorImpl e) {
-							if (type == null)
-								return matchesUserData(e, uData) && QueryUtil.matchesGlobbing(e.getName(), name);
-							else
-								return e.getEClassURI() == type && QueryUtil.matchesGlobbing(e.getName(), name)
-										&& matchesUserData(e, uData);
-						}
-
-					};
-				}
-			} else { // fragment patters
-				Iterable<EObjectDescriptorImpl> base = null;
-				if (type != null) {
-					base = this.typeTable.getAllWithEqualKey(type);
-				} else {
-					base = this.eObjectTable;
-				}
-				if (base == null) {
-					return Collections.emptyList();
-				} else {
-					return new FilteredIterable<EObjectDescriptorImpl>(base) {
-
-						@Override
-						protected boolean matches(EObjectDescriptorImpl e) {
-							return QueryUtil.matchesGlobbing(e.getFragment(), frag) && QueryUtil.matchesGlobbing(e.getName(), name)
-									&& matchesUserData(e, uData);
-						}
-
-					};
-				}
-			}
-		} else {
-			Iterable<EObjectDescriptorImpl> base;
-			if (type != null) {
-				base = this.typeTable.getAllWithEqualKey(type);
-			} else {
-				base = this.eObjectTable;
-			}
-			return uData == null ? base : new FilteredIterable<EObjectDescriptorImpl>(base) {
-
-				@Override
-				protected boolean matches(EObjectDescriptorImpl e) {
-					return matchesUserData(e, uData) && QueryUtil.matchesGlobbing(e.getName(), name);
-				}
-
-			};
-		}
-	}
-
-	private boolean matchesUserData(EObjectDescriptorImpl e, Map<String, String> uData) {
-		if (uData != null) {
-			for (Map.Entry<String, String> entry : uData.entrySet()) {
-				String userDataValue = e.getUserData(entry.getKey());
-				if (userDataValue == null || !QueryUtil.matchesGlobbing(userDataValue, entry.getValue())) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
-	public Iterable<? extends EReferenceDescriptor> queryEReferenceDescriptor(final EReferenceQueryImpl<?> refQuery) {
-		EObjectQueryImpl<?> srcQuery = refQuery.getSrcObjectQuery();
-		EObjectQueryImpl<?> tgtQuery = refQuery.getTgtObjectQuery();
-
-		final String srcFragment = srcQuery == null ? null : srcQuery.getFragment();
-		final String tgtFragment = tgtQuery == null ? null : tgtQuery.getFragment();
-
-		switch (refQuery.getDirection()) {
-		case BACKWARD:
-			if (tgtFragment == null || tgtFragment.indexOf('*') > -1) {
-				final Iterator<String> keyIterator = this.incomingLinkTable.keyIterator();
-
-				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
-
-					Iterator<IncomingReferenceDescriptor> scopeIterator;
-					private IncomingReferenceDescriptor next;
-
-					@Override
-					protected Iterator<ReferenceDescriptorImpl> getNextIterator() {
-						while (scopeIterator != null && scopeIterator.hasNext()) {
-							next = scopeIterator.next();
-							if ((refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) && //
-									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment))) {
-								if (next.isIntraLink()) {
-									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
-								} else {
-									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
-									// is
-									// identical
-									// key
-									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
-											.getSourceFragment());
-									resourceTable.release(resDesc);
-									if (candidates != null) {
-										return candidates.iterator();
-									}
-								}
-							}
-						}
-
-						while (keyIterator.hasNext()) {
-							String next = keyIterator.next();
-							if (QueryUtil.matchesGlobbing(next, tgtFragment)) {
-								scopeIterator = incomingLinkTable.getAllWithEqualKey(next).iterator();
-								assert scopeIterator != null;
-								return getNextIterator();
-							}
-						}
-						return null;
-					}
-
-					@Override
-					protected boolean matches(ReferenceDescriptorImpl e) {
-						if (e.getTargetResourceURI() == getURI()) {
-							if (e.getTargetFragment().equals(next.getTargetFragment())) {
-								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-									//									if (srcFragment == null || QueryUtil.matchesGlobbing(e.getSource().getFragment(), srcFragment)) { 
-									return true;
-									//									}
-								}
-							}
-						}
-						return false;
-					}
-
-				};
-			} else {
-				final Iterator<IncomingReferenceDescriptor> scopeIterator = this.incomingLinkTable.getAllWithEqualKey(tgtFragment)
-						.iterator();
-
-				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
-
-					private IncomingReferenceDescriptor next;
-
-					@Override
-					protected Iterator<? extends ReferenceDescriptorImpl> getNextIterator() {
-						while (scopeIterator.hasNext()) { // FIXME same loop as above
-							next = scopeIterator.next();
-							if ((refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) && //
-									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment))) {
-								if (next.isIntraLink()) {
-									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
-								} else {
-									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
-									// is
-									// identical
-									// key
-									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
-											.getSourceFragment());
-									resourceTable.release(resDesc);
-									if (candidates != null) {
-										return candidates.iterator();
-									}
-								}
-							}
-						}
-						return null;
-					}
-
-					@Override
-					protected boolean matches(ReferenceDescriptorImpl e) {
-						if (e.getTargetResourceURI() == getURI()) {
-							if (e.getTargetFragment().equals(next.getTargetFragment())) {
-								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-									//								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
-									return true;
-								}
-							}
-						}
-						return false;
-					}
-
-				};
-			}
-		case FORWARD:
-			if (srcFragment == null || srcFragment.indexOf('*') > -1) {
-				final Iterator<String> keyIterator = this.outgoingLinkTable.keyIterator();
-
-				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
-
-					@Override
-					protected Iterator<ReferenceDescriptorImpl> getNextIterator() {
-						while (keyIterator.hasNext()) {
-							String next = keyIterator.next();
-							if (QueryUtil.matchesGlobbing(next, srcFragment)) {
-								return outgoingLinkTable.getAllWithEqualKey(next).iterator();
-							}
-						}
-						return null;
-					}
-
-					@Override
-					protected boolean matches(ReferenceDescriptorImpl e) {
-						if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-							if (refQuery.getTargetScope() == null || refQuery.getTargetScope().contains(e.getTargetResourceURI())) {
-								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
-									return true;
-								}
-							}
-						}
-						return false;
-					}
-
-				};
-			} else {
-				Iterator<ReferenceDescriptorImpl> scope = this.outgoingLinkTable.getAllWithEqualKey(srcFragment).iterator();
-				return new FilteredIterable<ReferenceDescriptorImpl>(scope) {
-
-					@Override
-					protected boolean matches(ReferenceDescriptorImpl e) {
-						if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-							if (refQuery.getTargetScope() == null || refQuery.getTargetScope().contains(e.getTargetResourceURI())) {
-								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
-									return true;
-								}
-							}
-						}
-						return false;
-					}
-
-				};
-			}
-		default:
-			throw new IllegalArgumentException(refQuery.getDirection().name());
-		}
 	}
 
 	@Override

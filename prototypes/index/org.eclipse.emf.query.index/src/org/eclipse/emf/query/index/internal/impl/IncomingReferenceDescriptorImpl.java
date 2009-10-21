@@ -14,27 +14,32 @@
 package org.eclipse.emf.query.index.internal.impl;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.query.index.internal.IncomingReferenceDescriptor;
+import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class IncomingReferenceDescriptorImpl implements IncomingReferenceDescriptor {
-
-	private final String targetFragement;
+public class IncomingReferenceDescriptorImpl implements EReferenceDescriptorInternal {
 
 	private final URI sourceResource;
 
-	// TODO think about making this a 1..* reference -> one instance per
-	// target/src-res
 	private final String sourceFragment;
 
-	public IncomingReferenceDescriptorImpl(String targetFrag, URI srcRes, String srcFragment) {
+	private final String referenceURI;
+
+	private final PageableResourceDescriptorImpl targetResource;
+
+	private final String targetFragement;
+
+	public IncomingReferenceDescriptorImpl(PageableResourceDescriptorImpl tgtResource, String targetFrag, URI srcRes, String srcFragment,
+			String linkTypeUri) {
+		targetResource = tgtResource;
 		this.targetFragement = targetFrag;
 		this.sourceResource = srcRes;
 		this.sourceFragment = srcFragment;
+		this.referenceURI = linkTypeUri;
 	}
 
 	@Override
@@ -63,4 +68,15 @@ public class IncomingReferenceDescriptorImpl implements IncomingReferenceDescrip
 	public boolean isIntraLink() {
 		return false;
 	}
+
+	@Override
+	public String getEReferenceURI() {
+		return this.referenceURI;
+	}
+
+	@Override
+	public URI getTargetResourceURI() {
+		return this.targetResource.getURI();
+	}
+
 }
