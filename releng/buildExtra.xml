@@ -66,6 +66,12 @@
 			/>
 		</zip>
 
+		<!-- Add the LPG bundles into Update zip -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${UpdateZip}" update="true">
+			<zipfileset dir="${buildDirectory}/LPG" 
+						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+			/>
+		</zip>
 		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
 
 		<!-- build runtime from SDK -->
