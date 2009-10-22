@@ -46,7 +46,7 @@
 		to build from HEAD, uncomment these lines 
 		-->
 		<property name="forceContextQualifier" value="v${buildTimestamp}" />
-		<property name="fetchTag" value="HEAD" />
+		<!--property name="fetchTag" value="HEAD" /-->
 
 		<!-- calculate workspaceDir as parent of this folder, the project's .releng folder (relengBuilderDir) -->
 		<property name="relengBuilderDir" value="${basedir}" />

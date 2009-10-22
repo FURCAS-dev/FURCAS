@@ -5,7 +5,7 @@
 plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
-plugin@net.sourceforge.lpg.lpgjavaruntime=v1_1,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime,
+plugin@net.sourceforge.lpg.lpgjavaruntime=v1_1,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime
 
 !*** Default entries
 
@@ -16,13 +16,15 @@ plugin@org.eclipse.emf.query2.tools.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/
 feature@org.eclipse.emf.query2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2-feature
 
 plugin@org.eclipse.emf.query.index=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/index/org.eclipse.emf.query.index
-plugin@org.eclipse.emf.query.index.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/index/org.eclipse.emf.query.index.test
+fragment@org.eclipse.emf.query.index.internal.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/index/org.eclipse.emf.query.index.test
 plugin@org.eclipse.emf.query.index.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/index/org.eclipse.emf.query.index.ui
 
 plugin@org.eclipse.emf.query2.syntax=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2
 plugin@org.eclipse.emf.query2.syntax.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.syntax.test
-plugin@org.eclipse.emf.query2.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2
+plugin@org.eclipse.emf.query2.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.ui
 
+plugin@org.eclipse.emf.query2.librarytest=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/tests/org.eclipse.emf.query2.librarytest
+plugin@org.eclipse.emf.query2.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/tests/org.eclipse.emf.query2.test
 
 !*** All-in-one data integrity frameworks features
 
