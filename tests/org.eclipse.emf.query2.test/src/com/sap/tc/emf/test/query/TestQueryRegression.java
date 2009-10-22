@@ -540,4 +540,35 @@ public class TestQueryRegression extends QueryTestCase {
 		} catch (Exception e) {
 		}
 	}
+
+	@Test
+	public void testNotInEmptySubquery() throws Exception {
+		QueryProcessor mql = this.getMQLProcessor();
+
+		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_testNotInEmptySubquery.xmi");
+		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
+		QueryContext qsp = this.getQueryContext(qspOld);
+
+		URI uriA4 = EcoreUtil.getURI(Case004Package.Literals.A4);
+		URI uriB4 = EcoreUtil.getURI(Case004Package.Literals.B4);
+
+		A4 a_1 = Case004Factory.eINSTANCE.createA4();
+		res.getContents().clear();
+		res.getContents().add(a_1);
+		res.save(null);
+
+		IndexerForTest.index(getDefaultIndexStore(), res);
+		res.unload();
+
+		String query = String.format("select a from [%s] as a where a.manyBs not in (select b from [%s] as b)", uriA4, uriB4);
+
+		ResultSet rs = mql.execute(query, qsp);
+
+		assertEquals(1, rs.getSize());
+		assertEquals(EcoreUtil.getURI(a_1), rs.getUri(0, "a"));
+
+		IndexerForTest.delete(getDefaultIndexStore(), res.getURI());
+
+		res.delete(null);
+	}
 }

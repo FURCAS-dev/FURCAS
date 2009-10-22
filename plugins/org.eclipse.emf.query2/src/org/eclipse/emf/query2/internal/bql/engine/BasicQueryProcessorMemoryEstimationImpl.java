@@ -650,10 +650,9 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 		// fromPri in the resultingFromMeScope and the connectedPri in the resultingToMeScope
 		for (URI fromPri : fromMeScope) {
 
-			//            if ( !linkExists && toMeScope.isEmpty( ) ) {
-			//                resultingFromMeScope.add( fromPri );
-			//            } else 
-			{
+			if (!linkExists && toMeScope.isEmpty()) {
+				resultingFromMeScope.add(fromPri);
+			} else {
 				// obtain the cross-links from this PRI - don't ask for a negative "linkExists"
 				CoreQueryClientScope queryClientScope = new CoreQueryClientScope();
 				Set<URI> connectedPrisSet = (linkExists ? IndexQueryService.getLinkedPartitions(this.index, queryClientScope, fromPri,

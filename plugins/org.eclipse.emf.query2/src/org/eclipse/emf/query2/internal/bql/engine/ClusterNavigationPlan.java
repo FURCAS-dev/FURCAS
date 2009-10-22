@@ -130,13 +130,13 @@ public final class ClusterNavigationPlan {
 		this.modelElementClusterExpression = modelElementClusterExpression;
 		this.initialize();
 
-		System.err.println("Direction: ");
-		for (int i = 0; i < this.navigationDirectionForward.length; i++) {
-			System.err.println("\t" + this.modelElementClusterExpression.getModelElementExpression(this.navigationSource[i]).getAlias()
-					+ " " + this.navigationDirectionForward[i] + " "
-					+ this.modelElementClusterExpression.getModelElementExpression(this.navigationTarget[i]).getAlias());
-		}
-		System.err.println();
+		//		System.err.println("Direction: ");
+		//		for (int i = 0; i < this.navigationDirectionForward.length; i++) {
+		//			System.err.println("\t" + this.modelElementClusterExpression.getModelElementExpression(this.navigationSource[i]).getAlias()
+		//					+ " " + this.navigationDirectionForward[i] + " "
+		//					+ this.modelElementClusterExpression.getModelElementExpression(this.navigationTarget[i]).getAlias());
+		//		}
+		//		System.err.println();
 	}
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////

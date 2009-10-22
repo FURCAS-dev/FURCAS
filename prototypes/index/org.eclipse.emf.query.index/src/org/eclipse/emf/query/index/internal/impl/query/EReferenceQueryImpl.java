@@ -277,19 +277,20 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 				//					protected Iterator<? extends ReferenceDescriptorImpl> getNextIterator() {
 				//						while (scopeIterator.hasNext()) { // FIXME same loop as above
 				//							next = scopeIterator.next();
-				//							if ((refQuery.getSourceScope() == null || refQuery.getSourceScope().contains(next.getSourceResourceURI())) && //
+				//							if ((getSourceScope() == null || getSourceScope().contains(next.getSourceResourceURI())) && //
 				//									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment)) && //
-				//									(refQuery.getType() == null || refQuery.getType() == next.getEReferenceURI())) {
+				//									(getType() == null || getType() == next.getEReferenceURI())) {
 				//								if (next.isIntraLink()) {
 				//									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
 				//								} else {
-				//									PageableResourceDescriptorImpl resDesc = resourceTable.acquire(next.getSourceResourceURI()); // FIXME
+				//									PageableResourceDescriptorImpl resDesc = globalTables.resourceIndex
+				//											.acquire(next.getSourceResourceURI()); // FIXME
 				//									// is
 				//									// identical
 				//									// key
 				//									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
 				//											.getSourceFragment());
-				//									resourceTable.release(resDesc);
+				//									globalTables.resourceIndex.release(resDesc);
 				//									if (candidates != null) {
 				//										return candidates.iterator();
 				//									}
@@ -301,7 +302,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 				//
 				//					@Override
 				//					protected boolean matches(ReferenceDescriptorImpl e) {
-				//						if (e.getTargetResourceURI() == getURI()) {
+				//						if (e.getTargetResourceURI() == resDesc.getURI()) {
 				//							if (e.getTargetFragment().equals(next.getTargetFragment())) {
 				//								//								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
 				//								//								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
