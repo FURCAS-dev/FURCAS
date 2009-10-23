@@ -116,7 +116,6 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
 		String fileExtension = resource.getFileExtension();
 		if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
-			System.out.println(fileExtension);
 			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommand() {
 
 				@Override
