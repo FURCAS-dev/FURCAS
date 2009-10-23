@@ -10,13 +10,13 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
- *             - Bugs 243976, 242236
+ *             - Bugs 243976, 242236, 283509
  *   Zeligsoft - Bugs 245760, 243976, 242236
  *   Borland - Bug 266320
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.7 2009/03/05 14:30:51 cdamus Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.8 2009/10/23 21:00:38 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -226,8 +226,16 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment2 {
 	public void lexerError(int errorCode, int startOffset, int endOffset) {
 		ProblemHandler problemHandler = getProblemHandler();
 		if (problemHandler != null) {
-			String problemMessage = ProblemHandler.ERROR_MESSAGES[errorCode] + " : '" + parser.computeInputString(startOffset, endOffset) + "'";  //$NON-NLS-1$//$NON-NLS-2$
-			problemHandler.lexerProblem(Severity.ERROR, problemMessage, null, startOffset, endOffset);
+			String inputText = '"' + parser.computeInputString(startOffset, endOffset) + '"';
+	        int tokenIndex = parser.getTokenIndexAtCharacter(startOffset);
+	        if (tokenIndex < 0) {
+	        	tokenIndex = -tokenIndex;
+	        }
+			String locInfo = parser.getEndLineNumberOfTokenAt(tokenIndex)
+				+ ":" + parser.getEndColumnOfTokenAt(tokenIndex); //$NON-NLS-1$
+			String messageTemplate = ProblemHandler.ERROR_MESSAGES[errorCode];
+			String message = OCLMessages.bind(messageTemplate, locInfo, inputText);
+			problemHandler.lexerProblem(Severity.ERROR, message, null, startOffset, endOffset);
 		}
 	}
 
