@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLProblemHandler.java,v 1.1 2007/10/11 23:05:00 cdamus Exp $
+ * $Id: OCLProblemHandler.java,v 1.2 2009/10/23 21:00:49 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -70,30 +70,6 @@ public class OCLProblemHandler extends AbstractProblemHandler {
 	
 	public void clearDiagnostic() {
 		diagnostics = null;
-	}
-	
-	/**
-	 * Dumps the error code and token info.
-	 * 
-	 * @param leftToken token index
-	 * @param rightToken token index
-	 */
-	@Override
-	public void lexerProblem(Severity problemSeverity, String problemMessage,
-			String processingContext, int startOffset, int endOffset) {
-		int leftToken = getParser().getTokenIndexAtCharacter(startOffset);
-		if (leftToken < 0) {
-            leftToken = -leftToken;
-        }
-		String message = problemMessage
-	             		+ " (" + getParser().getKind(leftToken) + ") : "  //$NON-NLS-1$//$NON-NLS-2$
-	             		+ getParser().getStartOffset(leftToken)
-	             		+ ":" + getParser().getLineNumberOfTokenAt(leftToken) //$NON-NLS-1$
-	             		+ ":" + getParser().getColumnOfTokenAt(leftToken) //$NON-NLS-1$
-	             		+ ":" + getParser().getTokenLength(leftToken) //$NON-NLS-1$
-	             		+ " " + getParser().getTokenText(leftToken); //$NON-NLS-1$
-		handleProblem(problemSeverity, Phase.LEXER, message,
-				processingContext, startOffset, endOffset);
 	}
 	
 	@Override
