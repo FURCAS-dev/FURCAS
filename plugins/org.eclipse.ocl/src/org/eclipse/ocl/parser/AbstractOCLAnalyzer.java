@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.34 2009/10/15 19:43:33 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.35 2009/10/23 21:06:56 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -2024,7 +2024,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			if (astNode instanceof FeatureCallExp<?>) {
 				((FeatureCallExp<C>) astNode).setMarkedPre(true);
 			} else {
-				ERROR(astNode, "variableExpCS", OCLMessages.IllegalAtPre_ERROR_);//$NON-NLS-1$
+				ERROR(variableExpCS.getIsMarkedPreCS(), "variableExpCS", OCLMessages.IllegalAtPre_ERROR_);//$NON-NLS-1$
 			}
 		}
 
@@ -3953,7 +3953,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 					((FeatureCallExp<C>) astNode).setMarkedPre(true);
 				} else {
 					ERROR(
-						astNode,
+						modelPropertyCallExpCS.getIsMarkedPreCS(),
 						"modelPropertyCallExpCS", OCLMessages.IllegalAtPre_ERROR_);//$NON-NLS-1$
 				}
 			}
